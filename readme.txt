@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
-Tags: tag, posts, tags, admin
+Tags: tag, posts, tags, admin, administration, tagging, navigation, sidebar
 Requires at least: 2.3
 Tested up to: 2.3
 Stable tag: 1.0.4a
