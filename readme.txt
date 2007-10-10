@@ -10,8 +10,10 @@ Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to
 
 == Description ==
 
-Simple Tags is the successor of Simple Tagging Plugin 
-** This is THE perfect tool to manage perfeclty your WP 2.3 tags **
+Simple Tags is the successor of Simple Tagging Plugin
+
+**This is THE perfect tool to manage perfeclty your WP 2.3 tags**
+
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
 * type-ahead input tags
@@ -54,12 +56,12 @@ Compatible with UTW, Simple Tagging, Etc.
 	* Add Japanese translation
 	* Fix "exclude tags" in related posts
 * Version 1.0.3
-* Add 3 translations (german and chineses (zh_TW and zh_CN))
-* Fix a potential bug with posts relateds and WP Object Cache
-* Fix a bug with autocompletion JavaScript (tag not escape)
-* Possibility to customize date format in related posts
-* Optimization in meta keywords
-* New markers to related posts (see advanced usage), old markers are still available
+	* Add 3 translations (german and chineses (zh_TW and zh_CN))
+	* Fix a potential bug with posts relateds and WP Object Cache
+	* Fix a bug with autocompletion JavaScript (tag not escape)
+	* Possibility to customize date format in related posts
+	* Optimization in meta keywords
+	* New markers to related posts (see advanced usage), old markers are still available
 * Version 1.0.2
 	* Keywords
 		* Fix a rare bug with problem encoding
