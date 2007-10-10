@@ -1,0 +1,540 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Tags\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2007-10-06 18:01+0100\n"
+"Last-Translator: Amaury BALMER <amaury@wordpress-fr.net>\n"
+"Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;_c;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\simple-tags\n"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:227
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>Articles relatifs</h4>"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:228
+msgid "No related posts."
+msgstr "Aucun article relatif."
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:230
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:349
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:438
+msgid "No tags."
+msgstr "Aucun tag."
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:439
+msgid "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% sujets\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:443
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>Nuage de tags</h4>"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:129
+msgid "Simple Tags"
+msgstr "Simple Tags"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:129
+msgid "Tags"
+msgstr "Tags"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:130
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:527
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: Gestion des tags"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:130
+msgid "Manage Tags"
+msgstr " Gestion des tags"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:131
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:408
+msgid "Simple Tags: Untagged"
+msgstr "Simple Tags: Non taggé"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:131
+msgid "Untagged"
+msgstr "Non taggé"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:132
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:184
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: Edition en masse de tags"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:132
+msgid "Mass Edit Tags"
+msgstr "Edition en masse de tags"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:133
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:375
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: Options"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:133
+msgid "Options"
+msgstr "Options"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:185
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:376
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:409
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:528
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visitez le <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez moi</a> !"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:190
+msgid "Quantity per page"
+msgstr "Quantité par page"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:201
+msgid "Author (only for pages/posts)"
+msgstr "Auteur (seulement pour les articles/pages)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:202
+msgid "Any"
+msgstr "N'importe"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:205
+msgid "Content type"
+msgstr "Type de contenu"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:207
+msgid "Post"
+msgstr "Article"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:209
+msgid "Page"
+msgstr "Page"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:215
+msgid "Order by"
+msgstr "Trier par"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:217
+msgid "Date (descending)"
+msgstr "Date (descendant)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:218
+msgid "Date (ascending)"
+msgstr "Date (ascendant)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:219
+msgid "ID (descending)"
+msgstr "ID (descendant)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:220
+msgid "ID (ascending)"
+msgstr "ID (ascendant)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:224
+msgid "Filter &#187;"
+msgstr "Filtrer &#187;"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:231
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:240
+msgid "Update all"
+msgstr "Tout mettre à jour"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:254
+msgid "No content to edit."
+msgstr "Pas de contenu à éditer."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:269
+msgid "Page: "
+msgstr "Page:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:329
+msgid "General Options"
+msgstr "Options générales"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:330
+msgid "Add page in tags management:"
+msgstr "Ajouter les pages dans la gestion des tags:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:331
+msgid "Add a tag input (and tag posts features) in page edition"
+msgstr "Ajouter le champ tag (ainsi que les fonctionnalités spécifiques des articles) lors de l'édition des pages"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:332
+msgid "Include page in tag search:"
+msgstr "Inclure les page lors d'une recherche de tag:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:333
+msgid "This feature need that option \"Add page in tags management\" is enabled."
+msgstr "Cette fonctionnalité a besoin que l'option \"Ajouter les pages dans la gestion des tags\" soit activée."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:335
+msgid "Related Posts Options"
+msgstr "Options des articles relatifs"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:336
+msgid "Add related posts to feeds in post content:"
+msgstr "Ajouter les articles relatifs dans les articles des flux RSS/Atom:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:337
+msgid "Add a UL/LI list of related posts at the end of each posts."
+msgstr "Ajoute une liste UL/LI des articles relatifs à la fin de chaques article."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:339
+msgid "Meta Keyword Options"
+msgstr "Options des mots clés"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:340
+msgid "Automatically include in header:"
+msgstr "Inclure automatiquement les mots clés:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:341
+msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines."
+msgstr "Inclut automatiquement des tags comme mots clés dans l'entête de votre page (la plupart des thèmes supportent cette fonction). Ces mots clés sont parfois utilisés par les moteurs de recherche."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:342
+msgid "Always add these keywords:"
+msgstr "Toujours ajouter les mots clés suivants:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:344
+msgid "Embedded Tags"
+msgstr "Tags embarqués"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:345
+msgid "Use embedded tags:"
+msgstr "Utiliser les tags embarqués:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:346
+msgid "Enabling this will cause Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
+msgstr "L'activation de cette option permettra à WordPress de chercher des tags inclus à l'intérieur de vos articles, lors de leur enregistrement et de leur affichage. Ces tags sont marqués comme <code>[tags]ceci, et cela[/tags]</code>, et sont ajoutés automatiquement à votre article lors de son enregistrement, mais ne seront pas visibles pour vos visiteurs."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:347
+msgid "Prefix for embedded tags:"
+msgstr "Préfixe des tags embarqués:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:348
+msgid "Suffix for embedded tags:"
+msgstr "Suffixe des tags embarqués:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:359
+msgid "Options saved"
+msgstr "Les options ont été sauvegardées."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:365
+msgid "Simple Tags options resetted to default options!"
+msgstr "Les options par défaut de Simple Tags ont été restaurées."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:380
+msgid "Update Options"
+msgstr "Mettre à jour les options"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:381
+msgid "Do you really want to restore the default options?"
+msgstr "Êtes-vous sur de vouloir restaurer les options par défaut?"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:381
+msgid "Reset Options"
+msgstr "Restaurer les options par défaut"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:410
+#, php-format
+msgid "%s posts untagged"
+msgstr "%s articles(s) non taggé(s)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:420
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:441
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:584
+msgid "Edit"
+msgstr "Editer"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:426
+msgid "No post."
+msgstr "Aucun article."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:431
+#, php-format
+msgid "%s pages untagged"
+msgstr "%s page(s) non taggé(s)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:447
+msgid "No page."
+msgstr "Aucune page."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:464
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1201
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "Problème de sécurité. Merci de réessayer. Si le problème persiste, contacter <a href=\"mailto:amaury@wordpress-fr.net\">l'auteur du plugin</a>."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:489
+msgid "Sort Order:"
+msgstr "Trier par:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:491
+msgid "Most popular"
+msgstr "Plus populaire"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:492
+msgid "Least used"
+msgstr "Moins utilisé"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:493
+msgid "Alphabetical"
+msgstr "Alphabétique"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:515
+#, php-format
+msgid "View all posts tagged with %s"
+msgstr "Voir les articles taggés avec %s"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:532
+msgid "Existing Tags"
+msgstr "Tags existants:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:537
+msgid "Rename Tag"
+msgstr "Renommer le tag"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:538
+msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
+msgstr "Entrer le tag à renommer et sa nouvelle valeur.  Vous pouvez également utiliser cette fonction pour fusionner des tags. <br />Cliquer sur \"Renommer\" et tous les articles utilisant ce ou ces tag(s) seront mis à jour."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:539
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:577
+msgid "You can specify multiple tags to rename by separating them with commas."
+msgstr "Vous pouvez spécifier plusieurs tags à renommer en les séparant avec des virgules."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:544
+msgid "Tag(s) to rename:"
+msgstr "Tag(s) à renommer:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:545
+msgid "New tag name(s):"
+msgstr "Nom des nouveaux tags:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:546
+msgid "Rename"
+msgstr "Renommer"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:550
+msgid "Delete Tag"
+msgstr "Effacer le tag"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:551
+msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
+msgstr "Entrer le nom du tag à supprimer. Ce tag sera supprimé pour tous les articles/pages."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:552
+msgid "You can specify multiple tags to delete by separating them with commas"
+msgstr "Vous pouvez spécifier plusieurs tags à supprimer en les séparant avec des virgules"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:557
+msgid "Tag(s) to delete:"
+msgstr "Tag(s) to Delete:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:558
+msgid "Delete"
+msgstr "Effacer"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:562
+msgid "Add Tag"
+msgstr "Ajouter un tag"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:563
+msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
+msgstr "Cette fonctionnalité vous permet d'ajouter un ou plusieurs tags à tous vos articles à partir d'une recherche sur un ou plusieurs tag(s) défini(s)."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:564
+msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
+msgstr "Vous pouvez spécifier plusieurs tags à ajouter en les séparant avec des virgules. Si vous souhaitez ajouter ce ou ces tags à tous les articles, vous n'avez pas besoin d'entrer de tags à rechercher."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:569
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:582
+msgid "Tag(s) to match:"
+msgstr "Tag(s) à rechercher:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:570
+msgid "Tag(s) to add:"
+msgstr "Tag(s) à ajouter:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:571
+msgid "Add"
+msgstr "Ajouter"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:575
+msgid "Edit Tag Slug"
+msgstr "Editer l'identifiant d'un tag"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:576
+msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
+msgstr "Entre le nom du tag à éditer et son nouvel identifiant. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Définition de slug (en anglais)</a>"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:583
+msgid "Slug(s) to set:"
+msgstr "Identifiant(s) à fixer:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:657
+msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
+msgstr "Tags (séparez les tags multiples par des virgules : chat, nourriture pour animaux, chien)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:670
+msgid "No tag specified!"
+msgstr "Aucun tag spécifié!"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:700
+msgid "No new tag(s) specified!"
+msgstr "Aucun nouveau tag(s) spécifié!"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:753
+msgid "No new slug(s) specified!"
+msgstr "Aucun nouveau identifiant(s) spécifié!"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:769
+msgid "Tags and slugs number are different!"
+msgstr "Le nombre de tags et d'identifiants n'est pas le même!"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:791
+#, php-format
+msgid "%s slug(s) edited."
+msgstr "%s identifiant(s) édité."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:802
+msgid "No new tag specified!"
+msgstr "Aucun nouveau tag spécifié!"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:821
+msgid "No new/old valid tag specified!"
+msgstr "Aucun ancien ou nouveau tag spécifié!"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:851
+#, php-format
+msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr "Le(s) tag(s) &laquo;%1$s&raquo; a (ont) été renommé en &laquo;%2$s&raquo;"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:857
+msgid "No valid new tag."
+msgstr "Aucun nouveau tag valide."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:874
+msgid "No objects (post/page) found for specified old tags."
+msgstr "Aucun objets (article/page) trouvé pour les anciens tags spécifiés."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:890
+#, php-format
+msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr "Fusionner les tag(s) &laquo;%1$s&raquo; en &laquo;%2$s&raquo;. %3$s objet(s) édité(s)."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:892
+msgid "Error. No enough tags for rename. Too for merge. Choose !"
+msgstr "Erreur. Pas assez de tags pour renommer. Trop pour fusionner. Choisissez !"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:937
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a>"
+msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a>"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1049
+msgid "No suggested tags founds."
+msgstr "Aucun tag suggéré trouvé."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1056
+msgid "Suggested tags"
+msgstr "Tags suggérés"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1228
+#, php-format
+msgid "%s post(s) tags updated with success !"
+msgstr "Les tags de %s article(s) ont été mis à jour avec succès !"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1230
+#, php-format
+msgid "%s page(s) tags updated with success !"
+msgstr "Les tags de %s page(s) ont été mis à jour avec succès !"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:127
+msgid "Empty field will use default value."
+msgstr "Les champs vides utiliseront la valeur par défaut."
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:129
+msgid "Title:"
+msgstr "Titre:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:133
+msgid "Max tags to display: (default: 45)"
+msgstr "Nombre max de tags à afficher: (defaut: 45)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:137
+msgid "Font size mini: (default: 8)"
+msgstr "Taille minimale (defaut: 8)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:141
+msgid "Font size max: (default: 22)"
+msgstr "Taille maximale (defaut: 22)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:145
+msgid "Unit font size:"
+msgstr "Unité pour la taille:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:147
+msgid "Point (default)"
+msgstr "Point (defaut)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:148
+msgid "Pixel"
+msgstr "Pixel"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:149
+msgid "Em"
+msgstr "Em"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:150
+msgid "Pourcent"
+msgstr "Pourcentage"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:154
+msgid "Format:"
+msgstr "Format:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:156
+msgid "Flat (default)"
+msgstr "Applati (defaut)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:157
+msgid "List (UL/LI)"
+msgstr "Liste (UL/LI)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:162
+msgid "Use auto color cloud:"
+msgstr "Utiliser la génération automatique de couleur:"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:165
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "Couleur minimale: (defaut: #CCCCCC)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:169
+msgid "Font color max: (default: #000000)"
+msgstr "Couleur maximale: (defaut: #000000)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:173
+msgid "Extended format: (advanced usage)"
+msgstr "Format étendu: (utilisation avancée)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:204
+msgid "Tag Cloud Widgets"
+msgstr "Nuage de tags Widgets"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:205
+msgid "How many tag cloud widgets would you like?"
+msgstr "Combien de widgets \"Nuage de tags\" désirez-vous ?"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:209
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:229
+#, php-format
+msgid "Tag Cloud %d"
+msgstr "Nuage de tags %d"
+

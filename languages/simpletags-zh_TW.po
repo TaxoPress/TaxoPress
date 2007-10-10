@@ -1,0 +1,541 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Tags\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2007-10-07 09:27+0800\n"
+"Last-Translator: Neil Lin <neil.lch@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1?0:1;\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: TAIWAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_c\n"
+"X-Poedit-Basepath: ./wp-plugins/\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:227
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>相關文章</h4>"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:228
+msgid "No related posts."
+msgstr "沒有相關文章"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:230
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:349
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%permalink%\" title=\"%title% (%date%)\">%title%</a> (%commentcount%)"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:438
+msgid "No tags."
+msgstr "沒有標籤"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:439
+msgid "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+#: C:\SVN\Localhost\simple-tags/simple-tags.php:443
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>標籤雲</h4>"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:129
+msgid "Simple Tags"
+msgstr "Simple Tags"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:129
+msgid "Tags"
+msgstr "標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:130
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:527
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: 管理標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:130
+msgid "Manage Tags"
+msgstr "管理標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:131
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:408
+msgid "Simple Tags: Untagged"
+msgstr "Simple Tags: 無標籤的文章"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:131
+msgid "Untagged"
+msgstr "無標籤的文章"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:132
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:184
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: 大量編輯標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:132
+msgid "Mass Edit Tags"
+msgstr "大量編輯標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:133
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:375
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: 設定"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:133
+msgid "Options"
+msgstr "設定"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:185
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:376
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:409
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:528
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "您可以藉由拜訪 <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:190
+msgid "Quantity per page"
+msgstr "每頁數量"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:201
+msgid "Author (only for pages/posts)"
+msgstr "作者（只算分頁/文章的）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:202
+msgid "Any"
+msgstr "任何"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:205
+msgid "Content type"
+msgstr "內容類型"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:207
+msgid "Post"
+msgstr "文章"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:209
+msgid "Page"
+msgstr "分頁"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:215
+msgid "Order by"
+msgstr "排序依照"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:217
+msgid "Date (descending)"
+msgstr "日期（降冪排列）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:218
+msgid "Date (ascending)"
+msgstr "日期（升冪排列）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:219
+msgid "ID (descending)"
+msgstr "ID（降冪排列）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:220
+msgid "ID (ascending)"
+msgstr "ID（升冪排列）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:224
+msgid "Filter &#187;"
+msgstr "過濾排序 &#187;"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:231
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:240
+msgid "Update all"
+msgstr "全部更新"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:254
+msgid "No content to edit."
+msgstr "無內容可供編輯"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:269
+msgid "Page: "
+msgstr "分頁："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:329
+msgid "General Options"
+msgstr "一般設定"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:330
+msgid "Add page in tags management:"
+msgstr "將分頁加入標籤管理："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:331
+msgid "Add a tag input (and tag posts features) in page edition"
+msgstr "在分頁編輯頁面增加標籤輸入區（以及文章標籤功能）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:332
+msgid "Include page in tag search:"
+msgstr "將分頁列入標籤搜尋中："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:333
+msgid "This feature need that option \"Add page in tags management\" is enabled."
+msgstr "需要先開啟「將分頁加入標籤管理」 功能"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:335
+msgid "Related Posts Options"
+msgstr "相關文章設定"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:336
+msgid "Add related posts to feeds in post content:"
+msgstr "將相關文章加到feed裡面："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:337
+msgid "Add a UL/LI list of related posts at the end of each posts."
+msgstr "在每篇文章結尾加上有項目符號的相關文章"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:339
+msgid "Meta Keyword Options"
+msgstr "關鍵字設定"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:340
+msgid "Automatically include in header:"
+msgstr "自動加入至header："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:341
+msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines."
+msgstr "自動將關鍵字加到header中（大部份的佈景主題都有支援，但並非全部），這些關鍵字有時候會被搜尋引擎所使用。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:342
+msgid "Always add these keywords:"
+msgstr "總是加入這些關鍵字："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:344
+msgid "Embedded Tags"
+msgstr "嵌入式標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:345
+msgid "Use embedded tags:"
+msgstr "使用嵌入式標籤："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:346
+msgid "Enabling this will cause Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
+msgstr "開啟這個功能會使得WordPress在儲存及顯示文章時去尋找嵌入式標籤，這種標籤會被標示成<code>[tags]像這樣和這樣[/tags]</code>，並且當文章儲存時，會被加入文章裡面，但不會顯示出來。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:347
+msgid "Prefix for embedded tags:"
+msgstr "嵌入式標籤的前綴："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:348
+msgid "Suffix for embedded tags:"
+msgstr "嵌入式標籤的後綴："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:359
+msgid "Options saved"
+msgstr "設定已儲存"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:365
+msgid "Simple Tags options resetted to default options!"
+msgstr "Simple Tags 設定已重置為預設狀態！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:380
+msgid "Update Options"
+msgstr "更新設定"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:381
+msgid "Do you really want to restore the default options?"
+msgstr "您真的要回復預設狀態嗎？"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:381
+msgid "Reset Options"
+msgstr "重置設定"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:410
+#, php-format
+msgid "%s posts untagged"
+msgstr "%s 篇文章沒有標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:420
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:441
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:584
+msgid "Edit"
+msgstr "編輯"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:426
+msgid "No post."
+msgstr "沒有文章"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:431
+#, php-format
+msgid "%s pages untagged"
+msgstr "%s 個分頁沒有標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:447
+msgid "No page."
+msgstr "沒有分頁"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:464
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1201
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "這是安全問題，請重試，若問題一再發生，請聯絡 <a href=\"mailto:amaury@wordpress-fr.net\">外掛作者</a>。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:489
+msgid "Sort Order:"
+msgstr "排序依據："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:491
+msgid "Most popular"
+msgstr "最熱門"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:492
+msgid "Least used"
+msgstr "最少用"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:493
+msgid "Alphabetical"
+msgstr "按字母順序的"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:515
+#, php-format
+msgid "View all posts tagged with %s"
+msgstr "觀看所有以  %s 為標籤的文章"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:532
+msgid "Existing Tags"
+msgstr "已存在的標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:537
+msgid "Rename Tag"
+msgstr "重新命名標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:538
+msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
+msgstr "輸入要重新命名的標籤以及新的名稱，您可以利用這個功能來合併標籤。按下「重新命名」 後，所有使用這個標籤的文章都會被更新。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:539
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:577
+msgid "You can specify multiple tags to rename by separating them with commas."
+msgstr "您可以用半形逗點相隔，然後同時輸入多個標籤。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:544
+msgid "Tag(s) to rename:"
+msgstr "要重新命名的標籤："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:545
+msgid "New tag name(s):"
+msgstr "新的標籤名稱："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:546
+msgid "Rename"
+msgstr "重新命名"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:550
+msgid "Delete Tag"
+msgstr "刪除標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:551
+msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
+msgstr "輸入要刪除的標籤名稱，這個標籤將從所有的文章中移除。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:552
+msgid "You can specify multiple tags to delete by separating them with commas"
+msgstr "您可以用半形逗點相隔，同時列出要刪除的多個標籤。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:557
+msgid "Tag(s) to delete:"
+msgstr "要刪除的標籤："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:558
+msgid "Delete"
+msgstr "刪除"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:562
+msgid "Add Tag"
+msgstr "增加標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:563
+msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
+msgstr "這個功能允許您加入一個或數個新的標籤到文章中，只要這些文章符合指定的任何一個標籤。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:564
+msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
+msgstr "您可以用半形逗點相隔，同時加入多個標籤，如果您要將標籤加到所有的文章中，那麼就不要指定需符合特定的標籤。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:569
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:582
+msgid "Tag(s) to match:"
+msgstr "需符合的標籤："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:570
+msgid "Tag(s) to add:"
+msgstr "要增加的標籤："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:571
+msgid "Add"
+msgstr "增加"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:575
+msgid "Edit Tag Slug"
+msgstr "編輯標籤代稱"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:576
+msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
+msgstr "輸入你要編輯的標籤名稱以及新的代稱。 <a href=\"http://codex.wordpress.org/Glossary#Slug\">什麼是代稱？</a>"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:583
+msgid "Slug(s) to set:"
+msgstr "設定的代稱："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:657
+msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
+msgstr "標籤（以半形逗點相隔：貓, 寵物食物, 狗）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:670
+msgid "No tag specified!"
+msgstr "沒有指定標籤！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:700
+msgid "No new tag(s) specified!"
+msgstr "沒有指定新標籤！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:753
+msgid "No new slug(s) specified!"
+msgstr "沒有指定新代稱！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:769
+msgid "Tags and slugs number are different!"
+msgstr "標籤與代稱的數量不同！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:791
+#, php-format
+msgid "%s slug(s) edited."
+msgstr "%s 個代稱已編輯"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:802
+msgid "No new tag specified!"
+msgstr "沒有指定新標籤！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:821
+msgid "No new/old valid tag specified!"
+msgstr "沒有指定新的/舊的有效標籤！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:851
+#, php-format
+msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr "重新命名標籤 &laquo;%1$s&raquo; 為 &laquo;%2$s&raquo;"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:857
+msgid "No valid new tag."
+msgstr "沒有有效的新標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:874
+msgid "No objects (post/page) found for specified old tags."
+msgstr "找不到擁有特定舊標籤的目標（文章/分頁）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:890
+#, php-format
+msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr "合併標籤 &laquo;%1$s&raquo; 到 &laquo;%2$s&raquo;. %3$s 目標已編輯。"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:892
+msgid "Error. No enough tags for rename. Too for merge. Choose !"
+msgstr "錯誤，沒有足夠的標籤可供重新命名和合併，請選譯！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:937
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a>"
+msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a>"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1049
+msgid "No suggested tags founds."
+msgstr "找不到建議的標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1056
+msgid "Suggested tags"
+msgstr "建議的標籤"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1228
+#, php-format
+msgid "%s post(s) tags updated with success !"
+msgstr "%s 篇文章的標籤已成功更新！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1230
+#, php-format
+msgid "%s page(s) tags updated with success !"
+msgstr "%s 個分頁的標籤已成功更新！"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:127
+msgid "Empty field will use default value."
+msgstr "空白區域將使用預設值"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:129
+msgid "Title:"
+msgstr "標題"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:133
+msgid "Max tags to display: (default: 45)"
+msgstr "標籤顯示最多數量：（預設：45）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:137
+msgid "Font size mini: (default: 8)"
+msgstr "最小字型大小：（預設：8）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:141
+msgid "Font size max: (default: 22)"
+msgstr "最大字型大小：（預設：22）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:145
+msgid "Unit font size:"
+msgstr "字型大小單位："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:147
+msgid "Point (default)"
+msgstr "點（預設）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:148
+msgid "Pixel"
+msgstr "像素"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:149
+msgid "Em"
+msgstr "相對單位"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:150
+msgid "Pourcent"
+msgstr "百分比"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:154
+msgid "Format:"
+msgstr "格式："
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:156
+msgid "Flat (default)"
+msgstr "平版（預設）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:157
+msgid "List (UL/LI)"
+msgstr "列表 (UL/LI)"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:162
+msgid "Use auto color cloud:"
+msgstr "使用自動彩色雲"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:165
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "最小字體顏色：（預設： #CCCCCC）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:169
+msgid "Font color max: (default: #000000)"
+msgstr "最大字體顏色：（預設：#000000）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:173
+msgid "Extended format: (advanced usage)"
+msgstr "延伸格式：（進階使用）"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:204
+msgid "Tag Cloud Widgets"
+msgstr "標籤雲"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:205
+msgid "How many tag cloud widgets would you like?"
+msgstr "您想要多少個標籤雲？"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:209
+msgid "Save"
+msgstr "儲存"
+
+#: C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:229
+#, php-format
+msgid "Tag Cloud %d"
+msgstr "標籤雲 %d"
+
