@@ -546,62 +546,83 @@ Class SimpleTags {
 		if ( $smallest == $largest ) {
 			$largest = $smallest + 1;
 		}
+		
+		// Scaling - Hard value for the moment
+		$scale_min = 1;
+		$scale_max = 10;
 
-		// Calcul font step
-		$min_count = min($counts);
-		$spread = max($counts) - $min_count;
-		if ( $spread <= 0 ) {
-			$spread = 1;
-		}
-		$font_spread = $largest - $smallest;
-		if ( $font_spread <= 0 ) {
-			$font_spread = 1;
-		}
-		$font_step = $font_spread / $spread;
+		$minval = min($counts);
+		$maxval = max($counts);;
+		
+		$minout = max($scale_min, 0);
+		$maxout = max($scale_max, $minout);
+		
+		$scale = ($maxval > $minval) ? (($maxout - $minout) / ($maxval - $minval)) : 0;
 
-		// SQL cannot save you; this is a second (potentially different) sort on a subset of data.
-		$orderby = strtolower($orderby);
-		if ( 'name' == $orderby ) {
-			uksort($counts, 'strnatcasecmp');
-		} elseif ( 'random' == $orderby ) {
-			$counts = $this->shuffleArray($counts);
-		} else {
-			asort($counts);
-		}
-
-		$order = strtolower($order);
-		if ( 'desc' == $order ) {
-			$counts = array_reverse( $counts, true );
-		}
-
+		// Rel or not ?
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
 
+		// If empty use default xformat !
 		if ( empty($xformat) ) {
 			$xformat = $defaults['xformat'];
 		}
 		
+		// Remove color marquer if color = false
 		if ( $color == false ) {
 			$xformat = str_replace('%tag_color%', '', $xformat);
 		}
 
 		$output = array();
 		foreach ( (array) $counts as $tag => $count ) {
-			$font_size = round( ( $smallest + (($count-$min_count) * $font_step)), 2 );
-
+			$scaleResult = (int) (($count - $minval) * $scale + $minout);
+						
 			$element_loop = $xformat;
 			$element_loop = str_replace('%tag_link%'	, clean_url($tag_links[$tag]), $element_loop);
 			$element_loop = str_replace('%tag_feed%'	, clean_url(get_tag_feed_link($tag_ids[$tag])), $element_loop);
 			$element_loop = str_replace('%tag_id%'		, $tag_ids[$tag], $element_loop);
 			$element_loop = str_replace('%tag_count%'	, $count, $element_loop);
-			$element_loop = str_replace('%tag_size%'	, 'font-size:'.$font_size.$unit.';', $element_loop);
-			$element_loop = str_replace('%tag_color%'	, 'color:'.$this->getColorByScale((($font_size - $smallest)*100) / ($largest - $smallest),$mincolor,$maxcolor).';', $element_loop);
+			$element_loop = str_replace('%tag_size%'	, 'font-size:'.round(($scaleResult - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 1).$unit.';', $element_loop);
+			$element_loop = str_replace('%tag_color%'	, 'color:'.$this->getColorByScale(round(($scaleResult - $scale_min)*(100)/($scale_max - $scale_min), 1),$mincolor,$maxcolor).';', $element_loop);
 			$element_loop = str_replace('%tag_name%'	, str_replace(' ', '&nbsp;', wp_specialchars( $tag )), $element_loop);
 			$element_loop = str_replace('%tag_rel%'		, $rel, $element_loop);
+			
+			// Add in version 1.1
+			$element_loop = str_replace('%tag_scale%'		, $scaleResult, $element_loop);
+			$element_loop = str_replace('%tag_technorati%'	, $this->formatLink( 'technorati', $tag ), $element_loop);
+			$element_loop = str_replace('%tag_flickr%'		, $this->formatLink( 'flickr', $tag ), $element_loop);
+			$element_loop = str_replace('%tag_delicious%'	, $this->formatLink( 'delicious', $tag ), $element_loop);
+			
 			$output[] = $element_loop;
 		}
 
 		return $this->outputExtendedTagCloud( $format, $title, $output );
+	}
+	
+	/**
+	 * Format nice URL depending service
+	 *
+	 * @param string $type
+	 * @param string $tag_name
+	 * @return string
+	 */
+	function formatLink( $type = '', $tag_name = '' ) {
+		if ( empty($tag_name) ) {
+			return '';
+		}
+		
+		switch ( $type ) {
+			case 'technorati':
+				return '<a href="http://technorati.com/tag/'.str_replace(' ', '+', $tag_name).'" rel="tag">'.$tag_name.'</a>';
+			break;
+			case 'flickr':
+				return '<a href="http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($tag_name)).'/" rel="tag">'.$tag_name.'</a>';
+			break;
+			case 'delicious':
+				return '<a href="http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $tag_name)).'" rel="tag">'.$tag_name.'</a>';
+			break;
+		}
+		return '';		
 	}
 	
 	/**
