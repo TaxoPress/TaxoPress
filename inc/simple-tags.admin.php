@@ -26,7 +26,7 @@ Class SimpleTagsAdmin {
 	 *
 	 * @return SimpleTagsAdmin
 	 */
-	function SimpleTagsAdmin() {
+	function SimpleTagsAdmin( $path ) {
 		// Options
 		$defaultopt = array(
 			'use_tag_pages' => '1',
@@ -62,7 +62,7 @@ Class SimpleTagsAdmin {
 		unset($optionsFromTable);
 
 		// Determine installation path & url
-		$path = basename(str_replace('/inc', '', str_replace('/inc/', '/', dirname(__FILE__))));
+		$path = basename(dirname($path));
 		$info['siteurl'] = get_option('siteurl');
 		$info['install_url'] = $info['siteurl'] . '/wp-content/plugins';
 		$info['install_dir'] = ABSPATH . 'wp-content/plugins';
@@ -242,12 +242,13 @@ Class SimpleTagsAdmin {
 			<?php $this->printPagination( $actionurl ); ?>
 			<?php if ( $this->all_tags ) : ?>
 				<script type="text/javascript">
-					window.onload = function() {
+					ST_WindowOnload( ST__Mass_BComplete );
+					function ST__Mass_BComplete() {
 						<?php foreach ( (array) $objects as $object_id => $object ) { ?>
 							var tag_<?php echo $object_id; ?> = new BComplete('tags-input<?php echo $object_id; ?>');
 							tag_<?php echo $object_id; ?>.setData(collection);
 						<?php } ?>
-					};
+					}
 				</script>
 			<?php endif; ?>
 		<?php else: ?>
@@ -495,10 +496,14 @@ Class SimpleTagsAdmin {
 	 *
 	 */
 	function pageManageTags() {
-		$actionurl = $this->admin_base_url.attribute_escape($_GET['page']);
+		// Manage URL
+		$sort_order = ( isset($_GET['tag_sortorder']) ) ? attribute_escape($_GET['tag_sortorder']) : 'desc';
+		$actionurl = $this->admin_base_url.attribute_escape($_GET['page']).'&amp;tag_sortorder='.$sort_order;
+		
+		// Control Post data
 		if ( isset($_POST['tag_action']) ) {
 			// Origination and intention
-			if ( ! ( wp_verify_nonce($_POST['tag_nonce'], 'simpletags_admin') ) ) {
+			if ( !wp_verify_nonce($_POST['tag_nonce'], 'simpletags_admin') ) {
 				$this->message = __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
 				$this->status = 'error';
 			}
@@ -520,21 +525,18 @@ Class SimpleTagsAdmin {
 				$matchtag = (isset($_POST['tagname_match'])) ? $_POST['tagname_match'] : '';
 				$newslug   = (isset($_POST['tagslug_new'])) ? $_POST['tagslug_new'] : '';
 				$this->editTagSlug( $matchtag, $newslug );
+			} elseif ( $_POST['tag_action'] == 'cleandb'  ) {
+				$this->cleanDatabase();
 			}
 		}
 
-		/* tag sort order */
-		$tag_listing = '<p style="margin:0; padding:0;">'.__('Sort Order:', 'simpletags').'</p><p style="margin:0 0 10px 10px; padding:0;">';
-		$order_array = array(
-		'desc'    => __('Most popular', 'simpletags'),
-		'asc'     => __('Least used', 'simpletags'),
-		'natural' => __('Alphabetical', 'simpletags')
-		);
-		$sort_order = ( isset($_GET['tag_sortorder']) ) ? attribute_escape($_GET['tag_sortorder']) : 'desc';
+		$order_array = array('desc' => __('Most popular', 'simpletags'), 'asc' => __('Least used', 'simpletags'), 'natural' => __('Alphabetical', 'simpletags'));
+
+		$tag_listing = '';
 		foreach( (array) $order_array as $sort => $title ) {
 			$tag_listing .= ($sort == $sort_order) ? '<span style="color: red;">'.$title.'</span><br />' : '<a href="'.$this->admin_base_url.attribute_escape($_GET['page']).'&amp;tag_sortorder='.$sort.'">'.$title.'</a><br/>';
 		}
-		$tag_listing .= '</p>';
+		$tag_listing = '<p style="margin:0; padding:0;">' .__('Sort Order:', 'simpletags'). '</p><p style="margin:0 0 10px 10px; padding:0;">' .$tag_listing. '</p>';
 
 		/* create tag listing */
 		switch ($sort_order) {
@@ -581,7 +583,7 @@ Class SimpleTagsAdmin {
 								<table>
 									<tr><th><?php _e('Tag(s) to rename:', 'simpletags'); ?></th><td> <input type="text" id="renametag_old" name="renametag_old" value="" size="40" /> </td></tr>
 									<tr><th><?php _e('New tag name(s):', 'simpletags'); ?></th><td> <input type="text" id="renametag_new" name="renametag_new" value="" size="40" /> </td></tr>
-									<tr><th></th><td> <input type="submit" name="Rename" value="<?php _e('Rename', 'simpletags'); ?>" /> </td></tr>
+									<tr><th></th><td> <input type="submit" name="rename" value="<?php _e('Rename', 'simpletags'); ?>" /> </td></tr>
 								</table>
 							</form>
 						</fieldset>				
@@ -593,7 +595,7 @@ Class SimpleTagsAdmin {
 								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								<table>
 									<tr><th><?php _e('Tag(s) to delete:', 'simpletags'); ?></th><td> <input type="text" id="deletetag_name" name="deletetag_name" value="" size="40" /> </td></tr>
-									<tr><th></th><td> <input type="submit" name="Delete" value="<?php _e('Delete', 'simpletags'); ?>" /> </td></tr>
+									<tr><th></th><td> <input type="submit" name="delete" value="<?php _e('Delete', 'simpletags'); ?>" /> </td></tr>
 								</table>
 							</form>
 						</fieldset>					
@@ -619,8 +621,16 @@ Class SimpleTagsAdmin {
 								<table>
 									<tr><th><?php _e('Tag(s) to match:', 'simpletags'); ?></th><td> <input type="text" id="tagname_match" name="tagname_match" value="" size="40" /> </td></tr>
 									<tr><th><?php _e('Slug(s) to set:', 'simpletags'); ?></th><td>   <input type="text" id="tagslug_new" name="tagslug_new" value="" size="40" /> </td></tr>
-									<tr><th></th><td> <input type="submit" name="Add" value="<?php _e('Edit', 'simpletags'); ?>" /> </td></tr>
+									<tr><th></th><td> <input type="submit" name="edit" value="<?php _e('Edit', 'simpletags'); ?>" /> </td></tr>
 								</table>
+							</form>
+						</fieldset>
+						<fieldset class="options"><legend><?php _e('Remove empty terms', 'simpletags'); ?></legend>
+							<p><?php _e('WordPress 2.3 have a small bug and can create empty terms. Remove it !', 'simpletags'); ?></p>
+							<form action="<?php echo $actionurl; ?>" method="post">
+								<input type="hidden" name="tag_action" value="cleandb" />
+								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
+								<p><input type="submit" name="clean" value="<?php _e('Clean !', 'simpletags'); ?>" /></p>
 							</form>
 						</fieldset>
 					</td>
@@ -804,7 +814,7 @@ Class SimpleTagsAdmin {
 		$new_slugs = array_filter($new_slugs, array(&$this, 'deleteEmptyElement'));
 
 		if ( count($match_names) != count($new_slugs) ) {
-			$this->message = __('Tags and slugs number are different!', 'simpletags');
+			$this->message = __('Tags number and slugs number isn\'t the same!', 'simpletags');
 			$this->status = 'error';
 			return;
 		} else {
@@ -827,9 +837,47 @@ Class SimpleTagsAdmin {
 			}
 		}
 		$this->message = sprintf(__('%s slug(s) edited.', 'simpletags'), $counter);
+		return;
+	}
+	
+	function cleanDatabase() {
+		global $wpdb;
+		
+		// Counter
+		$counter = 0;
+
+		// Get terms id empty
+		$terms_id = $wpdb->get_col("SELECT DISTINCT term_id FROM {$wpdb->terms} WHERE name IN ('', ' ', '  ', '&nbsp;')");
+		if ( empty($terms_id) ) {
+			$this->message = __('Nothing to muck. Good job !', 'simpletags');
+			return;
+		}
+		
+		// Prepare terms SQL List
+		$terms_list = "'" . implode("', '", $terms_id) . "'";
+		
+		// Remove term empty
+		$counter += $wpdb->query("DELETE FROM {$wpdb->terms} WHERE term_id IN ( {$terms_list} )");
+		
+		// Get term_taxonomy_id from term_id on term_taxonomy table
+		$tts_id = $wpdb->get_col("SELECT DISTINCT term_taxonomy_id FROM {$wpdb->term_taxonomy} WHERE term_id IN ( {$terms_list} )");
+		
+		if ( !empty($tts_id) ) {
+			// Clean term_taxonomy table
+			$counter += $wpdb->query("DELETE FROM {$wpdb->term_taxonomy} WHERE term_id IN ( {$terms_list} )");
+			
+			// Prepare terms SQL List
+			$tts_list = "'" . implode("', '", $tts_id) . "'";
+			
+			// Clean term_relationships table
+			$counter += $wpdb->query("DELETE FROM {$wpdb->term_relationships} WHERE term_taxonomy_id IN ( {$tts_list} )");
+		}
+		
+		$this->message = sprintf(__('%s rows deleted. WordPress DB is clean now !', 'simpletags'), $counter);
+		return;
 	}
 
-	/**
+	/*
 	 * Rename or merge tags
 	 *
 	 * @param string $old
@@ -1013,36 +1061,35 @@ Class SimpleTagsAdmin {
 	 */
 	function helperJS() {
 		// Get all tags
-		if ( $this->all_tags == '' ) {
-			$this->all_tags = get_tags();
-		}
+		$tags = get_tags();
 		
 		// If no tags => exit !
-		if ( !$this->all_tags ) {
+		if ( !$tags ) {
 			return;
 		}
 
 		// Type-ahead
-		foreach ( (array) $this->all_tags as $tag ) {
+		foreach ( (array) $tags as $tag ) {
 			$tag_name = str_replace('"', '\"', $tag->name);
 			$tags_list .= '"'.$tag_name.'", ';
 		}
 		$tags_list = substr( $tags_list, 0, strlen($tags_list) - 2);
 		?>
-		<script type="text/javascript">
-		//<![CDATA[
-		collection = [
-		<?php echo $tags_list; ?>
-		];
-		//]]>';
-		window.onload = function() {
-			var tags_input = new BComplete('tags-input');
-			tags_input.setData(collection);
-		};
-		</script>
 		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/functions.js"></script>
 		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.css" />
+		<script type="text/javascript">
+			//<![CDATA[
+			collection = [
+			<?php echo $tags_list; ?>
+			];
+			//]]>';
+			ST_WindowOnload( ST_BComplete );
+			function ST_BComplete() {
+				var tags_input = new BComplete('tags-input');
+				tags_input.setData(collection);
+			}
+		</script>
 		<?php
 	}
 
@@ -1066,11 +1113,11 @@ Class SimpleTagsAdmin {
 		unset($ptags);
 
 		// Get all tags
-		$this->all_tags = get_tags();
+		$tags = get_tags();
 
 		// Click tags
 		$click_tags = array();
-		foreach ( (array) $this->all_tags as $tag ) {
+		foreach ( (array) $tags as $tag ) {
 			if ( is_string($tag->name) && $tag->name != '' && stristr($post->post_content, $tag->name) && !in_array($tag->name, $post_tags) ) {
 				$click_tags[] = $tag->name;
 			}
@@ -1146,14 +1193,15 @@ Class SimpleTagsAdmin {
 		}
 		$tags_list = substr( $tags_list, 0, strlen($tags_list) - 2);
 		?>
+		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/functions.js"></script>
 		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.js"></script>
 	  	<link rel="stylesheet" type="text/css" href="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.css" />
 		<script type="text/javascript">
-		//<![CDATA[
-		collection = [
-			<?php echo $tags_list; ?>
-		];
-		//]]>';
+			//<![CDATA[
+			collection = [
+				<?php echo $tags_list; ?>
+			];
+			//]]>';
 		</script>
 		<?php
 	}

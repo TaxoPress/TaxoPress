@@ -39,13 +39,45 @@ function st_tag_cloud( $args = '' ) {
 	echo st_get_tag_cloud( $args );
 }
 
-/* Future */
-function get_st_related_links( $args = '' ) {
+/**
+ * Generate extended current tags post
+ *
+ * @param string $args
+ * @return string
+ */
+function st_get_the_tags( $args = '' ) {
 	global $simple_tags;
-	return $simple_tags->relatedLinks( $args );
+	return $simple_tags->extendedPostTags( $args );
 }
 
-function st_related_links( $args = '' ) {
-	echo get_st_related_links( $args );
+/**
+ *  Display extended current tags post
+ *
+ * @param string $args
+ */
+function st_the_tags( $args = '' ) {
+	echo st_get_the_tags( $args );
+}
+
+/**
+ * Generate meta keywords for HTML header
+ *
+ * @return string
+ */
+function st_get_meta_keywords() {
+	global $simple_tags;
+	$tags_list = $simple_tags->generateKeywords();
+	if ( !empty($tags_list) ) {
+		return "\n\t" . '<meta name="keywords" content="' . $tags_list . '" />' . "\n";
+	}
+	return '';
+}
+
+/**
+ * Display meta keywords for HTML header
+ *
+ */
+function st_meta_keywords() {
+	echo st_get_meta_keywords();
 }
 ?>
