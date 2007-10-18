@@ -363,10 +363,10 @@ BComplete.prototype =
 
         var text = this.element.value;
 		
-		    // Modifications for multiples values
-    		var exp = new RegExp(",?[^,]*$" , "i");
-    		m = text.match(exp);
-    		text = m[0].replace(/^[,\s]+|\s+$/g,"");
+	    // Modifications for multiples values
+		var exp = new RegExp(",?[^,]*$" , "i");
+		m = text.match(exp);
+		text = m[0].replace(/^[,\s]+|\s+$/g,"");
 		
         var expression = new RegExp("("+RegExp.escape(text)+")","i");
     

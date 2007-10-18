@@ -7,7 +7,7 @@ Version: 1.1
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
-Â© Copyright 2007  Amaury BALMER (balmer.amaury@gmail.com)
+© Copyright 2007  Amaury BALMER (balmer.amaury@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 Contributors:
-KÃ©vin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net/)
+Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net/)
 */
 
 Class SimpleTags {
@@ -43,17 +43,41 @@ Class SimpleTags {
 	function SimpleTags() {
 		// Options
 		$defaultopt = array(
-			'use_tag_pages' => '1',
+			// General 
 			'inc_page_tag_search' => '1',
-			'use_tag_links' => '0',
+			// Administration
+			'use_tag_pages' => '1',
+			'use_tag_links' => '0',	
+			'admin_max_suggest' => '100',
+			'admin_tag_suggested' => '1',
+			'admin_tag_sort' => 'popular',
+			// Embedded Tags
 			'use_embed_tags' => '0',
 			'start_embed_tags' => '[tags]',
-			'end_embed_tags' => '[/tags]',
-			'related_posts_feed' => '1',
+			'end_embed_tags' => '[/tags]',			
+			// Related Posts
+			'rp_embedded' => 'no',
+			'rp_sortorderby' => 'DESC',
+			'rp_sortorder' => 'counter',
+			'rp_limit_qty' => '5',
+			'rp_notagstext' => __('No related posts.', 'simpletags'),
+			'rp_title' => __('<h4>Related posts</h4>', 'simpletags'),
+			'rp_adv_usage' => '',
+			// Tag cloud
+			'cloud_sortorderby' => 'ASC',
+			'cloud_sortorder' => 'name',
+			'cloud_limit_qty' => '45',
+			'cloud_notagstext' => __('No tags.', 'simpletags'),
+			'cloud_title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
+			'cloud_max_color' => '#000000',
+			'cloud_min_color' => '#CCCCCC',
+			'cloud_max_size' => '22',
+			'cloud_min_size' => '8',
+			'cloud_unit' => 'pt',
+			'cloud_adv_usage' => '',
+			// Meta keywords
 			'meta_autoheader' => '1', 
-			'meta_always_include' => '',
-			'inline_post_tags' => 'no',
-			'inline_related_posts' => 'no'
+			'meta_always_include' => ''		
 		);
 
 		// Set class property for default options
@@ -186,7 +210,7 @@ Class SimpleTags {
 			// Unique keywords
 			$results = array_unique($results);		
 			
-			return htmlentities(utf8_decode(strip_tags(implode(', ', $results))));
+			return strip_tags(implode(', ', $results));
 		}
 		return '';
 	}
@@ -256,6 +280,16 @@ Class SimpleTags {
 			'dateformat' => $this->dateformat,
 			'xformat' => __('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags')
 		);
+		
+		// If empty user_args, use user option in DB.
+		if( empty($user_args) ) {
+			$defaults['number'] = $this->options['rp_limit_qty'];
+			$defaults['order'] = $this->options['rp_sortorderby'];
+			$defaults['orderby'] = $this->options['rp_sortorder'];
+			$defaults['nopoststext'] = $this->options['rp_notagstext'];
+			$defaults['title'] = $this->options['rp_title'];
+			$user_args = $this->options['rp_adv_usage'];
+		}
 
 		$args = wp_parse_args( $user_args, $defaults );
 		extract($args);
@@ -569,7 +603,7 @@ Class SimpleTags {
 		}
 		
 		// Remove color marquer if color = false
-		if ( $color == false ) {
+		if ( $color == 'false' ) {
 			$xformat = str_replace('%tag_color%', '', $xformat);
 		}
 
@@ -1096,7 +1130,7 @@ $simple_tags = new SimpleTags();
 // Admin and XML-RPC
 if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
 	require(dirname(__FILE__).'/inc/simple-tags.admin.php');
-	$simple_tags_admin = new SimpleTagsAdmin( __FILE__ );
+	$simple_tags_admin = new SimpleTagsAdmin();
 }
 
 // Templates functions
