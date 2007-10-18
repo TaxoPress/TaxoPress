@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
-Tags: tag, posts, tags, admin, administration, tagging, navigation, sidebar
+Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3
 Requires at least: 2.3
-Tested up to: 2.3
-Stable tag: 1.0.4a
+Tested up to: 2.3.1
+Stable tag: 1.1
 
 Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfeclty your WP 2.3 tags
 
@@ -16,18 +16,24 @@ Simple Tags is the successor of Simple Tagging Plugin
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
-* type-ahead input tags
-* auto suggestion of tags
-* tags management (rename, delete, amalgamate, search and add tags, edit tags ID)
-* List of non tagged contents
-* Edit mass tags
-* Possibility to tag pages (not only posts) and include them inside the tags results
-* Related content since common tags
-* Possibility to add related posts inside RSS
-* Dynamic Tag Clouds with colors with Widgets
-* Tags inside your header's blog
-* Embedded tags ([tags]tag1, tag2[/tags]) for retro compatibility
-
+	* Administration
+		* type-ahead input tags / Autocompletion
+		* auto suggestion of tags (admin tag cloud)
+		* Click tags
+		* tags management (rename, delete, merge, search and add tags, edit tags ID)
+		* List of untagged content
+		* **Edit mass tags (more than 50 posts once)**
+		* Possibility to tag pages (not only posts) and include them inside the tags results		
+		* Embedded tags ([tags]tag1, tag2[/tags]) for compatibility with old plugins
+		* **Easy configuration ! (in WP admin)**
+	* Blog
+		* Meta keywords generate from tags in your header's blog
+		* Technorati, Flickr and Delicious tags 
+		* Dynamic Tag Clouds with colors with Widgets (random order, etc)
+		* Related content since common tags
+		* Possibility to add related posts inside RSS
+		* Extended the_tags function (outside the loop, technorati, etc)
+		
 And more...
 
 == Installation ==
@@ -51,6 +57,20 @@ Compatible with UTW, Simple Tagging, Etc.
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 
 == Arbitrary section ==
+* Version 1.1
+	* Fix XML-RPC and Embedded Tags
+	* Improve compatibility JS with others plugins (calendar)
+	* Minor improve in administration (order keeping on update)
+	* Cleaner for empty terms
+	* Add limit days for Tag Clouds and Related Posts
+	* Add the marker: %relatedtags% for Related Posts => Display tag shared between 2 posts.
+	* True random for tag cloud
+	* Tag cloud can generate class level for CSS size/color
+	* Add Order to Tag Cloud Widgets
+	* Add 2 functions
+		* st_meta_keywords() : Display keywords for manual insert in header
+		* st_the_tags() : Improved the official the_tags() functions.
+	* Add marker for Technorati, Flickr and Delicious
 * Version 1.0.4a (1.0.4a fix a small bug introduced in 1.0.4)
 	* Update 3 translations for 1.0.4
 	* Add Japanese translation

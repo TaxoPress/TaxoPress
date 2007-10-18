@@ -20,14 +20,15 @@ Event.observe(window, 'load', function() {
 });
 
 function trimTagsBeforeSend() {
-	var tag_entry_value = document.getElementById("tags-input").value;
-
-	if ( tag_entry_value.substr(tag_entry_value.length - 2 , 2) == ', ' ) {
-		tag_entry_value = tag_entry_value.substr( 0, tag_entry_value.length - 2);
+	var tag_entry = document.getElementById("tags-input");
+	var taille = tag_entry.value.length;
+	
+	if ( tag_entry.value.substr(taille - 2 , 2) == ', ' ) {
+		tag_entry.value = tag_entry.value.substr( 0, taille - 2);
 	}
 	
-	if ( tag_entry_value.substr(tag_entry_value.length - 1, 1) == ',' ) {
-		tag_entry_value = tag_entry_value.substr( 0, tag_entry_value.length - 1);
+	if ( tag_entry.value.substr(taille - 1, 1) == ',' ) {
+		tag_entry.value = tag_entry.value.substr( 0, taille - 1);
 	}
 }
 
