@@ -50,8 +50,8 @@ Class SimpleTagsAdmin {
 			'rp_title' => __('<h4>Related posts</h4>', 'simpletags'),
 			'rp_adv_usage' => '',
 			// Tag cloud
-			'cloud_sortorderby' => 'ASC',
-			'cloud_sortorder' => 'name',
+			'cloud_sortorder' => 'ASC',
+			'cloud_sortorderby' => 'name',
 			'cloud_limit_qty' => '45',
 			'cloud_notagstext' => __('No tags.', 'simpletags'),
 			'cloud_title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
@@ -61,6 +61,13 @@ Class SimpleTagsAdmin {
 			'cloud_min_size' => '8',
 			'cloud_unit' => 'pt',
 			'cloud_adv_usage' => '',
+			// The tags
+			'tt_embedded' => 'no',
+			'tt_separator' => ', ',
+			'tt_before' => __('Tags: ', 'simpletags'),
+			'tt_after' => '<br />',
+			'tt_notagstext' => __('No tag for this post.', 'simpletags'),
+			'tt_adv_usage' => '',
 			// Meta keywords
 			'meta_autoheader' => '1', 
 			'meta_always_include' => ''		
@@ -77,9 +84,7 @@ Class SimpleTagsAdmin {
 
 		// Update default options by getting not empty values from options table
 		foreach( (array) $defaultopt as $def_optname => $def_optval ) {
-			if ( $optionsFromTable[$def_optname] != '' ) {
-				$defaultopt[$def_optname] = $optionsFromTable[$def_optname];
-			}
+			$defaultopt[$def_optname] = $optionsFromTable[$def_optname];
 		}
 
 		// Set the class property and unset no used variable
@@ -381,6 +386,21 @@ Class SimpleTagsAdmin {
 				array('start_embed_tags', __('Prefix for embedded tags:', 'simpletags'), 'text', 40),
 				array('end_embed_tags', __('Suffix for embedded tags:', 'simpletags'), 'text', 40)
 			),
+			__('Tags for Current Post', 'simpletags') => array(
+				array('tt_embedded', __('Automatically display tag list at end of post:', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly',
+					'<ul>
+						<li>'.__('<code>no</code> &ndash; Nowhere (default)', 'simpletags').'</li>
+						<li>'.__('<code>all</code> &ndash; On your blog and feeds.', 'simpletags').'</li>
+						<li>'.__('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags').'</li>
+						<li>'.__('<code>feedonly</code> &ndash; Only on your feeds.', 'simpletags').'</li>
+					</ul>'),
+				array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),				
+				array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 40),
+				array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 40),
+				array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
+				array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
+					__('You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
+			),
 			__('Related Posts', 'simpletags') => array(
 				array('rp_embedded', __('Automatically add related posts', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly',
 					'<ul>
@@ -589,13 +609,13 @@ Class SimpleTagsAdmin {
 		/* create tag listing */
 		switch ($sort_order) {
 			case 'natural' :
-				$tags = get_tags('orderby=name&order=ASC');
+				$tags = get_tags('hide_empty=false&orderby=name&order=ASC');
 				break;
 			case 'asc' :
-				$tags = get_tags('orderby=count&order=ASC');
+				$tags = get_tags('hide_empty=false&orderby=count&order=ASC');
 				break;
 			default :
-				$tags = get_tags('orderby=count&order=DESC');
+				$tags = get_tags('hide_empty=false&orderby=count&order=DESC');
 				break;
 		}
 		$tag_listing .= '<ul>';
@@ -808,6 +828,7 @@ Class SimpleTagsAdmin {
 		$match_tags = array_filter($match_tags, array(&$this, 'deleteEmptyElement'));
 		$new_tags = array_filter($new_tags, array(&$this, 'deleteEmptyElement'));
 
+		$counter = 0;
 		if ( !empty($match_tags) ) { // Match and add
 			// Get terms ID from old match names
 			$terms_id = array();
@@ -822,7 +843,8 @@ Class SimpleTagsAdmin {
 			// Add new tags for specified post
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_tags, 'post_tag', true ); // Append tags
-			}
+				$counter++;
+			}			
 		} else { // Add for all posts
 			// Page or not ?
 			$post_type_sql = ( $this->options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
@@ -834,7 +856,14 @@ Class SimpleTagsAdmin {
 			// Add new tags for all posts
 			foreach ( (array) $posts_id as $post_id ) {
 				wp_set_object_terms( $post_id, $new_tags, 'post_tag', true ); // Append tags
+				$counter++;
 			}
+		}
+		
+		if ( $counter == 0  ) {
+			$this->message = __('No tag added.', 'simpletags');
+		} else {
+			$this->message = sprintf(__('Tag(s) added to %1s post(s).', 'simpletags'), $counter);
 		}
 	}
 
@@ -964,7 +993,7 @@ Class SimpleTagsAdmin {
 
 				// Get term by name
 				$term = get_term_by('name', addslashes($old_tag), 'post_tag');
-				if ( !$term ) {
+				if ( !$term ) {				
 					continue;
 				}
 
@@ -982,7 +1011,11 @@ Class SimpleTagsAdmin {
 				// Increment
 				$counter++;
 			}
-			$this->message = sprintf(__('Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simpletags'), $old, $new);
+			if ( $counter == 0  ) {
+				$this->message = __('No tag renamed.', 'simpletags');
+			} else {
+				$this->message = sprintf(__('Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simpletags'), $old, $new);
+			}
 		}
 		elseif ( count($new_tags) == 1  ) { // Merge
 			// Set new tag
@@ -1020,8 +1053,12 @@ Class SimpleTagsAdmin {
 				wp_set_object_terms( $object_id, $new_tag, 'post_tag', true );
 				$counter++;
 			}
-
-			$this->message = sprintf(__('Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simpletags'), $old, $new, $counter);
+			
+			if ( $counter == 0  ) {
+				$this->message = __('No tag merged.', 'simpletags');
+			} else {
+				$this->message = sprintf(__('Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simpletags'), $old, $new, $counter);
+			}
 		} else { // Error
 			$this->message = sprintf(__('Error. No enough tags for rename. Too for merge. Choose !', 'simpletags'), $old);
 			$this->status = 'error';
@@ -1032,8 +1069,8 @@ Class SimpleTagsAdmin {
 	/**
 	 * trim and remove empty element
 	 *
-	 * @param unknown_type $element
-	 * @return unknown
+	 * @param string $element
+	 * @return string
 	 */
 	function deleteEmptyElement( &$element ) {
 		$element = trim($element);
@@ -1109,7 +1146,7 @@ Class SimpleTagsAdmin {
 	 */
 	function helperJS() {
 		// Get all tags
-		$tags = get_tags();
+		$tags = get_tags('hide_empty=false');
 		
 		// If no tags => exit !
 		if ( !$tags ) {
@@ -1165,7 +1202,7 @@ Class SimpleTagsAdmin {
 		$number = ( $number == 0 ) ? 9999999 : $number;
 		
 		// Get all tags
-		$tags = get_tags( array('number' => $number, 'orderby' => $orderby, 'order' => 'DESC') );
+		$tags = get_tags( array('hide_empty' => false, 'number' => $number, 'orderby' => $orderby, 'order' => 'DESC') );
 		
 		// Quit if no tags
 		if ( !$tags )
@@ -1253,7 +1290,7 @@ Class SimpleTagsAdmin {
 	 */
 	function helperMassJS() {
 		// Get all tags
-		$this->all_tags = get_tags();
+		$this->all_tags = get_tags('hide_empty=false');
 
 		// If no tags => exit !
 		if ( !$this->all_tags ) {
@@ -1416,9 +1453,7 @@ Class SimpleTagsAdmin {
 	 *
 	 */
 	function resetToDefaultOptions() {
-		// write option values to database
 		update_option($this->db_options, $this->default_options);
-		// set class options
 		$this->options = $this->default_options;
 	}
 }

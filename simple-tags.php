@@ -64,8 +64,8 @@ Class SimpleTags {
 			'rp_title' => __('<h4>Related posts</h4>', 'simpletags'),
 			'rp_adv_usage' => '',
 			// Tag cloud
-			'cloud_sortorderby' => 'ASC',
-			'cloud_sortorder' => 'name',
+			'cloud_sortorder' => 'ASC',
+			'cloud_sortorderby' => 'name',
 			'cloud_limit_qty' => '45',
 			'cloud_notagstext' => __('No tags.', 'simpletags'),
 			'cloud_title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
@@ -75,6 +75,13 @@ Class SimpleTags {
 			'cloud_min_size' => '8',
 			'cloud_unit' => 'pt',
 			'cloud_adv_usage' => '',
+			// The tags
+			'tt_embedded' => 'no',
+			'tt_separator' => ', ',
+			'tt_before' => __('Tags: ', 'simpletags'),
+			'tt_after' => '<br />',
+			'tt_notagstext' => __('No tag for this post.', 'simpletags'),
+			'tt_adv_usage' => '',
 			// Meta keywords
 			'meta_autoheader' => '1', 
 			'meta_always_include' => ''		
@@ -91,9 +98,7 @@ Class SimpleTags {
 
 		// Update default options by getting not empty values from options table
 		foreach( (array) $defaultopt as $def_optname => $def_optval ) {
-			if ( $optionsFromTable[$def_optname] != '' ) {
-				$defaultopt[$def_optname] = $optionsFromTable[$def_optname];
-			}
+			$defaultopt[$def_optname] = $optionsFromTable[$def_optname];
 		}
 
 		// Set the class property and unset no used variable
@@ -102,7 +107,7 @@ Class SimpleTags {
 		unset($optionsFromTable);
 
 		// Determine installation path & url
-		$path = basename(dirname(__FILE__));
+		$path = basename(str_replace('\\','/',dirname(__FILE__)));
 		$info['siteurl'] = get_option('siteurl');
 		$info['install_url'] = $info['siteurl'] . '/wp-content/plugins';
 		$info['install_dir'] = ABSPATH . 'wp-content/plugins';
@@ -144,13 +149,13 @@ Class SimpleTags {
 			add_filter('the_content', array(&$this, 'filterEmbedTags'), 99);
 		}
 		
-		// Add related posts in post ( all / feedonly / no )
-		if ( $this->options['inline_post_tags'] != 'no' ) {
+		// Add related posts in post ( all / feedonly / blogonly / no )
+		if ( $this->options['tt_embedded'] != 'no' ) {
 			add_filter('the_content', array(&$this, 'inlinePostTags'), 98);
 		}	
 	
-		// Add related posts in post ( all / feedonly / no )
-		if ( $this->options['inline_related_posts'] != 'no' ) {
+		// Add related posts in post ( all / feedonly / blogonly / no )
+		if ( $this->options['rp_embedded'] != 'no' ) {
 			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 99);
 		}
 
@@ -234,11 +239,18 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function inlineRelatedPosts( $content ) {
- 		// Only feed ?
-		if ( $this->options['inline_related_posts'] == 'feedonly' && is_feed() === false ) {
-			return $content;
+ 		$marker = false;
+ 		if ( $this->options['rp_embedded'] == 'all' ) {
+ 			$marker = true;
+ 		} elseif ( $this->options['rp_embedded'] == 'blogonly' &&  is_feed() == false ) {
+			$marker = true;
+ 		} elseif ( $this->options['rp_embedded'] == 'feedonly' &&  is_feed() == true ) {
+			$marker = true;
+ 		}
+
+		if ( $marker == true ) {
+			$content .= $this->relatedPosts();
 		}
-		$content .= $this->relatedPosts();
 		return $content;
 	}
 	
@@ -249,11 +261,18 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function inlinePostTags( $content ) {
- 		// Only feed ?
-		if ( $this->options['inline_post_tags'] == 'feedonly' && is_feed() === false ) {
-			return $content;
+ 		$marker = false;
+ 		if ( $this->options['tt_embedded'] == 'all' ) {
+ 			$marker = true;
+ 		} elseif ( $this->options['tt_embedded'] == 'blogonly' &&  is_feed() == false ) {
+			$marker = true;
+ 		} elseif ( $this->options['tt_embedded'] == 'feedonly' &&  is_feed() == true ) {
+			$marker = true;
+ 		}
+
+		if ( $marker == true ) {
+			$content .= $this->extendedPostTags();
 		}
-		$content .= $this->extendedPostTags();
 		return $content;
 	}	
 	
@@ -338,7 +357,7 @@ Class SimpleTags {
 			} elseif ( $orderby == 'random' ) {
 				$order_sql = "ORDER BY RAND()";
 			} else {
-				$order_sql = "ORDER BY posts.post_title {$order}";
+				$order_sql = "ORDER BY posts.post_title {$order}, posts.post_date DESC";
 			}
 			unset($orderby, $order);
 			 
@@ -551,8 +570,21 @@ Class SimpleTags {
 			'title' => __('<h4>Tag Cloud</h4>', 'simpletags')
 		);
 
+		if ( empty($args) ) {
+			$defaults['order'] = $this->options['cloud_sortorder'];
+			$defaults['orderby'] = $this->options['cloud_sortorderby'];
+			$defaults['number'] = $this->options['cloud_limit_qty'];
+			$defaults['notagstext'] = $this->options['cloud_notagstext'];
+			$defaults['title'] = $this->options['cloud_title'];
+			$defaults['maxcolor'] = $this->options['cloud_max_color'];
+			$defaults['mincolor'] = $this->options['cloud_min_color'];
+			$defaults['largest'] = $this->options['cloud_max_size'];
+			$defaults['smallest'] = $this->options['cloud_min_size'];
+			$defaults['unit'] = $this->options['cloud_unit'];
+			$args = $this->options['cloud_adv_usage'];
+		}
 		$args = wp_parse_args( $args, $defaults );
-		
+
 		// Get tags
 		$tags = $this->get_tags( $args );
 		extract($args);
@@ -647,30 +679,16 @@ Class SimpleTags {
 		
 		switch ( $type ) {
 			case 'technorati':
-				return '<a href="http://technorati.com/tag/'.str_replace(' ', '+', $tag_name).'" rel="tag">'.$tag_name.'</a>';
+				return '<a class="tag_technorati" href="http://technorati.com/tag/'.str_replace(' ', '+', $tag_name).'" rel="tag">'.$tag_name.'</a>';
 			break;
 			case 'flickr':
-				return '<a href="http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($tag_name)).'/" rel="tag">'.$tag_name.'</a>';
+				return '<a class="tag_flickr" href="http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($tag_name)).'/" rel="tag">'.$tag_name.'</a>';
 			break;
 			case 'delicious':
-				return '<a href="http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $tag_name)).'" rel="tag">'.$tag_name.'</a>';
+				return '<a class="tag_delicious" href="http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $tag_name)).'" rel="tag">'.$tag_name.'</a>';
 			break;
 		}
 		return '';		
-	}
-	
-	/**
-	 * Random an array and keeping key associations
-	 *
-	 * @param unknown_type $shuffle_me
-	 * @return unknown
-	 */
-	function shuffleArray( $shuffle_me ) {
-		$randomized_keys = array_rand( $shuffle_me, count($shuffle_me) );
-		foreach( (array) $randomized_keys as $current_key ) {
-			$shuffled_me[$current_key] = $shuffle_me[$current_key];
-		}
-		return $shuffled_me;
 	}
 
 	/**
@@ -708,7 +726,7 @@ Class SimpleTags {
 					break;
 			}
 		}
-		
+
 		if ( strtolower($title) == 'false' ) {
 			$title = '';
 		}
@@ -731,6 +749,14 @@ Class SimpleTags {
 			'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'notagtext' => __('No tag for this post.', 'simpletags'),
 		);
+		
+		if ( empty($args) ) {
+			$defaults['before'] = $this->options['tt_before'];
+			$defaults['separator'] = $this->options['tt_separator'];
+			$defaults['after'] = $this->options['tt_after'];
+			$defaults['notagtext'] = $this->options['tt_notagstext'];
+			$args = $this->options['tt_adv_usage'];
+		}
 
 		$args = wp_parse_args( $args, $defaults );
 		extract($args);
@@ -756,6 +782,10 @@ Class SimpleTags {
 			$element_loop = str_replace('%tag_id%'		, $tag->term_id, $element_loop);		
 			$element_loop = str_replace('%tag_name%'	, str_replace(' ', '&nbsp;', wp_specialchars($tag->name)), $element_loop);
 			$element_loop = str_replace('%tag_rel%'		, $rel, $element_loop);
+			
+			$element_loop = str_replace('%tag_technorati%'	, $this->formatLink( 'technorati', $tag->name ), $element_loop);
+			$element_loop = str_replace('%tag_flickr%'		, $this->formatLink( 'flickr', $tag->name ), $element_loop);
+			$element_loop = str_replace('%tag_delicious%'	, $this->formatLink( 'delicious', $tag->name ), $element_loop);
 			
 			$tag_links[] = $element_loop;
 		}
@@ -827,24 +857,6 @@ Class SimpleTags {
 			$where = str_replace('post_type = \'post\'', 'post_type IN(\'page\', \'post\')', $where);
 		}
 		return $where;
-	}
-
-	/**
-	 * Update an option value  -- note that this will NOT save the options.
-	 *
-	 * @param string $optname
-	 * @param string $optval
-	 */
-	function setOption($optname, $optval) {
-		$this->options[$optname] = $optval;
-	}
-
-	/**
-	 * Save all current options
-	 *
-	 */
-	function saveOptions() {
-		update_option($this->db_options, $this->options);
 	}
 
 	/**
@@ -965,12 +977,20 @@ Class SimpleTags {
 			}
 		}
 	
-		if ( $orderby = 'count' ) {
+		if ( $orderby == 'count' ) {
 			$orderby = 'tt.count';
-		}elseif ( $orderby = 'random' ) {
+		} elseif ( $orderby == 'random' ) {
 			$orderby = 'RAND()';
 		} else {
 			$orderby = 't.name';
+		}
+		
+		// Order
+		$order = strtolower($order);
+		if ( $order == 'asc' ) {
+			$order = 'ASC';
+		} else {
+			$order = 'DESC';
 		}
 	
 		$where = '';
@@ -1054,7 +1074,7 @@ Class SimpleTags {
 				INNER JOIN $wpdb->posts AS p ON tr.object_id = p.ID";
 			$limitdays_sql = 'AND p.post_date > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
 		}
-		
+
 		$query = "
 			SELECT {$select_this}
 			FROM {$wpdb->terms} AS t 
