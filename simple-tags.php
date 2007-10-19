@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://www.herewithme.fr/wordpress-plugins/simple-tags
 Description: Simple Tags : Extended Tagging with WordPress 2.3
-Version: 1.1
+Version: 1.1.1
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -24,7 +24,7 @@ Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net/)
 */
 
 Class SimpleTags {
-	var $version = '1.1';
+	var $version = '1.1.1';
 
 	var $info;
 	var $options;
@@ -419,10 +419,15 @@ Class SimpleTags {
 			}
 			$taglist = substr($taglist, 0, strlen($taglist) - 2); // Remove latest ", "
 			
+			// Group Concat only for MySQL > 4.1
+			if ( version_compare(mysql_get_server_info(), '4.1.0', '>=') ) {
+				$group_concat_sql = ', GROUP_CONCAT(term_taxonomy.term_id) as terms_id';
+			}
+
 			// Posts: title, comments_count, date, permalink, post_id, counter
 			global $wpdb;
 			$results = $wpdb->get_results("
-		        SELECT DISTINCT posts.post_title, posts.comment_count, posts.post_date, posts.ID, COUNT(term_relationships.object_id) as counter, GROUP_CONCAT(term_taxonomy.term_id) as terms_id
+		        SELECT DISTINCT posts.post_title, posts.comment_count, posts.post_date, posts.ID, COUNT(term_relationships.object_id) as counter {$group_concat_sql}
 		        FROM {$wpdb->posts} AS posts
 		        INNER JOIN {$wpdb->term_relationships} AS term_relationships ON (posts.ID = term_relationships.object_id)
 		        INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id) 
@@ -450,6 +455,10 @@ Class SimpleTags {
 		
 		if ( empty($dateformat) ) {
 			$dateformat = $this->dateformat;
+		}
+		
+		if ( !version_compare(mysql_get_server_info(), '4.1.0', '>=') ) {
+			$xformat = str_replace('%post_relatedtags%', '', $xformat);
 		}
 
 		foreach ( (array) $results as $result ) {

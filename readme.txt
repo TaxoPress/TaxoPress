@@ -4,7 +4,7 @@ Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3
 Requires at least: 2.3
 Tested up to: 2.3.1
-Stable tag: 1.1
+Stable tag: 1.1.1
 
 Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfeclty your WP 2.3 tags
 
@@ -57,6 +57,8 @@ Compatible with UTW, Simple Tagging, Etc.
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 
 == Arbitrary section ==
+* Version 1.1
+	* Fix compatibily with MySQL < 4.1 (Marker "related_tags" of Related Posts is desactived.)
 * Version 1.1
 	* Fix XML-RPC and Embedded Tags
 	* Improve compatibility JS with others plugins (calendar)
