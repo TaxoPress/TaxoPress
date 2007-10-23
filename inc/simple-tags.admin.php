@@ -1,5 +1,7 @@
 <?php
 Class SimpleTagsAdmin {
+	var $version = '1.1.1';
+	
 	var $info;
 	var $options;
 	var $default_options;
@@ -1160,9 +1162,9 @@ Class SimpleTagsAdmin {
 		}
 		$tags_list = substr( $tags_list, 0, strlen($tags_list) - 2);
 		?>
-		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/functions.js"></script>
-		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.js"></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.css" />
+		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/functions.js?ver=<?php echo $this->version; ?>"></script>
+		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.js?ver=<?php echo $this->version; ?>"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.css?ver=<?php echo $this->version; ?>" />
 		<script type="text/javascript">
 			//<![CDATA[
 			collection = [
@@ -1304,9 +1306,9 @@ Class SimpleTagsAdmin {
 		}
 		$tags_list = substr( $tags_list, 0, strlen($tags_list) - 2);
 		?>
-		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/functions.js"></script>
-		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.js"></script>
-	  	<link rel="stylesheet" type="text/css" href="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.css" />
+		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/functions.js?ver=<?php echo $this->version; ?>"></script>
+		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.js?ver=<?php echo $this->version; ?>"></script>
+	  	<link rel="stylesheet" type="text/css" href="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete.css?ver=<?php echo $this->version; ?>" />
 		<script type="text/javascript">
 			//<![CDATA[
 			collection = [

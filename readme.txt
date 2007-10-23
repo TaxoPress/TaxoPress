@@ -6,7 +6,7 @@ Requires at least: 2.3
 Tested up to: 2.3.1
 Stable tag: 1.1.1
 
-Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfeclty your WP 2.3 tags
+Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 tags
 
 == Description ==
 
