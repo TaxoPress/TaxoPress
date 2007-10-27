@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://www.herewithme.fr/wordpress-plugins/simple-tags
 Description: Simple Tags : Extended Tagging with WordPress 2.3
-Version: 1.1.1
+Version: 1.2
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -24,7 +24,7 @@ Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net/)
 */
 
 Class SimpleTags {
-	var $version = '1.1.1';
+	var $version = '1.2';
 
 	var $info;
 	var $options;
@@ -64,6 +64,8 @@ Class SimpleTags {
 			'rp_title' => __('<h4>Related posts</h4>', 'simpletags'),
 			'rp_adv_usage' => '',
 			// Tag cloud
+			'cloud_selection_sortorder' => 'DESC',
+			'cloud_selection_sortorderby' => 'count',
 			'cloud_sortorder' => 'ASC',
 			'cloud_sortorderby' => 'name',
 			'cloud_limit_qty' => '45',
@@ -566,6 +568,8 @@ Class SimpleTags {
 			'unit' => 'pt',
 			'number' => 45,
 			'format' => 'flat',
+			'selection_orderby' => 'count',
+			'selection_order' => 'DESC',
 			'orderby' => 'name',
 			'order' => 'ASC',
 			'exclude' => '',
@@ -580,6 +584,8 @@ Class SimpleTags {
 		);
 
 		if ( empty($args) ) {
+			$defaults['selection_order'] = $this->options['cloud_selection_sortorder'];
+			$defaults['selection_orderby'] = $this->options['cloud_selection_sortorderby'];
 			$defaults['order'] = $this->options['cloud_sortorder'];
 			$defaults['orderby'] = $this->options['cloud_sortorderby'];
 			$defaults['number'] = $this->options['cloud_limit_qty'];
@@ -595,14 +601,14 @@ Class SimpleTags {
 		$args = wp_parse_args( $args, $defaults );
 
 		// Get tags
-		$tags = $this->get_tags( $args );
-		extract($args);
+		$tags = $this->get_tags( $args );		
+		extract($args); // Params to variables
 
 		if ( empty($tags) ) {
-			return $this->outputExtendedTagCloud( $format, $title, $output );
+			return $this->outputExtendedTagCloud( $format, $title, $notagstext );
 		}
 
-		$counts = $tag_links = array();
+		$counts = $tag_links = $tag_ids =array();
 		foreach ( (array) $tags as $tag ) {
 			$counts[$tag->name] = $tag->count;
 			$tag_links[$tag->name] = get_tag_link( $tag->term_id );
@@ -647,6 +653,40 @@ Class SimpleTags {
 		if ( $color == 'false' ) {
 			$xformat = str_replace('%tag_color%', '', $xformat);
 		}
+		
+		// Order tags before output
+		$order	 = strtolower($order);
+		$orderby = strtolower($orderby);
+		if ( $orderby == 'name' ) { // Use key for sort
+			if ( $order == 'asc' ) {
+				$counts = array_flip($counts);
+				natcasesort($counts); // Natural sort
+				$counts = array_flip($counts);
+			} else {
+				$counts = array_flip($counts);
+				natcasesort($counts); // Natural sort
+				$counts = array_reverse($counts, true);  // Inverse
+				$counts = array_flip($counts);
+			}
+		}
+		elseif ( $orderby == 'count' ) { // Use value for sort
+			if ( $order == 'asc' ) {
+				asort($counts);
+			} else {
+				arsort($counts);
+			}
+		}
+		elseif ( $orderby == 'random' ) { // Shuffle but keeping key/value
+			$tmp_array = array();
+			$tmp_keys = array_keys($counts);
+			shuffle($tmp_keys);
+			foreach ( $tmp_keys as $tmp_key ) {
+				$tmp_array[$tmp_key] = $counts[$tmp_key];
+			}
+			$counts = $tmp_array;
+			unset($tmp_array);
+			unset($tmp_keys);
+		}
 
 		$output = array();
 		foreach ( (array) $counts as $tag => $count ) {
@@ -670,6 +710,7 @@ Class SimpleTags {
 			
 			$output[] = $element_loop;
 		}
+		unset($counts, $tag_links, $tag_ids);
 
 		return $this->outputExtendedTagCloud( $format, $title, $output );
 	}
@@ -902,6 +943,7 @@ Class SimpleTags {
 		}
 		
 		$tags = $this->get_terms('post_tag', $args);
+
 		if ( empty($tags) ) {
 			return array();
 		}
@@ -931,8 +973,8 @@ Class SimpleTags {
 		$in_taxonomies = "'" . implode("', '", $taxonomies) . "'";
 	
 		$defaults = array(
-			'orderby' => 'name',
-			'order' => 'ASC',
+			'selection_orderby' => 'count',
+			'selection_order' => 'DESC',
 			'hide_empty' => true,
 			'exclude' => '',
 			'include' => '',
@@ -985,21 +1027,22 @@ Class SimpleTags {
 				return apply_filters('get_terms', $cache[$key], $taxonomies, $args);
 			}
 		}
-	
-		if ( $orderby == 'count' ) {
-			$orderby = 'tt.count';
-		} elseif ( $orderby == 'random' ) {
-			$orderby = 'RAND()';
+		
+		$selection_orderby = strtolower($selection_orderby);
+		if ( $selection_orderby == 'count' ) {
+			$selection_orderby = 'tt.count';
+		} elseif ( $selection_orderby == 'random' ) {
+			$selection_orderby = 'RAND()';
 		} else {
-			$orderby = 't.name';
+			$selection_orderby = 't.name';
 		}
 		
 		// Order
-		$order = strtolower($order);
-		if ( $order == 'asc' ) {
-			$order = 'ASC';
+		$selection_order = strtolower($selection_order);
+		if ( $selection_order == 'asc' ) {
+			$selection_order = 'ASC';
 		} else {
-			$order = 'DESC';
+			$selection_order = 'DESC';
 		}
 	
 		$where = '';
@@ -1092,8 +1135,9 @@ Class SimpleTags {
 			WHERE tt.taxonomy IN ( {$in_taxonomies} )
 			{$limitdays_sql}
 			{$where}
-			ORDER BY {$orderby} {$order}
+			ORDER BY {$selection_orderby} {$selection_order}
 			{$number}";
+	
 	
 		if ( 'all' == $fields ) {
 			$terms = $wpdb->get_results($query);

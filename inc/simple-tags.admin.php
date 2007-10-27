@@ -1,6 +1,6 @@
 <?php
 Class SimpleTagsAdmin {
-	var $version = '1.1.1';
+	var $version = '1.2';
 	
 	var $info;
 	var $options;
@@ -52,6 +52,8 @@ Class SimpleTagsAdmin {
 			'rp_title' => __('<h4>Related posts</h4>', 'simpletags'),
 			'rp_adv_usage' => '',
 			// Tag cloud
+			'cloud_selection_sortorder' => 'DESC',
+			'cloud_selection_sortorderby' => 'count',
 			'cloud_sortorder' => 'ASC',
 			'cloud_sortorderby' => 'name',
 			'cloud_limit_qty' => '45',
@@ -358,7 +360,8 @@ Class SimpleTagsAdmin {
 	 * WP Page - Tags options
 	 *
 	 */
-	function pageOptions() {
+	function pageOptions() {	
+		// TODO: Are the new tag cloud options shown with the right default option enabled?	
 		$option_data = array(
 			__('General', 'simpletags') => array(
 				array('inc_page_tag_search', __('Include page in tag search:', 'simpletags'), 'checkbox', '1',
@@ -430,13 +433,24 @@ Class SimpleTagsAdmin {
 					__('You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
 			),
 			__('Tag cloud', 'simpletags') => array(
-				array('cloud_sortorderby', __('Tag cloud sort order by:', 'simpletags'), 'dropdown', 'name/count/random', 
+				array('cloud_selection_sortorderby', __('Tag cloud selection - sort order by:', 'simpletags'), 'dropdown', 'name/count/random', 
+					'<ul>
+						<li>'.__('<code>count</code> &ndash; Selection by counter usage. (default)', 'simpletags').'</li>
+						<li>'.__('<code>name</code> &ndash; Selection by alphabetic order.', 'simpletags').'</li>
+						<li>'.__('<code>random</code> &ndash; Selection by random, every time the page is loaded.', 'simpletags').'</li>
+					</ul>'),
+				array('cloud_selection_sortorder', __('Tag cloud selection - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC', 
+					'<ul>
+						<li>'.__('<code>ASC</code> &ndash; Ascending', 'simpletags').'</li>
+						<li>'.__('<code>DESC</code> &ndash; Descending (default)', 'simpletags').'</li>
+					</ul>'),
+				array('cloud_sortorderby', __('Tag cloud display - sort order by:', 'simpletags'), 'dropdown', 'name/count/random', 
 					'<ul>
 						<li>'.__('<code>count</code> &ndash; Sorting by counter usage.', 'simpletags').'</li>
 						<li>'.__('<code>name</code> &ndash; Alphabetic order. (default)', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Randomized every time the page is loaded.', 'simpletags').'</li>
 					</ul>'),
-				array('cloud_sortorder', __('Tag cloud sort order:', 'simpletags'), 'dropdown', 'ASC/DESC', 
+				array('cloud_sortorder', __('Tag cloud display - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC', 
 					'<ul>
 						<li>'.__('<code>ASC</code> &ndash; Ascending (default)', 'simpletags').'</li>
 						<li>'.__('<code>DESC</code> &ndash; Descending', 'simpletags').'</li>
