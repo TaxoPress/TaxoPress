@@ -136,7 +136,7 @@ Class SimpleTagsAdmin {
 
 		// Tags for page
 		if ( $this->options['use_tag_pages'] == '1' ) {
-			add_action('edit_page_form', array(&$this, 'helperTagsPage'));
+			add_action('edit_page_form', array(&$this, 'helperTagsPage'), 1);
 			add_action('dbx_page_advanced', array(&$this, 'helperJS'));
 			add_action('edit_page_form', array(&$this, 'helperSuggestTags'), 1);
 		}
@@ -163,7 +163,6 @@ Class SimpleTagsAdmin {
 	function adminMenu() {
 		add_menu_page(__('Simple Tags', 'simpletags'), __('Tags', 'simpletags'), 'simple_tags', __FILE__, array(&$this, 'pageManageTags'));
 		add_submenu_page(__FILE__, __('Simple Tags: Manage Tags', 'simpletags'), __('Manage Tags', 'simpletags'), 'simple_tags', __FILE__, array(&$this, 'pageManageTags'));
-		add_submenu_page(__FILE__, __('Simple Tags: Untagged', 'simpletags'), __('Untagged', 'simpletags'), 'simple_tags', 'simpletags_not_tagged', array(&$this, 'pageContentNotTagged'));
 		add_submenu_page(__FILE__, __('Simple Tags: Mass Edit Tags', 'simpletags'), __('Mass Edit Tags', 'simpletags'), 'simple_tags', 'simpletags_mass', array(&$this, 'pageMassEditTags'));
 		add_submenu_page(__FILE__, __('Simple Tags: Options', 'simpletags'), __('Options', 'simpletags'), 'simple_tags', 'simpletags_options', array(&$this, 'pageOptions'));
 	}
@@ -193,6 +192,13 @@ Class SimpleTagsAdmin {
 		if ( empty($order) ) {
 			$order = 'date_desc';
 		}
+		
+		// Filter 
+		if ( $_GET['filter'] == 'untagged' ) {
+			$filter = 'untagged';
+		} else {
+			$filter = 'all';
+		}
 
 		// Check and update tags
 		$this->checkFormMassEdit( $type );
@@ -202,8 +208,8 @@ Class SimpleTagsAdmin {
 		if ( $this->actual_page != 1 ) {
 			$page = '&amp;pagination='.$this->actual_page;
 		}
-		$actionurl = $this->admin_base_url.'simpletags_mass&amp;quantity='.$quantity.'&amp;author='.$author.'&amp;type='.$type.'&amp;order='.$order.$page;
-		$objects = $this->getObjects( $type, $quantity, $author, $order );
+		$actionurl = $this->admin_base_url.'simpletags_mass&amp;quantity='.$quantity.'&amp;author='.$author.'&amp;type='.$type.'&amp;filter='.$filter.'&amp;order='.$order.$page;
+		$objects = $this->getObjects( $type, $quantity, $author, $order, $filter );
 
 		$this->displayMessage();
 		?>
@@ -231,9 +237,8 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $quantity == 50 ) echo 'selected="selected"'; ?> value="50">50</option>
 				</select>
 			</fieldset>
-
 			<fieldset>
-			  <legend><?php _e('Author (only for pages/posts)', 'simpletags'); ?></legend>
+			  <legend><?php _e('Author', 'simpletags'); ?></legend>
 			  <?php wp_dropdown_users( array('include' => $editable_ids, 'show_option_all' => __('Any'), 'name' => 'author', 'selected' => isset($_GET['author']) ? $_GET['author'] : 0) ); ?>
 			</fieldset>
 			<fieldset>
@@ -255,6 +260,13 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $order == 'id_asc' ) echo 'selected="selected"'; ?> value="id_asc"><?php _e('ID (ascending)', 'simpletags'); ?></option>
 				</select>
 			</fieldset>
+			<fieldset>
+				<legend><?php _e('Filter', 'simpletags'); ?></legend>
+				<select name='filter' id='filter'>
+					<option <?php if ( $filter == 'all' ) echo 'selected="selected"'; ?> value="all"><?php _e('All', 'simpletags'); ?></option>
+					<option <?php if ( $filter == 'untagged' ) echo 'selected="selected"'; ?> value="untagged"><?php _e('Untagged only', 'simpletags'); ?></option>
+				</select>
+			</fieldset>
 
 			<input type="submit" id="post-query-submit" value="<?php _e('Filter &#187;', 'simpletags'); ?>" class="button" />
 			<br style="clear:both;" />
@@ -264,9 +276,10 @@ Class SimpleTagsAdmin {
 			<form name="post" id="post" action="<?php echo $actionurl; ?>" method="post">
 				<p class="submit">
 				<input type="submit" name="update_mass" value="<?php _e('Update all', 'simpletags'); ?>" /></p>
+				<?php $this->printPagination( $actionurl ); ?>
 				<?php
 				foreach ( (array) $objects as $object_id => $object ) {
-					echo '<p>#'.$object_id.' <a href="'.get_permalink($object_id).'">'.$object['title'].'</a><br />'."\n";
+					echo '<p>#'.$object_id.' <a href="'.get_permalink($object_id).'">'.$object['title'].'</a> [<a href="'.$type.'.php?action=edit&amp;post=' .$object_id . '">' . __('Edit', 'simpletags') . '</a>]<br />'."\n";
 					echo '<input id="tags-input'.$object_id.'" class="tags-input" type="text" size="100" name="tags['.$object_id.']" value="'.get_tags_to_edit( $object_id ).'" /></p>'."\n";
 				}
 				?>
@@ -498,6 +511,9 @@ Class SimpleTagsAdmin {
 		<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
 		<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 		<form action="<?php echo $this->admin_base_url.'simpletags_options'; ?>" method="post">
+			<p class="submit">
+				<input type="submit" name="updateoptions" value="<?php _e('Update Options', 'simpletags'); ?> &raquo;" />
+				<input type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
 			<?php echo $this->printOptions( $option_data ); ?>
 			<p class="submit">
 				<input type="submit" name="updateoptions" value="<?php _e('Update Options', 'simpletags'); ?> &raquo;" />
@@ -506,73 +522,6 @@ Class SimpleTagsAdmin {
     <?php $this->printAdminFooter(); ?>
     </div>
     <?php
-	}
-
-	/**
-	 * WP Page - Content not tagged
-	 *
-	 */
-	function pageContentNotTagged() {
-		$date_format = get_option('date_format');
-		$posts = $this->getDataNotTagged( 'post' );
-
-		// Post Counter
-		$counter_post = ( $posts === false ) ? '0' : count($posts);
-
-		if ( $this->options['use_tag_pages'] == '1' ) {
-			$pages = $this->getDataNotTagged( 'page' );
-			$counter_page = ( $pages === false ) ? '0' : count($pages);
-		}
-		?>
-		<div class="wrap">
-	    <style type="text/css">
-  			.tags_admin { text-align: center; font-size: .85em; }
-  		</style>
-  		<h2><?php _e('Simple Tags: Untagged', 'simpletags'); ?></h2>
-  		<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-  		<h3><?php printf(__('%s posts untagged', 'simpletags'), $counter_post); ?></h3>
-  		<?php
-  		if ( $posts ) {
-  			echo '<ul>';
-  			foreach ( (array) $posts as $post ) {
-  				$post_permalink = get_permalink($post->ID);
-  				$post_date = mysql2date($date_format, $post->post_date);
-
-  				echo '<li><a href="' . $post_permalink . '">' . $post->post_title . '</a> (' . $post_date . ')';
-  				if ( current_user_can('edit_post', $post->ID) ) {
-  					echo ' [<a href="post.php?action=edit&amp;post=' . $post->ID . '">' . __('Edit', 'simpletags') . '</a>]';
-  				}
-  				echo '</li>';
-  			}
-  			echo '</ul>';
-  		} else {
-  			echo '<p>'.__('No post.','simpletags').'</p>';
-  		}
-      ?>
-
-      <?php if ( $this->options['use_tag_pages'] == '1' ) : ?>
-      <h3><?php printf(__('%s pages untagged', 'simpletags'), $counter_page); ?></h3>
-  		<?php
-  		if ( $pages ) {
-  			echo '<ul>';
-  			foreach ( (array) $pages as $page ) {
-  				$page_permalink = get_permalink($page->ID);
-  				$page_date = mysql2date($date_format, $page->post_date);
-
-  				echo '<li><a href="' . $page_permalink . '">' . $page->post_title . '</a> (' . $page_date . ')';
-  				if ( current_user_can('edit_page', $page->ID) ) {
-  					echo ' [<a href="page.php?action=edit&amp;post=' . $page->ID . '">' . __('Edit', 'simpletags') . '</a>]';
-  				}
-  				echo '</li>';
-  			}
-  			echo '</ul>';
-  		} else {
-  			echo '<p>'.__('No page.','simpletags').'</p>';
-  		}
-  		endif;
-      	$this->printAdminFooter(); ?>
-		</div>
-	<?php
 	}
 
 	/**
@@ -1126,37 +1075,6 @@ Class SimpleTagsAdmin {
 	}
 
 	/**
-	 * Get data (post/page) for edition
-	 *
-	 * @param string $type
-	 * @return array
-	 */
-	function getDataNotTagged( $type = 'post' ) {
-		global $wpdb;
-		$all_posts = $wpdb->get_col("SELECT DISTINCT ID FROM {$wpdb->posts} WHERE post_type = '{$type}'");
-		$posts_id_used = $wpdb->get_col("
-	      SELECT DISTINCT term_relationships.object_id
-	      FROM {$wpdb->term_taxonomy} term_taxonomy, {$wpdb->term_relationships} term_relationships, {$wpdb->posts} posts
-	      WHERE term_taxonomy.taxonomy = 'post_tag'
-	      AND term_taxonomy.term_taxonomy_id = term_relationships.term_taxonomy_id
-	      AND term_relationships.object_id  = posts.ID
-	      AND posts.post_type = '{$type}'");
-
-		// Keep only posts without tag
-		foreach ( (array) $all_posts as $id ) {
-			if ( !in_array($id, $posts_id_used) ) {
-				$posts_not_tagged[] = $id;
-			}
-		}
-
-		// Get data or return false
-		if ( is_array($posts_not_tagged) && count($posts_not_tagged) > 0 ) {
-			return $wpdb->get_results("SELECT * FROM {$wpdb->posts} WHERE ID IN ('".implode( "', '",$posts_not_tagged )."') AND post_type = '{$type}' ORDER BY post_date DESC");
-		}
-		return false;
-	}
-
-	/**
 	 * Helper type-ahead
 	 *
 	 */
@@ -1341,7 +1259,7 @@ Class SimpleTagsAdmin {
 	 * @param integer $author
 	 * @return array
 	 */
-	function getObjects( $type = 'post', $quantity = 20, $author = 0, $order = 'date_desc' ) {
+	function getObjects( $type = 'post', $quantity = 20, $author = 0, $order = 'date_desc', $filter = 'all' ) {
 		global $wpdb;
 
 		// Quantity
@@ -1366,11 +1284,28 @@ Class SimpleTagsAdmin {
 
 			// Restrict Author
 			$author_sql = ( $author != 0 ) ? "AND post_author = '{$author}'" : '';
-
+			
+			// Status
+			$filter_sql = '';
+			if ( $filter == 'untagged' ) {
+				$p_id_used = $wpdb->get_col("
+			      SELECT DISTINCT term_relationships.object_id
+			      FROM {$wpdb->term_taxonomy} term_taxonomy, {$wpdb->term_relationships} term_relationships, {$wpdb->posts} posts
+			      WHERE term_taxonomy.taxonomy = 'post_tag'
+			      AND term_taxonomy.term_taxonomy_id = term_relationships.term_taxonomy_id
+			      AND term_relationships.object_id  = posts.ID
+			      AND posts.post_type = '{$type}'");
+				
+				$filter_sql = 'AND ID NOT IN ("'.implode( '", "', $p_id_used ).'")';
+				unset($p_id_used);
+			}
+			
+			// Get datas with pagination			
 			$this->found_datas = (int) $wpdb->get_var("
 		        SELECT count(ID)
 		        FROM {$wpdb->posts} AS posts
 		        WHERE post_type = '{$type}'
+		        {$filter_sql}
 		        {$author_sql}");
 
 			$this->max_num_pages = ceil($this->found_datas/$this->data_per_page);
@@ -1388,6 +1323,7 @@ Class SimpleTagsAdmin {
 		        FROM {$wpdb->posts}
 		        WHERE post_type = '{$type}'
 		        {$author_sql}
+		        {$filter_sql}
 		        {$order_sql}
 		        {$limit_sql}");
 

@@ -10,9 +10,8 @@ function widget_st_tag_cloud_init() {
 		return;
 	}
 
-	function widget_st_tag_cloud($args, $number = 1) {
-		extract($args);
-
+	function widget_st_tag_cloud( $widget_args, $number = 1 ) {
+		extract($widget_args);
 		$options = get_option('widget_stags_cloud');
 
 		// Use Widgets title and no ST title !!
@@ -20,14 +19,14 @@ function widget_st_tag_cloud_init() {
 		$args = 'title=';
 
 		// Order
-		$order = trim($options[$number]['order']);
+		$order = trim(strtolower($options[$number]['order']));
 		if ( $order == 'name-desc' ) {
 			$args .= '&orderby=name&order=desc';
-		} elseif ( $order = 'count-desc' ) {
+		} elseif ( $order == 'count-desc' ) {
 			$args .= '&orderby=count&order=desc';
-		} elseif ( $order = 'count-asc' ) {
+		} elseif ( $order == 'count-asc' ) {
 			$args .= '&orderby=count&order=asc';
-		} elseif ( $order = 'random' ) {
+		} elseif ( $order == 'random' ) {
 			$args .= '&orderby=random';
 		} else { // name-asc (default)
 			$args .= '&orderby=name&order=asc';
@@ -93,9 +92,7 @@ function widget_st_tag_cloud_init() {
 		echo $after_widget;
 	}
 
-	function widget_st_tag_cloud_control($number) {
-		// Title, Number, Font size mini, Font size Maxi, Unity, format, color, Max color, Min color
-
+	function widget_st_tag_cloud_control( $number ) {
 		// Get actual options
 		$options = $newoptions = get_option('widget_stags_cloud');
 		if ( !is_array($options) ) {
@@ -103,7 +100,7 @@ function widget_st_tag_cloud_init() {
 		}
 
 		// Post to new options array
-		if ( $_POST['widget-stags-submit-'.$number] ) {
+		if ( isset($_POST['widget-stags-submit-'.$number]) ) {
 			$newoptions[$number]['title']   = strip_tags(stripslashes($_POST['widget-stags-title-'.$number]));
 			$newoptions[$number]['max']     = (int) stripslashes($_POST['widget-stags-max-'.$number]);
 			$newoptions[$number]['order']  	= stripslashes($_POST['widget-stags-order-'.$number]);
@@ -216,13 +213,12 @@ function widget_st_tag_cloud_init() {
 	function st_tag_cloud_setup() {
 		$options = $newoptions = get_option('widget_stags_cloud');
 		if ( isset($_POST['stags_cloud-number-submit']) ) {
-			$number = (int) $_POST['stags_cloud-number'];
-			if ( $number > 9 ) {
-				$number = 9;
-			} elseif ( $number < 1 ) {
-				$number = 1;
+			$newoptions['number'] = (int) $_POST['stags_cloud-number'];
+			if ( $newoptions['number'] > 9 ) {
+				$newoptions['number'] = 9;
+			} elseif ( $newoptions['number'] < 1 ) {
+				$newoptions['number'] = 1;
 			}
-			$newoptions['number'] = (int) $number;
 		}
 		if ( $options != $newoptions ) {
 			$options = $newoptions;
@@ -237,7 +233,7 @@ function widget_st_tag_cloud_init() {
 			<div class="wrap">
 				<form method="post">
 					<h2><?php _e('Tag Cloud Widgets', 'simpletags'); ?></h2>
-					<p style="line-height: 30px;"><?php _e('How many tag cloud widgets would you like?', 'simpletags'); ?>
+					<p style="line-height: 30px;"><?php _e('How many tag cloud widgets would you like? (Max 9)', 'simpletags'); ?>
 						<select id="stags_cloud-number" name="stags_cloud-number" value="<?php echo $options['number']; ?>">
 							<?php for ( $i = 1; $i < 10; ++$i ) echo "<option value='$i' ".($options['number']==$i ? "selected='selected'" : '').">$i</option>"; ?>
 						</select>
@@ -257,12 +253,9 @@ function widget_st_tag_cloud_init() {
 			$number = 9;
 		}
 
-		$dims  = array('width' => 460, 'height' => 500);
-		$class = array('classname' => 'widget_stags_cloud');
-
 		for ( $i = 1; $i <= 9; $i++ ) {
-			wp_register_sidebar_widget('widget_stags-'.$i, sprintf(__('Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud' : '', $class, $i);
-			wp_register_widget_control('widget_stags-'.$i, sprintf(__('Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud_control' : '', $dims, $i);
+			wp_register_sidebar_widget('widget_stags-'.$i, sprintf(__('Extended Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud' : '', array('classname' => 'widget_stags_cloud'), $i);
+			wp_register_widget_control('widget_stags-'.$i, sprintf(__('Extended Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud_control' : '', array('width' => 460, 'height' => 500), $i);
 		}
 
 		add_action('sidebar_admin_setup', 'st_tag_cloud_setup');
