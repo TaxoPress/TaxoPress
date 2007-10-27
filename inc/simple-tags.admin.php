@@ -1,7 +1,7 @@
 <?php
 Class SimpleTagsAdmin {
 	var $version = '1.2';
-	
+
 	var $info;
 	var $options;
 	var $default_options;
@@ -31,18 +31,18 @@ Class SimpleTagsAdmin {
 	function SimpleTagsAdmin() {
 		// Options
 		$defaultopt = array(
-			// General 
+			// General
 			'inc_page_tag_search' => '1',
 			// Administration
 			'use_tag_pages' => '1',
-			'use_tag_links' => '0',	
+			'use_tag_links' => '0',
 			'admin_max_suggest' => '100',
 			'admin_tag_suggested' => '1',
 			'admin_tag_sort' => 'popular',
 			// Embedded Tags
 			'use_embed_tags' => '0',
 			'start_embed_tags' => '[tags]',
-			'end_embed_tags' => '[/tags]',			
+			'end_embed_tags' => '[/tags]',
 			// Related Posts
 			'rp_embedded' => 'no',
 			'rp_sortorderby' => 'DESC',
@@ -73,8 +73,8 @@ Class SimpleTagsAdmin {
 			'tt_notagstext' => __('No tag for this post.', 'simpletags'),
 			'tt_adv_usage' => '',
 			// Meta keywords
-			'meta_autoheader' => '1', 
-			'meta_always_include' => ''		
+			'meta_autoheader' => '1',
+			'meta_always_include' => ''
 		);
 
 		// Set class property for default options
@@ -119,7 +119,7 @@ Class SimpleTagsAdmin {
 		if ( isset($_GET['pagination']) ) {
 			$this->actual_page = (int) $_GET['pagination'];
 		}
-		
+
 		// Admin Capabilities
 		$role = get_role('administrator');
 		if( !$role->has_cap('simple_tags') ) {
@@ -151,11 +151,11 @@ Class SimpleTagsAdmin {
 		}
 
 		// Tags suggest for posts
-		add_action('edit_form_advanced', array(&$this, 'helperSuggestTags'), 1);		
-		
+		add_action('edit_form_advanced', array(&$this, 'helperSuggestTags'), 1);
+
 		return;
 	}
-	
+
 	/**
 	 * Add WP admin menu for Tags
 	 *
@@ -167,7 +167,7 @@ Class SimpleTagsAdmin {
 		add_submenu_page(__FILE__, __('Simple Tags: Mass Edit Tags', 'simpletags'), __('Mass Edit Tags', 'simpletags'), 'simple_tags', 'simpletags_mass', array(&$this, 'pageMassEditTags'));
 		add_submenu_page(__FILE__, __('Simple Tags: Options', 'simpletags'), __('Options', 'simpletags'), 'simple_tags', 'simpletags_options', array(&$this, 'pageOptions'));
 	}
-	
+
 	/**
 	 * WP Page - Mass edit tags
 	 *
@@ -187,11 +187,11 @@ Class SimpleTagsAdmin {
 		if ( $type != 'post' && $type != 'page' ) {
 			$type = 'post';
 		}
-		
+
 		// Order content
 		$order = attribute_escape($_GET['order']);
 		if ( empty($order) ) {
-			$order = 'date_desc';	
+			$order = 'date_desc';
 		}
 
 		// Check and update tags
@@ -227,14 +227,14 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $quantity == 10 ) echo 'selected="selected"'; ?> value="10">10</option>
 					<option <?php if ( $quantity == 20 ) echo 'selected="selected"'; ?> value="20">20</option>
 					<option <?php if ( $quantity == 30 ) echo 'selected="selected"'; ?> value="30">30</option>
-					<option <?php if ( $quantity == 40 ) echo 'selected="selected"'; ?> value="40">40</option>     
-					<option <?php if ( $quantity == 50 ) echo 'selected="selected"'; ?> value="50">50</option>   
+					<option <?php if ( $quantity == 40 ) echo 'selected="selected"'; ?> value="40">40</option>
+					<option <?php if ( $quantity == 50 ) echo 'selected="selected"'; ?> value="50">50</option>
 				</select>
 			</fieldset>
 
 			<fieldset>
 			  <legend><?php _e('Author (only for pages/posts)', 'simpletags'); ?></legend>
-			  <?php wp_dropdown_users( array('include' => $editable_ids, 'show_option_all' => __('Any'), 'name' => 'author', 'selected' => isset($_GET['author']) ? $_GET['author'] : 0) ); ?>   
+			  <?php wp_dropdown_users( array('include' => $editable_ids, 'show_option_all' => __('Any'), 'name' => 'author', 'selected' => isset($_GET['author']) ? $_GET['author'] : 0) ); ?>
 			</fieldset>
 			<fieldset>
 				<legend><?php _e('Content type', 'simpletags'); ?></legend>
@@ -243,7 +243,7 @@ Class SimpleTagsAdmin {
 					<?php if ( $this->options['use_tag_pages'] == '1' ) : ?>
 					<option <?php if ( $type == 'page' ) echo 'selected="selected"'; ?> value='page'><?php _e('Page', 'simpletags'); ?></option>
 					<?php endif; ?>
-     
+
 				</select>
 			</fieldset>
 			<fieldset>
@@ -259,7 +259,7 @@ Class SimpleTagsAdmin {
 			<input type="submit" id="post-query-submit" value="<?php _e('Filter &#187;', 'simpletags'); ?>" class="button" />
 			<br style="clear:both;" />
 		</form>
-		
+
 		<?php if ( is_array($objects) && count($objects) > 0 ) : ?>
 			<form name="post" id="post" action="<?php echo $actionurl; ?>" method="post">
 				<p class="submit">
@@ -360,8 +360,8 @@ Class SimpleTagsAdmin {
 	 * WP Page - Tags options
 	 *
 	 */
-	function pageOptions() {	
-		// TODO: Are the new tag cloud options shown with the right default option enabled?	
+	function pageOptions() {
+		// TODO: Are the new tag cloud options shown with the right default option enabled?
 		$option_data = array(
 			__('General', 'simpletags') => array(
 				array('inc_page_tag_search', __('Include page in tag search:', 'simpletags'), 'checkbox', '1',
@@ -374,7 +374,7 @@ Class SimpleTagsAdmin {
 					__('The maximum number of tags displayed under <em>Write</em>. Zero (0) means no limit and shows all tags.', 'simpletags')),
 				array('admin_tag_suggested', __('Display suggested tags only:', 'simpletags'), 'checkbox', '1',
 					__('Displays suggested tags only instead of all tags. Tags will be suggested if they are part of the post.', 'simpletags')),
-				array('admin_tag_sort', __('Tag cloud sort order:', 'simpletags'), 'dropdown', 'alpha/popular', 
+				array('admin_tag_sort', __('Tag cloud sort order:', 'simpletags'), 'dropdown', 'alpha/popular',
 					'<ul>
 						<li>'.__('<code>Alpha</code> &ndash; alphabetic order.', 'simpletags').'</li>
 						<li>'.__('<code>Popular</code> &ndash; most popular tags first.', 'simpletags').'</li>
@@ -399,7 +399,7 @@ Class SimpleTagsAdmin {
 						<li>'.__('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags').'</li>
 						<li>'.__('<code>feedonly</code> &ndash; Only on your feeds.', 'simpletags').'</li>
 					</ul>'),
-				array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),				
+				array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),
 				array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 40),
 				array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 40),
 				array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
@@ -414,14 +414,14 @@ Class SimpleTagsAdmin {
 						<li>'.__('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags').'</li>
 						<li>'.__('<code>feedonly</code> &ndash; Only on your feeds.', 'simpletags').'</li>
 					</ul>'),
-				array('rp_sortorderby', __('Related Posts sort order by:', 'simpletags'), 'dropdown', 'date/alpha/counter/random', 
+				array('rp_sortorderby', __('Related Posts sort order by:', 'simpletags'), 'dropdown', 'date/alpha/counter/random',
 					'<ul>
 						<li>'.__('<code>date</code> &ndash; Sorting by post date.', 'simpletags').'</li>
 						<li>'.__('<code>counter</code> &ndash; Sorting by posts number in common. (default)', 'simpletags').'</li>
 						<li>'.__('<code>alpha</code> &ndash; Alphabetic order.', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Randomized every time the page is loaded.', 'simpletags').'</li>
 					</ul>'),
-				array('rp_sortorder', __('Related Posts sort order:', 'simpletags'), 'dropdown', 'ASC/DESC', 
+				array('rp_sortorder', __('Related Posts sort order:', 'simpletags'), 'dropdown', 'ASC/DESC',
 					'<ul>
 						<li>'.__('<code>ASC</code> &ndash; Ascending (default)', 'simpletags').'</li>
 						<li>'.__('<code>DESC</code> &ndash; Descending', 'simpletags').'</li>
@@ -433,24 +433,24 @@ Class SimpleTagsAdmin {
 					__('You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
 			),
 			__('Tag cloud', 'simpletags') => array(
-				array('cloud_selection_sortorderby', __('Tag cloud selection - sort order by:', 'simpletags'), 'dropdown', 'name/count/random', 
+				array('cloud_selection_sortorderby', __('Tag cloud selection - sort order by:', 'simpletags'), 'dropdown', 'name/count/random',
 					'<ul>
 						<li>'.__('<code>count</code> &ndash; Selection by counter usage. (default)', 'simpletags').'</li>
 						<li>'.__('<code>name</code> &ndash; Selection by alphabetic order.', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Selection by random, every time the page is loaded.', 'simpletags').'</li>
 					</ul>'),
-				array('cloud_selection_sortorder', __('Tag cloud selection - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC', 
+				array('cloud_selection_sortorder', __('Tag cloud selection - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC',
 					'<ul>
 						<li>'.__('<code>ASC</code> &ndash; Ascending', 'simpletags').'</li>
 						<li>'.__('<code>DESC</code> &ndash; Descending (default)', 'simpletags').'</li>
 					</ul>'),
-				array('cloud_sortorderby', __('Tag cloud display - sort order by:', 'simpletags'), 'dropdown', 'name/count/random', 
+				array('cloud_sortorderby', __('Tag cloud display - sort order by:', 'simpletags'), 'dropdown', 'name/count/random',
 					'<ul>
 						<li>'.__('<code>count</code> &ndash; Sorting by counter usage.', 'simpletags').'</li>
 						<li>'.__('<code>name</code> &ndash; Alphabetic order. (default)', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Randomized every time the page is loaded.', 'simpletags').'</li>
 					</ul>'),
-				array('cloud_sortorder', __('Tag cloud display - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC', 
+				array('cloud_sortorder', __('Tag cloud display - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC',
 					'<ul>
 						<li>'.__('<code>ASC</code> &ndash; Ascending (default)', 'simpletags').'</li>
 						<li>'.__('<code>DESC</code> &ndash; Descending', 'simpletags').'</li>
@@ -458,13 +458,13 @@ Class SimpleTagsAdmin {
 				array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'text', 10),
 				array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 80),
 				array('cloud_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
-				array('cloud_max_color', __('Most popular color:', 'simpletags'), 'text', 40, 
+				array('cloud_max_color', __('Most popular color:', 'simpletags'), 'text', 40,
 					__("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags')),
-				array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text', 40), 	
-				array('cloud_max_size', __('Most popular font size:', 'simpletags'), 'text', 20, 
+				array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text', 40),
+				array('cloud_max_size', __('Most popular font size:', 'simpletags'), 'text', 20,
 					__("The two font sizes are the size of the largest and smallest tags.", 'simpletags')),
 				array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'text', 20),
-				array('cloud_unit', __('The units to display the font sizes with, on tag clouds:', 'simpletags'), 'dropdown', 'pt/px/em/%', 
+				array('cloud_unit', __('The units to display the font sizes with, on tag clouds:', 'simpletags'), 'dropdown', 'pt/px/em/%',
 					__("The font size units option determines the units that the two font sizes use.", 'simpletags')),
 				array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
 					__('You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
@@ -493,7 +493,7 @@ Class SimpleTagsAdmin {
 			.tags_admin { text-align: center; font-size: .90em; }
 			.stpexplan { font-size: .85em; }
 			.stpexplan ul { margin:0;padding:0;list-style:square;margin-left:20px; }
-			.stpexplan ul li { margin:0;padding:0; }	
+			.stpexplan ul li { margin:0;padding:0; }
 		</style>
 		<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
 		<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
@@ -504,7 +504,7 @@ Class SimpleTagsAdmin {
 				<input type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
 		</form>
     <?php $this->printAdminFooter(); ?>
-    </div>   
+    </div>
     <?php
 	}
 
@@ -518,7 +518,7 @@ Class SimpleTagsAdmin {
 
 		// Post Counter
 		$counter_post = ( $posts === false ) ? '0' : count($posts);
-		
+
 		if ( $this->options['use_tag_pages'] == '1' ) {
 			$pages = $this->getDataNotTagged( 'page' );
 			$counter_page = ( $pages === false ) ? '0' : count($pages);
@@ -530,8 +530,8 @@ Class SimpleTagsAdmin {
   		</style>
   		<h2><?php _e('Simple Tags: Untagged', 'simpletags'); ?></h2>
   		<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-  		<h3><?php printf(__('%s posts untagged', 'simpletags'), $counter_post); ?></h3>  		
-  		<?php             
+  		<h3><?php printf(__('%s posts untagged', 'simpletags'), $counter_post); ?></h3>
+  		<?php
   		if ( $posts ) {
   			echo '<ul>';
   			foreach ( (array) $posts as $post ) {
@@ -549,10 +549,10 @@ Class SimpleTagsAdmin {
   			echo '<p>'.__('No post.','simpletags').'</p>';
   		}
       ?>
-      
+
       <?php if ( $this->options['use_tag_pages'] == '1' ) : ?>
       <h3><?php printf(__('%s pages untagged', 'simpletags'), $counter_page); ?></h3>
-  		<?php             
+  		<?php
   		if ( $pages ) {
   			echo '<ul>';
   			foreach ( (array) $pages as $page ) {
@@ -583,7 +583,7 @@ Class SimpleTagsAdmin {
 		// Manage URL
 		$sort_order = ( isset($_GET['tag_sortorder']) ) ? attribute_escape($_GET['tag_sortorder']) : 'desc';
 		$actionurl = $this->admin_base_url.attribute_escape($_GET['page']).'&amp;tag_sortorder='.$sort_order;
-		
+
 		// Control Post data
 		if ( isset($_POST['tag_action']) ) {
 			// Origination and intention
@@ -652,12 +652,12 @@ Class SimpleTagsAdmin {
 			<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			<table>
 				<tr>
-					<td style="vertical-align: top; border-right: 1px dotted #ccc;">				
+					<td style="vertical-align: top; border-right: 1px dotted #ccc;">
 						<fieldset class="options" id="taglist"><legend><?php _e('Existing Tags', 'simpletags'); ?></legend>
 							<?php echo $tag_listing; ?>
-						</fieldset>				
-					</td>					
-					<td style="vertical-align: top;">				
+						</fieldset>
+					</td>
+					<td style="vertical-align: top;">
 						<fieldset class="options"><legend><?php _e('Rename Tag', 'simpletags'); ?></legend>
 							<p><?php _e('Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click "Rename" and all posts which use this tag will be updated.', 'simpletags'); ?></p>
 							<p><?php _e('You can specify multiple tags to rename by separating them with commas.', 'simpletags'); ?></p>
@@ -670,7 +670,7 @@ Class SimpleTagsAdmin {
 									<tr><th></th><td> <input type="submit" name="rename" value="<?php _e('Rename', 'simpletags'); ?>" /> </td></tr>
 								</table>
 							</form>
-						</fieldset>				
+						</fieldset>
 						<fieldset class="options"><legend><?php _e('Delete Tag', 'simpletags'); ?></legend>
 							<p><?php _e('Enter the name of the tag to delete.  This tag will be removed from all posts.', 'simpletags'); ?></p>
 							<p><?php _e('You can specify multiple tags to delete by separating them with commas', 'simpletags'); ?>.</p>
@@ -682,7 +682,7 @@ Class SimpleTagsAdmin {
 									<tr><th></th><td> <input type="submit" name="delete" value="<?php _e('Delete', 'simpletags'); ?>" /> </td></tr>
 								</table>
 							</form>
-						</fieldset>					
+						</fieldset>
 						<fieldset class="options"><legend><?php _e('Add Tag', 'simpletags'); ?></legend>
 							<p><?php _e('This feature lets you add one or more new tags to all posts which match any of the tags given.', 'simpletags'); ?></p>
 							<p><?php _e('You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don\'t specify any tags to match.', 'simpletags'); ?></p>
@@ -719,7 +719,7 @@ Class SimpleTagsAdmin {
 						</fieldset>
 					</td>
 				</tr>
-			</table>			
+			</table>
 			<script type="text/javascript">
 			if(document.all && !document.getElementById) {
 				document.getElementById = function(id) { return document.all[id]; }
@@ -737,10 +737,10 @@ Class SimpleTagsAdmin {
 				addTag(tag, document.getElementById("addtag_match"));
 				addTag(tag, document.getElementById("tagname_match"));
 			}
-			</script>			
+			</script>
 			<?php $this->printAdminFooter(); ?>
 		</div>
-		<?php	
+		<?php
 	}
 
 	/**
@@ -803,7 +803,7 @@ Class SimpleTagsAdmin {
 			$this->status = 'error';
 			return;
 		}
-		
+
 		// Stripslashes tags
 		$delete = stripslashes($delete);
 
@@ -833,7 +833,7 @@ Class SimpleTagsAdmin {
 			$this->status = 'error';
 			return;
 		}
-		
+
 		// Stripslashes tags
 		$match = stripslashes($match);
 		$new = stripslashes($new);
@@ -860,7 +860,7 @@ Class SimpleTagsAdmin {
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_tags, 'post_tag', true ); // Append tags
 				$counter++;
-			}			
+			}
 		} else { // Add for all posts
 			// Page or not ?
 			$post_type_sql = ( $this->options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
@@ -875,7 +875,7 @@ Class SimpleTagsAdmin {
 				$counter++;
 			}
 		}
-		
+
 		if ( $counter == 0  ) {
 			$this->message = __('No tag added.', 'simpletags');
 		} else {
@@ -895,7 +895,7 @@ Class SimpleTagsAdmin {
 			$this->status = 'error';
 			return;
 		}
-		
+
 		// Stripslashes tags
 		$names = stripslashes($names);
 		$slugs = stripslashes($slugs);
@@ -932,10 +932,10 @@ Class SimpleTagsAdmin {
 		$this->message = sprintf(__('%s slug(s) edited.', 'simpletags'), $counter);
 		return;
 	}
-	
+
 	function cleanDatabase() {
 		global $wpdb;
-		
+
 		// Counter
 		$counter = 0;
 
@@ -945,27 +945,27 @@ Class SimpleTagsAdmin {
 			$this->message = __('Nothing to muck. Good job !', 'simpletags');
 			return;
 		}
-		
+
 		// Prepare terms SQL List
 		$terms_list = "'" . implode("', '", $terms_id) . "'";
-		
+
 		// Remove term empty
 		$counter += $wpdb->query("DELETE FROM {$wpdb->terms} WHERE term_id IN ( {$terms_list} )");
-		
+
 		// Get term_taxonomy_id from term_id on term_taxonomy table
 		$tts_id = $wpdb->get_col("SELECT DISTINCT term_taxonomy_id FROM {$wpdb->term_taxonomy} WHERE term_id IN ( {$terms_list} )");
-		
+
 		if ( !empty($tts_id) ) {
 			// Clean term_taxonomy table
 			$counter += $wpdb->query("DELETE FROM {$wpdb->term_taxonomy} WHERE term_id IN ( {$terms_list} )");
-			
+
 			// Prepare terms SQL List
 			$tts_list = "'" . implode("', '", $tts_id) . "'";
-			
+
 			// Clean term_relationships table
 			$counter += $wpdb->query("DELETE FROM {$wpdb->term_relationships} WHERE term_taxonomy_id IN ( {$tts_list} )");
 		}
-		
+
 		$this->message = sprintf(__('%s rows deleted. WordPress DB is clean now !', 'simpletags'), $counter);
 		return;
 	}
@@ -982,7 +982,7 @@ Class SimpleTagsAdmin {
 			$this->status = 'error';
 			return;
 		}
-		
+
 		// Stripslashes tags
 		$old = stripslashes($old);
 		$new = stripslashes($new);
@@ -1009,7 +1009,7 @@ Class SimpleTagsAdmin {
 
 				// Get term by name
 				$term = get_term_by('name', addslashes($old_tag), 'post_tag');
-				if ( !$term ) {				
+				if ( !$term ) {
 					continue;
 				}
 
@@ -1069,7 +1069,7 @@ Class SimpleTagsAdmin {
 				wp_set_object_terms( $object_id, $new_tag, 'post_tag', true );
 				$counter++;
 			}
-			
+
 			if ( $counter == 0  ) {
 				$this->message = __('No tag merged.', 'simpletags');
 			} else {
@@ -1111,7 +1111,7 @@ Class SimpleTagsAdmin {
 			<div id="message" class="<?php echo ($status != '') ? $status :'updated'; ?> fade">
 				<p><strong><?php echo $message; ?></strong></p>
 			</div>
-		<?php	
+		<?php
 		}
 	}
 
@@ -1140,7 +1140,7 @@ Class SimpleTagsAdmin {
 	      WHERE term_taxonomy.taxonomy = 'post_tag'
 	      AND term_taxonomy.term_taxonomy_id = term_relationships.term_taxonomy_id
 	      AND term_relationships.object_id  = posts.ID
-	      AND posts.post_type = '{$type}'");  
+	      AND posts.post_type = '{$type}'");
 
 		// Keep only posts without tag
 		foreach ( (array) $all_posts as $id ) {
@@ -1163,7 +1163,7 @@ Class SimpleTagsAdmin {
 	function helperJS() {
 		// Get all tags
 		$tags = get_tags('hide_empty=false');
-		
+
 		// If no tags => exit !
 		if ( !$tags ) {
 			return;
@@ -1201,7 +1201,7 @@ Class SimpleTagsAdmin {
 	function helperSuggestTags() {
 		global $post;
 		$post_id = (int) $post->ID;
-		
+
 		// Get post tags
 		$post_tags = array();
 		$ptags = wp_get_post_tags($post_id);
@@ -1209,25 +1209,25 @@ Class SimpleTagsAdmin {
 			$post_tags[] = $tag->name;
 		}
 		unset($ptags);
-		
-		// Order		
+
+		// Order
 		$orderby = ( $this->options['admin_tag_sort'] == 'popular' ) ? 'count' : 'name';
-		
+
 		// Quantity
 		$number = (int) $this->options['admin_max_suggest'];
 		$number = ( $number == 0 ) ? 9999999 : $number;
-		
+
 		// Get all tags
 		$tags = get_tags( array('hide_empty' => false, 'number' => $number, 'orderby' => $orderby, 'order' => 'DESC') );
-		
+
 		// Quit if no tags
 		if ( !$tags )
 			return;
-			
+
 		foreach ( (array) $tags as $tag ) {
 			$counts[$tag->name] = $tag->count;
 		}
-		
+
 		// Level
 		$min_count = min($counts);
 		$spread = max($counts) - $min_count;
@@ -1236,7 +1236,7 @@ Class SimpleTagsAdmin {
 		$font_step = 12 / $spread;
 
 		// Click tags
-		$click_tags = array();		
+		$click_tags = array();
 		if ( $this->options['admin_tag_suggested'] == '1' ) { // Loop for suggested
 			foreach ( (array) $counts as $tag => $count ) {
 				if ( is_string($tag) && !empty($tag) && stristr($post->post_content, $tag) && !in_array($tag, $post_tags) ) {
@@ -1248,13 +1248,13 @@ Class SimpleTagsAdmin {
 				if ( is_string($tag) && !empty($tag) && !in_array($tag, $post_tags) ) {
 					$click_tags[] = '<span onclick="javascript:addTag(this.innerHTML);" style="font-size:'.( 10 + ( ( $count - $min_count ) * $font_step ) ).'px;">'.$tag.'</span>';
 				}
-			}			
+			}
 		}
 
 		// Remove empty and duplicate elements
 		$click_tags = array_filter($click_tags, array(&$this, 'deleteEmptyElement'));
 		$click_tags = array_unique($click_tags);
-		
+
 		if ( count($click_tags) > 0 ) {
 			$click_tags_str = implode(' ', $click_tags);
 		} else {
@@ -1282,7 +1282,7 @@ Class SimpleTagsAdmin {
 	      #suggesttagsdiv span{line-height:2;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:5px 3px;padding:1px 2px;}
 	      #suggesttagsdiv span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
 	      #suggesttagsdiv div.clearer{clear:both;line-height:1px;font-size:1px;height:5px;}
-	      
+
 	      #advancedstuff_tag fieldset{margin-bottom:1em;}
 	      #advancedstuff_tag h3{font-weight:400;font-size:13px;padding:3px;}
 	      #advancedstuff_tag div{margin-top:.5em;}
@@ -1312,7 +1312,7 @@ Class SimpleTagsAdmin {
 		if ( !$this->all_tags ) {
 			return;
 		}
-		
+
 		// Type-ahead
 		foreach ( (array) $this->all_tags as $tag ) {
 			$tag_name = str_replace('"', '\"', $tag->name);
@@ -1346,7 +1346,7 @@ Class SimpleTagsAdmin {
 
 		// Quantity
 		$this->data_per_page = $quantity;
-		
+
 		if ( $type == 'post' || $type == 'page' ) { // Posts and Pages
 			// Order
 			switch ($order) {
@@ -1363,7 +1363,7 @@ Class SimpleTagsAdmin {
 					$order_sql = 'ORDER BY post_date DESC';
 				break;
 			}
-			
+
 			// Restrict Author
 			$author_sql = ( $author != 0 ) ? "AND post_author = '{$author}'" : '';
 
@@ -1385,7 +1385,7 @@ Class SimpleTagsAdmin {
 
 			$ps = $wpdb->get_results("
 		        SELECT ID, post_title
-		        FROM {$wpdb->posts} 
+		        FROM {$wpdb->posts}
 		        WHERE post_type = '{$type}'
 		        {$author_sql}
 		        {$order_sql}
@@ -1425,18 +1425,18 @@ Class SimpleTagsAdmin {
 				foreach ( (array) $_POST['tags'] as $object_id => $tag_list ) {
 					// Trim data
 					$tag_list = trim(stripslashes($tag_list));
-									
+
 					// String to array
 					$tags = explode( ',', $tag_list );
 
 					// Remove empty and trim tag
 					$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
-					
+
 					// Add new tag (no append ! replace !)
 					wp_set_object_terms( $object_id, $tags, $taxinomy );
 					$counter++;
 				}
-				
+
 				if ( $type == 'post' ) {
 					$this->message = sprintf(__('%s post(s) tags updated with success !', 'simpletags'), $counter);
 				} elseif ( $type == 'page' ) {

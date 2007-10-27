@@ -18,7 +18,7 @@ function widget_st_tag_cloud_init() {
 		// Use Widgets title and no ST title !!
 		$title = trim($options[$number]['title']);
 		$args = 'title=';
-		
+
 		// Order
 		$order = trim($options[$number]['order']);
 		if ( $order == 'name-desc' ) {
@@ -95,13 +95,13 @@ function widget_st_tag_cloud_init() {
 
 	function widget_st_tag_cloud_control($number) {
 		// Title, Number, Font size mini, Font size Maxi, Unity, format, color, Max color, Min color
-		
+
 		// Get actual options
 		$options = $newoptions = get_option('widget_stags_cloud');
 		if ( !is_array($options) ) {
 			$options = $newoptions = array();
 		}
-		
+
 		// Post to new options array
 		if ( $_POST['widget-stags-submit-'.$number] ) {
 			$newoptions[$number]['title']   = strip_tags(stripslashes($_POST['widget-stags-title-'.$number]));
@@ -116,13 +116,13 @@ function widget_st_tag_cloud_init() {
 			$newoptions[$number]['cmax']    = stripslashes($_POST['widget-stags-cmax-'.$number]);
 			$newoptions[$number]['xformat'] = stripslashes($_POST['widget-stags-xformat-'.$number]);
 		}
-		
+
 		// Update if new options
 		if ( $options != $newoptions ) {
 			$options = $newoptions;
 			update_option('widget_stags_cloud', $options);
 		}
-		
+
 		// Prepare data for display
 		$title  = htmlspecialchars($options[$number]['title'], ENT_QUOTES);
 		$max    = htmlspecialchars($options[$number]['max'], ENT_QUOTES);
@@ -134,16 +134,16 @@ function widget_st_tag_cloud_init() {
 		$color  = htmlspecialchars($options[$number]['color'], ENT_QUOTES);
 		$cmini  = htmlspecialchars($options[$number]['cmini'], ENT_QUOTES);
 		$cmax   = htmlspecialchars($options[$number]['cmax'], ENT_QUOTES);
-		$xformat = htmlspecialchars($options[$number]['xformat'], ENT_QUOTES);
+		$xformat= htmlspecialchars($options[$number]['xformat'], ENT_QUOTES);
 		?>
 		<div>
 			<p><?php _e('Empty field will use default value.', 'simpletags'); ?></p>
-			
+
 			<label for="widget-stags-title-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Title:', 'simpletags'); ?><br />
 				<input style="width: 100% !important;" type="text" id="widget-stags-title-<?php echo $number; ?>" name="widget-stags-title-<?php echo $number; ?>" value="<?php echo $title; ?>" />
 			</label>
-			
+
 			<label for="widget-stags-number-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Max tags to display: (default: 45)', 'simpletags'); ?>
 				<input size="20" type="text" id="widget-stags-max-<?php echo $number; ?>" name="widget-stags-max-<?php echo $number; ?>" value="<?php echo $max; ?>" />
@@ -159,17 +159,17 @@ function widget_st_tag_cloud_init() {
 					<option <?php if ( $order == 'random' ) echo 'selected="selected"'; ?> value="random"><?php _e('Random all tags', 'simpletags'); ?></option>
 				</select>
 			</label>
-			
+
 			<label for="widget-stags-smini-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Font size mini: (default: 8)', 'simpletags'); ?>
 				<input size="20"  type="text" id="widget-stags-smini-<?php echo $number; ?>" name="widget-stags-smini-<?php echo $number; ?>" value="<?php echo $smini; ?>" />
 			</label>
-			
+
 			<label for="widget-stags-smax-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Font size max: (default: 22)', 'simpletags'); ?>
 				<input size="20" type="text" id="widget-stags-smax-<?php echo $number; ?>" name="widget-stags-smax-<?php echo $number; ?>" value="<?php echo $smax; ?>" />
 			</label>
-			
+
 			<label for="widget-stags-unit-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Unit font size:', 'simpletags'); ?>
 				<select id="widget-stags-unit-<?php echo $number; ?>" name="widget-stags-unit-<?php echo $number; ?>">
@@ -179,7 +179,7 @@ function widget_st_tag_cloud_init() {
 					<option <?php if ( $unit == '%' ) echo 'selected="selected"'; ?> value="%"><?php _e('Pourcent', 'simpletags'); ?></option>
 				</select>
 			</label>
-			
+
 			<label for="widget-stags-format-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Format:', 'simpletags'); ?>
 				<select id="widget-stags-format-<?php echo $number; ?>" name="widget-stags-format-<?php echo $number; ?>">
@@ -187,27 +187,27 @@ function widget_st_tag_cloud_init() {
 					<option <?php if ( $format == 'list' ) echo 'selected="selected"'; ?> value="list"><?php _e('List (UL/LI)', 'simpletags'); ?></option>
 				</select>
 			</label>
-			
+
 			<label for="widget-stags-color-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<input type="checkbox" id="widget-stags-color-<?php echo $number; ?>" name="widget-stags-color-<?php echo $number; ?>" <?php if ( $color == 1 ) echo 'checked="checked"'; ?> value="1" />
 				<?php _e('Use auto color cloud:', 'simpletags'); ?>
 			</label>
-			
+
 			<label for="widget-stags-cmini-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Font color mini: (default: #CCCCCC)', 'simpletags'); ?>
 				<input type="text" id="widget-stags-cmini-<?php echo $number; ?>" name="widget-stags-cmini-<?php echo $number; ?>" value="<?php echo $cmini; ?>" />
 			</label>
-			
+
 			<label for="widget-stags-cmax-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Font color max: (default: #000000)', 'simpletags'); ?>
 				<input type="text" id="widget-stags-cmax-<?php echo $number; ?>" name="widget-stags-cmax-<?php echo $number; ?>" value="<?php echo $cmax; ?>" />
 			</label>
-			
+
 			<label for="widget-stags-xformat-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Extended format: (advanced usage)', 'simpletags'); ?><br />
 				<input style="width: 100% !important;" type="text" id="widget-stags-xformat-<?php echo $number; ?>" name="widget-stags-xformat-<?php echo $number; ?>" value="<?php echo $xformat; ?>" />
 			</label>
-			
+
 			<input type="hidden" name="widget-stags-submit-<?php echo $number; ?>" id="widget-stags-submit-<?php echo $number; ?>" value="1" />
 		</div>
 		<?php

@@ -1,5 +1,5 @@
 if(document.all && !document.getElementById) {
-	document.getElementById = function(id) { 
+	document.getElementById = function(id) {
 		return document.all[id];
 	}
 }
@@ -22,11 +22,11 @@ Event.observe(window, 'load', function() {
 function trimTagsBeforeSend() {
 	var tag_entry = document.getElementById("tags-input");
 	var taille = tag_entry.value.length;
-	
+
 	if ( tag_entry.value.substr(taille - 2 , 2) == ', ' ) {
 		tag_entry.value = tag_entry.value.substr( 0, taille - 2);
 	}
-	
+
 	if ( tag_entry.value.substr(taille - 1, 1) == ',' ) {
 		tag_entry.value = tag_entry.value.substr( 0, taille - 1);
 	}

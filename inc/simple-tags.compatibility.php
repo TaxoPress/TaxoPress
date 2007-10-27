@@ -4,25 +4,25 @@
  * Purpose:                Display a tag list after the post content
  * Input:                $content
  * Output:                $content+STP_GetRelatedTags: String
- ******************************************************************************/ 
-function STP_Auto_PostTags($content) {	
+ ******************************************************************************/
+function STP_Auto_PostTags($content) {
 	return $content.STP_GetPostTags(null, null, null, null, true);
 }
 
 /*******************************************************************************
 * Function:	STP_PostTags / STP_GetPostTags
 * Purpose:		Outputs the list of tags related to the current post.
-* 				Use this function in the "Loop". 
+* 				Use this function in the "Loop".
 * Input:		...
 * Output:		STP_PostTags: Echo
 * 				STP_GetPostTags: String
-******************************************************************************/ 
+******************************************************************************/
 function STP_GetPostTags($linkformat=null, $include_cats=null, $tagseparator=null, $notagstext=null, $include_content=null, $include_content_before=null, $include_content_after=null) {
 	global $STagging;
 	return $STagging->outputPostTags($linkformat, $include_cats, $tagseparator, $notagstext, $include_content, $include_content_before, $include_content_after);
 }
-function STP_PostTags($linkformat=null, $include_cats=null, $tagseparator=null, $notagstext=null, $include_content=null, $include_content_before=null, $include_content_after=null) { 
-	echo STP_GetPostTags($linkformat, $include_cats, $tagseparator, $notagstext, $include_content, $include_content_before, $include_content_after); 
+function STP_PostTags($linkformat=null, $include_cats=null, $tagseparator=null, $notagstext=null, $include_content=null, $include_content_before=null, $include_content_after=null) {
+	echo STP_GetPostTags($linkformat, $include_cats, $tagseparator, $notagstext, $include_content, $include_content_before, $include_content_after);
 }
 
 /*******************************************************************************
@@ -46,7 +46,7 @@ function STP_Tagcloud($linkformat=null, $tagseparator=null, $include_cats=null, 
 * Input:		...
 * Output:		STP_Tagcloud_ByCategory: Echo
 * 				STP_GetTagcloud_ByCategory: String
-******************************************************************************/ 
+******************************************************************************/
 function STP_Tagcloud_ByCategory( $limit_cat ) {
 	echo STP_GetTagcloud_ByCategory( $limit_cat );
 }
@@ -66,7 +66,7 @@ function STP_GetRelatedPosts($format=null, $postsseparator=null, $sortorder=null
 	global $STagging;
 	return $STagging->createRelatedPostsList($format, $postsseparator, $sortorder, $limit_qty, $limit_days, $dateformat, $nothingfound, $includepages, $post_id, $excludecat, $excludetag);
 }
-function STP_RelatedPosts($format=null, $postsseparator=null, $sortorder=null, $limit_qty=null, $limit_days=null, $dateformat=null, $nothingfound=null, $includepages=null, $post_id=null, $excludecat=null, $excludetag=null) { 
+function STP_RelatedPosts($format=null, $postsseparator=null, $sortorder=null, $limit_qty=null, $limit_days=null, $dateformat=null, $nothingfound=null, $includepages=null, $post_id=null, $excludecat=null, $excludetag=null) {
 	echo STP_GetRelatedPosts($format, $postsseparator, $sortorder, $limit_qty, $limit_days, $dateformat, $nothingfound, $includepages, $post_id, $excludecat, $excludetag);
 }
 

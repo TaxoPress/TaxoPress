@@ -23,17 +23,17 @@ It was written with this philosophy : best performances, more secured and brings
 		* tags management (rename, delete, merge, search and add tags, edit tags ID)
 		* List of untagged content
 		* **Edit mass tags (more than 50 posts once)**
-		* Possibility to tag pages (not only posts) and include them inside the tags results		
+		* Possibility to tag pages (not only posts) and include them inside the tags results
 		* Embedded tags ([tags]tag1, tag2[/tags]) for compatibility with old plugins
 		* **Easy configuration ! (in WP admin)**
 	* Blog
 		* Meta keywords generate from tags in your header's blog
-		* Technorati, Flickr and Delicious tags 
+		* Technorati, Flickr and Delicious tags
 		* Dynamic Tag Clouds with colors with Widgets (random order, etc)
 		* Related content since common tags
 		* Possibility to add related posts inside RSS
 		* Extended the_tags function (outside the loop, technorati, etc)
-		
+
 And more...
 
 == Installation ==
