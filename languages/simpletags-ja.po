@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simple-tags\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-10-08 16:26+0900\n"
+"PO-Revision-Date: 2007-10-24 21:38+0900\n"
 "Last-Translator: tai <tekapo@gmail.com>\n"
 "Language-Team: ja <tekapo@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,72 +11,142 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 
-# C:\SVN\Localhost\simple-tags/simple-tags.php:227
-msgid "<h4>Related posts</h4>"
-msgstr "<h4>関連する投稿</h4>"
-
 # C:\SVN\Localhost\simple-tags/simple-tags.php:228
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:63
+#: WP.org\trunk/simple-tags.php:298
+#: WP.org\trunk/inc/simple-tags.admin.php:49
 msgid "No related posts."
 msgstr "関連する投稿はありません。"
 
-# C:\SVN\Localhost\simple-tags/simple-tags.php:230
-# C:\SVN\Localhost\simple-tags/simple-tags.php:349
-msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
-msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+# C:\SVN\Localhost\simple-tags/simple-tags.php:227
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:64
+#: WP.org\trunk/simple-tags.php:297
+#: WP.org\trunk/inc/simple-tags.admin.php:50
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>関連する投稿</h4>"
 
 # C:\SVN\Localhost\simple-tags/simple-tags.php:438
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:70
+#: WP.org\trunk/simple-tags.php:565
+#: WP.org\trunk/inc/simple-tags.admin.php:56
 msgid "No tags."
 msgstr "タグはありません。"
 
-# C:\SVN\Localhost\simple-tags/simple-tags.php:439
-msgid "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
-msgstr "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
-
 # C:\SVN\Localhost\simple-tags/simple-tags.php:443
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:71
+#: WP.org\trunk/simple-tags.php:570
+#: WP.org\trunk/inc/simple-tags.admin.php:57
 msgid "<h4>Tag Cloud</h4>"
 msgstr "<h4>タグクラウド</h4>"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:129
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:81
+#: WP.org\trunk/simple-tags.php:745
+#: WP.org\trunk/inc/simple-tags.admin.php:67
+msgid "Tags: "
+msgstr "タグ: "
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:83
+#: WP.org\trunk/simple-tags.php:750
+#: WP.org\trunk/inc/simple-tags.admin.php:69
+msgid "No tag for this post."
+msgstr "この投稿にはタグはありません。"
+
+# C:\SVN\Localhost\simple-tags/simple-tags.php:230
+# C:\SVN\Localhost\simple-tags/simple-tags.php:349
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:300
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+
+# C:\SVN\Localhost\simple-tags/simple-tags.php:439
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:566
+msgid "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+# C:\SVN\Localhost\simple-tags/simple-tags.php:439
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:749
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:918
+msgid "Invalid Taxonomy"
+msgstr "無効な分類"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:129
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:160
 msgid "Simple Tags"
 msgstr "Simple Tags"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:129
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:160
 msgid "Tags"
 msgstr "タグ"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:130
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:527
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:161
+#: WP.org\trunk/inc/simple-tags.admin.php:635
 msgid "Simple Tags: Manage Tags"
 msgstr "Simple Tags: タグの管理"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:130
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:161
 msgid "Manage Tags"
 msgstr "タグの管理"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:131
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:408
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:162
+#: WP.org\trunk/inc/simple-tags.admin.php:515
 msgid "Simple Tags: Untagged"
 msgstr "Simple Tags: タグ付けされていない投稿とページ"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:131
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:162
 msgid "Untagged"
 msgstr "タグなし"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:132
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:184
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:163
+#: WP.org\trunk/inc/simple-tags.admin.php:215
 msgid "Simple Tags: Mass Edit Tags"
 msgstr "Simple Tags: タグの一括編集"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:132
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:163
 msgid "Mass Edit Tags"
 msgstr "タグ一括編集"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:133
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:375
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:164
+#: WP.org\trunk/inc/simple-tags.admin.php:482
 msgid "Simple Tags: Options"
 msgstr "Simple Tags: 設定"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:133
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:164
 msgid "Options"
 msgstr "設定"
 
@@ -84,159 +154,492 @@ msgstr "設定"
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:376
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:409
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:528
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:216
+#: WP.org\trunk/inc/simple-tags.admin.php:483
+#: WP.org\trunk/inc/simple-tags.admin.php:516
+#: WP.org\trunk/inc/simple-tags.admin.php:636
 msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr "詳しい情報は <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">プラグインのホームページ</a> を参照してください。バグを見つけた場合、また、このプラグインのためのすばらしいアイディアをお持ちの方は <a href=\"mailto:amaury@wordpress-fr.net\">私にお知らせください</a> !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:190
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:221
 msgid "Quantity per page"
 msgstr "1 ページ内の表示数"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:201
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:232
 msgid "Author (only for pages/posts)"
 msgstr "作成者 (ページ / 投稿のみ)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:202
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:233
 msgid "Any"
 msgstr "すべて"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:205
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:236
 msgid "Content type"
 msgstr "コンテンツタイプ"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:207
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:238
 msgid "Post"
 msgstr "投稿"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:209
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:240
 msgid "Page"
 msgstr "ページ"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:215
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:246
 msgid "Order by"
 msgstr "表示順"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:217
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:248
 msgid "Date (descending)"
 msgstr "日 (降順)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:218
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:249
 msgid "Date (ascending)"
 msgstr "日 (昇順)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:219
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:250
 msgid "ID (descending)"
 msgstr "ID (降順)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:220
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:251
 msgid "ID (ascending)"
 msgstr "ID (昇順)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:224
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:255
 msgid "Filter &#187;"
 msgstr "フィルター &#187;"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:231
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:240
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:262
+#: WP.org\trunk/inc/simple-tags.admin.php:271
 msgid "Update all"
 msgstr "すべてを更新する"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:254
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:286
 msgid "No content to edit."
 msgstr "編集するコンテンツはありません。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:269
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:301
 msgid "Page: "
 msgstr "ページ:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:329
-msgid "General Options"
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:361
+msgid "General"
 msgstr "一般設定"
 
-# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:330
-msgid "Add page in tags management:"
-msgstr "タグ管理にページを追加する:"
-
-# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:331
-msgid "Add a tag input (and tag posts features) in page edition"
-msgstr "ページ編集画面にタグ入力欄 (とタグ機能) を追加します。"
-
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:332
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:362
 msgid "Include page in tag search:"
 msgstr "タグ検索にページを含める:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:333
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:363
 msgid "This feature need that option \"Add page in tags management\" is enabled."
 msgstr "この機能を使用するには \"タグ管理にページを追加する\" 設定を有効にする必要があります。"
 
-# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:335
-msgid "Related Posts Options"
-msgstr "関連投稿設定"
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:365
+msgid "Administration"
+msgstr "管理"
 
-# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:336
-msgid "Add related posts to feeds in post content:"
-msgstr "フィードの投稿内容に関連する投稿を追加する:"
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:330
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:366
+msgid "Add page in tags management:"
+msgstr "タグ管理にページを追加する:"
 
-# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:337
-msgid "Add a UL/LI list of related posts at the end of each posts."
-msgstr "各投稿の最後に関連する投稿の UL/LI リストを追加します。"
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:331
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:367
+msgid "Add a tag input (and tag posts features) in page edition"
+msgstr "ページ編集画面にタグ入力欄 (とタグ機能) を追加します。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:368
+msgid "Maximum number of suggested tags:"
+msgstr "おすすめタグの最大数:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:369
+msgid "The maximum number of tags displayed under <em>Write</em>. Zero (0) means no limit and shows all tags."
+msgstr "<em>投稿</em>入力欄の下に表示するタグの最大数。ゼロ (0) を入れると制限無しですべてのタグを表示します。"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1049
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:370
+msgid "Display suggested tags only:"
+msgstr "おすすめタグのみを表示:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:371
+msgid "Displays suggested tags only instead of all tags. Tags will be suggested if they are part of the post."
+msgstr "すべてのタグではなく、おすすめタグのみを表示します。投稿内の一部である語句をタグとしておすすめします。"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:229
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:372
+#: WP.org\trunk/inc/simple-tags.admin.php:437
+msgid "Tag cloud sort order:"
+msgstr "タグクラウドの表示順:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:374
+msgid "<code>Alpha</code> &ndash; alphabetic order."
+msgstr "<code>Alpha</code> &ndash; アルファベット順。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:375
+msgid "<code>Popular</code> &ndash; most popular tags first."
+msgstr "<code>Popular</code> &ndash; 人気のあるタグを最初に表示します。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:339
-msgid "Meta Keyword Options"
-msgstr "メタキーワード設定"
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:378
+msgid "Meta Keyword"
+msgstr "メタキーワード"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:340
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:379
 msgid "Automatically include in header:"
 msgstr "自動的にヘッダーに含める:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:341
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:380
 msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines."
 msgstr "メタキーワードタグをヘッダーに自動的に含めます (すべてではありませんが、たいていのテーマでサポートしています)。これらのキーワードは検索エンジンに使用されることがあります。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:342
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:381
 msgid "Always add these keywords:"
 msgstr "次のキーワードを常に追加する:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:344
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:383
 msgid "Embedded Tags"
 msgstr "埋め込みタグ"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:345
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:384
 msgid "Use embedded tags:"
 msgstr "埋め込みタグを使用する:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:346
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:385
 msgid "Enabling this will cause Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
 msgstr "この機能を有効にすると、投稿の保存と表示時に WordPress が埋め込みタグを探します。埋め込みタグは<code>[tags]</code> 富士山 <code>[/tags]</code> のようにマークします。この埋め込みタグは投稿保存時にタグとして投稿に追加されますが、投稿内には表示されません。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:347
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:386
 msgid "Prefix for embedded tags:"
 msgstr "埋め込みタグの接頭語:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:348
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:387
 msgid "Suffix for embedded tags:"
 msgstr "埋め込みタグの接尾語:"
 
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:389
+msgid "Tags for Current Post"
+msgstr "投稿内でのタグ表示"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:390
+msgid "Automatically display tag list at end of post:"
+msgstr "投稿の最後にタグリストを自動的に表示する:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:392
+#: WP.org\trunk/inc/simple-tags.admin.php:407
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>no</code> &ndash; 表示しません。 (デフォルト)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:393
+#: WP.org\trunk/inc/simple-tags.admin.php:408
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>all</code> &ndash; ブログとフィードの両方に表示します。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:394
+#: WP.org\trunk/inc/simple-tags.admin.php:409
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash; ブログ上のみ表示します。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:395
+#: WP.org\trunk/inc/simple-tags.admin.php:410
+msgid "<code>feedonly</code> &ndash; Only on your feeds."
+msgstr "<code>feedonly</code> &ndash; フィード上のみ表示します。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:397
+msgid "Post tag separator string:"
+msgstr "タグのセパレータ文字:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:398
+msgid "Text to display before tags list:"
+msgstr "タグリストの前に表示するテキスト:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:399
+msgid "Text to display after tags list:"
+msgstr "タグリストの後ろに表示するテキスト:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:400
+msgid "Text to display if no tags found:"
+msgstr "タグが無い場合に表示するテキスト:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:401
+#: WP.org\trunk/inc/simple-tags.admin.php:427
+#: WP.org\trunk/inc/simple-tags.admin.php:453
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>詳細利用</strong>:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:402
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "<code>st_the_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">ドキュメンテーション</a> を参照してください。"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:335
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:404
+msgid "Related Posts"
+msgstr "関連投稿"
+
+# C:\SVN\Localhost\simple-tags/simple-tags.php:228
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:405
+msgid "Automatically add related posts"
+msgstr "関連投稿を自動的に追加する"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:335
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:412
+msgid "Related Posts sort order by:"
+msgstr "関連投稿の表示基準:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:414
+msgid "<code>date</code> &ndash; Sorting by post date."
+msgstr "<code>date</code> &ndash; 投稿日でソートします。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:415
+msgid "<code>counter</code> &ndash; Sorting by posts number in common. (default)"
+msgstr "<code>counter</code> &ndash; 投稿数でソートします (デフォルト)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:416
+msgid "<code>alpha</code> &ndash; Alphabetic order."
+msgstr "<code>alpha</code> &ndash; アルファベット順にソートします。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:417
+#: WP.org\trunk/inc/simple-tags.admin.php:435
+msgid "<code>random</code> &ndash; Randomized every time the page is loaded."
+msgstr "<code>random</code> &ndash; 投稿表示時に毎回ランダムに表示します。"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:335
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:419
+msgid "Related Posts sort order:"
+msgstr "関連投稿の表示順:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:421
+#: WP.org\trunk/inc/simple-tags.admin.php:439
+msgid "<code>ASC</code> &ndash; Ascending (default)"
+msgstr "<code>ASC</code> &ndash; 昇順 (デフォルト)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:422
+#: WP.org\trunk/inc/simple-tags.admin.php:440
+msgid "<code>DESC</code> &ndash; Descending"
+msgstr "<code>DESC</code> &ndash; 降順"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:133
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:424
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr "表示する関連投稿の最大数: (デフォルト: 45)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:425
+msgid "Enter the text to show when there is no related post:"
+msgstr "関連投稿が無いときに表示するテキスト:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:426
+#: WP.org\trunk/inc/simple-tags.admin.php:444
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "リストの前 (上) に表示するタイトル:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:428
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "<code>st_related_posts()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">ドキュメンテーション</a> を参照してください。"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:229
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:430
+msgid "Tag cloud"
+msgstr "タグクラウド"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:431
+msgid "Tag cloud sort order by:"
+msgstr "タグクラウドの表示基準:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:433
+msgid "<code>count</code> &ndash; Sorting by counter usage."
+msgstr "<code>count</code> &ndash; 投稿数でソートします。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:434
+msgid "<code>name</code> &ndash; Alphabetic order. (default)"
+msgstr "<code>name</code> &ndash; アルファベット順にソートします。 (デフォルト)"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:133
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:442
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "表示するタグの最大数: (デフォルト: 45)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:443
+msgid "Enter the text to show when there is no tag:"
+msgstr "タグが無いときに表示するテキスト:"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:491
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:445
+msgid "Most popular color:"
+msgstr "最も使用されているタグの色:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:446
+msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
+msgstr "色は 6 桁の 16 進数で入力します (#eee は #eeeeee の省略形です)。"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:491
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:447
+msgid "Least popular color:"
+msgstr "最も使用されていないタグの色:"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:491
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:448
+msgid "Most popular font size:"
+msgstr "最も使用されているタグのフォントサイズ:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:449
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "この 2 つのフォントサイズはそれぞれ最も使用されているタグと最も使用されていないタグのサイズです。"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:145
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:450
+msgid "Least popular font size:"
+msgstr "最も使用されていないタグのフォントサイズ:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:451
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "タグクラウドのフォントサイズで使用する単位:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:452
+msgid "The font size units option determines the units that the two font sizes use."
+msgstr "この 2 つのフォントサイズで使用するフォントの単位です。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:454
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "<code>st_tag_cloud()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">ドキュメンテーション</a> を参照してください。"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:359
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:465
 msgid "Options saved"
 msgstr "設定は保存されました。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:365
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:470
 msgid "Simple Tags options resetted to default options!"
 msgstr "Simple Tags の設定をデフォルトにリセットしました !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:380
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:487
 msgid "Update Options"
 msgstr "設定を更新"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:381
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:488
 msgid "Do you really want to restore the default options?"
 msgstr "デフォルトの設定に戻しますか ?"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:381
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:488
 msgid "Reset Options"
 msgstr "設定のリセット"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:410
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:517
 #, php-format
 msgid "%s posts untagged"
 msgstr "タグ付けされていない投稿: %s 件"
@@ -244,292 +647,512 @@ msgstr "タグ付けされていない投稿: %s 件"
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:420
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:441
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:584
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:527
+#: WP.org\trunk/inc/simple-tags.admin.php:548
+#: WP.org\trunk/inc/simple-tags.admin.php:692
 msgid "Edit"
 msgstr "編集"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:426
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:533
 msgid "No post."
 msgstr "投稿無し。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:431
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:538
 #, php-format
 msgid "%s pages untagged"
 msgstr "タグ付けされていないページ: %s 件"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:447
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:554
 msgid "No page."
 msgstr "ページ無し。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:464
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1201
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:575
+#: WP.org\trunk/inc/simple-tags.admin.php:1398
 msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
 msgstr "セキュリティ問題があります。再度お試しください。もしこの問題が続くようなら <a href=\"mailto:amaury@wordpress-fr.net\">プラグイン作者</a>連絡してください。"
 
-# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:489
-msgid "Sort Order:"
-msgstr "表示順:"
-
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:491
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:601
+#: WP.org\trunk/inc/simple-tags.widgets.php:157
 msgid "Most popular"
 msgstr "使われている順"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:492
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:601
+#: WP.org\trunk/inc/simple-tags.widgets.php:158
 msgid "Least used"
 msgstr "使われていない順"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:493
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:601
 msgid "Alphabetical"
 msgstr "アルファベット順"
 
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:489
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:607
+msgid "Sort Order:"
+msgstr "表示順:"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:515
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:623
 #, php-format
 msgid "View all posts tagged with %s"
 msgstr "%s タグが付けられている投稿をすべて表示"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:532
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:640
 msgid "Existing Tags"
 msgstr "既存のタグ"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:537
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:645
 msgid "Rename Tag"
 msgstr "タグ名の変更"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:538
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:646
 msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
 msgstr "名称を変更するタグと新しい名称を入力してください。この機能はタグの統合にも利用できます。\"タグ名変更\" をクリックするとこのタグを使用しているすべての投稿が更新されます。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:539
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:577
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:647
+#: WP.org\trunk/inc/simple-tags.admin.php:685
 msgid "You can specify multiple tags to rename by separating them with commas."
 msgstr "複数のタグの名称を変更するには各タグをコンマで区切ります。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:544
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:652
 msgid "Tag(s) to rename:"
 msgstr "変更するタグ:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:545
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:653
 msgid "New tag name(s):"
 msgstr "新しいタグ名:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:546
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:654
 msgid "Rename"
 msgstr "タグ名変更"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:550
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:658
 msgid "Delete Tag"
 msgstr "タグの削除"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:551
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:659
 msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
 msgstr "削除するタグ名を入力してください。このタグはすべての投稿から取り除かれます。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:552
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:660
 msgid "You can specify multiple tags to delete by separating them with commas"
 msgstr "複数のタグを削除するには各タグをコンマで区切ります。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:557
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:665
 msgid "Tag(s) to delete:"
 msgstr "削除するタグ:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:558
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:666
 msgid "Delete"
 msgstr "削除"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:562
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:670
 msgid "Add Tag"
 msgstr "タグの追加"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:563
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:671
 msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
 msgstr "検索するタグ (複数可) に該当するすべての投稿に 1 つ以上のタグを追加することができます。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:564
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:672
 msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
 msgstr "複数のタグを削追加するには各タグをコンマで区切ります。検索するタグを空白にすると、すべての投稿にタグを追加できます。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:569
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:582
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:677
+#: WP.org\trunk/inc/simple-tags.admin.php:690
 msgid "Tag(s) to match:"
 msgstr "検索するタグ:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:570
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:678
 msgid "Tag(s) to add:"
 msgstr "追加するタグ:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:571
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:679
 msgid "Add"
 msgstr "追加"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:575
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:683
 msgid "Edit Tag Slug"
 msgstr "タグスラッグの編集"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:576
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:684
 msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
 msgstr "スラッグを編集するタグ名 (検索するタグ) と新しいスラッグを入力してください。<a href=\"http://codex.wordpress.org/Glossary#Slug\">スラッグとは ? (英語)</a>"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:583
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:691
 msgid "Slug(s) to set:"
 msgstr "設定するスラッグ:"
 
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:696
+msgid "Remove empty terms"
+msgstr "空タグの削除"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:697
+msgid "WordPress 2.3 have a small bug and can create empty terms. Remove it !"
+msgstr "WordPress 2.3 には小さなバグがあり、空のタグを作成できてしまいます。これを取り除きます !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:701
+msgid "Clean !"
+msgstr "取り除く !"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:657
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:773
 msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
 msgstr "タグ (複数のタグははコンマで区切ってください。例: cats, pet food, dogs)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:670
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:786
 msgid "No tag specified!"
 msgstr "タグが指定されていません !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:700
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:816
 msgid "No new tag(s) specified!"
 msgstr "新しいタグが指定されていません !"
 
+# C:\SVN\Localhost\simple-tags/simple-tags.php:438
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:864
+msgid "No tag added."
+msgstr "追加されたタグはありません。"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:866
+#, php-format
+msgid "Tag(s) added to %1s post(s)."
+msgstr "%1s 件の投稿にタグを追加しました。"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:753
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:878
 msgid "No new slug(s) specified!"
 msgstr "新しいスラッグが指定されていません !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:769
-msgid "Tags and slugs number are different!"
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:894
+msgid "Tags number and slugs number isn't the same!"
 msgstr "タグの数とスラッグの数が違います !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:791
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:916
 #, php-format
 msgid "%s slug(s) edited."
 msgstr "%s 個のスラッグを編集しました。"
 
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:929
+msgid "Nothing to muck. Good job !"
+msgstr "取り除くものはありません。よくできました !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:953
+#, php-format
+msgid "%s rows deleted. WordPress DB is clean now !"
+msgstr "%s 行を削除しました。WordPress DB はクリーンです !"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:802
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:965
 msgid "No new tag specified!"
 msgstr "新しいタグが指定されていません !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:821
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:984
 msgid "No new/old valid tag specified!"
 msgstr "新しい / 古い有効なタグが指定されていません !"
 
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:545
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1015
+msgid "No tag renamed."
+msgstr "名称を変更したタグはありません。"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:851
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1017
 #, php-format
 msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
 msgstr "タグ名を &laquo;%1$s&raquo; から &laquo;%2$s&raquo; に変更しました。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:857
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1024
 msgid "No valid new tag."
 msgstr "有効な新しいタグではありません。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:874
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1041
 msgid "No objects (post/page) found for specified old tags."
 msgstr "指定された古いタグに該当するオブジェクト (投稿 / ページ) は見つかりませんでした。"
 
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:670
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1058
+msgid "No tag merged."
+msgstr "マージされたタグはありません。"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:890
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1060
 #, php-format
 msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
 msgstr "タグ &laquo;%1$s&raquo; を &laquo;%2$s&raquo; に統合しました。%3$s 個のオブジェクトを編集しました。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:892
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1063
 msgid "Error. No enough tags for rename. Too for merge. Choose !"
 msgstr "エラー。名称変更、もしくは統合するタグを選択してください !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:937
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1108
 msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a>"
 msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a>"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1049
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1245
 msgid "No suggested tags founds."
 msgstr "おすすめタグは見つかりませんでした。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1056
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1252
 msgid "Suggested tags"
 msgstr "おすすめタグ"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1228
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1425
 #, php-format
 msgid "%s post(s) tags updated with success !"
 msgstr "%s 件の投稿のタグを更新しました !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:1230
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1427
 #, php-format
 msgid "%s page(s) tags updated with success !"
 msgstr "%s 件のページのタグを更新しました !"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:127
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:140
 msgid "Empty field will use default value."
 msgstr "空白の欄ではデフォルトの値が使用されます。"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:129
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:143
 msgid "Title:"
 msgstr "タイトル:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:133
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:148
 msgid "Max tags to display: (default: 45)"
 msgstr "表示するタグの数: (デフォルト: 45)"
 
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:215
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:153
+msgid "Order:"
+msgstr "表示順:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:155
+msgid "Alphabetical / Ascending (Default)"
+msgstr "アルファベット順 / 昇順 (デフォルト)"
+
+# C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:493
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:156
+msgid "Alphabetical / Descending"
+msgstr "アルファベット順 / 降順"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:159
+msgid "Random all tags"
+msgstr "ランダム"
+
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:137
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:164
 msgid "Font size mini: (default: 8)"
 msgstr "最大フォントサイズ: (デフォルト: 8)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:141
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:169
 msgid "Font size max: (default: 22)"
 msgstr "フォントの最大サイズ: (デフォルト: 22)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:145
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:174
 msgid "Unit font size:"
 msgstr "フォントサイズの単位:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:147
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:176
 msgid "Point (default)"
 msgstr "ポイント (デフォルト)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:148
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:177
 msgid "Pixel"
 msgstr "ピクセル"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:149
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:178
 msgid "Em"
 msgstr "em"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:150
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:179
 msgid "Pourcent"
 msgstr "パーセント"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:154
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:184
 msgid "Format:"
 msgstr "フォーマット:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:156
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:186
 msgid "Flat (default)"
 msgstr "フラット (デフォルト)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:157
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:187
 msgid "List (UL/LI)"
 msgstr "リスト (UL/LI)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:162
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:193
 msgid "Use auto color cloud:"
 msgstr "クラウドを自動的に色付けする:"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:165
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:197
 msgid "Font color mini: (default: #CCCCCC)"
 msgstr "最小フォント色: (デフォルト: #CCCCCC)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:169
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:202
 msgid "Font color max: (default: #000000)"
 msgstr "最大フォント色: (デフォルト: #000000)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:173
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:207
 msgid "Extended format: (advanced usage)"
 msgstr "拡張フォーマット: (高度な用法)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:204
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:239
 msgid "Tag Cloud Widgets"
 msgstr "タグクラウドウィジェット"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:205
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:240
 msgid "How many tag cloud widgets would you like?"
 msgstr "タグクラウドウィジェットはいくつ必要ですか ?"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:209
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:244
 msgid "Save"
 msgstr "保存"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.widgets.php:229
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:264
+#: WP.org\trunk/inc/simple-tags.widgets.php:265
 #, php-format
 msgid "Tag Cloud %d"
 msgstr "タグクラウド %d"

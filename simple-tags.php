@@ -20,12 +20,15 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 Contributors:
-Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net/)
-
-
-Todo:
-	Add contributors
+ - Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
+ - Martin Modler (modler@webformatik.com  - http://www.webformatik.com)
 */
+
+// Check version.
+global $wp_version;
+if ( version_compare($wp_version, '2.3', '<') ) {
+	wp_die('Plugin compatible with WordPress 2.3 Only.');
+}
 
 Class SimpleTags {
 	var $version = '1.2';
@@ -706,15 +709,7 @@ Class SimpleTags {
 			}
 		}
 		elseif ( $orderby == 'random' ) { // Shuffle but keeping key/value
-			$tmp_array = array();
-			$tmp_keys = array_keys($counts);
-			shuffle($tmp_keys);
-			foreach ( $tmp_keys as $tmp_key ) {
-				$tmp_array[$tmp_key] = $counts[$tmp_key];
-			}
-			$counts = $tmp_array;
-			unset($tmp_array);
-			unset($tmp_keys);
+			$counts = $this->randomArray($counts);
 		}
 
 		$output = array();
@@ -743,6 +738,21 @@ Class SimpleTags {
 
 		return $this->outputExtendedTagCloud( $format, $title, $output );
 	}
+	
+	/**
+	 * Randomize an array and keep association
+	 *
+	 * @param array $data
+	 * @return array
+	 */
+	function randomArray( $data ) {
+		$r_keys = array_rand($data, count($data));
+		
+		foreach( (array) $r_keys as $key ) {
+			$data[$key] = $data[$key];
+		}
+		return $data;
+	} 
 
 	/**
 	 * Format nice URL depending service
