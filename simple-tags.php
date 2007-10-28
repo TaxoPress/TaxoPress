@@ -691,14 +691,9 @@ Class SimpleTags {
 		$orderby = strtolower($orderby);
 		if ( $orderby == 'name' ) { // Use key for sort
 			if ( $order == 'asc' ) {
-				$counts = array_flip($counts);
-				natcasesort($counts); // Natural sort
-				$counts = array_flip($counts);
+				$counts = $this->natSortKey($counts); // 
 			} else {
-				$counts = array_flip($counts);
-				natcasesort($counts); // Natural sort
-				$counts = array_reverse($counts, true);  // Inverse
-				$counts = array_flip($counts);
+				$counts = array_reverse($this->natSortKey($counts), true);  // Reverse natural sort
 			}
 		}
 		elseif ( $orderby == 'count' ) { // Use value for sort
@@ -745,14 +740,38 @@ Class SimpleTags {
 	 * @param array $data
 	 * @return array
 	 */
-	function randomArray( $data ) {
-		$r_keys = array_rand($data, count($data));
+	function randomArray( $data_in ) {
+		srand( (float) microtime() * 1000000 ); // For PHP < 4.2
+		$rand_keys = array_rand($data_in, count($data_in));
 		
-		foreach( (array) $r_keys as $key ) {
-			$data[$key] = $data[$key];
+		foreach( (array) $rand_keys as $key ) {
+			$data_out[$key] = $data_in[$key];
 		}
-		return $data;
-	} 
+		return $data_out;
+	}
+	
+	/**
+	 * Use natural sorting with keys
+	 *
+	 * @param array $data_in
+	 * @return array
+	 */
+	function natSortKey( $data_in ) {
+		$key_array = $data_out = array();
+		
+		foreach ( (array) $data_in as $key => $value ) {
+			$key_array[] = $key;
+		}
+		
+		natsort( $key_array );
+		
+		foreach ( (array) $key_array as $key => $value ) {
+			$data_out[$value] = $data_in[$value];
+		}
+		
+		unset($key_array, $data_in);		
+		return $data_out;
+	}
 
 	/**
 	 * Format nice URL depending service
