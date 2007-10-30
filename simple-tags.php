@@ -194,7 +194,7 @@ Class SimpleTags {
 	/**
 	 * Generate keywords for meta data
 	 *
-	 * @return unknown
+	 * @return string
 	 */
 	function generateKeywords() {
 		if ( is_array($this->posts) && count($this->posts) > 0 ) {
@@ -690,20 +690,17 @@ Class SimpleTags {
 		$order	 = strtolower($order);
 		$orderby = strtolower($orderby);
 		if ( $orderby == 'name' ) { // Use key for sort
-			if ( $order == 'asc' ) {
-				$counts = $this->natSortKey($counts); // 
-			} else {
-				$counts = array_reverse($this->natSortKey($counts), true);  // Reverse natural sort
+			uksort($counts, 'strnatcasecmp');
+			if ( $order == 'desc' ) {
+				array_reverse($counts);
 			}
-		}
-		elseif ( $orderby == 'count' ) { // Use value for sort
+		} elseif ( $orderby == 'count' ) { // Use value for sort
 			if ( $order == 'asc' ) {
 				asort($counts);
 			} else {
 				arsort($counts);
 			}
-		}
-		elseif ( $orderby == 'random' ) { // Shuffle but keeping key/value
+		} else { // Shuffle but keeping key/value
 			$counts = $this->randomArray($counts);
 		}
 
@@ -747,29 +744,6 @@ Class SimpleTags {
 		foreach( (array) $rand_keys as $key ) {
 			$data_out[$key] = $data_in[$key];
 		}
-		return $data_out;
-	}
-	
-	/**
-	 * Use natural sorting with keys
-	 *
-	 * @param array $data_in
-	 * @return array
-	 */
-	function natSortKey( $data_in ) {
-		$key_array = $data_out = array();
-		
-		foreach ( (array) $data_in as $key => $value ) {
-			$key_array[] = $key;
-		}
-		
-		natsort( $key_array );
-		
-		foreach ( (array) $key_array as $key => $value ) {
-			$data_out[$value] = $data_in[$value];
-		}
-		
-		unset($key_array, $data_in);		
 		return $data_out;
 	}
 

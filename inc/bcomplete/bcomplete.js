@@ -156,12 +156,13 @@ BComplete.prototype =
         m = text.match(exp);
         text = m[0].replace(/^[,\s]+|\s+$/g,"");
 
-        var expression = new RegExp("^"+ RegExp.escape(text),"i");
+        // Strict search (old) (must start with...)
+        // var expression = new RegExp("^"+ RegExp.escape(text),"i");
+        // Cool search
+        var expression = new RegExp(RegExp.escape(text),"i");
 
-        for(var i=0;i<this.data.length;i++)
-        {
-            if(this.data[i].match(expression))
-            {
+        for(var i=0;i<this.data.length;i++) {
+            if(this.data[i].match(expression)) {
                 matches[matches.length] = this.data[i];
             }
         }
