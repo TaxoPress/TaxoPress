@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simple-tags\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-10-24 21:38+0900\n"
+"PO-Revision-Date: 2007-11-01 02:25+0900\n"
 "Last-Translator: tai <tekapo@gmail.com>\n"
 "Language-Team: ja <tekapo@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -863,7 +863,7 @@ msgstr "取り除く !"
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:773
 msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
-msgstr "タグ (複数のタグははコンマで区切ってください。例: cats, pet food, dogs)"
+msgstr "タグ (複数のタグはコンマで区切ってください。例: cats, pet food, dogs)"
 
 # C:\SVN\Localhost\simple-tags/inc/simple-tags.admin.php:670
 #: C:\SVN\ST

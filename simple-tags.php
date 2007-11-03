@@ -7,7 +7,7 @@ Version: 1.2
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
-© Copyright 2007  Amaury BALMER (balmer.amaury@gmail.com)
+© Copyright 2007 Amaury BALMER (balmer.amaury@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,18 +16,18 @@ the Free Software Foundation; either version 2 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 Contributors:
- - Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
- - Martin Modler (modler@webformatik.com  - http://www.webformatik.com)
+- Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
+- Martin Modler (modler@webformatik.com - http://www.webformatik.com)
 */
 
 // Check version.
 global $wp_version;
 if ( version_compare($wp_version, '2.3', '<') ) {
-	wp_die('Plugin compatible with WordPress 2.3 Only.');
+	wp_die('Plugin compatible with WordPress 2.3 or higher only.');
 }
 
 Class SimpleTags {
@@ -59,6 +59,7 @@ Class SimpleTags {
 			'admin_tag_suggested' => '1',
 			'admin_tag_sort' => 'popular',
 			// Embedded Tags
+			'allow_embed_tcloud' => '0',
 			'use_embed_tags' => '0',
 			'start_embed_tags' => '[tags]',
 			'end_embed_tags' => '[/tags]',
@@ -93,7 +94,10 @@ Class SimpleTags {
 			'tt_adv_usage' => '',
 			// Meta keywords
 			'meta_autoheader' => '1',
-			'meta_always_include' => ''
+			'meta_always_include' => '',
+			// Auto tags
+			'use_auto_tags' => '0',
+			'auto_list' => ''
 		);
 
 		// Set class property for default options
@@ -127,9 +131,9 @@ Class SimpleTags {
 
 		// Set informations
 		$this->info = array(
-			'siteurl' 			=> $info['siteurl'],
-			'install_url'		=> $info['install_url'],
-			'install_dir'		=> $info['install_dir']
+			'siteurl' => $info['siteurl'],
+			'install_url' => $info['install_url'],
+			'install_dir' => $info['install_dir']
 		);
 		unset($info);
 
@@ -158,15 +162,21 @@ Class SimpleTags {
 			add_filter('the_content', array(&$this, 'filterEmbedTags'), 99);
 		}
 
-		// Add related posts in post ( all / feedonly / blogonly / no )
+		// Add related posts in post ( all / feedonly / blogonly / homeonly / singleonly / no )
 		if ( $this->options['tt_embedded'] != 'no' ) {
 			add_filter('the_content', array(&$this, 'inlinePostTags'), 98);
 		}
 
-		// Add related posts in post ( all / feedonly / blogonly / no )
+		// Add related posts in post ( all / feedonly / blogonly / homeonly / singleonly / no )
 		if ( $this->options['rp_embedded'] != 'no' ) {
 			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 99);
 		}
+		
+		// Embedded tag cloud
+		if ( $this->options['allow_embed_tcloud'] != '1' ) {
+			add_filter('the_content', array(&$this, 'embeddedTagCloud'), 99);
+		}
+		
 
 		// Add keywords to header
 		if ( $this->options['meta_autoheader'] == '1' ) {
@@ -175,6 +185,32 @@ Class SimpleTags {
 		}
 		return;
 	}
+	
+	/**
+	 * Replace marker by a tag cloud in post content
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	function embeddedTagCloud( $content = '' ) {
+		if ( strpos($content, '<!--st_tag_cloud-->') ) {
+			$content = str_replace('<!--st_tag_cloud-->', $this->extendedTagCloud(), $content);
+		}
+		return $content;
+	}
+	
+	/**
+	 * trim and remove empty element
+	 *
+	 * @param string $element
+	 * @return string
+	 */
+	function deleteEmptyElement( &$element ) {
+		$element = trim($element);
+		if ( !empty($element) ) {
+			return $element;
+		}
+	}
 
 	/**
 	 * Stock posts ID as soon as possible
@@ -182,7 +218,7 @@ Class SimpleTags {
 	 * @param array $posts
 	 * @return array
 	 */
-	function getPostIds( $posts ) {
+	function getPostIds( $posts = null ) {
 		if ( !is_null($posts) && is_array($posts) ) {
 			foreach( (array) $posts as $post) {
 				$this->posts[] = $post->ID;
@@ -216,13 +252,13 @@ Class SimpleTags {
 			if ( $results === false ) {
 				global $wpdb;
 				$results = $wpdb->get_col("
-		          	SELECT DISTINCT terms.name
+					SELECT DISTINCT terms.name
 					FROM {$wpdb->posts} AS posts
 					INNER JOIN {$wpdb->term_relationships} AS term_relationships ON (posts.ID = term_relationships.object_id)
 					INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id)
 					INNER JOIN {$wpdb->terms} AS terms ON (term_taxonomy.term_id = terms.term_id)
 					WHERE term_taxonomy.taxonomy = 'post_tag'
-		          	AND ( posts.ID IN ('{$postlist}') )");
+					AND ( posts.ID IN ('{$postlist}') )");
 
 				$cache[$key] = $results;
 				wp_cache_set('generate_keywords', $cache, 'simpletags');
@@ -266,17 +302,21 @@ Class SimpleTags {
 	 * @param string $content
 	 * @return string
 	 */
-	function inlineRelatedPosts( $content ) {
- 		$marker = false;
- 		if ( $this->options['rp_embedded'] == 'all' ) {
- 			$marker = true;
- 		} elseif ( $this->options['rp_embedded'] == 'blogonly' &&  is_feed() == false ) {
+	function inlineRelatedPosts( $content = '' ) {
+		$marker = false;
+		if ( $this->options['rp_embedded'] == 'all' ) {
 			$marker = true;
- 		} elseif ( $this->options['rp_embedded'] == 'feedonly' &&  is_feed() == true ) {
+		} elseif ( $this->options['rp_embedded'] == 'blogonly' && is_feed() == false ) {
 			$marker = true;
- 		}
+		} elseif ( $this->options['rp_embedded'] == 'feedonly' && is_feed() == true ) {
+			$marker = true;
+		} elseif ( $this->options['rp_embedded'] == 'homeonly' && is_home() == true ) {
+			$marker = true;
+		} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_singular() == true ) {
+			$marker = true;
+		}
 
-		if ( $marker == true ) {
+		if ( $marker === true ) {
 			$content .= $this->relatedPosts();
 		}
 		return $content;
@@ -288,17 +328,21 @@ Class SimpleTags {
 	 * @param string $content
 	 * @return string
 	 */
-	function inlinePostTags( $content ) {
- 		$marker = false;
- 		if ( $this->options['tt_embedded'] == 'all' ) {
- 			$marker = true;
- 		} elseif ( $this->options['tt_embedded'] == 'blogonly' &&  is_feed() == false ) {
+	function inlinePostTags( $content = '' ) {
+		$marker = false;
+		if ( $this->options['tt_embedded'] == 'all' ) {
 			$marker = true;
- 		} elseif ( $this->options['tt_embedded'] == 'feedonly' &&  is_feed() == true ) {
+		} elseif ( $this->options['tt_embedded'] == 'blogonly' && is_feed() == false ) {
 			$marker = true;
- 		}
+		} elseif ( $this->options['tt_embedded'] == 'feedonly' && is_feed() == true ) {
+			$marker = true;
+		} elseif ( $this->options['rp_embedded'] == 'homeonly' && is_home() == true ) {
+			$marker = true;
+		} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_singular() == true ) {
+			$marker = true;
+		}
 
-		if ( $marker == true ) {
+		if ( $marker === true ) {
 			$content .= $this->extendedPostTags();
 		}
 		return $content;
@@ -469,20 +513,20 @@ Class SimpleTags {
 			// Posts: title, comments_count, date, permalink, post_id, counter
 			global $wpdb;
 			$results = $wpdb->get_results("
-		        SELECT DISTINCT posts.post_title, posts.comment_count, posts.post_date, posts.ID, COUNT(term_relationships.object_id) as counter {$group_concat_sql}
-		        FROM {$wpdb->posts} AS posts
-		        INNER JOIN {$wpdb->term_relationships} AS term_relationships ON (posts.ID = term_relationships.object_id)
-		        INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id)
-		        WHERE term_taxonomy.taxonomy = 'post_tag'
-		        AND (term_taxonomy.term_id IN ({$taglist}))
-		        {$exclude_posts_sql}
-		        AND posts.post_status = 'publish'
-		        AND posts.post_date < '".current_time('mysql')."'
-		        {$limitdays_sql}
-		        {$restrict_sql}
-		        GROUP BY term_relationships.object_id
-		        {$order_sql}
-		        {$limit_sql}");
+				SELECT DISTINCT posts.post_title, posts.comment_count, posts.post_date, posts.ID, COUNT(term_relationships.object_id) as counter {$group_concat_sql}
+				FROM {$wpdb->posts} AS posts
+				INNER JOIN {$wpdb->term_relationships} AS term_relationships ON (posts.ID = term_relationships.object_id)
+				INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id)
+				WHERE term_taxonomy.taxonomy = 'post_tag'
+				AND (term_taxonomy.term_id IN ({$taglist}))
+				{$exclude_posts_sql}
+				AND posts.post_status = 'publish'
+				AND posts.post_date < '".current_time('mysql')."'
+				{$limitdays_sql}
+				{$restrict_sql}
+				GROUP BY term_relationships.object_id
+				{$order_sql}
+				{$limit_sql}");
 
 			$cache[$key] = $results;
 			wp_cache_set('related_posts', $cache, 'simpletags');
@@ -553,6 +597,10 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function outputRelatedPosts( $format = 'list', $title = '', $content = '' ) {
+		if ( empty($title) || empty($content) ) {
+			return ''; // return nothing
+		}		
+		
 		if ( is_array($content) ) {
 			switch ( $format ) {
 				case 'array' :
@@ -579,7 +627,8 @@ Class SimpleTags {
 					break;
 			}
 		}
-
+		
+		// Replace false by empty
 		if ( strtolower($title) == 'false' ) {
 			$title = '';
 		}
@@ -607,12 +656,13 @@ Class SimpleTags {
 			'exclude' => '',
 			'include' => '',
 			'limit_days' => 0,
-			'notagstext' => __('No tags.', 'simpletags'),
+			'notagstext' => __('No tags.', 'simpletags'), 
 			'xformat' => __('<a href="%tag_link%" class="tag-link-%tag_id%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'color' => 'true',
 			'maxcolor' => '#000000',
 			'mincolor' => '#CCCCCC',
-			'title' => __('<h4>Tag Cloud</h4>', 'simpletags')
+			'title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
+			'category' => 0
 		);
 
 		if ( empty($args) ) {
@@ -633,7 +683,7 @@ Class SimpleTags {
 		$args = wp_parse_args( $args, $defaults );
 
 		// Get tags
-		$tags = $this->get_tags( $args );
+		$tags = $this->getTags( $args );
 		extract($args); // Params to variables
 
 		if ( empty($tags) ) {
@@ -687,7 +737,7 @@ Class SimpleTags {
 		}
 
 		// Order tags before output
-		$order	 = strtolower($order);
+		$order = strtolower($order);
 		$orderby = strtolower($orderby);
 		if ( $orderby == 'name' ) { // Use key for sort
 			uksort($counts, 'strnatcasecmp');
@@ -709,20 +759,20 @@ Class SimpleTags {
 			$scaleResult = (int) (($count - $minval) * $scale + $minout);
 
 			$element_loop = $xformat;
-			$element_loop = str_replace('%tag_link%'	, clean_url($tag_links[$tag]), $element_loop);
-			$element_loop = str_replace('%tag_feed%'	, clean_url(get_tag_feed_link($tag_ids[$tag])), $element_loop);
-			$element_loop = str_replace('%tag_id%'		, $tag_ids[$tag], $element_loop);
-			$element_loop = str_replace('%tag_count%'	, $count, $element_loop);
-			$element_loop = str_replace('%tag_size%'	, 'font-size:'.round(($scaleResult - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 1).$unit.';', $element_loop);
-			$element_loop = str_replace('%tag_color%'	, 'color:'.$this->getColorByScale(round(($scaleResult - $scale_min)*(100)/($scale_max - $scale_min), 1),$mincolor,$maxcolor).';', $element_loop);
-			$element_loop = str_replace('%tag_name%'	, str_replace(' ', '&nbsp;', wp_specialchars( $tag )), $element_loop);
-			$element_loop = str_replace('%tag_rel%'		, $rel, $element_loop);
+			$element_loop = str_replace('%tag_link%', clean_url($tag_links[$tag]), $element_loop);
+			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag_ids[$tag])), $element_loop);
+			$element_loop = str_replace('%tag_id%', $tag_ids[$tag], $element_loop);
+			$element_loop = str_replace('%tag_count%', $count, $element_loop);
+			$element_loop = str_replace('%tag_size%', 'font-size:'.round(($scaleResult - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 1).$unit.';', $element_loop);
+			$element_loop = str_replace('%tag_color%', 'color:'.$this->getColorByScale(round(($scaleResult - $scale_min)*(100)/($scale_max - $scale_min), 1),$mincolor,$maxcolor).';', $element_loop);
+			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', wp_specialchars( $tag )), $element_loop);
+			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
 
 			// Add in version 1.1
-			$element_loop = str_replace('%tag_scale%'		, $scaleResult, $element_loop);
-			$element_loop = str_replace('%tag_technorati%'	, $this->formatLink( 'technorati', $tag ), $element_loop);
-			$element_loop = str_replace('%tag_flickr%'		, $this->formatLink( 'flickr', $tag ), $element_loop);
-			$element_loop = str_replace('%tag_delicious%'	, $this->formatLink( 'delicious', $tag ), $element_loop);
+			$element_loop = str_replace('%tag_scale%', $scaleResult, $element_loop);
+			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $tag ), $element_loop);
+			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $tag ), $element_loop);
+			$element_loop = str_replace('%tag_delicious%', $this->formatLink( 'delicious', $tag ), $element_loop);
 
 			$output[] = $element_loop;
 		}
@@ -730,7 +780,7 @@ Class SimpleTags {
 
 		return $this->outputExtendedTagCloud( $format, $title, $output );
 	}
-	
+
 	/**
 	 * Randomize an array and keep association
 	 *
@@ -740,7 +790,7 @@ Class SimpleTags {
 	function randomArray( $data_in ) {
 		srand( (float) microtime() * 1000000 ); // For PHP < 4.2
 		$rand_keys = array_rand($data_in, count($data_in));
-		
+
 		foreach( (array) $rand_keys as $key ) {
 			$data_out[$key] = $data_in[$key];
 		}
@@ -762,13 +812,13 @@ Class SimpleTags {
 		switch ( $type ) {
 			case 'technorati':
 				return '<a class="tag_technorati" href="http://technorati.com/tag/'.str_replace(' ', '+', $tag_name).'" rel="tag">'.$tag_name.'</a>';
-			break;
+				break;
 			case 'flickr':
 				return '<a class="tag_flickr" href="http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($tag_name)).'/" rel="tag">'.$tag_name.'</a>';
-			break;
+				break;
 			case 'delicious':
 				return '<a class="tag_delicious" href="http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $tag_name)).'" rel="tag">'.$tag_name.'</a>';
-			break;
+				break;
 		}
 		return '';
 	}
@@ -824,12 +874,12 @@ Class SimpleTags {
 	 */
 	function extendedPostTags( $args = '' ) {
 		$defaults = array(
-			'before' => __('Tags: ', 'simpletags'),
-			'separator' => ', ',
-			'after' => '<br />',
-			'post_id' => '',
-			'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
-			'notagtext' => __('No tag for this post.', 'simpletags'),
+		'before' => __('Tags: ', 'simpletags'),
+		'separator' => ', ',
+		'after' => '<br />',
+		'post_id' => '',
+		'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
+		'notagtext' => __('No tag for this post.', 'simpletags'),
 		);
 
 		if ( empty($args) ) {
@@ -861,12 +911,12 @@ Class SimpleTags {
 			$element_loop = $xformat;
 			$element_loop = str_replace('%tag_link%'	, clean_url(get_tag_link($tag->term_id)), $element_loop);
 			$element_loop = str_replace('%tag_feed%'	, clean_url(get_tag_feed_link($tag->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_id%'		, $tag->term_id, $element_loop);
+			$element_loop = str_replace('%tag_id%', $tag->term_id, $element_loop);
 			$element_loop = str_replace('%tag_name%'	, str_replace(' ', '&nbsp;', wp_specialchars($tag->name)), $element_loop);
-			$element_loop = str_replace('%tag_rel%'		, $rel, $element_loop);
+			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
 
 			$element_loop = str_replace('%tag_technorati%'	, $this->formatLink( 'technorati', $tag->name ), $element_loop);
-			$element_loop = str_replace('%tag_flickr%'		, $this->formatLink( 'flickr', $tag->name ), $element_loop);
+			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $tag->name ), $element_loop);
 			$element_loop = str_replace('%tag_delicious%'	, $this->formatLink( 'delicious', $tag->name ), $element_loop);
 
 			$tag_links[] = $element_loop;
@@ -897,7 +947,7 @@ Class SimpleTags {
 
 	// Tags functions
 	/**
-	 * This is pretty filthy.  Doing math in hex is much too weird.  It's more likely to work,  this way!
+	 * This is pretty filthy. Doing math in hex is much too weird. It's more likely to work, this way!
 	 * Provided from UTW. Thanks.
 	 *
 	 * @param integer $scale_color
@@ -963,7 +1013,13 @@ Class SimpleTags {
 		}
 	}
 
-	function get_tags( $args = '' ) {
+	/**
+	 * Extended get_tags function that use getTerms function
+	 *
+	 * @param string $args
+	 * @return array
+	 */
+	function getTags( $args = '' ) {
 		$key = md5(serialize($args));
 		if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
 			if ( isset( $cache[$key] ) ) {
@@ -972,7 +1028,7 @@ Class SimpleTags {
 		}
 
 		// Get tags
-		$tags = $this->get_terms('post_tag', $args);
+		$tags = $this->getTerms('post_tag', $args);
 
 		if ( empty($tags) ) {
 			return array();
@@ -985,7 +1041,17 @@ Class SimpleTags {
 		return $tags;
 	}
 
-	function get_terms( $taxonomies, $args = '' ) {
+	/**
+	 * Extended get_terms function support
+	 * 	- Limit category
+	 *  - Limit days
+	 *  - Selection restrict
+	 *
+	 * @param string|array $taxonomies
+	 * @param string $args
+	 * @return array
+	 */
+	function getTerms( $taxonomies, $args = '' ) {
 		global $wpdb;
 
 		$single_taxonomy = false;
@@ -994,8 +1060,8 @@ Class SimpleTags {
 			$taxonomies = array($taxonomies);
 		}
 
-		foreach ( $taxonomies as $taxonomy ) {
-			if ( ! is_taxonomy($taxonomy) ) {
+		foreach ( (array) $taxonomies as $taxonomy ) {
+			if ( !is_taxonomy($taxonomy) ) {
 				return new WP_Error('invalid_taxonomy', __('Invalid Taxonomy'));
 			}
 		}
@@ -1017,7 +1083,8 @@ Class SimpleTags {
 			'get' => '',
 			'name__like' => '',
 			'pad_counts' => false,
-			'limit_days' => 0
+			'limit_days' => 0,
+			'category' => 0
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1052,10 +1119,30 @@ Class SimpleTags {
 		}
 
 		$key = md5( serialize( $args ) . serialize( $taxonomies ) );
-		if ( $cache = wp_cache_get( 'get_terms', 'terms' ) ) {
-			if ( isset( $cache[ $key ] ) ) {
+		if ( $cache = wp_cache_get('get_terms', 'terms') ) {
+			if ( isset( $cache[$key] ) ) {
 				return apply_filters('get_terms', $cache[$key], $taxonomies, $args);
 			}
+		}
+		
+		// Restrict category
+		$category_sql = '';
+		if ( !empty($category) && $category != '0' ) {
+			$incategories = preg_split('/[\s,]+/', $category);
+			
+			$objects_id = get_objects_in_term( $incategories, 'category' );
+			$objects_id = array_unique ($objects_id); // to be sure haven't duplicates
+			
+			if ( empty($objects_id) ) { // No posts for this category = no tags for this category
+				return array();
+			}
+			
+			foreach ( (array) $objects_id as $object_id ) {
+				$category_sql .= "'". $object_id . "', ";		
+			}
+			
+			$category_sql = substr($category_sql, 0, strlen($category_sql) - 2); // Remove latest ", "
+			$category_sql = 'AND p.ID IN ('.$category_sql.')';
 		}
 
 		// Key order
@@ -1081,13 +1168,11 @@ Class SimpleTags {
 		if ( !empty($include) ) {
 			$exclude = '';
 			$interms = preg_split('/[\s,]+/',$include);
-			if ( count($interms) ) {
-				foreach ( $interms as $interm ) {
-					if (empty($inclusions)) {
-						$inclusions = ' AND ( t.term_id = ' . intval($interm) . ' ';
-					} else {
-						$inclusions .= ' OR t.term_id = ' . intval($interm) . ' ';
-					}
+			foreach ( (array) $interms as $interm ) {
+				if (empty($inclusions)) {
+					$inclusions = ' AND ( t.term_id = ' . intval($interm) . ' ';
+				} else {
+					$inclusions .= ' OR t.term_id = ' . intval($interm) . ' ';
 				}
 			}
 		}
@@ -1100,15 +1185,13 @@ Class SimpleTags {
 		$exclusions = '';
 		if ( !empty($exclude) ) {
 			$exterms = preg_split('/[\s,]+/',$exclude);
-			if ( count($exterms) ) {
-				foreach ( $exterms as $exterm ) {
-					if (empty($exclusions)) {
-						$exclusions = ' AND ( t.term_id <> ' . intval($exterm) . ' ';
-					} else {
-						$exclusions .= ' AND t.term_id <> ' . intval($exterm) . ' ';
-					}
+			foreach ( (array) $exterms as $exterm ) {
+				if (empty($exclusions)) {
+					$exclusions = ' AND ( t.term_id <> ' . intval($exterm) . ' ';
+				} else {
+					$exclusions .= ' AND t.term_id <> ' . intval($exterm) . ' ';
 				}
-			}
+			}			
 		}
 
 		if ( !empty($exclusions) ) {
@@ -1134,11 +1217,11 @@ Class SimpleTags {
 		if ( $hide_empty && !$hierarchical ) {
 			$where .= ' AND tt.count > 0';
 		}
-
-		if ( !empty($number) ) {
+		
+		$number = (int) $number;
+		$number = '';
+		if ( $number != 0 ) {
 			$number = 'LIMIT ' . $number;
-		} else {
-			$number = '';
 		}
 
 		if ( 'all' == $fields ) {
@@ -1149,26 +1232,31 @@ Class SimpleTags {
 			$select_this == 't.name';
 		}
 
+		// Limit posts date
+		$limit_days_sql = '';
 		$limit_days = (int) $limit_days;
-		$inner_posts = $limit_days_sql = '';
-		if ( $limit_days != 0 ) {
-			$inner_posts = "
-				INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
-				INNER JOIN $wpdb->posts AS p ON tr.object_id = p.ID";
+		if ( $limit_days != 0 ) {			
 			$limitdays_sql = 'AND p.post_date > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
 		}
+		
+		// Join posts ?
+		$inner_posts = '';
+		if ( !empty($limitdays_sql) | !empty($category_sql) ) {
+			$inner_posts = "
+				INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
+				INNER JOIN $wpdb->posts AS p ON tr.object_id = p.ID";		
+		}
 
-		$query = "
-			SELECT {$select_this}
+		$query = "SELECT DISTINCT {$select_this}
 			FROM {$wpdb->terms} AS t
 			INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 			{$inner_posts}
 			WHERE tt.taxonomy IN ( {$in_taxonomies} )
 			{$limitdays_sql}
+			{$category_sql}
 			{$where}
 			ORDER BY {$selection_orderby} {$selection_order}
 			{$number}";
-
 
 		if ( 'all' == $fields ) {
 			$terms = $wpdb->get_results($query);
@@ -1195,10 +1283,10 @@ Class SimpleTags {
 
 		// Make sure we show empty categories that have children.
 		if ( $hierarchical && $hide_empty ) {
-			foreach ( $terms as $k => $term ) {
+			foreach ( (array) $terms as $k => $term ) {
 				if ( ! $term->count ) {
 					$children = _get_term_children($term->term_id, $terms, $taxonomies[0]);
-					foreach ( $children as $child ) {
+					foreach ( (array) $children as $child ) {
 						if ( $child->count ) {
 							continue 2;
 						}
@@ -1225,7 +1313,7 @@ $simple_tags = new SimpleTags();
 // Admin and XML-RPC
 if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
 	require(dirname(__FILE__).'/inc/simple-tags.admin.php');
-	$simple_tags_admin = new SimpleTagsAdmin();
+	$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options );
 }
 
 // Templates functions
