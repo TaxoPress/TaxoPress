@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-10-06 21:46+0100\n"
-"Last-Translator: Michael Oeser <kontakt@der-prinz.com>\n"
+"PO-Revision-Date: 2007-10-29 22:26+0100\n"
+"Last-Translator: Frank Haensel <game@mister-einstein.com>\n"
 "Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -35,7 +35,7 @@ msgstr "Keine Tags."
 
 #: C:\SVN\Localhost\simple-tags/simple-tags.php:439
 msgid "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
-msgstr "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% sujets\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% Beiträge\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
 
 #: C:\SVN\Localhost\simple-tags/simple-tags.php:443
 msgid "<h4>Tag Cloud</h4>"

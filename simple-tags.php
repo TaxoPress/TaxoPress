@@ -281,7 +281,8 @@ Class SimpleTags {
 				INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id)
 				INNER JOIN {$wpdb->terms} AS terms ON (term_taxonomy.term_id = terms.term_id)
 				WHERE term_taxonomy.taxonomy = 'post_tag'
-				AND ( posts.ID IN ('{$postlist}') )");
+				AND ( posts.ID IN ('{$postlist}') )
+				ORDER BY term_taxonomy.count DESC");
 
 			$cache[$key] = $results;
 			wp_cache_set('generate_keywords', $cache, 'simpletags');	
