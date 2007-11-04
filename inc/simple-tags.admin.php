@@ -1,6 +1,6 @@
 <?php
 Class SimpleTagsAdmin {
-	var $version = '1.2';
+	var $version = '';
 
 	var $info;
 	var $options;
@@ -28,7 +28,11 @@ Class SimpleTagsAdmin {
 	 *
 	 * @return SimpleTagsAdmin
 	 */
-	function SimpleTagsAdmin( $defaultopt = array() ) {
+	function SimpleTagsAdmin( $defaultopt = array(), $version = '' ) {
+		// load version number
+		$this->version = $version;
+		unset($version);
+		
 		// Set class property for default options
 		$this->default_options = $defaultopt;
 
@@ -125,6 +129,10 @@ Class SimpleTagsAdmin {
 		add_submenu_page(__FILE__, __('Simple Tags: Options', 'simpletags'), __('Options', 'simpletags'), 'simple_tags', 'simpletags_options', array(&$this, 'pageOptions'));
 	}
 
+	/**
+	 * WP Page - Auto Tags
+	 *
+	 */
 	function pageAutoTags() {
 		$action = false;
 		if ( isset($_POST['update_auto_list']) ) {
@@ -144,8 +152,9 @@ Class SimpleTagsAdmin {
 			} else {
 				$this->setOption( 'use_auto_tags', '0' );
 			}
-
+			
 			$this->saveOptions();
+			$this->message = __('Auto tags options updated !', 'simpletags');
 		} elseif ( $_GET['action'] == 'auto_tag' ) {
 			$action = true;
 			$n = ( isset($_GET['n']) ) ? intval($_GET['n']) : 0;
@@ -153,7 +162,9 @@ Class SimpleTagsAdmin {
 		}
 
 		$tags = maybe_unserialize($this->options['auto_list']);
-		$tags_list = implode(', ', $tags);
+		if ( is_array($tags) ) {
+			$tags_list = implode(', ', $tags);
+		}
 
 		$this->displayMessage();
 		?>
@@ -242,7 +253,9 @@ Class SimpleTagsAdmin {
 		$option_data = array(
 			__('General', 'simpletags') => array(
 				array('inc_page_tag_search', __('Include page in tag search:', 'simpletags'), 'checkbox', '1',
-				__('This feature need that option "Add page in tags management" is enabled.', 'simpletags'))
+				__('This feature need that option "Add page in tags management" is enabled.', 'simpletags')),
+				array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
+				__('Enabling this will cause Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags'))
 			),
 			__('Administration', 'simpletags') => array(
 				array('use_tag_pages', __('Add page in tags management:', 'simpletags'), 'checkbox', '1',
@@ -263,8 +276,6 @@ Class SimpleTagsAdmin {
 				array('meta_always_include', __('Always add these keywords:', 'simpletags'), 'text', 80)
 			),
 			__('Embedded Tags', 'simpletags') => array(
-				array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
-				__('Enabling this will cause Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
 				array('use_embed_tags', __('Use embedded tags:', 'simpletags'), 'checkbox', '1',
 				__('Enabling this will cause Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post.', 'simpletags')),
 				array('start_embed_tags', __('Prefix for embedded tags:', 'simpletags'), 'text', 40),
@@ -297,17 +308,15 @@ Class SimpleTagsAdmin {
 						<li>'.__('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags').'</li>
 						<li>'.__('<code>singleonly</code> &ndash; Only on your singular view (single & page).', 'simpletags').'</li>
 					</ul>'),
-				array('rp_sortorderby', __('Related Posts sort order by:', 'simpletags'), 'dropdown', 'date/alpha/counter/random',
+				array('rp_order', __('Related Posts Order:', 'simpletags'), 'dropdown', 'count-asc/count-desc/date-asc/date-desc/name-asc/name-desc/random',
 					'<ul>
-						<li>'.__('<code>date</code> &ndash; Sorting by post date.', 'simpletags').'</li>
-						<li>'.__('<code>counter</code> &ndash; Sorting by posts number in common. (default)', 'simpletags').'</li>
-						<li>'.__('<code>alpha</code> &ndash; Alphabetic order.', 'simpletags').'</li>
-						<li>'.__('<code>random</code> &ndash; Randomized every time the page is loaded.', 'simpletags').'</li>
-					</ul>'),
-				array('rp_sortorder', __('Related Posts sort order:', 'simpletags'), 'dropdown', 'ASC/DESC',
-					'<ul>
-						<li>'.__('<code>ASC</code> &ndash; Ascending (default)', 'simpletags').'</li>
-						<li>'.__('<code>DESC</code> &ndash; Descending', 'simpletags').'</li>
+						<li>'.__('<code>date-asc</code> &ndash; Older Entries.', 'simpletags').'</li>
+						<li>'.__('<code>date-desc</code> &ndash; Newer Entries.', 'simpletags').'</li>
+						<li>'.__('<code>count-asc</code> &ndash; Less tally', 'simpletags').'</li>
+						<li>'.__('<code>count-desc</code> &ndash; More tally (default)', 'simpletags').'</li>
+						<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
 					</ul>'),
 				array('rp_limit_qty', __('Maximum number of related posts to display: (default: 5)', 'simpletags'), 'text', 10),
 				array('rp_notagstext', __('Enter the text to show when there is no related post:', 'simpletags'), 'text', 80),
@@ -316,27 +325,28 @@ Class SimpleTagsAdmin {
 					__('You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
 			),
 			__('Tag cloud', 'simpletags') => array(
-				array('cloud_selection_sortorderby', __('Tag cloud selection - sort order by:', 'simpletags'), 'dropdown', 'name/count/random',
+				array('cloud_helper', 'cloud_helper', 'helper', '', __('Which difference between <strong>"Order tags selection"</strong> and <strong>"Order tags display"</strong> ?<br />
+					<ul style="list-style:square;">
+						<li><strong>"Order tags selection"</strong> is the first step during tag cloud generation, correspond to retrieving tags.</li>
+						<li><strong>"Order tags display"</strong> is the second step. Once tags recupered, you can reorder theses before display.</li>
+					</ul>
+					<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />
+					You must set "Order tags selection" to <strong>count-desc</strong> for get the 100 tags most popular and "Order tags display" set to <strong>random</strong> for randomize cloud.', 'simpletags')),
+				array('cloud_selection', __('Order tags selection:', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
 					'<ul>
-						<li>'.__('<code>count</code> &ndash; Selection by counter usage. (default)', 'simpletags').'</li>
-						<li>'.__('<code>name</code> &ndash; Selection by alphabetic order.', 'simpletags').'</li>
-						<li>'.__('<code>random</code> &ndash; Selection by random, every time the page is loaded.', 'simpletags').'</li>
+						<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
+						<li>'.__('<code>count-desc</code> &ndash; Most popular. (default)', 'simpletags').'</li>
+						<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
 					</ul>'),
-				array('cloud_selection_sortorder', __('Tag cloud selection - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC',
+				array('cloud_sort', __('Order tags display:', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
 					'<ul>
-						<li>'.__('<code>ASC</code> &ndash; Ascending', 'simpletags').'</li>
-						<li>'.__('<code>DESC</code> &ndash; Descending (default)', 'simpletags').'</li>
-					</ul>'),
-				array('cloud_sortorderby', __('Tag cloud display - sort order by:', 'simpletags'), 'dropdown', 'name/count/random',
-					'<ul>
-						<li>'.__('<code>count</code> &ndash; Sorting by counter usage.', 'simpletags').'</li>
-						<li>'.__('<code>name</code> &ndash; Alphabetic order. (default)', 'simpletags').'</li>
-						<li>'.__('<code>random</code> &ndash; Randomized every time the page is loaded.', 'simpletags').'</li>
-					</ul>'),
-				array('cloud_sortorder', __('Tag cloud display - sort order:', 'simpletags'), 'dropdown', 'ASC/DESC',
-					'<ul>
-						<li>'.__('<code>ASC</code> &ndash; Ascending (default)', 'simpletags').'</li>
-						<li>'.__('<code>DESC</code> &ndash; Descending', 'simpletags').'</li>
+						<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
+						<li>'.__('<code>count-desc</code> &ndash; Most popular.', 'simpletags').'</li>
+						<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>random</code> &ndash; Random. (default)', 'simpletags').'</li>
 					</ul>'),
 				array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'text', 10),
 				array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 80),
@@ -353,6 +363,7 @@ Class SimpleTagsAdmin {
 					__('You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
 			),
 		);
+				
 		if ( isset($_POST['updateoptions']) ) {
 			foreach((array) $this->options as $key => $value) {
 				$newval = ( isset($_POST[$key]) ) ? stripslashes($_POST[$key]) : '0';
@@ -572,12 +583,12 @@ Class SimpleTagsAdmin {
 
 		// Quantity
 		$quantity = (int) attribute_escape($_GET['quantity']);
-		if ( $quantity == 0 || $quantity > 50 ) {
+		if ( $quantity < 10 || $quantity > 50 ) {
 			$quantity = 20;
 		}
 
-		// Author
-		$author = (int) attribute_escape($_GET['author']);
+		// Author		
+		$author = ( empty($_GET['author']) ) ? (int) $_GET['author'] : 0;
 
 		// Type (future add link)
 		$type = attribute_escape($_GET['type']);
@@ -586,17 +597,10 @@ Class SimpleTagsAdmin {
 		}
 
 		// Order content
-		$order = attribute_escape($_GET['order']);
-		if ( empty($order) ) {
-			$order = 'date_desc';
-		}
+		$order = ( empty($_GET['order']) ) ? 'date_desc' : attribute_escape($_GET['order']);
 
 		// Filter
-		if ( $_GET['filter'] == 'untagged' ) {
-			$filter = 'untagged';
-		} else {
-			$filter = 'all';
-		}
+		$filter = ( $_GET['filter'] == 'untagged' ) ? 'untagged' : 'all';
 
 		// Check and update tags
 		$this->checkFormMassEdit( $type );
@@ -640,20 +644,29 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $quantity == 50 ) echo 'selected="selected"'; ?> value="50">50</option>
 				</select>
 			</fieldset>
-			<fieldset>
-			  <legend><?php _e('Author&hellip;', 'simpletags'); ?></legend>
-			  <?php wp_dropdown_users( array('include' => $editable_ids, 'show_option_all' => __('Any'), 'name' => 'author', 'selected' => isset($_GET['author']) ? $_GET['author'] : 0) ); ?>
-			</fieldset>
+			
+			<?php
+			global $user_ID;
+			$editable_ids = get_editable_user_ids( $user_ID );
+			if ( $editable_ids && count( $editable_ids ) > 1 ) :
+			?>
+				<fieldset>
+				  <legend><?php _e('Author&hellip;', 'simpletags'); ?></legend>
+				  <?php wp_dropdown_users( array('include' => $editable_ids, 'show_option_all' => __('Any'), 'name' => 'author', 'selected' => isset($_GET['author']) ? $_GET['author'] : 0) ); ?>
+				</fieldset>
+			<?php endif; ?>
+			
 			<fieldset>
 				<legend><?php _e('Type&hellip;', 'simpletags'); ?></legend>
 				<select name='type' id='type'>
-					<option <?php if ( $type == 'post' ) echo 'selected="selected"'; ?> value='post'><?php _e('Post', 'simpletags'); ?></option>
+					<option <?php if ( $type == 'post' ) { echo 'selected="selected"'; } ?> value='post'><?php _e('Post', 'simpletags'); ?></option>
 					<?php if ( $this->options['use_tag_pages'] == '1' ) : ?>
-					<option <?php if ( $type == 'page' ) echo 'selected="selected"'; ?> value='page'><?php _e('Page', 'simpletags'); ?></option>
+					<option <?php if ( $type == 'page' ) { echo 'selected="selected"'; } ?> value='page'><?php _e('Page', 'simpletags'); ?></option>
 					<?php endif; ?>
 
 				</select>
 			</fieldset>
+			
 			<fieldset>
 				<legend><?php _e('Order&hellip;', 'simpletags'); ?></legend>
 				<select name='order' id='order'>
@@ -663,6 +676,7 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $order == 'id_asc' ) echo 'selected="selected"'; ?> value="id_asc"><?php _e('ID (ascending)', 'simpletags'); ?></option>
 				</select>
 			</fieldset>
+			
 			<fieldset>
 				<legend><?php _e('Filter&hellip;', 'simpletags'); ?></legend>
 				<select name='filter' id='filter'>
@@ -682,7 +696,7 @@ Class SimpleTagsAdmin {
 				<?php $this->printPagination( $actionurl ); ?>
 				<?php
 				foreach ( (array) $objects as $object_id => $object ) {
-					echo '<p>#'.$object_id.' <a href="'.get_permalink($object_id).'">'.$object['title'].'</a> [<a href="'.$type.'.php?action=edit&amp;post=' .$object_id . '">' . __('Edit', 'simpletags') . '</a>]<br />'."\n";
+					echo '<p><strong>#'.$object_id.'</strong> <a href="'.get_permalink($object_id).'">'.$object['title'].'</a> [<a href="'.$type.'.php?action=edit&amp;post=' .$object_id . '">' . __('Edit', 'simpletags') . '</a>]<br />'."\n";
 					echo '<input id="tags-input'.$object_id.'" class="tags-input" type="text" size="100" name="tags['.$object_id.']" value="'.get_tags_to_edit( $object_id ).'" /></p>'."\n";
 				}
 				?>
@@ -743,19 +757,29 @@ Class SimpleTagsAdmin {
 		foreach((array) $option_data as $section => $options) {
 			$output_option .= "\n" . '<fieldset class="options"><legend>' . __($section) . '</legend><table class="optiontable">';
 			foreach((array) $options as $option) {
-				if ($option[2] == 'checkbox') { // checkbox
-					$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />';
-				}
-				elseif ($option[2] == 'dropdown') { // select/dropdown
-					$selopts = explode('/', $option[3]);
-					$seldata = '';
-					foreach((array) $selopts as $sel) {
-						$seldata .= '<option value="' . $sel . '" ' .(($option_actual[ $option[0] ] == $sel) ? 'selected="selected"' : '') .' >' . ucfirst($sel) . '</option>';
-					}
-					$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>';
-				}
-				else { // text input
-					$input_type = '<input type="text" ' . (($option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />';
+				// Helper
+				if (  $option[2] == 'helper' ) {
+						$output_option .= '<tr style="vertical-align: top;"><td class="helper" colspan="2">' . $option[4] . '</td></tr>';
+						continue;
+				}		
+				
+				switch ( $option[2] ) {
+					case 'checkbox':
+						$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />';
+						break;
+						
+					case 'dropdown':
+						$selopts = explode('/', $option[3]);
+						$seldata = '';
+						foreach( (array) $selopts as $sel) {
+							$seldata .= '<option value="' . $sel . '" ' .(($option_actual[ $option[0] ] == $sel) ? 'selected="selected"' : '') .' >' . ucfirst($sel) . '</option>';
+						}
+						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>';
+						break;
+											
+					default:
+						$input_type = '<input type="text" ' . (($option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />';
+						break;				
 				}
 
 				// Additional Information
@@ -763,6 +787,7 @@ Class SimpleTagsAdmin {
 				if( !empty($option[4]) ) {
 					$extra = '<div class="stpexplan">' . __($option[4]) . '</div>';
 				}
+				
 				// Output
 				$output_option .= '<tr style="vertical-align: top;"><th scope="row"><label for="'.$option[0].'">' . __($option[1]) . '</label></th><td>' . $input_type . '	' . $extra . '</td></tr>';
 			}
@@ -1186,7 +1211,7 @@ Class SimpleTagsAdmin {
 	 */
 	function printAdminFooter() {
 		?>
-		<p class="tags_admin"><?php _e('&copy; Copyright 2007 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a>', 'simpletags'); ?></p>
+		<p class="tags_admin"><?php printf(__('&copy; Copyright 2007 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), $this->version); ?></p>
 		<?php
 	}
 
@@ -1229,7 +1254,7 @@ Class SimpleTagsAdmin {
 	}
 
 	/**
-	 * Suggest tags
+	 * Suggested tags
 	 *
 	 */
 	function helperSuggestTags() {

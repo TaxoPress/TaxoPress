@@ -17,19 +17,21 @@ function widget_st_tag_cloud_init() {
 		// Use Widgets title and no ST title !!
 		$title = trim($options[$number]['title']);
 		$args = 'title=';
+		
+		// Selection
+		$selection = trim(strtolower($options[$number]['selection']));
+		if ( !empty($selection) ) {
+			$args .= '&selection='.$selection;
+		} else {
+			$args .= '&selection=count-desc';
+		}
 
 		// Order
 		$order = trim(strtolower($options[$number]['order']));
-		if ( $order == 'name-desc' ) {
-			$args .= '&orderby=name&order=desc';
-		} elseif ( $order == 'count-desc' ) {
-			$args .= '&orderby=count&order=desc';
-		} elseif ( $order == 'count-asc' ) {
-			$args .= '&orderby=count&order=asc';
-		} elseif ( $order == 'random' ) {
-			$args .= '&orderby=random';
-		} else { // name-asc (default)
-			$args .= '&orderby=name&order=asc';
+		if ( !empty($order) ) {
+			$args .= '&order='.$order;
+		} else {
+			$args .= '&order=random';
 		}
 
 		// Max tags
@@ -101,16 +103,17 @@ function widget_st_tag_cloud_init() {
 
 		// Post to new options array
 		if ( isset($_POST['widget-stags-submit-'.$number]) ) {
-			$newoptions[$number]['title']   = strip_tags(stripslashes($_POST['widget-stags-title-'.$number]));
-			$newoptions[$number]['max']     = (int) stripslashes($_POST['widget-stags-max-'.$number]);
-			$newoptions[$number]['order']  	= stripslashes($_POST['widget-stags-order-'.$number]);
-			$newoptions[$number]['smini']   = (int) stripslashes($_POST['widget-stags-smini-'.$number]);
-			$newoptions[$number]['smax']    = (int) stripslashes($_POST['widget-stags-smax-'.$number]);
-			$newoptions[$number]['unit']	= stripslashes($_POST['widget-stags-unit-'.$number]);
-			$newoptions[$number]['format']  = stripslashes($_POST['widget-stags-format-'.$number]);
-			$newoptions[$number]['color']   = (int) stripslashes($_POST['widget-stags-color-'.$number]);
-			$newoptions[$number]['cmini']   = stripslashes($_POST['widget-stags-cmini-'.$number]);
-			$newoptions[$number]['cmax']    = stripslashes($_POST['widget-stags-cmax-'.$number]);
+			$newoptions[$number]['title'] = strip_tags(stripslashes($_POST['widget-stags-title-'.$number]));
+			$newoptions[$number]['max'] = (int) stripslashes($_POST['widget-stags-max-'.$number]);
+			$newoptions[$number]['selection'] = stripslashes($_POST['widget-stags-selection-'.$number]);
+			$newoptions[$number]['order'] = stripslashes($_POST['widget-stags-order-'.$number]);
+			$newoptions[$number]['smini'] = (int) stripslashes($_POST['widget-stags-smini-'.$number]);
+			$newoptions[$number]['smax'] = (int) stripslashes($_POST['widget-stags-smax-'.$number]);
+			$newoptions[$number]['unit'] = stripslashes($_POST['widget-stags-unit-'.$number]);
+			$newoptions[$number]['format'] = stripslashes($_POST['widget-stags-format-'.$number]);
+			$newoptions[$number]['color'] = (int) stripslashes($_POST['widget-stags-color-'.$number]);
+			$newoptions[$number]['cmini'] = stripslashes($_POST['widget-stags-cmini-'.$number]);
+			$newoptions[$number]['cmax'] = stripslashes($_POST['widget-stags-cmax-'.$number]);
 			$newoptions[$number]['xformat'] = stripslashes($_POST['widget-stags-xformat-'.$number]);
 		}
 
@@ -121,16 +124,17 @@ function widget_st_tag_cloud_init() {
 		}
 
 		// Prepare data for display
-		$title  = htmlspecialchars($options[$number]['title'], ENT_QUOTES);
-		$max    = htmlspecialchars($options[$number]['max'], ENT_QUOTES);
-		$order	= htmlspecialchars($options[$number]['order'], ENT_QUOTES);
-		$smini  = htmlspecialchars($options[$number]['smini'], ENT_QUOTES);
-		$smax   = htmlspecialchars($options[$number]['smax'], ENT_QUOTES);
-		$unit   = htmlspecialchars($options[$number]['unit'], ENT_QUOTES);
+		$title = htmlspecialchars($options[$number]['title'], ENT_QUOTES);
+		$max = htmlspecialchars($options[$number]['max'], ENT_QUOTES);
+		$selection = htmlspecialchars($options[$number]['selection'], ENT_QUOTES);
+		$order = htmlspecialchars($options[$number]['order'], ENT_QUOTES);
+		$smini = htmlspecialchars($options[$number]['smini'], ENT_QUOTES);
+		$smax = htmlspecialchars($options[$number]['smax'], ENT_QUOTES);
+		$unit = htmlspecialchars($options[$number]['unit'], ENT_QUOTES);
 		$format = htmlspecialchars($options[$number]['format'], ENT_QUOTES);
-		$color  = htmlspecialchars($options[$number]['color'], ENT_QUOTES);
-		$cmini  = htmlspecialchars($options[$number]['cmini'], ENT_QUOTES);
-		$cmax   = htmlspecialchars($options[$number]['cmax'], ENT_QUOTES);
+		$color = htmlspecialchars($options[$number]['color'], ENT_QUOTES);
+		$cmini = htmlspecialchars($options[$number]['cmini'], ENT_QUOTES);
+		$cmax = htmlspecialchars($options[$number]['cmax'], ENT_QUOTES);
 		$xformat= htmlspecialchars($options[$number]['xformat'], ENT_QUOTES);
 		?>
 		<div>
@@ -146,14 +150,25 @@ function widget_st_tag_cloud_init() {
 				<input size="20" type="text" id="widget-stags-max-<?php echo $number; ?>" name="widget-stags-max-<?php echo $number; ?>" value="<?php echo $max; ?>" />
 			</label>
 
+			<label for="widget-stags-selection-<?php echo $number; ?>" style="line-height:35px;display:block;">
+				<?php _e('Tags selection:', 'simpletags'); ?>
+				<select id="widget-stags-selection-<?php echo $number; ?>" name="widget-stags-selection-<?php echo $number; ?>">
+					<option <?php if ( $selection == 'name-asc' ) echo 'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical', 'simpletags'); ?></option>
+					<option <?php if ( $selection == 'name-desc' ) echo 'selected="selected"'; ?> value="name-desc"><?php _e('Inverse Alphabetical', 'simpletags'); ?></option>
+					<option <?php if ( $selection == 'count-desc' ) echo 'selected="selected"'; ?> value="count-desc"><?php _e('Most popular (default)', 'simpletags'); ?></option>
+					<option <?php if ( $selection == 'count-asc' ) echo 'selected="selected"'; ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
+					<option <?php if ( $selection == 'random' ) echo 'selected="selected"'; ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
+				</select>
+			</label>
+			
 			<label for="widget-stags-order-<?php echo $number; ?>" style="line-height:35px;display:block;">
-				<?php _e('Order:', 'simpletags'); ?>
+				<?php _e('Order tags display:', 'simpletags'); ?>
 				<select id="widget-stags-order-<?php echo $number; ?>" name="widget-stags-order-<?php echo $number; ?>">
-					<option <?php if ( $order == 'name-asc' ) echo 'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical / Ascending (Default)', 'simpletags'); ?></option>
-					<option <?php if ( $order == 'name-desc' ) echo 'selected="selected"'; ?> value="name-desc"><?php _e('Alphabetical / Descending', 'simpletags'); ?></option>
+					<option <?php if ( $order == 'name-asc' ) echo 'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical', 'simpletags'); ?></option>
+					<option <?php if ( $order == 'name-desc' ) echo 'selected="selected"'; ?> value="name-desc"><?php _e('Inverse Alphabetical', 'simpletags'); ?></option>
 					<option <?php if ( $order == 'count-desc' ) echo 'selected="selected"'; ?> value="count-desc"><?php _e('Most popular', 'simpletags'); ?></option>
 					<option <?php if ( $order == 'count-asc' ) echo 'selected="selected"'; ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
-					<option <?php if ( $order == 'random' ) echo 'selected="selected"'; ?> value="random"><?php _e('Random all tags', 'simpletags'); ?></option>
+					<option <?php if ( $order == 'random' ) echo 'selected="selected"'; ?> value="random"><?php _e('Random (default)', 'simpletags'); ?></option>
 				</select>
 			</label>
 
@@ -228,12 +243,12 @@ function widget_st_tag_cloud_init() {
 	}
 
 	function st_tag_cloud_page() {
-		$options = $newoptions = get_option('widget_stags_cloud');
+		$options = get_option('widget_stags_cloud');
 		?>
 			<div class="wrap">
 				<form method="post">
 					<h2><?php _e('Tag Cloud Widgets', 'simpletags'); ?></h2>
-					<p style="line-height: 30px;"><?php _e('How many tag cloud widgets would you like? (Max 9)', 'simpletags'); ?>
+					<p style="line-height: 30px;"><?php _e('How many tag cloud widgets would you like?', 'simpletags'); ?>
 						<select id="stags_cloud-number" name="stags_cloud-number" value="<?php echo $options['number']; ?>">
 							<?php for ( $i = 1; $i < 10; ++$i ) echo "<option value='$i' ".($options['number']==$i ? "selected='selected'" : '').">$i</option>"; ?>
 						</select>
@@ -255,7 +270,7 @@ function widget_st_tag_cloud_init() {
 
 		for ( $i = 1; $i <= 9; $i++ ) {
 			wp_register_sidebar_widget('widget_stags-'.$i, sprintf(__('Extended Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud' : '', array('classname' => 'widget_stags_cloud'), $i);
-			wp_register_widget_control('widget_stags-'.$i, sprintf(__('Extended Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud_control' : '', array('width' => 460, 'height' => 500), $i);
+			wp_register_widget_control('widget_stags-'.$i, sprintf(__('Extended Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud_control' : '', array('width' => 460, 'height' => 520), $i);
 		}
 
 		add_action('sidebar_admin_setup', 'st_tag_cloud_setup');
