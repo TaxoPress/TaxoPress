@@ -17,7 +17,7 @@ function widget_st_tag_cloud_init() {
 		// Use Widgets title and no ST title !!
 		$title = trim($options[$number]['title']);
 		$args = 'title=';
-		
+
 		// Selection
 		$selection = trim(strtolower($options[$number]['selection']));
 		if ( !empty($selection) ) {
@@ -160,7 +160,7 @@ function widget_st_tag_cloud_init() {
 					<option <?php if ( $selection == 'random' ) echo 'selected="selected"'; ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
 				</select>
 			</label>
-			
+
 			<label for="widget-stags-order-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Order tags display:', 'simpletags'); ?>
 				<select id="widget-stags-order-<?php echo $number; ?>" name="widget-stags-order-<?php echo $number; ?>">

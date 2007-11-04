@@ -32,7 +32,7 @@ Class SimpleTagsAdmin {
 		// load version number
 		$this->version = $version;
 		unset($version);
-		
+
 		// Set class property for default options
 		$this->default_options = $defaultopt;
 
@@ -152,7 +152,7 @@ Class SimpleTagsAdmin {
 			} else {
 				$this->setOption( 'use_auto_tags', '0' );
 			}
-			
+
 			$this->saveOptions();
 			$this->message = __('Auto tags options updated !', 'simpletags');
 		} elseif ( $_GET['action'] == 'auto_tag' ) {
@@ -257,7 +257,7 @@ Class SimpleTagsAdmin {
 				array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
 				__('Enabling this will allow Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
 				array('auto_link_tags', __('Active auto link tags into post content:', 'simpletags'), 'checkbox', '1',
-				__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),			
+				__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),
 			),
 			__('Administration', 'simpletags') => array(
 				array('use_tag_pages', __('Add page in tags management:', 'simpletags'), 'checkbox', '1',
@@ -365,7 +365,7 @@ Class SimpleTagsAdmin {
 					__('You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
 			),
 		);
-				
+
 		if ( isset($_POST['updateoptions']) ) {
 			foreach((array) $this->options as $key => $value) {
 				$newval = ( isset($_POST[$key]) ) ? stripslashes($_POST[$key]) : '0';
@@ -491,7 +491,7 @@ Class SimpleTagsAdmin {
 						</fieldset>
 					</td>
 					<td style="vertical-align: top;">
-					
+
 						<fieldset class="options"><legend><?php _e('Rename Tag', 'simpletags'); ?></legend>
 							<p><?php _e('Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click "Rename" and all posts which use this tag will be updated.', 'simpletags'); ?></p>
 							<p><?php _e('You can specify multiple tags to rename by separating them with commas.', 'simpletags'); ?></p>
@@ -505,7 +505,7 @@ Class SimpleTagsAdmin {
 								</table>
 							</form>
 						</fieldset>
-						
+
 						<fieldset class="options"><legend><?php _e('Delete Tag', 'simpletags'); ?></legend>
 							<p><?php _e('Enter the name of the tag to delete.  This tag will be removed from all posts.', 'simpletags'); ?></p>
 							<p><?php _e('You can specify multiple tags to delete by separating them with commas', 'simpletags'); ?>.</p>
@@ -518,7 +518,7 @@ Class SimpleTagsAdmin {
 								</table>
 							</form>
 						</fieldset>
-						
+
 						<fieldset class="options"><legend><?php _e('Add Tag', 'simpletags'); ?></legend>
 							<p><?php _e('This feature lets you add one or more new tags to all posts which match any of the tags given.', 'simpletags'); ?></p>
 							<p><?php _e('You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don\'t specify any tags to match.', 'simpletags'); ?></p>
@@ -532,7 +532,7 @@ Class SimpleTagsAdmin {
 								</table>
 							</form>
 						</fieldset>
-						
+
 						<fieldset class="options"><legend><?php _e('Edit Tag Slug', 'simpletags'); ?></legend>
 							<p><?php _e('Enter the tag name to edit and its new slug. <a href="http://codex.wordpress.org/Glossary#Slug">Slug definition</a>', 'simpletags'); ?></p>
 							<p><?php _e('You can specify multiple tags to rename by separating them with commas.', 'simpletags'); ?></p>
@@ -546,7 +546,7 @@ Class SimpleTagsAdmin {
 								</table>
 							</form>
 						</fieldset>
-						
+
 						<fieldset class="options"><legend><?php _e('Remove empty terms', 'simpletags'); ?></legend>
 							<p><?php _e('WordPress 2.3 have a small bug and can create empty terms. Remove it !', 'simpletags'); ?></p>
 							<form action="<?php echo $actionurl; ?>" method="post">
@@ -595,7 +595,7 @@ Class SimpleTagsAdmin {
 			$quantity = 20;
 		}
 
-		// Author		
+		// Author
 		$author = ( empty($_GET['author']) ) ? (int) $_GET['author'] : 0;
 
 		// Type (future add link)
@@ -652,7 +652,7 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $quantity == 50 ) echo 'selected="selected"'; ?> value="50">50</option>
 				</select>
 			</fieldset>
-			
+
 			<?php
 			global $user_ID;
 			$editable_ids = get_editable_user_ids( $user_ID );
@@ -663,7 +663,7 @@ Class SimpleTagsAdmin {
 				  <?php wp_dropdown_users( array('include' => $editable_ids, 'show_option_all' => __('Any'), 'name' => 'author', 'selected' => isset($_GET['author']) ? $_GET['author'] : 0) ); ?>
 				</fieldset>
 			<?php endif; ?>
-			
+
 			<fieldset>
 				<legend><?php _e('Type&hellip;', 'simpletags'); ?></legend>
 				<select name='type' id='type'>
@@ -674,7 +674,7 @@ Class SimpleTagsAdmin {
 
 				</select>
 			</fieldset>
-			
+
 			<fieldset>
 				<legend><?php _e('Order&hellip;', 'simpletags'); ?></legend>
 				<select name='order' id='order'>
@@ -684,7 +684,7 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $order == 'id_asc' ) echo 'selected="selected"'; ?> value="id_asc"><?php _e('ID (ascending)', 'simpletags'); ?></option>
 				</select>
 			</fieldset>
-			
+
 			<fieldset>
 				<legend><?php _e('Filter&hellip;', 'simpletags'); ?></legend>
 				<select name='filter' id='filter'>
@@ -769,13 +769,13 @@ Class SimpleTagsAdmin {
 				if (  $option[2] == 'helper' ) {
 						$output_option .= '<tr style="vertical-align: top;"><td class="helper" colspan="2">' . $option[4] . '</td></tr>';
 						continue;
-				}		
-				
+				}
+
 				switch ( $option[2] ) {
 					case 'checkbox':
 						$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />';
 						break;
-						
+
 					case 'dropdown':
 						$selopts = explode('/', $option[3]);
 						$seldata = '';
@@ -784,10 +784,10 @@ Class SimpleTagsAdmin {
 						}
 						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>';
 						break;
-											
+
 					default:
 						$input_type = '<input type="text" ' . (($option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />';
-						break;				
+						break;
 				}
 
 				// Additional Information
@@ -795,7 +795,7 @@ Class SimpleTagsAdmin {
 				if( !empty($option[4]) ) {
 					$extra = '<div class="stpexplan">' . __($option[4]) . '</div>';
 				}
-				
+
 				// Output
 				$output_option .= '<tr style="vertical-align: top;"><th scope="row"><label for="'.$option[0].'">' . __($option[1]) . '</label></th><td>' . $input_type . '	' . $extra . '</td></tr>';
 			}
@@ -904,7 +904,7 @@ Class SimpleTagsAdmin {
 
 		// Stripslashes and htmlspecialchars tags
 		$delete = htmlspecialchars($this->unHtmlEntities(stripslashes($delete)));
-		
+
 		// In array + filter
 		$delete_tags = explode(',', $delete);
 		$delete_tags = array_filter($delete_tags, array(&$this, 'deleteEmptyElement'));
@@ -914,13 +914,13 @@ Class SimpleTagsAdmin {
 		foreach ( (array) $delete_tags as $tag ) {
 			$term = get_term_by('name', addslashes($tag), 'post_tag');
 			$term_id = (int) $term->term_id;
-			
+
 			if ( $term_id != 0 ) {
 				wp_delete_term( $term_id, 'post_tag');
 				$counter++;
 			}
 		}
-		
+
 		if ( $counter == 0  ) {
 			$this->message = __('No tag deleted.', 'simpletags');
 		} else {
@@ -940,7 +940,7 @@ Class SimpleTagsAdmin {
 			$this->status = 'error';
 			return;
 		}
-		
+
 		// Stripslashes and htmlspecialchars tags
 		$match = htmlspecialchars($this->unHtmlEntities(stripslashes($match)));
 		$new = htmlspecialchars($this->unHtmlEntities(stripslashes($new)));
@@ -1036,7 +1036,7 @@ Class SimpleTagsAdmin {
 				wp_update_term($term->term_id, 'post_tag', array('slug' => $new_slug));
 			}
 		}
-		
+
 		if ( $counter == 0  ) {
 			$this->message = __('No slug edited.', 'simpletags');
 		} else {
@@ -1081,7 +1081,7 @@ Class SimpleTagsAdmin {
 		$this->message = sprintf(__('%s rows deleted. WordPress DB is clean now !', 'simpletags'), $counter);
 		return;
 	}
-	
+
 	/**
 	 * Add compatibility PHP4 for htmlspecialchars_decode()
 	 *

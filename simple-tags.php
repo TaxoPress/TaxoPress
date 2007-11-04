@@ -267,7 +267,7 @@ Class SimpleTags {
 
 			// Get cache if exist
 			$cache = wp_cache_get('generate_keywords', 'simpletags');
-			if ( isset($cache[$key]) ) {				
+			if ( isset($cache[$key]) ) {
 				$this->tags_currentposts = $cache[$key];
 				return;
 			}
@@ -285,7 +285,7 @@ Class SimpleTags {
 				ORDER BY term_taxonomy.count DESC");
 
 			$cache[$key] = $results;
-			wp_cache_set('generate_keywords', $cache, 'simpletags');	
+			wp_cache_set('generate_keywords', $cache, 'simpletags');
 
 			$this->tags_currentposts = $results;
 			unset($results, $key);
@@ -620,41 +620,41 @@ Class SimpleTags {
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
 			$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id), $element_loop);
-			
+
 			$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $except_wrap ), $element_loop);
 
 			$output[] = $element_loop;
 		}
 		return $this->outputRelatedPosts( $format, $title, $output );
 	}
-	
+
 	function getExcerptPost( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
 		if ( !empty($password) ) { // if there's a password
 			if ( $_COOKIE['wp-postpass_'.COOKIEHASH] != $password ) {  // and it doesn't match the cookie
 				return __('There is no excerpt because this is a protected post.', 'simpletags');
 			}
-		}	
-			
+		}
+
 		if ( !empty($excerpt) ) {
 			return apply_filters('get_the_excerpt', $excerpt);
 		} else { // Fake excerpt
 			$content = apply_filters('the_content', $content);
 			$content = str_replace(']]>', ']]&gt;', $content);
 			$content = strip_tags($content);
-			
+
 			$excerpt_length = (int) $excerpt_length;
 			if ( $excerpt_length == 0 ) {
 				$excerpt_length = 55;
 			}
-			
+
 			$words = explode(' ', $content, $excerpt_length + 1);
 			if ( count($words) > $excerpt_length ) {
 				array_pop($words);
 				array_push($words, '[...]');
 				$content = implode(' ', $words);
-			}						
+			}
 			return $content;
-		}		
+		}
 	}
 
 	//Get and format tags from list ID (SQL Group Concat)
@@ -1116,7 +1116,7 @@ Class SimpleTags {
 		$cache = wp_cache_get( 'st_get_tags', 'simpletags' );
 		if ( isset( $cache[$key] ) ) {
 			return apply_filters('get_tags', $cache[$key], $args);
-		}		
+		}
 
 		// Get tags
 		$tags = $this->getTerms('post_tag', $args);
@@ -1233,7 +1233,7 @@ Class SimpleTags {
 			$category_sql = substr($category_sql, 0, strlen($category_sql) - 2); // Remove latest ", "
 			$category_sql = 'AND p.ID IN ('.$category_sql.')';
 		}
-		
+
 		// count-asc/count-desc/name-asc/name-desc/random
 		$cloud_selection = strtolower($cloud_selection);
 		switch ( $cloud_selection ) {
