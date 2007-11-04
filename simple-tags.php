@@ -447,6 +447,7 @@ Class SimpleTags {
 		$key = md5(maybe_serialize($user_args.'-'.$post_id));
 
 		// Get cache if exist
+		$results = false;
 		$cache = wp_cache_get('related_posts', 'simpletags');
 		if ( isset($cache[$key]) ) {
 			$results = $cache[$key];
