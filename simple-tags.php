@@ -7,7 +7,7 @@ Version: 1.2
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
-© Copyright 2007 Amaury BALMER (balmer.amaury@gmail.com)
+&copy; Copyright 2007 Amaury BALMER (balmer.amaury@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 Contributors:
-- Kévin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
+- K&eacute;vin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
 - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
 */
 
@@ -40,7 +40,9 @@ Class SimpleTags {
 	var $dateformat;
 
 	// Stock Post ID for current view
-	var $posts;
+	var $posts = array();
+	var $tags_currentposts = array();
+	var $link_tags = 'null';
 
 	/**
 	 * PHP4 constructor - Initialize ST
@@ -97,7 +99,9 @@ Class SimpleTags {
 			'meta_always_include' => '',
 			// Auto tags
 			'use_auto_tags' => '0',
-			'auto_list' => ''
+			'auto_list' => '',
+			// Auto link tags
+			'auto_link_tags' => '0'
 		);
 
 		// Set class property for default options
@@ -171,21 +175,63 @@ Class SimpleTags {
 		if ( $this->options['rp_embedded'] != 'no' ) {
 			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 99);
 		}
-		
+
 		// Embedded tag cloud
 		if ( $this->options['allow_embed_tcloud'] != '1' ) {
 			add_filter('the_content', array(&$this, 'embeddedTagCloud'), 99);
 		}
-		
 
 		// Add keywords to header
 		if ( $this->options['meta_autoheader'] == '1' ) {
 			add_filter('the_posts', array(&$this, 'getPostIds'), 90);
 			add_action('wp_head', array(&$this, 'displayMetaKeywords'), 99);
 		}
+
+		// Auto link tags
+		if ( $this->options['auto_link_tags'] == '1' ) {
+			add_filter('the_content', array(&$this, 'autoLinkTags'), 99);
+		}
 		return;
 	}
-	
+
+	function prepareAutoLinkTags() {
+		$this->getTagsFromCurrentPosts();
+
+		$this->link_tags = array();
+		foreach ( (array) $this->tags_currentposts as $tag ) {
+	 		$this->link_tags[$tag->name] = get_tag_link( $tag->term_id );
+		}
+	}
+
+	function autoLinkTags( $content = '' ) {
+		if ( $this->link_tags == 'null' ) {
+			$this->prepareAutoLinkTags();
+		}
+
+		// Rel or not ?
+		global $wp_rewrite;
+		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag" ' : '';
+
+		foreach ( (array) $this->link_tags as $tag_name => $tag_link ) {
+			$content = $this->replaceTextByTag( $content, $tag_name, '<a href="'.$tag_link.'" class="internal_tag" '.$rel.'title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $tag_name ) ).'">', '</a>' );
+		}
+		return $content;
+	}
+
+	function replaceTextByTag( $content = '', $word = '', $pre = '', $after = '' ) {
+		// Put all anchor text into nonsense <##..##> tags:
+		$content = preg_replace('/(<a([^>]+)>)(.*?)(<\/a>)/is', "$1<##$3##>$4", $content);
+
+		// Replace keywords not between <..> tags. <##..##> should be skipped too:
+		$content = preg_replace('/(>)([^<]*)([^#a-z]+)('.$word.')([^#a-z]+)/is', "\$1\$2\$3".$pre."\$4".$after."\$5", $content);
+
+		// Get rid of <##..##>
+		$content = str_replace('<##', '', $content);
+		$content = str_replace('##>', '', $content);
+
+		return $content;
+	}
+
 	/**
 	 * Replace marker by a tag cloud in post content
 	 *
@@ -198,7 +244,7 @@ Class SimpleTags {
 		}
 		return $content;
 	}
-	
+
 	/**
 	 * trim and remove empty element
 	 *
@@ -227,12 +273,7 @@ Class SimpleTags {
 		return $posts;
 	}
 
-	/**
-	 * Generate keywords for meta data
-	 *
-	 * @return string
-	 */
-	function generateKeywords() {
+	function getTagsFromCurrentPosts() {
 		if ( is_array($this->posts) && count($this->posts) > 0 ) {
 			// Generate SQL from post id
 			$postlist = implode( "', '", $this->posts );
@@ -251,8 +292,8 @@ Class SimpleTags {
 			// If cache not exist, get datas and set cache
 			if ( $results === false ) {
 				global $wpdb;
-				$results = $wpdb->get_col("
-					SELECT DISTINCT terms.name
+				$results = $wpdb->get_results("
+					SELECT DISTINCT terms.name AS name, terms.term_id AS term_id
 					FROM {$wpdb->posts} AS posts
 					INNER JOIN {$wpdb->term_relationships} AS term_relationships ON (posts.ID = term_relationships.object_id)
 					INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id)
@@ -264,24 +305,42 @@ Class SimpleTags {
 				wp_cache_set('generate_keywords', $cache, 'simpletags');
 			}
 
-			$always_list = trim($this->options['meta_always_include']); // Static keywords
-			$always_array = explode(',', $always_list);
-
-			// Trim
-			foreach ( (array) $always_array as $keyword ) {
-				if ( empty($keyword) ) {
-					continue;
-				}
-				$results[] = trim($keyword);
-			}
-			unset($always_list, $always_array);
-
-			// Unique keywords
-			$results = array_unique($results);
-
-			return strip_tags(implode(', ', $results));
+			$this->tags_currentposts = $results;
 		}
-		return '';
+	}
+
+	/**
+	 * Generate keywords for meta data
+	 *
+	 * @return string
+	 */
+	function generateKeywords() {
+		// Get tags for current posts
+		if ( empty($this->tags_currentposts) ) {
+			$this->getTagsFromCurrentPosts();
+		}
+
+		foreach ( (array) $this->tags_currentposts as $tag ) {
+			$results[] = $tag->name;
+		}
+		unset($this->tags_currentposts);
+
+		$always_list = trim($this->options['meta_always_include']); // Static keywords
+		$always_array = explode(',', $always_list);
+
+		// Trim
+		foreach ( (array) $always_array as $keyword ) {
+			if ( empty($keyword) ) {
+				continue;
+			}
+			$results[] = trim($keyword);
+		}
+		unset($always_list, $always_array);
+
+		// Unique keywords
+		$results = array_unique($results);
+
+		return strip_tags(implode(', ', $results));
 	}
 
 	/**
@@ -314,6 +373,9 @@ Class SimpleTags {
 			$marker = true;
 		} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_singular() == true ) {
 			$marker = true;
+			if ( $this->options['use_tag_pages'] == '0' && is_page() == true ) {
+				$marker = false;
+			}
 		}
 
 		if ( $marker === true ) {
@@ -340,6 +402,9 @@ Class SimpleTags {
 			$marker = true;
 		} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_singular() == true ) {
 			$marker = true;
+			if ( $this->options['use_tag_pages'] == '0' && is_page() == true ) {
+				$marker = false;
+			}
 		}
 
 		if ( $marker === true ) {
@@ -599,8 +664,8 @@ Class SimpleTags {
 	function outputRelatedPosts( $format = 'list', $title = '', $content = '' ) {
 		if ( empty($title) || empty($content) ) {
 			return ''; // return nothing
-		}		
-		
+		}
+
 		if ( is_array($content) ) {
 			switch ( $format ) {
 				case 'array' :
@@ -627,7 +692,7 @@ Class SimpleTags {
 					break;
 			}
 		}
-		
+
 		// Replace false by empty
 		if ( strtolower($title) == 'false' ) {
 			$title = '';
@@ -656,7 +721,7 @@ Class SimpleTags {
 			'exclude' => '',
 			'include' => '',
 			'limit_days' => 0,
-			'notagstext' => __('No tags.', 'simpletags'), 
+			'notagstext' => __('No tags.', 'simpletags'),
 			'xformat' => __('<a href="%tag_link%" class="tag-link-%tag_id%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'color' => 'true',
 			'maxcolor' => '#000000',
@@ -1124,23 +1189,23 @@ Class SimpleTags {
 				return apply_filters('get_terms', $cache[$key], $taxonomies, $args);
 			}
 		}
-		
+
 		// Restrict category
 		$category_sql = '';
 		if ( !empty($category) && $category != '0' ) {
 			$incategories = preg_split('/[\s,]+/', $category);
-			
+
 			$objects_id = get_objects_in_term( $incategories, 'category' );
 			$objects_id = array_unique ($objects_id); // to be sure haven't duplicates
-			
+
 			if ( empty($objects_id) ) { // No posts for this category = no tags for this category
 				return array();
 			}
-			
+
 			foreach ( (array) $objects_id as $object_id ) {
-				$category_sql .= "'". $object_id . "', ";		
+				$category_sql .= "'". $object_id . "', ";
 			}
-			
+
 			$category_sql = substr($category_sql, 0, strlen($category_sql) - 2); // Remove latest ", "
 			$category_sql = 'AND p.ID IN ('.$category_sql.')';
 		}
@@ -1191,7 +1256,7 @@ Class SimpleTags {
 				} else {
 					$exclusions .= ' AND t.term_id <> ' . intval($exterm) . ' ';
 				}
-			}			
+			}
 		}
 
 		if ( !empty($exclusions) ) {
@@ -1217,7 +1282,7 @@ Class SimpleTags {
 		if ( $hide_empty && !$hierarchical ) {
 			$where .= ' AND tt.count > 0';
 		}
-		
+
 		$number = (int) $number;
 		$number = '';
 		if ( $number != 0 ) {
@@ -1235,16 +1300,16 @@ Class SimpleTags {
 		// Limit posts date
 		$limit_days_sql = '';
 		$limit_days = (int) $limit_days;
-		if ( $limit_days != 0 ) {			
+		if ( $limit_days != 0 ) {
 			$limitdays_sql = 'AND p.post_date > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
 		}
-		
+
 		// Join posts ?
 		$inner_posts = '';
 		if ( !empty($limitdays_sql) | !empty($category_sql) ) {
 			$inner_posts = "
 				INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
-				INNER JOIN $wpdb->posts AS p ON tr.object_id = p.ID";		
+				INNER JOIN $wpdb->posts AS p ON tr.object_id = p.ID";
 		}
 
 		$query = "SELECT DISTINCT {$select_this}

@@ -85,7 +85,7 @@ Class SimpleTagsAdmin {
 		if ( $this->options['use_embed_tags'] == '1' ) {
 			add_action('save_post', array(&$this, 'saveEmbedTags'));
 		}
-		
+
 		// Auto tags
 		if ( $this->options['use_auto_tags'] == '1' ) {
 			add_action('save_post', array(&$this, 'saveAutoTags'));
@@ -124,37 +124,37 @@ Class SimpleTagsAdmin {
 		add_submenu_page(__FILE__, __('Simple Tags: Auto Tags', 'simpletags'), __('Auto Tags', 'simpletags'), 'simple_tags', 'simpletags_auto', array(&$this, 'pageAutoTags'));
 		add_submenu_page(__FILE__, __('Simple Tags: Options', 'simpletags'), __('Options', 'simpletags'), 'simple_tags', 'simpletags_options', array(&$this, 'pageOptions'));
 	}
-	
+
 	function pageAutoTags() {
 		$action = false;
 		if ( isset($_POST['update_auto_list']) ) {
 			// Tags list
 			$tags_list = stripslashes($_POST['auto_list']);
 			$tags = explode(',', $tags_list);
-			
+
 			// Remove empty and duplicate elements
 			$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
-			$tags = array_unique($tags);		
-			
+			$tags = array_unique($tags);
+
 			$this->setOption( 'auto_list', maybe_serialize($tags) );
-			
+
 			// Active auto tags ?
 			if ( $_POST['use_auto_tags'] == '1' ) {
 				$this->setOption( 'use_auto_tags', '1' );
 			} else {
-				$this->setOption( 'use_auto_tags', '0' );				
+				$this->setOption( 'use_auto_tags', '0' );
 			}
-			
+
 			$this->saveOptions();
 		} elseif ( $_GET['action'] == 'auto_tag' ) {
 			$action = true;
 			$n = ( isset($_GET['n']) ) ? intval($_GET['n']) : 0;
 			global $wpdb;
 		}
-		
+
 		$tags = maybe_unserialize($this->options['auto_list']);
 		$tags_list = implode(', ', $tags);
-		
+
 		$this->displayMessage();
 		?>
 		<div class="wrap">
@@ -162,33 +162,33 @@ Class SimpleTagsAdmin {
 				.tags_admin { text-align:center; font-size:0.9em; }
 				#auto_list { width:100%; margin:3px 0; padding:3px 5px;}
 			</style>
-			
+
 			<h2><?php _e('Simple Tags: Auto Tags', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-			
+
 			<?php if ( $action === false ) : ?>
 			<h3><?php _e('Auto tags list', 'simpletags'); ?></h3>
 			<p><?php _e('This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto tags list, Simple Tags will add automatically "wordpress" as tag for this post.', 'simpletags'); ?></p>
-			
+
 			<form action="<?php echo $this->admin_base_url.'simpletags_auto'; ?>" method="post">
 				<p><input type="checkbox" id="use_auto_tags" name="use_auto_tags" value="1" <?php echo ( $this->options['use_auto_tags'] == '1' ) ? 'checked="checked"' : ''; ?>  />
 					<label for="use_auto_tags"><?php _e('Active Auto Tags.', 'simpletags'); ?></label></p>
-				
+
 				<p><label for="auto_list"><?php _e('Keywords list: (separated with a comma)', 'simpletags'); ?></label><br />
 					<input type="text" id="auto_list" name="auto_list" value="<?php echo $tags_list; ?>" /></p>
-				
+
 				<p class="submit">
 					<input type="submit" name="update_auto_list" value="<?php _e('Update list &raquo;', 'simpletags'); ?>" />
 			</form>
-			
+
 			<h3><?php _e('Auto tags old content', 'simpletags'); ?></h3>
 			<p><?php _e('Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned.', 'simpletags'); ?>
 				<br /><strong><a href="<?php echo $this->admin_base_url.'simpletags_auto'; ?>&amp;action=auto_tag"><?php _e('Auto tags all content', 'simpletags'); ?></a></strong></p>
-			
+
 			<?php else:
 				// Page or not ?
-				$post_type_sql = ( $this->options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";				
-			
+				$post_type_sql = ( $this->options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
+
 				$objects = $wpdb->get_results( "SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE {$post_type_sql} ORDER BY ID DESC LIMIT {$n}, 20" );
 				if( !empty($objects) ) {
 					echo '<ul>';
@@ -198,16 +198,16 @@ Class SimpleTagsAdmin {
 								$tags_to_add[] = $tag;
 							}
 						}
-						
+
 						// Append tags if tags to add
-						if ( !empty($tags_to_add) ) {												
+						if ( !empty($tags_to_add) ) {
 							// Remove empty and duplicate elements
 							$tags_to_add = array_filter($tags_to_add, array(&$this, 'deleteEmptyElement'));
 							$tags_to_add = array_unique($tags_to_add);
-							
+
 							wp_set_object_terms( $object->ID, $tags_to_add, 'post_tag', true );
 						}
-				
+
 						echo '<li>#'. $object->ID .' '. $object->post_title .'</li>';
 						unset($tags_to_add, $object, $tag);
 					}
@@ -226,14 +226,14 @@ Class SimpleTagsAdmin {
 				} else {
 					echo '<p><strong>'.__('All done!', 'simpletags').'</strong></p>';
 				}
-			
+
 			endif; ?>
-			
+
 			<?php $this->printAdminFooter(); ?>
 		</div>
-		<?php		
+		<?php
 	}
-	
+
 	/**
 	 * WP Page - Tags options
 	 *
@@ -264,7 +264,7 @@ Class SimpleTagsAdmin {
 			),
 			__('Embedded Tags', 'simpletags') => array(
 				array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
-				__('Enabling this will cause Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),	
+				__('Enabling this will cause Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
 				array('use_embed_tags', __('Use embedded tags:', 'simpletags'), 'checkbox', '1',
 				__('Enabling this will cause Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post.', 'simpletags')),
 				array('start_embed_tags', __('Prefix for embedded tags:', 'simpletags'), 'text', 40),
@@ -569,7 +569,7 @@ Class SimpleTagsAdmin {
 	function pageMassEditTags() {
 		// Search
 		$search = stripslashes($_GET['s']);
-		
+
 		// Quantity
 		$quantity = (int) attribute_escape($_GET['quantity']);
 		if ( $quantity == 0 || $quantity > 50 ) {
@@ -590,8 +590,8 @@ Class SimpleTagsAdmin {
 		if ( empty($order) ) {
 			$order = 'date_desc';
 		}
-		
-		// Filter 
+
+		// Filter
 		if ( $_GET['filter'] == 'untagged' ) {
 			$filter = 'untagged';
 		} else {
@@ -625,11 +625,11 @@ Class SimpleTagsAdmin {
 
 		<form action="<?php echo $this->admin_base_url; ?>" id="searchform" method="get">
 			<input type="hidden" name="page" value="simpletags_mass" />
-			
+
 			<fieldset><legend><?php _e('Search terms&hellip;', 'simpletags'); ?></legend>
 				<input type="text" name="s" id="s" value="<?php echo $search; ?>" size="12" />
 			</fieldset>
-					
+
 			<fieldset>
 				<legend><?php _e('Quantity&hellip;', 'simpletags'); ?></legend>
 				<select name="quantity" id="quantity">
@@ -788,15 +788,18 @@ Class SimpleTagsAdmin {
 		preg_match_all('/(' . $this->regexEscape($this->options['start_embed_tags']) . '(.*?)' . $this->regexEscape($this->options['end_embed_tags']) . ')/is', $object->post_content, $matches);
 
 		$tags = array();
-		foreach ((array) $matches[2] as $match) {
-			foreach((array) explode(',', $match) as $tag) {
-				if ( $tag != '' ){
-					$tags[] = trim($tag);
-				}
+		foreach ( (array) $matches[2] as $match) {
+			foreach( (array) explode(',', $match) as $tag) {
+				$tags[] = $tag;
 			}
 		}
+
 		if( !empty($tags) ) {
-			wp_set_post_tags( $post_id, $tags, true );
+			// Remove empty and duplicate elements
+			$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
+			$tags = array_unique($tags);
+
+			wp_set_post_tags( $post_id, $tags, true ); // Append tags
 		}
 	}
 
@@ -809,7 +812,7 @@ Class SimpleTagsAdmin {
 	function regexEscape( $content ) {
 		return strtr($content, array("\\" => "\\\\", "/" => "\\/", "[" => "\\[", "]" => "\\]"));
 	}
-	
+
 	/**
 	 * Check post data for auto tags
 	 *
@@ -821,21 +824,21 @@ Class SimpleTagsAdmin {
 		if ( $object == false || $object == null ) {
 			return;
 		}
-		
+
 		$tags = maybe_unserialize($this->options['auto_list']);
-		
+
 		foreach ( (array) $tags as $tag ) {
 			if ( is_string($tag) && !empty($tag) && ( stristr($object->post_content, $tag) || stristr($object->post_title, $tag) ) ) {
 				$tags_to_add[] = $tag;
 			}
 		}
-		
+
 		// Append tags if tags to add
-		if ( !empty($tags_to_add) ) {												
+		if ( !empty($tags_to_add) ) {
 			// Remove empty and duplicate elements
 			$tags_to_add = array_filter($tags_to_add, array(&$this, 'deleteEmptyElement'));
 			$tags_to_add = array_unique($tags_to_add);
-			
+
 			wp_set_object_terms( $post_id, $tags_to_add, 'post_tag', true );
 		}
 	}
@@ -1394,7 +1397,7 @@ Class SimpleTagsAdmin {
 					$order_sql = 'ORDER BY post_date DESC';
 				break;
 			}
-			
+
 			// Search
 			$search_sql = '';
 			$search = trim($search);
@@ -1405,7 +1408,7 @@ Class SimpleTagsAdmin {
 
 			// Restrict Author
 			$author_sql = ( $author != 0 ) ? "AND post_author = '{$author}'" : '';
-			
+
 			// Status
 			$filter_sql = '';
 			if ( $filter == 'untagged' ) {
@@ -1416,12 +1419,12 @@ Class SimpleTagsAdmin {
 			      AND term_taxonomy.term_taxonomy_id = term_relationships.term_taxonomy_id
 			      AND term_relationships.object_id  = posts.ID
 			      AND posts.post_type = '{$type}'");
-				
+
 				$filter_sql = 'AND ID NOT IN ("'.implode( '", "', $p_id_used ).'")';
 				unset($p_id_used);
 			}
-			
-			// Get datas with pagination			
+
+			// Get datas with pagination
 			$this->found_datas = (int) $wpdb->get_var("
 		        SELECT count(ID)
 		        FROM {$wpdb->posts} AS posts
