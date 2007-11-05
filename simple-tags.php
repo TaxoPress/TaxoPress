@@ -160,17 +160,17 @@ Class SimpleTags {
 
 		// Hide embed tags in posts
 		if ( $this->options['use_embed_tags'] == '1' ) {
-			add_filter('the_content', array(&$this, 'filterEmbedTags'), 99);
+			add_filter('the_content', array(&$this, 'filterEmbedTags'), 95);
 		}
 
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singleonly / no )
 		if ( $this->options['tt_embedded'] != 'no' ) {
-			add_filter('the_content', array(&$this, 'inlinePostTags'), 98);
+			add_filter('the_content', array(&$this, 'inlinePostTags'), 97);
 		}
 
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singleonly / no )
 		if ( $this->options['rp_embedded'] != 'no' ) {
-			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 99);
+			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 98);
 		}
 
 		// Embedded tag cloud
@@ -186,7 +186,7 @@ Class SimpleTags {
 
 		// Auto link tags
 		if ( $this->options['auto_link_tags'] == '1' ) {
-			add_filter('the_content', array(&$this, 'autoLinkTags'), 99);
+			add_filter('the_content', array(&$this, 'autoLinkTags'), 96);
 		}
 		return;
 	}
@@ -266,10 +266,11 @@ Class SimpleTags {
 			$key = md5(maybe_serialize($postlist));
 
 			// Get cache if exist
-			$cache = wp_cache_get('generate_keywords', 'simpletags');
-			if ( isset($cache[$key]) ) {
-				$this->tags_currentposts = $cache[$key];
-				return;
+			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
+				if ( isset( $cache[$key] ) ) {
+					$this->tags_currentposts = $cache[$key];
+					return;
+				}
 			}
 
 			// If cache not exist, get datas and set cache
@@ -303,6 +304,7 @@ Class SimpleTags {
 			$this->getTagsFromCurrentPosts();
 		}
 
+		$results = array();
 		foreach ( (array) $this->tags_currentposts as $tag ) {
 			$results[] = $tag->name;
 		}
@@ -448,9 +450,10 @@ Class SimpleTags {
 
 		// Get cache if exist
 		$results = false;
-		$cache = wp_cache_get('related_posts', 'simpletags');
-		if ( isset($cache[$key]) ) {
-			$results = $cache[$key];
+		if ( $cache = wp_cache_get( 'related_posts', 'simpletags' ) ) {
+			if ( isset( $cache[$key] ) ) {
+				$results = $cache[$key];
+			}
 		}
 
 		// If cache not exist, get datas and set cache
@@ -477,32 +480,25 @@ Class SimpleTags {
 			$order = strtolower($order);
 			switch ( $order ) {
 				case 'count-asc':
-					$orderby = 'counter';
-					$order = 'ASC';
+					$orderby = 'counter ASC';
 					break;
 				case 'random':
 					$orderby = 'RAND()';
-					$order = '';
 					break;
 				case 'date-asc':
-					$orderby = 'posts.post_date';
-					$order = 'ASC';
+					$orderby = 'posts.post_date ASC';
 					break;
 				case 'date-desc':
-					$orderby = 'posts.post_date';
-					$order = 'DESC';
+					$orderby = 'posts.post_date DESC';
 					break;
 				case 'name-asc':
-					$orderby = 'posts.post_title';
-					$order = 'ASC';
+					$orderby = 'posts.post_title ASC';
 					break;
 				case 'name-desc':
-					$orderby = 'posts.post_title';
-					$order = 'DESC';
+					$orderby = 'posts.post_title DESC';
 					break;
 				default: // count-desc
-					$orderby = 'counter';
-					$order = 'DESC';
+					$orderby = 'counter DESC';
 					break;
 			}
 
@@ -585,7 +581,7 @@ Class SimpleTags {
 				{$limitdays_sql}
 				{$restrict_sql}
 				GROUP BY term_relationships.object_id
-				ORDER BY {$orderby} {$order}
+				ORDER BY {$orderby}
 				{$limit_sql}");
 
 			$cache[$key] = $results;
@@ -614,14 +610,23 @@ Class SimpleTags {
 			$element_loop = $xformat;
 
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
-			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);
+			
+			if ( strpos($element_loop, '%post_permalink%') ) {
+				$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);
+			}
+			
 			$element_loop = str_replace('%post_title%', $result->post_title, $element_loop);
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
-			$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id), $element_loop);
+			
+			if ( strpos($element_loop, '%post_relatedtags%') ) {
+				$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id), $element_loop);
+			}
 
-			$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $except_wrap ), $element_loop);
+			if ( strpos($element_loop, '%post_excerpt%') ) {
+				$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $except_wrap ), $element_loop);
+			}
 
 			$output[] = $element_loop;
 		}
@@ -638,7 +643,6 @@ Class SimpleTags {
 		if ( !empty($excerpt) ) {
 			return apply_filters('get_the_excerpt', $excerpt);
 		} else { // Fake excerpt
-			$content = apply_filters('the_content', $content);
 			$content = str_replace(']]>', ']]&gt;', $content);
 			$content = strip_tags($content);
 
@@ -1113,9 +1117,12 @@ Class SimpleTags {
 	 */
 	function getTags( $args = '' ) {
 		$key = md5(serialize($args));
-		$cache = wp_cache_get( 'st_get_tags', 'simpletags' );
-		if ( isset( $cache[$key] ) ) {
-			return apply_filters('get_tags', $cache[$key], $args);
+		
+		// Get cache if exist
+		if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
+			if ( isset( $cache[$key] ) ) {
+				return apply_filters('get_tags', $cache[$key], $args);
+			}
 		}
 
 		// Get tags
@@ -1208,10 +1215,12 @@ Class SimpleTags {
 			}
 		}
 
+		// Get cache if exist
 		$key = md5( serialize( $args ) . serialize( $taxonomies ) );
-		$cache = wp_cache_get('get_terms', 'terms');
-		if ( isset( $cache[$key] ) ) {
-			return apply_filters('get_terms', $cache[$key], $taxonomies, $args);
+		if ( $cache = wp_cache_get( 'get_terms', 'terms' ) ) {
+			if ( isset( $cache[$key] ) ) {
+				return apply_filters('get_terms', $cache[$key], $taxonomies, $args);
+			}
 		}
 
 		// Restrict category
@@ -1238,24 +1247,19 @@ Class SimpleTags {
 		$cloud_selection = strtolower($cloud_selection);
 		switch ( $cloud_selection ) {
 			case 'count-asc':
-				$order_by = 'tt.count';
-				$order = 'ASC';
+				$order_by = 'tt.count ASC';
 				break;
 			case 'random':
 				$order_by = 'RAND()';
-				$order = '';
 				break;
 			case 'name-asc':
-				$order_by = 't.name';
-				$order = 'ASC';
+				$order_by = 't.name ASC';
 				break;
 			case 'name-desc':
-				$order_by = 't.name';
-				$order = 'DESC';
+				$order_by = 't.name DESC';
 				break;
 			default: // count-desc
-				$order_by = 'tt.count';
-				$order = 'DESC';
+				$order_by = 'tt.count DESC';
 				break;
 		}
 
