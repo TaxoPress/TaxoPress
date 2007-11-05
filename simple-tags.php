@@ -1355,7 +1355,7 @@ Class SimpleTags {
 			{$limitdays_sql}
 			{$category_sql}
 			{$where}
-			ORDER BY {$order_by} {$order}
+			ORDER BY {$order_by}
 			{$number}";
 
 		if ( 'all' == $fields ) {

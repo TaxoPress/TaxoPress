@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
-Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3
+Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3, import
 Requires at least: 2.3
 Tested up to: 2.3.1
-Stable tag: 1.1.1
+Stable tag: 1.2
 
 Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 tags
 
@@ -16,23 +16,25 @@ Simple Tags is the successor of Simple Tagging Plugin
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
-	* Administration
-		* type-ahead input tags / Autocompletion
-		* auto suggestion of tags (admin tag cloud)
-		* Click tags
-		* tags management (rename, delete, merge, search and add tags, edit tags ID)
-		* List of untagged content
-		* **Edit mass tags (more than 50 posts once)**
-		* Possibility to tag pages (not only posts) and include them inside the tags results
-		* Embedded tags ([tags]tag1, tag2[/tags]) for compatibility with old plugins
-		* **Easy configuration ! (in WP admin)**
-	* Blog
-		* Meta keywords generate from tags in your header's blog
-		* Technorati, Flickr and Delicious tags
-		* Dynamic Tag Clouds with colors with Widgets (random order, etc)
-		* Related content since common tags
-		* Possibility to add related posts inside RSS
-		* Extended the_tags function (outside the loop, technorati, etc)
+* Administration
+	* **NEW** Auto tags !
+	* **NEW** Auto link tags in post content
+	* **NEW** Importer for embedded tags
+	* type-ahead input tags / Autocompletion
+	* auto suggestion of tags (admin tag cloud)
+	* Click tags
+	* tags management (rename, delete, merge, search and add tags, edit tags ID)
+	* **Edit mass tags (more than 50 posts once)**
+	* Possibility to tag pages (not only posts) and include them inside the tags results
+	* Embedded tags ([tags]tag1, tag2[/tags]) for compatibility with old plugins
+	* **Easy configuration ! (in WP admin)**
+* Blog
+	* Meta keywords generate from tags in your header's blog
+	* Technorati, Flickr and Delicious tags
+	* Dynamic Tag Clouds with colors with Widgets (random order, etc)
+	* Related content since common tags
+	* Possibility to add related posts inside RSS
+	* Extended the_tags function (outside the loop, technorati, etc)
 
 And more...
 
@@ -51,13 +53,47 @@ The Simple Tags can be installed in 3 easy steps:
 Yes, with official default importer. Manage -> Import
 Compatible with UTW, Simple Tagging, Etc.
 
+= Simple Tags is compatible with WPmu ? =
+
+Yes, but it not allow tag cloud site. Soon !
+
+= Simple Tags can import Embedded Tags from old plugins =
+
+Yes, copy importer "simple-tags/extras/simple-tags.importer.php" into "wp-admin/import/simple-tags.importer.php"
+Then: Manage - Import - Embedded Tags
+
 == Screenshots ==
 
 1. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 
 == Arbitrary section ==
-* Version 1.1
+* Version 1.2
+    * New features
+		* Auto link tags in post content
+		* Auto tags (new and old content)
+		* Importer for embedded tags
+	* Tag Cloud
+		* Fix Tag Cloud Widgets
+		* New way for order tags cloud ( 2 steps )
+		* Allow embedded tag cloud
+		* Add tag cloud for a specific category
+	* Related Posts
+		* New options for automatic insertion
+		* Add a marker for post_excerpt
+		* Fixed display nothing when no related posts
+	* Current tags posts
+		* New options for automatic insertion
+	* Administration
+		* Check WP version
+		* Mass edit tags improved (search terms, filter untagged)
+		* Removed untagged page
+		* Improve special characters management (& ...)
+		* Uniformize alert message
+		* Autocompletion improved !
+	* Others
+		* Improved plugin cache
+* Version 1.1.1
 	* Fix compatibily with MySQL < 4.1 (Marker "related_tags" of Related Posts is desactived.)
 * Version 1.1
 	* Fix XML-RPC and Embedded Tags
