@@ -145,7 +145,7 @@ function widget_st_tag_cloud_init() {
 				<input style="width: 100% !important;" type="text" id="widget-stags-title-<?php echo $number; ?>" name="widget-stags-title-<?php echo $number; ?>" value="<?php echo $title; ?>" />
 			</label>
 
-			<label for="widget-stags-number-<?php echo $number; ?>" style="line-height:35px;display:block;">
+			<label for="widget-stags-max-<?php echo $number; ?>" style="line-height:35px;display:block;">
 				<?php _e('Max tags to display: (default: 45)', 'simpletags'); ?>
 				<input size="20" type="text" id="widget-stags-max-<?php echo $number; ?>" name="widget-stags-max-<?php echo $number; ?>" value="<?php echo $max; ?>" />
 			</label>

@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.2
+Version: 1.2.1
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -31,7 +31,7 @@ if ( version_compare($wp_version, '2.3', '<') ) {
 }
 
 Class SimpleTags {
-	var $version = '1.2';
+	var $version = '1.2.1';
 
 	var $info;
 	var $options;
@@ -772,8 +772,10 @@ Class SimpleTags {
 			$defaults['unit'] = $this->options['cloud_unit'];
 			$args = $this->options['cloud_adv_usage'];
 		}
+		
 		$args = wp_parse_args( $args, $defaults );
 
+		
 		// Get tags
 		$tags = $this->getTags( $args );
 		extract($args); // Params to variables
@@ -1319,9 +1321,9 @@ Class SimpleTags {
 		}
 
 		$number = (int) $number;
-		$number = '';
+		$number_sql = '';
 		if ( $number != 0 ) {
-			$number = 'LIMIT ' . $number;
+			$number_sql = 'LIMIT ' . $number;
 		}
 
 		if ( 'all' == $fields ) {
@@ -1356,7 +1358,7 @@ Class SimpleTags {
 			{$category_sql}
 			{$where}
 			ORDER BY {$order_by}
-			{$number}";
+			{$number_sql}";
 
 		if ( 'all' == $fields ) {
 			$terms = $wpdb->get_results($query);
