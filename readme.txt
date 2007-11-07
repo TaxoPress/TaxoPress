@@ -4,7 +4,7 @@ Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3, import
 Requires at least: 2.3
 Tested up to: 2.3.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 
 Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 tags
 
