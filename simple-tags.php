@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.2.1
+Version: 1.2.2
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -31,7 +31,7 @@ if ( version_compare($wp_version, '2.3', '<') ) {
 }
 
 Class SimpleTags {
-	var $version = '1.2.1';
+	var $version = '1.2.2';
 
 	var $info;
 	var $options;
@@ -66,6 +66,7 @@ Class SimpleTags {
 			'start_embed_tags' => '[tags]',
 			'end_embed_tags' => '[/tags]',
 			// Related Posts
+			'rp_feed' => '0',
 			'rp_embedded' => 'no',
 			'rp_order' => 'count-desc',
 			'rp_limit_qty' => '5',
@@ -85,6 +86,7 @@ Class SimpleTags {
 			'cloud_unit' => 'pt',
 			'cloud_adv_usage' => '',
 			// The tags
+			'tt_feed' => '0',
 			'tt_embedded' => 'no',
 			'tt_separator' => ', ',
 			'tt_before' => __('Tags: ', 'simpletags'),
@@ -163,13 +165,13 @@ Class SimpleTags {
 			add_filter('the_content', array(&$this, 'filterEmbedTags'), 95);
 		}
 
-		// Add related posts in post ( all / feedonly / blogonly / homeonly / singleonly / no )
-		if ( $this->options['tt_embedded'] != 'no' ) {
+		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
+		if ( $this->options['tt_embedded'] != 'no' || $this->options['tt_feed'] != 'no' ) {
 			add_filter('the_content', array(&$this, 'inlinePostTags'), 97);
 		}
 
-		// Add related posts in post ( all / feedonly / blogonly / homeonly / singleonly / no )
-		if ( $this->options['rp_embedded'] != 'no' ) {
+		// Add post tags in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
+		if ( $this->options['rp_embedded'] != 'no' || $this->options['rp_feed'] != 'no' ) {
 			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 98);
 		}
 
@@ -210,12 +212,12 @@ Class SimpleTags {
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag" ' : '';
 
 		foreach ( (array) $this->link_tags as $tag_name => $tag_link ) {
-			$content = $this->replaceTextByTag( $content, $tag_name, '<a href="'.$tag_link.'" class="internal_tag" '.$rel.'title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $tag_name ) ).'">', '</a>' );
+			$content = $this->replaceTextByTagLink( $content, $tag_name, '<a href="'.$tag_link.'" class="internal_tag" '.$rel.'title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $tag_name ) ).'">', '</a>' );
 		}
 		return $content;
 	}
 
-	function replaceTextByTag( $content = '', $word = '', $pre = '', $after = '' ) {
+	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {
 		// Put all anchor text into nonsense <##..##> tags:
 		$content = preg_replace('/(<a([^>]+)>)(.*?)(<\/a>)/is', "$1<##$3##>$4", $content);
 
@@ -348,18 +350,24 @@ Class SimpleTags {
 	 */
 	function inlineRelatedPosts( $content = '' ) {
 		$marker = false;
-		if ( $this->options['rp_embedded'] == 'all' ) {
-			$marker = true;
-		} elseif ( $this->options['rp_embedded'] == 'blogonly' && is_feed() == false ) {
-			$marker = true;
-		} elseif ( $this->options['rp_embedded'] == 'feedonly' && is_feed() == true ) {
-			$marker = true;
-		} elseif ( $this->options['rp_embedded'] == 'homeonly' && is_home() == true ) {
-			$marker = true;
-		} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_singular() == true ) {
-			$marker = true;
-			if ( $this->options['use_tag_pages'] == '0' && is_page() == true ) {
-				$marker = false;
+		
+		if ( is_feed() ) {
+			if ( $this->options['rp_feed'] == '1' ) {
+				$marker = true;
+			}				
+		} else {
+			if ( $this->options['rp_embedded'] == 'all' ) {
+				$marker = true;
+			} elseif ( $this->options['rp_embedded'] == 'blogonly' && is_feed() == false ) {
+				$marker = true;
+			} elseif ( $this->options['rp_embedded'] == 'homeonly' && is_home() == true ) {
+				$marker = true;
+			} elseif ( $this->options['rp_embedded'] == 'singularonly' && is_singular() == true ) {
+				$marker = true;
+			} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_single() == true ) {
+				$marker = true;
+			} elseif ( $this->options['rp_embedded'] == 'pageonly' && is_page() == true ) {
+				$marker = true;
 			}
 		}
 
@@ -377,21 +385,27 @@ Class SimpleTags {
 	 */
 	function inlinePostTags( $content = '' ) {
 		$marker = false;
-		if ( $this->options['tt_embedded'] == 'all' ) {
-			$marker = true;
-		} elseif ( $this->options['tt_embedded'] == 'blogonly' && is_feed() == false ) {
-			$marker = true;
-		} elseif ( $this->options['tt_embedded'] == 'feedonly' && is_feed() == true ) {
-			$marker = true;
-		} elseif ( $this->options['rp_embedded'] == 'homeonly' && is_home() == true ) {
-			$marker = true;
-		} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_singular() == true ) {
-			$marker = true;
-			if ( $this->options['use_tag_pages'] == '0' && is_page() == true ) {
-				$marker = false;
+		
+		if ( is_feed() ) {
+			if ( $this->options['tt_feed'] == '1' ) {
+				$marker = true;
+			}				
+		} else {
+			if ( $this->options['rp_embedded'] == 'all' ) {
+				$marker = true;
+			} elseif ( $this->options['tt_embedded'] == 'blogonly' && is_feed() == false ) {
+				$marker = true;
+			} elseif ( $this->options['tt_embedded'] == 'homeonly' && is_home() == true ) {
+				$marker = true;
+			} elseif ( $this->options['tt_embedded'] == 'singularonly' && is_singular() == true ) {
+				$marker = true;
+			} elseif ( $this->options['tt_embedded'] == 'singleonly' && is_single() == true ) {
+				$marker = true;
+			} elseif ( $this->options['tt_embedded'] == 'pageonly' && is_page() == true ) {
+				$marker = true;
 			}
 		}
-
+			
 		if ( $marker === true ) {
 			$content .= $this->extendedPostTags();
 		}
@@ -414,8 +428,8 @@ Class SimpleTags {
 			'exclude_posts' => '',
 			'exclude_tags' => '',
 			'post_id' => '',
-			'except_wrap' => '55',
-			'limit_days' => '0',
+			'except_wrap' => 55,
+			'limit_days' => 0,
 			'title' => __('<h4>Related posts</h4>', 'simpletags'),
 			'nopoststext' => __('No related posts.', 'simpletags'),
 			'dateformat' => $this->dateformat,
@@ -609,24 +623,15 @@ Class SimpleTags {
 			// Replace placeholders
 			$element_loop = $xformat;
 
-			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
-			
-			if ( strpos($element_loop, '%post_permalink%') ) {
-				$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);
-			}
-			
+			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);	
+			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);			
 			$element_loop = str_replace('%post_title%', $result->post_title, $element_loop);
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
 			
-			if ( strpos($element_loop, '%post_relatedtags%') ) {
-				$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id), $element_loop);
-			}
-
-			if ( strpos($element_loop, '%post_excerpt%') ) {
-				$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $except_wrap ), $element_loop);
-			}
+			$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id), $element_loop);
+			$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $except_wrap ), $element_loop);
 
 			$output[] = $element_loop;
 		}
@@ -693,7 +698,7 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function outputRelatedPosts( $format = 'list', $title = '', $content = '' ) {
-		if ( empty($title) || empty($content) ) {
+		if ( empty($title) && empty($content) ) {
 			return ''; // return nothing
 		}
 
@@ -728,8 +733,13 @@ Class SimpleTags {
 		if ( strtolower($title) == 'false' ) {
 			$title = '';
 		}
+		
+		// Put title if exist 
+		if ( !empty($title) ) {
+			$title = $title ."\n\t";
+		}
 
-		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title ."\n\t". $return. "\n";
+		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t".  $title . $return. "\n";
 	}
 
 	/**
@@ -892,6 +902,7 @@ Class SimpleTags {
 		foreach( (array) $rand_keys as $key ) {
 			$data_out[$key] = $data_in[$key];
 		}
+		
 		return $data_out;
 	}
 
@@ -930,6 +941,10 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function outputExtendedTagCloud( $format = 'list', $title = '', $content = '' ) {
+		if ( empty($title) && empty($content) ) {
+			return ''; // return nothing
+		}
+	
 		if ( is_array($content) ) {
 			switch ( $format ) {
 				case 'array' :
@@ -978,6 +993,7 @@ Class SimpleTags {
 		'post_id' => '',
 		'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 		'notagtext' => __('No tag for this post.', 'simpletags'),
+		'number' => 0
 		);
 
 		if ( empty($args) ) {
@@ -985,6 +1001,7 @@ Class SimpleTags {
 			$defaults['separator'] = $this->options['tt_separator'];
 			$defaults['after'] = $this->options['tt_after'];
 			$defaults['notagtext'] = $this->options['tt_notagstext'];
+			$defaults['number'] = $this->options['number'];
 			$args = $this->options['tt_adv_usage'];
 		}
 
@@ -994,8 +1011,16 @@ Class SimpleTags {
 		$post_id = (int) $post_id;
 		$tags = get_the_tags( $post_id );
 
+		// If no tags, return text nothing.
 		if ( empty($tags) ) {
 			return $notagtext;
+		}
+		
+		// Limit to max quantity if set
+		$number = (int) $number;
+		if ( $number != 0 ) {
+			$tags = $this->randomArray($tags); // Randomize tags
+			$tags = array_slice( $tags, 0, $number );
 		}
 
 		if ( empty($xformat) ) {
@@ -1007,15 +1032,17 @@ Class SimpleTags {
 
 		foreach ( (array) $tags as $tag ) {
 			$element_loop = $xformat;
-			$element_loop = str_replace('%tag_link%'	, clean_url(get_tag_link($tag->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_feed%'	, clean_url(get_tag_feed_link($tag->term_id)), $element_loop);
+			
+			$element_loop = str_replace('%tag_link%', clean_url(get_tag_link($tag->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag->term_id)), $element_loop);
 			$element_loop = str_replace('%tag_id%', $tag->term_id, $element_loop);
-			$element_loop = str_replace('%tag_name%'	, str_replace(' ', '&nbsp;', wp_specialchars($tag->name)), $element_loop);
-			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
+			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', wp_specialchars($tag->name)), $element_loop);
+			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);			
+			$element_loop = str_replace('%tag_count%', $tag->count, $element_loop);
 
-			$element_loop = str_replace('%tag_technorati%'	, $this->formatLink( 'technorati', $tag->name ), $element_loop);
+			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $tag->name ), $element_loop);
 			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $tag->name ), $element_loop);
-			$element_loop = str_replace('%tag_delicious%'	, $this->formatLink( 'delicious', $tag->name ), $element_loop);
+			$element_loop = str_replace('%tag_delicious%', $this->formatLink( 'delicious', $tag->name ), $element_loop);
 
 			$tag_links[] = $element_loop;
 		}

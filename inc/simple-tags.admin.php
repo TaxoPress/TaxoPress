@@ -284,14 +284,16 @@ Class SimpleTagsAdmin {
 				array('end_embed_tags', __('Suffix for embedded tags:', 'simpletags'), 'text', 40)
 			),
 			__('Tags for Current Post', 'simpletags') => array(
-				array('tt_embedded', __('Automatically display tag list at end of post:', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly/homeonly/singleonly',
+				array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
+				array('tt_embedded', __('Automatically display tags list into post content:', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly/homeonly/singularonly/pageonly/singleonly',
 					'<ul>
 						<li>'.__('<code>no</code> &ndash; Nowhere (default)', 'simpletags').'</li>
 						<li>'.__('<code>all</code> &ndash; On your blog and feeds.', 'simpletags').'</li>
 						<li>'.__('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags').'</li>
-						<li>'.__('<code>feedonly</code> &ndash; Only on your feeds.', 'simpletags').'</li>
 						<li>'.__('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags').'</li>
-						<li>'.__('<code>singleonly</code> &ndash; Only on your singular view (single & page).', 'simpletags').'</li>
+						<li>'.__('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags').'</li>
+						<li>'.__('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags').'</li>
+						<li>'.__('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags').'</li>
 					</ul>'),
 				array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),
 				array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 40),
@@ -301,14 +303,16 @@ Class SimpleTagsAdmin {
 					__('You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
 			),
 			__('Related Posts', 'simpletags') => array(
-				array('rp_embedded', __('Automatically add related posts', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly/homeonly/singleonly',
+				array('rp_feed', __('Automatically display related posts into feeds', 'simpletags'), 'checkbox', '1'),
+				array('rp_embedded', __('Automatically display related posts into post content', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly/homeonly/singularonly/pageonly/singleonly',
 					'<ul>
 						<li>'.__('<code>no</code> &ndash; Nowhere (default)', 'simpletags').'</li>
 						<li>'.__('<code>all</code> &ndash; On your blog and feeds.', 'simpletags').'</li>
 						<li>'.__('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags').'</li>
-						<li>'.__('<code>feedonly</code> &ndash; Only on your feeds.', 'simpletags').'</li>
 						<li>'.__('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags').'</li>
-						<li>'.__('<code>singleonly</code> &ndash; Only on your singular view (single & page).', 'simpletags').'</li>
+						<li>'.__('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags').'</li>
+						<li>'.__('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags').'</li>
+						<li>'.__('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags').'</li>
 					</ul>'),
 				array('rp_order', __('Related Posts Order:', 'simpletags'), 'dropdown', 'count-asc/count-desc/date-asc/date-desc/name-asc/name-desc/random',
 					'<ul>
