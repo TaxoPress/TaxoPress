@@ -41,7 +41,6 @@ And more...
 == Installation ==
 
 The Simple Tags can be installed in 3 easy steps:
-
    1. Unzip "Simple tags" archive and put all files into your "plugins" folder (/wp-content/plugins/) or to create a sub directory into the plugins folder (recommanded), like /wp-content/plugins/simple-tags/
    2. Activate the plugin
    3. Inside the Wordpress admin, go to tags > tags options, adjust the parameters according to your needs, and save them.
