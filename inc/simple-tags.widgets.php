@@ -15,23 +15,22 @@ function widget_st_tag_cloud_init() {
 		$options = get_option('widget_stags_cloud');
 
 		// Use Widgets title and no ST title !!
-		$title = trim($options[$number]['title']);
 		$args = 'title=';
 
 		// Selection
 		$selection = trim(strtolower($options[$number]['selection']));
 		if ( !empty($selection) ) {
-			$args .= '&selection='.$selection;
+			$args .= '&cloud_selection='.$selection;
 		} else {
-			$args .= '&selection=count-desc';
+			$args .= '&cloud_selection=count-desc';
 		}
 
 		// Order
 		$order = trim(strtolower($options[$number]['order']));
 		if ( !empty($order) ) {
-			$args .= '&order='.$order;
+			$args .= '&cloud_sort='.$order;
 		} else {
-			$args .= '&order=random';
+			$args .= '&cloud_sort=random';
 		}
 
 		// Max tags
@@ -88,6 +87,9 @@ function widget_st_tag_cloud_init() {
 			$args .= '&xformat='.$xformat;
 		}
 
+		// Use custom title with Widgets Title
+		$title = trim($options[$number]['title']);
+		
 		echo $before_widget;
 		echo $before_title . $title . $after_title;
 		st_tag_cloud($args);

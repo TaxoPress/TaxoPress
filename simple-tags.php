@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.2.2
+Version: 1.2.3
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -24,14 +24,8 @@ Contributors:
 - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
 */
 
-// Check version.
-global $wp_version;
-if ( version_compare($wp_version, '2.3', '<') ) {
-	wp_die('Plugin compatible with WordPress 2.3 or higher only.');
-}
-
 Class SimpleTags {
-	var $version = '1.2.2';
+	var $version = '1.2.3';
 
 	var $info;
 	var $options;
@@ -160,7 +154,7 @@ Class SimpleTags {
 			add_filter('posts_where', array(&$this, 'prepareQuery'));
 		}
 
-		// Hide embed tags in posts
+		// Remove embedded tags in posts display
 		if ( $this->options['use_embed_tags'] == '1' ) {
 			add_filter('the_content', array(&$this, 'filterEmbedTags'), 95);
 		}
@@ -177,7 +171,7 @@ Class SimpleTags {
 
 		// Embedded tag cloud
 		if ( $this->options['allow_embed_tcloud'] != '1' ) {
-			add_filter('the_content', array(&$this, 'embeddedTagCloud'), 99);
+			add_filter('the_content', array(&$this, 'inlineTagCloud'), 99);
 		}
 
 		// Add keywords to header
@@ -218,6 +212,9 @@ Class SimpleTags {
 	}
 
 	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {
+		// Add first conteneur
+		$content = '<temp_st>'.$content.'</temp_st>';
+		
 		// Put all anchor text into nonsense <##..##> tags:
 		$content = preg_replace('/(<a([^>]+)>)(.*?)(<\/a>)/is', "$1<##$3##>$4", $content);
 
@@ -226,7 +223,11 @@ Class SimpleTags {
 
 		// Get rid of <##..##>
 		$content = str_replace('<##', '', $content);
-		$content = str_replace('##>', '', $content);
+		$content = str_replace('##>', '', $content);		
+
+		// Remove conteneur
+		$content = str_replace('<temp_st>', '', $content);
+		$content = str_replace('</temp_st>', '', $content);
 
 		return $content;
 	}
@@ -237,7 +238,7 @@ Class SimpleTags {
 	 * @param string $content
 	 * @return string
 	 */
-	function embeddedTagCloud( $content = '' ) {
+	function inlineTagCloud( $content = '' ) {
 		if ( strpos($content, '<!--st_tag_cloud-->') ) {
 			$content = str_replace('<!--st_tag_cloud-->', $this->extendedTagCloud(), $content);
 		}
@@ -349,8 +350,7 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function inlineRelatedPosts( $content = '' ) {
-		$marker = false;
-		
+		$marker = false;		
 		if ( is_feed() ) {
 			if ( $this->options['rp_feed'] == '1' ) {
 				$marker = true;
@@ -384,8 +384,7 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function inlinePostTags( $content = '' ) {
-		$marker = false;
-		
+		$marker = false;		
 		if ( is_feed() ) {
 			if ( $this->options['tt_feed'] == '1' ) {
 				$marker = true;
@@ -453,14 +452,15 @@ Class SimpleTags {
 		extract($args);
 
 		// Get current post data
-		$post_id = (int) $post_id;
-		if ( $post_id == 0 ) {
+		if ( (int) $post_id != 0 ) {
+			$object_id = (int) $post_id;
+		} else {
 			global $post;
-			$post_id = (int) $post->ID;
+			$object_id = (int) $post->ID;
 		}
 
 		// Generate key cache
-		$key = md5(maybe_serialize($user_args.'-'.$post_id));
+		$key = md5(maybe_serialize($user_args.'-'.$object_id));
 
 		// Get cache if exist
 		$results = false;
@@ -473,9 +473,9 @@ Class SimpleTags {
 		// If cache not exist, get datas and set cache
 		if ( $results === false ) {
 			// Get get tags
-			$current_tags = get_the_tags($post_id);
+			$current_tags = get_the_tags( (int) $object_id );
 
-			if ( $current_tags == false || $post_id == 0 ) {
+			if ( $current_tags === false ) {
 				return $this->outputRelatedPosts( $format, $title, $nopoststext );
 			}
 
@@ -483,53 +483,53 @@ Class SimpleTags {
 			$number = (int) $number;
 			if ( $number == 0 ) {
 				$number = 5;
-			} elseif( $number > 30 ) {
-				$number = 30;
+			} elseif( $number > 50 ) {
+				$number = 50;
 			}
 			$limit_sql = 'LIMIT 0, '.$number;
 			unset($number);
 
-			// Order tags before output
-			// count-asc/count-desc/date-asc/date-desc/name-asc/name-desc/random
+			// Order tags before output (count-asc/count-desc/date-asc/date-desc/name-asc/name-desc/random)
+			$order_by = '';
 			$order = strtolower($order);
 			switch ( $order ) {
 				case 'count-asc':
-					$orderby = 'counter ASC';
+					$order_by = 'counter ASC, p.post_title DESC';
 					break;
 				case 'random':
-					$orderby = 'RAND()';
+					$order_by = 'RAND()';
 					break;
 				case 'date-asc':
-					$orderby = 'posts.post_date ASC';
+					$order_by = 'p.post_date ASC';
 					break;
 				case 'date-desc':
-					$orderby = 'posts.post_date DESC';
+					$order_by = 'p.post_date DESC';
 					break;
 				case 'name-asc':
-					$orderby = 'posts.post_title ASC';
+					$order_by = 'p.post_title ASC';
 					break;
 				case 'name-desc':
-					$orderby = 'posts.post_title DESC';
+					$order_by = 'p.post_title DESC';
 					break;
 				default: // count-desc
-					$orderby = 'counter DESC';
+					$order_by = 'counter DESC, p.post_title DESC';
 					break;
 			}
 
 			// Limit days - 86400 seconds = 1 day
 			$limit_days = (int) $limit_days;
-			$limitdays_sql = '';
+			$limit_days_sql = '';
 			if ( $limit_days != 0 ) {
-				$limitdays_sql = 'AND posts.post_date > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
+				$limit_days_sql = 'AND p.post_date > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
 			}
 			unset($limit_days);
 
 			// Include_page
 			$include_page = strtolower($include_page);
 			if ( $include_page == 'true' ) {
-				$restrict_sql = "AND posts.post_type IN ('page', 'post')";
+				$restrict_sql = "AND p.post_type IN ('page', 'post')";
 			} else {
-				$restrict_sql = "AND posts.post_type = 'post'";
+				$restrict_sql = "AND p.post_type = 'post'";
 			}
 			unset($include_page);
 
@@ -537,7 +537,7 @@ Class SimpleTags {
 			$exclude_posts_sql = '';
 			if ( $exclude_posts != '' ) {
 				$exclude_posts = explode(',', $exclude_posts);
-				$exclude_posts_sql = "AND posts.ID NOT IN (";
+				$exclude_posts_sql = "AND p.ID NOT IN (";
 				foreach ( (array) $exclude_posts as $value ) {
 					$value = (int) $value;
 					if( $value != 0 ) {
@@ -546,7 +546,7 @@ Class SimpleTags {
 				}
 				$exclude_posts_sql .= '"'.$post_id.'")';
 			} else {
-				$exclude_posts_sql = "AND posts.ID != {$post_id}";
+				$exclude_posts_sql = "AND p.ID <> {$object_id}";
 			}
 			unset($exclude_posts);
 
@@ -561,66 +561,72 @@ Class SimpleTags {
 			unset($exclude_tags);
 
 			// SQL Tags list
-			$taglist = '';
+			$tag_list = '';
 			foreach ( (array) $current_tags as $tag ) {
 				if ( !in_array($tag->name, $tags_to_exclude) ) {
-					$taglist .= '"'.(int) $tag->term_id.'", ';
+					$tag_list .= '"'.(int) $tag->term_id.'", ';
 				}
 			}
-
+			
 			// If empty return no posts text
-			if ( empty($taglist) ) {
+			if ( empty($tag_list) ) {
 				return $this->outputRelatedPosts( $format, $title, $nopoststext );
 			}
-			$taglist = substr($taglist, 0, strlen($taglist) - 2); // Remove latest ", "
+			
+			// Remove latest ", "
+			$tag_list = substr($tag_list, 0, strlen($tag_list) - 2);
 
-			// Group Concat only for MySQL > 4.1
-			$group_concat_sql = '';
-			if ( version_compare(mysql_get_server_info(), '4.1.0', '>=') ) {
-				$group_concat_sql = ', GROUP_CONCAT(term_taxonomy.term_id) as terms_id';
+			// If empty use default xformat !
+			if ( empty($xformat) ) {
+				$xformat = $defaults['xformat'];
+			}
+
+			// Group Concat only for MySQL > 4.1 and check if post_relatedtags is used by xformat...
+			$select_gp_concat = '';
+			if ( version_compare(mysql_get_server_info(), '4.1.0', '>=') && strpos( $xformat, '%post_relatedtags%' ) ) {
+				$select_gp_concat = ', GROUP_CONCAT(tt.term_id) as terms_id';
+			} else {
+				$xformat = str_replace('%post_relatedtags%', '', $xformat); // Group Concat only for MySQL > 4.1, remove related tags
+			}
+			
+			// Check if post_excerpt is used by xformat...
+			$select_excerpt = '';
+			if ( strpos( $xformat, '%post_excerpt%' ) ) {
+				$select_excerpt = ', p.post_content, p.post_excerpt, p.post_password';
 			}
 
 			// Posts: title, comments_count, date, permalink, post_id, counter
 			global $wpdb;
 			$results = $wpdb->get_results("
-				SELECT DISTINCT posts.post_title, posts.post_content, posts.post_excerpt, posts.post_password, posts.comment_count, posts.post_date, posts.ID, COUNT(term_relationships.object_id) as counter {$group_concat_sql}
-				FROM {$wpdb->posts} AS posts
-				INNER JOIN {$wpdb->term_relationships} AS term_relationships ON (posts.ID = term_relationships.object_id)
-				INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id)
-				WHERE term_taxonomy.taxonomy = 'post_tag'
-				AND (term_taxonomy.term_id IN ({$taglist}))
+				SELECT DISTINCT p.post_title, p.comment_count, p.post_date, p.ID, COUNT(tr.object_id) as counter {$select_excerpt} {$select_gp_concat}
+				FROM {$wpdb->posts} AS p
+				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
+				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
+				WHERE tt.taxonomy = 'post_tag'
+				AND (tt.term_id IN ({$tag_list}))
 				{$exclude_posts_sql}
-				AND posts.post_status = 'publish'
-				AND posts.post_date < '".current_time('mysql')."'
-				{$limitdays_sql}
+				AND p.post_status = 'publish'
+				AND p.post_date < '".current_time('mysql')."'
+				{$limit_days_sql}
 				{$restrict_sql}
-				GROUP BY term_relationships.object_id
-				ORDER BY {$orderby}
+				GROUP BY tr.object_id
+				ORDER BY {$order_by}
 				{$limit_sql}");
-
+			
 			$cache[$key] = $results;
 			wp_cache_set('related_posts', $cache, 'simpletags');
 		}
-
-		if ( !$results ) {
+		
+		if ( $results === false || empty($results) ) {
 			return $this->outputRelatedPosts( $format, $title, $nopoststext );
-		}
-
-		if ( empty($xformat) ) {
-			$xformat = $defaults['xformat'];
 		}
 
 		if ( empty($dateformat) ) {
 			$dateformat = $this->dateformat;
 		}
 
-		// Group Concat only for MySQL > 4.1, remove related tags
-		if ( empty($group_concat_sql) ) {
-			$xformat = str_replace('%post_relatedtags%', '', $xformat);
-		}
-
-		foreach ( (array) $results as $result ) {
-			// Replace placeholders
+		// Replace placeholders
+		foreach ( (array) $results as $result ) {			
 			$element_loop = $xformat;
 
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);	
@@ -750,9 +756,13 @@ Class SimpleTags {
 	 */
 	function extendedTagCloud( $args = '' ) {
 		$defaults = array(
+			'size' => 'true',
 			'smallest' => 8,
 			'largest' => 22,
 			'unit' => 'pt',
+			'color' => 'true',
+			'maxcolor' => '#000000',
+			'mincolor' => '#CCCCCC',
 			'number' => 45,
 			'format' => 'flat',
 			'cloud_selection' => 'count-desc',
@@ -760,11 +770,9 @@ Class SimpleTags {
 			'exclude' => '',
 			'include' => '',
 			'limit_days' => 0,
+			'min_usage' => 0,
 			'notagstext' => __('No tags.', 'simpletags'),
-			'xformat' => __('<a href="%tag_link%" class="tag-link-%tag_id%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
-			'color' => 'true',
-			'maxcolor' => '#000000',
-			'mincolor' => '#CCCCCC',
+			'xformat' => __('<a href="%tag_link%" class="tag-link-%tag_id% t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
 			'category' => 0
 		);
@@ -809,9 +817,9 @@ Class SimpleTags {
 			$mincolor = $mincolor . substr($mincolor, 1, strlen($mincolor));
 		}
 
-		// Largest must be superior to smallest !
-		if ( $smallest == $largest ) {
-			$largest = $smallest + 1;
+		// Check as smallest inferior or egal to largest
+		if ( $smallest > $largest ) {
+			$smallest = $largest;
 		}
 
 		// Scaling - Hard value for the moment
@@ -838,6 +846,11 @@ Class SimpleTags {
 		// Remove color marquer if color = false
 		if ( $color == 'false' ) {
 			$xformat = str_replace('%tag_color%', '', $xformat);
+		}
+
+		// Remove size marquer if size = false
+		if ( $size == 'false' ) {
+			$xformat = str_replace('%tag_size%', '', $xformat);
 		}
 
 		// Order tags before output
@@ -1023,6 +1036,7 @@ Class SimpleTags {
 			$tags = array_slice( $tags, 0, $number );
 		}
 
+		// If empty use default xformat !
 		if ( empty($xformat) ) {
 			$xformat = $defaults['xformat'];
 		}
@@ -1170,9 +1184,10 @@ Class SimpleTags {
 
 	/**
 	 * Extended get_terms function support
-	 * 	- Limit category
+	 *  - Limit category
 	 *  - Limit days
 	 *  - Selection restrict
+	 *  - Min usage
 	 *
 	 * @param string|array $taxonomies
 	 * @param string $args
@@ -1210,7 +1225,8 @@ Class SimpleTags {
 			'name__like' => '',
 			'pad_counts' => false,
 			'limit_days' => 0,
-			'category' => 0
+			'category' => 0,
+			'min_usage' => 0
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1290,6 +1306,13 @@ Class SimpleTags {
 			default: // count-desc
 				$order_by = 'tt.count DESC';
 				break;
+		}
+		
+		// Min usage
+		$restict_usage = '';
+		$min_usage = (int) $min_usage;
+		if ( $min_usage != 0 ) {
+			$restict_usage = ' AND tt.count >= '. $min_usage;
 		}
 
 		$where = '';
@@ -1384,6 +1407,7 @@ Class SimpleTags {
 			{$limitdays_sql}
 			{$category_sql}
 			{$where}
+			{$restict_usage}
 			ORDER BY {$order_by}
 			{$number_sql}";
 
@@ -1436,6 +1460,14 @@ Class SimpleTags {
 	}
 }
 
+// Check version.
+global $wp_version;
+if ( version_compare($wp_version, '2.3', '<') ) {
+	echo 'Plugin compatible with WordPress 2.3 or higher only.';
+	return false;
+}
+
+// Init ST
 global $simple_tags;
 $simple_tags = new SimpleTags();
 

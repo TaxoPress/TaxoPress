@@ -675,7 +675,6 @@ Class SimpleTagsAdmin {
 					<?php if ( $this->options['use_tag_pages'] == '1' ) : ?>
 					<option <?php if ( $type == 'page' ) { echo 'selected="selected"'; } ?> value='page'><?php _e('Page', 'simpletags'); ?></option>
 					<?php endif; ?>
-
 				</select>
 			</fieldset>
 
