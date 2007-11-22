@@ -73,11 +73,12 @@ Then: Manage - Import - Embedded Tags
 	* Add a param to desactive font-size during tags cloud generation
 	* Add a param "min_usage" to display a tag in tags cloud
 	* Smallest size and largest size can be the same...
+	* Update translation
 * Version 1.2.2
 	* Add more options for inline related posts / tags
 	* Fix empty title bug
 	* Add maximum param for the function st_the_tags()
-	
+	* Update translation
 * Version 1.2.1
 	* Fix limit for tag cloud
 * Version 1.2
