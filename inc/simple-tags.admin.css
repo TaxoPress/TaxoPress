@@ -1,0 +1,43 @@
+ /* Use class for showing/hiding tab content, so that visibility can be better controlled in different media types... */
+@media projection, screen {.tabs-hide {display:none;}}
+/* Hide useless elements in print layouts... */
+@media print {.tabs-nav {display:none;}}
+
+.tags_admin{text-align:center;font-size:0.9em;}
+.stpexplan{font-size:.85em;}
+.stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
+.st_submenu{background:#0d324f;border-bottom:none;margin:0 0 10px;padding:3px 2em 0 3em;}
+.st_submenu .current{background:#f9fcfe;border-top:1px solid #045290;border-right:2px solid #045290;color:#000;}
+.st_submenu a{border:none;color:#fff;font-size:12px;padding:.3em .4em .4em;}
+.st_submenu a:hover{background:#ddeaf4;color:#393939;padding:.3em .4em .4em;}
+.st_submenu li{height:25px;display:inline;line-height:200%;list-style:none;text-align:center;white-space:nowrap;}
+.tabs-hide{display:none;}
+.tabs-selected{font-weight:700;background:#DDEAF4 none repeat scroll 0;color:#393939;display:block;padding:0.3em 0.4em 0.4em;}
+.tabs-selected a{color:#393939;}
+fieldset#taglist ul{list-style:none;margin:0;padding:0;}
+fieldset#taglist ul li{font-size:85%;margin:0;padding:0;}
+fieldset#taglist ul li strong{font-weight:700;width:50px;}
+fieldset#taglist ul li span{cursor:pointer;}
+td.list_tags{vertical-align:top;border-right:1px dotted #ccc;width:220px;}
+.pagination{text-align:center;}
+.pagination a{margin:1px 3px;}
+.pagination a.current_page{font-weight:700;}
+#post .submit input{width:300px;}
+#post input,#auto_list{width:100%;margin:3px 0;padding:3px 5px;}
+#suggesttagsdiv span{line-height:2;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:5px 3px;padding:1px 2px;}
+#suggesttagsdiv span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
+#suggesttagsdiv div.clearer{clear:both;line-height:1px;font-size:1px;height:5px;}
+#advancedstuff_tag fieldset{margin-bottom:1em;}
+#advancedstuff_tag h3{font-weight:400;font-size:13px;padding:3px;}
+#advancedstuff_tag div{margin-top:.5em;}
+#advancedstuff_tag h3.dbx-handle{margin-left:7px;margin-bottom:-7px;height:19px;font-size:12px;background:#2685af url(images/box-head-right.gif) no-repeat top right;padding:6px 1em 0 3px;}
+#advancedstuff_tag div.dbx-h-andle-wrapper{background:#fff url(images/box-head-left.gif) no-repeat top left;margin:0 0 0 -7px;}
+#advancedstuff_tag div.dbx-content{margin-left:8px;background:url(images/box-bg-right.gif) repeat-y right;padding:10px 10px 15px 0;}
+#advancedstuff_tag div.dbx-c-ontent-wrapper{margin-left:-7px;margin-right:0;background:url(images/box-bg-left.gif) repeat-y left;}
+#advancedstuff_tag fieldset.dbx-box{padding-bottom:9px;margin-left:6px;background:url(images/box-butt-right.gif) no-repeat bottom right;}
+#advancedstuff_tag div.dbx-b-ox-wrapper{background:url(images/box-butt-left.gif) no-repeat bottom left;}
+#advancedstuff_tag .dbx-box-closed div.dbx-c-ontent-wrapper{padding-bottom:2px;background:url(images/box-butt-left.gif) no-repeat bottom left;}
+#advancedstuff_tag .dbx-box{background:url(images/box-butt-right.gif) no-repeat bottom right;}
+#advancedstuff_tag a.dbx-toggle,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -3px;}
+#advancedstuff_tag a.dbx-toggle-open,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -28px;}
+.stpexplan ul li,#suggesttagsdiv p{margin:0;padding:0;}

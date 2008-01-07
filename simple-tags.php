@@ -120,9 +120,9 @@ Class SimpleTags {
 		// Determine installation path & url
 		$path = basename(str_replace('\\','/',dirname(__FILE__)));
 		
-		$info['siteurl'] = get_option('siteurl');
+		$info['site_url'] = get_option('site_url');
 		if ( strpos($path, 'mu-plugins') ) {
-			$info['install_url'] = $info['siteurl'] . '/wp-content/mu-plugins';
+			$info['install_url'] = $info['site_url'] . '/wp-content/mu-plugins';
 			$info['install_dir'] = ABSPATH . 'wp-content/mu-plugins';
 			
 			if ( $path != 'mu-plugins' ) {
@@ -130,7 +130,7 @@ Class SimpleTags {
 				$info['install_dir'] .= '/' . $path;
 			}
 		} else {
-			$info['install_url'] = $info['siteurl'] . '/wp-content/plugins';
+			$info['install_url'] = $info['site_url'] . '/wp-content/plugins';
 			$info['install_dir'] = ABSPATH . 'wp-content/plugins';
 			
 			if ( $path != 'plugins' ) {
@@ -141,7 +141,7 @@ Class SimpleTags {
 
 		// Set informations
 		$this->info = array(
-			'siteurl' => $info['siteurl'],
+			'site_url' => $info['site_url'],
 			'install_url' => $info['install_url'],
 			'install_dir' => $info['install_dir']
 		);
@@ -227,6 +227,9 @@ Class SimpleTags {
 	}
 
 	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {
+		// Tmp Todo
+		return $content;
+	
 		// Add first conteneur
 		$content = '<temp_st>'.$content.'</temp_st>';
 		
@@ -1334,25 +1337,30 @@ Class SimpleTags {
 	 * @param string $args
 	 * @return array
 	 */
-	function getTags( $args = '' ) {
+	function getTags( $args = '', $skip_cache = false ) {
 		$key = md5(serialize($args));
 		
-		// Get cache if exist
-		if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
-			if ( isset( $cache[$key] ) ) {
-				return apply_filters('get_tags', $cache[$key], $args);
+		if ( $skip_cache == true ) {
+			$tags = $this->getTerms('post_tag', $args);
+		}
+		else {
+			// Get cache if exist
+			if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
+				if ( isset( $cache[$key] ) ) {
+					return apply_filters('get_tags', $cache[$key], $args);
+				}
 			}
+
+			// Get tags
+			$tags = $this->getTerms('post_tag', $args);
+
+			if ( empty($tags) ) {
+				return array();
+			}
+
+			$cache[$key] = $tags;
+			wp_cache_set( 'st_get_tags', $cache, 'simpletags' );
 		}
-
-		// Get tags
-		$tags = $this->getTerms('post_tag', $args);
-
-		if ( empty($tags) ) {
-			return array();
-		}
-
-		$cache[$key] = $tags;
-		wp_cache_set( 'st_get_tags', $cache, 'simpletags' );
 
 		$tags = apply_filters('get_tags', $tags, $args);
 		return $tags;
