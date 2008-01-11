@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-07 14:38+0100\n"
+"PO-Revision-Date: 2008-01-11 17:16+0100\n"
 "Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
 "Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
 "MIME-Version: 1.0\n"
@@ -335,7 +335,7 @@ msgstr "Autoriser l'insertion de nuage de tags dans le contenu des articles/page
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:258
 msgid "Enabling this will allow Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud."
-msgstr "L'activation de cette option permet à WordPress de regarder dans le contenu des articles à la recherche du marqueur <code><!--st_tag_cloud--></code>. Si il existe, il sera automatiquement remplacé par un nuage de tags."
+msgstr "L'activation de cette option permet à WordPress de regarder dans le contenu des articles à la recherche du marqueur <code><!--st_tag_cloud--></code>. S'il existe, il sera automatiquement remplacé par un nuage de tags."
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:259

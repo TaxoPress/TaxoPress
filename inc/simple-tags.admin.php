@@ -246,12 +246,12 @@ Class SimpleTagsAdmin {
 					?>
 					<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="<?php echo $this->admin_base_url.'simpletags_auto'; ?>&amp;action=auto_tag&amp;n=<?php echo ($n + 20) ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
 					<script type="text/javascript">
-						<!--
+						// <![CDATA[
 						function nextPage() {
 							location.href = '<?php echo $this->admin_base_url.'simpletags_auto'; ?>&action=auto_tag&n=<?php echo ($n + 20) ?>';
 						}
 						setTimeout( 'nextPage', 250 );
-						//-->
+						 // ]]>
 					</script>
 					<?php
 				} else {
@@ -275,22 +275,13 @@ Class SimpleTagsAdmin {
 				array('inc_page_tag_search', __('Include page in tag search:', 'simpletags'), 'checkbox', '1',
 				__('This feature need that option "Add page in tags management" is enabled.', 'simpletags')),
 				array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
-				__('Enabling this will allow Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
+				__('Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
 				array('auto_link_tags', __('Active auto link tags into post content:', 'simpletags'), 'checkbox', '1',
 				__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),
 			),
 			__('Administration', 'simpletags') => array(
 				array('use_tag_pages', __('Add page in tags management:', 'simpletags'), 'checkbox', '1',
-					__('Add a tag input (and tag posts features) in page edition', 'simpletags')),
-				array('admin_max_suggest', __('Maximum number of suggested tags:', 'simpletags'), 'text', 10,
-					__('The maximum number of tags displayed under <em>Write</em>. Zero (0) means no limit and shows all tags.', 'simpletags')),
-				array('admin_tag_suggested', __('Display suggested tags only:', 'simpletags'), 'checkbox', '1',
-					__('Displays suggested tags only instead of all tags. Tags will be suggested if they are part of the post.', 'simpletags')),
-				array('admin_tag_sort', __('Tag cloud sort order:', 'simpletags'), 'dropdown', 'alpha/popular',
-					'<ul>
-						<li>'.__('<code>Alpha</code> &ndash; alphabetic order.', 'simpletags').'</li>
-						<li>'.__('<code>Popular</code> &ndash; most popular tags first.', 'simpletags').'</li>
-					</ul>')
+					__('Add a tag input (and tag posts features) in page edition', 'simpletags'))
 			),
 			__('Meta Keyword', 'simpletags') => array(
 				array('meta_autoheader', __('Automatically include in header:', 'simpletags'), 'checkbox', '1',
@@ -643,7 +634,7 @@ Class SimpleTagsAdmin {
 				</tr>
 			</table>
 	  		<script type="text/javascript">
-	  		<!-- 
+	  		// <![CDATA[
 	  			// Register onclick event
 	  			function registerClick() {
 		  			jQuery('#taglist ul li span').bind("click", function(){
@@ -681,7 +672,7 @@ Class SimpleTagsAdmin {
 						
 					return true;
 				}
-			-->
+			// ]]> 
 			</script>
 			<?php $this->printAdminFooter(); ?>
 		</div>
@@ -933,12 +924,12 @@ Class SimpleTagsAdmin {
 			<link rel="stylesheet" type="text/css" href="<?php echo $this->info['install_url'] ?>/inc/bcomplete/bcomplete-rtl.css?ver=<?php echo $this->version; ?>" />
 		<?php endif; ?>
 		<script type="text/javascript">
-		<!--
+		// <![CDATA[
 			jQuery(document).ready(function() {			
 				var tags_input = new BComplete('<?php echo ( empty($name_id) ) ? 'tags-input' : $name_id; ?>');
 				tags_input.setData(collection);
 			});
-		-->
+		// ]]>
 		</script>
 		<?php
 	}
@@ -1323,42 +1314,53 @@ Class SimpleTagsAdmin {
 			</div>
 		</div>
 	   	<script type="text/javascript">
-	    <!--
+	    // <![CDATA[ 
+	    	function getContentFromEditor() {
+	    		var data = '';
+				if ( typeof tinyMCE != "undefined" && tinyMCE.configs.length > 0 ) { // Tiny MCE
+					data = tinyMCE.getContent().stripTags();				
+				} else if ( typeof FCKeditorAPI != "undefined" ) { // FCK Editor
+					var oEditor = FCKeditorAPI.GetInstance('content') ;
+					data = oEditor.GetHTML().stripTags();
+				} else if ( typeof WYM_INSTANCES != "undefined" ) { // Simple WYMeditor 
+					data = WYM_INSTANCES[0].xhtml().stripTags();					
+				} else { // No editor, just quick tags
+					data = jQuery("#content").val().stripTags();
+				}
+				return data;
+	    	}
+	    
 	    	jQuery(document).ready(function() {
-	    		function loadAndRegisterData( actual ) {
-					jQuery("#advancedstuff_tag .dbx-content").append(actual);
+	    		function loadAndRegisterData() {
 					jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });	
 					jQuery('#st_ajax_loading').hide();    		
 	    		}
 	    		
 				jQuery("a.yahoo_api").click(function() {
 					jQuery('#st_ajax_loading').show();
-					var actual = jQuery("#advancedstuff_tag .dbx-content").html();	
-					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_yahoo' , {pcontent: jQuery("#content").text().stripTags()}, function(){
-						loadAndRegisterData( data );
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_yahoo', {pcontent:getContentFromEditor()}, function(){
+						loadAndRegisterData();
 					});					
 					return false;
 				});
 				
 				jQuery("a.local_db").click(function() {
 					jQuery('#st_ajax_loading').show();
-					var actual = jQuery("#advancedstuff_tag .dbx-content").html();	
-					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db' , {pcontent: jQuery("#content").text().stripTags()}, function(){
-						loadAndRegisterData( data );
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db', {pcontent:getContentFromEditor()}, function(){
+						loadAndRegisterData();
 					});					
 					return false;
 				});
 				
 				jQuery("a.ttn_api").click(function() {	
-					jQuery('#st_ajax_loading').show();	
-					var actual = jQuery("#advancedstuff_tag .dbx-content").html();				 
-					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_tagthenet' , {pcontent: jQuery("#content").text().stripTags()}, function(){
-						loadAndRegisterData( data );
+					jQuery('#st_ajax_loading').show();			 
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_tagthenet', {pcontent:getContentFromEditor()}, function(){
+						loadAndRegisterData();
 					});
 					return false;
 				});
 			});
-		-->
+		// ]]>
 	    </script>
     <?php
 	}
@@ -1655,12 +1657,15 @@ Class SimpleTagsAdmin {
 		$yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 		$yahoo_api_host = 'search.yahooapis.com'; // Api URL
 		$yahoo_api_path = '/ContentAnalysisService/V1/termExtraction'; // Api URL
+		
+		$p_contnet = stripslashes($_POST['pcontent']);
+		$ptags = stripslashes($_POST['ptags']);
 
 		// Build params
 		$param = 'appid='.$yahoo_id; // Yahoo ID    
-		$param .= '&context='.urlencode($_POST['pcontent']); // Post content
+		$param .= '&context='.urlencode($p_contnet); // Post content
 		if ( !empty($_POST['tags']) ) {
-			$param .= '&query='.urlencode($_POST['tags']); // Existing tags
+			$param .= '&query='.urlencode($ptags); // Existing tags
 		}
 		$param .= '&output=php'; // Get PHP Array !
 		

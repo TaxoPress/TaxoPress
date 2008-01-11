@@ -52,9 +52,6 @@ Class SimpleTags {
 			'use_tag_pages' => '1',
 			'use_tag_links' => '0',
 			'use_tag_links_min' => '2',
-			'admin_max_suggest' => '100',
-			'admin_tag_suggested' => '1',
-			'admin_tag_sort' => 'popular',
 			// Embedded Tags
 			'allow_embed_tcloud' => '0',
 			'use_embed_tags' => '0',
@@ -1695,8 +1692,15 @@ if ( version_compare($wp_version, '2.3', '<') ) {
 global $simple_tags;
 $simple_tags = new SimpleTags();
 
+// Old method for is_admin function (fix for WP 2.3.2 and sup !)
+if ( !function_exists('is_admin_old') ) {
+	function is_admin_old() {
+		return (stripos($_SERVER['REQUEST_URI'], 'wp-admin/') !== false);
+	}
+}
+
 // Admin and XML-RPC
-if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
+if ( is_admin() || is_admin_old() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
 	require(dirname(__FILE__).'/inc/simple-tags.admin.php');
 	$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version );
 }
