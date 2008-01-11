@@ -1,9 +1,3 @@
-if(document.all && !document.getElementById) {
-	document.getElementById = function(id) {
-		return document.all[id];
-	}
-}
-
 function addTag(tag) {
 	var tag_entry = document.getElementById("tags-input");
 	if ( tag_entry.value.length > 0 && !tag_entry.value.match(/,\s*$/) ) {
@@ -18,7 +12,6 @@ function addTag(tag) {
 Event.observe(window, 'load', function() {
 	Event.observe('post', 'submit', trimTagsBeforeSend);
 });
-
 function trimTagsBeforeSend() {
 	var tag_entry = document.getElementById("tags-input");
 	var taille = tag_entry.value.length;
@@ -29,15 +22,5 @@ function trimTagsBeforeSend() {
 
 	if ( tag_entry.value.substr(taille - 1, 1) == ',' ) {
 		tag_entry.value = tag_entry.value.substr( 0, taille - 1);
-	}
-}
-
-function ST_WindowOnload( f ) {
-	var prev = window.onload;
-	window.onload = function(){
-		if( prev ) {
-			prev();
-		}
-		f();
 	}
 }

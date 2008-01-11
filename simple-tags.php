@@ -120,9 +120,9 @@ Class SimpleTags {
 		// Determine installation path & url
 		$path = basename(str_replace('\\','/',dirname(__FILE__)));
 		
-		$info['site_url'] = get_option('site_url');
+		$info['siteurl'] = get_option('siteurl');
 		if ( strpos($path, 'mu-plugins') ) {
-			$info['install_url'] = $info['site_url'] . '/wp-content/mu-plugins';
+			$info['install_url'] = $info['siteurl'] . '/wp-content/mu-plugins';
 			$info['install_dir'] = ABSPATH . 'wp-content/mu-plugins';
 			
 			if ( $path != 'mu-plugins' ) {
@@ -130,7 +130,7 @@ Class SimpleTags {
 				$info['install_dir'] .= '/' . $path;
 			}
 		} else {
-			$info['install_url'] = $info['site_url'] . '/wp-content/plugins';
+			$info['install_url'] = $info['siteurl'] . '/wp-content/plugins';
 			$info['install_dir'] = ABSPATH . 'wp-content/plugins';
 			
 			if ( $path != 'plugins' ) {
@@ -141,7 +141,7 @@ Class SimpleTags {
 
 		// Set informations
 		$this->info = array(
-			'site_url' => $info['site_url'],
+			'siteurl' => $info['siteurl'],
 			'install_url' => $info['install_url'],
 			'install_dir' => $info['install_dir']
 		);
@@ -187,11 +187,13 @@ Class SimpleTags {
 			add_filter('the_content', array(&$this, 'inlineTagCloud'), 99);
 		}
 
+		// Stock Posts ID (useful for autolink and metakeywords
+		add_filter('the_posts', array(&$this, 'getPostIds'), 90);
+		
 		// Add keywords to header
-		if ( $this->options['meta_autoheader'] == '1' ) {
-			add_filter('the_posts', array(&$this, 'getPostIds'), 90);
+		if ( $this->options['meta_autoheader'] == '1' && !class_exists('All_in_One_SEO_Pack') ) {			
 			add_action('wp_head', array(&$this, 'displayMetaKeywords'), 99);
-		}
+		}	
 
 		// Auto link tags
 		if ( $this->options['auto_link_tags'] == '1' ) {
@@ -204,7 +206,7 @@ Class SimpleTags {
 		$this->getTagsFromCurrentPosts();
 
 		$this->link_tags = array();
-		foreach ( (array) $this->tags_currentposts as $tag ) {
+		foreach ( (array) $this->tags_currentposts as $tag ) {			
 			if  ( $tag->count >= (int) $this->options['use_tag_links_min'] ) {
 	 			$this->link_tags[$tag->name] = get_tag_link( $tag->term_id );
 			}
@@ -215,29 +217,29 @@ Class SimpleTags {
 		if ( $this->link_tags == 'null' ) {
 			$this->prepareAutoLinkTags();
 		}
-
+		
 		// Rel or not ?
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag" ' : '';
 
 		foreach ( (array) $this->link_tags as $tag_name => $tag_link ) {
-			$content = $this->replaceTextByTagLink( $content, $tag_name, '<a href="'.$tag_link.'" class="internal_tag" '.$rel.'title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $tag_name ) ).'">', '</a>' );
+			$content = $this->replaceTextByTagLink( $content, $tag_name, '<a href="'.$tag_link.'" class="st_tag internal_tag" '.$rel.'title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $tag_name ) ).'">', '</a>' );
 		}
 		return $content;
 	}
 
 	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {
-		// Tmp Todo
-		return $content;
-	
 		// Add first conteneur
 		$content = '<temp_st>'.$content.'</temp_st>';
 		
-		// Put all anchor text into nonsense <##..##> tags:
-		$content = preg_replace('/(<a([^>]+)>)(.*?)(<\/a>)/is', "$1<##$3##>$4", $content);
+		// Put all anchor text into nonsense <##..##> tags
+		$content = preg_replace("|(<a([^>]+)>)(.*?)(<\/a>)|is", "$1<##$3##>$4", $content);
+		
+		// Escape |
+		$word = str_replace('|', '\|', $word);
 
-		// Replace keywords not between <..> tags. <##..##> should be skipped too:
-		$content = preg_replace('/(>)([^<]*)([^#a-z]+)('.$word.')([^#a-z]+)/is', "\$1\$2\$3".$pre."\$4".$after."\$5", $content);
+		// Replace keywords not between <..> tags. <##..##> should be skipped too
+		$content = preg_replace("|(>)([^<]*)([^#a-z]*)($word)([^#a-z]*)|i", "\$1\$2\$3$pre\$4$after\$5", $content);
 
 		// Get rid of <##..##>
 		$content = str_replace('<##', '', $content);
@@ -297,14 +299,14 @@ Class SimpleTags {
 			// If cache not exist, get datas and set cache
 			global $wpdb;
 			$results = $wpdb->get_results("
-				SELECT DISTINCT terms.name AS name, terms.term_id AS term_id
-				FROM {$wpdb->posts} AS posts
-				INNER JOIN {$wpdb->term_relationships} AS term_relationships ON (posts.ID = term_relationships.object_id)
-				INNER JOIN {$wpdb->term_taxonomy} AS term_taxonomy ON (term_relationships.term_taxonomy_id = term_taxonomy.term_taxonomy_id)
-				INNER JOIN {$wpdb->terms} AS terms ON (term_taxonomy.term_id = terms.term_id)
-				WHERE term_taxonomy.taxonomy = 'post_tag'
-				AND ( posts.ID IN ('{$postlist}') )
-				ORDER BY term_taxonomy.count DESC");
+				SELECT DISTINCT t.name AS name, t.term_id AS term_id, tt.count AS count 
+				FROM {$wpdb->posts} AS p
+				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
+				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
+				INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
+				WHERE tt.taxonomy = 'post_tag'
+				AND ( p.ID IN ('{$postlist}') )
+				ORDER BY tt.count DESC");
 
 			$cache[$key] = $results;
 			wp_cache_set('generate_keywords', $cache, 'simpletags');
@@ -323,7 +325,7 @@ Class SimpleTags {
 		// Get tags for current posts
 		if ( empty($this->tags_currentposts) ) {
 			$this->getTagsFromCurrentPosts();
-		}
+		}	
 
 		$results = array();
 		foreach ( (array) $this->tags_currentposts as $tag ) {
@@ -447,6 +449,7 @@ Class SimpleTags {
 			'post_id' => '',
 			'except_wrap' => 55,
 			'limit_days' => 0,
+			'min_shared' => 1,
 			'title' => __('<h4>Related posts</h4>', 'simpletags'),
 			'nopoststext' => __('No related posts.', 'simpletags'),
 			'dateformat' => $this->dateformat,
@@ -601,7 +604,7 @@ Class SimpleTags {
 
 			// Group Concat only for MySQL > 4.1 and check if post_relatedtags is used by xformat...
 			$select_gp_concat = '';
-			if ( version_compare(mysql_get_server_info(), '4.1.0', '>=') && strpos( $xformat, '%post_relatedtags%' ) ) {
+			if ( version_compare(mysql_get_server_info(), '4.1.0', '>=') && ( strpos($xformat,'%post_relatedtags%') || $min_shared > 1 ) ) {
 				$select_gp_concat = ', GROUP_CONCAT(tt.term_id) as terms_id';
 			} else {
 				$xformat = str_replace('%post_relatedtags%', '', $xformat); // Group Concat only for MySQL > 4.1, remove related tags
@@ -616,7 +619,7 @@ Class SimpleTags {
 			// Posts: title, comments_count, date, permalink, post_id, counter
 			global $wpdb;
 			$results = $wpdb->get_results("
-				SELECT DISTINCT p.post_title, p.comment_count, p.post_date, p.ID, COUNT(tr.object_id) as counter {$select_excerpt} {$select_gp_concat}
+				SELECT DISTINCT p.post_title, p.comment_count, p.post_date, p.ID, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
 				FROM {$wpdb->posts} AS p
 				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
@@ -630,7 +633,7 @@ Class SimpleTags {
 				GROUP BY tr.object_id
 				ORDER BY {$order_by}
 				{$limit_sql}");
-			
+
 			$cache[$key] = $results;
 			wp_cache_set('related_posts', $cache, 'simpletags');
 		}
@@ -644,12 +647,16 @@ Class SimpleTags {
 		}
 
 		// Replace placeholders
-		foreach ( (array) $results as $result ) {			
+		foreach ( (array) $results as $result ) {
+			if ( $min_shared > 1 && ( count(explode(',', $result->terms_id)) < $min_shared ) ) {
+				continue;			
+			}
+			
 			$element_loop = $xformat;
 
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);	
 			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);			
-			$element_loop = str_replace('%post_title%', $result->post_title, $element_loop);
+			$element_loop = str_replace('%post_title%', attribute_escape($result->post_title), $element_loop);
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
@@ -922,6 +929,17 @@ Class SimpleTags {
 		} 
 		return $nonefound;		
 	}
+	
+	/**
+	 * Sort an array without accent for naturel order :)
+	 *
+	 * @param string $a
+	 * @param string $b
+	 * @return boolean
+	 */
+	function uksortByName( $a = '', $b = '' ) {
+	    return strnatcasecmp( remove_accents($a), remove_accents($b) );
+	}	
 
 	/**
 	 * Generate extended tag cloud
@@ -1039,10 +1057,10 @@ Class SimpleTags {
 				arsort($counts);
 				break;
 			case 'name-asc':
-				uksort($counts, 'strnatcasecmp');
+				uksort($counts, array( &$this, 'uksortByName'));
 				break;
 			case 'name-desc':
-				uksort($counts, 'strnatcasecmp');
+				uksort($counts, array( &$this, 'uksortByName'));
 				array_reverse($counts);
 				break;
 			default: // random
