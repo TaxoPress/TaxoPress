@@ -203,7 +203,9 @@ Class SimpleTagsAdmin {
 						<label for="use_auto_tags"><?php _e('Active Auto Tags.', 'simpletags'); ?></label></p>
 	
 					<p><label for="auto_list"><?php _e('Keywords list: (separated with a comma)', 'simpletags'); ?></label><br />
-						<input type="text" id="auto_list" name="auto_list" value="<?php echo $tags_list; ?>" /></p>
+						<input type="text" id="auto_list" class="auto_list" name="auto_list" value="<?php echo $tags_list; ?>" /></p>
+						
+					<?php $this->helperJS( 'auto_list', false  ); ?>
 	
 					<p class="submit">
 						<input type="submit" name="update_auto_list" value="<?php _e('Update list &raquo;', 'simpletags'); ?>" />
@@ -909,10 +911,13 @@ Class SimpleTagsAdmin {
 	 * Helper type-ahead (single post)
 	 *
 	 */
-	function helperJS() {
+	function helperJS( $name_id = 'tags-input', $use_fct_js = true ) {
+		if ( $use_fct_js == true ) :
 		?>
 		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/functions.js?ver=<?php echo $this->version; ?>"></script>
 		<?php
+		endif;
+		
 		// Get total
 		$tags = (int) wp_count_terms('post_tag');
 
@@ -930,7 +935,7 @@ Class SimpleTagsAdmin {
 		<script type="text/javascript">
 		<!--
 			jQuery(document).ready(function() {			
-				var tags_input = new BComplete('tags-input');
+				var tags_input = new BComplete('<?php echo ( empty($name_id) ) ? 'tags-input' : $name_id; ?>');
 				tags_input.setData(collection);
 			});
 		-->
@@ -1291,7 +1296,7 @@ Class SimpleTagsAdmin {
 		<style type="text/css">
 			#advancedstuff_tag h3.dbx-handle{margin-left:7px;margin-bottom:-7px;height:19px;font-size:12px;background:#2685af url(images/box-head-right.gif) no-repeat top right;padding:6px 1em 0 3px;}
 			#advancedstuff_tag h3 a { color:#fff; border-bottom:0; font-weight:700; }
-			#advancedstuff_tag div.dbx-h-andle-wrapper{background:#fff url(images/box-head-left.gif) no-repeat top left;margin:0 0 0 -7px;}
+			#advancedstuff_tag div.dbx-h-andle-wrapper{background:#fff url(images/box-head-left.gif) no-repeat top left;margin:0 0 0 -7px;position:relative;}
 			#advancedstuff_tag div.dbx-content{margin-left:8px;background:url(images/box-bg-right.gif) repeat-y right;padding:10px 10px 15px 0;}
 			#advancedstuff_tag div.dbx-c-ontent-wrapper{margin-left:-7px;margin-right:0;background:url(images/box-bg-left.gif) repeat-y left;}
 			#advancedstuff_tag fieldset.dbx-box{padding-bottom:9px;margin-left:6px;background:url(images/box-butt-right.gif) no-repeat bottom right;}
@@ -1306,6 +1311,7 @@ Class SimpleTagsAdmin {
 				<fieldset id="suggesttagsdiv" class="dbx-box">
 				<div class="dbx-h-andle-wrapper">
 					<h3 class="dbx-handle"><?php _e('Suggested tags from :', 'simpletags'); ?> <a class="local_db" href="#advancedstuff_tag"><?php _e('Local tags', 'simpletags'); ?></a> - <a class="yahoo_api" href="#advancedstuff_tag"><?php _e('Yahoo', 'simpletags'); ?></a> - <a class="ttn_api" href="#advancedstuff_tag"><?php _e('Tag The Net', 'simpletags'); ?></a></h3>
+					<img id="st_ajax_loading" src="<?php echo $this->info['install_url']; ?>/inc/images/ajax-loader.gif" alt="Ajax loading" />
 				</div>
 				<div class="dbx-c-ontent-wrapper">
 					<div class="dbx-content">
@@ -1319,32 +1325,35 @@ Class SimpleTagsAdmin {
 	   	<script type="text/javascript">
 	    <!--
 	    	jQuery(document).ready(function() {
-				jQuery("a.yahoo_api").click(function() {		
-					var actual = jQuery("#advancedstuff_tag .dbx-content").html();
-	
+	    		function loadAndRegisterData( actual ) {
+					jQuery("#advancedstuff_tag .dbx-content").append(actual);
+					jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });	
+					jQuery('#st_ajax_loading').hide();    		
+	    		}
+	    		
+				jQuery("a.yahoo_api").click(function() {
+					jQuery('#st_ajax_loading').show();
+					var actual = jQuery("#advancedstuff_tag .dbx-content").html();	
 					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_yahoo' , {pcontent: jQuery("#content").text().stripTags()}, function(){
-						jQuery("#advancedstuff_tag .dbx-content").append(actual);
-						jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });
-					});
-					
+						loadAndRegisterData( data );
+					});					
 					return false;
 				});
-				jQuery("a.local_db").click(function() {		
-					var actual = jQuery("#advancedstuff_tag .dbx-content").html();
-	
+				
+				jQuery("a.local_db").click(function() {
+					jQuery('#st_ajax_loading').show();
+					var actual = jQuery("#advancedstuff_tag .dbx-content").html();	
 					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db' , {pcontent: jQuery("#content").text().stripTags()}, function(){
-						jQuery("#advancedstuff_tag .dbx-content").append(actual);
-						jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });
-					});
-					
+						loadAndRegisterData( data );
+					});					
 					return false;
 				});
-				jQuery("a.ttn_api").click(function() {		
-					var actual = jQuery("#advancedstuff_tag .dbx-content").html();
-				 
+				
+				jQuery("a.ttn_api").click(function() {	
+					jQuery('#st_ajax_loading').show();	
+					var actual = jQuery("#advancedstuff_tag .dbx-content").html();				 
 					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_tagthenet' , {pcontent: jQuery("#content").text().stripTags()}, function(){
-						jQuery("#advancedstuff_tag .dbx-content").append(actual);
-						jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });
+						loadAndRegisterData( data );
 					});
 					return false;
 				});
@@ -1692,7 +1701,7 @@ Class SimpleTagsAdmin {
 		$data = (array) $data['ResultSet']['Result'];
 
 		foreach ( $data as $term ) {
-			echo '<span class="yahoo">'.$term.'</span>';	
+			echo '<span class="yahoo">'.$term.'</span>'."\n";	
 		}
 		exit();
 	}
@@ -1714,41 +1723,63 @@ Class SimpleTagsAdmin {
 		
 		// Build params
 		$param .= 'text='.urlencode($_POST['pcontent']); // Post content
-		$param .= '&view=xml';
+		$param .= '&view=xml&count=50';
+		
 		$data = '';
-		if ( function_exists('curl_init') ) { // Curl exist ?  
-			$curl = curl_init();
-			
-			curl_setopt($curl, CURLOPT_URL, 'http://'.$api_host.$api_path.'?'.$param);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    		curl_setopt($curl, CURLOPT_POST, true);
-			
-			$data = curl_exec($curl);
-			curl_close($curl);			
-		} else { // Fsocket
-			$request = $param;
-			
-			$http_request  = "POST $api_path HTTP/1.0\r\n";
-			$http_request .= "Host: $api_host\r\n";
-			$http_request .= "Content-Type: application/x-www-form-urlencoded; charset=" . get_option('blog_charset') . "\r\n";
-			$http_request .= "Content-Length: " . strlen($request) . "\r\n";
-			$http_request .= "\r\n";
-			$http_request .= $request;
+		$request = $param;
+		
+		$http_request  = "POST $api_path HTTP/1.0\r\n";
+		$http_request .= "Host: $api_host\r\n";
+		$http_request .= "Content-Type: application/x-www-form-urlencoded; charset=" . get_option('blog_charset') . "\r\n";
+		$http_request .= "Content-Length: " . strlen($request) . "\r\n";
+		$http_request .= "\r\n";
+		$http_request .= $request;
 
-			if( false != ( $fs = @fsockopen( $api_host, 80, $errno, $errstr, 3) ) && is_resource($fs) ) {
-				fwrite($fs, $http_request);
-		
-				while ( !feof($fs) )
-					$data .= fgets($fs, 1160); // One TCP-IP packet
-				fclose($fs);
-				$data = explode("\r\n\r\n", $data, 2);
-			}
-			
-			$data = $data[1];
+		if( false != ( $fs = @fsockopen( $api_host, 80, $errno, $errstr, 3) ) && is_resource($fs) ) {
+			fwrite($fs, $http_request);
+	
+			while ( !feof($fs) )
+				$data .= fgets($fs, 1160); // One TCP-IP packet
+			fclose($fs);
+			$data = explode("\r\n\r\n", $data, 2);
 		}
-		$data = trim($data);
-		echo $data;
 		
+		$data = $data[1];
+		
+		// Get all topics
+		preg_match_all("/(.*?)<dim type=\"topic\">(.*?)<\/dim>(.*?)/s", $data, $all_topics );
+		$all_topics = $all_topics[2][0];
+			
+		preg_match_all("/(.*?)<item>(.*?)<\/item>(.*?)/s", $all_topics, $topics );
+		$topics = $topics[2];
+				
+		foreach ( (array) $topics as $topic ) {
+			echo '<span class="ttn_topic">'.$topic.'</span>'."\n";
+		}
+		
+		// Get all locations
+		preg_match_all("/(.*?)<dim type=\"location\">(.*?)<\/dim>(.*?)/s", $data, $all_locations );
+		$all_locations = $all_locations[2][0];	
+		
+		preg_match_all("/(.*?)<item>(.*?)<\/item>(.*?)/s", $all_locations, $locations );
+		$locations = $locations[2];
+		
+		foreach ( (array) $locations as $location ) {
+			echo '<span class="ttn_location">'.$location.'</span>'."\n";
+		}
+		
+		// Get all persons		
+		preg_match_all("/(.*?)<dim type=\"person\">(.*?)<\/dim>(.*?)/s", $data, $all_persons );
+		$all_persons = $all_persons[2][0];	
+		
+		preg_match_all("/(.*?)<item>(.*?)<\/item>(.*?)/s", $all_persons, $persons );
+		$persons = $persons[2];
+		
+		foreach ( (array) $persons as $person ) {
+			echo '<span class="ttn_person">'.$person.'</span>'."\n";
+		}
+		
+		//echo $data;		
 		exit();
 	}
 
@@ -1772,7 +1803,7 @@ Class SimpleTagsAdmin {
 			
 			foreach ( (array) $tags as $tag ) {
 				if ( is_string($tag->name) && !empty($tag->name) && ( stristr($_POST['pcontent'], $tag->name) || stristr($object->post_title, $tag->name) ) ) {
-					echo '<span class="local">'.$tag->name.'</span>';
+					echo '<span class="local">'.$tag->name.'</span>'."\n";
 				}
 				
 			}
@@ -1873,9 +1904,9 @@ Class SimpleTagsAdmin {
 	function printPagination( $action_url ) {
 		if ( $this->max_num_pages > 1 ) {
 			$output = '<div class="pagination">';
-			$output .= __('Page: ', 'simpletags');
+			$output .= '<strong>'. __('Page: ', 'simpletags') .'</strong>';
 			for ( $i = 1; $i <= $this->max_num_pages; $i++ ) {
-				$output .= '<a href="'.$action_url.'&amp;pagination='.$i.'">'.$i.'</a>';
+				$output .= '<a href="'.$action_url.'&amp;pagination='.$i.'">'.$i.'</a>'."\n";
 			}
 			$output = str_replace('pagination='.$this->actual_page.'">', 'pagination='.$this->actual_page.'" class="current_page">', $output);
 			$output .= '</div>';

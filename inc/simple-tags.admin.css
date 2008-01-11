@@ -23,7 +23,7 @@
 .st_wrap .pagination a{margin:1px 3px;}
 .st_wrap .pagination a.current_page{font-weight:700;}
 .st_wrap #post .submit input{width:300px;}
-.st_wrap #post input, .st_wrap #auto_list{width:100%;margin:3px 0;padding:3px 5px;}
+.st_wrap #post input, .st_wrap .auto_list{width:98%;margin:3px 0;padding:3px 5px;}
 .st_wrap .stpexplan ul li, .st_wrap #suggesttagsdiv p{margin:0;padding:0;}
 
 #suggesttagsdiv span{line-height:2;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:5px 3px;padding:1px 2px;}
@@ -32,3 +32,4 @@
 #advancedstuff_tag fieldset{margin-bottom:1em;}
 #advancedstuff_tag h3{font-weight:400;font-size:13px;padding:3px;}
 #advancedstuff_tag div{margin-top:.5em;}
+#advancedstuff_tag img#st_ajax_loading {position:absolute;right:15px;top:6px;width:16px;height:16px;display:none;}
