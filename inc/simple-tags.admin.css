@@ -26,10 +26,23 @@
 .st_wrap #post input, .st_wrap .auto_list{width:98%;margin:3px 0;padding:3px 5px;}
 .st_wrap .stpexplan ul li, .st_wrap #suggesttagsdiv p{margin:0;padding:0;}
 
-#suggesttagsdiv span{line-height:2;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:5px 3px;padding:1px 2px;}
-#suggesttagsdiv span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
-#suggesttagsdiv div.clearer{clear:both;line-height:1px;font-size:1px;height:5px;}
 #advancedstuff_tag fieldset{margin-bottom:1em;}
 #advancedstuff_tag h3{font-weight:400;font-size:13px;padding:3px;}
+#advancedstuff_tag h3 a { color:#fff; border-bottom:0; font-weight:700; }
 #advancedstuff_tag div{margin-top:.5em;}
+#advancedstuff_tag a.dbx-toggle,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -3px;}
+#advancedstuff_tag a.dbx-toggle-open,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -28px;}
 #advancedstuff_tag img#st_ajax_loading {position:absolute;right:15px;top:6px;width:16px;height:16px;display:none;}
+#advancedstuff_tag .dbx-content span{display:block;float:left;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:3px;padding:3px 4px;padding-left:22px;}
+#advancedstuff_tag .dbx-content span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
+#advancedstuff_tag .dbx-content span.ttn_topic{background:#f0f0ee url(images/tag_blue.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_location{background:#f0f0ee url(images/map.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_person{background:#f0f0ee url(images/user.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.yahoo{background:#f0f0ee url(images/yahoo_logo.gif) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.local{background:#f0f0ee url(images/tag_purple.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_topic:hover{background:#b6bdd2 url(images/tag_blue.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_location:hover{background:#b6bdd2 url(images/map.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_person:hover{background:#b6bdd2 url(images/user.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.yahoo:hover{background:#b6bdd2 url(images/yahoo_logo.gif) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.local:hover{background:#b6bdd2 url(images/tag_purple.png) 2px 50% no-repeat;}
+#advancedstuff_tag .dbx-content div.clearer{clear:both;line-height:1px;font-size:1px;height:1px;}

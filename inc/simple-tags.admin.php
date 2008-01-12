@@ -1275,7 +1275,29 @@ Class SimpleTagsAdmin {
 		return strtr( $value, array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_COMPAT)) );
 	}
 
-
+	/**
+	 * Click tags
+	 *
+	 */
+	function helperClickTags() {
+		?>
+	   	<script type="text/javascript">
+	    // <![CDATA[ 
+	    	jQuery(document).ready(function() {
+	    		function loadAndRegisterClickTags() {
+					jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });		
+	    		}				
+				jQuery("a.local_all").click(function() {
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db', {all:'true'}, function(){
+						loadAndRegisterClickTags();
+					});					
+					return false;
+				});
+			});
+		// ]]>
+	    </script>
+		<?php
+	}
 	
 	############## Suggested tags ##############
 	/**
@@ -1286,7 +1308,6 @@ Class SimpleTagsAdmin {
 		?>
 		<style type="text/css">
 			#advancedstuff_tag h3.dbx-handle{margin-left:7px;margin-bottom:-7px;height:19px;font-size:12px;background:#2685af url(images/box-head-right.gif) no-repeat top right;padding:6px 1em 0 3px;}
-			#advancedstuff_tag h3 a { color:#fff; border-bottom:0; font-weight:700; }
 			#advancedstuff_tag div.dbx-h-andle-wrapper{background:#fff url(images/box-head-left.gif) no-repeat top left;margin:0 0 0 -7px;position:relative;}
 			#advancedstuff_tag div.dbx-content{margin-left:8px;background:url(images/box-bg-right.gif) repeat-y right;padding:10px 10px 15px 0;}
 			#advancedstuff_tag div.dbx-c-ontent-wrapper{margin-left:-7px;margin-right:0;background:url(images/box-bg-left.gif) repeat-y left;}
@@ -1294,19 +1315,22 @@ Class SimpleTagsAdmin {
 			#advancedstuff_tag div.dbx-b-ox-wrapper{background:url(images/box-butt-left.gif) no-repeat bottom left;}
 			#advancedstuff_tag .dbx-box-closed div.dbx-c-ontent-wrapper{padding-bottom:2px;background:url(images/box-butt-left.gif) no-repeat bottom left;}
 			#advancedstuff_tag .dbx-box{background:url(images/box-butt-right.gif) no-repeat bottom right;}
-			#advancedstuff_tag a.dbx-toggle,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -3px;}
-			#advancedstuff_tag a.dbx-toggle-open,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -28px;}
 		</style>
 		<div id="advancedstuff_tag" class="dbx-group" >
 			<div class="dbx-b-ox-wrapper">
 				<fieldset id="suggesttagsdiv" class="dbx-box">
 				<div class="dbx-h-andle-wrapper">
-					<h3 class="dbx-handle"><?php _e('Suggested tags from :', 'simpletags'); ?> <a class="local_db" href="#advancedstuff_tag"><?php _e('Local tags', 'simpletags'); ?></a> - <a class="yahoo_api" href="#advancedstuff_tag"><?php _e('Yahoo', 'simpletags'); ?></a> - <a class="ttn_api" href="#advancedstuff_tag"><?php _e('Tag The Net', 'simpletags'); ?></a></h3>
+					<h3 class="dbx-handle">
+						<?php _e('Suggested tags from :', 'simpletags'); ?>&nbsp;&nbsp;
+						<a class="local_db" href="#advancedstuff_tag"><?php _e('Local tags', 'simpletags'); ?></a>&nbsp;&nbsp;-&nbsp;&nbsp;
+						<a class="yahoo_api" href="#advancedstuff_tag"><?php _e('Yahoo', 'simpletags'); ?></a>&nbsp;&nbsp;-&nbsp;&nbsp;
+						<a class="ttn_api" href="#advancedstuff_tag"><?php _e('Tag The Net', 'simpletags'); ?></a>
+					</h3>
 					<img id="st_ajax_loading" src="<?php echo $this->info['install_url']; ?>/inc/images/ajax-loader.gif" alt="Ajax loading" />
 				</div>
 				<div class="dbx-c-ontent-wrapper">
 					<div class="dbx-content">
-						<?php echo $click_tags_str; ?>
+						<?php _e('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags'); ?>
 						<div class="clearer"></div>
 					</div>
 				</div>
@@ -1329,33 +1353,41 @@ Class SimpleTagsAdmin {
 				}
 				return data;
 	    	}
-	    
+	    	   
 	    	jQuery(document).ready(function() {
-	    		function loadAndRegisterData() {
+	    		function loadAndRegisterSuggestedTags() {
 					jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });	
 					jQuery('#st_ajax_loading').hide();    		
 	    		}
 	    		
 				jQuery("a.yahoo_api").click(function() {
 					jQuery('#st_ajax_loading').show();
-					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_yahoo', {pcontent:getContentFromEditor()}, function(){
-						loadAndRegisterData();
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_yahoo', {content:getContentFromEditor(),title:jQuery("#title").val(),tags:jQuery("#tags-input").val()}, function(){
+						loadAndRegisterSuggestedTags();
 					});					
 					return false;
 				});
 				
 				jQuery("a.local_db").click(function() {
 					jQuery('#st_ajax_loading').show();
-					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db', {pcontent:getContentFromEditor()}, function(){
-						loadAndRegisterData();
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db', {content:getContentFromEditor(),title:jQuery("#title").val()}, function(){
+						loadAndRegisterSuggestedTags();
+					});					
+					return false;
+				});
+				
+				jQuery("a.local_all").click(function() {
+					jQuery('#st_ajax_loading').show();
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db', {all:'true'}, function(){
+						loadAndRegisterSuggestedTags();
 					});					
 					return false;
 				});
 				
 				jQuery("a.ttn_api").click(function() {	
 					jQuery('#st_ajax_loading').show();			 
-					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_tagthenet', {pcontent:getContentFromEditor()}, function(){
-						loadAndRegisterData();
+					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_tagthenet', {content:getContentFromEditor(),title:jQuery("#title").val()}, function(){
+						loadAndRegisterSuggestedTags();
 					});
 					return false;
 				});
@@ -1658,14 +1690,15 @@ Class SimpleTagsAdmin {
 		$yahoo_api_host = 'search.yahooapis.com'; // Api URL
 		$yahoo_api_path = '/ContentAnalysisService/V1/termExtraction'; // Api URL
 		
-		$p_contnet = stripslashes($_POST['pcontent']);
-		$ptags = stripslashes($_POST['ptags']);
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);		
+		$tags = stripslashes($_POST['tags']);
 
 		// Build params
 		$param = 'appid='.$yahoo_id; // Yahoo ID    
-		$param .= '&context='.urlencode($p_contnet); // Post content
-		if ( !empty($_POST['tags']) ) {
-			$param .= '&query='.urlencode($ptags); // Existing tags
+		$param .= '&context='.urlencode($content); // Post content
+		if ( !empty($tags) ) {
+			$param .= '&query='.urlencode($tags); // Existing tags
 		}
 		$param .= '&output=php'; // Get PHP Array !
 		
@@ -1708,6 +1741,7 @@ Class SimpleTagsAdmin {
 		foreach ( $data as $term ) {
 			echo '<span class="yahoo">'.$term.'</span>'."\n";	
 		}
+		echo '<div class="clearer"></div>';
 		exit();
 	}
 	
@@ -1722,12 +1756,16 @@ Class SimpleTagsAdmin {
 		$api_host = 'tagthe.net'; // Api URL
 		$api_path = '/api/'; // Api URL
 		
-		if ( empty($_POST['pcontent']) ) {
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);		
+		$tags = stripslashes($_POST['tags']);
+		
+		if ( empty($content) ) {
 			exit();
 		}
 		
 		// Build params
-		$param .= 'text='.urlencode($_POST['pcontent']); // Post content
+		$param .= 'text='.urlencode($content); // Post content
 		$param .= '&view=xml&count=50';
 		
 		$data = '';
@@ -1750,6 +1788,7 @@ Class SimpleTagsAdmin {
 		}
 		
 		$data = $data[1];
+		$terms = array();
 		
 		// Get all topics
 		preg_match_all("/(.*?)<dim type=\"topic\">(.*?)<\/dim>(.*?)/s", $data, $all_topics );
@@ -1759,7 +1798,7 @@ Class SimpleTagsAdmin {
 		$topics = $topics[2];
 				
 		foreach ( (array) $topics as $topic ) {
-			echo '<span class="ttn_topic">'.$topic.'</span>'."\n";
+			$terms[] = '<span class="ttn_topic">'.$topic.'</span>';
 		}
 		
 		// Get all locations
@@ -1770,7 +1809,7 @@ Class SimpleTagsAdmin {
 		$locations = $locations[2];
 		
 		foreach ( (array) $locations as $location ) {
-			echo '<span class="ttn_location">'.$location.'</span>'."\n";
+			$terms[] = '<span class="ttn_location">'.$location.'</span>';
 		}
 		
 		// Get all persons		
@@ -1781,10 +1820,12 @@ Class SimpleTagsAdmin {
 		$persons = $persons[2];
 		
 		foreach ( (array) $persons as $person ) {
-			echo '<span class="ttn_person">'.$person.'</span>'."\n";
+			$terms[] = '<span class="ttn_person">'.$person.'</span>';
 		}
 		
-		//echo $data;		
+		shuffle($terms);
+		echo implode("\n", $terms);
+		echo '<div class="clearer"></div>';
 		exit();
 	}
 
@@ -1798,25 +1839,33 @@ Class SimpleTagsAdmin {
 		// No tags to suggest.
 		if ( $total == 0 ) {
 			return;
-		}	
+		}
 		global $simple_tags;	
 		
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);		
+		$tags = stripslashes($_POST['tags']);
+		$all = ( $_POST['all'] == 'true' ) ? true : false;
+			
 		$counter = 0;
 		while ( ( $counter * 200 ) < $total ) {	
 			// Get tags
 			$tags = $simple_tags->getTags('hide_empty=false&cloud_selection=count-desc&number=LIMIT '. $counter * 200 . ', '. 200, true);
 			
 			foreach ( (array) $tags as $tag ) {
-				if ( is_string($tag->name) && !empty($tag->name) && ( stristr($_POST['pcontent'], $tag->name) || stristr($object->post_title, $tag->name) ) ) {
+				if ( $all == true ) {
+					echo '<span class="local">'.$tag->name.'</span>'."\n";					
+				} elseif ( is_string($tag->name) && !empty($tag->name) && stristr($content, $tag->name) ) {
 					echo '<span class="local">'.$tag->name.'</span>'."\n";
 				}
-				
 			}
 			unset($tags, $tag);
 		
 			// Increment counter
 			$counter++;
 		}
+		echo '<div class="clearer"></div>';
+		exit();
 	}
 
 	/**
