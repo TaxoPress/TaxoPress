@@ -47,7 +47,9 @@ Class SimpleTagsAdmin {
 
 		// 4. Update default options by getting not empty values from options table
 		foreach( (array) $default_options as $default_options_name => $default_options_value ) {
-			$default_options[$default_options_name] = $options_from_table[$default_options_name];
+			if ( !is_null($options_from_table[$default_options_name]) ) {
+				$default_options[$default_options_name] = $options_from_table[$default_options_name];
+			}
 		}
 
 		// 5. Set the class property and unset no used variable
@@ -306,9 +308,13 @@ Class SimpleTagsAdmin {
 						<li>'.__('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags').'</li>
 						<li>'.__('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags').'</li>
 					</ul>'),
-				array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),
+				array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),				
 				array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 40),
 				array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 40),
+				array('tt_number', __('Max tags display:', 'simpletags'), 'text', 10,
+					__('You must set zero (0) for display all tags.', 'simpletags')),	
+				array('tt_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
+					__('You can find markers and explanations <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">in the online documentation.</a>', 'simpletags')),
 				array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
 				array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
 					__('You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
@@ -335,6 +341,8 @@ Class SimpleTagsAdmin {
 						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
 					</ul>'),
+				array('rp_xformat', __('Post link format:', 'simpletags'), 'text', 80,
+					__('You can find markers and explanations <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">in the online documentation.</a>', 'simpletags')),
 				array('rp_limit_qty', __('Maximum number of related posts to display: (default: 5)', 'simpletags'), 'text', 10),
 				array('rp_notagstext', __('Enter the text to show when there is no related post:', 'simpletags'), 'text', 80),
 				array('rp_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
@@ -365,6 +373,8 @@ Class SimpleTagsAdmin {
 						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Random. (default)', 'simpletags').'</li>
 					</ul>'),
+				array('cloud_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
+					__('You can find markers and explanations <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">in the online documentation.</a>', 'simpletags')),
 				array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'text', 10),
 				array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 80),
 				array('cloud_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),

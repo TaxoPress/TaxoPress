@@ -45,7 +45,7 @@ Class SimpleTags {
 	 */
 	function SimpleTags() {
 		// Options
-		$defaultopt = array(
+		$default_options = array(
 			// General
 			'inc_page_tag_search' => '1',
 			// Administration
@@ -64,6 +64,7 @@ Class SimpleTags {
 			'rp_limit_qty' => '5',
 			'rp_notagstext' => __('No related posts.', 'simpletags'),
 			'rp_title' => __('<h4>Related posts</h4>', 'simpletags'),
+			'rp_xformat' => __('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags'),
 			'rp_adv_usage' => '',
 			// Tag cloud
 			'cloud_selection' => 'count-desc',
@@ -71,6 +72,7 @@ Class SimpleTags {
 			'cloud_limit_qty' => '45',
 			'cloud_notagstext' => __('No tags.', 'simpletags'),
 			'cloud_title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
+			'cloud_xformat' => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'cloud_max_color' => '#000000',
 			'cloud_min_color' => '#CCCCCC',
 			'cloud_max_size' => '22',
@@ -84,7 +86,23 @@ Class SimpleTags {
 			'tt_before' => __('Tags: ', 'simpletags'),
 			'tt_after' => '<br />',
 			'tt_notagstext' => __('No tag for this post.', 'simpletags'),
+			'tt_number' => '0',
+			'tt_xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'tt_adv_usage' => '',
+			// Related tags
+			'rt_number' => 5,
+			'rt_order' => 'count-desc',
+			'rt_separator' => ' ',
+			'rt_format' => 'list',
+			'rt_method' => 'OR',
+			'rt_title' => __('<h4>Related tags</h4>', 'simpletags'),
+			'rt_notagstext' => __('No related tag found.', 'simpletags'),
+			'rt_xformat' => __('<span>%tag_count%</span> <a href="%tag_link_add%">+</a> <a href="%tag_link%">%tag_name%</a>', 'simpletags'),
+			// Remove related tags
+			'rt_remove_separator' => ' ',
+			'rt_remove_format' => 'list',
+			'rt_remove_notagstext' => ' ',
+			'rt_remove_xformat' => __('&raquo; <a href="%tag_link_remove%" title="Remove %tag_name_attribute% from search">Remove %tag_name%</a>', 'simpletags'),
 			// Meta keywords
 			'meta_autoheader' => '1',
 			'meta_always_include' => '',
@@ -93,26 +111,28 @@ Class SimpleTags {
 			'auto_list' => '',
 			// Auto link tags
 			'auto_link_tags' => '0'
-		);
+		);			
 
 		// Set class property for default options
-		$this->default_options = $defaultopt;
+		$this->default_options = $default_options;
 
 		// Get options from WP options
-		$optionsFromTable = get_option( $this->db_options );
-		if ( !$optionsFromTable ) {
+		$options_from_table = get_option( $this->db_options );
+		if ( !$options_from_table ) {
 			$this->resetToDefaultOptions();
 		}
 
 		// Update default options by getting not empty values from options table
-		foreach( (array) $defaultopt as $def_optname => $def_optval ) {
-			$defaultopt[$def_optname] = $optionsFromTable[$def_optname];
+		foreach( (array) $default_options as $default_options_name => $default_options_value ) {
+			if ( !is_null($options_from_table[$default_options_name]) ) {				
+				$default_options[$default_options_name] = $options_from_table[$default_options_name];
+			}
 		}
 
 		// Set the class property and unset no used variable
-		$this->options = $defaultopt;
-		unset($defaultopt);
-		unset($optionsFromTable);
+		$this->options = $default_options;
+		unset($default_options);
+		unset($options_from_table);
 
 		// Determine installation path & url
 		$path = basename(str_replace('\\','/',dirname(__FILE__)));
@@ -138,6 +158,7 @@ Class SimpleTags {
 
 		// Set informations
 		$this->info = array(
+			'home' => get_option('home'),
 			'siteurl' => $info['siteurl'],
 			'install_url' => $info['install_url'],
 			'install_dir' => $info['install_dir']
@@ -459,6 +480,7 @@ Class SimpleTags {
 			$defaults['order'] = $this->options['rp_order'];
 			$defaults['nopoststext'] = $this->options['rp_notagstext'];
 			$defaults['title'] = $this->options['rp_title'];
+			$defaults['xformat'] = $this->options['rp_xformat'];			
 			$user_args = $this->options['rp_adv_usage'];
 		}
 
@@ -643,6 +665,7 @@ Class SimpleTags {
 			$dateformat = $this->dateformat;
 		}
 
+		$output = array();
 		// Replace placeholders
 		foreach ( (array) $results as $result ) {
 			if ( $min_shared > 1 && ( count(explode(',', $result->terms_id)) < $min_shared ) ) {
@@ -652,17 +675,18 @@ Class SimpleTags {
 			$element_loop = $xformat;
 
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
-			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);
+			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);			
 			$element_loop = str_replace('%post_title%', attribute_escape($result->post_title), $element_loop);
+			$element_loop = str_replace('%post_title_attribute%', attribute_escape(strip_tags($result->post_title)), $element_loop);		
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
-
 			$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id), $element_loop);
 			$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $except_wrap ), $element_loop);
 
 			$output[] = $element_loop;
 		}
+		unset($results, $result);
 		return $this->outputRelatedPosts( $format, $title, $output, $copyright );
 	}
 
@@ -726,6 +750,9 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function outputRelatedPosts( $format = 'list', $title = '', $content = '', $copyright = true ) {
+		if ( is_string($content) ) {
+			$content = trim($content);
+		}	
 		if ( empty($content) ) {
 			return ''; // return nothing
 		}
@@ -741,7 +768,9 @@ Class SimpleTags {
 					$output .= "</li>\n</ul>\n";
 					break;
 				default :
-					$output = join("\n", $content);
+					$output = "<div class='st-related-posts'>\n\t";
+					$output .= join("\n", $content);
+					$output .= "</div>\n";
 					break;
 			}
 		} else {
@@ -752,7 +781,9 @@ Class SimpleTags {
 					$output .= "</ul>\n";
 					break;
 				default :
-					$output = $content;
+					$output = "<div class='st-related-posts'>\n\t";
+					$output .= $content;
+					$output .= "</div>\n";
 					break;
 			}
 		}
@@ -771,36 +802,57 @@ Class SimpleTags {
 			return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title . $output. "\n";
 		else
 			return "\n\t". $title . $output. "\n";
-
 	}
-
+	
+	function isTag() {
+		global $wp_query;
+		$slugs = trim($wp_query->query_vars['tag']);	
+		
+		if ( empty($slugs) ) {
+			return false;
+		}
+		return true;
+	}
 
 	function relatedTags( $user_args = '' ) {
 		$defaults = array(
 			'number' => 5,
 			'order' => 'count-desc',
-			'separator' => '<br />',
+			'separator' => ' ',
+			'format' => 'list',
+			'method' => 'OR',
 			'title' => __('<h4>Related tags</h4>', 'simpletags'),
-			'notagstext' => __('No related tags.', 'simpletags'),
-			'xformat_add' => __('<a href="%link_tag_add%" title="Add the tag: %tag_name%">%tag_name%</a>', 'simpletags')
-
+			'notagstext' => __('No related tag found.', 'simpletags'),
+			'xformat' => __('<span>%tag_count%</span> <a href="%tag_link_add%">+</a> <a href="%tag_link%">%tag_name%</a>', 'simpletags')
 		);
-
+		
 		// If empty user_args, use user option in DB.
 		if( empty($user_args) ) {
 			$defaults['number'] = $this->options['rt_number'];
 			$defaults['order'] = $this->options['rt_order'];
 			$defaults['separator'] = $this->options['rt_separator'];
-			$defaults['notagstext'] = $this->options['rt_notagstext'];
+			$defaults['format'] = $this->options['rt_format'];
+			$defaults['method'] = $this->options['rt_method'];
 			$defaults['title'] = $this->options['rt_title'];
+			$defaults['notagstext'] = $this->options['rt_notagstext'];
+			$defaults['xformat'] = $this->options['rt_xformat'];
+			
 			$user_args = $this->options['rt_adv_usage'];
 		}
 
 		$args = wp_parse_args( $user_args, $defaults );
 		extract($args);
 
-		if ( !is_tag() ) {
+		if ( !is_tag() && !$this->isTag() ) {
 			return $this->outputRelatedTags( $format, $title, $notagstext );
+		}
+		
+		// Method union/intersection
+		$method = strtoupper($method);
+		if ( $method == 'AND' ) {
+			$url_tag_sep = '+';
+		} else {
+			$url_tag_sep = ',';
 		}
 
 		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
@@ -829,20 +881,47 @@ Class SimpleTags {
 				break;
 		}
 
-		// Get currents tags
-		$current_tags = (array) get_query_var('tag_slug__in');
-
+		// Get currents slugs
+		global $wp_query;
+		$slugs = trim($wp_query->query_vars['tag']);		
+		if ( strpos( $slugs, ',') ) {
+			$current_slugs = explode(',', $slugs);
+		} elseif ( strpos( $slugs, '+') ) {
+			$current_slugs = explode('+', $slugs);
+		} elseif ( strpos( $slugs, ' ') ) {
+			$current_slugs = explode(' ', $slugs);
+		}else {
+			$current_slugs[] = $slugs;
+		}
+						
 		// Get objets
-		$objects_id = get_objects_in_term( $current_tags, 'post_tags' );
-
+		$terms = "'" . implode("', '", $current_slugs) . "'";
+		global $wpdb;
+		$object_ids = $wpdb->get_col("
+			SELECT DISTINCT tr.object_id
+			FROM {$wpdb->term_relationships} AS tr 
+			INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+			INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
+			WHERE tt.taxonomy = 'post_tag' 
+			AND t.slug IN ({$terms}) 
+			ORDER BY tr.object_id ASC");
+		unset($terms);		
+		
 		// Get tags for specified objects
-		$all_related_tags = wp_get_object_terms( $objects_id, 'post_tag', array('order_by' => $order_by, 'order' => $order) );
+		$all_related_tags = wp_get_object_terms( $object_ids, 'post_tag', array('order_by' => $order_by, 'order' => $order) );
 
+		// Remove duplicates related tags
+		$all_related_tags = array_intersect_key($all_related_tags, array_unique(array_map('serialize', $all_related_tags)));
+		
 		// Exclude current tags
 		foreach ( (array) $all_related_tags as $tag ) {
-			if ( !in_array($tag->term_ID, $current_tags) ) {
+			if ( !in_array($tag->slug, $current_slugs) ) {
 				$related_tags[] = $tag;
 			}
+		}
+		
+		if ( empty($related_tags) ) {
+			return $this->outputRelatedTags( $format, $title, $notagstext );
 		}
 
 		// Limit to max quantity if set
@@ -850,81 +929,226 @@ Class SimpleTags {
 		if ( $number != 0 ) {
 			$related_tags = array_slice( $related_tags, 0, $number );
 		}
+				
+		// Rel or not ?
+		global $wp_rewrite;
+		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
 
-		if ( is_empty($related_tags) ) {
-			return $this->outputRelatedTags( $format, $title, $notagstext );
+		// Build outpout
+		$output = array();
+		foreach( $related_tags as $tag ) {
+			$element_loop = $xformat;
+			
+			$element_loop = str_replace('%tag_link%', clean_url(get_tag_link($tag->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_id%', $tag->term_id, $element_loop);
+			$element_loop = str_replace('%tag_count%', $tag->count, $element_loop);
+			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', attribute_escape( $tag->name )), $element_loop);
+			$element_loop = str_replace('%tag_name_attribute%', attribute_escape(strip_tags($tag->name)), $element_loop);			
+			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);			
+			$element_loop = str_replace('%tag_link_add%', $this->getAddTagToLink( $current_slugs, $tag->slug, $url_tag_sep ), $element_loop);
+
+			$output[] = $element_loop;
+		}
+		unset($related_tags, $tag);
+		return $this->outputRelatedTags( $format, $title, $output );
+	}
+	
+	function outputRelatedTags( $format = 'list', $title = '', $content = '' ) {
+		if ( is_string($content) ) {
+			$content = trim($content);
+		}		
+		if ( empty($content) ) {
+			return ''; // return nothing
 		}
 
-		// Prepare ouput
-		$result = '';
-		foreach( $results as $tag ) {
-			// Tag Link
-			$vr['taglink'] = $this->getTagPermalink($tag->tag_name);
-
-			// Tag Link + Additional Tag
-			$current_url = $this->search_tag;	// Current URL
-			$current_url = str_replace(' ', '+', $current_url);	// + was replaced by ' ', so restore that
-			$current_url_add = $current_url . '+' . $tag->tag_name; // Current URL + additional tag
-			$vr['taglink_plus'] = $this->getTagPermalink($current_url_add); // Permalink with additional tag
-			// Number of tags
-			$vr['count'] = $tag->qty;
-			// Tag Name
-			$vr['tagname'] = $tag->tag_name;
-			// Format
-			$fmt_res = $format;
-			$fmt_res = str_replace('%tagname%', $vr['tagname'], $fmt_res);
-			$fmt_res = str_replace('%taglink%', $vr['taglink'], $fmt_res);
-			$fmt_res = str_replace('%taglink_plus%', $vr['taglink_plus'], $fmt_res);
-			$fmt_res = str_replace('%count%', $vr['count'], $fmt_res);
-			// Result
-			$result .= (($result != '') ? $tagseparator : '') . $fmt_res . "\n";	// Incl. adding separator
+		if ( is_array($content) ) {
+			switch ( $format ) {
+				case 'array' :
+					$output =& $content;
+					break;
+				case 'list' :
+					$output = "<ul class='st-related-tags'>\n\t<li>";
+					$output .= join("</li>\n\t<li>", $content);
+					$output .= "</li>\n</ul>\n";
+					break;
+				default :
+					$output = "<div class='st-related-tags'>\n\t";
+					$output .= join("\n", $content);
+					$output .= "</div>\n";
+					break;
+			}
+		} else {
+			switch ( $format ) {
+				case 'list' :
+					$output = "<ul class='st-related-tags'>\n\t";
+					$output .= '<li>'.$content."</li>\n\t";
+					$output .= "</ul>\n";
+					break;
+				default :
+					$output = "<div class='st-related-tags'>\n\t";
+					$output .= $content;
+					$output .= "</div>\n";
+					break;
+			}
 		}
-		$result = "\n" . '<!-- Generated by \'Simple Tagging Plugin ' . $this->stp_version . '\' - http://trac.herewithme.fr/project/simpletagging/ -->' . "\n" . $result . "\n"; // Please do not remove this line.
-		return $result;
+
+		// Replace false by empty
+		if ( strtolower($title) == 'false' ) {
+			$title = '';
+		}
+
+		// Put title if exist
+		if ( !empty($title) ) {
+			$title = $title ."\n\t";
+		}
+
+		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title . $output. "\n";
+	}
+	
+	function getAddTagToLink( $current_slugs = array(), $tag_slug = '', $separator = ',' ) {
+		// Add new tag slug to current slug
+		$current_slugs[] = $tag_slug;
+		
+		// Array to string with good separator
+		$slugs = implode( $separator, $current_slugs );
+
+		global $wp_rewrite;
+		$taglink = $wp_rewrite->get_tag_permastruct();
+	
+		if ( empty($taglink) ) { // No permalink
+			$taglink = $this->info['home'] . '/?tag=' . $slugs;
+		} else { // Custom permalink
+			$taglink = $this->info['home'] . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
+		}
+		return apply_filters('st_add_tag_link', $taglink, $tag_id);
 	}
 
-	/**
-	 * Get link "remove tags" for related tags
-	 *
-	 * @param string $format
-	 * @param string $separator
-	 * @param string $nonfoundtext
-	 * @return string
-	 */
-	function outputRelatedTagsRemoveTags( $format=null, $separator=null, $nonfoundtext=null ) {
-		// check parameters vs. class options
-		$format		= (is_null($format))	? $this->option['relatedtags_remove_format'] : $format;
-		$separator	= (is_null($separator))	? $this->option['relatedtags_remove_separator'] : $separator;
-		$nonefound	= (is_null($nonefound))	? $this->option['relatedtags_remove_nonfoundtext'] : $nonefound;
+	function removeRelatedTags( $user_args = '' ) {
+		$defaults = array(
+			'separator' => ' ',
+			'format' => 'list',
+			'notagstext' => ' ',
+			'xformat' => __('&raquo; <a href="%tag_link_remove%" title="Remove %tag_name_attribute% from search">Remove %tag_name%</a>', 'simpletags')
+		);		
 
-		if ( !($this->is_tag_view()) ) {
-			return $nonefound;
+		// If empty user_args, use user option in DB.
+		if( empty($user_args) ) {
+			$defaults['separator'] = $this->options['rt_remove_separator'];
+			$defaults['format'] = $this->options['rt_remove_format'];
+			$defaults['notagstext'] = $this->options['rt_remove_notagstext'];
+			$defaults['xformat'] = $this->options['rt_remove_xformat'];
+			
+			$user_args = $this->options['rt_remove_adv_usage'];
+		}
+		
+		$args = wp_parse_args( $user_args, $defaults );
+		extract($args);
+
+		if ( !is_tag() && !$this->isTag() ) {
+			return $this->outputRemoveRelatedTags( $format, $notagstext );
+		}
+		
+		// Get currents slugs
+		global $wp_query;
+		$slugs = trim($wp_query->query_vars['tag']);		
+		if ( strpos( $slugs, ',') ) {
+			$current_slugs = explode(',', $slugs);
+			$url_tag_sep = ',';
+		} elseif ( strpos( $slugs, '+') ) {
+			$current_slugs = explode('+', $slugs);
+			$url_tag_sep = '+';
+		} elseif ( strpos( $slugs, ' ') ) {
+			$current_slugs = explode(' ', $slugs);
+			$url_tag_sep = '+';
+		} else {
+			return $this->outputRemoveRelatedTags( $format, $notagstext );
+		}
+						
+		// Rel or not ?
+		global $wp_rewrite;
+		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
+
+		foreach ( $current_slugs as $slug ) {
+			// Get term by slug
+			$term = get_term_by('slug', $slug, 'post_tag');
+			
+			$element_loop = $xformat;
+			
+			$element_loop = str_replace('%tag_link%', clean_url(get_tag_link($term->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($term->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_id%', $term->term_id, $element_loop);
+			$element_loop = str_replace('%tag_count%', $term->count, $element_loop);
+			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', attribute_escape( $term->name )), $element_loop);
+			$element_loop = str_replace('%tag_name_attribute%', attribute_escape(strip_tags($term->name)), $element_loop);			
+			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
+					
+			$element_loop = str_replace('%tag_link_remove%', $this->getRemoveTagToLink( $current_slugs, $term->slug, $url_tag_sep ), $element_loop);
+
+			$output[] = $element_loop;			
+		}
+		return $this->outputRemoveRelatedTags( $format, $output );
+	}
+	
+	function getRemoveTagToLink( $current_slugs = array(), $tag_slug = '', $separator = ',' ) {
+		// Remove tag slug to current slugs
+		$key = array_search($tag_slug, $current_slugs);
+		unset($current_slugs[$key]);
+		
+		// Array to string with good separator
+		$slugs = implode( $separator, $current_slugs );
+
+		global $wp_rewrite;
+		$taglink = $wp_rewrite->get_tag_permastruct();
+	
+		if ( empty($taglink) ) { // No permalink
+			$taglink = $this->info['home'] . '/?tag=' . $slugs;
+		} else { // Custom permalink
+			$taglink = $this->info['home'] . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
+		}
+		return apply_filters('st_remove_tag_link', $taglink, $tag_id);
+	}
+	
+	function outputRemoveRelatedTags( $format = 'list', $content = '' ) {
+		if ( is_string($content) ) {
+			$content = trim($content);
+		}	
+		if ( empty($content) ) {
+			return ''; // return nothing
 		}
 
-		$tagListArray = $this->tag_url2url_array($this->search_tag);	// tag array
-
-		if ($this->search_tag_count > 1) {
-			$result = '';
-			foreach ($tagListArray as $lval) {
-				// Get Permalink
-				$url = $this->removeTagFromURL($this->search_tag, $lval);	// remove current tag
-				$url = $this->getTagPermalink($url); // permalink
-
-				// Get Tag Name
-				$name = $this->tag_url2name($lval);
-
-				// Format
-				$fmt_res = $format;
-				$fmt_res = str_replace('%url%', $url, $fmt_res);
-				$fmt_res = str_replace('%tagname%', $name, $fmt_res);
-
-				// Result
-				$result .= (($result != '') ? $separator : '') . $fmt_res;	// Incl. adding separator
-				$result .= (substr($format,0,3) == '<li') ? "\n" : '';			// new line only if list is used
+		if ( is_array($content) ) {
+			switch ( $format ) {
+				case 'array' :
+					$output =& $content;
+					break;
+				case 'list' :
+					$output = "<ul class='st-remove-related-tags'>\n\t<li>";
+					$output .= join("</li>\n\t<li>", $content);
+					$output .= "</li>\n</ul>\n";
+					break;
+				default :
+					$output = "<div class='st-remove-related-tags'>\n\t";
+					$output .= join("\n", $content);
+					$output .= "</div>\n";
+					break;
 			}
-			return $result;
+		} else {
+			switch ( $format ) {
+				case 'list' :
+					$output = "<ul class='st-remove-related-tags'>\n\t";
+					$output .= '<li>'.$content."</li>\n\t";
+					$output .= "</ul>\n";
+					break;
+				default :
+					$output = "<div class='st-remove-related-tags'>\n\t";
+					$output .= $content;
+					$output .= "</div>\n";
+					break;
+			}
 		}
-		return $nonefound;
+
+		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $output. "\n";
 	}
 
 	/**
@@ -978,9 +1202,9 @@ Class SimpleTags {
 			$defaults['largest'] = $this->options['cloud_max_size'];
 			$defaults['smallest'] = $this->options['cloud_min_size'];
 			$defaults['unit'] = $this->options['cloud_unit'];
+			$defaults['xformat'] = $this->options['cloud_xformat'];			
 			$args = $this->options['cloud_adv_usage'];
 		}
-
 		$args = wp_parse_args( $args, $defaults );
 
 
@@ -1070,16 +1294,16 @@ Class SimpleTags {
 			$scaleResult = (int) (($count - $minval) * $scale + $minout);
 
 			$element_loop = $xformat;
+			
 			$element_loop = str_replace('%tag_link%', clean_url($tag_links[$tag]), $element_loop);
 			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag_ids[$tag])), $element_loop);
 			$element_loop = str_replace('%tag_id%', $tag_ids[$tag], $element_loop);
 			$element_loop = str_replace('%tag_count%', $count, $element_loop);
 			$element_loop = str_replace('%tag_size%', 'font-size:'.round(($scaleResult - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 2).$unit.';', $element_loop);
 			$element_loop = str_replace('%tag_color%', 'color:'.$this->getColorByScale(round(($scaleResult - $scale_min)*(100)/($scale_max - $scale_min), 2),$mincolor,$maxcolor).';', $element_loop);
-			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', wp_specialchars( $tag )), $element_loop);
+			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', attribute_escape( $tag )), $element_loop);
+			$element_loop = str_replace('%tag_name_attribute%', attribute_escape(strip_tags($tag)), $element_loop);			
 			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
-
-			// Add in version 1.1
 			$element_loop = str_replace('%tag_scale%', $scaleResult, $element_loop);
 			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $tag ), $element_loop);
 			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $tag ), $element_loop);
@@ -1088,7 +1312,6 @@ Class SimpleTags {
 			$output[] = $element_loop;
 		}
 		unset($counts, $tag_links, $tag_ids);
-
 		return $this->outputExtendedTagCloud( $format, $title, $output );
 	}
 
@@ -1144,7 +1367,10 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function outputExtendedTagCloud( $format = 'list', $title = '', $content = '' ) {
-		if ( empty($title) && empty($content) ) {
+		if ( is_string($content) ) {
+			$content = trim($content);
+		}	
+		if ( empty($content) ) {
 			return ''; // return nothing
 		}
 
@@ -1159,7 +1385,9 @@ Class SimpleTags {
 					$return .= "</li>\n</ul>\n";
 					break;
 				default :
-					$return = join("\n", $content);
+					$return = "<div class='st-tag-cloud'>\n\t";
+					$return .= join("\n", $content);
+					$return .= "</div>\n";
 					break;
 			}
 		} else {
@@ -1170,7 +1398,9 @@ Class SimpleTags {
 					$return .= "</ul>\n";
 					break;
 				default :
-					$return = $content;
+					$return = "<div class='st-tag-cloud'>\n\t";
+					$return .= $content;
+					$return .= "</div>\n";
 					break;
 			}
 		}
@@ -1204,7 +1434,8 @@ Class SimpleTags {
 			$defaults['separator'] = $this->options['tt_separator'];
 			$defaults['after'] = $this->options['tt_after'];
 			$defaults['notagtext'] = $this->options['tt_notagstext'];
-			$defaults['number'] = $this->options['number'];
+			$defaults['number'] = $this->options['tt_number'];
+			$defaults['xformat'] = $this->options['tt_xformat'];
 			$args = $this->options['tt_adv_usage'];
 		}
 
@@ -1250,7 +1481,7 @@ Class SimpleTags {
 
 			$tag_links[] = $element_loop;
 		}
-
+		unset($tags, $tag);
 		$tag_list = apply_filters( 'the_tags', join( $separator, $tag_links ) );
 
 		if ( $copyright === true )
