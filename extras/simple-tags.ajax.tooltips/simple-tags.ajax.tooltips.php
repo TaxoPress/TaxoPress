@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Simple Tags Ajax Extensions : List posts for each tags
+Plugin Name: Simple Tags Ajax Extensions : Tooltips Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
-Description: List posts for each tags with a roll over
+Description: List posts for each tags with a roll over with a ToolTips
 Version: 1.3
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
@@ -84,14 +84,16 @@ Class ST_AjaxExtension_ToolTips {
 
 		<script type="text/javascript">
 		// <![CDATA[
-			function fixTargetAjax( url ) {
+			var quantity = 10; // Edit for post quantity
+			
+			function fixTargetAjax( url ) {						
 				<?php
 				$tag_base = get_option('tag_base');
 				$tag_base = ( empty($tag_base) ) ? 'tag' : $tag_base;
 				?>
 				var pos = url.indexOf("<?php echo $tag_base; ?>");
 				url= url.substr( pos + <?php echo strlen($tag_base); ?> + 1 );
-				return '<?php echo $this->info['siteurl']; ?>/?st_ajax_action=get_posts_with_tag&qty=10&tag=' + url;
+				return '<?php echo $this->info['siteurl']; ?>/?st_ajax_action=get_posts_with_tag&qty='+quantity+'&tag=' + url;
 			}
 
 			jQuery(document).ready( function() {
@@ -106,7 +108,7 @@ Class ST_AjaxExtension_ToolTips {
 					mouseOutClose: true,
 					attribute: 'href',
 					closePosition: 'title',
-					closeText: '<img src="<?php echo $this->info['install_url']; ?>/images/cancel.png" alt="close" />'
+					closeText: '<img src="<?php echo $this->info['install_url']; ?>/images/cancel.png" alt="<?php echo attribute_escape(__('Close', 'simpletags')); ?>" />'
 				});
 			});
 		// ]]>
@@ -123,7 +125,7 @@ Class ST_AjaxExtension_ToolTips {
 
 	function getPostsByTags() {
 		$tag = attribute_escape(stripslashes($_GET['tag']));
-		$tag = str_replace('/', '', $tag);		
+		$tag = str_replace('/', '', $tag); // Remove unused slahes
 		$qty = ( (int) $_GET['qty'] != 0 ) ? (int) $_GET['qty'] : 10;
 
 		if ( empty($tag) ) {
