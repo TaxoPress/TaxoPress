@@ -962,7 +962,7 @@ Class SimpleTags {
 			'limit_days' => 0,
 			'min_usage' => 0,
 			'notagstext' => __('No tags.', 'simpletags'),
-			'xformat' => __('<a href="%tag_link%" class="tag-link-%tag_id% t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
+			'xformat' => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
 			'category' => 0
 		);

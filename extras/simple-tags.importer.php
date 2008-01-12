@@ -3,7 +3,7 @@
 Plugin Name: Embedded Tags Importer
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Import embedded tags into the new WordPress native tagging structure. Simple Tags Extension
-Version: 1.2
+Version: 1.3
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -174,10 +174,10 @@ Class EmbeddedImporter {
 				<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="admin.php?import=simple-tags.importer&amp;step=1&amp;action=import_embedded_tag&amp;typep=<?php echo $typep; ?>&amp;start=<?php echo $start; ?>&amp;end=<?php echo $end; ?>&amp;clean=<?php echo $clean; ?>&amp;n=<?php echo ($n + 20) ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
 				<script type="text/javascript">
 					<!--
-					function nextpage() {
+					function nextPage() {
 						location.href = '<?php get_option('siteurl'); ?>/wp-admin/admin.php?import=simple-tags.importer&step=1&action=import_embedded_tag&typep=<?php echo $typep; ?>&start=<?php echo $start; ?>&end=<?php echo $end; ?>&clean=<?php echo $clean; ?>&n=<?php echo ($n + 20) ?>';
 					}
-					setTimeout( 'nextpage()', 250 );
+					setTimeout( 'nextPage', 250 );
 					//-->
 				</script>
 				<?php
