@@ -98,15 +98,15 @@ Class ST_AjaxExtension_ToolTips {
 				// The function cluetip() is modified for Simple Tags.
 				// If attribute: 'href', the href value is filter with fixTargetAjax() function.
 				jQuery('.tags_cloud a').cluetip({
-				  cluetipClass: 'jtip',
-				  arrows: true,
-				  dropShadow: false,
-				  hoverIntent: false,
-				  sticky: true,
-				  mouseOutClose: true,
-				  attribute: 'href',
-				  closePosition: 'title',
-				  closeText: '<img src="<?php echo $this->info['install_url']; ?>/images/cancel.png" alt="close" />'
+					cluetipClass: 'jtip',
+					arrows: true,
+					dropShadow: false,
+					hoverIntent: false,
+					sticky: true,
+					mouseOutClose: true,
+					attribute: 'href',
+					closePosition: 'title',
+					closeText: '<img src="<?php echo $this->info['install_url']; ?>/images/cancel.png" alt="close" />'
 				});
 			});
 		// ]]>
@@ -123,6 +123,7 @@ Class ST_AjaxExtension_ToolTips {
 
 	function getPostsByTags() {
 		$tag = attribute_escape(stripslashes($_GET['tag']));
+		$tag = str_replace('/', '', $tag);		
 		$qty = ( (int) $_GET['qty'] != 0 ) ? (int) $_GET['qty'] : 10;
 
 		if ( empty($tag) ) {
@@ -154,5 +155,7 @@ Class ST_AjaxExtension_ToolTips {
 	}
 }
 
-$st_ae_tt = new ST_AjaxExtension_ToolTips();
+if ( class_exists('SimpleTags') ) {
+	$st_ae_tt = new ST_AjaxExtension_ToolTips();
+}
 ?>
