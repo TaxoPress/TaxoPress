@@ -116,12 +116,12 @@ Class SimpleTags {
 
 		// Determine installation path & url
 		$path = basename(str_replace('\\','/',dirname(__FILE__)));
-		
+
 		$info['siteurl'] = get_option('siteurl');
 		if ( strpos($path, 'mu-plugins') ) {
 			$info['install_url'] = $info['siteurl'] . '/wp-content/mu-plugins';
 			$info['install_dir'] = ABSPATH . 'wp-content/mu-plugins';
-			
+
 			if ( $path != 'mu-plugins' ) {
 				$info['install_url'] .= '/' . $path;
 				$info['install_dir'] .= '/' . $path;
@@ -129,7 +129,7 @@ Class SimpleTags {
 		} else {
 			$info['install_url'] = $info['siteurl'] . '/wp-content/plugins';
 			$info['install_dir'] = ABSPATH . 'wp-content/plugins';
-			
+
 			if ( $path != 'plugins' ) {
 				$info['install_url'] .= '/' . $path;
 				$info['install_dir'] .= '/' . $path;
@@ -186,11 +186,11 @@ Class SimpleTags {
 
 		// Stock Posts ID (useful for autolink and metakeywords
 		add_filter('the_posts', array(&$this, 'getPostIds'), 90);
-		
+
 		// Add keywords to header
-		if ( $this->options['meta_autoheader'] == '1' && !class_exists('All_in_One_SEO_Pack') ) {			
+		if ( $this->options['meta_autoheader'] == '1' && !class_exists('All_in_One_SEO_Pack') ) {
 			add_action('wp_head', array(&$this, 'displayMetaKeywords'), 99);
-		}	
+		}
 
 		// Auto link tags
 		if ( $this->options['auto_link_tags'] == '1' ) {
@@ -203,7 +203,7 @@ Class SimpleTags {
 		$this->getTagsFromCurrentPosts();
 
 		$this->link_tags = array();
-		foreach ( (array) $this->tags_currentposts as $tag ) {			
+		foreach ( (array) $this->tags_currentposts as $tag ) {
 			if  ( $tag->count >= (int) $this->options['use_tag_links_min'] ) {
 	 			$this->link_tags[$tag->name] = get_tag_link( $tag->term_id );
 			}
@@ -214,7 +214,7 @@ Class SimpleTags {
 		if ( $this->link_tags == 'null' ) {
 			$this->prepareAutoLinkTags();
 		}
-		
+
 		// Rel or not ?
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag" ' : '';
@@ -228,10 +228,10 @@ Class SimpleTags {
 	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {
 		// Add first conteneur
 		$content = '<temp_st>'.$content.'</temp_st>';
-		
+
 		// Put all anchor text into nonsense <##..##> tags
 		$content = preg_replace("|(<a([^>]+)>)(.*?)(<\/a>)|is", "$1<##$3##>$4", $content);
-		
+
 		// Escape |
 		$word = str_replace('|', '\|', $word);
 
@@ -240,7 +240,7 @@ Class SimpleTags {
 
 		// Get rid of <##..##>
 		$content = str_replace('<##', '', $content);
-		$content = str_replace('##>', '', $content);		
+		$content = str_replace('##>', '', $content);
 
 		// Remove conteneur
 		$content = str_replace('<temp_st>', '', $content);
@@ -296,7 +296,7 @@ Class SimpleTags {
 			// If cache not exist, get datas and set cache
 			global $wpdb;
 			$results = $wpdb->get_results("
-				SELECT DISTINCT t.name AS name, t.term_id AS term_id, tt.count AS count 
+				SELECT DISTINCT t.name AS name, t.term_id AS term_id, tt.count AS count
 				FROM {$wpdb->posts} AS p
 				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
@@ -322,7 +322,7 @@ Class SimpleTags {
 		// Get tags for current posts
 		if ( empty($this->tags_currentposts) ) {
 			$this->getTagsFromCurrentPosts();
-		}	
+		}
 
 		$results = array();
 		foreach ( (array) $this->tags_currentposts as $tag ) {
@@ -367,11 +367,11 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function inlineRelatedPosts( $content = '' ) {
-		$marker = false;		
+		$marker = false;
 		if ( is_feed() ) {
 			if ( $this->options['rp_feed'] == '1' ) {
 				$marker = true;
-			}				
+			}
 		} else {
 			if ( $this->options['rp_embedded'] == 'all' ) {
 				$marker = true;
@@ -401,11 +401,11 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function inlinePostTags( $content = '' ) {
-		$marker = false;		
+		$marker = false;
 		if ( is_feed() ) {
 			if ( $this->options['tt_feed'] == '1' ) {
 				$marker = true;
-			}				
+			}
 		} else {
 			if ( $this->options['tt_embedded'] == 'all' ) {
 				$marker = true;
@@ -421,7 +421,7 @@ Class SimpleTags {
 				$marker = true;
 			}
 		}
-			
+
 		if ( $marker === true ) {
 			$content .= $this->extendedPostTags( '', false );
 		}
@@ -585,12 +585,12 @@ Class SimpleTags {
 					$tag_list .= '"'.(int) $tag->term_id.'", ';
 				}
 			}
-			
+
 			// If empty return no posts text
 			if ( empty($tag_list) ) {
 				return $this->outputRelatedPosts( $format, $title, $nopoststext, $copyright );
 			}
-			
+
 			// Remove latest ", "
 			$tag_list = substr($tag_list, 0, strlen($tag_list) - 2);
 
@@ -606,7 +606,7 @@ Class SimpleTags {
 			} else {
 				$xformat = str_replace('%post_relatedtags%', '', $xformat); // Group Concat only for MySQL > 4.1, remove related tags
 			}
-			
+
 			// Check if post_excerpt is used by xformat...
 			$select_excerpt = '';
 			if ( strpos( $xformat, '%post_excerpt%' ) ) {
@@ -634,7 +634,7 @@ Class SimpleTags {
 			$cache[$key] = $results;
 			wp_cache_set('related_posts', $cache, 'simpletags');
 		}
-		
+
 		if ( $results === false || empty($results) ) {
 			return $this->outputRelatedPosts( $format, $title, $nopoststext, $copyright );
 		}
@@ -646,18 +646,18 @@ Class SimpleTags {
 		// Replace placeholders
 		foreach ( (array) $results as $result ) {
 			if ( $min_shared > 1 && ( count(explode(',', $result->terms_id)) < $min_shared ) ) {
-				continue;			
+				continue;
 			}
-			
+
 			$element_loop = $xformat;
 
-			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);	
-			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);			
+			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
+			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);
 			$element_loop = str_replace('%post_title%', attribute_escape($result->post_title), $element_loop);
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
-			
+
 			$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id), $element_loop);
 			$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $except_wrap ), $element_loop);
 
@@ -761,20 +761,20 @@ Class SimpleTags {
 		if ( strtolower($title) == 'false' ) {
 			$title = '';
 		}
-		
-		// Put title if exist 
+
+		// Put title if exist
 		if ( !empty($title) ) {
 			$title = $title ."\n\t";
 		}
 
-		if ( $copyright === true ) 
+		if ( $copyright === true )
 			return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title . $output. "\n";
 		else
 			return "\n\t". $title . $output. "\n";
 
 	}
-	
-	
+
+
 	function relatedTags( $user_args = '' ) {
 		$defaults = array(
 			'number' => 5,
@@ -783,7 +783,7 @@ Class SimpleTags {
 			'title' => __('<h4>Related tags</h4>', 'simpletags'),
 			'notagstext' => __('No related tags.', 'simpletags'),
 			'xformat_add' => __('<a href="%link_tag_add%" title="Add the tag: %tag_name%">%tag_name%</a>', 'simpletags')
-			
+
 		);
 
 		// If empty user_args, use user option in DB.
@@ -797,12 +797,12 @@ Class SimpleTags {
 		}
 
 		$args = wp_parse_args( $user_args, $defaults );
-		extract($args);	
-		
+		extract($args);
+
 		if ( !is_tag() ) {
 			return $this->outputRelatedTags( $format, $title, $notagstext );
 		}
-		
+
 		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
 		$order_tmp = strtolower($order);
 		$order_by = $order = '';
@@ -828,16 +828,16 @@ Class SimpleTags {
 				$order = 'DESC';
 				break;
 		}
-		
+
 		// Get currents tags
-		$current_tags = (array) get_query_var('tag_slug__in');		
-		
+		$current_tags = (array) get_query_var('tag_slug__in');
+
 		// Get objets
 		$objects_id = get_objects_in_term( $current_tags, 'post_tags' );
-		
+
 		// Get tags for specified objects
 		$all_related_tags = wp_get_object_terms( $objects_id, 'post_tag', array('order_by' => $order_by, 'order' => $order) );
-			
+
 		// Exclude current tags
 		foreach ( (array) $all_related_tags as $tag ) {
 			if ( !in_array($tag->term_ID, $current_tags) ) {
@@ -850,11 +850,11 @@ Class SimpleTags {
 		if ( $number != 0 ) {
 			$related_tags = array_slice( $related_tags, 0, $number );
 		}
-		
+
 		if ( is_empty($related_tags) ) {
 			return $this->outputRelatedTags( $format, $title, $notagstext );
 		}
-		
+
 		// Prepare ouput
 		$result = '';
 		foreach( $results as $tag ) {
@@ -866,18 +866,18 @@ Class SimpleTags {
 			$current_url = str_replace(' ', '+', $current_url);	// + was replaced by ' ', so restore that
 			$current_url_add = $current_url . '+' . $tag->tag_name; // Current URL + additional tag
 			$vr['taglink_plus'] = $this->getTagPermalink($current_url_add); // Permalink with additional tag
-			// Number of tags		
+			// Number of tags
 			$vr['count'] = $tag->qty;
 			// Tag Name
 			$vr['tagname'] = $tag->tag_name;
-			// Format			
+			// Format
 			$fmt_res = $format;
 			$fmt_res = str_replace('%tagname%', $vr['tagname'], $fmt_res);
 			$fmt_res = str_replace('%taglink%', $vr['taglink'], $fmt_res);
 			$fmt_res = str_replace('%taglink_plus%', $vr['taglink_plus'], $fmt_res);
-			$fmt_res = str_replace('%count%', $vr['count'], $fmt_res);			
+			$fmt_res = str_replace('%count%', $vr['count'], $fmt_res);
 			// Result
-			$result .= (($result != '') ? $tagseparator : '') . $fmt_res . "\n";	// Incl. adding separator	
+			$result .= (($result != '') ? $tagseparator : '') . $fmt_res . "\n";	// Incl. adding separator
 		}
 		$result = "\n" . '<!-- Generated by \'Simple Tagging Plugin ' . $this->stp_version . '\' - http://trac.herewithme.fr/project/simpletagging/ -->' . "\n" . $result . "\n"; // Please do not remove this line.
 		return $result;
@@ -909,24 +909,24 @@ Class SimpleTags {
 				// Get Permalink
 				$url = $this->removeTagFromURL($this->search_tag, $lval);	// remove current tag
 				$url = $this->getTagPermalink($url); // permalink
-				
+
 				// Get Tag Name
 				$name = $this->tag_url2name($lval);
-				
+
 				// Format
 				$fmt_res = $format;
 				$fmt_res = str_replace('%url%', $url, $fmt_res);
 				$fmt_res = str_replace('%tagname%', $name, $fmt_res);
-				
+
 				// Result
 				$result .= (($result != '') ? $separator : '') . $fmt_res;	// Incl. adding separator
 				$result .= (substr($format,0,3) == '<li') ? "\n" : '';			// new line only if list is used
-			}			
-			return $result;			
-		} 
-		return $nonefound;		
+			}
+			return $result;
+		}
+		return $nonefound;
 	}
-	
+
 	/**
 	 * Sort an array without accent for naturel order :)
 	 *
@@ -936,7 +936,7 @@ Class SimpleTags {
 	 */
 	function uksortByName( $a = '', $b = '' ) {
 	    return strnatcasecmp( remove_accents($a), remove_accents($b) );
-	}	
+	}
 
 	/**
 	 * Generate extended tag cloud
@@ -980,10 +980,10 @@ Class SimpleTags {
 			$defaults['unit'] = $this->options['cloud_unit'];
 			$args = $this->options['cloud_adv_usage'];
 		}
-		
+
 		$args = wp_parse_args( $args, $defaults );
 
-		
+
 		// Get tags
 		$tags = $this->getTags( $args );
 		extract($args); // Params to variables
@@ -1105,7 +1105,7 @@ Class SimpleTags {
 		foreach( (array) $rand_keys as $key ) {
 			$data_out[$key] = $data_in[$key];
 		}
-		
+
 		return $data_out;
 	}
 
@@ -1147,7 +1147,7 @@ Class SimpleTags {
 		if ( empty($title) && empty($content) ) {
 			return ''; // return nothing
 		}
-	
+
 		if ( is_array($content) ) {
 			switch ( $format ) {
 				case 'array' :
@@ -1218,7 +1218,7 @@ Class SimpleTags {
 		if ( empty($tags) ) {
 			return $notagtext;
 		}
-		
+
 		// Limit to max quantity if set
 		$number = (int) $number;
 		if ( $number != 0 ) {
@@ -1236,12 +1236,12 @@ Class SimpleTags {
 
 		foreach ( (array) $tags as $tag ) {
 			$element_loop = $xformat;
-			
+
 			$element_loop = str_replace('%tag_link%', clean_url(get_tag_link($tag->term_id)), $element_loop);
 			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag->term_id)), $element_loop);
 			$element_loop = str_replace('%tag_id%', $tag->term_id, $element_loop);
 			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', wp_specialchars($tag->name)), $element_loop);
-			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);			
+			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
 			$element_loop = str_replace('%tag_count%', $tag->count, $element_loop);
 
 			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $tag->name ), $element_loop);
@@ -1252,10 +1252,10 @@ Class SimpleTags {
 		}
 
 		$tag_list = apply_filters( 'the_tags', join( $separator, $tag_links ) );
-		
+
 		if ( $copyright === true )
 			return "\n\t" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $before . $tag_list . $after ."\n";
-		else 
+		else
 			return "\n\t". $before . $tag_list . $after ."\n";
 	}
 
@@ -1354,7 +1354,7 @@ Class SimpleTags {
 	 */
 	function getTags( $args = '', $skip_cache = false ) {
 		$key = md5(serialize($args));
-		
+
 		if ( $skip_cache == true ) {
 			$tags = $this->getTerms('post_tag', $args);
 		}
@@ -1506,7 +1506,7 @@ Class SimpleTags {
 				$order_by = 'tt.count DESC';
 				break;
 		}
-		
+
 		// Min usage
 		$restict_usage = '';
 		$min_usage = (int) $min_usage;
@@ -1559,25 +1559,25 @@ Class SimpleTags {
 		if ( !empty($name__like) ) {
 			$where .= " AND t.name LIKE '{$name__like}%'";
 		}
-		
-		if ( strpos($st_name_like, ' ') != false || strpos($st_name_like, ' ') != null ) {	
+
+		if ( strpos($st_name_like, ' ') != false || strpos($st_name_like, ' ') != null ) {
 			$tmp = '';
 			$sts = explode(' ', $st_name_like);
 			foreach ( (array) $sts as $st ) {
 				if ( empty($st) )
 					continue;
-					
+
 				$tmp .= " t.name LIKE '%{$st}%' OR ";
 			}
 			// Remove latest OR
 			$tmp = substr( $tmp, 0, strlen($tmp) - 4);
-						
-			$where .= " AND ( $tmp ) ";	
+
+			$where .= " AND ( $tmp ) ";
 			unset($tmp)	;
 		} elseif ( !empty($st_name_like) ) {
 			$where .= " AND t.name LIKE '%{$st_name_like}%'";
-		}	
-		
+		}
+
 		if ( '' != $parent ) {
 			$parent = (int) $parent;
 			$where .= " AND tt.parent = '$parent'";
@@ -1588,7 +1588,7 @@ Class SimpleTags {
 		}
 
 		$number_sql = '';
-		if ( strpos($number, ',') != false || strpos($number, ',') != null ) {			
+		if ( strpos($number, ',') != false || strpos($number, ',') != null ) {
 			$number_sql = $number;
 		} else {
 			$number = (int) $number;

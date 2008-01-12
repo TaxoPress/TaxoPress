@@ -37,7 +37,7 @@ Class EmbeddedImporter {
 
 		// load the header
 		$this->header();
-		
+
 		// load the page
 		switch ( $step ) {
 			case 0 :
@@ -50,7 +50,7 @@ Class EmbeddedImporter {
 				$this->done();
 				break;
 		}
-		
+
 		// load the footer
 		$this->footer();
 	}
@@ -95,21 +95,21 @@ Class EmbeddedImporter {
 			$start = $_GET['start'];
 			$end = $_GET['end'];
 			$clean = ( isset($_GET['clean']) ) ? 1 : 0;
-			$typep = ( isset($_GET['typep']) ) ? 1 : 0;	
+			$typep = ( isset($_GET['typep']) ) ? 1 : 0;
 			$type_posts = ( isset($_GET['typep']) ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
-			
+
 			if ( empty($_GET['start']) || empty($_GET['end']) ) {
 				wp_die(__('Missing parameters in URL. (Start or End)', 'simpletags'));
 			}
-			
+
 			// Get datas
 			global $wpdb;
 			$objects = $wpdb->get_results( "SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE {$type_posts} ORDER BY ID DESC LIMIT {$n}, 20" );
 		}
-		
+
 		 // First step
 		if ( $action === false ) : ?>
-		
+
 			<div class="narrow">
 				<h3><?php _e('Configure and add tags to posts&#8230;', 'simpletags'); ?></h3>
 
@@ -125,20 +125,20 @@ Class EmbeddedImporter {
 						<input type="text" value="[/tags]" name="end" id="end" size="10" /></p>
 
 					<p><input type="checkbox" value="1" id="clean" name="clean" /> <label for="clean"><?php _e('Delete embedded tags once imported ?', 'simpletags'); ?></label></p>
-					
+
 					<p><input type="checkbox" value="1" id="typep" name="typep" /> <label for="typep"><?php _e('Import also embedded tags from page ?', 'simpletags'); ?></label></p>
 
 					<p class="submit">
 						<input type="submit" name="submit" value="<?php _e('Start import &raquo;', 'simpletags'); ?>" /></p>
 				</form>
 			</div>
-			
+
 		<?php else: // Dynamic pages
-		
+
 			echo '<div class="narrow">';
 
 			if( !empty($objects) ) {
-				
+
 				echo '<ul>';
 				foreach( (array) $objects as $object ) {
 					// Return Tags
@@ -181,17 +181,17 @@ Class EmbeddedImporter {
 					//-->
 				</script>
 				<?php
-				
+
 			} else { // end
-				
+
 				echo '<p><strong>'.__('Done!', 'simpletags').'</strong><br /></p>';
 				echo '<form action="admin.php?import=simple-tags.importer&amp;step=2" method="post">';
 				echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 2 &raquo;', 'simpletags').'" /></p>';
 				echo '</form>';
-				
+
 			}
 			echo '</div>';
-			
+
 		endif; ?>
 		</div>
 		<?php
@@ -217,7 +217,7 @@ Class EmbeddedImporter {
 	function footer() {
 		echo '</div>';
 	}
-	
+
 	/**
 	 * Escape string so that it can used in Regex. E.g. used for [tags]...[/tags]
 	 *
@@ -227,7 +227,7 @@ Class EmbeddedImporter {
 	function regexEscape( $content ) {
 		return strtr($content, array("\\" => "\\\\", "/" => "\\/", "[" => "\\[", "]" => "\\]"));
 	}
-	
+
 	/**
 	 * trim and remove empty element
 	 *
