@@ -1,8 +1,7 @@
- /* Use class for showing/hiding tab content, so that visibility can be better controlled in different media types... */
-@media projection, screen {.tabs-hide {display:none;}}
-/* Hide useless elements in print layouts... */
-@media print {.tabs-nav {display:none;}}
+@media projection, screen{.tabs-hide {display:none;}}
+@media print{.tabs-nav {display:none;}}
 
+.st_wrap fieldset.options legend{display:none;}
 .st_wrap .tags_admin{text-align:center;font-size:0.9em;}
 .st_wrap .stpexplan{font-size:.85em;}
 .st_wrap .stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
@@ -33,16 +32,26 @@
 #advancedstuff_tag a.dbx-toggle,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -3px;}
 #advancedstuff_tag a.dbx-toggle-open,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -28px;}
 #advancedstuff_tag img#st_ajax_loading {position:absolute;right:15px;top:6px;width:16px;height:16px;display:none;}
-#advancedstuff_tag .dbx-content span{display:block;float:left;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:3px;padding:3px 4px;padding-left:22px;}
-#advancedstuff_tag .dbx-content span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
-#advancedstuff_tag .dbx-content span.ttn_topic{background:#f0f0ee url(images/tag_blue.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.ttn_location{background:#f0f0ee url(images/map.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.ttn_person{background:#f0f0ee url(images/user.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.yahoo{background:#f0f0ee url(images/yahoo_logo.gif) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.local{background:#f0f0ee url(images/tag_purple.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.ttn_topic:hover{background:#b6bdd2 url(images/tag_blue.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.ttn_location:hover{background:#b6bdd2 url(images/map.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.ttn_person:hover{background:#b6bdd2 url(images/user.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.yahoo:hover{background:#b6bdd2 url(images/yahoo_logo.gif) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content span.local:hover{background:#b6bdd2 url(images/tag_purple.png) 2px 50% no-repeat;}
-#advancedstuff_tag .dbx-content div.clearer{clear:both;line-height:1px;font-size:1px;height:1px;}
+#advancedstuff_tag .dbx-content span, #st_click_tags span{display:block;float:left;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:3px;padding:3px 4px;padding-left:22px;}
+#advancedstuff_tag .dbx-content span:hover, #st_click_tags span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
+#advancedstuff_tag .dbx-content span.ttn_topic{background:#f0f0ee url(images/tag_blue.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_location{background:#f0f0ee url(images/map.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_person{background:#f0f0ee url(images/user.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.yahoo{background:#f0f0ee url(images/yahoo_logo.gif) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.local{background:#f0f0ee url(images/tag_purple.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_topic:hover{background:#b6bdd2 url(images/tag_blue.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_location:hover{background:#b6bdd2 url(images/map.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_person:hover{background:#b6bdd2 url(images/user.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.yahoo:hover{background:#b6bdd2 url(images/yahoo_logo.gif) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.local:hover{background:#b6bdd2 url(images/tag_purple.png) 3px 50% no-repeat;}
+div.clearer{clear:both;line-height:1px;font-size:1px;height:1px;}
+
+#st_click_tags { padding:6px; border:3px dashed #D1E6EF; margin:3px 0 4px; display:none;max-height:200px;overflow:auto; }
+#st_click_tags span{background:#f0f0ee url(images/tag_purple.png) 3px 50% no-repeat;}
+#st_click_tags span:hover{background:#b6bdd2 url(images/tag_purple.png) 3px 50% no-repeat;}
+a#clicktags, a#close_clicktags {font-weight:700;color:red;border:0;text-decoration:none;}
+a#close_clicktags{display:none;}
+#tagdiv {position:relative;display:block;margin-top:3px;}
+#tagdiv a{position:absolute;top:1px;right:1px;}
+#tagdiv input{margin-top:3px;}
+.box_color{display:block;width:20px;height:20px;border:1px solid #ccc;}

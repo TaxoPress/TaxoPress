@@ -111,12 +111,22 @@ Class SimpleTagsAdmin {
 		if ( $this->options['use_tag_pages'] == '1' ) {
 			add_action('edit_page_form', array(&$this, 'helperTagsPage'), 1);
 			add_action('dbx_page_advanced', array(&$this, 'helperJS'));
-			add_action('edit_page_form', array(&$this, 'helperSuggestTags'), 1);
+			if ( $this->options['use_click_tags'] == '1' ) {
+				add_action('edit_page_form', array(&$this, 'helperClickTags'), 1);
+			}
+			if ( $this->options['use_suggested_tags'] == '1' ) {
+				add_action('edit_page_form', array(&$this, 'helperSuggestTags'), 1);
+			}
 		}
 
 		// 16. Tags helper for post
 		add_action('dbx_post_advanced', array(&$this, 'helperJS'));
-		add_action('edit_form_advanced', array(&$this, 'helperSuggestTags'), 1);
+		if ( $this->options['use_click_tags'] == '1' ) {
+			add_action('edit_form_advanced', array(&$this, 'helperClickTags'), 1);
+		}
+		if ( $this->options['use_suggested_tags'] == '1' ) {
+			add_action('edit_form_advanced', array(&$this, 'helperSuggestTags'), 1);
+		}
 
 		// 17. Helper JS & jQuery & Prototype
 		global $pagenow;
@@ -275,24 +285,30 @@ Class SimpleTagsAdmin {
 		$option_data = array(
 			__('General', 'simpletags') => array(
 				array('inc_page_tag_search', __('Include page in tag search:', 'simpletags'), 'checkbox', '1',
-				__('This feature need that option "Add page in tags management" is enabled.', 'simpletags')),
+					__('This feature need that option "Add page in tags management" is enabled.', 'simpletags')),
 				array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
-				__('Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
+					__('Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
 				array('auto_link_tags', __('Active auto link tags into post content:', 'simpletags'), 'checkbox', '1',
-				__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),
+					__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),
+				array('auto_link_min', __('Min usage for auto link tags:', 'simpletags'), 'text', 10,
+					__('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags')),
 			),
 			__('Administration', 'simpletags') => array(
 				array('use_tag_pages', __('Add page in tags management:', 'simpletags'), 'checkbox', '1',
-					__('Add a tag input (and tag posts features) in page edition', 'simpletags'))
+					__('Add a tag input (and tag posts features) in page edition', 'simpletags')),
+				array('use_click_tags', __('Add click tags feature:', 'simpletags'), 'checkbox', '1',
+					__('This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post.', 'simpletags')),
+				array('use_suggested_tags', __('Add suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)', 'simpletags'), 'checkbox', '1',
+					__('This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)', 'simpletags'))					
 			),
 			__('Meta Keyword', 'simpletags') => array(
 				array('meta_autoheader', __('Automatically include in header:', 'simpletags'), 'checkbox', '1',
-				__('Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin "All in One SEO Pack" is installed and enabled. This feature is disabled.', 'simpletags')),
+					__('Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin "All in One SEO Pack" is installed and enabled. This feature is disabled.', 'simpletags')),
 				array('meta_always_include', __('Always add these keywords:', 'simpletags'), 'text', 80)
 			),
 			__('Embedded Tags', 'simpletags') => array(
 				array('use_embed_tags', __('Use embedded tags:', 'simpletags'), 'checkbox', '1',
-				__('Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post.', 'simpletags')),
+					__('Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post.', 'simpletags')),
 				array('start_embed_tags', __('Prefix for embedded tags:', 'simpletags'), 'text', 40),
 				array('end_embed_tags', __('Suffix for embedded tags:', 'simpletags'), 'text', 40)
 			),
@@ -349,8 +365,49 @@ Class SimpleTagsAdmin {
 				array('rp_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
 					__('You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags'))
 			),
+			__('Related Tags', 'simpletags') => array(
+				array('rt_number', __('Maximum number of related tags to display: (default: 5)', 'simpletags'), 'text', 10),
+				array('rt_order', __('Order related tags:', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
+					'<ul>
+						<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
+						<li>'.__('<code>count-desc</code> &ndash; Most popular. (default)', 'simpletags').'</li>
+						<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
+					</ul>'),
+				array('rt_format', __('Related tags type format:', 'simpletags'), 'dropdown', 'list/flat',
+					'<ul>
+						<li>'.__('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags').'</li>
+						<li>'.__('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags').'</li>
+					</ul>'),
+				array('rt_method', __('Method of tags intersections and unions used to build related tags link:', 'simpletags'), 'dropdown', 'OR/AND',
+					'<ul>
+						<li>'.__('<code>OR</code> &ndash; Fetches posts with either the "Tag1" <strong>or</strong> the "Tag2" tag. (default)', 'simpletags').'</li>
+						<li>'.__('<code>AND</code> &ndash; Fetches posts with both the "Tag1" <strong>and</strong> the "Tag2" tag.', 'simpletags').'</li>
+					</ul>'),
+				array('rt_xformat', __('Related tags link format:', 'simpletags'), 'text', 80,
+					__('You can find markers and explanations <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">in the online documentation.</a>', 'simpletags')),
+				array('rt_separator', __('Related tags separator:', 'simpletags'), 'text', 10,
+					__('Leave empty for list format.', 'simpletags')),
+				array('rt_notagstext', __('Enter the text to show when there is no related tags:', 'simpletags'), 'text', 80),
+				array('rt_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
+				array('rt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
+					__('You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">documentation</a> for more details.', 'simpletags')),
+				// Remove related tags
+				array('text_helper', 'text_helper', 'helper', '', '<hr /><h2>'.__('Remove related Tags', 'simpletags').'</h2>'),
+				array('rt_format', __('Remove related Tags type format:', 'simpletags'), 'dropdown', 'list/flat',
+					'<ul>
+						<li>'.__('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags').'</li>
+						<li>'.__('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags').'</li>
+					</ul>'),
+				array('rt_remove_separator', __('Remove related tags separator:', 'simpletags'), 'text', 10,
+					__('Leave empty for list format.', 'simpletags')),
+				array('rt_remove_notagstext', __('Enter the text to show when there is no remove related tags:', 'simpletags'), 'text', 80),
+				array('rt_remove_xformat', __('Remove related tags  link format:', 'simpletags'), 'text', 80,
+					__('You can find markers and explanations <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">in the online documentation.</a>', 'simpletags')),		
+			),
 			__('Tag cloud', 'simpletags') => array(
-				array('cloud_helper', 'cloud_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
+				array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
 					. '<ul style="list-style:square;">
 						<li>'.__('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags').'</li>
 						<li>'.__('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags').'</li>
@@ -373,17 +430,22 @@ Class SimpleTagsAdmin {
 						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Random. (default)', 'simpletags').'</li>
 					</ul>'),
+				array('cloud_format', __('Tags cloud type format:', 'simpletags'), 'dropdown', 'list/flat',
+					'<ul>
+						<li>'.__('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags').'</li>
+						<li>'.__('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags').'</li>
+					</ul>'),
 				array('cloud_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
 					__('You can find markers and explanations <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage">in the online documentation.</a>', 'simpletags')),
 				array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'text', 10),
 				array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 80),
 				array('cloud_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
-				array('cloud_max_color', __('Most popular color:', 'simpletags'), 'text', 40,
+				array('cloud_max_color', __('Most popular color:', 'simpletags'), 'text-color', 10,
 					__("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags')),
-				array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text', 40),
-				array('cloud_max_size', __('Most popular font size:', 'simpletags'), 'text', 20,
+				array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text-color', 10),
+				array('cloud_max_size', __('Most popular font size:', 'simpletags'), 'text', 10,
 					__("The two font sizes are the size of the largest and smallest tags.", 'simpletags')),
-				array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'text', 20),
+				array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'text', 10),
 				array('cloud_unit', __('The units to display the font sizes with, on tag clouds:', 'simpletags'), 'dropdown', 'pt/px/em/%',
 					__("The font size units option determines the units that the two font sizes use.", 'simpletags')),
 				array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
@@ -412,7 +474,33 @@ Class SimpleTagsAdmin {
 	    ?>
 		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/tabs/jquery.tabs.pack.js?ver=<?php echo $this->version; ?>"></script>
 		<script type="text/javascript">
-			jQuery(document).ready( function() { jQuery('#printOptions').tabs({ fxSlide: true }); });
+			jQuery(document).ready( function() {
+				jQuery('#printOptions').tabs({fxSlide: true});
+				
+				jQuery('input#cloud_max_color')
+					.ready(function(){cloudMaxColor()})
+					.click(function(){cloudMaxColor()})
+					.blur(function(){cloudMaxColor()})
+					.change(function(){cloudMaxColor()})
+					.focus(function(){cloudMaxColor()});					
+				function cloudMaxColor() {
+					jQuery('div.cloud_max_color').css({
+						backgroundColor: jQuery('input#cloud_max_color').val()
+					});
+				}
+				
+				jQuery('input#cloud_min_color')
+					.ready(function(){cloudMinColor()})
+					.click(function(){cloudMinColor()})
+					.blur(function(){cloudMinColor()})
+					.change(function(){cloudMinColor()})
+					.focus(function(){cloudMinColor()});					
+				function cloudMinColor() {
+					jQuery('div.cloud_min_color').css({
+						backgroundColor: jQuery('input#cloud_min_color').val()
+					});
+				}				
+			});
 		</script>
 	    <div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
@@ -1294,18 +1382,33 @@ Class SimpleTagsAdmin {
 	   	<script type="text/javascript">
 	    // <![CDATA[
 	    	jQuery(document).ready(function() {
-	    		function loadAndRegisterClickTags() {
-					jQuery("#advancedstuff_tag .dbx-content span").click(function() { addTag(this.innerHTML); });
-	    		}
-				jQuery("a.local_all").click(function() {
-					jQuery("#advancedstuff_tag .dbx-content").load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=tags_from_local_db', {all:'true'}, function(){
-						loadAndRegisterClickTags();
+	    		jQuery("#tagdiv").prepend('<a href="#st_click_tags" id="clicktags"><?php _e('Display click tags', 'simpletags'); ?></a><a href="#st_click_tags" id="close_clicktags"><?php _e('Hide click tags', 'simpletags'); ?></a>');
+	    		jQuery("#tagdiv").after('<div id="st_click_tags"></div>');
+	    		
+	    		if (jQuery.browser.mozilla ) {
+   					jQuery("#tagdiv a").css({top:'-17px'}); // fix a Mozilla bug
+				}
+	    		    		
+				jQuery("a#clicktags").click(function() {					
+					jQuery("#st_click_tags")
+						.fadeIn('slow')
+						.load('<?php echo $this->info['siteurl']; ?>/wp-admin/admin.php?st_ajax_action=click_tags', function(){
+							jQuery("#st_click_tags span").click(function() { addTag(this.innerHTML); });
+							jQuery("a#clicktags").hide();
+							jQuery("a#close_clicktags").show();
+						});						
+					return false;
+				});
+				jQuery("a#close_clicktags").click(function() {	
+					jQuery("#st_click_tags").fadeOut('slow', function() {
+						jQuery("a#clicktags").show();
+						jQuery("a#close_clicktags").hide();
 					});
 					return false;
 				});
 			});
 		// ]]>
-	    </script>
+	    </script>	   
 		<?php
 	}
 
@@ -1619,6 +1722,8 @@ Class SimpleTagsAdmin {
 			$this->ajaxHelperJsCollection();
 		} elseif ( $_GET['st_ajax_action'] == 'tags_from_local_db' ) {
 			$this->ajaxSuggestLocal();
+		} elseif ( $_GET['st_ajax_action'] == 'click_tags' ) {
+			$this->ajaxClickTags();
 		}
 	}
 
@@ -1850,12 +1955,13 @@ Class SimpleTagsAdmin {
 		if ( $total == 0 ) {
 			return;
 		}
+		status_header( 200 );
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		global $simple_tags;
 
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
 		$tags = stripslashes($_POST['tags']);
-		$all = ( $_POST['all'] == 'true' ) ? true : false;
 
 		$counter = 0;
 		while ( ( $counter * 200 ) < $total ) {
@@ -1863,9 +1969,7 @@ Class SimpleTagsAdmin {
 			$tags = $simple_tags->getTags('hide_empty=false&cloud_selection=count-desc&number=LIMIT '. $counter * 200 . ', '. 200, true);
 
 			foreach ( (array) $tags as $tag ) {
-				if ( $all == true ) {
-					echo '<span class="local">'.$tag->name.'</span>'."\n";
-				} elseif ( is_string($tag->name) && !empty($tag->name) && stristr($content, $tag->name) ) {
+				if ( is_string($tag->name) && !empty($tag->name) && stristr($content, $tag->name) ) {
 					echo '<span class="local">'.$tag->name.'</span>'."\n";
 				}
 			}
@@ -1876,6 +1980,38 @@ Class SimpleTagsAdmin {
 		}
 		echo '<div class="clearer"></div>';
 		exit();
+	}
+	
+	function ajaxClickTags() {
+		$total = wp_count_terms('post_tag');
+
+		// No tags to suggest.
+		if ( $total == 0 ) {
+			return;
+		}
+		status_header( 200 );
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		global $simple_tags;
+
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$tags = stripslashes($_POST['tags']);
+
+		$counter = 0;
+		while ( ( $counter * 200 ) < $total ) {
+			// Get tags
+			$tags = $simple_tags->getTags('hide_empty=false&cloud_selection=count-desc&number=LIMIT '. $counter * 200 . ', '. 200, true);
+
+			foreach ( (array) $tags as $tag ) {
+				echo '<span class="local">'.$tag->name.'</span>'."\n";
+			}
+			unset($tags, $tag);
+
+			// Increment counter
+			$counter++;
+		}
+		echo '<div class="clearer"></div>';
+		exit();	
 	}
 
 	/**
@@ -2011,8 +2147,13 @@ Class SimpleTagsAdmin {
 							$seldata .= '<option value="' . $sel . '" ' .(($option_actual[ $option[0] ] == $sel) ? 'selected="selected"' : '') .' >' . ucfirst($sel) . '</option>';
 						}
 						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>';
+						break;	
+					
+					case 'text-color':
+						$input_type = '<input type="text" ' . (($option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" /><div class="box_color ' . $option[0] . '"></div>';
 						break;
 
+					case 'text':
 					default:
 						$input_type = '<input type="text" ' . (($option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />';
 						break;

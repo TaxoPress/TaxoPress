@@ -48,12 +48,14 @@ Class SimpleTags {
 		$default_options = array(
 			// General
 			'inc_page_tag_search' => '1',
+			'allow_embed_tcloud' => '0',
+			'auto_link_tags' => '0',
+			'auto_link_min' => '1',
 			// Administration
 			'use_tag_pages' => '1',
-			'use_tag_links' => '0',
-			'use_tag_links_min' => '2',
-			// Embedded Tags
-			'allow_embed_tcloud' => '0',
+			'use_click_tags' => '1',
+			'use_suggested_tags' => '1',
+			// Embedded Tags			
 			'use_embed_tags' => '0',
 			'start_embed_tags' => '[tags]',
 			'end_embed_tags' => '[/tags]',
@@ -72,6 +74,7 @@ Class SimpleTags {
 			'cloud_limit_qty' => '45',
 			'cloud_notagstext' => __('No tags.', 'simpletags'),
 			'cloud_title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
+			'cloud_format' => 'flat',
 			'cloud_xformat' => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'cloud_max_color' => '#000000',
 			'cloud_min_color' => '#CCCCCC',
@@ -108,9 +111,7 @@ Class SimpleTags {
 			'meta_always_include' => '',
 			// Auto tags
 			'use_auto_tags' => '0',
-			'auto_list' => '',
-			// Auto link tags
-			'auto_link_tags' => '0'
+			'auto_list' => ''
 		);			
 
 		// Set class property for default options
@@ -220,17 +221,27 @@ Class SimpleTags {
 		return;
 	}
 
+	/**
+	 * Get links for each tag for auto link feature
+	 *
+	 */
 	function prepareAutoLinkTags() {
 		$this->getTagsFromCurrentPosts();
+		
+		$auto_link_min = (int) $this->options['auto_link_min'];
+		if ( $auto_link_min == 0 ) {
+			$auto_link_min = 1;		
+		}
 
 		$this->link_tags = array();
 		foreach ( (array) $this->tags_currentposts as $tag ) {
-			if  ( $tag->count >= (int) $this->options['use_tag_links_min'] ) {
+			if  ( $tag->count >= $auto_link_min ) {
 	 			$this->link_tags[$tag->name] = get_tag_link( $tag->term_id );
 			}
 		}
 	}
 
+	
 	function autoLinkTags( $content = '' ) {
 		if ( $this->link_tags == 'null' ) {
 			$this->prepareAutoLinkTags();
@@ -474,13 +485,14 @@ Class SimpleTags {
 			'xformat' => __('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags')
 		);
 
-		// If empty user_args, use user option in DB.
-		if( empty($user_args) ) {
-			$defaults['number'] = $this->options['rp_limit_qty'];
-			$defaults['order'] = $this->options['rp_order'];
-			$defaults['nopoststext'] = $this->options['rp_notagstext'];
-			$defaults['title'] = $this->options['rp_title'];
-			$defaults['xformat'] = $this->options['rp_xformat'];			
+		// Get values in DB
+		$defaults['number'] = $this->options['rp_limit_qty'];
+		$defaults['order'] = $this->options['rp_order'];
+		$defaults['nopoststext'] = $this->options['rp_notagstext'];
+		$defaults['title'] = $this->options['rp_title'];
+		$defaults['xformat'] = $this->options['rp_xformat'];	
+			
+		if( empty($user_args) ) {		
 			$user_args = $this->options['rp_adv_usage'];
 		}
 
@@ -837,17 +849,17 @@ Class SimpleTags {
 			'xformat' => __('<span>%tag_count%</span> <a href="%tag_link_add%">+</a> <a href="%tag_link%">%tag_name%</a>', 'simpletags')
 		);
 		
-		// If empty user_args, use user option in DB.
-		if( empty($user_args) ) {
-			$defaults['number'] = $this->options['rt_number'];
-			$defaults['order'] = $this->options['rt_order'];
-			$defaults['separator'] = $this->options['rt_separator'];
-			$defaults['format'] = $this->options['rt_format'];
-			$defaults['method'] = $this->options['rt_method'];
-			$defaults['title'] = $this->options['rt_title'];
-			$defaults['notagstext'] = $this->options['rt_notagstext'];
-			$defaults['xformat'] = $this->options['rt_xformat'];
+		// Get values in DB
+		$defaults['number'] = $this->options['rt_number'];
+		$defaults['order'] = $this->options['rt_order'];
+		$defaults['separator'] = $this->options['rt_separator'];
+		$defaults['format'] = $this->options['rt_format'];
+		$defaults['method'] = $this->options['rt_method'];
+		$defaults['title'] = $this->options['rt_title'];
+		$defaults['notagstext'] = $this->options['rt_notagstext'];
+		$defaults['xformat'] = $this->options['rt_xformat'];
 			
+		if( empty($user_args) ) {			
 			$user_args = $this->options['rt_adv_usage'];
 		}
 
@@ -855,7 +867,7 @@ Class SimpleTags {
 		extract($args);
 
 		if ( !is_tag() && !$this->isTag() ) {
-			return $this->outputRelatedTags( $format, $title, $notagstext );
+			return $this->outputRelatedTags( $format, $title, '' );
 		}
 		
 		// Method union/intersection
@@ -865,33 +877,7 @@ Class SimpleTags {
 		} else {
 			$url_tag_sep = ',';
 		}
-
-		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
-		$order_tmp = strtolower($order);
-		$order_by = $order = '';
-		switch ( $order_tmp ) {
-			case 'count-asc':
-				$order_by = 'count';
-				$order = 'ASC';
-				break;
-			case 'random':
-				$order_by = 'RAND()';
-				$order = '';
-				break;
-			case 'name-asc':
-				$order_by = 'name';
-				$order = 'ASC';
-				break;
-			case 'name-desc':
-				$order_by = 'name';
-				$order = 'DESC';
-				break;
-			default: // count-desc
-				$order_by = 'count';
-				$order = 'DESC';
-				break;
-		}
-
+		
 		// Get currents slugs
 		global $wp_query;
 		$slugs = trim($wp_query->query_vars['tag']);		
@@ -904,31 +890,75 @@ Class SimpleTags {
 		}else {
 			$current_slugs[] = $slugs;
 		}
-						
-		// Get objets
-		$terms = "'" . implode("', '", $current_slugs) . "'";
-		global $wpdb;
-		$object_ids = $wpdb->get_col("
-			SELECT DISTINCT tr.object_id
-			FROM {$wpdb->term_relationships} AS tr 
-			INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
-			INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
-			WHERE tt.taxonomy = 'post_tag' 
-			AND t.slug IN ({$terms}) 
-			ORDER BY tr.object_id ASC");
-		unset($terms);		
 		
-		// Get tags for specified objects
-		$all_related_tags = wp_get_object_terms( $object_ids, 'post_tag', array('order_by' => $order_by, 'order' => $order) );
+		// Generate key cache
+		$key = md5(maybe_serialize($user_args.$slugs));
 
-		// Remove duplicates related tags
-		$all_related_tags = array_intersect_key($all_related_tags, array_unique(array_map('serialize', $all_related_tags)));
-		
-		// Exclude current tags
-		foreach ( (array) $all_related_tags as $tag ) {
-			if ( !in_array($tag->slug, $current_slugs) ) {
-				$related_tags[] = $tag;
+		// Get cache if exist
+		$related_tags = false;
+		if ( $cache = wp_cache_get( 'related_tags', 'simpletags' ) ) {
+			if ( isset( $cache[$key] ) ) {
+				$related_tags = $cache[$key];
 			}
+		}
+
+		// If cache not exist, get datas and set cache
+		if ( $related_tags === false || $related_tags === null ) {
+
+			// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
+			$order_tmp = strtolower($order);
+			$order_by = $order = '';
+			switch ( $order_tmp ) {
+				case 'count-asc':
+					$order_by = 'count';
+					$order = 'ASC';
+					break;
+				case 'random':
+					$order_by = 'RAND()';
+					$order = '';
+					break;
+				case 'name-asc':
+					$order_by = 'name';
+					$order = 'ASC';
+					break;
+				case 'name-desc':
+					$order_by = 'name';
+					$order = 'DESC';
+					break;
+				default: // count-desc
+					$order_by = 'count';
+					$order = 'DESC';
+					break;
+			}
+							
+			// Get objets
+			$terms = "'" . implode("', '", $current_slugs) . "'";
+			global $wpdb;
+			$object_ids = $wpdb->get_col("
+				SELECT DISTINCT tr.object_id
+				FROM {$wpdb->term_relationships} AS tr 
+				INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+				INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
+				WHERE tt.taxonomy = 'post_tag' 
+				AND t.slug IN ({$terms}) 
+				ORDER BY tr.object_id ASC");
+			unset($terms);		
+			
+			// Get tags for specified objects
+			$all_related_tags = wp_get_object_terms( $object_ids, 'post_tag', array('orderby' => $order_by, 'order' => $order) );
+
+			// Remove duplicates tags
+			$all_related_tags = array_intersect_key($all_related_tags, array_unique(array_map('serialize', $all_related_tags)));
+			
+			// Exclude current tags
+			foreach ( (array) $all_related_tags as $tag ) {
+				if ( !in_array($tag->slug, $current_slugs) ) {
+					$related_tags[] = $tag;
+				}
+			}
+			
+			$cache[$key] = $related_tags;
+			wp_cache_set('related_tags', $cache, 'simpletags');
 		}
 		
 		if ( empty($related_tags) ) {
@@ -944,6 +974,11 @@ Class SimpleTags {
 		// Rel or not ?
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
+		
+		// If empty use default xformat !
+		if ( empty($xformat) ) {
+			$xformat = $defaults['xformat'];
+		}
 
 		// Build outpout
 		$output = array();
@@ -1057,13 +1092,13 @@ Class SimpleTags {
 			'xformat' => __('&raquo; <a href="%tag_link_remove%" title="Remove %tag_name_attribute% from search">Remove %tag_name%</a>', 'simpletags')
 		);		
 
-		// If empty user_args, use user option in DB.
-		if( empty($user_args) ) {
-			$defaults['separator'] = $this->options['rt_remove_separator'];
-			$defaults['format'] = $this->options['rt_remove_format'];
-			$defaults['notagstext'] = $this->options['rt_remove_notagstext'];
-			$defaults['xformat'] = $this->options['rt_remove_xformat'];
+		// Get values in DB
+		$defaults['separator'] = $this->options['rt_remove_separator'];
+		$defaults['format'] = $this->options['rt_remove_format'];
+		$defaults['notagstext'] = $this->options['rt_remove_notagstext'];
+		$defaults['xformat'] = $this->options['rt_remove_xformat'];
 			
+		if( empty($user_args) ) {		
 			$user_args = $this->options['rt_remove_adv_usage'];
 		}
 		
@@ -1071,7 +1106,7 @@ Class SimpleTags {
 		extract($args);
 
 		if ( !is_tag() && !$this->isTag() ) {
-			return $this->outputRemoveRelatedTags( $format, $notagstext );
+			return $this->outputRemoveRelatedTags( $format, '' );
 		}
 		
 		// Get currents slugs
@@ -1093,6 +1128,11 @@ Class SimpleTags {
 		// Rel or not ?
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
+		
+		// If empty use default xformat !
+		if ( empty($xformat) ) {
+			$xformat = $defaults['xformat'];
+		}
 
 		foreach ( $current_slugs as $slug ) {
 			// Get term by slug
@@ -1164,7 +1204,6 @@ Class SimpleTags {
 		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $output. "\n";
 	}
 	
-	
 	/**
 	 * Build tag url without a specifik tag
 	 *
@@ -1232,18 +1271,21 @@ Class SimpleTags {
 			'category' => 0
 		);
 
-		if ( empty($args) ) {
-			$defaults['cloud_selection'] = $this->options['cloud_selection'];
-			$defaults['cloud_sort'] = $this->options['cloud_sort'];
-			$defaults['number'] = $this->options['cloud_limit_qty'];
-			$defaults['notagstext'] = $this->options['cloud_notagstext'];
-			$defaults['title'] = $this->options['cloud_title'];
-			$defaults['maxcolor'] = $this->options['cloud_max_color'];
-			$defaults['mincolor'] = $this->options['cloud_min_color'];
-			$defaults['largest'] = $this->options['cloud_max_size'];
-			$defaults['smallest'] = $this->options['cloud_min_size'];
-			$defaults['unit'] = $this->options['cloud_unit'];
-			$defaults['xformat'] = $this->options['cloud_xformat'];			
+		// Get values in DB
+		$defaults['cloud_selection'] = $this->options['cloud_selection'];
+		$defaults['cloud_sort'] = $this->options['cloud_sort'];
+		$defaults['number'] = $this->options['cloud_limit_qty'];
+		$defaults['notagstext'] = $this->options['cloud_notagstext'];
+		$defaults['title'] = $this->options['cloud_title'];
+		$defaults['maxcolor'] = $this->options['cloud_max_color'];
+		$defaults['mincolor'] = $this->options['cloud_min_color'];
+		$defaults['largest'] = $this->options['cloud_max_size'];
+		$defaults['smallest'] = $this->options['cloud_min_size'];
+		$defaults['unit'] = $this->options['cloud_unit'];
+		$defaults['xformat'] = $this->options['cloud_xformat'];		
+		$defaults['format'] = $this->options['cloud_format'];
+		
+		if ( empty($args) ) {				
 			$args = $this->options['cloud_adv_usage'];
 		}
 		$args = wp_parse_args( $args, $defaults );
@@ -1461,22 +1503,24 @@ Class SimpleTags {
 	 */
 	function extendedPostTags( $args = '', $copyright = true ) {
 		$defaults = array(
-		'before' => __('Tags: ', 'simpletags'),
-		'separator' => ', ',
-		'after' => '<br />',
-		'post_id' => '',
-		'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
-		'notagtext' => __('No tag for this post.', 'simpletags'),
-		'number' => 0
+			'before' => __('Tags: ', 'simpletags'),
+			'separator' => ', ',
+			'after' => '<br />',
+			'post_id' => '',
+			'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
+			'notagtext' => __('No tag for this post.', 'simpletags'),
+			'number' => 0
 		);
 
+		// Get values in DB
+		$defaults['before'] = $this->options['tt_before'];
+		$defaults['separator'] = $this->options['tt_separator'];
+		$defaults['after'] = $this->options['tt_after'];
+		$defaults['notagtext'] = $this->options['tt_notagstext'];
+		$defaults['number'] = $this->options['tt_number'];
+		$defaults['xformat'] = $this->options['tt_xformat'];
+		
 		if ( empty($args) ) {
-			$defaults['before'] = $this->options['tt_before'];
-			$defaults['separator'] = $this->options['tt_separator'];
-			$defaults['after'] = $this->options['tt_after'];
-			$defaults['notagtext'] = $this->options['tt_notagstext'];
-			$defaults['number'] = $this->options['tt_number'];
-			$defaults['xformat'] = $this->options['tt_xformat'];
 			$args = $this->options['tt_adv_usage'];
 		}
 
@@ -1982,7 +2026,4 @@ require(dirname(__FILE__).'/inc/simple-tags.functions.php');
 
 // Widgets
 require(dirname(__FILE__).'/inc/simple-tags.widgets.php');
-
-// Compatibily old STP and UTW(future)
-//require(dirname(__FILE__).'/inc/simple-tags.compatibility.php');
 ?>
