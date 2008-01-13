@@ -1852,6 +1852,9 @@ Class SimpleTagsAdmin {
 		}
 
 		$data = (array) $data['ResultSet']['Result'];
+		
+		// Remove empty terms
+		$data = array_filter($data, array(&$this, 'deleteEmptyElement'));
 
 		foreach ( $data as $term ) {
 			echo '<span class="yahoo">'.$term.'</span>'."\n";
@@ -1937,6 +1940,9 @@ Class SimpleTagsAdmin {
 		foreach ( (array) $persons as $person ) {
 			$terms[] = '<span class="ttn_person">'.$person.'</span>';
 		}
+		
+		// Remove empty terms
+		$terms = array_filter($terms, array(&$this, 'deleteEmptyElement'));
 
 		shuffle($terms);
 		echo implode("\n", $terms);
