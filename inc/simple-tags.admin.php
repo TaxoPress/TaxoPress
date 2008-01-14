@@ -224,6 +224,7 @@ Class SimpleTagsAdmin {
 				// Update term
 				$this->updateTerm( $term );
 			}
+			wp_cache_flush(); // Delete cache
 			$this->message .= sprintf(__('%s terms updated with success !', 'simpletags'), (int) $i);
 		}		
 	}
@@ -830,8 +831,7 @@ Class SimpleTagsAdmin {
 			$this->message = __('Options saved', 'simpletags');
 			$this->status = 'updated';
 		} elseif ( isset($_POST['reset_options']) ) {
-			update_option( $this->db_options, $this->default_options );
-			$this->options = $this->default_options;
+			$this->resetToDefaultOptions();
 			$this->message = __('Simple Tags options resetted to default options!', 'simpletags');
 		}
 
@@ -1308,6 +1308,7 @@ Class SimpleTagsAdmin {
 			$tags = array_unique($tags);
 
 			wp_set_post_tags( $post_id, $tags, true ); // Append tags
+			wp_cache_flush(); // Delete cache
 		}
 	}
 
@@ -1338,6 +1339,7 @@ Class SimpleTagsAdmin {
 			$tags_to_add = array_unique($tags_to_add);
 
 			wp_set_object_terms( $post_id, $tags_to_add, 'post_tag', true );
+			wp_cache_flush(); // Delete cache
 		}
 	}
 
@@ -1455,6 +1457,7 @@ Class SimpleTagsAdmin {
 			if ( $counter == 0  ) {
 				$this->message = __('No tag renamed.', 'simpletags');
 			} else {
+				wp_cache_flush(); // Delete cache
 				$this->message = sprintf(__('Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simpletags'), $old, $new);
 			}
 		}
@@ -1506,6 +1509,7 @@ Class SimpleTagsAdmin {
 			if ( $counter == 0  ) {
 				$this->message = __('No tag merged.', 'simpletags');
 			} else {
+				wp_cache_flush(); // Delete cache
 				$this->message = sprintf(__('Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simpletags'), $old, $new, $counter);
 			}
 		} else { // Error
@@ -1562,6 +1566,7 @@ Class SimpleTagsAdmin {
 		if ( $counter == 0  ) {
 			$this->message = __('No tag deleted.', 'simpletags');
 		} else {
+			wp_cache_flush(); // Delete cache
 			$this->message = sprintf(__('%1s tag(s) deleted.', 'simpletags'), $counter);
 		}
 	}
@@ -1624,6 +1629,7 @@ Class SimpleTagsAdmin {
 		if ( $counter == 0  ) {
 			$this->message = __('No tag added.', 'simpletags');
 		} else {
+			wp_cache_flush(); // Delete cache
 			$this->message = sprintf(__('Tag(s) added to %1s post(s).', 'simpletags'), $counter);
 		}
 	}
@@ -1678,6 +1684,7 @@ Class SimpleTagsAdmin {
 		if ( $counter == 0  ) {
 			$this->message = __('No slug edited.', 'simpletags');
 		} else {
+			wp_cache_flush(); // Delete cache
 			$this->message = sprintf(__('%s slug(s) edited.', 'simpletags'), $counter);
 		}
 		return;
@@ -1720,6 +1727,7 @@ Class SimpleTagsAdmin {
 			$counter += $wpdb->query("DELETE FROM {$wpdb->term_relationships} WHERE term_taxonomy_id IN ( {$tts_list} )");
 		}
 
+		wp_cache_flush(); // Delete cache
 		$this->message = sprintf(__('%s rows deleted. WordPress DB is clean now !', 'simpletags'), $counter);
 		return;
 	}
@@ -2030,6 +2038,7 @@ Class SimpleTagsAdmin {
 					$counter++;
 				}
 
+				wp_cache_flush(); // Delete cache
 				if ( $type == 'post' ) {
 					$this->message = sprintf(__('%s post(s) tags updated with success !', 'simpletags'), $counter);
 				} elseif ( $type == 'page' ) {
@@ -2056,6 +2065,7 @@ Class SimpleTagsAdmin {
 	 */
 	function saveOptions() {
 		update_option($this->db_options, $this->options);
+		wp_cache_flush(); // Delete cache
 	}
 
 	/**
@@ -2065,6 +2075,7 @@ Class SimpleTagsAdmin {
 	function resetToDefaultOptions() {
 		update_option($this->db_options, $this->default_options);
 		$this->options = $this->default_options;
+		wp_cache_flush(); // Delete cache
 	}
 
 	############## Ajax ##############
@@ -2551,5 +2562,4 @@ Class SimpleTagsAdmin {
 		return strtr($content, array("\\" => "\\\\", "/" => "\\/", "[" => "\\[", "]" => "\\]"));
 	}
 }
-
 ?>
