@@ -18,7 +18,8 @@
 .st_wrap fieldset#taglist ul li strong{font-weight:700;width:50px;}
 .st_wrap fieldset#taglist ul li span{cursor:pointer;}
 .st_wrap td.list_tags{vertical-align:top;border-right:1px dotted #ccc;width:220px;}
-.st_wrap .pagination{text-align:center;}
+.st_wrap .pagination,.st_wrap .widefat th,.st_wrap .widefat td{text-align:center;}
+.st_wrap .pagination{margin:5px 0;}
 .st_wrap .pagination a{margin:1px 3px;}
 .st_wrap .pagination a.current_page{font-weight:700;}
 .st_wrap #post .submit input{width:300px;}

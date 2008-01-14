@@ -1882,7 +1882,8 @@ Class SimpleTags {
 			foreach ( (array) $sts as $st ) {
 				if ( empty($st) )
 					continue;
-
+					
+				$st = addslashes_gpc($st);
 				$tmp .= " t.name LIKE '%{$st}%' OR ";
 			}
 			// Remove latest OR

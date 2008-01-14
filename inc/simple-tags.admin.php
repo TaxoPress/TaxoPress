@@ -160,6 +160,371 @@ Class SimpleTagsAdmin {
 		add_submenu_page(__FILE__, __('Simple Tags: Mass Edit Tags', 'simpletags'), __('Mass Edit Tags', 'simpletags'), 'simple_tags', 'simpletags_mass', array(&$this, 'pageMassEditTags'));
 		add_submenu_page(__FILE__, __('Simple Tags: Auto Tags', 'simpletags'), __('Auto Tags', 'simpletags'), 'simple_tags', 'simpletags_auto', array(&$this, 'pageAutoTags'));
 		add_submenu_page(__FILE__, __('Simple Tags: Options', 'simpletags'), __('Options', 'simpletags'), 'simple_tags', 'simpletags_options', array(&$this, 'pageOptions'));
+		add_submenu_page(__FILE__, __('Simple Tags: Advanced Edit Terms', 'simpletags'), __('Advanced Edit Terms', 'simpletags'), 'simple_tags', 'simpletags_adv_edit_terms', array(&$this, 'pageAdvancedEditTerms'));
+	}
+	
+	function checkFormAdvEditTerms() {
+		if ( isset($_POST['update_adv_edit_terms']) ) {
+			// origination and intention
+			if ( ! ( wp_verify_nonce($_POST['secure_adv_edit_terms'], 'simpletags_adv_edit_terms') ) ) {
+				$this->message = __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
+				$this->status = 'error';
+				return;
+			}
+			
+			// Count total rows
+			$nb_terms = count($_POST['id']);
+			
+			$this->message = '';
+			for ( $i = 1; $i <= $nb_terms; $i++ ) {
+				// Term ID
+				$term_id = (int) $_POST['id'][$i];
+								
+				// Name
+				$name = stripslashes($_POST['name'][$i]);
+				
+				// Slug
+				$slug = stripslashes($_POST['slug'][$i]);
+				
+				// Term group
+				$term_group = (int) $_POST['term_group'][$i];
+				
+				// Taxonomy
+				$taxonomy = stripslashes($_POST['taxonomy'][$i]);
+				
+				// Count
+				$count = (int) $_POST['count'][$i];
+				
+				// Parent
+				$parent = (int) $_POST['parent'][$i];
+				
+				// Description
+				$description = stripslashes($_POST['description'][$i]);
+				
+				// Delete ?
+				$delete = (int) $_POST['delete_term'][$i];
+				if ( $delete != 0 ) {
+					//wp_delete_term( $term_id, $taxonomy ); // Remove term form taxonomy
+					continue;
+				}
+								
+				$term = array(
+					'term_id' => $term_id,
+					'name' => $name,
+					'slug' => $slug,
+					'term_group' => $term_group,
+					'taxonomy' => $taxonomy,
+					'count' => $count,
+					'parent' => $parent,
+					'description' => $description);
+					
+				// Sanitize term (db format)
+				$term = sanitize_term( $term, $taxonomy, 'db' );
+				
+				// Update term
+				$this->updateTerm( $term );
+			}
+			$this->message .= sprintf(__('%s terms updated with success !', 'simpletags'), (int) $i);
+		}		
+	}
+	
+	function updateTerm( $term ) {
+		/*
+		Il faut tester si:
+			- Si le nom existe deja dans la meme taxonomy
+				- Ajout d'un suffixe au nom (et proposer page de gestion des tags pour fusion)
+				
+			- Si le nom existe dans une autre taxonomy
+				- Si le nom et le slug est le meme, on garde le terme
+				- Si le slug est different, on ajoute un terme
+				
+			- Si le slug existe deja et que le nom est different, on ajoute un suffixe
+			
+			- Si on passe de tag a categorie
+				- On teste si la categorie existe sur le meme nom
+					si oui, on attribue juste les objets du tags a la categorie, et on supprime le tag
+					Si non, on change juste la taxonomy du terme
+					
+			- Si on passe de categorie a tag
+				- On teste si le tag existe sur le meme nom
+					si oui, on attribue juste les objets de la categorie au tag, et on supprime la categorie
+					Si non, on change juste la taxonomy du terme
+		*/		
+		global $wpdb;
+		
+		// Get old term
+		$old_term = get_term($term['term_id'], $term['taxonomy']);
+		
+		// No term ? Skip update
+		if ( $old_term == false ) {
+			return false;
+		}
+		
+		$merge = false;
+		$rename = false;
+		
+		// If name change
+		if ( $old_term->name != $term['name'] ) {
+			
+			// Name already use in the same taxonomy ?	
+			if ( $wpdb->get_var("SELECT COUNT(tt.term_id) FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy} as tt ON tt.term_id = t.term_id WHERE t.name = '{$term['name']}' AND tt.taxonomy = '{$term['taxonomy']}'") != 0 ) {
+						
+				// Todo : Merge or add suffix ?
+				$merge = true;
+				
+			}			
+			// Name already use in another taxonomy	?
+			elseif ( $wpdb->get_var("SELECT COUNT(term_id) FROM {$wpdb->terms} WHERE name = '{$term['name']}'") != 0 ) {
+						
+				if ( $old_term->slug == $term['slug'] ) { // Same slug, keep one term for two taxonomy
+					$merge = true;
+				} else { // Slug different, create new term
+					$rename = true;
+				}
+								
+			}			
+		}
+		
+		// If slug change
+		if ( $old_term->slug != $term['slug'] ) {
+			
+			$slug = $term['slug'];
+			// If we didn't get a unique slug, try appending a number to make it unique.
+			if ( $wpdb->get_var("SELECT slug FROM $wpdb->terms WHERE slug = '$slug'") ) {
+				$num = 2;
+				do {
+					$alt_slug = $slug . "-$num";
+					$num++;
+					$slug_check = $wpdb->get_var("SELECT slug FROM $wpdb->terms WHERE slug = '$alt_slug'");
+				} while ( $slug_check );
+				$slug = $alt_slug;
+			}
+			$term['slug'] = $slug;
+			unset($slug);
+			
+		}	
+		
+		// Test if taxonomy change (category to tag / tag to category)
+		if ( $old_term->taxonomy != $term['taxonomy'] ) {
+			
+			// Test if term is used
+			if ( $wpdb->get_var("SELECT COUNT(tt.term_id) FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy} as tt ON tt.term_id = t.term_id WHERE t.slug = '{$term['slug']}' AND tt.taxonomy = '{$term['taxonomy']}'") != 0 ) {
+				$merge = true;				
+			}			
+		}				
+	}
+
+	function getAdvTerms( $type = 'post_tag', $quantity = 20, $search = '', $order = 'count_desc' ) {
+		global $wpdb;
+
+		// Quantity
+		$this->data_per_page = $quantity;
+
+		// Search
+		$search_sql = '';
+		$search = trim($search);
+		if ( !empty($search) ) {
+			$search = addslashes_gpc($search);
+			$search_sql = "AND ( (t.name LIKE '%{$search}%') OR (t.slug LIKE '%{$search}%') OR (tt.description LIKE '%{$search}%') )";
+		}
+		
+		// Type taxynomy
+		if ( $type == 'all' ) {
+			$type = "post_tag' OR tt.taxonomy = 'category";		
+		}
+		
+		// Order
+		$order_sql = '';
+		switch ($order) {
+			case 'count_asc':
+				$order_sql = 'ORDER BY tt.count ASC';
+			break;
+			case 'name_desc':
+				$order_sql = 'ORDER BY t.name DESC';
+			break;
+			case 'name_asc':
+				$order_sql = 'ORDER BY t.name ASC';
+			break;
+			default:
+				$order_sql = 'ORDER BY tt.count DESC';
+			break;
+		}
+
+		// Get datas with pagination
+		$this->found_datas = (array) $wpdb->get_results("
+	        SELECT t.*, tt.*
+	        FROM {$wpdb->terms} AS t
+	        INNER JOIN {$wpdb->term_taxonomy} AS tt ON ( t.term_id = tt.term_id )
+	        WHERE tt.taxonomy = '{$type}'
+	        {$search_sql}
+	        {$order_sql}");		
+		
+		$this->found_datas = count($this->found_datas);
+		$this->max_num_pages = ceil($this->found_datas/$this->data_per_page);
+
+		if( $this->actual_page != 1 ) {
+			if($this->actual_page > $this->max_num_pages) {
+				$this->actual_page = $this->max_num_pages;
+			}
+		}
+
+		$limit_sql = 'LIMIT '.(($this->actual_page - 1) * $this->data_per_page).', '.$this->data_per_page;
+		
+		$terms = (array) $wpdb->get_results("
+	        SELECT t.*, tt.*
+	        FROM {$wpdb->terms} AS t
+	        INNER JOIN {$wpdb->term_taxonomy} AS tt ON ( t.term_id = tt.term_id )
+	        WHERE tt.taxonomy = '{$type}'
+	        {$search_sql}
+	        {$order_sql}
+	        {$limit_sql}");
+		
+		return $terms;	
+	}
+	
+	function selectTaxonomyName( $term_id, $current_taxonomy = '' ) {
+		?>
+		<select name="taxonomy[<?php echo $term_id ?>]">
+			<option <?php if ( $current_taxonomy == 'post_tag' ) echo 'selected="selected"'; ?> value="post_tag"><?php _e('Tag', 'simpletags'); ?></option>
+			<option <?php if ( $current_taxonomy == 'category' ) echo 'selected="selected"'; ?> value="category"><?php _e('Category', 'simpletags'); ?></option>
+		</select>
+		<?php		
+	}
+	
+	function pageAdvancedEditTerms() {
+		// Search terms
+		$search = stripslashes($_GET['s']);
+
+		// Quantity
+		$quantity = (int) attribute_escape($_GET['quantity']);
+		if ( $quantity < 10 || $quantity > 100 ) {
+			$quantity = 20;
+		}
+
+		// Type
+		$type = attribute_escape($_GET['type']);
+		if ( $type != 'post_tag' && $type != 'category' && $type != 'all' ) {
+			$type = 'all';
+		}
+		
+		// Order content
+		$order = ( empty($_GET['order']) ) ? 'name_asc' : attribute_escape($_GET['order']);
+
+		// Check and update terms
+		$this->checkFormAdvEditTerms( $type );
+
+		// Action Post URL
+		$page = '';
+		if ( $this->actual_page != 1 ) {
+			$page = '&amp;pagination='.$this->actual_page;
+		}
+		$action_url = $this->admin_base_url.'simpletags_adv_edit_terms&amp;s='.$search.'&amp;quantity='.$quantity.'&amp;type='.$type.'&amp;order='.$order.$page;
+		$terms = $this->getAdvTerms( $type, $quantity, $search, $order );
+
+		$this->displayMessage();
+		?>
+		<div class="wrap st_wrap">
+		<h2><?php _e('Simple Tags: Advanced Edit Terms', 'simpletags'); ?></h2>
+		<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
+		<p><strong><?php _e('Be careful with this page ! You can cause important damages, and lost all tags and categories of your WordPress installation.', 'simpletags'); ?></strong></p>
+
+		<form action="<?php echo $this->admin_base_url; ?>" id="searchform" method="get">
+			<input type="hidden" name="page" value="simpletags_adv_edit_terms" />
+
+			<fieldset><legend><?php _e('Search terms&hellip;', 'simpletags'); ?></legend>
+				<input type="text" name="s" id="s" value="<?php echo $search; ?>" size="12" />
+			</fieldset>
+
+			<fieldset>
+				<legend><?php _e('Quantity&hellip;', 'simpletags'); ?></legend>
+				<select name="quantity" id="quantity">
+					<option <?php if ( $quantity == 10 ) echo 'selected="selected"'; ?> value="10">10</option>
+					<option <?php if ( $quantity == 20 ) echo 'selected="selected"'; ?> value="20">20</option>
+					<option <?php if ( $quantity == 30 ) echo 'selected="selected"'; ?> value="30">30</option>
+					<option <?php if ( $quantity == 40 ) echo 'selected="selected"'; ?> value="40">40</option>
+					<option <?php if ( $quantity == 50 ) echo 'selected="selected"'; ?> value="50">50</option>
+					<option <?php if ( $quantity == 100 ) echo 'selected="selected"'; ?> value="100">100</option>
+				</select>
+			</fieldset>
+
+			<fieldset>
+				<legend><?php _e('Taxonomy&hellip;', 'simpletags'); ?></legend>
+				<select name='type' id='type'>
+					<option <?php if ( $type == 'all' ) { echo 'selected="selected"'; } ?> value='all'><?php _e('All', 'simpletags'); ?></option>
+					<option <?php if ( $type == 'post_tag' ) { echo 'selected="selected"'; } ?> value='post_tag'><?php _e('Tag', 'simpletags'); ?></option>
+					<option <?php if ( $type == 'category' ) { echo 'selected="selected"'; } ?> value='category'><?php _e('Category', 'simpletags'); ?></option>
+				</select>
+			</fieldset>
+			
+			<fieldset>
+				<legend><?php _e('Order&hellip;', 'simpletags'); ?></legend>
+				<select name='order' id='order'>
+					<option <?php if ( $order == 'count_desc' ) echo 'selected="selected"'; ?> value="count_desc"><?php _e('Counter (descending)', 'simpletags'); ?></option>
+					<option <?php if ( $order == 'count_asc' ) echo 'selected="selected"'; ?> value="count_asc"><?php _e('Counter (ascending)', 'simpletags'); ?></option>
+					<option <?php if ( $order == 'name_desc' ) echo 'selected="selected"'; ?> value="name_desc"><?php _e('Name (descending)', 'simpletags'); ?></option>
+					<option <?php if ( $order == 'name_asc' ) echo 'selected="selected"'; ?> value="name_asc"><?php _e('Name (ascending)', 'simpletags'); ?></option>
+				</select>
+			</fieldset>
+
+			<input type="submit" id="post-query-submit" value="<?php _e('Filter &#187;', 'simpletags'); ?>" class="button" />
+			<br style="clear:both;" />
+		</form>
+
+		<?php if ( is_array($terms) && count($terms) > 0 ) : ?>
+			<form name="post" action="<?php echo $action_url; ?>" method="post">
+				<p class="submit">
+				<input type="submit" name="update_adv_edit_terms" value="<?php _e('Update all', 'simpletags'); ?>" /></p>
+				<?php $this->printPagination( $action_url ); ?>
+
+				<table class="widefat">
+					<thead>
+						<tr>
+							<th><?php _e('ID (no editing)', 'simpletags'); ?></th>
+							<th><?php _e('Name', 'simpletags'); ?></th>
+							<th><?php _e('Slug (unique)', 'simpletags'); ?></th>
+							<th><?php _e('Term group', 'simpletags'); ?></th>
+							<th><?php _e('Taxonomy', 'simpletags'); ?></th>
+							<th><?php _e('Count', 'simpletags'); ?></th>
+							<th><?php _e('Parent', 'simpletags'); ?></th>
+							<th><?php _e('Description', 'simpletags'); ?></th>
+							<th><?php _e('Delete ?', 'simpletags'); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						$i = 0;
+						foreach ( $terms as $term ) : 
+							$i++; 
+							$class1 = ('alternate' != $class1) ? 'alternate' :'';
+						?>
+							<tr class="<?php echo $class1; ?>">
+								<th><input type="hidden" name="id[<?php echo $i; ?>]" value="<?php echo $term->term_id ?>" /><?php echo $term->term_id ?></th>
+								<td><input type="text" size="15" name="name[<?php echo $i; ?>]" value="<?php echo $term->name; ?>" /></td>
+								<td><input type="text" size="15" name="slug[<?php echo $i; ?>]" value="<?php echo $term->slug; ?>" /></td>
+								<td><input type="text" size="3" name="term_group[<?php echo $i; ?>]" value="<?php echo $term->term_group; ?>" /></td>
+								<td><?php $this->selectTaxonomyName( $i, $term->taxonomy); ?></td>
+								<td><input type="text" size="3" name="count[<?php echo $i; ?>]" value="<?php echo $term->count; ?>" /></td>
+								<td><input type="text" size="3" name="parent[<?php echo $i; ?>]" value="<?php echo $term->parent ; ?>" /></td>
+								<td><textarea name="description[<?php echo $i; ?>]"><?php echo $term->description ; ?></textarea></td>
+								<td><input type="checkbox" name="delete_term[<?php echo $i; ?>]" value="<?php echo $term->term_id ?>" /></td>
+							</tr>
+						<?php
+						endforeach;
+						?>
+					</tbody>
+				</table>
+				
+				<p class="submit">
+					<input type="hidden" name="secure_adv_edit_terms" value="<?php echo wp_create_nonce('simpletags_adv_edit_terms'); ?>" />
+					<input type="submit" name="update_adv_edit_terms" value="<?php _e('Update all terms', 'simpletags'); ?>" /></p>
+			</form>
+			<?php $this->printPagination( $action_url ); ?>
+		<?php else: ?>
+			<p><?php _e('No terms to edit.', 'simpletags'); ?>
+		<?php endif; ?>
+		<?php $this->printAdminFooter(); ?>
+    </div>
+    <?php
 	}
 
 	/**
@@ -569,7 +934,7 @@ Class SimpleTagsAdmin {
 
 		// Manage URL
 		$sort_order = ( isset($_GET['tag_sortorder']) ) ? attribute_escape($_GET['tag_sortorder']) : 'desc';
-		$search_url = ( isset($_GET['search']) ) ? '&amp;search=' . attribute_escape($_GET['search']) : '';
+		$search_url = ( isset($_GET['search']) ) ? '&amp;search=' . stripslashes($_GET['search']) : '';
 		$action_url = $this->admin_base_url . attribute_escape($_GET['page']) . '&amp;tag_sortorder=' . $sort_order. $search_url;
 
 		// TagsFilters
@@ -594,12 +959,8 @@ Class SimpleTagsAdmin {
 
 		// Search
 		if ( !empty($_GET['search']) ) {
-			$search = attribute_escape($_GET['search']);
+			$search = stripslashes($_GET['search']);
 			$param = str_replace('number='.$this->nb_tags, 'number=200&st_name_like='.$search, $param );
-
-			if ( strpos($search, ' ') != false || strpos($search, ' ') != null ) {
-				$search = explode(' ', $search);
-			}
 		}
 
 		$this->displayMessage();
@@ -618,7 +979,7 @@ Class SimpleTagsAdmin {
 									<label for="search"><?php _e('Search tags', 'simpletags'); ?></label><br />
 									<input type="hidden" name="page" value="<?php echo attribute_escape($_GET['page']); ?>" />
 									<input type="hidden" name="tag_sortorder" value="<?php echo $sort_order; ?>" />
-									<input type="text" name="search" id="search" size="10" value="<?php echo attribute_escape($_GET['search']); ?>" />
+									<input type="text" name="search" id="search" size="10" value="<?php echo stripslashes($_GET['search']); ?>" />
 									<input class="button" type="submit" value="<?php _e('Go', 'simpletags'); ?>" /></p>
 							</form>
 
@@ -897,7 +1258,7 @@ Class SimpleTagsAdmin {
 				}
 				?>
 				<p class="submit">
-					<input type="hidden" name="secure_masss" value="<?php echo wp_create_nonce('simpletags_mass'); ?>" />
+					<input type="hidden" name="secure_mass" value="<?php echo wp_create_nonce('simpletags_mass'); ?>" />
 					<input type="submit" name="update_mass" value="<?php _e('Update all', 'simpletags'); ?>" /></p>
 			</form>
 			<?php $this->printPagination( $action_url ); ?>
@@ -1639,17 +2000,17 @@ Class SimpleTagsAdmin {
 	 *
 	 * @param string $type
 	 */
-	function checkFormMassEdit( $type = 'post' ) {
+	function checkFormMassEdit( $taxonomy = 'post' ) {
 		if ( isset($_POST['update_mass']) ) {
 			// origination and intention
-			if ( ! ( wp_verify_nonce($_POST['secure_masss'], 'simpletags_mass') ) ) {
+			if ( ! ( wp_verify_nonce($_POST['secure_mass'], 'simpletags_mass') ) ) {
 				$this->message = __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
 				$this->status = 'error';
 				return;
 			}
 
-			if ( $type == 'post' || $type == 'page' ) {
-				$taxinomy = 'post_tag';
+			if ( $taxonomy == 'post' || $taxonomy == 'page' ) {
+				$taxonomy = 'post_tag';
 			}
 
 			if ( isset($_POST['tags']) ) {
@@ -1665,7 +2026,7 @@ Class SimpleTagsAdmin {
 					$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
 
 					// Add new tag (no append ! replace !)
-					wp_set_object_terms( $object_id, $tags, $taxinomy );
+					wp_set_object_terms( $object_id, $tags, $taxonomy );
 					$counter++;
 				}
 
