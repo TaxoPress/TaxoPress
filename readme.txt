@@ -3,10 +3,10 @@ Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3, import
 Requires at least: 2.3
-Tested up to: 2.3.1
-Stable tag: 1.2.4
+Tested up to: 2.3.2
+Stable tag: 1.3
 
-Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 tags
+Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
 
 == Description ==
 
@@ -17,11 +17,15 @@ Simple Tags is the successor of Simple Tagging Plugin
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
 * Administration
-	* **NEW** Auto tags !
-	* **NEW** Auto link tags in post content
-	* **NEW** Importer for embedded tags
+	* **NEW** Related tags !
+	* **NEW** AJAX Admin features !
+	* **NEW** Tags suggestion from Yahoo Term Extractions API, Tag The Net and Local Tags with AJAX request
+		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
+	* **NEW** Improve performance !
+	* Auto tags !
+	* Auto link tags in post content
+	* Importer for embedded tags
 	* type-ahead input tags / Autocompletion
-	* auto suggestion of tags (admin tag cloud)
 	* Click tags
 	* tags management (rename, delete, merge, search and add tags, edit tags ID)
 	* **Edit mass tags (more than 50 posts once)**
@@ -67,6 +71,24 @@ Then: Manage - Import - Embedded Tags
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 
 == Arbitrary section ==
+* Version 1.3
+	* Plugin compatible with mu-plugins without modifications (NOT TAGS SITE WIDE)
+	* Fix auto link tags now working without meta-keywords
+	* New parameter for auto link tags (min usage)
+	* Fix auto link PREG_REPLACE error.
+	* New parameter for related posts (min tags shared)
+	* Add marker %post_title_attribute% for related posts, to use into title attribute
+	* Add Related Tags
+	* Add Remove Related Tags
+	* Fix alphabetical order in tag cloud with accent
+	* New interface for Tags options, more options for easily configuration
+	* AJAX  admin
+		* AJAX Pagination for Manage Tags pages
+	* Fix excessive memory consomation
+	* Tags suggestion from Yahoo Term Extractions API, Tag The Net and Local Tags with AJAX request
+		* Compatible with TinyMCE, FCKeditor, WYMeditor and quicktags
+	* Click tags with AJAX request
+	* Preview color in Tag Cloud Admin Options	
 * Version 1.2.4
 	* Fix a bug with inline tags post
 * Version 1.2.3
