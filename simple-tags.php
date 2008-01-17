@@ -3,11 +3,11 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3
+Version: 1.3.1
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
-&copy; Copyright 2007 Amaury BALMER (balmer.amaury@gmail.com)
+Copyright 2007 Amaury BALMER (balmer.amaury@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 Contributors:
-- K&eacute;vin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
+- Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
 - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
 */
 
@@ -51,6 +51,7 @@ Class SimpleTags {
 			'allow_embed_tcloud' => '0',
 			'auto_link_tags' => '0',
 			'auto_link_min' => '1',
+			'no_follow' => 0,
 			// Administration
 			'use_tag_pages' => '1',
 			'use_click_tags' => '1',
@@ -239,8 +240,8 @@ Class SimpleTags {
 	 			$this->link_tags[$tag->name] = get_tag_link( $tag->term_id );
 			}
 		}
+		return;
 	}
-
 	
 	function autoLinkTags( $content = '' ) {
 		if ( $this->link_tags == 'null' ) {
@@ -268,7 +269,8 @@ Class SimpleTags {
 		$word = str_replace('|', '\|', $word);
 
 		// Replace keywords not between <..> tags. <##..##> should be skipped too
-		$content = preg_replace("|(>)([^<]*)([^#a-z]*)($word)([^#a-z]*)|i", "\$1\$2\$3$pre\$4$after\$5", $content);
+		// Todo fix. Remplace only by full term
+		$content = preg_replace("|(>)([^<]*)([^#a-z]*)($word)([^#a-z]*)|i", "\$1\$2\$3$pre \$4 $after\$5", $content);
 
 		// Get rid of <##..##>
 		$content = str_replace('<##', '', $content);
@@ -289,7 +291,7 @@ Class SimpleTags {
 	 */
 	function inlineTagCloud( $content = '' ) {
 		if ( strpos($content, '<!--st_tag_cloud-->') ) {
-			$content = str_replace('<!--st_tag_cloud-->', $this->extendedTagCloud(), $content);
+			$content = str_replace('<!--st_tag_cloud-->', $this->extendedTagCloud( '', false ), $content);
 		}
 		return $content;
 	}
@@ -300,8 +302,8 @@ Class SimpleTags {
 	 * @param array $posts
 	 * @return array
 	 */
-	function getPostIds( $posts = null ) {
-		if ( !is_null($posts) && is_array($posts) ) {
+	function getPostIds( $posts = array() ) {
+		if ( !empty($posts) && is_array($posts) ) {
 			foreach( (array) $posts as $post) {
 				$this->posts[] = $post->ID;
 			}
@@ -363,10 +365,10 @@ Class SimpleTags {
 		unset($this->tags_currentposts);
 
 		$always_list = trim($this->options['meta_always_include']); // Static keywords
-		$always_array = explode(',', $always_list);
+		$always_array = (array) explode(',', $always_list);
 
 		// Trim
-		foreach ( (array) $always_array as $keyword ) {
+		foreach ( $always_array as $keyword ) {
 			if ( empty($keyword) ) {
 				continue;
 			}
@@ -528,7 +530,7 @@ Class SimpleTags {
 			$current_tags = get_the_tags( (int) $object_id );
 
 			if ( $current_tags === false ) {
-				return $this->outputRelatedPosts( $format, $title, $nopoststext, $copyright );
+				return $this->outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
 			}
 
 			// Number - Limit
@@ -588,9 +590,9 @@ Class SimpleTags {
 			// Restrict posts
 			$exclude_posts_sql = '';
 			if ( $exclude_posts != '' ) {
-				$exclude_posts = explode(',', $exclude_posts);
+				$exclude_posts = (array) explode(',', $exclude_posts);
 				$exclude_posts_sql = "AND p.ID NOT IN (";
-				foreach ( (array) $exclude_posts as $value ) {
+				foreach ( $exclude_posts as $value ) {
 					$value = (int) $value;
 					if( $value != 0 ) {
 						$exclude_posts_sql .= '"'.$value.'", ';
@@ -605,8 +607,8 @@ Class SimpleTags {
 			// Restricts tags
 			$tags_to_exclude = array();
 			if ( $exclude_tags != '' ) {
-				$exclude_tags = explode(',', $exclude_tags);
-				foreach ( (array) $exclude_tags as $value ) {
+				$exclude_tags = (array) explode(',', $exclude_tags);
+				foreach ( $exclude_tags as $value ) {
 					$tags_to_exclude[] = trim($value);
 				}
 			}
@@ -622,7 +624,7 @@ Class SimpleTags {
 
 			// If empty return no posts text
 			if ( empty($tag_list) ) {
-				return $this->outputRelatedPosts( $format, $title, $nopoststext, $copyright );
+				return $this->outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
 			}
 
 			// Remove latest ", "
@@ -670,7 +672,9 @@ Class SimpleTags {
 		}
 
 		if ( $results === false || empty($results) ) {
-			return $this->outputRelatedPosts( $format, $title, $nopoststext, $copyright );
+			return $this->outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+		} elseif ( $format == 'array' ) {
+			return $this->outputContent( 'st-related-posts', 'array', '', $results, $copyright );
 		}
 
 		if ( empty($dateformat) ) {
@@ -685,11 +689,12 @@ Class SimpleTags {
 			}
 
 			$element_loop = $xformat;
-
+			
+			$title = apply_filters( 'the_title', $result->post_title );
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
 			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);			
-			$element_loop = str_replace('%post_title%', attribute_escape($result->post_title), $element_loop);
-			$element_loop = str_replace('%post_title_attribute%', attribute_escape(strip_tags($result->post_title)), $element_loop);		
+			$element_loop = str_replace('%post_title%', $title, $element_loop);
+			$element_loop = str_replace('%post_title_attribute%', attribute_escape(strip_tags($title)), $element_loop);		
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
@@ -699,7 +704,7 @@ Class SimpleTags {
 			$output[] = $element_loop;
 		}
 		unset($results, $result);
-		return $this->outputRelatedPosts( $format, $title, $output, $copyright );
+		return $this->outputContent( 'st-related-posts', $format, $title, $output, $copyright );
 	}
 
 	function getExcerptPost( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
@@ -754,76 +759,12 @@ Class SimpleTags {
 	}
 
 	/**
-	 * Format related posts before display
-	 *
-	 * @param string $format
-	 * @param string $title
-	 * @param string|array $content
-	 * @return string|array
-	 */
-	function outputRelatedPosts( $format = 'list', $title = '', $content = '', $copyright = true ) {
-		if ( is_string($content) ) {
-			$content = trim($content);
-		}	
-		if ( empty($content) ) {
-			return ''; // return nothing
-		}
-
-		if ( is_array($content) ) {
-			switch ( $format ) {
-				case 'array' :
-					$output =& $content;
-					break;
-				case 'list' :
-					$output = "<ul class='st-related-posts'>\n\t<li>";
-					$output .= join("</li>\n\t<li>", $content);
-					$output .= "</li>\n</ul>\n";
-					break;
-				default :
-					$output = "<div class='st-related-posts'>\n\t";
-					$output .= join("\n", $content);
-					$output .= "</div>\n";
-					break;
-			}
-		} else {
-			switch ( $format ) {
-				case 'list' :
-					$output = "<ul class='st-related-posts'>\n\t";
-					$output .= '<li>'.$content."</li>\n\t";
-					$output .= "</ul>\n";
-					break;
-				default :
-					$output = "<div class='st-related-posts'>\n\t";
-					$output .= $content;
-					$output .= "</div>\n";
-					break;
-			}
-		}
-
-		// Replace false by empty
-		if ( strtolower($title) == 'false' ) {
-			$title = '';
-		}
-
-		// Put title if exist
-		if ( !empty($title) ) {
-			$title = $title ."\n\t";
-		}
-
-		if ( $copyright === true )
-			return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title . $output. "\n";
-		else
-			return "\n\t". $title . $output. "\n";
-	}
-	
-	/**
 	 * Check is page is a tag view, even if tags haven't post
 	 *
 	 * @return boolean
 	 */
 	function isTag() {
-		global $wp_query;
-		$slugs = trim($wp_query->query_vars['tag']);	
+		$slugs = get_query_var('tag');	
 		
 		if ( empty($slugs) ) {
 			return false;
@@ -844,12 +785,14 @@ Class SimpleTags {
 			'separator' => ' ',
 			'format' => 'list',
 			'method' => 'OR',
+			'no_follow' => 0,
 			'title' => __('<h4>Related tags</h4>', 'simpletags'),
 			'notagstext' => __('No related tag found.', 'simpletags'),
-			'xformat' => __('<span>%tag_count%</span> <a href="%tag_link_add%">+</a> <a href="%tag_link%">%tag_name%</a>', 'simpletags')
+			'xformat' => __('<span>%tag_count%</span> <a %tag_rel% href="%tag_link_add%">+</a> <a %tag_rel% href="%tag_link%" title="See posts with %tag_name_attribute%">%tag_name%</a>', 'simpletags')
 		);
 		
 		// Get values in DB
+		$defaults['no_follow'] = $this->options['no_follow'];
 		$defaults['number'] = $this->options['rt_number'];
 		$defaults['order'] = $this->options['rt_order'];
 		$defaults['separator'] = $this->options['rt_separator'];
@@ -867,7 +810,7 @@ Class SimpleTags {
 		extract($args);
 
 		if ( !is_tag() && !$this->isTag() ) {
-			return $this->outputRelatedTags( $format, $title, '' );
+			return $this->outputContent( 'st-related-tags', $format, $title, '', true );
 		}
 		
 		// Method union/intersection
@@ -879,8 +822,7 @@ Class SimpleTags {
 		}
 		
 		// Get currents slugs
-		global $wp_query;
-		$slugs = trim($wp_query->query_vars['tag']);		
+		$slugs = get_query_var('tag');		
 		if ( strpos( $slugs, ',') ) {
 			$current_slugs = explode(',', $slugs);
 		} elseif ( strpos( $slugs, '+') ) {
@@ -904,7 +846,6 @@ Class SimpleTags {
 
 		// If cache not exist, get datas and set cache
 		if ( $related_tags === false || $related_tags === null ) {
-
 			// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
 			$order_tmp = strtolower($order);
 			$order_by = $order = '';
@@ -962,7 +903,9 @@ Class SimpleTags {
 		}
 		
 		if ( empty($related_tags) ) {
-			return $this->outputRelatedTags( $format, $title, $notagstext );
+			return $this->outputContent( 'st-related-tags', $format, $title, $notagstext );
+		} elseif ( $format == 'array' ) {
+			return $this->outputContent( 'st-related-tags', 'array', '', $related_tags );
 		}
 
 		// Limit to max quantity if set
@@ -971,9 +914,20 @@ Class SimpleTags {
 			$related_tags = array_slice( $related_tags, 0, $number );
 		}
 				
-		// Rel or not ?
-		global $wp_rewrite;
-		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
+		// HTML Rel (tag/no-follow)
+		$rel = '';
+		
+		global $wp_rewrite; 
+		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
+		
+		$no_follow = (int) $no_follow;
+		if ( $no_follow != 0 ) { // No follow ?
+			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
+		}
+		
+		if ( !empty($rel) ) {
+			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
+		}
 		
 		// If empty use default xformat !
 		if ( empty($xformat) ) {
@@ -997,67 +951,7 @@ Class SimpleTags {
 			$output[] = $element_loop;
 		}
 		unset($related_tags, $tag);
-		return $this->outputRelatedTags( $format, $title, $output );
-	}
-	
-	/**
-	 * Display related tags
-	 *
-	 * @param string $format
-	 * @param string $title
-	 * @param string|array $content
-	 * @return string|array
-	 */
-	function outputRelatedTags( $format = 'list', $title = '', $content = '' ) {
-		if ( is_string($content) ) {
-			$content = trim($content);
-		}		
-		if ( empty($content) ) {
-			return ''; // return nothing
-		}
-
-		if ( is_array($content) ) {
-			switch ( $format ) {
-				case 'array' :
-					$output =& $content;
-					break;
-				case 'list' :
-					$output = "<ul class='st-related-tags'>\n\t<li>";
-					$output .= join("</li>\n\t<li>", $content);
-					$output .= "</li>\n</ul>\n";
-					break;
-				default :
-					$output = "<div class='st-related-tags'>\n\t";
-					$output .= join("\n", $content);
-					$output .= "</div>\n";
-					break;
-			}
-		} else {
-			switch ( $format ) {
-				case 'list' :
-					$output = "<ul class='st-related-tags'>\n\t";
-					$output .= '<li>'.$content."</li>\n\t";
-					$output .= "</ul>\n";
-					break;
-				default :
-					$output = "<div class='st-related-tags'>\n\t";
-					$output .= $content;
-					$output .= "</div>\n";
-					break;
-			}
-		}
-
-		// Replace false by empty
-		if ( strtolower($title) == 'false' ) {
-			$title = '';
-		}
-
-		// Put title if exist
-		if ( !empty($title) ) {
-			$title = $title ."\n\t";
-		}
-
-		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title . $output. "\n";
+		return $this->outputContent( 'st-related-tags', $format, $title, $output );
 	}
 	
 	function getAddTagToLink( $current_slugs = array(), $tag_slug = '', $separator = ',' ) {
@@ -1089,10 +983,12 @@ Class SimpleTags {
 			'separator' => ' ',
 			'format' => 'list',
 			'notagstext' => ' ',
-			'xformat' => __('&raquo; <a href="%tag_link_remove%" title="Remove %tag_name_attribute% from search">Remove %tag_name%</a>', 'simpletags')
+			'no_follow' => 0,
+			'xformat' => __('&raquo; <a %tag_rel% href="%tag_link_remove%" title="Remove %tag_name_attribute% from search">Remove %tag_name%</a>', 'simpletags')
 		);		
 
 		// Get values in DB
+		$defaults['no_follow'] = $this->options['no_follow'];
 		$defaults['separator'] = $this->options['rt_remove_separator'];
 		$defaults['format'] = $this->options['rt_remove_format'];
 		$defaults['notagstext'] = $this->options['rt_remove_notagstext'];
@@ -1106,12 +1002,11 @@ Class SimpleTags {
 		extract($args);
 
 		if ( !is_tag() && !$this->isTag() ) {
-			return $this->outputRemoveRelatedTags( $format, '' );
+			return $this->outputContent( 'st-remove-related-tags', $format, '', '', true );
 		}
 		
 		// Get currents slugs
-		global $wp_query;
-		$slugs = trim($wp_query->query_vars['tag']);		
+		$slugs = get_query_var('tag');		
 		if ( strpos( $slugs, ',') ) {
 			$current_slugs = explode(',', $slugs);
 			$url_tag_sep = ',';
@@ -1122,12 +1017,27 @@ Class SimpleTags {
 			$current_slugs = explode(' ', $slugs);
 			$url_tag_sep = '+';
 		} else {
-			return $this->outputRemoveRelatedTags( $format, $notagstext );
+			return $this->outputContent( 'st-remove-related-tags', $format, '', $notagstext, true );
+		}
+		
+		if ( $format == 'array' ) {
+			return $this->outputContent( 'st-remove-related-tags', 'array', '', $current_slugs, true );
 		}
 						
-		// Rel or not ?
-		global $wp_rewrite;
-		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
+		// HTML Rel (tag/no-follow)
+		$rel = '';
+		
+		global $wp_rewrite; 
+		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
+		
+		$no_follow = (int) $no_follow;
+		if ( $no_follow != 0 ) { // No follow ?
+			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
+		}
+		
+		if ( !empty($rel) ) {
+			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
+		}
 		
 		// If empty use default xformat !
 		if ( empty($xformat) ) {
@@ -1152,56 +1062,7 @@ Class SimpleTags {
 
 			$output[] = $element_loop;			
 		}
-		return $this->outputRemoveRelatedTags( $format, $output );
-	}
-	
-	/**
-	 * Display remove related tags
-	 *
-	 * @param string $format
-	 * @param string|array $content
-	 * @return string|array
-	 */
-	function outputRemoveRelatedTags( $format = 'list', $content = '' ) {
-		if ( is_string($content) ) {
-			$content = trim($content);
-		}	
-		if ( empty($content) ) {
-			return ''; // return nothing
-		}
-
-		if ( is_array($content) ) {
-			switch ( $format ) {
-				case 'array' :
-					$output =& $content;
-					break;
-				case 'list' :
-					$output = "<ul class='st-remove-related-tags'>\n\t<li>";
-					$output .= join("</li>\n\t<li>", $content);
-					$output .= "</li>\n</ul>\n";
-					break;
-				default :
-					$output = "<div class='st-remove-related-tags'>\n\t";
-					$output .= join("\n", $content);
-					$output .= "</div>\n";
-					break;
-			}
-		} else {
-			switch ( $format ) {
-				case 'list' :
-					$output = "<ul class='st-remove-related-tags'>\n\t";
-					$output .= '<li>'.$content."</li>\n\t";
-					$output .= "</ul>\n";
-					break;
-				default :
-					$output = "<div class='st-remove-related-tags'>\n\t";
-					$output .= $content;
-					$output .= "</div>\n";
-					break;
-			}
-		}
-
-		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $output. "\n";
+		return $this->outputContent( 'st-remove-related-tags', $format, '', $output );
 	}
 	
 	/**
@@ -1248,7 +1109,7 @@ Class SimpleTags {
 	 * @param string $args
 	 * @return string|array
 	 */
-	function extendedTagCloud( $args = '' ) {
+	function extendedTagCloud( $args = '', $copyright = true ) {
 		$defaults = array(
 			'size' => 'true',
 			'smallest' => 8,
@@ -1263,6 +1124,7 @@ Class SimpleTags {
 			'cloud_sort' => 'random',
 			'exclude' => '',
 			'include' => '',
+			'no_follow' => 0,
 			'limit_days' => 0,
 			'min_usage' => 0,
 			'notagstext' => __('No tags.', 'simpletags'),
@@ -1272,6 +1134,7 @@ Class SimpleTags {
 		);
 
 		// Get values in DB
+		$defaults['no_follow'] = $this->options['no_follow'];
 		$defaults['cloud_selection'] = $this->options['cloud_selection'];
 		$defaults['cloud_sort'] = $this->options['cloud_sort'];
 		$defaults['number'] = $this->options['cloud_limit_qty'];
@@ -1296,7 +1159,7 @@ Class SimpleTags {
 		extract($args); // Params to variables
 
 		if ( empty($tags) ) {
-			return $this->outputExtendedTagCloud( $format, $title, $notagstext );
+			return $this->outputContent( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
 		}
 
 		$counts = $tag_links = $tag_ids =array();
@@ -1331,9 +1194,20 @@ Class SimpleTags {
 
 		$scale = ($maxval > $minval) ? (($maxout - $minout) / ($maxval - $minval)) : 0;
 
-		// Rel or not ?
-		global $wp_rewrite;
-		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
+		// HTML Rel (tag/no-follow)
+		$rel = '';
+		
+		global $wp_rewrite; 
+		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
+		
+		$no_follow = (int) $no_follow;
+		if ( $no_follow != 0 ) { // No follow ?
+			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
+		}
+		
+		if ( !empty($rel) ) {
+			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
+		}
 
 		// If empty use default xformat !
 		if ( empty($xformat) ) {
@@ -1395,7 +1269,7 @@ Class SimpleTags {
 			$output[] = $element_loop;
 		}
 		unset($counts, $tag_links, $tag_ids);
-		return $this->outputExtendedTagCloud( $format, $title, $output );
+		return $this->outputContent( 'st-tag-cloud', $format, $title, $output, $copyright );
 	}
 
 	/**
@@ -1442,60 +1316,6 @@ Class SimpleTags {
 	}
 
 	/**
-	 * Format tag cloud ouput before display
-	 *
-	 * @param string $format
-	 * @param string $title
-	 * @param string|array $content
-	 * @return string
-	 */
-	function outputExtendedTagCloud( $format = 'list', $title = '', $content = '' ) {
-		if ( is_string($content) ) {
-			$content = trim($content);
-		}	
-		if ( empty($content) ) {
-			return ''; // return nothing
-		}
-
-		if ( is_array($content) ) {
-			switch ( $format ) {
-				case 'array' :
-					$return =& $content;
-					break;
-				case 'list' :
-					$return = "<ul class='st-tag-cloud'>\n\t<li>";
-					$return .= join("</li>\n\t<li>", $content);
-					$return .= "</li>\n</ul>\n";
-					break;
-				default :
-					$return = "<div class='st-tag-cloud'>\n\t";
-					$return .= join("\n", $content);
-					$return .= "</div>\n";
-					break;
-			}
-		} else {
-			switch ( $format ) {
-				case 'list' :
-					$return = "<ul class='st-tag-cloud'>\n\t";
-					$return .= '<li>'.$content."</li>\n\t";
-					$return .= "</ul>\n";
-					break;
-				default :
-					$return = "<div class='st-tag-cloud'>\n\t";
-					$return .= $content;
-					$return .= "</div>\n";
-					break;
-			}
-		}
-
-		if ( strtolower($title) == 'false' ) {
-			$title = '';
-		}
-
-		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title ."\n\t". $return ."\n";
-	}
-
-	/**
 	 * Generate current post tags
 	 *
 	 * @param string $args
@@ -1507,12 +1327,14 @@ Class SimpleTags {
 			'separator' => ', ',
 			'after' => '<br />',
 			'post_id' => '',
+			'no_follow' => 0,
 			'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'notagtext' => __('No tag for this post.', 'simpletags'),
 			'number' => 0
 		);
 
 		// Get values in DB
+		$defaults['no_follow'] = $this->options['no_follow'];
 		$defaults['before'] = $this->options['tt_before'];
 		$defaults['separator'] = $this->options['tt_separator'];
 		$defaults['after'] = $this->options['tt_after'];
@@ -1547,9 +1369,21 @@ Class SimpleTags {
 			$xformat = $defaults['xformat'];
 		}
 
-		global $wp_rewrite;
-		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
-
+		// HTML Rel (tag/no-follow)
+		$rel = '';
+		
+		global $wp_rewrite; 
+		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
+		
+		$no_follow = (int) $no_follow;
+		if ( $no_follow != 0 ) { // No follow ?
+			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
+		}
+		
+		if ( !empty($rel) ) {
+			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
+		}
+		
 		foreach ( (array) $tags as $tag ) {
 			$element_loop = $xformat;
 
@@ -1633,8 +1467,7 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function prepareQuery( $where ) {
-		global $wp_query;
-		if ( $wp_query->is_tag ) {
+		if ( is_tag() ) {
 			$where = str_replace('post_type = \'post\'', 'post_type IN(\'page\', \'post\')', $where);
 		}
 		return $where;
@@ -1995,6 +1828,60 @@ Class SimpleTags {
 
 		$terms = apply_filters('get_terms', $terms, $taxonomies, $args);
 		return $terms;
+	}
+	
+	function outputContent( $html_class= '', $format = 'list', $title = '', $content = '', $copyright = true ) {
+		if ( empty($content) ) {
+			return ''; // return nothing
+		}
+
+		if ( is_array($content) ) {
+			switch ( $format ) {
+				case 'array' :
+					$output =& $content;
+					break;
+				case 'list' :
+					$output = "<ul class='{$html_class}'>\n\t<li>";
+					$output .= join("</li>\n\t<li>", $content);
+					$output .= "</li>\n</ul>\n";
+					break;
+				default :
+					$output = "<div class='{$html_class}'>\n\t";
+					$output .= join("\n", $content);
+					$output .= "</div>\n";
+					break;
+			}
+		} else {
+			$content = trim($content);
+			switch ( $format ) {
+				case 'list' :
+					$output = "<ul class='{$html_class}'>\n\t";
+					$output .= '<li>'.$content."</li>\n\t";
+					$output .= "</ul>\n";
+					break;
+				default :
+					$output = "<div class='{$html_class}'>\n\t";
+					$output .= $content;
+					$output .= "</div>\n";
+					break;
+			}
+		}
+
+		// Replace false by empty
+		$title = trim($title);
+		if ( strtolower($title) == 'false' ) {
+			$title = '';
+		}
+
+		// Put title if exist
+		if ( !empty($title) ) {
+			$title .= "\n\t";
+		}
+
+		if ( $copyright === true )
+			return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title . $output. "\n";
+		else
+			return "\n\t". $title . $output. "\n";
 	}
 }
 
