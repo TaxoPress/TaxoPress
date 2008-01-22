@@ -37,6 +37,9 @@ Class SimpleTags {
 	var $posts = array();
 	var $tags_currentposts = array();
 	var $link_tags = 'null';
+	
+	// WP Object Cache
+	var $use_cache = false;
 
 	/**
 	 * PHP4 constructor - Initialize ST
@@ -47,24 +50,24 @@ Class SimpleTags {
 		// Options
 		$default_options = array(
 			// General
-			'inc_page_tag_search' => '1',
-			'allow_embed_tcloud' => '0',
-			'auto_link_tags' => '0',
-			'auto_link_min' => '1',
+			'inc_page_tag_search' => 1,
+			'allow_embed_tcloud' => 0,
+			'auto_link_tags' => 0,
+			'auto_link_min' => 1,
 			'no_follow' => 0,
 			// Administration
-			'use_tag_pages' => '1',
-			'use_click_tags' => '1',
-			'use_suggested_tags' => '1',
+			'use_tag_pages' => 1,
+			'use_click_tags' => 1,
+			'use_suggested_tags' => 1,
 			// Embedded Tags			
-			'use_embed_tags' => '0',
+			'use_embed_tags' => 0,
 			'start_embed_tags' => '[tags]',
 			'end_embed_tags' => '[/tags]',
 			// Related Posts
-			'rp_feed' => '0',
+			'rp_feed' => 0,
 			'rp_embedded' => 'no',
 			'rp_order' => 'count-desc',
-			'rp_limit_qty' => '5',
+			'rp_limit_qty' => 5,
 			'rp_notagstext' => __('No related posts.', 'simpletags'),
 			'rp_title' => __('<h4>Related posts</h4>', 'simpletags'),
 			'rp_xformat' => __('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags'),
@@ -72,25 +75,25 @@ Class SimpleTags {
 			// Tag cloud
 			'cloud_selection' => 'count-desc',
 			'cloud_sort' => 'random',
-			'cloud_limit_qty' => '45',
+			'cloud_limit_qty' => 45,
 			'cloud_notagstext' => __('No tags.', 'simpletags'),
 			'cloud_title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
 			'cloud_format' => 'flat',
 			'cloud_xformat' => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'cloud_max_color' => '#000000',
 			'cloud_min_color' => '#CCCCCC',
-			'cloud_max_size' => '22',
-			'cloud_min_size' => '8',
+			'cloud_max_size' => 22,
+			'cloud_min_size' => 8,
 			'cloud_unit' => 'pt',
 			'cloud_adv_usage' => '',
 			// The tags
-			'tt_feed' => '0',
+			'tt_feed' => 0,
 			'tt_embedded' => 'no',
 			'tt_separator' => ', ',
 			'tt_before' => __('Tags: ', 'simpletags'),
 			'tt_after' => '<br />',
 			'tt_notagstext' => __('No tag for this post.', 'simpletags'),
-			'tt_number' => '0',
+			'tt_number' => 0,
 			'tt_xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'tt_adv_usage' => '',
 			// Related tags
@@ -108,10 +111,11 @@ Class SimpleTags {
 			'rt_remove_notagstext' => ' ',
 			'rt_remove_xformat' => __('&raquo; <a href="%tag_link_remove%" title="Remove %tag_name_attribute% from search">Remove %tag_name%</a>', 'simpletags'),
 			// Meta keywords
-			'meta_autoheader' => '1',
+			'meta_autoheader' => 1,
 			'meta_always_include' => '',
 			// Auto tags
-			'use_auto_tags' => '0',
+			'use_auto_tags' => 0,
+			'use_wp_auto_tags' => 0,
 			'auto_list' => ''
 		);			
 
@@ -126,8 +130,12 @@ Class SimpleTags {
 
 		// Update default options by getting not empty values from options table
 		foreach( (array) $default_options as $default_options_name => $default_options_value ) {
-			if ( !is_null($options_from_table[$default_options_name]) ) {				
-				$default_options[$default_options_name] = $options_from_table[$default_options_name];
+			if ( !is_null($options_from_table[$default_options_name]) ) {
+				if ( is_int($default_options_value) ) {
+					$default_options[$default_options_name] = (int) $options_from_table[$default_options_name];
+				} else {
+					$default_options[$default_options_name] = $options_from_table[$default_options_name];
+				}
 			}
 		}
 
@@ -135,12 +143,13 @@ Class SimpleTags {
 		$this->options = $default_options;
 		unset($default_options);
 		unset($options_from_table);
+		unset($default_options_value);
 
 		// Determine installation path & url
 		$path = basename(str_replace('\\','/',dirname(__FILE__)));
 
 		$info['siteurl'] = get_option('siteurl');
-		if ( strpos($path, 'mu-plugins') ) {
+		if ( $this->isMuPlugin() ) {
 			$info['install_url'] = $info['siteurl'] . '/wp-content/mu-plugins';
 			$info['install_dir'] = ABSPATH . 'wp-content/mu-plugins';
 
@@ -166,6 +175,10 @@ Class SimpleTags {
 			'install_dir' => $info['install_dir']
 		);
 		unset($info);
+		
+		// Use WP Object ? Or not ?
+		global $wp_object_cache;
+		$this->use_cache = ( $wp_object_cache->cache_enabled === true ) ? true : false;
 
 		// Set date for class
 		$this->dateformat = get_option('date_format');
@@ -178,7 +191,7 @@ Class SimpleTags {
 		}
 
 		// Add pages in WP_Query
-		if ( $this->options['use_tag_pages'] == '1' ) {
+		if ( $this->options['use_tag_pages'] == 1 ) {
 			// Remove default taxonomy
 			global $wp_taxonomies;
 			unset($wp_taxonomies['post_tag']);
@@ -188,30 +201,30 @@ Class SimpleTags {
 		}
 
 		// Remove embedded tags in posts display
-		if ( $this->options['use_embed_tags'] == '1' ) {
+		if ( $this->options['use_embed_tags'] == 1 ) {
 			add_filter('the_content', array(&$this, 'filterEmbedTags'), 95);
 		}
 
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
-		if ( $this->options['tt_embedded'] != 'no' || $this->options['tt_feed'] != 'no' ) {
+		if ( $this->options['tt_embedded'] != 'no' || $this->options['tt_feed'] == 1 ) {
 			add_filter('the_content', array(&$this, 'inlinePostTags'), 97);
 		}
 
 		// Add post tags in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
-		if ( $this->options['rp_embedded'] != 'no' || $this->options['rp_feed'] != 'no' ) {
+		if ( $this->options['rp_embedded'] != 'no' || $this->options['rp_feed'] == 1 ) {
 			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 98);
 		}
 
 		// Embedded tag cloud
-		if ( $this->options['allow_embed_tcloud'] != '1' ) {
+		if ( $this->options['allow_embed_tcloud'] == 1 ) {
 			add_filter('the_content', array(&$this, 'inlineTagCloud'), 99);
 		}
 
-		// Stock Posts ID (useful for autolink and metakeywords
+		// Stock Posts ID (useful for autolink and metakeywords)
 		add_filter('the_posts', array(&$this, 'getPostIds'), 90);
 
 		// Add keywords to header
-		if ( $this->options['meta_autoheader'] == '1' && !class_exists('All_in_One_SEO_Pack') ) {
+		if ( ( $this->options['meta_autoheader'] == 1 && !class_exists('All_in_One_SEO_Pack') && apply_filters('st_meta_header', true) ) ) {
 			add_action('wp_head', array(&$this, 'displayMetaKeywords'), 99);
 		}
 
@@ -221,7 +234,7 @@ Class SimpleTags {
 		}
 		return;
 	}
-
+	
 	/**
 	 * Get links for each tag for auto link feature
 	 *
@@ -259,6 +272,7 @@ Class SimpleTags {
 	}
 
 	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {
+		/*
 		// Add first conteneur
 		$content = '<temp_st>'.$content.'</temp_st>';
 
@@ -270,7 +284,7 @@ Class SimpleTags {
 
 		// Replace keywords not between <..> tags. <##..##> should be skipped too
 		// Todo fix. Remplace only by full term
-		$content = preg_replace("|(>)([^<]*)([^#a-z]*)($word)([^#a-z]*)|i", "\$1\$2\$3$pre \$4 $after\$5", $content);
+		$content = preg_replace("|(>)([^<]*)([^#a-z]*)(\b$word\b)([^#a-z]*)|i", "\$1\$2\$3$pre \$4 $after\$5", $content);
 
 		// Get rid of <##..##>
 		$content = str_replace('<##', '', $content);
@@ -279,6 +293,14 @@ Class SimpleTags {
 		// Remove conteneur
 		$content = str_replace('<temp_st>', '', $content);
 		$content = str_replace('</temp_st>', '', $content);
+		*/
+		
+		// Alak code
+		// Escape @
+		$word = str_replace('@', '\@', $word);
+
+		// Replace word by link
+		$content = preg_replace("@(<(li|p|span|strong))([^<]*)(\b$word\b)(.*?)(</(li|p|span|strong)>)@i", "\$1\$3$pre\$4$after\$5\$6", $content);
 
 		return $content;
 	}
@@ -316,14 +338,16 @@ Class SimpleTags {
 			// Generate SQL from post id
 			$postlist = implode( "', '", $this->posts );
 
-			// Generate key cache
-			$key = md5(maybe_serialize($postlist));
-
-			// Get cache if exist
-			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
-				if ( isset( $cache[$key] ) ) {
-					$this->tags_currentposts = $cache[$key];
-					return;
+			if ( $this->use_cache === true ) { // Use cache
+				// Generate key cache
+				$key = md5(maybe_serialize($postlist));
+	
+				// Get cache if exist
+				if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
+					if ( isset( $cache[$key] ) ) {
+						$this->tags_currentposts = $cache[$key];
+						return;
+					}
 				}
 			}
 
@@ -339,8 +363,10 @@ Class SimpleTags {
 				AND ( p.ID IN ('{$postlist}') )
 				ORDER BY tt.count DESC");
 
-			$cache[$key] = $results;
-			wp_cache_set('generate_keywords', $cache, 'simpletags');
+			if ( $this->use_cache === true ) { // Use cache
+				$cache[$key] = $results;
+				wp_cache_set('generate_keywords', $cache, 'simpletags');
+			}
 
 			$this->tags_currentposts = $results;
 			unset($results, $key);
@@ -407,23 +433,31 @@ Class SimpleTags {
 				$marker = true;
 			}
 		} else {
-			if ( $this->options['rp_embedded'] == 'all' ) {
-				$marker = true;
-			} elseif ( $this->options['rp_embedded'] == 'blogonly' && is_feed() == false ) {
-				$marker = true;
-			} elseif ( $this->options['rp_embedded'] == 'homeonly' && is_home() == true ) {
-				$marker = true;
-			} elseif ( $this->options['rp_embedded'] == 'singularonly' && is_singular() == true ) {
-				$marker = true;
-			} elseif ( $this->options['rp_embedded'] == 'singleonly' && is_single() == true ) {
-				$marker = true;
-			} elseif ( $this->options['rp_embedded'] == 'pageonly' && is_page() == true ) {
-				$marker = true;
+			switch ( $this->options['rp_embedded'] ) {
+				case 'blogonly' :
+					$marker = ( is_feed() ) ? false : true;		
+					break;
+				case 'homeonly' :					
+					$marker = ( is_home() ) ? true : false;
+					break;
+				case 'singularonly' :	
+					$marker = ( is_singular() ) ? true : false;				
+					break;
+				case 'singleonly' :					
+					$marker = ( is_single() ) ? true : false;					
+					break;
+				case 'pageonly' :
+					$marker = ( is_page() ) ? true : false;			
+					break;
+				case 'all' :
+				default:
+					$marker = true;					
+					break;				
 			}
 		}
 
 		if ( $marker === true ) {
-			$content .= $this->relatedPosts( '', false );
+			return ( $content . $this->relatedPosts( '', false ) );
 		}
 		return $content;
 	}
@@ -441,23 +475,31 @@ Class SimpleTags {
 				$marker = true;
 			}
 		} else {
-			if ( $this->options['tt_embedded'] == 'all' ) {
-				$marker = true;
-			} elseif ( $this->options['tt_embedded'] == 'blogonly' && is_feed() == false ) {
-				$marker = true;
-			} elseif ( $this->options['tt_embedded'] == 'homeonly' && is_home() == true ) {
-				$marker = true;
-			} elseif ( $this->options['tt_embedded'] == 'singularonly' && is_singular() == true ) {
-				$marker = true;
-			} elseif ( $this->options['tt_embedded'] == 'singleonly' && is_single() == true ) {
-				$marker = true;
-			} elseif ( $this->options['tt_embedded'] == 'pageonly' && is_page() == true ) {
-				$marker = true;
+			switch ( $this->options['tt_embedded'] ) {
+				case 'blogonly' :
+					$marker = ( is_feed() ) ? false : true;		
+					break;
+				case 'homeonly' :					
+					$marker = ( is_home() ) ? true : false;
+					break;
+				case 'singularonly' :	
+					$marker = ( is_singular() ) ? true : false;				
+					break;
+				case 'singleonly' :					
+					$marker = ( is_single() ) ? true : false;					
+					break;
+				case 'pageonly' :
+					$marker = ( is_page() ) ? true : false;			
+					break;
+				case 'all' :
+				default:
+					$marker = true;					
+					break;				
 			}
 		}
 
 		if ( $marker === true ) {
-			$content .= $this->extendedPostTags( '', false );
+			return ( $content . $this->extendedPostTags( '', false ) );
 		}
 		return $content;
 	}
@@ -513,14 +555,16 @@ Class SimpleTags {
 			$object_id = (int) $post->ID;
 		}
 
-		// Generate key cache
-		$key = md5(maybe_serialize($user_args.'-'.$object_id));
-
 		// Get cache if exist
-		$results = false;
-		if ( $cache = wp_cache_get( 'related_posts', 'simpletags' ) ) {
-			if ( isset( $cache[$key] ) ) {
-				$results = $cache[$key];
+		$results = false;		
+		if ( $this->use_cache === true ) { // Use cache
+			// Generate key cache
+			$key = md5(maybe_serialize($user_args.'-'.$object_id));
+
+			if ( $cache = wp_cache_get( 'related_posts', 'simpletags' ) ) {
+				if ( isset( $cache[$key] ) ) {
+					$results = $cache[$key];
+				}
 			}
 		}
 
@@ -667,8 +711,10 @@ Class SimpleTags {
 				ORDER BY {$order_by}
 				{$limit_sql}");
 
-			$cache[$key] = $results;
-			wp_cache_set('related_posts', $cache, 'simpletags');
+			if ( $this->use_cache === true ) { // Use cache
+				$cache[$key] = $results;
+				wp_cache_set('related_posts', $cache, 'simpletags');
+			}
 		}
 
 		if ( $results === false || empty($results) ) {
@@ -832,15 +878,17 @@ Class SimpleTags {
 		}else {
 			$current_slugs[] = $slugs;
 		}
-		
-		// Generate key cache
-		$key = md5(maybe_serialize($user_args.$slugs));
 
 		// Get cache if exist
 		$related_tags = false;
-		if ( $cache = wp_cache_get( 'related_tags', 'simpletags' ) ) {
-			if ( isset( $cache[$key] ) ) {
-				$related_tags = $cache[$key];
+		if ( $this->use_cache === true ) { // Use cache
+			// Generate key cache
+			$key = md5(maybe_serialize($user_args.$slugs));
+			
+			if ( $cache = wp_cache_get( 'related_tags', 'simpletags' ) ) {
+				if ( isset( $cache[$key] ) ) {
+					$related_tags = $cache[$key];
+				}
 			}
 		}
 
@@ -898,8 +946,10 @@ Class SimpleTags {
 				}
 			}
 			
-			$cache[$key] = $related_tags;
-			wp_cache_set('related_tags', $cache, 'simpletags');
+			if ( $this->use_cache === true ) { // Use cache
+				$cache[$key] = $related_tags;
+				wp_cache_set('related_tags', $cache, 'simpletags');
+			}
 		}
 		
 		if ( empty($related_tags) ) {
@@ -1155,7 +1205,7 @@ Class SimpleTags {
 
 
 		// Get tags
-		$tags = $this->getTags( $args );
+		$tags = $this->getTags( $args, $this->use_cache );
 		extract($args); // Params to variables
 
 		if ( empty($tags) ) {
@@ -1505,7 +1555,7 @@ Class SimpleTags {
 		$key = md5(serialize($args));
 
 		if ( $skip_cache == true ) {
-			$tags = $this->getTerms('post_tag', $args);
+			$tags = $this->getTerms('post_tag', $args, $skip_cache);
 		}
 		else {
 			// Get cache if exist
@@ -1516,7 +1566,7 @@ Class SimpleTags {
 			}
 
 			// Get tags
-			$tags = $this->getTerms('post_tag', $args);
+			$tags = $this->getTerms('post_tag', $args, $skip_cache);
 
 			if ( empty($tags) ) {
 				return array();
@@ -1541,7 +1591,7 @@ Class SimpleTags {
 	 * @param string $args
 	 * @return array
 	 */
-	function getTerms( $taxonomies, $args = '' ) {
+	function getTerms( $taxonomies, $args = '', $skip_cache = false ) {
 		global $wpdb;
 
 		$single_taxonomy = false;
@@ -1608,11 +1658,13 @@ Class SimpleTags {
 			}
 		}
 
-		// Get cache if exist
-		$key = md5( serialize( $args ) . serialize( $taxonomies ) );
-		if ( $cache = wp_cache_get( 'get_terms', 'terms' ) ) {
-			if ( isset( $cache[$key] ) ) {
-				return apply_filters('get_terms', $cache[$key], $taxonomies, $args);
+		if ( $skip_cache != true ) {
+			// Get cache if exist
+			$key = md5( serialize( $args ) . serialize( $taxonomies ) );
+			if ( $cache = wp_cache_get( 'get_terms', 'terms' ) ) {
+				if ( isset( $cache[$key] ) ) {
+					return apply_filters('get_terms', $cache[$key], $taxonomies, $args);
+				}
 			}
 		}
 
@@ -1784,7 +1836,9 @@ Class SimpleTags {
 
 		if ( 'all' == $fields ) {
 			$terms = $wpdb->get_results($query);
-			update_term_cache($terms);
+			if ( $skip_cache != true ) {
+				update_term_cache($terms);
+			}
 		} elseif ( 'ids' == $fields ) {
 			$terms = $wpdb->get_col($query);
 		}
@@ -1823,8 +1877,10 @@ Class SimpleTags {
 		}
 		reset($terms);
 
-		$cache[$key] = $terms;
-		wp_cache_set( 'get_terms', $cache, 'terms' );
+		if ( $skip_cache != true ) {
+			$cache[$key] = $terms;
+			wp_cache_set( 'get_terms', $cache, 'terms' );
+		}
 
 		$terms = apply_filters('get_terms', $terms, $taxonomies, $args);
 		return $terms;
@@ -1883,6 +1939,18 @@ Class SimpleTags {
 		else
 			return "\n\t". $title . $output. "\n";
 	}
+	
+	/**
+	 * Test if local installation is mu-plugin or a classic plugin
+	 *
+	 * @return boolean
+	 */
+	function isMuPlugin() {
+		if ( strpos(dirname(__FILE__), 'mu-plugins') ) {
+			return true;
+		}
+		return false;
+	}
 }
 
 // Check version.
@@ -1906,7 +1974,7 @@ if ( !function_exists('is_admin_old') ) {
 // Admin and XML-RPC
 if ( is_admin() || is_admin_old() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
 	require(dirname(__FILE__).'/inc/simple-tags.admin.php');
-	$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version );
+	$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version, $simple_tags->info );
 }
 
 // Templates functions
