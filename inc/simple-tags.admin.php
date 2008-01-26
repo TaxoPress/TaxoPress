@@ -2667,20 +2667,6 @@ Class SimpleTagsAdmin {
 	}
 	
 	/**
-	 * Gets the basename of a mu-plugin.
-	 *
-	 * This method extract the name of a plugin from its filename.
-	 * @param string $file The filename of plugin.
-	 * @return string The name of a plugin.
-	 */
-	function muPluginBaseName( $file = '' ) {
-		$file = str_replace('\\','/',$file); // sanitize for Win32 installs
-		$file = preg_replace('|/+|','/', $file); // remove any duplicate slash
-		$file = preg_replace('|^.*/wp-content/mu-plugins/|','',$file); // get relative path from plugins dir
-		return $file;
-	}
-	
-	/**
 	 * Add initial ST options in DB
 	 *
 	 */

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-26 23:19+0100\n"
+"PO-Revision-Date: 2008-01-26 23:22+0100\n"
 "Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
 "Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
 "MIME-Version: 1.0\n"
@@ -548,7 +548,7 @@ msgstr "Ce paramètre permet de fixer une valeur minimale d'utilisation des tags
 #: F:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:698
 msgid "Add the rel=\"nofollow\" on each tags link ?"
-msgstr "Ajouter le rel=\"nofollow\" sur chaques liens de tags ?"
+msgstr "Ajouter le rel=\"nofollow\" sur chaque lien de tags ?"
 
 #: F:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:699
@@ -583,7 +583,7 @@ msgstr "Activer la fonction d'autocomplétion:"
 #: F:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:707
 msgid "This feature displays a visual help allowing to enter tags more easily."
-msgstr "Cette fonctionnalitée vous permet d'afficher une aide visuelle vous facilitant la saisie de tags."
+msgstr "Cette fonctionnalité vous permet d'afficher une aide visuelle vous facilitant la saisie de tags."
 
 #: F:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:708
