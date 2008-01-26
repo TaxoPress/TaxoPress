@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-13 11:40+0100\n"
+"PO-Revision-Date: 2008-01-26 23:19+0100\n"
 "Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
 "Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
 "MIME-Version: 1.0\n"
@@ -15,96 +15,104 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\SVN\\ST WP.org\\trunk\n"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:67
-#: WP.org\trunk/simple-tags.php:483
+#: WP.org\trunk/simple-tags.php:72
+#: WP.org\trunk/simple-tags.php:549
 msgid "No related posts."
 msgstr "Aucun article relatif."
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:68
-#: WP.org\trunk/simple-tags.php:482
+#: WP.org\trunk/simple-tags.php:73
+#: WP.org\trunk/simple-tags.php:548
 msgid "<h4>Related posts</h4>"
 msgstr "<h4>Articles relatifs</h4>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:69
-#: WP.org\trunk/simple-tags.php:485
+#: WP.org\trunk/simple-tags.php:74
+#: WP.org\trunk/simple-tags.php:551
 msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
 msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:75
-#: WP.org\trunk/simple-tags.php:1268
+#: WP.org\trunk/simple-tags.php:80
+#: WP.org\trunk/simple-tags.php:1203
 msgid "No tags."
 msgstr "Aucun tag."
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:76
-#: WP.org\trunk/simple-tags.php:1270
+#: WP.org\trunk/simple-tags.php:81
+#: WP.org\trunk/simple-tags.php:1205
 msgid "<h4>Tag Cloud</h4>"
 msgstr "<h4>Nuage de tags</h4>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:78
-#: WP.org\trunk/simple-tags.php:1269
+#: WP.org\trunk/simple-tags.php:83
+#: WP.org\trunk/simple-tags.php:1204
 msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% articles\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:89
-#: WP.org\trunk/simple-tags.php:1506
+#: WP.org\trunk/simple-tags.php:95
+#: WP.org\trunk/simple-tags.php:1412
 msgid "Tags: "
 msgstr "Tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:91
-#: WP.org\trunk/simple-tags.php:1511
+#: WP.org\trunk/simple-tags.php:97
+#: WP.org\trunk/simple-tags.php:1419
 msgid "No tag for this post."
 msgstr "Aucun tag pour cet article."
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:93
-#: WP.org\trunk/simple-tags.php:1510
+#: WP.org\trunk/simple-tags.php:100
+#: WP.org\trunk/simple-tags.php:1418
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:101
-#: WP.org\trunk/simple-tags.php:847
+#: WP.org\trunk/simple-tags.php:108
+#: WP.org\trunk/simple-tags.php:857
 msgid "<h4>Related tags</h4>"
 msgstr "<h4>Tags relatifs</h4>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:102
-#: WP.org\trunk/simple-tags.php:848
+#: WP.org\trunk/simple-tags.php:109
+#: WP.org\trunk/simple-tags.php:858
 msgid "No related tag found."
 msgstr "Aucun tag relatif trouvé."
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:103
-#: WP.org\trunk/simple-tags.php:849
+#: WP.org\trunk/simple-tags.php:110
 msgid "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
 msgstr "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:108
-#: WP.org\trunk/simple-tags.php:1092
+#: WP.org\trunk/simple-tags.php:115
 msgid "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
 msgstr "&raquo; <a href=\"%tag_link_remove%\" title=\"Supprimer %tag_name_attribute% from search\">Supprimer %tag_name%</a>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:255
+#: WP.org\trunk/simple-tags.php:280
 #, php-format
 msgid "Posts tagged with %s"
 msgstr "Voir les articles taggés avec %s"
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:708
+#: WP.org\trunk/simple-tags.php:781
 msgid "There is no excerpt because this is a protected post."
 msgstr "Il n'y a pas d'extrait car ceci est un article protégé."
 
 #: F:\SVN\ST
-#: WP.org\trunk/simple-tags.php:1722
+#: WP.org\trunk/simple-tags.php:859
+msgid "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+msgstr "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:1059
+msgid "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Supprimer %tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:1659
 msgid "Invalid Taxonomy"
 msgstr "Taxinomie invalide."
 
@@ -120,10 +128,11 @@ msgstr "Cette procédure peut prendre quelques minutes en fonction de la taille 
 
 #: F:\SVN\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:66
-#: WP.org\trunk/inc/simple-tags.admin.php:206
-#: WP.org\trunk/inc/simple-tags.admin.php:507
-#: WP.org\trunk/inc/simple-tags.admin.php:609
-#: WP.org\trunk/inc/simple-tags.admin.php:824
+#: WP.org\trunk/inc/simple-tags.admin.php:417
+#: WP.org\trunk/inc/simple-tags.admin.php:573
+#: WP.org\trunk/inc/simple-tags.admin.php:924
+#: WP.org\trunk/inc/simple-tags.admin.php:1030
+#: WP.org\trunk/inc/simple-tags.admin.php:1245
 msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr "Visitez le <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
 
@@ -184,13 +193,13 @@ msgstr "Débuter l'importation &raquo;"
 
 #: F:\SVN\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:174
-#: WP.org\trunk/inc/simple-tags.admin.php:259
+#: WP.org\trunk/inc/simple-tags.admin.php:662
 msgid "If your browser doesn't start loading the next page automatically click this link:"
 msgstr "Si votre navigateur ne lance pas automatiquement la page suivante, cliquer sur ce lien:"
 
 #: F:\SVN\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:174
-#: WP.org\trunk/inc/simple-tags.admin.php:259
+#: WP.org\trunk/inc/simple-tags.admin.php:662
 msgid "Next content"
 msgstr "Contenu suivant"
 
@@ -226,7 +235,7 @@ msgstr "Vous pouvez gérer les tags maintenant !"
 
 #: F:\SVN\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:249
-#: WP.org\trunk/inc/simple-tags.admin.php:309
+#: WP.org\trunk/inc/simple-tags.admin.php:2642
 msgid "Embedded Tags"
 msgstr "Tags embarqués"
 
@@ -241,1140 +250,1321 @@ msgid "Close"
 msgstr "Fermer"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:158
+#: WP.org\trunk/inc/simple-tags.admin.php:145
+#: WP.org\trunk/inc/simple-tags.admin.php:1029
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: Gestion des tags"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:145
+msgid "Manage Tags"
+msgstr " Gestion des tags"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:146
+#: WP.org\trunk/inc/simple-tags.admin.php:1244
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: Edition en masse de tags"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:146
+msgid "Mass Edit Tags"
+msgstr "Edition en masse de tags"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:147
+#: WP.org\trunk/inc/simple-tags.admin.php:572
+msgid "Simple Tags: Auto Tags"
+msgstr "Simple Tags: Auto Tags"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:147
+msgid "Auto Tags"
+msgstr "Auto Tags"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:151
+#: WP.org\trunk/inc/simple-tags.admin.php:923
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: Options"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:151
 msgid "Simple Tags"
 msgstr "Simple Tags"
 
 #: F:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:158
-msgid "Tags"
-msgstr "Tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:969
+#: WP.org\trunk/inc/simple-tags.admin.php:2075
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "Problème de sécurité. Merci de réessayer. Si le problème persiste, contacter <a href=\"mailto:amaury@wordpress-fr.net\">l'auteur du plugin</a>."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:159
-#: WP.org\trunk/inc/simple-tags.admin.php:608
-msgid "Simple Tags: Manage Tags"
-msgstr "Simple Tags: Gestion des tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:216
+#, php-format
+msgid "%s terms updated with success !"
+msgstr "%s termes mises à jour avec succès !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:159
-msgid "Manage Tags"
-msgstr " Gestion des tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:377
+#: WP.org\trunk/inc/simple-tags.admin.php:443
+msgid "Tag"
+msgstr "Tag"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:160
-#: WP.org\trunk/inc/simple-tags.admin.php:823
-msgid "Simple Tags: Mass Edit Tags"
-msgstr "Simple Tags: Edition en masse de tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:378
+#: WP.org\trunk/inc/simple-tags.admin.php:444
+msgid "Category"
+msgstr "Catégorie"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:160
-msgid "Mass Edit Tags"
-msgstr "Edition en masse de tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:416
+msgid "Simple Tags: Advanced Edit Terms"
+msgstr "Simple Tags: Edition en masse de termes"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:161
-#: WP.org\trunk/inc/simple-tags.admin.php:205
-msgid "Simple Tags: Auto Tags"
-msgstr "Simple Tags: Auto Tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:418
+msgid "Be careful with this page ! You can cause important damages, and lost all tags and categories of your WordPress installation."
+msgstr "Soyez prudent avec cette page ! Vous pouvez causer d'important dégats, et perdre tous les tags et toutes les catégories de votre installation WordPress."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:161
-msgid "Auto Tags"
-msgstr "Auto Tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:423
+#: WP.org\trunk/inc/simple-tags.admin.php:1250
+msgid "Search terms&hellip;"
+msgstr "Mots recherchés&hellip;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:162
-#: WP.org\trunk/inc/simple-tags.admin.php:506
-msgid "Simple Tags: Options"
-msgstr "Simple Tags: Options"
+#: WP.org\trunk/inc/simple-tags.admin.php:428
+#: WP.org\trunk/inc/simple-tags.admin.php:1255
+msgid "Quantity&hellip;"
+msgstr "Quantité&hellip;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:162
-msgid "Options"
-msgstr "Options"
+#: WP.org\trunk/inc/simple-tags.admin.php:440
+msgid "Taxonomy&hellip;"
+msgstr "Taxinomie&hellip;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:190
+#: WP.org\trunk/inc/simple-tags.admin.php:442
+#: WP.org\trunk/inc/simple-tags.admin.php:1300
+msgid "All"
+msgstr "Tous"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:449
+#: WP.org\trunk/inc/simple-tags.admin.php:1288
+msgid "Order&hellip;"
+msgstr "Ordre&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:451
+msgid "Counter (descending)"
+msgstr "Compteur (descendant)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:452
+msgid "Counter (ascending)"
+msgstr "Compteur (ascendant)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:453
+msgid "Name (descending)"
+msgstr "Nom (descendant)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:454
+msgid "Name (ascending)"
+msgstr "Nom (ascendant)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:458
+#: WP.org\trunk/inc/simple-tags.admin.php:1305
+msgid "Filter &#187;"
+msgstr "Filtrer &#187;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:465
+#: WP.org\trunk/inc/simple-tags.admin.php:1312
+#: WP.org\trunk/inc/simple-tags.admin.php:1322
+msgid "Update all"
+msgstr "Tout mettre à jour"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:471
+msgid "ID (no editing)"
+msgstr "ID (non éditable)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:472
+msgid "Name"
+msgstr "Nom"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:473
+msgid "Slug (unique)"
+msgstr "Identifiant (unique)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:474
+msgid "Term group"
+msgstr "Groupe du terme"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:475
+msgid "Taxonomy"
+msgstr "Taxinomie"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:476
+msgid "Count"
+msgstr "Compteur"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:477
+msgid "Parent"
+msgstr "Parent"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:478
+msgid "Description"
+msgstr "Description"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:479
+msgid "Delete ?"
+msgstr "Effacer ?"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:508
+msgid "Update all terms"
+msgstr "Mettre à jour tous les termes"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:512
+msgid "No terms to edit."
+msgstr "Aucun terme a éditer."
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:558
 msgid "Auto tags options updated !"
 msgstr "Les options d'Auto tags sont mise à jour !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:210
+#: WP.org\trunk/inc/simple-tags.admin.php:577
 msgid "Auto tags list"
 msgstr "Liste des auto tags"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:211
+#: WP.org\trunk/inc/simple-tags.admin.php:578
 msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
 msgstr "Cette fonctionnalité autorise WordPress à regarder le contenu et le titre des articles afin d'y trouver des tags spécifiques lors de la sauvegarde des articles. Si le contenu ou le titre de l'article contient le mot \"WordPress\" et que la liste auto tags contient le mot \"wordpress\", Simple Tags ajoutera automatiquement \"wordpress\" comme tag de l'article."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:215
+#: WP.org\trunk/inc/simple-tags.admin.php:582
 msgid "Active Auto Tags."
 msgstr "Activer les auto tags."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:217
+#: WP.org\trunk/inc/simple-tags.admin.php:585
+msgid "Use also local tags database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many tags)"
+msgstr "Utiliser également la base de tags locale pour la fonction de tag automatique. (Attention, cette option peut augmenter la consommation CPU de façon importante si vous possédez beaucoup de tags)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:588
+msgid "Autotag only posts without tags."
+msgstr "Tagger automatiquement et uniquement les articles sans tags."
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:590
 msgid "Keywords list: (separated with a comma)"
 msgstr "Liste des mots clés: (séparé avec une virgule)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:223
+#: WP.org\trunk/inc/simple-tags.admin.php:596
 msgid "Update list &raquo;"
 msgstr "Mettre à jour la liste &raquo;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:226
+#: WP.org\trunk/inc/simple-tags.admin.php:599
 msgid "Auto tags old content"
-msgstr "Taggé automatiquement le contenu existant"
+msgstr "Tagger automatiquement le contenu existant"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:227
+#: WP.org\trunk/inc/simple-tags.admin.php:600
 msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
 msgstr "Simple Tags permet également de tagger automatiquement tout le contenu de votre blog. Cette fonctionnalité utilise la liste des tags mentionnés ci-dessus."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:228
+#: WP.org\trunk/inc/simple-tags.admin.php:601
 msgid "Auto tags all content"
 msgstr "Tagger automatiquement tout le contenu"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:270
+#: WP.org\trunk/inc/simple-tags.admin.php:673
 msgid "All done!"
 msgstr "Terminé !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:286
-msgid "General"
-msgstr "Options générales"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:287
+#: WP.org\trunk/inc/simple-tags.admin.php:690
 msgid "Include page in tag search:"
 msgstr "Inclure les pages lors d'une recherche de tag:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:288
+#: WP.org\trunk/inc/simple-tags.admin.php:691
 msgid "This feature need that option \"Add page in tags management\" is enabled."
 msgstr "Cette fonctionnalité nécessite que l'option \"Ajouter les pages dans la gestion des tags\" soit activée."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:289
+#: WP.org\trunk/inc/simple-tags.admin.php:692
 msgid "Allow tag cloud in post/page content:"
 msgstr "Autoriser l'insertion de nuage de tags dans le contenu des articles/pages:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:290
+#: WP.org\trunk/inc/simple-tags.admin.php:693
 msgid "Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud."
 msgstr "L'activation de cette option permet à WordPress de regarder dans le contenu des articles à la recherche du marqueur <code>&lt;!--st_tag_cloud--&gt;</code>. S'il existe, il sera automatiquement remplacé par un nuage de tags."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:291
+#: WP.org\trunk/inc/simple-tags.admin.php:694
 msgid "Active auto link tags into post content:"
 msgstr "Activer la création automatique de liens dans le contenu des articles:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:292
+#: WP.org\trunk/inc/simple-tags.admin.php:695
 msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
 msgstr "Exemple: Vous avez un tag nommé \"WordPress\" et le contenu de votre article contient le mot \"wordpress\", cette fonctionnalité remplacera le mot \"wordpress\" par un lien \"wordpress\" pointant sur la page du tag. (http://monblog.net/tag/wordpress/)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:293
+#: WP.org\trunk/inc/simple-tags.admin.php:696
 msgid "Min usage for auto link tags:"
 msgstr "Utilisation minimale pour la création automatique de liens des tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:294
+#: WP.org\trunk/inc/simple-tags.admin.php:697
 msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
 msgstr "Ce paramètre permet de fixer une valeur minimale d'utilisation des tags. Défaut: 1."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:296
-msgid "Administration"
-msgstr "Administration"
+#: WP.org\trunk/inc/simple-tags.admin.php:698
+msgid "Add the rel=\"nofollow\" on each tags link ?"
+msgstr "Ajouter le rel=\"nofollow\" sur chaques liens de tags ?"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:297
+#: WP.org\trunk/inc/simple-tags.admin.php:699
+msgid "Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index."
+msgstr "En ajoutant rel=\"nofollow\" à un hyperlien, une page indique que la destination de cet hyperlien NE DEVRAIT PAS ETRE chargée de quelque poids supplémentaire ou de classement par les agents utilisateur qui exécutent de l'analyse de lien sur les pages web (par ex. les moteurs de recherche)."
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:702
 msgid "Add page in tags management:"
 msgstr "Ajouter les pages dans la gestion des tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:298
+#: WP.org\trunk/inc/simple-tags.admin.php:703
 msgid "Add a tag input (and tag posts features) in page edition"
 msgstr "Ajouter le champ tag (ainsi que les fonctionnalités spécifiques des articles) lors de l'édition des pages"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:299
-msgid "Add click tags feature:"
-msgstr "Ajouter la fonctionnalité Clic Tags"
+#: WP.org\trunk/inc/simple-tags.admin.php:704
+msgid "Activate click tags feature:"
+msgstr "Activer la fonctionnalité Clic Tags"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:300
+#: WP.org\trunk/inc/simple-tags.admin.php:705
 msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
 msgstr "Cette fonctionnalité ajoute un lien vous permettant d'afficher tous les tags de votre base de données. Une fois affichés, vous pouvez cliquer sur les tags pour les ajouter à l'article."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:301
-msgid "Add suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)"
-msgstr "Ajoute la fonctionnalité Tags suggérés: (Yahoo! Term Extraction API, Tag The Net, Base local)"
+#: WP.org\trunk/inc/simple-tags.admin.php:706
+msgid "Activate autocompletion feature:"
+msgstr "Activer la fonction d'autocomplétion:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:302
+#: WP.org\trunk/inc/simple-tags.admin.php:707
+msgid "This feature displays a visual help allowing to enter tags more easily."
+msgstr "Cette fonctionnalitée vous permet d'afficher une aide visuelle vous facilitant la saisie de tags."
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:708
+msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)"
+msgstr "Activer la fonctionnalité Tags suggérés: (Yahoo! Term Extraction API, Tag The Net, Base local)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:709
 msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
 msgstr "Cette fonctionnalité ajoute une rubrique vous permettant de générer des tags suggerés, en comparant le contenu de l'articles et différentes sources de tags. (interne comme externe)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:304
-msgid "Meta Keyword"
-msgstr "Mots clés"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:305
+#: WP.org\trunk/inc/simple-tags.admin.php:712
 msgid "Automatically include in header:"
 msgstr "Inclure automatiquement les mots clés:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:306
+#: WP.org\trunk/inc/simple-tags.admin.php:713
 msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is disabled."
 msgstr "Inclut automatiquement des tags comme mots clés dans l'entête de votre page (la plupart des thèmes supportent cette fonction). Ces mots clés sont parfois utilisés par les moteurs de recherche.<br /><strong>Attention:</strong> Si le plugin \"All in One SEO Pack\" est installé et actif. Cette fonctionnalité est desactivée."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:307
+#: WP.org\trunk/inc/simple-tags.admin.php:714
 msgid "Always add these keywords:"
 msgstr "Toujours ajouter les mots clés suivants:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:310
+#: WP.org\trunk/inc/simple-tags.admin.php:715
+msgid "Max keywords display:"
+msgstr "Nombre max de mots clés à afficher:"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:716
+msgid "You must set zero (0) for display all keywords in HTML header."
+msgstr "Vous devez mettre zéro (0) pour afficher tous les mots clés dans l'entete HTML."
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:719
 msgid "Use embedded tags:"
 msgstr "Utiliser les tags embarqués:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:311
+#: WP.org\trunk/inc/simple-tags.admin.php:720
 msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
 msgstr "L'activation de cette option permettra à WordPress de chercher des tags inclus à l'intérieur de vos articles, lors de leur enregistrement et de leur affichage. Ces tags sont marqués comme <code>[tags]ceci, et cela[/tags]</code>, et sont ajoutés automatiquement à votre article lors de son enregistrement, mais ne seront pas visibles pour vos visiteurs."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:312
+#: WP.org\trunk/inc/simple-tags.admin.php:721
 msgid "Prefix for embedded tags:"
 msgstr "Préfixe des tags embarqués:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:313
+#: WP.org\trunk/inc/simple-tags.admin.php:722
 msgid "Suffix for embedded tags:"
 msgstr "Suffixe des tags embarqués:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:315
-msgid "Tags for Current Post"
-msgstr "Tags de l'article courant"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:316
+#: WP.org\trunk/inc/simple-tags.admin.php:725
 msgid "Automatically display tags list into feeds"
 msgstr "Ajouter automatiquement les tags de l'article dans le flux RSS"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:317
+#: WP.org\trunk/inc/simple-tags.admin.php:726
 msgid "Automatically display tags list into post content:"
 msgstr "Ajouter automatiquement la liste des tags dans le contenu des articles"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:319
-#: WP.org\trunk/inc/simple-tags.admin.php:342
+#: WP.org\trunk/inc/simple-tags.admin.php:728
+#: WP.org\trunk/inc/simple-tags.admin.php:752
 msgid "<code>no</code> &ndash; Nowhere (default)"
 msgstr "<code>no</code> &ndash; Nulle part (défaut)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:320
-#: WP.org\trunk/inc/simple-tags.admin.php:343
+#: WP.org\trunk/inc/simple-tags.admin.php:729
+#: WP.org\trunk/inc/simple-tags.admin.php:753
 msgid "<code>all</code> &ndash; On your blog and feeds."
 msgstr "<code>all</code> &ndash; Dans le blog et les flux RSS."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:321
-#: WP.org\trunk/inc/simple-tags.admin.php:344
+#: WP.org\trunk/inc/simple-tags.admin.php:730
+#: WP.org\trunk/inc/simple-tags.admin.php:754
 msgid "<code>blogonly</code> &ndash; Only on your blog."
 msgstr "<code>blogonly</code> &ndash; Seulement dans le blog."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:322
-#: WP.org\trunk/inc/simple-tags.admin.php:345
+#: WP.org\trunk/inc/simple-tags.admin.php:731
+#: WP.org\trunk/inc/simple-tags.admin.php:755
 msgid "<code>homeonly</code> &ndash; Only on your home page."
 msgstr "<code>homeonly</code> &ndash; Seulement sur la page d'accueil du blog."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:323
-#: WP.org\trunk/inc/simple-tags.admin.php:346
+#: WP.org\trunk/inc/simple-tags.admin.php:732
+#: WP.org\trunk/inc/simple-tags.admin.php:756
 msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
 msgstr "<code>singularonly</code> &ndash; Seulement sur une vue détaillée (page ou article)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:324
-#: WP.org\trunk/inc/simple-tags.admin.php:347
+#: WP.org\trunk/inc/simple-tags.admin.php:733
+#: WP.org\trunk/inc/simple-tags.admin.php:757
 msgid "<code>singleonly</code> &ndash; Only on your single view."
 msgstr "<code>singleonly</code> &ndash; Seulement sur une vue détaillée d'article."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:325
-#: WP.org\trunk/inc/simple-tags.admin.php:348
+#: WP.org\trunk/inc/simple-tags.admin.php:734
+#: WP.org\trunk/inc/simple-tags.admin.php:758
 msgid "<code>pageonly</code> &ndash; Only on your page view."
 msgstr "<code>pageonly</code> &ndash; Seulement sur une vue détaillée de page."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:327
+#: WP.org\trunk/inc/simple-tags.admin.php:736
 msgid "Post tag separator string:"
 msgstr "Séparateur entre les tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:328
+#: WP.org\trunk/inc/simple-tags.admin.php:737
 msgid "Text to display before tags list:"
 msgstr "Texte à afficher avant la liste de tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:329
+#: WP.org\trunk/inc/simple-tags.admin.php:738
 msgid "Text to display after tags list:"
 msgstr "Texte à afficher après la liste de tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:330
+#: WP.org\trunk/inc/simple-tags.admin.php:739
 msgid "Max tags display:"
 msgstr "Nombre max de tag à afficher:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:331
+#: WP.org\trunk/inc/simple-tags.admin.php:740
 msgid "You must set zero (0) for display all tags."
 msgstr "Vous devez mettre zéro (0) pour afficher tous les tags."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:332
-#: WP.org\trunk/inc/simple-tags.admin.php:438
+#: WP.org\trunk/inc/simple-tags.admin.php:741
+msgid "Include categories in result ?"
+msgstr "Inclure les catégories dans le resultat ?"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:742
+#: WP.org\trunk/inc/simple-tags.admin.php:849
 msgid "Tag link format:"
 msgstr "Format des liens des tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:333
-#: WP.org\trunk/inc/simple-tags.admin.php:361
-#: WP.org\trunk/inc/simple-tags.admin.php:389
-#: WP.org\trunk/inc/simple-tags.admin.php:407
-#: WP.org\trunk/inc/simple-tags.admin.php:439
+#: WP.org\trunk/inc/simple-tags.admin.php:743
+#: WP.org\trunk/inc/simple-tags.admin.php:771
+#: WP.org\trunk/inc/simple-tags.admin.php:799
+#: WP.org\trunk/inc/simple-tags.admin.php:817
+#: WP.org\trunk/inc/simple-tags.admin.php:850
 msgid "You can find markers and explanations <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">in the online documentation.</a>"
-msgstr "Vous pouvez trouver les marquers et les explications <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">sur la documentation en ligne.</a>"
+msgstr "Vous pouvez trouver les marqueurs et les explications <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">sur la documentation en ligne.</a>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:334
+#: WP.org\trunk/inc/simple-tags.admin.php:744
 msgid "Text to display if no tags found:"
 msgstr "Texte à afficher si aucun tag n'a été trouvé:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:335
-#: WP.org\trunk/inc/simple-tags.admin.php:365
-#: WP.org\trunk/inc/simple-tags.admin.php:394
-#: WP.org\trunk/inc/simple-tags.admin.php:451
+#: WP.org\trunk/inc/simple-tags.admin.php:745
+#: WP.org\trunk/inc/simple-tags.admin.php:775
+#: WP.org\trunk/inc/simple-tags.admin.php:804
+#: WP.org\trunk/inc/simple-tags.admin.php:862
 msgid "<strong>Advanced usage</strong>:"
 msgstr "<strong>Utilisation avancée</strong>:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:336
+#: WP.org\trunk/inc/simple-tags.admin.php:746
 msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
 msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:338
-msgid "Related Posts"
-msgstr "Articles relatifs"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:339
+#: WP.org\trunk/inc/simple-tags.admin.php:749
 msgid "Automatically display related posts into feeds"
 msgstr "Ajouter automatiquement les articles relatifs dans le flux RSS"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:340
+#: WP.org\trunk/inc/simple-tags.admin.php:750
 msgid "Automatically display related posts into post content"
 msgstr "Ajouter automatiquement les articles relatifs dans le contenu des articles"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:350
+#: WP.org\trunk/inc/simple-tags.admin.php:760
 msgid "Related Posts Order:"
 msgstr "Ordre des articles relatifs:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:352
+#: WP.org\trunk/inc/simple-tags.admin.php:762
 msgid "<code>date-asc</code> &ndash; Older Entries."
 msgstr "<code>date-asc</code> &ndash; Plus anciens."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:353
+#: WP.org\trunk/inc/simple-tags.admin.php:763
 msgid "<code>date-desc</code> &ndash; Newer Entries."
 msgstr "<code>date-desc</code> &ndash; Plus récents."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:354
+#: WP.org\trunk/inc/simple-tags.admin.php:764
 msgid "<code>count-asc</code> &ndash; Least common tags between posts"
 msgstr "<code>count-asc</code> &ndash; Le moins de tags en commun entre 2 articles."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:355
+#: WP.org\trunk/inc/simple-tags.admin.php:765
 msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
 msgstr "<code>count-desc</code> &ndash; Le plus de tags en commun entre 2 articles. (défaut)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:356
-#: WP.org\trunk/inc/simple-tags.admin.php:374
-#: WP.org\trunk/inc/simple-tags.admin.php:421
-#: WP.org\trunk/inc/simple-tags.admin.php:429
+#: WP.org\trunk/inc/simple-tags.admin.php:766
+#: WP.org\trunk/inc/simple-tags.admin.php:784
+#: WP.org\trunk/inc/simple-tags.admin.php:831
+#: WP.org\trunk/inc/simple-tags.admin.php:839
 msgid "<code>name-asc</code> &ndash; Alphabetical."
 msgstr "<code>name-asc</code> &ndash; Ordre alphabétique."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:357
-#: WP.org\trunk/inc/simple-tags.admin.php:375
-#: WP.org\trunk/inc/simple-tags.admin.php:422
-#: WP.org\trunk/inc/simple-tags.admin.php:430
+#: WP.org\trunk/inc/simple-tags.admin.php:767
+#: WP.org\trunk/inc/simple-tags.admin.php:785
+#: WP.org\trunk/inc/simple-tags.admin.php:832
+#: WP.org\trunk/inc/simple-tags.admin.php:840
 msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
 msgstr "<code>name-desc</code> &ndash; Inverse de l'ordre alphabétique."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:358
-#: WP.org\trunk/inc/simple-tags.admin.php:376
-#: WP.org\trunk/inc/simple-tags.admin.php:423
+#: WP.org\trunk/inc/simple-tags.admin.php:768
+#: WP.org\trunk/inc/simple-tags.admin.php:786
+#: WP.org\trunk/inc/simple-tags.admin.php:833
 msgid "<code>random</code> &ndash; Random."
 msgstr "<code>random</code> &ndash; Aléatoire."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:360
+#: WP.org\trunk/inc/simple-tags.admin.php:770
 msgid "Post link format:"
 msgstr "Format des liens des articles:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:362
+#: WP.org\trunk/inc/simple-tags.admin.php:772
 msgid "Maximum number of related posts to display: (default: 5)"
 msgstr "Nombre max d'articles relatifs à afficher: (defaut: 5)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:363
+#: WP.org\trunk/inc/simple-tags.admin.php:773
 msgid "Enter the text to show when there is no related post:"
 msgstr "Entrer le texte à afficher lorsqu'il n'y a pas d'articles relatifs:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:364
-#: WP.org\trunk/inc/simple-tags.admin.php:393
-#: WP.org\trunk/inc/simple-tags.admin.php:442
+#: WP.org\trunk/inc/simple-tags.admin.php:774
+#: WP.org\trunk/inc/simple-tags.admin.php:803
+#: WP.org\trunk/inc/simple-tags.admin.php:853
 msgid "Enter the positioned title before the list, leave blank for no title:"
 msgstr "Entrer le titre positionné avant la liste, laisser vide, pour ne rien afficher:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:366
+#: WP.org\trunk/inc/simple-tags.admin.php:776
 msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
 msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:368
-msgid "Related Tags"
-msgstr "Tags relatifs"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:369
+#: WP.org\trunk/inc/simple-tags.admin.php:779
 msgid "Maximum number of related tags to display: (default: 5)"
 msgstr "Nombre max de tags relatifs à afficher: (defaut: 5)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:370
+#: WP.org\trunk/inc/simple-tags.admin.php:780
 msgid "Order related tags:"
 msgstr "Ordre des tags relatifs:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:372
-#: WP.org\trunk/inc/simple-tags.admin.php:419
-#: WP.org\trunk/inc/simple-tags.admin.php:427
+#: WP.org\trunk/inc/simple-tags.admin.php:782
+#: WP.org\trunk/inc/simple-tags.admin.php:829
+#: WP.org\trunk/inc/simple-tags.admin.php:837
 msgid "<code>count-asc</code> &ndash; Least used."
 msgstr "<code>count-asc</code> &ndash; Les moins utilisés."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:373
-#: WP.org\trunk/inc/simple-tags.admin.php:420
+#: WP.org\trunk/inc/simple-tags.admin.php:783
+#: WP.org\trunk/inc/simple-tags.admin.php:830
 msgid "<code>count-desc</code> &ndash; Most popular. (default)"
 msgstr "<code>count-desc</code> &ndash; Les plus populaires.(défaut)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:378
+#: WP.org\trunk/inc/simple-tags.admin.php:788
 msgid "Related tags type format:"
 msgstr "Format des tags relatifs:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:380
-#: WP.org\trunk/inc/simple-tags.admin.php:400
-#: WP.org\trunk/inc/simple-tags.admin.php:435
+#: WP.org\trunk/inc/simple-tags.admin.php:790
+#: WP.org\trunk/inc/simple-tags.admin.php:810
+#: WP.org\trunk/inc/simple-tags.admin.php:846
 msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
 msgstr "<code>list</code> &ndash; Affiche une liste formatée (ul/li)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:381
-#: WP.org\trunk/inc/simple-tags.admin.php:401
-#: WP.org\trunk/inc/simple-tags.admin.php:436
+#: WP.org\trunk/inc/simple-tags.admin.php:791
+#: WP.org\trunk/inc/simple-tags.admin.php:811
+#: WP.org\trunk/inc/simple-tags.admin.php:847
 msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
 msgstr "<code>flat</code> &ndash; Afficher en ligne (pas de liste, juste un balise div)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:383
+#: WP.org\trunk/inc/simple-tags.admin.php:793
 msgid "Method of tags intersections and unions used to build related tags link:"
 msgstr "Méthode d'intersections et d'unions utilisée pour la construction des liens des tags relatifs"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:385
+#: WP.org\trunk/inc/simple-tags.admin.php:795
 msgid "<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</strong> the \"Tag2\" tag. (default)"
 msgstr "<code>OR</code> &ndash; Récupère les articles contenant les tags \"Tag1\" <strong>ou</strong> \"Tag2\"."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:386
+#: WP.org\trunk/inc/simple-tags.admin.php:796
 msgid "<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</strong> the \"Tag2\" tag."
 msgstr "<code>AND</code> &ndash; Récupère les articles contenant les tags \"Tag1\" <strong>et</strong> \"Tag2\"."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:388
+#: WP.org\trunk/inc/simple-tags.admin.php:798
 msgid "Related tags link format:"
 msgstr "Format des liens des tags relatifs:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:390
+#: WP.org\trunk/inc/simple-tags.admin.php:800
 msgid "Related tags separator:"
 msgstr "Séparateur entre les tags relatifs:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:391
-#: WP.org\trunk/inc/simple-tags.admin.php:404
+#: WP.org\trunk/inc/simple-tags.admin.php:801
+#: WP.org\trunk/inc/simple-tags.admin.php:814
 msgid "Leave empty for list format."
 msgstr "Laisser vide si vous utilisez le format \"list\""
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:392
+#: WP.org\trunk/inc/simple-tags.admin.php:802
 msgid "Enter the text to show when there is no related tags:"
 msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de tags relatifs:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:395
+#: WP.org\trunk/inc/simple-tags.admin.php:805
 msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
 msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:397
+#: WP.org\trunk/inc/simple-tags.admin.php:807
 msgid "Remove related Tags"
 msgstr "Tags relatifs à supprimer:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:398
+#: WP.org\trunk/inc/simple-tags.admin.php:808
 msgid "Remove related Tags type format:"
 msgstr "Format des tags relatifs à supprimer:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:403
+#: WP.org\trunk/inc/simple-tags.admin.php:813
 msgid "Remove related tags separator:"
 msgstr "Séparateur entre les tags relatifs à supprimer:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:405
+#: WP.org\trunk/inc/simple-tags.admin.php:815
 msgid "Enter the text to show when there is no remove related tags:"
 msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de tags relatifs à supprimer:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:406
+#: WP.org\trunk/inc/simple-tags.admin.php:816
 msgid "Remove related tags  link format:"
 msgstr "Format des liens des tags relatifs à supprimer:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:409
-msgid "Tag cloud"
-msgstr "Nuage de tags"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:410
+#: WP.org\trunk/inc/simple-tags.admin.php:820
 msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
 msgstr "Quelle est la différence entre <strong>&#8216;Ordre de sélection des tags&#8217;</strong> et <strong>&#8216;Ordre d'affichage des tags&#8217;</strong> ?<br />"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:412
+#: WP.org\trunk/inc/simple-tags.admin.php:822
 msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
 msgstr "<strong>&#8216;Ordre de sélection des tags&#8217;</strong> est la première étape de la génération du nuage de tags, elle correspond à la récupération des tags."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:413
+#: WP.org\trunk/inc/simple-tags.admin.php:823
 msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
 msgstr "<strong>&#8216;Ordre d'affichage des tags&#8217;</strong> est la seconde étape. Une fois les tags récupérés, vous pouvez les réordonner avant l'affichage."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:415
+#: WP.org\trunk/inc/simple-tags.admin.php:825
 msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
 msgstr "<strong>Exemple:</strong> Vous voulez afficher aléatoirement les 100 tags les plus populaires.<br />"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:416
+#: WP.org\trunk/inc/simple-tags.admin.php:826
 msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
 msgstr "Vous devez fixer l'option &#8216;Ordre de sélection des tags&#8217; sur <strong>count-desc</strong> pour récupérer les 100 tags les plus utilisés. Fixer ensuite l'option &#8216;Ordre d'affichage des tags&#8217; sur <strong>random</strong> pour mélanger le nuage."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:417
+#: WP.org\trunk/inc/simple-tags.admin.php:827
 msgid "Order tags selection:"
 msgstr "Ordre de sélection des tags"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:425
+#: WP.org\trunk/inc/simple-tags.admin.php:835
 #: WP.org\trunk/inc/simple-tags.widgets.php:167
 msgid "Order tags display:"
 msgstr "Ordre d'affichage des tags"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:428
+#: WP.org\trunk/inc/simple-tags.admin.php:838
 msgid "<code>count-desc</code> &ndash; Most popular."
 msgstr "<code>count-desc</code> &ndash; Les plus populaires."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:431
+#: WP.org\trunk/inc/simple-tags.admin.php:841
 msgid "<code>random</code> &ndash; Random. (default)"
 msgstr "<code>random</code> &ndash; Aléatoire. (défaut)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:433
+#: WP.org\trunk/inc/simple-tags.admin.php:843
+msgid "Include categories in tag cloud ?"
+msgstr "Inclure les catégories dans la nuage de tags ?"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:844
 msgid "Tags cloud type format:"
 msgstr "Format du nuage de tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:440
+#: WP.org\trunk/inc/simple-tags.admin.php:851
 msgid "Maximum number of tags to display: (default: 45)"
 msgstr "Nombre max de tags à afficher: (défaut: 45)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:441
+#: WP.org\trunk/inc/simple-tags.admin.php:852
 msgid "Enter the text to show when there is no tag:"
 msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:443
+#: WP.org\trunk/inc/simple-tags.admin.php:854
 msgid "Most popular color:"
 msgstr "Couleur des tags les plus populaires"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:444
+#: WP.org\trunk/inc/simple-tags.admin.php:855
 msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
 msgstr "Les couleurs sont représentées par leur code hexadécimal, et nécessite 6 caractères. (ex. #eee est la version raccourcie de #eeeeee)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:445
+#: WP.org\trunk/inc/simple-tags.admin.php:856
 msgid "Least popular color:"
 msgstr "Couleur des tags les moins utilisés"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:446
+#: WP.org\trunk/inc/simple-tags.admin.php:857
 msgid "Most popular font size:"
 msgstr "Taille pour les tags les plus populaires"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:447
+#: WP.org\trunk/inc/simple-tags.admin.php:858
 msgid "The two font sizes are the size of the largest and smallest tags."
 msgstr "Les 2 tailles de polices représentent la taille maximale et minimale des tags."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:448
+#: WP.org\trunk/inc/simple-tags.admin.php:859
 msgid "Least popular font size:"
 msgstr "Taille pour les tags les moins utilisés"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:449
+#: WP.org\trunk/inc/simple-tags.admin.php:860
 msgid "The units to display the font sizes with, on tag clouds:"
 msgstr "Unité à utiliser pour la taille des polices dans le nuage de tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:450
+#: WP.org\trunk/inc/simple-tags.admin.php:861
 msgid "The font size units option determines the units that the two font sizes use."
 msgstr "Cette option détermine l'unité à utiliser pour la taille des tags dans le nuage."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:452
+#: WP.org\trunk/inc/simple-tags.admin.php:863
 msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
 msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:465
+#: WP.org\trunk/inc/simple-tags.admin.php:877
 msgid "Options saved"
 msgstr "Les options ont été sauvegardées."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:470
+#: WP.org\trunk/inc/simple-tags.admin.php:881
 msgid "Simple Tags options resetted to default options!"
 msgstr "Les options par défaut de Simple Tags ont été restaurées."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:510
-#: WP.org\trunk/inc/simple-tags.admin.php:526
+#: WP.org\trunk/inc/simple-tags.admin.php:887
+#, php-format
+msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "Toutes les options de Simple Tags sont éffacées ! Vous pouvez <a href=\"%s\">désinstaller le plugin</a>  !"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:927
+#: WP.org\trunk/inc/simple-tags.admin.php:951
 msgid "Update Options &raquo;"
 msgstr "Mettre à jour les options &raquo;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:511
-#: WP.org\trunk/inc/simple-tags.admin.php:527
+#: WP.org\trunk/inc/simple-tags.admin.php:928
+#: WP.org\trunk/inc/simple-tags.admin.php:952
 msgid "Do you really want to restore the default options?"
 msgstr "Êtes-vous sur de vouloir restaurer les options par défaut?"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:511
-#: WP.org\trunk/inc/simple-tags.admin.php:527
+#: WP.org\trunk/inc/simple-tags.admin.php:928
+#: WP.org\trunk/inc/simple-tags.admin.php:952
 msgid "Reset Options"
 msgstr "Restaurer les options par défaut"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:544
-#: WP.org\trunk/inc/simple-tags.admin.php:1646
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
-msgstr "Problème de sécurité. Merci de réessayer. Si le problème persiste, contacter <a href=\"mailto:amaury@wordpress-fr.net\">l'auteur du plugin</a>."
+#: WP.org\trunk/inc/simple-tags.admin.php:935
+msgid "Uninstallation"
+msgstr "Désinstallation"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:577
+#: WP.org\trunk/inc/simple-tags.admin.php:941
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "Généralement, la désactivation d'un plugin, n'efface aucune donnée de ce dernier, si vous voulez vraiment arrêter d'utiliser Simple Tags, merci d'effacer <strong>toutes</strong> les options avant de désactiver le plugin."
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:942
+msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "Ceci effacera toutes les options de Simple Tags. <strong>Cette action est irréversible, soyez prudent.</strong>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:945
+msgid "Delete all options ?"
+msgstr "Effacer toutes les options ?"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1002
 #: WP.org\trunk/inc/simple-tags.widgets.php:171
 msgid "Most popular"
 msgstr "Plus populaire"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:578
+#: WP.org\trunk/inc/simple-tags.admin.php:1003
 #: WP.org\trunk/inc/simple-tags.widgets.php:161
 #: WP.org\trunk/inc/simple-tags.widgets.php:172
 msgid "Least used"
 msgstr "Moins utilisé"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:579
+#: WP.org\trunk/inc/simple-tags.admin.php:1004
 #: WP.org\trunk/inc/simple-tags.widgets.php:158
 #: WP.org\trunk/inc/simple-tags.widgets.php:169
 msgid "Alphabetical"
 msgstr "Alphabétique"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:614
+#: WP.org\trunk/inc/simple-tags.admin.php:1035
 msgid "Existing Tags"
 msgstr "Tags existants:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:618
+#: WP.org\trunk/inc/simple-tags.admin.php:1039
 msgid "Search tags"
 msgstr "Chercher des tags"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:622
+#: WP.org\trunk/inc/simple-tags.admin.php:1043
 msgid "Go"
 msgstr "Ok"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:625
+#: WP.org\trunk/inc/simple-tags.admin.php:1046
 msgid "Sort Order:"
 msgstr "Trier par:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:640
-#: WP.org\trunk/inc/simple-tags.admin.php:1764
+#: WP.org\trunk/inc/simple-tags.admin.php:1061
+#: WP.org\trunk/inc/simple-tags.admin.php:2205
 #, php-format
 msgid "View all posts tagged with %s"
 msgstr "Voir les articles taggés avec %s"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:651
-#: WP.org\trunk/inc/simple-tags.admin.php:1779
-#: WP.org\trunk/inc/simple-tags.admin.php:1781
+#: WP.org\trunk/inc/simple-tags.admin.php:1072
+#: WP.org\trunk/inc/simple-tags.admin.php:2220
+#: WP.org\trunk/inc/simple-tags.admin.php:2222
 msgid "Previous tags"
 msgstr "Tags précédents"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:651
-#: WP.org\trunk/inc/simple-tags.admin.php:1785
-#: WP.org\trunk/inc/simple-tags.admin.php:1787
+#: WP.org\trunk/inc/simple-tags.admin.php:1072
+#: WP.org\trunk/inc/simple-tags.admin.php:2226
+#: WP.org\trunk/inc/simple-tags.admin.php:2228
 msgid "Next tags"
 msgstr "Tags suivant"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:659
+#: WP.org\trunk/inc/simple-tags.admin.php:1080
 msgid "Rename Tag"
 msgstr "Renommer le tag"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:660
+#: WP.org\trunk/inc/simple-tags.admin.php:1081
 msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
 msgstr "Entrer le tag à renommer et sa nouvelle valeur.  Vous pouvez également utiliser cette fonction pour fusionner des tags. <br />Cliquer sur \"Renommer\" et tous les articles utilisant ce ou ces tag(s) seront mis à jour."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:661
-#: WP.org\trunk/inc/simple-tags.admin.php:702
+#: WP.org\trunk/inc/simple-tags.admin.php:1082
+#: WP.org\trunk/inc/simple-tags.admin.php:1123
 msgid "You can specify multiple tags to rename by separating them with commas."
 msgstr "Vous pouvez spécifier plusieurs tags à renommer en les séparant avec des virgules."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:666
+#: WP.org\trunk/inc/simple-tags.admin.php:1087
 msgid "Tag(s) to rename:"
 msgstr "Tag(s) à renommer:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:667
+#: WP.org\trunk/inc/simple-tags.admin.php:1088
 msgid "New tag name(s):"
 msgstr "Nom des nouveaux tags:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:668
+#: WP.org\trunk/inc/simple-tags.admin.php:1089
 msgid "Rename"
 msgstr "Renommer"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:673
+#: WP.org\trunk/inc/simple-tags.admin.php:1094
 msgid "Delete Tag"
 msgstr "Effacer le tag"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:674
+#: WP.org\trunk/inc/simple-tags.admin.php:1095
 msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
 msgstr "Entrer le nom du tag à supprimer. Ce tag sera supprimé pour tous les articles/pages."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:675
+#: WP.org\trunk/inc/simple-tags.admin.php:1096
 msgid "You can specify multiple tags to delete by separating them with commas"
 msgstr "Vous pouvez spécifier plusieurs tags à supprimer en les séparant avec des virgules"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:680
+#: WP.org\trunk/inc/simple-tags.admin.php:1101
 msgid "Tag(s) to delete:"
 msgstr "Tag(s) to Delete:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:681
+#: WP.org\trunk/inc/simple-tags.admin.php:1102
 msgid "Delete"
 msgstr "Effacer"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:686
+#: WP.org\trunk/inc/simple-tags.admin.php:1107
 msgid "Add Tag"
 msgstr "Ajouter un tag"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:687
+#: WP.org\trunk/inc/simple-tags.admin.php:1108
 msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
 msgstr "Cette fonctionnalité vous permet d'ajouter un ou plusieurs tags à tous vos articles à partir d'une recherche sur un ou plusieurs tag(s) défini(s)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:688
+#: WP.org\trunk/inc/simple-tags.admin.php:1109
 msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
 msgstr "Vous pouvez spécifier plusieurs tags à ajouter en les séparant avec des virgules. Si vous souhaitez ajouter ce ou ces tags à tous les articles, vous n'avez pas besoin d'entrer de tags à rechercher."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:693
-#: WP.org\trunk/inc/simple-tags.admin.php:708
+#: WP.org\trunk/inc/simple-tags.admin.php:1114
+#: WP.org\trunk/inc/simple-tags.admin.php:1129
 msgid "Tag(s) to match:"
 msgstr "Tag(s) à rechercher:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:694
+#: WP.org\trunk/inc/simple-tags.admin.php:1115
 msgid "Tag(s) to add:"
 msgstr "Tag(s) à ajouter:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:695
+#: WP.org\trunk/inc/simple-tags.admin.php:1116
 msgid "Add"
 msgstr "Ajouter"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:700
+#: WP.org\trunk/inc/simple-tags.admin.php:1121
 msgid "Edit Tag Slug"
 msgstr "Editer l'identifiant d'un tag"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:701
+#: WP.org\trunk/inc/simple-tags.admin.php:1122
 msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
 msgstr "Entre le nom du tag à éditer et son nouvel identifiant. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Définition de slug (en anglais)</a>"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:712
+#: WP.org\trunk/inc/simple-tags.admin.php:1133
 msgid "Slug(s) to set:"
 msgstr "Identifiant(s) à fixer:"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:717
-#: WP.org\trunk/inc/simple-tags.admin.php:895
+#: WP.org\trunk/inc/simple-tags.admin.php:1138
+#: WP.org\trunk/inc/simple-tags.admin.php:1316
 msgid "Edit"
 msgstr "Editer"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:723
+#: WP.org\trunk/inc/simple-tags.admin.php:1144
 msgid "Remove empty terms"
 msgstr "Supprimer les termes vides"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:724
+#: WP.org\trunk/inc/simple-tags.admin.php:1145
 msgid "WordPress 2.3 have a small bug and can create empty terms. Remove it !"
 msgstr "WordPress 2.3 a un petit bug et permet la création de termes vides. Supprimez les !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:728
+#: WP.org\trunk/inc/simple-tags.admin.php:1149
 msgid "Clean !"
 msgstr "Nettoyer !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:829
-msgid "Search terms&hellip;"
-msgstr "Mots recherchés&hellip;"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:834
-msgid "Quantity&hellip;"
-msgstr "Quantité&hellip;"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:851
+#: WP.org\trunk/inc/simple-tags.admin.php:1272
 msgid "Author&hellip;"
 msgstr "Auteur&hellip;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:852
+#: WP.org\trunk/inc/simple-tags.admin.php:1273
 msgid "Any"
 msgstr "N'importe"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:857
+#: WP.org\trunk/inc/simple-tags.admin.php:1278
 msgid "Type&hellip;"
 msgstr "Type&hellip;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:859
+#: WP.org\trunk/inc/simple-tags.admin.php:1280
 msgid "Post"
 msgstr "Article"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:861
+#: WP.org\trunk/inc/simple-tags.admin.php:1282
 msgid "Page"
 msgstr "Page"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:867
-msgid "Order&hellip;"
-msgstr "Ordre&hellip;"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:869
+#: WP.org\trunk/inc/simple-tags.admin.php:1290
 msgid "Date (descending)"
 msgstr "Date (descendant)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:870
+#: WP.org\trunk/inc/simple-tags.admin.php:1291
 msgid "Date (ascending)"
 msgstr "Date (ascendant)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:871
+#: WP.org\trunk/inc/simple-tags.admin.php:1292
 msgid "ID (descending)"
 msgstr "ID (descendant)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:872
+#: WP.org\trunk/inc/simple-tags.admin.php:1293
 msgid "ID (ascending)"
 msgstr "ID (ascendant)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:877
+#: WP.org\trunk/inc/simple-tags.admin.php:1298
 msgid "Filter&hellip;"
 msgstr "Filtrer&hellip;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:879
-msgid "All"
-msgstr "Tous"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:880
+#: WP.org\trunk/inc/simple-tags.admin.php:1301
 msgid "Untagged only"
 msgstr "Non taggé"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:884
-msgid "Filter &#187;"
-msgstr "Filtrer &#187;"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:891
-#: WP.org\trunk/inc/simple-tags.admin.php:901
-msgid "Update all"
-msgstr "Tout mettre à jour"
-
-#: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:915
+#: WP.org\trunk/inc/simple-tags.admin.php:1336
 msgid "No content to edit."
 msgstr "Pas de contenu à éditer."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:992
+#: WP.org\trunk/inc/simple-tags.admin.php:1415
 msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
 msgstr "Tags (séparez les tags multiples par des virgules : chat, nourriture pour animaux, chien)"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1044
+#: WP.org\trunk/inc/simple-tags.admin.php:1467
 msgid "No new tag specified!"
 msgstr "Aucun nouveau tag spécifié!"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1063
+#: WP.org\trunk/inc/simple-tags.admin.php:1486
 msgid "No new/old valid tag specified!"
 msgstr "Aucun ancien ou nouveau tag spécifié!"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1095
+#: WP.org\trunk/inc/simple-tags.admin.php:1518
 msgid "No tag renamed."
 msgstr "Aucun tag renommé."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1097
+#: WP.org\trunk/inc/simple-tags.admin.php:1521
 #, php-format
 msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
 msgstr "Le(s) tag(s) &laquo;%1$s&raquo; a (ont) été renommé(s) en &laquo;%2$s&raquo;"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1104
+#: WP.org\trunk/inc/simple-tags.admin.php:1528
 msgid "No valid new tag."
 msgstr "Aucun nouveau tag valide."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1121
+#: WP.org\trunk/inc/simple-tags.admin.php:1545
 msgid "No objects (post/page) found for specified old tags."
 msgstr "Aucun objets (article/page) trouvé pour les anciens tags spécifiés."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1146
+#: WP.org\trunk/inc/simple-tags.admin.php:1570
 msgid "No tag merged."
 msgstr "Aucun tag fusionné."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1148
+#: WP.org\trunk/inc/simple-tags.admin.php:1573
 #, php-format
 msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
 msgstr "Fusionner les tag(s) &laquo;%1$s&raquo; en &laquo;%2$s&raquo;. %3$s objet(s) édité(s)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1151
+#: WP.org\trunk/inc/simple-tags.admin.php:1576
 msgid "Error. No enough tags for rename. Too for merge. Choose !"
 msgstr "Erreur. Pas assez de tags pour renommer. Trop pour fusionner. Choisissez !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1177
+#: WP.org\trunk/inc/simple-tags.admin.php:1602
 msgid "No tag specified!"
 msgstr "Aucun tag spécifié!"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1202
+#: WP.org\trunk/inc/simple-tags.admin.php:1627
 msgid "No tag deleted."
 msgstr "Aucun tag effacé."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1204
+#: WP.org\trunk/inc/simple-tags.admin.php:1630
 #, php-format
 msgid "%1s tag(s) deleted."
 msgstr "%1s tag(s) effacé(s)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1216
+#: WP.org\trunk/inc/simple-tags.admin.php:1642
 msgid "No new tag(s) specified!"
 msgstr "Aucun nouveau tag(s) spécifié!"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1264
+#: WP.org\trunk/inc/simple-tags.admin.php:1690
 msgid "No tag added."
 msgstr "Aucun tag ajouté."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1266
+#: WP.org\trunk/inc/simple-tags.admin.php:1693
 #, php-format
 msgid "Tag(s) added to %1s post(s)."
 msgstr "Tag(s) ajouté(s) à %1s article(s)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1278
+#: WP.org\trunk/inc/simple-tags.admin.php:1705
 msgid "No new slug(s) specified!"
 msgstr "Aucun nouveau identifiant(s) spécifié!"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1294
+#: WP.org\trunk/inc/simple-tags.admin.php:1721
 msgid "Tags number and slugs number isn't the same!"
 msgstr "Le nombre de tags et d'identifiants n'est pas le même!"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1318
+#: WP.org\trunk/inc/simple-tags.admin.php:1745
 msgid "No slug edited."
 msgstr "Aucun identifiant édité."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1320
+#: WP.org\trunk/inc/simple-tags.admin.php:1748
 #, php-format
 msgid "%s slug(s) edited."
 msgstr "%s identifiant(s) édité."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1338
+#: WP.org\trunk/inc/simple-tags.admin.php:1766
 msgid "Nothing to muck. Good job !"
 msgstr "Rien à enlever. Bon travail!"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1362
+#: WP.org\trunk/inc/simple-tags.admin.php:1791
 #, php-format
 msgid "%s rows deleted. WordPress DB is clean now !"
 msgstr "%s lignes supprimées. La base de données de WordPress est nettoyée !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1385
+#: WP.org\trunk/inc/simple-tags.admin.php:1814
 msgid "Display click tags"
 msgstr "Afficher les Clic Tags"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1385
+#: WP.org\trunk/inc/simple-tags.admin.php:1814
 msgid "Hide click tags"
 msgstr "Cache les tags"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1437
+#: WP.org\trunk/inc/simple-tags.admin.php:1866
 msgid "Suggested tags from :"
 msgstr "Tags suggérés depuis :"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1438
+#: WP.org\trunk/inc/simple-tags.admin.php:1867
 msgid "Local tags"
 msgstr "Tags local"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1439
+#: WP.org\trunk/inc/simple-tags.admin.php:1868
 msgid "Yahoo"
 msgstr "Yahoo"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1440
+#: WP.org\trunk/inc/simple-tags.admin.php:1869
 msgid "Tag The Net"
 msgstr "Tag The Net"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1446
+#: WP.org\trunk/inc/simple-tags.admin.php:1875
 msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
 msgstr "Choisissez une source pour recupérer les tags suggerés (base locale, yahoo ou tag the net)."
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1673
+#: WP.org\trunk/inc/simple-tags.admin.php:2103
 #, php-format
 msgid "%s post(s) tags updated with success !"
 msgstr "Les tags de %s article(s) ont été mis à jour avec succès !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:1675
+#: WP.org\trunk/inc/simple-tags.admin.php:2105
 #, php-format
 msgid "%s page(s) tags updated with success !"
 msgstr "Les tags de %s page(s) ont été mis à jour avec succès !"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:2073
+#: WP.org\trunk/inc/simple-tags.admin.php:2514
 #, php-format
 msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
 msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
 
 #: F:\SVN\ST
-#: WP.org\trunk/inc/simple-tags.admin.php:2113
+#: WP.org\trunk/inc/simple-tags.admin.php:2554
 msgid "Page: "
 msgstr "Page:"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2633
+msgid "General"
+msgstr "Options générales"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2636
+msgid "Administration"
+msgstr "Administration"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2639
+msgid "Meta Keyword"
+msgstr "Mots clés"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2645
+msgid "Tags for Current Post"
+msgstr "Tags de l'article courant"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2648
+msgid "Related Posts"
+msgstr "Articles relatifs"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2651
+msgid "Related Tags"
+msgstr "Tags relatifs"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2654
+msgid "Tag cloud"
+msgstr "Nuage de tags"
 
 #: F:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.widgets.php:143

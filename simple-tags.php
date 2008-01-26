@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3';
+	var $version = '1.3.1';
 
 	var $info;
 	var $options;
@@ -46,7 +46,7 @@ Class SimpleTags {
 	 *
 	 * @return SimpleTags
 	 */
-	function SimpleTags() {
+	function SimpleTags() {		
 		// Options
 		$default_options = array(
 			// General
@@ -59,6 +59,7 @@ Class SimpleTags {
 			'use_tag_pages' => 1,
 			'use_click_tags' => 1,
 			'use_suggested_tags' => 1,
+			'use_autocompletion' => 1,
 			// Embedded Tags			
 			'use_embed_tags' => 0,
 			'start_embed_tags' => '[tags]',
@@ -85,6 +86,7 @@ Class SimpleTags {
 			'cloud_max_size' => 22,
 			'cloud_min_size' => 8,
 			'cloud_unit' => 'pt',
+			'cloud_inc_cats' => 0,
 			'cloud_adv_usage' => '',
 			// The tags
 			'tt_feed' => 0,
@@ -94,6 +96,7 @@ Class SimpleTags {
 			'tt_after' => '<br />',
 			'tt_notagstext' => __('No tag for this post.', 'simpletags'),
 			'tt_number' => 0,
+			'tt_inc_cats' => 0,
 			'tt_xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'tt_adv_usage' => '',
 			// Related tags
@@ -113,9 +116,11 @@ Class SimpleTags {
 			// Meta keywords
 			'meta_autoheader' => 1,
 			'meta_always_include' => '',
+			'meta_keywords_qty' => 0,
 			// Auto tags
 			'use_auto_tags' => 0,
-			'use_wp_auto_tags' => 0,
+			'at_all' => 0,
+			'at_empty' => 0,
 			'auto_list' => ''
 		);			
 
@@ -124,9 +129,6 @@ Class SimpleTags {
 
 		// Get options from WP options
 		$options_from_table = get_option( $this->db_options );
-		if ( !$options_from_table ) {
-			$this->resetToDefaultOptions();
-		}
 
 		// Update default options by getting not empty values from options table
 		foreach( (array) $default_options as $default_options_name => $default_options_value ) {
@@ -202,35 +204,35 @@ Class SimpleTags {
 
 		// Remove embedded tags in posts display
 		if ( $this->options['use_embed_tags'] == 1 ) {
-			add_filter('the_content', array(&$this, 'filterEmbedTags'), 95);
+			add_filter('the_content', array(&$this, 'filterEmbedTags'), 999991);
 		}
 
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
 		if ( $this->options['tt_embedded'] != 'no' || $this->options['tt_feed'] == 1 ) {
-			add_filter('the_content', array(&$this, 'inlinePostTags'), 97);
+			add_filter('the_content', array(&$this, 'inlinePostTags'), 999992);
 		}
 
 		// Add post tags in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
 		if ( $this->options['rp_embedded'] != 'no' || $this->options['rp_feed'] == 1 ) {
-			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 98);
+			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 999993);
 		}
 
 		// Embedded tag cloud
 		if ( $this->options['allow_embed_tcloud'] == 1 ) {
-			add_filter('the_content', array(&$this, 'inlineTagCloud'), 99);
+			add_filter('the_content', array(&$this, 'inlineTagCloud'), 999995);
 		}
 
 		// Stock Posts ID (useful for autolink and metakeywords)
-		add_filter('the_posts', array(&$this, 'getPostIds'), 90);
+		add_filter( 'the_posts', array(&$this, 'getPostIds') );
 
 		// Add keywords to header
 		if ( ( $this->options['meta_autoheader'] == 1 && !class_exists('All_in_One_SEO_Pack') && apply_filters('st_meta_header', true) ) ) {
-			add_action('wp_head', array(&$this, 'displayMetaKeywords'), 99);
+			add_action('wp_head', array(&$this, 'displayMetaKeywords'));
 		}
 
 		// Auto link tags
 		if ( $this->options['auto_link_tags'] == '1' ) {
-			add_filter('the_content', array(&$this, 'autoLinkTags'), 96);
+			add_filter('the_content', array(&$this, 'autoLinkTags'), 999990);
 		}
 		return;
 	}
@@ -248,9 +250,9 @@ Class SimpleTags {
 		}
 
 		$this->link_tags = array();
-		foreach ( (array) $this->tags_currentposts as $tag ) {
-			if  ( $tag->count >= $auto_link_min ) {
-	 			$this->link_tags[$tag->name] = get_tag_link( $tag->term_id );
+		foreach ( (array) $this->tags_currentposts as $term ) {
+			if  ( $term->count >= $auto_link_min ) {
+	 			$this->link_tags[$term->name] = get_tag_link( $term->term_id );
 			}
 		}
 		return;
@@ -264,15 +266,23 @@ Class SimpleTags {
 		// Rel or not ?
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag" ' : '';
+		
+		$no_follow = (int) $this->options['no_follow'];
+		if ( $no_follow != 0 ) { // No follow ?
+			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
+		}
+		
+		if ( !empty($rel) ) {
+			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
+		}
 
-		foreach ( (array) $this->link_tags as $tag_name => $tag_link ) {
-			$content = $this->replaceTextByTagLink( $content, $tag_name, '<a href="'.$tag_link.'" class="st_tag internal_tag" '.$rel.'title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $tag_name ) ).'">', '</a>' );
+		foreach ( (array) $this->link_tags as $term_name => $term_link ) {
+			$content = $this->replaceTextByTagLink( $content, $term_name, '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) ).'">', '</a>' );
 		}
 		return $content;
 	}
 
-	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {
-		/*
+	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {		
 		// Add first conteneur
 		$content = '<temp_st>'.$content.'</temp_st>';
 
@@ -283,25 +293,24 @@ Class SimpleTags {
 		$word = str_replace('|', '\|', $word);
 
 		// Replace keywords not between <..> tags. <##..##> should be skipped too
-		// Todo fix. Remplace only by full term
-		$content = preg_replace("|(>)([^<]*)([^#a-z]*)(\b$word\b)([^#a-z]*)|i", "\$1\$2\$3$pre \$4 $after\$5", $content);
+		$content = preg_replace("|(>)([^<]*)([^#a-z]*)(\b$word\b)([^#a-z]*)|i", "\$1\$2\$3$pre\$4$after\$5", $content);
 
-		// Get rid of <##..##>
+		// Remove rid of <##..##>
 		$content = str_replace('<##', '', $content);
 		$content = str_replace('##>', '', $content);
 
 		// Remove conteneur
 		$content = str_replace('<temp_st>', '', $content);
 		$content = str_replace('</temp_st>', '', $content);
-		*/
 		
+		/*
 		// Alak code
 		// Escape @
 		$word = str_replace('@', '\@', $word);
 
 		// Replace word by link
 		$content = preg_replace("@(<(li|p|span|strong))([^<]*)(\b$word\b)(.*?)(</(li|p|span|strong)>)@i", "\$1\$3$pre\$4$after\$5\$6", $content);
-
+		*/
 		return $content;
 	}
 
@@ -385,8 +394,8 @@ Class SimpleTags {
 		}
 
 		$results = array();
-		foreach ( (array) $this->tags_currentposts as $tag ) {
-			$results[] = $tag->name;
+		foreach ( (array) $this->tags_currentposts as $term ) {
+			$results[] = $term->name;
 		}
 		unset($this->tags_currentposts);
 
@@ -404,6 +413,13 @@ Class SimpleTags {
 
 		// Unique keywords
 		$results = array_unique($results);
+		
+		// Limit to max quantity if set
+		$number = (int) $this->options['meta_keywords_qty'];
+		if ( $number != 0 ) {
+			$results = $this->randomArray($results); // Randomize keywords
+			$results = array_slice( $results, 0, $number );
+		}
 
 		return strip_tags(implode(', ', $results));
 	}
@@ -413,9 +429,9 @@ Class SimpleTags {
 	 *
 	 */
 	function displayMetaKeywords() {
-		$tags_list = $this->generateKeywords();
-		if ( !empty($tags_list) ) {
-			echo "\n\t" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". '<meta name="keywords" content="' . $tags_list . '" />' ."\n";
+		$terms_list = $this->generateKeywords();
+		if ( !empty($terms_list) ) {
+			echo "\n\t" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". '<meta name="keywords" content="' . $terms_list . '" />' ."\n";
 		}
 		return;
 	}
@@ -450,9 +466,12 @@ Class SimpleTags {
 					$marker = ( is_page() ) ? true : false;			
 					break;
 				case 'all' :
-				default:
 					$marker = true;					
-					break;				
+					break;	
+				case 'no' :
+				default:
+					$marker = false;
+					break;		
 			}
 		}
 
@@ -492,9 +511,12 @@ Class SimpleTags {
 					$marker = ( is_page() ) ? true : false;			
 					break;
 				case 'all' :
-				default:
 					$marker = true;					
-					break;				
+					break;	
+				case 'no' :
+				default:
+					$marker = false;
+					break;
 			}
 		}
 
@@ -736,11 +758,11 @@ Class SimpleTags {
 
 			$element_loop = $xformat;
 			
-			$title = apply_filters( 'the_title', $result->post_title );
+			$post_title = apply_filters( 'the_title', $result->post_title );
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
 			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);			
-			$element_loop = str_replace('%post_title%', $title, $element_loop);
-			$element_loop = str_replace('%post_title_attribute%', attribute_escape(strip_tags($title)), $element_loop);		
+			$element_loop = str_replace('%post_title%', $post_title, $element_loop);
+			$element_loop = str_replace('%post_title_attribute%', wp_specialchars(strip_tags($post_title)), $element_loop);		
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
@@ -782,14 +804,14 @@ Class SimpleTags {
 	}
 
 	//Get and format tags from list ID (SQL Group Concat)
-	function getTagsFromID( $tags = '' ) {
-		if ( empty($tags) ) {
+	function getTagsFromID( $terms = '' ) {
+		if ( empty($terms) ) {
 			return '';
 		}
 
 		// Get tags since Term ID.
-		$tags = get_terms('post_tag', 'include='.$tags);
-		if ( empty($tags) ) {
+		$terms = get_terms('post_tag', 'include='.$tags);
+		if ( empty($terms) ) {
 			return '';
 		}
 
@@ -797,8 +819,8 @@ Class SimpleTags {
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
 
 		$output = '';
-		foreach ( (array) $tags as $tag ) {
-			$output .= '<a href="'.get_tag_link($tag->term_id).'" title="'.attribute_escape(sprintf( __ngettext('%d topic', '%d topics', $tag->count, 'simpletags'), $tag->count )).'" '.$rel.'>'.str_replace(' ', '&nbsp;', wp_specialchars($tag->name)).'</a>, ';
+		foreach ( (array) $terms as $term ) {
+			$output .= '<a href="'.get_tag_link($term->term_id).'" title="'.attribute_escape(sprintf( __ngettext('%d topic', '%d topics', $term->count, 'simpletags'), $term->count )).'" '.$rel.'>'.wp_specialchars($term->name).'</a>, ';
 		}
 		$output = substr($output, 0, strlen($output) - 2); // Remove latest ", "
 		return $output;
@@ -993,14 +1015,14 @@ Class SimpleTags {
 			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag->term_id)), $element_loop);
 			$element_loop = str_replace('%tag_id%', $tag->term_id, $element_loop);
 			$element_loop = str_replace('%tag_count%', $tag->count, $element_loop);
-			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', attribute_escape( $tag->name )), $element_loop);
-			$element_loop = str_replace('%tag_name_attribute%', attribute_escape(strip_tags($tag->name)), $element_loop);			
+			$element_loop = str_replace('%tag_name%', wp_specialchars( $tag->name ), $element_loop);
+			$element_loop = str_replace('%tag_name_attribute%', wp_specialchars(strip_tags($tag->name)), $element_loop);			
 			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);			
 			$element_loop = str_replace('%tag_link_add%', $this->getAddTagToLink( $current_slugs, $tag->slug, $url_tag_sep ), $element_loop);
 
 			$output[] = $element_loop;
 		}
-		unset($related_tags, $tag);
+		unset($related_tags, $tag, $element_loop);
 		return $this->outputContent( 'st-related-tags', $format, $title, $output );
 	}
 	
@@ -1104,8 +1126,8 @@ Class SimpleTags {
 			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($term->term_id)), $element_loop);
 			$element_loop = str_replace('%tag_id%', $term->term_id, $element_loop);
 			$element_loop = str_replace('%tag_count%', $term->count, $element_loop);
-			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', attribute_escape( $term->name )), $element_loop);
-			$element_loop = str_replace('%tag_name_attribute%', attribute_escape(strip_tags($term->name)), $element_loop);			
+			$element_loop = str_replace('%tag_name%', wp_specialchars( $term->name ), $element_loop);
+			$element_loop = str_replace('%tag_name_attribute%', wp_specialchars(strip_tags($term->name)), $element_loop);			
 			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
 					
 			$element_loop = str_replace('%tag_link_remove%', $this->getRemoveTagToLink( $current_slugs, $term->slug, $url_tag_sep ), $element_loop);
@@ -1177,6 +1199,7 @@ Class SimpleTags {
 			'no_follow' => 0,
 			'limit_days' => 0,
 			'min_usage' => 0,
+			'inc_cats' => 0,
 			'notagstext' => __('No tags.', 'simpletags'),
 			'xformat' => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
 			'title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
@@ -1197,26 +1220,35 @@ Class SimpleTags {
 		$defaults['unit'] = $this->options['cloud_unit'];
 		$defaults['xformat'] = $this->options['cloud_xformat'];		
 		$defaults['format'] = $this->options['cloud_format'];
+		$defaults['inc_cats'] = $this->options['cloud_inc_cats'];		
 		
 		if ( empty($args) ) {				
 			$args = $this->options['cloud_adv_usage'];
 		}
 		$args = wp_parse_args( $args, $defaults );
 
+		// Get categories ?
+		$inc_cats = (int) $args['inc_cats'];
+		$taxonomy = ( $inc_cats == 0 ) ? 'post_tag' : array('post_tag', 'category');
 
-		// Get tags
-		$tags = $this->getTags( $args, $this->use_cache );
+		// Get terms
+		$terms = $this->getTags( $args, $this->use_cache, $taxonomy );
 		extract($args); // Params to variables
 
-		if ( empty($tags) ) {
+		if ( empty($terms) ) {
 			return $this->outputContent( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
 		}
 
-		$counts = $tag_links = $tag_ids =array();
-		foreach ( (array) $tags as $tag ) {
-			$counts[$tag->name] = $tag->count;
-			$tag_links[$tag->name] = get_tag_link( $tag->term_id );
-			$tag_ids[$tag->name] = $tag->term_id;
+		$counts = $term_links = $term_ids = $taxonomies = array();
+		foreach ( (array) $terms as $term ) {
+			$counts[$term->name] = $term->count;
+			if ( $term->taxonomy == 'post_tag' ) { // Tag
+				$term_links[$term->name] = get_tag_link( $term->term_id );
+			} else { // Category
+				$term_links[$term->name] = get_category_link( $term->term_id );
+			}
+			$term_ids[$term->name] = $term->term_id;
+			$taxonomies[$term->name] = $term->taxonomy;
 		}
 
 		// Use full RBG code
@@ -1274,7 +1306,7 @@ Class SimpleTags {
 			$xformat = str_replace('%tag_size%', '', $xformat);
 		}
 
-		// Order tags before output
+		// Order terms before output
 		// count-asc/count-desc/name-asc/name-desc/random
 		$cloud_sort = strtolower($cloud_sort);
 		switch ( $cloud_sort ) {
@@ -1297,28 +1329,32 @@ Class SimpleTags {
 		}
 
 		$output = array();
-		foreach ( (array) $counts as $tag => $count ) {
-			$scaleResult = (int) (($count - $minval) * $scale + $minout);
+		foreach ( (array) $counts as $term => $count ) {
+			$scale_result = (int) (($count - $minval) * $scale + $minout);
 
 			$element_loop = $xformat;
-			
-			$element_loop = str_replace('%tag_link%', clean_url($tag_links[$tag]), $element_loop);
-			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag_ids[$tag])), $element_loop);
-			$element_loop = str_replace('%tag_id%', $tag_ids[$tag], $element_loop);
+
+			$element_loop = str_replace('%tag_link%', clean_url($term_links[$term]), $element_loop);
+			if ( $taxonomies[$term] == 'post_tag' ) { // Tag post
+				$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($term_ids[$term])), $element_loop);
+			} else { // Category
+				$element_loop = str_replace('%tag_feed%', clean_url(get_category_rss_link(false, $term_ids[$term], '')), $element_loop);				
+			}			
+			$element_loop = str_replace('%tag_id%', $term_ids[$term], $element_loop);
 			$element_loop = str_replace('%tag_count%', $count, $element_loop);
-			$element_loop = str_replace('%tag_size%', 'font-size:'.round(($scaleResult - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 2).$unit.';', $element_loop);
-			$element_loop = str_replace('%tag_color%', 'color:'.$this->getColorByScale(round(($scaleResult - $scale_min)*(100)/($scale_max - $scale_min), 2),$mincolor,$maxcolor).';', $element_loop);
-			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', attribute_escape( $tag )), $element_loop);
-			$element_loop = str_replace('%tag_name_attribute%', attribute_escape(strip_tags($tag)), $element_loop);			
+			$element_loop = str_replace('%tag_size%', 'font-size:'.round(($scale_result - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 2).$unit.';', $element_loop);
+			$element_loop = str_replace('%tag_color%', 'color:'.$this->getColorByScale(round(($scale_result - $scale_min)*(100)/($scale_max - $scale_min), 2),$mincolor,$maxcolor).';', $element_loop);
+			$element_loop = str_replace('%tag_name%', wp_specialchars( $term ), $element_loop);
+			$element_loop = str_replace('%tag_name_attribute%', wp_specialchars(strip_tags($term)), $element_loop);			
 			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
-			$element_loop = str_replace('%tag_scale%', $scaleResult, $element_loop);
-			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $tag ), $element_loop);
-			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $tag ), $element_loop);
-			$element_loop = str_replace('%tag_delicious%', $this->formatLink( 'delicious', $tag ), $element_loop);
+			$element_loop = str_replace('%tag_scale%', $scale_result, $element_loop);
+			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $term ), $element_loop);
+			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $term ), $element_loop);
+			$element_loop = str_replace('%tag_delicious%', $this->formatLink( 'delicious', $term ), $element_loop);
 
 			$output[] = $element_loop;
 		}
-		unset($counts, $tag_links, $tag_ids);
+		unset($counts, $term_links, $term_ids, $taxonomies, $element_loop);
 		return $this->outputContent( 'st-tag-cloud', $format, $title, $output, $copyright );
 	}
 
@@ -1346,20 +1382,20 @@ Class SimpleTags {
 	 * @param string $tag_name
 	 * @return string
 	 */
-	function formatLink( $type = '', $tag_name = '' ) {
-		if ( empty($tag_name) ) {
+	function formatLink( $type = '', $term_name = '' ) {
+		if ( empty($term_name) ) {
 			return '';
 		}
 
 		switch ( $type ) {
 			case 'technorati':
-				return '<a class="tag_technorati" href="http://technorati.com/tag/'.str_replace(' ', '+', $tag_name).'" rel="tag">'.$tag_name.'</a>';
+				return '<a class="tag_technorati" href="http://technorati.com/tag/'.str_replace(' ', '+', $term_name).'" rel="tag">'.$term_name.'</a>';
 				break;
 			case 'flickr':
-				return '<a class="tag_flickr" href="http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($tag_name)).'/" rel="tag">'.$tag_name.'</a>';
+				return '<a class="tag_flickr" href="http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($term_name)).'/" rel="tag">'.$term_name.'</a>';
 				break;
 			case 'delicious':
-				return '<a class="tag_delicious" href="http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $tag_name)).'" rel="tag">'.$tag_name.'</a>';
+				return '<a class="tag_delicious" href="http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $term_name)).'" rel="tag">'.$term_name.'</a>';
 				break;
 		}
 		return '';
@@ -1376,8 +1412,9 @@ Class SimpleTags {
 			'before' => __('Tags: ', 'simpletags'),
 			'separator' => ', ',
 			'after' => '<br />',
-			'post_id' => '',
+			'post_id' => 0,
 			'no_follow' => 0,
+			'inc_cats' => 0,
 			'xformat' => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'notagtext' => __('No tag for this post.', 'simpletags'),
 			'number' => 0
@@ -1390,6 +1427,7 @@ Class SimpleTags {
 		$defaults['after'] = $this->options['tt_after'];
 		$defaults['notagtext'] = $this->options['tt_notagstext'];
 		$defaults['number'] = $this->options['tt_number'];
+		$defaults['inc_cats'] = $this->options['tt_inc_cats'];		
 		$defaults['xformat'] = $this->options['tt_xformat'];
 		
 		if ( empty($args) ) {
@@ -1399,19 +1437,32 @@ Class SimpleTags {
 		$args = wp_parse_args( $args, $defaults );
 		extract($args);
 
+		// Choose post ID
 		$post_id = (int) $post_id;
-		$tags = get_the_tags( $post_id );
+		if ( $post_id != 0 ) {
+			$id = (int) $post_id;
+		} else {
+			global $post;
+			$id = (int) $post->ID;
+		}
+		
+		// Get categories ?
+		$inc_cats = (int) $args['inc_cats'];
+		$taxonomy = ( $inc_cats == 0 ) ? 'post_tag' : array('post_tag', 'category');
+	
+		// Get terms	
+		$terms = apply_filters( 'get_the_tags', wp_get_object_terms($id, $taxonomy) );
 
-		// If no tags, return text nothing.
-		if ( empty($tags) ) {
+		// If no terms, return text nothing.
+		if ( empty($terms) ) {
 			return $notagtext;
 		}
 
 		// Limit to max quantity if set
 		$number = (int) $number;
 		if ( $number != 0 ) {
-			$tags = $this->randomArray($tags); // Randomize tags
-			$tags = array_slice( $tags, 0, $number );
+			$terms = $this->randomArray($terms); // Randomize terms
+			$terms = array_slice( $terms, 0, $number );
 		}
 
 		// If empty use default xformat !
@@ -1434,29 +1485,33 @@ Class SimpleTags {
 			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
 		}
 		
-		foreach ( (array) $tags as $tag ) {
+		foreach ( (array) $terms as $term ) {
 			$element_loop = $xformat;
-
-			$element_loop = str_replace('%tag_link%', clean_url(get_tag_link($tag->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($tag->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_id%', $tag->term_id, $element_loop);
-			$element_loop = str_replace('%tag_name%', str_replace(' ', '&nbsp;', wp_specialchars($tag->name)), $element_loop);
+			if ( $term->taxonomy == 'post_tag' ) { // Tag
+				$element_loop = str_replace('%tag_link%', clean_url(get_tag_link($term->term_id)), $element_loop);
+				$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($term->term_id)), $element_loop);
+			} else { // Category
+				$element_loop = str_replace('%tag_link%', clean_url(get_category_link($term->term_id)), $element_loop);
+				$element_loop = str_replace('%tag_feed%', clean_url(get_category_rss_link(false, $term->term_id, '')), $element_loop);
+			}
+			$element_loop = str_replace('%tag_id%', $term->term_id, $element_loop);
+			$element_loop = str_replace('%tag_name%', wp_specialchars($term->name), $element_loop);
 			$element_loop = str_replace('%tag_rel%', $rel, $element_loop);
-			$element_loop = str_replace('%tag_count%', $tag->count, $element_loop);
+			$element_loop = str_replace('%tag_count%', $term->count, $element_loop);
 
-			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $tag->name ), $element_loop);
-			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $tag->name ), $element_loop);
-			$element_loop = str_replace('%tag_delicious%', $this->formatLink( 'delicious', $tag->name ), $element_loop);
+			$element_loop = str_replace('%tag_technorati%', $this->formatLink( 'technorati', $term->name ), $element_loop);
+			$element_loop = str_replace('%tag_flickr%', $this->formatLink( 'flickr', $term->name ), $element_loop);
+			$element_loop = str_replace('%tag_delicious%', $this->formatLink( 'delicious', $term->name ), $element_loop);
 
-			$tag_links[] = $element_loop;
+			$output[] = $element_loop;
 		}
-		unset($tags, $tag);
-		$tag_list = apply_filters( 'the_tags', join( $separator, $tag_links ) );
+		unset($terms, $term, $element_loop);
+		$output = apply_filters( 'the_tags', implode($separator, $output) );
 
 		if ( $copyright === true )
-			return "\n\t" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $before . $tag_list . $after ."\n";
+			return "\n\t" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $before . $output . $after ."\n";
 		else
-			return "\n\t". $before . $tag_list . $after ."\n";
+			return "\n\t". $before . $output . $after ."\n";
 	}
 
 	/**
@@ -1466,19 +1521,18 @@ Class SimpleTags {
 	 * @return string
 	 */
 	function filterEmbedTags( $content ) {
-		$tagstart = $this->options['start_embed_tags'];
-		$tagend = $this->options['end_embed_tags'];
-		$len_tagend = strlen($tagend);
+		$tag_start = $this->options['start_embed_tags'];
+		$tag_end = $this->options['end_embed_tags'];
+		$len_tagend = strlen($tag_end);
 
-		while ( strpos($content, $tagstart) != false && strpos($content, $tagend) != false ) {
-			$pos1 = strpos($content, $tagstart);
-			$pos2 = strpos($content, $tagend);
+		while ( strpos($content, $tag_start) != false && strpos($content, $tag_end) != false ) {
+			$pos1 = strpos($content, $tag_start);
+			$pos2 = strpos($content, $tag_end);
 			$content = str_replace(substr($content, $pos1, ($pos2 - $pos1 + $len_tagend)), '', $content);
 		}
 		return $content;
 	}
 
-	// Tags functions
 	/**
 	 * This is pretty filthy. Doing math in hex is much too weird. It's more likely to work, this way!
 	 * Provided from UTW. Thanks.
@@ -1551,11 +1605,11 @@ Class SimpleTags {
 	 * @param string $args
 	 * @return array
 	 */
-	function getTags( $args = '', $skip_cache = false ) {
+	function getTags( $args = '', $skip_cache = false, $taxonomy = 'post_tag' ) {
 		$key = md5(serialize($args));
 
 		if ( $skip_cache == true ) {
-			$tags = $this->getTerms('post_tag', $args, $skip_cache);
+			$terms = $this->getTerms( $taxonomy, $args, $skip_cache );
 		}
 		else {
 			// Get cache if exist
@@ -1566,18 +1620,18 @@ Class SimpleTags {
 			}
 
 			// Get tags
-			$tags = $this->getTerms('post_tag', $args, $skip_cache);
+			$terms = $this->getTerms( $taxonomy, $args, $skip_cache );
 
-			if ( empty($tags) ) {
+			if ( empty($terms) ) {
 				return array();
 			}
 
-			$cache[$key] = $tags;
+			$cache[$key] = $terms;
 			wp_cache_set( 'st_get_tags', $cache, 'simpletags' );
 		}
 
-		$tags = apply_filters('get_tags', $tags, $args);
-		return $tags;
+		$terms = apply_filters('get_tags', $terms, $args);
+		return $terms;
 	}
 
 	/**
@@ -1922,6 +1976,7 @@ Class SimpleTags {
 					break;
 			}
 		}
+		
 
 		// Replace false by empty
 		$title = trim($title);
@@ -1975,6 +2030,9 @@ if ( !function_exists('is_admin_old') ) {
 if ( is_admin() || is_admin_old() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
 	require(dirname(__FILE__).'/inc/simple-tags.admin.php');
 	$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version, $simple_tags->info );
+	
+	// Installation
+	register_activation_hook(__FILE__, array(&$simple_tags_admin, 'installSimpleTags') );
 }
 
 // Templates functions
