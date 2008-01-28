@@ -74,6 +74,7 @@ Then: Manage - Import - Embedded Tags
 == Arbitrary section ==
 * Version 1.3.3
 	* Fix link to new page
+	* Update languages
 * Version 1.3.2
 	* Update japan translation
 * Version 1.3.1
