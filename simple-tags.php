@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3.2
+Version: 1.3.3
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3.2';
+	var $version = '1.3.3';
 
 	var $info;
 	var $options;

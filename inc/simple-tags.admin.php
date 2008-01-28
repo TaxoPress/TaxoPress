@@ -1245,7 +1245,7 @@ Class SimpleTagsAdmin {
 		<p><?php _e('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 
 		<form action="<?php echo $this->admin_base_url; ?>" id="searchform" method="get">
-			<input type="hidden" name="page" value="simpletags_mass" />
+			<input type="hidden" name="page" value="st_mass_tags" />
 
 			<fieldset><legend><?php _e('Search terms&hellip;', 'simpletags'); ?></legend>
 				<input type="text" name="s" id="s" value="<?php echo $search; ?>" size="12" />
@@ -1318,7 +1318,7 @@ Class SimpleTagsAdmin {
 				}
 				?>
 				<p class="submit">
-					<input type="hidden" name="secure_mass" value="<?php echo wp_create_nonce('simpletags_mass'); ?>" />
+					<input type="hidden" name="secure_mass" value="<?php echo wp_create_nonce('st_mass_tags'); ?>" />
 					<input type="submit" name="update_mass" value="<?php _e('Update all', 'simpletags'); ?>" /></p>
 			</form>
 			<?php $this->printPagination( $action_url ); ?>
@@ -2071,7 +2071,7 @@ Class SimpleTagsAdmin {
 	function checkFormMassEdit( $taxonomy = 'post' ) {
 		if ( isset($_POST['update_mass']) ) {
 			// origination and intention
-			if ( ! ( wp_verify_nonce($_POST['secure_mass'], 'simpletags_mass') ) ) {
+			if ( ! ( wp_verify_nonce($_POST['secure_mass'], 'st_mass_tags') ) ) {
 				$this->message = __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
 				$this->status = 'error';
 				return;
