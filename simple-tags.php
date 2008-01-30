@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3.3
+Version: 1.3.4
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3.3';
+	var $version = '1.3.4';
 
 	var $info;
 	var $options;
@@ -252,17 +252,18 @@ Class SimpleTags {
 		$this->link_tags = array();
 		foreach ( (array) $this->tags_currentposts as $term ) {
 			if  ( $term->count >= $auto_link_min ) {
-	 			$this->link_tags[$term->name] = get_tag_link( $term->term_id );
+	 			$this->link_tags[$term->name] = clean_url(get_tag_link( $term->term_id ));
 			}
 		}
 		return;
 	}
-	
+		
 	function autoLinkTags( $content = '' ) {
+		// Get currents tags if no exists
 		if ( $this->link_tags == 'null' ) {
 			$this->prepareAutoLinkTags();
 		}
-
+		
 		// Rel or not ?
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag" ' : '';
@@ -275,42 +276,57 @@ Class SimpleTags {
 		if ( !empty($rel) ) {
 			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
 		}
-
-		foreach ( (array) $this->link_tags as $term_name => $term_link ) {
-			$content = $this->replaceTextByTagLink( $content, $term_name, '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) ).'">', '</a>' );
-		}
-		return $content;
-	}
-
-	function replaceTextByTagLink( $content = '', $word = '', $pre = '', $after = '' ) {		
-		// Add first conteneur
-		$content = '<temp_st>'.$content.'</temp_st>';
-
-		// Put all anchor text into nonsense <##..##> tags
-		$content = preg_replace("|(<a([^>]+)>)(.*?)(<\/a>)|is", "$1<##$3##>$4", $content);
-
-		// Escape |
-		$word = str_replace('|', '\|', $word);
-
-		// Replace keywords not between <..> tags. <##..##> should be skipped too
-		$content = preg_replace("|(>)([^<]*)([^#a-z]*)(\b$word\b)([^#a-z]*)|i", "\$1\$2\$3$pre\$4$after\$5", $content);
-
-		// Remove rid of <##..##>
-		$content = str_replace('<##', '', $content);
-		$content = str_replace('##>', '', $content);
-
-		// Remove conteneur
-		$content = str_replace('<temp_st>', '', $content);
-		$content = str_replace('</temp_st>', '', $content);
 		
-		/*
-		// Alak code
-		// Escape @
-		$word = str_replace('@', '\@', $word);
-
-		// Replace word by link
-		$content = preg_replace("@(<(li|p|span|strong))([^<]*)(\b$word\b)(.*?)(</(li|p|span|strong)>)@i", "\$1\$3$pre\$4$after\$5\$6", $content);
-		*/
+		// only continue if the database actually returned any links
+		if ( isset($this->link_tags) && is_array($this->link_tags) && count($this->link_tags) > 0 ) {
+			$must_tokenize  = TRUE;         // will perform basic tokenization
+			$tokens         = NULL;         // two kinds of tokens: markup and text
+			
+			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
+				$filtered     = "";           // will filter text token by token
+				$match        = "/\b" . preg_quote($term_name, "/") . "\b/";
+				$substitute   = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) ).'">'.$term_name.'</a>';
+				
+				 // for efficiency only tokenize if forced to do so
+				if ( $must_tokenize ) {
+					// this regexp is taken from PHP Markdown by Michel Fortin: http://www.michelf.com/projects/php-markdown/
+					$comment                = '(?s:<!(?:--.*?--\s*)+>)|';
+					$processing_instruction = '(?s:<\?.*?\?>)|';
+					$tag = '(?:<[/!$]?[-a-zA-Z0-9:]+\b(?>[^"\'>]+|"[^"]*"|\'[^\']*\')*>)';
+					$markup         = $comment . $processing_instruction . $tag;
+					$flags          = PREG_SPLIT_DELIM_CAPTURE;
+					$tokens         = preg_split("{($markup)}", $content, -1, $flags);
+					$must_tokenize  = FALSE;
+				}
+				
+				// there should always be at least one token, but check just in case
+				if ( isset($tokens) && is_array($tokens) && count($tokens) > 0 ) {
+					$i = 0;
+					foreach ($tokens as $token) {
+						if (++$i % 2 && $token != '') { // this token is (non-markup) text						
+							if ($anchor_level == 0) { // linkify if not inside anchor tags							
+								// use preg_match for compatibility with PHP 4
+								if ( preg_match($match, $token) ) {
+									// only PHP 5 supports calling preg_replace with 5 arguments
+									$token = preg_replace($match, $substitute, $token);
+									$must_tokenize = TRUE;  // re-tokenize next time around
+								}
+							}
+						}
+						else { // this token is markup					
+							if ( preg_match("#<\s*a\s+[^>]*>#i", $token) ) { // found <a ...>
+								$anchor_level++;
+							} elseif ( preg_match("#<\s*/\s*a\s*>#i", $token) ) { // found </a>
+								$anchor_level--;
+							}
+						}
+						$filtered .= $token;          // this token has now been filtered
+					}
+					$content = $filtered;              // filtering completed for this link
+				}
+			}
+		}
+		
 		return $content;
 	}
 
