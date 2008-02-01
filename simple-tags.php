@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3.4
+Version: 1.3.5
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3.4';
+	var $version = '1.3.5';
 
 	var $info;
 	var $options;
@@ -54,6 +54,7 @@ Class SimpleTags {
 			'allow_embed_tcloud' => 0,
 			'auto_link_tags' => 0,
 			'auto_link_min' => 1,
+			'auto_link_case' => 1,
 			'no_follow' => 0,
 			// Administration
 			'use_tag_pages' => 1,
@@ -259,16 +260,21 @@ Class SimpleTags {
 	}
 		
 	function autoLinkTags( $content = '' ) {
+		// ST Prefix/Suffix content
+		$content = '<div>'.$content.'</div>';
+		
 		// Get currents tags if no exists
 		if ( $this->link_tags == 'null' ) {
 			$this->prepareAutoLinkTags();
 		}
 		
-		// Rel or not ?
-		global $wp_rewrite;
-		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag" ' : '';
+		// HTML Rel (tag/no-follow)
+		$rel = '';
 		
-		$no_follow = (int) $this->options['no_follow'];
+		global $wp_rewrite; 
+		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
+		
+		$no_follow = (int) $no_follow;
 		if ( $no_follow != 0 ) { // No follow ?
 			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
 		}
@@ -282,9 +288,11 @@ Class SimpleTags {
 			$must_tokenize  = TRUE;         // will perform basic tokenization
 			$tokens         = NULL;         // two kinds of tokens: markup and text
 			
+			$case = ( $this->options['auto_link_case'] == 1 ) ? 'i' : '';
+			
 			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
 				$filtered     = "";           // will filter text token by token
-				$match        = "/\b" . preg_quote($term_name, "/") . "\b/";
+				$match        = "/\b" . preg_quote($term_name, "/") . "\b/".$case;
 				$substitute   = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) ).'">'.$term_name.'</a>';
 				
 				 // for efficiency only tokenize if forced to do so
@@ -304,11 +312,9 @@ Class SimpleTags {
 					$i = 0;
 					foreach ($tokens as $token) {
 						if (++$i % 2 && $token != '') { // this token is (non-markup) text						
-							if ($anchor_level == 0) { // linkify if not inside anchor tags							
-								// use preg_match for compatibility with PHP 4
-								if ( preg_match($match, $token) ) {
-									// only PHP 5 supports calling preg_replace with 5 arguments
-									$token = preg_replace($match, $substitute, $token);
+							if ($anchor_level == 0) { // linkify if not inside anchor tags						
+								if ( preg_match($match, $token) ) { // use preg_match for compatibility with PHP 4							
+									$token = preg_replace($match, $substitute, $token); // only PHP 5 supports calling preg_replace with 5 arguments
 									$must_tokenize = TRUE;  // re-tokenize next time around
 								}
 							}
@@ -320,12 +326,15 @@ Class SimpleTags {
 								$anchor_level--;
 							}
 						}
-						$filtered .= $token;          // this token has now been filtered
+						$filtered .= $token; // this token has now been filtered
 					}
-					$content = $filtered;              // filtering completed for this link
+					$content = $filtered; // filtering completed for this link
 				}
 			}
 		}
+		
+		// Remove ST Prefix/Suffix content
+		$content = substr($content, 5, strlen($content) - 11);
 		
 		return $content;
 	}
@@ -831,8 +840,20 @@ Class SimpleTags {
 			return '';
 		}
 
-		global $wp_rewrite;
-		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'rel="tag"' : '';
+		// HTML Rel (tag/no-follow)
+		$rel = '';
+		
+		global $wp_rewrite; 
+		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
+		
+		$no_follow = (int) $no_follow;
+		if ( $no_follow != 0 ) { // No follow ?
+			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
+		}
+		
+		if ( !empty($rel) ) {
+			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
+		}
 
 		$output = '';
 		foreach ( (array) $terms as $term ) {
@@ -1881,22 +1902,19 @@ Class SimpleTags {
 		$limitdays_sql = '';
 		$limit_days = (int) $limit_days;
 		if ( $limit_days != 0 ) {
-			$limitdays_sql = 'AND p.post_date > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
+			$limitdays_sql = 'AND p.post_date_gmt > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
 		}
-
-		// Join posts ?
-		$inner_posts = '';
-		if ( !empty($limitdays_sql) | !empty($category_sql) ) {
-			$inner_posts = "
-				INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
-				INNER JOIN $wpdb->posts AS p ON tr.object_id = p.ID";
-		}
+		
+		// Current date (get only terms with post published)
+		$current_date = gmdate("Y-m-d H:i:s", time());
 
 		$query = "SELECT DISTINCT {$select_this}
 			FROM {$wpdb->terms} AS t
 			INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-			{$inner_posts}
+			INNER JOIN {$wpdb->term_relationships} AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
+			INNER JOIN {$wpdb->posts} AS p ON tr.object_id = p.ID
 			WHERE tt.taxonomy IN ( {$in_taxonomies} )
+			AND p.post_date_gmt <= '{$current_date}'
 			{$limitdays_sql}
 			{$category_sql}
 			{$where}

@@ -87,11 +87,13 @@ Class SimpleTagsAdmin {
 		// 13. Embedded Tags
 		if ( $this->options['use_embed_tags'] == 1 ) {
 			add_action('save_post', array(&$this, 'saveEmbedTags'));
+			add_action('publish_post', array(&$this, 'saveEmbedTags'));			
 		}
 
 		// 14. Auto tags
 		if ( $this->options['use_auto_tags'] == 1 ) {
 			add_action('save_post', array(&$this, 'saveAutoTags'));
+			add_action('publish_post', array(&$this, 'saveEmbedTags'));
 		}
 
 		// 15. Tags helper for page
@@ -695,6 +697,8 @@ Class SimpleTagsAdmin {
 					__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),
 				array('auto_link_min', __('Min usage for auto link tags:', 'simpletags'), 'text', 10,
 					__('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags')),
+				array('auto_link_case', __('Ignore case for auto link feature ?', 'simpletags'), 'checkbox', '1',
+					__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')),
 				array('no_follow', __('Add the rel="nofollow" on each tags link ?', 'simpletags'), 'checkbox', '1',
 					__("Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index.",'simpletags'))
 			),
