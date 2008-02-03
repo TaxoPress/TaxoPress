@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3.7
+Version: 1.3.8
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3.7';
+	var $version = '1.3.8';
 
 	var $info;
 	var $options;
@@ -47,6 +47,44 @@ Class SimpleTags {
 	 * @return SimpleTags
 	 */
 	function SimpleTags() {		
+		// Determine installation path & url
+		$path = basename(str_replace('\\','/',dirname(__FILE__)));
+
+		$info['siteurl'] = get_option('siteurl');
+		if ( $this->isMuPlugin() ) {
+			$info['install_url'] = $info['siteurl'] . '/wp-content/mu-plugins';
+			$info['install_dir'] = ABSPATH . 'wp-content/mu-plugins';
+
+			if ( $path != 'mu-plugins' ) {
+				$info['install_url'] .= '/' . $path;
+				$info['install_dir'] .= '/' . $path;
+			}
+		} else {
+			$info['install_url'] = $info['siteurl'] . '/wp-content/plugins';
+			$info['install_dir'] = ABSPATH . 'wp-content/plugins';
+
+			if ( $path != 'plugins' ) {
+				$info['install_url'] .= '/' . $path;
+				$info['install_dir'] .= '/' . $path;
+			}
+		}
+
+		// Set informations
+		$this->info = array(
+			'home' => get_option('home'),
+			'siteurl' => $info['siteurl'],
+			'install_url' => $info['install_url'],
+			'install_dir' => $info['install_dir']
+		);
+		unset($info);
+	
+		// Localization.
+		$locale = get_locale();
+		if ( !empty( $locale ) ) {
+			$mofile = $this->info['install_dir'].'/languages/simpletags-'.$locale.'.mo';
+			load_textdomain('simpletags', $mofile);
+		}
+		
 		// Options
 		$default_options = array(
 			// General
@@ -147,37 +185,6 @@ Class SimpleTags {
 		unset($default_options);
 		unset($options_from_table);
 		unset($default_options_value);
-
-		// Determine installation path & url
-		$path = basename(str_replace('\\','/',dirname(__FILE__)));
-
-		$info['siteurl'] = get_option('siteurl');
-		if ( $this->isMuPlugin() ) {
-			$info['install_url'] = $info['siteurl'] . '/wp-content/mu-plugins';
-			$info['install_dir'] = ABSPATH . 'wp-content/mu-plugins';
-
-			if ( $path != 'mu-plugins' ) {
-				$info['install_url'] .= '/' . $path;
-				$info['install_dir'] .= '/' . $path;
-			}
-		} else {
-			$info['install_url'] = $info['siteurl'] . '/wp-content/plugins';
-			$info['install_dir'] = ABSPATH . 'wp-content/plugins';
-
-			if ( $path != 'plugins' ) {
-				$info['install_url'] .= '/' . $path;
-				$info['install_dir'] .= '/' . $path;
-			}
-		}
-
-		// Set informations
-		$this->info = array(
-			'home' => get_option('home'),
-			'siteurl' => $info['siteurl'],
-			'install_url' => $info['install_url'],
-			'install_dir' => $info['install_dir']
-		);
-		unset($info);
 		
 		// Use WP Object ? Or not ?
 		global $wp_object_cache;
@@ -185,13 +192,6 @@ Class SimpleTags {
 
 		// Set date for class
 		$this->dateformat = get_option('date_format');
-
-		// Localization.
-		$locale = get_locale();
-		if ( !empty( $locale ) ) {
-			$mofile = $this->info['install_dir'].'/languages/simpletags-'.$locale.'.mo';
-			load_textdomain('simpletags', $mofile);
-		}
 
 		// Add pages in WP_Query
 		if ( $this->options['use_tag_pages'] == 1 ) {
@@ -293,7 +293,7 @@ Class SimpleTags {
 			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
 				$filtered     = "";           // will filter text token by token
 				$match        = "/\b" . preg_quote($term_name, "/") . "\b/".$case;
-				$substitute   = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) ).'">'.$term_name.'</a>';
+				$substitute   = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) )."\">$0</a>";
 				
 				 // for efficiency only tokenize if forced to do so
 				if ( $must_tokenize ) {
