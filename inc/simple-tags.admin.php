@@ -302,7 +302,8 @@ Class SimpleTagsAdmin {
 			if ( $wpdb->get_var("SELECT COUNT(tt.term_id) FROM {$wpdb->terms} AS t INNER JOIN {$wpdb->term_taxonomy} as tt ON tt.term_id = t.term_id WHERE t.slug = '{$term['slug']}' AND tt.taxonomy = '{$term['taxonomy']}'") != 0 ) {
 				$merge = true;				
 			}			
-		}				
+		}	
+		return true;			
 	}
 
 	function getAdvTerms( $type = 'post_tag', $quantity = 20, $search = '', $order = 'count_desc' ) {
@@ -484,6 +485,7 @@ Class SimpleTagsAdmin {
 					<tbody>
 						<?php
 						$i = 0;
+						$class1 = '';
 						foreach ( $terms as $term ) : 
 							$i++; 
 							$class1 = ('alternate' != $class1) ? 'alternate' :'';
@@ -563,7 +565,8 @@ Class SimpleTagsAdmin {
 			$n = ( isset($_GET['n']) ) ? intval($_GET['n']) : 0;
 		}
 
-		$tags = (array) maybe_unserialize($this->options['auto_list']);
+		$tags_list = '';
+		$tags = maybe_unserialize($this->options['auto_list']);
 		if ( is_array($tags) ) {
 			$tags_list = implode(', ', $tags);
 		}
@@ -614,51 +617,11 @@ Class SimpleTagsAdmin {
 				if( !empty($objects) ) {
 					echo '<ul>';
 					foreach( $objects as $object ) {
-						if ( get_the_tags($object->ID) !== false && $this->options['at_empty'] == 1 ) {
-							continue; // Skip post with tags, if tag only empty post option is checked
-						}
-						
-						// Auto tag with specifik auto tags list
-						foreach ( (array) $tags as $tag ) {
-							if ( is_string($tag) && !empty($tag) && ( stristr($object->post_content, $tag) || stristr($object->post_title, $tag) ) ) {
-								$tags_to_add[] = $tag;
-							}
-						}
-						unset($tags, $tag);
-						
-						if ( $this->options['at_all'] == 1 ) { // Auto tags with all posts
-							global $simple_tags;
-							$total = wp_count_terms('post_tag');
-							$counter = 0;
-							
-							while ( ( $counter * 200 ) < $total ) {
-								// Get tags							
-								$tags = (array) $simple_tags->getTags('hide_empty=false&cloud_selection=count-desc&number=LIMIT '. $counter * 200 . ', '. 200, true);
-					
-								foreach ( $tags as $tag ) {
-									if ( is_string($tag) && !empty($tag) && ( stristr($object->post_content, $tag) || stristr($object->post_title, $tag) ) ) {
-										$tags_to_add[] = $tag;
-									}
-								}
-								unset($tags, $tag);
-					
-								// Increment counter
-								$counter++;
-							}
-						}
-
-						// Append tags if tags to add
-						if ( !empty($tags_to_add) ) {
-							// Remove empty and duplicate elements
-							$tags_to_add = array_filter($tags_to_add, array(&$this, 'deleteEmptyElement'));
-							$tags_to_add = array_unique($tags_to_add);
-
-							wp_set_object_terms( $object->ID, $tags_to_add, 'post_tag', true );
-						}
+						$this->autoTagsPost( $object->ID, $object->post_content, $object->post_title );			
 
 						echo '<li>#'. $object->ID .' '. $object->post_title .'</li>';
-						unset($tags_to_add, $object, $tag);
-					}
+						unset($object);
+					}					
 					echo '</ul>';
 					?>
 					<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="<?php echo $this->admin_base_url.'st_auto'; ?>&amp;action=auto_tag&amp;n=<?php echo ($n + 20) ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
@@ -667,17 +630,17 @@ Class SimpleTagsAdmin {
 						function nextPage() {
 							location.href = '<?php echo $this->admin_base_url.'st_auto'; ?>&action=auto_tag&n=<?php echo ($n + 20) ?>';
 						}
-						setTimeout( 'nextPage()', 250 );
-						 // ]]>
+						window.setTimeout( 'nextPage()', 300 );
+						// ]]>
 					</script>
 					<?php
 				} else {
+					wp_cache_flush();
 					echo '<p><strong>'.__('All done!', 'simpletags').'</strong></p>';
 				}
-
-			endif; ?>
-
-			<?php $this->printAdminFooter(); ?>
+				
+			endif;
+			$this->printAdminFooter(); ?>
 		</div>
 		<?php
 	}
@@ -1357,10 +1320,10 @@ Class SimpleTagsAdmin {
 		}
 
 		// Return Tags
+		$matches = $tags = array();
 		preg_match_all('/(' . $this->regexEscape($this->options['start_embed_tags']) . '(.*?)' . $this->regexEscape($this->options['end_embed_tags']) . ')/is', $object->post_content, $matches);
 
-		$tags = array();
-		foreach ( (array) $matches[2] as $match) {
+		foreach ( $matches[2] as $match) {
 			foreach( (array) explode(',', $match) as $tag) {
 				$tags[] = $tag;
 			}
@@ -1385,26 +1348,64 @@ Class SimpleTagsAdmin {
 	function saveAutoTags( $post_id = null, $post_data = null ) {
 		$object = get_post($post_id);
 		if ( $object == false || $object == null ) {
-			return;
+			return false;
 		}
 
-		$tags = maybe_unserialize($this->options['auto_list']);
-
-		foreach ( (array) $tags as $tag ) {
-			if ( is_string($tag) && !empty($tag) && ( stristr($object->post_content, $tag) || stristr($object->post_title, $tag) ) ) {
+		$result = $this->autoTagsPost( $object->ID, $object->post_content, $object->post_title );
+		if ( $result == true ) {
+			wp_cache_flush(); // Delete cache
+		}
+		return true;
+	}
+	
+	function autoTagsPost( $post_id = 0, $content = '', $title = '' ) {	
+		if ( get_the_tags($post_id) != false && $this->options['at_empty'] == 1 ) {
+			return false; // Skip post with tags, if tag only empty post option is checked
+		}
+		
+		$tags_to_add = array();
+		
+		// Auto tag with specifik auto tags list
+		$tags = (array) maybe_unserialize($this->options['auto_list']);
+		foreach ( $tags as $tag ) {
+			if ( is_string($tag) && !empty($tag) && ( stristr($content, $tag) || stristr($title, $tag) ) ) {
 				$tags_to_add[] = $tag;
 			}
 		}
-
+		unset($tags, $tag);
+		
+		// Auto tags with all posts
+		if ( $this->options['at_all'] == 1 ) { 
+			global $simple_tags;
+			$total = wp_count_terms('post_tag');
+			$counter = 0;
+			
+			while ( ( $counter * 200 ) < $total ) {
+				// Get tags							
+				$tags = (array) $simple_tags->getTags('hide_empty=false&cloud_selection=count-desc&number=LIMIT '. $counter * 200 . ', '. 200, true);
+				
+				foreach ( $tags as $tag ) {
+					if ( is_string($tag->name) && !empty($tag->name) && ( stristr($content, $tag->name) || stristr($title, $tag->name) ) ) {
+						$tags_to_add[] = $tag->name;
+					}
+				}
+				unset($tags, $tag);
+				
+				// Increment counter
+				$counter++;
+			}
+		}
+		
 		// Append tags if tags to add
 		if ( !empty($tags_to_add) ) {
 			// Remove empty and duplicate elements
 			$tags_to_add = array_filter($tags_to_add, array(&$this, 'deleteEmptyElement'));
 			$tags_to_add = array_unique($tags_to_add);
-
+			
 			wp_set_object_terms( $post_id, $tags_to_add, 'post_tag', true );
-			wp_cache_flush(); // Delete cache
+			return true;
 		}
+		return false;
 	}
 
 	############## Helper Write Pages ##############
@@ -2321,7 +2322,6 @@ Class SimpleTagsAdmin {
 
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
-		$tags = stripslashes($_POST['tags']);
 
 		if ( empty($content) ) {
 			exit();
@@ -2351,7 +2351,7 @@ Class SimpleTagsAdmin {
 		}
 
 		$data = $data[1];
-		$terms = array();
+		$terms = $all_topics = $all_locations = $all_persons = $persons = $topics = $locations = array();
 
 		// Get all topics
 		preg_match_all("/(.*?)<dim type=\"topic\">(.*?)<\/dim>(.*?)/s", $data, $all_topics );
@@ -2412,7 +2412,6 @@ Class SimpleTagsAdmin {
 
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
-		$tags = stripslashes($_POST['tags']);
 
 		$counter = 0;
 		while ( ( $counter * 200 ) < $total ) {
@@ -2443,10 +2442,6 @@ Class SimpleTagsAdmin {
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		global $simple_tags;
-
-		// Get data
-		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
-		$tags = stripslashes($_POST['tags']);
 
 		$counter = 0;
 		while ( ( $counter * 200 ) < $total ) {
@@ -2658,6 +2653,7 @@ Class SimpleTagsAdmin {
 				return __('Tag cloud', 'simpletags');
 				break;
 		}
+		return '';
 	}
 
 	/**

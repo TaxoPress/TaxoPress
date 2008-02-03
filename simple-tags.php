@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3.5
+Version: 1.3.6
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3.5';
+	var $version = '1.3.6';
 
 	var $info;
 	var $options;
@@ -123,7 +123,7 @@ Class SimpleTags {
 			'at_all' => 0,
 			'at_empty' => 0,
 			'auto_list' => ''
-		);			
+		);
 
 		// Set class property for default options
 		$this->default_options = $default_options;
@@ -235,7 +235,7 @@ Class SimpleTags {
 		if ( $this->options['auto_link_tags'] == '1' ) {
 			add_filter('the_content', array(&$this, 'autoLinkTags'), 999990);
 		}
-		return;
+		return true;
 	}
 	
 	/**
@@ -595,9 +595,8 @@ Class SimpleTags {
 		extract($args);
 
 		// Get current post data
-		if ( (int) $post_id != 0 ) {
-			$object_id = (int) $post_id;
-		} else {
+		$post_id = (int) $post_id;
+		if ( $post_id == 0 ) {
 			global $post;
 			$object_id = (int) $post->ID;
 		}
@@ -751,7 +750,7 @@ Class SimpleTags {
 				AND (tt.term_id IN ({$tag_list}))
 				{$exclude_posts_sql}
 				AND p.post_status = 'publish'
-				AND p.post_date < '".current_time('mysql')."'
+				AND p.post_date_gmt < '".current_time('mysql')."'
 				{$limit_days_sql}
 				{$restrict_sql}
 				GROUP BY tr.object_id
@@ -835,7 +834,7 @@ Class SimpleTags {
 		}
 
 		// Get tags since Term ID.
-		$terms = get_terms('post_tag', 'include='.$tags);
+		$terms = (array) get_terms('post_tag', 'include='.$terms);
 		if ( empty($terms) ) {
 			return '';
 		}
@@ -856,7 +855,7 @@ Class SimpleTags {
 		}
 
 		$output = '';
-		foreach ( (array) $terms as $term ) {
+		foreach ( $terms as $term ) {
 			$output .= '<a href="'.get_tag_link($term->term_id).'" title="'.attribute_escape(sprintf( __ngettext('%d topic', '%d topics', $term->count, 'simpletags'), $term->count )).'" '.$rel.'>'.wp_specialchars($term->name).'</a>, ';
 		}
 		$output = substr($output, 0, strlen($output) - 2); // Remove latest ", "
@@ -1078,7 +1077,8 @@ Class SimpleTags {
 		} else { // Custom permalink
 			$taglink = $this->info['home'] . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
 		}
-		return apply_filters('st_add_tag_link', $taglink, $tag_id);
+		
+		return apply_filters('st_add_tag_link', clean_url($taglink));
 	}
 
 	/**
@@ -1198,7 +1198,7 @@ Class SimpleTags {
 		} else { // Custom permalink
 			$taglink = $this->info['home'] . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
 		}
-		return apply_filters('st_remove_tag_link', $taglink, $tag_id);
+		return apply_filters('st_remove_tag_link', clean_url($taglink));
 	}
 
 	/**
@@ -1423,16 +1423,20 @@ Class SimpleTags {
 		if ( empty($term_name) ) {
 			return '';
 		}
-
+		
+		$term_name = wp_specialchars($term_name);
 		switch ( $type ) {
 			case 'technorati':
-				return '<a class="tag_technorati" href="http://technorati.com/tag/'.str_replace(' ', '+', $term_name).'" rel="tag">'.$term_name.'</a>';
+				$link = clean_url('http://technorati.com/tag/'.str_replace(' ', '+', $term_name));
+				return '<a class="tag_technorati" href="'.$link.'" rel="tag">'.$term_name.'</a>';
 				break;
 			case 'flickr':
-				return '<a class="tag_flickr" href="http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($term_name)).'/" rel="tag">'.$term_name.'</a>';
+				$link = clean_url('http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($term_name)).'/');
+				return '<a class="tag_flickr" href="'.$link.'" rel="tag">'.$term_name.'</a>';
 				break;
 			case 'delicious':
-				return '<a class="tag_delicious" href="http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $term_name)).'" rel="tag">'.$term_name.'</a>';
+				$link = clean_url('http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $term_name)));
+				return '<a class="tag_delicious" href="'.$link.'" rel="tag">'.$term_name.'</a>';
 				break;
 		}
 		return '';
@@ -1895,7 +1899,7 @@ Class SimpleTags {
 		} else if ( 'ids' == $fields ) {
 			$select_this = 't.term_id';
 		} else if ( 'names' == $fields ) {
-			$select_this == 't.name';
+			$select_this = 't.name';
 		}
 
 		// Limit posts date
@@ -1904,9 +1908,6 @@ Class SimpleTags {
 		if ( $limit_days != 0 ) {
 			$limitdays_sql = 'AND p.post_date_gmt > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
 		}
-		
-		// Current date (get only terms with post published)
-		$current_date = gmdate("Y-m-d H:i:s", time());
 
 		$query = "SELECT DISTINCT {$select_this}
 			FROM {$wpdb->terms} AS t
@@ -1914,7 +1915,7 @@ Class SimpleTags {
 			INNER JOIN {$wpdb->term_relationships} AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
 			INNER JOIN {$wpdb->posts} AS p ON tr.object_id = p.ID
 			WHERE tt.taxonomy IN ( {$in_taxonomies} )
-			AND p.post_date_gmt <= '{$current_date}'
+			AND p.post_date_gmt < '".current_time('mysql')."'
 			{$limitdays_sql}
 			{$category_sql}
 			{$where}

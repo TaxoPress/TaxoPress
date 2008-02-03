@@ -4,7 +4,7 @@ Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3, import
 Requires at least: 2.3
 Tested up to: 2.3.2
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 
 Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
 
@@ -76,6 +76,10 @@ Then: Manage - Import - Embedded Tags
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 
 == Arbitrary section ==
+* Version 1.3.6
+	* Fix auto tags with all DB and this feature work also for auto tags save feature
+	* Clean lot's url
+	* Update japan language
 * Version 1.3.5
 	* Add an option for auto link case
 	* Fix rel HTML for auto link
