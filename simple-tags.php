@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3.6
+Version: 1.3.7
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3.6';
+	var $version = '1.3.7';
 
 	var $info;
 	var $options;
@@ -388,13 +388,14 @@ Class SimpleTags {
 			// If cache not exist, get datas and set cache
 			global $wpdb;
 			$results = $wpdb->get_results("
-				SELECT DISTINCT t.name AS name, t.term_id AS term_id, tt.count AS count
+				SELECT t.name AS name, t.term_id AS term_id, tt.count AS count
 				FROM {$wpdb->posts} AS p
 				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
 				INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
 				WHERE tt.taxonomy = 'post_tag'
 				AND ( p.ID IN ('{$postlist}') )
+				GROUP BY t.term_id
 				ORDER BY tt.count DESC");
 
 			if ( $this->use_cache === true ) { // Use cache
@@ -742,7 +743,7 @@ Class SimpleTags {
 			// Posts: title, comments_count, date, permalink, post_id, counter
 			global $wpdb;
 			$results = $wpdb->get_results("
-				SELECT DISTINCT p.post_title, p.comment_count, p.post_date, p.ID, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
+				SELECT p.post_title, p.comment_count, p.post_date, p.ID, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
 				FROM {$wpdb->posts} AS p
 				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
@@ -982,12 +983,13 @@ Class SimpleTags {
 			$terms = "'" . implode("', '", $current_slugs) . "'";
 			global $wpdb;
 			$object_ids = $wpdb->get_col("
-				SELECT DISTINCT tr.object_id
+				SELECT tr.object_id
 				FROM {$wpdb->term_relationships} AS tr 
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
 				INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
 				WHERE tt.taxonomy = 'post_tag' 
 				AND t.slug IN ({$terms}) 
+				GROUP BY tr.object_id
 				ORDER BY tr.object_id ASC");
 			unset($terms);		
 			
@@ -1909,7 +1911,7 @@ Class SimpleTags {
 			$limitdays_sql = 'AND p.post_date_gmt > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
 		}
 
-		$query = "SELECT DISTINCT {$select_this}
+		$query = "SELECT {$select_this}
 			FROM {$wpdb->terms} AS t
 			INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 			INNER JOIN {$wpdb->term_relationships} AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
@@ -1920,6 +1922,7 @@ Class SimpleTags {
 			{$category_sql}
 			{$where}
 			{$restict_usage}
+			GROUP BY t.term_id
 			ORDER BY {$order_by}
 			{$number_sql}";
 

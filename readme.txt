@@ -76,6 +76,8 @@ Then: Manage - Import - Embedded Tags
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 
 == Arbitrary section ==
+* Version 1.3.7
+	* Improved performance of Simple Tags (specially Related Posts)
 * Version 1.3.6
 	* Fix auto tags with all DB and this feature work also for auto tags save feature
 	* Clean lot's url

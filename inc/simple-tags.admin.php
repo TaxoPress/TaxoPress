@@ -349,6 +349,7 @@ Class SimpleTagsAdmin {
 	        INNER JOIN {$wpdb->term_taxonomy} AS tt ON ( t.term_id = tt.term_id )
 	        WHERE tt.taxonomy = '{$type}'
 	        {$search_sql}
+	        GROUP BY t.term_id
 	        {$order_sql}");		
 		
 		$this->found_datas = count($this->found_datas);
@@ -368,6 +369,7 @@ Class SimpleTagsAdmin {
 	        INNER JOIN {$wpdb->term_taxonomy} AS tt ON ( t.term_id = tt.term_id )
 	        WHERE tt.taxonomy = '{$type}'
 	        {$search_sql}
+	        GROUP BY t.term_id
 	        {$order_sql}
 	        {$limit_sql}");
 		
@@ -1175,7 +1177,7 @@ Class SimpleTagsAdmin {
 
 		// Quantity
 		$quantity = (int) stripslashes($_GET['quantity']);
-		if ( $quantity < 10 || $quantity > 100 ) {
+		if ( $quantity < 10 || $quantity > 200 ) {
 			$quantity = 20;
 		}
 
@@ -1227,6 +1229,7 @@ Class SimpleTagsAdmin {
 					<option <?php if ( $quantity == 40 ) echo 'selected="selected"'; ?> value="40">40</option>
 					<option <?php if ( $quantity == 50 ) echo 'selected="selected"'; ?> value="50">50</option>
 					<option <?php if ( $quantity == 100 ) echo 'selected="selected"'; ?> value="100">100</option>
+					<option <?php if ( $quantity == 200 ) echo 'selected="selected"'; ?> value="200">200</option>
 				</select>
 			</fieldset>
 
@@ -1766,7 +1769,7 @@ Class SimpleTagsAdmin {
 		$counter = 0;
 
 		// Get terms id empty
-		$terms_id = $wpdb->get_col("SELECT DISTINCT term_id FROM {$wpdb->terms} WHERE name IN ('', ' ', '  ', '&nbsp;')");
+		$terms_id = $wpdb->get_col("SELECT term_id FROM {$wpdb->terms} WHERE name IN ('', ' ', '  ', '&nbsp;') GROUP BY term_id");
 		if ( empty($terms_id) ) {
 			$this->message = __('Nothing to muck. Good job !', 'simpletags');
 			return;
@@ -1779,7 +1782,7 @@ Class SimpleTagsAdmin {
 		$counter += $wpdb->query("DELETE FROM {$wpdb->terms} WHERE term_id IN ( {$terms_list} )");
 
 		// Get term_taxonomy_id from term_id on term_taxonomy table
-		$tts_id = $wpdb->get_col("SELECT DISTINCT term_taxonomy_id FROM {$wpdb->term_taxonomy} WHERE term_id IN ( {$terms_list} )");
+		$tts_id = $wpdb->get_col("SELECT term_taxonomy_id FROM {$wpdb->term_taxonomy} WHERE term_id IN ( {$terms_list} ) GROUP BY term_taxonomy_id");
 
 		if ( !empty($tts_id) ) {
 			// Clean term_taxonomy table
@@ -1988,16 +1991,16 @@ Class SimpleTagsAdmin {
 			// Order
 			switch ($order) {
 				case 'date_asc':
-					$order_sql = 'ORDER BY post_date ASC';
+					$order_sql = 'ORDER BY p.post_date ASC';
 				break;
 				case 'id_desc':
-					$order_sql = 'ORDER BY id DESC';
+					$order_sql = 'ORDER BY p.ID DESC';
 				break;
 				case 'id_asc':
-					$order_sql = 'ORDER BY id ASC';
+					$order_sql = 'ORDER BY p.ID ASC';
 				break;
 				default:
-					$order_sql = 'ORDER BY post_date DESC';
+					$order_sql = 'ORDER BY p.post_date DESC';
 				break;
 			}
 
@@ -2006,32 +2009,33 @@ Class SimpleTagsAdmin {
 			$search = trim($search);
 			if ( !empty($search) ) {
 				$search = addslashes_gpc($search);
-				$search_sql = "AND ( (post_title LIKE '%{$search}%') OR (post_content LIKE '%{$search}%') )";
+				$search_sql = "AND ( (p.post_title LIKE '%{$search}%') OR (p.post_content LIKE '%{$search}%') )";
 			}
 
 			// Restrict Author
-			$author_sql = ( $author != 0 ) ? "AND post_author = '{$author}'" : '';
+			$author_sql = ( $author != 0 ) ? "AND p.post_author = '{$author}'" : '';
 
 			// Status
 			$filter_sql = '';
 			if ( $filter == 'untagged' ) {
 				$p_id_used = $wpdb->get_col("
-			      SELECT DISTINCT term_relationships.object_id
-			      FROM {$wpdb->term_taxonomy} term_taxonomy, {$wpdb->term_relationships} term_relationships, {$wpdb->posts} posts
-			      WHERE term_taxonomy.taxonomy = 'post_tag'
-			      AND term_taxonomy.term_taxonomy_id = term_relationships.term_taxonomy_id
-			      AND term_relationships.object_id  = posts.ID
-			      AND posts.post_type = '{$type}'");
+			      SELECT tr.object_id
+			      FROM {$wpdb->term_taxonomy} AS tt, {$wpdb->term_relationships} AS tr, {$wpdb->posts} AS p
+			      WHERE tt.taxonomy = 'post_tag'
+			      AND tt.term_taxonomy_id = tr.term_taxonomy_id
+			      AND tr.object_id  = p.ID
+			      AND p.post_type = '{$type}'
+			      GROUP BY tr.object_id");
 
-				$filter_sql = 'AND ID NOT IN ("'.implode( '", "', $p_id_used ).'")';
+				$filter_sql = 'AND p.ID NOT IN ("'.implode( '", "', $p_id_used ).'")';
 				unset($p_id_used);
 			}
 
 			// Get datas with pagination
 			$this->found_datas = (int) $wpdb->get_var("
-		        SELECT count(ID)
-		        FROM {$wpdb->posts} AS posts
-		        WHERE post_type = '{$type}'
+		        SELECT COUNT(p.ID)
+		        FROM {$wpdb->posts} AS p
+		        WHERE p.post_type = '{$type}'
 		        {$search_sql}
 		        {$author_sql}
 		        {$filter_sql}");
@@ -2047,9 +2051,9 @@ Class SimpleTagsAdmin {
 			$limit_sql = 'LIMIT '.(($this->actual_page - 1) * $this->data_per_page).', '.$this->data_per_page;
 
 			$ps = (array) $wpdb->get_results("
-		        SELECT ID, post_title
-		        FROM {$wpdb->posts}
-		        WHERE post_type = '{$type}'
+		        SELECT p.ID, p.post_title
+		        FROM {$wpdb->posts} AS p
+		        WHERE p.post_type = '{$type}'
 		        {$search_sql}
 		        {$author_sql}
 		        {$filter_sql}
@@ -2253,6 +2257,10 @@ Class SimpleTagsAdmin {
 
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$content = trim($content);
+		if ( empty($content) ) {
+			exit();
+		}
 		$tags = stripslashes($_POST['tags']);
 
 		// Build params
@@ -2322,7 +2330,7 @@ Class SimpleTagsAdmin {
 
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
-
+		$content = trim($content);
 		if ( empty($content) ) {
 			exit();
 		}
@@ -2412,6 +2420,10 @@ Class SimpleTagsAdmin {
 
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$content = trim($content);
+		if ( empty($content) ) {
+			exit();
+		}
 
 		$counter = 0;
 		while ( ( $counter * 200 ) < $total ) {
