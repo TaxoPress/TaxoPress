@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Simple Tags : Extended Tagging for WordPress 2.3. Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.3.8
+Version: 1.3.9
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
@@ -25,7 +25,7 @@ Contributors:
 */
 
 Class SimpleTags {
-	var $version = '1.3.8';
+	var $version = '1.3.9';
 
 	var $info;
 	var $options;
@@ -274,8 +274,8 @@ Class SimpleTags {
 		global $wp_rewrite; 
 		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		
-		$no_follow = (int) $no_follow;
-		if ( $no_follow != 0 ) { // No follow ?
+		$no_follow = (int) $this->options['no_follow'];
+		if ( $no_follow == 1 ) { // No follow ?
 			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
 		}
 		
@@ -440,9 +440,14 @@ Class SimpleTags {
 		// Unique keywords
 		$results = array_unique($results);
 		
+		// Return if empty
+		if ( empty($results) ) {
+			return '';
+		}
+		
 		// Limit to max quantity if set
 		$number = (int) $this->options['meta_keywords_qty'];
-		if ( $number != 0 ) {
+		if ( $number != 0 && is_array($results) && !empty($results) && count($results) > 1 ) {
 			$results = $this->randomArray($results); // Randomize keywords
 			$results = array_slice( $results, 0, $number );
 		}
@@ -846,8 +851,8 @@ Class SimpleTags {
 		global $wp_rewrite; 
 		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		
-		$no_follow = (int) $no_follow;
-		if ( $no_follow != 0 ) { // No follow ?
+		$no_follow = (int) $this->options['no_follow'];
+		if ( $no_follow == 1 ) { // No follow ?
 			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
 		}
 		
@@ -1031,7 +1036,7 @@ Class SimpleTags {
 		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		
 		$no_follow = (int) $no_follow;
-		if ( $no_follow != 0 ) { // No follow ?
+		if ( $no_follow == 1 ) { // No follow ?
 			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
 		}
 		
@@ -1142,7 +1147,7 @@ Class SimpleTags {
 		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		
 		$no_follow = (int) $no_follow;
-		if ( $no_follow != 0 ) { // No follow ?
+		if ( $no_follow == 1 ) { // No follow ?
 			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
 		}
 		
@@ -1322,7 +1327,7 @@ Class SimpleTags {
 		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		
 		$no_follow = (int) $no_follow;
-		if ( $no_follow != 0 ) { // No follow ?
+		if ( $no_follow == 1 ) { // No follow ?
 			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
 		}
 		
@@ -1403,7 +1408,11 @@ Class SimpleTags {
 	 * @param array $data
 	 * @return array
 	 */
-	function randomArray( $data_in ) {
+	function randomArray( $data_in = array() ) {
+		if ( empty($data_in) ) {
+			return $data_in;
+		}
+		
 		srand( (float) microtime() * 1000000 ); // For PHP < 4.2
 		$rand_keys = array_rand($data_in, count($data_in));
 
@@ -1520,7 +1529,7 @@ Class SimpleTags {
 		$rel .= ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		
 		$no_follow = (int) $no_follow;
-		if ( $no_follow != 0 ) { // No follow ?
+		if ( $no_follow == 1 ) { // No follow ?
 			$rel .= ( empty($rel) ) ? 'nofollow' : ' nofollow';	
 		}
 		
