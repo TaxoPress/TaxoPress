@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags Ajax Extensions : Tooltips Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: List posts for each tags with a roll over with a ToolTips
-Version: 1.3
+Version: 1.3.9
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
