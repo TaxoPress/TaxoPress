@@ -87,13 +87,16 @@ Class SimpleTagsAdmin {
 		// 13. Embedded Tags
 		if ( $this->options['use_embed_tags'] == 1 ) {
 			add_action('save_post', array(&$this, 'saveEmbedTags'));
-			add_action('publish_post', array(&$this, 'saveEmbedTags'));			
+			add_action('publish_post', array(&$this, 'saveEmbedTags'));
+			add_action('post_syndicated_item', array(&$this, 'saveEmbedTags'));
 		}
 
 		// 14. Auto tags
 		if ( $this->options['use_auto_tags'] == 1 ) {
 			add_action('save_post', array(&$this, 'saveAutoTags'));
-			add_action('publish_post', array(&$this, 'saveEmbedTags'));
+			add_action('publish_post', array(&$this, 'saveAutoTags'));	
+			add_action('post_syndicated_item', array(&$this, 'saveAutoTags'));
+			
 		}
 
 		// 15. Tags helper for page
