@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-29 11:37+0100\n"
-"PO-Revision-Date: 2008-03-29 11:37+0100\n"
+"POT-Creation-Date: 2008-03-29 12:10+0100\n"
+"PO-Revision-Date: 2008-03-29 12:10+0100\n"
 "Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
 "Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,13 +18,13 @@ msgstr ""
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/simple-tags.php:42
 msgid "Simple Tags can't work with this WordPress version !"
-msgstr ""
+msgstr "Simple Tags ne peut pas fonctionner avec cette version de WordPress !"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/simple-tags.php:42
 #, php-format
 msgid "You must use <a href=\"%1$s\">Simple Tagging Plugin</a> for it to work."
-msgstr ""
+msgstr "Vous devez utiliser le plugin <a href=\"%1$s\">Simple Tagging</a> pour que cele fonctionne."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/simple-tags.client.php:87
@@ -220,9 +220,8 @@ msgstr "Les options d'Auto tags sont mise à jour !"
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:523
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:629
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:844
-#: WP.org\trunk/extras/simple-tags.importer.php:66
-msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visitez le <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
+msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Simple Tags ne peut pas fonctionner avec cette version de WordPress !"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:214
@@ -588,8 +587,13 @@ msgstr "Format des liens des tags:"
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:398
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:416
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:449
-msgid "You can find markers and explanations <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">in the online documentation.</a>"
-msgstr "Vous pouvez trouver les marqueurs et les explications <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">sur la documentation en ligne.</a>"
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:363
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:391
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:419
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:437
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:470
+msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
+msgstr "Vous pouvez trouver les marqueurs et les explications <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">sur la documentation en ligne.</a>"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:343
@@ -611,8 +615,9 @@ msgstr "<strong>Utilisation avancée</strong>:"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:345
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:366
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:348
@@ -720,8 +725,9 @@ msgstr "Entrer le titre positionné avant la liste, laisser vide, pour ne rien a
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:375
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:396
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:378
@@ -825,8 +831,9 @@ msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de tags relatifs:"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:404
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:425
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:406
@@ -988,8 +995,9 @@ msgstr "Cette option détermine l'unité à utiliser pour la taille des tags dan
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:462
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:483
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:476
@@ -1746,13 +1754,11 @@ msgstr "Nuage de tags avancé %d"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/simple-tags.client.php:111
-#, fuzzy
 msgid "No tags for this post."
 msgstr "Aucun tag pour cet article."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/simple-tags.client.php:123
-#, fuzzy
 msgid "No related tags found."
 msgstr "Aucun tag relatif trouvé."
 
@@ -1761,235 +1767,181 @@ msgstr "Aucun tag relatif trouvé."
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:516
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:569
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:813
-#, fuzzy
 msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visitez le <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
+msgstr "Visitez le <a href=\"http://code.google.com/p/simple-tags/\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:224
-#, fuzzy
 msgid "Options"
-msgstr "Les options ont été sauvegardées."
+msgstr "Options"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:228
 msgid "Activation"
-msgstr ""
+msgstr "Activation"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:235
 msgid "Tags database"
-msgstr ""
+msgstr "Base de données des tags"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:242
-#, fuzzy
 msgid "Target"
-msgstr "Tag"
+msgstr "Cible"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:249
 msgid "Keywords list"
-msgstr ""
+msgstr "Liste des tags"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:252
-#, fuzzy
 msgid "Separated with a comma"
-msgstr "Liste des mots clés: (séparé avec une virgule)"
+msgstr "Séparé avec une virgule"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:258
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:519
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:542
-#, fuzzy
 msgid "Update options &raquo;"
 msgstr "Mettre à jour les options &raquo;"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:262
-#, fuzzy
 msgid "Auto tags all content &raquo;"
-msgstr "Tagger automatiquement tout le contenu"
+msgstr "Tagger automatiquement tout le contenu &raquo;"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:310
-#, fuzzy
 msgid "Active tags for page:"
-msgstr "Activer la fonctionnalité Clic Tags"
+msgstr "Activer les tags pour les pages:"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:311
 msgid "This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page."
-msgstr ""
+msgstr "Cette fonctionnalité permet à vos pages d'être tagées. Cette option ajoute les pages dans les résultats de recherche de tags.  Elle ajoute également les champs des tags lors de la rédaction d'une page."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:333
-#, fuzzy
 msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is automatically disabled."
-msgstr "Inclut automatiquement des tags comme mots clés dans l'entête de votre page (la plupart des thèmes supportent cette fonction). Ces mots clés sont parfois utilisés par les moteurs de recherche.<br /><strong>Attention:</strong> Si le plugin \"All in One SEO Pack\" est installé et actif. Cette fonctionnalité est desactivée."
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:363
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:391
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:419
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:437
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:470
-#, fuzzy
-msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">in the online documentation.</a>"
-msgstr "Vous pouvez trouver les marqueurs et les explications <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">sur la documentation en ligne.</a>"
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:366
-#, fuzzy
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:396
-#, fuzzy
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:425
-#, fuzzy
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:483
-#, fuzzy
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage\">documentation</a> pour plus d'informations."
+msgstr "Inclut automatiquement des tags comme mots clés dans l'entête de votre page (la plupart des thèmes supportent cette fonction). Ces mots clés sont parfois utilisés par les moteurs de recherche.<br /><strong>Attention:</strong> Si le plugin \"All in One SEO Pack\" est installé et actif. Cette fonctionnalité est automatiquement desactivée."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:568
-#, fuzzy
 msgid "Advanced tags management"
-msgstr "Ajouter les pages dans la gestion des tags:"
+msgstr "Gestion avancée des tags"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:575
-#, fuzzy
 msgid "WordPress 2.3 have a small bug and can create empty terms."
-msgstr "WordPress 2.3 a un petit bug et permet la création de termes vides. Supprimez les !"
+msgstr "WordPress 2.3 a un petit bug et permet la création de termes vides."
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:575
-#, fuzzy
 msgid "Clean it !"
-msgstr "Nettoyer !"
+msgstr "Nettoyez votre base !"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:609
 msgid "Published"
-msgstr ""
+msgstr "Non publié"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:609
 msgid "Published posts"
-msgstr ""
+msgstr "Articles publiés"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:610
 msgid "Scheduled"
-msgstr ""
+msgstr "Programmé"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:610
-#, fuzzy
 msgid "Scheduled posts"
-msgstr "Articles relatifs"
+msgstr "Articles programmés"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:611
 msgid "Pending Review"
-msgstr ""
+msgstr "En attente de relecture"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:611
 msgid "Pending posts"
-msgstr ""
+msgstr "Articles en attente"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:612
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:612
 msgid "Drafts|manage posts header"
-msgstr ""
+msgstr "Brouillons"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:613
 msgid "Private"
-msgstr ""
+msgstr "Privé"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:613
-#, fuzzy
 msgid "Private posts"
-msgstr "Aucun article relatif."
+msgstr "Articles privés"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:660
-#, fuzzy
 msgid "Mass edit tags"
 msgstr "Edition en masse de tags"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:667
-#, fuzzy
 msgid "All Posts"
-msgstr "Articles relatifs"
+msgstr "Tous les articles"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:688
-#, fuzzy
 msgid "All Pages"
-msgstr "Page"
+msgstr "Toutes les pages"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:697
-#, fuzzy
 msgid "Search Posts"
-msgstr "Chercher des tags"
+msgstr "Chercher des articles"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:729
 msgid "Show all dates"
-msgstr ""
+msgstr "Afficher toutes les dates"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:749
 msgid "View all categories"
-msgstr ""
+msgstr "Voir toutes les catégories"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:762
-#, fuzzy
 msgid "Filter"
-msgstr "Filtrer &#187;"
+msgstr "Filtrer"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:792
-#, fuzzy
 msgid "Update all &raquo;"
-msgstr "Mettre à jour la liste &raquo;"
+msgstr "Tout mettre à jour &raquo;"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:999
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:1014
-#, fuzzy
 msgid "Tags <small>(separate multiple tags with commas: cats, pet food, dogs)</small>"
-msgstr "Tags (séparez les tags multiples par des virgules : chat, nourriture pour animaux, chien)"
+msgstr "Tags <small>(séparez les tags multiples par des virgules : chat, nourriture pour animaux, chien)</small>"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.widgets.php:255
 msgid "Your most used tags in cloud format with dynamic color and many options"
-msgstr ""
+msgstr "Vos tags les plus utilisés, au format \"nuage\" avec couleur dynamique et plein d'autres options"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:64
@@ -2000,6 +1952,11 @@ msgstr "Importer les tags embarqués"
 #: WP.org\trunk/extras/simple-tags.importer.php:65
 msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
 msgstr "Cette procédure peut prendre quelques minutes en fonction de la taille de votre base de données. Soyez patient."
+
+#: D:\SVN\Plugins\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:66
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visitez le <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:75
@@ -2091,6 +2048,50 @@ msgstr "Vous pouvez gérer les tags maintenant !"
 msgid "Import Embedded Tags into the new WordPress native tagging structure."
 msgstr "Import des tags embarqués dans la nouvelle structure de tags native."
 
+#~ msgid ""
+#~ "You can find markers and explanations <a href=\"http://www.herewithme.fr/"
+#~ "wordpress-plugins/simple-tags#advanced-usage\">in the online "
+#~ "documentation.</a>"
+#~ msgstr ""
+#~ "Vous pouvez trouver les marqueurs et les explications <a href=\"http://"
+#~ "www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">sur la "
+#~ "documentation en ligne.</a>"
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_the_tags()</code> function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</"
+#~ "code> pour personnaliser l'affichage. Consulter la <a href=\"http://www."
+#~ "herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage"
+#~ "\">documentation</a> pour plus d'informations."
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_related_posts()</code>function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction "
+#~ "<code>st_related_posts()</code> pour personnaliser l'affichage. Consulter "
+#~ "la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/"
+#~ "francais/#advanced-usage\">documentation</a> pour plus d'informations."
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_related_tags()</code>function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags"
+#~ "()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://"
+#~ "www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage"
+#~ "\">documentation</a> pour plus d'informations."
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_tag_cloud()</code> function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()"
+#~ "</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www."
+#~ "herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage"
+#~ "\">documentation</a> pour plus d'informations."
 #~ msgid "Close"
 #~ msgstr "Fermer"
 #~ msgid "%s terms updated with success !"

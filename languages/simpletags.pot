@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-29 11:37+0100\n"
-"PO-Revision-Date: 2008-03-29 11:37+0100\n"
+"POT-Creation-Date: 2008-03-29 12:10+0100\n"
+"PO-Revision-Date: 2008-03-29 12:10+0100\n"
 "Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -218,8 +218,7 @@ msgstr ""
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:523
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:629
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:844
-#: WP.org\trunk/extras/simple-tags.importer.php:66
-msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr ""
 
 #: D:\SVN\Plugins\ST
@@ -586,7 +585,12 @@ msgstr ""
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:398
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:416
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:449
-msgid "You can find markers and explanations <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">in the online documentation.</a>"
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:363
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:391
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:419
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:437
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:470
+msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
 msgstr ""
 
 #: D:\SVN\Plugins\ST
@@ -609,7 +613,8 @@ msgstr ""
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:345
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:366
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
 msgstr ""
 
 #: D:\SVN\Plugins\ST
@@ -718,7 +723,8 @@ msgstr ""
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:375
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:396
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
 msgstr ""
 
 #: D:\SVN\Plugins\ST
@@ -823,7 +829,8 @@ msgstr ""
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:404
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:425
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
 msgstr ""
 
 #: D:\SVN\Plugins\ST
@@ -986,7 +993,8 @@ msgstr ""
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:462
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#: WP.org\trunk/2.5/inc/simple-tags.admin.php:483
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
 msgstr ""
 
 #: D:\SVN\Plugins\ST
@@ -1818,35 +1826,6 @@ msgid "Includes the meta keywords tag automatically in your header (most, but no
 msgstr ""
 
 #: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:363
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:391
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:419
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:437
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:470
-msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">in the online documentation.</a>"
-msgstr ""
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:366
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr ""
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:396
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr ""
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:425
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr ""
-
-#: D:\SVN\Plugins\ST
-#: WP.org\trunk/2.5/inc/simple-tags.admin.php:483
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/#advanced-usage\">documentation</a> for more details."
-msgstr ""
-
-#: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:568
 msgid "Advanced tags management"
 msgstr ""
@@ -1970,6 +1949,11 @@ msgstr ""
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:65
 msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
+msgstr ""
+
+#: D:\SVN\Plugins\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:66
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr ""
 
 #: D:\SVN\Plugins\ST
