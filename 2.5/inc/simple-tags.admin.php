@@ -71,9 +71,11 @@ Class SimpleTagsAdmin {
 
 		// 10. Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
+		add_action('admin_notices', array(&$this, 'displayMessage'));		
 
-		// 11. Ajax action and JS Helper
+		// 11. Ajax action, JS Helper and admin action
 		add_action('init', array(&$this, 'ajaxCheck'));
+		add_action('init', array(&$this, 'checkFormMassEdit'));
 
 		// 12. Embedded Tags
 		if ( $this->options['use_embed_tags'] == 1 ) {
@@ -209,7 +211,6 @@ Class SimpleTagsAdmin {
 		if ( is_array($tags) ) {
 			$tags_list = implode(', ', $tags);
 		}
-
 		$this->displayMessage();
 		?>
 		<div id="wpbody"><div class="wrap st_wrap">
@@ -262,6 +263,10 @@ Class SimpleTagsAdmin {
 				<p><?php _e('Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned.', 'simpletags'); ?> <a class="button" style="font-weight:700;" href="<?php echo $this->admin_base_url.'st_auto'; ?>&amp;action=auto_tag"><?php _e('Auto tags all content &raquo;', 'simpletags'); ?></a></p>
 
 			<?php else:
+				// Counter
+				if ( $n == 0 ) {
+					update_option('tmp_auto_tags_st', 0);
+				}	
 
 				// Page or not ?
 				$post_type_sql = ( $this->options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
@@ -291,7 +296,9 @@ Class SimpleTagsAdmin {
 					</script>
 					<?php
 				} else {
-					echo '<p><strong>'.__('All done!', 'simpletags').'</strong></p>';
+					$counter = get_option('tmp_auto_tags_st');
+					delete_option('tmp_auto_tags_st');
+					echo '<p><strong>'.sprintf(__('All done! %s tags added.', 'simpletags'), $counter).'</strong></p>';
 				}
 				
 			endif;
@@ -506,7 +513,6 @@ Class SimpleTagsAdmin {
 			$this->deleteAllOptions();		
 			$this->message = sprintf( __('All Simple Tags options are deleted ! You <a href="%s">deactive plugin</a> now !', 'simpletags'), $this->info['siteurl']. '/wp-admin/plugins.php');	
 		}
-
 		$this->displayMessage();
 	    ?>
 		<script type="text/javascript" src="<?php echo $this->info['install_url'] ?>/inc/js/jquery.tabs.pack.js?ver=<?php echo $this->version; ?>"></script>
@@ -642,10 +648,7 @@ Class SimpleTagsAdmin {
 	 * WP Page - Mass edit tags
 	 *
 	 */
-	function pageMassEditTags() {
-		$this->checkFormMassEdit( stripslashes($_GET['post_type']) );
-		$this->displayMessage();
-		
+	function pageMassEditTags() {	
 		global $wpdb, $wp_locale, $wp_query;		
 		list($post_stati, $avail_post_stati) = $this->edit_data_query();
 		
@@ -797,8 +800,10 @@ Class SimpleTagsAdmin {
 						jQuery(document).ready(function() {
 							<?php
 							while ( have_posts() ) { the_post(); ?>
-								var tag_<?php the_ID(); ?> = new BComplete('tags-input<?php the_ID(); ?>');
-								tag_<?php the_ID(); ?>.setData(collection);
+								if ( document.getElementById('tags-input<?php the_ID(); ?>') ) {
+									var tag_<?php the_ID(); ?> = new BComplete('tags-input<?php the_ID(); ?>');
+									tag_<?php the_ID(); ?>.setData(collection);
+								}
 							<?php } ?>
 						});
 						// ]]>
@@ -973,6 +978,11 @@ Class SimpleTagsAdmin {
 			$tags_to_add = array_filter($tags_to_add, array(&$this, 'deleteEmptyElement'));
 			$tags_to_add = array_unique($tags_to_add);
 			
+			// Increment counter
+			$counter = ((int) get_option('tmp_auto_tags_st')) + count($tags_to_add);
+			update_option('tmp_auto_tags_st', $counter);
+			
+			// Add tags to posts	
 			wp_set_object_terms( $object->ID, $tags_to_add, 'post_tag', true );
 			
 			// Clean cache
@@ -1040,8 +1050,10 @@ Class SimpleTagsAdmin {
 		<script type="text/javascript">
 		// <![CDATA[
 			jQuery(document).ready(function() {
-				var tags_input = new BComplete('<?php echo ( empty($id) ) ? 'old_tags_input' : $id; ?>');
-				tags_input.setData(collection);
+				if ( document.getElementById('<?php echo ( empty($id) ) ? 'old_tags_input' : $id; ?>') ) {
+					var tags_input = new BComplete('<?php echo ( empty($id) ) ? 'old_tags_input' : $id; ?>');
+					tags_input.setData(collection);
+				}
 			});
 		// ]]>
 		</script>
@@ -1180,7 +1192,14 @@ Class SimpleTagsAdmin {
 	 *
 	 * @param string $type
 	 */
-	function checkFormMassEdit( $type = 'post' ) {
+	function checkFormMassEdit() {
+		if ( !current_user_can('simple_tags') ) {
+			return false;
+		}
+		
+		// Get GET data
+		$type = stripslashes($_GET['post_type']);
+		
 		if ( isset($_POST['update_mass']) ) {
 			// origination and intention
 			if ( ! ( wp_verify_nonce($_POST['secure_mass'], 'st_mass_tags') ) ) {
@@ -1213,10 +1232,10 @@ Class SimpleTagsAdmin {
 					}
 				}
 				
-				if ( $type == 'post' ) {
-					$this->message = sprintf(__('%s post(s) tags updated with success !', 'simpletags'), $counter);
-				} elseif ( $type == 'page' ) {
-					$this->message = sprintf(__('%s page(s) tags updated with success !', 'simpletags'), $counter);
+				if ( $type == 'page' ) {
+					$this->message = sprintf(__('%s page(s) tags updated with success !', 'simpletags'), (int) $counter);
+				} else {
+					$this->message = sprintf(__('%s post(s) tags updated with success !', 'simpletags'), (int) $counter);
 				}
 			}
 		}

@@ -25,8 +25,6 @@ Contributors:
 
 Todo:
 	Admin
-		- Compteur total pour les auto tags
-		- Tester la precense du champ : old_tags_input avant de lancer bcomplete
 	Client
 		- Verifier la case du remplacement par les liens
 */
