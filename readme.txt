@@ -71,8 +71,12 @@ Then: Manage - Import - Embedded Tags
 
 == Screenshots ==
 
-1. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
+1. A example tag cloud (with dynamic color and size)
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
+3. Autotagging your content !
+4. Add tags easily with click tags !
+3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
+6. You also can suggest tags from lot's of service (local, tag the net, yahoo!)
 
 == Arbitrary section ==
 * Version 1.5
