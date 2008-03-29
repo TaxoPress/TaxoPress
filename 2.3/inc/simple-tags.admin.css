@@ -5,14 +5,14 @@
 .st_wrap .tags_admin{text-align:center;font-size:0.9em;}
 .st_wrap .stpexplan{font-size:.85em;}
 .st_wrap .stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
-.st_wrap .st_submenu{background:#0d324f;border-bottom:none;margin:0 0 10px;padding:3px 2em 0 3em;}
-.st_wrap .st_submenu .current{background:#f9fcfe;border-top:1px solid #045290;border-right:2px solid #045290;color:#000;}
+.st_wrap .st_submenu{background:#0d324f;border-bottom:none;margin:0 0 10px;padding:3px 1em 0 2em;}
 .st_wrap .st_submenu a{border:none;color:#fff;font-size:12px;padding:.3em .4em .4em;}
-.st_wrap .st_submenu a:hover{background:#ddeaf4;color:#393939;padding:.3em .4em .4em;}
-.st_wrap .st_submenu li{height:25px;display:inline;line-height:200%;list-style:none;text-align:center;white-space:nowrap;}
+.st_wrap .st_submenu a:hover{background:#ddeaf4;color:#393939;}
+.st_wrap .st_submenu li{display:inline;line-height:200%;list-style:none;text-align:center;margin:0;padding:0;}
+.st_wrap .tabs-container{display:block;}
 .st_wrap .tabs-hide{display:none;}
-.st_wrap .tabs-selected{font-weight:700;background:#DDEAF4 none repeat scroll 0;color:#393939;display:block;padding:0.3em 0.4em 0.4em;}
-.st_wrap .tabs-selected a{color:#393939;}
+.st_wrap .tabs-selected{font-weight:700;background:#DDEAF4;color:#393939;display:block;}
+.st_wrap .tabs-selected a{background:#DDEAF4;color:#393939;padding:.3em .4em .4em}
 .st_wrap fieldset#taglist ul{list-style:none;margin:0;padding:0;}
 .st_wrap fieldset#taglist ul li{font-size:85%;margin:0;padding:0;}
 .st_wrap fieldset#taglist ul li strong{font-weight:700;width:50px;}

@@ -3,16 +3,15 @@ Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, 2.3, import
 Requires at least: 2.3
-Tested up to: 2.3.3
+Tested up to: 2.5
 Stable tag: 1.3.9.1
 
-Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
+Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3 or 2.5 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
 
 == Description ==
 
 Simple Tags is the successor of Simple Tagging Plugin
-
-**This is THE perfect tool to manage perfeclty your WP 2.3 tags**
+**This is THE perfect tool to manage perfeclty your WP 2.3 and 2.5 tags**
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
@@ -46,13 +45,13 @@ And more...
 
 The Simple Tags can be installed in 3 easy steps:
 
-1. Unzip "Simple tags" archive and put all files into your "plugins" folder (/wp-content/plugins/) or to create a sub directory into the plugins folder (recommanded), like /wp-content/plugins/simple-tags/
+	1. Unzip "Simple tags" archive and put all files into your "plugins" folder (/wp-content/plugins/) or to create a sub directory into the plugins folder (recommanded), like /wp-content/plugins/simple-tags/
 
-2. Activate the plugin
+	2. Activate the plugin
 
-3. Inside the Wordpress admin, go to Options > Simple Tags, adjust the parameters according to your needs, and save them.
+	3. Inside the Wordpress admin, go to Options > Simple Tags, adjust the parameters according to your needs, and save them.
 
-4. You can start advanced tag edit under Manage menu.
+	4. You can start advanced tag edit under Manage menu.
 
 == Frequently Asked Questions ==
 
@@ -76,12 +75,9 @@ Then: Manage - Import - Embedded Tags
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 
 == Arbitrary section ==
-* Version 1.3.9.1
-	* Latest release for WP 2.3.x
-	* Add spanish translation
-	* Cleanup code
-	* Remove extras
-	* Fix menu options in small width
+* Version 1.5
+	* Add compatibility with WordPress 2.5
+	
 * Version 1.3.9
 	* Fix nofollow rel feature
 	* Remove warning with keywords feature

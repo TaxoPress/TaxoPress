@@ -1,0 +1,1295 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Tags\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2007-11-27 21:10+0200\n"
+"Last-Translator: Hannit Cohen <hannit@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;_c;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\SVN\\ST WP.org\\trunk\n"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:73
+#: WP.org\trunk/simple-tags.php:434
+msgid "No related posts."
+msgstr "אין פוסטים קשורים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:74
+#: WP.org\trunk/simple-tags.php:433
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>פוסטים קשורים</h4>"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:80
+#: WP.org\trunk/simple-tags.php:763
+msgid "No tags."
+msgstr "אין תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:81
+#: WP.org\trunk/simple-tags.php:768
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>ענן תגיות</h4>"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:92
+#: WP.org\trunk/simple-tags.php:990
+msgid "Tags: "
+msgstr "תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:94
+#: WP.org\trunk/simple-tags.php:995
+msgid "No tag for this post."
+msgstr "אין תגיות לפוסט זה."
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:215
+#, php-format
+msgid "Posts tagged with %s"
+msgstr "הפוסט מתוייג כ-%s"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:436
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:644
+msgid "There is no excerpt because this is a protected post."
+msgstr "אין תקציר כי זהו פוסט מוגן."
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:764
+msgid "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" class=\"tag-link-%tag_id%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:994
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+
+#: C:\SVN\ST
+#: WP.org\trunk/simple-tags.php:1192
+msgid "Invalid Taxonomy"
+msgstr "טקסט לא חוקי"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:64
+msgid "Import Embedded Tags"
+msgstr "ייבוא תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:65
+msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
+msgstr "פעולה זו עשויה לקחת מספר דקות כתלות בגודל מסד הנתונים, אנא התאזרו בסבלנות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:66
+#: WP.org\trunk/inc/simple-tags.admin.php:178
+#: WP.org\trunk/inc/simple-tags.admin.php:400
+#: WP.org\trunk/inc/simple-tags.admin.php:489
+#: WP.org\trunk/inc/simple-tags.admin.php:640
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "בקרו <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">בדף התוסף</a> לפרטים נוספים. אם מצאתם באג, או שיש לכם רעיון נפלא לתוסף, <a href=\"mailto:amaury@wordpress-fr.net\">דברו איתי</a> !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:75
+msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
+msgstr "היי!, כאן נייבא תגיות לתוך המנגנון המובנה של וורדפרס."
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:76
+msgid "To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!"
+msgstr "על מנת לתחזק מסד נתונים גדול במיוחד עבור אוהבי התגיות, ייצרנו תוכנית 4 שלבים שתעזור לכם לייבא את כל התגיות אל המנגנון המובנה של וורדפרס. רק המשיכו להקליק ונעדכן אתכם מתי הכל הסתיים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:77
+msgid "Don&#8217;t be stupid - backup your database before proceeding!"
+msgstr "אל תהיו טפשים - גבו את מסד הנתונים לפני שנמשיך"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:79
+msgid "Step 1 &raquo;"
+msgstr "שלב 1 &raquo;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:102
+msgid "Missing parameters in URL. (Start or End)"
+msgstr "פרמטר חסר בכתובת. (Start או End)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:114
+msgid "Configure and add tags to posts&#8230;"
+msgstr "שינוי אפשרויות והוספת תגיות לפוסטים&#8230;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:121
+msgid "Start marker"
+msgstr "סמן התחלה"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:124
+msgid "End marker"
+msgstr "סמן סיום"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:127
+msgid "Delete embedded tags once imported ?"
+msgstr "מחיקת תגיות לאחר הייבוא ?"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:129
+msgid "Import also embedded tags from page ?"
+msgstr "ייבוא תגיות גם מתוך עמודים ?"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:132
+msgid "Start import &raquo;"
+msgstr "התחלת ייבוא &raquo;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:174
+#: WP.org\trunk/inc/simple-tags.admin.php:227
+msgid "If your browser doesn't start loading the next page automatically click this link:"
+msgstr "אם הדפדפן לא מעלה את הדף הבא אוטומטית, יש ללחוץ כאן:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:174
+#: WP.org\trunk/inc/simple-tags.admin.php:227
+msgid "Next content"
+msgstr "התוכן הבא"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:187
+msgid "Done!"
+msgstr "סיימתי!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:189
+msgid "Step 2 &raquo;"
+msgstr "שלב; 2 &raquo;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:206
+msgid "Import Complete!"
+msgstr "הייבוא הסתיים!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:207
+msgid "OK, so we lied about this being a 4-step program! You&#8217;re done!"
+msgstr "אוקיי, אז שיקרנו בקשר לתוכנית 4 שלבים! סיימנו!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:208
+msgid "Now wasn&#8217;t that easy?"
+msgstr "זה היה פשוט, לא ?"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:209
+msgid "You can manage tags now !"
+msgstr "עכשיו ניתן לנהל את התגיות!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:249
+#: WP.org\trunk/inc/simple-tags.admin.php:280
+msgid "Embedded Tags"
+msgstr "תגיות משולבות בטקסט"
+
+#: C:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:249
+msgid "Import Embedded Tags into the new WordPress native tagging structure."
+msgstr "ייבוא תגיות משולבות בטקסט לתוך מנגנון התגיות החדש של וורדפרס"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:125
+msgid "Simple Tags"
+msgstr "Simple Tags"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:125
+msgid "Tags"
+msgstr "תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:126
+#: WP.org\trunk/inc/simple-tags.admin.php:488
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: ניהול תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:126
+msgid "Manage Tags"
+msgstr "ניהול תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:127
+#: WP.org\trunk/inc/simple-tags.admin.php:639
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: עריכת תגיות קבוצתית"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:127
+msgid "Mass Edit Tags"
+msgstr "עריכת תגיות קבוצתית"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:128
+#: WP.org\trunk/inc/simple-tags.admin.php:177
+msgid "Simple Tags: Auto Tags"
+msgstr "Simple Tags: תגיות אוטומטיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:128
+msgid "Auto Tags"
+msgstr "תגיות אוטומטיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:129
+#: WP.org\trunk/inc/simple-tags.admin.php:399
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: אפשרויות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:129
+msgid "Options"
+msgstr "אפשרויות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:157
+msgid "Auto tags options updated !"
+msgstr "אפשרויות תגיות אוטומטיות עודכנו !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:181
+msgid "Auto tags list"
+msgstr "רשימת תגיות אוטומטיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:182
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
+msgstr "מנגנון זה מאפשר לוורדפרס לבדוק את כותרת הפוסט ותוכנו בחיפוש אחר תגיות בזמן שמירת הפוסט. אם הפוסט מכיל את המילה \"וורדפרס\" וסימנת את התגית \"וורדפרס\" בתגיות אוטמטיות, אז התגית תתווסף לפוסט אוטומטית."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:186
+msgid "Active Auto Tags."
+msgstr "הפעלת תגיות אוטומטיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:188
+msgid "Keywords list: (separated with a comma)"
+msgstr "רשימת מילות מפתח (מופרדת בפסיקים):"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:192
+msgid "Update list &raquo;"
+msgstr "עדכון רשימה &raquo;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:195
+msgid "Auto tags old content"
+msgstr "תיוג אוטומטי של תוכן ישן"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:196
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "המערכת יכולה לתייג את כל תוכן הבלוג שלך. על ידי שימוש במנגנון התיוג האוטומטי המוזכר למעלה."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:197
+msgid "Auto tags all content"
+msgstr "תיוג אוטומטי של כל התוכן."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:238
+msgid "All done!"
+msgstr "סיימתי!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:254
+msgid "General"
+msgstr "כללי"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:255
+msgid "Include page in tag search:"
+msgstr "כלילת עמודים בחיפוש תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:256
+msgid "This feature need that option \"Add page in tags management\" is enabled."
+msgstr "מנגנון זה מצריך שהאפשרות \"הוספת דפים לניהות התגיות\" תסומן."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:257
+msgid "Allow tag cloud in post/page content:"
+msgstr "הוספת ענן תגיות לתוכן פוסט או עמוד:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:258
+msgid "Enabling this will allow Wordpress to look for tag cloud marker <code><!--st_tag_cloud--></code> when displaying posts. WP replace this marker by a tag cloud."
+msgstr "הפעלת אפשרות זו תאפשר לוורדפרס לחפש את סמן ענן התגיות <code><!--st_tag_cloud--></code> בהצגת פוסטים. וורדפרס יחליף את הסימון בענן תגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:259
+msgid "Active auto link tags into post content:"
+msgstr "הפעלת תגיות אוטומטיות בתוכן פוסטים:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:260
+msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr "לדוגמה: יש לך תגית בשם \"וורדפרס\" ותוכן הפוסט מכיל את המילה \" וורדפרס\", מנגנון זה יחליף את  המילה בקישור לעמוד התגית. (http://myblog.net/tag/וורדפרס/)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:262
+msgid "Administration"
+msgstr "ניהול"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:263
+msgid "Add page in tags management:"
+msgstr "הוספת עמוד לניהול תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:264
+msgid "Add a tag input (and tag posts features) in page edition"
+msgstr "הוספת שדה הכנסת תגית (ואפשרויות תגיות) בהוספת עמוד."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:265
+msgid "Maximum number of suggested tags:"
+msgstr "מספר מירבי של תגיות מוצעות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:266
+msgid "The maximum number of tags displayed under <em>Write</em>. Zero (0) means no limit and shows all tags."
+msgstr "מספר התגיות המירבי המוצג תחת <em>כתיבה</em>. אפס (0) משמעו ללא הגבלה ויציג את כל התגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:267
+msgid "Display suggested tags only:"
+msgstr "הצגת תגיות מומלצות בלבד:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:268
+msgid "Displays suggested tags only instead of all tags. Tags will be suggested if they are part of the post."
+msgstr "הצגת תגיות מוצעות רק במקום כל התגיות. תגיות יוצעו רק אם הן חלק מהפוסט."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:269
+msgid "Tag cloud sort order:"
+msgstr "סדר מיון ענן תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:271
+msgid "<code>Alpha</code> &ndash; alphabetic order."
+msgstr "<code>Alpha</code> &ndash; סדר אלפביתי."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:272
+msgid "<code>Popular</code> &ndash; most popular tags first."
+msgstr "<code>Popular</code> &ndash; לפי סדר פופולריות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:275
+msgid "Meta Keyword"
+msgstr "תגיות מטא"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:276
+msgid "Automatically include in header:"
+msgstr "כלול אוטומטית בהדר:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:277
+msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines."
+msgstr "יכלול מטא תגיות אוטומטית בהדר (רוב אבל לא כל התבניות תומכות(. מילות מפתח אלו לעיתים משמשות מנועי חיפוש."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:278
+msgid "Always add these keywords:"
+msgstr "תמיד להוסיף את התגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:281
+msgid "Use embedded tags:"
+msgstr "שימוש בתגיות מוטמעות בטקסט:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:282
+msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
+msgstr "הפעלת מנגנון זה תאפשר לוורדפרס לחפש תגיות מובנות בטקסט בשמירה ובהצגת פוסטים. תגיות מובנות בטקסט מסומנות<code>[tags]בצורה כזו[/tags]</code>, ומוספות לפוסט כאשר הוא נשמר, אבל לא מוצגות בפוסט."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:283
+msgid "Prefix for embedded tags:"
+msgstr "תחילית לתגיות מוטמעות בטקסט:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:284
+msgid "Suffix for embedded tags:"
+msgstr "סיפית לתגיות מוטמעות בטקסט:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:286
+msgid "Tags for Current Post"
+msgstr "תגיות לפוסט הנוכחי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:287
+msgid "Automatically display tags list into feeds"
+msgstr "הוספת רשימת התגיות אוטומטית לערוץ ה-RSS"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:288
+msgid "Automatically display tags list into post content:"
+msgstr "הוספה אוטומטית של רשימת התגיות לעמוד או פוסט:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:290
+#: WP.org\trunk/inc/simple-tags.admin.php:309
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>No</code> &ndash; בשום מקום(ברירת מחדל)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:291
+#: WP.org\trunk/inc/simple-tags.admin.php:310
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>All</code> &ndash; בבלוג ובערוץ ה-RSS."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:292
+#: WP.org\trunk/inc/simple-tags.admin.php:311
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash; רק בבלוג."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:293
+#: WP.org\trunk/inc/simple-tags.admin.php:312
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr "<code>homeonly</code> &ndash; רק בדף הבית."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:294
+#: WP.org\trunk/inc/simple-tags.admin.php:313
+msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr "<code>singularonly</code> &ndash; רק בדפים פנימיים (עמודים ופוסטים)."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:295
+#: WP.org\trunk/inc/simple-tags.admin.php:314
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr "<code>singleonly</code> &ndash; רק בצפייה בפוסט יחיד."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:296
+#: WP.org\trunk/inc/simple-tags.admin.php:315
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr "<code>עמוד</code> &ndash; רק בצפיה בעמודים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:298
+msgid "Post tag separator string:"
+msgstr "מחרוזת הפרדה בין תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:299
+msgid "Text to display before tags list:"
+msgstr "טקסט להצגה לפני רשימת התגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:300
+msgid "Text to display after tags list:"
+msgstr "טקסט להצגה אחרי רשימת התגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:301
+msgid "Text to display if no tags found:"
+msgstr "טקסט למקרה שאין תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:302
+#: WP.org\trunk/inc/simple-tags.admin.php:330
+#: WP.org\trunk/inc/simple-tags.admin.php:368
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>שימוש מתקדם</strong>:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:303
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "ניתן להשתמש באותו מבנה כמו של הפונקציה  <code>st_the_tags()</code> כדי לשנות את התצוגה. ראה <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:305
+msgid "Related Posts"
+msgstr "פוסטים קשורים"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:306
+msgid "Automatically display related posts into feeds"
+msgstr "הצגה אוטומטית של פוסטים קשורים בערוץ ה-RSS"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:307
+msgid "Automatically display related posts into post content"
+msgstr "הצגה אוטומטית של פוסטים קשורים בתוכן הפוסט"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:317
+msgid "Related Posts Order:"
+msgstr "סדר פוסטים קשורים:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:319
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr "<code>תאריך-עולה</code> &ndash;פוסטים ישנים יותר."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:320
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr "<code>תאריך-יורד</code> &ndash; פוסטים חדשים יותר."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:321
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr "<code>ספירה-עולה</code> &ndash; התגיות הכי פחות בשימוש"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:322
+msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr "<code>ספירה-יורד</code> &ndash; התגיות שהכי בשימוש (ברירת מחדל)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:323
+#: WP.org\trunk/inc/simple-tags.admin.php:345
+#: WP.org\trunk/inc/simple-tags.admin.php:353
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr "<code>שם-עולה</code> &ndash; אלפביתי."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:324
+#: WP.org\trunk/inc/simple-tags.admin.php:346
+#: WP.org\trunk/inc/simple-tags.admin.php:354
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr "<code>שם-יורד</code> &ndash; אלפביתי הפוך."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:325
+#: WP.org\trunk/inc/simple-tags.admin.php:347
+msgid "<code>random</code> &ndash; Random."
+msgstr "<code>אקראי</code> &ndash; אקראי."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:327
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr "מספר מירבי של פוסטים קשורים להצגה: (ברירת מחדל: 5)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:328
+msgid "Enter the text to show when there is no related post:"
+msgstr "הטקסט שיוצג כאשר אין פוסטים קשורים:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:329
+#: WP.org\trunk/inc/simple-tags.admin.php:359
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "הכותרת שלפני הרשימה, ניתן להשאיר ריק:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:331
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "ניתן להשתמש באותו מבנה כמו של הפונקציה  <code>st_related_posts()</code> כדי לשנות את התצוגה. ראה <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:333
+msgid "Tag cloud"
+msgstr "ענן תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:334
+msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
+msgstr ""
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:336
+msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
+msgstr ""
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:337
+msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
+msgstr ""
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:339
+msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
+msgstr "<strong>דוגמה:</strong> ברצונך להציג אקראית את 100 הפוסטים הפופולריים.<br />"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:340
+msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:341
+msgid "Order tags selection:"
+msgstr "סדר בחירת תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:343
+#: WP.org\trunk/inc/simple-tags.admin.php:351
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr "<code>ספירה-עולה</code> &ndash; הכי פחות בשימוש."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:344
+msgid "<code>count-desc</code> &ndash; Most popular. (default)"
+msgstr "<code>ספירה יורד</code> &ndash; הכי הרבה בשימוש. (ברירת מחדל)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:349
+#: WP.org\trunk/inc/simple-tags.widgets.php:165
+msgid "Order tags display:"
+msgstr "סדר הצגת תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:352
+msgid "<code>count-desc</code> &ndash; Most popular."
+msgstr "<code>ספירה יורד</code> &ndash; הכי הרבה בשימוש."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:355
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr "<code>אקראי</code> &ndash; אקראי. (ברירת מחדל)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:357
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "מספר מירבי של תגיות להצגה: (ברירת מחדל: 45)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:358
+msgid "Enter the text to show when there is no tag:"
+msgstr "הטקסט שיוצג כשאין תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:360
+msgid "Most popular color:"
+msgstr "צבע עבור הכי פופולרי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:361
+msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
+msgstr "הצבעים הם בתצוגה הקסדצימלית,  ומצריכים מבנה שש ספרות (#eee הוא קיצור של #eeeeee)."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:362
+msgid "Least popular color:"
+msgstr "צבע עבור הכי פחות פופולרי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:363
+msgid "Most popular font size:"
+msgstr "גודל פונט עבור הכי פופולרי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:364
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "שני גדלי הפונט הם של הגדול והקטן בענן התגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:365
+msgid "Least popular font size:"
+msgstr "גודל פונט עבור הכי פחות פופולרי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:366
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "היחידות לשימוש בגודל הפונט עבור ענן תגיון:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:367
+msgid "The font size units option determines the units that the two font sizes use."
+msgstr "יחידות אלו קובעות את היחידות של גודל הפונט בענן התגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:369
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "ניתן להשתמש באותו המבנה כמו פונקציית <code>st_tag_cloud()</code> כדי לשנות את התצוגה. ראה <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:382
+msgid "Options saved"
+msgstr "אפשרויות נשמרו"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:387
+msgid "Simple Tags options resetted to default options!"
+msgstr "האפשרויות אופסו לברירת המחדל!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:403
+#: WP.org\trunk/inc/simple-tags.admin.php:407
+msgid "Update Options &raquo;"
+msgstr "עדכון אפשרויות &raquo;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:404
+#: WP.org\trunk/inc/simple-tags.admin.php:408
+msgid "Do you really want to restore the default options?"
+msgstr "האם באמת לאפס את האפשרויות?"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:404
+#: WP.org\trunk/inc/simple-tags.admin.php:408
+msgid "Reset Options"
+msgstr "איפוס אפשרויות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:428
+#: WP.org\trunk/inc/simple-tags.admin.php:1537
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "בעית אבטחה. נסו שוב. אם הבעיה חוזרת, יש ליצור קשר עם <a href=\"mailto:amaury@wordpress-fr.net\">כותב התוסף</a>."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:454
+#: WP.org\trunk/inc/simple-tags.widgets.php:169
+msgid "Most popular"
+msgstr "הכי פופולריות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:454
+#: WP.org\trunk/inc/simple-tags.widgets.php:159
+#: WP.org\trunk/inc/simple-tags.widgets.php:170
+msgid "Least used"
+msgstr "הכי פחות בשימוש"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:454
+#: WP.org\trunk/inc/simple-tags.widgets.php:156
+#: WP.org\trunk/inc/simple-tags.widgets.php:167
+msgid "Alphabetical"
+msgstr "אלפביתי"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:460
+msgid "Sort Order:"
+msgstr "סדר לפי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:476
+msgid "Term ID"
+msgstr "מזהה ביטוי"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:476
+#, php-format
+msgid "View all posts tagged with %s"
+msgstr "View all posts tagged with %s"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:493
+msgid "Existing Tags"
+msgstr "תגיות קיימות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:499
+msgid "Rename Tag"
+msgstr "שינוי שם תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:500
+msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
+msgstr "יש להזין את התגית שיש לשנות את שמה ואת השם החדש.  ניתן להשתמש במנגנון גם לשילוב תגיות. הקלקה על  \"שינוי שם\" וכל הפוסטים המכילים את התגית יתעדכנו."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:501
+#: WP.org\trunk/inc/simple-tags.admin.php:542
+msgid "You can specify multiple tags to rename by separating them with commas."
+msgstr "ניתן לציין מספר תגיות לשינוי שם על ידי הפרדתן בפסיקים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:506
+msgid "Tag(s) to rename:"
+msgstr "תגיות המועמדות לשינוי שם:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:507
+msgid "New tag name(s):"
+msgstr "שמות תגיות חדשות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:508
+msgid "Rename"
+msgstr "שינוי שם"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:513
+msgid "Delete Tag"
+msgstr "מחיקת תגית"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:514
+msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
+msgstr "יש להזין את שם התגית למחיקה. התגית תוסר מכל הפוסטים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:515
+msgid "You can specify multiple tags to delete by separating them with commas"
+msgstr "ניתן לציין מספר תגיות למחיקה על ידי הפרדתן בפסיקים."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:520
+msgid "Tag(s) to delete:"
+msgstr "תגיות למחיקה:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:521
+msgid "Delete"
+msgstr "מחיקה"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:526
+msgid "Add Tag"
+msgstr "הוספת תגית"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:527
+msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
+msgstr "מנגנון זה מאפשר להוסיף תגית אחת או יותר כלכ הפוסטים הכוללים כל אחת מהתגיות להשלמה."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:528
+msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
+msgstr "ציינת מספר תגיות להוספה על ידי הפרדתן בפסיקים. אם ברצונך שהתגיות יווספו לכל הפוסטים, שדה התגיות להתאמה צריך להשאר ריק."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:533
+#: WP.org\trunk/inc/simple-tags.admin.php:547
+msgid "Tag(s) to match:"
+msgstr "תגיות להשלמה:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:534
+msgid "Tag(s) to add:"
+msgstr "תגיות להוספה:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:535
+msgid "Add"
+msgstr "הוספה"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:540
+msgid "Edit Tag Slug"
+msgstr "עריכת מזהה תגית"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:541
+msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
+msgstr "יש להזין את שם התגית לעריכה ואת המזהה החדש שלה. <a href=\"http://codex.wordpress.org/Glossary#Slug\">הגדרת מזהה תגית</a>"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:548
+msgid "Slug(s) to set:"
+msgstr "מזהים לשינוי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:549
+#: WP.org\trunk/inc/simple-tags.admin.php:711
+msgid "Edit"
+msgstr "עריכה"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:554
+msgid "Remove empty terms"
+msgstr "הסרת ביטויים ריקים"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:555
+msgid "WordPress 2.3 have a small bug and can create empty terms. Remove it !"
+msgstr "לגרסה 2.3 יש בעיה של יצירת תגיות ריקות. ניתן להסיר אותן !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:559
+msgid "Clean !"
+msgstr "ניקוי!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:645
+msgid "Search terms&hellip;"
+msgstr "חיפוש ביטויים&hellip;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:650
+msgid "Quantity&hellip;"
+msgstr "כמות&hellip;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:666
+msgid "Author&hellip;"
+msgstr "מחבר&hellip;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:667
+msgid "Any"
+msgstr "כל"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:672
+msgid "Type&hellip;"
+msgstr "סוג&hellip;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:674
+msgid "Post"
+msgstr "פוסט"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:676
+msgid "Page"
+msgstr "עמוד"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:683
+msgid "Order&hellip;"
+msgstr "סדר&hellip;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:685
+msgid "Date (descending)"
+msgstr "תאריך (יורד)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:686
+msgid "Date (ascending)"
+msgstr "תאריך (עולה)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:687
+msgid "ID (descending)"
+msgstr "מזהה (יורד)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:688
+msgid "ID (ascending)"
+msgstr "מזהה (עולה)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:693
+msgid "Filter&hellip;"
+msgstr "מסנן&hellip;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:695
+msgid "All"
+msgstr "כל"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:696
+msgid "Untagged only"
+msgstr "רק לא מתוייגים"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:700
+msgid "Filter &#187;"
+msgstr "מסנן &#187;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:707
+#: WP.org\trunk/inc/simple-tags.admin.php:717
+msgid "Update all"
+msgstr "לעדכן את כולם"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:732
+msgid "No content to edit."
+msgstr "אין תוכן לעריכה."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:747
+msgid "Page: "
+msgstr "עמוד:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:891
+msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
+msgstr "תגיות (מופרדות בפסיקים: חתולים, אוכל לחיות, כלבים)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:904
+msgid "No tag specified!"
+msgstr "לא צויינו תגיות!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:929
+msgid "No tag deleted."
+msgstr "לא נמחקו תגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:931
+#, php-format
+msgid "%1s tag(s) deleted."
+msgstr "%1s tag(s) deleted."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:943
+msgid "No new tag(s) specified!"
+msgstr "לא צויינו תגיות חדשות!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:991
+msgid "No tag added."
+msgstr "לא נוספו תגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:993
+#, php-format
+msgid "Tag(s) added to %1s post(s)."
+msgstr "Tag(s) added to %1s post(s)."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1005
+msgid "No new slug(s) specified!"
+msgstr "לא צויינו תגיות חדשות!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1021
+msgid "Tags number and slugs number isn't the same!"
+msgstr "מספר התגיות ומספר המזהים אינו זהה!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1045
+msgid "No slug edited."
+msgstr "לא נערכו מזהי תגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1047
+#, php-format
+msgid "%s slug(s) edited."
+msgstr "%s slug(s) edited."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1061
+msgid "Nothing to muck. Good job !"
+msgstr ""
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1085
+#, php-format
+msgid "%s rows deleted. WordPress DB is clean now !"
+msgstr "%s rows deleted. WordPress DB is clean now !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1107
+msgid "No new tag specified!"
+msgstr "לא צוינה תגית חדשה!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1126
+msgid "No new/old valid tag specified!"
+msgstr "לא צוינה תגית ישנה/חדשה חוקית!"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1157
+msgid "No tag renamed."
+msgstr "לא שונה שם לאף תגית."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1159
+#, php-format
+msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1166
+msgid "No valid new tag."
+msgstr "אין תגית חדשה חוקית."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1183
+msgid "No objects (post/page) found for specified old tags."
+msgstr "לא נמצאו אובייקטים המתאימים לתגית הישנה."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1200
+msgid "No tag merged."
+msgstr "לא שולבו תגיות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1202
+#, php-format
+msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr "תגיות שמוזגו &laquo;%1$s&raquo; עבור  &laquo;%2$s&raquo;. %3$s אובייקטים ששונו."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1205
+msgid "Error. No enough tags for rename. Too for merge. Choose !"
+msgstr "שגיאה. אין מספיק תגיות לשינוי שם, יותר מידי למיזוג. צריך לבחור !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1250
+#, php-format
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | גירסה %s"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1356
+msgid "No suggested tags founds."
+msgstr "לא נמצאו תגיות מוצעות."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1363
+msgid "Suggested tags"
+msgstr "תגיות מוצעות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1564
+#, php-format
+msgid "%s post(s) tags updated with success !"
+msgstr "%s post(s) tags updated with success !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1566
+#, php-format
+msgid "%s page(s) tags updated with success !"
+msgstr "%s תגיות דפים עודכנו בהצלחה !"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:141
+msgid "Empty field will use default value."
+msgstr "דה ריק ישתמש בערכי ברירת המחדל."
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:144
+msgid "Title:"
+msgstr "כותרת:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:149
+msgid "Max tags to display: (default: 45)"
+msgstr "מספר מירבי של תגיות להצגה: (ברירת מחדל: 45("
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:154
+msgid "Tags selection:"
+msgstr "בחירת תגיות:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:157
+#: WP.org\trunk/inc/simple-tags.widgets.php:168
+msgid "Inverse Alphabetical"
+msgstr "סדר אלפביתי הפוך"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:158
+msgid "Most popular (default)"
+msgstr "הכי פופולריים (ברירת מחדל)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:160
+msgid "Random"
+msgstr "אקראי"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:171
+msgid "Random (default)"
+msgstr "אקראי (ברירת מחדל)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:176
+msgid "Font size mini: (default: 8)"
+msgstr "גודל פונט מינימלי: (ברירת מחדל: 8)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:181
+msgid "Font size max: (default: 22)"
+msgstr "גודל פונט מירבי: (ברירת מחדל: 22)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:186
+msgid "Unit font size:"
+msgstr "יחידת גודל פונט:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:188
+msgid "Point (default)"
+msgstr "Point (default)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:189
+msgid "Pixel"
+msgstr "Pixel"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:190
+msgid "Em"
+msgstr "Em"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:191
+msgid "Pourcent"
+msgstr "אחוזים"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:196
+msgid "Format:"
+msgstr "פורמט:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:198
+msgid "Flat (default)"
+msgstr "שטוח (ברירת מחדל)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:199
+msgid "List (UL/LI)"
+msgstr "רשימה"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:205
+msgid "Use auto color cloud:"
+msgstr "השתמש בענן צבע אוטומטי:"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:209
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "צבע פונט מינימלי: (ברירת מחדל: #CCCCCC)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:214
+msgid "Font color max: (default: #000000)"
+msgstr "צבע פונט מקסימלי: (ברירת מחדל: #000000)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:219
+msgid "Extended format: (advanced usage)"
+msgstr "פורמט מורחב: (שימוש מתקדם)"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:250
+msgid "Tag Cloud Widgets"
+msgstr "ווידגט ענן תגיות"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:251
+msgid "How many tag cloud widgets would you like?"
+msgstr "כמה ווידג'טים של ענן תגיות לייצר?"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:255
+msgid "Save"
+msgstr "שמירה"
+
+#: C:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:272
+#: WP.org\trunk/inc/simple-tags.widgets.php:273
+#, php-format
+msgid "Extended Tag Cloud %d"
+msgstr "Extended Tag Cloud %d"
+
