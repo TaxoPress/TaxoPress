@@ -1,12 +1,5 @@
 <?php
 /*
-Plugin Name: Embedded Tags Importer
-Plugin URI: http://wordpress.org/extend/plugins/simple-tags
-Description: Import embedded tags into the new WordPress native tagging structure. Simple Tags Extension
-Version: 1.3
-Author: Amaury BALMER
-Author URI: http://www.herewithme.fr
-
 &copy; Copyright 2007 Amaury BALMER (balmer.amaury@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
