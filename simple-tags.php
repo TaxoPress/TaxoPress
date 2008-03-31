@@ -21,7 +21,7 @@ GNU General Public License for more details.
 
 Contributors:
 - Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
-- Martin Modler (modler@webformatik.com  - http://www.webformatik.com)
+- Martin Modler (modler@webformatik.com - http://www.webformatik.com)
 
 Todo:
 	Admin
