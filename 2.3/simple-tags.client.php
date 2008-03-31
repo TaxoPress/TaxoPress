@@ -2032,27 +2032,31 @@ Class SimpleTags {
 
 // Init ST
 global $simple_tags;
-$simple_tags = new SimpleTags();
+function st_init() {
+	global $simple_tags;
+	$simple_tags = new SimpleTags();
 
-// Old method for is_admin function (fix for WP 2.3.2 and sup !)
-if ( !function_exists('is_admin_old') ) {
-	function is_admin_old() {
-		return (stripos($_SERVER['REQUEST_URI'], 'wp-admin/') !== false);
+	// Old method for is_admin function (fix for WP 2.3.2 and sup !)
+	if ( !function_exists('is_admin_old') ) {
+		function is_admin_old() {
+			return (stripos($_SERVER['REQUEST_URI'], 'wp-admin/') !== false);
+		}
 	}
+
+	// Admin and XML-RPC
+	if ( is_admin() || is_admin_old() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
+		require(dirname(__FILE__).'/inc/simple-tags.admin.php');
+		$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version, $simple_tags->info );
+		
+		// Installation
+		register_activation_hook(__FILE__, array(&$simple_tags_admin, 'installSimpleTags') );
+	}
+
+	// Templates functions
+	require(dirname(__FILE__).'/inc/simple-tags.functions.php');
+
+	// Widgets
+	require(dirname(__FILE__).'/inc/simple-tags.widgets.php');
 }
-
-// Admin and XML-RPC
-if ( is_admin() || is_admin_old() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
-	require(dirname(__FILE__).'/inc/simple-tags.admin.php');
-	$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version, $simple_tags->info );
-	
-	// Installation
-	register_activation_hook(__FILE__, array(&$simple_tags_admin, 'installSimpleTags') );
-}
-
-// Templates functions
-require(dirname(__FILE__).'/inc/simple-tags.functions.php');
-
-// Widgets
-require(dirname(__FILE__).'/inc/simple-tags.widgets.php');
+add_action('plugins_loaded', 'st_init');
 ?>

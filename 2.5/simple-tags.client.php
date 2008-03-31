@@ -2147,5 +2147,5 @@ function st_init() {
 	// Widgets
 	require(dirname(__FILE__).'/inc/simple-tags.widgets.php');
 }
-add_action('init', 'st_init');
+add_action('plugins_loaded', 'st_init');
 ?>
