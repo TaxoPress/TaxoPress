@@ -2128,20 +2128,24 @@ Class SimpleTags {
 
 // Init ST
 global $simple_tags;
-$simple_tags = new SimpleTags();
+function st_init() {
+	global $simple_tags;
+	$simple_tags = new SimpleTags();
+	
+	// Admin and XML-RPC
+	if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
+		require(dirname(__FILE__).'/inc/simple-tags.admin.php');
+		$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version, $simple_tags->info );
 
-// Admin and XML-RPC
-if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
-	require(dirname(__FILE__).'/inc/simple-tags.admin.php');
-	$simple_tags_admin = new SimpleTagsAdmin( $simple_tags->default_options, $simple_tags->version, $simple_tags->info );
+		// Installation
+		register_activation_hook(__FILE__, array(&$simple_tags_admin, 'installSimpleTags') );
+	}
 
-	// Installation
-	register_activation_hook(__FILE__, array(&$simple_tags_admin, 'installSimpleTags') );
+	// Templates functions
+	require(dirname(__FILE__).'/inc/simple-tags.functions.php');
+
+	// Widgets
+	require(dirname(__FILE__).'/inc/simple-tags.widgets.php');
 }
-
-// Templates functions
-require(dirname(__FILE__).'/inc/simple-tags.functions.php');
-
-// Widgets
-require(dirname(__FILE__).'/inc/simple-tags.widgets.php');
+add_action('init', 'st_init');
 ?>
