@@ -1,6 +1,6 @@
 <?php
 Class SimpleTags {
-	var $version = '1.5.1';
+	var $version = '1.5.2';
 
 	var $info;
 	var $options;
@@ -57,7 +57,7 @@ Class SimpleTags {
 		// Localization.
 		$locale = get_locale();
 		if ( !empty( $locale ) ) {
-			$mofile = $this->info['install_dir'].'/languages/simpletags-'.$locale.'.mo';
+			$mofile = str_replace('/2.5', '', $this->info['install_dir']).'/languages/simpletags-'.$locale.'.mo';
 			load_textdomain('simpletags', $mofile);
 		}
 
@@ -157,6 +157,10 @@ Class SimpleTags {
 
 		// Set the class property and unset no used variable
 		$this->options = $default_options;
+		
+		// Clean memory
+		$default_options = array();
+		$options_from_table = array();
 		unset($default_options);
 		unset($options_from_table);
 		unset($default_options_value);
@@ -170,17 +174,15 @@ Class SimpleTags {
 
 		// Add pages in WP_Query
 		if ( $this->options['use_tag_pages'] == 1 ) {
-			// Remove default taxonomy
+			// Replace the default callback tag taxonomy with an another callback who allow page and post
 			global $wp_taxonomies;
-			unset($wp_taxonomies['post_tag']);
-			// Add the same taxonomy with an another callback who allow page and post
-			register_taxonomy( 'post_tag', 'post', array('hierarchical' => false, 'update_count_callback' => array(&$this, '_update_post_and_page_term_count')) );
+			$wp_taxonomies['post_tag']->update_count_callback = '_update_post_and_page_term_count';
 			add_filter('posts_where', array(&$this, 'prepareQuery'));
 		}
 
 		// Remove embedded tags in posts display
 		if ( $this->options['use_embed_tags'] == 1 ) {
-			add_filter('the_content', array(&$this, 'filterEmbedTags'), 999991);
+			add_filter('the_content', array(&$this, 'filterEmbedTags'), 0);
 		}
 
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
@@ -195,7 +197,7 @@ Class SimpleTags {
 
 		// Embedded tag cloud
 		if ( $this->options['allow_embed_tcloud'] == 1 ) {
-			add_filter('the_content', array(&$this, 'inlineTagCloud'), 999995);
+			add_filter('the_content', array(&$this, 'inlineTagCloud'));
 		}
 
 		// Stock Posts ID (useful for autolink and metakeywords)
@@ -208,7 +210,7 @@ Class SimpleTags {
 
 		// Auto link tags
 		if ( $this->options['auto_link_tags'] == '1' ) {
-			add_filter('the_content', array(&$this, 'autoLinkTags'), 999990);
+			add_filter('the_content', array(&$this, 'autoLinkTags'), 9);
 		}
 		return true;
 	}
@@ -1690,19 +1692,6 @@ Class SimpleTags {
 	}
 
 	/**
-	 * Update taxonomy counter for post AND page
-	 *
-	 * @param array $terms
-	 */
-	function _update_post_and_page_term_count( $terms ) {
-		global $wpdb;
-		foreach ( $terms as $term ) {
-			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships, $wpdb->posts WHERE $wpdb->posts.ID = $wpdb->term_relationships.object_id AND post_status = 'publish' AND post_type IN ('page', 'post') AND term_taxonomy_id = %d", $term ) );
-			$wpdb->update( $wpdb->term_taxonomy, compact( 'count' ), array( 'term_taxonomy_id' => $term ) );
-		}
-	}
-
-	/**
 	 * Extended get_tags function that use getTerms function
 	 *
 	 * @param string $args
@@ -2123,6 +2112,19 @@ Class SimpleTags {
 			return true;
 		}
 		return false;
+	}
+}
+
+/**
+ * Update taxonomy counter for post AND page
+ *
+ * @param array $terms
+ */
+function _update_post_and_page_term_count( $terms ) {
+	global $wpdb;
+	foreach ( $terms as $term ) {
+		$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships, $wpdb->posts WHERE $wpdb->posts.ID = $wpdb->term_relationships.object_id AND post_status = 'publish' AND post_type IN ('page', 'post') AND term_taxonomy_id = %d", $term ) );
+		$wpdb->update( $wpdb->term_taxonomy, compact( 'count' ), array( 'term_taxonomy_id' => $term ) );
 	}
 }
 

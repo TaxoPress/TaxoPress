@@ -9,9 +9,7 @@ function widget_st_tag_cloud_init() {
 	global $simple_tags;
 	if ( !class_exists('SimpleTags') || is_null($simple_tags) ) {
 		return;
-	}
-	
-	
+	}	
 
 	function widget_st_tag_cloud( $widget_args, $number = 1 ) {
 		extract($widget_args);
@@ -273,5 +271,7 @@ function widget_st_tag_cloud_init() {
 	// Launch Widgets
 	widget_st_tag_cloud_register();
 }
-add_action('plugins_loaded', 'widget_st_tag_cloud_init');
+
+// Initialize !
+widget_st_tag_cloud_init();
 ?>

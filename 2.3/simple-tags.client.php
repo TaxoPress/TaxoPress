@@ -1,6 +1,6 @@
 <?php
 Class SimpleTags {
-	var $version = '1.3.9.1';
+	var $version = '1.3.9.2';
 
 	var $info;
 	var $options;
@@ -57,7 +57,7 @@ Class SimpleTags {
 		// Localization.
 		$locale = get_locale();
 		if ( !empty( $locale ) ) {
-			$mofile = $this->info['install_dir'].'/languages/simpletags-'.$locale.'.mo';
+			$mofile = str_replace('/2.3', '', $this->info['install_dir']).'/languages/simpletags-'.$locale.'.mo';
 			load_textdomain('simpletags', $mofile);
 		}
 		
@@ -181,7 +181,7 @@ Class SimpleTags {
 
 		// Remove embedded tags in posts display
 		if ( $this->options['use_embed_tags'] == 1 ) {
-			add_filter('the_content', array(&$this, 'filterEmbedTags'), 999991);
+			add_filter('the_content', array(&$this, 'filterEmbedTags'), 0);
 		}
 
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
@@ -196,7 +196,7 @@ Class SimpleTags {
 
 		// Embedded tag cloud
 		if ( $this->options['allow_embed_tcloud'] == 1 ) {
-			add_filter('the_content', array(&$this, 'inlineTagCloud'), 999995);
+			add_filter('the_content', array(&$this, 'inlineTagCloud'));
 		}
 
 		// Stock Posts ID (useful for autolink and metakeywords)
@@ -209,7 +209,7 @@ Class SimpleTags {
 
 		// Auto link tags
 		if ( $this->options['auto_link_tags'] == '1' ) {
-			add_filter('the_content', array(&$this, 'autoLinkTags'), 999990);
+			add_filter('the_content', array(&$this, 'autoLinkTags'), 9);
 		}
 		return true;
 	}

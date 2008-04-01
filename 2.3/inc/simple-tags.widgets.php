@@ -282,5 +282,7 @@ function widget_st_tag_cloud_init() {
 	// Launch Widgets
 	widget_st_tag_cloud_register();
 }
-add_action('plugins_loaded', 'widget_st_tag_cloud_init');
+
+// Initialize !
+widget_st_tag_cloud_init();
 ?>
