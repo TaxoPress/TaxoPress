@@ -1,6 +1,6 @@
 <?php
 Class SimpleTags {
-	var $version = '1.5.2';
+	var $version = '1.5.2.1';
 
 	var $info;
 	var $options;
@@ -44,6 +44,9 @@ Class SimpleTags {
 				$info['install_dir'] .= '/' . $path;
 			}
 		}
+		
+		// Localization
+		add_filter('init', array(&$this, 'initLocalization'));
 
 		// Set informations
 		$this->info = array(
@@ -53,13 +56,6 @@ Class SimpleTags {
 		'install_dir' => $info['install_dir']
 		);
 		unset($info);
-
-		// Localization.
-		$locale = get_locale();
-		if ( !empty( $locale ) ) {
-			$mofile = str_replace('/2.5', '', $this->info['install_dir']).'/languages/simpletags-'.$locale.'.mo';
-			load_textdomain('simpletags', $mofile);
-		}
 
 		// Options
 		$default_options = array(
@@ -213,6 +209,18 @@ Class SimpleTags {
 			add_filter('the_content', array(&$this, 'autoLinkTags'), 9);
 		}
 		return true;
+	}
+	
+	/**
+	 * Launch localization.
+	 *
+	 */
+	function initLocalization() {	
+		$locale = get_locale();
+		if ( !empty( $locale ) ) {
+			$mofile = str_replace('/2.5', '', $this->info['install_dir']).'/languages/simpletags-'.$locale.'.mo';
+			load_textdomain('simpletags', $mofile);
+		}		
 	}
 
 	/**
