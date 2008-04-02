@@ -44,9 +44,6 @@ Class SimpleTags {
 				$info['install_dir'] .= '/' . $path;
 			}
 		}
-		
-		// Localization
-		$this->initLocalization();
 
 		// Set informations
 		$this->info = array(
@@ -55,7 +52,14 @@ Class SimpleTags {
 		'install_url' => $info['install_url'],
 		'install_dir' => $info['install_dir']
 		);
-		unset($info);
+		unset($info);		
+		
+		// Localization
+		$locale = get_locale();
+		if ( !empty( $locale ) ) {
+			$mofile = str_replace('/2.5', '', $this->info['install_dir']).'/languages/simpletags-'.$locale.'.mo';
+			load_textdomain('simpletags', $mofile);
+		}
 
 		// Options
 		$default_options = array(
@@ -170,9 +174,11 @@ Class SimpleTags {
 
 		// Add pages in WP_Query
 		if ( $this->options['use_tag_pages'] == 1 ) {
-			// Replace the default callback tag taxonomy with an another callback who allow page and post
+			// Remove default taxonomy
 			global $wp_taxonomies;
-			$wp_taxonomies['post_tag']->update_count_callback = '_update_post_and_page_term_count';
+			unset($wp_taxonomies['post_tag']);
+			// Add the same taxonomy with an another callback who allow page and post
+			register_taxonomy( 'post_tag', 'post', array('hierarchical' => false, 'update_count_callback' => array(&$this, '_update_post_and_page_term_count')) );
 			add_filter('posts_where', array(&$this, 'prepareQuery'));
 		}
 
@@ -209,18 +215,6 @@ Class SimpleTags {
 			add_filter('the_content', array(&$this, 'autoLinkTags'), 9);
 		}
 		return true;
-	}
-	
-	/**
-	 * Launch localization.
-	 *
-	 */
-	function initLocalization() {	
-		$locale = get_locale();
-		if ( !empty( $locale ) ) {
-			$mofile = str_replace('/2.5', '', $this->info['install_dir']).'/languages/simpletags-'.$locale.'.mo';
-			load_textdomain('simpletags', $mofile);
-		}		
 	}
 
 	/**
@@ -2121,20 +2115,22 @@ Class SimpleTags {
 		}
 		return false;
 	}
-}
-
-/**
- * Update taxonomy counter for post AND page
- *
- * @param array $terms
- */
-function _update_post_and_page_term_count( $terms ) {
-	global $wpdb;
-	foreach ( $terms as $term ) {
-		$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships, $wpdb->posts WHERE $wpdb->posts.ID = $wpdb->term_relationships.object_id AND post_status = 'publish' AND post_type IN ('page', 'post') AND term_taxonomy_id = %d", $term ) );
-		$wpdb->update( $wpdb->term_taxonomy, compact( 'count' ), array( 'term_taxonomy_id' => $term ) );
+	
+	/**
+	 * Update taxonomy counter for post AND page
+	 *
+	 * @param array $terms
+	 */
+	function _update_post_and_page_term_count( $terms ) {
+		global $wpdb;
+		foreach ( (array) $terms as $term ) {
+			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships, $wpdb->posts WHERE $wpdb->posts.ID = $wpdb->term_relationships.object_id AND post_status = 'publish' AND post_type IN ('page', 'post') AND term_taxonomy_id = %d", $term ) );
+			$wpdb->update( $wpdb->term_taxonomy, compact( 'count' ), array( 'term_taxonomy_id' => $term ) );
+		}
+		return true;
 	}
 }
+
 
 // Init ST
 global $simple_tags;
