@@ -55,7 +55,7 @@ Class SimpleTags {
 		unset($info);
 	
 		// Localization
-		add_filter('init', array(&$this, 'initLocalization'));
+		$this->initLocalization();
 		
 		// Options
 		$default_options = array(
