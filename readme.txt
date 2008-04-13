@@ -85,6 +85,7 @@ Then: Manage - Import - Embedded Tags
 	* Fix duplicate tags for click tags and autocompletion
 	* Lot's of optimization...
 	* Update translations
+	* Add spanish translation
 * Version 1.5.3
 	* Fix counter for tags. (you must re-save your posts)
 	* Update translations (ja, ru)
