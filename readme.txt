@@ -80,6 +80,11 @@ Then: Manage - Import - Embedded Tags
 6. You also can suggest tags from lot's of service (local, tag the net, yahoo!)
 
 == Arbitrary section ==
+* Version 1.5.5
+	* Restore full manage page
+	* Fix duplicate tags for click tags and autocompletion
+	* Lot's of optimization...
+	* Update translations
 * Version 1.5.3
 	* Fix counter for tags. (you must re-save your posts)
 	* Update translations (ja, ru)
