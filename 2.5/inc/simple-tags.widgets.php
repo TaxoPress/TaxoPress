@@ -120,12 +120,18 @@ function widget_st_tag_cloud_init() {
 			${$field} = attribute_escape($options[$number][$field]);		
 		}
 		
+		
 		// Default values
 		$max = empty($max) ? '45' : $max;
 		$selection = empty($selection) ? 'count-desc' : $selection;
 		$order = empty($order) ? 'random' : $order;		
 		$smini = empty($smini) ? '8' : $smini;
 		$smax = empty($smax) ? '22' : $smax;
+
+		// Default values without $_POST
+		if ( !isset($_POST['widget-stags-submit-'.$number]) ) {
+			$color = 1;	
+		}
 		?>
 		<div>
 			<p><?php _e('Empty field will use default value.', 'simpletags'); ?></p>
@@ -260,8 +266,8 @@ function widget_st_tag_cloud_init() {
 		}
 
 		for ( $i = 1; $i <= 9; $i++ ) {
-			wp_register_sidebar_widget('widget_stags-'.$i, sprintf(__('Extended Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud' : '', $widget_ops, $i);
-			wp_register_widget_control('widget_stags-'.$i, sprintf(__('Extended Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud_control' : '', array(), $i);
+			wp_register_sidebar_widget('widget_stags-'.$i, sprintf(__('ST Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud' : '', $widget_ops, $i);
+			wp_register_widget_control('widget_stags-'.$i, sprintf(__('ST Tag Cloud %d', 'simpletags'), $i), $i <= $number ? 'widget_st_tag_cloud_control' : '', array(), $i);
 		}
 
 		add_action('sidebar_admin_setup', 'st_tag_cloud_setup');
