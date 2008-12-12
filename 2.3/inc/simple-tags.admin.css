@@ -1,0 +1,58 @@
+@media projection, screen{.tabs-hide {display:none;}}
+@media print{.tabs-nav {display:none;}}
+
+.st_wrap fieldset.options legend{display:none;}
+.st_wrap .tags_admin{text-align:center;font-size:0.9em;}
+.st_wrap .stpexplan{font-size:.85em;}
+.st_wrap .stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
+.st_wrap .st_submenu{background:#0d324f;border-bottom:none;margin:0 0 10px;padding:3px 1em 0 2em;}
+.st_wrap .st_submenu a{border:none;color:#fff;font-size:12px;padding:.3em .4em .4em;}
+.st_wrap .st_submenu a:hover{background:#ddeaf4;color:#393939;}
+.st_wrap .st_submenu li{display:inline;line-height:200%;list-style:none;text-align:center;margin:0;padding:0;}
+.st_wrap .tabs-container{display:block;}
+.st_wrap .tabs-hide{display:none;}
+.st_wrap .tabs-selected{font-weight:700;background:#DDEAF4;color:#393939;display:block;}
+.st_wrap .tabs-selected a{background:#DDEAF4;color:#393939;padding:.3em .4em .4em}
+.st_wrap fieldset#taglist ul{list-style:none;margin:0;padding:0;}
+.st_wrap fieldset#taglist ul li{font-size:85%;margin:0;padding:0;}
+.st_wrap fieldset#taglist ul li strong{font-weight:700;width:50px;}
+.st_wrap fieldset#taglist ul li span{cursor:pointer;}
+.st_wrap td.list_tags{vertical-align:top;border-right:1px dotted #ccc;width:220px;}
+.st_wrap .pagination,.st_wrap .widefat th,.st_wrap .widefat td{text-align:center;}
+.st_wrap .pagination{margin:5px 0;}
+.st_wrap .pagination a{margin:1px 3px;}
+.st_wrap .pagination a.current_page{font-weight:700;}
+.st_wrap #post .submit input{width:300px;}
+.st_wrap #post input, .st_wrap .auto_list{width:98%;margin:3px 0;padding:3px 5px;}
+.st_wrap .stpexplan ul li, .st_wrap #suggesttagsdiv p{margin:0;padding:0;}
+
+#advancedstuff_tag fieldset{margin-bottom:1em;}
+#advancedstuff_tag h3{font-weight:400;font-size:13px;padding:3px;}
+#advancedstuff_tag h3 a { color:#fff; border-bottom:0; font-weight:700; }
+#advancedstuff_tag div{margin-top:.5em;}
+#advancedstuff_tag a.dbx-toggle,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -3px;}
+#advancedstuff_tag a.dbx-toggle-open,#advancedstuff a.dbx-toggle-open:visited{height:22px;width:22px;top:3px;right:5px;background-position:0 -28px;}
+#advancedstuff_tag img#st_ajax_loading {position:absolute;right:15px;top:6px;width:16px;height:16px;display:none;}
+#advancedstuff_tag .dbx-content span, #st_click_tags span{display:block;float:left;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:3px;padding:3px 4px;padding-left:22px;}
+#advancedstuff_tag .dbx-content span:hover, #st_click_tags span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
+#advancedstuff_tag .dbx-content span.ttn_topic{background:#f0f0ee url(images/tag_blue.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_location{background:#f0f0ee url(images/map.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_person{background:#f0f0ee url(images/user.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.yahoo{background:#f0f0ee url(images/yahoo_logo.gif) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.local{background:#f0f0ee url(images/tag_purple.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_topic:hover{background:#b6bdd2 url(images/tag_blue.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_location:hover{background:#b6bdd2 url(images/map.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.ttn_person:hover{background:#b6bdd2 url(images/user.png) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.yahoo:hover{background:#b6bdd2 url(images/yahoo_logo.gif) 3px 50% no-repeat;}
+#advancedstuff_tag .dbx-content span.local:hover{background:#b6bdd2 url(images/tag_purple.png) 3px 50% no-repeat;}
+div.clearer{clear:both;line-height:1px;font-size:1px;height:1px;}
+
+#st_click_tags { padding:6px; border:3px dashed #D1E6EF; margin:3px 0 4px; display:none;max-height:200px;overflow:auto; }
+#st_click_tags span{background:#f0f0ee url(images/tag_purple.png) 3px 50% no-repeat;}
+#st_click_tags span:hover{background:#b6bdd2 url(images/tag_purple.png) 3px 50% no-repeat;}
+a#clicktags, a#close_clicktags {font-weight:700;color:red;border:0;text-decoration:none;}
+a#close_clicktags{display:none;}
+#tagdiv {position:relative;display:block;margin-top:3px;}
+#tagdiv a{position:absolute;top:1px;right:1px;}
+#tagdiv input{margin-top:3px;}
+.box_color{display:block;width:20px;height:20px;border:1px solid #ccc;}

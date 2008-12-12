@@ -1,0 +1,1703 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Tags\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-27 14:03+0800\n"
+"Last-Translator: Neil Lin <neil.lch@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==1?0:1;\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: TAIWAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_c\n"
+"X-Poedit-Basepath: ./wp-plugins/\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:72
+#: WP.org\trunk/simple-tags.php:549
+msgid "No related posts."
+msgstr "沒有相關文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:73
+#: WP.org\trunk/simple-tags.php:548
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>相關文章</h4>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:74
+#: WP.org\trunk/simple-tags.php:551
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:80
+#: WP.org\trunk/simple-tags.php:1203
+msgid "No tags."
+msgstr "沒有標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:81
+#: WP.org\trunk/simple-tags.php:1205
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>標籤雲</h4>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:83
+#: WP.org\trunk/simple-tags.php:1204
+msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:95
+#: WP.org\trunk/simple-tags.php:1412
+msgid "Tags: "
+msgstr "標籤： "
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:97
+#: WP.org\trunk/simple-tags.php:1419
+msgid "No tag for this post."
+msgstr "本篇文章沒有標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:100
+#: WP.org\trunk/simple-tags.php:1418
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:108
+#: WP.org\trunk/simple-tags.php:857
+msgid "<h4>Related tags</h4>"
+msgstr "<h4>相關標籤</h4>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:109
+#: WP.org\trunk/simple-tags.php:858
+msgid "No related tag found."
+msgstr "找不到相關標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:110
+msgid "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+msgstr "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:115
+msgid "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:280
+#, php-format
+msgid "Posts tagged with %s"
+msgstr "有標籤 %s 的文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:781
+msgid "There is no excerpt because this is a protected post."
+msgstr "受保護的文章不會產生摘要。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:859
+msgid "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+msgstr "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:1059
+msgid "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/simple-tags.php:1659
+msgid "Invalid Taxonomy"
+msgstr "無效的分類"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:64
+msgid "Import Embedded Tags"
+msgstr "匯入嵌入式標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:65
+msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
+msgstr "接下來的步驟需要幾分鐘，看您的資料有多少而定。請耐心等候。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:66
+#: WP.org\trunk/inc/simple-tags.admin.php:417
+#: WP.org\trunk/inc/simple-tags.admin.php:573
+#: WP.org\trunk/inc/simple-tags.admin.php:924
+#: WP.org\trunk/inc/simple-tags.admin.php:1030
+#: WP.org\trunk/inc/simple-tags.admin.php:1245
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "您可以藉由拜訪 <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:75
+msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
+msgstr "嗨！本匯入程式能將嵌入式標籤匯入成新 WordPress 所支援的標籤結構。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:76
+msgid "To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!"
+msgstr "考慮到那些大量使用標籤的作者，我們製作這個有簡單四個步驟的程式，幫助您將嵌入式標籤轉換為 WordPress 內建支援的標籤功能，請繼續接下來的步驟，當您成功的完成所有步驟時，我們會讓您知道的！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:77
+msgid "Don&#8217;t be stupid - backup your database before proceeding!"
+msgstr "別太鐵齒！繼續下去之前請先備份您的資料庫！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:79
+msgid "Step 1 &raquo;"
+msgstr "第一步 &raquo;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:102
+msgid "Missing parameters in URL. (Start or End)"
+msgstr "缺少URL網址參數（開頭或結尾）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:114
+msgid "Configure and add tags to posts&#8230;"
+msgstr "設定與增加標籤至文章&#8230;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:121
+msgid "Start marker"
+msgstr "開始標記"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:124
+msgid "End marker"
+msgstr "結束標記"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:127
+msgid "Delete embedded tags once imported ?"
+msgstr "匯入後將嵌入式標籤刪除？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:129
+msgid "Import also embedded tags from page ?"
+msgstr "也匯入網誌分頁的嵌入式標籤？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:132
+msgid "Start import &raquo;"
+msgstr "開始匯入 &raquo;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:174
+#: WP.org\trunk/inc/simple-tags.admin.php:662
+msgid "If your browser doesn't start loading the next page automatically click this link:"
+msgstr "如果您的瀏覽器沒有自動的開始載入下一頁，請按一下這個連結："
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:174
+#: WP.org\trunk/inc/simple-tags.admin.php:662
+msgid "Next content"
+msgstr "下一步"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:187
+msgid "Done!"
+msgstr "搞定！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:189
+msgid "Step 2 &raquo;"
+msgstr "第二步 &raquo;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:206
+msgid "Import Complete!"
+msgstr "匯入成功！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:207
+msgid "OK, so we lied about this being a 4-step program! You&#8217;re done!"
+msgstr "好，我們承認先前說的四個步驟是錯誤的！已經搞定啦！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:208
+msgid "Now wasn&#8217;t that easy?"
+msgstr "一切不就是那麼簡單？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:209
+msgid "You can manage tags now !"
+msgstr "您現在可以開始管理標籤了！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:249
+#: WP.org\trunk/inc/simple-tags.admin.php:2642
+msgid "Embedded Tags"
+msgstr "嵌入式標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.importer.php:249
+msgid "Import Embedded Tags into the new WordPress native tagging structure."
+msgstr "將嵌入式標籤匯入成新的 WordPress 內建標籤結構。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/extras/simple-tags.ajax.tooltips/simple-tags.ajax.tooltips.php:111
+msgid "Close"
+msgstr "關閉"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:145
+#: WP.org\trunk/inc/simple-tags.admin.php:1029
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: 管理標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:145
+msgid "Manage Tags"
+msgstr "管理標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:146
+#: WP.org\trunk/inc/simple-tags.admin.php:1244
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: 大量編輯標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:146
+msgid "Mass Edit Tags"
+msgstr "大量編輯標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:147
+#: WP.org\trunk/inc/simple-tags.admin.php:572
+msgid "Simple Tags: Auto Tags"
+msgstr "Simple Tags: 自動標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:147
+msgid "Auto Tags"
+msgstr "自動標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:151
+#: WP.org\trunk/inc/simple-tags.admin.php:923
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: 設定"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:151
+msgid "Simple Tags"
+msgstr "Simple Tags"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:158
+#: WP.org\trunk/inc/simple-tags.admin.php:969
+#: WP.org\trunk/inc/simple-tags.admin.php:2075
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "這是安全問題，請重試，若問題一再發生，請聯絡 <a href=\"mailto:amaury@wordpress-fr.net\">外掛作者</a>。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:216
+#, php-format
+msgid "%s terms updated with success !"
+msgstr "%s 個項目已更新成功！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:377
+#: WP.org\trunk/inc/simple-tags.admin.php:443
+msgid "Tag"
+msgstr "標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:378
+#: WP.org\trunk/inc/simple-tags.admin.php:444
+msgid "Category"
+msgstr "類別"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:416
+msgid "Simple Tags: Advanced Edit Terms"
+msgstr "Simple Tags: 進階編輯項目"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:418
+msgid "Be careful with this page ! You can cause important damages, and lost all tags and categories of your WordPress installation."
+msgstr "這一頁請小心！可能會造成您的重大損害，並且會失去您在WordPress設定中所有的標籤和類別。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:423
+#: WP.org\trunk/inc/simple-tags.admin.php:1250
+msgid "Search terms&hellip;"
+msgstr "搜尋項目&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:428
+#: WP.org\trunk/inc/simple-tags.admin.php:1255
+msgid "Quantity&hellip;"
+msgstr "數量&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:440
+msgid "Taxonomy&hellip;"
+msgstr "分類&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:442
+#: WP.org\trunk/inc/simple-tags.admin.php:1300
+msgid "All"
+msgstr "全部文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:449
+#: WP.org\trunk/inc/simple-tags.admin.php:1288
+msgid "Order&hellip;"
+msgstr "排序&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:451
+msgid "Counter (descending)"
+msgstr "計數（降幂）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:452
+msgid "Counter (ascending)"
+msgstr "計數（升幂）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:453
+msgid "Name (descending)"
+msgstr "名稱（降幂）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:454
+msgid "Name (ascending)"
+msgstr "名稱（升幂）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:458
+#: WP.org\trunk/inc/simple-tags.admin.php:1305
+msgid "Filter &#187;"
+msgstr "過濾排序 &#187;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:465
+#: WP.org\trunk/inc/simple-tags.admin.php:1312
+#: WP.org\trunk/inc/simple-tags.admin.php:1322
+msgid "Update all"
+msgstr "全部更新"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:471
+msgid "ID (no editing)"
+msgstr "帳號（不可編輯）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:472
+msgid "Name"
+msgstr "名稱"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:473
+msgid "Slug (unique)"
+msgstr "代稱（唯一的）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:474
+msgid "Term group"
+msgstr "項目群組"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:475
+msgid "Taxonomy"
+msgstr "分類"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:476
+msgid "Count"
+msgstr "計數"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:477
+msgid "Parent"
+msgstr "起源"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:478
+msgid "Description"
+msgstr "說明"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:479
+msgid "Delete ?"
+msgstr "刪除？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:508
+msgid "Update all terms"
+msgstr "更新所有項目"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:512
+msgid "No terms to edit."
+msgstr "無項目可供編輯"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:558
+msgid "Auto tags options updated !"
+msgstr "自動標籤的設定已更新！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:577
+msgid "Auto tags list"
+msgstr "自動標籤清單"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:578
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
+msgstr "此功能允許WordPress在存檔的時候尋找文章與標題中的特定標籤，舉例來說，當您的文章內容或標題含有 \"WordPress\"  這個字，而且在您的自動標籤清單中剛好有 \"wordpress\"  這個字，Simple Tags 將會自動將 \"wordpress\"  加入成為此篇文章的標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:582
+msgid "Active Auto Tags."
+msgstr "啟用自動標籤功能"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:585
+msgid "Use also local tags database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many tags)"
+msgstr "在自動標籤功能中也使用本地標籤。（警告，如果您有大量標籤的話，這個設定可能會增加CPU的負擔）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:588
+msgid "Autotag only posts without tags."
+msgstr "只將沒有標籤的文章自動加上標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:590
+msgid "Keywords list: (separated with a comma)"
+msgstr "關鍵字清單（以半形逗號相隔）："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:596
+msgid "Update list &raquo;"
+msgstr "更新清單 &raquo;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:599
+msgid "Auto tags old content"
+msgstr "自動加入標籤至舊文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:600
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "Simple Tags 可以同時將標籤加入到所有網誌現存的文章中，此功能使用上述的自動標籤清單進行加入的動作。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:601
+msgid "Auto tags all content"
+msgstr "自動將所有的文章加上標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:673
+msgid "All done!"
+msgstr "全部搞定！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:690
+msgid "Include page in tag search:"
+msgstr "將分頁列入標籤搜尋中："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:691
+msgid "This feature need that option \"Add page in tags management\" is enabled."
+msgstr "需要先開啟「將分頁加入標籤管理」 功能"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:692
+msgid "Allow tag cloud in post/page content:"
+msgstr "允許在文章/分頁內容中顯示標籤雲："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:693
+msgid "Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud."
+msgstr "勾選此選項將允許 Wordpress 在顯示文章時尋找標籤雲標記 <code>&lt;!--st_tag_cloud--&gt;</code> ，WP 會將此標記替換為標籤雲。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:694
+msgid "Active auto link tags into post content:"
+msgstr "自動將文章中的標籤加上連結："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:695
+msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr "例如：您有一個標籤是 \"WordPress\" ，而且您的文章中含有 \"wordpress\" 這個字，此功能將會把 \"wordpress\"  替換成 \"wordpress\"  標籤頁的連結(http://myblog.net/tag/wordpress/)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:696
+msgid "Min usage for auto link tags:"
+msgstr "自動連結標籤的最少數量："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:697
+msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
+msgstr "此參數可以指定標籤使用數的最小值，預設：1（譯註：預設值為1時，係指「只要有某標籤被使用過一次，系統就會自動將文章中的標籤建立標籤頁的連結」）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:698
+msgid "Add the rel=\"nofollow\" on each tags link ?"
+msgstr "在每個標籤連結中加入 rel=\"nofollow\" 參數？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:699
+msgid "Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index."
+msgstr "Nofollow是一項非標準化的HTML參數，通常用來告知搜尋引擎不要將超連結視為影響連結目標在搜尋引擎索引排行的依據。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:702
+msgid "Add page in tags management:"
+msgstr "將分頁加入標籤管理："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:703
+msgid "Add a tag input (and tag posts features) in page edition"
+msgstr "在分頁編輯頁面增加標籤輸入區（以及文章標籤功能）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:704
+msgid "Activate click tags feature:"
+msgstr "啟用點選標籤功能："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:705
+msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
+msgstr "此功能將會增加一個連結，可以用來顯示資料庫裡所有的標籤，接著您可以透過點選的方式在文章中新增標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:706
+msgid "Activate autocompletion feature:"
+msgstr "啟用自動完成功能："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:707
+msgid "This feature displays a visual help allowing to enter tags more easily."
+msgstr "啟用此功能將會顯示視覺化的協助，讓輸入標籤更加容易。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:708
+msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)"
+msgstr "啟用建議標籤功能：（Yahoo! Term Extraction API, Tag The Net, 本地資料庫）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:709
+msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
+msgstr "此功能將會增加一個方框讓您可以獲取建議標籤，這些標籤是經過文章內容及多重來源的標籤比對後產生的。（外部及內部）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:712
+msgid "Automatically include in header:"
+msgstr "自動加入至header："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:713
+msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is disabled."
+msgstr "自動將關鍵字加到header中（大部份的佈景主題都有支援，但並非全部），這些關鍵字有時候會被搜尋引擎所使用。<br /><strong>警告：</strong> 如果已安裝和啟用 \"All in One SEO Pack\" 外掛的話，此功能將停用。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:714
+msgid "Always add these keywords:"
+msgstr "總是加入這些關鍵字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:715
+msgid "Max keywords display:"
+msgstr "最多顯示關鍵字數量："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:716
+msgid "You must set zero (0) for display all keywords in HTML header."
+msgstr "如果要在HTML header顯示所有關鍵字，您必須設定為零（0）。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:719
+msgid "Use embedded tags:"
+msgstr "使用嵌入式標籤："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:720
+msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
+msgstr "開啟這個功能會使得WordPress在儲存及顯示文章時去尋找嵌入式標籤，這種標籤會被標示成<code>[tags]像這樣和這樣[/tags]</code>，並且當文章儲存時，會被加入文章裡面，但不會顯示出來。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:721
+msgid "Prefix for embedded tags:"
+msgstr "嵌入式標籤的前綴："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:722
+msgid "Suffix for embedded tags:"
+msgstr "嵌入式標籤的後綴："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:725
+msgid "Automatically display tags list into feeds"
+msgstr "自動在feed裡面顯示標籤清單"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:726
+msgid "Automatically display tags list into post content:"
+msgstr "自動在文章內容裡面顯示標籤清單"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:728
+#: WP.org\trunk/inc/simple-tags.admin.php:752
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>no</code> &ndash; 任何地方都不要（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:729
+#: WP.org\trunk/inc/simple-tags.admin.php:753
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>all</code> &ndash; 在網誌及 feed 上"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:730
+#: WP.org\trunk/inc/simple-tags.admin.php:754
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash; 只在您的網誌上"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:731
+#: WP.org\trunk/inc/simple-tags.admin.php:755
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr "<code>homeonly</code> &ndash; 只顯示在您的首頁"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:732
+#: WP.org\trunk/inc/simple-tags.admin.php:756
+msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr "<code>singularonly</code> &ndash; 只顯示在您的單獨頁面（單篇與分頁）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:733
+#: WP.org\trunk/inc/simple-tags.admin.php:757
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr "<code>singleonly</code> &ndash; 只顯示在您的單篇文章頁面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:734
+#: WP.org\trunk/inc/simple-tags.admin.php:758
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr "<code>pageonly</code> &ndash; 只顯示在您的分頁頁面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:736
+msgid "Post tag separator string:"
+msgstr "文章標籤分隔符號："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:737
+msgid "Text to display before tags list:"
+msgstr "在標籤清單前要顯示的文字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:738
+msgid "Text to display after tags list:"
+msgstr "在標籤清單後要顯示的文字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:739
+msgid "Max tags display:"
+msgstr "最多顯示標籤數量："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:740
+msgid "You must set zero (0) for display all tags."
+msgstr "要顯示所有標籤請設定為零（0）。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:741
+msgid "Include categories in result ?"
+msgstr "在結果中包含分類名稱？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:742
+#: WP.org\trunk/inc/simple-tags.admin.php:849
+msgid "Tag link format:"
+msgstr "標籤連結格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:743
+#: WP.org\trunk/inc/simple-tags.admin.php:771
+#: WP.org\trunk/inc/simple-tags.admin.php:799
+#: WP.org\trunk/inc/simple-tags.admin.php:817
+#: WP.org\trunk/inc/simple-tags.admin.php:850
+msgid "You can find markers and explanations <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">in the online documentation.</a>"
+msgstr "您可以在 <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">線上說明文件</a> 中找到標記語法及說明。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:744
+msgid "Text to display if no tags found:"
+msgstr "如果找不到標籤，要顯示的文字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:745
+#: WP.org\trunk/inc/simple-tags.admin.php:775
+#: WP.org\trunk/inc/simple-tags.admin.php:804
+#: WP.org\trunk/inc/simple-tags.admin.php:862
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>進階使用</strong>:"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:746
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_the_tags()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">說明文件</a>。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:749
+msgid "Automatically display related posts into feeds"
+msgstr "自動在feed裡面顯示相關文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:750
+msgid "Automatically display related posts into post content"
+msgstr "自動在文章內容裡面顯示相關文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:760
+msgid "Related Posts Order:"
+msgstr "相關文章排序："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:762
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr "<code>date-asc</code> &ndash; 較舊的文章排在前面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:763
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr "<code>date-desc</code> &ndash; 較新的文章排在前面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:764
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr "<code>count-asc</code> &ndash; 最少共同標籤的文章排在前面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:765
+msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr "<code>count-desc</code> &ndash; 最多共同標籤的文章排在前面（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:766
+#: WP.org\trunk/inc/simple-tags.admin.php:784
+#: WP.org\trunk/inc/simple-tags.admin.php:831
+#: WP.org\trunk/inc/simple-tags.admin.php:839
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr "<code>name-asc</code> &ndash; 依照字母順序排列"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:767
+#: WP.org\trunk/inc/simple-tags.admin.php:785
+#: WP.org\trunk/inc/simple-tags.admin.php:832
+#: WP.org\trunk/inc/simple-tags.admin.php:840
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr "<code>name-desc</code> &ndash; 依照字母順序反向排列"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:768
+#: WP.org\trunk/inc/simple-tags.admin.php:786
+#: WP.org\trunk/inc/simple-tags.admin.php:833
+msgid "<code>random</code> &ndash; Random."
+msgstr "<code>random</code> &ndash; 隨機排列"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:770
+msgid "Post link format:"
+msgstr "文章連結格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:772
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr "最多顯示相關文章數量：（預設：5）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:773
+msgid "Enter the text to show when there is no related post:"
+msgstr "當沒有相關文章時要顯示的文字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:774
+#: WP.org\trunk/inc/simple-tags.admin.php:803
+#: WP.org\trunk/inc/simple-tags.admin.php:853
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "在清單前要顯示的標題，留白表示不要標題："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:776
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_related_posts()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">說明文件</a>。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:779
+msgid "Maximum number of related tags to display: (default: 5)"
+msgstr "最多顯示相關標籤數量：（預設：5）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:780
+msgid "Order related tags:"
+msgstr "相關標籤排序："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:782
+#: WP.org\trunk/inc/simple-tags.admin.php:829
+#: WP.org\trunk/inc/simple-tags.admin.php:837
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr "<code>count-asc</code> &ndash; 最冷門的排在前面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:783
+#: WP.org\trunk/inc/simple-tags.admin.php:830
+msgid "<code>count-desc</code> &ndash; Most popular. (default)"
+msgstr "<code>count-desc</code> &ndash; 最熱門的排在前面（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:788
+msgid "Related tags type format:"
+msgstr "相關標籤類型格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:790
+#: WP.org\trunk/inc/simple-tags.admin.php:810
+#: WP.org\trunk/inc/simple-tags.admin.php:846
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr "<code>list</code> &ndash; 顯示一個格式化的列表清單 (ul/li)。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:791
+#: WP.org\trunk/inc/simple-tags.admin.php:811
+#: WP.org\trunk/inc/simple-tags.admin.php:847
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr "<code>flat</code> &ndash; 內嵌顯示（不列表，只有用div顯示的一塊區域）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:793
+msgid "Method of tags intersections and unions used to build related tags link:"
+msgstr "建立相關標籤連結的標籤交集與聯集方式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:795
+msgid "<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</strong> the \"Tag2\" tag. (default)"
+msgstr "<code>OR</code> &ndash; 抓取具有 \"標籤1\" <strong>或</strong> \"標籤2\" 的文章。（預設） "
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:796
+msgid "<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</strong> the \"Tag2\" tag."
+msgstr "<code>AND</code> &ndash; 抓取同時具有 \"標籤1\" <strong>與</strong> \"標籤2\" 的文章。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:798
+msgid "Related tags link format:"
+msgstr "相關標籤連結格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:800
+msgid "Related tags separator:"
+msgstr "相關標籤分隔符號："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:801
+#: WP.org\trunk/inc/simple-tags.admin.php:814
+msgid "Leave empty for list format."
+msgstr "留白表示以列表格式顯示。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:802
+msgid "Enter the text to show when there is no related tags:"
+msgstr "當沒有相關標籤時要顯示的文字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:805
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_related_tags()</code>功能一樣的語法來設定顯示方式。詳細情形請參閱 <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">說明文件</a> 。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:807
+msgid "Remove related Tags"
+msgstr "移除相關標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:808
+msgid "Remove related Tags type format:"
+msgstr "移除相關標籤類型格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:813
+msgid "Remove related tags separator:"
+msgstr "移除相關標籤分隔符號："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:815
+msgid "Enter the text to show when there is no remove related tags:"
+msgstr "當沒有相關標籤時要顯示的文字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:816
+msgid "Remove related tags  link format:"
+msgstr "移除相關標籤連結格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:820
+msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
+msgstr "<strong>&#8216;標籤選擇排序&#8217;</strong> 與 <strong>&#8216;標籤顯示排序&#8217;</strong> 之間有什麼不同呢？<br />"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:822
+msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
+msgstr "<strong>&#8216;標籤選擇排序&#8217;</strong> 是產生標籤雲時的第一個步驟，相當於聚集標籤的動作。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:823
+msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
+msgstr "<strong>&#8216;標籤顯示排序&#8217;</strong> 則是第二個步驟，一旦選定標籤後，您可以在顯示前再將標籤重新排序。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:825
+msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
+msgstr "<strong>例如：</strong>您想要以隨機排序的方式顯示最熱門的100個標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:826
+msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr "如果要檢索最熱門的100個標籤，那麼您就要將 &#8216;標籤選擇排序&#8217; 設定為 <strong>count-desc</strong> ；如果要顯示隨機排序的標籤雲，那麼您就要將 &#8216;標籤顯示排序&#8217; 設定為 <strong>random</strong>。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:827
+msgid "Order tags selection:"
+msgstr "標籤選擇排序："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:835
+#: WP.org\trunk/inc/simple-tags.widgets.php:167
+msgid "Order tags display:"
+msgstr "標籤顯示排序："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:838
+msgid "<code>count-desc</code> &ndash; Most popular."
+msgstr "<code>count-desc</code> &ndash; 最熱門的排在前面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:841
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr "<code>random</code> &ndash; 隨機排列（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:843
+msgid "Include categories in tag cloud ?"
+msgstr "在標籤雲中包含類別？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:844
+msgid "Tags cloud type format:"
+msgstr "標籤雲類型格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:851
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "最多顯示標籤數量：（預設：45）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:852
+msgid "Enter the text to show when there is no tag:"
+msgstr "當沒有標籤時要顯示的文字："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:854
+msgid "Most popular color:"
+msgstr "最熱門的標籤顏色："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:855
+msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
+msgstr "顏色採用十六進位色碼，並且必須是完整的六位數字（#eee 是 #eeeeee 的速記版)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:856
+msgid "Least popular color:"
+msgstr "最冷門的標籤顏色："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:857
+msgid "Most popular font size:"
+msgstr "最熱門的標籤字體大小："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:858
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "兩種字型大小分別表示使用最多和最少的標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:859
+msgid "Least popular font size:"
+msgstr "最冷門的標籤字體大小："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:860
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "在標籤雲上顯示的字型大小單位："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:861
+msgid "The font size units option determines the units that the two font sizes use."
+msgstr "字型大小的單位設定決定了兩種字型大小使用的單位。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:863
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_tag_cloud()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">說明文件</a>。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:877
+msgid "Options saved"
+msgstr "設定已儲存"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:881
+msgid "Simple Tags options resetted to default options!"
+msgstr "Simple Tags 設定已重置為預設狀態！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:887
+#, php-format
+msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "已刪除全部的Simple Tags設定！現在您可以<a href=\"%s\">停用此外掛</a>了！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:927
+#: WP.org\trunk/inc/simple-tags.admin.php:951
+msgid "Update Options &raquo;"
+msgstr "更新選項 &raquo;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:928
+#: WP.org\trunk/inc/simple-tags.admin.php:952
+msgid "Do you really want to restore the default options?"
+msgstr "您真的要回復預設狀態嗎？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:928
+#: WP.org\trunk/inc/simple-tags.admin.php:952
+msgid "Reset Options"
+msgstr "重置設定"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:935
+msgid "Uninstallation"
+msgstr "解除安裝"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:941
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "一般來說，停用此外掛並不會刪除它的任何資料，如果您想徹底移除Simple Tags，請在停用外掛之前刪除 <strong>全部的</strong> 設定。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:942
+msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "這會刪除所有的Simple Tags設定，<strong>這是不能回復的！請小心。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:945
+msgid "Delete all options ?"
+msgstr "刪除所有的設定？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1002
+#: WP.org\trunk/inc/simple-tags.widgets.php:171
+msgid "Most popular"
+msgstr "最熱門的排在前面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1003
+#: WP.org\trunk/inc/simple-tags.widgets.php:161
+#: WP.org\trunk/inc/simple-tags.widgets.php:172
+msgid "Least used"
+msgstr "最冷門的排在前面"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1004
+#: WP.org\trunk/inc/simple-tags.widgets.php:158
+#: WP.org\trunk/inc/simple-tags.widgets.php:169
+msgid "Alphabetical"
+msgstr "依照字母順序排列"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1035
+msgid "Existing Tags"
+msgstr "已存在的標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1039
+msgid "Search tags"
+msgstr "搜尋標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1043
+msgid "Go"
+msgstr "Go"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1046
+msgid "Sort Order:"
+msgstr "排序依據："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1061
+#: WP.org\trunk/inc/simple-tags.admin.php:2205
+#, php-format
+msgid "View all posts tagged with %s"
+msgstr "觀看所有以  %s 為標籤的文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1072
+#: WP.org\trunk/inc/simple-tags.admin.php:2220
+#: WP.org\trunk/inc/simple-tags.admin.php:2222
+msgid "Previous tags"
+msgstr "先前標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1072
+#: WP.org\trunk/inc/simple-tags.admin.php:2226
+#: WP.org\trunk/inc/simple-tags.admin.php:2228
+msgid "Next tags"
+msgstr "後續標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1080
+msgid "Rename Tag"
+msgstr "重新命名標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1081
+msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
+msgstr "輸入要重新命名的標籤以及新的名稱，您可以利用這個功能來合併標籤。按下「重新命名」 後，所有使用這個標籤的文章都會被更新。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1082
+#: WP.org\trunk/inc/simple-tags.admin.php:1123
+msgid "You can specify multiple tags to rename by separating them with commas."
+msgstr "您可以用半形逗號相隔，然後同時輸入多個標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1087
+msgid "Tag(s) to rename:"
+msgstr "要重新命名的標籤："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1088
+msgid "New tag name(s):"
+msgstr "新的標籤名稱："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1089
+msgid "Rename"
+msgstr "重新命名"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1094
+msgid "Delete Tag"
+msgstr "刪除標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1095
+msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
+msgstr "輸入要刪除的標籤名稱，這個標籤將從所有的文章中移除。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1096
+msgid "You can specify multiple tags to delete by separating them with commas"
+msgstr "您可以用半形逗號相隔，同時列出要刪除的多個標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1101
+msgid "Tag(s) to delete:"
+msgstr "要刪除的標籤："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1102
+msgid "Delete"
+msgstr "刪除"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1107
+msgid "Add Tag"
+msgstr "增加標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1108
+msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
+msgstr "這個功能允許您加入一個或數個新的標籤到文章中，只要這些文章符合指定的任何一個標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1109
+msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
+msgstr "您可以用半形逗號相隔，同時加入多個標籤，如果您要將標籤加到所有的文章中，那麼就不要指定需符合特定的標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1114
+#: WP.org\trunk/inc/simple-tags.admin.php:1129
+msgid "Tag(s) to match:"
+msgstr "需符合的標籤："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1115
+msgid "Tag(s) to add:"
+msgstr "要增加的標籤："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1116
+msgid "Add"
+msgstr "增加"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1121
+msgid "Edit Tag Slug"
+msgstr "編輯標籤代稱"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1122
+msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
+msgstr "輸入你要編輯的標籤名稱以及新的代稱。 <a href=\"http://codex.wordpress.org/Glossary#Slug\">什麼是代稱？</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1133
+msgid "Slug(s) to set:"
+msgstr "設定的代稱："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1138
+#: WP.org\trunk/inc/simple-tags.admin.php:1316
+msgid "Edit"
+msgstr "編輯"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1144
+msgid "Remove empty terms"
+msgstr "移除空白項目"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1145
+msgid "WordPress 2.3 have a small bug and can create empty terms. Remove it !"
+msgstr "WordPress 2.3 有個會產生空白項目的小臭蟲，請移除它！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1149
+msgid "Clean !"
+msgstr "清除！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1272
+msgid "Author&hellip;"
+msgstr "作者&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1273
+msgid "Any"
+msgstr "任何"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1278
+msgid "Type&hellip;"
+msgstr "類別&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1280
+msgid "Post"
+msgstr "文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1282
+msgid "Page"
+msgstr "分頁"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1290
+msgid "Date (descending)"
+msgstr "日期（降冪排列）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1291
+msgid "Date (ascending)"
+msgstr "日期（升冪排列）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1292
+msgid "ID (descending)"
+msgstr "ID（降冪排列）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1293
+msgid "ID (ascending)"
+msgstr "ID（升冪排列）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1298
+msgid "Filter&hellip;"
+msgstr "篩選條件&hellip;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1301
+msgid "Untagged only"
+msgstr "只有無標籤的文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1336
+msgid "No content to edit."
+msgstr "無內容可供編輯"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1415
+msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
+msgstr "標籤（以半形逗號相隔：貓, 寵物飼料, 狗）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1467
+msgid "No new tag specified!"
+msgstr "沒有指定新標籤！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1486
+msgid "No new/old valid tag specified!"
+msgstr "沒有指定新的/舊的有效標籤！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1518
+msgid "No tag renamed."
+msgstr "沒有標籤被重新命名。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1521
+#, php-format
+msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr "重新命名標籤 &laquo;%1$s&raquo; 為 &laquo;%2$s&raquo;"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1528
+msgid "No valid new tag."
+msgstr "沒有有效的新標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1545
+msgid "No objects (post/page) found for specified old tags."
+msgstr "找不到擁有特定舊標籤的目標（文章/分頁）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1570
+msgid "No tag merged."
+msgstr "沒有標籤被合併。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1573
+#, php-format
+msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr "合併標籤 &laquo;%1$s&raquo; 到 &laquo;%2$s&raquo;. %3$s 目標已編輯。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1576
+msgid "Error. No enough tags for rename. Too for merge. Choose !"
+msgstr "錯誤，沒有足夠的標籤可供重新命名和合併，請選譯！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1602
+msgid "No tag specified!"
+msgstr "沒有指定標籤！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1627
+msgid "No tag deleted."
+msgstr "未刪除任何標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1630
+#, php-format
+msgid "%1s tag(s) deleted."
+msgstr "%1s 個標籤已刪除。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1642
+msgid "No new tag(s) specified!"
+msgstr "沒有指定新標籤！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1690
+msgid "No tag added."
+msgstr "沒有增加標籤。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1693
+#, php-format
+msgid "Tag(s) added to %1s post(s)."
+msgstr "標籤已加入至  %1s 篇文章。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1705
+msgid "No new slug(s) specified!"
+msgstr "沒有指定新代稱！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1721
+msgid "Tags number and slugs number isn't the same!"
+msgstr "標籤與代稱的數量不同！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1745
+msgid "No slug edited."
+msgstr "未編輯任何標籤代稱。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1748
+#, php-format
+msgid "%s slug(s) edited."
+msgstr "%s 個代稱已編輯"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1766
+msgid "Nothing to muck. Good job !"
+msgstr "沒有什麼亂七八糟的東西了，做得好哇！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1791
+#, php-format
+msgid "%s rows deleted. WordPress DB is clean now !"
+msgstr "%s 行已刪除， WordPress 資料庫現在已清理乾淨！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1814
+msgid "Display click tags"
+msgstr "顯示點選標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1814
+msgid "Hide click tags"
+msgstr "隱藏點選標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1866
+msgid "Suggested tags from :"
+msgstr "從何處獲取建議標籤："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1867
+msgid "Local tags"
+msgstr "本地標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1868
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1869
+msgid "Tag The Net"
+msgstr "Tag The Net"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:1875
+msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
+msgstr "選擇一個建議標籤的提供者（本地系統、yahoo 或 tag the net）。"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2103
+#, php-format
+msgid "%s post(s) tags updated with success !"
+msgstr "%s 篇文章的標籤已成功更新！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2105
+#, php-format
+msgid "%s page(s) tags updated with success !"
+msgstr "%s 個分頁的標籤已成功更新！"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2514
+#, php-format
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s | <a href=\"http://www.wmfield.idv.tw/\" title=\"正體中文語系檔\">Neil Lin</a>"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2554
+msgid "Page: "
+msgstr "分頁："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2633
+msgid "General"
+msgstr "一般"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2636
+msgid "Administration"
+msgstr "管理"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2639
+msgid "Meta Keyword"
+msgstr "關鍵字"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2645
+msgid "Tags for Current Post"
+msgstr "當前文章的標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2648
+msgid "Related Posts"
+msgstr "相關文章"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2651
+msgid "Related Tags"
+msgstr "相關標籤"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.admin.php:2654
+msgid "Tag cloud"
+msgstr "標籤雲"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:143
+msgid "Empty field will use default value."
+msgstr "空白區域將使用預設值"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:146
+msgid "Title:"
+msgstr "標題"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:151
+msgid "Max tags to display: (default: 45)"
+msgstr "標籤顯示最多數量：（預設：45）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:156
+msgid "Tags selection:"
+msgstr "標籤選擇排序："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:159
+#: WP.org\trunk/inc/simple-tags.widgets.php:170
+msgid "Inverse Alphabetical"
+msgstr "依照字母順序反向排列"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:160
+msgid "Most popular (default)"
+msgstr "最熱門的排在前面（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:162
+msgid "Random"
+msgstr "隨機排列"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:173
+msgid "Random (default)"
+msgstr "隨機排列（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:178
+msgid "Font size mini: (default: 8)"
+msgstr "最小字型大小：（預設：8）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:183
+msgid "Font size max: (default: 22)"
+msgstr "最大字型大小：（預設：22）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:188
+msgid "Unit font size:"
+msgstr "字型大小單位："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:190
+msgid "Point (default)"
+msgstr "點 Point（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:191
+msgid "Pixel"
+msgstr "像素 Pixel"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:192
+msgid "Em"
+msgstr "相對單位 Em"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:193
+msgid "Pourcent"
+msgstr "百分比 Percent"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:198
+msgid "Format:"
+msgstr "格式："
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:200
+msgid "Flat (default)"
+msgstr "平版（預設）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:201
+msgid "List (UL/LI)"
+msgstr "列表 (UL/LI)"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:207
+msgid "Use auto color cloud:"
+msgstr "使用自動彩色雲"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:211
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "最小字體顏色：（預設： #CCCCCC）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:216
+msgid "Font color max: (default: #000000)"
+msgstr "最大字體顏色：（預設：#000000）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:221
+msgid "Extended format: (advanced usage)"
+msgstr "延伸格式：（進階使用）"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:252
+msgid "Tag Cloud Widgets"
+msgstr "標籤雲"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:253
+msgid "How many tag cloud widgets would you like?"
+msgstr "您想要多少個標籤雲？"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:257
+msgid "Save"
+msgstr "儲存"
+
+#: F:\SVN\ST
+#: WP.org\trunk/inc/simple-tags.widgets.php:274
+#: WP.org\trunk/inc/simple-tags.widgets.php:275
+#, php-format
+msgid "Extended Tag Cloud %d"
+msgstr "進階標籤雲 %d"
+
