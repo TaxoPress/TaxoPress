@@ -40,7 +40,7 @@ function html_entity_decode(str) {
 
 jQuery(document).ready(function() {
 	jQuery("#suggestedtags h3.hndle span").html( html_entity_decode(stHelperSuggestedTagsL10n.title_bloc) );
-	jQuery("#suggestedtags .inside").html( stHelperSuggestedTagsL10n.content_bloc );
+	jQuery("#suggestedtags .inside .container_clicktags").html( stHelperSuggestedTagsL10n.content_bloc );
 	
 	// Yahoo API
 	jQuery("a.yahoo_api").click(function() {

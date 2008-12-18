@@ -1,6 +1,6 @@
 <?php
 class SimpleTags {
-	var $version = '1.6.0';
+	var $version = '1.6.1';
 
 	var $info;
 	var $options;
