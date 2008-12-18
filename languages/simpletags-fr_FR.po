@@ -1,0 +1,2278 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Tags\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-12-18 01:42+0100\n"
+"PO-Revision-Date: 2008-12-18 01:45+0100\n"
+"Last-Translator: Amaury BALMER <amaury@wordpress-fr.net>\n"
+"Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;_c;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SearchPath-0: C:\\SVN\\ST WP.org\\trunk\n"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/simple-tags.php:48
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/simple-tags.php:52
+msgid "Simple Tags can't work with this WordPress version !"
+msgstr "Simple Tags ne peut pas fonctionner avec cette version de WordPress !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/simple-tags.php:48
+#, php-format
+msgid "You must use <a href=\"%1$s\">Simple Tagging Plugin</a> for it to work."
+msgstr "Vous devez utiliser le plugin <a href=\"%1$s\">Simple Tagging</a> pour que cele fonctionne."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:87
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:555
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:86
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:554
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:86
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:554
+msgid "No related posts."
+msgstr "Aucun article relatif."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:88
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:554
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:87
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:553
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:87
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:553
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>Articles relatifs</h4>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:89
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:557
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:88
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:556
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:88
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:556
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:95
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1222
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:94
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1253
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:94
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1253
+msgid "No tags."
+msgstr "Aucun tag."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:96
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1224
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:95
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1255
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:95
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1255
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>Nuage de tags</h4>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:98
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1223
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:97
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1254
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:97
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1254
+msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% articles\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:110
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1439
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:109
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1499
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:109
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1499
+msgid "Tags: "
+msgstr "Tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:112
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1446
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1506
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1506
+msgid "No tag for this post."
+msgstr "Aucun tag pour cet article."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:115
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1445
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:114
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:114
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:123
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:874
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:122
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:904
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:122
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:904
+msgid "<h4>Related tags</h4>"
+msgstr "<h4>Tags relatifs</h4>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:124
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:875
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:905
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:905
+msgid "No related tag found."
+msgstr "Aucun tag relatif trouvé."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:125
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:124
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:124
+msgid "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+msgstr "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:130
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:129
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:129
+msgid "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "&raquo; <a href=\"%tag_link_remove%\" title=\"Supprimer %tag_name_attribute% from search\">Supprimer %tag_name%</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:272
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:266
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:266
+#, php-format
+msgid "Posts tagged with %s"
+msgstr "Voir les articles taggés avec %s"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:786
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:825
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:825
+msgid "There is no excerpt because this is a protected post."
+msgstr "Il n'y a pas d'extrait car ceci est un article protégé."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:876
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:906
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:906
+msgid "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+msgstr "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1078
+msgid "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Supprimer %tag_name%</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/simple-tags.client.php:1685
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1751
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1751
+msgid "Invalid Taxonomy"
+msgstr "Taxinomie invalide."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:149
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:628
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:173
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:640
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:246
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:702
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: Gestion des tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:149
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:173
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:246
+msgid "Manage Tags"
+msgstr " Gestion des tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:150
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:843
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:174
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:247
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: Edition en masse de tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:150
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:174
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:247
+msgid "Mass Edit Tags"
+msgstr "Edition en masse de tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:151
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:209
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:175
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:248
+msgid "Simple Tags: Auto Tags"
+msgstr "Simple Tags: Auto Tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:151
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:175
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:232
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:248
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:305
+msgid "Auto Tags"
+msgstr "Auto Tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:152
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:522
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:176
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:536
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:249
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:598
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: Options"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:152
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:176
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:249
+msgid "Simple Tags"
+msgstr "Simple Tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:194
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:218
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:291
+msgid "Auto tags options updated !"
+msgstr "Les options d'Auto tags sont mise à jour !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:210
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:523
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:629
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:844
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:641
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:703
+msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visitez le <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:214
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:237
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:310
+msgid "Auto tags list"
+msgstr "Liste des auto tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:215
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:238
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:311
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
+msgstr "Cette fonctionnalité autorise WordPress à regarder le contenu et le titre des articles afin d'y trouver des tags spécifiques lors de la sauvegarde des articles. Si le contenu ou le titre de l'article contient le mot \"WordPress\" et que la liste auto tags contient le mot \"wordpress\", Simple Tags ajoutera automatiquement \"wordpress\" comme tag de l'article."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:219
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:247
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:320
+msgid "Active Auto Tags."
+msgstr "Activer les auto tags."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:222
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:254
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:327
+msgid "Use also local tags database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many tags)"
+msgstr "Utiliser également la base de tags locale pour la fonction de tag automatique. (Attention, cette option peut augmenter la consommation CPU de façon importante si vous possédez beaucoup de tags)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:225
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:261
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:334
+msgid "Autotag only posts without tags."
+msgstr "Tagger automatiquement et uniquement les articles sans tags."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:227
+msgid "Keywords list: (separated with a comma)"
+msgstr "Liste des mots clés: (séparé avec une virgule)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:233
+msgid "Update list &raquo;"
+msgstr "Mettre à jour la liste &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:236
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:277
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:349
+msgid "Auto tags old content"
+msgstr "Tagger automatiquement le contenu existant"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:237
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:278
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:350
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "Simple Tags permet également de tagger automatiquement tout le contenu de votre blog. Cette fonctionnalité utilise la liste des tags mentionnés ci-dessus."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:238
+msgid "Auto tags all content"
+msgstr "Tagger automatiquement tout le contenu"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:259
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:303
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:375
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:167
+msgid "If your browser doesn't start loading the next page automatically click this link:"
+msgstr "Si votre navigateur ne lance pas automatiquement la page suivante, cliquer sur ce lien:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:259
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:303
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:375
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:167
+msgid "Next content"
+msgstr "Contenu suivant"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:271
+msgid "All done!"
+msgstr "Terminé !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:287
+msgid "Include page in tag search:"
+msgstr "Inclure les pages lors d'une recherche de tag:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:288
+msgid "This feature need that option \"Add page in tags management\" is enabled."
+msgstr "Cette fonctionnalité nécessite que l'option \"Ajouter les pages dans la gestion des tags\" soit activée."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:289
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:334
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:406
+msgid "Allow tag cloud in post/page content:"
+msgstr "Autoriser l'insertion de nuage de tags dans le contenu des articles/pages:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:290
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:335
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:407
+msgid "Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud."
+msgstr "L'activation de cette option permet à WordPress de regarder dans le contenu des articles à la recherche du marqueur <code>&lt;!--st_tag_cloud--&gt;</code>. S'il existe, il sera automatiquement remplacé par un nuage de tags."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:291
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:336
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:408
+msgid "Active auto link tags into post content:"
+msgstr "Activer la création automatique de liens dans le contenu des articles:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:292
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:337
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:409
+msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr "Exemple: Vous avez un tag nommé \"WordPress\" et le contenu de votre article contient le mot \"wordpress\", cette fonctionnalité remplacera le mot \"wordpress\" par un lien \"wordpress\" pointant sur la page du tag. (http://monblog.net/tag/wordpress/)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:293
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:338
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:410
+msgid "Min usage for auto link tags:"
+msgstr "Utilisation minimale pour la création automatique de liens des tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:294
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:339
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:411
+msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
+msgstr "Ce paramètre permet de fixer une valeur minimale d'utilisation des tags. Défaut: 1."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:295
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:340
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:412
+msgid "Ignore case for auto link feature ?"
+msgstr "Ignorer la casse lors de la création automatique de liens des tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:296
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:341
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:413
+msgid "Example: If you ignore case, auto link feature will replace the word \"wordpress\" by the tag link \"WordPress\"."
+msgstr "Exemple: Si vous ignorez la casse, la création automatique de liens des tags remplacera le mot \"wordpress\" par le lien du tag \"WordPress\"."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:297
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:342
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:414
+msgid "Add the rel=\"nofollow\" on each tags link ?"
+msgstr "Ajouter le rel=\"nofollow\" sur chaque lien de tags ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:298
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:343
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:415
+msgid "Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index."
+msgstr "En ajoutant rel=\"nofollow\" à un hyperlien, une page indique que la destination de cet hyperlien NE DEVRAIT PAS ETRE chargée de quelque poids supplémentaire ou de classement par les agents utilisateur qui exécutent de l'analyse de lien sur les pages web (par ex. les moteurs de recherche)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:301
+msgid "Add page in tags management:"
+msgstr "Ajouter les pages dans la gestion des tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:302
+msgid "Add a tag input (and tag posts features) in page edition"
+msgstr "Ajouter le champ tag (ainsi que les fonctionnalités spécifiques des articles) lors de l'édition des pages"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:303
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:346
+msgid "Activate click tags feature:"
+msgstr "Activer la fonctionnalité Clic Tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:304
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:347
+msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
+msgstr "Cette fonctionnalité ajoute un lien vous permettant d'afficher tous les tags de votre base de données. Une fois affichés, vous pouvez cliquer sur les tags pour les ajouter à l'article."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:305
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:348
+msgid "Activate autocompletion feature:"
+msgstr "Activer la fonction d'autocomplétion:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:306
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:349
+msgid "This feature displays a visual help allowing to enter tags more easily."
+msgstr "Cette fonctionnalité vous permet d'afficher une aide visuelle vous facilitant la saisie de tags."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:307
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:350
+msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)"
+msgstr "Activer la fonctionnalité Tags suggérés: (Yahoo! Term Extraction API, Tag The Net, Base local)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:308
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:351
+msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
+msgstr "Cette fonctionnalité ajoute une rubrique vous permettant de générer des tags suggerés, en comparant le contenu de l'articles et différentes sources de tags. (interne comme externe)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:311
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:354
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:418
+msgid "Automatically include in header:"
+msgstr "Inclure automatiquement les mots clés:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:312
+msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is disabled."
+msgstr "Inclut automatiquement des tags comme mots clés dans l'entête de votre page (la plupart des thèmes supportent cette fonction). Ces mots clés sont parfois utilisés par les moteurs de recherche.<br /><strong>Attention:</strong> Si le plugin \"All in One SEO Pack\" est installé et actif. Cette fonctionnalité est desactivée."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:313
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:356
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:420
+msgid "Always add these keywords:"
+msgstr "Toujours ajouter les mots clés suivants:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:314
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:357
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:421
+msgid "Max keywords display:"
+msgstr "Nombre max de mots clés à afficher:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:315
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:358
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:422
+msgid "You must set zero (0) for display all keywords in HTML header."
+msgstr "Vous devez mettre zéro (0) pour afficher tous les mots clés dans l'entete HTML."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:318
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:361
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:425
+msgid "Use embedded tags:"
+msgstr "Utiliser les tags embarqués:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:319
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:362
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:426
+msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
+msgstr "L'activation de cette option permettra à WordPress de chercher des tags inclus à l'intérieur de vos articles, lors de leur enregistrement et de leur affichage. Ces tags sont marqués comme <code>[tags]ceci, et cela[/tags]</code>, et sont ajoutés automatiquement à votre article lors de son enregistrement, mais ne seront pas visibles pour vos visiteurs."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:320
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:363
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:427
+msgid "Prefix for embedded tags:"
+msgstr "Préfixe des tags embarqués:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:321
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:364
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:428
+msgid "Suffix for embedded tags:"
+msgstr "Suffixe des tags embarqués:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:324
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:367
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:431
+msgid "Automatically display tags list into feeds"
+msgstr "Ajouter automatiquement les tags de l'article dans le flux RSS"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:325
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:368
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:432
+msgid "Automatically display tags list into post content:"
+msgstr "Ajouter automatiquement la liste des tags dans le contenu des articles"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:327
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:351
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:370
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:394
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:434
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:458
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>no</code> &ndash; Nulle part (défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:328
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:352
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:371
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:395
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:435
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:459
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>all</code> &ndash; Dans le blog et les flux RSS."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:329
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:353
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:372
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:396
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:436
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:460
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash; Seulement dans le blog."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:330
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:354
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:373
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:397
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:437
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:461
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr "<code>homeonly</code> &ndash; Seulement sur la page d'accueil du blog."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:331
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:355
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:374
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:398
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:438
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:462
+msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr "<code>singularonly</code> &ndash; Seulement sur une vue détaillée (page ou article)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:332
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:356
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:375
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:399
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:439
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:463
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr "<code>singleonly</code> &ndash; Seulement sur une vue détaillée d'article."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:333
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:357
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:376
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:400
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:440
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:464
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr "<code>pageonly</code> &ndash; Seulement sur une vue détaillée de page."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:335
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:378
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:442
+msgid "Post tag separator string:"
+msgstr "Séparateur entre les tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:336
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:379
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:443
+msgid "Text to display before tags list:"
+msgstr "Texte à afficher avant la liste de tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:337
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:380
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:444
+msgid "Text to display after tags list:"
+msgstr "Texte à afficher après la liste de tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:338
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:381
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:445
+msgid "Max tags display:"
+msgstr "Nombre max de tag à afficher:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:339
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:382
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:446
+msgid "You must set zero (0) for display all tags."
+msgstr "Vous devez mettre zéro (0) pour afficher tous les tags."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:340
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:383
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:447
+msgid "Include categories in result ?"
+msgstr "Inclure les catégories dans le resultat ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:341
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:448
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:384
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:491
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:448
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:555
+msgid "Tag link format:"
+msgstr "Format des liens des tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:342
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:370
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:398
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:416
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:449
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:385
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:413
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:441
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:459
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:492
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:449
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:477
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:505
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:523
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:556
+msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
+msgstr "Vous pouvez trouver les marqueurs et les explications <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">sur la documentation en ligne.</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:343
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:386
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:450
+msgid "Text to display if no tags found:"
+msgstr "Texte à afficher si aucun tag n'a été trouvé:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:344
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:374
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:403
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:461
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:387
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:417
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:446
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:504
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:451
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:481
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:510
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:568
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>Utilisation avancée</strong>:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:345
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:388
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:452
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:348
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:391
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:455
+msgid "Automatically display related posts into feeds"
+msgstr "Ajouter automatiquement les articles relatifs dans le flux RSS"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:349
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:392
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:456
+msgid "Automatically display related posts into post content"
+msgstr "Ajouter automatiquement les articles relatifs dans le contenu des articles"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:359
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:402
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:466
+msgid "Related Posts Order:"
+msgstr "Ordre des articles relatifs:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:361
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:404
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:468
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr "<code>date-asc</code> &ndash; Plus anciens."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:362
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:405
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:469
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr "<code>date-desc</code> &ndash; Plus récents."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:363
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:406
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:470
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr "<code>count-asc</code> &ndash; Le moins de tags en commun entre 2 articles."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:364
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:407
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:471
+msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr "<code>count-desc</code> &ndash; Le plus de tags en commun entre 2 articles. (défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:365
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:383
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:430
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:438
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:408
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:426
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:473
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:481
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:472
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:490
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:537
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:545
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr "<code>name-asc</code> &ndash; Ordre alphabétique."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:366
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:384
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:431
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:439
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:409
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:427
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:474
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:482
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:473
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:491
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:538
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:546
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr "<code>name-desc</code> &ndash; Inverse de l'ordre alphabétique."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:367
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:385
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:432
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:410
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:428
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:475
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:474
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:492
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:539
+msgid "<code>random</code> &ndash; Random."
+msgstr "<code>random</code> &ndash; Aléatoire."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:369
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:412
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:476
+msgid "Post link format:"
+msgstr "Format des liens des articles:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:371
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:414
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:478
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr "Nombre max d'articles relatifs à afficher: (defaut: 5)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:372
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:415
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:479
+msgid "Enter the text to show when there is no related post:"
+msgstr "Entrer le texte à afficher lorsqu'il n'y a pas d'articles relatifs:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:373
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:402
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:452
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:416
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:445
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:495
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:480
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:509
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:559
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "Entrer le titre positionné avant la liste, laisser vide, pour ne rien afficher:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:375
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:418
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:482
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:378
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:421
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:485
+msgid "Maximum number of related tags to display: (default: 5)"
+msgstr "Nombre max de tags relatifs à afficher: (defaut: 5)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:379
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:422
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:486
+msgid "Order related tags:"
+msgstr "Ordre des tags relatifs:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:381
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:428
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:436
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:424
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:471
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:479
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:488
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:535
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:543
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr "<code>count-asc</code> &ndash; Les moins utilisés."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:382
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:429
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:425
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:472
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:489
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:536
+msgid "<code>count-desc</code> &ndash; Most popular. (default)"
+msgstr "<code>count-desc</code> &ndash; Les plus populaires.(défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:387
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:430
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:494
+msgid "Related tags type format:"
+msgstr "Format des tags relatifs:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:389
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:409
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:445
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:432
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:452
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:488
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:496
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:516
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:552
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr "<code>list</code> &ndash; Affiche une liste formatée (ul/li)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:390
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:410
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:446
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:433
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:453
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:489
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:497
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:517
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:553
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr "<code>flat</code> &ndash; Afficher en ligne (pas de liste, juste un balise div)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:392
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:435
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:499
+msgid "Method of tags intersections and unions used to build related tags link:"
+msgstr "Méthode d'intersections et d'unions utilisée pour la construction des liens des tags relatifs"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:394
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:437
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:501
+msgid "<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</strong> the \"Tag2\" tag. (default)"
+msgstr "<code>OR</code> &ndash; Récupère les articles contenant les tags \"Tag1\" <strong>ou</strong> \"Tag2\"."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:395
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:438
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:502
+msgid "<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</strong> the \"Tag2\" tag."
+msgstr "<code>AND</code> &ndash; Récupère les articles contenant les tags \"Tag1\" <strong>et</strong> \"Tag2\"."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:397
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:440
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:504
+msgid "Related tags link format:"
+msgstr "Format des liens des tags relatifs:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:399
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:442
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:506
+msgid "Related tags separator:"
+msgstr "Séparateur entre les tags relatifs:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:400
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:413
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:443
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:456
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:507
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:520
+msgid "Leave empty for list format."
+msgstr "Laisser vide si vous utilisez le format \"list\""
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:401
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:444
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:508
+msgid "Enter the text to show when there is no related tags:"
+msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de tags relatifs:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:404
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:447
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:511
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:406
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:449
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:513
+msgid "Remove related Tags"
+msgstr "Tags relatifs à supprimer:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:407
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:450
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:514
+msgid "Remove related Tags type format:"
+msgstr "Format des tags relatifs à supprimer:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:412
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:455
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:519
+msgid "Remove related tags separator:"
+msgstr "Séparateur entre les tags relatifs à supprimer:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:414
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:457
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:521
+msgid "Enter the text to show when there is no remove related tags:"
+msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de tags relatifs à supprimer:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:415
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:458
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:522
+msgid "Remove related tags  link format:"
+msgstr "Format des liens des tags relatifs à supprimer:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:419
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:462
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:526
+msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
+msgstr "Quelle est la différence entre <strong>&#8216;Ordre de sélection des tags&#8217;</strong> et <strong>&#8216;Ordre d'affichage des tags&#8217;</strong> ?<br />"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:421
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:464
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:528
+msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
+msgstr "<strong>&#8216;Ordre de sélection des tags&#8217;</strong> est la première étape de la génération du nuage de tags, elle correspond à la récupération des tags."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:422
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:465
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:529
+msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
+msgstr "<strong>&#8216;Ordre d'affichage des tags&#8217;</strong> est la seconde étape. Une fois les tags récupérés, vous pouvez les réordonner avant l'affichage."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:424
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:467
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:531
+msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
+msgstr "<strong>Exemple:</strong> Vous voulez afficher aléatoirement les 100 tags les plus populaires.<br />"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:425
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:468
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:532
+msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr "Vous devez fixer l'option &#8216;Ordre de sélection des tags&#8217; sur <strong>count-desc</strong> pour récupérer les 100 tags les plus utilisés. Fixer ensuite l'option &#8216;Ordre d'affichage des tags&#8217; sur <strong>random</strong> pour mélanger le nuage."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:426
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:469
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:533
+msgid "Order tags selection:"
+msgstr "Ordre de sélection des tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:434
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:167
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:477
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:155
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:541
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:155
+msgid "Order tags display:"
+msgstr "Ordre d'affichage des tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:437
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:480
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:544
+msgid "<code>count-desc</code> &ndash; Most popular."
+msgstr "<code>count-desc</code> &ndash; Les plus populaires."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:440
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:483
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:547
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr "<code>random</code> &ndash; Aléatoire. (défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:442
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:485
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:549
+msgid "Include categories in tag cloud ?"
+msgstr "Inclure les catégories dans la nuage de tags ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:443
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:486
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:550
+msgid "Tags cloud type format:"
+msgstr "Format du nuage de tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:450
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:493
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:557
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "Nombre max de tags à afficher: (défaut: 45)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:451
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:494
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:558
+msgid "Enter the text to show when there is no tag:"
+msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:453
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:496
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:560
+msgid "Most popular color:"
+msgstr "Couleur des tags les plus populaires"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:454
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:497
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:561
+msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
+msgstr "Les couleurs sont représentées par leur code hexadécimal, et nécessite 6 caractères. (ex. #eee est la version raccourcie de #eeeeee)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:455
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:498
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:562
+msgid "Least popular color:"
+msgstr "Couleur des tags les moins utilisés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:456
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:499
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:563
+msgid "Most popular font size:"
+msgstr "Taille pour les tags les plus populaires"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:457
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:500
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:564
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "Les 2 tailles de polices représentent la taille maximale et minimale des tags."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:458
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:501
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:565
+msgid "Least popular font size:"
+msgstr "Taille pour les tags les moins utilisés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:459
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:502
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:566
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "Unité à utiliser pour la taille des polices dans le nuage de tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:460
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:503
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:567
+msgid "The font size units option determines the units that the two font sizes use."
+msgstr "Cette option détermine l'unité à utiliser pour la taille des tags dans le nuage."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:462
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:505
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:569
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:476
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:519
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:583
+msgid "Options saved"
+msgstr "Les options ont été sauvegardées."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:480
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:523
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:587
+msgid "Simple Tags options resetted to default options!"
+msgstr "Les options par défaut de Simple Tags ont été restaurées."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:486
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:529
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:593
+#, php-format
+msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "Toutes les options de Simple Tags sont éffacées ! Vous pouvez <a href=\"%s\">désinstaller le plugin</a>  !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:526
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:550
+msgid "Update Options &raquo;"
+msgstr "Mettre à jour les options &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:527
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:551
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:541
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:564
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:603
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:626
+msgid "Do you really want to restore the default options?"
+msgstr "Êtes-vous sur de vouloir restaurer les options par défaut?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:527
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:551
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:541
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:564
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:603
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:626
+msgid "Reset Options"
+msgstr "Restaurer les options par défaut"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:534
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:548
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:610
+msgid "Uninstallation"
+msgstr "Désinstallation"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:540
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:554
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:616
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "Généralement, la désactivation d'un plugin, n'efface aucune donnée de ce dernier, si vous voulez vraiment arrêter d'utiliser Simple Tags, merci d'effacer <strong>toutes</strong> les options avant de désactiver le plugin."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:541
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:555
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:617
+msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "Ceci effacera toutes les options de Simple Tags. <strong>Cette action est irréversible, soyez prudent.</strong>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:544
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:558
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:620
+msgid "Delete all options ?"
+msgstr "Effacer toutes les options ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:568
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1714
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:580
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1751
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:642
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1735
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "Problème de sécurité. Merci de réessayer. Si le problème persiste, contacter <a href=\"mailto:amaury@wordpress-fr.net\">l'auteur du plugin</a>."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:601
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:171
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:613
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:159
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:675
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:159
+msgid "Most popular"
+msgstr "Plus populaire"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:602
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:161
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:172
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:614
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:149
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:160
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:676
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:149
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:160
+msgid "Least used"
+msgstr "Moins utilisé"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:603
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:158
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:169
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:615
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:146
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:157
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:677
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:146
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:157
+msgid "Alphabetical"
+msgstr "Alphabétique"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:634
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:646
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:708
+msgid "Existing Tags"
+msgstr "Tags existants:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:638
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:650
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:712
+msgid "Search tags"
+msgstr "Chercher des tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:642
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:654
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:716
+msgid "Go"
+msgstr "Ok"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:645
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:658
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:720
+msgid "Sort Order:"
+msgstr "Trier par:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:660
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1844
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:676
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1880
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:738
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1866
+#, php-format
+msgid "View all posts tagged with %s"
+msgstr "Voir les articles taggés avec %s"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:671
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1859
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1861
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:684
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1895
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1897
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:746
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1881
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1883
+msgid "Previous tags"
+msgstr "Tags précédents"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:671
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1865
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1867
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:684
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1901
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1903
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:746
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1887
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1889
+msgid "Next tags"
+msgstr "Tags suivant"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:679
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:691
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:753
+msgid "Rename Tag"
+msgstr "Renommer le tag"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:680
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:699
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:761
+msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
+msgstr "Entrer le tag à renommer et sa nouvelle valeur.  Vous pouvez également utiliser cette fonction pour fusionner des tags. <br />Cliquer sur \"Renommer\" et tous les articles utilisant ce ou ces tag(s) seront mis à jour."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:681
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:722
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:700
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:774
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:762
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:836
+msgid "You can specify multiple tags to rename by separating them with commas."
+msgstr "Vous pouvez spécifier plusieurs tags à renommer en les séparant avec des virgules."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:686
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:704
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:766
+msgid "Tag(s) to rename:"
+msgstr "Tag(s) à renommer:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:687
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:708
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:770
+msgid "New tag name(s):"
+msgstr "Nom des nouveaux tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:688
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:711
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:773
+msgid "Rename"
+msgstr "Renommer"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:693
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:717
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:779
+msgid "Delete Tag"
+msgstr "Effacer le tag"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:694
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:725
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:787
+msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
+msgstr "Entrer le nom du tag à supprimer. Ce tag sera supprimé pour tous les articles/pages."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:695
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:726
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:788
+msgid "You can specify multiple tags to delete by separating them with commas"
+msgstr "Vous pouvez spécifier plusieurs tags à supprimer en les séparant avec des virgules"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:700
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:730
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:792
+msgid "Tag(s) to delete:"
+msgstr "Tag(s) to Delete:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:701
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:733
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:795
+msgid "Delete"
+msgstr "Effacer"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:706
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:739
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:801
+msgid "Add Tag"
+msgstr "Ajouter un tag"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:707
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:747
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:809
+msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
+msgstr "Cette fonctionnalité vous permet d'ajouter un ou plusieurs tags à tous vos articles à partir d'une recherche sur un ou plusieurs tag(s) défini(s)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:708
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:748
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:810
+msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
+msgstr "Vous pouvez spécifier plusieurs tags à ajouter en les séparant avec des virgules. Si vous souhaitez ajouter ce ou ces tags à tous les articles, vous n'avez pas besoin d'entrer de tags à rechercher."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:713
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:728
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:752
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:778
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:814
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:840
+msgid "Tag(s) to match:"
+msgstr "Tag(s) à rechercher:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:714
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:756
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:818
+msgid "Tag(s) to add:"
+msgstr "Tag(s) à ajouter:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:715
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:759
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:821
+msgid "Add"
+msgstr "Ajouter"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:720
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:765
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:827
+msgid "Edit Tag Slug"
+msgstr "Editer l'identifiant d'un tag"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:721
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:773
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:835
+msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
+msgstr "Entre le nom du tag à éditer et son nouvel identifiant. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Définition de slug (en anglais)</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:732
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:782
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:844
+msgid "Slug(s) to set:"
+msgstr "Identifiant(s) à fixer:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:737
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:916
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:785
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1050
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:847
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1080
+msgid "Edit"
+msgstr "Editer"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:743
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:791
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:853
+msgid "Remove empty terms"
+msgstr "Supprimer les termes vides"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:744
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:799
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:861
+msgid "WordPress 2.3 have a small bug and can create empty terms. Remove it !"
+msgstr "WordPress 2.3 a un petit bug et permet la création de termes vides. Supprimez les !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:748
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:800
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:862
+msgid "Clean !"
+msgstr "Nettoyer !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:849
+msgid "Search terms&hellip;"
+msgstr "Mots recherchés&hellip;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:854
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1020
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1041
+msgid "Quantity&hellip;"
+msgstr "Quantité&hellip;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:872
+msgid "Author&hellip;"
+msgstr "Auteur&hellip;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:873
+msgid "Any"
+msgstr "N'importe"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:878
+msgid "Type&hellip;"
+msgstr "Type&hellip;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:880
+msgid "Post"
+msgstr "Article"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:882
+msgid "Page"
+msgstr "Page"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:888
+msgid "Order&hellip;"
+msgstr "Ordre&hellip;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:890
+msgid "Date (descending)"
+msgstr "Date (descendant)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:891
+msgid "Date (ascending)"
+msgstr "Date (ascendant)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:892
+msgid "ID (descending)"
+msgstr "ID (descendant)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:893
+msgid "ID (ascending)"
+msgstr "ID (ascendant)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:898
+msgid "Filter&hellip;"
+msgstr "Filtrer&hellip;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:900
+msgid "All"
+msgstr "Tous"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:901
+msgid "Untagged only"
+msgstr "Non taggé"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:905
+msgid "Filter &#187;"
+msgstr "Filtrer &#187;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:912
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:922
+msgid "Update all"
+msgstr "Tout mettre à jour"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:936
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1080
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1111
+msgid "No content to edit."
+msgstr "Pas de contenu à éditer."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1053
+msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
+msgstr "Tags (séparez les tags multiples par des virgules : chat, nourriture pour animaux, chien)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1105
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1338
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1341
+msgid "No new tag specified!"
+msgstr "Aucun nouveau tag spécifié!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1124
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1353
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1356
+msgid "No new/old valid tag specified!"
+msgstr "Aucun ancien ou nouveau tag spécifié!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1156
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1389
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1392
+msgid "No tag renamed."
+msgstr "Aucun tag renommé."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1159
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1391
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1394
+#, php-format
+msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr "Le(s) tag(s) &laquo;%1$s&raquo; a (ont) été renommé(s) en &laquo;%2$s&raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1166
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1398
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1401
+msgid "No valid new tag."
+msgstr "Aucun nouveau tag valide."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1183
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1415
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1418
+msgid "No objects (post/page) found for specified old tags."
+msgstr "Aucun objets (article/page) trouvé pour les anciens tags spécifiés."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1208
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1444
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1447
+msgid "No tag merged."
+msgstr "Aucun tag fusionné."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1211
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1446
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1449
+#, php-format
+msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr "Fusionner les tag(s) &laquo;%1$s&raquo; en &laquo;%2$s&raquo;. %3$s objet(s) édité(s)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1214
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1449
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1452
+msgid "Error. No enough tags for rename. Too for merge. Choose !"
+msgstr "Erreur. Pas assez de tags pour renommer. Trop pour fusionner. Choisissez !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1240
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1476
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1479
+msgid "No tag specified!"
+msgstr "Aucun tag spécifié!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1265
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1499
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1502
+msgid "No tag deleted."
+msgstr "Aucun tag effacé."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1268
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1501
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1504
+#, php-format
+msgid "%1s tag(s) deleted."
+msgstr "%1s tag(s) effacé(s)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1280
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1513
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1516
+msgid "No new tag(s) specified!"
+msgstr "Aucun nouveau tag(s) spécifié!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1328
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1564
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1567
+msgid "No tag added."
+msgstr "Aucun tag ajouté."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1331
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1566
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1569
+#, php-format
+msgid "Tag(s) added to %1s post(s)."
+msgstr "Tag(s) ajouté(s) à %1s article(s)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1343
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1578
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1581
+msgid "No new slug(s) specified!"
+msgstr "Aucun nouveau identifiant(s) spécifié!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1359
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1590
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1593
+msgid "Tags number and slugs number isn't the same!"
+msgstr "Le nombre de tags et d'identifiants n'est pas le même!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1383
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1617
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1620
+msgid "No slug edited."
+msgstr "Aucun identifiant édité."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1386
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1619
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1622
+#, php-format
+msgid "%s slug(s) edited."
+msgstr "%s identifiant(s) édité."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1404
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1637
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1640
+msgid "Nothing to muck. Good job !"
+msgstr "Rien à enlever. Bon travail!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1429
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1665
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1668
+#, php-format
+msgid "%s rows deleted. WordPress DB is clean now !"
+msgstr "%s lignes supprimées. La base de données de WordPress est nettoyée !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1452
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1678
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:123
+msgid "Display click tags"
+msgstr "Afficher les Clic Tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1452
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1679
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:124
+msgid "Hide click tags"
+msgstr "Cache les tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1504
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1696
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1694
+msgid "Suggested tags from :"
+msgstr "Tags suggérés depuis :"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1505
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1697
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1695
+msgid "Local tags"
+msgstr "Tags local"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1506
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1698
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1696
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1507
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1699
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1697
+msgid "Tag The Net"
+msgstr "Tag The Net"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1513
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1702
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1712
+msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
+msgstr "Choisissez une source pour recupérer les tags suggerés (base locale, yahoo ou tag the net)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1742
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1783
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1767
+#, php-format
+msgid "%s post(s) tags updated with success !"
+msgstr "Les tags de %s article(s) ont été mis à jour avec succès !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:1744
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1781
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1765
+#, php-format
+msgid "%s page(s) tags updated with success !"
+msgstr "Les tags de %s page(s) ont été mis à jour avec succès !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2155
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2189
+#, php-format
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2195
+msgid "Page: "
+msgstr "Page:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2274
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2291
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2226
+msgid "General"
+msgstr "Options générales"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2277
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2294
+msgid "Administration"
+msgstr "Administration"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2280
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2297
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2229
+msgid "Meta Keyword"
+msgstr "Mots clés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2283
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2300
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2232
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:242
+msgid "Embedded Tags"
+msgstr "Tags embarqués"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2286
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2303
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2235
+msgid "Tags for Current Post"
+msgstr "Tags de l'article courant"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2289
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2306
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2238
+msgid "Related Posts"
+msgstr "Articles relatifs"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2292
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2309
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2241
+msgid "Related Tags"
+msgstr "Tags relatifs"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.admin.php:2295
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:2312
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2244
+msgid "Tag cloud"
+msgstr "Nuage de tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:143
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:131
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:131
+msgid "Empty field will use default value."
+msgstr "Les champs vides utiliseront la valeur par défaut."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:146
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:134
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:134
+msgid "Title:"
+msgstr "Titre:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:151
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:139
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:139
+msgid "Max tags to display: (default: 45)"
+msgstr "Nombre max de tags à afficher: (défaut: 45)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:156
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:144
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:144
+msgid "Tags selection:"
+msgstr "Selection des tags:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:159
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:170
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:147
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:158
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:147
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:158
+msgid "Inverse Alphabetical"
+msgstr "Inverse de l'ordre alphabétique"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:160
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:148
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:148
+msgid "Most popular (default)"
+msgstr "Plus populaire (défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:162
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:150
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:150
+msgid "Random"
+msgstr "Aléatoire"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:173
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:161
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:161
+msgid "Random (default)"
+msgstr "Aléatoire (défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:178
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:166
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:166
+msgid "Font size mini: (default: 8)"
+msgstr "Taille minimale (défaut: 8)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:183
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:171
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:171
+msgid "Font size max: (default: 22)"
+msgstr "Taille maximale (défaut: 22)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:188
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:176
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:176
+msgid "Unit font size:"
+msgstr "Unité pour la taille:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:190
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:178
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:178
+msgid "Point (default)"
+msgstr "Point (défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:191
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:179
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:179
+msgid "Pixel"
+msgstr "Pixel"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:192
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:180
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:180
+msgid "Em"
+msgstr "Em"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:193
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:181
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:181
+msgid "Pourcent"
+msgstr "Pourcentage"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:198
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:186
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:186
+msgid "Format:"
+msgstr "Format:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:200
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:188
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:188
+msgid "Flat (default)"
+msgstr "Applati (défaut)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:201
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:189
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:189
+msgid "List (UL/LI)"
+msgstr "Liste (UL/LI)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:207
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:195
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:195
+msgid "Use auto color cloud:"
+msgstr "Utiliser la génération automatique de couleur:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:211
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:199
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:199
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "Couleur minimale: (defaut: #CCCCCC)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:216
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:204
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:204
+msgid "Font color max: (default: #000000)"
+msgstr "Couleur maximale: (defaut: #000000)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:221
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:209
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:209
+msgid "Extended format: (advanced usage)"
+msgstr "Format étendu: (utilisation avancée)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:252
+msgid "Tag Cloud Widgets"
+msgstr "Nuage de tags Widgets"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:253
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:241
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:241
+msgid "How many tag cloud widgets would you like?"
+msgstr "Combien de widgets \"Nuage de tags\" désirez-vous ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:257
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:245
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:245
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:274
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.3/inc/simple-tags.widgets.php:275
+#, php-format
+msgid "Extended Tag Cloud %d"
+msgstr "Nuage de tags avancé %d"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:111
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:111
+msgid "No tags for this post."
+msgstr "Aucun tag pour cet article."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:123
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:123
+msgid "No related tags found."
+msgstr "Aucun tag relatif trouvé."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1116
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1116
+msgid "<a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "Simple Tags ne peut pas fonctionner avec cette version de WordPress !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/simple-tags.client.php:1505
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/simple-tags.client.php:1505
+msgid "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:233
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:537
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1083
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:306
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:599
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1114
+msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visitez le <a href=\"http://code.google.com/p/simple-tags/\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:240
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:313
+msgid "Options"
+msgstr "Options"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:244
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:317
+msgid "Activation"
+msgstr "Activation"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:251
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:324
+msgid "Tags database"
+msgstr "Base de données des tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:258
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:331
+msgid "Target"
+msgstr "Cible"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:265
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:338
+msgid "Keywords list"
+msgstr "Liste des tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:268
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:341
+msgid "Separated with a comma"
+msgstr "Séparé avec une virgule"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:274
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:540
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:563
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:346
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:602
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:625
+msgid "Update options &raquo;"
+msgstr "Mettre à jour les options &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:278
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:350
+msgid "Auto tags all content &raquo;"
+msgstr "Tagger automatiquement tout le contenu &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:316
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:388
+#, php-format
+msgid "All done! %s tags added."
+msgstr "Terminé ! %s tag(s) ajouté(s)."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:332
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:404
+msgid "Active tags for page:"
+msgstr "Activer les tags pour les pages:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:333
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:405
+msgid "This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page."
+msgstr "Cette fonctionnalité permet à vos pages d'être tagées. Cette option ajoute les pages dans les résultats de recherche de tags.  Elle ajoute également les champs des tags lors de la rédaction d'une page."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:355
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:419
+msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is automatically disabled."
+msgstr "Inclut automatiquement des tags comme mots clés dans l'entête de votre page (la plupart des thèmes supportent cette fonction). Ces mots clés sont parfois utilisés par les moteurs de recherche.<br /><strong>Attention:</strong> Si le plugin \"All in One SEO Pack\" est installé et actif. Cette fonctionnalité est automatiquement desactivée."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:880
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:901
+msgid "Published"
+msgstr "Non publié"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:880
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:901
+msgid "Published posts"
+msgstr "Articles publiés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:881
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:902
+msgid "Scheduled"
+msgstr "Programmé"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:881
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:902
+msgid "Scheduled posts"
+msgstr "Articles programmés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:882
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:903
+msgid "Pending Review"
+msgstr "En attente de relecture"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:882
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:903
+msgid "Pending posts"
+msgstr "Articles en attente"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:883
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:904
+msgid "Draft"
+msgstr "Brouillon"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:883
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:904
+msgid "Drafts|manage posts header"
+msgstr "Brouillons"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:884
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:905
+msgid "Private"
+msgstr "Privé"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:884
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:905
+msgid "Private posts"
+msgstr "Articles privés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:928
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:949
+msgid "Mass edit tags"
+msgstr "Edition en masse de tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:935
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:956
+msgid "All Posts"
+msgstr "Tous les articles"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:956
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:977
+msgid "All Pages"
+msgstr "Toutes les pages"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:965
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:986
+msgid "Search Posts"
+msgstr "Chercher des articles"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:997
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1018
+msgid "Show all dates"
+msgstr "Afficher toutes les dates"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1017
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1038
+msgid "View all categories"
+msgstr "Voir toutes les catégories"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1030
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1051
+msgid "Filter"
+msgstr "Filtrer"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1060
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1091
+msgid "Update all &raquo;"
+msgstr "Tout mettre à jour &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1276
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.admin.php:1291
+msgid "Tags <small>(separate multiple tags with commas: cats, pet food, dogs)</small>"
+msgstr "Tags <small>(séparez les tags multiples par des virgules : chat, nourriture pour animaux, chien)</small>"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:240
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:240
+msgid "Simple Tags : Tag Cloud Widgets"
+msgstr "Simple Tags : Nuage de tags Widgets"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:253
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:253
+msgid "Your most used tags in cloud format with dynamic color and many options"
+msgstr "Vos tags les plus utilisés, au format \"nuage\" avec couleur dynamique et plein d'autres options"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:263
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.5/inc/simple-tags.widgets.php:264
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:263
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.widgets.php:264
+#, php-format
+msgid "ST: Tag Cloud %d"
+msgstr "Nuage de tags avancé %d"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1068
+msgid "Post title"
+msgstr "Titre de l'article"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1069
+msgid "Tags"
+msgstr "Tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1319
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1323
+msgid "Advanced tags"
+msgstr "Tags avancés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1677
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1681
+msgid "Click tags"
+msgstr "Click tags"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1685
+msgid "This feature works only with activated JavaScript. Activate it in your Web browser so you can!"
+msgstr "Cette fonctionnalité fonctionne uniquement avec le JavaScript activé. Activez-le dans votre navigateur web si vous le pouvez !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1693
+msgid "Ajax loading"
+msgstr "Chargement Ajax"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1702
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1706
+msgid "Suggested tags"
+msgstr "Tags suggérés"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1908
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1965
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2032
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2073
+msgid "No text was sent."
+msgstr "Aucun texte n'a été envoyé."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1934
+msgid "No results from Yahoo! service."
+msgstr "Aucun résultat depuis le service Yahoo!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:1984
+msgid "No results from Tag The Net service."
+msgstr "Aucun résultat depuis le service Tag The Net."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2023
+msgid "No tags in your WordPress database."
+msgstr "Aucun tag dans la base de données de WordPress."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2046
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2087
+msgid "No results from your WordPress database."
+msgstr "Aucun résultat depuis la base de données de WordPress."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/2.7/inc/simple-tags.admin.php:2133
+#, php-format
+msgid "&copy; Copyright 2008 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2008<a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:57
+msgid "Import Embedded Tags"
+msgstr "Importer les tags embarqués"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:58
+msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
+msgstr "Cette procédure peut prendre quelques minutes en fonction de la taille de votre base de données. Soyez patient."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:59
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visitez le <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:68
+msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
+msgstr "Salutations ! Cet outil importe dans ce blog les tags en provenance des tags embarqués, à l'aide de la nouvelle structure native de tagging de WordPress."
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:69
+msgid "To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!"
+msgstr "Pour faciliter la prise en compte de grosses bases de données, typiques des blogueurs qui taguent à tout va, nous avons conçu cet outil sous la forme d'une suite de 4 étapes, afin de vous débarrassez de cette mauvaise habitude que sont les tags embarqués. Vous n'avez qu'à cliquez, et nous vous ferons savoir lorsque vous serez purifié !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:70
+msgid "Don&#8217;t be stupid - backup your database before proceeding!"
+msgstr "Ne faites pas l'idiot, faites une sauvegarde de votre base de données avant de vous lancer !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:72
+msgid "Step 1 &raquo;"
+msgstr "Etape 1 &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:95
+msgid "Missing parameters in URL. (Start or End)"
+msgstr "Il manque des paramètre dans l'URL. (Start ou End)"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:107
+msgid "Configure and add tags to posts&#8230;"
+msgstr "Configurer et ajouter les tags aux articles&#8230;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:114
+msgid "Start marker"
+msgstr "Préfixe des tags embarqués:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:117
+msgid "End marker"
+msgstr "Suffixe des tags embarqués:"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:120
+msgid "Delete embedded tags once imported ?"
+msgstr "Effacé les tags embarqués une fois importés ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:122
+msgid "Import also embedded tags from page ?"
+msgstr "Importer également les tags embarqués depuis les pages ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:125
+msgid "Start import &raquo;"
+msgstr "Débuter l'importation &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:180
+msgid "Done!"
+msgstr "Terminé !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:182
+msgid "Step 2 &raquo;"
+msgstr "Etape 2 &raquo;"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:199
+msgid "Import Complete!"
+msgstr "Importation terminée!"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:200
+msgid "OK, so we lied about this being a 4-step program! You&#8217;re done!"
+msgstr "Bon, en fait on vous a menti à propos de ces 4 étapes ! C'est terminé !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:201
+msgid "Now wasn&#8217;t that easy?"
+msgstr "Voilà, c'était plutôt facile, non ?"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:202
+msgid "You can manage tags now !"
+msgstr "Vous pouvez gérer les tags maintenant !"
+
+#: /Users/amaurybalmer/Desktop/open-source-svn/simple-tags/trunk/extras/simple-tags.importer.php:242
+msgid "Import Embedded Tags into the new WordPress native tagging structure."
+msgstr "Import des tags embarqués dans la nouvelle structure de tags native."
+
+#~ msgid "WordPress 2.3 have a small bug and can create empty terms."
+#~ msgstr "WordPress 2.3 a un petit bug et permet la création de termes vides."
+#~ msgid "Clean it !"
+#~ msgstr "Nettoyez votre base !"
+#~ msgid ""
+#~ "You can find markers and explanations <a href=\"http://www.herewithme.fr/"
+#~ "wordpress-plugins/simple-tags#advanced-usage\">in the online "
+#~ "documentation.</a>"
+#~ msgstr ""
+#~ "Vous pouvez trouver les marqueurs et les explications <a href=\"http://"
+#~ "www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">sur la "
+#~ "documentation en ligne.</a>"
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_the_tags()</code> function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</"
+#~ "code> pour personnaliser l'affichage. Consulter la <a href=\"http://www."
+#~ "herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage"
+#~ "\">documentation</a> pour plus d'informations."
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_related_posts()</code>function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction "
+#~ "<code>st_related_posts()</code> pour personnaliser l'affichage. Consulter "
+#~ "la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/"
+#~ "francais/#advanced-usage\">documentation</a> pour plus d'informations."
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_related_tags()</code>function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags"
+#~ "()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://"
+#~ "www.herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage"
+#~ "\">documentation</a> pour plus d'informations."
+#~ msgid ""
+#~ "You can use the same syntax as <code>st_tag_cloud()</code> function to "
+#~ "customize display. See <a href=\"http://www.herewithme.fr/wordpress-"
+#~ "plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+#~ msgstr ""
+#~ "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()"
+#~ "</code> pour personnaliser l'affichage. Consulter la <a href=\"http://www."
+#~ "herewithme.fr/wordpress-plugins/simple-tags/francais/#advanced-usage"
+#~ "\">documentation</a> pour plus d'informations."
+#~ msgid "Close"
+#~ msgstr "Fermer"
+#~ msgid "%s terms updated with success !"
+#~ msgstr "%s termes mises à jour avec succès !"
+#~ msgid "Category"
+#~ msgstr "Catégorie"
+#~ msgid "Simple Tags: Advanced Edit Terms"
+#~ msgstr "Simple Tags: Edition en masse de termes"
+#~ msgid ""
+#~ "Be careful with this page ! You can cause important damages, and lost all "
+#~ "tags and categories of your WordPress installation."
+#~ msgstr ""
+#~ "Soyez prudent avec cette page ! Vous pouvez causer d'important dégats, et "
+#~ "perdre tous les tags et toutes les catégories de votre installation "
+#~ "WordPress."
+#~ msgid "Taxonomy&hellip;"
+#~ msgstr "Taxinomie&hellip;"
+#~ msgid "Counter (descending)"
+#~ msgstr "Compteur (descendant)"
+#~ msgid "Counter (ascending)"
+#~ msgstr "Compteur (ascendant)"
+#~ msgid "Name (descending)"
+#~ msgstr "Nom (descendant)"
+#~ msgid "Name (ascending)"
+#~ msgstr "Nom (ascendant)"
+#~ msgid "ID (no editing)"
+#~ msgstr "ID (non éditable)"
+#~ msgid "Name"
+#~ msgstr "Nom"
+#~ msgid "Slug (unique)"
+#~ msgstr "Identifiant (unique)"
+#~ msgid "Term group"
+#~ msgstr "Groupe du terme"
+#~ msgid "Taxonomy"
+#~ msgstr "Taxinomie"
+#~ msgid "Count"
+#~ msgstr "Compteur"
+#~ msgid "Parent"
+#~ msgstr "Parent"
+#~ msgid "Description"
+#~ msgstr "Description"
+#~ msgid "Delete ?"
+#~ msgstr "Effacer ?"
+#~ msgid "Update all terms"
+#~ msgstr "Mettre à jour tous les termes"
+#~ msgid "No terms to edit."
+#~ msgstr "Aucun terme a éditer."
+

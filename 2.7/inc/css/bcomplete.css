@@ -1,0 +1,7 @@
+.bcomplete-popup{position:absolute;border:1px solid #000;background:#E4F2FD;text-align:left;}
+.bcomplete-popup .item{font-family:tahoma, verdana, sans-serif;font-size:11px;cursor:default;padding:3px 8px;}
+.bcomplete-popup .selected{background:#D54E21;color:#fff;}
+.bcomplete-popup .down-button{background-image:url(../images/down-arrow.gif);border-top:1px solid #6e6e6e;}
+.bcomplete-popup .up-button{background-image:url(../images/up-arrow.gif);border-bottom:1px solid #6e6e6e;}
+.bcomplete-popup .up-button,.bcomplete-popup .down-button{height:14px;overflow:hidden;background-color:#464646;background-repeat:no-repeat;background-position:50% 4px;}
+.bcomplete-popup .disabled{background-position:50% -60px;}
