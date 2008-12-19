@@ -1,6 +1,6 @@
 <?php
 class SimpleTags {
-	var $version = '1.6.1';
+	var $version = '1.6.2';
 
 	var $info;
 	var $options;
@@ -66,10 +66,12 @@ class SimpleTags {
 		// General
 		'use_tag_pages' => 1,
 		'allow_embed_tcloud' => 0,
+		'no_follow' => 0,
+		// Auto link
 		'auto_link_tags' => 0,
 		'auto_link_min' => 1,
 		'auto_link_case' => 1,
-		'no_follow' => 0,
+		'auto_link_max_by_post' => 20,
 		// Administration
 		'use_click_tags' => 1,
 		'use_suggested_tags' => 1,
@@ -249,18 +251,28 @@ class SimpleTags {
 		if ( $this->link_tags == 'null' ) {
 			$this->prepareAutoLinkTags();
 		}
-
+		
+		// Shuffle array
+		$link_tags = $this->randomArray($this->link_tags);
+		
+		
 		// HTML Rel (tag/no-follow)
 		$rel = $this->buildRel( $this->options['no_follow'] );
 
 		// only continue if the database actually returned any links
-		if ( isset($this->link_tags) && is_array($this->link_tags) && count($this->link_tags) > 0 ) {
+		if ( isset($link_tags) && is_array($link_tags) && count($link_tags) > 0 ) {		
+		
+			// Limit array
+			if ( (int) $this->options['auto_link_max_by_post'] != 0 ) {
+				$link_tags = array_slice($link_tags, 0, (int) $this->options['auto_link_max_by_post']);
+			}
+
 			$must_tokenize = TRUE; // will perform basic tokenization
 			$tokens = NULL; // two kinds of tokens: markup and text
 
 			$case = ( $this->options['auto_link_case'] == 1 ) ? 'i' : '';
 
-			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
+			foreach ( (array) $link_tags as $term_name => $term_link ) {
 				$filtered = ""; // will filter text token by token
 				$match = "/\b" . preg_quote($term_name, "/") . "\b/".$case;
 				$substitute = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) )."\">$0</a>";
@@ -569,7 +581,7 @@ class SimpleTags {
 
 		// Replace old markers by new
 		$markers = array('%date%' => '%post_date%', '%permalink%' => '%post_permalink%', '%title%' => '%post_title%', '%commentcount%' => '%post_comment%', '%tagcount%' => '%post_tagcount%', '%postid%' => '%post_id%');
-		$user_args = strtr($user_args, $markers);
+		if (!is_array($user_args)) $user_args = strtr($user_args, $markers);
 
 		$args = wp_parse_args( $user_args, $defaults );
 		extract($args);

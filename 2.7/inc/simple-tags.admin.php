@@ -69,8 +69,8 @@ class SimpleTagsAdmin {
 		add_action('admin_notices', array(&$this, 'displayMessage'));		
 
 		// 11. Ajax action, JS Helper and admin action
-		add_action('init', array(&$this, 'ajaxCheck'));
-		add_action('init', array(&$this, 'checkFormMassEdit'));
+		add_action('admin_init', array(&$this, 'ajaxCheck'));
+		add_action('admin_init', array(&$this, 'checkFormMassEdit'));
 
 		// 12. Embedded Tags
 		if ( $this->options['use_embed_tags'] == 1 ) {
@@ -83,7 +83,10 @@ class SimpleTagsAdmin {
 		}
 	
 		// 14. Save tags from advanced input
-		add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput') );
+		if ( $this->options['use_autocompletion'] == 1 ) {
+			add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput') );
+			add_action('do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
+		}
 
 		// 15. Box for post
 		add_action('admin_menu', array(&$this, 'helperClickTags_Post'), 1);
@@ -101,6 +104,10 @@ class SimpleTagsAdmin {
 		$this->initJavaScript();
 	}
 	
+	function removeOldTagsInput() {
+		remove_meta_box('tagsdiv', 'post', 'side');
+	}
+
 	function initJavaScript() {
 		global $pagenow;
 		
@@ -110,19 +117,19 @@ class SimpleTagsAdmin {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Register all JS
-		wp_register_script('st-helper-js-collection', $this->info['siteurl'].'/wp-admin/admin.php?st_ajax_action=helper_js_collection', array('jquery'), $this->version);
-		wp_register_script('st-bcomplete', $this->info['install_url'].'/inc/js/bcomplete.js', array('jquery', 'prototype'), $this->version);
+		wp_register_script('st-helper-js-collection', $this->info['siteurl'].'/wp-admin/admin.php?st_ajax_action=helper_js_collection', array('jquery', 'st-helper-add-tags'), $this->version);
+		wp_register_script('st-bcomplete', $this->info['install_url'].'/inc/js/bcomplete.js', array('jquery', 'prototype', 'st-helper-add-tags', 'st-helper-js-collection'), $this->version);
 		wp_register_script('st-helper-bcomplete', $this->info['install_url'].'/inc/js/helper-bcomplete.js', array('st-bcomplete'), $this->version);
 		wp_register_script('st-helper-add-tags', $this->info['install_url'].'/inc/js/helper-add-tags.js', array('jquery'), $this->version);
 		wp_register_script('jquery-cookie', $this->info['install_url'].'/inc/js/jquery.cookie.js', array('jquery'), '1.0.0');
 		wp_register_script('st-helper-manage', $this->info['install_url'].'/inc/js/helper-manage.js', array('jquery'), $this->version);
 		wp_register_script('st-helper-options', $this->info['install_url'].'/inc/js/helper-options.js', array('jquery'), $this->version);
-		wp_register_script('st-helper-click-tags', $this->info['install_url'].'/inc/js/helper-click-tags.js', array('jquery'), $this->version);
+		wp_register_script('st-helper-click-tags', $this->info['install_url'].'/inc/js/helper-click-tags.js', array('jquery', 'st-helper-add-tags'), $this->version);
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array(
 			'site_url' => $this->info['siteurl'],
 			'show_txt' => __('Display click tags', 'simpletags'),
 			'hide_txt' => __('Hide click tags', 'simpletags') ) );
-		wp_register_script('st-helper-suggested-tags', $this->info['install_url'].'/inc/js/helper-suggested-tags.js', array('jquery'), $this->version);
+		wp_register_script('st-helper-suggested-tags', $this->info['install_url'].'/inc/js/helper-suggested-tags.js', array('jquery', 'st-helper-add-tags'), $this->version);
 		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
 			'site_url' => $this->info['siteurl'], 
 			'title_bloc' => $this->getSuggestTagsTitle(),
@@ -131,54 +138,36 @@ class SimpleTagsAdmin {
 		// Register all CSS
 		wp_register_style ('st-admin', $this->info['install_url'].'/inc/css/simple-tags.admin.css', array(), $this->version, false );
 		wp_register_style ('st-bcomplete', $this->info['install_url'].'/inc/css/bcomplete.css', array(), $this->version, false );
-		wp_register_style ('st-bcomplete-rtl', $this->info['install_url'].'/inc/css/bcomplete-rtl.css', array(), $this->version, false );
+		wp_register_style ('st-bcomplete-rtl', $this->info['install_url'].'/inc/css/bcomplete-rtl.css', array('st-bcomplete'), $this->version, false );
 		
 		// Common Helper for Post, Page and Plugin Page
 		if ( in_array($pagenow, $wp_post_pages) || 
 			(in_array($pagenow, $wp_page_pages) && $this->options['use_tag_pages'] == 1) || 
 			in_array($_GET['page'], $st_pages) ) {
-			
-			wp_enqueue_script('prototype');
-			wp_enqueue_script('jquery');
-			wp_enqueue_script('st-helper-add-tags');
+
 			wp_enqueue_style ('st-admin');	
 		}
 		
-		// Helper for Page 
-		if ( in_array($pagenow, $wp_post_pages) ) {
+		// Helper for posts/pages 
+		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $this->options['use_tag_pages'] == 1 ) ) {
 			if ( ((int) wp_count_terms('post_tag', 'ignore_empty=true')) != 0 ) {
 			
-				wp_enqueue_script('st-helper-js-collection');
-				wp_enqueue_script('st-bcomplete');
-				wp_enqueue_script('st-helper-bcomplete');
-				wp_enqueue_script('st-helper-click-tags');
-				wp_enqueue_script('st-helper-suggested-tags');
-				
-				wp_enqueue_style ('st-bcomplete' );
-				if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
-					wp_enqueue_style ('st-bcomplete-rtl');
+				if ( $this->options['use_autocompletion'] == 1 ) {
+					wp_enqueue_script('st-helper-bcomplete');
+					wp_enqueue_style ('st-bcomplete' );
+					if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
+						wp_enqueue_style ('st-bcomplete-rtl');
+					}
 				}
+				
+				if ( $this->options['use_click_tags'] == 1 ) 
+					wp_enqueue_script('st-helper-click-tags');
+					
+				if ( $this->options['use_suggested_tags'] == 1 )
+					wp_enqueue_script('st-helper-suggested-tags');
 				
 			}	
 		}
-		
-		// Helper for Page
-		if ( in_array($pagenow, $wp_page_pages) && $this->options['use_tag_pages'] == 1 ) {
-			if ( ((int) wp_count_terms('post_tag', 'ignore_empty=true')) != 0 ) {
-			
-				wp_enqueue_script('st-helper-js-collection');
-				wp_enqueue_script('st-bcomplete');
-				wp_enqueue_script('st-helper-bcomplete');
-				wp_enqueue_script('st-helper-click-tags');
-				wp_enqueue_script('st-helper-suggested-tags');
-				
-				wp_enqueue_style ('st-bcomplete' );
-				if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
-					wp_enqueue_style ('st-bcomplete-rtl');
-				}
-				
-			}
-		}	
 		
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
 		if ( $_GET['page'] == 'st_options' ) {
@@ -194,8 +183,6 @@ class SimpleTagsAdmin {
 		
 		// add JS for auto tags page
 		if ( $_GET['page'] == 'st_auto' ) {
-			wp_enqueue_script('st-helper-js-collection');
-			wp_enqueue_script('st-bcomplete');
 			wp_enqueue_script('st-helper-bcomplete');
 			wp_enqueue_style ('st-bcomplete' );
 			if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
@@ -208,7 +195,6 @@ class SimpleTagsAdmin {
 			if ( ((int) wp_count_terms('post_tag', 'ignore_empty=true')) != 0 ) { // If tags exist, load JS.
 				$this->all_tags = true;
 				
-				wp_enqueue_script('st-helper-js-collection');
 				wp_enqueue_script('st-bcomplete');
 				wp_enqueue_style ('st-bcomplete' );
 				if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
@@ -406,21 +392,33 @@ class SimpleTagsAdmin {
 					__('This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page.', 'simpletags')),
 				array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
 					__('Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud.', 'simpletags')),
-				array('auto_link_tags', __('Active auto link tags into post content:', 'simpletags'), 'checkbox', '1',
-					__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),
-				array('auto_link_min', __('Min usage for auto link tags:', 'simpletags'), 'text', 10,
-					__('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags')),
-				array('auto_link_case', __('Ignore case for auto link feature ?', 'simpletags'), 'checkbox', '1',
-					__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')),
 				array('no_follow', __('Add the rel="nofollow" on each tags link ?', 'simpletags'), 'checkbox', '1',
 					__("Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index.",'simpletags'))
+			),
+			'administration' => array(
+				array('use_click_tags', __('Activate click tags feature:', 'simpletags'), 'checkbox', '1',
+					__('This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post.', 'simpletags')),
+				array('use_autocompletion', __('Activate autocompletion feature:', 'simpletags'), 'checkbox', '1',
+					__('This feature displays a visual help allowing to enter tags more easily. As well add tags is easier than the autocompletion default of WordPress', 'simpletags')),
+				array('use_suggested_tags', __('Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)', 'simpletags'), 'checkbox', '1', 
+					__('This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)', 'simpletags'))	
+			),
+			'auto-links' => array(
+				array('auto_link_tags', __('Active auto link tags into post content:', 'simpletags'), 'checkbox', '1',
+					__('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')),
+				array('auto_link_min', __('Min usage for auto link tags:', 'simpletags'), 'text', '1',
+					__('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags')),
+				array('auto_link_max_by_post', __('Maximum number of links per article:', 'simpletags'), 'text', '10',
+					__('This setting determines the maximum number of links created by article. Default: 10.', 'simpletags')),
+				array('auto_link_case', __('Ignore case for auto link feature ?', 'simpletags'), 'checkbox', '1',
+					__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags'))
 			),
 			'metakeywords' => array(
 				array('meta_autoheader', __('Automatically include in header:', 'simpletags'), 'checkbox', '1',
 					__('Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin "All in One SEO Pack" is installed and enabled. This feature is automatically disabled.', 'simpletags')),
 				array('meta_always_include', __('Always add these keywords:', 'simpletags'), 'text', 80),
 				array('meta_keywords_qty', __('Max keywords display:', 'simpletags'), 'text', 10,
-					__('You must set zero (0) for display all keywords in HTML header.', 'simpletags')),				
+					__('You must set zero (0) for display all keywords in HTML header.', 'simpletags'))				
 			),
 			'embeddedtags' => array(
 				array('use_embed_tags', __('Use embedded tags:', 'simpletags'), 'checkbox', '1',
@@ -1303,17 +1301,20 @@ class SimpleTagsAdmin {
 
 	############## Helper Advanced Tags ##############
 	function helperAdvancedTags_Page() {
-		add_meta_box('adv-tagsdiv', __('Advanced tags', 'simpletags'), array(&$this, 'boxTags'), 'page', 'advanced', 'core');
+		if ( $this->options['use_autocompletion'] == 1 )
+			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core');
 	}
 	
 	function helperAdvancedTags_Post() {
-		add_meta_box('adv-tagsdiv', __('Advanced tags', 'simpletags'), array(&$this, 'boxTags'), 'post', 'advanced', 'core');
+		if ( $this->options['use_autocompletion'] == 1 )
+			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core');
 	}
 	
 	function boxTags( $post ) {
 		?>
 		<input type="text" name="adv-tags-input" id="adv-tags-input" size="40" tabindex="3" value="<?php echo $this->getTagsToEdit( $post->ID ); ?>" />
 		<?php
+		_e('Separate tags with commas', 'simpletags');
 	}
 
 	############## Manages Tags Pages ##############
@@ -1421,9 +1422,7 @@ class SimpleTagsAdmin {
 			// Test if term is also a category
 			if ( is_term($new_tag, 'category') ) {
 				// Edit the slug to use the new term
-				$slug = sanitize_title($new_tag);
-				$this->editTagSlug( $new_tag, $slug );
-				unset($slug);
+				$this->editTagSlug( $new_tag, sanitize_title($new_tag) );
 			}
 			
 			// Clean cache
@@ -1661,11 +1660,13 @@ class SimpleTagsAdmin {
 	 *
 	 */
 	function helperClickTags_Page() {
-		add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'page', 'advanced', 'core');
+		if ( $this->options['use_click_tags'] == 1 )
+			add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'page', 'advanced', 'core');
 	}
 	
 	function helperClickTags_Post() {
-		add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'post', 'advanced', 'core');
+		if ( $this->options['use_click_tags'] == 1 )
+			add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'post', 'advanced', 'core');
 	}
 	
 	function boxClickTags() {
@@ -1686,11 +1687,13 @@ class SimpleTagsAdmin {
 	}
 	
 	function helperSuggestTags_Post() {
-		add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'post', 'advanced', 'core');
+		if ( $this->options['use_suggested_tags'] == 1 )
+			add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'post', 'advanced', 'core');
 	}
 	
 	function helperSuggestTags_Page() {
-		add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'page', 'advanced', 'core');
+		if ( $this->options['use_suggested_tags'] == 1 )
+			add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'page', 'advanced', 'core');
 	}
 	
 	function boxSuggestTags() {
@@ -2200,6 +2203,12 @@ class SimpleTagsAdmin {
 	 */
 	function getNiceTitleOptions( $id = '' ) {
 		switch ( $id ) {
+			case 'administration':
+				return __('Administration', 'simpletags');
+				break;
+			case 'auto-links':
+				return __('Auto link', 'simpletags');
+				break;
 			case 'general':
 				return __('General', 'simpletags');
 				break;
