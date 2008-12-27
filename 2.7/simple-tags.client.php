@@ -208,7 +208,7 @@ class SimpleTags {
 		add_filter( 'the_posts', array(&$this, 'getPostIds') );
 
 		// Add keywords to header
-		if ( ( $this->options['meta_autoheader'] == 1 && !class_exists('All_in_One_SEO_Pack') && apply_filters('st_meta_header', true) ) ) {
+		if ( ( $this->options['meta_autoheader'] == 1 && !class_exists('Platinum_SEO_Pack') && !class_exists('All_in_One_SEO_Pack') && apply_filters('st_meta_header', true) ) ) {
 			add_action('wp_head', array(&$this, 'outputMetaKeywords'));
 		}
 
