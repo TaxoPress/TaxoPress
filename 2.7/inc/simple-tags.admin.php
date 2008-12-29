@@ -2016,12 +2016,7 @@ class SimpleTagsAdmin {
 
 		// Get all terms
 		global $wpdb;
-		$terms = $wpdb->get_col("
-			SELECT DISTINCT name
-			FROM {$wpdb->terms} AS t
-			INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-			WHERE tt.taxonomy = 'post_tag'	
-		");
+		$terms = $this->getAllTerms();
 		
 		if ( empty($terms) || $terms == false ) {
 			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
@@ -2045,27 +2040,28 @@ class SimpleTagsAdmin {
 	 *
 	 * @param string $format
 	 */
-	function ajaxLocalTags( $format = 'span' ) {
+	function ajaxLocalTags( $format = 'html_span' ) {
 		// Send good header HTTP
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
 		if ((int) wp_count_terms('post_tag', 'ignore_empty=true') == 0 ) { // No tags to suggest
-			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+			if ( $format == 'html_span' ) {
+				echo '<p>'.__('No tags in your WordPress database.', 'simpletags').'</p>';
+			} else {
+				echo 'collection = [ ];';
+			}
 			exit();
 		}
 		
 		// Get all terms
-		global $wpdb;
-		$terms = $wpdb->get_col("
-			SELECT DISTINCT name
-			FROM {$wpdb->terms} AS t
-			INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-			WHERE tt.taxonomy = 'post_tag'	
-		");
-		
+		$terms = $this->getAllTerms();
 		if ( empty($terms) || $terms == false ) {
-			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
+			if ( $format == 'html_span' ) {
+				echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
+			} else {
+				echo 'collection = [ ];';
+			}
 			exit();
 		}
 		
@@ -2102,6 +2098,16 @@ class SimpleTagsAdmin {
 		}
 		
 		exit();
+	}
+	
+	function getAllTerms() {
+		global $wpdb;
+		return $wpdb->get_col("
+			SELECT DISTINCT name
+			FROM {$wpdb->terms} AS t
+			INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
+			WHERE tt.taxonomy = 'post_tag'	
+		");
 	}
 
 	############## Admin WP Helper ##############
