@@ -2084,7 +2084,8 @@ class SimpleTagsAdmin {
 				echo 'collection = [';
 				$flag = false;
 				foreach ( (array) $terms as $term ) {		
-					$term = stripslashes($term);
+					$term = str_replace('<br />', '',  nl2br(stripslashes($term)) );
+					
 					if ( $flag === false) {
 						echo '"'.str_replace('"', '\"', $term).'"';
 						$flag = true;
