@@ -2,12 +2,12 @@
 /*
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
-Description: Simple Tags : Extended Tagging for WordPress 2.3, 2.5, 2.6 and 2.7 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.6.6
+Description: Simple Tags : Extended Tagging for WordPress 2.8 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
+Version: 1.7b1
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 
-Copyright 2008 Amaury BALMER (balmer.amaury@gmail.com)
+Copyright 2009 Amaury BALMER (balmer.amaury@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,25 +30,25 @@ Todo:
 		- Verifier la case du remplacement par les liens
 */
 
-// Check version.
-global $wp_version;
-if ( strpos($wp_version, '2.7') !== false || strpos($wp_version, '2.8') !== false  ) {
-	require(dirname(__FILE__).'/2.7/simple-tags.client.php');
-} elseif ( strpos($wp_version, '2.5') !== false || strpos($wp_version, '2.6') !== false  ) {
-	require(dirname(__FILE__).'/2.5/simple-tags.client.php');
-} elseif ( strpos($wp_version, '2.3') !== false ) {
-	require(dirname(__FILE__).'/2.3/simple-tags.client.php');
-} elseif ( strpos($wp_version, '2.2') !== false || strpos($wp_version, '2.1') !== false || strpos($wp_version, '2.0') !== false ) {
-	add_action('admin_notices', 'simple_tagging_warning');
-} else {
-	add_action('admin_notices', 'simple_tags_warning');
-}
+require(dirname(__FILE__).'/inc/base.php'); // Client class
+require(dirname(__FILE__).'/inc/client.php'); // Client class
+require(dirname(__FILE__).'/inc/inc.functions.php'); // Internal functions
+require(dirname(__FILE__).'/inc/tpl.functions.php'); // Templates functions
+require(dirname(__FILE__).'/inc/widgets.php'); // Widgets
 
-function simple_tagging_warning() {
-	echo '<div class="updated fade"><p><strong>'.__('Simple Tags can\'t work with this WordPress version !', 'simpletags').'</strong> '.sprintf(__('You must use <a href="%1$s">Simple Tagging Plugin</a> for it to work.', 'simpletags'), 'http://wordpress.org/extend/plugins/simple-tagging-plugin/').'</p></div>';
+// Init ST
+function simple_tags_init() {
+	global $simple_tags;
+	$simple_tags['client'] = new SimpleTags();
+	
+	// Admin and XML-RPC
+	if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
+		require(dirname(__FILE__).'/inc/admin.php');
+		$simple_tags['admin'] = new SimpleTagsAdmin();
+	}
+	
+	// Register Widget
+	add_action( 'widgets_init', 'widget_simpletags_register', 2 );
 }
-
-function simple_tags_warning() {
-	echo '<div class="updated fade"><p><strong>'.__('Simple Tags can\'t work with this WordPress version !', 'simpletags').'</strong></p></div>';
-}
+add_action('plugins_loaded', 'simple_tags_init');
 ?>

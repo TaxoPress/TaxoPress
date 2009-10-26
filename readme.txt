@@ -2,16 +2,16 @@
 Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
-Requires at least: 2.3
-Tested up to: 2.8
+Requires at least: 2.8
+Tested up to: 2.8.5
 Stable tag: 1.6.6
 
-Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.3, 2.5, 2.6, 2.7 and 2.8 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
+Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.8.x tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
 
 == Description ==
 
 Simple Tags is the successor of Simple Tagging Plugin
-**This is THE perfect tool to manage perfeclty your WP 2.3, 2.5, 2.6, 2.7 and 2.8 tags**
+**This is THE perfect tool to manage perfeclty your WP 2.8.x tags**
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
@@ -80,6 +80,14 @@ Then: Manage - Import - Embedded Tags
 6. You also can suggest tags from lot's of service (local, tag the net, yahoo!)
 
 == Arbitrary section ==
+* Version 1.7b1
+	* Add compatibily WP 2.8
+	* Remove support old WP versions
+	* Change some things on architecture for optimize performance on admin. (stop copy class variables)
+	* Use new API for Widgets
+	* Use new API for Taxonomy
+	* Remove somes "notices" PHP
+	* Fix old cache method.
 * Version 1.6.6
 	* Add Belorussian translation
 * Version 1.6.5

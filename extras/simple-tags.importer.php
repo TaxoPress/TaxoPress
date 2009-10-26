@@ -68,7 +68,7 @@ Class EmbeddedImporter {
 		echo '<p>'.__('Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure.', 'simpletags').'</p>';
 		echo '<p>'.__('To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!', 'simpletags').'</p>';
 		echo '<p><strong>'.__('Don&#8217;t be stupid - backup your database before proceeding!', 'simpletags').'</strong></p>';
-		echo '<form action="admin.php?import=simple-tags.importer&amp;step=1" method="post">';
+		echo '<form action="'.admin_url('admin.php').'?import=simple-tags.importer&amp;step=1" method="post">';
 		echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 1 &raquo;', 'simpletags').'" /></p>';
 		echo '</form>';
 		echo '</div>';
@@ -106,7 +106,7 @@ Class EmbeddedImporter {
 			<div class="narrow">
 				<h3><?php _e('Configure and add tags to posts&#8230;', 'simpletags'); ?></h3>
 
-				<form action="admin.php" method="get">
+				<form action="<?php echo admin_url('admin.php'); ?>" method="get">
 					<input type="hidden" name="import" value="simple-tags.importer" />
 					<input type="hidden" name="step" value="1" />
 					<input type="hidden" name="action" value="import_embedded_tag" />
@@ -135,7 +135,7 @@ Class EmbeddedImporter {
 				echo '<ul>';
 				foreach( (array) $objects as $object ) {
 					// Return Tags
-					preg_match_all('/(' . $this->regexEscape($start) . '(.*?)' . $this->regexEscape($end) . ')/is', $object->post_content, $matches);
+					preg_match_all('/(' . parent::regexEscape($start) . '(.*?)' . parent::regexEscape($end) . ')/is', $object->post_content, $matches);
 
 					$tags = array();
 					foreach ( (array) $matches[2] as $match) {
@@ -153,9 +153,8 @@ Class EmbeddedImporter {
 
 						if ( $clean == '1' ) {
 							// remove embedded tags
-							$new_content = preg_replace('/(' . $this->regexEscape($start) . '(.*?)' . $this->regexEscape($end) . ')/is', '', $object->post_content);
-							$new_content = addslashes_gpc($new_content);
-							$wpdb->query("UPDATE {$wpdb->posts} SET post_content = '{$new_content}' WHERE ID = {$object->ID} LIMIT 1");
+							$new_content = preg_replace('/(' . parent::regexEscape($start) . '(.*?)' . parent::regexEscape($end) . ')/is', '', $object->post_content);
+							$wpdb->update( $wpdb->posts, array('post_content' => $new_content), array('ID' => $object->ID) )
 						}
 					}
 
@@ -164,11 +163,11 @@ Class EmbeddedImporter {
 				}
 				echo '</ul>';
 				?>
-				<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="admin.php?import=simple-tags.importer&amp;step=1&amp;action=import_embedded_tag&amp;typep=<?php echo $typep; ?>&amp;start=<?php echo $start; ?>&amp;end=<?php echo $end; ?>&amp;clean=<?php echo $clean; ?>&amp;n=<?php echo ($n + 20) ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
+				<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="<?php echo admin_url('admin.php'); ?>?import=simple-tags.importer&amp;step=1&amp;action=import_embedded_tag&amp;typep=<?php echo $typep; ?>&amp;start=<?php echo $start; ?>&amp;end=<?php echo $end; ?>&amp;clean=<?php echo $clean; ?>&amp;n=<?php echo ($n + 20) ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
 				<script type="text/javascript">
 					<!--
 					function nextPage() {
-						location.href = '<?php get_option('siteurl'); ?>/wp-admin/admin.php?import=simple-tags.importer&step=1&action=import_embedded_tag&typep=<?php echo $typep; ?>&start=<?php echo $start; ?>&end=<?php echo $end; ?>&clean=<?php echo $clean; ?>&n=<?php echo ($n + 20) ?>';
+						location.href = '<?php echo admin_url('admin.php'); ?>?import=simple-tags.importer&step=1&action=import_embedded_tag&typep=<?php echo $typep; ?>&start=<?php echo $start; ?>&end=<?php echo $end; ?>&clean=<?php echo $clean; ?>&n=<?php echo ($n + 20) ?>';
 					}
 					setTimeout( 'nextPage', 250 );
 					//-->
@@ -178,7 +177,7 @@ Class EmbeddedImporter {
 			} else { // end
 
 				echo '<p><strong>'.__('Done!', 'simpletags').'</strong><br /></p>';
-				echo '<form action="admin.php?import=simple-tags.importer&amp;step=2" method="post">';
+				echo '<form action="'.admin_url('admin.php').'?import=simple-tags.importer&amp;step=2" method="post">';
 				echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 2 &raquo;', 'simpletags').'" /></p>';
 				echo '</form>';
 
