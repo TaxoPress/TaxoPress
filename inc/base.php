@@ -1,6 +1,6 @@
 <?php
 class SimpleTagsBase {
-	var $version = '1.7b1';
+	var $version = '1.7b1.1';
 
 	var $info;
 	var $options;
@@ -57,6 +57,7 @@ class SimpleTagsBase {
 			'auto_link_tags' => 0,
 			'auto_link_min' => 1,
 			'auto_link_case' => 1,
+			'auto_link_exclude' => '',
 			'auto_link_max_by_post' => 20,
 			// Administration
 			'use_click_tags' => 1,

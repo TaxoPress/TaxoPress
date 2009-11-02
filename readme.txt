@@ -80,6 +80,8 @@ Then: Manage - Import - Embedded Tags
 6. You also can suggest tags from lot's of service (local, tag the net, yahoo!)
 
 == Arbitrary section ==
+* Version 1.7b1.1
+	* Add exclude option in auto tags link.
 * Version 1.7b1
 	* Add compatibily WP 2.8
 	* Remove support old WP versions

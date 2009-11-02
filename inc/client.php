@@ -129,10 +129,24 @@ class SimpleTags extends SimpleTagsBase {
 			$must_tokenize = TRUE; // will perform basic tokenization
 			$tokens = NULL; // two kinds of tokens: markup and text
 
+			// Case option ?
 			$case = ( $this->options['auto_link_case'] == 1 ) ? 'i' : '';
 
+			// Prepare exclude terms array
+			$excludes_terms = explode( ',', $this->options['auto_link_exclude'] );
+			if ( $excludes_terms == false ) {
+				$excludes_terms = array();
+			} else {
+				$excludes_terms = array_filter($excludes_terms, array(&$this, 'deleteEmptyElement'));
+				$excludes_terms = array_unique($excludes_terms);
+			}
+			
 			foreach ( (array) $link_tags as $term_name => $term_link ) {
-				$filtered = ""; // will filter text token by token
+				if ( in_array( $term_name, (array) $excludes_terms ) ) {
+					continue;
+				}
+				
+				$filtered = ''; // will filter text token by token
 				$match = "/\b" . preg_quote($term_name, "/") . "\b/".$case;
 				$substitute = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) )."\">$0</a>";
 
@@ -176,6 +190,20 @@ class SimpleTags extends SimpleTagsBase {
 		}
 
 		return $content;
+	}
+	
+	/**
+	 * trim and remove empty element
+	 *
+	 * @param string $element
+	 * @return string
+	 */
+	function deleteEmptyElement( &$element ) {
+		$element = stripslashes($element);
+		$element = trim($element);
+		if ( !empty($element) ) {
+			return $element;
+		}
 	}
 
 	/**
