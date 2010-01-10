@@ -13,13 +13,7 @@ class SimpleTags extends SimpleTagsBase {
 	 * @return SimpleTags
 	 */
 	function SimpleTags() {	
-		parent::initBase();
-		
-		// Localization
-		$locale = get_locale();
-		if ( !empty( $locale ) ) {
-			load_textdomain('simpletags', str_replace('/inc', '', $this->info['install_dir']).'/languages/simpletags-'.$locale.'.mo' );
-		}
+		parent::initOptions();
 
 		// Set date for class
 		$this->dateformat = get_option('date_format');
@@ -93,7 +87,7 @@ class SimpleTags extends SimpleTagsBase {
 		$this->link_tags = array();
 		foreach ( (array) $this->tags_currentposts as $term ) {
 			if ( $term->count >= $auto_link_min ) {
-				$this->link_tags[$term->name] = clean_url(get_tag_link( $term->term_id ));
+				$this->link_tags[$term->name] = esc_url(get_tag_link( $term->term_id ));
 			}
 		}
 		return true;
@@ -148,7 +142,7 @@ class SimpleTags extends SimpleTagsBase {
 				
 				$filtered = ''; // will filter text token by token
 				$match = "/\b" . preg_quote($term_name, "/") . "\b/".$case;
-				$substitute = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. attribute_escape( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) )."\">$0</a>";
+				$substitute = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) )."\">$0</a>";
 
 				// for efficiency only tokenize if forced to do so
 				if ( $must_tokenize ) {
@@ -261,7 +255,7 @@ class SimpleTags extends SimpleTagsBase {
 			$postlist = implode( "', '", $this->posts );
 
 			// Generate key cache
-			$key = md5(maybe_serialize($postlist));
+			$key = hash('md5', maybe_serialize($postlist));
 			// Get cache if exist
 			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
 				if ( isset( $cache[$key] ) ) {
@@ -507,7 +501,7 @@ class SimpleTags extends SimpleTagsBase {
 		// Get cache if exist
 		$results = false;
 		// Generate key cache
-		$key = md5(maybe_serialize($user_args.'-'.$object_id));
+		$key = hash('md5', maybe_serialize($user_args.'-'.$object_id));
 
 		if ( $cache = wp_cache_get( 'related_posts', 'simpletags' ) ) {
 			if ( isset( $cache[$key] ) ) {
@@ -643,12 +637,10 @@ class SimpleTags extends SimpleTagsBase {
 				$inner_cat_sql .= " INNER JOIN {$wpdb->term_taxonomy} AS ctt ON (ctr.term_taxonomy_id = ctt.term_taxonomy_id) ";
 			}
 
-			// Group Concat only for MySQL > 4.1 and check if post_relatedtags is used by xformat...
+			// Group Concat check if post_relatedtags is used by xformat...
 			$select_gp_concat = '';
-			if ( version_compare(mysql_get_server_info(), '4.1.0', '>=') && ( strpos($xformat,'%post_relatedtags%') || $min_shared > 1 ) ) {
+			if ( strpos($xformat,'%post_relatedtags%') || $min_shared > 1 ) {
 				$select_gp_concat = ', GROUP_CONCAT(tt.term_id) as terms_id';
-			} else {
-				$xformat = str_replace('%post_relatedtags%', '', $xformat); // Group Concat only for MySQL > 4.1, remove related tags
 			}
 
 			// Check if post_excerpt is used by xformat...
@@ -701,7 +693,7 @@ class SimpleTags extends SimpleTagsBase {
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
 			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);
 			$element_loop = str_replace('%post_title%', $post_title, $element_loop);
-			$element_loop = str_replace('%post_title_attribute%', wp_specialchars(strip_tags($post_title)), $element_loop);
+			$element_loop = str_replace('%post_title_attribute%', esc_html(strip_tags($post_title)), $element_loop);
 			$element_loop = str_replace('%post_comment%', $result->comment_count, $element_loop);
 			$element_loop = str_replace('%post_tagcount%', $result->counter, $element_loop);
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
@@ -775,9 +767,10 @@ class SimpleTags extends SimpleTagsBase {
 		$rel = $this->buildRel( $this->options['no_follow'] );
 
 		$output = '';
-		foreach ( $terms as $term ) {
-			$output .= '<a href="'.get_tag_link($term->term_id).'" title="'.attribute_escape(sprintf( _n('%d topic', '%d topics', (int) $term->count, 'simpletags'), $term->count )).'" '.$rel.'>'.wp_specialchars($term->name).'</a>, ';
+		foreach ( (array) $terms as $term ) {
+			$output .= '<a href="'.get_tag_link($term->term_id).'" title="'.esc_attr(sprintf( _n('%d topic', '%d topics', (int) $term->count, 'simpletags'), $term->count )).'" '.$rel.'>'.esc_html($term->name).'</a>, ';
 		}
+		
 		$output = substr($output, 0, strlen($output) - 2); // Remove latest ", "
 		return $output;
 	}
@@ -868,7 +861,7 @@ class SimpleTags extends SimpleTagsBase {
 		// Get cache if exist
 		$related_tags = false;
 		// Generate key cache
-		$key = md5(maybe_serialize($user_args.$slugs.$url_tag_sep));
+		$key = hash('md5', maybe_serialize($user_args.$slugs.$url_tag_sep));
 		$cache = wp_cache_get( 'related_tags', 'simpletags' );
 		if ( $cache ) {
 			if ( isset( $cache[$key] ) ) {
@@ -949,8 +942,7 @@ class SimpleTags extends SimpleTagsBase {
 		}
 
 		// Limit to max quantity if set
-		$number = (int) $number;
-		if ( $number != 0 ) {
+		if ( (int) $number != 0 ) {
 			$related_tags = array_slice( $related_tags, 0, $number );
 		}
 
@@ -995,13 +987,14 @@ class SimpleTags extends SimpleTagsBase {
 		global $wp_rewrite;
 		$taglink = $wp_rewrite->get_tag_permastruct();
 
+		$home_link = untrailingslashit( get_bloginfo('home') );
 		if ( empty($taglink) ) { // No permalink
-			$taglink = $this->info['home'] . '/?tag=' . $slugs;
+			$taglink = $home_link . '/?tag=' . $slugs;
 		} else { // Custom permalink
-			$taglink = $this->info['home'] . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
+			$taglink = $home_link . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
 		}
 
-		return apply_filters('st_add_tag_link', clean_url($taglink));
+		return apply_filters('st_add_tag_link', esc_url($taglink));
 	}
 
 	/**
@@ -1104,17 +1097,19 @@ class SimpleTags extends SimpleTagsBase {
 		unset($current_slugs[$key]);
 
 		// Array to string with good separator
-		$slugs = implode( $separator, $current_slugs );
+		$slugs = implode( $separator, (array) $current_slugs );
 
 		global $wp_rewrite;
 		$taglink = $wp_rewrite->get_tag_permastruct();
-
+		
+		$home_link = untrailingslashit( get_bloginfo( 'home' ) );
 		if ( empty($taglink) ) { // No permalink
-			$taglink = $this->info['home'] . '/?tag=' . $slugs;
+			$taglink = $home_link . '/?tag=' . $slugs;
 		} else { // Custom permalink
-			$taglink = $this->info['home'] . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
+			$taglink = $home_link . user_trailingslashit( str_replace('%tag%', $slugs, $taglink), 'category');
 		}
-		return apply_filters('st_remove_tag_link', clean_url($taglink));
+		
+		return apply_filters( 'st_remove_tag_link', esc_url($taglink) );
 	}
 
 	/**
@@ -1136,44 +1131,48 @@ class SimpleTags extends SimpleTagsBase {
 	 */
 	function extendedTagCloud( $args = '', $copyright = true ) {
 		$defaults = array(
-		'size' => 'true',
-		'smallest' => 8,
-		'largest' => 22,
-		'unit' => 'pt',
-		'color' => 'true',
-		'maxcolor' => '#000000',
-		'mincolor' => '#CCCCCC',
-		'number' => 45,
-		'format' => 'flat',
-		'cloud_selection' => 'count-desc',
-		'cloud_sort' => 'random',
-		'exclude' => '',
-		'include' => '',
-		'no_follow' => 0,
-		'limit_days' => 0,
-		'min_usage' => 0,
-		'inc_cats' => 0,
-		'notagstext' => __('No tags.', 'simpletags'),
-		'xformat' => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
-		'title' => __('<h4>Tag Cloud</h4>', 'simpletags'),
-		'category' => 0
+			'size'			=> 'true',
+			'smallest' 		=> 8,
+			'largest' 		=> 22,
+			'unit' 			=> 'pt',
+			'color' 		=> 'true',
+			'maxcolor' 		=> '#000000',
+			'mincolor' 		=> '#CCCCCC',
+			'number' 		=> 45,
+			'format' 		=> 'flat',
+			'selectionby' 	=> 'count',
+			'selection' 	=> 'desc',
+			'orderby'		=> 'random', 
+			'order'			=> 'asc',
+			'exclude' 		=> '',
+			'include' 		=> '',
+			'no_follow' 	=> 0,
+			'limit_days' 	=> 0,
+			'min_usage' 	=> 0,
+			'inc_cats' 		=> 0,
+			'notagstext' 	=> __('No tags.', 'simpletags'),
+			'xformat' 		=> __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
+			'title' 		=> __('<h4>Tag Cloud</h4>', 'simpletags'),
+			'category' 		=> 0
 		);
 
 		// Get values in DB
-		$defaults['no_follow'] = $this->options['no_follow'];
-		$defaults['cloud_selection'] = $this->options['cloud_selection'];
-		$defaults['cloud_sort'] = $this->options['cloud_sort'];
-		$defaults['number'] = $this->options['cloud_limit_qty'];
-		$defaults['notagstext'] = $this->options['cloud_notagstext'];
-		$defaults['title'] = $this->options['cloud_title'];
-		$defaults['maxcolor'] = $this->options['cloud_max_color'];
-		$defaults['mincolor'] = $this->options['cloud_min_color'];
-		$defaults['largest'] = $this->options['cloud_max_size'];
-		$defaults['smallest'] = $this->options['cloud_min_size'];
-		$defaults['unit'] = $this->options['cloud_unit'];
-		$defaults['xformat'] = $this->options['cloud_xformat'];
-		$defaults['format'] = $this->options['cloud_format'];
-		$defaults['inc_cats'] = $this->options['cloud_inc_cats'];
+		$defaults['no_follow'] 		= $this->options['no_follow'];
+		$defaults['selectionby'] 	= $this->options['cloud_selectionby'];
+		$defaults['selection'] 		= $this->options['cloud_selection'];
+		$defaults['orderby'] 		= $this->options['cloud_orderby'];
+		$defaults['order'] 			= $this->options['cloud_order'];
+		$defaults['number'] 		= $this->options['cloud_limit_qty'];
+		$defaults['notagstext'] 	= $this->options['cloud_notagstext'];
+		$defaults['title'] 			= $this->options['cloud_title'];
+		$defaults['maxcolor'] 		= $this->options['cloud_max_color'];
+		$defaults['mincolor'] 		= $this->options['cloud_min_color'];
+		$defaults['largest'] 		= $this->options['cloud_max_size'];
+		$defaults['smallest'] 		= $this->options['cloud_min_size'];
+		$defaults['unit'] 			= $this->options['cloud_unit'];
+		$defaults['xformat'] 		= $this->options['cloud_xformat'];
+		$defaults['format'] 		= $this->options['cloud_format'];
+		$defaults['inc_cats'] 		= $this->options['cloud_inc_cats'];
 
 		if ( empty($args) ) {
 			$args = $this->options['cloud_adv_usage'];
@@ -1250,27 +1249,21 @@ class SimpleTags extends SimpleTagsBase {
 		}
 
 		// Order terms before output
-		// count-asc/count-desc/name-asc/name-desc/random
-		$cloud_sort = strtolower($cloud_sort);
-		switch ( $cloud_sort ) {
-			case 'count-asc':
-				asort($counts);
-				break;
-			case 'count-desc':
-				arsort($counts);
-				break;
-			case 'name-asc':
-				uksort($counts, array( &$this, 'uksortByName'));
-				break;
-			case 'name-desc':
-				uksort($counts, array( &$this, 'uksortByName'));
-				array_reverse($counts);
-				break;
-			default: // random
+		// count, name, rand | asc, desc
+		$orderby = strtolower($orderby);
+		if ( $orderby == 'count' ) {
+			asort($counts);
+		} elseif ( $orderby = 'name' ) {
+			uksort($counts, array( &$this, 'uksortByName'));
+		} else { // rand
 			$counts = $this->randomArray($counts);
-			break;
 		}
-
+		
+		$order = strtolower($order);
+		if ( $order == 'desc' ) {
+			$counts = array_reverse($counts);
+		}
+	
 		$output = array();
 		foreach ( (array) $counts as $term_name => $count ) {
 			if ( !is_object($terms_data[$term_name]) ) {
@@ -1301,9 +1294,7 @@ class SimpleTags extends SimpleTagsBase {
 			return $data_in;
 		}
 
-		srand( (float) microtime() * 1000000 ); // For PHP < 4.2
 		$rand_keys = array_rand($data_in, count($data_in));
-
 		foreach( (array) $rand_keys as $key ) {
 			$data_out[$key] = $data_in[$key];
 		}
@@ -1330,14 +1321,14 @@ class SimpleTags extends SimpleTagsBase {
 	function formatInternalTag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
 		// Need term object
 		if ( $term->taxonomy == 'post_tag' ) { // Tag post
-			$element_loop = str_replace('%tag_link%', clean_url(get_tag_link($term->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_feed%', clean_url(get_tag_feed_link($term->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_link%', esc_url(get_tag_link($term->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_feed%', esc_url(get_tag_feed_link($term->term_id)), $element_loop);
 		} else { // Category
-			$element_loop = str_replace('%tag_link%', clean_url(get_category_link($term->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_feed%', clean_url(get_category_rss_link(false, $term->term_id, '')), $element_loop);
+			$element_loop = str_replace('%tag_link%', esc_url(get_category_link($term->term_id)), $element_loop);
+			$element_loop = str_replace('%tag_feed%', esc_url(get_category_rss_link(false, $term->term_id, '')), $element_loop);
 		}
-		$element_loop = str_replace('%tag_name%', wp_specialchars( $term->name ), $element_loop);
-		$element_loop = str_replace('%tag_name_attribute%', wp_specialchars(strip_tags($term->name)), $element_loop);
+		$element_loop = str_replace('%tag_name%', esc_html( $term->name ), $element_loop);
+		$element_loop = str_replace('%tag_name_attribute%', esc_html(strip_tags($term->name)), $element_loop);
 		$element_loop = str_replace('%tag_id%', $term->term_id, $element_loop);
 		$element_loop = str_replace('%tag_count%', (int) $term->count, $element_loop);
 
@@ -1371,19 +1362,16 @@ class SimpleTags extends SimpleTagsBase {
 			return '';
 		}
 
-		$term_name = wp_specialchars($term_name);
+		$term_name = esc_html($term_name);
 		switch ( $type ) {
 			case 'technorati':
-				$link = clean_url('http://technorati.com/tag/'.str_replace(' ', '+', $term_name));
-				return '<a class="tag_technorati" href="'.$link.'" rel="tag">'.$term_name.'</a>';
+				return '<a class="tag_technorati" href="'.esc_url('http://technorati.com/tag/'.str_replace(' ', '+', $term_name)).'" rel="tag">'.$term_name.'</a>';
 				break;
 			case 'flickr':
-				$link = clean_url('http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($term_name)).'/');
-				return '<a class="tag_flickr" href="'.$link.'" rel="tag">'.$term_name.'</a>';
+				return '<a class="tag_flickr" href="'.esc_url('http://www.flickr.com/photos/tags/'.preg_replace('/[^a-zA-Z0-9]/', '', strtolower($term_name)).'/').'" rel="tag">'.$term_name.'</a>';
 				break;
 			case 'delicious':
-				$link = clean_url('http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $term_name)));
-				return '<a class="tag_delicious" href="'.$link.'" rel="tag">'.$term_name.'</a>';
+				return '<a class="tag_delicious" href="'.esc_url('http://del.icio.us/popular/'.strtolower(str_replace(' ', '', $term_name))).'" rel="tag">'.$term_name.'</a>';
 				break;
 			default:
 				return '';
@@ -1399,16 +1387,16 @@ class SimpleTags extends SimpleTagsBase {
 	 */
 	function extendedPostTags( $args = '', $copyright = true ) {
 		$defaults = array(
-		'before' => __('Tags: ', 'simpletags'),
-		'separator' => ', ',
-		'after' => '<br />',
-		'post_id' => 0,
-		'no_follow' => 0,
-		'inc_cats' => 0,
-		'xformat' => __('<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags'),
-		'notagtext' => __('No tag for this post.', 'simpletags'),
-		'number' => 0,
-		'format' => ''
+			'before' => __('Tags: ', 'simpletags'),
+			'separator' => ', ',
+			'after' => '<br />',
+			'post_id' => 0,
+			'no_follow' => 0,
+			'inc_cats' => 0,
+			'xformat' => __('<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags'),
+			'notagtext' => __('No tag for this post.', 'simpletags'),
+			'number' => 0,
+			'format' => ''
 		);
 
 		// Get values in DB
@@ -1593,7 +1581,7 @@ class SimpleTags extends SimpleTagsBase {
 	 * @return array
 	 */
 	function getTags( $args = '', $taxonomy = 'post_tag', $internal_st = false ) {
-		$key = md5(serialize($args.$taxonomy));
+		$key = hash('md5', serialize($args.$taxonomy.$internal_st));
 		
 		// Get cache if exist
 		if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
@@ -1611,7 +1599,7 @@ class SimpleTags extends SimpleTagsBase {
 		$cache[$key] = $terms;
 		wp_cache_set( 'st_get_tags', $cache, 'simpletags' );
 
-		$terms = apply_filters('get_tags', $terms, $args);
+		$terms = apply_filters('st_get_tags', $terms, $args);
 		return $terms;
 	}
 
@@ -1636,54 +1624,45 @@ class SimpleTags extends SimpleTagsBase {
 			$taxonomies = array($taxonomies);
 		}
 
-		foreach ( $taxonomies as $taxonomy ) {
+		foreach ( (array) $taxonomies as $taxonomy ) {
 			if ( ! is_taxonomy($taxonomy) ) {
-				return new WP_Error('invalid_taxonomy', __('Invalid Taxonomy'));
+				$error = & new WP_Error('invalid_taxonomy', __('Invalid Taxonomy'));
+				return $error;
 			}
 		}
-
 		$in_taxonomies = "'" . implode("', '", $taxonomies) . "'";
-
-		$defaults = array(
-			'orderby' => 'name',
-			'order' => 'ASC',
-			'cloud_selection' => 'count-desc',
-			'hide_empty' => true,
-			'exclude' => '',
-			'include' => '',
-			'number' => '',
-			'fields' => 'all',
-			'slug' => '',
-			'parent' => '',
-			'hierarchical' => true,
-			'child_of' => 0,
-			'get' => '',
-			'name__like' => '',
-			'st_name_like' => '',
-			'pad_counts' => false,
-			'offset' => '',
-			'search' => '',
-			'limit_days' => 0,
-			'category' => 0,
-			'min_usage' => 0
-		);
+		
+		$defaults = array('orderby' => 'name', 'order' => 'ASC',
+			'hide_empty' => true, 'exclude' => '', 'exclude_tree' => '', 'include' => '',
+			'number' => '', 'fields' => 'all', 'slug' => '', 'parent' => '',
+			'hierarchical' => true, 'child_of' => 0, 'get' => '', 'name__like' => '',
+			'pad_counts' => false, 'offset' => '', 'search' => '', 
+			// Simple tags added
+			'limit_days' => 0, 'category' => 0, 'min_usage' => 0, 'st_name__like' => '' );
 
 		$args = wp_parse_args( $args, $defaults );
-		if ( $internal_st != true ) { // Allow limit :)
-			$args['number'] = absint( $args['number'] );
-		}
-		$args['offset'] = absint( $args['offset'] );
-		if ( !$single_taxonomy || !is_taxonomy_hierarchical($taxonomies[0]) || '' != $args['parent'] ) {
-			$args['child_of'] = 0;
-			$args['hierarchical'] = false;
-			$args['pad_counts'] = false;
+
+		// Translate selection order
+		$args['orderby'] = $args['selectionby'];
+		$args['order']   = $args['selection'];
+
+		$args['number'] 	= absint( $args['number'] );
+		$args['offset'] 	= absint( $args['offset'] );
+		$args['limit_days'] = absint( $args['limit_days'] );
+		$args['min_usage'] 	= absint( $args['min_usage'] );
+
+		if ( !$single_taxonomy || !is_taxonomy_hierarchical($taxonomies[0]) ||
+			'' !== $args['parent'] ) {
+			$args['child_of'] 		= 0;
+			$args['hierarchical'] 	= false;
+			$args['pad_counts'] 	= false;
 		}
 
 		if ( 'all' == $args['get'] ) {
-			$args['child_of'] = 0;
-			$args['hide_empty'] = 0;
-			$args['hierarchical'] = false;
-			$args['pad_counts'] = false;
+			$args['child_of'] 		= 0;
+			$args['hide_empty'] 	= 0;
+			$args['hierarchical'] 	= false;
+			$args['pad_counts'] 	= false;
 		}
 		extract($args, EXTR_SKIP);
 
@@ -1698,151 +1677,154 @@ class SimpleTags extends SimpleTagsBase {
 			if ( !isset($hierarchy[$parent]) )
 				return $empty_array;
 		}
-		
-		// $args can be whatever, only use the args defined in defaults to compute the key
-		$filter_key = ( has_filter('list_terms_exclusions') ) ? serialize($GLOBALS['wp_filter']['list_terms_exclusions']) : '';
-		$key = md5( serialize( compact(array_keys($defaults)) ) . serialize( $taxonomies ) . $filter_key );
-		$last_changed = wp_cache_get('last_changed', 'terms');
-		if ( !$last_changed ) {
-		    $last_changed = time();
-		    wp_cache_set('last_changed', $last_changed, 'terms');
-		}
-		$cache_key = "get_terms:$key:$last_changed";
-		
-		if ( $cache = wp_cache_get( $cache_key, 'terms' ) ) {
-		    $terms = apply_filters('get_terms', $cache, $taxonomies, $args);
-		    return $terms;
-		}
 
-		// Restrict category
-		$category_sql = '';
-		if ( !empty($category) && $category != '0' ) {
-			$incategories = preg_split('/[\s,]+/', $category);
-
-			$objects_id = get_objects_in_term( $incategories, 'category' );
-			$objects_id = array_unique ($objects_id); // to be sure haven't duplicates
-
-			if ( empty($objects_id) ) { // No posts for this category = no tags for this category
-				return array();
-			}
-
-			foreach ( (array) $objects_id as $object_id ) {
-				$category_sql .= "'". $object_id . "', ";
-			}
-
-			$category_sql = substr($category_sql, 0, strlen($category_sql) - 2); // Remove latest ", "
-			$category_sql = 'AND p.ID IN ('.$category_sql.')';
-		}
-
-		// count-asc/count-desc/name-asc/name-desc/random
-		$cloud_selection = strtolower($cloud_selection);
-		switch ( $cloud_selection ) {
-			case 'count-asc':
-				$order_by = 'tt.count ASC';
-				break;
-			case 'random':
-				$order_by = 'RAND()';
-				break;
-			case 'name-asc':
-				$order_by = 't.name ASC';
-				break;
-			case 'name-desc':
-				$order_by = 't.name DESC';
-				break;
-			default: // count-desc
-			$order_by = 'tt.count DESC';
-			break;
-		}
-
-		// Min usage
-		$restict_usage = '';
-		$min_usage = (int) $min_usage;
-		if ( $min_usage != 0 ) {
-			$restict_usage = ' AND tt.count >= '. $min_usage;
-		}
+		$_orderby = strtolower($orderby);
+		if ( 'count' == $_orderby )
+			$orderby = 'tt.count';
+		if ( 'random' == $_orderby )
+			$orderby = 'RAND()';
+		else if ( 'name' == $_orderby )
+			$orderby = 't.name';
+		else if ( 'slug' == $_orderby )
+			$orderby = 't.slug';
+		else if ( 'term_group' == $_orderby )
+			$orderby = 't.term_group';
+		elseif ( empty($_orderby) || 'id' == $_orderby )
+			$orderby = 't.term_id';
+		$orderby = apply_filters( 'get_terms_orderby', $orderby, $args );
 
 		$where = '';
 		$inclusions = '';
 		if ( !empty($include) ) {
 			$exclude = '';
+			$exclude_tree = '';
 			$interms = preg_split('/[\s,]+/',$include);
-			foreach ( (array) $interms as $interm ) {
-				if (empty($inclusions)) {
-					$inclusions = ' AND ( t.term_id = ' . intval($interm) . ' ';
-				} else {
-					$inclusions .= ' OR t.term_id = ' . intval($interm) . ' ';
+			if ( count($interms) ) {
+				foreach ( (array) $interms as $interm ) {
+					if (empty($inclusions))
+						$inclusions  = ' AND ( t.term_id = ' . intval($interm) . ' ';
+					else
+						$inclusions .= ' OR t.term_id = ' . intval($interm) . ' ';
 				}
 			}
 		}
-
-		if ( !empty($inclusions) ) {
+		if ( !empty($inclusions) )
 			$inclusions .= ')';
-		}
 		$where .= $inclusions;
 
 		$exclusions = '';
+		if ( ! empty( $exclude_tree ) ) {
+			$excluded_trunks = preg_split('/[\s,]+/',$exclude_tree);
+			foreach( (array) $excluded_trunks as $extrunk ) {
+				$excluded_children = (array) get_terms($taxonomies[0], array('child_of' => intval($extrunk), 'fields' => 'ids'));
+				$excluded_children[] = $extrunk;
+				foreach( (array) $excluded_children as $exterm ) {
+					if ( empty($exclusions) )
+						$exclusions  = ' AND ( t.term_id <> ' . intval($exterm) . ' ';
+					else
+						$exclusions .= ' AND t.term_id <> ' . intval($exterm) . ' ';
+
+				}
+			}
+		}
 		if ( !empty($exclude) ) {
 			$exterms = preg_split('/[\s,]+/',$exclude);
-			foreach ( (array) $exterms as $exterm ) {
-				if (empty($exclusions)) {
-					$exclusions = ' AND ( t.term_id <> ' . intval($exterm) . ' ';
-				} else {
-					$exclusions .= ' AND t.term_id <> ' . intval($exterm) . ' ';
+			if ( count($exterms) ) {
+				foreach ( (array) $exterms as $exterm ) {
+					if ( empty($exclusions) )
+						$exclusions  = ' AND ( t.term_id <> ' . intval($exterm) . ' ';
+					else
+						$exclusions .= ' AND t.term_id <> ' . intval($exterm) . ' ';
 				}
 			}
 		}
 
-		if ( !empty($exclusions) ) {
+		if ( !empty($exclusions) )
 			$exclusions .= ')';
-		}
 		$exclusions = apply_filters('list_terms_exclusions', $exclusions, $args );
 		$where .= $exclusions;
+
+		// $args can be whatever, only use the args defined in defaults to compute the key
+		$filter_key = ( has_filter('list_terms_exclusions') ) ? serialize($GLOBALS['wp_filter']['list_terms_exclusions']) : '';
+		$key = hash('md5',  serialize( compact(array_keys($defaults)) ) . serialize( $taxonomies ) . $filter_key );
+		$last_changed = wp_cache_get('last_changed', 'terms');
+		if ( !$last_changed ) {
+			$last_changed = time();
+			wp_cache_set('last_changed', $last_changed, 'terms');
+		}
+		$cache_key = "st_get_terms:$key:$last_changed";
+		$cache = wp_cache_get( $cache_key, 'terms' );
+		if ( false !== $cache ) {
+			$cache = apply_filters('get_terms', $cache, $taxonomies, $args);
+			return $cache;
+		}
+
+		// ST Features : Restrict category
+		if ( $category != 0 ) {
+			if ( !is_array($taxonomies) ) 
+				$taxonomies = array($taxonomies);
+
+			$incategories = preg_split('/[\s,]+/', $category);
+			$incategories = array_map('intval', $incategories);
+
+			$taxonomies 	= "'" . implode("', '", $taxonomies) . "'";
+			$incategories 	= "'" . implode("', '", $incategories) . "'";
+
+			$where .= " AND tr.object_id IN ( ";
+				$where .= "SELECT tr.object_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ($taxonomies) AND tt.term_id IN ($incategories)";
+			$where .= " ) ";
+
+			unset($incategories, $category);
+		}
+
+		// ST Features : Limit posts date
+		if ( $limit_days != 0 ) {
+			$where .= " AND tr.object_id IN ( ";
+				$where .= "SELECT ID WHERE $wpdb->posts WHERE post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
+			$where .= " ) ";	
+
+			unset($limit_days);
+		}
 
 		if ( !empty($slug) ) {
 			$slug = sanitize_title($slug);
 			$where .= " AND t.slug = '$slug'";
 		}
 
-		if ( !empty($name__like) ) {
+		if ( !empty($name__like) )
 			$where .= " AND t.name LIKE '{$name__like}%'";
-		}
 
-		if ( strpos($st_name_like, ' ') != false || strpos($st_name_like, ' ') != null ) {
-			$tmp = '';
-			$sts = explode(' ', $st_name_like);
-			foreach ( (array) $sts as $st ) {
-				if ( empty($st) )
-				continue;
-
-				$st = addslashes_gpc($st);
-				$tmp .= " t.name LIKE '%{$st}%' OR ";
-			}
-			// Remove latest OR
-			$tmp = substr( $tmp, 0, strlen($tmp) - 4);
-
-			$where .= " AND ( $tmp ) ";
-			unset($tmp)	;
-		} elseif ( !empty($st_name_like) ) {
-			$where .= " AND t.name LIKE '%{$st_name_like}%'";
-		}
-
-		if ( '' != $parent ) {
+		if ( '' !== $parent ) {
 			$parent = (int) $parent;
 			$where .= " AND tt.parent = '$parent'";
 		}
 
-		if ( $hide_empty && !$hierarchical ) {
-			$where .= ' AND tt.count > 0';
+		// ST Features : Another way to search 
+		if ( strpos($st_name__like, ' ') !== false ) {
+
+			$st_terms_formatted = array();
+			$st_terms = preg_split('/[\s,]+/', $st_name_like);
+			foreach ( (array) $st_terms as $st_term ) {
+				if ( empty($st_term) )
+					continue;
+				$st_terms_formatted[] = "t.name LIKE '%".like_escape($st_term)."%'";
+			}
+
+			$where .= " AND ( " . explode( ' OR ', $st_terms_formatted ) . " ) ";
+			unset( $st_term, $st_terms_formatted, $st_terms );
+
+		} elseif ( !empty($st_name__like) ) {
+
+			$where .= " AND t.name LIKE '%{$st_name__like}%'";
+
 		}
 
-		$number_sql = '';
-		if ( strpos($number, ',') != false || strpos($number, ',') != null ) {
-			$number_sql = $number;
-		} else {
-			$number = (int) $number;
-			if ( $number != 0 ) {
-				$number_sql = 'LIMIT ' . $number;
-			}
+		// ST Features : Add min usage
+		if ( $hide_empty && !$hierarchical ) {
+			if ( $min_usage == 0 ) 
+				$where .= ' AND tt.count > 0';
+			else 
+				$where .= $wpdb->prepare( ' AND tt.count >= %d', $min_usage );
 		}
 
 		if ( !empty($search) ) {
@@ -1850,90 +1832,89 @@ class SimpleTags extends SimpleTagsBase {
 			$where .= " AND (t.name LIKE '%$search%')";
 		}
 
-		$select_this = '';
+		// don't limit the query results when we have to descend the family tree
+		if ( ! empty($number) && ! $hierarchical && empty( $child_of ) && '' === $parent ) {
+			if( $offset )
+				$limit = 'LIMIT ' . $offset . ',' . $number;
+			else
+				$limit = 'LIMIT ' . $number;
 
-		if ( 'all' == $fields ) {
-			$select_this = 't.*, tt.*';
-		} else if ( 'ids' == $fields ) {
- 	        $select_this = 't.term_id, tt.parent, tt.count';
-		} else if ( 'names' == $fields ) {
-			$select_this = 't.term_id, tt.parent, tt.count, t.name';
-		}
+		} else
+			$limit = '';
 
-		// Limit posts date
-		$limitdays_sql = '';
-		$limit_days = (int) $limit_days;
-		if ( $limit_days != 0 ) {
-			$limitdays_sql = 'AND p.post_date_gmt > "' .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). '"';
-		}
+		$selects = array();
+		if ( 'all' == $fields )
+			$selects = array('t.*', 'tt.*');
+		else if ( 'ids' == $fields )
+			$selects = array('t.term_id', 'tt.parent', 'tt.count');
+		else if ( 'names' == $fields )
+			$selects = array('t.term_id', 'tt.parent', 'tt.count', 't.name');
 
-		$query = "SELECT {$select_this}
-			FROM {$wpdb->terms} AS t
-			INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-			INNER JOIN {$wpdb->term_relationships} AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
-			INNER JOIN {$wpdb->posts} AS p ON tr.object_id = p.ID
-			WHERE tt.taxonomy IN ( {$in_taxonomies} )
-			AND p.post_date_gmt < '".current_time('mysql')."'
-			{$limitdays_sql}
-			{$category_sql}
-			{$where}
-			{$restict_usage}
+		$select_this = implode(', ', apply_filters( 'get_terms_fields', $selects, $args ));
+
+		$query = "SELECT $select_this 
+			FROM $wpdb->terms AS t 
+			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id 
+			INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id
+			WHERE tt.taxonomy IN ($in_taxonomies) 
+			$where 
 			GROUP BY t.term_id
-			ORDER BY {$order_by}
-			{$number_sql}";
-		
+			ORDER BY $orderby $order
+			$limit";
+
+		$terms = $wpdb->get_results($query);
 		if ( 'all' == $fields ) {
-			$terms = $wpdb->get_results($query);
 			update_term_cache($terms);
-		} else if ( ('ids' == $fields) || ('names' == $fields) ) {
-			$terms = $wpdb->get_results($query);
 		}
 
 		if ( empty($terms) ) {
-			$cache[ $key ] = array();
-			wp_cache_set( 'get_terms', $cache, 'terms' );
+			wp_cache_add( $cache_key, array(), 'terms' );
 			$terms = apply_filters('get_terms', array(), $taxonomies, $args);
 			return $terms;
 		}
 
 		if ( $child_of ) {
-		    $children = _get_term_hierarchy($taxonomies[0]);
-		    if ( ! empty($children) )
-		        $terms = & _get_term_children($child_of, $terms, $taxonomies[0]);
+			$children = _get_term_hierarchy($taxonomies[0]);
+			if ( ! empty($children) )
+				$terms = & _get_term_children($child_of, $terms, $taxonomies[0]);
 		}
 
 		// Update term counts to include children.
- 	    if ( $pad_counts && 'all' == $fields )
-	        _pad_term_counts($terms, $taxonomies[0]);
+		if ( $pad_counts && 'all' == $fields )
+			_pad_term_counts($terms, $taxonomies[0]);
 
 		// Make sure we show empty categories that have children.
 		if ( $hierarchical && $hide_empty && is_array($terms) ) {
-		    foreach ( $terms as $k => $term ) {
-		        if ( ! $term->count ) {
-		            $children = _get_term_children($term->term_id, $terms, $taxonomies[0]);
-		            if( is_array($children) )
-		                foreach ( $children as $child )
-		                    if ( $child->count )
-		                        continue 2;
-		
-		            // It really is empty
-		            unset($terms[$k]);
-		        }
-		    }
+			foreach ( $terms as $k => $term ) {
+				if ( ! $term->count ) {
+					$children = _get_term_children($term->term_id, $terms, $taxonomies[0]);
+					if( is_array($children) )
+						foreach ( $children as $child )
+							if ( $child->count )
+								continue 2;
+
+					// It really is empty
+					unset($terms[$k]);
+				}
+			}
 		}
 		reset ( $terms );
-		
+
 		$_terms = array();
 		if ( 'ids' == $fields ) {
-		    while ( $term = array_shift($terms) )
-		        $_terms[] = $term->term_id;
-		    $terms = $_terms;
+			while ( $term = array_shift($terms) )
+				$_terms[] = $term->term_id;
+			$terms = $_terms;
 		} elseif ( 'names' == $fields ) {
-		    while ( $term = array_shift($terms) )
-		        $_terms[] = $term->name;
-		    $terms = $_terms;
+			while ( $term = array_shift($terms) )
+				$_terms[] = $term->name;
+			$terms = $_terms;
 		}
-		
+
+		if ( 0 < $number && intval(@count($terms)) > $number ) {
+			$terms = array_slice($terms, $offset, $number);
+		}
+
 		wp_cache_add( $cache_key, $terms, 'terms' );
 
 		$terms = apply_filters('get_terms', $terms, $taxonomies, $args);
@@ -1994,7 +1975,7 @@ class SimpleTags extends SimpleTagsBase {
 		if ( !empty($title) ) {
 			$title .= "\n\t";
 		}
-
+		
 		if ( $copyright === true )
 		return "\n" . '<!-- Generated by Simple Tags ' . $this->version . ' - http://wordpress.org/extend/plugins/simple-tags -->' ."\n\t". $title . $output. "\n";
 		else

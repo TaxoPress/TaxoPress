@@ -218,7 +218,7 @@ msgstr "自動タグ設定を更新しました !"
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:523
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:629
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:844
-msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr "詳しい情報は <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">プラグインのホームページ</a> を参照してください。バグを見つけた場合、また、このプラグインのためのすばらしいアイディアをお持ちの方は <a href=\"mailto:amaury@wordpress-fr.net\">私にお知らせください</a> !"
 
 #: D:\SVN\Plugins\ST
@@ -590,8 +590,8 @@ msgstr "タグリンクのフォーマット:"
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:419
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:437
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:470
-msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "マーカーや解説については <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">オンラインドキュメント</a>を参照してください"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
+msgstr "マーカーや解説については <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">オンラインドキュメント</a>を参照してください"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:343
@@ -614,8 +614,8 @@ msgstr "<strong>詳細利用</strong>:"
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:345
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:366
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "<code>st_the_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "<code>st_the_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:348
@@ -724,8 +724,8 @@ msgstr "リストの前 (上) に表示するタイトル:"
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:375
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:396
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "<code>st_related_posts()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "<code>st_related_posts()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:378
@@ -830,8 +830,8 @@ msgstr "関連タグが無いときに表示するテキスト:"
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:404
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:425
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "<code>st_related_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "<code>st_related_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:406
@@ -994,8 +994,8 @@ msgstr "この 2 つのフォントサイズで使用するフォントの単位
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:462
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:483
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "<code>st_tag_cloud()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "<code>st_tag_cloud()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">ドキュメンテーション</a> を参照してください。"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.3/inc/simple-tags.admin.php:476
@@ -1765,8 +1765,8 @@ msgstr "関連タグが見つかりませんでした。"
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:516
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:569
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:813
-msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "詳しい情報は <a href=\"http://code.google.com/p/simple-tags/\">プラグインのホームページ</a> を参照してください。バグを見つけた場合、また、このプラグインのためのすばらしいアイディアをお持ちの方は <a href=\"mailto:amaury@wordpress-fr.net\">私にお知らせください</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "詳しい情報は <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">プラグインのホームページ</a> を参照してください。バグを見つけた場合、また、このプラグインのためのすばらしいアイディアをお持ちの方は <a href=\"mailto:amaury@wordpress-fr.net\">私にお知らせください</a> !"
 
 #: D:\SVN\Plugins\ST
 #: WP.org\trunk/2.5/inc/simple-tags.admin.php:224

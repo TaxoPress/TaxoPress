@@ -1,9 +1,4 @@
 <?php
-// Init Widget
-function widget_simpletags_register() {
-	register_widget('SimpleTags_Widget');
-}
-
 // Future of WP ?
 if ( !function_exists('add_filters') ) :
 function add_filters($tags, $function_to_add, $priority = 10, $accepted_args = 1) {

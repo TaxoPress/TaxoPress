@@ -231,8 +231,8 @@ msgstr "自動標籤的設定已更新！"
 #: /2.3/inc/simple-tags.admin.php:844
 #: /2.5/inc/simple-tags.admin.php:641
 #: /2.7/inc/simple-tags.admin.php:703
-msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "您可以藉由拜訪 <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "您可以藉由拜訪 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
 
 #: /2.3/inc/simple-tags.admin.php:214
 #: /2.5/inc/simple-tags.admin.php:237
@@ -599,8 +599,8 @@ msgstr "標籤連結格式："
 #: /2.7/inc/simple-tags.admin.php:505
 #: /2.7/inc/simple-tags.admin.php:523
 #: /2.7/inc/simple-tags.admin.php:556
-msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "您可以在 <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">線上說明文件</a> 中找到標記語法及說明。"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
+msgstr "您可以在 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">線上說明文件</a> 中找到標記語法及說明。"
 
 #: /2.3/inc/simple-tags.admin.php:343
 #: /2.5/inc/simple-tags.admin.php:386
@@ -626,8 +626,8 @@ msgstr "<strong>進階使用</strong>:"
 #: /2.3/inc/simple-tags.admin.php:345
 #: /2.5/inc/simple-tags.admin.php:388
 #: /2.7/inc/simple-tags.admin.php:452
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_the_tags()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">說明文件</a>。"
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_the_tags()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">說明文件</a>。"
 
 #: /2.3/inc/simple-tags.admin.php:348
 #: /2.5/inc/simple-tags.admin.php:391
@@ -746,8 +746,8 @@ msgstr "在清單前要顯示的標題，留白表示不要標題："
 #: /2.3/inc/simple-tags.admin.php:375
 #: /2.5/inc/simple-tags.admin.php:418
 #: /2.7/inc/simple-tags.admin.php:482
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_related_posts()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">說明文件</a>。"
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_related_posts()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">說明文件</a>。"
 
 #: /2.3/inc/simple-tags.admin.php:378
 #: /2.5/inc/simple-tags.admin.php:421
@@ -860,8 +860,8 @@ msgstr "當沒有相關標籤時要顯示的文字："
 #: /2.3/inc/simple-tags.admin.php:404
 #: /2.5/inc/simple-tags.admin.php:447
 #: /2.7/inc/simple-tags.admin.php:511
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_related_tags()</code>功能一樣的語法來設定顯示方式。詳細情形請參閱 <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">說明文件</a> 。"
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_related_tags()</code>功能一樣的語法來設定顯示方式。詳細情形請參閱 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">說明文件</a> 。"
 
 #: /2.3/inc/simple-tags.admin.php:406
 #: /2.5/inc/simple-tags.admin.php:449
@@ -1025,8 +1025,8 @@ msgstr "字型大小的單位設定決定了兩種字型大小使用的單位。
 #: /2.3/inc/simple-tags.admin.php:462
 #: /2.5/inc/simple-tags.admin.php:505
 #: /2.7/inc/simple-tags.admin.php:569
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_tag_cloud()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">說明文件</a>。"
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_tag_cloud()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">說明文件</a>。"
 
 #: /2.3/inc/simple-tags.admin.php:476
 #: /2.5/inc/simple-tags.admin.php:519
@@ -1857,8 +1857,8 @@ msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 #: /2.7/inc/simple-tags.admin.php:306
 #: /2.7/inc/simple-tags.admin.php:599
 #: /2.7/inc/simple-tags.admin.php:1114
-msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "您可以藉由拜訪 <a href=\"http://code.google.com/p/simple-tags/\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "您可以藉由拜訪 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
 
 #: /2.5/inc/simple-tags.admin.php:240
 #: /2.7/inc/simple-tags.admin.php:313

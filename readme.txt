@@ -3,24 +3,24 @@ Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
 Requires at least: 2.8
-Tested up to: 2.8.5
-Stable tag: 1.6.6
+Tested up to: 2.9.1
+Stable tag: 1.7.1-rc1
 
-Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.8.x tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
+Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.8 and 2.9 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
 
 == Description ==
 
 Simple Tags is the successor of Simple Tagging Plugin
-**This is THE perfect tool to manage perfeclty your WP 2.8.x tags**
+**This is THE perfect tool to manage perfeclty your WP 2.8 and 2.9 tags**
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
 * Administration
-	* **NEW** Related tags !
-	* **NEW** AJAX Admin features !
-	* **NEW** Tags suggestion from Yahoo Term Extractions API, Tag The Net and Local Tags with AJAX request
+	* Related tags !
+	* AJAX Admin features !
+	* Tags suggestion from Yahoo Term Extractions API, Tag The Net and Local Tags with AJAX request
 		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
-	* **NEW** Improve performance !
+	* Improve performance !
 	* Auto tags !
 	* Auto link tags in post content
 		* This feature may degrade performance! Be careful !
@@ -56,6 +56,12 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Frequently Asked Questions ==
 
+= Simple Tags is compatible with which WordPress versions ? =
+
+1.7   and upper are compatible only with WordPress 2.8, 2.9 and upper !
+1.6.7 and before are compatible with WordPress 2.3 to 2.7
+Before WP 2.3, you must use the plugin Simple Tagging.
+
 = How import tags from my old tags plugin ? =
 
 Yes, with official default importer. Manage -> Import
@@ -79,7 +85,14 @@ Then: Manage - Import - Embedded Tags
 3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
 6. You also can suggest tags from lot's of service (local, tag the net, yahoo!)
 
-== Arbitrary section ==
+== Changelog ==
+* Version 1.7.1-rc1 : RC 1 (this version must be test !)
+	* Somes ajust for Wordpress 2.9
+	* Remove 99,99% notices PHP from ST
+	* Clean some part of the plugin.
+* Version 1.7.1-a1 : Alpha 1
+	* Check compatibility WP 2.9 ( fix somes UI bugs )
+	* Fix a bug with save Widget options
 * Version 1.7b1.1
 	* Add exclude option in auto tags link.
 * Version 1.7b1

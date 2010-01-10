@@ -19,10 +19,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 * @return SimpleTagsAdmin
 	 */
 	function SimpleTagsAdmin() {
-		parent::initBase();
+		parent::initOptions();
 		
 		// Admin URL for Pagination and target
-		$this->posts_base_url = admin_url('edit.php')  . '?page=';
+		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
 		$this->options_base_url = admin_url('options-general.php') . '?page=';
 
 		// Admin Capabilities
@@ -73,7 +73,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	}
 
 	function initJavaScript() {
-		global $pagenow;
+		global $pagenow, $wp_locale;
 		
 		// Register pages
 		$st_pages = array('st_manage', 'st_mass_tags', 'st_auto', 'st_options');
@@ -82,27 +82,27 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 
 		// Register all JS
 		wp_register_script('st-helper-js-collection', 	admin_url('admin.php') .'?st_ajax_action=helper_js_collection', array('jquery', 'st-helper-add-tags'), $this->version);
-		wp_register_script('st-bcomplete', 				$this->info['install_url'].'/js/bcomplete.min.js', array('jquery', 'prototype', 'st-helper-add-tags', 'st-helper-js-collection'), $this->version);
-		wp_register_script('st-helper-bcomplete', 		$this->info['install_url'].'/js/helper-bcomplete.min.js', array('st-bcomplete'), $this->version);
-		wp_register_script('st-helper-add-tags', 		$this->info['install_url'].'/js/helper-add-tags.min.js', array('jquery'), $this->version);
-		wp_register_script('jquery-cookie', 			$this->info['install_url'].'/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
-		wp_register_script('st-helper-manage', 			$this->info['install_url'].'/js/helper-manage.min.js', array('jquery'), $this->version);
-		wp_register_script('st-helper-options', 		$this->info['install_url'].'/js/helper-options.min.js', array('jquery'), $this->version);
-		wp_register_script('st-helper-click-tags', 		$this->info['install_url'].'/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), $this->version);
+		wp_register_script('st-bcomplete', 				STAGS_URL.'/inc/js/bcomplete.min.js', array('jquery', 'prototype', 'st-helper-add-tags', 'st-helper-js-collection'), $this->version);
+		wp_register_script('st-helper-bcomplete', 		STAGS_URL.'/inc/js/helper-bcomplete.min.js', array('st-bcomplete'), $this->version);
+		wp_register_script('st-helper-add-tags', 		STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), $this->version);
+		wp_register_script('jquery-cookie', 			STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
+		wp_register_script('st-helper-manage', 			STAGS_URL.'/inc/js/helper-manage.min.js', array('jquery'), $this->version);
+		wp_register_script('st-helper-options', 		STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), $this->version);
+		wp_register_script('st-helper-click-tags', 		STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), $this->version);
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array(
 			'site_url' => admin_url('admin.php'),
 			'show_txt' => __('Display click tags', 'simpletags'),
 			'hide_txt' => __('Hide click tags', 'simpletags') ) );
-		wp_register_script('st-helper-suggested-tags', 	$this->info['install_url'].'/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), $this->version);
+		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), $this->version);
 		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
 			'site_url' => admin_url('admin.php'), 
 			'title_bloc' => $this->getSuggestTagsTitle(),
 			'content_bloc' => __('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags') ) );
 
 		// Register all CSS
-		wp_register_style('st-admin', 			$this->info['install_url'].'/css/simple-tags.admin.css', array(), $this->version, false );
-		wp_register_style('st-bcomplete', 		$this->info['install_url'].'/css/bcomplete.css', array(), $this->version, false );
-		wp_register_style('st-bcomplete-rtl', 	$this->info['install_url'].'/css/bcomplete-rtl.css', array('st-bcomplete'), $this->version, false );
+		wp_register_style('st-admin', 			STAGS_URL.'/inc/css/admin.css', array(), $this->version, 'all' );
+		wp_register_style('st-bcomplete', 		STAGS_URL.'/inc/css/bcomplete.css', array(), $this->version, 'all' );
+		wp_register_style('st-bcomplete-rtl', 	STAGS_URL.'/inc/css/bcomplete-rtl.css', array('st-bcomplete'), $this->version, 'all' );
 		
 		// Common Helper for Post, Page and Plugin Page
 		if (
@@ -120,7 +120,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				if ( $this->options['use_autocompletion'] == 1 ) {
 					wp_enqueue_script('st-helper-bcomplete');
 					wp_enqueue_style ('st-bcomplete' );
-					if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
+					if ( isset($wp_locale->text_direction) && 'rtl' == $wp_locale->text_direction ) {
 						wp_enqueue_style ('st-bcomplete-rtl');
 					}
 				}
@@ -149,7 +149,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		if ( isset($_GET['page']) && $_GET['page'] == 'st_auto' ) {
 			wp_enqueue_script('st-helper-bcomplete');
 			wp_enqueue_style ('st-bcomplete' );
-			if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
+			if ( isset($wp_locale->text_direction) && 'rtl' == $wp_locale->text_direction ) {
 				wp_enqueue_style ('st-bcomplete-rtl');
 			}
 		}
@@ -161,7 +161,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				
 				wp_enqueue_script('st-bcomplete');
 				wp_enqueue_style ('st-bcomplete' );
-				if ( 'rtl' == get_bloginfo( 'text_direction' ) ) {
+				if ( isset($wp_locale->text_direction) && 'rtl' == $wp_locale->text_direction ) {
 					wp_enqueue_style ('st-bcomplete-rtl');
 				}
 			}
@@ -177,8 +177,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			if( $role != null && !$role->has_cap('admin_simple_tags') ) {
 				$role->add_cap('admin_simple_tags');
 			}
-			// Clean var
-			unset($role);
 			
 			$role = get_role('editor');
 			if( $role != null && !$role->has_cap('simple_tags') ) {
@@ -218,21 +216,21 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			parent::setOption( 'auto_list', maybe_serialize($tags) );
 
 			// Active auto tags ?
-			if ( $_POST['use_auto_tags'] == '1' ) {
+			if ( isset($_POST['use_auto_tags']) && $_POST['use_auto_tags'] == '1' ) {
 				parent::setOption( 'use_auto_tags', '1' );
 			} else {
 				parent::setOption( 'use_auto_tags', '0' );
 			}
 			
 			// All tags ?
-			if ( $_POST['at_all'] == '1' ) {
+			if ( isset($_POST['at_all']) && $_POST['at_all'] == '1' ) {
 				parent::setOption( 'at_all', '1' );
 			} else {
 				parent::setOption( 'at_all', '0' );
 			}
 			
 			// Empty only ?
-			if ( $_POST['at_empty'] == '1' ) {
+			if ( isset($_POST['at_empty']) && $_POST['at_empty'] == '1' ) {
 				parent::setOption( 'at_empty', '1' );
 			} else {
 				parent::setOption( 'at_empty', '0' );
@@ -254,7 +252,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Auto Tags', 'simpletags'); ?></h2>
-			<p><?php _e('Visit the <a href="http://code.google.com/p/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
+			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 
 			<?php if ( $action === false ) : ?>
 
@@ -292,13 +290,20 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 								<br /><?php _e('Separated with a comma', 'simpletags'); ?>
 							</td>
 						</tr>
-					</table>						
+					</table>
 
-					<p class="submit"><input class="button" type="submit" name="update_auto_list" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
+					<p class="submit">
+						<input class="button-primary" type="submit" name="update_auto_list" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
+					</p>
 				</form>
 
 				<h3><?php _e('Auto tags old content', 'simpletags'); ?></h3>
-				<p><?php _e('Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned.', 'simpletags'); ?> <a class="button" style="font-weight:700;" href="<?php echo $this->posts_base_url.'st_auto'; ?>&amp;action=auto_tag"><?php _e('Auto tags all content &raquo;', 'simpletags'); ?></a></p>
+				<p>
+					<?php _e('Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned.', 'simpletags'); ?>
+				</p>
+				<p class="submit">
+					<a class="button-primary" href="<?php echo $this->posts_base_url.'st_auto'; ?>&amp;action=auto_tag"><?php _e('Auto tags all content &raquo;', 'simpletags'); ?></a>
+				</p>
 
 			<?php else:
 				// Counter
@@ -412,10 +417,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					__('You must set zero (0) for display all tags.', 'simpletags')),
 				array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
 				array('tt_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
-					__('You can find markers and explanations <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
+					__('You can find markers and explanations <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
 				array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
 				array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
-					__('You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags'))
+					__('You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags'))
 			),
 			'relatedposts' => array(
 				array('rp_feed', __('Automatically display related posts into feeds', 'simpletags'), 'checkbox', '1'),
@@ -440,12 +445,12 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 						<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
 					</ul>'),
 				array('rp_xformat', __('Post link format:', 'simpletags'), 'text', 80,
-					__('You can find markers and explanations <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
+					__('You can find markers and explanations <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
 				array('rp_limit_qty', __('Maximum number of related posts to display: (default: 5)', 'simpletags'), 'text', 10),
 				array('rp_notagstext', __('Enter the text to show when there is no related post:', 'simpletags'), 'text', 80),
 				array('rp_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
 				array('rp_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
-					__('You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags'))
+					__('You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags'))
 			),
 			'relatedtags' => array(
 				array('rt_number', __('Maximum number of related tags to display: (default: 5)', 'simpletags'), 'text', 10),
@@ -468,13 +473,13 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 						<li>'.__('<code>AND</code> &ndash; Fetches posts with both the "Tag1" <strong>and</strong> the "Tag2" tag.', 'simpletags').'</li>
 					</ul>'),
 				array('rt_xformat', __('Related tags link format:', 'simpletags'), 'text', 80,
-					__('You can find markers and explanations <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
+					__('You can find markers and explanations <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
 				array('rt_separator', __('Related tags separator:', 'simpletags'), 'text', 10,
 					__('Leave empty for list format.', 'simpletags')),
 				array('rt_notagstext', __('Enter the text to show when there is no related tags:', 'simpletags'), 'text', 80),
 				array('rt_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
 				array('rt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
-					__('You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags')),
+					__('You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags')),
 				// Remove related tags
 				array('text_helper', 'text_helper', 'helper', '', '<h3>'.__('Remove related Tags', 'simpletags').'</h3>'),
 				array('rt_format', __('Remove related Tags type format:', 'simpletags'), 'dropdown', 'list/flat',
@@ -486,7 +491,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					__('Leave empty for list format.', 'simpletags')),
 				array('rt_remove_notagstext', __('Enter the text to show when there is no remove related tags:', 'simpletags'), 'text', 80),
 				array('rt_remove_xformat', __('Remove related tags  link format:', 'simpletags'), 'text', 80,
-					__('You can find markers and explanations <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),		
+					__('You can find markers and explanations <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),		
 			),
 			'tagcloud' => array(
 				array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
@@ -496,21 +501,27 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					</ul>'.
 					__('<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />', 'simpletags').
 					__('You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud.', 'simpletags')),
-				array('cloud_selection', __('Order tags selection:', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
+				array('cloud_selectionby', __('Order by for tags selection:', 'simpletags'), 'dropdown', 'count/name/random',
 					'<ul>
-						<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
-						<li>'.__('<code>count-desc</code> &ndash; Most popular. (default)', 'simpletags').'</li>
-						<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
-						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
-						<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
-					</ul>'),
-				array('cloud_sort', __('Order tags display:', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
-					'<ul>
-						<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
-						<li>'.__('<code>count-desc</code> &ndash; Most popular.', 'simpletags').'</li>
-						<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
-						<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
+						<li>'.__('<code>count</code> &ndash; Counter.', 'simpletags').'</li>
+						<li>'.__('<code>name</code> &ndash; Name.', 'simpletags').'</li>
 						<li>'.__('<code>random</code> &ndash; Random. (default)', 'simpletags').'</li>
+					</ul>'),
+				array('cloud_selection', __('Order tags selection:', 'simpletags'), 'dropdown', 'asc/desc',
+					'<ul>
+						<li>'.__('<code>asc</code> &ndash; Ascending.', 'simpletags').'</li>
+						<li>'.__('<code>desc</code> &ndash; Descending.', 'simpletags').'</li>
+					</ul>'),
+				array('cloud_orderby', __('Order by for tags display:', 'simpletags'), 'dropdown', 'count/name/random',
+					'<ul>
+						<li>'.__('<code>count</code> &ndash; Counter.', 'simpletags').'</li>
+						<li>'.__('<code>name</code> &ndash; Name.', 'simpletags').'</li>
+						<li>'.__('<code>random</code> &ndash; Random. (default)', 'simpletags').'</li>
+					</ul>'),
+				array('cloud_order', __('Order tags display:', 'simpletags'), 'dropdown', 'asc/desc',
+					'<ul>
+						<li>'.__('<code>asc</code> &ndash; Ascending.', 'simpletags').'</li>
+						<li>'.__('<code>desc</code> &ndash; Descending.', 'simpletags').'</li>
 					</ul>'),
 				array('cloud_inc_cats', __('Include categories in tag cloud ?', 'simpletags'), 'checkbox', '1'),
 				array('cloud_format', __('Tags cloud type format:', 'simpletags'), 'dropdown', 'list/flat',
@@ -519,7 +530,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 						<li>'.__('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags').'</li>
 					</ul>'),
 				array('cloud_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
-					__('You can find markers and explanations <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
+					__('You can find markers and explanations <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">in the online documentation.</a>', 'simpletags')),
 				array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'text', 10),
 				array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 80),
 				array('cloud_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
@@ -532,7 +543,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				array('cloud_unit', __('The units to display the font sizes with, on tag clouds:', 'simpletags'), 'dropdown', 'pt/px/em/%',
 					__("The font size units option determines the units that the two font sizes use.", 'simpletags')),
 				array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
-					__('You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags'))
+					__('You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">documentation</a> for more details.', 'simpletags'))
 			),
 		);
 
@@ -540,8 +551,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		if ( isset($_POST['updateoptions']) ) {
 			foreach((array) $this->options as $key => $value) {
 				$newval = ( isset($_POST[$key]) ) ? stripslashes($_POST[$key]) : '0';
-				$skipped_options = array('use_auto_tags', 'auto_list');
-				if ( $newval != $value && !in_array($key, $skipped_options) ) {
+				if ( $newval != $value && !in_array($key, array('use_auto_tags', 'auto_list')) ) {
 					parent::setOption( $key, $newval );
 				}
 			}
@@ -557,7 +567,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	    ?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
-			<p><?php _e('Visit the <a href="http://code.google.com/p/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
+			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			<form action="<?php echo $this->options_base_url.'st_options'; ?>" method="post">
 				<p>
 					<input class="button" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
@@ -574,8 +584,9 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				</div>
 
 				<p>
-					<input class="button" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
-					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
+					<input class="button-primary" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
+					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" />
+				</p>
 			</form>
 	    <?php $this->printAdminFooter(); ?>
 	    </div>
@@ -618,9 +629,9 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		}
 
 		// Manage URL
-		$sort_order = ( isset($_GET['tag_sortorder']) ) ? attribute_escape(stripslashes($_GET['tag_sortorder'])) : 'desc';
+		$sort_order = ( isset($_GET['tag_sortorder']) ) ? esc_attr(stripslashes($_GET['tag_sortorder'])) : 'desc';
 		$search_url = ( isset($_GET['search']) ) ? '&amp;search=' . stripslashes($_GET['search']) : '';
-		$action_url = $this->posts_base_url . attribute_escape(stripslashes($_GET['page'])) . '&amp;tag_sortorder=' . $sort_order. $search_url;
+		$action_url = $this->posts_base_url . esc_attr(stripslashes($_GET['page'])) . '&amp;tag_sortorder=' . $sort_order. $search_url;
 
 		// TagsFilters
 		$order_array = array(
@@ -631,41 +642,44 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		// Build Tags Param
 		switch ($sort_order) {
 			case 'natural' :
-				$param = 'number='.$this->nb_tags.'&hide_empty=false&cloud_selection=name-asc';
+				$param = 'number='.$this->nb_tags.'&hide_empty=false&selectionby=name&selection=asc';
 				break;
 			case 'asc' :
-				$param = 'number='.$this->nb_tags.'&hide_empty=false&cloud_selection=count-asc';
+				$param = 'number='.$this->nb_tags.'&hide_empty=false&selectionby=count&selection=asc';
 				break;
 			default :
-				$param = 'number='.$this->nb_tags.'&hide_empty=false&cloud_selection=count-desc';
+				$param = 'number='.$this->nb_tags.'&hide_empty=false&selectionby=count&selection=desc';
 				break;
 		}
 
 
 		// Search
-		if ( !empty($_GET['search']) ) {
+		if ( isset($_GET['search']) && !empty($_GET['search']) ) {
 			$search = stripslashes($_GET['search']);
 			$param = str_replace('number='.$this->nb_tags, 'number=200&st_name_like='.$search, $param );
+		} else {
+			$_GET['search'] = '';
 		}
 
 		$this->displayMessage();
 		?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Manage Tags', 'simpletags'); ?></h2>
-			<p><?php _e('Visit the <a href="http://code.google.com/p/simple-tags/wiki/ThemeIntegration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
+			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			<table>
 				<tr>
 					<td class="list_tags">
 						<fieldset class="options" id="taglist">
 							<legend><?php _e('Existing Tags', 'simpletags'); ?></legend>
 
-							<form method="get">
+							<form method="get" action="">
 								<p>
 									<label for="search"><?php _e('Search tags', 'simpletags'); ?></label><br />
-									<input type="hidden" name="page" value="<?php echo attribute_escape(stripslashes($_GET['page'])); ?>" />
-									<input type="hidden" name="tag_sortorder" value="<?php echo $sort_order; ?>" />
-									<input type="text" name="search" id="search" size="10" value="<?php echo stripslashes($_GET['search']); ?>" />
-									<input class="button" type="submit" value="<?php _e('Go', 'simpletags'); ?>" /></p>
+									<input type="hidden" name="page" value="<?php esc_attr_e(stripslashes($_GET['page'])); ?>" />
+									<input type="hidden" name="tag_sortorder" value="<?php esc_attr_e($sort_order); ?>" />
+									<input type="text" name="search" id="search" size="10" value="<?php esc_attr_e(stripslashes($_GET['search'])); ?>" />
+									<input class="button" type="submit" value="<?php _e('Go', 'simpletags'); ?>" />
+								</p>
 							</form>
 
 							<div class="sort_order">
@@ -673,7 +687,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 								<?php
 								$output = array();
 								foreach( $order_array as $sort => $title ) {
-									$output[] = ($sort == $sort_order) ? '<span style="color: red;">'.$title.'</span>' : '<a href="'.$this->posts_base_url.attribute_escape(stripslashes($_GET['page'])).'&amp;tag_sortorder='.$sort.$search_url.'">'.$title.'</a>';
+									$output[] = ($sort == $sort_order) ? '<span style="color: red;">'.$title.'</span>' : '<a href="'.$this->posts_base_url.esc_attr(stripslashes($_GET['page'])).'&amp;tag_sortorder='.$sort.$search_url.'">'.$title.'</a>';
 								}
 								echo implode('<br />', $output);
 								$output = array();
@@ -722,10 +736,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 									<th scope="row"><label for="renametag_new"><?php _e('New tag name(s):', 'simpletags'); ?></label></th>
 									<td>
 										<input type="text" id="renametag_new" name="renametag_new" value="" size="40" />
-										<input class="button" type="submit" name="rename" value="<?php _e('Rename', 'simpletags'); ?>" />
+										<input class="button-primary" type="submit" name="rename" value="<?php _e('Rename', 'simpletags'); ?>" />
 									</td>
 								</tr>	
-							</table>							
+							</table>
 						</form>
 
 						<h3><?php _e('Delete Tag', 'simpletags'); ?></h3>
@@ -744,7 +758,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 									<th scope="row"><label for="deletetag_name"><?php _e('Tag(s) to delete:', 'simpletags'); ?></label></th>
 									<td>
 										<input type="text" id="deletetag_name" name="deletetag_name" value="" size="40" />
-										<input class="button" type="submit" name="delete" value="<?php _e('Delete', 'simpletags'); ?>" />
+										<input class="button-primary" type="submit" name="delete" value="<?php _e('Delete', 'simpletags'); ?>" />
 									</td>
 								</tr>
 							</table>
@@ -770,7 +784,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 									<th scope="row"><label for="addtag_new"><?php _e('Tag(s) to add:', 'simpletags'); ?></label></th>
 									<td>
 										<input type="text" id="addtag_new" name="addtag_new" value="" size="40" />
-										<input class="button" type="submit" name="Add" value="<?php _e('Add', 'simpletags'); ?>" />
+										<input class="button-primary" type="submit" name="Add" value="<?php _e('Add', 'simpletags'); ?>" />
 									</td>
 								</tr>
 							</table>
@@ -796,7 +810,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 									<th scope="row"><label for="tagslug_new"><?php _e('Slug(s) to set:', 'simpletags'); ?></label></th>
 									<td>
 										<input type="text" id="tagslug_new" name="tagslug_new" value="" size="40" />
-										<input class="button" type="submit" name="edit" value="<?php _e('Edit', 'simpletags'); ?>" />
+										<input class="button-primary" type="submit" name="edit" value="<?php _e('Edit', 'simpletags'); ?>" />
 									</td>
 								</tr>
 							</table>
@@ -810,8 +824,8 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 							<table class="form-table">
 								<tr valign="top">
 									<td colspan="2">
-										<p><?php _e('WordPress 2.3 have a small bug and can create empty terms. Remove it !', 'simpletags'); ?></p>
-										<p><input class="button" type="submit" name="clean" value="<?php _e('Clean !', 'simpletags'); ?>" /></p>
+										<p><?php _e('Old WordPress versions have a small bug and allow to create empty terms. Remove it !', 'simpletags'); ?></p>
+										<p><input class="button-primary" type="submit" name="clean" value="<?php _e('Clean !', 'simpletags'); ?>" /></p>
 									</td>
 								</tr>
 							</table>
@@ -830,23 +844,20 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		}
 		
 		// Date
-		$q['m']   = (int) $q['m'];
+		if ( isset($q['m']) )
+			$q['m'] = (int) $q['m'];
 		
 		// Category
-		$q['cat'] = (int) $q['cat'];
+		if ( isset($q['cat']) )
+			$q['cat'] = (int) $q['cat'];
 		
 		// Quantity
-		$q['posts_per_page'] = (int) $q['posts_per_page'];
-		if ( $q['posts_per_page'] == 0 ) {
+		$q['posts_per_page'] = ( isset($q['posts_per_page']) ) ? (int) $q['posts_per_page'] : 0;
+		if ( $q['posts_per_page'] == 0 )
 			$q['posts_per_page'] = 15;
-		}		
 		
 		// Content type
-		if ( $q['post_type'] == 'page' ) {
-			$q['post_type'] = 'page';
-		} else {
-			$q['post_type'] = 'post';
-		}
+		$q['post_type'] = ( isset($q['post_type']) && $q['post_type'] == 'page' ) ? 'page' : 'post';
 		
 		// Post status
 		$post_stati  = array(	//	array( adj, noun )
@@ -864,6 +875,8 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		if ( isset($q['post_status']) && in_array( $q['post_status'], array_keys($post_stati) ) ) {
 			$post_status_q = '&post_status=' . $q['post_status'];
 			$post_status_q .= '&perm=readable';
+		} elseif( !isset($q['post_status']) ) {
+			$q['post_status'] = '';
 		}
 	
 		if ( 'pending' === $q['post_status'] ) {
@@ -915,7 +928,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					
 						if ( empty($num_posts->$status) )
 							continue;
-						if ( $status == $_GET['post_status'] )
+						if ( isset($_GET['post_status']) && $status == $_GET['post_status'] )
 							$class = ' class="current"';
 					
 						$status_links[] = "<li><a href=\"".admin_url('edit.php')."?page=st_mass_tags&amp;post_status=$status\"$class>" . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
@@ -929,18 +942,18 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				</ul>
 				
 				<?php if ( isset($_GET['post_status'] ) ) : ?>
-					<input type="hidden" name="post_status" value="<?php echo attribute_escape($_GET['post_status']) ?>" />
+					<input type="hidden" name="post_status" value="<?php echo esc_attr($_GET['post_status']) ?>" />
 				<?php endif; ?>
 				
-				<p id="post-search">
+				<p class="search-box">
 					<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>" />
 					<input type="submit" value="<?php _e( 'Search Posts', 'simpletags' ); ?>" class="button" />
 				</p>
 				
 				<div class="tablenav">		
 					<?php
-					$posts_per_page = (int) $_GET['posts_per_page'];
-					if ( $posts_per_page == 0 ) {
+					$posts_per_page = ( isset($_GET['posts_per_page']) ) ? (int) $_GET['posts_per_page'] : 0;
+					if ( (int) $posts_per_page == 0 ) {
 						$posts_per_page = 15;
 					}
 					
@@ -986,7 +999,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 							</select>
 						<?php } ?>
 						
-						<?php wp_dropdown_categories('show_option_all='.__('View all categories', 'simpletags').'&hide_empty=1&hierarchical=1&show_count=1&selected='.$_GET['cat']);?>
+						<?php
+						$_GET['cat'] = ( isset($_GET['cat']) ) ? stripslashes($_GET['cat']) : '';
+						wp_dropdown_categories('show_option_all='.__('View all categories', 'simpletags').'&hide_empty=1&hierarchical=1&show_count=1&selected='.$_GET['cat']);
+						?>
 									
 						<select name="posts_per_page" id="posts_per_page">							
 							<option <?php if ( !isset($_GET['posts_per_page']) ) echo 'selected="selected"'; ?> value=""><?php _e('Quantity&hellip;', 'simpletags'); ?></option>
@@ -1010,7 +1026,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			<br style="clear:both;" />
 	
 			<?php if ( have_posts() ) :
-				add_filter('the_title','wp_specialchars');
+				add_filter('the_title','esc_html');
 				?>
 				<form name="post" id="post" method="post">
 					<table class="widefat post fixed">
@@ -1039,7 +1055,8 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					
 					<p class="submit">
 						<input class="button" type="hidden" name="secure_mass" value="<?php echo wp_create_nonce('st_mass_tags'); ?>" />
-						<input class="button" type="submit" name="update_mass" value="<?php _e('Update all &raquo;', 'simpletags'); ?>" /></p>
+						<input class="button-primary" type="submit" name="update_mass" value="<?php _e('Update all &raquo;', 'simpletags'); ?>" />
+					</p>
 				</form>
 				<?php if ( $this->all_tags === true ) : ?>
 					<script type="text/javascript">
@@ -1062,7 +1079,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				<p><?php _e('No content to edit.', 'simpletags'); ?>
 				
 			<?php endif; ?>
-			<p><?php _e('Visit the <a href="http://code.google.com/p/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
+			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			<?php $this->printAdminFooter(); ?>
 		</div>
     <?php
@@ -1081,7 +1098,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		foreach ( $tags as $tag )
 			$tag_names[] = $tag->name;
 		$tags_to_edit = join( ', ', $tag_names );
-		$tags_to_edit = attribute_escape( $tags_to_edit );
+		$tags_to_edit = esc_attr( $tags_to_edit );
 		$tags_to_edit = apply_filters( 'tags_to_edit', $tags_to_edit );
 		
 		return $tags_to_edit;
@@ -1655,7 +1672,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 *
 	 */
 	function getSuggestTagsTitle() {
-		$title = '<img style="float:right; display:none;" id="st_ajax_loading" src="'.$this->info['install_url'].'/images/ajax-loader.gif" alt="' .__('Ajax loading', 'simpletags').'" />';
+		$title = '<img style="float:right; display:none;" id="st_ajax_loading" src="'.STAGS_URL.'/inc/images/ajax-loader.gif" alt="' .__('Ajax loading', 'simpletags').'" />';
 		$title .=  __('Suggested tags from :', 'simpletags').'&nbsp;&nbsp;';
 		$title .= '<a class="local_db" href="#suggestedtags">'.__('Local tags', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="yahoo_api" href="#suggestedtags">'.__('Yahoo', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
@@ -1779,16 +1796,16 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 
 		// Build param for tags
-		$sort_order = attribute_escape(stripslashes($_GET['order']));
+		$sort_order = esc_attr(stripslashes($_GET['order']));
 		switch ($sort_order) {
 			case 'natural' :
-				$param = 'hide_empty=false&cloud_selection=name-asc';
+				$param = 'hide_empty=false&selectionby=name&selection=asc';
 				break;
 			case 'asc' :
-				$param = 'hide_empty=false&cloud_selection=count-asc';
+				$param = 'hide_empty=false&selectionby=count&selection=asc';
 				break;
 			default :
-				$param = 'hide_empty=false&cloud_selection=count-desc';
+				$param = 'hide_empty=false&selectionby=count&selection=desc';
 				break;
 		}
 
@@ -1849,7 +1866,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			exit();
 		}
 
-		// Application entrypoint -> http://code.google.com/p/simple-tags/
+		// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
 		// Yahoo ID : h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--
 		$yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 
@@ -2082,7 +2099,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 */
 	function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf(__('&copy; Copyright 2009 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), $this->version); ?></p>
+		<p class="footer_st"><?php printf(__('&copy; Copyright 2010 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), $this->version); ?></p>
 		<?php
 	}
 
@@ -2123,31 +2140,31 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			foreach((array) $options as $option) {
 				// Helper
 				if (  $option[2] == 'helper' ) {
-						$output .= '<tr style="vertical-align: middle;"><td class="helper" colspan="2">' . $option[4] . '</td></tr>' . "\n";
+						$output .= '<tr style="vertical-align: middle;"><td class="helper" colspan="2">' . esc_html($option[4]) . '</td></tr>' . "\n";
 						continue;
 				}
 
 				switch ( $option[2] ) {
 					case 'checkbox':
-						$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />' . "\n";
+						$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />' . "\n";
 						break;
 
 					case 'dropdown':
 						$selopts = explode('/', $option[3]);
 						$seldata = '';
 						foreach( (array) $selopts as $sel) {
-							$seldata .= '<option value="' . $sel . '" ' .(($option_actual[ $option[0] ] == $sel) ? 'selected="selected"' : '') .' >' . ucfirst($sel) . '</option>' . "\n";
+							$seldata .= '<option value="' . esc_attr($sel) . '" ' .((isset($option_actual[ $option[0] ]) &&$option_actual[ $option[0] ] == $sel) ? 'selected="selected"' : '') .' >' . ucfirst($sel) . '</option>' . "\n";
 						}
 						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>' . "\n";
 						break;	
 					
 					case 'text-color':
-						$input_type = '<input type="text" ' . (($option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" /><div class="box_color ' . $option[0] . '"></div>' . "\n";
+						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" /><div class="box_color ' . $option[0] . '"></div>' . "\n";
 						break;
 
 					case 'text':
 					default:
-						$input_type = '<input type="text" ' . (($option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . htmlspecialchars($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />' . "\n";
+						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />' . "\n";
 						break;
 				}
 

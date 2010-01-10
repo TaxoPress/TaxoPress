@@ -1,6 +1,6 @@
 <?php
 /*
-&copy; Copyright 2007 Amaury BALMER (balmer.amaury@gmail.com)
+&copy; Copyright 2010 Amaury BALMER (amaury@balmer.fr)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -65,12 +65,12 @@ Class EmbeddedImporter {
 	 */
 	function greet() {
 		echo '<div class="narrow">';
-		echo '<p>'.__('Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure.', 'simpletags').'</p>';
-		echo '<p>'.__('To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!', 'simpletags').'</p>';
-		echo '<p><strong>'.__('Don&#8217;t be stupid - backup your database before proceeding!', 'simpletags').'</strong></p>';
-		echo '<form action="'.admin_url('admin.php').'?import=simple-tags.importer&amp;step=1" method="post">';
-		echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 1 &raquo;', 'simpletags').'" /></p>';
-		echo '</form>';
+			echo '<p>'.__('Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure.', 'simpletags').'</p>';
+			echo '<p>'.__('To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!', 'simpletags').'</p>';
+			echo '<p><strong>'.__('Don&#8217;t be stupid - backup your database before proceeding!', 'simpletags').'</strong></p>';
+			echo '<form action="'.admin_url('admin.php').'?import=simple-tags.importer&amp;step=1" method="post">';
+				echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 1 &raquo;', 'simpletags').'" /></p>';
+			echo '</form>';
 		echo '</div>';
 	}
 
@@ -154,7 +154,7 @@ Class EmbeddedImporter {
 						if ( $clean == '1' ) {
 							// remove embedded tags
 							$new_content = preg_replace('/(' . parent::regexEscape($start) . '(.*?)' . parent::regexEscape($end) . ')/is', '', $object->post_content);
-							$wpdb->update( $wpdb->posts, array('post_content' => $new_content), array('ID' => $object->ID) )
+							$wpdb->update( $wpdb->posts, array('post_content' => $new_content), array('ID' => $object->ID) );
 						}
 					}
 
@@ -178,7 +178,7 @@ Class EmbeddedImporter {
 
 				echo '<p><strong>'.__('Done!', 'simpletags').'</strong><br /></p>';
 				echo '<form action="'.admin_url('admin.php').'?import=simple-tags.importer&amp;step=2" method="post">';
-				echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 2 &raquo;', 'simpletags').'" /></p>';
+					echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 2 &raquo;', 'simpletags').'" /></p>';
 				echo '</form>';
 
 			}
@@ -195,10 +195,10 @@ Class EmbeddedImporter {
 	 */
 	function done() {
 		echo '<div class="narrow">';
-		echo '<p><h3>'.__('Import Complete!', 'simpletags').'</h3></p>';
-		echo '<p>' . __('OK, so we lied about this being a 4-step program! You&#8217;re done!', 'simpletags') . '</p>';
-		echo '<p>' . __('Now wasn&#8217;t that easy?', 'simpletags') . '</p>';
-		echo '<p><strong>' . __('You can manage tags now !', 'simpletags') . '</strong></p>';
+			echo '<p><h3>'.__('Import Complete!', 'simpletags').'</h3></p>';
+			echo '<p>' . __('OK, so we lied about this being a 4-step program! You&#8217;re done!', 'simpletags') . '</p>';
+			echo '<p>' . __('Now wasn&#8217;t that easy?', 'simpletags') . '</p>';
+			echo '<p><strong>' . __('You can manage tags now !', 'simpletags') . '</strong></p>';
 		echo '</div>';
 	}
 

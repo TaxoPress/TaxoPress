@@ -187,8 +187,8 @@ msgstr "Opzioni di Auto tag aggiornate !"
 #: /2.3/inc/simple-tags.admin.php:629
 #: /2.3/inc/simple-tags.admin.php:844
 #: /2.5/inc/simple-tags.admin.php:629
-msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visita <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">la homepage del plugin</a> per maggiori dettagli, se trovi qualche errore, o se hai qualche nuova idea per questo plugin, <a href=\"mailto:amaury@wordpress-fr.net\">dimmelo</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visita <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">la homepage del plugin</a> per maggiori dettagli, se trovi qualche errore, o se hai qualche nuova idea per questo plugin, <a href=\"mailto:amaury@wordpress-fr.net\">dimmelo</a> !"
 
 #: /2.3/inc/simple-tags.admin.php:214
 #: /2.5/inc/simple-tags.admin.php:225
@@ -499,8 +499,8 @@ msgstr "Formato dei collegamenti ai tag:"
 #: /2.5/inc/simple-tags.admin.php:429
 #: /2.5/inc/simple-tags.admin.php:447
 #: /2.5/inc/simple-tags.admin.php:480
-msgid "You can find markers and explanations <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "Poi trovare i markers e le istruzioni <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">nella documentazione on-line.</a>"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
+msgstr "Poi trovare i markers e le istruzioni <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">nella documentazione on-line.</a>"
 
 #: /2.3/inc/simple-tags.admin.php:343
 #: /2.5/inc/simple-tags.admin.php:374
@@ -520,8 +520,8 @@ msgstr "<strong>Utilizzo avanzato</strong>:"
 
 #: /2.3/inc/simple-tags.admin.php:345
 #: /2.5/inc/simple-tags.admin.php:376
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi di <code>st_the_tags()</code> per personalizare la visualizzazione. Vai alla <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi di <code>st_the_tags()</code> per personalizare la visualizzazione. Vai alla <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
 
 #: /2.3/inc/simple-tags.admin.php:348
 #: /2.5/inc/simple-tags.admin.php:379
@@ -615,8 +615,8 @@ msgstr "Inserisci il titolo da posizionare prima della lista, lascia vuoto per n
 
 #: /2.3/inc/simple-tags.admin.php:375
 #: /2.5/inc/simple-tags.admin.php:406
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi della funzione<code>st_related_posts()</code>per personalizzare la visualizzazione. Vai alla <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione<code>st_related_posts()</code>per personalizzare la visualizzazione. Vai alla <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
 
 #: /2.3/inc/simple-tags.admin.php:378
 #: /2.5/inc/simple-tags.admin.php:409
@@ -706,8 +706,8 @@ msgstr "Inserire il testo da mostrare quando non ci sono tag correlati:"
 
 #: /2.3/inc/simple-tags.admin.php:404
 #: /2.5/inc/simple-tags.admin.php:435
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi della funzione  <code>st_related_tags()</code>per personalizzare la visualizzazione. Controlla la  <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione  <code>st_related_tags()</code>per personalizzare la visualizzazione. Controlla la  <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
 
 #: /2.3/inc/simple-tags.admin.php:406
 #: /2.5/inc/simple-tags.admin.php:437
@@ -843,8 +843,8 @@ msgstr "L' unita di misura del carattere determina l'unita di misura che verrà 
 
 #: /2.3/inc/simple-tags.admin.php:462
 #: /2.5/inc/simple-tags.admin.php:493
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi della funzione <code>st_tag_cloud()</code> per personalizzare la visualizzazione. Controla nella <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_tag_cloud()</code> per personalizzare la visualizzazione. Controla nella <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
 
 #: /2.3/inc/simple-tags.admin.php:476
 #: /2.5/inc/simple-tags.admin.php:507
@@ -1544,8 +1544,8 @@ msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_nam
 #: /2.5/inc/simple-tags.admin.php:221
 #: /2.5/inc/simple-tags.admin.php:525
 #: /2.5/inc/simple-tags.admin.php:1071
-msgid "Visit the <a href=\"http://code.google.com/p/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visita la <a href=\"http://code.google.com/p/simple-tags/\">homepage del plugin</a> per maggiori dettagli. Se trovi qualche qualche errore o hai qualche nuova idea, <a href=\"mailto:amaury@wordpress-fr.net\">segnalamela</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visita la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">homepage del plugin</a> per maggiori dettagli. Se trovi qualche qualche errore o hai qualche nuova idea, <a href=\"mailto:amaury@wordpress-fr.net\">segnalamela</a> !"
 
 #: /2.5/inc/simple-tags.admin.php:228
 msgid "Options"
