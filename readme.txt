@@ -4,7 +4,7 @@ Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
 Requires at least: 2.8
 Tested up to: 2.9.1
-Stable tag: 1.7.1-rc1
+Stable tag: 1.7.1-rc1.1
 
 Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.8 and 2.9 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
 
@@ -86,6 +86,8 @@ Then: Manage - Import - Embedded Tags
 6. You also can suggest tags from lot's of service (local, tag the net, yahoo!)
 
 == Changelog ==
+* Version 1.7.1-rc1.1 : RC 1.1 (this version must be test !)
+	* Fix a bug with activation hook.
 * Version 1.7.1-rc1 : RC 1 (this version must be test !)
 	* Somes ajust for Wordpress 2.9
 	* Remove 99,99% notices PHP from ST

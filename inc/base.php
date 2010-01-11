@@ -1,10 +1,8 @@
 <?php
 class SimpleTagsBase {
-	var $version = '1.7.1-rc1';
-
+	var $version = '1.7.1-rc1.1';
 	var $options;
-	var $option_name = 'simpletags';
-	
+
 	function SimpleTagsBase() {
 		return true;
 	}
@@ -14,7 +12,7 @@ class SimpleTagsBase {
 		$this->options = $this->getDefaultOptions(); 
 
 		// Get options from WP options
-		$options_from_table = get_option( $this->option_name );
+		$options_from_table = get_option( STAGS_OPTIONS_NAME );
 
 		// Update default options by getting not empty values from options table
 		foreach( (array) $this->options as $key => $value ) {
@@ -43,7 +41,7 @@ class SimpleTagsBase {
 	 *
 	 */
 	function installSimpleTags() {
-		$options_from_table = get_option( $this->option_name );
+		$options_from_table = get_option( STAGS_OPTIONS_NAME );
 		if ( $options_from_table == false ) {
 			$this->resetToDefaultOptions();
 		}
@@ -54,7 +52,7 @@ class SimpleTagsBase {
 	 *
 	 */
 	function uninstall() {
-		delete_option( $this->option_name );
+		delete_option( STAGS_OPTIONS_NAME );
 		delete_option( 'widget_stags_cloud' );
 	}
 	
@@ -73,7 +71,7 @@ class SimpleTagsBase {
 	 *
 	 */
 	function saveOptions() {
-		return update_option($this->option_name, $this->options);
+		return update_option(STAGS_OPTIONS_NAME, $this->options);
 	}
 
 	/**
@@ -82,7 +80,7 @@ class SimpleTagsBase {
 	 */
 	function resetToDefaultOptions() {
 		$this->options = $this->getDefaultOptions();
-		return update_option( $this->option_name, $this->options );
+		return update_option( STAGS_OPTIONS_NAME, $this->options );
 	}
 	
 	/* 
