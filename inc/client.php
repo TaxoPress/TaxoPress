@@ -255,7 +255,7 @@ class SimpleTags extends SimpleTagsBase {
 			$postlist = implode( "', '", $this->posts );
 
 			// Generate key cache
-			$key = hash('md5', maybe_serialize($postlist));
+			$key = md5(maybe_serialize($postlist));
 			// Get cache if exist
 			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
 				if ( isset( $cache[$key] ) ) {
@@ -501,7 +501,7 @@ class SimpleTags extends SimpleTagsBase {
 		// Get cache if exist
 		$results = false;
 		// Generate key cache
-		$key = hash('md5', maybe_serialize($user_args.'-'.$object_id));
+		$key = md5(maybe_serialize($user_args.'-'.$object_id));
 
 		if ( $cache = wp_cache_get( 'related_posts', 'simpletags' ) ) {
 			if ( isset( $cache[$key] ) ) {
@@ -861,7 +861,7 @@ class SimpleTags extends SimpleTagsBase {
 		// Get cache if exist
 		$related_tags = false;
 		// Generate key cache
-		$key = hash('md5', maybe_serialize($user_args.$slugs.$url_tag_sep));
+		$key = md5(maybe_serialize($user_args.$slugs.$url_tag_sep));
 		$cache = wp_cache_get( 'related_tags', 'simpletags' );
 		if ( $cache ) {
 			if ( isset( $cache[$key] ) ) {
@@ -1581,7 +1581,7 @@ class SimpleTags extends SimpleTagsBase {
 	 * @return array
 	 */
 	function getTags( $args = '', $taxonomy = 'post_tag', $internal_st = false ) {
-		$key = hash('md5', serialize($args.$taxonomy.$internal_st));
+		$key = md5(serialize($args.$taxonomy.$internal_st));
 		
 		// Get cache if exist
 		if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
@@ -1746,7 +1746,7 @@ class SimpleTags extends SimpleTagsBase {
 
 		// $args can be whatever, only use the args defined in defaults to compute the key
 		$filter_key = ( has_filter('list_terms_exclusions') ) ? serialize($GLOBALS['wp_filter']['list_terms_exclusions']) : '';
-		$key = hash('md5',  serialize( compact(array_keys($defaults)) ) . serialize( $taxonomies ) . $filter_key );
+		$key = md5( serialize( compact(array_keys($defaults)) ) . serialize( $taxonomies ) . $filter_key );
 		$last_changed = wp_cache_get('last_changed', 'terms');
 		if ( !$last_changed ) {
 			$last_changed = time();

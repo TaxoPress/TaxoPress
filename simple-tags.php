@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Simple Tags (RC1.1)
+Plugin Name: Simple Tags (RC1.2)
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.7.1-rc1.1
+Version: 1.7.1-rc1.2
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -57,7 +57,7 @@ function define_simpletags_path_plugin() {
 		define ( 'STAGS_URL', WP_PLUGIN_URL . '/' . STAGS_FOLDER );
 	}
 }
-define_simpletags_path_plugin ();
+define_simpletags_path_plugin();
 
 require( STAGS_DIR . '/inc/base.php'); 			// Base class
 require( STAGS_DIR . '/inc/client.php'); 		// Client class
