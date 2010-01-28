@@ -1,14 +1,13 @@
 <?php
 class SimpleTagsAdmin extends SimpleTagsBase {
-	var $posts_base_url = '';
-	var $options_base_url = '';
+	var $posts_base_url 	= '';
+	var $options_base_url 	= '';
+	var $taxonomy 			= 'post_tag';
+	var $yahoo_id 			= 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--'; // Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
 	
 	// Error management
 	var $message = '';
 	var $status = '';
-	
-	// Tags list (management)
-	var $nb_tags = 50;
 	
 	/**
 	 * PHP4 Constructor - Intialize Admin
@@ -162,6 +161,12 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		add_posts_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_tags', array(&$this, 'pageMassEditTags'));
 		add_posts_page( __('Simple Terms: Auto Terms', 'simpletags'), __('Auto Terms', 'simpletags'), 'simple_tags', 'st_auto', array(&$this, 'pageAutoTags'));
 		add_options_page( __('Simple Tags: Options', 'simpletags'), __('Simple Tags', 'simpletags'), 'admin_simple_tags', 'st_options', array(&$this, 'pageOptions'));
+	}
+	
+	function boxSelectorTaxonomy() {
+		echo '<div class="box-selector-taxonomy">';
+			
+		echo '</div>';
 	}
 	
 	/**
@@ -570,6 +575,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 *
 	 */
 	function pageManageTags() {
+		$taxnomy = $_GET['taxonomy'];
+		if ( empty($taxonomy) )
+			$taxonomy = 'post_tag';
+		
 		// Control Post data
 		if ( isset($_POST['tag_action']) ) {
 			// Origination and intention
@@ -1572,7 +1581,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	}
 	
 	/**
-	 * Suggested tags
+	 * Get Suggested tags title
 	 *
 	 */
 	function getSuggestTagsTitle() {
@@ -1594,6 +1603,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'page', 'advanced', 'core');
 	}
 	
+	/**
+	  * Print HTML for suggest tags box
+	  *
+	  **/
 	function boxSuggestTags() {
 		?>
 		<span class="container_clicktags">
@@ -1651,17 +1664,16 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				}
 				
 				if ( $type == 'page' ) {
-					$this->message = sprintf(__('%s page(s) tags updated with success !', 'simpletags'), (int) $counter);
+					$this->message = sprintf(__('%s page(s) terms updated with success !', 'simpletags'), (int) $counter);
 				} else {
-					$this->message = sprintf(__('%s post(s) tags updated with success !', 'simpletags'), (int) $counter);
+					$this->message = sprintf(__('%s post(s) terms updated with success !', 'simpletags'), (int) $counter);
 				}
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	############## Ajax ##############
+
 	/**
 	 * Ajax Dispatcher
 	 *
@@ -1669,9 +1681,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	function ajaxCheck() {
 		if ( isset($_GET['st_ajax_action']) )  {
 			switch( $_GET['st_ajax_action'] ) {
-				case 'get_tags' :
-					$this->ajaxListTags();
-				break;
 				case 'tags_from_yahoo' :
 					$this->ajaxYahooTermExtraction();
 				break;
@@ -1692,69 +1701,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	}
 	
 	/**
-	 * Get tags list for manage tags page.
-	 *
-	 */
-	function ajaxListTags() {
-		status_header( 200 );
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
-		
-		// Build param for tags
-		$sort_order = esc_attr(stripslashes($_GET['order']));
-		switch ($sort_order) {
-			case 'natural' :
-				$param = 'hide_empty=false&selectionby=name&selection=asc';
-				break;
-			case 'asc' :
-				$param = 'hide_empty=false&selectionby=count&selection=asc';
-				break;
-			default :
-				$param = 'hide_empty=false&selectionby=count&selection=desc';
-				break;
-		}
-		
-		// Build pagination
-		$current_page = (int) $_GET['pagination'];
-		$param .= '&number=LIMIT '. $current_page * $this->nb_tags . ', '.$this->nb_tags;
-		
-		// Get tags
-		global $simple_tags;
-		$tags = $simple_tags['client']->getTags($param, 'post_tag', true);
-		
-		// Build output
-		echo '<ul class="ajax_list">';
-		foreach( (array) $tags as $tag ) {
-			echo '<li><span>'.$tag->name.'</span>&nbsp;<a href="'.(get_tag_link( $tag->term_id )).'" title="'.sprintf(__('View all posts tagged with %s', 'simpletags'), $tag->name).'">('.$tag->count.')</a></li>'."\n";
-		}
-		unset($tags);
-		echo '</ul>';
-		
-		// Build pagination
-		$ajax_url = admin_url('admin.php') . '?st_ajax_action=get_tags';
-		
-		// Order
-		if ( isset($_GET['order']) ) {
-			$ajax_url = $ajax_url . '&amp;order='.$sort_order ;
-		}
-		?>
-		<div class="navigation">
-			<?php if ( ($current_page * $this->nb_tags)  + $this->nb_tags > ((int) wp_count_terms('post_tag', 'ignore_empty=true')) ) : ?>
-				<?php _e('Previous tags', 'simpletags'); ?>
-			<?php else : ?>
-				<a href="<?php echo $ajax_url. '&amp;pagination='. ($current_page + 1); ?>"><?php _e('Previous tags', 'simpletags'); ?></a>
-			<?php endif; ?>
-			|
-			<?php if ( $current_page == 0 ) : ?>
-				<?php _e('Next tags', 'simpletags'); ?>
-			<?php else : ?>
-			<a href="<?php echo $ajax_url. '&amp;pagination='. ($current_page - 1) ?>"><?php _e('Next tags', 'simpletags'); ?></a>
-			<?php endif; ?>
-		</div>
-		<?php
-		exit();
-	}
-	
-	/**
 	 * Suggest tags from Yahoo Term Extraction
 	 *
 	 */
@@ -1769,13 +1715,9 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
 			exit();
 		}
-		
-		// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
-		// Yahoo ID : h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--
-		$yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
-		
+
 		// Build params
-		$param = 'appid='.$yahoo_id; // Yahoo ID
+		$param = 'appid='.$this->yahoo_id; // Yahoo ID
 		$param .= '&context='.urlencode($content); // Post content
 		if ( !empty($_POST['tags']) ) {
 			$param .= '&query='.urlencode(stripslashes($_POST['tags'])); // Existing tags
@@ -1785,8 +1727,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		$data = array();
 		$reponse = wp_remote_post( 'http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction?'.$param );
 		if( !is_wp_error($reponse) && $reponse != null ) {
-			$code = wp_remote_retrieve_response_code($reponse);
-			if ( $code == 200 ) {
+			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
 				$data = maybe_unserialize( wp_remote_retrieve_body($reponse) );
 			}
 		}
@@ -1830,8 +1771,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		$data = '';
 		$reponse = wp_remote_post( 'http://tagthe.net/api/?text='.urlencode($content).'&view=json&count=200' );
 		if( !is_wp_error($reponse) ) {
-			$code = wp_remote_retrieve_response_code($reponse);
-			if ( $code == 200 ) {
+			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
 				$data = maybe_unserialize( wp_remote_retrieve_body($reponse) );
 			}
 		}
@@ -1925,16 +1865,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ( isset($_GET['id']) ) {
-			$term = get_term( intval($_GET['id']), 'post_tag' );
-			if ( $term != false ) {
-				echo '[{"id":"'.$term->term_id.'","name":"'.$term->name.'"}]';
-			} else {
-				echo '';
-			}
-			exit();
-		}
-		
 		if ((int) wp_count_terms('post_tag', 'ignore_empty=true') == 0 ) { // No tags to suggest
 			if ( $format == 'html_span' ) {
 				echo '<p>'.__('No tags in your WordPress database.', 'simpletags').'</p>';
@@ -1957,9 +1887,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			}
 			exit();
 		}
-		
-		// Remove duplicate
-		//$terms = array_unique($terms); // Todo work on name
 		
 		switch ($format) {
 			case 'html_span' :
@@ -2011,7 +1938,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		}
 	}
 	
-	############## Admin WP Helper ##############
 	/**
 	 * Display plugin Copyright
 	 *

@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Simple Tags (RC1.2)
+Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
 Version: 1.7.2
