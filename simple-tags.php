@@ -37,20 +37,7 @@ Todo:
 */
 
 define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
-
-// Init some constants
-$current_plugins = get_option ( 'active_plugins' );
-foreach ( ( array ) $current_plugins as $plugin ) {
-	if (strpos ( $plugin, basename ( __FILE__ ) ) !== false) {
-		$path = substr ( str_replace ( 'simple-tags.php', '', $plugin ), 0, - 1 );
-		define ( 'STAGS_FOLDER', $path );
-		break;
-	}
-}
-
-if ( !defined ('STAGS_FOLDER') ) {
-	define ( 'STAGS_FOLDER', 'simple-tags' );
-}
+define( 'STAGS_FOLDER', 'simple-tags' );
 
 // Mu-plugins or regular plugins ? 
 if ( is_dir( WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER ) ) {
