@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags (RC1.2)
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.7.1-rc1.2
+Version: 1.7.2
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -25,8 +25,13 @@ Contributors:
 - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
 
 Todo:
-	Admin
-	Client
+	Both :
+		Taxonomy supports
+		
+	Admin :
+		Rewrite manage page
+	
+	Client :
 		- Test avec &$this, $this, et avec une fonction, test la conso memoire de wp_filter avant/apres
 		- Verifier la case du remplacement par les liens
 */
@@ -34,30 +39,27 @@ Todo:
 define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
 
 // Init some constants
-function define_simpletags_path_plugin() {
-	$current_plugins = get_option ( 'active_plugins' );
-	foreach ( ( array ) $current_plugins as $plugin ) {
-		if (strpos ( $plugin, basename ( __FILE__ ) ) !== false) {
-			$path = substr ( str_replace ( 'simple-tags.php', '', $plugin ), 0, - 1 );
-			
-			define ( 'STAGS_FOLDER', $path );
-		}
-	}
-	
-	if (! defined ( 'STAGS_FOLDER' )) {
-		define ( 'STAGS_FOLDER', 'simple-tags' );
-	}
-
-	// Mu-plugins or regular plugins ? 
-	if ( is_dir( WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER ) ) {
-		define ( 'STAGS_DIR', WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER );
-		define ( 'STAGS_URL', WPMU_PLUGIN_URL . '/' . STAGS_FOLDER );
-	} else {
-		define ( 'STAGS_DIR', WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER );
-		define ( 'STAGS_URL', WP_PLUGIN_URL . '/' . STAGS_FOLDER );
+$current_plugins = get_option ( 'active_plugins' );
+foreach ( ( array ) $current_plugins as $plugin ) {
+	if (strpos ( $plugin, basename ( __FILE__ ) ) !== false) {
+		$path = substr ( str_replace ( 'simple-tags.php', '', $plugin ), 0, - 1 );
+		define ( 'STAGS_FOLDER', $path );
+		break;
 	}
 }
-define_simpletags_path_plugin();
+
+if ( !defined ('STAGS_FOLDER') ) {
+	define ( 'STAGS_FOLDER', 'simple-tags' );
+}
+
+// Mu-plugins or regular plugins ? 
+if ( is_dir( WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER ) ) {
+	define ( 'STAGS_DIR', WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER );
+	define ( 'STAGS_URL', WPMU_PLUGIN_URL . '/' . STAGS_FOLDER );
+} else {
+	define ( 'STAGS_DIR', WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER );
+	define ( 'STAGS_URL', WP_PLUGIN_URL . '/' . STAGS_FOLDER );
+}
 
 require( STAGS_DIR . '/inc/base.php'); 			// Base class
 require( STAGS_DIR . '/inc/client.php'); 		// Client class

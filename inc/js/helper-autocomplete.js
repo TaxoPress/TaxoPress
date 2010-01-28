@@ -5,11 +5,11 @@ function formatResult(row) {
 	return row[1].replace(/(<.+?>)/gi, '');
 }
 
-function initAutoComplete( target, u_rl, w_idth ) {
+function initAutoComplete( p_target, p_url, p_width ) {
 	jQuery(document).ready(function () {
-		jQuery( ""+target ).autocomplete( u_rl, {
-			width: width,
-			multiple: w_idth,
+		jQuery( ""+p_target ).autocomplete( p_url, {
+			width: p_width,
+			multiple: true,
 			matchContains: true,
 			formatItem: formatItem,
 			formatResult: formatResult
