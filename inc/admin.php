@@ -1,13 +1,30 @@
 <?php
 class SimpleTagsAdmin extends SimpleTagsBase {
+	// Build admin URL
 	var $posts_base_url 	= '';
 	var $options_base_url 	= '';
+	
+	// Taxonomy support
 	var $taxonomy 			= 'post_tag';
-	var $yahoo_id 			= 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--'; // Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
+	var $taxo_name			= '';
+	
+	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
+	var $yahoo_id 			= 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 	
 	// Error management
 	var $message = '';
 	var $status = '';
+	
+	function determineTaxonomy() {
+		if ( isset($_GET['taxonomy']) && !empty($_GET['taxonomy']) && is_taxonomy($_GET['taxonomy']) ) {
+			
+			$taxo = get_taxonomy($_GET['taxonomy']);
+			$this->taxonomy = $taxo->name;
+			$this->taxo_name = $taxo->label;
+			unset($taxo);
+		
+		}
+	}
 	
 	/**
 	 * PHP4 Constructor - Intialize Admin
@@ -15,6 +32,11 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 * @return SimpleTagsAdmin
 	 */
 	function SimpleTagsAdmin() {
+		// Init taxonomy class variable
+		$this->taxo_name = __('Post tags', 'simpletags');
+		$this->determineTaxonomy();
+		
+		// Get options
 		parent::initOptions();
 		
 		// Admin URL for Pagination and target
@@ -75,7 +97,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/inc/js/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
 		wp_register_script('jquery-autocomplete',		STAGS_URL.'/inc/js/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
 		wp_register_script('jquery-cookie', 			STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
-
+		
 		// Helper simple tags
 		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), $this->version);
 		wp_register_script('st-helper-add-tags', 		STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), $this->version);
@@ -163,10 +185,32 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		add_options_page( __('Simple Tags: Options', 'simpletags'), __('Simple Tags', 'simpletags'), 'admin_simple_tags', 'st_options', array(&$this, 'pageOptions'));
 	}
 	
-	function boxSelectorTaxonomy() {
-		echo '<div class="box-selector-taxonomy">';
+	/**
+	 * Build HTML form for allow user to change taxonomy for the current page.
+	 *
+	 **/
+	function boxSelectorTaxonomy( $page_value = '', $include_category = false ) {
+		global $wp_taxonomies;
+		
+		echo '<div class="box-selector-taxonomy">' . "\n";
+			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the taxonomy : <span>%s</span>', 'simpletags'), $this->taxo_name).'</p>' . "\n";
 			
-		echo '</div>';
+			echo '<div class="change-taxo">' . "\n";
+				echo '<form action="" method="get">' . "\n";
+					if ( !empty($page_value) ) {
+						echo '<input type="hidden" name="page" value="'.$page_value.'" />' . "\n";
+					}
+					echo '<select name="taxonomy">' . "\n";
+						foreach( (array) $wp_taxonomies as $wp_taxonomy ) {
+							if ( in_array($wp_taxonomy->object_type, array('post', 'page')) || ($wp_taxonomy->name=='category'&&$include_category==true) )
+								echo '<option '.(($wp_taxonomy->name==$this->taxonomy)?'selected="selected"':'').' value="'.esc_attr($wp_taxonomy->name).'">'.esc_html($wp_taxonomy->label).'</option>' . "\n";
+						}
+					echo '</select>' . "\n";
+					
+					echo '<input type="submit" class="button" id="submit-change-taxo" value="'.__('Change taxonomy', 'simpletags').'" />' . "\n";
+				echo '</form>' . "\n";
+			echo '</div>' . "\n";
+		echo '</div>' . "\n";
 	}
 	
 	/**
@@ -223,10 +267,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#auto_list', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection'; ?>', 300 );
+			initAutoComplete( '#auto_list', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
-			
+		
 		<div class="wrap st_wrap">
 			<h2><?php _e('Auto Terms', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
@@ -263,7 +307,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 						<tr valign="top">
 							<th scope="row"><label for="auto_list"><?php _e('Keywords list', 'simpletags'); ?></label></th>
 							<td>
-								<textarea id="auto_list" class="auto_list" name="auto_list"><?php echo $tags_list; ?></textarea> 
+								<input type="text" id="auto_list" class="auto_list" name="auto_list" value="<?php echo esc_attr($tags_list); ?>" style="width:98%;" />
 								<br /><?php _e('Separated with a comma', 'simpletags'); ?>
 							</td>
 						</tr>
@@ -575,10 +619,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 *
 	 */
 	function pageManageTags() {
-		$taxnomy = $_GET['taxonomy'];
-		if ( empty($taxonomy) )
-			$taxonomy = 'post_tag';
-		
 		// Control Post data
 		if ( isset($_POST['tag_action']) ) {
 			// Origination and intention
@@ -613,17 +653,17 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection'; ?>', 300 );
+			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
-			
+		
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Manage Terms', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-	
+			
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row"><strong><?php _e('Rename Term', 'simpletags'); ?></strong></th>
+					<th scope="row"><strong><?php _e('Rename/Merge Terms', 'simpletags'); ?></strong></th>
 					<td>
 						<p><?php _e('Enter the term to rename and its new value. You can use this feature to merge terms too. Click "Rename" and all posts which use this term will be updated.', 'simpletags'); ?></p>
 						<p><?php _e('You can specify multiple terms to rename by separating them with commas.', 'simpletags'); ?></p>
@@ -652,9 +692,9 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				</tr>
 				
 				<tr valign="top">
-					<th scope="row"><strong><?php _e('Delete Term', 'simpletags'); ?></strong></th>
+					<th scope="row"><strong><?php _e('Delete Terms', 'simpletags'); ?></strong></th>
 					<td>
-						<p><?php _e('Enter the name of the term to delete.  This term will be removed from all posts.', 'simpletags'); ?></p>
+						<p><?php _e('Enter the name of terms to delete. Terms will be removed from all posts.', 'simpletags'); ?></p>
 						<p><?php _e('You can specify multiple terms to delete by separating them with commas', 'simpletags'); ?>.</p>
 						
 						<fieldset>
@@ -675,11 +715,11 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				</tr>
 				
 				<tr valign="top">
-					<th scope="row"><strong><?php _e('Add Term', 'simpletags'); ?></strong></th>
+					<th scope="row"><strong><?php _e('Add Terms', 'simpletags'); ?></strong></th>
 					<td>
 						<p><?php _e('This feature lets you add one or more new terms to all posts which match any of the terms given.', 'simpletags'); ?></p>
 						<p><?php _e('You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all posts, then don\'t specify any terms to match.', 'simpletags'); ?></p>
-
+						
 						<fieldset>
 							<form action="<?php echo $action_url; ?>" method="post">
 								<input type="hidden" name="tag_action" value="addtag" />
@@ -749,8 +789,16 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 						</fieldset>
 					</td>
 				</tr>
+				
+				<tr>
+					<th scope="row"><strong><?php _e('Technical informations', 'simpletags'); ?></strong></th>
+					<td>
+						<p><strong><?php _e('Renaming', 'simpletags'); ?></strong></p>
+						<p><em><?php _e('Simple Tags don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : "Blogging" and "Bloging". When you want edit the tag "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit "Bloging" for "Blogging", Simple Tags merge posts tagged with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags'); ?><em></p>
+					</td>
+				</tr>
 			</table>
-					
+			
 			<?php $this->printAdminFooter(); ?>
 		</div>
 		<?php
@@ -827,13 +875,17 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection'; ?>', 300 );
+			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
 		
 		<div class="wrap">
+			<?php $this->boxSelectorTaxonomy( 'st_mass_tags' ); ?>
+			
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_tags" />
+				<input type="hidden" name="taxonomy" value="<?php echo esc_attr($this->taxonomy); ?>" />
+				
 				<h2><?php _e('Mass edit terms', 'simpletags'); ?></h2>
 				
 				<ul class="subsubsub">
@@ -841,7 +893,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					$status_links = array();
 					$num_posts = wp_count_posts('post', 'readable');
 					$class = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
-					$status_links[] = "<li><a href=\"".admin_url('edit.php')."?page=st_mass_tags\"$class>".__('All Posts', 'simpletags')."</a>";
+					$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;taxonomy='.$this->taxonomy.'"'.$class.'>'.__('All Posts', 'simpletags').'</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 						
@@ -854,14 +906,14 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 						if ( isset($_GET['post_status']) && $status == $_GET['post_status'] )
 							$class = ' class="current"';
 						
-						$status_links[] = "<li><a href=\"".admin_url('edit.php')."?page=st_mass_tags&amp;post_status=$status\"$class>" . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
+						$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;taxonomy='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
 					}
 					echo implode(' |</li>', $status_links) . ' |</li>';
 					unset($status_links);
 					
 					$class = (!empty($_GET['post_type'])) ? ' class="current"' : '';
 					?>
-					<li><a href="<?php echo admin_url('edit.php'); ?>?page=st_mass_tags&amp;post_type=page" <?php echo $class; ?>><?php _e('All Pages', 'simpletags'); ?></a>
+					<li><a href="<?php echo admin_url('edit.php'); ?>?page=st_mass_tags&amp;taxonomy=<?php echo $this->taxonomy; ?>&amp;post_type=page" <?php echo $class; ?>><?php _e('All Pages', 'simpletags'); ?></a>
 				</ul>
 				
 				<?php if ( isset($_GET['post_status'] ) ) : ?>
@@ -956,7 +1008,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 						<thead>
 							<tr>
 								<th class="manage-column"><?php _e('Post title', 'simpletags'); ?></th>
-								<th class="manage-column"><?php _e('Terms', 'simpletags'); ?></th>
+								<th class="manage-column"><?php printf(__('Terms : %s', 'simpletags'), esc_html($this->taxo_name) ); ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -968,7 +1020,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 								?>
 								<tr valign="top" class="<?php echo $class; ?>">
 									<th scope="row"><a href="<?php echo admin_url('post.php'); ?>?action=edit&amp;post=<?php the_ID(); ?>" title="<?php _e('Edit', 'simpletags'); ?>"><?php the_title(); ?></a></th>
-									<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input" type="text" size="100" name="tags[<?php the_ID(); ?>]" value="<?php echo $this->getTagsToEdit( get_the_ID() ); ?>" /></td>
+									<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input" type="text" size="100" name="tags[<?php the_ID(); ?>]" value="<?php echo $this->getTermsToEdit( $this->taxonomy, get_the_ID() ); ?>" /></td>
 								</tr>
 								<?php
 							}
@@ -993,23 +1045,21 @@ class SimpleTagsAdmin extends SimpleTagsBase {
     <?php
 	}
 	
-	function getTagsToEdit( $post_id ) {
+	function getTermsToEdit( $taxonomy = 'post_tag', $post_id = 0 ) {
 		$post_id = (int) $post_id;
 		if ( !$post_id )
 			return false;
 		
-		$tags = wp_get_post_tags($post_id);
-		
-		if ( !$tags )
+		$terms = wp_get_post_terms( $post_id, $taxonomy, array('fields' => 'names') );
+		if ( $terms == false )
 			return false;
 		
-		foreach ( $tags as $tag )
-			$tag_names[] = $tag->name;
-		$tags_to_edit = join( ', ', $tag_names );
-		$tags_to_edit = esc_attr( $tags_to_edit );
-		$tags_to_edit = apply_filters( 'tags_to_edit', $tags_to_edit );
+		$terms = array_unique( $terms ); // Remove duplicate
+		$terms = join( ', ', $terms );
+		$terms = esc_attr( $terms );
+		$terms = apply_filters( 'tags_to_edit', $terms );
 		
-		return $tags_to_edit;
+		return $terms;
 	}
 	
 	function saveAdvancedTagsInput( $post_id = null, $post_data = null ) {
@@ -1190,7 +1240,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		return false;
 	}
 	
-	############## Helper Advanced Tags ##############
 	function helperAdvancedTags_Page() {
 		if ( $this->options['use_autocompletion'] == 1 )
 			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core');
@@ -1203,16 +1252,15 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	
 	function boxTags( $post ) {
 		?>
-		<textarea name="adv-tags-input" id="adv-tags-input" tabindex="3" rows="3" cols="5"><?php echo $this->getTagsToEdit( $post->ID ); ?></textarea>
+		<textarea name="adv-tags-input" id="adv-tags-input" tabindex="3" rows="3" cols="5"><?php echo $this->getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
 		<script type="text/javascript">
 			<!--
 			initAutoComplete( '#adv-tags-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection'; ?>', 300 );
 			-->
-		</script>		
+		</script>
 		<?php _e('Separate tags with commas', 'simpletags');
 	}
-	
-	############## Manages Tags Pages ##############
+
 	/*
 	 * Rename or merge tags
 	 *
@@ -1652,7 +1700,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
 					
 					// Add new tag (no append ! replace !)
-					wp_set_object_terms( $object_id, $tags, 'post_tag' );
+					wp_set_object_terms( $object_id, $tags, $this->taxonomy );
 					$counter++;
 					
 					// Clean cache
@@ -1673,7 +1721,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Ajax Dispatcher
 	 *
@@ -1715,7 +1763,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
 			exit();
 		}
-
+		
 		// Build params
 		$param = 'appid='.$this->yahoo_id; // Yahoo ID
 		$param .= '&context='.urlencode($content); // Post content
@@ -1776,7 +1824,9 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			}
 		}
 		
-		require_once( dirname(__FILE__) . '/class/JSON.php' );
+		if ( !function_exists('json_decode') ) // PHP5.2, or embed WP class.
+			require_once( dirname(__FILE__) . '/class/JSON.php' );
+		
 		$data = json_decode($data);
 		$data = $data->memes[0];
 		$data = $data->dimensions;
@@ -1816,12 +1866,11 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 *
 	 */
 	function ajaxSuggestLocal() {
-		// Send good header HTTP
-		status_header( 200 );
+		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ( ((int) wp_count_terms('post_tag', 'ignore_empty=true')) == 0) { // No tags to suggest
-			echo '<p>'.__('No tags in your WordPress database.', 'simpletags').'</p>';
+		if ( ((int) wp_count_terms($this->taxonomy, 'ignore_empty=true')) == 0) { // No tags to suggest
+			echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';
 			exit();
 		}
 		
@@ -1836,8 +1885,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		
 		// Get all terms
 		global $wpdb;
-		$terms = $this->getTermsForAjax( '' );
-		
+		$terms = $this->getTermsForAjax( $this->taxonomy, '' );
 		if ( empty($terms) || $terms == false ) {
 			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
 			exit();
@@ -1861,15 +1909,12 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 * @param string $format
 	 */
 	function ajaxLocalTags( $format = 'html_span' ) {
-		// Send good header HTTP
-		status_header( 200 );
+		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ((int) wp_count_terms('post_tag', 'ignore_empty=true') == 0 ) { // No tags to suggest
+		if ((int) wp_count_terms($this->taxonomy, 'ignore_empty=true') == 0 ) { // No tags to suggest
 			if ( $format == 'html_span' ) {
-				echo '<p>'.__('No tags in your WordPress database.', 'simpletags').'</p>';
-			} else {
-				echo '';
+				echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';
 			}
 			exit();
 		}
@@ -1878,12 +1923,10 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		$search = trim(stripslashes($_GET['q']));
 		
 		// Get all terms, or filter with search
-		$terms = $this->getTermsForAjax( $search );
+		$terms = $this->getTermsForAjax( $this->taxonomy, $search );
 		if ( empty($terms) || $terms == false ) {
 			if ( $format == 'html_span' ) {
 				echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
-			} else {
-				echo '';
 			}
 			exit();
 		}
@@ -1909,7 +1952,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					
 					echo "$term->term_id|$term->name\n";
 				}
-			
+				
 				break;
 		
 		}
@@ -1917,7 +1960,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		exit();
 	}
 	
-	function getTermsForAjax( $search = '' ) {
+	function getTermsForAjax( $taxonomy = 'post_tag', $search = '' ) {
 		global $wpdb;
 		
 		if ( !empty($search) ) {
@@ -1925,16 +1968,16 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				SELECT DISTINCT t.name, t.term_id
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-				WHERE tt.taxonomy = 'post_tag'
+				WHERE tt.taxonomy = %s
 				AND name LIKE %s
-			", '%'.$search.'%' ) );
+			", $taxonomy, '%'.$search.'%' ) );
 		} else {
-			return $wpdb->get_results("
+			return $wpdb->get_results( $wpdb->prepare("
 				SELECT DISTINCT t.name, t.term_id
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-				WHERE tt.taxonomy = 'post_tag'
-			");
+				WHERE tt.taxonomy = %s
+			", $taxonomy) );
 		}
 	}
 	

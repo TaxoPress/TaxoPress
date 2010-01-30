@@ -71,7 +71,7 @@ class SimpleTagsBase {
 	 *
 	 */
 	function saveOptions() {
-		return update_option(STAGS_OPTIONS_NAME, $this->options);
+		return update_option( STAGS_OPTIONS_NAME, $this->options );
 	}
 
 	/**
