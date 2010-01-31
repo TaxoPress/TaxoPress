@@ -104,6 +104,9 @@ class SimpleTagsBase {
 			// Administration
 			'use_click_tags' 	 => 1,
 			'use_suggested_tags' => 1,
+			'opencalais_key' 	 => '',
+			'alchemy_api' 		 => '',
+			'zemanta_key' 		 => '',
 			'use_autocompletion' => 1,
 			
 			// Embedded Tags

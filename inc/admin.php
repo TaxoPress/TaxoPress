@@ -10,7 +10,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	
 	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
 	var $yahoo_id 			= 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
-	
+
 	// Error management
 	var $message = '';
 	var $status = '';
@@ -390,8 +390,14 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 					__('This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post.', 'simpletags')),
 				array('use_autocompletion', __('Activate autocompletion feature with old input:', 'simpletags'), 'checkbox', '1',
 					__('This feature displays a visual help allowing to enter tags more easily. As well add tags is easier than the autocompletion default of WordPress', 'simpletags')),
-				array('use_suggested_tags', __('Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)', 'simpletags'), 'checkbox', '1',
-					__('This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)', 'simpletags'))
+				array('use_suggested_tags', __('Activate suggested tags feature: (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)', 'simpletags'), 'checkbox', '1',
+					__('This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)', 'simpletags')),
+				array('opencalais_key', __('OpenCalais API Key', 'simpletags'), 'text', '',
+					__('You can create an API key from <a href="http://www.opencalais.com/">service website</a>', 'simpletags')),
+				array('alchemy_api', __('Alchemy API Key', 'simpletags'), 'text', '',
+					__('You can create an API key from <a href="http://www.alchemyapi.com/">service website</a>', 'simpletags')),
+				array('zemanta_key', __('Zemanta API Key', 'simpletags'), 'text', '',
+					__('You can create an API key from <a href="http://developer.zemanta.com/">service website</a>', 'simpletags'))
 			),
 			'auto-links' => array(
 				array('auto_link_tags', __('Active auto link tags into post content:', 'simpletags'), 'checkbox', '1',
@@ -1260,7 +1266,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		</script>
 		<?php _e('Separate tags with commas', 'simpletags');
 	}
-
+	
 	/*
 	 * Rename or merge tags
 	 *
@@ -1637,6 +1643,9 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		$title .=  __('Suggested tags from :', 'simpletags').'&nbsp;&nbsp;';
 		$title .= '<a class="local_db" href="#suggestedtags">'.__('Local tags', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="yahoo_api" href="#suggestedtags">'.__('Yahoo', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a class="opencalais_api" href="#suggestedtags">'.__('OpenCalais', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a class="alchemyapi" href="#suggestedtags">'.__('AlchemyAPI', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a class="zemanta" href="#suggestedtags">'.__('Zemanta', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="ttn_api" href="#suggestedtags">'.__('Tag The Net', 'simpletags').'</a>';
 		return $title;
 	}
@@ -1729,6 +1738,15 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	function ajaxCheck() {
 		if ( isset($_GET['st_ajax_action']) )  {
 			switch( $_GET['st_ajax_action'] ) {
+				case 'tags_from_opencalais' :
+					$this->ajaxOpenCalais();
+				break;
+				case 'tags_from_alchemyapi' :
+					$this->ajaxAlchemyApi();
+				break;
+				case 'tags_from_zemanta' :
+					$this->ajaxZemanta();
+				break;
 				case 'tags_from_yahoo' :
 					$this->ajaxYahooTermExtraction();
 				break;
@@ -1746,6 +1764,177 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				break;
 			}
 		}
+	}
+	
+	function getParamsXML() {
+		return '
+			<c:params xmlns:c="http://s.opencalais.com/1/pred/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+				<c:processingDirectives c:contentType="text/html" c:outputFormat="Text/Simple" c:enableMetadataType="GenericRelations,SocialTags"></c:processingDirectives>
+				<c:userDirectives c:allowDistribution="false" c:allowSearch="false" c:externalID="" c:submitter="Simple Tags"></c:userDirectives>
+				<c:externalMetadata></c:externalMetadata>
+			</c:params>
+		';
+	}
+	
+	/**
+	 * Suggest tags from OpenCalais Service
+	 *
+	 */
+	function ajaxOpenCalais() {
+		status_header( 200 );
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		
+		// API Key ?
+		if ( empty($this->options['opencalais_key']) ) {
+			echo '<p>'.__('OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$content = trim($content);
+		if ( empty($content) ) {
+			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		$reponse = wp_remote_post('http://api.opencalais.com/enlighten/rest/', array('body' => array(
+			'licenseID' => $this->options['opencalais_key'],
+			'content' 	=> $content,
+			'paramsXML' => $this->getParamsXML()
+		)));
+		
+		if( !is_wp_error($reponse) && $reponse != null ) {
+			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
+				preg_match('/<CalaisSimpleOutputFormat>(.*?)<\/CalaisSimpleOutputFormat>/s', wp_remote_retrieve_body($reponse), $data );
+				$data = explode("\n", $data[1]);
+			}
+		}
+		
+		if ( empty($data) || is_wp_error($reponse) ) {
+			echo '<p>'.__('No results from OpenCalais service.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Remove empty terms
+		$data = array_filter($data, array(&$this, 'deleteEmptyElement'));
+		$data = array_unique($data);
+		
+		foreach ( (array) $data as $term ) {
+			echo '<span class="local">'.esc_html(strip_tags($term)).'</span>'."\n";
+		}
+		echo '<div class="clear"></div>';
+		exit();
+	}
+	
+	/**
+	 * Suggest tags from AlchemyAPI
+	 *
+	 */
+	function ajaxAlchemyApi() {
+		status_header( 200 );
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+
+		// API Key ?
+		if ( empty($this->options['alchemy_api']) ) {
+			echo '<p>'.__('AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$content = trim($content);
+		if ( empty($content) ) {
+			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Build params
+		$data = array();
+		$reponse = wp_remote_post( 'http://access.alchemyapi.com/calls/html/HTMLGetRankedNamedEntities', array('body' => array(
+			'apikey' 	 => $this->options['alchemy_api'],
+			'url' 		 => ' ',
+			'html' 		 => $content,
+			'outputMode' => 'json'
+		)));
+		if( !is_wp_error($reponse) && $reponse != null ) {
+			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
+				$data = wp_remote_retrieve_body($reponse);
+			}
+		}
+		
+		if ( !function_exists('json_decode') ) // PHP5.2, or embed WP class.
+			require_once( dirname(__FILE__) . '/class/JSON.php' );
+		
+		$data = json_decode($data);
+		$data = $data->entities;
+		
+		if ( empty($data) ) {
+			echo '<p>'.__('No results from Alchemy API.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		foreach ( (array) $data as $term ) {
+			echo '<span class="local">'.esc_html($term->text).'</span>'."\n";
+		}
+		echo '<div class="clear"></div>';
+		exit();
+	}
+	
+	/**
+	 * Suggest tags from Zemanta
+	 *
+	 */
+	function ajaxZemanta() {
+		status_header( 200 );
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+
+		// API Key ?
+		if ( empty($this->options['zemanta_key']) ) {
+			echo '<p>'.__('Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+			exit();
+		}
+
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$content = trim($content);
+		if ( empty($content) ) {
+			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Build params
+		$data = array();
+		$reponse = wp_remote_post( 'http://api.zemanta.com/services/rest/0.0/', array('body' => array(
+			'method'	=> 'zemanta.suggest',
+			'api_key' 	=> $this->options['zemanta_key'],
+			'text' 		=> $content,
+			'format' 	=> 'json',
+			'return_rdf_links' => 0,
+			'return_images' => 0
+		)));
+		if( !is_wp_error($reponse) && $reponse != null ) {
+			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
+				$data = wp_remote_retrieve_body($reponse);
+			}
+		}
+		
+		if ( !function_exists('json_decode') ) // PHP5.2, or embed WP class.
+			require_once( dirname(__FILE__) . '/class/JSON.php' );
+		
+		$data = json_decode($data);
+		$data = $data->keywords;
+		
+		if ( empty($data) ) {
+			echo '<p>'.__('No results from Zemanta API.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		foreach ( (array) $data as $term ) {
+			echo '<span class="local">'.esc_html($term->name).'</span>'."\n";
+		}
+		echo '<div class="clear"></div>';
+		exit();
 	}
 	
 	/**
@@ -1773,7 +1962,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		$param .= '&output=php'; // Get PHP Array !
 		
 		$data = array();
-		$reponse = wp_remote_post( 'http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction?'.$param );
+		$reponse = wp_remote_post( 'http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction', array('body' =>$param) );
 		if( !is_wp_error($reponse) && $reponse != null ) {
 			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
 				$data = maybe_unserialize( wp_remote_retrieve_body($reponse) );
@@ -1793,7 +1982,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		$data = array_unique($data);
 		
 		foreach ( (array) $data as $term ) {
-			echo '<span class="yahoo">'.$term.'</span>'."\n";
+			echo '<span class="yahoo">'.esc_html($term).'</span>'."\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
@@ -1817,7 +2006,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		}
 		
 		$data = '';
-		$reponse = wp_remote_post( 'http://tagthe.net/api/?text='.urlencode($content).'&view=json&count=200' );
+		$reponse = wp_remote_post( 'http://tagthe.net/api/n', array('body' => 'text='.urlencode($content).'&view=json&count=200' ) );
 		if( !is_wp_error($reponse) ) {
 			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
 				$data = maybe_unserialize( wp_remote_retrieve_body($reponse) );
@@ -1839,17 +2028,17 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		$terms = array();
 		// Get all topics
 		foreach ( (array) $data->topic as $topic ) {
-			$terms[] = '<span class="ttn_topic">'.$topic.'</span>';
+			$terms[] = '<span class="ttn_topic">'.esc_html($topic).'</span>';
 		}
 		
 		// Get all locations
 		foreach ( (array) $data->location as $location ) {
-			$terms[] = '<span class="ttn_location">'.$location.'</span>';
+			$terms[] = '<span class="ttn_location">'.esc_html($location).'</span>';
 		}
 		
 		// Get all persons
 		foreach ( (array) $data->person as $person ) {
-			$terms[] = '<span class="ttn_person">'.$person.'</span>';
+			$terms[] = '<span class="ttn_person">'.esc_html($person).'</span>';
 		}
 		
 		// Remove empty terms
@@ -1891,11 +2080,11 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			exit();
 		}
 		
-		$terms = array_unique($terms);
+		//$terms = array_unique($terms);
 		foreach ( (array) $terms as $term ) {
-			$term = stripslashes($term);
+			$term = stripslashes($term->name);
 			if ( is_string($term) && !empty($term) && stristr($content, $term) ) {
-				echo '<span class="local">'.$term.'</span>'."\n";
+				echo '<span class="local">'.esc_html($term).'</span>'."\n";
 			}
 		}
 		
@@ -1935,8 +2124,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			case 'html_span' :
 				
 				foreach ( (array) $terms as $term ) {
-					$term = stripslashes($term);
-					echo '<span class="local">'.$term.'</span>'."\n";
+					echo '<span class="local">'.esc_html(stripslashes($term->name)).'</span>'."\n";
 				}
 				echo '<div class="clear"></div>';
 				break;

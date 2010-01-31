@@ -2,6 +2,33 @@ jQuery(document).ready(function() {
 	jQuery("#suggestedtags h3.hndle span").html( html_entity_decode(stHelperSuggestedTagsL10n.title_bloc) );
 	jQuery("#suggestedtags .inside .container_clicktags").html( stHelperSuggestedTagsL10n.content_bloc );
 	
+	// OpenCalais API
+	jQuery("a.opencalais_api").click(function() {
+		jQuery('#st_ajax_loading').show();
+		jQuery("#suggestedtags .container_clicktags").load( stHelperSuggestedTagsL10n.site_url + '?st_ajax_action=tags_from_opencalais', {content:getContentFromEditor(),title:jQuery("#title").val(),tags:jQuery("#tags-input").val()}, function(){
+			registerClickTags();
+		});
+		return false;
+	});
+	
+	// Alchemy API
+	jQuery("a.alchemyapi").click(function() {
+		jQuery('#st_ajax_loading').show();
+		jQuery("#suggestedtags .container_clicktags").load( stHelperSuggestedTagsL10n.site_url + '?st_ajax_action=tags_from_alchemyapi', {content:getContentFromEditor(),title:jQuery("#title").val(),tags:jQuery("#tags-input").val()}, function(){
+			registerClickTags();
+		});
+		return false;
+	});
+	
+	// Zemanta API
+	jQuery("a.zemanta").click(function() {
+		jQuery('#st_ajax_loading').show();
+		jQuery("#suggestedtags .container_clicktags").load( stHelperSuggestedTagsL10n.site_url + '?st_ajax_action=tags_from_zemanta', {content:getContentFromEditor(),title:jQuery("#title").val(),tags:jQuery("#tags-input").val()}, function(){
+			registerClickTags();
+		});
+		return false;
+	});
+	
 	// Yahoo API
 	jQuery("a.yahoo_api").click(function() {
 		jQuery('#st_ajax_loading').show();
