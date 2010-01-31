@@ -90,6 +90,8 @@ Then: Manage - Import - Embedded Tags
 * Version 1.7.2 :
 	* Add taxonomy support
 	* Rewrite manage page
+	* New JS for autocomplete, use AJAX for better performance
+	* Fix PHP4.
 * Version 1.7.1-rc1.2 : RC 1.2 (this version must be test !)
 	* Fix compatibility PHP4
 * Version 1.7.1-rc1.1 : RC 1.1 (this version must be test !)

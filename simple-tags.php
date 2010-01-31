@@ -27,9 +27,6 @@ Contributors:
 Todo:
 	Both :
 		Taxonomy supports
-		
-	Admin :
-		Rewrite manage page
 	
 	Client :
 		- Test avec &$this, $this, et avec une fonction, test la conso memoire de wp_filter avant/apres
