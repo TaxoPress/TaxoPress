@@ -1,1397 +1,1627 @@
+# Translation of the WordPress plugin Simple Tags 1.7.4 by Amaury BALMER.
+# Copyright (C) 2010 Amaury BALMER
+# This file is distributed under the same license as the Simple Tags package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags 1.7.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-11 00:17+0100\n"
-"PO-Revision-Date: 2010-01-11 00:17+0100\n"
-"Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
-"Language-Team: \n"
+"Project-Id-Version: Simple Tags 1.7.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
+"POT-Creation-Date: 2010-01-31 17:45+0000\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _e;_c;__;_n\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /extras/simple-tags.importer.php:57
+#: extras/simple-tags.importer.php:56
 msgid "Import Embedded Tags"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:58
-msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
+#: extras/simple-tags.importer.php:57
+msgid ""
+"Steps may take a few minutes depending on the size of your database. Please "
+"be patient."
 msgstr ""
 
-#: /extras/simple-tags.importer.php:59
-msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+#: extras/simple-tags.importer.php:58
+msgid ""
+"Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags"
+"\">plugin's homepage</a> for further details. If you find a bug, or have a "
+"fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net"
+"\">ask me</a> !"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:68
-msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
+#: extras/simple-tags.importer.php:67
+msgid ""
+"Howdy! This imports tags from embedded tags into this blog using the new "
+"WordPress native tagging structure."
 msgstr ""
 
-#: /extras/simple-tags.importer.php:69
-msgid "To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!"
+#: extras/simple-tags.importer.php:68
+msgid ""
+"To accommodate larger databases for those tag-crazy authors out there, we "
+"have made this into an easy 4-step program to help you kick that nasty "
+"Embedded Tags habit. Just keep clicking along and we will let you know when "
+"you are in the clear!"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:70
+#: extras/simple-tags.importer.php:69
 msgid "Don&#8217;t be stupid - backup your database before proceeding!"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:72
+#: extras/simple-tags.importer.php:71
 msgid "Step 1 &raquo;"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:95
+#: extras/simple-tags.importer.php:94
 msgid "Missing parameters in URL. (Start or End)"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:107
+#: extras/simple-tags.importer.php:106
 msgid "Configure and add tags to posts&#8230;"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:114
+#: extras/simple-tags.importer.php:113
 msgid "Start marker"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:117
+#: extras/simple-tags.importer.php:116
 msgid "End marker"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:120
+#: extras/simple-tags.importer.php:119
 msgid "Delete embedded tags once imported ?"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:122
+#: extras/simple-tags.importer.php:121
 msgid "Import also embedded tags from page ?"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:125
+#: extras/simple-tags.importer.php:124
 msgid "Start import &raquo;"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:166
-#: /inc/admin.php:331
-msgid "If your browser doesn't start loading the next page automatically click this link:"
+#: extras/simple-tags.importer.php:165 inc/admin.php:352
+msgid ""
+"If your browser doesn't start loading the next page automatically click this "
+"link:"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:166
-#: /inc/admin.php:331
+#: extras/simple-tags.importer.php:165 inc/admin.php:352
 msgid "Next content"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:179
+#: extras/simple-tags.importer.php:178
 msgid "Done!"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:181
+#: extras/simple-tags.importer.php:180
 msgid "Step 2 &raquo;"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:198
+#: extras/simple-tags.importer.php:197
 msgid "Import Complete!"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:199
+#: extras/simple-tags.importer.php:198
 msgid "OK, so we lied about this being a 4-step program! You&#8217;re done!"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:200
+#: extras/simple-tags.importer.php:199
 msgid "Now wasn&#8217;t that easy?"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:201
+#: extras/simple-tags.importer.php:200
 msgid "You can manage tags now !"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:241
-#: /inc/admin.php:2207
+#: extras/simple-tags.importer.php:240 inc/admin.php:2087
 msgid "Embedded Tags"
 msgstr ""
 
-#: /extras/simple-tags.importer.php:241
+#: extras/simple-tags.importer.php:240
 msgid "Import Embedded Tags into the new WordPress native tagging structure."
 msgstr ""
 
-#: /inc/admin.php:94
+#: inc/admin.php:36
+msgid "Post tags"
+msgstr ""
+
+#: inc/admin.php:106
 msgid "Display click tags"
 msgstr ""
 
-#: /inc/admin.php:95
+#: inc/admin.php:106
 msgid "Hide click tags"
 msgstr ""
 
-#: /inc/admin.php:100
+#: inc/admin.php:108
 msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
 msgstr ""
 
-#: /inc/admin.php:195
-#: /inc/admin.php:667
-msgid "Simple Tags: Manage Tags"
+#: inc/admin.php:182
+msgid "Simple Terms: Manage Terms"
 msgstr ""
 
-#: /inc/admin.php:195
-msgid "Manage Tags"
+#: inc/admin.php:182
+msgid "Manage Terms"
 msgstr ""
 
-#: /inc/admin.php:196
-msgid "Simple Tags: Mass Edit Tags"
+#: inc/admin.php:183
+msgid "Simple Terms: Mass Edit Terms"
 msgstr ""
 
-#: /inc/admin.php:196
-msgid "Mass Edit Tags"
+#: inc/admin.php:183
+msgid "Mass Edit Terms"
 msgstr ""
 
-#: /inc/admin.php:197
-msgid "Simple Tags: Auto Tags"
+#: inc/admin.php:184
+msgid "Simple Terms: Auto Terms"
 msgstr ""
 
-#: /inc/admin.php:197
-#: /inc/admin.php:254
-msgid "Auto Tags"
+#: inc/admin.php:184 inc/admin.php:275
+msgid "Auto Terms"
 msgstr ""
 
-#: /inc/admin.php:198
-#: /inc/admin.php:569
+#: inc/admin.php:185 inc/admin.php:400
 msgid "Simple Tags: Options"
 msgstr ""
 
-#: /inc/admin.php:198
+#. #-#-#-#-#  plugin.pot (Simple Tags 1.7.4)  #-#-#-#-#
+#. Plugin Name of an extension
+#: inc/admin.php:185
 msgid "Simple Tags"
 msgstr ""
 
-#: /inc/admin.php:240
+#: inc/admin.php:196
+#, php-format
+msgid "You currently use the taxonomy : <span>%s</span>"
+msgstr ""
+
+#: inc/admin.php:210
+msgid "Change taxonomy"
+msgstr ""
+
+#: inc/admin.php:255
 msgid "Auto tags options updated !"
 msgstr ""
 
-#: /inc/admin.php:255
-#: /inc/admin.php:570
-#: /inc/admin.php:1082
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+#: inc/admin.php:276 inc/admin.php:401 inc/admin.php:852
+msgid ""
+"Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/"
+"\">plugin's homepage</a> for further details. If you find a bug, or have a "
+"fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net"
+"\">ask me</a> !"
 msgstr ""
 
-#: /inc/admin.php:259
-msgid "Auto tags list"
+#: inc/admin.php:280
+msgid "Auto terms list"
 msgstr ""
 
-#: /inc/admin.php:260
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
+#: inc/admin.php:281
+msgid ""
+"This feature allows Wordpress to look into post content and title for "
+"specified terms when saving posts. If your post content or title contains "
+"the word \"WordPress\" and you have \"wordpress\" in auto terms list, Simple "
+"Tags will add automatically \"wordpress\" as term for this post."
 msgstr ""
 
-#: /inc/admin.php:262
+#: inc/admin.php:283
 msgid "Options"
 msgstr ""
 
-#: /inc/admin.php:266
+#: inc/admin.php:287
 msgid "Activation"
 msgstr ""
 
-#: /inc/admin.php:269
+#: inc/admin.php:290
 msgid "Active Auto Tags."
 msgstr ""
 
-#: /inc/admin.php:273
-msgid "Tags database"
+#: inc/admin.php:294
+msgid "Terms database"
 msgstr ""
 
-#: /inc/admin.php:276
-msgid "Use also local tags database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many tags)"
+#: inc/admin.php:297
+msgid ""
+"Use also local terms database with auto tags. (Warning, this option can "
+"increases the CPU consumption a lot if you have many terms)"
 msgstr ""
 
-#: /inc/admin.php:280
+#: inc/admin.php:301
 msgid "Target"
 msgstr ""
 
-#: /inc/admin.php:283
-msgid "Autotag only posts without tags."
+#: inc/admin.php:304
+msgid "Autotag only posts without terms."
 msgstr ""
 
-#: /inc/admin.php:287
+#: inc/admin.php:308
 msgid "Keywords list"
 msgstr ""
 
-#: /inc/admin.php:290
+#: inc/admin.php:311
 msgid "Separated with a comma"
 msgstr ""
 
-#: /inc/admin.php:296
-#: /inc/admin.php:573
-#: /inc/admin.php:587
+#: inc/admin.php:317 inc/admin.php:404 inc/admin.php:418
 msgid "Update options &raquo;"
 msgstr ""
 
-#: /inc/admin.php:300
-msgid "Auto tags old content"
+#: inc/admin.php:321
+msgid "Auto terms old content"
 msgstr ""
 
-#: /inc/admin.php:302
-msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+#: inc/admin.php:323
+msgid ""
+"Simple Tags can also tag all existing contents of your blog. This feature "
+"use auto terms list above-mentioned."
 msgstr ""
 
-#: /inc/admin.php:305
-msgid "Auto tags all content &raquo;"
+#: inc/admin.php:326
+msgid "Auto terms all content &raquo;"
 msgstr ""
 
-#: /inc/admin.php:344
+#: inc/admin.php:365
 #, php-format
-msgid "All done! %s tags added."
+msgid "All done! %s terms added."
 msgstr ""
 
-#: /inc/admin.php:360
-msgid "Active tags for page:"
-msgstr ""
-
-#: /inc/admin.php:361
-msgid "This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page."
-msgstr ""
-
-#: /inc/admin.php:362
-msgid "Allow tag cloud in post/page content:"
-msgstr ""
-
-#: /inc/admin.php:363
-msgid "Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> or <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WP replace this marker by a tag cloud."
-msgstr ""
-
-#: /inc/admin.php:364
-msgid "Add the rel=\"nofollow\" on each tags link ?"
-msgstr ""
-
-#: /inc/admin.php:365
-msgid "Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index."
-msgstr ""
-
-#: /inc/admin.php:368
-msgid "Activate click tags feature:"
-msgstr ""
-
-#: /inc/admin.php:369
-msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
-msgstr ""
-
-#: /inc/admin.php:370
-msgid "Activate autocompletion feature with old input:"
-msgstr ""
-
-#: /inc/admin.php:371
-msgid "This feature displays a visual help allowing to enter tags more easily. As well add tags is easier than the autocompletion default of WordPress"
-msgstr ""
-
-#: /inc/admin.php:372
-msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)"
-msgstr ""
-
-#: /inc/admin.php:373
-msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
-msgstr ""
-
-#: /inc/admin.php:376
-msgid "Active auto link tags into post content:"
-msgstr ""
-
-#: /inc/admin.php:377
-msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
-msgstr ""
-
-#: /inc/admin.php:378
-msgid "Min usage for auto link tags:"
-msgstr ""
-
-#: /inc/admin.php:379
-msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
-msgstr ""
-
-#: /inc/admin.php:380
-msgid "Maximum number of links per article:"
-msgstr ""
-
-#: /inc/admin.php:381
-msgid "This setting determines the maximum number of links created by article. Default: 10."
-msgstr ""
-
-#: /inc/admin.php:382
-msgid "Ignore case for auto link feature ?"
-msgstr ""
-
-#: /inc/admin.php:383
-msgid "Example: If you ignore case, auto link feature will replace the word \"wordpress\" by the tag link \"WordPress\"."
-msgstr ""
-
-#: /inc/admin.php:384
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
-msgstr ""
-
-#: /inc/admin.php:385
-msgid "Example: If you enter the term \"Paris\", the auto link tags feature will never replace this term by this link."
-msgstr ""
-
-#: /inc/admin.php:389
-msgid "Automatically include in header:"
-msgstr ""
-
-#: /inc/admin.php:390
-msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is automatically disabled."
-msgstr ""
-
-#: /inc/admin.php:391
-msgid "Always add these keywords:"
-msgstr ""
-
-#: /inc/admin.php:392
-msgid "Max keywords display:"
-msgstr ""
-
-#: /inc/admin.php:393
-msgid "You must set zero (0) for display all keywords in HTML header."
-msgstr ""
-
-#: /inc/admin.php:396
-msgid "Use embedded tags:"
-msgstr ""
-
-#: /inc/admin.php:397
-msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
-msgstr ""
-
-#: /inc/admin.php:398
-msgid "Prefix for embedded tags:"
-msgstr ""
-
-#: /inc/admin.php:399
-msgid "Suffix for embedded tags:"
-msgstr ""
-
-#: /inc/admin.php:402
-msgid "Automatically display tags list into feeds"
-msgstr ""
-
-#: /inc/admin.php:403
-msgid "Automatically display tags list into post content:"
-msgstr ""
-
-#: /inc/admin.php:405
-#: /inc/admin.php:429
-msgid "<code>no</code> &ndash; Nowhere (default)"
-msgstr ""
-
-#: /inc/admin.php:406
-#: /inc/admin.php:430
-msgid "<code>all</code> &ndash; On your blog and feeds."
-msgstr ""
-
-#: /inc/admin.php:407
-#: /inc/admin.php:431
-msgid "<code>blogonly</code> &ndash; Only on your blog."
-msgstr ""
-
-#: /inc/admin.php:408
-#: /inc/admin.php:432
-msgid "<code>homeonly</code> &ndash; Only on your home page."
-msgstr ""
-
-#: /inc/admin.php:409
-#: /inc/admin.php:433
-msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
-msgstr ""
-
-#: /inc/admin.php:410
-#: /inc/admin.php:434
-msgid "<code>singleonly</code> &ndash; Only on your single view."
-msgstr ""
-
-#: /inc/admin.php:411
-#: /inc/admin.php:435
-msgid "<code>pageonly</code> &ndash; Only on your page view."
-msgstr ""
-
-#: /inc/admin.php:413
-msgid "Post tag separator string:"
-msgstr ""
-
-#: /inc/admin.php:414
-msgid "Text to display before tags list:"
-msgstr ""
-
-#: /inc/admin.php:415
-msgid "Text to display after tags list:"
-msgstr ""
-
-#: /inc/admin.php:416
-msgid "Max tags display:"
-msgstr ""
-
-#: /inc/admin.php:417
-msgid "You must set zero (0) for display all tags."
-msgstr ""
-
-#: /inc/admin.php:418
-msgid "Include categories in result ?"
-msgstr ""
-
-#: /inc/admin.php:419
-#: /inc/admin.php:532
-msgid "Tag link format:"
-msgstr ""
-
-#: /inc/admin.php:420
-#: /inc/admin.php:448
-#: /inc/admin.php:476
-#: /inc/admin.php:494
-#: /inc/admin.php:533
-msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr ""
-
-#: /inc/admin.php:421
-msgid "Text to display if no tags found:"
-msgstr ""
-
-#: /inc/admin.php:422
-#: /inc/admin.php:452
-#: /inc/admin.php:481
-#: /inc/admin.php:545
-msgid "<strong>Advanced usage</strong>:"
-msgstr ""
-
-#: /inc/admin.php:423
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr ""
-
-#: /inc/admin.php:426
-msgid "Automatically display related posts into feeds"
-msgstr ""
-
-#: /inc/admin.php:427
-msgid "Automatically display related posts into post content"
-msgstr ""
-
-#: /inc/admin.php:437
-msgid "Related Posts Order:"
-msgstr ""
-
-#: /inc/admin.php:439
-msgid "<code>date-asc</code> &ndash; Older Entries."
-msgstr ""
-
-#: /inc/admin.php:440
-msgid "<code>date-desc</code> &ndash; Newer Entries."
-msgstr ""
-
-#: /inc/admin.php:441
-msgid "<code>count-asc</code> &ndash; Least common tags between posts"
-msgstr ""
-
-#: /inc/admin.php:442
-msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
-msgstr ""
-
-#: /inc/admin.php:443
-#: /inc/admin.php:461
-msgid "<code>name-asc</code> &ndash; Alphabetical."
-msgstr ""
-
-#: /inc/admin.php:444
-#: /inc/admin.php:462
-msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
-msgstr ""
-
-#: /inc/admin.php:445
-#: /inc/admin.php:463
-msgid "<code>random</code> &ndash; Random."
-msgstr ""
-
-#: /inc/admin.php:447
-msgid "Post link format:"
-msgstr ""
-
-#: /inc/admin.php:449
-msgid "Maximum number of related posts to display: (default: 5)"
-msgstr ""
-
-#: /inc/admin.php:450
-msgid "Enter the text to show when there is no related post:"
-msgstr ""
-
-#: /inc/admin.php:451
-#: /inc/admin.php:480
-#: /inc/admin.php:536
-msgid "Enter the positioned title before the list, leave blank for no title:"
-msgstr ""
-
-#: /inc/admin.php:453
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr ""
-
-#: /inc/admin.php:456
-msgid "Maximum number of related tags to display: (default: 5)"
-msgstr ""
-
-#: /inc/admin.php:457
-msgid "Order related tags:"
-msgstr ""
-
-#: /inc/admin.php:459
-msgid "<code>count-asc</code> &ndash; Least used."
-msgstr ""
-
-#: /inc/admin.php:460
-msgid "<code>count-desc</code> &ndash; Most popular. (default)"
-msgstr ""
-
-#: /inc/admin.php:465
-msgid "Related tags type format:"
-msgstr ""
-
-#: /inc/admin.php:467
-#: /inc/admin.php:487
-#: /inc/admin.php:529
-msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
-msgstr ""
-
-#: /inc/admin.php:468
-#: /inc/admin.php:488
-#: /inc/admin.php:530
-msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
-msgstr ""
-
-#: /inc/admin.php:470
-msgid "Method of tags intersections and unions used to build related tags link:"
-msgstr ""
-
-#: /inc/admin.php:472
-msgid "<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</strong> the \"Tag2\" tag. (default)"
-msgstr ""
-
-#: /inc/admin.php:473
-msgid "<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</strong> the \"Tag2\" tag."
-msgstr ""
-
-#: /inc/admin.php:475
-msgid "Related tags link format:"
-msgstr ""
-
-#: /inc/admin.php:477
-msgid "Related tags separator:"
-msgstr ""
-
-#: /inc/admin.php:478
-#: /inc/admin.php:491
-msgid "Leave empty for list format."
-msgstr ""
-
-#: /inc/admin.php:479
-msgid "Enter the text to show when there is no related tags:"
-msgstr ""
-
-#: /inc/admin.php:482
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr ""
-
-#: /inc/admin.php:484
-msgid "Remove related Tags"
-msgstr ""
-
-#: /inc/admin.php:485
-msgid "Remove related Tags type format:"
-msgstr ""
-
-#: /inc/admin.php:490
-msgid "Remove related tags separator:"
-msgstr ""
-
-#: /inc/admin.php:492
-msgid "Enter the text to show when there is no remove related tags:"
-msgstr ""
-
-#: /inc/admin.php:493
-msgid "Remove related tags  link format:"
-msgstr ""
-
-#: /inc/admin.php:497
-msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
-msgstr ""
-
-#: /inc/admin.php:499
-msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
-msgstr ""
-
-#: /inc/admin.php:500
-msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
-msgstr ""
-
-#: /inc/admin.php:502
-msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
-msgstr ""
-
-#: /inc/admin.php:503
-msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
-msgstr ""
-
-#: /inc/admin.php:504
-msgid "Order by for tags selection:"
-msgstr ""
-
-#: /inc/admin.php:506
-#: /inc/admin.php:517
-msgid "<code>count</code> &ndash; Counter."
-msgstr ""
-
-#: /inc/admin.php:507
-#: /inc/admin.php:518
-msgid "<code>name</code> &ndash; Name."
-msgstr ""
-
-#: /inc/admin.php:508
-#: /inc/admin.php:519
-msgid "<code>random</code> &ndash; Random. (default)"
-msgstr ""
-
-#: /inc/admin.php:510
-msgid "Order tags selection:"
-msgstr ""
-
-#: /inc/admin.php:512
-#: /inc/admin.php:523
-msgid "<code>asc</code> &ndash; Ascending."
-msgstr ""
-
-#: /inc/admin.php:513
-#: /inc/admin.php:524
-msgid "<code>desc</code> &ndash; Descending."
-msgstr ""
-
-#: /inc/admin.php:515
-msgid "Order by for tags display:"
-msgstr ""
-
-#: /inc/admin.php:521
-msgid "Order tags display:"
-msgstr ""
-
-#: /inc/admin.php:526
-msgid "Include categories in tag cloud ?"
-msgstr ""
-
-#: /inc/admin.php:527
-msgid "Tags cloud type format:"
-msgstr ""
-
-#: /inc/admin.php:534
-msgid "Maximum number of tags to display: (default: 45)"
-msgstr ""
-
-#: /inc/admin.php:535
-msgid "Enter the text to show when there is no tag:"
-msgstr ""
-
-#: /inc/admin.php:537
-msgid "Most popular color:"
-msgstr ""
-
-#: /inc/admin.php:538
-msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
-msgstr ""
-
-#: /inc/admin.php:539
-msgid "Least popular color:"
-msgstr ""
-
-#: /inc/admin.php:540
-msgid "Most popular font size:"
-msgstr ""
-
-#: /inc/admin.php:541
-msgid "The two font sizes are the size of the largest and smallest tags."
-msgstr ""
-
-#: /inc/admin.php:542
-msgid "Least popular font size:"
-msgstr ""
-
-#: /inc/admin.php:543
-msgid "The units to display the font sizes with, on tag clouds:"
-msgstr ""
-
-#: /inc/admin.php:544
-msgid "The font size units option determines the units that the two font sizes use."
-msgstr ""
-
-#: /inc/admin.php:546
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr ""
-
-#: /inc/admin.php:559
+#: inc/admin.php:390
 msgid "Options saved"
 msgstr ""
 
-#: /inc/admin.php:563
+#: inc/admin.php:394
 msgid "Simple Tags options resetted to default options!"
 msgstr ""
 
-#: /inc/admin.php:574
-#: /inc/admin.php:588
+#: inc/admin.php:405 inc/admin.php:419
 msgid "Do you really want to restore the default options?"
 msgstr ""
 
-#: /inc/admin.php:574
-#: /inc/admin.php:588
+#: inc/admin.php:405 inc/admin.php:419
 msgid "Reset Options"
 msgstr ""
 
-#: /inc/admin.php:605
-#: /inc/admin.php:1720
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+#: inc/admin.php:436 inc/admin.php:1498
+msgid ""
+"Security problem. Try again. If this problem persist, contact <a href="
+"\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
 msgstr ""
 
-#: /inc/admin.php:638
-msgid "Most popular"
+#: inc/admin.php:471
+msgid "Simple Tags: Manage Terms"
 msgstr ""
 
-#: /inc/admin.php:639
-msgid "Least used"
+#: inc/admin.php:472
+msgid ""
+"Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/"
+"ThemeIntegration\">plugin's homepage</a> for further details. If you find a "
+"bug, or have a fantastic idea for this plugin, <a href=\"mailto:"
+"amaury@wordpress-fr.net\">ask me</a> !"
 msgstr ""
 
-#: /inc/admin.php:640
-msgid "Alphabetical"
+#: inc/admin.php:476
+msgid "Rename/Merge Terms"
 msgstr ""
 
-#: /inc/admin.php:668
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+#: inc/admin.php:478
+msgid ""
+"Enter the term to rename and its new value. You can use this feature to "
+"merge terms too. Click \"Rename\" and all posts which use this term will be "
+"updated."
 msgstr ""
 
-#: /inc/admin.php:673
-msgid "Existing Tags"
+#: inc/admin.php:479 inc/admin.php:560
+msgid ""
+"You can specify multiple terms to rename by separating them with commas."
 msgstr ""
 
-#: /inc/admin.php:677
-msgid "Search tags"
+#: inc/admin.php:487
+msgid "Term(s) to rename:"
 msgstr ""
 
-#: /inc/admin.php:681
-msgid "Go"
+#: inc/admin.php:493
+msgid "New term name(s):"
 msgstr ""
 
-#: /inc/admin.php:686
-msgid "Sort Order:"
-msgstr ""
-
-#: /inc/admin.php:704
-#: /inc/admin.php:1823
-#, php-format
-msgid "View all posts tagged with %s"
-msgstr ""
-
-#: /inc/admin.php:712
-#: /inc/admin.php:1838
-#: /inc/admin.php:1840
-msgid "Previous tags"
-msgstr ""
-
-#: /inc/admin.php:712
-#: /inc/admin.php:1844
-#: /inc/admin.php:1846
-msgid "Next tags"
-msgstr ""
-
-#: /inc/admin.php:719
-msgid "Rename Tag"
-msgstr ""
-
-#: /inc/admin.php:727
-msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
-msgstr ""
-
-#: /inc/admin.php:728
-#: /inc/admin.php:802
-msgid "You can specify multiple tags to rename by separating them with commas."
-msgstr ""
-
-#: /inc/admin.php:732
-msgid "Tag(s) to rename:"
-msgstr ""
-
-#: /inc/admin.php:736
-msgid "New tag name(s):"
-msgstr ""
-
-#: /inc/admin.php:739
+#: inc/admin.php:498
 msgid "Rename"
 msgstr ""
 
-#: /inc/admin.php:745
-msgid "Delete Tag"
+#: inc/admin.php:505
+msgid "Delete Terms"
 msgstr ""
 
-#: /inc/admin.php:753
-msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
+#: inc/admin.php:507
+msgid ""
+"Enter the name of terms to delete. Terms will be removed from all posts."
 msgstr ""
 
-#: /inc/admin.php:754
-msgid "You can specify multiple tags to delete by separating them with commas"
+#: inc/admin.php:508
+msgid "You can specify multiple terms to delete by separating them with commas"
 msgstr ""
 
-#: /inc/admin.php:758
-msgid "Tag(s) to delete:"
+#: inc/admin.php:516
+msgid "Term(s) to delete:"
 msgstr ""
 
-#: /inc/admin.php:761
+#: inc/admin.php:521
 msgid "Delete"
 msgstr ""
 
-#: /inc/admin.php:767
-msgid "Add Tag"
+#: inc/admin.php:528
+msgid "Add Terms"
 msgstr ""
 
-#: /inc/admin.php:775
-msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
+#: inc/admin.php:530
+msgid ""
+"This feature lets you add one or more new terms to all posts which match any "
+"of the terms given."
 msgstr ""
 
-#: /inc/admin.php:776
-msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
+#: inc/admin.php:531
+msgid ""
+"You can specify multiple terms to add by separating them with commas.  If "
+"you want the term(s) to be added to all posts, then don't specify any terms "
+"to match."
 msgstr ""
 
-#: /inc/admin.php:780
-#: /inc/admin.php:806
-msgid "Tag(s) to match:"
+#: inc/admin.php:539 inc/admin.php:568
+msgid "Term(s) to match:"
 msgstr ""
 
-#: /inc/admin.php:784
-msgid "Tag(s) to add:"
+#: inc/admin.php:545
+msgid "Term(s) to add:"
 msgstr ""
 
-#: /inc/admin.php:787
+#: inc/admin.php:550
 msgid "Add"
 msgstr ""
 
-#: /inc/admin.php:793
-msgid "Edit Tag Slug"
+#: inc/admin.php:557
+msgid "Edit Term Slug"
 msgstr ""
 
-#: /inc/admin.php:801
-msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
+#: inc/admin.php:559
+msgid ""
+"Enter the term name to edit and its new slug. <a href=\"http://codex."
+"wordpress.org/Glossary#Slug\">Slug definition</a>"
 msgstr ""
 
-#: /inc/admin.php:810
+#: inc/admin.php:574
 msgid "Slug(s) to set:"
 msgstr ""
 
-#: /inc/admin.php:813
-#: /inc/admin.php:1047
+#: inc/admin.php:579 inc/admin.php:832
 msgid "Edit"
 msgstr ""
 
-#: /inc/admin.php:819
+#: inc/admin.php:586
 msgid "Remove empty terms"
 msgstr ""
 
-#: /inc/admin.php:827
-msgid "Old WordPress versions have a small bug and allow to create empty terms. Remove it !"
+#: inc/admin.php:588
+msgid ""
+"Old WordPress versions have a small bug and allow to create empty terms. "
+"Remove it !"
 msgstr ""
 
-#: /inc/admin.php:828
+#: inc/admin.php:596
 msgid "Clean !"
 msgstr ""
 
-#: /inc/admin.php:864
+#: inc/admin.php:604
+msgid "Technical informations"
+msgstr ""
+
+#: inc/admin.php:606
+msgid "Renaming"
+msgstr ""
+
+#: inc/admin.php:607
+msgid ""
+"Simple Tags don't use the same method as WordPress for rename a term. For "
+"example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When "
+"you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress "
+"will keep the two terms with the same name but with a different slug. <br /"
+">With Simple Tags, when you edit \"Bloging\" for \"Blogging\", Simple Tags "
+"merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term "
+"\"Bloging\". Another logic ;)"
+msgstr ""
+
+#: inc/admin.php:640
+msgctxt "post"
+msgid "Published"
+msgstr ""
+
+#: inc/admin.php:640
 msgid "Published posts"
 msgstr ""
 
-#: /inc/admin.php:865
+#: inc/admin.php:640
+#, php-format
+msgid "Published <span class=\"count\">(%s)</span>"
+msgid_plural "Published <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:641
+msgctxt "post"
+msgid "Scheduled"
+msgstr ""
+
+#: inc/admin.php:641
 msgid "Scheduled posts"
 msgstr ""
 
-#: /inc/admin.php:866
+#: inc/admin.php:641
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:642
+msgctxt "post"
+msgid "Pending Review"
+msgstr ""
+
+#: inc/admin.php:642
 msgid "Pending posts"
 msgstr ""
 
-#: /inc/admin.php:868
+#: inc/admin.php:642
+#, php-format
+msgid "Pending Review <span class=\"count\">(%s)</span>"
+msgid_plural "Pending Review <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:643
+msgctxt "post"
+msgid "Draft"
+msgstr ""
+
+#: inc/admin.php:643
+msgctxt "manage posts header"
+msgid "Drafts"
+msgstr ""
+
+#: inc/admin.php:643
+#, php-format
+msgid "Draft <span class=\"count\">(%s)</span>"
+msgid_plural "Drafts <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:644
+msgctxt "post"
+msgid "Private"
+msgstr ""
+
+#: inc/admin.php:644
 msgid "Private posts"
 msgstr ""
 
-#: /inc/admin.php:914
-msgid "Mass edit tags"
+#: inc/admin.php:644
+#, php-format
+msgid "Private <span class=\"count\">(%s)</span>"
+msgid_plural "Private <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:699
+msgid "Mass edit terms"
 msgstr ""
 
-#: /inc/admin.php:921
+#: inc/admin.php:706
 msgid "All Posts"
 msgstr ""
 
-#: /inc/admin.php:941
+#: inc/admin.php:726
 msgid "All Pages"
 msgstr ""
 
-#: /inc/admin.php:950
+#: inc/admin.php:735
 msgid "Search Posts"
 msgstr ""
 
-#: /inc/admin.php:982
+#: inc/admin.php:767
 msgid "Show all dates"
 msgstr ""
 
-#: /inc/admin.php:1004
+#: inc/admin.php:789
 msgid "View all categories"
 msgstr ""
 
-#: /inc/admin.php:1008
+#: inc/admin.php:793
 msgid "Quantity&hellip;"
 msgstr ""
 
-#: /inc/admin.php:1018
+#: inc/admin.php:803
 msgid "Filter"
 msgstr ""
 
-#: /inc/admin.php:1035
+#: inc/admin.php:820
 msgid "Post title"
 msgstr ""
 
-#: /inc/admin.php:1036
-msgid "Tags"
+#: inc/admin.php:821
+#, php-format
+msgid "Terms : %s"
 msgstr ""
 
-#: /inc/admin.php:1058
+#: inc/admin.php:843
 msgid "Update all &raquo;"
 msgstr ""
 
-#: /inc/admin.php:1079
+#: inc/admin.php:849
 msgid "No content to edit."
 msgstr ""
 
-#: /inc/admin.php:1288
-#: /inc/admin.php:1293
+#: inc/admin.php:1055 inc/admin.php:1060
 msgid "Tags (Simple Tags)"
 msgstr ""
 
-#: /inc/admin.php:1299
+#: inc/admin.php:1071
 msgid "Separate tags with commas"
 msgstr ""
 
-#: /inc/admin.php:1311
+#: inc/admin.php:1082
 msgid "No new tag specified!"
 msgstr ""
 
-#: /inc/admin.php:1326
+#: inc/admin.php:1097
 msgid "No new/old valid tag specified!"
 msgstr ""
 
-#: /inc/admin.php:1362
+#: inc/admin.php:1133
 msgid "No tag renamed."
 msgstr ""
 
-#: /inc/admin.php:1364
+#: inc/admin.php:1135
 #, php-format
 msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
 msgstr ""
 
-#: /inc/admin.php:1371
+#: inc/admin.php:1142
 msgid "No valid new tag."
 msgstr ""
 
-#: /inc/admin.php:1388
+#: inc/admin.php:1159
 msgid "No objects (post/page) found for specified old tags."
 msgstr ""
 
-#: /inc/admin.php:1415
+#: inc/admin.php:1186
 msgid "No tag merged."
 msgstr ""
 
-#: /inc/admin.php:1417
+#: inc/admin.php:1188
 #, php-format
-msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgid ""
+"Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
 msgstr ""
 
-#: /inc/admin.php:1420
+#: inc/admin.php:1191
 msgid "Error. No enough tags for rename. Too for merge. Choose !"
 msgstr ""
 
-#: /inc/admin.php:1447
+#: inc/admin.php:1218
 msgid "No tag specified!"
 msgstr ""
 
-#: /inc/admin.php:1470
+#: inc/admin.php:1241
 msgid "No tag deleted."
 msgstr ""
 
-#: /inc/admin.php:1472
+#: inc/admin.php:1243
 #, php-format
 msgid "%1s tag(s) deleted."
 msgstr ""
 
-#: /inc/admin.php:1484
+#: inc/admin.php:1255
 msgid "No new tag(s) specified!"
 msgstr ""
 
-#: /inc/admin.php:1535
+#: inc/admin.php:1306
 msgid "No tag added."
 msgstr ""
 
-#: /inc/admin.php:1537
+#: inc/admin.php:1308
 #, php-format
 msgid "Tag(s) added to %1s post(s)."
 msgstr ""
 
-#: /inc/admin.php:1549
+#: inc/admin.php:1320
 msgid "No new slug(s) specified!"
 msgstr ""
 
-#: /inc/admin.php:1561
+#: inc/admin.php:1332
 msgid "Tags number and slugs number isn't the same!"
 msgstr ""
 
-#: /inc/admin.php:1588
+#: inc/admin.php:1359
 msgid "No slug edited."
 msgstr ""
 
-#: /inc/admin.php:1590
+#: inc/admin.php:1361
 #, php-format
 msgid "%s slug(s) edited."
 msgstr ""
 
-#: /inc/admin.php:1608
+#: inc/admin.php:1379
 msgid "Nothing to muck. Good job !"
 msgstr ""
 
-#: /inc/admin.php:1636
+#: inc/admin.php:1407
 #, php-format
 msgid "%s rows deleted. WordPress DB is clean now !"
 msgstr ""
 
-#: /inc/admin.php:1646
+#: inc/admin.php:1417
 msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
 msgstr ""
 
-#: /inc/admin.php:1648
-msgid "This feature works only with activated JavaScript. Activate it in your Web browser so you can!"
+#: inc/admin.php:1419
+msgid ""
+"This feature works only with activated JavaScript. Activate it in your Web "
+"browser so you can!"
 msgstr ""
 
-#: /inc/admin.php:1658
-#: /inc/admin.php:1663
+#: inc/admin.php:1429 inc/admin.php:1434
 msgid "Click tags"
 msgstr ""
 
-#: /inc/admin.php:1675
+#: inc/admin.php:1446
 msgid "Ajax loading"
 msgstr ""
 
-#: /inc/admin.php:1676
+#: inc/admin.php:1447
 msgid "Suggested tags from :"
 msgstr ""
 
-#: /inc/admin.php:1677
+#: inc/admin.php:1448
 msgid "Local tags"
 msgstr ""
 
-#: /inc/admin.php:1678
+#: inc/admin.php:1449
 msgid "Yahoo"
 msgstr ""
 
-#: /inc/admin.php:1679
+#: inc/admin.php:1450
+msgid "OpenCalais"
+msgstr ""
+
+#: inc/admin.php:1451
+msgid "AlchemyAPI"
+msgstr ""
+
+#: inc/admin.php:1452
+msgid "Zemanta"
+msgstr ""
+
+#: inc/admin.php:1453
 msgid "Tag The Net"
 msgstr ""
 
-#: /inc/admin.php:1685
-#: /inc/admin.php:1690
+#: inc/admin.php:1459 inc/admin.php:1464
 msgid "Suggested tags"
 msgstr ""
 
-#: /inc/admin.php:1750
+#: inc/admin.php:1528
 #, php-format
-msgid "%s page(s) tags updated with success !"
+msgid "%s page(s) terms updated with success !"
 msgstr ""
 
-#: /inc/admin.php:1752
+#: inc/admin.php:1530
 #, php-format
-msgid "%s post(s) tags updated with success !"
+msgid "%s post(s) terms updated with success !"
 msgstr ""
 
-#: /inc/admin.php:1865
-#: /inc/admin.php:1922
-#: /inc/admin.php:1989
+#: inc/admin.php:1593
+msgid ""
+"OpenCalais need an API key to work. You can register on service website to "
+"obtain a key and set it on Simple Tags options."
+msgstr ""
+
+#: inc/admin.php:1601 inc/admin.php:1652 inc/admin.php:1706 inc/admin.php:1756
+#: inc/admin.php:1808 inc/admin.php:1875
 msgid "No text was sent."
 msgstr ""
 
-#: /inc/admin.php:1891
+#: inc/admin.php:1619
+msgid "No results from OpenCalais service."
+msgstr ""
+
+#: inc/admin.php:1644
+msgid ""
+"AlchemyAPI need an API key to work. You can register on service website to "
+"obtain a key and set it on Simple Tags options."
+msgstr ""
+
+#: inc/admin.php:1677
+msgid "No results from Alchemy API."
+msgstr ""
+
+#: inc/admin.php:1698
+msgid ""
+"Zemanta need an API key to work. You can register on service website to "
+"obtain a key and set it on Simple Tags options."
+msgstr ""
+
+#: inc/admin.php:1733
+msgid "No results from Zemanta API."
+msgstr ""
+
+#: inc/admin.php:1777
 msgid "No results from Yahoo! service."
 msgstr ""
 
-#: /inc/admin.php:1941
+#: inc/admin.php:1828
 msgid "No results from Tag The Net service."
 msgstr ""
 
-#: /inc/admin.php:1980
-#: /inc/admin.php:2026
-msgid "No tags in your WordPress database."
+#: inc/admin.php:1866 inc/admin.php:1910
+msgid "No terms in your WordPress database."
 msgstr ""
 
-#: /inc/admin.php:1998
-#: /inc/admin.php:2037
+#: inc/admin.php:1883 inc/admin.php:1922
 msgid "No results from your WordPress database."
 msgstr ""
 
-#: /inc/admin.php:2102
+#: inc/admin.php:1982
 #, php-format
-msgid "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgid ""
+"&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here "
+"With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/"
+"simple-tags\">Simple Tags</a> | Version %s"
 msgstr ""
 
-#: /inc/admin.php:2195
+#: inc/admin.php:2075
 msgid "Administration"
 msgstr ""
 
-#: /inc/admin.php:2198
+#: inc/admin.php:2078
 msgid "Auto link"
 msgstr ""
 
-#: /inc/admin.php:2201
+#: inc/admin.php:2081
 msgid "General"
 msgstr ""
 
-#: /inc/admin.php:2204
+#: inc/admin.php:2084
 msgid "Meta Keyword"
 msgstr ""
 
-#: /inc/admin.php:2210
+#: inc/admin.php:2090
 msgid "Tags for Current Post"
 msgstr ""
 
-#: /inc/admin.php:2213
+#: inc/admin.php:2093
 msgid "Related Posts"
 msgstr ""
 
-#: /inc/admin.php:2216
+#: inc/admin.php:2096
 msgid "Related Tags"
 msgstr ""
 
-#: /inc/admin.php:2219
-#: /inc/widgets.php:17
+#: inc/admin.php:2099 inc/widgets.php:17
 msgid "Tag cloud"
 msgstr ""
 
-#: /inc/base.php:121
-#: /inc/client.php:459
+#: inc/array.options.php:7
+msgid "Active tags for page:"
+msgstr ""
+
+#: inc/array.options.php:8
+msgid ""
+"This feature allow page to be tagged. This option add pages in tags search. "
+"Also this feature add tag management in write page."
+msgstr ""
+
+#: inc/array.options.php:9
+msgid "Allow tag cloud in post/page content:"
+msgstr ""
+
+#: inc/array.options.php:10
+msgid ""
+"Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--"
+"st_tag_cloud--&gt;</code> or <code>[st_tag_cloud]</code> or <code>[st-tag-"
+"cloud]</code> when displaying posts. WP replace this marker by a tag cloud."
+msgstr ""
+
+#: inc/array.options.php:11
+msgid "Add the rel=\"nofollow\" on each tags link ?"
+msgstr ""
+
+#: inc/array.options.php:12
+msgid ""
+"Nofollow is a non-standard HTML attribute value used to instruct search "
+"engines that a hyperlink should not influence the link target's ranking in "
+"the search engine's index."
+msgstr ""
+
+#: inc/array.options.php:15
+msgid "Activate click tags feature:"
+msgstr ""
+
+#: inc/array.options.php:16
+msgid ""
+"This feature add a link allowing you to display all the tags of your "
+"database. Once displayed, you can click over to add tags to post."
+msgstr ""
+
+#: inc/array.options.php:17
+msgid "Activate autocompletion feature with old input:"
+msgstr ""
+
+#: inc/array.options.php:18
+msgid ""
+"This feature displays a visual help allowing to enter tags more easily. As "
+"well add tags is easier than the autocompletion default of WordPress"
+msgstr ""
+
+#: inc/array.options.php:19
+msgid ""
+"Activate suggested tags feature: (Yahoo! Term Extraction API, OpenCalais, "
+"Alchemy, Zemanta, Tag The Net, Local DB)"
+msgstr ""
+
+#: inc/array.options.php:20
+msgid ""
+"This feature add a box allowing you get suggested tags, by comparing post "
+"content and various sources of tags. (external and internal)"
+msgstr ""
+
+#: inc/array.options.php:21
+msgid "OpenCalais API Key"
+msgstr ""
+
+#: inc/array.options.php:22
+msgid ""
+"You can create an API key from <a href=\"http://www.opencalais.com/"
+"\">service website</a>"
+msgstr ""
+
+#: inc/array.options.php:23
+msgid "Alchemy API Key"
+msgstr ""
+
+#: inc/array.options.php:24
+msgid ""
+"You can create an API key from <a href=\"http://www.alchemyapi.com/"
+"\">service website</a>"
+msgstr ""
+
+#: inc/array.options.php:25
+msgid "Zemanta API Key"
+msgstr ""
+
+#: inc/array.options.php:26
+msgid ""
+"You can create an API key from <a href=\"http://developer.zemanta.com/"
+"\">service website</a>"
+msgstr ""
+
+#: inc/array.options.php:29
+msgid "Active auto link tags into post content:"
+msgstr ""
+
+#: inc/array.options.php:30
+msgid ""
+"Example: You have a tag called \"WordPress\" and your post content contains "
+"\"wordpress\", this feature will replace \"wordpress\" by a link to "
+"\"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr ""
+
+#: inc/array.options.php:31
+msgid "Min usage for auto link tags:"
+msgstr ""
+
+#: inc/array.options.php:32
+msgid ""
+"This parameter allows to fix a minimal value of use of tags. Default: 1."
+msgstr ""
+
+#: inc/array.options.php:33
+msgid "Maximum number of links per article:"
+msgstr ""
+
+#: inc/array.options.php:34
+msgid ""
+"This setting determines the maximum number of links created by article. "
+"Default: 10."
+msgstr ""
+
+#: inc/array.options.php:35
+msgid "Ignore case for auto link feature ?"
+msgstr ""
+
+#: inc/array.options.php:36
+msgid ""
+"Example: If you ignore case, auto link feature will replace the word "
+"\"wordpress\" by the tag link \"WordPress\"."
+msgstr ""
+
+#: inc/array.options.php:37
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgstr ""
+
+#: inc/array.options.php:38
+msgid ""
+"Example: If you enter the term \"Paris\", the auto link tags feature will "
+"never replace this term by this link."
+msgstr ""
+
+#: inc/array.options.php:42
+msgid "Automatically include in header:"
+msgstr ""
+
+#: inc/array.options.php:43
+msgid ""
+"Includes the meta keywords tag automatically in your header (most, but not "
+"all, themes support this). These keywords are sometimes used by search "
+"engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack"
+"\" is installed and enabled. This feature is automatically disabled."
+msgstr ""
+
+#: inc/array.options.php:44
+msgid "Always add these keywords:"
+msgstr ""
+
+#: inc/array.options.php:45
+msgid "Max keywords display:"
+msgstr ""
+
+#: inc/array.options.php:46
+msgid "You must set zero (0) for display all keywords in HTML header."
+msgstr ""
+
+#: inc/array.options.php:49
+msgid "Use embedded tags:"
+msgstr ""
+
+#: inc/array.options.php:50
+msgid ""
+"Enabling this will allow Wordpress to look for embedded tags when saving and "
+"displaying posts. Such set of tags is marked <code>[tags]like this, and this"
+"[/tags]</code>, and is added to the post when the post is saved, but does "
+"not display on the post."
+msgstr ""
+
+#: inc/array.options.php:51
+msgid "Prefix for embedded tags:"
+msgstr ""
+
+#: inc/array.options.php:52
+msgid "Suffix for embedded tags:"
+msgstr ""
+
+#: inc/array.options.php:55
+msgid "Automatically display tags list into feeds"
+msgstr ""
+
+#: inc/array.options.php:56
+msgid "Automatically display tags list into post content:"
+msgstr ""
+
+#: inc/array.options.php:58 inc/array.options.php:82
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr ""
+
+#: inc/array.options.php:59 inc/array.options.php:83
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr ""
+
+#: inc/array.options.php:60 inc/array.options.php:84
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr ""
+
+#: inc/array.options.php:61 inc/array.options.php:85
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr ""
+
+#: inc/array.options.php:62 inc/array.options.php:86
+msgid ""
+"<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr ""
+
+#: inc/array.options.php:63 inc/array.options.php:87
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr ""
+
+#: inc/array.options.php:64 inc/array.options.php:88
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr ""
+
+#: inc/array.options.php:66
+msgid "Post tag separator string:"
+msgstr ""
+
+#: inc/array.options.php:67
+msgid "Text to display before tags list:"
+msgstr ""
+
+#: inc/array.options.php:68
+msgid "Text to display after tags list:"
+msgstr ""
+
+#: inc/array.options.php:69
+msgid "Max tags display:"
+msgstr ""
+
+#: inc/array.options.php:70
+msgid "You must set zero (0) for display all tags."
+msgstr ""
+
+#: inc/array.options.php:71
+msgid "Include categories in result ?"
+msgstr ""
+
+#: inc/array.options.php:72 inc/array.options.php:185
+msgid "Tag link format:"
+msgstr ""
+
+#: inc/array.options.php:73 inc/array.options.php:101
+#: inc/array.options.php:129 inc/array.options.php:147
+#: inc/array.options.php:186
+msgid ""
+"You can find markers and explanations <a href=\"http://redmine.beapi.fr/"
+"projects/show/simple-tags/wiki/ThemeIntegration\">in the online "
+"documentation.</a>"
+msgstr ""
+
+#: inc/array.options.php:74
+msgid "Text to display if no tags found:"
+msgstr ""
+
+#: inc/array.options.php:75 inc/array.options.php:105
+#: inc/array.options.php:134 inc/array.options.php:198
+msgid "<strong>Advanced usage</strong>:"
+msgstr ""
+
+#: inc/array.options.php:76
+msgid ""
+"You can use the same syntax as <code>st_the_tags()</code> function to "
+"customize display. See <a href=\"http://redmine.beapi.fr/projects/show/"
+"simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr ""
+
+#: inc/array.options.php:79
+msgid "Automatically display related posts into feeds"
+msgstr ""
+
+#: inc/array.options.php:80
+msgid "Automatically display related posts into post content"
+msgstr ""
+
+#: inc/array.options.php:90
+msgid "Related Posts Order:"
+msgstr ""
+
+#: inc/array.options.php:92
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr ""
+
+#: inc/array.options.php:93
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr ""
+
+#: inc/array.options.php:94
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr ""
+
+#: inc/array.options.php:95
+msgid ""
+"<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr ""
+
+#: inc/array.options.php:96 inc/array.options.php:114
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr ""
+
+#: inc/array.options.php:97 inc/array.options.php:115
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr ""
+
+#: inc/array.options.php:98 inc/array.options.php:116
+msgid "<code>random</code> &ndash; Random."
+msgstr ""
+
+#: inc/array.options.php:100
+msgid "Post link format:"
+msgstr ""
+
+#: inc/array.options.php:102
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr ""
+
+#: inc/array.options.php:103
+msgid "Enter the text to show when there is no related post:"
+msgstr ""
+
+#: inc/array.options.php:104 inc/array.options.php:133
+#: inc/array.options.php:189
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr ""
+
+#: inc/array.options.php:106
+msgid ""
+"You can use the same syntax as <code>st_related_posts()</code>function to "
+"customize display. See <a href=\"http://redmine.beapi.fr/projects/show/"
+"simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr ""
+
+#: inc/array.options.php:109
+msgid "Maximum number of related tags to display: (default: 5)"
+msgstr ""
+
+#: inc/array.options.php:110
+msgid "Order related tags:"
+msgstr ""
+
+#: inc/array.options.php:112
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr ""
+
+#: inc/array.options.php:113
+msgid "<code>count-desc</code> &ndash; Most popular. (default)"
+msgstr ""
+
+#: inc/array.options.php:118
+msgid "Related tags type format:"
+msgstr ""
+
+#: inc/array.options.php:120 inc/array.options.php:140
+#: inc/array.options.php:182
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr ""
+
+#: inc/array.options.php:121 inc/array.options.php:141
+#: inc/array.options.php:183
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr ""
+
+#: inc/array.options.php:123
+msgid ""
+"Method of tags intersections and unions used to build related tags link:"
+msgstr ""
+
+#: inc/array.options.php:125
+msgid ""
+"<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</"
+"strong> the \"Tag2\" tag. (default)"
+msgstr ""
+
+#: inc/array.options.php:126
+msgid ""
+"<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</"
+"strong> the \"Tag2\" tag."
+msgstr ""
+
+#: inc/array.options.php:128
+msgid "Related tags link format:"
+msgstr ""
+
+#: inc/array.options.php:130
+msgid "Related tags separator:"
+msgstr ""
+
+#: inc/array.options.php:131 inc/array.options.php:144
+msgid "Leave empty for list format."
+msgstr ""
+
+#: inc/array.options.php:132
+msgid "Enter the text to show when there is no related tags:"
+msgstr ""
+
+#: inc/array.options.php:135
+msgid ""
+"You can use the same syntax as <code>st_related_tags()</code>function to "
+"customize display. See <a href=\"http://redmine.beapi.fr/projects/show/"
+"simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr ""
+
+#: inc/array.options.php:137
+msgid "Remove related Tags"
+msgstr ""
+
+#: inc/array.options.php:138
+msgid "Remove related Tags type format:"
+msgstr ""
+
+#: inc/array.options.php:143
+msgid "Remove related tags separator:"
+msgstr ""
+
+#: inc/array.options.php:145
+msgid "Enter the text to show when there is no remove related tags:"
+msgstr ""
+
+#: inc/array.options.php:146
+msgid "Remove related tags  link format:"
+msgstr ""
+
+#: inc/array.options.php:150
+msgid ""
+"Which difference between <strong>&#8216;Order tags selection&#8217;</strong> "
+"and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
+msgstr ""
+
+#: inc/array.options.php:152
+msgid ""
+"<strong>&#8216;Order tags selection&#8217;</strong> is the first step during "
+"tag's cloud generation, corresponding to collect tags."
+msgstr ""
+
+#: inc/array.options.php:153
+msgid ""
+"<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags "
+"choosen, you can reorder them before display."
+msgstr ""
+
+#: inc/array.options.php:155
+msgid ""
+"<strong>Example:</strong> You want display randomly the 100 tags most "
+"popular.<br />"
+msgstr ""
+
+#: inc/array.options.php:156
+msgid ""
+"You must set &#8216;Order tags selection&#8217; to <strong>count-desc</"
+"strong> for retrieve the 100 tags most popular and &#8216;Order tags "
+"display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr ""
+
+#: inc/array.options.php:157
+msgid "Order by for tags selection:"
+msgstr ""
+
+#: inc/array.options.php:159 inc/array.options.php:170
+msgid "<code>count</code> &ndash; Counter."
+msgstr ""
+
+#: inc/array.options.php:160 inc/array.options.php:171
+msgid "<code>name</code> &ndash; Name."
+msgstr ""
+
+#: inc/array.options.php:161 inc/array.options.php:172
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr ""
+
+#: inc/array.options.php:163
+msgid "Order tags selection:"
+msgstr ""
+
+#: inc/array.options.php:165 inc/array.options.php:176
+msgid "<code>asc</code> &ndash; Ascending."
+msgstr ""
+
+#: inc/array.options.php:166 inc/array.options.php:177
+msgid "<code>desc</code> &ndash; Descending."
+msgstr ""
+
+#: inc/array.options.php:168
+msgid "Order by for tags display:"
+msgstr ""
+
+#: inc/array.options.php:174
+msgid "Order tags display:"
+msgstr ""
+
+#: inc/array.options.php:179
+msgid "Include categories in tag cloud ?"
+msgstr ""
+
+#: inc/array.options.php:180
+msgid "Tags cloud type format:"
+msgstr ""
+
+#: inc/array.options.php:187
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr ""
+
+#: inc/array.options.php:188
+msgid "Enter the text to show when there is no tag:"
+msgstr ""
+
+#: inc/array.options.php:190
+msgid "Most popular color:"
+msgstr ""
+
+#: inc/array.options.php:191
+msgid ""
+"The colours are hexadecimal colours,  and need to have the full six digits "
+"(#eee is the shorthand version of #eeeeee)."
+msgstr ""
+
+#: inc/array.options.php:192
+msgid "Least popular color:"
+msgstr ""
+
+#: inc/array.options.php:193
+msgid "Most popular font size:"
+msgstr ""
+
+#: inc/array.options.php:194
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr ""
+
+#: inc/array.options.php:195
+msgid "Least popular font size:"
+msgstr ""
+
+#: inc/array.options.php:196
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr ""
+
+#: inc/array.options.php:197
+msgid ""
+"The font size units option determines the units that the two font sizes use."
+msgstr ""
+
+#: inc/array.options.php:199
+msgid ""
+"You can use the same syntax as <code>st_tag_cloud()</code> function to "
+"customize display. See <a href=\"http://redmine.beapi.fr/projects/show/"
+"simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
+msgstr ""
+
+#: inc/base.php:122 inc/client.php:459
 msgid "No related posts."
 msgstr ""
 
-#: /inc/base.php:122
-#: /inc/client.php:458
+#: inc/base.php:123 inc/client.php:458
 msgid "<h4>Related posts</h4>"
 msgstr ""
 
-#: /inc/base.php:123
-#: /inc/client.php:461
-msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+#: inc/base.php:124 inc/client.php:461
+msgid ""
+"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title"
+"%</a> (%post_comment%)"
 msgstr ""
 
-#: /inc/base.php:132
-#: /inc/client.php:1153
+#: inc/base.php:133 inc/client.php:1153
 msgid "No tags."
 msgstr ""
 
-#: /inc/base.php:133
-#: /inc/client.php:1155
+#: inc/base.php:134 inc/client.php:1155
 msgid "<h4>Tag Cloud</h4>"
 msgstr ""
 
-#: /inc/base.php:135
-#: /inc/client.php:1154
-msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+#: inc/base.php:136 inc/client.php:1154
+msgid ""
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%"
+"\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%"
+"tag_name%</a>"
 msgstr ""
 
-#: /inc/base.php:148
-#: /inc/client.php:1390
+#: inc/base.php:149 inc/client.php:1390
 msgid "Tags: "
 msgstr ""
 
-#: /inc/base.php:150
+#: inc/base.php:151
 msgid "No tags for this post."
 msgstr ""
 
-#: /inc/base.php:153
+#: inc/base.php:154
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 msgstr ""
 
-#: /inc/base.php:162
-#: /inc/client.php:804
+#: inc/base.php:163 inc/client.php:804
 msgid "<h4>Related tags</h4>"
 msgstr ""
 
-#: /inc/base.php:163
+#: inc/base.php:164
 msgid "No related tags found."
 msgstr ""
 
-#: /inc/base.php:164
-msgid "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+#: inc/base.php:165
+msgid ""
+"<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link"
+"%\">%tag_name%</a>"
 msgstr ""
 
-#: /inc/base.php:170
-msgid "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+#: inc/base.php:171
+msgid ""
+"&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% "
+"from search\">Remove %tag_name%</a>"
 msgstr ""
 
-#: /inc/client.php:70
-#: /inc/client.php:72
+#: inc/client.php:70 inc/client.php:72
 msgid "Categories"
 msgstr ""
 
-#: /inc/client.php:71
+#: inc/client.php:71
 msgid "Post Tags"
 msgstr ""
 
-#: /inc/client.php:145
+#: inc/client.php:145
 #, php-format
 msgid "Posts tagged with %s"
 msgstr ""
 
-#: /inc/client.php:724
+#: inc/client.php:724
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: /inc/client.php:771
+#: inc/client.php:771
 #, php-format
 msgid "%d topic"
-msgstr ""
+msgid_plural "%d topics"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /inc/client.php:805
+#: inc/client.php:805
 msgid "No related tag found."
 msgstr ""
 
-#: /inc/client.php:806
-msgid "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+#: inc/client.php:806
+msgid ""
+"<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %"
+"tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%"
+"tag_name%</a>"
 msgstr ""
 
-#: /inc/client.php:1012
-msgid "<a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+#: inc/client.php:1012
+msgid ""
+"<a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% "
+"from search\">Remove %tag_name%</a>"
 msgstr ""
 
-#: /inc/client.php:1396
-msgid "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
+#: inc/client.php:1396
+msgid ""
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</"
+"a>"
 msgstr ""
 
-#: /inc/client.php:1397
+#: inc/client.php:1397
 msgid "No tag for this post."
 msgstr ""
 
-#: /inc/client.php:1629
+#: inc/client.php:1657
 msgid "Invalid Taxonomy"
 msgstr ""
 
-#: /inc/widgets.php:10
+#: inc/widgets.php:10
 msgid "Tag Cloud (Simple Tags)"
 msgstr ""
 
-#: /inc/widgets.php:11
+#: inc/widgets.php:11
 msgid "Your most used tags in cloud format with dynamic color and many options"
 msgstr ""
 
-#: /inc/widgets.php:102
+#: inc/widgets.php:102
 msgid "Empty field will use default value."
 msgstr ""
 
-#: /inc/widgets.php:106
+#: inc/widgets.php:106
 msgid "Title:"
 msgstr ""
 
-#: /inc/widgets.php:113
+#: inc/widgets.php:113
 msgid "Max tags to display: (default: 45)"
 msgstr ""
 
-#: /inc/widgets.php:120
+#: inc/widgets.php:120
 msgid "Order by for DB selection tags:"
 msgstr ""
 
-#: /inc/widgets.php:122
-#: /inc/widgets.php:144
+#: inc/widgets.php:122 inc/widgets.php:144
 msgid "Name"
 msgstr ""
 
-#: /inc/widgets.php:123
+#: inc/widgets.php:123
 msgid "Slug"
 msgstr ""
 
-#: /inc/widgets.php:124
+#: inc/widgets.php:124
 msgid "Term group"
 msgstr ""
 
-#: /inc/widgets.php:125
-#: /inc/widgets.php:145
+#: inc/widgets.php:125 inc/widgets.php:145
 msgid "Counter"
 msgstr ""
 
-#: /inc/widgets.php:126
-#: /inc/widgets.php:146
+#: inc/widgets.php:126 inc/widgets.php:146
 msgid "Random (default)"
 msgstr ""
 
-#: /inc/widgets.php:133
+#: inc/widgets.php:133
 msgid "Order for DB selection tags:"
 msgstr ""
 
-#: /inc/widgets.php:135
-#: /inc/widgets.php:155
+#: inc/widgets.php:135 inc/widgets.php:155
 msgid "ASC"
 msgstr ""
 
-#: /inc/widgets.php:136
-#: /inc/widgets.php:156
+#: inc/widgets.php:136 inc/widgets.php:156
 msgid "DESC (default)"
 msgstr ""
 
-#: /inc/widgets.php:142
+#: inc/widgets.php:142
 msgid "Order by for display tags:"
 msgstr ""
 
-#: /inc/widgets.php:153
+#: inc/widgets.php:153
 msgid "Order for display tags:"
 msgstr ""
 
-#: /inc/widgets.php:162
+#: inc/widgets.php:162
 msgid "Font size mini: (default: 8)"
 msgstr ""
 
-#: /inc/widgets.php:169
+#: inc/widgets.php:169
 msgid "Font size max: (default: 22)"
 msgstr ""
 
-#: /inc/widgets.php:176
+#: inc/widgets.php:176
 msgid "Unit font size:"
 msgstr ""
 
-#: /inc/widgets.php:178
+#: inc/widgets.php:178
 msgid "Point (default)"
 msgstr ""
 
-#: /inc/widgets.php:179
+#: inc/widgets.php:179
 msgid "Pixel"
 msgstr ""
 
-#: /inc/widgets.php:180
+#: inc/widgets.php:180
 msgid "Em"
 msgstr ""
 
-#: /inc/widgets.php:181
+#: inc/widgets.php:181
 msgid "Pourcent"
 msgstr ""
 
-#: /inc/widgets.php:188
+#: inc/widgets.php:188
 msgid "Format:"
 msgstr ""
 
-#: /inc/widgets.php:190
+#: inc/widgets.php:190
 msgid "Flat (default)"
 msgstr ""
 
-#: /inc/widgets.php:191
+#: inc/widgets.php:191
 msgid "List (UL/LI)"
 msgstr ""
 
-#: /inc/widgets.php:199
+#: inc/widgets.php:199
 msgid "Use auto color cloud:"
 msgstr ""
 
-#: /inc/widgets.php:205
+#: inc/widgets.php:205
 msgid "Font color mini: (default: #CCCCCC)"
 msgstr ""
 
-#: /inc/widgets.php:212
+#: inc/widgets.php:212
 msgid "Font color max: (default: #000000)"
 msgstr ""
 
-#: /inc/widgets.php:219
+#: inc/widgets.php:219
 msgid "Extended format: (advanced usage)"
 msgstr ""
 
+#. Plugin URI of an extension
+msgid "http://wordpress.org/extend/plugins/simple-tags"
+msgstr ""
+
+#. Description of an extension
+msgid ""
+"Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, "
+"Tag Cloud Widgets, Related Posts, Mass edit tags !"
+msgstr ""
+
+#. Author of an extension
+msgid "Amaury BALMER"
+msgstr ""
+
+#. Author URI of an extension
+msgid "http://www.herewithme.fr"
+msgstr ""

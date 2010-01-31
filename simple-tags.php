@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: Simple Tags
-Plugin URI: http://wordpress.org/extend/plugins/simple-tags
-Description: Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
+Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
+Description: Extended Tagging for WordPress 2.8 and 2.9 ! Suggested Tags, Mass edit tags, Autocompletion, Tag Cloud Widgets, Related Posts, Related Tags, etc!
 Version: 1.7.4
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
 
-Copyright 2010 Amaury BALMER (amaury@balmer.fr)
+Copyright 2010 - Amaury BALMER (amaury@balmer.fr)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ Contributors:
 
 Todo:
 	Both :
-		Taxonomy supports
+		Taxonomy supports ( 20% )
 	
 	Client :
 		- Test avec &$this, $this, et avec une fonction, test la conso memoire de wp_filter avant/apres

@@ -4,9 +4,9 @@ Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
 Requires at least: 2.8
 Tested up to: 2.9.1
-Stable tag: 1.7.1-rc1.2
+Stable tag: 1.7.4
 
-Simple Tags is the successor of Simple Tagging Plugin and is THE perfect tool to manage perfectly your WP 2.8 and 2.9 tags (Related Posts, Related Tags, Auto link tags, Tag suggestion, autocompletion, click tags, Mass Edit Tags, etc.)
+Simple Tags is THE perfect tool to manage perfectly your WP 2.8 and 2.9 tags (Tags suggestion, Mass Edit Terms (Tags and Category), Auto link tags, Ajax Autocompletion, Click tags, Related Posts, Related Tags, Advanced edit tags, etc.)
 
 == Description ==
 
@@ -16,22 +16,20 @@ Simple Tags is the successor of Simple Tagging Plugin
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
 * Administration
-	* Related tags !
-	* AJAX Admin features !
-	* Tags suggestion from Yahoo Term Extractions API, Tag The Net and Local Tags with AJAX request
+	* Tags suggestion from Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB with AJAX request
 		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
-	* Improve performance !
-	* Auto tags !
-	* Auto link tags in post content
-		* This feature may degrade performance! Be careful !
-	* Importer for embedded tags
-	* type-ahead input tags / Autocompletion
-	* Click tags
 	* tags management (rename, delete, merge, search and add tags, edit tags ID)
 	* **Edit mass tags (more than 50 posts once)**
+	* Auto link tags in post content
+	* Auto tags !
+	* Type-ahead input tags / Autocompletion Ajax
+	* Click tags
+	* Related tags !
+	* Importer for embedded tags
 	* Possibility to tag pages (not only posts) and include them inside the tags results
 	* Embedded tags ([tags]tag1, tag2[/tags]) for compatibility with old plugins
 	* **Easy configuration ! (in WP admin)**
+
 * Blog
 	* Meta keywords generate from tags in your header's blog
 	* Technorati, Flickr and Delicious tags
@@ -44,14 +42,14 @@ And more...
 
 == Installation ==
 
-The Simple Tags can be installed in 3 easy steps:
-
+The Simple Tags can be installed in 4 easy steps:
+	
 	1. Unzip "Simple tags" archive and put all files into your "plugins" folder (/wp-content/plugins/) or to create a sub directory into the plugins folder (recommanded), like /wp-content/plugins/simple-tags/
-
+	
 	2. Activate the plugin
-
+	
 	3. Inside the Wordpress admin, go to Options > Simple Tags, adjust the parameters according to your needs, and save them.
-
+	
 	4. You can start advanced tag edit under Manage menu.
 
 == Frequently Asked Questions ==
@@ -87,11 +85,17 @@ Then: Manage - Import - Embedded Tags
 
 == Changelog ==
 
+* Version 1.7.4 :
+	* Release of version 1.7.4, to avoid confusion with the borked version 1.7.2 published in error.
+	* Externalize options array on external file for diminue memory consommation. (call only on options page)
+	* Fix importers embedded tags
 * Version 1.7.2 :
 	* Add taxonomy support
 	* Rewrite manage page
 	* New JS for autocomplete, use AJAX for better performance
 	* Fix PHP4.
+	* Fix bug with Yahoo API/Tag the net for long post
+	* Add OpenCalais, Alchemy and Zemanta (first pass, API offers much more possibilities!)
 * Version 1.7.1-rc1.2 : RC 1.2 (this version must be test !)
 	* Fix compatibility PHP4
 * Version 1.7.1-rc1.1 : RC 1.1 (this version must be test !)
@@ -154,7 +158,7 @@ Then: Manage - Import - Embedded Tags
 	* Update zh_CN translation
 * Version 1.5.2
 	* Fix widgets
-	* Edit priority 
+	* Edit priority
 	* Fix internationalization
 * Version 1.5.1
 	* Wait plugin_init for start ST :)
@@ -212,7 +216,7 @@ Then: Manage - Import - Embedded Tags
 	* Tags suggestion from Yahoo Term Extractions API, Tag The Net and Local Tags with AJAX request
 		* Compatible with TinyMCE, FCKeditor, WYMeditor and quicktags
 	* Click tags with AJAX request
-	* Preview color in Tag Cloud Admin Options	
+	* Preview color in Tag Cloud Admin Options
 * Version 1.2.4
 	* Fix a bug with inline tags post
 * Version 1.2.3
