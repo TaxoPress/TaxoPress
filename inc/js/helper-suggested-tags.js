@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
 			registerClickTags();
 		});
 		return false;
-	});	
+	});
 	
 	// Tag The Net API
 	jQuery("a.ttn_api").click(function() {
@@ -62,25 +62,25 @@ function getContentFromEditor() {
 	if ( (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() ) { // Tiny MCE
 		
 		var ed = tinyMCE.activeEditor;
-		if ( 'mce_fullscreen' == ed.id ) { 
+		if ( 'mce_fullscreen' == ed.id ) {
 			tinyMCE.get('content').setContent(ed.getContent({format : 'raw'}), {format : 'raw'});
 		}
 		tinyMCE.get('content').save();
 		data = jQuery("#content").val();
-		
-	} else if ( typeof FCKeditorAPI != "undefined" ) { // FCK Editor
 	
+	} else if ( typeof FCKeditorAPI != "undefined" ) { // FCK Editor
+		
 		var oEditor = FCKeditorAPI.GetInstance('content') ;
 		data = oEditor.GetHTML().stripTags();
-		
+	
 	} else if ( typeof WYM_INSTANCES != "undefined" ) { // Simple WYMeditor
-	
+		
 		data = WYM_INSTANCES[0].xhtml();
-		
-	} else { // No editor, just quick tags
 	
-		data = jQuery("#content").val();	
+	} else { // No editor, just quick tags
 		
+		data = jQuery("#content").val();
+	
 	}
 	
 	// Trim data
@@ -93,14 +93,14 @@ function getContentFromEditor() {
 }
 
 function registerClickTags() {
-	jQuery("#suggestedtags .container_clicktags span").click(function() { 
-		addTag(this.innerHTML); 
+	jQuery("#suggestedtags .container_clicktags span").click(function() {
+		addTag(this.innerHTML);
 	});
 	
 	jQuery('#st_ajax_loading').hide();
 	if ( jQuery('#suggestedtags .inside').css('display') != 'block' ) {
 		jQuery('#suggestedtags').toggleClass('closed');
-	}	
+	}
 }
 
 function html_entity_decode(str) {

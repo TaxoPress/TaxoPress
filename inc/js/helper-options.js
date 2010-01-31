@@ -1,7 +1,7 @@
 jQuery(document).ready( function() {
 	jQuery('#printOptions').tabs({
 		cookie: { expires: 30 },
-		fx: { opacity: 'toggle' } 
+		fx: { opacity: 'toggle' }
 	});
 	
 	jQuery('input#cloud_max_color')
@@ -16,7 +16,7 @@ jQuery(document).ready( function() {
 		.click(function(){cloudMinColor()})
 		.blur(function(){cloudMinColor()})
 		.change(function(){cloudMinColor()})
-		.focus(function(){cloudMinColor()});			
+		.focus(function(){cloudMinColor()});
 });
 
 function cloudMaxColor() {
@@ -24,7 +24,7 @@ function cloudMaxColor() {
 		backgroundColor: jQuery('input#cloud_max_color').val()
 	});
 }
-						
+
 function cloudMinColor() {
 	jQuery('div.cloud_min_color').css({
 		backgroundColor: jQuery('input#cloud_min_color').val()

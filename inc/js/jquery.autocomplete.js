@@ -11,7 +11,7 @@
  */
 
 ;(function($) {
-	
+
 $.fn.extend({
 	autocomplete: function(urlOrData, options) {
 		var isUrl = typeof urlOrData == "string";
@@ -50,7 +50,7 @@ $.fn.extend({
 });
 
 $.Autocompleter = function(input, options) {
-
+	
 	var KEY = {
 		UP: 38,
 		DOWN: 40,
@@ -63,10 +63,10 @@ $.Autocompleter = function(input, options) {
 		PAGEDOWN: 34,
 		BACKSPACE: 8
 	};
-
+	
 	// Create $ object for input element
 	var $input = $(input).attr("autocomplete", "off").addClass(options.inputClass);
-
+	
 	var timeout;
 	var previousValue = "";
 	var cache = $.Autocompleter.Cache(options);
@@ -95,7 +95,7 @@ $.Autocompleter = function(input, options) {
 		// track last key pressed
 		lastKeyPressCode = event.keyCode;
 		switch(event.keyCode) {
-		
+			
 			case KEY.UP:
 				event.preventDefault();
 				if ( select.visible() ) {
@@ -104,7 +104,7 @@ $.Autocompleter = function(input, options) {
 					onChange(0, true);
 				}
 				break;
-				
+			
 			case KEY.DOWN:
 				event.preventDefault();
 				if ( select.visible() ) {
@@ -113,7 +113,7 @@ $.Autocompleter = function(input, options) {
 					onChange(0, true);
 				}
 				break;
-				
+			
 			case KEY.PAGEUP:
 				event.preventDefault();
 				if ( select.visible() ) {
@@ -122,7 +122,7 @@ $.Autocompleter = function(input, options) {
 					onChange(0, true);
 				}
 				break;
-				
+			
 			case KEY.PAGEDOWN:
 				event.preventDefault();
 				if ( select.visible() ) {
@@ -143,11 +143,11 @@ $.Autocompleter = function(input, options) {
 					return false;
 				}
 				break;
-				
+			
 			case KEY.ESC:
 				select.hide();
 				break;
-				
+			
 			default:
 				clearTimeout(timeout);
 				timeout = setTimeout(onChange, options.delay);
@@ -275,7 +275,7 @@ $.Autocompleter = function(input, options) {
 		if ( !options.multiple )
 			return value;
 		var words = trimWords(value);
-		if (words.length == 1) 
+		if (words.length == 1)
 			return words[0];
 		var cursorAt = $(input).selection().start;
 		if (cursorAt == value.length) {
@@ -299,12 +299,12 @@ $.Autocompleter = function(input, options) {
 			$(input).selection(previousValue.length, previousValue.length + sValue.length);
 		}
 	};
-
+	
 	function hideResults() {
 		clearTimeout(timeout);
 		timeout = setTimeout(hideResultsNow, 200);
 	};
-
+	
 	function hideResultsNow() {
 		var wasVisible = select.visible();
 		select.hide();
@@ -329,7 +329,7 @@ $.Autocompleter = function(input, options) {
 			);
 		}
 	};
-
+	
 	function receiveData(q, data) {
 		if ( data && data.length && hasFocus ) {
 			stopLoading();
@@ -340,7 +340,7 @@ $.Autocompleter = function(input, options) {
 			hideResultsNow();
 		}
 	};
-
+	
 	function request(term, success, failure) {
 		if (!options.matchCase)
 			term = term.toLowerCase();
@@ -398,7 +398,7 @@ $.Autocompleter = function(input, options) {
 		}
 		return parsed;
 	};
-
+	
 	function stopLoading() {
 		$input.removeClass(options.loadingClass);
 	};
@@ -433,12 +433,12 @@ $.Autocompleter.defaults = {
 };
 
 $.Autocompleter.Cache = function(options) {
-
+	
 	var data = {};
 	var length = 0;
 	
 	function matchSubset(s, sub) {
-		if (!options.matchCase) 
+		if (!options.matchCase)
 			s = s.toLowerCase();
 		var i = s.indexOf(sub);
 		if (options.matchContains == "word"){
@@ -452,7 +452,7 @@ $.Autocompleter.Cache = function(options) {
 		if (length > options.cacheLength){
 			flush();
 		}
-		if (!data[q]){ 
+		if (!data[q]){
 			length++;
 		}
 		data[q] = value;
@@ -463,7 +463,7 @@ $.Autocompleter.Cache = function(options) {
 		// track the matches
 		var stMatchSets = {},
 			nullData = 0;
-
+		
 		// no url was specified, we need to adjust the cache length to make sure it fits the local data store
 		if( !options.url ) options.cacheLength = 1;
 		
@@ -479,12 +479,12 @@ $.Autocompleter.Cache = function(options) {
 			var value = options.formatMatch(rawValue, i+1, options.data.length);
 			if ( value === false )
 				continue;
-				
+			
 			var firstChar = value.charAt(0).toLowerCase();
 			// if no lookup array for this character exists, look it up now
-			if( !stMatchSets[firstChar] ) 
+			if( !stMatchSets[firstChar] )
 				stMatchSets[firstChar] = [];
-
+			
 			// if the match is a string
 			var row = {
 				value: value,
@@ -494,13 +494,13 @@ $.Autocompleter.Cache = function(options) {
 			
 			// push the current match into the set list
 			stMatchSets[firstChar].push(row);
-
+			
 			// keep track of minChars zero items
 			if ( nullData++ < options.max ) {
 				stMatchSets[""].push(row);
 			}
 		};
-
+		
 		// add the data items to the cache
 		$.each(stMatchSets, function(i, value) {
 			// increase the cache size
@@ -525,7 +525,7 @@ $.Autocompleter.Cache = function(options) {
 		load: function(q) {
 			if (!options.cacheLength || !length)
 				return null;
-			/* 
+			/*
 			 * if dealing w/local data and matchContains than we must make sure
 			 * to loop through all the data collections looking for matches
 			 */
@@ -545,9 +545,9 @@ $.Autocompleter.Cache = function(options) {
 							}
 						});
 					}
-				}				
+				}
 				return csub;
-			} else 
+			} else
 			// if the exact item exists, use it
 			if (data[q]){
 				return data[q];
@@ -593,11 +593,11 @@ $.Autocompleter.Select = function (options, input, select, config) {
 		.addClass(options.resultsClass)
 		.css("position", "absolute")
 		.appendTo(document.body);
-	
+		
 		list = $("<ul/>").appendTo(element).mouseover( function(event) {
 			if(target(event).nodeName && target(event).nodeName.toUpperCase() == 'LI') {
 	            active = $("li", list).removeClass(CLASSES.ACTIVE).index(target(event));
-			    $(target(event)).addClass(CLASSES.ACTIVE);            
+			    $(target(event)).addClass(CLASSES.ACTIVE);
 	        }
 		}).click(function(event) {
 			$(target(event)).addClass(CLASSES.ACTIVE);
@@ -613,9 +613,9 @@ $.Autocompleter.Select = function (options, input, select, config) {
 		
 		if( options.width > 0 )
 			element.css("width", options.width);
-			
+		
 		needsInit = false;
-	} 
+	}
 	
 	function target(event) {
 		var element = event.target;
@@ -626,7 +626,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			return [];
 		return element;
 	}
-
+	
 	function moveSelect(step) {
 		listItems.slice(active, active + 1).removeClass(CLASSES.ACTIVE);
 		movePosition(step);
@@ -732,7 +732,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 					maxHeight: options.scrollHeight,
 					overflow: 'auto'
 				});
-				
+                
                 if($.browser.msie && typeof document.body.style.maxHeight === "undefined") {
 					var listHeight = 0;
 					listItems.each(function() {
@@ -745,7 +745,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 						listItems.width( list.width() - parseInt(listItems.css("padding-left")) - parseInt(listItems.css("padding-right")) );
 					}
                 }
-                
+            
             }
 		},
 		selected: function() {
