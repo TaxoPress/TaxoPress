@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://wordpress.org/extend/plugins/simple-tags
 Description: Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !
-Version: 1.7.2
+Version: 1.7.4
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -36,7 +36,7 @@ Todo:
 define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
 define( 'STAGS_FOLDER', 'simple-tags' );
 
-// Mu-plugins or regular plugins ? 
+// Mu-plugins or regular plugins ?
 if ( is_dir( WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER ) ) {
 	define ( 'STAGS_DIR', WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER );
 	define ( 'STAGS_URL', WPMU_PLUGIN_URL . '/' . STAGS_FOLDER );
