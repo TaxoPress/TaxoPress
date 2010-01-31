@@ -13,24 +13,23 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 */
 
-Class EmbeddedImporter {
+class EmbeddedImporter extends SimpleTagsBase {
 	/**
 	 * Constructor = nothing
 	 *
-	 * @return EmbeddedImporter
 	 */
 	function EmbeddedImporter () {}
-
+	
 	/**
 	 * Select good page depending URL
 	 *
 	 */
 	function dispatch () {
 		$step = ( empty($_GET['step']) ) ? 0 : (int) $_GET['step'];
-
+		
 		// load the header
 		$this->header();
-
+		
 		// load the page
 		switch ( $step ) {
 			case 0 :
@@ -43,11 +42,11 @@ Class EmbeddedImporter {
 				$this->done();
 				break;
 		}
-
+		
 		// load the footer
 		$this->footer();
 	}
-
+	
 	/**
 	 * Print header importer
 	 *
@@ -58,7 +57,7 @@ Class EmbeddedImporter {
 		echo '<p>'.__('Steps may take a few minutes depending on the size of your database. Please be patient.', 'simpletags').'</p>';
 		echo '<p>'.__('Visit the <a href="http://www.herewithme.fr/wordpress-plugins/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags').'</p>';
 	}
-
+	
 	/**
 	 * Print avertissement before import (backup DB !)
 	 *
@@ -73,7 +72,7 @@ Class EmbeddedImporter {
 			echo '</form>';
 		echo '</div>';
 	}
-
+	
 	/**
 	 * Importer with dynamic pages for skip timeout
 	 *
@@ -82,7 +81,7 @@ Class EmbeddedImporter {
 		$action = false;
 		if ( $_GET['action'] == 'import_embedded_tag' ) {
 			$action = true;
-
+			
 			// Get values
 			$n = ( isset($_GET['n']) ) ? intval($_GET['n']) : 0;
 			$start = $_GET['start'];
@@ -90,74 +89,74 @@ Class EmbeddedImporter {
 			$clean = ( isset($_GET['clean']) ) ? 1 : 0;
 			$typep = ( isset($_GET['typep']) ) ? 1 : 0;
 			$type_posts = ( isset($_GET['typep']) ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
-
+			
 			if ( empty($_GET['start']) || empty($_GET['end']) ) {
 				wp_die(__('Missing parameters in URL. (Start or End)', 'simpletags'));
 			}
-
+			
 			// Get datas
 			global $wpdb;
 			$objects = $wpdb->get_results( "SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE {$type_posts} ORDER BY ID DESC LIMIT {$n}, 20" );
 		}
-
+		 
 		 // First step
 		if ( $action === false ) : ?>
-
+			
 			<div class="narrow">
 				<h3><?php _e('Configure and add tags to posts&#8230;', 'simpletags'); ?></h3>
-
+				
 				<form action="<?php echo admin_url('admin.php'); ?>" method="get">
 					<input type="hidden" name="import" value="simple-tags.importer" />
 					<input type="hidden" name="step" value="1" />
 					<input type="hidden" name="action" value="import_embedded_tag" />
-
+					
 					<p><label for="start"><?php _e('Start marker', 'simpletags'); ?></label><br />
 						<input type="text" value="[tags]" name="start" id="start" size="10" /></p>
-
+					
 					<p><label for="end"><?php _e('End marker', 'simpletags'); ?></label><br />
 						<input type="text" value="[/tags]" name="end" id="end" size="10" /></p>
-
+					
 					<p><input type="checkbox" value="1" id="clean" name="clean" /> <label for="clean"><?php _e('Delete embedded tags once imported ?', 'simpletags'); ?></label></p>
-
+					
 					<p><input type="checkbox" value="1" id="typep" name="typep" /> <label for="typep"><?php _e('Import also embedded tags from page ?', 'simpletags'); ?></label></p>
-
+					
 					<p class="submit">
 						<input type="submit" name="submit" value="<?php _e('Start import &raquo;', 'simpletags'); ?>" /></p>
 				</form>
 			</div>
-
+		
 		<?php else: // Dynamic pages
-
+			
 			echo '<div class="narrow">';
-
+			
 			if( !empty($objects) ) {
-
+				
 				echo '<ul>';
 				foreach( (array) $objects as $object ) {
 					// Return Tags
 					preg_match_all('/(' . parent::regexEscape($start) . '(.*?)' . parent::regexEscape($end) . ')/is', $object->post_content, $matches);
-
+					
 					$tags = array();
 					foreach ( (array) $matches[2] as $match) {
 						foreach( (array) explode(',', $match) as $tag) {
 							$tags[] = $tag;
 						}
 					}
-
+					
 					if( !empty($tags) ) {
 						// Remove empty and duplicate elements
 						$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
 						$tags = array_unique($tags);
-
+						
 						wp_set_post_tags( $object->ID, $tags, true ); // Append tags
-
+						
 						if ( $clean == '1' ) {
 							// remove embedded tags
 							$new_content = preg_replace('/(' . parent::regexEscape($start) . '(.*?)' . parent::regexEscape($end) . ')/is', '', $object->post_content);
 							$wpdb->update( $wpdb->posts, array('post_content' => $new_content), array('ID' => $object->ID) );
 						}
 					}
-
+					
 					echo '<li>#'. $object->ID .' '. $object->post_title .'</li>';
 					unset($tags, $object, $matches, $match, $new_content);
 				}
@@ -173,22 +172,22 @@ Class EmbeddedImporter {
 					//-->
 				</script>
 				<?php
-
+			
 			} else { // end
-
+				
 				echo '<p><strong>'.__('Done!', 'simpletags').'</strong><br /></p>';
 				echo '<form action="'.admin_url('admin.php').'?import=simple-tags.importer&amp;step=2" method="post">';
 					echo '<p class="submit"><input type="submit" name="submit" value="'.__('Step 2 &raquo;', 'simpletags').'" /></p>';
 				echo '</form>';
-
+			
 			}
 			echo '</div>';
-
+		
 		endif; ?>
 		</div>
 		<?php
 	}
-
+	
 	/**
 	 * Print end message importer
 	 *
@@ -201,7 +200,7 @@ Class EmbeddedImporter {
 			echo '<p><strong>' . __('You can manage tags now !', 'simpletags') . '</strong></p>';
 		echo '</div>';
 	}
-
+	
 	/**
 	 * Print footer importer
 	 *
@@ -209,7 +208,7 @@ Class EmbeddedImporter {
 	function footer() {
 		echo '</div>';
 	}
-
+	
 	/**
 	 * Escape string so that it can used in Regex. E.g. used for [tags]...[/tags]
 	 *
@@ -219,7 +218,7 @@ Class EmbeddedImporter {
 	function regexEscape( $content ) {
 		return strtr($content, array("\\" => "\\\\", "/" => "\\/", "[" => "\\[", "]" => "\\]"));
 	}
-
+	
 	/**
 	 * trim and remove empty element
 	 *
