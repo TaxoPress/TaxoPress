@@ -1610,6 +1610,7 @@ class SimpleTags extends SimpleTagsBase {
 			case 'count-asc':
 				$return = array( 'orderby' => 'count', 'order' => 'ASC' );
 			break;
+			case 'rand':
 			case 'random':
 				$return = array( 'orderby' => 'random', 'order' => '' );
 			break;
