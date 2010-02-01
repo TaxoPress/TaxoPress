@@ -1611,7 +1611,7 @@ class SimpleTags extends SimpleTagsBase {
 				$return = array( 'orderby' => 'count', 'order' => 'ASC' );
 			break;
 			case 'random':
-				$return = array( 'orderby' => 'rand', 'order' => '' );
+				$return = array( 'orderby' => 'random', 'order' => '' );
 			break;
 			case 'name-asc':
 				$return = array( 'orderby' => 'name', 'order' => 'ASC' );
