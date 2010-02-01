@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
 Description: Extended Tagging for WordPress 2.8 and 2.9 ! Suggested Tags, Mass edit tags, Autocompletion, Tag Cloud Widgets, Related Posts, Related Tags, etc!
-Version: 1.7.4.1
+Version: 1.7.4.2
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags

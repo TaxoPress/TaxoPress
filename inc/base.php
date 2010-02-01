@@ -1,6 +1,6 @@
 <?php
 class SimpleTagsBase {
-	var $version = '1.7.4.1';
+	var $version = '1.7.4.2';
 	var $options;
 	
 	function SimpleTagsBase() {

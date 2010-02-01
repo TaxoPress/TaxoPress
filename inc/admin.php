@@ -16,13 +16,13 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	var $status = '';
 	
 	function determineTaxonomy() {
+		$this->taxo_name = __('Post tags', 'simpletags');
+		
 		if ( isset($_GET['taxonomy']) && !empty($_GET['taxonomy']) && is_taxonomy($_GET['taxonomy']) ) {
-			
 			$taxo = get_taxonomy($_GET['taxonomy']);
 			$this->taxonomy = $taxo->name;
 			$this->taxo_name = $taxo->label;
 			unset($taxo);
-		
 		}
 	}
 	
@@ -32,10 +32,6 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 * @return SimpleTagsAdmin
 	 */
 	function SimpleTagsAdmin() {
-		// Init taxonomy class variable
-		$this->taxo_name = __('Post tags', 'simpletags');
-		$this->determineTaxonomy();
-		
 		// Get options
 		parent::initOptions();
 		
@@ -45,6 +41,9 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		
 		// Admin Capabilities
 		add_action('init', array(&$this, 'initRoles'));
+		
+		// Init taxonomy class variable
+		add_action('init', array(&$this, 'determineTaxonomy'));
 		
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
