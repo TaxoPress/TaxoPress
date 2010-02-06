@@ -37,9 +37,9 @@ Todo:
 		- Verifier la case du remplacement par les liens
 */
 
-define( 'STAGS_VERSION', '1.7.4.2' );
-define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
-define( 'STAGS_FOLDER', 'simple-tags' );
+define( 'STAGS_VERSION', 		'1.7.4.3' );
+define( 'STAGS_OPTIONS_NAME', 	'simpletags' ); // Option name for save settings
+define( 'STAGS_FOLDER', 		'simple-tags' );
 
 // Mu-plugins or regular plugins ?
 if ( is_dir( WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER ) ) {
@@ -56,8 +56,8 @@ require( STAGS_DIR . '/inc/tpl.functions.php'); // Templates functions
 require( STAGS_DIR . '/inc/widgets.php'); 		// Widgets
 
 // Activation, uninstall
-register_activation_hook(__FILE__, array('SimpleTagsBase', 'install') );
-register_uninstall_hook (__FILE__, array('SimpleTagsBase', 'uninstall') );
+register_activation_hook(__FILE__, 'SimpleTags_Install'   );
+register_uninstall_hook (__FILE__, 'SimpleTags_Uninstall' );
 
 // Init ST
 function simple_tags_init() {
@@ -70,7 +70,7 @@ function simple_tags_init() {
 	$simple_tags['client'] = new SimpleTags();
 	
 	// Admin and XML-RPC
-	if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) ) {
+	if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) && (isset($_REQUEST['code']) && $_REQUEST['code'] == get_option('wpo_croncode')) ) {
 		require( STAGS_DIR . '/inc/admin.php' );
 		$simple_tags['admin'] = new SimpleTagsAdmin();
 	}

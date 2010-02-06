@@ -122,7 +122,7 @@ class SimpleTags {
 		}
 		
 		// Shuffle array
-		$link_tags = $this->randomArray($this->link_tags);
+		$this->randomArray($this->link_tags);
 		
 		
 		// HTML Rel (tag/no-follow)
@@ -1266,17 +1266,18 @@ class SimpleTags {
 		
 		// Order terms before output
 		// count, name, rand | asc, desc
+		
 		$orderby = strtolower($orderby);
 		if ( $orderby == 'count' ) {
 			asort($counts);
-		} elseif ( $orderby = 'name' ) {
+		} elseif ( $orderby == 'name' ) {
 			uksort($counts, array( &$this, 'uksortByName'));
 		} else { // rand
-			$counts = $this->randomArray($counts);
+			$this->randomArray($counts);
 		}
 		
 		$order = strtolower($order);
-		if ( $order == 'desc' ) {
+		if ( $order == 'desc' && $orderby != 'random' ) {
 			$counts = array_reverse($counts);
 		}
 		
@@ -1302,20 +1303,18 @@ class SimpleTags {
 	/**
 	 * Randomize an array and keep association
 	 *
-	 * @param array $data
-	 * @return array
+	 * @param array $array
+	 * @return boolean
 	 */
-	function randomArray( $data_in = array() ) {
-		if ( empty($data_in) ) {
-			return $data_in;
+	function randomArray( &$array ) {
+		$keys = array_keys($array);
+		shuffle($keys);
+		foreach($keys as $key) {
+			$new[$key] = $array[$key];
 		}
-		
-		$rand_keys = array_rand($data_in, count($data_in));
-		foreach( (array) $rand_keys as $key ) {
-			$data_out[$key] = $data_in[$key];
-		}
-		
-		return $data_out;
+		$array = $new;
+
+		return true;
 	}
 	
 	/**
@@ -1488,7 +1487,7 @@ class SimpleTags {
 		// Clean memory
 		$terms = array();
 		unset($terms, $term);
-
+		
 		
 		// Array to string
 		if ( is_array($output) && !empty($output) ) {
@@ -2049,36 +2048,6 @@ class SimpleTags {
 	 */
 	function regexEscape( $content ) {
 		return strtr($content, array("\\" => "\\\\", "/" => "\\/", "[" => "\\[", "]" => "\\]"));
-	}
-	
-	/**
-	 * Add initial ST options in DB
-	 *
-	 */
-	function install() {
-		$options_from_table = get_option( STAGS_OPTIONS_NAME );
-		if ( $options_from_table == false ) {
-			$this->resetToDefaultOptions();
-		}
-	}
-	
-	/**
-	 * Remove ST options when user delete plugin (use WP API Uninstall)
-	 *
-	 */
-	function uninstall() {
-		delete_option( STAGS_OPTIONS_NAME );
-		delete_option( 'widget_stags_cloud' );
-	}
-	
-	
-	/**
-	 * Reset to default options
-	 *
-	 */
-	function resetToDefaultOptions() {
-		$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
-		return update_option( STAGS_OPTIONS_NAME, $this->options );
 	}
 }
 ?>

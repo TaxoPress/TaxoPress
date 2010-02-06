@@ -405,7 +405,8 @@ class SimpleTagsAdmin {
 			$this->message = __('Options saved', 'simpletags');
 			$this->status = 'updated';
 		} elseif ( isset($_POST['reset_options']) ) {
-			$this->resetToDefaultOptions();
+			$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
+			update_option( STAGS_OPTIONS_NAME, $this->options );
 			$this->message = __('Simple Tags options resetted to default options!', 'simpletags');
 		}
 		
@@ -2035,7 +2036,7 @@ class SimpleTagsAdmin {
 			foreach((array) $options as $option) {
 				// Helper
 				if (  $option[2] == 'helper' ) {
-						$output .= '<tr style="vertical-align: middle;"><td class="helper" colspan="2">' . esc_html($option[4]) . '</td></tr>' . "\n";
+						$output .= '<tr style="vertical-align: middle;"><td class="helper" colspan="2">' . stripslashes($option[4]) . '</td></tr>' . "\n";
 						continue;
 				}
 				
@@ -2142,16 +2143,6 @@ class SimpleTagsAdmin {
 	 *
 	 */
 	function saveOptions() {
-		return update_option( STAGS_OPTIONS_NAME, $this->options );
-	}
-	
-	
-	/**
-	 * Reset to default options
-	 *
-	 */
-	function resetToDefaultOptions() {
-		$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
 		return update_option( STAGS_OPTIONS_NAME, $this->options );
 	}
 }
