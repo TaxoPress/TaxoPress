@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Simple Tags ===
 Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
