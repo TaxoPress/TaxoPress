@@ -13,7 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 */
 
-class EmbeddedImporter extends SimpleTagsBase {
+class EmbeddedImporter {
 	/**
 	 * Constructor = nothing
 	 *
@@ -134,7 +134,7 @@ class EmbeddedImporter extends SimpleTagsBase {
 				echo '<ul>';
 				foreach( (array) $objects as $object ) {
 					// Return Tags
-					preg_match_all('/(' . parent::regexEscape($start) . '(.*?)' . parent::regexEscape($end) . ')/is', $object->post_content, $matches);
+					preg_match_all('/(' . $this->regexEscape($start) . '(.*?)' . $this->regexEscape($end) . ')/is', $object->post_content, $matches);
 					
 					$tags = array();
 					foreach ( (array) $matches[2] as $match) {
@@ -152,7 +152,7 @@ class EmbeddedImporter extends SimpleTagsBase {
 						
 						if ( $clean == '1' ) {
 							// remove embedded tags
-							$new_content = preg_replace('/(' . parent::regexEscape($start) . '(.*?)' . parent::regexEscape($end) . ')/is', '', $object->post_content);
+							$new_content = preg_replace('/(' . $this->regexEscape($start) . '(.*?)' . $this->regexEscape($end) . ')/is', '', $object->post_content);
 							$wpdb->update( $wpdb->posts, array('post_content' => $new_content), array('ID' => $object->ID) );
 						}
 					}

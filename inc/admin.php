@@ -1,5 +1,7 @@
 <?php
-class SimpleTagsAdmin extends SimpleTagsBase {
+class SimpleTagsAdmin {
+	var $options;
+	
 	// Build admin URL
 	var $posts_base_url 	= '';
 	var $options_base_url 	= '';
@@ -33,7 +35,21 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 */
 	function SimpleTagsAdmin() {
 		// Get options
-		parent::initOptions();
+		$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
+		
+		// Get options from WP options
+		$options_from_table = get_option( STAGS_OPTIONS_NAME );
+		
+		// Update default options by getting not empty values from options table
+		foreach( (array) $this->options as $key => $value ) {
+			if ( !is_null($options_from_table[$key]) ) {
+				$this->options[$key] = $options_from_table[$key];
+			}
+		}
+		
+		// Clean memory
+		$options_from_table = array();
+		unset($options_from_table, $value);
 		
 		// Admin URL for Pagination and target
 		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
@@ -98,16 +114,16 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		wp_register_script('jquery-cookie', 			STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
 		
 		// Helper simple tags
-		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), $this->version);
-		wp_register_script('st-helper-add-tags', 		STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), $this->version);
-		wp_register_script('st-helper-options', 		STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), $this->version);
-		wp_register_script('st-helper-click-tags', 		STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), $this->version);
+		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);
+		wp_register_script('st-helper-add-tags', 		STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-options', 		STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-click-tags', 		STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'site_url' => admin_url('admin.php'), 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );
-		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), $this->version);
+		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array( 'site_url' => admin_url('admin.php'), 'title_bloc' => $this->getSuggestTagsTitle(), 'content_bloc' => __('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags') ) );
 		
 		// Register CSS
-		wp_register_style('st-admin', 				STAGS_URL.'/inc/css/admin.css', array(), $this->version, 'all' );
+		wp_register_style('st-admin', 				STAGS_URL.'/inc/css/admin.css', array(), STAGS_VERSION, 'all' );
 		wp_register_style('jquery-autocomplete', 	STAGS_URL.'/inc/css/jquery.autocomplete.css', array(), '1.1', 'all' );
 		
 		// Register pages
@@ -227,30 +243,30 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
 			$tags = array_unique($tags);
 			
-			parent::setOption( 'auto_list', maybe_serialize($tags) );
+			$this->setOption( 'auto_list', maybe_serialize($tags) );
 			
 			// Active auto tags ?
 			if ( isset($_POST['use_auto_tags']) && $_POST['use_auto_tags'] == '1' ) {
-				parent::setOption( 'use_auto_tags', '1' );
+				$this->setOption( 'use_auto_tags', '1' );
 			} else {
-				parent::setOption( 'use_auto_tags', '0' );
+				$this->setOption( 'use_auto_tags', '0' );
 			}
 			
 			// All tags ?
 			if ( isset($_POST['at_all']) && $_POST['at_all'] == '1' ) {
-				parent::setOption( 'at_all', '1' );
+				$this->setOption( 'at_all', '1' );
 			} else {
-				parent::setOption( 'at_all', '0' );
+				$this->setOption( 'at_all', '0' );
 			}
 			
 			// Empty only ?
 			if ( isset($_POST['at_empty']) && $_POST['at_empty'] == '1' ) {
-				parent::setOption( 'at_empty', '1' );
+				$this->setOption( 'at_empty', '1' );
 			} else {
-				parent::setOption( 'at_empty', '0' );
+				$this->setOption( 'at_empty', '0' );
 			}
 			
-			parent::saveOptions();
+			$this->saveOptions();
 			$this->message = __('Auto tags options updated !', 'simpletags');
 		} elseif ( isset($_GET['action']) && $_GET['action'] == 'auto_tag' ) {
 			$action = true;
@@ -382,14 +398,14 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 			foreach((array) $this->options as $key => $value) {
 				$newval = ( isset($_POST[$key]) ) ? stripslashes($_POST[$key]) : '0';
 				if ( $newval != $value && !in_array($key, array('use_auto_tags', 'auto_list')) ) {
-					parent::setOption( $key, $newval );
+					$this->setOption( $key, $newval );
 				}
 			}
-			parent::saveOptions();
+			$this->saveOptions();
 			$this->message = __('Options saved', 'simpletags');
 			$this->status = 'updated';
 		} elseif ( isset($_POST['reset_options']) ) {
-			parent::resetToDefaultOptions();
+			$this->resetToDefaultOptions();
 			$this->message = __('Simple Tags options resetted to default options!', 'simpletags');
 		}
 		
@@ -919,7 +935,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 		
 		// Return Tags
 		$matches = $tags = array();
-		preg_match_all('/(' . parent::regexEscape($this->options['start_embed_tags']) . '(.*?)' . parent::regexEscape($this->options['end_embed_tags']) . ')/is', $object->post_content, $matches);
+		preg_match_all('/(' . $this->regexEscape($this->options['start_embed_tags']) . '(.*?)' . $this->regexEscape($this->options['end_embed_tags']) . ')/is', $object->post_content, $matches);
 		
 		foreach ( $matches[2] as $match) {
 			foreach( (array) explode(',', $match) as $tag) {
@@ -1978,7 +1994,7 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 	 */
 	function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf(__('&copy; Copyright 2010 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), $this->version); ?></p>
+		<p class="footer_st"><?php printf(__('&copy; Copyright 2010 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), STAGS_VERSION); ?></p>
 		<?php
 	}
 	
@@ -2099,6 +2115,44 @@ class SimpleTagsAdmin extends SimpleTagsBase {
 				break;
 		}
 		return '';
+	}
+	
+	/**
+	 * Escape string so that it can used in Regex. E.g. used for [tags]...[/tags]
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	function regexEscape( $content ) {
+		return strtr($content, array("\\" => "\\\\", "/" => "\\/", "[" => "\\[", "]" => "\\]"));
+	}
+	
+	/**
+	 * Set an option value  -- note that this will NOT save the options.
+	 *
+	 * @param string $optname
+	 * @param string $optval
+	 */
+	function setOption( $optname = '', $optval = '') {
+		$this->options[$optname] = $optval;
+	}
+	
+	/**
+	 * Save all current options
+	 *
+	 */
+	function saveOptions() {
+		return update_option( STAGS_OPTIONS_NAME, $this->options );
+	}
+	
+	
+	/**
+	 * Reset to default options
+	 *
+	 */
+	function resetToDefaultOptions() {
+		$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
+		return update_option( STAGS_OPTIONS_NAME, $this->options );
 	}
 }
 ?>

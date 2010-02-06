@@ -85,6 +85,9 @@ Then: Manage - Import - Embedded Tags
 
 == Changelog ==
 
+* Version 1.7.4.3 :
+	* Fix a bug with PHP 4.4 and plugin activation. (PHP4 suck...)
+	* Remove base class for compatibility PHP4.
 * Version 1.7.4.2 :
 	* Updated Traditional Chinese translation (thank to Neil Lin)
 	* Fix a bug with selector taxonomy and user taxonomy. (thank to Nicolas Furno)
