@@ -6,8 +6,9 @@
 function SimpleTags_Install() {
 	$options_from_table = get_option( STAGS_OPTIONS_NAME );
 	if ( $options_from_table == false ) {
-		$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
-		update_option( STAGS_OPTIONS_NAME, $this->options );
+		$options = (array) include( dirname(__FILE__) . '/default.options.php' );
+		update_option( STAGS_OPTIONS_NAME, $options );
+		unset( $options );
 	}
 }
 

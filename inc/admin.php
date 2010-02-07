@@ -106,7 +106,7 @@ class SimpleTagsAdmin {
 	}
 	
 	function initJavaScript() {
-		global $pagenow, $wp_locale;
+		global $pagenow;
 		
 		// Library JS
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/inc/js/jquery.bgiframe.min.js', array('jquery'), '2.1.1');

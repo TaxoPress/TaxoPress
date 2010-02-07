@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
 Description: Extended Tagging for WordPress 2.8 and 2.9 ! Suggested Tags, Mass edit tags, Autocompletion, Tag Cloud Widgets, Related Posts, Related Tags, etc!
-Version: 1.7.4.3
+Version: 1.7.4.4
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -37,7 +37,7 @@ Todo:
 		- Verifier la case du remplacement par les liens
 */
 
-define( 'STAGS_VERSION', 		'1.7.4.3' );
+define( 'STAGS_VERSION', 		'1.7.4.4' );
 define( 'STAGS_OPTIONS_NAME', 	'simpletags' ); // Option name for save settings
 define( 'STAGS_FOLDER', 		'simple-tags' );
 
