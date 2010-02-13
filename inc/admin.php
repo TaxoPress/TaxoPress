@@ -12,7 +12,7 @@ class SimpleTagsAdmin {
 	
 	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
 	var $yahoo_id 			= 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
-
+	
 	// Error management
 	var $message = '';
 	var $status = '';
@@ -1627,7 +1627,8 @@ class SimpleTagsAdmin {
 		if( !is_wp_error($reponse) && $reponse != null ) {
 			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
 				preg_match('/<CalaisSimpleOutputFormat>(.*?)<\/CalaisSimpleOutputFormat>/s', wp_remote_retrieve_body($reponse), $data );
-				$data = explode("\n", $data[1]);
+				preg_match_all('/<(.*?)>(.*?)<\/(.*?)>/s', $data[1], $results );
+				$data = $results[2];
 			}
 		}
 		
@@ -1654,7 +1655,7 @@ class SimpleTagsAdmin {
 	function ajaxAlchemyApi() {
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
-
+		
 		// API Key ?
 		if ( empty($this->options['alchemy_api']) ) {
 			echo '<p>'.__('AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
@@ -1708,13 +1709,13 @@ class SimpleTagsAdmin {
 	function ajaxZemanta() {
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
-
+		
 		// API Key ?
 		if ( empty($this->options['zemanta_key']) ) {
 			echo '<p>'.__('Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
 			exit();
 		}
-
+		
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
 		$content = trim($content);

@@ -1813,7 +1813,7 @@ class SimpleTags {
 			$incategories = preg_split('/[\s,]+/', $category);
 			$incategories = array_map('intval', $incategories);
 			
-			$taxonomies 	= "'" . implode("', '", $taxonomies) . "'";
+			$taxonomies 	= "'" . implode("', '", $taxonomies  ) . "'";
 			$incategories 	= "'" . implode("', '", $incategories) . "'";
 			
 			$where .= " AND tr.object_id IN ( ";
@@ -1826,7 +1826,7 @@ class SimpleTags {
 		// ST Features : Limit posts date
 		if ( $limit_days != 0 ) {
 			$where .= " AND tr.object_id IN ( ";
-				$where .= "SELECT ID WHERE $wpdb->posts WHERE post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
+				$where .= "SELECT DISTINCT ID WHERE $wpdb->posts AS p WHERE p.post_status='publish' AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
 			$where .= " ) ";
 			
 			unset($limit_days);
