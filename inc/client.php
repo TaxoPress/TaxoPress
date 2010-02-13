@@ -123,17 +123,16 @@ class SimpleTags {
 		
 		// Shuffle array
 		$this->randomArray($this->link_tags);
-		
-		
+
 		// HTML Rel (tag/no-follow)
 		$rel = $this->buildRel( $this->options['no_follow'] );
-		
+
 		// only continue if the database actually returned any links
-		if ( isset($link_tags) && is_array($link_tags) && count($link_tags) > 0 ) {
+		if ( isset($this->link_tags) && is_array($this->link_tags) && count($this->link_tags) > 0 ) {
 			
 			// Limit array
 			if ( (int) $this->options['auto_link_max_by_post'] != 0 ) {
-				$link_tags = array_slice($link_tags, 0, (int) $this->options['auto_link_max_by_post']);
+				$this->link_tags = array_slice($this->link_tags, 0, (int) $this->options['auto_link_max_by_post']);
 			}
 			
 			$must_tokenize = TRUE; // will perform basic tokenization
@@ -151,7 +150,7 @@ class SimpleTags {
 				$excludes_terms = array_unique($excludes_terms);
 			}
 			
-			foreach ( (array) $link_tags as $term_name => $term_link ) {
+			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
 				if ( in_array( $term_name, (array) $excludes_terms ) ) {
 					continue;
 				}
@@ -170,10 +169,11 @@ class SimpleTags {
 					$markup = $comment . $processing_instruction . $tag;
 					$flags = PREG_SPLIT_DELIM_CAPTURE;
 					$tokens = preg_split("{($markup)}", $content, -1, $flags);
-					$must_tokenize = FALSE;
+					$must_tokenize = false;
 				}
 				
 				// there should always be at least one token, but check just in case
+				$anchor_level = 0;
 				if ( isset($tokens) && is_array($tokens) && count($tokens) > 0 ) {
 					$i = 0;
 					foreach ($tokens as $token) {
@@ -181,11 +181,10 @@ class SimpleTags {
 							if ($anchor_level == 0) { // linkify if not inside anchor tags
 								if ( preg_match($match, $token) ) { // use preg_match for compatibility with PHP 4
 									$token = preg_replace($match, $substitute, $token); // only PHP 5 supports calling preg_replace with 5 arguments
-									$must_tokenize = TRUE; // re-tokenize next time around
+									$must_tokenize = true; // re-tokenize next time around
 								}
 							}
-						}
-						else { // this token is markup
+						} else { // this token is markup
 							if ( preg_match("#<\s*a\s+[^>]*>#i", $token) ) { // found <a ...>
 								$anchor_level++;
 							} elseif ( preg_match("#<\s*/\s*a\s*>#i", $token) ) { // found </a>
@@ -239,8 +238,7 @@ class SimpleTags {
 	function inlineTagCloud( $atts ) {
 		extract(shortcode_atts(array('param' => ''), $atts));
 		
-		$param = trim($param);
-		return $this->extendedTagCloud( $param, false );
+		return $this->extendedTagCloud( trim($param), false );
 	}
 	
 	/**
@@ -1307,9 +1305,13 @@ class SimpleTags {
 	 * @return boolean
 	 */
 	function randomArray( &$array ) {
+		if ( !is_array($array) || empty($array) ) {
+			return false;
+		}
+		
 		$keys = array_keys($array);
 		shuffle($keys);
-		foreach($keys as $key) {
+		foreach( (array) $keys as $key ) {
 			$new[$key] = $array[$key];
 		}
 		$array = $new;
@@ -1402,16 +1404,16 @@ class SimpleTags {
 	 */
 	function extendedPostTags( $args = '', $copyright = true ) {
 		$defaults = array(
-			'before' => __('Tags: ', 'simpletags'),
+			'before' 	=> __('Tags: ', 'simpletags'),
 			'separator' => ', ',
-			'after' => '<br />',
-			'post_id' => 0,
+			'after' 	=> '<br />',
+			'post_id' 	=> 0,
 			'no_follow' => 0,
-			'inc_cats' => 0,
-			'xformat' => __('<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags'),
+			'inc_cats' 	=> 0,
+			'xformat' 	=> __('<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'notagtext' => __('No tag for this post.', 'simpletags'),
-			'number' => 0,
-			'format' => ''
+			'number' 	=> 0,
+			'format' 	=> ''
 		);
 		
 		// Get values in DB
@@ -1584,7 +1586,7 @@ class SimpleTags {
 	 */
 	function prepareQuery( $where ) {
 		if ( is_tag() ) {
-			$where = str_replace('post_type = \'post\'', 'post_type IN(\'page\', \'post\')', $where);
+			$where = str_replace( 'post_type = \'post\'', 'post_type IN(\'page\', \'post\')', $where );
 		}
 		return $where;
 	}
@@ -1815,7 +1817,7 @@ class SimpleTags {
 			$incategories 	= "'" . implode("', '", $incategories) . "'";
 			
 			$where .= " AND tr.object_id IN ( ";
-				$where .= "SELECT tr.object_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ($taxonomies) AND tt.term_id IN ($incategories)";
+				$where .= "SELECT tr.object_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id INNER JOIN $wpdb->posts as p ON tr.object_id=p.ID WHERE tt.term_id IN ($incategories) AND p.post_status='publish'";
 			$where .= " ) ";
 			
 			unset($incategories, $category);

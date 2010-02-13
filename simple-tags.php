@@ -31,6 +31,9 @@ Todo:
 	Admin: 
 		Click Tags Order
 		HTML and esc_html for options render
+		Option for Ajax or Local autocompletion
+		
+		Bug with custom taxonomies
 	
 	Client :
 		- Test avec &$this, $this, et avec une fonction, test la conso memoire de wp_filter avant/apres

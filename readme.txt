@@ -85,6 +85,9 @@ Then: Manage - Import - Embedded Tags
 
 == Changelog ==
 
+* Version 1.7.5 :
+	* Fix a bug with auto links terms. (type input)
+	* 
 * Version 1.7.4.4 :
 	* Fix a stupid during the first activation. (PHP4/PHP5)
 * Version 1.7.4.3 :

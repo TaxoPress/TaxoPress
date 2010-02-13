@@ -495,7 +495,7 @@ class SimpleTagsAdmin {
 						<p><?php _e('You can specify multiple terms to rename by separating them with commas.', 'simpletags'); ?></p>
 						
 						<fieldset>
-							<form action="<?php echo $action_url; ?>" method="post">
+							<form action="" method="post">
 								<input type="hidden" name="tag_action" value="renametag" />
 								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
@@ -524,7 +524,7 @@ class SimpleTagsAdmin {
 						<p><?php _e('You can specify multiple terms to delete by separating them with commas', 'simpletags'); ?>.</p>
 						
 						<fieldset>
-							<form action="<?php echo $action_url; ?>" method="post">
+							<form action="" method="post">
 								<input type="hidden" name="tag_action" value="deletetag" />
 								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
@@ -547,7 +547,7 @@ class SimpleTagsAdmin {
 						<p><?php _e('You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all posts, then don\'t specify any terms to match.', 'simpletags'); ?></p>
 						
 						<fieldset>
-							<form action="<?php echo $action_url; ?>" method="post">
+							<form action="" method="post">
 								<input type="hidden" name="tag_action" value="addtag" />
 								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
@@ -576,7 +576,7 @@ class SimpleTagsAdmin {
 						<p><?php _e('You can specify multiple terms to rename by separating them with commas.', 'simpletags'); ?></p>
 						
 						<fieldset>
-							<form action="<?php echo $action_url; ?>" method="post">
+							<form action="" method="post">
 								<input type="hidden" name="tag_action" value="editslug" />
 								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
@@ -604,7 +604,7 @@ class SimpleTagsAdmin {
 						<p><?php _e('Old WordPress versions have a small bug and allow to create empty terms. Remove it !', 'simpletags'); ?></p>
 						
 						<fieldset>
-							<form action="<?php echo $action_url; ?>" method="post">
+							<form action="" method="post">
 								<input type="hidden" name="tag_action" value="cleandb" />
 								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
