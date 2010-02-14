@@ -71,17 +71,17 @@ class SimpleTagsAdmin {
 		
 		// Embedded Tags
 		if ( $this->options['use_embed_tags'] == 1 ) {
-			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveEmbedTags') );
+			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveEmbedTags'), 10, 2 );
 		}
 		
 		// Auto tags
 		if ( $this->options['use_auto_tags'] == 1 ) {
-			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveAutoTags') );
+			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveAutoTags'), 10, 2 );
 		}
 		
 		// Save tags from advanced input
 		if ( $this->options['use_autocompletion'] == 1 ) {
-			add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput') );
+			add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
 			add_action('do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
 		}
 		
@@ -888,18 +888,16 @@ class SimpleTagsAdmin {
 		return $terms;
 	}
 	
-	function saveAdvancedTagsInput( $post_id = null, $post_data = null ) {
+	function saveAdvancedTagsInput( $post_id = 0, $post_data = null ) {
 		$object = get_post($post_id);
 		if ( $object == false || $object == null ) {
 			return false;
 		}
 		
 		if ( isset($_POST['adv-tags-input']) ) {
-			// Post data
-			$tags = stripslashes($_POST['adv-tags-input']);
-			
-			// Trim data
-			$tags = trim(stripslashes($tags));
+			// Trim/format data
+			$tags = preg_replace( "/[\n\r]/", ', ', stripslashes($_POST['adv-tags-input']) );
+			$tags = trim($tags);
 			
 			// String to array
 			$tags = explode( ',', $tags );
