@@ -515,7 +515,7 @@ class SimpleTags {
 		// Get cache if exist
 		$results = false;
 		// Generate key cache
-		$key = md5(maybe_serialize($user_args.'-'.$object_id));
+		$key = md5(maybe_serialize($user_args).'-'.$object_id);
 		
 		if ( $cache = wp_cache_get( 'related_posts', 'simpletags' ) ) {
 			if ( isset( $cache[$key] ) ) {
@@ -875,7 +875,7 @@ class SimpleTags {
 		// Get cache if exist
 		$related_tags = false;
 		// Generate key cache
-		$key = md5(maybe_serialize($user_args.$slugs.$url_tag_sep));
+		$key = md5(maybe_serialize($user_args).maybe_serialize($slugs));
 		$cache = wp_cache_get( 'related_tags', 'simpletags' );
 		if ( $cache ) {
 			if ( isset( $cache[$key] ) ) {
@@ -1584,7 +1584,7 @@ class SimpleTags {
 	 * @param string $where
 	 * @return string
 	 */
-	function prepareQuery( $where ) {
+	function prepareQuery( $where = '' ) {
 		if ( is_tag() ) {
 			$where = str_replace( 'post_type = \'post\'', 'post_type IN(\'page\', \'post\')', $where );
 		}
@@ -1597,8 +1597,8 @@ class SimpleTags {
 	 * @param string $args
 	 * @return array
 	 */
-	function getTags( $args = '', $taxonomy = 'post_tag', $internal_st = false ) {
-		$key = md5(serialize($args.$taxonomy.$internal_st));
+	function getTags( $args = '', $taxonomy = 'post_tag' ) {
+		$key = md5(maybe_serialize($args).$taxonomy);
 		
 		// Get cache if exist
 		if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
@@ -1608,7 +1608,7 @@ class SimpleTags {
 		}
 		
 		// Get tags
-		$terms = $this->getTerms( $taxonomy, $args, $internal_st );
+		$terms = $this->getTerms( $taxonomy, $args );
 		if ( empty($terms) ) {
 			return array();
 		}
@@ -1660,7 +1660,7 @@ class SimpleTags {
 	 * @param string $args
 	 * @return array
 	 */
-	function getTerms( $taxonomies, $args = '', $internal_st = false ) {
+	function getTerms( $taxonomies, $args = '' ) {
 		global $wpdb;
 		$empty_array = array();
 		
@@ -1826,7 +1826,7 @@ class SimpleTags {
 		// ST Features : Limit posts date
 		if ( $limit_days != 0 ) {
 			$where .= " AND tr.object_id IN ( ";
-				$where .= "SELECT DISTINCT ID WHERE $wpdb->posts AS p WHERE p.post_status='publish' AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
+				$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND ".(( $this->options['use_tag_pages'] == '1' ) ? "p.post_type IN('page', 'post')" : "post_type = 'post'")." AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
 			$where .= " ) ";
 			
 			unset($limit_days);

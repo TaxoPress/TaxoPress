@@ -485,7 +485,7 @@ class SimpleTagsAdmin {
 		
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Manage Terms', 'simpletags'); ?></h2>
-			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
+			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			
 			<table class="form-table">
 				<tr valign="top">
