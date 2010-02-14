@@ -14,6 +14,14 @@ return array(
 	'administration' => array(
 		array('use_click_tags', __('Activate click tags feature:', 'simpletags'), 'checkbox', '1',
 			__('This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post.', 'simpletags')),
+		array('order_click_tags', __('Click tags order', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
+			'<ul>
+				<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
+				<li>'.__('<code>count-desc</code> &ndash; Most popular. (default)', 'simpletags').'</li>
+				<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
+				<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
+				<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
+			</ul>'),
 		array('use_autocompletion', __('Activate autocompletion feature with old input:', 'simpletags'), 'checkbox', '1',
 			__('This feature displays a visual help allowing to enter tags more easily. As well add tags is easier than the autocompletion default of WordPress', 'simpletags')),
 		array('use_suggested_tags', __('Activate suggested tags feature: (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)', 'simpletags'), 'checkbox', '1',

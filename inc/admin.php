@@ -1931,7 +1931,7 @@ class SimpleTagsAdmin {
 		$search = trim(stripslashes($_GET['q']));
 		
 		// Get all terms, or filter with search
-		$terms = $this->getTermsForAjax( $this->taxonomy, $search );
+		$terms = $this->getTermsForAjax( $this->taxonomy, $search, $format );
 		if ( empty($terms) || $terms == false ) {
 			if ( $format == 'html_span' ) {
 				echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
@@ -1967,8 +1967,40 @@ class SimpleTagsAdmin {
 		exit();
 	}
 	
-	function getTermsForAjax( $taxonomy = 'post_tag', $search = '' ) {
+	function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $format = '' ) {
 		global $wpdb;
+		
+		if ( $format == 'html_span' ) { // Click tags ? allow order.			
+			// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
+			$this->options['order_click_tags'] = strtolower($this->options['order_click_tags']);
+			$order_by = $order = '';
+			switch ( $this->options['order_click_tags'] ) {
+				case 'count-asc':
+					$order_by = 'tt.count';
+					$order = 'ASC';
+					break;
+				case 'random':
+					$order_by = 'RAND()';
+					$order = '';
+					break;
+				case 'count-desc':
+					$order_by = 'tt.count';
+					$order = 'DESC';
+					break;
+				case 'name-desc':
+					$order_by = 't.name';
+					$order = 'DESC';
+					break;
+				default : // name-asc
+					$order_by = 't.name';
+					$order = 'ASC';
+				break;
+			}
+		} else {
+			$order_by = 'name';
+			$order = 'ASC';
+		}
+		
 		
 		if ( !empty($search) ) {
 			return $wpdb->get_results( $wpdb->prepare("
@@ -1977,6 +2009,7 @@ class SimpleTagsAdmin {
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = %s
 				AND name LIKE %s
+				ORDER BY $order_by $order
 			", $taxonomy, '%'.$search.'%' ) );
 		} else {
 			return $wpdb->get_results( $wpdb->prepare("
@@ -1984,6 +2017,7 @@ class SimpleTagsAdmin {
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = %s
+				ORDER BY $order_by $order
 			", $taxonomy) );
 		}
 	}

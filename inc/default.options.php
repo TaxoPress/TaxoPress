@@ -17,6 +17,7 @@ return array(
 	
 	// Administration
 	'use_click_tags' 	 => 1,
+	'order_click_tags'	 => 'name-asc',
 	'use_suggested_tags' => 1,
 	'opencalais_key' 	 => '',
 	'alchemy_api' 		 => '',
