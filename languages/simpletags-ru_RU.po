@@ -189,8 +189,8 @@ msgstr "Настройка автоматических меток обновл�
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:523
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:629
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:844
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Посетите <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"mailto:amaury@wordpress-fr.net\">обращайтесь ко мне</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Посетите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"mailto:amaury@wordpress-fr.net\">обращайтесь ко мне</a> !"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:214
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:222
@@ -501,8 +501,8 @@ msgstr "Формат ссылки метки:"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:426
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:444
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:477
-msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "Вы можете найти маркеры и разъяснения функций на страницах онлайн-документации: <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">оригинальной</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русской</a> чтобы лучше разобраться в настройках."
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "Вы можете найти маркеры и разъяснения функций на страницах онлайн-документации: <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальной</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русской</a> чтобы лучше разобраться в настройках."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:343
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:371
@@ -522,8 +522,8 @@ msgstr "<strong>Расширенное использование</strong>:"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:345
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:373
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_the_tags()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">оригинальную</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_the_tags()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:348
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:376
@@ -617,8 +617,8 @@ msgstr "Введите заголовок, показываемый перед �
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:375
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:403
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_posts()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_posts()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:378
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:406
@@ -708,8 +708,8 @@ msgstr "Введите текст, отображаемый если нет св
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:404
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:432
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_tags()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_tags()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:406
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:434
@@ -845,8 +845,8 @@ msgstr "Опция единиц измерения размеров шрифта
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:462
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:490
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_tag_cloud()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_tag_cloud()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:476
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:504

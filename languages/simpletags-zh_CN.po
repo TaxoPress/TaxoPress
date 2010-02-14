@@ -186,8 +186,8 @@ msgstr "智能标签选项已更新！"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:523
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:629
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:844
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "访问 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"mailto:amaury@wordpress-fr.net\">与我联系</a> ！"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "访问 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"mailto:amaury@wordpress-fr.net\">与我联系</a> ！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:214
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:222
@@ -498,8 +498,8 @@ msgstr "标签链接格式："
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:426
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:444
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:477
-msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "您可以在 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">在线文档</a> 中找到标记及其相关说明"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "您可以在 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">在线文档</a> 中找到标记及其相关说明"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:343
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:371
@@ -519,8 +519,8 @@ msgstr "<strong>高级用法</strong>："
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:345
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:373
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用与 <code>st_the_tags()</code> 函数一样的语法来定制显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用与 <code>st_the_tags()</code> 函数一样的语法来定制显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:348
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:376
@@ -614,8 +614,8 @@ msgstr "列表定位标题，留空则不定义："
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:375
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:403
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_related_posts()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用和 <code>st_related_posts()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:378
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:406
@@ -705,8 +705,8 @@ msgstr "没有相关标签时显示的文本："
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:404
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:432
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_related_tags()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用和 <code>st_related_tags()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:406
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:434
@@ -842,8 +842,8 @@ msgstr "字号单位选项决定了以上两个字号的单位"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:462
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:490
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_tag_cloud()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用和 <code>st_tag_cloud()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:476
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:504

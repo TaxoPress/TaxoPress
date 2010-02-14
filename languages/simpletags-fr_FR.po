@@ -282,8 +282,8 @@ msgid "Simple Tags: Manage Terms"
 msgstr "Simple Tags: Gestion des termes"
 
 #: inc/admin.php:472
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visitez le <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visitez le <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">site internet du plugin</a> pour davantage d'informations. Si vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
 
 #: inc/admin.php:476
 msgid "Rename/Merge Terms"
@@ -999,8 +999,8 @@ msgstr "Format des liens des mots clefs:"
 #: inc/array.options.php:129
 #: inc/array.options.php:147
 #: inc/array.options.php:186
-msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "Vous pouvez trouver les marqueurs et les explications <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">sur la documentation en ligne.</a>"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "Vous pouvez trouver les marqueurs et les explications <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">sur la documentation en ligne.</a>"
 
 #: inc/array.options.php:74
 msgid "Text to display if no tags found:"
@@ -1014,8 +1014,8 @@ msgid "<strong>Advanced usage</strong>:"
 msgstr "<strong>Utilisation avancée</strong>:"
 
 #: inc/array.options.php:76
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> pour plus d'informations."
 
 #: inc/array.options.php:79
 msgid "Automatically display related posts into feeds"
@@ -1079,8 +1079,8 @@ msgid "Enter the positioned title before the list, leave blank for no title:"
 msgstr "Entrer le titre positionné avant la liste, laisser vide, pour ne rien afficher:"
 
 #: inc/array.options.php:106
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> pour plus d'informations."
 
 #: inc/array.options.php:109
 msgid "Maximum number of related tags to display: (default: 5)"
@@ -1144,8 +1144,8 @@ msgid "Enter the text to show when there is no related tags:"
 msgstr "Entrer le texte à afficher lorsqu'il n'y a pas de mots clefs relatifs:"
 
 #: inc/array.options.php:135
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_tags()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> pour plus d'informations."
 
 #: inc/array.options.php:137
 msgid "Remove related Tags"
@@ -1277,8 +1277,8 @@ msgid "The font size units option determines the units that the two font sizes u
 msgstr "Cette option détermine l'unité à utiliser pour la taille des mots clefs dans le nuage."
 
 #: inc/array.options.php:199
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> pour plus d'informations."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> pour plus d'informations."
 
 #: inc/base.php:122
 #: inc/client.php:459

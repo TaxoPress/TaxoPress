@@ -196,7 +196,7 @@ msgstr "Auto tags Optionen aktualisiert !"
 #: /2.3/inc/simple-tags.admin.php:629
 #: /2.3/inc/simple-tags.admin.php:844
 #: /2.5/inc/simple-tags.admin.php:629
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr "Besuche die <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/francais\">Plugin Homepage </a> für weitere Informationen. Wenn Du einen Fehler findest oder Ideen für Erweiterungen hast, <a href=\"mailto:amaury@wordpress-fr.net\">Kontaktiere mich.</a> !"
 
 #: /2.3/inc/simple-tags.admin.php:214
@@ -511,8 +511,8 @@ msgstr "Tag Link Format:"
 #: /2.5/inc/simple-tags.admin.php:429
 #: /2.5/inc/simple-tags.admin.php:447
 #: /2.5/inc/simple-tags.admin.php:480
-msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "Du kannst Marker und Erklärungen hier finden: <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\"> Online Dokumentation.</a>"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "Du kannst Marker und Erklärungen hier finden: <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\"> Online Dokumentation.</a>"
 
 #: /2.3/inc/simple-tags.admin.php:343
 #: /2.5/inc/simple-tags.admin.php:374
@@ -532,8 +532,8 @@ msgstr "<strong>Besonderer Gebrauch</strong>:"
 
 #: /2.3/inc/simple-tags.admin.php:345
 #: /2.5/inc/simple-tags.admin.php:376
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Du kannst die gleiche Syntax nutzen wie die <code>st_the_tags()</code> Funktion, um Anpassungen vorzunehmen. Siehe <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">Dokumentation.</a> "
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Du kannst die gleiche Syntax nutzen wie die <code>st_the_tags()</code> Funktion, um Anpassungen vorzunehmen. Siehe <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">Dokumentation.</a> "
 
 #: /2.3/inc/simple-tags.admin.php:348
 #: /2.5/inc/simple-tags.admin.php:379
@@ -629,8 +629,8 @@ msgstr "Titel für die Liste, wenn diese keinen Titel haben soll, dann leer lass
 
 #: /2.3/inc/simple-tags.admin.php:375
 #: /2.5/inc/simple-tags.admin.php:406
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Du kannst die gleiche Syntax wie bei der <code>st_related_posts()</code>Funktion für Anpassungen nutzen. Siehe <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">Dokumentation</a>."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Du kannst die gleiche Syntax wie bei der <code>st_related_posts()</code>Funktion für Anpassungen nutzen. Siehe <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">Dokumentation</a>."
 
 #: /2.3/inc/simple-tags.admin.php:378
 #: /2.5/inc/simple-tags.admin.php:409
@@ -723,8 +723,8 @@ msgstr "Text, der erscheinen soll, wenn es keinen related Tag gibt:"
 
 #: /2.3/inc/simple-tags.admin.php:404
 #: /2.5/inc/simple-tags.admin.php:435
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Du kannst für Anpassungen die gleiche Syntax nutzen wie bei der <code>st_related_tags()</code> Funktion.  Siehe <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">Dokumentation</a>."
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Du kannst für Anpassungen die gleiche Syntax nutzen wie bei der <code>st_related_tags()</code> Funktion.  Siehe <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">Dokumentation</a>."
 
 #: /2.3/inc/simple-tags.admin.php:406
 #: /2.5/inc/simple-tags.admin.php:437
@@ -867,8 +867,8 @@ msgstr "Die Einheit wird sowohl für die minimale als auch für die maxmale Grö
 
 #: /2.3/inc/simple-tags.admin.php:462
 #: /2.5/inc/simple-tags.admin.php:493
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Du kannst die gleiche Syntax nutzen wie bei der <code>st_tag_cloud()</code> Funktion, um die Ausgabe anzupassen. Bei Fragen hilft die <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">Dokumentation</a>."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Du kannst die gleiche Syntax nutzen wie bei der <code>st_tag_cloud()</code> Funktion, um die Ausgabe anzupassen. Bei Fragen hilft die <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">Dokumentation</a>."
 
 #: /2.3/inc/simple-tags.admin.php:476
 #: /2.5/inc/simple-tags.admin.php:507

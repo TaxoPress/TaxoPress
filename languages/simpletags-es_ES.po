@@ -257,8 +257,8 @@ msgstr "¡Opciones de autoetiquetado actualizadas!"
 #: /2.3/inc/simple-tags.admin.php:844
 #: /2.5/inc/simple-tags.admin.php:641
 #: /2.7/inc/simple-tags.admin.php:688
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visita la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">página del plugin</a> para más detalles. Si encuentras un fallo, o tienes una idea fantástica para esta extensión, ¡<a href=\"mailto:amaury@wordpress-fr.net\">consúltame</a>!"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visita la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">página del plugin</a> para más detalles. Si encuentras un fallo, o tienes una idea fantástica para esta extensión, ¡<a href=\"mailto:amaury@wordpress-fr.net\">consúltame</a>!"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:214
@@ -689,8 +689,8 @@ msgstr "Formato de enlace de etiqueta:"
 #: /2.7/inc/simple-tags.admin.php:504
 #: /2.7/inc/simple-tags.admin.php:522
 #: /2.7/inc/simple-tags.admin.php:555
-msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">in the online documentation.</a>"
-msgstr "Puedes encontrar marcadores y explicaciones <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">en la documentación online.</a>"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "Puedes encontrar marcadores y explicaciones <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">en la documentación online.</a>"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:343
@@ -719,8 +719,8 @@ msgstr "<strong>Uso avanzado</strong>:"
 #: /2.3/inc/simple-tags.admin.php:345
 #: /2.5/inc/simple-tags.admin.php:388
 #: /2.7/inc/simple-tags.admin.php:451
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puedes usar la misma sintaxis que en la función <code>st_the_tags()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentación</a> para más detalles."
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puedes usar la misma sintaxis que en la función <code>st_the_tags()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:348
@@ -854,8 +854,8 @@ msgstr "Introduce título previo a la lista, déjalo en blanco para ninguno:"
 #: /2.3/inc/simple-tags.admin.php:375
 #: /2.5/inc/simple-tags.admin.php:418
 #: /2.7/inc/simple-tags.admin.php:481
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puedes usar la misma sintaxis que en la función <code>st_related_posts()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentación</a> para más detalles."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puedes usar la misma sintaxis que en la función <code>st_related_posts()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:378
@@ -983,8 +983,8 @@ msgstr "Introduce el texto a mostrar cuando no hay etiquetas relacionadas:"
 #: /2.3/inc/simple-tags.admin.php:404
 #: /2.5/inc/simple-tags.admin.php:447
 #: /2.7/inc/simple-tags.admin.php:510
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puedes usar la misma sintaxis que en la función <code>st_related_tags()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentación</a> para más detalles."
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puedes usar la misma sintaxis que en la función <code>st_related_tags()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:406
@@ -1175,8 +1175,8 @@ msgstr "La opción de la unidad del tamaño de fuente determina la unidad de tam
 #: /2.3/inc/simple-tags.admin.php:462
 #: /2.5/inc/simple-tags.admin.php:505
 #: /2.7/inc/simple-tags.admin.php:568
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentation</a> for more details."
-msgstr "Puedes usar la misma sintaxis que en la función <code>st_tag_cloud()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/wiki/ThemeIntegration\">documentación</a> para más detalles."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puedes usar la misma sintaxis que en la función <code>st_tag_cloud()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:476
