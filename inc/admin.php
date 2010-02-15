@@ -495,7 +495,7 @@ class SimpleTagsAdmin {
 			
 			<div class="clear"></div>
 			<div id="term-list">
-				<h3><?php _e('Terms list:', 'simpletags'); ?></h3>
+				<h3><?php _e('Click terms list:', 'simpletags'); ?></h3>
 				<form action="" method="get">
 					<div>
 						<input type="hidden" name="page" value="st_manage" />
@@ -518,7 +518,7 @@ class SimpleTagsAdmin {
 					} else {
 						$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
 					}
-					st_tag_cloud('size=false&number=&color=false&get=all&title='.$order);
+					st_tag_cloud('number=&color=false&get=all&title='.$order);
 					?>
 				</div>
 			</div>
