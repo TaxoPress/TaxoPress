@@ -53,3 +53,9 @@ a#close_clicktags{display:none;}
 .container_clicktags span.local:hover{background:#b6bdd2 url(../images/tag_purple.png) 3px 50% no-repeat;}
 /* Advanced tags input   */
 #adv-tags-input{width:98%;padding:3px 5px;}
+/* Manage page */
+#term-list{float:left;width:20%;}
+#term-list-inner{padding-top:10px;text-align:center;}
+#term-list-inner a{text-decoration:none;}
+#term-list-inner a:hover{text-decoration:underline;}
+#manage-table-tags{float:left;width:75%;clear:none;margin-left:2%;}

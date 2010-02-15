@@ -1145,48 +1145,48 @@ class SimpleTags {
 	 */
 	function extendedTagCloud( $args = '', $copyright = true ) {
 		$defaults = array(
-			'size'			=> 'true',
-			'smallest' 		=> 8,
-			'largest' 		=> 22,
-			'unit' 			=> 'pt',
-			'color' 		=> 'true',
-			'maxcolor' 		=> '#000000',
-			'mincolor' 		=> '#CCCCCC',
-			'number' 		=> 45,
-			'format' 		=> 'flat',
-			'selectionby' 	=> 'count',
-			'selection' 	=> 'desc',
-			'orderby'		=> 'random',
-			'order'			=> 'asc',
-			'exclude' 		=> '',
-			'include' 		=> '',
-			'no_follow' 	=> 0,
-			'limit_days' 	=> 0,
-			'min_usage' 	=> 0,
-			'inc_cats' 		=> 0,
-			'notagstext' 	=> __('No tags.', 'simpletags'),
-			'xformat' 		=> __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
-			'title' 		=> __('<h4>Tag Cloud</h4>', 'simpletags'),
-			'category' 		=> 0
+			'size'		  => 'true',
+			'smallest' 	  => 8,
+			'largest' 	  => 22,
+			'unit' 		  => 'pt',
+			'color' 	  => 'true',
+			'maxcolor' 	  => '#000000',
+			'mincolor' 	  => '#CCCCCC',
+			'number' 	  => 45,
+			'format' 	  => 'flat',
+			'selectionby' => 'count',
+			'selection'   => 'desc',
+			'orderby'	  => 'random',
+			'order'		  => 'asc',
+			'exclude' 	  => '',
+			'include' 	  => '',
+			'no_follow'   => 0,
+			'limit_days'  => 0,
+			'min_usage'   => 0,
+			'inc_cats' 	  => 0,
+			'notagstext'  => __('No tags.', 'simpletags'),
+			'xformat' 	  => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
+			'title' 	  => __('<h4>Tag Cloud</h4>', 'simpletags'),
+			'category' 	  => 0
 		);
 		
 		// Get values in DB
-		$defaults['no_follow'] 		= $this->options['no_follow'];
-		$defaults['selectionby'] 	= $this->options['cloud_selectionby'];
-		$defaults['selection'] 		= $this->options['cloud_selection'];
-		$defaults['orderby'] 		= $this->options['cloud_orderby'];
-		$defaults['order'] 			= $this->options['cloud_order'];
-		$defaults['number'] 		= $this->options['cloud_limit_qty'];
-		$defaults['notagstext'] 	= $this->options['cloud_notagstext'];
-		$defaults['title'] 			= $this->options['cloud_title'];
-		$defaults['maxcolor'] 		= $this->options['cloud_max_color'];
-		$defaults['mincolor'] 		= $this->options['cloud_min_color'];
-		$defaults['largest'] 		= $this->options['cloud_max_size'];
-		$defaults['smallest'] 		= $this->options['cloud_min_size'];
-		$defaults['unit'] 			= $this->options['cloud_unit'];
-		$defaults['xformat'] 		= $this->options['cloud_xformat'];
-		$defaults['format'] 		= $this->options['cloud_format'];
-		$defaults['inc_cats'] 		= $this->options['cloud_inc_cats'];
+		$defaults['no_follow'] 	 = $this->options['no_follow'];
+		$defaults['selectionby'] = $this->options['cloud_selectionby'];
+		$defaults['selection'] 	 = $this->options['cloud_selection'];
+		$defaults['orderby'] 	 = $this->options['cloud_orderby'];
+		$defaults['order'] 		 = $this->options['cloud_order'];
+		$defaults['number'] 	 = $this->options['cloud_limit_qty'];
+		$defaults['notagstext']  = $this->options['cloud_notagstext'];
+		$defaults['title'] 		 = $this->options['cloud_title'];
+		$defaults['maxcolor'] 	 = $this->options['cloud_max_color'];
+		$defaults['mincolor'] 	 = $this->options['cloud_min_color'];
+		$defaults['largest'] 	 = $this->options['cloud_max_size'];
+		$defaults['smallest'] 	 = $this->options['cloud_min_size'];
+		$defaults['unit'] 		 = $this->options['cloud_unit'];
+		$defaults['xformat'] 	 = $this->options['cloud_xformat'];
+		$defaults['format'] 	 = $this->options['cloud_format'];
+		$defaults['inc_cats'] 	 = $this->options['cloud_inc_cats'];
 		
 		if ( empty($args) ) {
 			$args = $this->options['cloud_adv_usage'];

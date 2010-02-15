@@ -117,6 +117,7 @@ class SimpleTagsAdmin {
 		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);
 		wp_register_script('st-helper-add-tags', 		STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);
 		wp_register_script('st-helper-options', 		STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-manage', 			STAGS_URL.'/inc/js/helper-manage.min.js', array('jquery'), STAGS_VERSION);
 		wp_register_script('st-helper-click-tags', 		STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'site_url' => admin_url('admin.php'), 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );
 		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
@@ -160,6 +161,11 @@ class SimpleTagsAdmin {
 			wp_enqueue_script('jquery-ui-tabs');
 			wp_enqueue_script('jquery-cookie');
 			wp_enqueue_script('st-helper-options');
+		}
+		
+		// add JS for manage click tags
+		if ( isset($_GET['page']) && $_GET['page'] == 'st_manage' ) {
+			wp_enqueue_script('st-helper-manage');
 		}
 		
 		// add JS for Auto Tags, Mass Edit Tags and Manage tags !
@@ -468,7 +474,7 @@ class SimpleTagsAdmin {
 			}
 			elseif ( $_POST['tag_action'] == 'editslug'  ) {
 				$matchtag = (isset($_POST['tagname_match'])) ? $_POST['tagname_match'] : '';
-				$newslug   = (isset($_POST['tagslug_new'])) ? $_POST['tagslug_new'] : '';
+				$newslug  = (isset($_POST['tagslug_new'])) ? $_POST['tagslug_new'] : '';
 				$this->editTagSlug( $matchtag, $newslug );
 			} elseif ( $_POST['tag_action'] == 'cleandb'  ) {
 				$this->cleanDatabase();
@@ -487,7 +493,37 @@ class SimpleTagsAdmin {
 			<h2><?php _e('Simple Tags: Manage Terms', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			
-			<table class="form-table">
+			<div class="clear"></div>
+			<div id="term-list">
+				<h3><?php _e('Terms list:', 'simpletags'); ?></h3>
+				<form action="" method="get">
+					<div>
+						<input type="hidden" name="page" value="st_manage" />
+						<select name="order">
+							<option <?php if($_GET['order']=='count-asc') echo'selected="selected"'; ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
+							<option <?php if($_GET['order']=='count-desc') echo'selected="selected"'; ?> value="count-desc"><?php _e('Most popular', 'simpletags'); ?></option>
+							<option <?php if($_GET['order']=='name-asc') echo'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical (default)', 'simpletags'); ?></option>
+							<option <?php if($_GET['order']=='name-desc') echo'selected="selected"'; ?> value="name-desc"><?php _e('Inverse Alphabetical', 'simpletags'); ?></option>
+							<option <?php if($_GET['order']=='random') echo'selected="selected"'; ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
+						</select>
+						<input class="button" type="submit" value="<?php _e('Sort', 'simpletags'); ?>" />
+					</div>
+				</form>
+				
+				<div id="term-list-inner">
+					<?php 
+					if ( isset($_GET['order']) ) {
+						$order = explode('-', stripslashes($_GET['order']));
+						$order = '&selectionby='.$order[0].'&selection='.$order[1].'&orderby='.$order[0].'&order='.$order[1];
+					} else {
+						$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
+					}
+					st_tag_cloud('size=false&color=false&get=all&title='.$order);
+					?>
+				</div>
+			</div>
+			
+			<table id="manage-table-tags" class="form-table">
 				<tr valign="top">
 					<th scope="row"><strong><?php _e('Rename/Merge Terms', 'simpletags'); ?></strong></th>
 					<td>
@@ -625,6 +661,7 @@ class SimpleTagsAdmin {
 				</tr>
 			</table>
 			
+			<div class="clear"></div>
 			<?php $this->printAdminFooter(); ?>
 		</div>
 		<?php
@@ -1624,6 +1661,7 @@ class SimpleTagsAdmin {
 		
 		if( !is_wp_error($reponse) && $reponse != null ) {
 			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
+				$data = $results = array();
 				preg_match('/<CalaisSimpleOutputFormat>(.*?)<\/CalaisSimpleOutputFormat>/s', wp_remote_retrieve_body($reponse), $data );
 				preg_match_all('/<(.*?)>(.*?)<\/(.*?)>/s', $data[1], $results );
 				$data = $results[2];
@@ -1892,7 +1930,6 @@ class SimpleTagsAdmin {
 		}
 		
 		// Get all terms
-		global $wpdb;
 		$terms = $this->getTermsForAjax( $this->taxonomy, '' );
 		if ( empty($terms) || $terms == false ) {
 			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
@@ -1952,25 +1989,21 @@ class SimpleTagsAdmin {
 			default:
 				
 				// Format terms
-				$_terms = array();
-				foreach ( (array) $terms as $_k => $term ) {
+				foreach ( (array) $terms as $term ) {
 					$term->name = stripslashes($term->name);
 					$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
 					
 					echo "$term->term_id|$term->name\n";
 				}
-				
 				break;
-		
 		}
-		
 		exit();
 	}
 	
 	function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $format = '' ) {
 		global $wpdb;
 		
-		if ( $format == 'html_span' ) { // Click tags ? allow order.			
+		if ( $format == 'html_span' ) { // Click tags ? allow order.
 			// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
 			$this->options['order_click_tags'] = strtolower($this->options['order_click_tags']);
 			$order_by = $order = '';

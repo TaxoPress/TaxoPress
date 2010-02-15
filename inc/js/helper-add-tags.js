@@ -19,7 +19,7 @@ function addTag(tag) {
 		var newtags = jQuery('#tags-input').val();
 		newtags += ',' + tag;
 		
-		// massage
+		// message
 		newtags = newtags.replace( /\s+,+\s*/g, ',' ).replace( /,+/g, ',' ).replace( /,+\s+,+/g, ',' ).replace( /,+\s*$/g, '' ).replace( /^\s*,+/g, '' );
 		jQuery('#tags-input').val( newtags );
 		tag_update_quickclicks();

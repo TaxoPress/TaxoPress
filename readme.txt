@@ -81,13 +81,17 @@ Then: Manage - Import - Embedded Tags
 3. Autotagging your content !
 4. Add tags easily with click tags !
 3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
-6. You also can suggest tags from lot's of service (local, tag the net, yahoo!)
+6. You also can suggest tags from lot's of service (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)
 
 == Changelog ==
 
 * Version 1.7.5 :
 	* Fix a bug with auto links terms. (type input)
-	* 
+	* Fix cache conflict key
+	* Fix a opencalais bug on firt pass integration
+	* Fix a bug with limit days/category filter for tag cloud.
+	* Fix javascript autocomplete for allow enter new tag.
+	* Re-add list of tags on manage page.
 * Version 1.7.4.4 :
 	* Fix a stupid during the first activation. (PHP4/PHP5)
 * Version 1.7.4.3 :
