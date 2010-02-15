@@ -502,7 +502,7 @@ class SimpleTagsAdmin {
 						<select name="order">
 							<option <?php if($_GET['order']=='count-asc') echo'selected="selected"'; ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
 							<option <?php if($_GET['order']=='count-desc') echo'selected="selected"'; ?> value="count-desc"><?php _e('Most popular', 'simpletags'); ?></option>
-							<option <?php if($_GET['order']=='name-asc') echo'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical (default)', 'simpletags'); ?></option>
+							<option <?php if($_GET['order']=='name-asc'||!isset($_GET['order'])) echo'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical (default)', 'simpletags'); ?></option>
 							<option <?php if($_GET['order']=='name-desc') echo'selected="selected"'; ?> value="name-desc"><?php _e('Inverse Alphabetical', 'simpletags'); ?></option>
 							<option <?php if($_GET['order']=='random') echo'selected="selected"'; ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
 						</select>
