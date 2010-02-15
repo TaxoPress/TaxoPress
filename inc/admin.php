@@ -518,7 +518,7 @@ class SimpleTagsAdmin {
 					} else {
 						$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
 					}
-					st_tag_cloud('size=false&color=false&get=all&title='.$order);
+					st_tag_cloud('size=false&number=&color=false&get=all&title='.$order);
 					?>
 				</div>
 			</div>
