@@ -4,7 +4,7 @@ Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 1.8
+Stable tag: trunk
 
 Simple Tags is THE perfect tool to manage perfectly your WP 3.0 tags (Tags suggestion, Mass Edit Terms (Tags and Category), Auto link tags, Ajax Autocompletion, Click tags, Related Posts, Related Tags, Advanced edit tags, etc.)
 
