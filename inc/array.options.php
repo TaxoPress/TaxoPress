@@ -44,7 +44,6 @@ return array(
 			__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')),
 		array('auto_link_exclude', __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'), 'text', '',
 			__('Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags'))
-	
 	),
 	'metakeywords' => array(
 		array('meta_autoheader', __('Automatically include in header:', 'simpletags'), 'checkbox', '1',

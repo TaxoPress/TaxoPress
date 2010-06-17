@@ -2,8 +2,8 @@
 /*
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
-Description: Extended Tagging for WordPress 2.8 and 2.9 ! Suggested Tags, Mass edit tags, Autocompletion, Tag Cloud Widgets, Related Posts, Related Tags, etc!
-Version: 1.7.5
+Description: Extended Tagging for WordPress 3.0 ! Suggested Tags, Mass edit tags, Autocompletion, Tag Cloud Widgets, Related Posts, Related Tags, etc!
+Version: 1.8
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -40,7 +40,7 @@ Todo:
 		- Verifier la case du remplacement par les liens
 */
 
-define( 'STAGS_VERSION', 		'1.7.5' );
+define( 'STAGS_VERSION', 		'1.8' );
 define( 'STAGS_OPTIONS_NAME', 	'simpletags' ); // Option name for save settings
 define( 'STAGS_FOLDER', 		'simple-tags' );
 
@@ -65,9 +65,9 @@ register_uninstall_hook (__FILE__, 'SimpleTags_Uninstall' );
 // Init ST
 function simple_tags_init() {
 	global $simple_tags;
-	
-	// Localization
-	load_plugin_textdomain ( 'simpletags', str_replace ( ABSPATH, '', STAGS_DIR ) . '/languages', false );
+
+	// Load translations
+	load_plugin_textdomain ( 'simpletags', false, STAGS_DIR . 'languages' );
 	
 	// Load client
 	$simple_tags['client'] = new SimpleTags();

@@ -17,10 +17,16 @@ class SimpleTagsAdmin {
 	var $message = '';
 	var $status = '';
 	
+	/**
+	 * Put in var class the current taxonomy choose by the user
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function determineTaxonomy() {
 		$this->taxo_name = __('Post tags', 'simpletags');
 		
-		if ( isset($_GET['taxonomy']) && !empty($_GET['taxonomy']) && is_taxonomy($_GET['taxonomy']) ) {
+		if ( isset($_GET['taxonomy']) && !empty($_GET['taxonomy']) && taxonomy_exists($_GET['taxonomy']) ) {
 			$taxo = get_taxonomy($_GET['taxonomy']);
 			$this->taxonomy = $taxo->name;
 			$this->taxo_name = $taxo->label;
@@ -31,7 +37,8 @@ class SimpleTagsAdmin {
 	/**
 	 * PHP4 Constructor - Intialize Admin
 	 *
-	 * @return SimpleTagsAdmin
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function SimpleTagsAdmin() {
 		// Get options
@@ -42,7 +49,7 @@ class SimpleTagsAdmin {
 		
 		// Update default options by getting not empty values from options table
 		foreach( (array) $this->options as $key => $value ) {
-			if ( !is_null($options_from_table[$key]) ) {
+			if ( isset($options_from_table[$key]) && !is_null($options_from_table[$key]) ) {
 				$this->options[$key] = $options_from_table[$key];
 			}
 		}
@@ -58,8 +65,8 @@ class SimpleTagsAdmin {
 		// Admin Capabilities
 		add_action('init', array(&$this, 'initRoles'));
 		
-		// Init taxonomy class variable
-		add_action('init', array(&$this, 'determineTaxonomy'));
+		// Init taxonomy class variable, load this action after all actions on init !
+		add_action( 'init', array(&$this, 'determineTaxonomy'), 99999999 );
 		
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
@@ -101,10 +108,22 @@ class SimpleTagsAdmin {
 		$this->initJavaScript();
 	}
 	
+	/**
+	 * Remove the old tags input
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function removeOldTagsInput() {
 		remove_meta_box('tagsdiv-post_tag', 'post', 'side');
 	}
 	
+	/**
+	 * Init somes JS and CSS need for simple tags.
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function initJavaScript() {
 		global $pagenow;
 		
@@ -176,6 +195,12 @@ class SimpleTagsAdmin {
 		}
 	}
 	
+	/**
+	 * Add simple tags caps on two roles : admin, editor
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function initRoles() {
 		if ( function_exists('get_role') ) {
 			$role = get_role('administrator');
@@ -198,6 +223,8 @@ class SimpleTagsAdmin {
 	/**
 	 * Add WP admin menu for Tags
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function adminMenu() {
 		add_posts_page( __('Simple Terms: Manage Terms', 'simpletags'), __('Manage Terms', 'simpletags'), 'simple_tags', 'st_manage', array(&$this, 'pageManageTags'));
@@ -209,10 +236,12 @@ class SimpleTagsAdmin {
 	/**
 	 * Build HTML form for allow user to change taxonomy for the current page.
 	 *
-	 **/
-	function boxSelectorTaxonomy( $page_value = '', $include_category = false ) {
-		global $wp_taxonomies;
-		
+	 * @param string $page_value 
+	 * @param string $post_type 
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function boxSelectorTaxonomy( $page_value = '', $post_type = 'post' ) {
 		echo '<div class="box-selector-taxonomy">' . "\n";
 			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the taxonomy : <span>%s</span>', 'simpletags'), $this->taxo_name).'</p>' . "\n";
 			
@@ -222,9 +251,12 @@ class SimpleTagsAdmin {
 						echo '<input type="hidden" name="page" value="'.$page_value.'" />' . "\n";
 					}
 					echo '<select name="taxonomy">' . "\n";
-						foreach( (array) $wp_taxonomies as $wp_taxonomy ) {
-							if ( in_array($wp_taxonomy->object_type, array('post', 'page')) || ($wp_taxonomy->name=='category'&&$include_category==true) )
-								echo '<option '.(($wp_taxonomy->name==$this->taxonomy)?'selected="selected"':'').' value="'.esc_attr($wp_taxonomy->name).'">'.esc_html($wp_taxonomy->label).'</option>' . "\n";
+						foreach ( get_object_taxonomies($post_type) as $tax_name ) {
+							$taxonomy = get_taxonomy($tax_name);
+							if ( $taxonomy->show_ui == false )
+								continue;
+								
+							echo '<option '.selected( $tax_name, $this->taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->label).'</option>' . "\n";
 						}
 					echo '</select>' . "\n";
 					
@@ -237,6 +269,8 @@ class SimpleTagsAdmin {
 	/**
 	 * WP Page - Auto Tags
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function pageAutoTags() {
 		$action = false;
@@ -270,6 +304,13 @@ class SimpleTagsAdmin {
 				$this->setOption( 'at_empty', '1' );
 			} else {
 				$this->setOption( 'at_empty', '0' );
+			}
+			
+			// Full word ?
+			if ( isset($_POST['only_full_word']) && $_POST['only_full_word'] == '1' ) {
+				$this->setOption( 'only_full_word', '1' );
+			} else {
+				$this->setOption( 'only_full_word', '0' );
 			}
 			
 			$this->saveOptions();
@@ -323,6 +364,13 @@ class SimpleTagsAdmin {
 							<td>
 								<input type="checkbox" id="at_empty" name="at_empty" value="1" <?php echo ( $this->options['at_empty'] == 1 ) ? 'checked="checked"' : ''; ?>  />
 								<label for="at_empty"><?php _e('Autotag only posts without terms.', 'simpletags'); ?></label>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th scope="row"><?php _e('Whole Word ?', 'simpletags'); ?></th>
+							<td>
+								<input type="checkbox" id="only_full_word" name="only_full_word" value="1" <?php echo ( $this->options['only_full_word'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								<label for="only_full_word"><?php _e('Autotag only a post when tags finded in the content are a the same name. (whole word only)', 'simpletags'); ?></label>
 							</td>
 						</tr>
 						<tr valign="top">
@@ -481,6 +529,11 @@ class SimpleTagsAdmin {
 			}
 		}
 		
+		// Default order 
+		if ( !isset($_GET['order']) ) {
+			$_GET['order'] = 'name-asc';
+		}
+		
 		$this->displayMessage();
 		?>
 		<script type="text/javascript">
@@ -502,7 +555,7 @@ class SimpleTagsAdmin {
 						<select name="order">
 							<option <?php if($_GET['order']=='count-asc') echo'selected="selected"'; ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
 							<option <?php if($_GET['order']=='count-desc') echo'selected="selected"'; ?> value="count-desc"><?php _e('Most popular', 'simpletags'); ?></option>
-							<option <?php if($_GET['order']=='name-asc'||!isset($_GET['order'])) echo'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical (default)', 'simpletags'); ?></option>
+							<option <?php if($_GET['order']=='name-asc') echo'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical (default)', 'simpletags'); ?></option>
 							<option <?php if($_GET['order']=='name-desc') echo'selected="selected"'; ?> value="name-desc"><?php _e('Inverse Alphabetical', 'simpletags'); ?></option>
 							<option <?php if($_GET['order']=='random') echo'selected="selected"'; ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
 						</select>
@@ -518,7 +571,7 @@ class SimpleTagsAdmin {
 					} else {
 						$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
 					}
-					st_tag_cloud('number=&color=false&get=all&title='.$order);
+					st_tag_cloud('hide_empty=false&number=&color=false&get=all&title='.$order);
 					?>
 				</div>
 			</div>
@@ -667,6 +720,13 @@ class SimpleTagsAdmin {
 		<?php
 	}
 	
+	/**
+	 * Clone the core WP function, add the possibility to manage the post type
+	 *
+	 * @param string $q 
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function edit_data_query( $q = false ) {
 		if ( false === $q ) {
 			$q = $_GET;
@@ -743,7 +803,7 @@ class SimpleTagsAdmin {
 		</script>
 		
 		<div class="wrap">
-			<?php $this->boxSelectorTaxonomy( 'st_mass_tags' ); ?>
+			<?php $this->boxSelectorTaxonomy( 'st_mass_tags', 'post' ); ?>
 			
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_tags" />
@@ -815,6 +875,9 @@ class SimpleTagsAdmin {
 						
 						$month_count = count($arc_result);
 						
+						if ( !isset($_GET['m']) )
+							$_GET['m'] = '';
+							
 						if ( $month_count && !( 1 == $month_count && 0 == $arc_result[0]->mmonth ) ) { ?>
 							<select name='m'>
 							<option<?php selected( @$_GET['m'], 0 ); ?> value='0'><?php _e('Show all dates', 'simpletags'); ?></option>
@@ -1014,7 +1077,7 @@ class SimpleTagsAdmin {
 		$result = $this->autoTagsPost( $object );
 		if ( $result == true ) {
 			// Clean cache
-			if ( 'page' == $object->post_type ) {
+			if ( isset($object->post_type) && 'page' == $object->post_type ) {
 				clean_page_cache($post_id);
 			} else {
 				clean_post_cache($post_id);
@@ -1037,8 +1100,11 @@ class SimpleTagsAdmin {
 		$tags_to_add = array();
 		
 		// Merge title + content + excerpt to compare with tags
-		$content = $object->post_content. ' ' . $object->post_title. ' ' . $object->post_excerpt;
-		$content = trim($content);
+		$content = $object->post_content. ' ' . $object->post_title;
+		if ( isset($object->post_excerpt) )
+		 	$content .= ' ' . $object->post_excerpt;
+		
+		$content = trim(strip_tags($content));
 		if ( empty($content) ) {
 			return false;
 		}
@@ -1046,7 +1112,15 @@ class SimpleTagsAdmin {
 		// Auto tag with specifik auto tags list
 		$tags = (array) maybe_unserialize($this->options['auto_list']);
 		foreach ( $tags as $tag ) {
-			if ( is_string($tag) && !empty($tag) && stristr($content, $tag) ) {
+			if ( !is_string($tag) && empty($tag) )
+			 	continue;
+			
+			// Whole word ?
+			if ( (int) $this->options['only_full_word'] == 1 ) {
+				$tag = ' '.$tag.' '; // Add space before and after !
+			}
+			
+			if ( stristr($content, $tag) ) {
 				$tags_to_add[] = $tag;
 			}
 		}
@@ -1066,7 +1140,16 @@ class SimpleTagsAdmin {
 			
 			foreach ( $terms as $term ) {
 				$term = stripslashes($term);
-				if ( is_string($term) && !empty($term) && stristr($content, $term) ) {
+				
+				if ( !is_string($term) && empty($term) )
+				 	continue;
+				
+				// Whole word ?
+				if ( (int) $this->options['only_full_word'] == 1 ) {
+					$term = ' '.$term.' '; // Add space before and after !
+				}
+				
+				if ( stristr($content, $term) ) {
 					$tags_to_add[] = $term;
 				}
 			}
@@ -1090,7 +1173,7 @@ class SimpleTagsAdmin {
 			wp_set_object_terms( $object->ID, $tags_to_add, 'post_tag', true );
 			
 			// Clean cache
-			if ( 'page' == $object->post_type ) {
+			if ( isset($object->post_type) && 'page' == $object->post_type ) {
 				clean_page_cache($object->ID);
 			} else {
 				clean_post_cache($object->ID);
@@ -1101,16 +1184,35 @@ class SimpleTagsAdmin {
 		return false;
 	}
 	
+	/**
+	 * Call meta box function if option is active on page
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function helperAdvancedTags_Page() {
 		if ( $this->options['use_autocompletion'] == 1 )
-			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core');
+			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core', array('taxonomy'=>'post_tag') );
 	}
 	
+	/**
+	 * Call meta box function if option is active on post
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function helperAdvancedTags_Post() {
 		if ( $this->options['use_autocompletion'] == 1 )
-			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core');
+			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core', array('taxonomy'=>'post_tag') );
 	}
 	
+	/**
+	 * Content of custom meta box of Simple Tags
+	 *
+	 * @param object $post 
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function boxTags( $post ) {
 		?>
 		<textarea name="adv-tags-input" id="adv-tags-input" tabindex="3" rows="3" cols="5"><?php echo $this->getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
@@ -1119,7 +1221,8 @@ class SimpleTagsAdmin {
 			initAutoComplete( '#adv-tags-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection'; ?>', 300 );
 			-->
 		</script>
-		<?php _e('Separate tags with commas', 'simpletags');
+		<?php
+		_e('Separate tags with commas', 'simpletags');
 	}
 	
 	/*
@@ -2102,9 +2205,13 @@ class SimpleTagsAdmin {
 			foreach((array) $options as $option) {
 				// Helper
 				if (  $option[2] == 'helper' ) {
-						$output .= '<tr style="vertical-align: middle;"><td class="helper" colspan="2">' . stripslashes($option[4]) . '</td></tr>' . "\n";
-						continue;
+					$output .= '<tr style="vertical-align: middle;"><td class="helper" colspan="2">' . stripslashes($option[4]) . '</td></tr>' . "\n";
+					continue;
 				}
+				
+				// Fix notices
+				if ( !isset($option_actual[ $option[0] ]) )
+					$option_actual[ $option[0] ] = '';
 				
 				switch ( $option[2] ) {
 					case 'checkbox':
