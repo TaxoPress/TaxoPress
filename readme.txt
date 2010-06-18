@@ -2,7 +2,7 @@
 Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
-Requires at least: 2.9
+Requires at least: 3.0
 Tested up to: 3.0
 Stable tag: 1.8
 
