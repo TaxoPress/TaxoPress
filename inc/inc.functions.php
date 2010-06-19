@@ -1,26 +1,65 @@
 <?php
 /**
- * Add initial ST options in DB
+ * Add initial ST options in DB, init roles/permissions
  *
+ * @return void
+ * @author Amaury Balmer
  */
 function SimpleTags_Install() {
+	// Put default options
 	$options_from_table = get_option( STAGS_OPTIONS_NAME );
 	if ( $options_from_table == false ) {
 		$options = (array) include( dirname(__FILE__) . '/default.options.php' );
 		update_option( STAGS_OPTIONS_NAME, $options );
 		unset( $options );
 	}
+	
+	// Init roles
+	if ( function_exists('get_role') ) {
+		$role = get_role('administrator');
+		if( $role != null && !$role->has_cap('simple_tags') ) {
+			$role->add_cap('simple_tags');
+		}
+		if( $role != null && !$role->has_cap('admin_simple_tags') ) {
+			$role->add_cap('admin_simple_tags');
+		}
+		
+		$role = get_role('editor');
+		if( $role != null && !$role->has_cap('simple_tags') ) {
+			$role->add_cap('simple_tags');
+		}
+		// Clean var
+		unset($role);
+	}
 }
 
 /**
- * Remove ST options when user delete plugin (use WP API Uninstall)
+ * Remove ST options when user delete plugin (use WP API Uninstall), remove permissions from role
  *
  */
 function SimpleTags_Uninstall() {
-	delete_option( STAGS_OPTIONS_NAME );
+	// Delete options
+	delete_option( 'STAGS_OPTIONS_NAME' );
+	delete_option( 'stp_options' ); // Old options from Simple Tagging !
 	delete_option( 'widget_stags_cloud' );
+	
+	// Init roles
+	if ( function_exists('get_role') ) {
+		$role = get_role('administrator');
+		if( $role != null ) {
+			$role->remove_cap('simple_tags');
+			$role->remove_cap('admin_simple_tags');
+		}
+		
+		$role = get_role('editor');
+		if( $role != null ) {
+			$role->remove_cap('simple_tags');
+			$role->remove_cap('admin_simple_tags');
+		}
+		// Clean var
+		unset($role);
+	}
 }
-
 
 // Future of WP ?
 if ( !function_exists('add_filters') ) :

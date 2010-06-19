@@ -2,7 +2,7 @@
 Contributors: momo360modena
 Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
 Tags: tag, posts, tags, admin, administration, tagging, navigation, import
-Requires at least: 3.0
+Requires at least: 2.9
 Tested up to: 3.0
 Stable tag: 1.8
 
@@ -86,6 +86,10 @@ Then: Manage - Import - Embedded Tags
 
 == Changelog ==
 
+* Version 1.8.1 :
+	* Improve uninstaller
+	* Improve code widgets
+	* Improve support of custom taxonomies for simple tags features
 * Version 1.8.0 :
 	* Compatibility 3.0
 	* Add an option for auto-tags

@@ -75,7 +75,6 @@ return array(
 		array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 40),
 		array('tt_number', __('Max tags display:', 'simpletags'), 'text', 10,
 			__('You must set zero (0) for display all tags.', 'simpletags')),
-		array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
 		array('tt_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
 			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
 		array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
@@ -183,7 +182,6 @@ return array(
 				<li>'.__('<code>asc</code> &ndash; Ascending.', 'simpletags').'</li>
 				<li>'.__('<code>desc</code> &ndash; Descending.', 'simpletags').'</li>
 			</ul>'),
-		array('cloud_inc_cats', __('Include categories in tag cloud ?', 'simpletags'), 'checkbox', '1'),
 		array('cloud_format', __('Tags cloud type format:', 'simpletags'), 'dropdown', 'list/flat',
 			'<ul>
 				<li>'.__('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags').'</li>

@@ -62,9 +62,6 @@ class SimpleTagsAdmin {
 		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
 		$this->options_base_url = admin_url('options-general.php') . '?page=';
 		
-		// Admin Capabilities
-		add_action('init', array(&$this, 'initRoles'));
-		
 		// Init taxonomy class variable, load this action after all actions on init !
 		add_action( 'init', array(&$this, 'determineTaxonomy'), 99999999 );
 		
@@ -196,31 +193,6 @@ class SimpleTagsAdmin {
 	}
 	
 	/**
-	 * Add simple tags caps on two roles : admin, editor
-	 *
-	 * @return void
-	 * @author Amaury Balmer
-	 */
-	function initRoles() {
-		if ( function_exists('get_role') ) {
-			$role = get_role('administrator');
-			if( $role != null && !$role->has_cap('simple_tags') ) {
-				$role->add_cap('simple_tags');
-			}
-			if( $role != null && !$role->has_cap('admin_simple_tags') ) {
-				$role->add_cap('admin_simple_tags');
-			}
-			
-			$role = get_role('editor');
-			if( $role != null && !$role->has_cap('simple_tags') ) {
-				$role->add_cap('simple_tags');
-			}
-			// Clean var
-			unset($role);
-		}
-	}
-	
-	/**
 	 * Add WP admin menu for Tags
 	 *
 	 * @return void
@@ -236,8 +208,8 @@ class SimpleTagsAdmin {
 	/**
 	 * Build HTML form for allow user to change taxonomy for the current page.
 	 *
-	 * @param string $page_value 
-	 * @param string $post_type 
+	 * @param string $page_value
+	 * @param string $post_type
 	 * @return void
 	 * @author Amaury Balmer
 	 */
@@ -255,7 +227,7 @@ class SimpleTagsAdmin {
 							$taxonomy = get_taxonomy($tax_name);
 							if ( $taxonomy->show_ui == false )
 								continue;
-								
+							
 							echo '<option '.selected( $tax_name, $this->taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->label).'</option>' . "\n";
 						}
 					echo '</select>' . "\n";
@@ -476,9 +448,11 @@ class SimpleTagsAdmin {
 				
 				<div id="printOptions">
 					<ul class="st_submenu">
-						<?php foreach ( $option_data as $key => $val ) {
+						<?php
+						foreach ( $option_data as $key => $val ) {
 							echo '<li><a href="#'. sanitize_title ( $key ) .'">'.$this->getNiceTitleOptions($key).'</a></li>';
-						} ?>
+						}
+						?>
 					</ul>
 					
 					<?php echo $this->printOptions( $option_data ); ?>
@@ -529,7 +503,7 @@ class SimpleTagsAdmin {
 			}
 		}
 		
-		// Default order 
+		// Default order
 		if ( !isset($_GET['order']) ) {
 			$_GET['order'] = 'name-asc';
 		}
@@ -564,7 +538,7 @@ class SimpleTagsAdmin {
 				</form>
 				
 				<div id="term-list-inner">
-					<?php 
+					<?php
 					if ( isset($_GET['order']) ) {
 						$order = explode('-', stripslashes($_GET['order']));
 						$order = '&selectionby='.$order[0].'&selection='.$order[1].'&orderby='.$order[0].'&order='.$order[1];
@@ -723,7 +697,7 @@ class SimpleTagsAdmin {
 	/**
 	 * Clone the core WP function, add the possibility to manage the post type
 	 *
-	 * @param string $q 
+	 * @param string $q
 	 * @return void
 	 * @author Amaury Balmer
 	 */
@@ -877,7 +851,7 @@ class SimpleTagsAdmin {
 						
 						if ( !isset($_GET['m']) )
 							$_GET['m'] = '';
-							
+						
 						if ( $month_count && !( 1 == $month_count && 0 == $arc_result[0]->mmonth ) ) { ?>
 							<select name='m'>
 							<option<?php selected( @$_GET['m'], 0 ); ?> value='0'><?php _e('Show all dates', 'simpletags'); ?></option>
@@ -1209,7 +1183,7 @@ class SimpleTagsAdmin {
 	/**
 	 * Content of custom meta box of Simple Tags
 	 *
-	 * @param object $post 
+	 * @param object $post
 	 * @return void
 	 * @author Amaury Balmer
 	 */

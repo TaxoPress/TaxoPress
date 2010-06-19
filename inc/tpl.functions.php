@@ -98,7 +98,7 @@ function st_related_tags( $args = '' ) {
  */
 function st_get_related_tags( $args = '' ) {
 	global $simple_tags;
-	return $simple_tags['client']->relatedTags( $args );	
+	return $simple_tags['client']->relatedTags( $args );
 }
 
 /**
@@ -118,6 +118,6 @@ function st_remove_related_tags( $args = '' ) {
  */
 function st_get_remove_related_tags( $args = '' ) {
 	global $simple_tags;
-	return $simple_tags['client']->removeRelatedTags( $args );	
+	return $simple_tags['client']->removeRelatedTags( $args );
 }
 ?>

@@ -30,6 +30,7 @@ return array(
 	'end_embed_tags' 	=> '[/tags]',
 	
 	// Related Posts
+	'rp_taxonomy' 	=> 'post_tag',
 	'rp_feed' 		=> 0,
 	'rp_embedded' 	=> 'no',
 	'rp_order' 		=> 'count-desc',
@@ -40,6 +41,7 @@ return array(
 	'rp_adv_usage' 	=> '',
 	
 	// Tag cloud
+	'cloud_taxonomy' 	=> 'post_tag',
 	'cloud_selectionby' => 'count',
 	'cloud_selection' 	=> 'desc',
 	'cloud_orderby' 	=> 'random',
@@ -54,10 +56,10 @@ return array(
 	'cloud_max_size' 	=> 22,
 	'cloud_min_size' 	=> 8,
 	'cloud_unit' 		=> 'pt',
-	'cloud_inc_cats' 	=> 0,
 	'cloud_adv_usage' 	=> '',
 	
 	// The tags
+	'tt_taxonomy' 	=> 'post_tag',
 	'tt_feed' 		=> 0,
 	'tt_embedded' 	=> 'no',
 	'tt_separator' 	=> ', ',
@@ -65,7 +67,6 @@ return array(
 	'tt_after' 		=> '<br />',
 	'tt_notagstext' => __('No tags for this post.', 'simpletags'),
 	'tt_number' 	=> 0,
-	'tt_inc_cats' 	=> 0,
 	'tt_xformat' 	=> __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 	'tt_adv_usage' 	=> '',
 	
