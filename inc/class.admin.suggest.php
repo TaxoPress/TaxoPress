@@ -5,6 +5,9 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
+		// Ajax action, JS Helper and admin action
+		add_action('admin_init', array(&$this, 'ajaxCheck'));
+		
 		// Box for post
 		add_action('admin_menu', array(&$this, 'helperSuggestTags_Post'), 1);
 		

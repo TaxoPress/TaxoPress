@@ -10,9 +10,6 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
 		
-		// Ajax action, JS Helper and admin action
-		add_action('admin_init', array(&$this, 'ajaxCheck'));
-		
 		// Auto tags
 		if ( $options['use_auto_tags'] == 1 ) {
 			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveAutoTags'), 10, 2 );

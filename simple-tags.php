@@ -30,6 +30,7 @@ Todo:
 		Taxonomy supports ( 20% )
 	
 	Admin: 
+		Options saving... foreach on default array
 		Click Tags Order
 		HTML and esc_html for options render
 		Option for Ajax or Local autocompletion
@@ -48,7 +49,7 @@ define( 'STAGS_FOLDER', 		'simple-tags' );
 define ( 'STAGS_URL', plugins_url('', __FILE__) );
 define ( 'STAGS_DIR', dirname(__FILE__) );
 
-require( STAGS_DIR . '/inc/functions.inc..php'); // Internal functions
+require( STAGS_DIR . '/inc/functions.inc.php'); // Internal functions
 require( STAGS_DIR . '/inc/functions.tpl.php');  // Templates functions
 
 require( STAGS_DIR . '/inc/class.client.php');

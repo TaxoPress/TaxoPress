@@ -39,7 +39,8 @@ function SimpleTags_Install() {
  */
 function SimpleTags_Uninstall() {
 	// Delete options
-	delete_option( 'STAGS_OPTIONS_NAME' );
+	delete_option( STAGS_OPTIONS_NAME );
+	delete_option( STAGS_OPTIONS_NAME . '-version' );
 	delete_option( 'stp_options' ); // Old options from Simple Tagging !
 	delete_option( 'widget_stags_cloud' );
 	

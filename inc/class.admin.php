@@ -40,6 +40,9 @@ class SimpleTags_Admin {
 	function SimpleTags_Admin() {
 		global $simple_tags;
 		
+		// DB Upgrade ?
+		$this->upgrade();
+		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -58,32 +61,32 @@ class SimpleTags_Admin {
 		$this->initJavaScript();
 		
 		// Load custom part of plugin depending option
-		if ( $options['use_suggested_tags'] == 1 ) {
+		if ( isset($options['use_suggested_tags']) && $options['use_suggested_tags'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.suggest.php');
 			$simple_tags['admin-suggest'] = new SimpleTags_Admin_Suggest();
 		}
 		
-		if ( $options['use_click_tags'] == 1 ) {
+		if ( isset($options['use_click_tags']) && $options['use_click_tags'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.clicktags.php');
 			$simple_tags['admin-clicktags'] = new SimpleTags_Admin_ClickTags();
 		}
 		
-		if ( $options['use_autocompletion'] == 1 ) {
+		if ( isset($options['use_autocompletion']) && $options['use_autocompletion'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.autocomplete.php');
 			$simple_tags['admin-autocomplete'] = new SimpleTags_Admin_Autocomplete();
 		}
 		
-		if ( $options['active_mass_edit'] == 1 ) {
+		if ( isset($options['active_mass_edit']) && $options['active_mass_edit'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.mass.php');
 			$simple_tags['admin-mass'] = new SimpleTags_Admin_Mass();
 		}
 		
-		if ( $options['active_manage'] == 1 ) {
+		if ( isset($options['active_manage']) && $options['active_manage'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.manage.php');
 			$simple_tags['admin-manage'] = new SimpleTags_Admin_Manage();
 		}
 		
-		if ( $options['active_autotags'] == 1 ) {
+		if ( isset($options['active_autotags']) && $options['active_autotags'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.autotags.php');
 			$simple_tags['admin-autotags'] = new SimpleTags_Admin_AutoTags();
 		}
@@ -369,6 +372,42 @@ class SimpleTags_Admin {
 				break;
 		}
 		return '';
+	}
+	
+	/**
+	 * This method allow to check if the DB is up to date, and if a upgrade is need for options
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function upgrade() {
+		// Get current version number
+		$current_version = get_option( STAGS_OPTIONS_NAME . '-version' );
+		
+		// Upgrade needed ?
+		if ( $current_version == false || version_compare($current_version, STAGS_VERSION, '<') ) {
+			$current_options = get_option( STAGS_OPTIONS_NAME );
+			$default_options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
+			
+			// Add new options
+			foreach( $default_options as $key => $default_value ) {
+				if ( !isset($current_options[$key]) ) {
+					$current_options[$key] = $default_value;
+				}
+			}
+			
+			// Remove old options
+			foreach( $current_options as $key => $current_value ) {
+				if ( !isset($default_options[$key]) ) {
+					unset($current_options[$key]);
+				}
+			}
+			
+			update_option( STAGS_OPTIONS_NAME . '-version', STAGS_VERSION );
+			update_option( STAGS_OPTIONS_NAME, $current_options );
+		}
+		
+		return true;
 	}
 }
 ?>

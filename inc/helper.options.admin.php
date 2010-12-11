@@ -97,7 +97,7 @@ return array(
 	'metakeywords' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
 			. '<ul style="list-style:square;">
-				<li><a href="http://wordpress.org/extend/plugins/seo-ultimate/" target="_blank">SEO Ultimate</a>s</li>
+				<li><a href="http://wordpress.org/extend/plugins/seo-ultimate/" target="_blank">SEO Ultimate</a></li>
 				<li><a href="http://wordpress.org/extend/plugins/platinum-seo-pack/" target="_blank">Platinum SEO Pack</a></li>
 				<li><a href="http://wordpress.org/extend/plugins/wordpress-seo/" target="_blank">WordPress SEO by Yoast</a></li>
 			</ul>' )
@@ -108,7 +108,7 @@ return array(
 	'relatedposts' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
 			. '<ul style="list-style:square;">
-				<li><a href="http://wordpress.org/extend/plugins/similar-posts/" target="_blank">Similar Posts</a>s</li>
+				<li><a href="http://wordpress.org/extend/plugins/similar-posts/" target="_blank">Similar Posts</a></li>
 				<li><a href="http://wordpress.org/extend/plugins/yet-another-related-posts-plugin/" target="_blank">Yet Another Related Posts Plugin</a></li>
 			</ul>' )
 	),
