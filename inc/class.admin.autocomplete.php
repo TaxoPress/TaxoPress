@@ -1,18 +1,19 @@
 <?php
-class SimpleTags_Admin_Autocomplete {
+class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_Autocomplete() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Save tags from advanced input
-		if ( $this->options['use_autocompletion'] == 1 ) {
-			add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
-			add_action('do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
-		}
+		add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
+		add_action('do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
 		
 		// Box for post
 		add_action('admin_menu', array(&$this, 'helperAdvancedTags_Post'), 1);
 		
 		// Box for Page
-		if ( $this->options['use_tag_pages'] == 1 ) {
+		if ( $options['use_tag_pages'] == 1 ) {
 			add_action('admin_menu', array(&$this, 'helperAdvancedTags_Page'), 1);
 		}
 		
@@ -28,12 +29,10 @@ class SimpleTags_Admin_Autocomplete {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $this->options['use_tag_pages'] == 1 ) ) {
-			if ( $this->options['use_autocompletion'] == 1 ) {
-				wp_enqueue_script('jquery-autocomplete');
-				wp_enqueue_script('st-helper-autocomplete');
-				wp_enqueue_style ('jquery-autocomplete');
-			}
+		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $options['use_tag_pages'] == 1 ) ) {
+			wp_enqueue_script('jquery-autocomplete');
+			wp_enqueue_script('st-helper-autocomplete');
+			wp_enqueue_style ('jquery-autocomplete');
 		}
 		
 		// add JS for Auto Tags, Mass Edit Tags and Manage tags !
@@ -93,8 +92,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @author Amaury Balmer
 	 */
 	function helperAdvancedTags_Page() {
-		if ( $this->options['use_autocompletion'] == 1 )
-			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core', array('taxonomy'=>'post_tag') );
+		add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core', array('taxonomy'=>'post_tag') );
 	}
 	
 	/**
@@ -104,8 +102,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @author Amaury Balmer
 	 */
 	function helperAdvancedTags_Post() {
-		if ( $this->options['use_autocompletion'] == 1 )
-			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core', array('taxonomy'=>'post_tag') );
+		add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core', array('taxonomy'=>'post_tag') );
 	}
 	
 	/**

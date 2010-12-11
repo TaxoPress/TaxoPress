@@ -1,12 +1,15 @@
 <?php
-class SimpleTags_Admin_Suggest {
+class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_Suggest() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Box for post
 		add_action('admin_menu', array(&$this, 'helperSuggestTags_Post'), 1);
 		
 		// Box for Page
-		if ( $this->options['use_tag_pages'] == 1 ) {
+		if ( $options['use_tag_pages'] == 1 ) {
 			add_action('admin_menu', array(&$this, 'helperSuggestTags_Page'), 1);
 		}
 		
@@ -19,9 +22,8 @@ class SimpleTags_Admin_Suggest {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $this->options['use_tag_pages'] == 1 ) ) {
-			if ( $this->options['use_suggested_tags'] == 1 )
-				wp_enqueue_script('st-helper-suggested-tags');
+		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $options['use_tag_pages'] == 1 ) ) {
+			wp_enqueue_script('st-helper-suggested-tags');
 		}
 	}
 	
@@ -42,13 +44,11 @@ class SimpleTags_Admin_Suggest {
 	}
 	
 	function helperSuggestTags_Post() {
-		if ( $this->options['use_suggested_tags'] == 1 )
-			add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'post', 'advanced', 'core');
+		add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'post', 'advanced', 'core');
 	}
 	
 	function helperSuggestTags_Page() {
-		if ( $this->options['use_suggested_tags'] == 1 )
-			add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'page', 'advanced', 'core');
+		add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'page', 'advanced', 'core');
 	}
 	
 	/**
@@ -114,11 +114,14 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	function ajaxOpenCalais() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
-		if ( empty($this->options['opencalais_key']) ) {
+		if ( empty($options['opencalais_key']) ) {
 			echo '<p>'.__('OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
 			exit();
 		}
@@ -132,7 +135,7 @@ class SimpleTags_Admin_Suggest {
 		}
 		
 		$reponse = wp_remote_post('http://api.opencalais.com/enlighten/rest/', array('body' => array(
-			'licenseID' => $this->options['opencalais_key'],
+			'licenseID' => $options['opencalais_key'],
 			'content' 	=> $content,
 			'paramsXML' => $this->getParamsXML()
 		)));
@@ -167,11 +170,14 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	function ajaxAlchemyApi() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
-		if ( empty($this->options['alchemy_api']) ) {
+		if ( empty($options['alchemy_api']) ) {
 			echo '<p>'.__('AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
 			exit();
 		}
@@ -187,7 +193,7 @@ class SimpleTags_Admin_Suggest {
 		// Build params
 		$data = array();
 		$reponse = wp_remote_post( 'http://access.alchemyapi.com/calls/html/HTMLGetRankedNamedEntities', array('body' => array(
-			'apikey' 	 => $this->options['alchemy_api'],
+			'apikey' 	 => $options['alchemy_api'],
 			'url' 		 => ' ',
 			'html' 		 => $content,
 			'outputMode' => 'json'
@@ -218,11 +224,14 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	function ajaxZemanta() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		status_header( 200 );
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
-		if ( empty($this->options['zemanta_key']) ) {
+		if ( empty($options['zemanta_key']) ) {
 			echo '<p>'.__('Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
 			exit();
 		}
@@ -239,7 +248,7 @@ class SimpleTags_Admin_Suggest {
 		$data = array();
 		$reponse = wp_remote_post( 'http://api.zemanta.com/services/rest/0.0/', array('body' => array(
 			'method'	=> 'zemanta.suggest',
-			'api_key' 	=> $this->options['zemanta_key'],
+			'api_key' 	=> $options['zemanta_key'],
 			'text' 		=> $content,
 			'format' 	=> 'json',
 			'return_rdf_links' => 0,
@@ -470,13 +479,16 @@ class SimpleTags_Admin_Suggest {
 	}
 	
 	function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $format = '' ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		global $wpdb;
 		
 		if ( $format == 'html_span' ) { // Click tags ? allow order.
 			// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
-			$this->options['order_click_tags'] = strtolower($this->options['order_click_tags']);
+			$options['order_click_tags'] = strtolower($options['order_click_tags']);
 			$order_by = $order = '';
-			switch ( $this->options['order_click_tags'] ) {
+			switch ( $options['order_click_tags'] ) {
 				case 'count-asc':
 					$order_by = 'tt.count';
 					$order = 'ASC';

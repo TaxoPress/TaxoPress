@@ -1,10 +1,13 @@
 <?php
 return array(
 	'general' => array(
+		array('active_mass_edit', __('Active feature : mass edit', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
+		array('active_manage', __('Active feature : advanced manage', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
+		array('active_autotags', __('Active feature : autotags', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
 		array('use_tag_pages', __('Active tags for page:', 'simpletags'), 'checkbox', '1',
 			__('This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page.', 'simpletags')),
 		array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
-			__('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WP replace this shortcode by a tag cloud.', 'simpletags'))
+			__('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WP replace this shortcode by a tag cloud.', 'simpletags'))	
 	),
 	'administration' => array(
 		array('use_click_tags', __('Activate click tags feature:', 'simpletags'), 'checkbox', '1',
@@ -39,38 +42,6 @@ return array(
 			__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')),
 		array('auto_link_exclude', __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'), 'text', '',
 			__('Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags'))
-	),
-	'metakeywords' => array(
-		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
-			. '<ul style="list-style:square;">
-				<li>'.__('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags').'</li>
-				<li>'.__('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags').'</li>
-			</ul>'.
-		),
-	),
-	'tagspost' => array(
-		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
-			. '<ul style="list-style:square;">
-				<li>'.__('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags').'</li>
-				<li>'.__('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags').'</li>
-			</ul>'.
-		),
-	),
-	'relatedposts' => array(
-		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
-			. '<ul style="list-style:square;">
-				<li>'.__('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags').'</li>
-				<li>'.__('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags').'</li>
-			</ul>'.
-		),
-	),
-	'relatedtags' => array(
-		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
-			. '<ul style="list-style:square;">
-				<li>'.__('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags').'</li>
-				<li>'.__('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags').'</li>
-			</ul>'.
-		),
 	),
 	'tagcloud' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
@@ -123,5 +94,29 @@ return array(
 		array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
 			__('You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
+	'metakeywords' => array(
+		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
+			. '<ul style="list-style:square;">
+				<li><a href="http://wordpress.org/extend/plugins/seo-ultimate/" target="_blank">SEO Ultimate</a>s</li>
+				<li><a href="http://wordpress.org/extend/plugins/platinum-seo-pack/" target="_blank">Platinum SEO Pack</a></li>
+				<li><a href="http://wordpress.org/extend/plugins/wordpress-seo/" target="_blank">WordPress SEO by Yoast</a></li>
+			</ul>' )
+	),
+	'tagspost' => array(
+		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and i recommended to use the core function of WP "the_tags()"<br />', 'simpletags'))
+	),
+	'relatedposts' => array(
+		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
+			. '<ul style="list-style:square;">
+				<li><a href="http://wordpress.org/extend/plugins/similar-posts/" target="_blank">Similar Posts</a>s</li>
+				<li><a href="http://wordpress.org/extend/plugins/yet-another-related-posts-plugin/" target="_blank">Yet Another Related Posts Plugin</a></li>
+			</ul>' )
+	),
+	'relatedtags' => array(
+		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
+			. '<ul style="list-style:square;">
+				<li><a href="http://wordpress.org/extend/plugins/query-multiple-taxonomies/" target="_blank">Query Multiple Taxonomies</a></li>
+			</ul>' )
+	)
 );
 ?>

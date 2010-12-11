@@ -25,20 +25,6 @@ Contributors:
 - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
 - Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
 
-Alernate ways for 
-	Related posts 
-		YARP
-		Similar Posts
-	
-	Related tags
-		Query Multiples Taxonomies
-	
-	Keywords
-		AIOSP
-		SEO Tools
-	
-
-
 Todo:
 	Both :
 		Taxonomy supports ( 20% )
@@ -62,10 +48,12 @@ define( 'STAGS_FOLDER', 		'simple-tags' );
 define ( 'STAGS_URL', plugins_url('', __FILE__) );
 define ( 'STAGS_DIR', dirname(__FILE__) );
 
-require( STAGS_DIR . '/inc/class.client.php'); 		// Client class
-require( STAGS_DIR . '/inc/functions.inc..php'); 	// Internal functions
-require( STAGS_DIR . '/inc/functions.tpl.php'); 	// Templates functions
-require( STAGS_DIR . '/inc/class.widgets.php'); 	// Widgets
+require( STAGS_DIR . '/inc/functions.inc..php'); // Internal functions
+require( STAGS_DIR . '/inc/functions.tpl.php');  // Templates functions
+
+require( STAGS_DIR . '/inc/class.client.php');
+require( STAGS_DIR . '/inc/class.client.tagcloud.php');
+require( STAGS_DIR . '/inc/class.widgets.php');
 
 // Activation, uninstall
 register_activation_hook( __FILE__, 'SimpleTags_Install'   );
@@ -80,11 +68,12 @@ function simple_tags_init() {
 	
 	// Load client
 	$simple_tags['client'] = new SimpleTags_Client();
+	$simple_tags['client-cloud'] = new SimpleTags_Client_TagCloud();
 	
 	// Admin and XML-RPC
 	if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) && (isset($_REQUEST['code']) && $_REQUEST['code'] == get_option('wpo_croncode')) ) {
-		require( STAGS_DIR . '/inc/admin.php' );
-		$simple_tags['admin'] = new SimpleTagsAdmin();
+		require( STAGS_DIR . '/inc/class.admin.php' );
+		$simple_tags['admin'] = new SimpleTags_Admin();
 	}
 }
 add_action( 'plugins_loaded', 'simple_tags_init' );

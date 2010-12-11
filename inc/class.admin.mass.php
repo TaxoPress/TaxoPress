@@ -1,5 +1,5 @@
 <?php
-class SimpleTags_Admin_Mass {
+class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_Mass() {
 		// Ajax action, JS Helper and admin action
@@ -51,7 +51,6 @@ class SimpleTags_Admin_Mass {
 			echo '</div>' . "\n";
 		echo '</div>' . "\n";
 	}
-
 	
 	/**
 	 * Control POST data for mass edit tags

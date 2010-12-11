@@ -1,5 +1,5 @@
 <?php
-class SimpleTagsAdmin {
+class SimpleTags_Admin {
 	var $options;
 	
 	// Build admin URL
@@ -37,13 +37,13 @@ class SimpleTagsAdmin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function SimpleTagsAdmin() {
+	function SimpleTags_Admin() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Admin URL for Pagination and target
 		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
-		$this->options_base_url = admin_url('options-general.php') . '?page=';
+		$options_base_url = admin_url('options-general.php') . '?page=';
 		
 		// Init taxonomy class variable, load this action after all actions on init !
 		add_action( 'init', array(&$this, 'determineTaxonomy'), 99999999 );
@@ -54,6 +54,37 @@ class SimpleTagsAdmin {
 		
 		// Load JavaScript and CSS
 		$this->initJavaScript();
+		
+		// Load custom part of plugin depending option
+		if ( $options['use_suggested_tags'] == 1 ) {
+			require( STAGS_DIR . '/inc/class.admin.suggest.php');
+			$simple_tags['admin-suggest'] = new SimpleTags_Admin_Suggest();
+		}
+		
+		if ( $options['use_click_tags'] == 1 ) {
+			require( STAGS_DIR . '/inc/class.admin.clicktags.php');
+			$simple_tags['admin-clicktags'] = new SimpleTags_Admin_ClickTags();
+		}
+		
+		if ( $options['use_autocompletion'] == 1 ) {
+			require( STAGS_DIR . '/inc/class.admin.autocomplete.php');
+			$simple_tags['admin-autocomplete'] = new SimpleTags_Admin_Autocomplete();
+		}
+		
+		if ( $options['active_mass_edit'] == 1 ) {
+			require( STAGS_DIR . '/inc/class.admin.mass.php');
+			$simple_tags['admin-mass'] = new SimpleTags_Admin_Mass();
+		}
+		
+		if ( $options['active_manage'] == 1 ) {
+			require( STAGS_DIR . '/inc/class.admin.manage.php');
+			$simple_tags['admin-manage'] = new SimpleTags_Admin_Manage();
+		}
+		
+		if ( $options['active_autotags'] == 1 ) {
+			require( STAGS_DIR . '/inc/class.admin.autotags.php');
+			$simple_tags['admin-autotags'] = new SimpleTags_Admin_AutoTags();
+		}
 	}
 	
 	/**
@@ -63,6 +94,9 @@ class SimpleTagsAdmin {
 	 * @author Amaury Balmer
 	 */
 	function initJavaScript() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Library JS
 		wp_register_script('jquery-cookie', 		STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
 		
@@ -81,7 +115,7 @@ class SimpleTagsAdmin {
 		// Common Helper for Post, Page and Plugin Page
 		if (
 			in_array($pagenow, $wp_post_pages) ||
-			( in_array($pagenow, $wp_page_pages) && $this->options['use_tag_pages'] == 1 ) ||
+			( in_array($pagenow, $wp_page_pages) && $options['use_tag_pages'] == 1 ) ||
 			( isset($_GET['page']) && in_array($_GET['page'], array('st_manage', 'st_mass_tags', 'st_auto', 'st_options')) )
 		) {
 			wp_enqueue_style ('st-admin');
@@ -110,31 +144,35 @@ class SimpleTagsAdmin {
 	 *
 	 */
 	function pageOptions() {
-		$option_data = (array) include( dirname(__FILE__) . '/helper.options.admin.php' );
+		// Get current options
+		$options = (array) get_option( STAGS_OPTIONS_NAME );
 		
 		// Update or reset options
 		if ( isset($_POST['updateoptions']) ) {
-			foreach((array) $this->options as $key => $value) {
+			foreach((array) $options as $key => $value) {
 				$newval = ( isset($_POST[$key]) ) ? stripslashes($_POST[$key]) : '0';
 				if ( $newval != $value && !in_array($key, array('use_auto_tags', 'auto_list')) ) {
-					$this->setOption( $key, $newval );
+					$options[$key] = $newval;
 				}
 			}
-			$this->saveOptions();
+			update_option( STAGS_OPTIONS_NAME, $options );
 			$this->message = __('Options saved', 'simpletags');
 			$this->status = 'updated';
 		} elseif ( isset($_POST['reset_options']) ) {
-			$this->options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
-			update_option( STAGS_OPTIONS_NAME, $this->options );
+			$options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
+			update_option( STAGS_OPTIONS_NAME, $options );
 			$this->message = __('Simple Tags options resetted to default options!', 'simpletags');
 		}
 		
 		$this->displayMessage();
+		
+		// Get array options/description
+		$option_data = (array) include( dirname(__FILE__) . '/helper.options.admin.php' );
 	    ?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-			<form action="<?php echo $this->options_base_url.'st_options'; ?>" method="post">
+			<form action="<?php echo $options_base_url.'st_options'; ?>" method="post">
 				<p>
 					<input class="button" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
 					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
@@ -235,8 +273,8 @@ class SimpleTagsAdmin {
 	 * @return string
 	 */
 	function printOptions( $option_data ) {
-		// Get actual options
-		$option_actual = (array) $this->options;
+		// Get options
+		$option_actual = (array) get_option( STAGS_OPTIONS_NAME );
 		
 		// Generate output
 		$output = '';
@@ -329,24 +367,6 @@ class SimpleTagsAdmin {
 				break;
 		}
 		return '';
-	}
-	
-	/**
-	 * Set an option value  -- note that this will NOT save the options.
-	 *
-	 * @param string $optname
-	 * @param string $optval
-	 */
-	function setOption( $optname = '', $optval = '') {
-		$this->options[$optname] = $optval;
-	}
-	
-	/**
-	 * Save all current options
-	 *
-	 */
-	function saveOptions() {
-		return update_option( STAGS_OPTIONS_NAME, $this->options );
 	}
 }
 ?>

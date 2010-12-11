@@ -1,9 +1,12 @@
 <?php
-class SimpleTags_Admin_AutoTags {
+class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
 	var $yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 
 	function SimpleTags_Admin_AutoTags() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
 		
@@ -11,7 +14,7 @@ class SimpleTags_Admin_AutoTags {
 		add_action('admin_init', array(&$this, 'ajaxCheck'));
 		
 		// Auto tags
-		if ( $this->options['use_auto_tags'] == 1 ) {
+		if ( $options['use_auto_tags'] == 1 ) {
 			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveAutoTags'), 10, 2 );
 		}
 	}
@@ -58,7 +61,10 @@ class SimpleTags_Admin_AutoTags {
 	 * @return boolean
 	 */
 	function autoTagsPost( $object ) {
-		if ( get_the_tags($object->ID) != false && $this->options['at_empty'] == 1 ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
+		if ( get_the_tags($object->ID) != false && $options['at_empty'] == 1 ) {
 			return false; // Skip post with tags, if tag only empty post option is checked
 		}
 		
@@ -75,13 +81,13 @@ class SimpleTags_Admin_AutoTags {
 		}
 		
 		// Auto tag with specifik auto tags list
-		$tags = (array) maybe_unserialize($this->options['auto_list']);
+		$tags = (array) maybe_unserialize($options['auto_list']);
 		foreach ( $tags as $tag ) {
 			if ( !is_string($tag) && empty($tag) )
 			 	continue;
 			
 			// Whole word ?
-			if ( (int) $this->options['only_full_word'] == 1 ) {
+			if ( (int) $options['only_full_word'] == 1 ) {
 				$tag = ' '.$tag.' '; // Add space before and after !
 			}
 			
@@ -92,7 +98,7 @@ class SimpleTags_Admin_AutoTags {
 		unset($tags, $tag);
 		
 		// Auto tags with all posts
-		if ( $this->options['at_all'] == 1 ) {
+		if ( $options['at_all'] == 1 ) {
 			// Get all terms
 			global $wpdb;
 			$terms = $wpdb->get_col("
@@ -110,7 +116,7 @@ class SimpleTags_Admin_AutoTags {
 				 	continue;
 				
 				// Whole word ?
-				if ( (int) $this->options['only_full_word'] == 1 ) {
+				if ( (int) $options['only_full_word'] == 1 ) {
 					$term = ' '.$term.' '; // Add space before and after !
 				}
 				
@@ -156,6 +162,9 @@ class SimpleTags_Admin_AutoTags {
 	 * @author Amaury Balmer
 	 */
 	function pageAutoTags() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		$action = false;
 		if ( isset($_POST['update_auto_list']) ) {
 			// Tags list
@@ -166,37 +175,22 @@ class SimpleTags_Admin_AutoTags {
 			$tags = array_filter($tags, '_delete_empty_element');
 			$tags = array_unique($tags);
 			
-			$this->setOption( 'auto_list', maybe_serialize($tags) );
+			$options['auto_list'] = maybe_serialize($tags);
 			
 			// Active auto tags ?
-			if ( isset($_POST['use_auto_tags']) && $_POST['use_auto_tags'] == '1' ) {
-				$this->setOption( 'use_auto_tags', '1' );
-			} else {
-				$this->setOption( 'use_auto_tags', '0' );
-			}
+			$options['use_auto_tags'] = ( isset($_POST['use_auto_tags']) && $_POST['use_auto_tags'] == '1' ) ? '1' : '0';
 			
 			// All tags ?
-			if ( isset($_POST['at_all']) && $_POST['at_all'] == '1' ) {
-				$this->setOption( 'at_all', '1' );
-			} else {
-				$this->setOption( 'at_all', '0' );
-			}
+			$options['at_all'] = ( isset($_POST['at_all']) && $_POST['at_all'] == '1' ) ? '1' : '0';
 			
 			// Empty only ?
-			if ( isset($_POST['at_empty']) && $_POST['at_empty'] == '1' ) {
-				$this->setOption( 'at_empty', '1' );
-			} else {
-				$this->setOption( 'at_empty', '0' );
-			}
+			$options['at_empty'] = ( isset($_POST['at_empty']) && $_POST['at_empty'] == '1' ) ? '1' : '0';
 			
 			// Full word ?
-			if ( isset($_POST['only_full_word']) && $_POST['only_full_word'] == '1' ) {
-				$this->setOption( 'only_full_word', '1' );
-			} else {
-				$this->setOption( 'only_full_word', '0' );
-			}
+			$options['only_full_word'] = ( isset($_POST['only_full_word']) && $_POST['only_full_word'] == '1' ) ? '1' : '0';
 			
-			$this->saveOptions();
+			update_option( STAGS_OPTIONS_NAME, $options );
+			
 			$this->message = __('Auto tags options updated !', 'simpletags');
 		} elseif ( isset($_GET['action']) && $_GET['action'] == 'auto_tag' ) {
 			$action = true;
@@ -204,7 +198,7 @@ class SimpleTags_Admin_AutoTags {
 		}
 		
 		$tags_list = '';
-		$tags = maybe_unserialize($this->options['auto_list']);
+		$tags = maybe_unserialize($options['auto_list']);
 		if ( is_array($tags) ) {
 			$tags_list = implode(', ', $tags);
 		}
@@ -231,28 +225,28 @@ class SimpleTags_Admin_AutoTags {
 						<tr valign="top">
 							<th scope="row"><?php _e('Activation', 'simpletags'); ?></th>
 							<td>
-								<input type="checkbox" id="use_auto_tags" name="use_auto_tags" value="1" <?php echo ( $this->options['use_auto_tags'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								<input type="checkbox" id="use_auto_tags" name="use_auto_tags" value="1" <?php echo ( $options['use_auto_tags'] == 1 ) ? 'checked="checked"' : ''; ?>  />
 								<label for="use_auto_tags"><?php _e('Active Auto Tags.', 'simpletags'); ?></label>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row"><?php _e('Terms database', 'simpletags'); ?></th>
 							<td>
-								<input type="checkbox" id="at_all" name="at_all" value="1" <?php echo ( $this->options['at_all'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								<input type="checkbox" id="at_all" name="at_all" value="1" <?php echo ( $options['at_all'] == 1 ) ? 'checked="checked"' : ''; ?>  />
 								<label for="at_all"><?php _e('Use also local terms database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags'); ?></label>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row"><?php _e('Target', 'simpletags'); ?></th>
 							<td>
-								<input type="checkbox" id="at_empty" name="at_empty" value="1" <?php echo ( $this->options['at_empty'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								<input type="checkbox" id="at_empty" name="at_empty" value="1" <?php echo ( $options['at_empty'] == 1 ) ? 'checked="checked"' : ''; ?>  />
 								<label for="at_empty"><?php _e('Autotag only posts without terms.', 'simpletags'); ?></label>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row"><?php _e('Whole Word ?', 'simpletags'); ?></th>
 							<td>
-								<input type="checkbox" id="only_full_word" name="only_full_word" value="1" <?php echo ( $this->options['only_full_word'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								<input type="checkbox" id="only_full_word" name="only_full_word" value="1" <?php echo ( $options['only_full_word'] == 1 ) ? 'checked="checked"' : ''; ?>  />
 								<label for="only_full_word"><?php _e('Autotag only a post when tags finded in the content are a the same name. (whole word only)', 'simpletags'); ?></label>
 							</td>
 						</tr>
@@ -285,7 +279,7 @@ class SimpleTags_Admin_AutoTags {
 				}
 				
 				// Page or not ?
-				$post_type_sql = ( $this->options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
+				$post_type_sql = ( $options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
 				
 				// Get objects
 				global $wpdb;

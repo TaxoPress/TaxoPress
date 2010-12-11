@@ -1,5 +1,5 @@
 <?php
-class SimpleTags_Admin_Manage {
+class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_Manage() {
 		// Admin menu
@@ -415,6 +415,9 @@ class SimpleTags_Admin_Manage {
 	 * @param string $new
 	 */
 	function addMatchTags( $match, $new ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		if ( trim( str_replace(',', '', stripslashes($new)) ) == '' ) {
 			$this->message = __('No new tag(s) specified!', 'simpletags');
 			$this->status = 'error';
@@ -450,7 +453,7 @@ class SimpleTags_Admin_Manage {
 			clean_term_cache($terms_id, 'post_tag');
 		} else { // Add for all posts
 			// Page or not ?
-			$post_type_sql = ( $this->options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
+			$post_type_sql = ( $options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
 			
 			// Get all posts ID
 			global $wpdb;

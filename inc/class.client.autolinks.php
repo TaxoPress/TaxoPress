@@ -8,10 +8,8 @@ class SimpleTags_Client_Autolinks() {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Auto link tags
-		if ( $options['auto_link_tags'] == '1' ) {
-			add_filter( 'the_posts', 	array(&$this, 'getPostIds') );
-			add_filter( 'the_content', 	array(&$this, 'autoLinkTags'), 12 );
-		}
+		add_filter( 'the_posts', 	array(&$this, 'getPostIds') );
+		add_filter( 'the_content', 	array(&$this, 'autoLinkTags'), 12 );
 	}
 	
 	/**

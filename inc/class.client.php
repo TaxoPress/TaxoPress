@@ -6,12 +6,20 @@ class SimpleTags_Client {
 	 * @return SimpleTags
 	 */
 	function SimpleTags_Client() {
+		global $simple_tags;
+		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Add pages in WP_Query
 		if ( $options['use_tag_pages'] == 1 ) {
 			add_action( 'init', array(&$this, 'registerTagsForPage'), 11 );
+		}
+		
+		// Call autolinks ?
+		if ( $options['auto_link_tags'] == '1' ) {
+			require( STAGS_DIR . '/inc/class.client.autolinks.php');
+			$simple_tags['client-autolinks'] = new SimpleTags_Client_Autolinks();
 		}
 		
 		return true;
