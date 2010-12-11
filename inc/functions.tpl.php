@@ -7,7 +7,7 @@
  */
 function st_get_tag_cloud( $args = '' ) {
 	global $simple_tags;
-	return $simple_tags['client']->extendedTagCloud( $args );
+	return $simple_tags['client-cloud']->extendedTagCloud( $args );
 }
 
 /**

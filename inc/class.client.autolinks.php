@@ -1,12 +1,9 @@
 <?php
-class SimpleTags_Client_Autolinks() {
+class SimpleTags_Client_Autolinks {
 	var $posts 		= array();
 	var $link_tags 	= array();
 	
 	function SimpleTags_Client_Autolinks() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Auto link tags
 		add_filter( 'the_posts', 	array(&$this, 'getPostIds') );
 		add_filter( 'the_content', 	array(&$this, 'autoLinkTags'), 12 );

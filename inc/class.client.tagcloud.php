@@ -1,5 +1,5 @@
 <?php
-class SimpleTags_Client_TagCloud() {
+class SimpleTags_Client_TagCloud {
 	function SimpleTags_Client_TagCloud() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
@@ -191,7 +191,7 @@ class SimpleTags_Client_TagCloud() {
 		// Remove unused variables
 		$counts = array();
 		$terms = array();
-		unset($counts, $terms, $element_loop, $term);
+		unset($counts, $terms, $term);
 		
 		return $this->outputContent( 'st-tag-cloud', $format, $title, $output, $copyright );
 	}
@@ -469,7 +469,7 @@ class SimpleTags_Client_TagCloud() {
 		
 		foreach ( (array) $taxonomies as $taxonomy ) {
 			if ( ! taxonomy_exists($taxonomy) ) {
-				$error = & new WP_Error('invalid_taxonomy', __('Invalid Taxonomy'));
+				$error = new WP_Error('invalid_taxonomy', __('Invalid Taxonomy'));
 				return $error;
 			}
 		}

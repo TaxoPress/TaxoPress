@@ -38,12 +38,14 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function SimpleTags_Admin() {
+		global $simple_tags;
+		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Admin URL for Pagination and target
 		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
-		$options_base_url = admin_url('options-general.php') . '?page=';
+		$this->options_base_url = admin_url('options-general.php') . '?page=';
 		
 		// Init taxonomy class variable, load this action after all actions on init !
 		add_action( 'init', array(&$this, 'determineTaxonomy'), 99999999 );
@@ -172,7 +174,7 @@ class SimpleTags_Admin {
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-			<form action="<?php echo $options_base_url.'st_options'; ?>" method="post">
+			<form action="<?php echo $this->options_base_url.'st_options'; ?>" method="post">
 				<p>
 					<input class="button" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
 					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
