@@ -10,9 +10,6 @@ class SimpleTagsAdmin {
 	var $taxonomy 			= 'post_tag';
 	var $taxo_name			= '';
 	
-	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
-	var $yahoo_id 			= 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
-	
 	// Error management
 	var $message = '';
 	var $status = '';
@@ -67,18 +64,17 @@ class SimpleTagsAdmin {
 	 */
 	function initJavaScript() {
 		// Library JS
-		wp_register_script('jquery-cookie', 			STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
+		wp_register_script('jquery-cookie', 		STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
 		
 		// Helper simple tags
-		wp_register_script('st-helper-add-tags', 		STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);
-		wp_register_script('st-helper-options', 		STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-add-tags', 	STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-options', 	STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), STAGS_VERSION);
 
 		// Register CSS
 		wp_register_style('st-admin', 				STAGS_URL.'/inc/css/admin.css', array(), STAGS_VERSION, 'all' );
 
 		// Register location
 		global $pagenow;
-		$st_pages = array('st_manage', 'st_mass_tags', 'st_auto', 'st_options');
 		$wp_post_pages = array('post.php', 'post-new.php');
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
@@ -86,7 +82,7 @@ class SimpleTagsAdmin {
 		if (
 			in_array($pagenow, $wp_post_pages) ||
 			( in_array($pagenow, $wp_page_pages) && $this->options['use_tag_pages'] == 1 ) ||
-			( isset($_GET['page']) && in_array($_GET['page'], $st_pages) )
+			( isset($_GET['page']) && in_array($_GET['page'], array('st_manage', 'st_mass_tags', 'st_auto', 'st_options')) )
 		) {
 			wp_enqueue_style ('st-admin');
 		}

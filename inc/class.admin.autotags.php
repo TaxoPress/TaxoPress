@@ -1,6 +1,8 @@
 <?php
 class SimpleTags_Admin_AutoTags {
-	
+	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
+	var $yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
+
 	function SimpleTags_Admin_AutoTags() {
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
