@@ -6,8 +6,11 @@ class SimpleTags_Client_Autolinks() {
 	var $link_tags = 'null';
 	
 	function SimpleTags_Client_Autolinks() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Auto link tags
-		if ( $this->options['auto_link_tags'] == '1' ) {
+		if ( $options['auto_link_tags'] == '1' ) {
 			// Stock Posts ID (useful for autolink and metakeywords)
 			add_filter( 'the_posts', array(&$this, 'getPostIds') );
 			
@@ -80,7 +83,10 @@ class SimpleTags_Client_Autolinks() {
 	function prepareAutoLinkTags() {
 		$this->getTagsFromCurrentPosts();
 		
-		$auto_link_min = (int) $this->options['auto_link_min'];
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
+		$auto_link_min = (int) $options['auto_link_min'];
 		if ( $auto_link_min == 0 ) {
 			$auto_link_min = 1;
 		}
@@ -113,22 +119,25 @@ class SimpleTags_Client_Autolinks() {
 		// HTML Rel (tag/no-follow)
 		$rel = $this->buildRel();
 		
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// only continue if the database actually returned any links
 		if ( isset($this->link_tags) && is_array($this->link_tags) && count($this->link_tags) > 0 ) {
 			
 			// Limit array
-			if ( (int) $this->options['auto_link_max_by_post'] != 0 ) {
-				$this->link_tags = array_slice($this->link_tags, 0, (int) $this->options['auto_link_max_by_post']);
+			if ( (int) $options['auto_link_max_by_post'] != 0 ) {
+				$this->link_tags = array_slice($this->link_tags, 0, (int) $options['auto_link_max_by_post']);
 			}
 			
 			$must_tokenize = TRUE; // will perform basic tokenization
 			$tokens = NULL; // two kinds of tokens: markup and text
 			
 			// Case option ?
-			$case = ( $this->options['auto_link_case'] == 1 ) ? 'i' : '';
+			$case = ( $options['auto_link_case'] == 1 ) ? 'i' : '';
 			
 			// Prepare exclude terms array
-			$excludes_terms = explode( ',', $this->options['auto_link_exclude'] );
+			$excludes_terms = explode( ',', $options['auto_link_exclude'] );
 			if ( $excludes_terms == false ) {
 				$excludes_terms = array();
 			} else {

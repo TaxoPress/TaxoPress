@@ -9,7 +9,7 @@ function SimpleTags_Install() {
 	// Put default options
 	$options_from_table = get_option( STAGS_OPTIONS_NAME );
 	if ( $options_from_table == false ) {
-		$options = (array) include( dirname(__FILE__) . '/default.options.php' );
+		$options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
 		update_option( STAGS_OPTIONS_NAME, $options );
 		unset( $options );
 	}

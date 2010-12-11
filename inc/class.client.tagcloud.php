@@ -1,8 +1,11 @@
 <?php
 class SimpleTags_Client_TagCloud() {
 	function SimpleTags_Client_TagCloud() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Embedded tag cloud
-		if ( $this->options['allow_embed_tcloud'] == 1 ) {
+		if ( $options['allow_embed_tcloud'] == 1 ) {
 			add_shortcode( 'st_tag_cloud', array(&$this, 'inlineTagCloud') );
 			add_shortcode( 'st-tag-cloud', array(&$this, 'inlineTagCloud') );
 		}
@@ -63,25 +66,28 @@ class SimpleTags_Client_TagCloud() {
 			'category' 	  => 0
 		);
 		
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Get values in DB
-		$defaults['taxonomy'] 	 = $this->options['cloud_taxonomy'];
-		$defaults['selectionby'] = $this->options['cloud_selectionby'];
-		$defaults['selection'] 	 = $this->options['cloud_selection'];
-		$defaults['orderby'] 	 = $this->options['cloud_orderby'];
-		$defaults['order'] 		 = $this->options['cloud_order'];
-		$defaults['number'] 	 = $this->options['cloud_limit_qty'];
-		$defaults['notagstext']  = $this->options['cloud_notagstext'];
-		$defaults['title'] 		 = $this->options['cloud_title'];
-		$defaults['maxcolor'] 	 = $this->options['cloud_max_color'];
-		$defaults['mincolor'] 	 = $this->options['cloud_min_color'];
-		$defaults['largest'] 	 = $this->options['cloud_max_size'];
-		$defaults['smallest'] 	 = $this->options['cloud_min_size'];
-		$defaults['unit'] 		 = $this->options['cloud_unit'];
-		$defaults['xformat'] 	 = $this->options['cloud_xformat'];
-		$defaults['format'] 	 = $this->options['cloud_format'];
+		$defaults['taxonomy'] 	 = $options['cloud_taxonomy'];
+		$defaults['selectionby'] = $options['cloud_selectionby'];
+		$defaults['selection'] 	 = $options['cloud_selection'];
+		$defaults['orderby'] 	 = $options['cloud_orderby'];
+		$defaults['order'] 		 = $options['cloud_order'];
+		$defaults['number'] 	 = $options['cloud_limit_qty'];
+		$defaults['notagstext']  = $options['cloud_notagstext'];
+		$defaults['title'] 		 = $options['cloud_title'];
+		$defaults['maxcolor'] 	 = $options['cloud_max_color'];
+		$defaults['mincolor'] 	 = $options['cloud_min_color'];
+		$defaults['largest'] 	 = $options['cloud_max_size'];
+		$defaults['smallest'] 	 = $options['cloud_min_size'];
+		$defaults['unit'] 		 = $options['cloud_unit'];
+		$defaults['xformat'] 	 = $options['cloud_xformat'];
+		$defaults['format'] 	 = $options['cloud_format'];
 		
 		if ( empty($args) ) {
-			$args = $this->options['cloud_adv_usage'];
+			$args = $options['cloud_adv_usage'];
 		}
 		$args = wp_parse_args( $args, $defaults );
 		
@@ -618,8 +624,11 @@ class SimpleTags_Client_TagCloud() {
 		
 		// ST Features : Limit posts date
 		if ( $limit_days != 0 ) {
+			// Get options
+			$options = get_option( STAGS_OPTIONS_NAME );
+			
 			$where .= " AND tr.object_id IN ( ";
-				$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND ".(( $this->options['use_tag_pages'] == '1' ) ? "p.post_type IN('page', 'post')" : "post_type = 'post'")." AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
+				$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND ".(( $options['use_tag_pages'] == '1' ) ? "p.post_type IN('page', 'post')" : "post_type = 'post'")." AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
 			$where .= " ) ";
 			
 			$join_relation = true;

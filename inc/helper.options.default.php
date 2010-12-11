@@ -1,7 +1,4 @@
 <?php
-if (isset($_SERVER['SCRIPT_FILENAME']) && 'default.options.php' == basename($_SERVER['SCRIPT_FILENAME']))
-	die ('Please do not load this page directly. Thanks!');
-
 return array(
 	// General
 	'use_tag_pages' 		=> 1,

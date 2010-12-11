@@ -42,7 +42,7 @@ class SimpleTagsAdmin {
 	 */
 	function SimpleTagsAdmin() {
 		// Get options
-		$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
+		$this->options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
 		
 		// Get options from WP options
 		$options_from_table = get_option( STAGS_OPTIONS_NAME );
@@ -412,7 +412,7 @@ class SimpleTagsAdmin {
 	 *
 	 */
 	function pageOptions() {
-		$option_data = (array) include( dirname(__FILE__) . '/array.options.php' );
+		$option_data = (array) include( dirname(__FILE__) . '/helper.options.admin.php' );
 		
 		// Update or reset options
 		if ( isset($_POST['updateoptions']) ) {
@@ -426,7 +426,7 @@ class SimpleTagsAdmin {
 			$this->message = __('Options saved', 'simpletags');
 			$this->status = 'updated';
 		} elseif ( isset($_POST['reset_options']) ) {
-			$this->options = (array) include( dirname(__FILE__) . '/default.options.php' );
+			$this->options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
 			update_option( STAGS_OPTIONS_NAME, $this->options );
 			$this->message = __('Simple Tags options resetted to default options!', 'simpletags');
 		}

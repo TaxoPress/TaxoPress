@@ -1,7 +1,4 @@
 <?php
-if (isset($_SERVER['SCRIPT_FILENAME']) && 'array.options.php' == basename($_SERVER['SCRIPT_FILENAME']))
-	die ('Please do not load this page directly. Thanks!');
-
 return array(
 	'general' => array(
 		array('use_tag_pages', __('Active tags for page:', 'simpletags'), 'checkbox', '1',
