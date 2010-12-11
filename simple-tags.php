@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
 Description: Extended Tagging for WordPress 3.0 : Suggested Tags, Mass edit tags, Autocompletion, Tag Cloud Widgets, Related Posts, Related Tags, etc !
-Version: 1.8
+Version: 2.0
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -23,6 +23,21 @@ GNU General Public License for more details.
 Contributors:
 - Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
 - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
+- Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
+
+Alernate ways for 
+	Related posts 
+		YARP
+		Similar Posts
+	
+	Related tags
+		Query Multiples Taxonomies
+	
+	Keywords
+		AIOSP
+		SEO Tools
+	
+
 
 Todo:
 	Both :
@@ -40,18 +55,12 @@ Todo:
 		- Verifier la case du remplacement par les liens
 */
 
-define( 'STAGS_VERSION', 		'1.8.1' );
+define( 'STAGS_VERSION', 		'2.0.0' );
 define( 'STAGS_OPTIONS_NAME', 	'simpletags' ); // Option name for save settings
 define( 'STAGS_FOLDER', 		'simple-tags' );
 
-// Mu-plugins or regular plugins ?
-if ( is_dir( WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER ) ) {
-	define ( 'STAGS_DIR', WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER );
-	define ( 'STAGS_URL', WPMU_PLUGIN_URL . '/' . STAGS_FOLDER );
-} else {
-	define ( 'STAGS_DIR', WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . STAGS_FOLDER );
-	define ( 'STAGS_URL', WP_PLUGIN_URL . '/' . STAGS_FOLDER );
-}
+define ( 'STAGS_URL', plugins_url('', __FILE__) );
+define ( 'STAGS_DIR', dirname(__FILE__) );
 
 require( STAGS_DIR . '/inc/client.php'); 		// Client class
 require( STAGS_DIR . '/inc/inc.functions.php'); // Internal functions
@@ -67,7 +76,7 @@ function simple_tags_init() {
 	global $simple_tags;
 
 	// Load translations
-	load_plugin_textdomain ( 'simpletags', false, STAGS_DIR . 'languages' );
+	load_plugin_textdomain ( 'simpletags', false, basename(rtrim(dirname(__FILE__), '/')) . '/languages' );
 	
 	// Load client
 	$simple_tags['client'] = new SimpleTags();

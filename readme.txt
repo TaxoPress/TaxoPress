@@ -86,6 +86,17 @@ Then: Manage - Import - Embedded Tags
 
 == Changelog ==
 
+* Version 2.0 :
+	* This version is a back to fondamentals. Somes features are removed ! 
+	* Remove old marker <!--st_tag_cloud-->
+	* Remove related posts
+	* Remove related tags
+	* Remove tags as HTML keywords
+	* Remove nofollow options
+	* Remove custom function for display current post tags
+	* Remove auto-add post tags
+	* Remove embedded tags
+	* Change method for tags for page.
 * Version 1.8.1 :
 	* Improve uninstaller
 	* Improve code widgets

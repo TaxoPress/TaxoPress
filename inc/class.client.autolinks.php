@@ -1,0 +1,194 @@
+<?php
+class SimpleTags_Client_Autolinks() {
+	// Stock Post ID for current view
+	var $posts = array();
+	var $tags_currentposts = array();
+	var $link_tags = 'null';
+	
+	function SimpleTags_Client_Autolinks() {
+		// Auto link tags
+		if ( $this->options['auto_link_tags'] == '1' ) {
+			// Stock Posts ID (useful for autolink and metakeywords)
+			add_filter( 'the_posts', array(&$this, 'getPostIds') );
+			
+			add_filter('the_content', array(&$this, 'autoLinkTags'), 12);
+		}
+	}
+	
+	/**
+	 * Stock posts ID as soon as possible
+	 *
+	 * @param array $posts
+	 * @return array
+	 */
+	function getPostIds( $posts = array() ) {
+		if ( !empty($posts) && is_array($posts) ) {
+			foreach( (array) $posts as $post) {
+				$this->posts[] = (int) $post->ID;
+			}
+			
+			$this->posts = array_unique( $this->posts );
+		}
+		return $posts;
+	}
+	
+	/**
+	 * Get tags from current post views
+	 *
+	 * @return boolean
+	 */
+	function getTagsFromCurrentPosts() {
+		if ( is_array($this->posts) && count($this->posts) > 0 ) {
+			// Generate SQL from post id
+			$postlist = implode( "', '", $this->posts );
+			
+			// Generate key cache
+			$key = md5(maybe_serialize($postlist));
+			// Get cache if exist
+			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
+				if ( isset( $cache[$key] ) ) {
+					$this->tags_currentposts = $cache[$key];
+					return true;
+				}
+			}
+			
+			// If cache not exist, get datas and set cache
+			global $wpdb;
+			$results = $wpdb->get_results("
+				SELECT t.name AS name, t.term_id AS term_id, tt.count AS count
+				FROM {$wpdb->term_relationships} AS tr
+				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
+				INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
+				WHERE tt.taxonomy = 'post_tag'
+				AND ( tr.object_id IN ('{$postlist}') )
+				GROUP BY t.term_id
+				ORDER BY tt.count DESC");
+			
+			$cache[$key] = $results;
+			wp_cache_set('generate_keywords', $cache, 'simpletags');
+			
+			$this->tags_currentposts = $results;
+			unset($results, $key);
+		}
+		return true;
+	}
+	
+	/**
+	 * Get links for each tag for auto link feature
+	 *
+	 */
+	function prepareAutoLinkTags() {
+		$this->getTagsFromCurrentPosts();
+		
+		$auto_link_min = (int) $this->options['auto_link_min'];
+		if ( $auto_link_min == 0 ) {
+			$auto_link_min = 1;
+		}
+		
+		$this->link_tags = array();
+		foreach ( (array) $this->tags_currentposts as $term ) {
+			if ( $term->count >= $auto_link_min ) {
+				$this->link_tags[$term->name] = esc_url(get_tag_link( $term->term_id ));
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Replace text by link to tag
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	function autoLinkTags( $content = '' ) {
+		// Get currents tags if no exists
+		if ( $this->link_tags == 'null' ) {
+			$this->prepareAutoLinkTags();
+		}
+		
+		// Shuffle array
+		$this->randomArray($this->link_tags);
+		
+		// HTML Rel (tag/no-follow)
+		$rel = $this->buildRel();
+		
+		// only continue if the database actually returned any links
+		if ( isset($this->link_tags) && is_array($this->link_tags) && count($this->link_tags) > 0 ) {
+			
+			// Limit array
+			if ( (int) $this->options['auto_link_max_by_post'] != 0 ) {
+				$this->link_tags = array_slice($this->link_tags, 0, (int) $this->options['auto_link_max_by_post']);
+			}
+			
+			$must_tokenize = TRUE; // will perform basic tokenization
+			$tokens = NULL; // two kinds of tokens: markup and text
+			
+			// Case option ?
+			$case = ( $this->options['auto_link_case'] == 1 ) ? 'i' : '';
+			
+			// Prepare exclude terms array
+			$excludes_terms = explode( ',', $this->options['auto_link_exclude'] );
+			if ( $excludes_terms == false ) {
+				$excludes_terms = array();
+			} else {
+				$excludes_terms = array_filter($excludes_terms, '_delete_empty_element');
+				$excludes_terms = array_unique($excludes_terms);
+			}
+			
+			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
+				if ( in_array( $term_name, (array) $excludes_terms ) ) {
+					continue;
+				}
+				
+				$filtered = ''; // will filter text token by token
+				
+				$match = '/(\PL|\A)(' . preg_quote($term_name, "/") . ')(\PL|\Z)/u'.$case;
+				$substitute = '$1<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) )."\">$2</a>$3";
+				
+				//$match = "/\b" . preg_quote($term_name, "/") . "\b/".$case;
+				//$substitute = '<a href="'.$term_link.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simpletags'), $term_name ) )."\">$0</a>";
+				
+				// for efficiency only tokenize if forced to do so
+				if ( $must_tokenize ) {
+					// this regexp is taken from PHP Markdown by Michel Fortin: http://www.michelf.com/projects/php-markdown/
+					$comment = '(?s:<!(?:--.*?--\s*)+>)|';
+					$processing_instruction = '(?s:<\?.*?\?>)|';
+					$tag = '(?:<[/!$]?[-a-zA-Z0-9:]+\b(?>[^"\'>]+|"[^"]*"|\'[^\']*\')*>)';
+					
+					$markup = $comment . $processing_instruction . $tag;
+					$flags = PREG_SPLIT_DELIM_CAPTURE;
+					$tokens = preg_split("{($markup)}", $content, -1, $flags);
+					$must_tokenize = false;
+				}
+				
+				// there should always be at least one token, but check just in case
+				$anchor_level = 0;
+				if ( isset($tokens) && is_array($tokens) && count($tokens) > 0 ) {
+					$i = 0;
+					foreach ($tokens as $token) {
+						if (++$i % 2 && $token != '') { // this token is (non-markup) text
+							if ($anchor_level == 0) { // linkify if not inside anchor tags
+								if ( preg_match($match, $token) ) { // use preg_match for compatibility with PHP 4
+									$token = preg_replace($match, $substitute, $token); // only PHP 5 supports calling preg_replace with 5 arguments
+									$must_tokenize = true; // re-tokenize next time around
+								}
+							}
+						} else { // this token is markup
+							if ( preg_match("#<\s*a\s+[^>]*>#i", $token) ) { // found <a ...>
+								$anchor_level++;
+							} elseif ( preg_match("#<\s*/\s*a\s*>#i", $token) ) { // found </a>
+								$anchor_level--;
+							}
+						}
+						$filtered .= $token; // this token has now been filtered
+					}
+					$content = $filtered; // filtering completed for this link
+				}
+			}
+		}
+		
+		return $content;
+	}
+}
+?>

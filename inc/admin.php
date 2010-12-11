@@ -73,11 +73,6 @@ class SimpleTagsAdmin {
 		add_action('admin_init', array(&$this, 'ajaxCheck'));
 		add_action('admin_init', array(&$this, 'checkFormMassEdit'));
 		
-		// Embedded Tags
-		if ( $this->options['use_embed_tags'] == 1 ) {
-			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveEmbedTags'), 10, 2 );
-		}
-		
 		// Auto tags
 		if ( $this->options['use_auto_tags'] == 1 ) {
 			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveAutoTags'), 10, 2 );
@@ -252,7 +247,7 @@ class SimpleTagsAdmin {
 			$tags = explode(',', $tags_list);
 			
 			// Remove empty and duplicate elements
-			$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
+			$tags = array_filter($tags, '_delete_empty_element');
 			$tags = array_unique($tags);
 			
 			$this->setOption( 'auto_list', maybe_serialize($tags) );
@@ -977,51 +972,10 @@ class SimpleTagsAdmin {
 			$tags = explode( ',', $tags );
 			
 			// Remove empty and trim tag
-			$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
+			$tags = array_filter($tags, '_delete_empty_element');
 			
 			// Add new tag (no append ! replace !)
 			wp_set_object_terms( $post_id, $tags, 'post_tag' );
-			
-			// Clean cache
-			if ( 'page' == $object->post_type ) {
-				clean_page_cache($post_id);
-			} else {
-				clean_post_cache($post_id);
-			}
-			
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * Save embedded tags
-	 *
-	 * @param integer $post_id
-	 * @param array $post_data
-	 */
-	function saveEmbedTags( $post_id = null, $post_data = null ) {
-		$object = get_post($post_id);
-		if ( $object == false || $object == null ) {
-			return false;
-		}
-		
-		// Return Tags
-		$matches = $tags = array();
-		preg_match_all('/(' . $this->regexEscape($this->options['start_embed_tags']) . '(.*?)' . $this->regexEscape($this->options['end_embed_tags']) . ')/is', $object->post_content, $matches);
-		
-		foreach ( $matches[2] as $match) {
-			foreach( (array) explode(',', $match) as $tag) {
-				$tags[] = $tag;
-			}
-		}
-		
-		if( !empty($tags) ) {
-			// Remove empty and duplicate elements
-			$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
-			$tags = array_unique($tags);
-			
-			wp_set_post_tags( $post_id, $tags, true ); // Append tags
 			
 			// Clean cache
 			if ( 'page' == $object->post_type ) {
@@ -1136,7 +1090,7 @@ class SimpleTagsAdmin {
 		// Append tags if tags to add
 		if ( !empty($tags_to_add) ) {
 			// Remove empty and duplicate elements
-			$tags_to_add = array_filter($tags_to_add, array(&$this, 'deleteEmptyElement'));
+			$tags_to_add = array_filter($tags_to_add, '_delete_empty_element');
 			$tags_to_add = array_unique($tags_to_add);
 			
 			// Increment counter
@@ -1217,8 +1171,8 @@ class SimpleTagsAdmin {
 		$new_tags = explode(',', $new);
 		
 		// Remove empty element and trim
-		$old_tags = array_filter($old_tags, array(&$this, 'deleteEmptyElement'));
-		$new_tags = array_filter($new_tags, array(&$this, 'deleteEmptyElement'));
+		$old_tags = array_filter($old_tags, '_delete_empty_element');
+		$new_tags = array_filter($new_tags, '_delete_empty_element');
 		
 		// If old/new tag are empty => exit !
 		if ( empty($old_tags) || empty($new_tags) ) {
@@ -1323,20 +1277,6 @@ class SimpleTagsAdmin {
 	}
 	
 	/**
-	 * trim and remove empty element
-	 *
-	 * @param string $element
-	 * @return string
-	 */
-	function deleteEmptyElement( &$element ) {
-		$element = stripslashes($element);
-		$element = trim($element);
-		if ( !empty($element) ) {
-			return $element;
-		}
-	}
-	
-	/**
 	 * Delete list of tags
 	 *
 	 * @param string $delete
@@ -1350,7 +1290,7 @@ class SimpleTagsAdmin {
 		
 		// In array + filter
 		$delete_tags = explode(',', $delete);
-		$delete_tags = array_filter($delete_tags, array(&$this, 'deleteEmptyElement'));
+		$delete_tags = array_filter($delete_tags, '_delete_empty_element');
 		
 		// Delete tags
 		$counter = 0;
@@ -1388,8 +1328,8 @@ class SimpleTagsAdmin {
 		$match_tags = explode(',', $match);
 		$new_tags = explode(',', $new);
 		
-		$match_tags = array_filter($match_tags, array(&$this, 'deleteEmptyElement'));
-		$new_tags = array_filter($new_tags, array(&$this, 'deleteEmptyElement'));
+		$match_tags = array_filter($match_tags, '_delete_empty_element');
+		$new_tags = array_filter($new_tags, '_delete_empty_element');
 		
 		$counter = 0;
 		if ( !empty($match_tags) ) { // Match and add
@@ -1453,8 +1393,8 @@ class SimpleTagsAdmin {
 		$match_names = explode(',', $names);
 		$new_slugs = explode(',', $slugs);
 		
-		$match_names = array_filter($match_names, array(&$this, 'deleteEmptyElement'));
-		$new_slugs = array_filter($new_slugs, array(&$this, 'deleteEmptyElement'));
+		$match_names = array_filter($match_names, '_delete_empty_element');
+		$new_slugs = array_filter($new_slugs, '_delete_empty_element');
 		
 		if ( count($match_names) != count($new_slugs) ) {
 			$this->message = __('Tags number and slugs number isn\'t the same!', 'simpletags');
@@ -1638,7 +1578,7 @@ class SimpleTagsAdmin {
 					$tags = explode( ',', $tag_list );
 					
 					// Remove empty and trim tag
-					$tags = array_filter($tags, array(&$this, 'deleteEmptyElement'));
+					$tags = array_filter($tags, '_delete_empty_element');
 					
 					// Add new tag (no append ! replace !)
 					wp_set_object_terms( $object_id, $tags, $this->taxonomy );
@@ -1751,7 +1691,7 @@ class SimpleTagsAdmin {
 		}
 		
 		// Remove empty terms
-		$data = array_filter($data, array(&$this, 'deleteEmptyElement'));
+		$data = array_filter($data, '_delete_empty_element');
 		$data = array_unique($data);
 		
 		foreach ( (array) $data as $term ) {
@@ -1912,7 +1852,7 @@ class SimpleTagsAdmin {
 		$data = (array) $data['ResultSet']['Result'];
 		
 		// Remove empty terms
-		$data = array_filter($data, array(&$this, 'deleteEmptyElement'));
+		$data = array_filter($data, '_delete_empty_element');
 		$data = array_unique($data);
 		
 		foreach ( (array) $data as $term ) {
@@ -1976,7 +1916,7 @@ class SimpleTagsAdmin {
 		}
 		
 		// Remove empty terms
-		$terms = array_filter($terms, array(&$this, 'deleteEmptyElement'));
+		$terms = array_filter($terms, '_delete_empty_element');
 		$terms = array_unique($terms);
 		
 		echo implode("\n", $terms);
@@ -2263,16 +2203,6 @@ class SimpleTagsAdmin {
 				break;
 		}
 		return '';
-	}
-	
-	/**
-	 * Escape string so that it can used in Regex. E.g. used for [tags]...[/tags]
-	 *
-	 * @param string $content
-	 * @return string
-	 */
-	function regexEscape( $content ) {
-		return strtr($content, array("\\" => "\\\\", "/" => "\\/", "[" => "\\[", "]" => "\\]"));
 	}
 	
 	/**

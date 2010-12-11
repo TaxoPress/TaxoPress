@@ -61,6 +61,20 @@ function SimpleTags_Uninstall() {
 	}
 }
 
+/**
+ * trim and remove empty element
+ *
+ * @param string $element
+ * @return string
+ */
+function _delete_empty_element( &$element ) {
+	$element = stripslashes($element);
+	$element = trim($element);
+	if ( !empty($element) ) {
+		return $element;
+	}
+}
+
 // Future of WP ?
 if ( !function_exists('add_filters') ) :
 function add_filters($tags, $function_to_add, $priority = 10, $accepted_args = 1) {
