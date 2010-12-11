@@ -1,9 +1,7 @@
 <?php
 class SimpleTags_Client_Autolinks() {
-	// Stock Post ID for current view
-	var $posts = array();
-	var $tags_currentposts = array();
-	var $link_tags = 'null';
+	var $posts 		= array();
+	var $link_tags 	= array();
 	
 	function SimpleTags_Client_Autolinks() {
 		// Get options
@@ -11,10 +9,8 @@ class SimpleTags_Client_Autolinks() {
 		
 		// Auto link tags
 		if ( $options['auto_link_tags'] == '1' ) {
-			// Stock Posts ID (useful for autolink and metakeywords)
-			add_filter( 'the_posts', array(&$this, 'getPostIds') );
-			
-			add_filter('the_content', array(&$this, 'autoLinkTags'), 12);
+			add_filter( 'the_posts', 	array(&$this, 'getPostIds') );
+			add_filter( 'the_content', 	array(&$this, 'autoLinkTags'), 12 );
 		}
 	}
 	
@@ -50,8 +46,7 @@ class SimpleTags_Client_Autolinks() {
 			// Get cache if exist
 			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
 				if ( isset( $cache[$key] ) ) {
-					$this->tags_currentposts = $cache[$key];
-					return true;
+					return $cache[$key];
 				}
 			}
 			
@@ -70,10 +65,10 @@ class SimpleTags_Client_Autolinks() {
 			$cache[$key] = $results;
 			wp_cache_set('generate_keywords', $cache, 'simpletags');
 			
-			$this->tags_currentposts = $results;
-			unset($results, $key);
+			return $results;
 		}
-		return true;
+		
+		return array();
 	}
 	
 	/**
@@ -81,8 +76,6 @@ class SimpleTags_Client_Autolinks() {
 	 *
 	 */
 	function prepareAutoLinkTags() {
-		$this->getTagsFromCurrentPosts();
-		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -91,8 +84,7 @@ class SimpleTags_Client_Autolinks() {
 			$auto_link_min = 1;
 		}
 		
-		$this->link_tags = array();
-		foreach ( (array) $this->tags_currentposts as $term ) {
+		foreach ( (array) $this->getTagsFromCurrentPosts() as $term ) {
 			if ( $term->count >= $auto_link_min ) {
 				$this->link_tags[$term->name] = esc_url(get_tag_link( $term->term_id ));
 			}
@@ -109,9 +101,7 @@ class SimpleTags_Client_Autolinks() {
 	 */
 	function autoLinkTags( $content = '' ) {
 		// Get currents tags if no exists
-		if ( $this->link_tags == 'null' ) {
-			$this->prepareAutoLinkTags();
-		}
+		$this->prepareAutoLinkTags();
 		
 		// Shuffle array
 		$this->randomArray($this->link_tags);

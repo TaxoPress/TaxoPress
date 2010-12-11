@@ -3,6 +3,7 @@
  * Simple Tags widget class
  *
  */
+add_action( 'widgets_init', create_function('', 'return register_widget("SimpleTags_Widget");') );
 class SimpleTags_Widget extends WP_Widget {
 	/**
 	 * Constructor widget

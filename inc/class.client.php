@@ -1,11 +1,11 @@
 <?php
-class SimpleTags {
+class SimpleTags_Client {
 	/**
-	 * PHP4 constructor - Initialize ST
+	 * PHP4 constructor - Initialize Simple Tags client
 	 *
 	 * @return SimpleTags
 	 */
-	function SimpleTags() {
+	function SimpleTags_Client() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		

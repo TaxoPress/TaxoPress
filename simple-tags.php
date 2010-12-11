@@ -62,16 +62,16 @@ define( 'STAGS_FOLDER', 		'simple-tags' );
 define ( 'STAGS_URL', plugins_url('', __FILE__) );
 define ( 'STAGS_DIR', dirname(__FILE__) );
 
-require( STAGS_DIR . '/inc/client.php'); 		// Client class
-require( STAGS_DIR . '/inc/inc.functions.php'); // Internal functions
-require( STAGS_DIR . '/inc/tpl.functions.php'); // Templates functions
-require( STAGS_DIR . '/inc/widgets.php'); 		// Widgets
+require( STAGS_DIR . '/inc/class.client.php'); 		// Client class
+require( STAGS_DIR . '/inc/functions.inc..php'); 	// Internal functions
+require( STAGS_DIR . '/inc/functions.tpl.php'); 	// Templates functions
+require( STAGS_DIR . '/inc/class.widgets.php'); 	// Widgets
 
 // Activation, uninstall
 register_activation_hook( __FILE__, 'SimpleTags_Install'   );
 register_uninstall_hook ( __FILE__, 'SimpleTags_Uninstall' );
 
-// Init ST
+// Init Simple Tags
 function simple_tags_init() {
 	global $simple_tags;
 
@@ -79,16 +79,13 @@ function simple_tags_init() {
 	load_plugin_textdomain ( 'simpletags', false, basename(rtrim(dirname(__FILE__), '/')) . '/languages' );
 	
 	// Load client
-	$simple_tags['client'] = new SimpleTags();
+	$simple_tags['client'] = new SimpleTags_Client();
 	
 	// Admin and XML-RPC
 	if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) && (isset($_REQUEST['code']) && $_REQUEST['code'] == get_option('wpo_croncode')) ) {
 		require( STAGS_DIR . '/inc/admin.php' );
 		$simple_tags['admin'] = new SimpleTagsAdmin();
 	}
-	
-	// Register Widget
-	add_action( 'widgets_init', create_function('', 'return register_widget("SimpleTags_Widget");') );
 }
 add_action( 'plugins_loaded', 'simple_tags_init' );
 ?>
