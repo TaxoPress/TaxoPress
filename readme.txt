@@ -1,12 +1,12 @@
 === Simple Tags ===
 Contributors: momo360modena
-Donate link: http://www.herewithme.fr/wordpress-plugins/simple-tags#donation
-Tags: tag, posts, tags, admin, administration, tagging, navigation, import
-Requires at least: 2.9
-Tested up to: 3.0
+Donate link: http://beapi.fr/donate/
+Tags: tag, posts, tags, admin, administration, tagging, navigation
+Requires at least: 3.0
+Tested up to: 3.1
 Stable tag: 1.8
 
-Simple Tags is THE perfect tool to manage perfectly your WP 3.0 tags (Tags suggestion, Mass Edit Terms (Tags and Category), Auto link tags, Ajax Autocompletion, Click tags, Related Posts, Related Tags, Advanced edit tags, etc.)
+Simple Tags is THE perfect tool to manage perfectly your WP 3.0 tags (Tags suggestion, Mass Edit Terms (Tags and Category), Auto link tags, Ajax Autocompletion, Click tags, Advanced edit tags, etc.)
 
 == Description ==
 
@@ -24,19 +24,12 @@ It was written with this philosophy : best performances, more secured and brings
 	* Auto tags !
 	* Type-ahead input tags / Autocompletion Ajax
 	* Click tags
-	* Related tags !
-	* Importer for embedded tags
 	* Possibility to tag pages (not only posts) and include them inside the tags results
-	* Embedded tags ([tags]tag1, tag2[/tags]) for compatibility with old plugins
 	* **Easy configuration ! (in WP admin)**
 
-* Blog
-	* Meta keywords generate from tags in your header's blog
+* Public
 	* Technorati, Flickr and Delicious tags
 	* Dynamic Tag Clouds with colors with Widgets (random order, etc)
-	* Related content since common tags
-	* Possibility to add related posts inside RSS
-	* Extended the_tags function (outside the loop, technorati, etc)
 
 And more...
 
@@ -56,24 +49,10 @@ The Simple Tags can be installed in 4 easy steps:
 
 = Simple Tags is compatible with which WordPress versions ? =
 
-1.8   and upper are compatible only with WordPress 3.0 and upper !
-1.7   and upper are compatible only with WordPress 2.8, 2.9 and upper !
+1.8 and upper are compatible only with WordPress 3.0 and upper !
+1.7 and upper are compatible only with WordPress 2.8, 2.9 and upper !
 1.6.7 and before are compatible with WordPress 2.3 to 2.7
 Before WP 2.3, you must use the plugin Simple Tagging.
-
-= How import tags from my old tags plugin ? =
-
-Yes, with official default importer. Manage -> Import
-Compatible with UTW, Simple Tagging, Etc.
-
-= Simple Tags is compatible with WPmu ? =
-
-Yes, but it not allow tag cloud site. Soon !
-
-= Simple Tags can import Embedded Tags from old plugins =
-
-Yes, copy importer "simple-tags/extras/simple-tags.importer.php" into "wp-admin/import/simple-tags.importer.php"
-Then: Manage - Import - Embedded Tags
 
 == Screenshots ==
 
@@ -97,6 +76,9 @@ Then: Manage - Import - Embedded Tags
 	* Remove auto-add post tags
 	* Remove embedded tags
 	* Change method for tags for page.
+	* Improve memory consommation : all feature can be deactived.
+	* Improve memory consommation : Stop use class variables for options
+	* 
 * Version 1.8.1 :
 	* Improve uninstaller
 	* Improve code widgets
