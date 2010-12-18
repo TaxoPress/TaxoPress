@@ -1,5 +1,5 @@
 <?php
-class SimpleTags_Client_Autolinks {
+class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	var $posts 		= array();
 	var $link_tags 	= array();
 	

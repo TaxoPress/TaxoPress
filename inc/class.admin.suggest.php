@@ -1,6 +1,8 @@
 <?php
 class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
-	
+	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
+	var $yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
+		
 	function SimpleTags_Admin_Suggest() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
@@ -90,13 +92,10 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 					$this->ajaxTagTheNet();
 				break;
 				case 'helper_js_collection' :
-					$this->ajaxLocalTags( 'js_collection' );
+					$this->ajaxLocalTags();
 				break;
 				case 'tags_from_local_db' :
 					$this->ajaxSuggestLocal();
-				break;
-				case 'click_tags' :
-					$this->ajaxLocalTags( 'html_span' );
 				break;
 			}
 		}
@@ -396,7 +395,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ( ((int) wp_count_terms($this->taxonomy, 'ignore_empty=true')) == 0) { // No tags to suggest
+		if ( ((int) wp_count_terms($this->taxonomy, 'ignore_empty=false')) == 0) { // No tags to suggest
 			echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';
 			exit();
 		}
@@ -430,113 +429,34 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	}
 	
 	/**
-	 * Display a span list for click tags or a javascript collection for autocompletion script !
-	 *
-	 * @param string $format
+	 * Display a javascript collection for autocompletion script !
 	 */
-	function ajaxLocalTags( $format = 'html_span' ) {
+	function ajaxLocalTags() {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ((int) wp_count_terms($this->taxonomy, 'ignore_empty=true') == 0 ) { // No tags to suggest
-			if ( $format == 'html_span' ) {
-				echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';
-			}
+		if ((int) wp_count_terms($this->taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
 			exit();
 		}
 		
 		// Prepare search
-		$search = trim(stripslashes($_GET['q']));
+		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
 		
 		// Get all terms, or filter with search
-		$terms = $this->getTermsForAjax( $this->taxonomy, $search, $format );
+		$terms = $this->getTermsForAjax( $this->taxonomy, $search );
 		if ( empty($terms) || $terms == false ) {
-			if ( $format == 'html_span' ) {
-				echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
-			}
 			exit();
 		}
 		
-		switch ($format) {
-			case 'html_span' :
-				
-				foreach ( (array) $terms as $term ) {
-					echo '<span class="local">'.esc_html(stripslashes($term->name)).'</span>'."\n";
-				}
-				echo '<div class="clear"></div>';
-				break;
+		// Format terms
+		foreach ( (array) $terms as $term ) {
+			$term->name = stripslashes($term->name);
+			$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
 			
-			case 'js_collection' :
-			default:
-				
-				// Format terms
-				foreach ( (array) $terms as $term ) {
-					$term->name = stripslashes($term->name);
-					$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
-					
-					echo "$term->term_id|$term->name\n";
-				}
-				break;
+			echo "$term->term_id|$term->name\n";
 		}
+		
 		exit();
-	}
-	
-	function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $format = '' ) {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
-		global $wpdb;
-		
-		if ( $format == 'html_span' ) { // Click tags ? allow order.
-			// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
-			$options['order_click_tags'] = strtolower($options['order_click_tags']);
-			$order_by = $order = '';
-			switch ( $options['order_click_tags'] ) {
-				case 'count-asc':
-					$order_by = 'tt.count';
-					$order = 'ASC';
-					break;
-				case 'random':
-					$order_by = 'RAND()';
-					$order = '';
-					break;
-				case 'count-desc':
-					$order_by = 'tt.count';
-					$order = 'DESC';
-					break;
-				case 'name-desc':
-					$order_by = 't.name';
-					$order = 'DESC';
-					break;
-				default : // name-asc
-					$order_by = 't.name';
-					$order = 'ASC';
-				break;
-			}
-		} else {
-			$order_by = 'name';
-			$order = 'ASC';
-		}
-		
-		
-		if ( !empty($search) ) {
-			return $wpdb->get_results( $wpdb->prepare("
-				SELECT DISTINCT t.name, t.term_id
-				FROM {$wpdb->terms} AS t
-				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-				WHERE tt.taxonomy = %s
-				AND name LIKE %s
-				ORDER BY $order_by $order
-			", $taxonomy, '%'.$search.'%' ) );
-		} else {
-			return $wpdb->get_results( $wpdb->prepare("
-				SELECT DISTINCT t.name, t.term_id
-				FROM {$wpdb->terms} AS t
-				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-				WHERE tt.taxonomy = %s
-				ORDER BY $order_by $order
-			", $taxonomy) );
-		}
 	}
 }
 ?>

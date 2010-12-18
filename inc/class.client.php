@@ -32,7 +32,43 @@ class SimpleTags_Client {
 	 * @author Amaury Balmer
 	 */
 	function registerTagsForPage() {
-		register_taxonomy_for_object_type( 'post_tags', 'page' );
+		register_taxonomy_for_object_type( 'post_tag', 'page' );
+	}
+	
+	/**
+	 * Randomize an array and keep association
+	 *
+	 * @param array $array
+	 * @return boolean
+	 */
+	function randomArray( &$array ) {
+		if ( !is_array($array) || empty($array) ) {
+			return false;
+		}
+		
+		$keys = array_keys($array);
+		shuffle($keys);
+		foreach( (array) $keys as $key ) {
+			$new[$key] = $array[$key];
+		}
+		$array = $new;
+		
+		return true;
+	}
+	
+	/**
+	 * Build rel for tag link
+	 *
+	 * @return string
+	 */
+	function buildRel() {
+		global $wp_rewrite;
+		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
+		if ( !empty($rel) ) {
+			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
+		}
+		
+		return $rel;
 	}
 }
 ?>

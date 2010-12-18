@@ -5,15 +5,13 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
-		// Box for post
-		add_action('admin_menu', array(&$this, 'helperClickTags_Post'), 1);
+		// Ajax action, JS Helper and admin action
+		add_action('admin_init', array(&$this, 'ajaxCheck'));
 		
-		// Box for Page
-		if ( $options['use_tag_pages'] == 1 ) {
-			add_action('admin_menu', array(&$this, 'helperClickTags_Page'), 1);
-		}
+		// Box for post/page
+		add_action('admin_menu', array(&$this, 'helperClickTags'), 1);
 		
-		wp_register_script('st-helper-click-tags', 		STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
+		wp_register_script('st-helper-click-tags', STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'site_url' => admin_url('admin.php'), 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );
 		
 		// Register location
@@ -27,21 +25,87 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		}
 	}
 	
-	/**
-	 * Click tags
-	 *
-	 */
-	function helperClickTags_Page() {
-		add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'page', 'advanced', 'core');
-	}
-	
-	function helperClickTags_Post() {
+	function helperClickTags() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'post', 'advanced', 'core');
+		if ( $options['use_tag_pages'] == 1 )
+			add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'page', 'advanced', 'core');
 	}
 	
 	function boxClickTags() {
 		echo $this->getDefaultContentBox();
 	}
 	
+	/**
+	 * Ajax Dispatcher
+	 *
+	 */
+	function ajaxCheck() {
+		if ( isset($_GET['st_ajax_action']) && $_GET['st_ajax_action'] == 'click_tags' )  {
+			$this->ajaxLocalTags();
+		}
+	}
+	
+	/**
+	 * Display a span list for click tags
+	 *
+	 */
+	function ajaxLocalTags() {
+		status_header( 200 ); // Send good header HTTP
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		
+		if ((int) wp_count_terms($this->taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
+			echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Prepare search
+		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
+		
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
+		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
+		$options['order_click_tags'] = strtolower($options['order_click_tags']);
+		$order_by = $order = '';
+		switch ( $options['order_click_tags'] ) {
+			case 'count-asc':
+				$order_by = 'tt.count';
+				$order = 'ASC';
+				break;
+			case 'random':
+				$order_by = 'RAND()';
+				$order = '';
+				break;
+			case 'count-desc':
+				$order_by = 'tt.count';
+				$order = 'DESC';
+				break;
+			case 'name-desc':
+				$order_by = 't.name';
+				$order = 'DESC';
+				break;
+			default : // name-asc
+				$order_by = 't.name';
+				$order = 'ASC';
+			break;
+		}
+		
+		// Get all terms, or filter with search
+		$terms = $this->getTermsForAjax( $this->taxonomy, $search, $order_by, $order );
+		if ( empty($terms) || $terms == false ) {
+			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		foreach ( (array) $terms as $term ) {
+			echo '<span class="local">'.esc_html(stripslashes($term->name)).'</span>'."\n";
+		}
+		echo '<div class="clear"></div>';
+
+		exit();
+	}
 }
 ?>

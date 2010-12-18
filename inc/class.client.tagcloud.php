@@ -1,5 +1,5 @@
 <?php
-class SimpleTags_Client_TagCloud {
+class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	function SimpleTags_Client_TagCloud() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
@@ -197,27 +197,6 @@ class SimpleTags_Client_TagCloud {
 	}
 	
 	/**
-	 * Randomize an array and keep association
-	 *
-	 * @param array $array
-	 * @return boolean
-	 */
-	function randomArray( &$array ) {
-		if ( !is_array($array) || empty($array) ) {
-			return false;
-		}
-		
-		$keys = array_keys($array);
-		shuffle($keys);
-		foreach( (array) $keys as $key ) {
-			$new[$key] = $array[$key];
-		}
-		$array = $new;
-		
-		return true;
-	}
-	
-	/**
 	 * Remplace marker by dynamic values (use for related tags, current tags and tag cloud)
 	 *
 	 * @param string $element_loop
@@ -331,21 +310,6 @@ class SimpleTags_Client_TagCloud {
 		}
 
 		return 'post_tag';
-	}
-	
-	/**
-	 * Build rel for tag link
-	 *
-	 * @return string
-	 */
-	function buildRel() {
-		global $wp_rewrite;
-		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
-		if ( !empty($rel) ) {
-			$rel = 'rel="' . $rel . '"'; // Add HTML Tag
-		}
-		
-		return $rel;
 	}
 	
 	/**

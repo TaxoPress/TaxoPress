@@ -1,10 +1,7 @@
 <?php
 class SimpleTags_Admin {
 	var $options;
-	
-	// Build admin URL
-	var $posts_base_url 	= '';
-	var $options_base_url 	= '';
+	var $options_base_url = '';
 	
 	// Taxonomy support
 	var $taxonomy 			= 'post_tag';
@@ -47,7 +44,6 @@ class SimpleTags_Admin {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Admin URL for Pagination and target
-		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
 		$this->options_base_url = admin_url('options-general.php') . '?page=';
 		
 		// Init taxonomy class variable, load this action after all actions on init !
@@ -234,7 +230,7 @@ class SimpleTags_Admin {
 	 *
 	 */
 	function getDefaultContentBox() {
-		if ( (int) wp_count_terms('post_tag', 'ignore_empty=true') == 0 ) {
+		if ( (int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) {
 			return __('This feature requires at least 1 tag to work. Begin by adding tags!', 'simpletags');
 		} else {
 			return __('This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simpletags');
@@ -408,6 +404,29 @@ class SimpleTags_Admin {
 		}
 		
 		return true;
+	}
+	
+	function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC' ) {
+		global $wpdb;
+
+		if ( !empty($search) ) {
+			return $wpdb->get_results( $wpdb->prepare("
+				SELECT DISTINCT t.name, t.term_id
+				FROM {$wpdb->terms} AS t
+				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
+				WHERE tt.taxonomy = %s
+				AND name LIKE %s
+				ORDER BY $order_by $order
+			", $taxonomy, '%'.$search.'%' ) );
+		} else {
+			return $wpdb->get_results( $wpdb->prepare("
+				SELECT DISTINCT t.name, t.term_id
+				FROM {$wpdb->terms} AS t
+				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
+				WHERE tt.taxonomy = %s
+				ORDER BY $order_by $order
+			", $taxonomy) );
+		}
 	}
 }
 ?>

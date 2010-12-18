@@ -1,11 +1,13 @@
 <?php
 class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
-	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
-	var $yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
+	// Build admin URL
+	var $posts_base_url = '';
 
 	function SimpleTags_Admin_AutoTags() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
+		
+		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
 		
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
@@ -30,15 +32,10 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	 * Check post/page content for auto tags
 	 *
 	 * @param integer $post_id
-	 * @param array $post_data
+	 * @param array $object
 	 * @return boolean
 	 */
-	function saveAutoTags( $post_id = null, $post_data = null ) {
-		$object = get_post($post_id);
-		if ( $object == false || $object == null ) {
-			return false;
-		}
-		
+	function saveAutoTags( $post_id = null, $object = null ) {
 		$result = $this->autoTagsPost( $object );
 		if ( $result == true ) {
 			// Clean cache
@@ -48,6 +45,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 				clean_post_cache($post_id);
 			}
 		}
+		
 		return true;
 	}
 	
@@ -77,7 +75,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			return false;
 		}
 		
-		// Auto tag with specifik auto tags list
+		// Auto tag with specific auto tags list
 		$tags = (array) maybe_unserialize($options['auto_list']);
 		foreach ( $tags as $tag ) {
 			if ( !is_string($tag) && empty($tag) )
@@ -94,7 +92,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		}
 		unset($tags, $tag);
 		
-		// Auto tags with all posts
+		// Auto tags with all terms
 		if ( $options['at_all'] == 1 ) {
 			// Get all terms
 			global $wpdb;

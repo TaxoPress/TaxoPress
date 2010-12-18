@@ -28,6 +28,7 @@ function SimpleTags_Install() {
 		if( $role != null && !$role->has_cap('simple_tags') ) {
 			$role->add_cap('simple_tags');
 		}
+		
 		// Clean var
 		unset($role);
 	}
@@ -43,6 +44,7 @@ function SimpleTags_Uninstall() {
 	delete_option( STAGS_OPTIONS_NAME . '-version' );
 	delete_option( 'stp_options' ); // Old options from Simple Tagging !
 	delete_option( 'widget_stags_cloud' );
+	delete_option( 'tmp_auto_tags_st' );
 	
 	// Init roles
 	if ( function_exists('get_role') ) {

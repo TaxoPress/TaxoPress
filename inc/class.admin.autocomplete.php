@@ -9,13 +9,8 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
 		add_action('do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
 		
-		// Box for post
-		add_action('admin_menu', array(&$this, 'helperAdvancedTags_Post'), 1);
-		
-		// Box for Page
-		if ( $options['use_tag_pages'] == 1 ) {
-			add_action('admin_menu', array(&$this, 'helperAdvancedTags_Page'), 1);
-		}
+		// Box for advanced tags
+		add_action('admin_menu', array(&$this, 'helperAdvancedTags'), 1);
 		
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/inc/js/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
 		wp_register_script('jquery-autocomplete',		STAGS_URL.'/inc/js/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
@@ -53,12 +48,15 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		remove_meta_box('tagsdiv-post_tag', 'post', 'side');
 	}
 	
-	function saveAdvancedTagsInput( $post_id = 0, $post_data = null ) {
-		$object = get_post($post_id);
-		if ( $object == false || $object == null ) {
-			return false;
-		}
-		
+	/**
+	 * Save tags input for old field
+	 *
+	 * @param string $post_id 
+	 * @param object $object 
+	 * @return boolean
+	 * @author Amaury Balmer
+	 */
+	function saveAdvancedTagsInput( $post_id = 0, $object = null ) {
 		if ( isset($_POST['adv-tags-input']) ) {
 			// Trim/format data
 			$tags = preg_replace( "/[\n\r]/", ', ', stripslashes($_POST['adv-tags-input']) );
@@ -82,27 +80,24 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			
 			return true;
 		}
+		
 		return false;
 	}
 	
 	/**
-	 * Call meta box function if option is active on page
+	 * Call meta box function if option is active on post/page
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function helperAdvancedTags_Page() {
-		add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core', array('taxonomy'=>'post_tag') );
-	}
-	
-	/**
-	 * Call meta box function if option is active on post
-	 *
-	 * @return void
-	 * @author Amaury Balmer
-	 */
-	function helperAdvancedTags_Post() {
+	function helperAdvancedTags() {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core', array('taxonomy'=>'post_tag') );
+		
+		if ( $options['use_tag_pages'] == 1 )
+			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core', array('taxonomy'=>'post_tag') );
 	}
 	
 	/**
