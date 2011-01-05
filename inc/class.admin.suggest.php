@@ -4,9 +4,6 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	var $yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 		
 	function SimpleTags_Admin_Suggest() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Ajax action, JS Helper and admin action
 		add_action('admin_init', array(&$this, 'ajaxCheck'));
 		
@@ -14,7 +11,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		add_action('admin_menu', array(&$this, 'helperSuggestTags_Post'), 1);
 		
 		// Box for Page
-		if ( $options['use_tag_pages'] == 1 ) {
+		if ( is_page_have_tags() ) {
 			add_action('admin_menu', array(&$this, 'helperSuggestTags_Page'), 1);
 		}
 		
@@ -27,7 +24,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $options['use_tag_pages'] == 1 ) ) {
+		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
 			wp_enqueue_script('st-helper-suggested-tags');
 		}
 	}

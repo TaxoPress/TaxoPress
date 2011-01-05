@@ -2,9 +2,6 @@
 class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_ClickTags() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Ajax action, JS Helper and admin action
 		add_action('admin_init', array(&$this, 'ajaxCheck'));
 		
@@ -20,17 +17,14 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $options['use_tag_pages'] == 1 ) ) {
+		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
 			wp_enqueue_script('st-helper-click-tags');
 		}
 	}
 	
 	function helperClickTags() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'post', 'advanced', 'core');
-		if ( $options['use_tag_pages'] == 1 )
+		if ( is_page_have_tags() )
 			add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'page', 'advanced', 'core');
 	}
 	

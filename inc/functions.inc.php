@@ -59,6 +59,7 @@ function SimpleTags_Uninstall() {
 			$role->remove_cap('simple_tags');
 			$role->remove_cap('admin_simple_tags');
 		}
+		
 		// Clean var
 		unset($role);
 	}
@@ -78,23 +79,18 @@ function _delete_empty_element( &$element ) {
 	}
 }
 
-// Future of WP ?
-if ( !function_exists('add_filters') ) :
-function add_filters($tags, $function_to_add, $priority = 10, $accepted_args = 1) {
-	if ( is_array($tags) ) {
-		foreach ( (array) $tags as $tag ) {
-			add_filter($tag, $function_to_add, $priority, $accepted_args);
-		}
+/**
+ * Test if page have tags or not...
+ *
+ * @return boolean
+ * @author Amaury Balmer
+ */
+function is_page_have_tags() {
+	$taxonomies = get_object_taxonomies('page');
+	if ( in_array('post_tag', $taxonomies) ) {
 		return true;
-	} else {
-		return add_filter($tags, $function_to_add, $priority, $accepted_args);
 	}
+	
+	return false;
 }
-endif;
-
-if ( !function_exists('add_actions') ) :
-function add_actions($tags, $function_to_add, $priority = 10, $accepted_args = 1) {
-	return add_filters($tags, $function_to_add, $priority, $accepted_args);
-}
-endif;
 ?>

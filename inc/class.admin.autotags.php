@@ -7,14 +7,16 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
-		$this->posts_base_url 	= admin_url('edit.php')  . '?page=';
+		$this->posts_base_url = admin_url('edit.php')  . '?page=';
 		
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
 		
 		// Auto tags
 		if ( $options['use_auto_tags'] == 1 ) {
-			add_actions( array('save_post', 'publish_post', 'post_syndicated_item'), array(&$this, 'saveAutoTags'), 10, 2 );
+			add_action( 'save_post', 				array(&$this, 'saveAutoTags'), 10, 2 );
+			add_action( 'publish_post', 			array(&$this, 'saveAutoTags'), 10, 2 );
+			add_action( 'post_syndicated_item', 	array(&$this, 'saveAutoTags'), 10, 2 );
 		}
 	}
 
@@ -274,7 +276,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 				}
 				
 				// Page or not ?
-				$post_type_sql = ( $options['use_tag_pages'] == '1' ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
+				$post_type_sql = ( is_page_have_tags() ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
 				
 				// Get objects
 				global $wpdb;

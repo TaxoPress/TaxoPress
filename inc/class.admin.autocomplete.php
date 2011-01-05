@@ -2,15 +2,13 @@
 class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_Autocomplete() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Save tags from advanced input
-		add_actions( array('save_post', 'publish_post'), array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
-		add_action('do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
+		add_action( 'publish_post', array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
+		add_action( 'save_post', 	array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
+		add_action( 'do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
 		
 		// Box for advanced tags
-		add_action('admin_menu', array(&$this, 'helperAdvancedTags'), 1);
+		add_action( 'admin_menu', array(&$this, 'helperAdvancedTags'), 1 );
 		
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/inc/js/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
 		wp_register_script('jquery-autocomplete',		STAGS_URL.'/inc/js/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
@@ -24,7 +22,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && $options['use_tag_pages'] == 1 ) ) {
+		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
 			wp_enqueue_script('jquery-autocomplete');
 			wp_enqueue_script('st-helper-autocomplete');
 			wp_enqueue_style ('jquery-autocomplete');
@@ -91,12 +89,9 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function helperAdvancedTags() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core', array('taxonomy'=>'post_tag') );
 		
-		if ( $options['use_tag_pages'] == 1 )
+		if ( is_page_have_tags() )
 			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core', array('taxonomy'=>'post_tag') );
 	}
 	
@@ -112,7 +107,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		<textarea name="adv-tags-input" id="adv-tags-input" tabindex="3" rows="3" cols="5"><?php echo $this->getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#adv-tags-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection'; ?>', 300 );
+			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin.php?st_ajax_action=helper_js_collection"); ?>', 300 );
 			-->
 		</script>
 		<?php

@@ -592,7 +592,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 			$options = get_option( STAGS_OPTIONS_NAME );
 			
 			$where .= " AND tr.object_id IN ( ";
-				$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND ".(( $options['use_tag_pages'] == '1' ) ? "p.post_type IN('page', 'post')" : "post_type = 'post'")." AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
+				$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND ".(is_page_have_tags() ? "p.post_type IN('page', 'post')" : "post_type = 'post'")." AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
 			$where .= " ) ";
 			
 			$join_relation = true;
