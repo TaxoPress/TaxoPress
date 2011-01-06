@@ -15,14 +15,14 @@ function addTag(tag) {
 		}
 	
 	} else { // Default tags input from WordPress
-		
-		var newtags = jQuery('#new-tag-post_tag').val();
-		newtags += ',' + tag;
-		
-		// message
-		newtags = newtags.replace( /\s+,+\s*/g, ',' ).replace( /,+/g, ',' ).replace( /,+\s+,+/g, ',' ).replace( /,+\s*$/g, '' ).replace( /^\s*,+/g, '' );
-		jQuery('#new-tag-post_tag').val( newtags );
-		tagBox.quickClicks(); // TODO !!!
+
+		tag.replace( /\s+,+\s*/g, ',' ).replace( /,+/g, ',' ).replace( /,+\s+,+/g, ',' ).replace( /,+\s*$/g, '' ).replace( /^\s*,+/g, '' );
+		if (jQuery('#new-tag-post_tag').val() == "") {
+			jQuery('#new-tag-post_tag').val(tag);
+		} else {
+			jQuery('#new-tag-post_tag').val(jQuery('#new-tag-post_tag').val() + ", " + tag);
+		}
+		jQuery('.tagadd').click();
 	
 	}
 }
