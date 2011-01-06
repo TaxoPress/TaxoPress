@@ -36,6 +36,8 @@ Todo:
 		Option for Ajax or Local autocompletion
 		
 		Bug with custom taxonomies
+		
+		Custom CTP without taxonomy
 	
 	Client :
 		- Test avec &$this, $this, et avec une fonction, test la conso memoire de wp_filter avant/apres
