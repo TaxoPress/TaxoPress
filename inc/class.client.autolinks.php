@@ -3,6 +3,12 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	var $posts 		= array();
 	var $link_tags 	= array();
 	
+	/**
+	 * Constructor
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function SimpleTags_Client_Autolinks() {
 		// Auto link tags
 		add_filter( 'the_posts', 	array(&$this, 'getPostIds') );
