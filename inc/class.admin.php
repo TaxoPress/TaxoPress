@@ -3,30 +3,16 @@ class SimpleTags_Admin {
 	var $options;
 	var $options_base_url = '';
 	
-	// Taxonomy support
-	var $taxonomy 			= 'post_tag';
+	// CTP and Taxonomy support
+	var $post_type 			= 'post';
+	var $post_type_name		= '';
+	
+	var $taxonomy 			= '';
 	var $taxo_name			= '';
 	
 	// Error management
 	var $message = '';
 	var $status = '';
-	
-	/**
-	 * Put in var class the current taxonomy choose by the user
-	 *
-	 * @return void
-	 * @author Amaury Balmer
-	 */
-	function determineTaxonomy() {
-		$this->taxo_name = __('Post tags', 'simpletags');
-		
-		if ( isset($_GET['taxonomy']) && !empty($_GET['taxonomy']) && taxonomy_exists($_GET['taxonomy']) ) {
-			$taxo = get_taxonomy($_GET['taxonomy']);
-			$this->taxonomy = $taxo->name;
-			$this->taxo_name = $taxo->label;
-			unset($taxo);
-		}
-	}
 	
 	/**
 	 * PHP4 Constructor - Intialize Admin
@@ -46,8 +32,8 @@ class SimpleTags_Admin {
 		// Admin URL for Pagination and target
 		$this->options_base_url = admin_url('options-general.php') . '?page=';
 		
-		// Init taxonomy class variable, load this action after all actions on init !
-		add_action( 'init', array(&$this, 'determineTaxonomy'), 99999999 );
+		// Which taxo ?
+		$this->registerDetermineTaxonomy();
 		
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
@@ -86,6 +72,102 @@ class SimpleTags_Admin {
 			require( STAGS_DIR . '/inc/class.admin.autotags.php');
 			$simple_tags['admin-autotags'] = new SimpleTags_Admin_AutoTags();
 		}
+	}
+	
+	/**
+	 * Init taxonomy class variable, load this action after all actions on init !
+	 * Make a function for call it from children class...
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function registerDetermineTaxonomy() {
+		add_action( 'init', array(&$this, 'determineTaxonomy'), 99999999 );
+	}
+	
+	/**
+	 * Put in var class the current taxonomy choose by the user
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function determineTaxonomy() {
+		$this->taxo_name = __('Post tags', 'simpletags');
+		$this->post_type_name = __('Posts', 'simpletags');
+		
+		// Custom CTP ?
+		if ( isset($_GET['ctp']) && !empty($_GET['ctp']) && post_type_exists($_GET['ctp']) ) {
+			$ctp = get_post_type_object($_GET['ctp']);
+			$this->post_type 		= $ctp->name;
+			$this->post_type_name 	= $ctp->labels->name;
+		}
+		
+		// Get compatible taxo for current post type
+		$compatible_taxonomies = get_object_taxonomies( $this->post_type );
+		
+		// Custom taxo ?
+		if ( isset($_GET['taxo']) && !empty($_GET['taxo']) && taxonomy_exists($_GET['taxo']) ) {
+			$taxo = get_taxonomy($_GET['taxo']);
+			
+			// Taxo is compatible ?
+			if ( in_array( $taxo->name, $compatible_taxonomies ) ) {
+				$this->taxonomy 	= $taxo->name;
+				$this->taxo_name 	= $taxo->labels->name;
+			} else {
+				unset($taxo);
+			}
+		}
+		
+		// Default taxo from CTP...
+		if ( !isset($taxo) && is_array($compatible_taxonomies) ) {
+			$taxo = get_taxonomy( current($compatible_taxonomies) );
+			$this->taxonomy 	= $taxo->name;
+			$this->taxo_name 	= $taxo->labels->name;
+		} elseif( !isset($taxo) ) {
+			wp_die( __('This custom post type not have taxonomies.', 'simpletags') );
+		}
+		
+		// Free memory
+		unset($ctp, $taxo);
+	}
+	
+	/**
+	 * Build HTML form for allow user to change taxonomy for the current page.
+	 *
+	 * @param string $page_value
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function boxSelectorTaxonomy( $page_value = '' ) {
+		echo '<div class="box-selector-taxonomy">' . "\n";
+			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the custom post type "<span>%s</span>" and the taxonomy "<span>%s</span>"', 'simpletags'), $this->post_type_name, $this->taxo_name).'</p>' . "\n";
+			
+			echo '<div class="change-taxo">' . "\n";
+				echo '<form action="" method="get">' . "\n";
+					if ( !empty($page_value) ) {
+						echo '<input type="hidden" name="page" value="'.$page_value.'" />' . "\n";
+					}
+					
+					echo '<select name="ctp" id="ctp-select">' . "\n";
+						foreach ( get_post_types( array('show_ui' => true ), 'objects') as $post_type ) {
+							echo '<option '.selected( $post_type->name, $this->post_type, false ).' value="'.esc_attr($post_type->name).'">'.esc_html($post_type->labels->name).'</option>' . "\n";
+						}
+					echo '</select>' . "\n";
+					
+					echo '<select name="taxo" id="taxonomy-select">' . "\n";
+						foreach ( get_object_taxonomies($this->post_type) as $tax_name ) {
+							$taxonomy = get_taxonomy($tax_name);
+							if ( $taxonomy->show_ui == false )
+								continue;
+							
+							echo '<option '.selected( $tax_name, $this->taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->labels->name).'</option>' . "\n";
+						}
+					echo '</select>' . "\n";
+					
+					echo '<input type="submit" class="button" id="submit-change-taxo" value="'.__('Change selection', 'simpletags').'" />' . "\n";
+				echo '</form>' . "\n";
+			echo '</div>' . "\n";
+		echo '</div>' . "\n";
 	}
 	
 	/**
@@ -227,7 +309,7 @@ class SimpleTags_Admin {
 	 *
 	 */
 	function getDefaultContentBox() {
-		if ( (int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) {
+		if ( (int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // TODO: taxos
 			return __('This feature requires at least 1 tag to work. Begin by adding tags!', 'simpletags');
 		} else {
 			return __('This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simpletags');
