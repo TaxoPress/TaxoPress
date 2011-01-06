@@ -92,12 +92,12 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		$args = wp_parse_args( $args, $defaults );
 		
 		// Get correct taxonomy ?
-		$taxonomy = _get_current_taxonomy($taxonomy);
+		$taxonomy = $this->_get_current_taxonomy($args['taxonomy']);
 		
 		// Get terms
 		$terms = $this->getTags( $args, $taxonomy );
 		extract($args); // Params to variables
-		
+
 		// If empty use default xformat !
 		if ( empty($xformat) ) {
 			$xformat = $defaults['xformat'];
@@ -214,13 +214,9 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 */
 	function formatInternalTag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
 		// Need term object
-		if ( $term->taxonomy == 'post_tag' ) { // Tag post
-			$element_loop = str_replace('%tag_link%', esc_url(get_tag_link($term->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_feed%', esc_url(get_tag_feed_link($term->term_id)), $element_loop);
-		} else { // Category
-			$element_loop = str_replace('%tag_link%', esc_url(get_category_link($term->term_id)), $element_loop);
-			$element_loop = str_replace('%tag_feed%', esc_url(get_category_rss_link(false, $term->term_id, '')), $element_loop);
-		}
+		$element_loop = str_replace('%tag_link%', esc_url(get_term_link($term, $term->taxonomy)), $element_loop);
+		$element_loop = str_replace('%tag_feed%', esc_url(get_term_feed_link($term->term_id, $term->taxonomy, '')), $element_loop);
+		
 		$element_loop = str_replace('%tag_name%', esc_html( $term->name ), $element_loop);
 		$element_loop = str_replace('%tag_name_attribute%', esc_html(strip_tags($term->name)), $element_loop);
 		$element_loop = str_replace('%tag_id%', $term->term_id, $element_loop);
@@ -297,7 +293,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 * @author Amaury Balmer
 	 */
 	function _get_current_taxonomy( $taxonomies, $force_single = false ) {
-		if ( !empty($instance['taxonomy']) && is_array($taxonomies) ) {
+		if ( is_array($taxonomies) ) {
 			foreach( $taxonomies as $key => $value ) {
 				if ( !taxonomy_exists($value) ) // Remove from array is taxonomy not exist !
 					unset($taxonomies[$key]);
@@ -305,7 +301,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 					return $value;
 			}
 			return $taxonomies;
-		} elseif ( !empty($instance['taxonomy']) && taxonomy_exists($taxonomies) ) {
+		} elseif ( taxonomy_exists($taxonomies) ) {
 			return $taxonomies;
 		}
 
