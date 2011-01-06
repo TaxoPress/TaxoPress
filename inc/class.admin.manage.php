@@ -1,16 +1,24 @@
 <?php
 class SimpleTags_Admin_Manage extends SimpleTags_Admin {
-	
+	/**
+	 * Constructor
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function SimpleTags_Admin_Manage() {
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
 		
-		wp_register_script('st-helper-manage', 			STAGS_URL.'/inc/js/helper-manage.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-manage', STAGS_URL.'/inc/js/helper-manage.min.js', array('jquery'), STAGS_VERSION);
 		
 		// add JS for manage click tags
 		if ( isset($_GET['page']) && $_GET['page'] == 'st_manage' ) {
 			wp_enqueue_script('st-helper-manage');
 		}
+		
+		// Register taxo, parent method...
+		$this->registerDetermineTaxonomy();
 	}
 	
 	/**
@@ -20,41 +28,55 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function adminMenu() {
-		add_posts_page( __('Simple Terms: Manage Terms', 'simpletags'), __('Manage Terms', 'simpletags'), 'simple_tags', 'st_manage', array(&$this, 'pageManageTags'));
+		add_management_page( __('Simple Terms: Manage Terms', 'simpletags'), __('Manage Terms', 'simpletags'), 'simple_tags', 'st_manage', array(&$this, 'pageManageTags'));
 	}
 	
 	/**
-	 * WP Page - Manage tags
+	 * Method for build the page HTML manage tags
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function pageManageTags() {
 		// Control Post data
-		if ( isset($_POST['tag_action']) ) {
-			// Origination and intention
-			if ( !wp_verify_nonce($_POST['tag_nonce'], 'simpletags_admin') ) {
+		if ( isset($_POST['term_action']) ) {
+			if ( !wp_verify_nonce($_POST['term_nonce'], 'simpletags_admin') ) { // Origination and intention
+				
 				$this->message = __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
 				$this->status = 'error';
-			}
-			elseif ( $_POST['tag_action'] == 'renametag' ) {
-				$oldtag = (isset($_POST['renametag_old'])) ? $_POST['renametag_old'] : '';
-				$newtag = (isset($_POST['renametag_new'])) ? $_POST['renametag_new'] : '';
-				$this->renameTags( $oldtag, $newtag );
-			}
-			elseif ( $_POST['tag_action'] == 'deletetag' ) {
-				$todelete = (isset($_POST['deletetag_name'])) ? $_POST['deletetag_name'] : '';
-				$this->deleteTagsByTagList( $todelete );
-			}
-			elseif ( $_POST['tag_action'] == 'addtag'  ) {
-				$matchtag = (isset($_POST['addtag_match'])) ? $_POST['addtag_match'] : '';
-				$newtag   = (isset($_POST['addtag_new'])) ? $_POST['addtag_new'] : '';
-				$this->addMatchTags( $matchtag, $newtag );
-			}
-			elseif ( $_POST['tag_action'] == 'editslug'  ) {
+			
+			} elseif ( !isset($_POST['taxonomy']) || !taxonomy_exists($_POST['taxonomy']) ) { // Valid taxo ?
+				
+				$this->message = __('Missing valid taxonomy for work... Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
+				$this->status = 'error';
+			
+			} elseif ( $_POST['term_action'] == 'renameterm' ) {
+				
+				$oldtag = (isset($_POST['renameterm_old'])) ? $_POST['renameterm_old'] : '';
+				$newtag = (isset($_POST['renameterm_new'])) ? $_POST['renameterm_new'] : '';
+				$this->renameTerms( $_POST['taxonomy'] , $oldtag, $newtag );
+			
+			} elseif ( $_POST['term_action'] == 'deleteterm' ) {
+				
+				$todelete = (isset($_POST['deleteterm_name'])) ? $_POST['deleteterm_name'] : '';
+				$this->deleteTermsByTermList( $_POST['taxonomy'], $todelete );
+			
+			} elseif ( $_POST['term_action'] == 'addterm'  ) {
+				
+				$matchtag = (isset($_POST['addterm_match'])) ? $_POST['addterm_match'] : '';
+				$newtag   = (isset($_POST['addterm_new'])) ? $_POST['addterm_new'] : '';
+				$this->addMatchTerms( $_POST['taxonomy'], $matchtag, $newtag );
+			
+			} elseif ( $_POST['term_action'] == 'editslug'  ) {
+				
 				$matchtag = (isset($_POST['tagname_match'])) ? $_POST['tagname_match'] : '';
 				$newslug  = (isset($_POST['tagslug_new'])) ? $_POST['tagslug_new'] : '';
-				$this->editTagSlug( $matchtag, $newslug );
-			} elseif ( $_POST['tag_action'] == 'cleandb'  ) {
+				$this->editTermSlug( $_POST['taxonomy'], $matchtag, $newslug );
+			
+			} elseif ( $_POST['term_action'] == 'cleandb'  ) {
+				
 				$this->cleanDatabase();
+			
 			}
 		}
 		
@@ -64,14 +86,19 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		}
 		
 		$this->displayMessage();
+		
+		if ( isset($simple_tags['admin-autocomplete']) ) :
 		?>
 		<script type="text/javascript">
 			<!--
 			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
+		<?php endif; ?>
 		
 		<div class="wrap st_wrap">
+			<?php $this->boxSelectorTaxonomy( 'st_manage' ); ?>
+			
 			<h2><?php _e('Simple Tags: Manage Terms', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			
@@ -96,11 +123,13 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 					<?php
 					if ( isset($_GET['order']) ) {
 						$order = explode('-', stripslashes($_GET['order']));
+						if ( !isset($order[1]) ) $order[1] = ''; // for skip notice on random...
+						
 						$order = '&selectionby='.$order[0].'&selection='.$order[1].'&orderby='.$order[0].'&order='.$order[1];
 					} else {
 						$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
 					}
-					st_tag_cloud('hide_empty=false&number=&color=false&get=all&title='.$order);
+					st_term_cloud('hide_empty=false&number=&color=false&get=all&title='.$order.'&taxonomy='.$this->taxonomy);
 					?>
 				</div>
 			</div>
@@ -114,19 +143,20 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 						
 						<fieldset>
 							<form action="" method="post">
-								<input type="hidden" name="tag_action" value="renametag" />
-								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
+								<input type="hidden" name="taxonomy" value="<?php echo $this->taxonomy; ?>" />
+								<input type="hidden" name="term_action" value="renameterm" />
+								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
 								<p>
-									<label for="renametag_old"><?php _e('Term(s) to rename:', 'simpletags'); ?></label>
+									<label for="renameterm_old"><?php _e('Term(s) to rename:', 'simpletags'); ?></label>
 									<br />
-									<input type="text" class="autocomplete-input" id="renametag_old" name="renametag_old" value="" size="40" />
+									<input type="text" class="autocomplete-input" id="renameterm_old" name="renameterm_old" value="" size="40" />
 								</p>
 								
 								<p>
-									<label for="renametag_new"><?php _e('New term name(s):', 'simpletags'); ?>
+									<label for="renameterm_new"><?php _e('New term name(s):', 'simpletags'); ?>
 									<br />
-									<input type="text" class="autocomplete-input" id="renametag_new" name="renametag_new" value="" size="40" />
+									<input type="text" class="autocomplete-input" id="renameterm_new" name="renameterm_new" value="" size="40" />
 								</p>
 								
 								<input class="button-primary" type="submit" name="rename" value="<?php _e('Rename', 'simpletags'); ?>" />
@@ -143,13 +173,14 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 						
 						<fieldset>
 							<form action="" method="post">
-								<input type="hidden" name="tag_action" value="deletetag" />
-								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
+								<input type="hidden" name="taxonomy" value="<?php echo $this->taxonomy; ?>" />
+								<input type="hidden" name="term_action" value="deleteterm" />
+								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
 								<p>
-									<label for="deletetag_name"><?php _e('Term(s) to delete:', 'simpletags'); ?></label>
+									<label for="deleteterm_name"><?php _e('Term(s) to delete:', 'simpletags'); ?></label>
 									<br />
-									<input type="text" class="autocomplete-input" id="deletetag_name" name="deletetag_name" value="" size="40" />
+									<input type="text" class="autocomplete-input" id="deleteterm_name" name="deleteterm_name" value="" size="40" />
 								</p>
 								
 								<input class="button-primary" type="submit" name="delete" value="<?php _e('Delete', 'simpletags'); ?>" />
@@ -166,19 +197,20 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 						
 						<fieldset>
 							<form action="" method="post">
-								<input type="hidden" name="tag_action" value="addtag" />
-								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
+								<input type="hidden" name="taxonomy" value="<?php echo $this->taxonomy; ?>" />
+								<input type="hidden" name="term_action" value="addterm" />
+								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
 								<p>
-									<label for="addtag_match"><?php _e('Term(s) to match:', 'simpletags'); ?></label>
+									<label for="addterm_match"><?php _e('Term(s) to match:', 'simpletags'); ?></label>
 									<br />
-									<input type="text" class="autocomplete-input" id="addtag_match" name="addtag_match" value="" size="40" />
+									<input type="text" class="autocomplete-input" id="addterm_match" name="addterm_match" value="" size="40" />
 								</p>
 								
 								<p>
-									<label for="addtag_new"><?php _e('Term(s) to add:', 'simpletags'); ?></label>
+									<label for="addterm_new"><?php _e('Term(s) to add:', 'simpletags'); ?></label>
 									<br />
-									<input type="text" class="autocomplete-input" id="addtag_new" name="addtag_new" value="" size="40" />
+									<input type="text" class="autocomplete-input" id="addterm_new" name="addterm_new" value="" size="40" />
 								</p>
 								
 								<input class="button-primary" type="submit" name="Add" value="<?php _e('Add', 'simpletags'); ?>" />
@@ -195,8 +227,9 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 						
 						<fieldset>
 							<form action="" method="post">
-								<input type="hidden" name="tag_action" value="editslug" />
-								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
+								<input type="hidden" name="taxonomy" value="<?php echo $this->taxonomy; ?>" />
+								<input type="hidden" name="term_action" value="editslug" />
+								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
 								<p>
 									<label for="tagname_match"><?php _e('Term(s) to match:', 'simpletags'); ?></label>
@@ -223,8 +256,8 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 						
 						<fieldset>
 							<form action="" method="post">
-								<input type="hidden" name="tag_action" value="cleandb" />
-								<input type="hidden" name="tag_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
+								<input type="hidden" name="term_action" value="cleandb" />
+								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								
 								<p>
 									<input class="button-primary" type="submit" name="clean" value="<?php _e('Clean !', 'simpletags'); ?>" />
@@ -238,7 +271,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 					<th scope="row"><strong><?php _e('Technical informations', 'simpletags'); ?></strong></th>
 					<td>
 						<p><strong><?php _e('Renaming', 'simpletags'); ?></strong></p>
-						<p><em><?php _e('Simple Tags don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : "Blogging" and "Bloging". When you want edit the tag "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit "Bloging" for "Blogging", Simple Tags merge posts tagged with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags'); ?><em></p>
+						<p><em><?php _e('Simple Tags don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 terms : "Blogging" and "Bloging". When you want edit the term "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit "Bloging" for "Blogging", Simple Tags merge posts filled with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags'); ?><em></p>
 					</td>
 				</tr>
 			</table>
@@ -249,208 +282,220 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		<?php
 	}
 	
-	/*
-	 * Rename or merge tags
+	/**
+	 * Method for rename or merge tags
 	 *
+	 * @param string $taxonomy
 	 * @param string $old
 	 * @param string $new
+	 * @return boolean
+	 * @author Amaury Balmer
 	 */
-	function renameTags( $old = '', $new = '' ) {
+	function renameTerms( $taxonomy = 'post_tag', $old = '', $new = '' ) {
 		if ( trim( str_replace(',', '', stripslashes($new)) ) == '' ) {
-			$this->message = __('No new tag specified!', 'simpletags');
+			$this->message = __('No new term specified!', 'simpletags');
 			$this->status = 'error';
-			return;
+			return false;
 		}
 		
 		// String to array
-		$old_tags = explode(',', $old);
-		$new_tags = explode(',', $new);
+		$old_terms = explode(',', $old);
+		$new_terms = explode(',', $new);
 		
 		// Remove empty element and trim
-		$old_tags = array_filter($old_tags, '_delete_empty_element');
-		$new_tags = array_filter($new_tags, '_delete_empty_element');
+		$old_terms = array_filter($old_terms, '_delete_empty_element');
+		$new_terms = array_filter($new_terms, '_delete_empty_element');
 		
 		// If old/new tag are empty => exit !
-		if ( empty($old_tags) || empty($new_tags) ) {
-			$this->message = __('No new/old valid tag specified!', 'simpletags');
+		if ( empty($old_terms) || empty($new_terms) ) {
+			$this->message = __('No new/old valid term specified!', 'simpletags');
 			$this->status = 'error';
-			return;
+			return false;
 		}
 		
 		$counter = 0;
-		if( count($old_tags) == count($new_tags) ) { // Rename only
-			foreach ( (array) $old_tags as $i => $old_tag ) {
-				$new_name = $new_tags[$i];
+		if( count($old_terms) == count($new_terms) ) { // Rename only
+			foreach ( (array) $old_terms as $i => $old_tag ) {
+				$new_name = $new_terms[$i];
 				
 				// Get term by name
-				$term = get_term_by('name', $old_tag, 'post_tag');
+				$term = get_term_by('name', $old_tag, $taxonomy);
 				if ( !$term ) {
 					continue;
 				}
 				
 				// Get objects from term ID
-				$objects_id = get_objects_in_term( $term->term_id, 'post_tag', array('fields' => 'all_with_object_id'));
+				$objects_id = get_objects_in_term( $term->term_id, $taxonomy, array('fields' => 'all_with_object_id'));
 				
 				// Delete old term
-				wp_delete_term( $term->term_id, 'post_tag' );
+				wp_delete_term( $term->term_id, $taxonomy );
 				
 				// Set objects to new term ! (Append no replace)
 				foreach ( (array) $objects_id as $object_id ) {
-					wp_set_object_terms( $object_id, $new_name, 'post_tag', true );
+					wp_set_object_terms( $object_id, $new_name, $taxonomy, true );
 				}
 				
 				// Clean cache
-				clean_object_term_cache( $objects_id, 'post_tag');
-				clean_term_cache($term->term_id, 'post_tag');
+				clean_object_term_cache( $objects_id, $taxonomy);
+				clean_term_cache($term->term_id, $taxonomy);
 				
 				// Increment
 				$counter++;
 			}
 			
 			if ( $counter == 0  ) {
-				$this->message = __('No tag renamed.', 'simpletags');
+				$this->message = __('No term renamed.', 'simpletags');
 			} else {
-				$this->message = sprintf(__('Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simpletags'), $old, $new);
+				$this->message = sprintf(__('Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simpletags'), $old, $new);
 			}
 		}
-		elseif ( count($new_tags) == 1  ) { // Merge
+		elseif ( count($new_terms) == 1  ) { // Merge
 			// Set new tag
-			$new_tag = $new_tags[0];
+			$new_tag = $new_terms[0];
 			if ( empty($new_tag) ) {
-				$this->message = __('No valid new tag.', 'simpletags');
+				$this->message = __('No valid new term.', 'simpletags');
 				$this->status = 'error';
-				return;
+				return false;
 			}
 			
 			// Get terms ID from old terms names
 			$terms_id = array();
-			foreach ( (array) $old_tags as $old_tag ) {
-				$term = get_term_by('name', addslashes($old_tag), 'post_tag');
+			foreach ( (array) $old_terms as $old_tag ) {
+				$term = get_term_by('name', addslashes($old_tag), $taxonomy);
 				$terms_id[] = (int) $term->term_id;
 			}
 			
 			// Get objects from terms ID
-			$objects_id = get_objects_in_term( $terms_id, 'post_tag', array('fields' => 'all_with_object_id'));
+			$objects_id = get_objects_in_term( $terms_id, $taxonomy, array('fields' => 'all_with_object_id'));
 			
 			// No objects ? exit !
 			if ( !$objects_id ) {
-				$this->message = __('No objects (post/page) found for specified old tags.', 'simpletags');
+				$this->message = __('No objects found for specified old terms.', 'simpletags');
 				$this->status = 'error';
-				return;
+				return false;
 			}
 			
 			// Delete old terms
 			foreach ( (array) $terms_id as $term_id ) {
-				wp_delete_term( $term_id, 'post_tag' );
+				wp_delete_term( $term_id, $taxonomy );
 			}
 			
 			// Set objects to new term ! (Append no replace)
 			foreach ( (array) $objects_id as $object_id ) {
-				wp_set_object_terms( $object_id, $new_tag, 'post_tag', true );
+				wp_set_object_terms( $object_id, $new_tag, $taxonomy, true );
 				$counter++;
 			}
 			
 			// Test if term is also a category
+			// TODO ?
 			if ( is_term($new_tag, 'category') ) {
 				// Edit the slug to use the new term
-				$this->editTagSlug( $new_tag, sanitize_title($new_tag) );
+				$this->editTermSlug( $new_tag, sanitize_title($new_tag) );
 			}
 			
 			// Clean cache
-			clean_object_term_cache( $objects_id, 'post_tag');
-			clean_term_cache($terms_id, 'post_tag');
+			clean_object_term_cache( $objects_id, $taxonomy);
+			clean_term_cache($terms_id, $taxonomy);
 			
 			if ( $counter == 0  ) {
-				$this->message = __('No tag merged.', 'simpletags');
+				$this->message = __('No term merged.', 'simpletags');
 			} else {
-				$this->message = sprintf(__('Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simpletags'), $old, $new, $counter);
+				$this->message = sprintf(__('Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simpletags'), $old, $new, $counter);
 			}
 		} else { // Error
-			$this->message = sprintf(__('Error. No enough tags for rename. Too for merge. Choose !', 'simpletags'), $old);
+			$this->message = sprintf(__('Error. No enough terms for rename. Too for merge. Choose !', 'simpletags'), $old);
 			$this->status = 'error';
 		}
-		return;
+		return true;
 	}
 	
 	/**
-	 * Delete list of tags
+	 * Method for delete a list of terms
 	 *
+	 * @param string $taxonomy
 	 * @param string $delete
+	 * @return boolean
+	 * @author Amaury Balmer
 	 */
-	function deleteTagsByTagList( $delete ) {
+	function deleteTermsByTermList( $taxonomy = 'post_tag', $delete ) {
 		if ( trim( str_replace(',', '', stripslashes($delete)) ) == '' ) {
-			$this->message = __('No tag specified!', 'simpletags');
+			$this->message = __('No term specified!', 'simpletags');
 			$this->status = 'error';
-			return;
+			return false;
 		}
 		
 		// In array + filter
-		$delete_tags = explode(',', $delete);
-		$delete_tags = array_filter($delete_tags, '_delete_empty_element');
+		$delete_terms = explode(',', $delete);
+		$delete_terms = array_filter($delete_terms, '_delete_empty_element');
 		
 		// Delete tags
 		$counter = 0;
-		foreach ( (array) $delete_tags as $tag ) {
-			$term = get_term_by('name', $tag, 'post_tag');
+		foreach ( (array) $delete_terms as $term ) {
+			$term = get_term_by('name', $term, $taxonomy);
 			$term_id = (int) $term->term_id;
 			
 			if ( $term_id != 0 ) {
-				wp_delete_term( $term_id, 'post_tag');
-				clean_term_cache( $term_id, 'post_tag');
+				wp_delete_term( $term_id, $taxonomy );
+				clean_term_cache( $term_id, $taxonomy );
 				$counter++;
 			}
 		}
 		
 		if ( $counter == 0  ) {
-			$this->message = __('No tag deleted.', 'simpletags');
+			$this->message = __('No term deleted.', 'simpletags');
 		} else {
-			$this->message = sprintf(__('%1s tag(s) deleted.', 'simpletags'), $counter);
+			$this->message = sprintf(__('%1s term(s) deleted.', 'simpletags'), $counter);
 		}
+		
+		return true;
 	}
 	
 	/**
-	 * Add tags for all or specified posts
+	 * Method for add terms for all or specified posts
 	 *
+	 * @param string $taxonomy
 	 * @param string $match
 	 * @param string $new
+	 * @return boolean
+	 * @author Amaury Balmer
 	 */
-	function addMatchTags( $match, $new ) {
+	function addMatchTerms( $taxonomy = 'post_tag', $match, $new ) {
 		if ( trim( str_replace(',', '', stripslashes($new)) ) == '' ) {
-			$this->message = __('No new tag(s) specified!', 'simpletags');
+			$this->message = __('No new term(s) specified!', 'simpletags');
 			$this->status = 'error';
-			return;
+			return false;
 		}
 		
-		$match_tags = explode(',', $match);
-		$new_tags = explode(',', $new);
+		$match_terms = explode(',', $match);
+		$new_terms = explode(',', $new);
 		
-		$match_tags = array_filter($match_tags, '_delete_empty_element');
-		$new_tags = array_filter($new_tags, '_delete_empty_element');
+		$match_terms = array_filter($match_terms, '_delete_empty_element');
+		$new_terms = array_filter($new_terms, '_delete_empty_element');
 		
 		$counter = 0;
-		if ( !empty($match_tags) ) { // Match and add
+		if ( !empty($match_terms) ) { // Match and add
 			// Get terms ID from old match names
 			$terms_id = array();
-			foreach ( (array) $match_tags as $match_tag ) {
-				$term = get_term_by('name', $match_tag, 'post_tag');
+			foreach ( (array) $match_terms as $match_term ) {
+				$term = get_term_by('name', $match_term, $taxonomy);
 				$terms_id[] = (int) $term->term_id;
 			}
 			
 			// Get object ID with terms ID
-			$objects_id = get_objects_in_term( $terms_id, 'post_tag', array('fields' => 'all_with_object_id') );
+			$objects_id = get_objects_in_term( $terms_id, $taxonomy, array('fields' => 'all_with_object_id') );
 			
 			// Add new tags for specified post
 			foreach ( (array) $objects_id as $object_id ) {
-				wp_set_object_terms( $object_id, $new_tags, 'post_tag', true ); // Append tags
+				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append tags
 				$counter++;
 			}
 			
 			// Clean cache
-			clean_object_term_cache( $objects_id, 'post_tag');
-			clean_term_cache($terms_id, 'post_tag');
+			clean_object_term_cache( $objects_id, $taxonomy );
+			clean_term_cache($terms_id, $taxonomy );
 		} else { // Add for all posts
 			// Page or not ?
-			$post_type_sql = ( is_page_have_tags() ) ? "post_type IN('page', 'post')" : "post_type = 'post'";
+			$post_type_sql = ( is_page_have_tags() ) ? "post_type IN('page', 'post')" : "post_type = 'post'"; // TODO, CTP
 			
 			// Get all posts ID
 			global $wpdb;
@@ -458,32 +503,37 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 			
 			// Add new tags for all posts
 			foreach ( (array) $objects_id as $object_id ) {
-				wp_set_object_terms( $object_id, $new_tags, 'post_tag', true ); // Append tags
+				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append tags
 				$counter++;
 			}
 			
 			// Clean cache
-			clean_object_term_cache( $objects_id, 'post_tag');
+			clean_object_term_cache( $objects_id, $taxonomy );
 		}
 		
 		if ( $counter == 0  ) {
-			$this->message = __('No tag added.', 'simpletags');
+			$this->message = __('No term added.', 'simpletags');
 		} else {
-			$this->message = sprintf(__('Tag(s) added to %1s post(s).', 'simpletags'), $counter);
+			$this->message = sprintf(__('Term(s) added to %1s post(s).', 'simpletags'), $counter);
 		}
+		
+		return true;
 	}
 	
 	/**
-	 * Edit one or lots tags slugs
+	 * Method for edit one or more terms slug
 	 *
+	 * @param string $taxonomy
 	 * @param string $names
 	 * @param string $slugs
+	 * @return boolean
+	 * @author Amaury Balmer
 	 */
-	function editTagSlug( $names = '', $slugs = '') {
+	function editTermSlug( $taxonomy = 'post_tag', $names = '', $slugs = '') {
 		if ( trim( str_replace(',', '', stripslashes($slugs)) ) == '' ) {
 			$this->message = __('No new slug(s) specified!', 'simpletags');
 			$this->status = 'error';
-			return;
+			return false;
 		}
 		
 		$match_names = explode(',', $names);
@@ -493,9 +543,9 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		$new_slugs = array_filter($new_slugs, '_delete_empty_element');
 		
 		if ( count($match_names) != count($new_slugs) ) {
-			$this->message = __('Tags number and slugs number isn\'t the same!', 'simpletags');
+			$this->message = __('Terms number and slugs number isn\'t the same!', 'simpletags');
 			$this->status = 'error';
-			return;
+			return false;
 		} else {
 			$counter = 0;
 			foreach ( (array) $match_names as $i => $match_name ) {
@@ -503,7 +553,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 				$new_slug = sanitize_title($new_slugs[$i]);
 				
 				// Get term by name
-				$term = get_term_by('name', $match_name, 'post_tag');
+				$term = get_term_by('name', $match_name, $taxonomy);
 				if ( !$term ) {
 					continue;
 				}
@@ -512,10 +562,10 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 				$counter++;
 				
 				// Update term
-				wp_update_term($term->term_id, 'post_tag', array('slug' => $new_slug));
+				wp_update_term($term->term_id, $taxonomy, array('slug' => $new_slug));
 				
 				// Clean cache
-				clean_term_cache($term->term_id, 'post_tag');
+				clean_term_cache($term->term_id, $taxonomy);
 			}
 		}
 		
@@ -524,12 +574,15 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		} else {
 			$this->message = sprintf(__('%s slug(s) edited.', 'simpletags'), $counter);
 		}
-		return;
+		
+		return true;
 	}
 	
 	/**
 	 * Clean database - Remove empty terms
 	 *
+	 * @return boolean
+	 * @author Amaury Balmer
 	 */
 	function cleanDatabase() {
 		global $wpdb;
@@ -541,7 +594,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		$terms_id = $wpdb->get_col("SELECT term_id FROM {$wpdb->terms} WHERE name IN ('', ' ', '  ', '&nbsp;') GROUP BY term_id");
 		if ( empty($terms_id) ) {
 			$this->message = __('Nothing to muck. Good job !', 'simpletags');
-			return;
+			return false;
 		}
 		
 		// Prepare terms SQL List
@@ -565,11 +618,11 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		}
 		
 		// Delete cache
-		clean_term_cache($terms_id, array('category', 'post_tag'));
-		clean_object_term_cache($tts_list, 'post');
+		clean_term_cache($terms_id, array('category', 'post_tag')); // TODO: All taxos ?
+		clean_object_term_cache($tts_list, 'post'); // TODO: CTP !
 		
 		$this->message = sprintf(__('%s rows deleted. WordPress DB is clean now !', 'simpletags'), $counter);
-		return;
+		return true;
 	}
 }
 ?>
