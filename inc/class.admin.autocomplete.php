@@ -22,7 +22,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
+		if ( in_array($pagenow, $wp_post_pages) || ( in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
 			wp_enqueue_script('jquery-autocomplete');
 			wp_enqueue_script('st-helper-autocomplete');
 			wp_enqueue_style ('jquery-autocomplete');
@@ -67,7 +67,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			$tags = array_filter($tags, '_delete_empty_element');
 			
 			// Add new tag (no append ! replace !)
-			wp_set_object_terms( $post_id, $tags, 'post_tag' );
+			wp_set_object_terms( $post_id, $tags, 'post_tag' ); // TODO ?
 			
 			// Clean cache
 			if ( 'page' == $object->post_type ) {
