@@ -7,6 +7,9 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
+		
+		// Register taxo, parent method...
+		$this->registerDetermineTaxonomy();
 	}
 	
 	/**
@@ -16,40 +19,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function adminMenu() {
-		add_posts_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_tags', array(&$this, 'pageMassEditTags'));
-	}
-	
-	/**
-	 * Build HTML form for allow user to change taxonomy for the current page.
-	 *
-	 * @param string $page_value
-	 * @param string $post_type
-	 * @return void
-	 * @author Amaury Balmer
-	 */
-	function boxSelectorTaxonomy( $page_value = '', $post_type = 'post' ) {
-		echo '<div class="box-selector-taxonomy">' . "\n";
-			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the taxonomy : <span>%s</span>', 'simpletags'), $this->taxo_name).'</p>' . "\n";
-			
-			echo '<div class="change-taxo">' . "\n";
-				echo '<form action="" method="get">' . "\n";
-					if ( !empty($page_value) ) {
-						echo '<input type="hidden" name="page" value="'.$page_value.'" />' . "\n";
-					}
-					echo '<select name="taxonomy">' . "\n";
-						foreach ( get_object_taxonomies($post_type) as $tax_name ) {
-							$taxonomy = get_taxonomy($tax_name);
-							if ( $taxonomy->show_ui == false )
-								continue;
-							
-							echo '<option '.selected( $tax_name, $this->taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->label).'</option>' . "\n";
-						}
-					echo '</select>' . "\n";
-					
-					echo '<input type="submit" class="button" id="submit-change-taxo" value="'.__('Change taxonomy', 'simpletags').'" />' . "\n";
-				echo '</form>' . "\n";
-			echo '</div>' . "\n";
-		echo '</div>' . "\n";
+		add_management_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_tags', array(&$this, 'pageMassEditTags'));
 	}
 	
 	/**
@@ -120,15 +90,18 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		if ( !isset( $_GET['paged'] ) ) {
 			$_GET['paged'] = 1;
 		}
+		
+		if ( isset($simple_tags['admin-autocomplete']) ) :
 		?>
 		<script type="text/javascript">
 			<!--
 			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
+		<?php endif; ?>
 		
 		<div class="wrap">
-			<?php $this->boxSelectorTaxonomy( 'st_mass_tags', 'post' ); ?>
+			<?php $this->boxSelectorTaxonomy( 'st_mass_tags' ); ?>
 			
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_tags" />
@@ -139,9 +112,9 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 				<ul class="subsubsub">
 					<?php
 					$status_links = array();
-					$num_posts = wp_count_posts('post', 'readable');
+					$num_posts = wp_count_posts($this->post_type, 'readable');
 					$class = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;taxonomy='.$this->taxonomy.'"'.$class.'>'.__('All Posts', 'simpletags').'</a>';
+					$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;ctp='.$this->post_type.'&amp;taxo='.$this->taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 						
@@ -154,14 +127,13 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 						if ( isset($_GET['post_status']) && $status == $_GET['post_status'] )
 							$class = ' class="current"';
 						
-						$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;taxonomy='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
+						$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;ctp='.$this->post_type.'&amp;taxo='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
 					}
-					echo implode(' |</li>', $status_links) . ' |</li>';
+					echo implode(' |</li>', $status_links) . '</li>';
 					unset($status_links);
 					
 					$class = (!empty($_GET['post_type'])) ? ' class="current"' : '';
 					?>
-					<li><a href="<?php echo admin_url('edit.php'); ?>?page=st_mass_tags&amp;taxonomy=<?php echo $this->taxonomy; ?>&amp;post_type=page" <?php echo $class; ?>><?php _e('All Pages', 'simpletags'); ?></a>
 				</ul>
 				
 				<?php if ( isset($_GET['post_status'] ) ) : ?>
@@ -170,7 +142,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 				
 				<p class="search-box">
 					<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>" />
-					<input type="submit" value="<?php _e( 'Search Posts', 'simpletags' ); ?>" class="button" />
+					<input type="submit" value="<?php _e( 'Search', 'simpletags' ); ?>" class="button" />
 				</p>
 				
 				<div class="tablenav">
@@ -194,40 +166,35 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 					<div style="float: left">
 						<?php
 						if ( !is_singular() ) {
-						$arc_query = "SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = 'post' ORDER BY post_date DESC";
+							$arc_result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = %s ORDER BY post_date DESC", $this->post_type ) );
 						
-						$arc_result = $wpdb->get_results( $arc_query );
+							$month_count = count($arc_result);
 						
-						$month_count = count($arc_result);
+							if ( !isset($_GET['m']) )
+								$_GET['m'] = '';
 						
-						if ( !isset($_GET['m']) )
-							$_GET['m'] = '';
-						
-						if ( $month_count && !( 1 == $month_count && 0 == $arc_result[0]->mmonth ) ) { ?>
-							<select name='m'>
-							<option<?php selected( @$_GET['m'], 0 ); ?> value='0'><?php _e('Show all dates', 'simpletags'); ?></option>
+							if ( $month_count && !( 1 == $month_count && 0 == $arc_result[0]->mmonth ) ) { ?>
+								<select name='m'>
+								<option<?php selected( @$_GET['m'], 0 ); ?> value='0'><?php _e('Show all dates', 'simpletags'); ?></option>
+								<?php
+								foreach ($arc_result as $arc_row) {
+									if ( $arc_row->yyear == 0 )
+										continue;
+									$arc_row->mmonth = zeroise( $arc_row->mmonth, 2 );
+								
+									if ( $arc_row->yyear . $arc_row->mmonth == $_GET['m'] )
+										$default = ' selected="selected"';
+									else
+										$default = '';
+								
+									echo "<option$default value='$arc_row->yyear$arc_row->mmonth'>";
+									echo $wp_locale->get_month($arc_row->mmonth) . " $arc_row->yyear";
+									echo "</option>\n";
+								}
+								?>
+								</select>
 							<?php
-							foreach ($arc_result as $arc_row) {
-								if ( $arc_row->yyear == 0 )
-									continue;
-								$arc_row->mmonth = zeroise( $arc_row->mmonth, 2 );
-								
-								if ( $arc_row->yyear . $arc_row->mmonth == $_GET['m'] )
-									$default = ' selected="selected"';
-								else
-									$default = '';
-								
-								echo "<option$default value='$arc_row->yyear$arc_row->mmonth'>";
-								echo $wp_locale->get_month($arc_row->mmonth) . " $arc_row->yyear";
-								echo "</option>\n";
-							}
-							?>
-							</select>
-						<?php } ?>
-						
-						<?php
-						$_GET['cat'] = ( isset($_GET['cat']) ) ? stripslashes($_GET['cat']) : '';
-						wp_dropdown_categories('show_option_all='.__('View all categories', 'simpletags').'&hide_empty=1&hierarchical=1&show_count=1&selected='.$_GET['cat']);
+						}
 						?>
 						
 						<select name="posts_per_page" id="posts_per_page">
@@ -270,7 +237,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 								$class = ( $class == 'alternate' ) ? '' : 'alternate';
 								?>
 								<tr valign="top" class="<?php echo $class; ?>">
-									<th scope="row"><a href="<?php echo admin_url('post.php'); ?>?action=edit&amp;post=<?php the_ID(); ?>" title="<?php _e('Edit', 'simpletags'); ?>"><?php the_title(); ?></a></th>
+									<th scope="row"><a href="<?php echo admin_url('post.php?action=edit&amp;post='.get_the_ID()); ?>" title="<?php _e('Edit', 'simpletags'); ?>"><?php the_title(); ?></a></th>
 									<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input" type="text" size="100" name="tags[<?php the_ID(); ?>]" value="<?php echo $this->getTermsToEdit( $this->taxonomy, get_the_ID() ); ?>" /></td>
 								</tr>
 								<?php
@@ -322,7 +289,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 			$q['posts_per_page'] = 15;
 		
 		// Content type
-		$q['post_type'] = ( isset($q['post_type']) && $q['post_type'] == 'page' ) ? 'page' : 'post';
+		$q['post_type'] = $this->post_type;
 		
 		// Post status
 		$post_stati  = array(	//	array( adj, noun )
@@ -334,7 +301,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		);
 		
 		$post_stati = apply_filters('post_stati', $post_stati);
-		$avail_post_stati = get_available_post_statuses('post');
+		$avail_post_stati = get_available_post_statuses($this->post_type);
 		
 		$post_status_q = '';
 		if ( isset($q['post_status']) && in_array( $q['post_status'], array_keys($post_stati) ) ) {
