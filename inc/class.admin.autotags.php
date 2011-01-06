@@ -18,6 +18,9 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			add_action( 'publish_post', 			array(&$this, 'saveAutoTags'), 10, 2 );
 			add_action( 'post_syndicated_item', 	array(&$this, 'saveAutoTags'), 10, 2 );
 		}
+		
+		// Register taxo, parent method...
+		$this->registerDetermineTaxonomy();
 	}
 
 	/**
@@ -27,7 +30,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function adminMenu() {
-		add_posts_page( __('Simple Terms: Auto Terms', 'simpletags'), __('Auto Terms', 'simpletags'), 'simple_tags', 'st_auto', array(&$this, 'pageAutoTags'));
+		add_management_page( __('Simple Terms: Auto Terms', 'simpletags'), __('Auto Terms', 'simpletags'), 'simple_tags', 'st_auto', array(&$this, 'pageAutoTags'));
 	}
 	
 	/**
@@ -104,6 +107,8 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = 'post_tag'
 			");
+			// Todo taxo ?
+			
 			$terms = array_unique($terms);
 			
 			foreach ( $terms as $term ) {
@@ -138,10 +143,10 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			update_option('tmp_auto_tags_st', $counter);
 			
 			// Add tags to posts
-			wp_set_object_terms( $object->ID, $tags_to_add, 'post_tag', true );
+			wp_set_object_terms( $object->ID, $tags_to_add, 'post_tag', true ); // TODO : Taxo
 			
 			// Clean cache
-			if ( isset($object->post_type) && 'page' == $object->post_type ) {
+			if ( isset($object->post_type) && 'page' == $object->post_type ) { // TODO CTP
 				clean_page_cache($object->ID);
 			} else {
 				clean_post_cache($object->ID);
@@ -200,14 +205,19 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			$tags_list = implode(', ', $tags);
 		}
 		$this->displayMessage();
+		
+		if ( isset($simple_tags['admin-autocomplete']) ) :
 		?>
 		<script type="text/javascript">
 			<!--
 			initAutoComplete( '#auto_list', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
+		<?php endif; ?>
 		
 		<div class="wrap st_wrap">
+			<?php $this->boxSelectorTaxonomy( 'st_auto' ); ?>
+			
 			<h2><?php _e('Auto Terms', 'simpletags'); ?></h2>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			
