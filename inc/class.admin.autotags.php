@@ -164,6 +164,8 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function pageAutoTags() {
+		global $simple_tags;
+		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		

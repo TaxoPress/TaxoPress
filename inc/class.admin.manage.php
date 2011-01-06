@@ -38,6 +38,8 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function pageManageTags() {
+		global $simple_tags;
+		
 		// Control Post data
 		if ( isset($_POST['term_action']) ) {
 			if ( !wp_verify_nonce($_POST['term_nonce'], 'simpletags_admin') ) { // Origination and intention
@@ -129,7 +131,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 					} else {
 						$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
 					}
-					st_term_cloud('hide_empty=false&number=&color=false&get=all&title='.$order.'&taxonomy='.$this->taxonomy);
+					st_tag_cloud('hide_empty=false&number=&color=false&get=all&title='.$order.'&taxonomy='.$this->taxonomy);
 					?>
 				</div>
 			</div>
@@ -256,6 +258,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 						
 						<fieldset>
 							<form action="" method="post">
+								<input type="hidden" name="taxonomy" value="<?php echo $this->taxonomy; ?>" />
 								<input type="hidden" name="term_action" value="cleandb" />
 								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
 								

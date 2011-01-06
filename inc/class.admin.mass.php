@@ -84,7 +84,8 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 *
 	 */
 	function pageMassEditTags() {
-		global $wpdb, $wp_locale, $wp_query;
+		global $wpdb, $wp_locale, $wp_query, $simple_tags;
+		
 		list($post_stati, $avail_post_stati) = $this->edit_data_query();
 		
 		if ( !isset( $_GET['paged'] ) ) {
