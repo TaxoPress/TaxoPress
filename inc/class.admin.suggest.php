@@ -360,19 +360,26 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		}
 		
 		$terms = array();
+		
 		// Get all topics
-		foreach ( (array) $data->topic as $topic ) {
-			$terms[] = '<span class="ttn_topic">'.esc_html($topic).'</span>';
+		if ( isset($data->topic) ) {
+			foreach ( (array) $data->topic as $topic ) {
+				$terms[] = '<span class="ttn_topic">'.esc_html($topic).'</span>';
+			}
 		}
 		
 		// Get all locations
-		foreach ( (array) $data->location as $location ) {
-			$terms[] = '<span class="ttn_location">'.esc_html($location).'</span>';
+		if ( isset($data->location) ) {
+			foreach ( (array) $data->location as $location ) {
+				$terms[] = '<span class="ttn_location">'.esc_html($location).'</span>';
+			}
 		}
 		
 		// Get all persons
-		foreach ( (array) $data->person as $person ) {
-			$terms[] = '<span class="ttn_person">'.esc_html($person).'</span>';
+		if ( isset($data->person) ) {
+			foreach ( (array) $data->person as $person ) {
+				$terms[] = '<span class="ttn_person">'.esc_html($person).'</span>';
+			}
 		}
 		
 		// Remove empty terms
