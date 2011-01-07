@@ -63,11 +63,6 @@ class SimpleTags_Admin {
 			$simple_tags['admin-mass'] = new SimpleTags_Admin_Mass();
 		}
 		
-		if ( isset($options['active_manage']) && $options['active_manage'] == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.manage.php');
-			$simple_tags['admin-manage'] = new SimpleTags_Admin_Manage();
-		}
-		
 		if ( isset($options['active_autotags']) && $options['active_autotags'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.autotags.php');
 			$simple_tags['admin-autotags'] = new SimpleTags_Admin_AutoTags();
@@ -196,7 +191,7 @@ class SimpleTags_Admin {
 		if (
 			in_array($pagenow, $wp_post_pages) ||
 			( in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ||
-			( isset($_GET['page']) && in_array($_GET['page'], array('st_manage', 'st_mass_tags', 'st_auto', 'st_options')) )
+			( isset($_GET['page']) && in_array($_GET['page'], array('st_mass_tags', 'st_auto', 'st_options')) )
 		) {
 			wp_enqueue_style ('st-admin');
 		}
