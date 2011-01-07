@@ -39,13 +39,6 @@ return array(
 	'cloud_max_size' 	=> 22,
 	'cloud_min_size' 	=> 8,
 	'cloud_unit' 		=> 'pt',
-	'cloud_adv_usage' 	=> '',
-	
-	// Auto tags
-	'use_auto_tags' => 0,
-	'at_all' 		=> 0,
-	'at_empty' 		=> 0,
-	'auto_list' 	=> '',
-	'only_full_word'=> 0
+	'cloud_adv_usage' 	=> ''
 );
 ?>

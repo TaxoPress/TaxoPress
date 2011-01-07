@@ -93,11 +93,10 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
+			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin.php?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy); ?>", 300 );
 			-->
 		</script>
 		<?php endif; ?>
-		
 		<div class="wrap st_wrap">
 			<?php $this->boxSelectorTaxonomy( 'st_manage' ); ?>
 			
@@ -111,11 +110,11 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 					<div>
 						<input type="hidden" name="page" value="st_manage" />
 						<select name="order">
-							<option <?php if($_GET['order']=='count-asc') echo'selected="selected"'; ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
-							<option <?php if($_GET['order']=='count-desc') echo'selected="selected"'; ?> value="count-desc"><?php _e('Most popular', 'simpletags'); ?></option>
-							<option <?php if($_GET['order']=='name-asc') echo'selected="selected"'; ?> value="name-asc"><?php _e('Alphabetical (default)', 'simpletags'); ?></option>
-							<option <?php if($_GET['order']=='name-desc') echo'selected="selected"'; ?> value="name-desc"><?php _e('Inverse Alphabetical', 'simpletags'); ?></option>
-							<option <?php if($_GET['order']=='random') echo'selected="selected"'; ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
+							<option <?php selected( $_GET['order'], 'count-asc' ); ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
+							<option <?php selected( $_GET['order'], 'count-desc' ); ?> value="count-desc"><?php _e('Most popular', 'simpletags'); ?></option>
+							<option <?php selected( $_GET['order'], 'name-asc' ); ?> value="name-asc"><?php _e('Alphabetical (default)', 'simpletags'); ?></option>
+							<option <?php selected( $_GET['order'], 'name-desc' ); ?> value="name-desc"><?php _e('Inverse Alphabetical', 'simpletags'); ?></option>
+							<option <?php selected( $_GET['order'], 'random' ); ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
 						</select>
 						<input class="button" type="submit" value="<?php _e('Sort', 'simpletags'); ?>" />
 					</div>
@@ -489,7 +488,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 			
 			// Add new tags for specified post
 			foreach ( (array) $objects_id as $object_id ) {
-				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append tags
+				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append terms
 				$counter++;
 			}
 			
@@ -498,7 +497,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 			clean_term_cache($terms_id, $taxonomy );
 		} else { // Add for all posts
 			// Page or not ?
-			$post_type_sql = ( is_page_have_tags() ) ? "post_type IN('page', 'post')" : "post_type = 'post'"; // TODO, CTP
+			$post_type_sql = ( is_page_have_tags() ) ? "post_type IN('page', 'post')" : "post_type = 'post'"; // TODO, CPT
 			
 			// Get all posts ID
 			global $wpdb;
@@ -506,7 +505,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 			
 			// Add new tags for all posts
 			foreach ( (array) $objects_id as $object_id ) {
-				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append tags
+				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append terms
 				$counter++;
 			}
 			
@@ -622,7 +621,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		
 		// Delete cache
 		clean_term_cache($terms_id, array('category', 'post_tag')); // TODO: All taxos ?
-		clean_object_term_cache($tts_list, 'post'); // TODO: CTP !
+		clean_object_term_cache($tts_list, 'post'); // TODO: CPT !
 		
 		$this->message = sprintf(__('%s rows deleted. WordPress DB is clean now !', 'simpletags'), $counter);
 		return true;

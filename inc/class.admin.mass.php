@@ -84,8 +84,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 *
 	 */
 	function pageMassEditTags() {
-		global $wpdb, $wp_locale, $wp_query, $simple_tags;
-		
+		global $wpdb, $wp_locale, $wp_query;
 		list($post_stati, $avail_post_stati) = $this->edit_data_query();
 		
 		if ( !isset( $_GET['paged'] ) ) {
@@ -115,7 +114,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 					$status_links = array();
 					$num_posts = wp_count_posts($this->post_type, 'readable');
 					$class = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;ctp='.$this->post_type.'&amp;taxo='.$this->taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
+					$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_tags&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 						
@@ -128,7 +127,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 						if ( isset($_GET['post_status']) && $status == $_GET['post_status'] )
 							$class = ' class="current"';
 						
-						$status_links[] = '<li><a href="'.admin_url('edit.php').'?page=st_mass_tags&amp;ctp='.$this->post_type.'&amp;taxo='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
+						$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_tags&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
 					}
 					echo implode(' |</li>', $status_links) . '</li>';
 					unset($status_links);
@@ -200,13 +199,13 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 						
 						<select name="posts_per_page" id="posts_per_page">
 							<option <?php if ( !isset($_GET['posts_per_page']) ) echo 'selected="selected"'; ?> value=""><?php _e('Quantity&hellip;', 'simpletags'); ?></option>
-							<option <?php if ( $posts_per_page == 10 ) echo 'selected="selected"'; ?> value="10">10</option>
-							<option <?php if ( $posts_per_page == 20 ) echo 'selected="selected"'; ?> value="20">20</option>
-							<option <?php if ( $posts_per_page == 30 ) echo 'selected="selected"'; ?> value="30">30</option>
-							<option <?php if ( $posts_per_page == 40 ) echo 'selected="selected"'; ?> value="40">40</option>
-							<option <?php if ( $posts_per_page == 50 ) echo 'selected="selected"'; ?> value="50">50</option>
-							<option <?php if ( $posts_per_page == 100 ) echo 'selected="selected"'; ?> value="100">100</option>
-							<option <?php if ( $posts_per_page == 200 ) echo 'selected="selected"'; ?> value="200">200</option>
+							<option <?php selected($posts_per_page, 10); ?> value="10">10</option>
+							<option <?php selected($posts_per_page, 20); ?> value="20">20</option>
+							<option <?php selected($posts_per_page, 30); ?> value="30">30</option>
+							<option <?php selected($posts_per_page, 40); ?> value="40">40</option>
+							<option <?php selected($posts_per_page, 50); ?> value="50">50</option>
+							<option <?php selected($posts_per_page, 100); ?> value="100">100</option>
+							<option <?php selected($posts_per_page, 200); ?> value="200">200</option>
 						</select>
 						
 						<input type="submit" id="post-query-submit" value="<?php _e('Filter', 'simpletags'); ?>" class="button-secondary" />

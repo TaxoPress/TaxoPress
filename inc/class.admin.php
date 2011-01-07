@@ -3,7 +3,7 @@ class SimpleTags_Admin {
 	var $options;
 	var $options_base_url = '';
 	
-	// CTP and Taxonomy support
+	// CPT and Taxonomy support
 	var $post_type 			= 'post';
 	var $post_type_name		= '';
 	
@@ -95,11 +95,11 @@ class SimpleTags_Admin {
 		$this->taxo_name = __('Post tags', 'simpletags');
 		$this->post_type_name = __('Posts', 'simpletags');
 		
-		// Custom CTP ?
-		if ( isset($_GET['ctp']) && !empty($_GET['ctp']) && post_type_exists($_GET['ctp']) ) {
-			$ctp = get_post_type_object($_GET['ctp']);
-			$this->post_type 		= $ctp->name;
-			$this->post_type_name 	= $ctp->labels->name;
+		// Custom CPT ?
+		if ( isset($_GET['cpt']) && !empty($_GET['cpt']) && post_type_exists($_GET['cpt']) ) {
+			$cpt = get_post_type_object($_GET['cpt']);
+			$this->post_type 		= $cpt->name;
+			$this->post_type_name 	= $cpt->labels->name;
 		}
 		
 		// Get compatible taxo for current post type
@@ -118,7 +118,7 @@ class SimpleTags_Admin {
 			}
 		}
 		
-		// Default taxo from CTP...
+		// Default taxo from CPT...
 		if ( !isset($taxo) && is_array($compatible_taxonomies) ) {
 			$taxo = get_taxonomy( current($compatible_taxonomies) );
 			$this->taxonomy 	= $taxo->name;
@@ -128,7 +128,7 @@ class SimpleTags_Admin {
 		}
 		
 		// Free memory
-		unset($ctp, $taxo);
+		unset($cpt, $taxo);
 	}
 	
 	/**
@@ -148,7 +148,7 @@ class SimpleTags_Admin {
 						echo '<input type="hidden" name="page" value="'.$page_value.'" />' . "\n";
 					}
 					
-					echo '<select name="ctp" id="ctp-select">' . "\n";
+					echo '<select name="cpt" id="cpt-select">' . "\n";
 						foreach ( get_post_types( array('show_ui' => true ), 'objects') as $post_type ) {
 							echo '<option '.selected( $post_type->name, $this->post_type, false ).' value="'.esc_attr($post_type->name).'">'.esc_html($post_type->labels->name).'</option>' . "\n";
 						}
@@ -178,15 +178,15 @@ class SimpleTags_Admin {
 	 */
 	function initJavaScript() {
 		// Library JS
-		wp_register_script('jquery-cookie', 		STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
+		wp_register_script('jquery-cookie', STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
 		
 		// Helper simple tags
-		wp_register_script('st-helper-add-tags', 	STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);
-		wp_register_script('st-helper-options', 	STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), STAGS_VERSION);
-
+		wp_register_script('st-helper-add-tags', STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-options', STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), STAGS_VERSION);
+		
 		// Register CSS
-		wp_register_style('st-admin', 				STAGS_URL.'/inc/css/admin.css', array(), STAGS_VERSION, 'all' );
-
+		wp_register_style('st-admin', STAGS_URL.'/inc/css/admin.css', array(), STAGS_VERSION, 'all' );
+		
 		// Register location
 		global $pagenow;
 		$wp_post_pages = array('post.php', 'post-new.php');
@@ -231,7 +231,7 @@ class SimpleTags_Admin {
 		if ( isset($_POST['updateoptions']) ) {
 			foreach((array) $options as $key => $value) {
 				$newval = ( isset($_POST[$key]) ) ? stripslashes($_POST[$key]) : '0';
-				if ( $newval != $value && !in_array($key, array('use_auto_tags', 'auto_list')) ) {
+				if ( $newval != $value ) {
 					$options[$key] = $newval;
 				}
 			}
@@ -245,9 +245,6 @@ class SimpleTags_Admin {
 		}
 		
 		$this->displayMessage();
-		
-		// Get array options/description
-		$option_data = (array) include( dirname(__FILE__) . '/helper.options.admin.php' );
 	    ?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
@@ -260,6 +257,8 @@ class SimpleTags_Admin {
 				<div id="printOptions">
 					<ul class="st_submenu">
 						<?php
+						// Get array options/description
+						$option_data = (array) include( dirname(__FILE__) . '/helper.options.admin.php' );
 						foreach ( $option_data as $key => $val ) {
 							echo '<li><a href="#'. sanitize_title ( $key ) .'">'.$this->getNiceTitleOptions($key).'</a></li>';
 						}
