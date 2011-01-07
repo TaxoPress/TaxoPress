@@ -2,7 +2,7 @@
 /*
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
-Description: Extended Tagging for WordPress 3.0 : Suggested Tags, Mass edit tags, Autocompletion, Tag Cloud Widgets etc !
+Description: Extended Tagging for WordPress 3.0 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, etc. NOW Compatible custom post type and custom taxonomy !
 Version: 2.0
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
@@ -21,9 +21,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 Contributors:
-- Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
-- Martin Modler (modler@webformatik.com - http://www.webformatik.com)
-- Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
+	- Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
+	- Martin Modler (modler@webformatik.com - http://www.webformatik.com)
+	- Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
+
+Credits Icons :
+	- famfamfam - http://www.famfamfam.com/lab/icons/silk/
 
 Todo:
 	Both :
@@ -37,16 +40,17 @@ Todo:
 		
 		Bug with custom taxonomies
 		
-		Custom CTP without taxonomy
+		Custom CPT without taxonomy
 	
 	Client :
 		- Test avec &$this, $this, et avec une fonction, test la conso memoire de wp_filter avant/apres
 		- Verifier la case du remplacement par les liens
 */
 
-define( 'STAGS_VERSION', 		'2.0.0' );
-define( 'STAGS_OPTIONS_NAME', 	'simpletags' ); // Option name for save settings
-define( 'STAGS_FOLDER', 		'simple-tags' );
+define( 'STAGS_VERSION', 			'2.0.0' );
+define( 'STAGS_OPTIONS_NAME', 		'simpletags' ); // Option name for save settings
+define( 'STAGS_OPTIONS_NAME_AUTO', 	'simpletags-auto' ); // Option name for save settings auto terms
+define( 'STAGS_FOLDER', 			'simple-tags' );
 
 define ( 'STAGS_URL', plugins_url('', __FILE__) );
 define ( 'STAGS_DIR', dirname(__FILE__) );
