@@ -80,7 +80,8 @@ Before WP 2.3, you must use the plugin Simple Tagging.
 	* Change method for tags for page.
 	* Improve memory consommation : all feature can be deactived.
 	* Improve memory consommation : Stop use class variables for options
-	* 
+	* Support mass edit with CPT/CT
+	* Improve AJAX call by using WordPress hook
 * Version 1.8.1 :
 	* Improve uninstaller
 	* Improve code widgets
