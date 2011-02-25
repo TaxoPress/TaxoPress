@@ -399,7 +399,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ( ((int) wp_count_terms($this->taxonomy, 'ignore_empty=false')) == 0) { // No tags to suggest
+		if ( ((int) wp_count_terms('post_tag', 'ignore_empty=false')) == 0) { // No tags to suggest
 			echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';
 			exit();
 		}
@@ -414,21 +414,27 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		}
 		
 		// Get all terms
-		$terms = $this->getTermsForAjax( $this->taxonomy, '' );
+		$terms = $this->getTermsForAjax( 'post_tag', '' );
 		if ( empty($terms) || $terms == false ) {
 			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
 			exit();
 		}
 		
-		//$terms = array_unique($terms);
+		$flag = false;
 		foreach ( (array) $terms as $term ) {
 			$term = stripslashes($term->name);
 			if ( is_string($term) && !empty($term) && stristr($content, $term) ) {
+				$flag = true;
 				echo '<span class="local">'.esc_html($term).'</span>'."\n";
 			}
 		}
 		
-		echo '<div class="clear"></div>';
+		if ( $flag == false ) {
+			echo '<p>'.__('No correspondance between your content and terms from the WordPress database.', 'simpletags').'</p>';
+		} else {
+			echo '<div class="clear"></div>';
+		}
+		
 		exit();
 	}
 	
@@ -439,7 +445,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ((int) wp_count_terms($this->taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
+		if ((int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // No tags to suggest
 			exit();
 		}
 		
@@ -447,7 +453,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
 		
 		// Get all terms, or filter with search
-		$terms = $this->getTermsForAjax( $this->taxonomy, $search );
+		$terms = $this->getTermsForAjax( 'post_tag', $search );
 		if ( empty($terms) || $terms == false ) {
 			exit();
 		}
