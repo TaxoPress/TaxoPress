@@ -2,6 +2,8 @@
 class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_ClickTags() {
+		global $pagenow;
+		
 		// Ajax action, JS Helper and admin action
 		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
@@ -12,7 +14,6 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );
 		
 		// Register location
-		global $pagenow;
 		$wp_post_pages = array('post.php', 'post-new.php');
 		$wp_page_pages = array('page.php', 'page-new.php');
 		

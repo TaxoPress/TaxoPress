@@ -2,6 +2,8 @@
 class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_Autocomplete() {
+		global $pagenow;
+		
 		// Save tags from advanced input
 		add_action( 'publish_post', array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
 		add_action( 'save_post', 	array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
@@ -17,7 +19,6 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/inc/css/jquery.autocomplete.css', array(), '1.1', 'all' );
 		
 		// Register location
-		global $pagenow;
 		$wp_post_pages = array('post.php', 'post-new.php');
 		$wp_page_pages = array('page.php', 'page-new.php');
 		

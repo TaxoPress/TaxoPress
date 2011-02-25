@@ -30,7 +30,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function pageAutoTerms() {
-		global $simple_terms;
+		global $simple_terms, $wpdb;
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
@@ -240,7 +240,6 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 				}
 				
 				// Get objects
-				global $wpdb;
 				$objects = (array) $wpdb->get_results( $wpdb->prepare("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'publish' ORDER BY ID DESC LIMIT %d, 20", $this->post_type, $n) );
 				
 				if( !empty($objects) ) {

@@ -174,6 +174,8 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function initJavaScript() {
+		global $pagenow;
+		
 		// Library JS
 		wp_register_script('jquery-cookie', STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
 		
@@ -185,7 +187,6 @@ class SimpleTags_Admin {
 		wp_register_style('st-admin', STAGS_URL.'/inc/css/admin.css', array(), STAGS_VERSION, 'all' );
 		
 		// Register location
-		global $pagenow;
 		$wp_post_pages = array('post.php', 'post-new.php');
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
