@@ -37,6 +37,8 @@ return array(
 			__('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags')),
 		array('auto_link_max_by_post', __('Maximum number of links per article:', 'simpletags'), 'text', '10',
 			__('This setting determines the maximum number of links created by article. Default: 10.', 'simpletags')),
+		array('auto_link_max_by_tag', __('Maximum number of links for the same tag:', 'simpletags'), 'text', '10',
+			__('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags')),	
 		array('auto_link_case', __('Ignore case for auto link feature ?', 'simpletags'), 'checkbox', '1',
 			__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')),
 		array('auto_link_exclude', __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'), 'text', '',
@@ -44,7 +46,7 @@ return array(
 	),
 	'tagcloud' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
-			. '<ul style="list-style:square;">
+			. '<ul style="list-style:square;margin-left:20px;">
 				<li>'.__('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags').'</li>
 				<li>'.__('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags').'</li>
 			</ul>'.
@@ -95,26 +97,32 @@ return array(
 	),
 	'metakeywords' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
-			. '<ul style="list-style:square;">
+			. '<ul style="list-style:square;margin-left:20px;">
 				<li><a href="http://wordpress.org/extend/plugins/seo-ultimate/" target="_blank">SEO Ultimate</a></li>
 				<li><a href="http://wordpress.org/extend/plugins/platinum-seo-pack/" target="_blank">Platinum SEO Pack</a></li>
 				<li><a href="http://wordpress.org/extend/plugins/wordpress-seo/" target="_blank">WordPress SEO by Yoast</a></li>
 			</ul>' )
 	),
 	'tagspost' => array(
-		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and i recommended to use the core function of WP "the_tags()"<br />', 'simpletags'))
+		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and i recommended to use the core function of WP <code style="font-weight:700;">the_tags()</code><br />', 'simpletags'))
 	),
 	'relatedposts' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
-			. '<ul style="list-style:square;">
+			. '<ul style="list-style:square;margin-left:20px;">
 				<li><a href="http://wordpress.org/extend/plugins/similar-posts/" target="_blank">Similar Posts</a></li>
 				<li><a href="http://wordpress.org/extend/plugins/yet-another-related-posts-plugin/" target="_blank">Yet Another Related Posts Plugin</a></li>
 			</ul>' )
 	),
 	'relatedtags' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
-			. '<ul style="list-style:square;">
+			. '<ul style="list-style:square;margin-left:20px;">
 				<li><a href="http://wordpress.org/extend/plugins/query-multiple-taxonomies/" target="_blank">Query Multiple Taxonomies</a></li>
+			</ul>' )
+	),
+	'managetags' => array(
+		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
+			. '<ul style="list-style:square;margin-left:20px;">
+				<li><a href="http://wordpress.org/extend/plugins/term-management-tools/" target="_blank">Term Management Tools</a></li>
 			</ul>' )
 	)
 );

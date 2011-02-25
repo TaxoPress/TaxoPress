@@ -12,6 +12,7 @@ return array(
 	'auto_link_case' 		=> 1,
 	'auto_link_exclude' 	=> '',
 	'auto_link_max_by_post' => 10,
+	'auto_link_max_by_tag'  => 1,
 	
 	// Administration
 	'use_click_tags' 	 => 1,

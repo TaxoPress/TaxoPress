@@ -38,6 +38,8 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 * @return boolean
 	 */
 	function getTagsFromCurrentPosts() {
+		global $wpdb;
+		
 		if ( is_array($this->posts) && count($this->posts) > 0 ) {
 			// Generate SQL from post id
 			$postlist = implode( "', '", $this->posts );
@@ -52,7 +54,6 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 			}
 			
 			// If cache not exist, get datas and set cache
-			global $wpdb;
 			$results = $wpdb->get_results("
 				SELECT t.name AS name, t.term_id AS term_id, tt.count AS count
 				FROM {$wpdb->term_relationships} AS tr
@@ -141,6 +142,7 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 					continue;
 				}
 				
+				$j = 0;
 				$filtered = ''; // will filter text token by token
 				
 				$match = '/(\PL|\A)(' . preg_quote($term_name, "/") . ')(\PL|\Z)/u'.$case;
@@ -170,7 +172,10 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 						if (++$i % 2 && $token != '') { // this token is (non-markup) text
 							if ($anchor_level == 0) { // linkify if not inside anchor tags
 								if ( preg_match($match, $token) ) { // use preg_match for compatibility with PHP 4
-									$token = preg_replace($match, $substitute, $token); // only PHP 5 supports calling preg_replace with 5 arguments
+									$j++;
+									if ( $j <= $options['auto_link_max_by_tag'] ) // Limit replacement at 1 by default, or options value !
+										$token = preg_replace($match, $substitute, $token); // only PHP 5 supports calling preg_replace with 5 arguments
+									
 									$must_tokenize = true; // re-tokenize next time around
 								}
 							}
