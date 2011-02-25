@@ -5,7 +5,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Embedded tag cloud
-		if ( $options['allow_embed_tcloud'] == 1 ) {
+		if ( isset($options['allow_embed_tcloud']) && $options['allow_embed_tcloud'] == 1 ) {
 			add_shortcode( 'st_tag_cloud', array(&$this, 'inlineTagCloud') );
 			add_shortcode( 'st-tag-cloud', array(&$this, 'inlineTagCloud') );
 		}
@@ -20,7 +20,12 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	function inlineTagCloud( $atts ) {
 		extract(shortcode_atts(array('param' => ''), $atts));
 		
-		return $this->extendedTagCloud( trim($param), false );
+		$param = trim($param);
+		if ( empty($param) ) {
+			$param = 'title=';
+		}
+		
+		return $this->extendedTagCloud( $param, false );
 	}
 	
 	/**
