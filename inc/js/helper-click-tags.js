@@ -8,7 +8,7 @@ jQuery(document).ready(function() {
 	
 		jQuery("#st-clicks-tags .container_clicktags")
 			.fadeIn('slow')
-			.load( stHelperClickTagsL10n.site_url + '?st_ajax_action=click_tags', function() {
+			.load( ajaxurl + '?action=simpletags&st_action=click_tags', function() {
 				jQuery("#st-clicks-tags .container_clicktags span").click(function(event) {
 					event.preventDefault();
 					addTag(this.innerHTML);

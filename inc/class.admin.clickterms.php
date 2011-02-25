@@ -3,13 +3,13 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_ClickTags() {
 		// Ajax action, JS Helper and admin action
-		add_action('admin_init', array(&$this, 'ajaxCheck'));
+		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
 		// Box for post/page
 		add_action('admin_menu', array(&$this, 'helperClickTags'), 1);
 		
 		wp_register_script('st-helper-click-tags', STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
-		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'site_url' => admin_url('admin.php'), 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );
+		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );
 		
 		// Register location
 		global $pagenow;
@@ -37,7 +37,7 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 	 *
 	 */
 	function ajaxCheck() {
-		if ( isset($_GET['st_ajax_action']) && $_GET['st_ajax_action'] == 'click_tags' )  {
+		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'click_tags' )  {
 			$this->ajaxLocalTags();
 		}
 	}

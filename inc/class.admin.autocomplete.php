@@ -14,7 +14,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		wp_register_script('jquery-autocomplete',		STAGS_URL.'/inc/js/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
 		
 		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);	
-		wp_register_style('jquery-autocomplete', 		STAGS_URL.'/inc/css/jquery.autocomplete.css', array(), '1.1', 'all' );
+		wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/inc/css/jquery.autocomplete.css', array(), '1.1', 'all' );
 		
 		// Register location
 		global $pagenow;
@@ -29,7 +29,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		}
 		
 		// add JS for Auto Tags, Mass Edit Tags and Manage tags !
-		if ( isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_tags') ) ) {
+		if ( isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_terms') ) ) {
 			wp_enqueue_script('jquery-autocomplete');
 			wp_enqueue_script('st-helper-autocomplete');
 			wp_enqueue_style ('jquery-autocomplete');
@@ -107,7 +107,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		<textarea name="adv-tags-input" id="adv-tags-input" tabindex="3" rows="3" cols="5"><?php echo $this->getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin.php?st_ajax_action=helper_js_collection"); ?>', 300 );
+			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin.php?action=simpletags&st_action=helper_js_collection"); ?>', 300 );
 			-->
 		</script>
 		<?php

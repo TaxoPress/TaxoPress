@@ -19,7 +19,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function adminMenu() {
-		add_management_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_tags', array(&$this, 'pageMassEditTags'));
+		add_management_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_terms', array(&$this, 'pageMassEditTags'));
 	}
 	
 	/**
@@ -38,7 +38,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		
 		if ( isset($_POST['update_mass']) ) {
 			// origination and intention
-			if ( ! ( wp_verify_nonce($_POST['secure_mass'], 'st_mass_tags') ) ) {
+			if ( ! ( wp_verify_nonce($_POST['secure_mass'], 'st_mass_terms') ) ) {
 				$this->message = __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
 				$this->status = 'error';
 				return false;
@@ -84,7 +84,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 *
 	 */
 	function pageMassEditTags() {
-		global $wpdb, $wp_locale, $wp_query;
+		global $wpdb, $wp_locale, $wp_query, $simple_tags;
 		list($post_stati, $avail_post_stati) = $this->edit_data_query();
 		
 		if ( !isset( $_GET['paged'] ) ) {
@@ -95,16 +95,16 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
+			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?action=simpletags&st_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
 		<?php endif; ?>
 		
 		<div class="wrap">
-			<?php $this->boxSelectorTaxonomy( 'st_mass_tags' ); ?>
+			<?php $this->boxSelectorTaxonomy( 'st_mass_terms' ); ?>
 			
 			<form id="posts-filter" action="" method="get">
-				<input type="hidden" name="page" value="st_mass_tags" />
+				<input type="hidden" name="page" value="st_mass_terms" />
 				<input type="hidden" name="taxonomy" value="<?php echo esc_attr($this->taxonomy); ?>" />
 				<input type="hidden" name="cpt" value="<?php echo esc_attr($this->post_type); ?>" />
 				
@@ -115,7 +115,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 					$status_links = array();
 					$num_posts = wp_count_posts($this->post_type, 'readable');
 					$class = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_tags&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
+					$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 						
@@ -128,7 +128,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 						if ( isset($_GET['post_status']) && $status == $_GET['post_status'] )
 							$class = ' class="current"';
 						
-						$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_tags&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
+						$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
 					}
 					echo implode(' |</li>', $status_links) . '</li>';
 					unset($status_links);
@@ -248,7 +248,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 					</table>
 					
 					<p class="submit">
-						<input type="hidden" name="secure_mass" value="<?php echo wp_create_nonce('st_mass_tags'); ?>" />
+						<input type="hidden" name="secure_mass" value="<?php echo wp_create_nonce('st_mass_terms'); ?>" />
 						<input class="button-primary" type="submit" name="update_mass" value="<?php _e('Update all &raquo;', 'simpletags'); ?>" />
 					</p>
 				</form>

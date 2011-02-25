@@ -40,6 +40,7 @@ Todo:
 		
 		Bug with custom taxonomies
 		Custom CPT without taxonomy
+		AJAX
 	
 	Client :
 */

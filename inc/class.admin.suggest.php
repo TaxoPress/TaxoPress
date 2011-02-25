@@ -5,7 +5,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		
 	function SimpleTags_Admin_Suggest() {
 		// Ajax action, JS Helper and admin action
-		add_action('admin_init', array(&$this, 'ajaxCheck'));
+		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
 		// Box for post
 		add_action('admin_menu', array(&$this, 'helperSuggestTags_Post'), 1);
@@ -16,7 +16,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		}
 		
 		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
-		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array( 'site_url' => admin_url('admin.php'), 'title_bloc' => $this->getSuggestTagsTitle(), 'content_bloc' => __('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags') ) );
+		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array( 'title_bloc' => $this->getSuggestTagsTitle(), 'content_bloc' => __('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags') ) );
 		
 		// Register location
 		global $pagenow;
@@ -71,8 +71,8 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	 *
 	 */
 	function ajaxCheck() {
-		if ( isset($_GET['st_ajax_action']) )  {
-			switch( $_GET['st_ajax_action'] ) {
+		if ( isset($_GET['st_action']) )  {
+			switch( $_GET['st_action'] ) {
 				case 'tags_from_opencalais' :
 					$this->ajaxOpenCalais();
 				break;
