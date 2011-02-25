@@ -246,7 +246,7 @@ class SimpleTags_Admin {
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			<form action="<?php echo $this->options_base_url.'st_options'; ?>" method="post">
 				<p>
-					<input class="button" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
+					<input class="button-primary" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
 					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
 				
 				<div id="printOptions">
@@ -259,6 +259,7 @@ class SimpleTags_Admin {
 						}
 						?>
 					</ul>
+					<div class="clear"></div>
 					
 					<?php echo $this->printOptions( $option_data ); ?>
 				</div>
@@ -435,6 +436,9 @@ class SimpleTags_Admin {
 				break;
 			case 'relatedtags':
 				return __('Related Tags', 'simpletags');
+				break;
+			case 'managetags' :
+				return __('Manage Tags', 'simpletags');
 				break;
 			case 'tagcloud':
 				return __('Tag cloud', 'simpletags');
