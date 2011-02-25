@@ -50,7 +50,7 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ((int) wp_count_terms($this->taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
+		if ((int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // No tags to suggest
 			echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';
 			exit();
 		}
@@ -88,7 +88,7 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		}
 		
 		// Get all terms, or filter with search
-		$terms = $this->getTermsForAjax( $this->taxonomy, $search, $order_by, $order );
+		$terms = $this->getTermsForAjax( 'post_tag', $search, $order_by, $order );
 		if ( empty($terms) || $terms == false ) {
 			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
 			exit();
