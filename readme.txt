@@ -1,17 +1,19 @@
 === Simple Tags ===
 Contributors: momo360modena
 Donate link: http://beapi.fr/donate/
-Tags: tag, posts, tags, admin, administration, tagging, navigation
+Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.0
 Tested up to: 3.1
 Stable tag: 1.8
 
-Simple Tags is THE perfect tool to manage perfectly your WP 3.0 tags (Tags suggestion, Mass Edit Terms (Tags and Category), Auto link tags, Ajax Autocompletion, Click tags, Advanced edit tags, etc.)
+Simple Tags is THE perfect tool to manage perfectly your WP 3.0 and 3.1 terms of taxonomy. (Terms suggestion, Mass Edit Terms (Tags, Category and custom taxonomy), Auto link Terms, Ajax Autocompletion, Click Terms, Advanced edit Terms, etc.)
 
 == Description ==
 
+Caution ! The version 2 of Simple Tags is a back to fondamentals. Somes features are removed ! 
+
 Simple Tags is the successor of Simple Tagging Plugin
-**This is THE perfect tool to manage perfeclty your WP 3.0 tags**
+**This is THE perfect tool to manage perfeclty your WP 3.0 terms for taxonomy**
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
@@ -49,9 +51,9 @@ The Simple Tags can be installed in 4 easy steps:
 
 = Simple Tags is compatible with which WordPress versions ? =
 
-1.8 and upper are compatible only with WordPress 3.0 and upper !
-1.7 and upper are compatible only with WordPress 2.8, 2.9 and upper !
-1.6.7 and before are compatible with WordPress 2.3 to 2.7
+2.0 and upper are compatible only with WordPress 3.0 & 3.1 !
+1.7 and upper are compatible only with WordPress 2.8, 2.9 !
+1.6.7 and before are compatible with WordPress 2.3, 2.5, 2.6, 2.7
 Before WP 2.3, you must use the plugin Simple Tagging.
 
 == Screenshots ==

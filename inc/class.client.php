@@ -22,6 +22,12 @@ class SimpleTags_Client {
 			$simple_tags['client-autolinks'] = new SimpleTags_Client_Autolinks();
 		}
 		
+		// Call autolinks ?
+		if ( $options['auto_link_tags'] == '1' ) {
+			require( STAGS_DIR . '/inc/class.client.autotags.php');
+			$simple_tags['client-autoterms'] = new SimpleTags_Client_Autoterms();
+		}
+		
 		return true;
 	}
 	

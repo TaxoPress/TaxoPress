@@ -39,12 +39,9 @@ Todo:
 		Option for Ajax or Local autocompletion
 		
 		Bug with custom taxonomies
-		
 		Custom CPT without taxonomy
 	
 	Client :
-		- Test avec &$this, $this, et avec une fonction, test la conso memoire de wp_filter avant/apres
-		- Verifier la case du remplacement par les liens
 */
 
 define( 'STAGS_VERSION', 			'2.0.0' );
@@ -78,7 +75,7 @@ function simple_tags_init() {
 	$simple_tags['client-cloud'] = new SimpleTags_Client_TagCloud();
 	
 	// Admin and XML-RPC
-	if ( is_admin() || ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST ) && (isset($_REQUEST['code']) && $_REQUEST['code'] == get_option('wpo_croncode')) ) {
+	if ( is_admin() ) {
 		require( STAGS_DIR . '/inc/class.admin.php' );
 		$simple_tags['admin'] = new SimpleTags_Admin();
 	}

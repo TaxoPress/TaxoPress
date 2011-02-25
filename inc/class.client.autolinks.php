@@ -46,6 +46,7 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 			
 			// Generate key cache
 			$key = md5(maybe_serialize($postlist));
+			
 			// Get cache if exist
 			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
 				if ( isset( $cache[$key] ) ) {
