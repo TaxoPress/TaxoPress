@@ -61,18 +61,14 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 					$counter++;
 					
 					// Clean cache
-					if ( 'page' == $type ) {
+					if ( $this->post_type == 'page' ) {
 						clean_page_cache($object_id);
 					} else {
 						clean_post_cache($object_id);
 					}
 				}
+				$this->message = sprintf(__('%1$s %2$s(s) terms updated with success !', 'simpletags'), (int) $counter, strtolower($this->post_type_name) );
 				
-				if ( $type == 'page' ) {
-					$this->message = sprintf(__('%s page(s) terms updated with success !', 'simpletags'), (int) $counter);
-				} else {
-					$this->message = sprintf(__('%s post(s) terms updated with success !', 'simpletags'), (int) $counter);
-				}
 				return true;
 			}
 		}
@@ -91,11 +87,15 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 			$_GET['paged'] = 1;
 		}
 		
+		// Display message
+		$this->displayMessage();
+		
+		// Autocomplete ?
 		if ( isset($simple_tags['admin-autocomplete']) ) :
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin.php') .'?action=simpletags&st_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
+			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin-ajax.php') .'?action=simpletags&st_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
 			-->
 		</script>
 		<?php endif; ?>

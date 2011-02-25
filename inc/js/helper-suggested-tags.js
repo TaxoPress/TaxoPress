@@ -71,28 +71,21 @@ jQuery(document).ready(function() {
 
 function getContentFromEditor() {
 	var data = '';
+	
 	if ( (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() ) { // Tiny MCE
-		
 		var ed = tinyMCE.activeEditor;
 		if ( 'mce_fullscreen' == ed.id ) {
 			tinyMCE.get('content').setContent(ed.getContent({format : 'raw'}), {format : 'raw'});
 		}
 		tinyMCE.get('content').save();
 		data = jQuery("#content").val();
-	
 	} else if ( typeof FCKeditorAPI != "undefined" ) { // FCK Editor
-		
 		var oEditor = FCKeditorAPI.GetInstance('content') ;
 		data = oEditor.GetHTML().stripTags();
-	
 	} else if ( typeof WYM_INSTANCES != "undefined" ) { // Simple WYMeditor
-		
 		data = WYM_INSTANCES[0].xhtml();
-	
 	} else { // No editor, just quick tags
-		
 		data = jQuery("#content").val();
-	
 	}
 	
 	// Trim data

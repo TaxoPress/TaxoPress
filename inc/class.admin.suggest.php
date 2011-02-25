@@ -445,7 +445,12 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
-		if ((int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // No tags to suggest
+		$taxonomy = 'post_tag';
+		if ( isset($_REQUEST['taxonomy']) && taxonomy_exists($_REQUEST['taxonomy']) ) {
+			$taxonomy = $_REQUEST['taxonomy'];
+		}
+		
+		if ( (int) wp_count_terms($taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
 			exit();
 		}
 		
@@ -453,7 +458,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
 		
 		// Get all terms, or filter with search
-		$terms = $this->getTermsForAjax( 'post_tag', $search );
+		$terms = $this->getTermsForAjax( $taxonomy, $search );
 		if ( empty($terms) || $terms == false ) {
 			exit();
 		}

@@ -17,7 +17,7 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
 		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
+		if ( in_array($pagenow, $wp_post_pages) || ( in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
 			wp_enqueue_script('st-helper-click-tags');
 		}
 	}

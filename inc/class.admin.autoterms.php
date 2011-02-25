@@ -94,7 +94,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#auto_list', "<?php echo admin_url('admin.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$this->taxonomy); ?>", 300 );
+			initAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$this->taxonomy); ?>", 300 );
 			-->
 		</script>
 		<?php endif; ?>

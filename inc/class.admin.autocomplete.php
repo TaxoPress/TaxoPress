@@ -107,7 +107,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		<textarea name="adv-tags-input" id="adv-tags-input" tabindex="3" rows="3" cols="5"><?php echo $this->getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin.php?action=simpletags&st_action=helper_js_collection"); ?>', 300 );
+			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', 300 );
 			-->
 		</script>
 		<?php
