@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
 Description: Extended Tagging for WordPress 3.0 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, etc. NOW Compatible custom post type and custom taxonomy !
-Version: 2.0
+Version: 2.0-beta1
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -30,22 +30,11 @@ Credits Icons :
 
 Todo:
 	Both :
-		Taxonomy supports ( 20% )
-	
 	Admin: 
-		Options saving... foreach on default array
-		Click Tags Order
-		HTML and esc_html for options render
-		Option for Ajax or Local autocompletion
-		
-		Bug with custom taxonomies
-		Custom CPT without taxonomy
-		AJAX
-	
 	Client :
 */
 
-define( 'STAGS_VERSION', 			'2.0.0' );
+define( 'STAGS_VERSION', 			'2.0-beta1' );
 define( 'STAGS_OPTIONS_NAME', 		'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 	'simpletags-auto' ); // Option name for save settings auto terms
 define( 'STAGS_FOLDER', 			'simple-tags' );
