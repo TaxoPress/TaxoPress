@@ -24,7 +24,7 @@ class SimpleTags_Client {
 		
 		// Call autolinks ?
 		if ( $options['auto_link_tags'] == '1' ) {
-			require( STAGS_DIR . '/inc/class.client.autotags.php');
+			require( STAGS_DIR . '/inc/class.client.autoterms.php');
 			$simple_tags['client-autoterms'] = new SimpleTags_Client_Autoterms();
 		}
 		

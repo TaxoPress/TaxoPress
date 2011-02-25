@@ -49,7 +49,7 @@ class SimpleTags_Admin {
 		}
 		
 		if ( isset($options['use_click_tags']) && $options['use_click_tags'] == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.clicktags.php');
+			require( STAGS_DIR . '/inc/class.admin.clickterms.php');
 			$simple_tags['admin-clicktags'] = new SimpleTags_Admin_ClickTags();
 		}
 		
@@ -64,7 +64,7 @@ class SimpleTags_Admin {
 		}
 		
 		if ( isset($options['active_autotags']) && $options['active_autotags'] == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.autotags.php');
+			require( STAGS_DIR . '/inc/class.admin.autoterms.php');
 			$simple_tags['admin-autotags'] = new SimpleTags_Admin_AutoTags();
 		}
 	}
