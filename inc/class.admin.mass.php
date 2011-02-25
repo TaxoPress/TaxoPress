@@ -106,6 +106,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_tags" />
 				<input type="hidden" name="taxonomy" value="<?php echo esc_attr($this->taxonomy); ?>" />
+				<input type="hidden" name="cpt" value="<?php echo esc_attr($this->post_type); ?>" />
 				
 				<h2><?php _e('Mass edit terms', 'simpletags'); ?></h2>
 				
@@ -237,7 +238,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 								$class = ( $class == 'alternate' ) ? '' : 'alternate';
 								?>
 								<tr valign="top" class="<?php echo $class; ?>">
-									<th scope="row"><a href="<?php echo admin_url('post.php?action=edit&amp;post='.get_the_ID()); ?>" title="<?php _e('Edit', 'simpletags'); ?>"><?php the_title(); ?></a></th>
+									<th scope="row"><a href="<?php echo admin_url('post.php?action=edit&amp;post='.get_the_ID()); ?>" title="<?php _e('Edit', 'simpletags'); ?>"><?php echo ( get_the_title() == '' ) ? the_ID() : the_title(); ?></a></th>
 									<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input" type="text" size="100" name="tags[<?php the_ID(); ?>]" value="<?php echo $this->getTermsToEdit( $this->taxonomy, get_the_ID() ); ?>" /></td>
 								</tr>
 								<?php
