@@ -21,4 +21,25 @@ function st_get_tag_cloud( $args = '' ) {
 function st_tag_cloud( $args = '' ) {
 	echo st_get_tag_cloud( $args );
 }
+
+/**
+ * Generate extended current tags post
+ *
+ * @param string $args
+ * @return string
+ */
+function st_get_the_tags( $args = '' ) {
+	global $simple_tags;
+	$simple_tags['client-post_tags']->extendedPostTags( $args );
+}
+
+/**
+ * Display extended current tags post
+ *
+ * @param string $args
+ */
+function st_the_tags( $args = '' ) {
+	echo st_get_the_tags( $args );
+}
+
 ?>

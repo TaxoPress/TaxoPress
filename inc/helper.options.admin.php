@@ -104,7 +104,28 @@ return array(
 			</ul>' )
 	),
 	'tagspost' => array(
-		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and i recommended to use the core function of WP <code style="font-weight:700;">the_tags()</code><br />', 'simpletags'))
+		array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
+		array('tt_embedded', __('Automatically display tags list into post content:', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly/homeonly/singularonly/pageonly/singleonly',
+			'<ul>
+				<li>'.__('<code>no</code> &ndash; Nowhere (default)', 'simpletags').'</li>
+				<li>'.__('<code>all</code> &ndash; On your blog and feeds.', 'simpletags').'</li>
+				<li>'.__('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags').'</li>
+				<li>'.__('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags').'</li>
+				<li>'.__('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags').'</li>
+				<li>'.__('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags').'</li>
+				<li>'.__('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags').'</li>
+			</ul>'),
+		array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),
+		array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 40),
+		array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 40),
+		array('tt_number', __('Max tags display:', 'simpletags'), 'text', 10,
+			__('You must set zero (0) for display all tags.', 'simpletags')),
+		array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
+		array('tt_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
+			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
+		array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
+		array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
+			__('You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'relatedposts' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')

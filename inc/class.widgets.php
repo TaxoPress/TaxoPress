@@ -298,13 +298,12 @@ class SimpleTags_Widget extends WP_Widget {
 				<?php _e("What to show", 'simpletags'); ?><br />
 				<select id="<?php echo $this->get_field_id( 'taxonomy' ); ?>" name="<?php echo $this->get_field_name( 'taxonomy' ); ?>" style="width:100%;">
 					<?php
-					foreach ( get_object_taxonomies('post') as $taxonomy ) {
-						$tax = get_taxonomy($taxonomy);
-						
+					foreach ( get_object_taxonomies('post') as $_taxonomy ) {
+						$tax = get_taxonomy($_taxonomy);
 						if ( !$tax->show_tagcloud || empty($tax->labels->name) )
 							continue;
-
-						echo '<option '.selected( $current_taxonomy, $taxonomy, false ).' value="'.esc_attr($taxonomy).'">'.esc_html($tax->labels->name).'</option>';
+							
+						echo '<option '.selected( $taxonomy, $tax->name, false ).' value="'.esc_attr($tax->name).'">'.esc_html($tax->labels->name).'</option>';
 					}
 					?>
 				</select>

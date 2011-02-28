@@ -23,6 +23,18 @@ return array(
 	'zemanta_key' 		 => '',
 	'use_autocompletion' => 1,
 	
+	// The tags
+	'tt_feed' 		=> 0,
+	'tt_embedded' 	=> 'no',
+	'tt_separator' 	=> ', ',
+	'tt_before' 	=> __('Tags: ', 'simpletags'),
+	'tt_after' 		=> '<br />',
+	'tt_notagstext' => __('No tags for this post.', 'simpletags'),
+	'tt_number' 	=> 0,
+	'tt_inc_cats' 	=> 0,
+	'tt_xformat' 	=> __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
+	'tt_adv_usage' 	=> '',
+	
 	// Tag cloud
 	'cloud_taxonomy' 	=> 'post_tag',
 	'cloud_selectionby' => 'count',
