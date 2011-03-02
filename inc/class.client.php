@@ -28,7 +28,7 @@ class SimpleTags_Client {
 		
 		// Call post tags ?
 		require( STAGS_DIR . '/inc/class.client.post_tags.php');
-		$simple_tags['client-post_tags'] = new SimpleTags_Client_Autoterms();
+		$simple_tags['client-post_tags'] = new SimpleTags_Client_PostTags();
 		
 		return true;
 	}
