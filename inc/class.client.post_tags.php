@@ -74,7 +74,6 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 			'separator' => ', ',
 			'after' 	=> '<br />',
 			'post_id' 	=> 0,
-			'no_follow' => 0,
 			'inc_cats' 	=> 0,
 			'xformat' 	=> __('<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 			'notagtext' => __('No tag for this post.', 'simpletags'),
@@ -86,7 +85,6 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 		$defaults['before'] = $options['tt_before'];
 		$defaults['separator'] = $options['tt_separator'];
 		$defaults['after'] = $options['tt_after'];
-		$defaults['no_follow'] = (int) $options['no_follow'];
 		$defaults['inc_cats'] = $options['tt_inc_cats'];
 		$defaults['xformat'] = $options['tt_xformat'];
 		$defaults['notagtext'] = $options['tt_notagstext'];
@@ -141,8 +139,8 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 			return $notagtext;
 		}
 		
-		// HTML Rel (tag/no-follow)
-		$rel = $this->buildRel( $no_follow );
+		// HTML Rel
+		$rel = $this->buildRel();
 		
 		// Prepare output
 		foreach ( (array) $terms as $term ) {

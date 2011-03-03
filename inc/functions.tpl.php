@@ -30,7 +30,7 @@ function st_tag_cloud( $args = '' ) {
  */
 function st_get_the_tags( $args = '' ) {
 	global $simple_tags;
-	$simple_tags['client-post_tags']->extendedPostTags( $args );
+	return $simple_tags['client-post_tags']->extendedPostTags( $args );
 }
 
 /**

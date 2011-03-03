@@ -2,8 +2,8 @@
 /*
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
-Description: Extended Tagging for WordPress 3.0 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, etc. NOW Compatible custom post type and custom taxonomy !
-Version: 2.0-beta4
+Description: Extended Tagging for WordPress 3.1 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, etc. NOW Compatible custom post type and custom taxonomy !
+Version: 2.0-beta5
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -34,7 +34,7 @@ Todo:
 	Client :
 */
 
-define( 'STAGS_VERSION', 			'2.0-beta4' );
+define( 'STAGS_VERSION', 			'2.0-beta5' );
 define( 'STAGS_OPTIONS_NAME', 		'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 	'simpletags-auto' ); // Option name for save settings auto terms
 define( 'STAGS_FOLDER', 			'simple-tags' );
