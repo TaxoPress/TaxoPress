@@ -4,7 +4,7 @@ Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 2.0-beta3
+Stable tag: 2.0-beta4
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, etc.
 
@@ -64,6 +64,11 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.0-beta4 :
+	* Fix a fatal with error with autoterms.
+	* Fix a bug with autoterms when saving post, somes times called twice...
+	* Improve performance when saving posts.
+	* Allow old tags field for each custom post type that use post tags.
 * Version 2.0-beta3 :
 	* Fix a bug when the st_the_tags() function is called.
 * Version 2.0-beta2 :

@@ -30,7 +30,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function pageAutoTerms() {
-		global $simple_terms, $wpdb;
+		global $simple_tags, $wpdb;
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
@@ -90,7 +90,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		
 		$this->displayMessage();
 		
-		if ( isset($simple_terms['admin-autocomplete']) ) :
+		if ( isset($simple_tags['admin-autocomplete']) ) :
 		?>
 		<script type="text/javascript">
 			<!--
@@ -245,7 +245,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 				if( !empty($objects) ) {
 					echo '<ul>';
 					foreach( $objects as $object ) {
-						$simple_terms['client-autoterms']->autoTermsPost( $object, $this->taxonomy, $taxo_options, true );
+						$simple_tags['client-autoterms']->autoTermsPost( $object, $this->taxonomy, $taxo_options, true );
 						
 						echo '<li>#'. $object->ID .' '. $object->post_title .'</li>';
 						unset($object);

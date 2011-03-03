@@ -7,9 +7,8 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 	 * @author Amaury Balmer
 	 */
 	function SimpleTags_Client_Autoterms() {
-		add_action( 'save_post', 				array(&$this, 'saveAutoTerms'), 10, 2 );
-		add_action( 'publish_post', 			array(&$this, 'saveAutoTerms'), 10, 2 );
-		add_action( 'post_syndicated_item', 	array(&$this, 'saveAutoTerms'), 10, 2 );
+		add_action( 'save_post', 				array(&$this, 'saveAutoTerms'), 12, 2 );
+		add_action( 'post_syndicated_item', 	array(&$this, 'saveAutoTerms'), 12, 2 );
 	}
 	
 	/**

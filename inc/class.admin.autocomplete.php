@@ -5,12 +5,10 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		global $pagenow;
 		
 		// Save tags from advanced input
-		add_action( 'publish_post', array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
 		add_action( 'save_post', 	array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
-		add_action( 'do_meta_boxes', array(&$this, 'removeOldTagsInput'), 1 );
 		
 		// Box for advanced tags
-		add_action( 'admin_menu', array(&$this, 'helperAdvancedTags'), 1 );
+		add_action( 'add_meta_boxes', array(&$this, 'registerMetaBox'), 999 );
 		
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/inc/js/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
 		wp_register_script('jquery-autocomplete',		STAGS_URL.'/inc/js/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
@@ -38,16 +36,6 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	}
 	
 	/**
-	 * Remove the old tags input
-	 *
-	 * @return void
-	 * @author Amaury Balmer
-	 */
-	function removeOldTagsInput() {
-		remove_meta_box('tagsdiv-post_tag', 'post', 'side');
-	}
-	
-	/**
 	 * Save tags input for old field
 	 *
 	 * @param string $post_id 
@@ -68,7 +56,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			$tags = array_filter($tags, '_delete_empty_element');
 			
 			// Add new tag (no append ! replace !)
-			wp_set_object_terms( $post_id, $tags, 'post_tag' ); // TODO ?
+			wp_set_object_terms( $post_id, $tags, 'post_tag' );
 			
 			// Clean cache
 			if ( 'page' == $object->post_type ) {
@@ -84,16 +72,26 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	}
 	
 	/**
-	 * Call meta box function if option is active on post/page
+	 * Call meta box function for taxonomy tags for each CPT
 	 *
-	 * @return void
+	 * @param string $post_type 
+	 * @return boolean
 	 * @author Amaury Balmer
 	 */
-	function helperAdvancedTags() {
-		add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'post', 'side', 'core', array('taxonomy'=>'post_tag') );
+	function registerMetaBox( $post_type ) {
+		$taxonomies = get_object_taxonomies( $post_type );
+		if ( in_array('post_tag', $taxonomies) ) {
+			if ( $post_type == 'page' && !is_page_have_tags() )
+				return false;
+			
+			remove_meta_box( 'post_tag'.'div', $post_type, 'side' );
+			remove_meta_box( 'tagsdiv-'.'post_tag', $post_type, 'side' );
+			
+			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), $post_type, 'side', 'core', array('taxonomy'=>'post_tag') );
+			return true;
+		}
 		
-		if ( is_page_have_tags() )
-			add_meta_box('adv-tagsdiv', __('Tags (Simple Tags)', 'simpletags'), array(&$this, 'boxTags'), 'page', 'side', 'core', array('taxonomy'=>'post_tag') );
+		return false;
 	}
 	
 	/**
