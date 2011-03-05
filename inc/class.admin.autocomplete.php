@@ -4,6 +4,9 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	function SimpleTags_Admin_Autocomplete() {
 		global $pagenow;
 		
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
 		// Ajax action, JS Helper and admin action
 		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
@@ -19,28 +22,33 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		add_action( 'simpletags-mass_terms', array(&$this, 'massTermsJavascript') );
 		
 		// Register JS/CSS
-		wp_register_script('jquery-bgiframe',			STAGS_URL.'/ressources/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
-		wp_register_script('jquery-autocomplete',		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
+		if ( isset($options['autocomplete_mode']) && $options['autocomplete_mode'] == 'jquery-autocomplete' ) {
+			wp_register_script('jquery-bgiframe',			STAGS_URL.'/ressources/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
+			wp_register_script('jquery-autocomplete',		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
+			wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);	
+			wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.css', array(), '1.1', 'all' );
+		} else {
+			wp_register_script('protoculous-effects-shrinkvars', 	STAGS_URL.'/ressources/protomultiselect/protoculous-effects-shrinkvars.js', array(), '1.6.0.2-1.8.1');
+			wp_register_script('textboxlist', 						STAGS_URL.'/ressources/protomultiselect/textboxlist.js', array('protoculous-effects-shrinkvars'), '0.2');
+			wp_register_script('protomultiselect', 					STAGS_URL.'/ressources/protomultiselect/test.js', array('textboxlist'), '0.2');
+			wp_register_script('st-helper-protomultiselect', 		STAGS_URL.'/inc/js/helper-protomultiselect.min.js', array('protomultiselect'), STAGS_VERSION);
+			wp_register_style ('protomultiselect', 				STAGS_URL.'/ressources/protomultiselect/test.css', array(), '0.2', 'all' );
+		}
 		
-		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);	
-		wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.css', array(), '1.1', 'all' );
 		
 		// Register location
 		$wp_post_pages = array('post.php', 'post-new.php');
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
-		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || ( in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
-			wp_enqueue_script('jquery-autocomplete');
-			wp_enqueue_script('st-helper-autocomplete');
-			wp_enqueue_style ('jquery-autocomplete');
-		}
-		
-		// add JS for Auto Tags, Mass Edit Tags and Manage tags !
-		if ( isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_terms', 'st_manage') ) ) {
-			wp_enqueue_script('jquery-autocomplete');
-			wp_enqueue_script('st-helper-autocomplete');
-			wp_enqueue_style ('jquery-autocomplete');
+		// Helper for posts/pages and for Auto Tags, Mass Edit Tags and Manage tags !
+		if ( (in_array($pagenow, $wp_post_pages) || ( in_array($pagenow, $wp_page_pages) && is_page_have_tags() )) || (isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_terms', 'st_manage') )) ) {
+			if ( isset($options['autocomplete_mode']) && $options['autocomplete_mode'] == 'jquery-autocomplete' ) {
+				wp_enqueue_script('st-helper-autocomplete');
+				wp_enqueue_style ('jquery-autocomplete');
+			} else {
+				wp_enqueue_script('st-helper-protomultiselect');
+				wp_enqueue_style ('protomultiselect');
+			}
 		}
 	}
 	
@@ -49,18 +57,61 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 *
 	 */
 	function ajaxCheck() {
-		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'helper_js_collection' )  {
-			$this->ajaxLocalTags();
+		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'collection_jquery_autocomplete' )  {
+			$this->ajaxjQueryAutoComplete();
+		} elseif( isset($_GET['st_action']) && $_GET['st_action'] == 'collection_protomultiselect' ) {
+			$this->ajaxProtoMultiSelect();
 		}
 	}
 	
 	/**
-	 * Display a javascript collection for autocompletion script !
+	 * Display a javascript collection for jquery autocomple script !
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function ajaxLocalTags() {
+	function ajaxProtoMultiSelect() {
+		status_header( 200 ); // Send good header HTTP
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		
+		$taxonomy = 'post_tag';
+		if ( isset($_REQUEST['taxonomy']) && taxonomy_exists($_REQUEST['taxonomy']) ) {
+			$taxonomy = $_REQUEST['taxonomy'];
+		}
+		
+		if ( (int) wp_count_terms($taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
+			exit();
+		}
+		
+		// Prepare search
+		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
+		
+		// Get all terms, or filter with search
+		$terms = $this->getTermsForAjax( $taxonomy, $search );
+		if ( empty($terms) || $terms == false ) {
+			exit();
+		}
+		
+		// Format terms
+		$output = array();
+		foreach ( (array) $terms as $term ) {
+			$term->name = stripslashes($term->name);
+			$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
+			
+			$output[] = array( 'caption' => $term->name, 'value' => $term->term_id );
+		}
+		
+		echo json_encode($output);
+		exit();
+	}
+	
+	/**
+	 * Display a javascript collection for jquery autocomple script !
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function ajaxjQueryAutoComplete() {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
@@ -160,17 +211,43 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function boxTags( $post ) {
-		?>
-		<p>
-			<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr($this->getTermsToEdit( 'post_tag', $post->ID )); ?>" />
-			<?php _e('Separate tags with commas', 'simpletags'); ?>
-		</p>
-		<script type="text/javascript">
-			<!--
-			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', 300 );
-			-->
-		</script>
+		echo '<div id="wrap-old-input-tags">';
+		if ( isset($options['autocomplete_mode']) && $options['autocomplete_mode'] == 'jquery-autocomplete' ) :
+			?>
+			<p>
+				<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr($this->getTermsToEdit( 'post_tag', $post->ID )); ?>" />
+				<?php _e('Separate tags with commas', 'simpletags'); ?>
+			</p>
+			<script type="text/javascript">
+				<!--
+				initjQueryAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_jquery_autocomplete"); ?>', 300 );
+				-->
+			</script>
+			<?php
+		else :
+			?>
+			<p id="facebook-list" class="input-text">
+				<input type="text" name="adv-tags-input" value="" id="facebook-demo" />
+				<div id="facebook-auto">
+					<div class="default"><?php _e('Type the name of an argentine writer you like', 'simpletags'); ?></div> 
+					<ul class="feed">
+						<?php
+						$terms = wp_get_post_terms( $post->ID, 'post_tag' );
+						foreach( $terms as $term ) {
+							echo '<li value="'.$term->term_id.'">'.esc_html($term->name).'</li>';
+						}
+						?>
+					</ul>
+				</div>
+			</p>
+			<script type="text/javascript">
+				<!--
+				initProtoMultiSelect( 'facebook-demo', 'facebook-auto', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_protomultiselect"); ?>' );
+				-->
+			</script>
 		<?php
+		endif;
+		echo '</div>';
 	}
 	
 	/**
@@ -184,7 +261,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy);; ?>", 300 );
+			initjQueryAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=collection_jquery_autocomplete&taxonomy='.$taxonomy);; ?>", 300 );
 			-->
 		</script>
 		<?php
@@ -201,7 +278,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin.php?st_ajax_action=helper_js_collection&taxonomy='.$taxonomy); ?>", 300 );
+			initjQueryAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin.php?st_ajax_action=collection_jquery_autocomplete&taxonomy='.$taxonomy); ?>", 300 );
 			-->
 		</script>
 		<?php
@@ -218,7 +295,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin-ajax.php') .'?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy; ?>', 300 );
+			initjQueryAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin-ajax.php') .'?action=simpletags&st_action=collection_jquery_autocomplete&taxonomy='.$taxonomy; ?>', 300 );
 			-->
 		</script>
 		<?php

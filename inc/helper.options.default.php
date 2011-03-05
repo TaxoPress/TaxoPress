@@ -25,7 +25,7 @@ return array(
 	'opencalais_key' 	=> '',
 	'alchemy_api' 		=> '',
 	'zemanta_key' 		=> '',
-	'autocomplete_mode'	=> '',
+	'autocomplete_mode'	=> 'protomultiselect',
 	
 	// The tags
 	'tt_feed' 		=> 0,
