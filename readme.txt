@@ -41,6 +41,8 @@ And more...
 
 == Installation ==
 
+**Required PHP5.**
+
 The Simple Tags can be installed in 3 easy steps:
 
 1. Unzip "Simple tags" archive and put all files into a folder like "/wp-content/plugins/simple-tags/"

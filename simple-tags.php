@@ -34,6 +34,17 @@ Todo:
 	Client :
 */
 
+// Do a PHP version check, require 5.0 or newer
+if (version_compare(PHP_VERSION, '5.0.0', '<') ) {
+	// Silently deactivate plugin, keeps admin usable
+	if( function_exists('deactivate_plugins') ) {
+		deactivate_plugins(plugin_basename(__FILE__), true);
+	}
+	
+	//Spit out die messages
+	wp_die(sprintf(__('Your PHP version is too old, please upgrade to a newer version. Your version is %s, Simple Tags requires %s', 'simpletags'), phpversion(), '5.0.0'));
+}
+
 define( 'STAGS_VERSION', 			'2.0-beta7' );
 define( 'STAGS_OPTIONS_NAME', 		'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 	'simpletags-auto' ); // Option name for save settings auto terms
