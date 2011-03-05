@@ -105,7 +105,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 			
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_terms" />
-				<input type="hidden" name="taxonomy" value="<?php echo esc_attr($this->taxonomy); ?>" />
+				<input type="hidden" name="taxo" value="<?php echo esc_attr($this->taxonomy); ?>" />
 				<input type="hidden" name="cpt" value="<?php echo esc_attr($this->post_type); ?>" />
 				
 				<h2><?php _e('Mass edit terms', 'simpletags'); ?></h2>

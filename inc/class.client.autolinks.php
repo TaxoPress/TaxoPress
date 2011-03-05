@@ -10,9 +10,13 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 * @author Amaury Balmer
 	 */
 	function SimpleTags_Client_Autolinks() {
+		$options = get_option( STAGS_OPTIONS_NAME );
+		if ( !isset($options['auto_link_priority']) || (int) $options['auto_link_priority'] == 0 )
+			$options['auto_link_priority'] = 12;
+			
 		// Auto link tags
 		add_filter( 'the_posts', 	array(&$this, 'getPostIds') );
-		add_filter( 'the_content', 	array(&$this, 'autoLinkTags'), 12 );
+		add_filter( 'the_content', 	array(&$this, 'autoLinkTags'), $options['auto_link_priority'] );
 	}
 	
 	/**
@@ -117,17 +121,9 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 		
 		// only continue if the database actually returned any links
 		if ( isset($this->link_tags) && is_array($this->link_tags) && count($this->link_tags) > 0 ) {
-			
-			// Limit array
-			if ( (int) $options['auto_link_max_by_post'] != 0 ) {
-				$this->link_tags = array_slice($this->link_tags, 0, (int) $options['auto_link_max_by_post']);
-			}
-			
-			$must_tokenize = TRUE; // will perform basic tokenization
-			$tokens = NULL; // two kinds of tokens: markup and text
-			
 			// Case option ?
 			$case = ( $options['auto_link_case'] == 1 ) ? 'i' : '';
+			$strpos_fnc = $options['auto_link_case'] ? 'stripos' : 'strpos';
 			
 			// Prepare exclude terms array
 			$excludes_terms = explode( ',', $options['auto_link_exclude'] );
@@ -138,10 +134,20 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 				$excludes_terms = array_unique($excludes_terms);
 			}
 			
+			$z = 0;
 			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
+				// Exclude terms ? next...
 				if ( in_array( $term_name, (array) $excludes_terms ) ) {
 					continue;
 				}
+				
+				// Make a first test with PHP function, economize CPU with regexp
+				if ( $strpos_fnc( $content, $term_name ) === false ) {
+					continue;
+				}
+				
+				$must_tokenize = true; // will perform basic tokenization
+				$tokens = null; // two kinds of tokens: markup and text
 				
 				$j = 0;
 				$filtered = ''; // will filter text token by token
@@ -174,9 +180,9 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 							if ($anchor_level == 0) { // linkify if not inside anchor tags
 								if ( preg_match($match, $token) ) { // use preg_match for compatibility with PHP 4
 									$j++;
-									if ( $j <= $options['auto_link_max_by_tag'] ) // Limit replacement at 1 by default, or options value !
+									if ( $j <= $options['auto_link_max_by_tag'] ) {// Limit replacement at 1 by default, or options value !
 										$token = preg_replace($match, $substitute, $token); // only PHP 5 supports calling preg_replace with 5 arguments
-									
+									}
 									$must_tokenize = true; // re-tokenize next time around
 								}
 							}
@@ -191,6 +197,10 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 					}
 					$content = $filtered; // filtering completed for this link
 				}
+				
+				$z++;
+				if ( $z > (int) $options['auto_link_max_by_post'] )
+					break;
 			}
 		}
 		

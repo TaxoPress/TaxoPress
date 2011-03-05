@@ -14,6 +14,7 @@ class SimpleTags_Client {
 		// Add pages in WP_Query
 		if ( $options['use_tag_pages'] == 1 ) {
 			add_action( 'init', array(&$this, 'registerTagsForPage'), 11 );
+			add_action( 'parse_query', array(&$this, 'includePagePostType') );
 		}
 		
 		// Call autolinks ?
@@ -41,6 +42,23 @@ class SimpleTags_Client {
 	 */
 	function registerTagsForPage() {
 		register_taxonomy_for_object_type( 'post_tag', 'page' );
+	}
+	
+	/**
+	 * Add page post type during the query
+	 *
+	 * @param object $query 
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function includePagePostType( $query ) {
+		if ( $query->is_tag == true ) {
+			if ( !isset($query->query_vars['post_type']) || $query->query_vars['post_type'] == 'post' ) {
+				$query->query_vars['post_type'] = array('post', 'page'); 
+			} elseif( isset($query->query_vars['post_type']) && is_array($query->query_vars['post_type']) ) {
+				$query->query_vars['post_type'][] = 'page';
+			}
+		}
 	}
 	
 	/**

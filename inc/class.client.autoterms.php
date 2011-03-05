@@ -86,10 +86,9 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 			
 			// Whole word ?
 			if ( (int) $options['only_full_word'] == 1 ) {
-				$term = ' '.$term.' '; // Add space before and after !
-			}
-			
-			if ( stristr($content, $term) ) {
+				if ( preg_match("/\b".$term."\b/i", $content) )
+					$terms_to_add[] = $term;
+			} elseif ( stristr($content, $term) ) {
 				$terms_to_add[] = $term;
 			}
 		}

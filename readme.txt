@@ -4,7 +4,7 @@ Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 2.0-beta5
+Stable tag: 2.0-beta6
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, etc.
 
@@ -64,6 +64,14 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.0-beta6 :
+	* Add Japanese translation (thanks - kazuhisa)
+	* Fix a bug with search and taxonomy param for mass edit terms. (ticket #233)
+	* Fix a bug with auto tags and whole word option. (ticket #232)
+	* Fix a bug with tag/pages for include pages in WP_Query for a tag
+	* Improve performance of auto link
+	* Fix a bug with max links by posts for auto links
+	* Add an option for choose priority hook of auto links
 * Version 2.0-beta5 :
 	* Fix a bug and a notice with st_the_tags() that not display any tags...
 * Version 2.0-beta4 :
