@@ -4,6 +4,9 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	function SimpleTags_Admin_Autocomplete() {
 		global $pagenow;
 		
+		// Ajax action, JS Helper and admin action
+		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
+		
 		// Save tags from advanced input
 		add_action( 'save_post', 	array(&$this, 'saveAdvancedTagsInput'), 10, 2 );
 		
@@ -39,6 +42,55 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			wp_enqueue_script('st-helper-autocomplete');
 			wp_enqueue_style ('jquery-autocomplete');
 		}
+	}
+	
+	/**
+	 * Ajax Dispatcher
+	 *
+	 */
+	function ajaxCheck() {
+		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'helper_js_collection' )  {
+			$this->ajaxLocalTags();
+		}
+	}
+	
+	/**
+	 * Display a javascript collection for autocompletion script !
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function ajaxLocalTags() {
+		status_header( 200 ); // Send good header HTTP
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		
+		$taxonomy = 'post_tag';
+		if ( isset($_REQUEST['taxonomy']) && taxonomy_exists($_REQUEST['taxonomy']) ) {
+			$taxonomy = $_REQUEST['taxonomy'];
+		}
+		
+		if ( (int) wp_count_terms($taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
+			exit();
+		}
+		
+		// Prepare search
+		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
+		
+		// Get all terms, or filter with search
+		$terms = $this->getTermsForAjax( $taxonomy, $search );
+		if ( empty($terms) || $terms == false ) {
+			exit();
+		}
+		
+		// Format terms
+		foreach ( (array) $terms as $term ) {
+			$term->name = stripslashes($term->name);
+			$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
+			
+			echo "$term->term_id|$term->name\n";
+		}
+		
+		exit();
 	}
 	
 	/**

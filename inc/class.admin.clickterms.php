@@ -1,6 +1,11 @@
 <?php
 class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
-	
+	/**
+	 * Constructor
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function SimpleTags_Admin_ClickTags() {
 		global $pagenow;
 		
@@ -23,12 +28,24 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		}
 	}
 	
+	/**
+	 * Register metabox
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function helperClickTags() {
 		add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'post', 'advanced', 'core');
 		if ( is_page_have_tags() )
 			add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(&$this, 'boxClickTags'), 'page', 'advanced', 'core');
 	}
 	
+	/**
+	 * Put default HTML for people without JS
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
 	function boxClickTags() {
 		echo $this->getDefaultContentBox();
 	}
@@ -36,18 +53,22 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 	/**
 	 * Ajax Dispatcher
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function ajaxCheck() {
 		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'click_tags' )  {
-			$this->ajaxLocalTags();
+			$this->ajaxClickTags();
 		}
 	}
 	
 	/**
 	 * Display a span list for click tags
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
-	function ajaxLocalTags() {
+	function ajaxClickTags() {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		

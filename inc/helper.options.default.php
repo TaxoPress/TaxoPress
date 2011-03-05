@@ -1,12 +1,15 @@
 <?php
 return array(
-	// General
+	// Features
 	'use_tag_pages' 		=> 1,
 	'active_mass_edit' 		=> 1,
 	'active_manage' 		=> 0,
 	'active_related_posts'	=> 0,
 	'active_autotags' 		=> 1,
 	'allow_embed_tcloud' 	=> 0,
+	'use_click_tags' 	 	=> 1,
+	'use_suggested_tags' 	=> 1,
+	'use_autocompletion' 	=> 1,
 	
 	// Auto link
 	'auto_link_tags' 		=> 0,
@@ -18,13 +21,11 @@ return array(
 	'auto_link_priority'  	=> 12,
 	
 	// Administration
-	'use_click_tags' 	 => 1,
-	'order_click_tags'	 => 'name-asc',
-	'use_suggested_tags' => 1,
-	'opencalais_key' 	 => '',
-	'alchemy_api' 		 => '',
-	'zemanta_key' 		 => '',
-	'use_autocompletion' => 1,
+	'order_click_tags' 	=> 'name-asc',
+	'opencalais_key' 	=> '',
+	'alchemy_api' 		=> '',
+	'zemanta_key' 		=> '',
+	'autocomplete_mode'	=> '',
 	
 	// The tags
 	'tt_feed' 		=> 0,

@@ -89,9 +89,6 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 				case 'tags_from_tagthenet' :
 					$this->ajaxTagTheNet();
 				break;
-				case 'helper_js_collection' :
-					$this->ajaxLocalTags();
-				break;
 				case 'tags_from_local_db' :
 					$this->ajaxSuggestLocal();
 				break;
@@ -434,42 +431,6 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 			echo '<p>'.__('No correspondance between your content and terms from the WordPress database.', 'simpletags').'</p>';
 		} else {
 			echo '<div class="clear"></div>';
-		}
-		
-		exit();
-	}
-	
-	/**
-	 * Display a javascript collection for autocompletion script !
-	 */
-	function ajaxLocalTags() {
-		status_header( 200 ); // Send good header HTTP
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
-		
-		$taxonomy = 'post_tag';
-		if ( isset($_REQUEST['taxonomy']) && taxonomy_exists($_REQUEST['taxonomy']) ) {
-			$taxonomy = $_REQUEST['taxonomy'];
-		}
-		
-		if ( (int) wp_count_terms($taxonomy, 'ignore_empty=false') == 0 ) { // No tags to suggest
-			exit();
-		}
-		
-		// Prepare search
-		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
-		
-		// Get all terms, or filter with search
-		$terms = $this->getTermsForAjax( $taxonomy, $search );
-		if ( empty($terms) || $terms == false ) {
-			exit();
-		}
-		
-		// Format terms
-		foreach ( (array) $terms as $term ) {
-			$term->name = stripslashes($term->name);
-			$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
-			
-			echo "$term->term_id|$term->name\n";
 		}
 		
 		exit();

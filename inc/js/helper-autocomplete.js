@@ -1,5 +1,5 @@
 function formatItem(row) {
-	return row[1] + " (<strong>term id: " + row[0] + "</strong>)";
+	return row[1];
 }
 function formatResult(row) {
 	return row[1].replace(/(<.+?>)/gi, '');
