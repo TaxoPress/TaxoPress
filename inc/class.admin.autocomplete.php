@@ -103,14 +103,16 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 */
 	function boxTags( $post ) {
 		?>
-		<textarea name="adv-tags-input" id="adv-tags-input" tabindex="3" rows="3" cols="5"><?php echo $this->getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
+		<p>
+			<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr($this->getTermsToEdit( 'post_tag', $post->ID )); ?>" />
+			<?php _e('Separate tags with commas', 'simpletags'); ?>
+		</p>
 		<script type="text/javascript">
 			<!--
 			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', 300 );
 			-->
 		</script>
 		<?php
-		_e('Separate tags with commas', 'simpletags');
 	}
 	
 }
