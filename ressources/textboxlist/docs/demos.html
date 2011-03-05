@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>TextboxList Demo</title>
+        <link rel="stylesheet" href="../demo/default.css" type="text/css" media="screen" title="Test Stylesheet" charset="utf-8" />
+        <link rel="stylesheet" href="../demo/demo.css" type="text/css" media="screen" title="Test Stylesheet" charset="utf-8" />
+        <script src="../lib/prototype.js" type="text/javascript" charset="utf-8">
+        </script>
+        <script src="../src/TextBoxList.js" type="text/javascript" charset="utf-8">
+        </script>
+        <script src="../demo/demo.js" type="text/javascript" charset="utf-8">
+        </script>
+    </head>
+    <body id="test">
+        <h1><a href="index.html">TextboxList</a> Demos</h1>
+        <form action="test_submit" method="get" accept-charset="utf-8">
+          <!--
+          <h2>Options:</h2>
+            <fieldset>
+              <label>autoCompleteActive: <input type="checkbox" selected name="autoCompleteActive" /></label>
+              <label>[useUrl]: <input type="checkbox" name="useUrl" /></label>
+              <label>url: <input type="text" value="demo.data" name="url" /></label>
+              <label>autoCompleteActive: <input type="checkbox" selected name="autoCompleteActive" /></label>
+              <label>autoCompleteActive: <input type="checkbox" selected name="autoCompleteActive" /></label>
+              <label>autoCompleteActive: <input type="checkbox" selected name="autoCompleteActive" /></label>
+            </fieldset>
+          -->
+            <ul>
+                <li>
+                    <label class="PrimaryInfo">
+                        Basic AutoComplete:
+                    </label>
+                    <label class="SecondaryInfo">
+                        Basic Auto Complete with pre existing values.
+                    </label>
+                    <pre>
+  demos.autocompleteLocalDemo = new TextboxList('autocompleteLocalDemo', {
+    hintMessage: 'This is a simple Auto Complete Textbox List with it\'s data provided in an array and some values automatically selected',
+    opacity: 1
+  }, demoData);
+                    </pre>
+                    <input class="TBL" type="text" id="autocompleteLocalDemo" value="[{&quot;caption&quot;: &quot;JavaScript&quot;, &quot;value&quot;: 1173}, {&quot;caption&quot;: &quot;templates&quot;, &quot;value&quot;: 1735}, {&quot;caption&quot;: &quot;calendar entries&quot;, &quot;slug&quot;: &quot;calendar-entries&quot;, &quot;value&quot;: 21}]"/>
+                    <label class="SubmitInfo"> </label>
+                    <code class="SubmitCode"> </code>
+                </li>
+                <li>
+                    <label class="PrimaryInfo">
+                        AutoComplete via url:
+                    </label>
+                    <label class="SecondaryInfo">
+                        Basic Auto Complete via ajax.
+                    </label>
+                    <pre>
+  demos.autocompleteUrlDemo = new TextboxList('autocompleteUrlDemo', {
+    url: '../demo/demoData.js',
+    hintMessage: 'This is a simple Auto Complete Textbox List searching/loading data from a url',
+    opacity: 1
+  });
+                    </pre>
+                    <input class="TBL" type="text" id="autocompleteUrlDemo" />
+                    <label class="SubmitInfo"> </label>
+                    <code class="SubmitCode"> </code>
+                </li>
+                <li>
+                    <label class="PrimaryInfo">
+                        Advanced AutoComplete:
+                    </label>
+                    <label class="SecondaryInfo">
+                        Advanced Auto Complete with pre existing values and several options specified.  Please see the <a href="api.html">API</a> for a description of the options.
+                    </label>
+                    <pre>
+  demos.autocompleteLocalDemo = new TextboxList('autocompleteAdvancedDemo', {
+    maxresults: 4,
+    startsWith: true,
+    secondaryRegExp: '{0}',
+    selectKeys: [{
+      keyCode: Event.KEY_TAB
+    }],
+    customTagKeys: [{
+      character: '"',
+      printable: true,
+      isPair: true
+    }, {
+      character: ' ',
+      printable: true
+    }],
+    noResultsMessage: 'There were no results found matching your search string.',
+    hintMessage: 'This is an advanced Auto Complete Textbox List with it\'s data provided in an array and some values automatically selected.  It has a log of different options set.',
+    opacity: 1
+  }, demoData);
+                    </pre>
+                    <input class="TBL" type="text" id="autocompleteAdvancedDemo" value="[{&quot;caption&quot;: &quot;JavaScript&quot;, &quot;value&quot;: 1173}, {&quot;caption&quot;: &quot;templates&quot;, &quot;value&quot;: 1735}, {&quot;caption&quot;: &quot;calendar entries&quot;, &quot;slug&quot;: &quot;calendar-entries&quot;, &quot;value&quot;: 21}]"/>
+                    <label class="SubmitInfo"> </label>
+                    <code class="SubmitCode"> </code>
+                </li>
+                <li>
+                    <label class="PrimaryInfo">
+                        Typing List:
+                    </label>
+                    <label class="SecondaryInfo">
+                        No auto complete, just a list that is filled by typing.  Use space to seperate words, and double quotes to enclose phrases. 
+                    </label>
+                    <pre>
+  demos.typingListDemo = new TextboxList('typingListDemo', {
+    autoCompleteActive: false,
+    customTagKeys: [{
+      character: '"',
+      printable: true,
+      isPair: true
+    }, {
+      character: ' ',
+      printable: true
+    }],
+    hintMessage: 'This list has no auto complete.  It is just a free typing list.',
+    opacity: 1
+  });
+                    </pre>
+                    <input class="TBL" type="text" id="typingListDemo" />
+                    <label class="SubmitInfo"> </label>
+                    <code class="SubmitCode"> </code>
+                </li>
+            </ul>
+            
+            
+            <input type="button" value="Submit Test" id="submitBtn">
+        </form>
+    </body>
+</html>

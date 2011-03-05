@@ -1,0 +1,11 @@
+Version 0.6
+
+- Correct highlighting issue where "e" and/or "m" portions of the html could be replaced.
+- Make AJAX Search name a parameter. Defaults to "SearchValue"
+- Add new callback "onBeforeAjaxRequest".  Receives the options of the ajax request as a parameter.
+- Fixed Issue with mainInput being moved out of it's li. (Requires CSS changes)
+- Disable Autocomplete fixes.
+- Add new callback "onBeforeRemoveElement"
+- Add new option "hideInput" for hiding the input element - useful for when you just want to show a list of items and not allow the user to manually add items.
+- Shrink maininput on blur to get correct sizing (avoid blank line in some instances).
+- Deferred repositioning of hint message to make sure message is in correct location.

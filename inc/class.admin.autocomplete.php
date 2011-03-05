@@ -28,11 +28,10 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);	
 			wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.css', array(), '1.1', 'all' );
 		} else {
-			wp_register_script('protoculous-effects-shrinkvars', 	STAGS_URL.'/ressources/protomultiselect/protoculous-effects-shrinkvars.js', array(), '1.6.0.2-1.8.1');
-			wp_register_script('textboxlist', 						STAGS_URL.'/ressources/protomultiselect/textboxlist.js', array('protoculous-effects-shrinkvars'), '0.2');
-			wp_register_script('protomultiselect', 					STAGS_URL.'/ressources/protomultiselect/test.js', array('textboxlist'), '0.2');
-			wp_register_script('st-helper-protomultiselect', 		STAGS_URL.'/inc/js/helper-protomultiselect.min.js', array('protomultiselect'), STAGS_VERSION);
-			wp_register_style ('protomultiselect', 				STAGS_URL.'/ressources/protomultiselect/test.css', array(), '0.2', 'all' );
+			wp_register_script('prototype-textboxlist', STAGS_URL.'/ressources/textboxlist/lib/prototype.js', array(), '1.6.0.2');
+			wp_register_script('textboxlist', 			STAGS_URL.'/ressources/textboxlist/src/TextBoxList.js', array('prototype-textboxlist'), '0.6');
+			wp_register_script('st-helper-textboxlist', STAGS_URL.'/inc/js/helper-textboxlist.min.js', array('textboxlist'), STAGS_VERSION);
+			wp_register_style ('textboxlist', 			STAGS_URL.'/ressources/textboxlist/demo/default.css', array(), '0.6', 'all' );
 		}
 		
 		
@@ -46,8 +45,8 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 				wp_enqueue_script('st-helper-autocomplete');
 				wp_enqueue_style ('jquery-autocomplete');
 			} else {
-				wp_enqueue_script('st-helper-protomultiselect');
-				wp_enqueue_style ('protomultiselect');
+				wp_enqueue_script('st-helper-textboxlist');
+				wp_enqueue_style ('textboxlist');
 			}
 		}
 	}
@@ -211,7 +210,6 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function boxTags( $post ) {
-		echo '<div id="wrap-old-input-tags">';
 		if ( isset($options['autocomplete_mode']) && $options['autocomplete_mode'] == 'jquery-autocomplete' ) :
 			?>
 			<p>
@@ -226,28 +224,16 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			<?php
 		else :
 			?>
-			<p class="input-text-autocomplete">
+			<p>
 				<input type="text" name="protomultiselect-tags" value="" id="protomultiselect-tags" />
-				<div id="protomultiselect-tags-auto">
-					<div class="default"><?php _e('Type the beginning of the name of term which you wish to add.', 'simpletags'); ?></div> 
-					<ul class="feed">
-						<?php
-						$terms = wp_get_post_terms( $post->ID, 'post_tag' );
-						foreach( $terms as $term ) {
-							echo '<li value="'.$term->term_id.'">'.esc_html($term->name).'</li>';
-						}
-						?>
-					</ul>
-				</div>
 			</p>
 			<script type="text/javascript">
 				<!--
-				initProtoMultiSelect( 'protomultiselect-tags', 'protomultiselect-tags-auto', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_protomultiselect"); ?>' );
+				initProtoMultiSelect( 'protomultiselect-tags', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_protomultiselect"); ?>', '<?php echo esc_js(__('Type the beginning of the name of term which you wish to add.', 'simpletags')); ?>' );
 				-->
 			</script>
 		<?php
 		endif;
-		echo '</div>';
 	}
 	
 	/**
