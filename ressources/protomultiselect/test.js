@@ -25,7 +25,7 @@ var FacebookList = Class.create(TextboxList, {
   
   loptions: $H({    
     autocomplete: {
-      'opacity': 0.8,
+      'opacity': 0.95,
       'maxresults': 10,
       'minchars': 1
     }
