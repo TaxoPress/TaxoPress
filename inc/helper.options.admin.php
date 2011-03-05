@@ -1,13 +1,16 @@
 <?php
 return array(
-	'general' => array(
-		array('active_mass_edit', __('Active feature : mass edit', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
-		array('active_manage', __('Active feature : advanced manage', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
-		array('active_autotags', __('Active feature : autotags', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
-		array('use_tag_pages', __('Active tags for page:', 'simpletags'), 'checkbox', '1',
-			__('This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page.', 'simpletags')),
-		array('allow_embed_tcloud', __('Allow tag cloud in post/page content:', 'simpletags'), 'checkbox', '1',
-			__('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WP replace this shortcode by a tag cloud.', 'simpletags'))	
+	'features' => array(
+		array('active_mass_edit', __('Mass edit terms', 'simpletags'), 'checkbox', '1',
+			__('This feature allow to edit terms of any taxonomy for many posts per page.', 'simpletags')),
+		array('active_manage', __('Advanced Manage Terms', 'simpletags'), 'checkbox', '1',
+			__('This feature allow to edit, merge, delete, add terms for any taxonomy. Please consider the plugin <a href="http://wordpress.org/extend/plugins/term-management-tools/" target="_blank">Term Management Tools</a> if you only need to merge terms.', 'simpletags')),
+		array('active_autotags', __('Auto terms posts', 'simpletags'), 'checkbox', '1',
+			__('This feature allow to add automatically terms on a post by proceding to a search into content.', 'simpletags')),
+		array('use_tag_pages', __('Tags for page', 'simpletags'), 'checkbox', '1',
+			__('This feature allow page post type to be tagged. This option add pages in tags search. Also add tag management in write page.', 'simpletags')),
+		array('allow_embed_tcloud', __('Tag cloud Shortcode', 'simpletags'), 'checkbox', '1',
+			__('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WordPress replace this shortcode by a tag cloud.', 'simpletags'))	
 	),
 	'administration' => array(
 		array('use_click_tags', __('Activate click tags feature:', 'simpletags'), 'checkbox', '1',
@@ -143,11 +146,5 @@ return array(
 				<li><a href="http://wordpress.org/extend/plugins/query-multiple-taxonomies/" target="_blank">Query Multiple Taxonomies</a></li>
 			</ul>' )
 	),
-	'managetags' => array(
-		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')
-			. '<ul style="list-style:square;margin-left:20px;">
-				<li><a href="http://wordpress.org/extend/plugins/term-management-tools/" target="_blank">Term Management Tools</a></li>
-			</ul>' )
-	)
 );
 ?>

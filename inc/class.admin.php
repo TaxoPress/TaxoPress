@@ -259,6 +259,16 @@ class SimpleTags_Admin {
 	    ?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
+			
+			<div style="float:right">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="L9QU9QT9R5FQS">
+					<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG_global.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
+					<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+				</form>
+			</div>
+			
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			<form action="<?php echo $this->options_base_url.'st_options'; ?>" method="post">
 				<p>
@@ -435,8 +445,8 @@ class SimpleTags_Admin {
 			case 'auto-links':
 				return __('Auto link', 'simpletags');
 				break;
-			case 'general':
-				return __('General', 'simpletags');
+			case 'features':
+				return __('Features', 'simpletags');
 				break;
 			case 'metakeywords':
 				return __('Meta Keyword', 'simpletags');
@@ -452,9 +462,6 @@ class SimpleTags_Admin {
 				break;
 			case 'relatedtags':
 				return __('Related Tags', 'simpletags');
-				break;
-			case 'managetags' :
-				return __('Manage Tags', 'simpletags');
 				break;
 			case 'tagcloud':
 				return __('Tag cloud', 'simpletags');
