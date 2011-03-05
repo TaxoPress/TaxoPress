@@ -186,7 +186,7 @@ class SimpleTags_Admin {
 		global $pagenow;
 		
 		// Library JS
-		wp_register_script('jquery-cookie', STAGS_URL.'/inc/js/jquery.cookie.min.js', array('jquery'), '1.0.0');
+		wp_register_script('jquery-cookie', STAGS_URL.'/ressources/jquery.cookie.min.js', array('jquery'), '1.0.0');
 		
 		// Helper simple tags
 		wp_register_script('st-helper-add-tags', STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);

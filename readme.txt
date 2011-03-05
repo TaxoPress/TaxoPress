@@ -77,6 +77,7 @@ The Simple Tags can be installed in 3 easy steps:
 	* Remove "include cat" on "Related Posts" settings
 	* Optimize function "Related posts"
 	* Reorganize admin for have a tab features with all features available
+	* Use a input text for Simple Tags autocompletion field
 * Version 2.0-beta6 :
 	* Add Japanese translation (thanks - kazuhisa)
 	* Fix a bug with search and taxonomy param for mass edit terms. (ticket #233)
