@@ -1,24 +1,5 @@
 <?php
 /**
- * Deprecated - Generate related posts for a post in WP loop
- *
- * @param string $args
- * @return string|array
- */
-function st_get_related_posts( $args = '' ) {
-	return '';
-}
-
-/**
- * Deprecated - Display related posts for a post in WP loop
- *
- * @param string $args
- */
-function st_related_posts( $args = '' ) {
-	echo st_get_related_posts( $args );
-}
-
-/**
  * Deprecated - Generate meta keywords for HTML header 
  *
  * @return string

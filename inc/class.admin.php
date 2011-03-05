@@ -1,12 +1,8 @@
 <?php
 class SimpleTags_Admin {
-	var $options;
-	var $options_base_url = '';
-	
 	// CPT and Taxonomy support
 	var $post_type 			= 'post';
 	var $post_type_name		= '';
-	
 	var $taxonomy 			= '';
 	var $taxo_name			= '';
 	
@@ -15,7 +11,7 @@ class SimpleTags_Admin {
 	var $status = '';
 	
 	/**
-	 * PHP4 Constructor - Intialize Admin
+	 * PHP4 Constructor - Initialize Admin
 	 *
 	 * @return void
 	 * @author Amaury Balmer
@@ -28,9 +24,6 @@ class SimpleTags_Admin {
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
-		
-		// Admin URL for Pagination and target
-		$this->options_base_url = admin_url('options-general.php') . '?page=';
 		
 		// Which taxo ?
 		$this->registerDetermineTaxonomy();
@@ -219,7 +212,7 @@ class SimpleTags_Admin {
 	}
 	
 	/**
-	 * Add WP admin menu for Tags
+	 * Add settings page on WordPress admin menu
 	 *
 	 * @return void
 	 * @author Amaury Balmer
@@ -229,8 +222,10 @@ class SimpleTags_Admin {
 	}
 	
 	/**
-	 * WP Page - Tags options
+	 * Build HTML for page options, manage also save/reset settings
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function pageOptions() {
 		// Get default & current options and merge
@@ -256,7 +251,7 @@ class SimpleTags_Admin {
 		}
 		
 		$this->displayMessage();
-	    ?>
+		?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
 			
@@ -265,12 +260,12 @@ class SimpleTags_Admin {
 					<input type="hidden" name="cmd" value="_s-xclick">
 					<input type="hidden" name="hosted_button_id" value="L9QU9QT9R5FQS">
 					<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG_global.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
-					<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+					<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1" />
 				</form>
 			</div>
 			
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-			<form action="<?php echo $this->options_base_url.'st_options'; ?>" method="post">
+			<form action="" method="post">
 				<p>
 					<input class="button-primary" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
 					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
@@ -281,7 +276,17 @@ class SimpleTags_Admin {
 						// Get array options/description
 						$option_data = (array) include( dirname(__FILE__) . '/helper.options.admin.php' );
 						foreach ( $option_data as $key => $val ) {
-							echo '<li><a href="#'. sanitize_title ( $key ) .'">'.$this->getNiceTitleOptions($key).'</a></li>';
+							$style = '';
+							
+							// Deactive tabs if feature not actived
+							if ( isset($options['active_related_posts']) && (int) $options['active_related_posts'] == 0 && $key == 'relatedposts' )
+								$style = 'display:none;';
+								
+							// Deactive tabs if feature not actived
+							if ( isset($options['auto_link_tags']) && (int) $options['auto_link_tags'] == 0 && $key == 'auto-links' )
+								$style = 'display:none;';
+								
+							echo '<li style="'.$style.'"><a href="#'. sanitize_title ( $key ) .'">'.$this->getNiceTitleOptions($key).'</a></li>';
 						}
 						?>
 					</ul>
@@ -326,11 +331,13 @@ class SimpleTags_Admin {
 	}
 	
 	/**
-	 * General features for tags
+	 * Default content for meta box of Simple Tags
 	 *
+	 * @return string
+	 * @author Amaury Balmer
 	 */
 	function getDefaultContentBox() {
-		if ( (int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // TODO: taxos
+		if ( (int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // TODO: Custom taxonomy
 			return __('This feature requires at least 1 tag to work. Begin by adding tags!', 'simpletags');
 		} else {
 			return __('This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simpletags');
@@ -338,18 +345,22 @@ class SimpleTags_Admin {
 	}
 		
 	/**
-	 * Display plugin Copyright
+	 * A short function for display the same copyright on all admin pages
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf(__('&copy; Copyright 2010 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), STAGS_VERSION); ?></p>
+		<p class="footer_st"><?php printf(__('&copy; Copyright 2007-2011 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), STAGS_VERSION); ?></p>
 		<?php
 	}
 	
 	/**
-	 * Display WP alert
+	 * Display WP alert using class var
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function displayMessage() {
 		if ( $this->message != '') {
@@ -370,8 +381,9 @@ class SimpleTags_Admin {
 	/**
 	 * Ouput formatted options
 	 *
-	 * @param array $option_data
+	 * @param array $option_data 
 	 * @return string
+	 * @author Amaury Balmer
 	 */
 	function printOptions( $option_data ) {
 		// Get options
@@ -428,6 +440,7 @@ class SimpleTags_Admin {
 			$output .= '</table>' . "\n";
 			$output .= '</fieldset></div>' . "\n";
 		}
+		
 		return $output;
 	}
 	
@@ -506,9 +519,19 @@ class SimpleTags_Admin {
 		return true;
 	}
 	
+	/**
+	 * Make a simple SQL query with some args for get terms for ajax display
+	 *
+	 * @param string $taxonomy 
+	 * @param string $search 
+	 * @param string $order_by 
+	 * @param string $order 
+	 * @return array
+	 * @author Amaury Balmer
+	 */
 	function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC' ) {
 		global $wpdb;
-
+		
 		if ( !empty($search) ) {
 			return $wpdb->get_results( $wpdb->prepare("
 				SELECT DISTINCT t.name, t.term_id

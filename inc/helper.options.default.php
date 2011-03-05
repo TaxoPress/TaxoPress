@@ -4,6 +4,7 @@ return array(
 	'use_tag_pages' 		=> 1,
 	'active_mass_edit' 		=> 1,
 	'active_manage' 		=> 0,
+	'active_related_posts'	=> 0,
 	'active_autotags' 		=> 1,
 	'allow_embed_tcloud' 	=> 0,
 	
@@ -36,6 +37,17 @@ return array(
 	'tt_inc_cats' 	=> 0,
 	'tt_xformat' 	=> __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simpletags'),
 	'tt_adv_usage' 	=> '',
+	
+	// Related Posts
+	'rp_taxonomy' 	=> 'post_tag',
+	'rp_feed' 		=> 0,
+	'rp_embedded' 	=> 'no',
+	'rp_order' 		=> 'count-desc',
+	'rp_limit_qty' 	=> 5,
+	'rp_notagstext' => __('No related posts.', 'simpletags'),
+	'rp_title' 		=> __('<h4>Related posts</h4>', 'simpletags'),
+	'rp_xformat' 	=> __('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags'),
+	'rp_adv_usage' 	=> '',
 	
 	// Tag cloud
 	'cloud_taxonomy' 	=> 'post_tag',

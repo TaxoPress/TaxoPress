@@ -4,7 +4,7 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
-		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
+		// Add adv post tags in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
 		if ( $options['tt_embedded'] != 'no' || $options['tt_feed'] == 1 ) {
 			add_filter('the_content', array(&$this, 'inlinePostTags'), 999992);
 		}
@@ -25,7 +25,7 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 			if ( $options['tt_feed'] == '1' ) {
 				$marker = true;
 			}
-		} else {
+		} elseif ( isset($options['tt_embedded']) ) {
 			switch ( $options['tt_embedded'] ) {
 				case 'blogonly' :
 					$marker = ( is_feed() ) ? false : true;

@@ -19,6 +19,8 @@ Simple Tags is the successor of Simple Tagging Plugin
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
+This plugin is developped on WordPress 3.1, with the constant WP_DEBUG to TRUE.
+
 * Administration
 	* Tags suggestion from Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB with AJAX request
 		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
@@ -66,9 +68,12 @@ The Simple Tags can be installed in 3 easy steps:
 == Changelog ==
 
 * Version 2.0-beta7 :
-	* Add an option for restore old page "Manage terms"
-	* Add an option for restore old page "Related posts"
+	* Add an option for restore old feature "Manage terms"
+	* Add an option for restore old feature "Related posts"
 	* Remove "Clean DB" and "Rename slugs" in manage terms
+	* Remove "include cat" on "Related Posts" settings
+	* Optimize function "Related posts"
+	* Reorganize admin for have a tab features with all features available
 * Version 2.0-beta6 :
 	* Add Japanese translation (thanks - kazuhisa)
 	* Fix a bug with search and taxonomy param for mass edit terms. (ticket #233)

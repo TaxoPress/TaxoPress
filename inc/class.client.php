@@ -12,15 +12,21 @@ class SimpleTags_Client {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Add pages in WP_Query
-		if ( $options['use_tag_pages'] == 1 ) {
+		if ( isset($options['use_tag_pages']) && $options['use_tag_pages'] == 1 ) {
 			add_action( 'init', array(&$this, 'registerTagsForPage'), 11 );
 			add_action( 'parse_query', array(&$this, 'includePagePostType') );
 		}
 		
 		// Call autolinks ?
-		if ( $options['auto_link_tags'] == '1' ) {
+		if ( isset($options['auto_link_tags']) && $options['auto_link_tags'] == '1' ) {
 			require( STAGS_DIR . '/inc/class.client.autolinks.php');
 			$simple_tags['client-autolinks'] = new SimpleTags_Client_Autolinks();
+		}
+		
+		// Call related posts ?
+		if ( isset($options['active_related_posts']) && $options['active_related_posts'] == '1' ) {
+			require( STAGS_DIR . '/inc/class.client.related_posts.php');
+			$simple_tags['client-related_posts'] = new SimpleTags_Client_RelatedPosts();
 		}
 		
 		// Call auto terms ?
