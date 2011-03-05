@@ -6,11 +6,12 @@ Requires at least: 3.0
 Tested up to: 3.1
 Stable tag: 2.0-beta6
 
-Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, etc.
+Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
 == Description ==
 
- **Caution ! The version 2 of Simple Tags is a back to fondamentals. Somes features are removed !**
+ **Caution UPDATE ! Custom post tags, manage tags and related posts are restored. **
+ **Caution ! Somes features are removed : tags meta keyword, inline tags, related tags !**
 
 Simple Tags is the successor of Simple Tagging Plugin
 
@@ -66,6 +67,7 @@ The Simple Tags can be installed in 3 easy steps:
 
 * Version 2.0-beta7 :
 	* Add an option for restore old page "Manage terms"
+	* Add an option for restore old page "Related posts"
 	* Remove "Clean DB" and "Rename slugs" in manage terms
 * Version 2.0-beta6 :
 	* Add Japanese translation (thanks - kazuhisa)
