@@ -2,6 +2,7 @@
 return array(
 	'general' => array(
 		array('active_mass_edit', __('Active feature : mass edit', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
+		array('active_manage', __('Active feature : advanced manage', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
 		array('active_autotags', __('Active feature : autotags', 'simpletags'), 'checkbox', '1', __('', 'simpletags')),
 		array('use_tag_pages', __('Active tags for page:', 'simpletags'), 'checkbox', '1',
 			__('This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page.', 'simpletags')),

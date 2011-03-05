@@ -28,7 +28,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		}
 		
 		// add JS for Auto Tags, Mass Edit Tags and Manage tags !
-		if ( isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_terms') ) ) {
+		if ( isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_terms', 'st_manage') ) ) {
 			wp_enqueue_script('jquery-autocomplete');
 			wp_enqueue_script('st-helper-autocomplete');
 			wp_enqueue_style ('jquery-autocomplete');

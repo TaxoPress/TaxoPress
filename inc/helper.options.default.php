@@ -3,6 +3,7 @@ return array(
 	// General
 	'use_tag_pages' 		=> 1,
 	'active_mass_edit' 		=> 1,
+	'active_manage' 		=> 0,
 	'active_autotags' 		=> 1,
 	'allow_embed_tcloud' 	=> 0,
 	

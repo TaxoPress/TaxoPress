@@ -64,6 +64,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.0-beta7 :
+	* Add an option for restore old page "Manage terms"
+	* Remove "Clean DB" and "Rename slugs" in manage terms
 * Version 2.0-beta6 :
 	* Add Japanese translation (thanks - kazuhisa)
 	* Fix a bug with search and taxonomy param for mass edit terms. (ticket #233)
