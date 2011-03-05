@@ -85,14 +85,8 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		
 		$this->displayMessage();
 		
-		if ( isset($simple_tags['admin-autocomplete']) ) :
+		do_action( 'simpletags-manage_terms', $this->taxonomy );
 		?>
-		<script type="text/javascript">
-			<!--
-			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin.php?st_ajax_action=helper_js_collection&taxonomy='.$this->taxonomy); ?>", 300 );
-			-->
-		</script>
-		<?php endif; ?>
 		<div class="wrap st_wrap">
 			<?php $this->boxSelectorTaxonomy( 'st_manage' ); ?>
 			

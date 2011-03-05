@@ -90,15 +90,8 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		// Display message
 		$this->displayMessage();
 		
-		// Autocomplete ?
-		if ( isset($simple_tags['admin-autocomplete']) ) :
+		do_action( 'simpletags-mass_terms', $this->taxonomy );
 		?>
-		<script type="text/javascript">
-			<!--
-			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin-ajax.php') .'?action=simpletags&st_action=helper_js_collection&taxonomy='.$this->taxonomy; ?>', 300 );
-			-->
-		</script>
-		<?php endif; ?>
 		
 		<div class="wrap">
 			<?php $this->boxSelectorTaxonomy( 'st_mass_terms' ); ?>

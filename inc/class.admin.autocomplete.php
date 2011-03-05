@@ -10,6 +10,11 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		// Box for advanced tags
 		add_action( 'add_meta_boxes', array(&$this, 'registerMetaBox'), 999 );
 		
+		// Simple Tags hook
+		add_action( 'simpletags-auto_terms', array(&$this, 'autoTermsJavaScript') );
+		add_action( 'simpletags-manage_terms', array(&$this, 'manageTermsJavaScript') );
+		add_action( 'simpletags-mass_terms', array(&$this, 'massTermsJavascript') );
+		
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/ressources/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
 		wp_register_script('jquery-autocomplete',		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
 		
@@ -115,5 +120,55 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		<?php
 	}
 	
+	/**
+	 * Function called on auto terms page
+	 *
+	 * @param string $taxonomy 
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function autoTermsJavaScript( $taxonomy = '' ) {
+		?>
+		<script type="text/javascript">
+			<!--
+			initAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy);; ?>", 300 );
+			-->
+		</script>
+		<?php
+	}
+	
+	/**
+	 * Function called on manage terms page
+	 *
+	 * @param string $taxonomy 
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function manageTermsJavaScript( $taxonomy = '' ) {
+		?>
+		<script type="text/javascript">
+			<!--
+			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin.php?st_ajax_action=helper_js_collection&taxonomy='.$taxonomy); ?>", 300 );
+			-->
+		</script>
+		<?php
+	}
+	
+	/**
+	 * Function called on mass terms page
+	 *
+	 * @param string $taxonomy 
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function massTermsJavascript( $taxonomy = '' ) {
+		?>
+		<script type="text/javascript">
+			<!--
+			initAutoComplete( '.autocomplete-input', '<?php echo admin_url('admin-ajax.php') .'?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy; ?>', 300 );
+			-->
+		</script>
+		<?php
+	}
 }
 ?>
