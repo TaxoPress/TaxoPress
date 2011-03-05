@@ -15,6 +15,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		add_action( 'simpletags-manage_terms', array(&$this, 'manageTermsJavaScript') );
 		add_action( 'simpletags-mass_terms', array(&$this, 'massTermsJavascript') );
 		
+		// Register JS/CSS
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/ressources/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
 		wp_register_script('jquery-autocomplete',		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
 		
