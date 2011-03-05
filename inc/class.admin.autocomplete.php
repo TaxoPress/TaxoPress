@@ -84,7 +84,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		}
 		
 		// Prepare search
-		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
+		$search = ( isset($_REQUEST['keyword']) ) ? trim(stripslashes($_REQUEST['keyword'])) : '';
 		
 		// Get all terms, or filter with search
 		$terms = $this->getTermsForAjax( $taxonomy, $search );
@@ -226,10 +226,10 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			<?php
 		else :
 			?>
-			<p id="facebook-list" class="input-text">
-				<input type="text" name="adv-tags-input" value="" id="facebook-demo" />
-				<div id="facebook-auto">
-					<div class="default"><?php _e('Type the name of an argentine writer you like', 'simpletags'); ?></div> 
+			<p class="input-text-autocomplete">
+				<input type="text" name="protomultiselect-tags" value="" id="protomultiselect-tags" />
+				<div id="protomultiselect-tags-auto">
+					<div class="default"><?php _e('Type the beginning of the name of term which you wish to add.', 'simpletags'); ?></div> 
 					<ul class="feed">
 						<?php
 						$terms = wp_get_post_terms( $post->ID, 'post_tag' );
@@ -242,7 +242,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			</p>
 			<script type="text/javascript">
 				<!--
-				initProtoMultiSelect( 'facebook-demo', 'facebook-auto', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_protomultiselect"); ?>' );
+				initProtoMultiSelect( 'protomultiselect-tags', 'protomultiselect-tags-auto', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_protomultiselect"); ?>' );
 				-->
 			</script>
 		<?php
