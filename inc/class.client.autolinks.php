@@ -107,6 +107,13 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 * @return string
 	 */
 	function autoLinkTags( $content = '' ) {
+		global $post;
+		
+		// user preference for this post ?
+		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
+		if ( !empty($meta_value) )
+			return $content;
+		
 		// Get currents tags if no exists
 		$this->prepareAutoLinkTags();
 		

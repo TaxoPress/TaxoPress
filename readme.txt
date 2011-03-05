@@ -68,6 +68,7 @@ The Simple Tags can be installed in 3 easy steps:
 == Changelog ==
 
 * Version 2.0-beta7 :
+	* Add a metabox on write page that allow to deactive autolinks or autotags for a specific post
 	* Add an option for restore old feature "Manage terms"
 	* Add an option for restore old feature "Related posts"
 	* Remove "Clean DB" and "Rename slugs" in manage terms

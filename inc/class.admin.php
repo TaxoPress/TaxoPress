@@ -65,6 +65,11 @@ class SimpleTags_Admin {
 			require( STAGS_DIR . '/inc/class.admin.autoterms.php');
 			$simple_tags['admin-autotags'] = new SimpleTags_Admin_AutoTags();
 		}
+		
+		if ( (isset($options['active_autotags']) && $options['active_autotags'] == 1) || (isset($options['auto_link_tags']) && $options['auto_link_tags'] == '1') ) {
+			require( STAGS_DIR . '/inc/class.admin.post.php');
+			$simple_tags['admin-post_settings'] = new SimpleTags_Admin_Post_Settings();
+		}
 	}
 	
 	/**

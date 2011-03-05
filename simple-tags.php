@@ -2,13 +2,13 @@
 /*
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
-Description: Extended Tagging for WordPress 3.1 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, etc. NOW Compatible custom post type and custom taxonomy !
+Description: Extended Tagging for WordPress 3.1 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, Related Posts etc. NOW Compatible custom post type and custom taxonomy !
 Version: 2.0-beta7
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
 
-Copyright 2010 - Amaury BALMER (amaury@balmer.fr)
+Copyright 2007-2011 - Amaury BALMER (amaury@balmer.fr)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

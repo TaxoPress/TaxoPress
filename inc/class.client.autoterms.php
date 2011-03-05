@@ -25,6 +25,11 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 		// Auto terms for this CPT ?
 		if ( !isset($options[$object->post_type]) || empty($options[$object->post_type]) )
 			return false;
+			
+		// user preference for this post ?
+		$meta_value = get_post_meta( $object->ID, '_exclude_autotags', true );
+		if ( !empty($meta_value) )
+			return false;
 		
 		// Loop option for find if autoterms is actived on any taxo
 		$flag = false;
