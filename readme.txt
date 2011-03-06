@@ -4,7 +4,7 @@ Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 2.0-beta7
+Stable tag: 2.0-beta8
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
@@ -69,6 +69,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.0-beta8 :
+	* Update POT.
+	* Update french translation.
 * Version 2.0-beta7 :
 	* Add a metabox on write page that allow to deactive autolinks or autotags for a specific post
 	* Add an option for restore old feature "Manage terms"
