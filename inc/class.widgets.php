@@ -53,7 +53,8 @@ class SimpleTags_Widget extends WP_Widget {
 			'color' 		=> 1,
 			'cmini' 		=> '#CCCCCC',
 			'cmax'			=> '#000000',
-			'xformat'		=> ''
+			'xformat'		=> '',
+			'adv_usage'		=> ''
 		);
 	}
 	
@@ -127,6 +128,16 @@ class SimpleTags_Widget extends WP_Widget {
 		
 		// Xformat
 		if ( !empty($xformat) ) $param .= '&xformat='.$xformat;
+		
+		// Advanced usage
+		if ( !empty($adv_usage) ) {
+			if ( substr($adv_usage, 0, 1) != '&' )
+				$param .= '&';
+				
+			$param .= $adv_usage;
+		}
+
+
 		
 		// Taxonomy
 		$param .= '&taxonomy='.$current_taxonomy;
@@ -288,8 +299,15 @@ class SimpleTags_Widget extends WP_Widget {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('xformat'); ?>">
-				<?php _e('Extended format: (advanced usage)', 'simpletags'); ?><br />
+				<?php _e('Tag link format:', 'simpletags'); ?><br />
 				<input class="widefat" style="width: 100% !important;" type="text" id="<?php echo $this->get_field_id('xformat'); ?>" name="<?php echo $this->get_field_name('xformat'); ?>" value="<?php echo $xformat; ?>" />
+			</label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('adv_usage'); ?>">
+				<?php _e('Advanced usage:', 'simpletags'); ?><br />
+				<input class="adv_usage" style="width: 100% !important;" type="text" id="<?php echo $this->get_field_id('adv_usage'); ?>" name="<?php echo $this->get_field_name('adv_usage'); ?>" value="<?php echo $adv_usage; ?>" />
 			</label>
 		</p>
 		
