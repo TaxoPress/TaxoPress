@@ -71,3 +71,5 @@ a#close_clicktags{display:none;}
 #term-list-inner a{text-decoration:none;}
 #term-list-inner a:hover{text-decoration:underline;}
 #manage-table-terms{float:left;width:75%;clear:none;margin-left:2%;}
+
+.wrap .TextboxList ul.holder{width: 99%;}

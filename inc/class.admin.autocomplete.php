@@ -54,22 +54,28 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	/**
 	 * Ajax Dispatcher
 	 *
+	 * @return void
+	 * @author Amaury Balmer
 	 */
 	function ajaxCheck() {
 		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'collection_jquery_autocomplete' )  {
 			$this->ajaxjQueryAutoComplete();
-		} elseif( isset($_GET['st_action']) && $_GET['st_action'] == 'collection_protomultiselect' ) {
-			$this->ajaxProtoMultiSelect();
+		} elseif( isset($_GET['st_action']) && $_GET['st_action'] == 'collection_textboxlist' ) {
+			$this->ajaxTextboxList();
+		} elseif( isset($_GET['st_action']) && $_GET['st_action'] == 'collection_textboxlist_post' ) {
+			$this->ajaxTextboxListPost();
+		} elseif( isset($_GET['st_action']) && $_GET['st_action'] == 'collection_textboxlist_auto' ) {
+			$this->ajaxTextboxListAuto();
 		}
 	}
 	
 	/**
-	 * Display a javascript collection for jquery autocomple script !
+	 * Display a javascript collection for textbox list script ! output json
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function ajaxProtoMultiSelect() {
+	function ajaxTextboxList() {
 		status_header( 200 ); // Send good header HTTP
 		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
 		
@@ -98,6 +104,71 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
 			
 			$output[] = array( 'caption' => $term->name, 'value' => $term->term_id );
+		}
+		
+		echo json_encode($output);
+		exit();
+	}
+	
+	/**
+	 * Get list of tags for a specific post, output json
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function ajaxTextboxListPost() {
+		status_header( 200 ); // Send good header HTTP
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		
+		$taxonomy = 'post_tag';
+		if ( isset($_REQUEST['taxonomy']) && taxonomy_exists($_REQUEST['taxonomy']) ) {
+			$taxonomy = $_REQUEST['taxonomy'];
+		}
+		
+		if ( (int) $_REQUEST['post_id'] == 0 ) { // No tags to suggest
+			exit();
+		}
+
+		// Get all terms, or filter with search
+		$terms = wp_get_post_terms( (int) $_REQUEST['post_id'], $taxonomy );
+		if ( empty($terms) || $terms == false ) {
+			exit();
+		}
+		
+		// Format terms
+		$output = array();
+		foreach ( (array) $terms as $term ) {
+			$term->name = stripslashes($term->name);
+			$term->name = str_replace( array("\r\n", "\r", "\n"), '', $term->name );
+			$output[] = array( 'caption' => $term->name, 'value' => $term->term_id );
+		}
+		
+		echo json_encode($output);
+		exit();
+	}
+	
+	/**
+	 * Get list of tags for autotags
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function ajaxTextboxListAuto() {
+		status_header( 200 ); // Send good header HTTP
+		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		
+		$current_terms = array();
+		if ( isset($_REQUEST['current_tags']) && !empty($_REQUEST['current_tags']) ) {
+			$current_terms = explode(',', $_REQUEST['current_tags']);
+			$current_terms = array_filter($current_terms, '_delete_empty_element');
+		}
+		
+		// Format terms
+		$output = array();
+		foreach ( (array) $current_terms as $name ) {
+			$name = stripslashes($name);
+			$name = str_replace( array("\r\n", "\r", "\n"), '', $name );
+			$output[] = array( 'caption' => $name, 'value' => 0 );
 		}
 		
 		echo json_encode($output);
@@ -152,7 +223,33 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function saveAdvancedTagsInput( $post_id = 0, $object = null ) {
-		if ( isset($_POST['adv-tags-input']) ) {
+		if ( isset($_POST['textboxlist-tags']) ) {
+			$terms = json_decode(stripslashes($_POST['textboxlist-tags']));
+			
+			// Build an array with ID.
+			$terms_ids = array();
+			foreach( $terms as $term ) {
+				$terms_ids[] = $term->value;
+			}
+			
+			// Clean, unicity
+			if ( !empty($terms_ids) ) {
+				$terms_ids = array_map('intval', $terms_ids);
+				$terms_ids = array_unique($terms_ids);
+			}
+			
+			// Add new tag (no append ! replace !)
+			wp_set_object_terms($post_id, $terms_ids, 'post_tag');
+			
+			// Clean cache
+			if ( 'page' == $object->post_type ) {
+				clean_page_cache($post_id);
+			} else {
+				clean_post_cache($post_id);
+			}
+			
+			return true;
+		} elseif ( isset($_POST['adv-tags-input']) ) {
 			// Trim/format data
 			$tags = preg_replace( "/[\n\r]/", ', ', stripslashes($_POST['adv-tags-input']) );
 			$tags = trim($tags);
@@ -210,12 +307,16 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function boxTags( $post ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		?>
+		<p id="adv-tags-input-wrap">
+			<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr($this->getTermsToEdit( 'post_tag', $post->ID )); ?>" />
+			<?php _e('Separate tags with commas', 'simpletags'); ?>
+		</p>
+		<?php
 		if ( isset($options['autocomplete_mode']) && $options['autocomplete_mode'] == 'jquery-autocomplete' ) :
 			?>
-			<p>
-				<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr($this->getTermsToEdit( 'post_tag', $post->ID )); ?>" />
-				<?php _e('Separate tags with commas', 'simpletags'); ?>
-			</p>
 			<script type="text/javascript">
 				<!--
 				initjQueryAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_jquery_autocomplete"); ?>', 300 );
@@ -224,12 +325,16 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 			<?php
 		else :
 			?>
-			<p>
-				<input type="text" name="protomultiselect-tags" value="" id="protomultiselect-tags" />
-			</p>
 			<script type="text/javascript">
 				<!--
-				initProtoMultiSelect( 'protomultiselect-tags', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=collection_protomultiselect"); ?>', '<?php echo esc_js(__('Type the beginning of the name of term which you wish to add.', 'simpletags')); ?>' );
+				initTextboxList_Post(
+					'adv-tags-input-wrap',
+					'textboxlist-tags', 
+					'<?php echo admin_url("admin-ajax.php"); ?>', 
+					'<?php echo esc_js(__("Type the beginning of the name of term which you wish to add.", "simpletags")); ?>',
+					'<?php echo esc_js(__("No values found", "simpletags")); ?>',
+					<?php echo $post->ID; ?>
+				 );
 				-->
 			</script>
 		<?php
@@ -244,13 +349,32 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function autoTermsJavaScript( $taxonomy = '' ) {
-		?>
-		<script type="text/javascript">
-			<!--
-			initjQueryAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=collection_jquery_autocomplete&taxonomy='.$taxonomy);; ?>", 300 );
-			-->
-		</script>
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		
+		if ( isset($options['autocomplete_mode']) && $options['autocomplete_mode'] == 'jquery-autocomplete' ) :
+			?>
+			<script type="text/javascript">
+				<!--
+				initjQueryAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=collection_jquery_autocomplete&taxonomy='.$taxonomy); ?>", 300 );
+				-->
+			</script>
+			<?php
+		else :
+			?>
+			<script type="text/javascript">
+				<!--
+				initTextboxList_AutoList(
+					'auto_list-wrap',
+					'textboxlist-tags', 
+					'<?php echo admin_url("admin-ajax.php"); ?>', 
+					'<?php echo esc_js(__("Type the beginning of the name of term which you wish to add.", "simpletags")); ?>',
+					'<?php echo esc_js(__("No values found", "simpletags")); ?>'
+				 );
+				-->
+			</script>
 		<?php
+		endif;
 	}
 	
 	/**
@@ -261,6 +385,8 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function manageTermsJavaScript( $taxonomy = '' ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
 		?>
 		<script type="text/javascript">
 			<!--
@@ -278,6 +404,8 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function massTermsJavascript( $taxonomy = '' ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
 		?>
 		<script type="text/javascript">
 			<!--

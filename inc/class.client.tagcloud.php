@@ -145,7 +145,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		$scale_max = 10;
 		
 		$minval = min($counts);
-		$maxval = max($counts);;
+		$maxval = max($counts);
 		
 		$minout = max($scale_min, 0);
 		$maxout = max($scale_max, $minout);
