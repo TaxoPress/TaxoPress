@@ -11,6 +11,7 @@ Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Ter
 == Description ==
 
  **Caution UPDATE ! Custom post tags, manage tags and related posts are restored. **
+
  **Caution ! Somes features are removed : tags meta keyword, inline tags, related tags !**
 
 Simple Tags is the successor of Simple Tagging Plugin
