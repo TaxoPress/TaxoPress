@@ -29,15 +29,8 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		$wp_post_pages = array('post.php', 'post-new.php');
 		$wp_page_pages = array('page.php', 'page-new.php');
 		
-		// Helper for posts/pages
-		if ( in_array($pagenow, $wp_post_pages) || ( in_array($pagenow, $wp_page_pages) && is_page_have_tags() ) ) {
-			wp_enqueue_script('jquery-autocomplete');
-			wp_enqueue_script('st-helper-autocomplete');
-			wp_enqueue_style ('jquery-autocomplete');
-		}
-		
-		// add JS for Auto Tags, Mass Edit Tags and Manage tags !
-		if ( isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_terms', 'st_manage') ) ) {
+		// Helper for posts/pages and for Auto Tags, Mass Edit Tags and Manage tags !
+		if ( (in_array($pagenow, $wp_post_pages) || ( in_array($pagenow, $wp_page_pages) && is_page_have_tags() )) || ( isset($_GET['page']) && in_array( $_GET['page'], array('st_auto', 'st_mass_terms', 'st_manage') ) ) ) {
 			wp_enqueue_script('jquery-autocomplete');
 			wp_enqueue_script('st-helper-autocomplete');
 			wp_enqueue_style ('jquery-autocomplete');
