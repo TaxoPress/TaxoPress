@@ -89,6 +89,8 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		}
 		
 		$this->displayMessage();
+		
+		do_action( 'simpletags-auto_terms', $this->taxonomy );
 		?>
 		
 		<div class="wrap st_wrap">
@@ -206,10 +208,8 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 						<tr valign="top">
 							<th scope="row"><label for="auto_list"><?php _e('Keywords list', 'simpletags'); ?></label></th>
 							<td>
-								<p id="auto_list-wrap">
-									<input type="text" id="auto_list" class="auto_list" name="auto_list" value="<?php echo esc_attr($terms_list); ?>" style="width:98%;" />
-									<br /><?php _e('Separated with a comma', 'simpletags'); ?>
-								</p>
+								<input type="text" id="auto_list" class="auto_list" name="auto_list" value="<?php echo esc_attr($terms_list); ?>" style="width:98%;" />
+								<br /><?php _e('Separated with a comma', 'simpletags'); ?>
 							</td>
 						</tr>
 					</table>
@@ -268,7 +268,6 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			<?php $this->printAdminFooter(); ?>
 		</div>
 		<?php
-		do_action( 'simpletags-auto_terms', $this->taxonomy );
 	}
 
 }

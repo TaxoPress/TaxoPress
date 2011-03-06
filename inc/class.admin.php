@@ -234,7 +234,7 @@ class SimpleTags_Admin {
 	 */
 	function pageOptions() {
 		// Get default & current options and merge
-		$default_options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
+		$default_options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );;
 		$options = (array) get_option( STAGS_OPTIONS_NAME );
 		$options = array_merge( $default_options, $options );
 		

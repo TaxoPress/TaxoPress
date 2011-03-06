@@ -23,11 +23,6 @@ return array(
 			__('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WordPress replace this shortcode by a tag cloud.', 'simpletags'))	
 	),	
 	'administration' => array(
-		array('autocomplete_mode', __('Autocomplete mode', 'simpletags'), 'dropdown', 'protomultiselect/jquery-autocomplete',
-			'<ul>
-				<li>'.__('<code>protomultiselect</code> &ndash; New version, like Facebook. New in Simple Tags 2.0 (default)', 'simpletags').'</li>
-				<li>'.__('<code>jquery-autocomplete</code> &ndash; Old version (used on Simple Tags 1.7.4 and 1.8).', 'simpletags').'</li>
-			</ul>'),
 		array('order_click_tags', __('Click tags order', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
 			'<ul>
 				<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
