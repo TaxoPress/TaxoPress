@@ -153,14 +153,23 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function boxTags( $post ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		if ( !isset($options['autocomplete_min']) )
+			$options['autocomplete_min'] = 0;
 		?>
 		<p>
-			<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr($this->getTermsToEdit( 'post_tag', $post->ID )); ?>" />
+			<?php if ( isset($options['autocomplete_type']) && $options['autocomplete_type'] == 'textarea' ) : ?>
+				<textarea class="widefat" name="adv-tags-input" id="adv-tags-input" rows="3" cols="5"><?php echo $this->getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
+			<?php else : ?>
+				<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr($this->getTermsToEdit( 'post_tag', $post->ID )); ?>" />
+			<?php endif; ?>
+			
 			<?php _e('Separate tags with commas', 'simpletags'); ?>
 		</p>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', 300 );
+			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', <?php echo (int) $options['autocomplete_min']; ?> );
 			-->
 		</script>
 		<?php
@@ -174,10 +183,14 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function autoTermsJavaScript( $taxonomy = '' ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		if ( !isset($options['autocomplete_min']) )
+			$options['autocomplete_min'] = 0;
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", 500 );
+			initAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo (int) $options['autocomplete_min']; ?> );
 			-->
 		</script>
 		<?php
@@ -191,10 +204,14 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function manageTermsJavaScript( $taxonomy = '' ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		if ( !isset($options['autocomplete_min']) )
+			$options['autocomplete_min'] = 0;
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", 500 );
+			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo (int) $options['autocomplete_min']; ?> );
 			-->
 		</script>
 		<?php
@@ -208,10 +225,14 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function massTermsJavascript( $taxonomy = '' ) {
+		// Get options
+		$options = get_option( STAGS_OPTIONS_NAME );
+		if ( !isset($options['autocomplete_min']) )
+			$options['autocomplete_min'] = 0;
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", 500 );
+			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo (int) $options['autocomplete_min']; ?> );
 			-->
 		</script>
 		<?php

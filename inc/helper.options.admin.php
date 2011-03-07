@@ -23,6 +23,13 @@ return array(
 			__('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WordPress replace this shortcode by a tag cloud.', 'simpletags'))	
 	),	
 	'administration' => array(
+		array('autocomplete_type', __('Type of old input', 'simpletags'), 'dropdown', 'input/textarea',
+			'<ul>
+				<li>'.__('<code>textarea</code> &ndash; Textarea multiline.', 'simpletags').'</li>
+				<li>'.__('<code>input</code> &ndash; Text input, only one line. (default)', 'simpletags').'</li>
+			</ul>'),
+		array('autocomplete_min', __('Autocompletion Min Chars', 'simpletags'), 'text', '',
+			__('You can define how many characters from the autocompletion will be proposed. The default value in Simple Tags 2.0 is 0, prior this version, default parameter was 1.', 'simpletags')),
 		array('order_click_tags', __('Click tags order', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
 			'<ul>
 				<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>

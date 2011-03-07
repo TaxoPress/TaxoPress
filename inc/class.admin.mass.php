@@ -89,10 +89,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		
 		// Display message
 		$this->displayMessage();
-		
-		do_action( 'simpletags-mass_terms', $this->taxonomy );
 		?>
-		
 		<div class="wrap">
 			<?php $this->boxSelectorTaxonomy( 'st_mass_terms' ); ?>
 			
@@ -254,7 +251,8 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			<?php $this->printAdminFooter(); ?>
 		</div>
-    <?php
+		<?php
+		do_action( 'simpletags-mass_terms', $this->taxonomy );
 	}
 	
 	/**

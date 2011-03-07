@@ -89,10 +89,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		}
 		
 		$this->displayMessage();
-		
-		do_action( 'simpletags-auto_terms', $this->taxonomy );
 		?>
-		
 		<div class="wrap st_wrap">
 			<h2><?php _e('Overview', 'simpletags'); ?>
 			<p><?php _e('The bulb are lit when the association taxonomy and custom post type have the classification automatic activated. Otherwise, the bulb is off.', 'simpletags'); ?>
@@ -268,6 +265,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			<?php $this->printAdminFooter(); ?>
 		</div>
 		<?php
+		do_action( 'simpletags-auto_terms', $this->taxonomy );
 	}
 
 }

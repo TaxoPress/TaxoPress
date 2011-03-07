@@ -84,8 +84,6 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		}
 		
 		$this->displayMessage();
-		
-		do_action( 'simpletags-manage_terms', $this->taxonomy );
 		?>
 		<div class="wrap st_wrap">
 			<?php $this->boxSelectorTaxonomy( 'st_manage' ); ?>
@@ -266,6 +264,7 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 			<?php $this->printAdminFooter(); ?>
 		</div>
 		<?php
+		do_action( 'simpletags-manage_terms', $this->taxonomy );
 	}
 	
 	/**

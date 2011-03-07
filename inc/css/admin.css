@@ -52,7 +52,7 @@ a#close_clicktags{display:none;}
 .container_clicktags span.yahoo:hover{background:#b6bdd2 url(../images/yahoo_logo.gif) 3px 50% no-repeat;}
 .container_clicktags span.local:hover{background:#b6bdd2 url(../images/tag_purple.png) 3px 50% no-repeat;}
 /* Advanced tags input   */
-#adv-tags-input{width:98%;padding:3px 5px;}
+#adv-tags-input{padding:3px 5px;}
 /* Manage page */
 #term-list{float:left;width:20%;}
 #term-list-inner{padding-top:10px;text-align:center;}
