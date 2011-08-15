@@ -3,8 +3,8 @@ Contributors: momo360modena
 Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 2.0-beta9
+Tested up to: 3.2.1
+Stable tag: 2.1
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
@@ -70,6 +70,10 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.1 :
+	* Add compatibility with WP 3.2
+	* Fix bug with autocompletion. (jQuery want now a strict content type text/plain)
+	* Upgrade JS Libary (jQuery Autocomplete, jQuery Cookie, jQuery bgIframe)
 * Version 2.0-beta9 :
 	* Fix conflict with plugin using Google Library Javascript for jQuery. Example : "Use Google Libraries"
 	* Add an option for choose input text or textarea for old tags field

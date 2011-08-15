@@ -115,7 +115,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		status_header( 200 );
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
 		if ( empty($options['opencalais_key']) ) {
@@ -171,7 +171,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		status_header( 200 );
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
 		if ( empty($options['alchemy_api']) ) {
@@ -225,7 +225,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		status_header( 200 );
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
 		if ( empty($options['zemanta_key']) ) {
@@ -278,7 +278,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	 */
 	function ajaxYahooTermExtraction() {
 		status_header( 200 );
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
@@ -330,7 +330,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	function ajaxTagTheNet() {
 		// Send good header HTTP
 		status_header( 200 );
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
@@ -395,7 +395,7 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	 */
 	function ajaxSuggestLocal() {
 		status_header( 200 ); // Send good header HTTP
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		if ( ((int) wp_count_terms('post_tag', 'ignore_empty=false')) == 0) { // No tags to suggest
 			echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';

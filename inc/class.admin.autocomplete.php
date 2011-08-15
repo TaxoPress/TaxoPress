@@ -20,10 +20,10 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		
 		// Register JS/CSS
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/ressources/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
-		wp_register_script('jquery-autocomplete',		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.1');
+		wp_register_script('jquery-autocomplete',		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.2.2');
 		
 		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/inc/js/helper-autocomplete.min.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);	
-		wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.css', array(), '1.1', 'all' );
+		wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/ressources/jquery.autocomplete/jquery.autocomplete.css', array(), '1.2.2', 'all' );
 		
 		// Register location
 		$wp_post_pages = array('post.php', 'post-new.php');
@@ -55,7 +55,7 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	 */
 	function ajaxLocalTags() {
 		status_header( 200 ); // Send good header HTTP
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/plain; charset=" . get_bloginfo('charset'));
 		
 		$taxonomy = 'post_tag';
 		if ( isset($_REQUEST['taxonomy']) && taxonomy_exists($_REQUEST['taxonomy']) ) {

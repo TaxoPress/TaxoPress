@@ -70,7 +70,7 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 	 */
 	function ajaxClickTags() {
 		status_header( 200 ); // Send good header HTTP
-		header("Content-Type: text/javascript; charset=" . get_bloginfo('charset'));
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		if ((int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // No tags to suggest
 			echo '<p>'.__('No terms in your WordPress database.', 'simpletags').'</p>';

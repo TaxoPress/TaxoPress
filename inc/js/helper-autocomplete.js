@@ -20,6 +20,7 @@ function initAutoComplete( p_target, p_url, p_min_chars ) {
 		selectFirst: false,
 		formatItem: formatItem,
 		formatResult: formatResult,
-		minChars: p_min_chars
+		minChars: p_min_chars,
+		multipleSeparator: ", "
 	});
 }
