@@ -9,13 +9,8 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		// Ajax action, JS Helper and admin action
 		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
-		// Box for post
-		add_action('admin_menu', array(&$this, 'helperSuggestTags_Post'), 1);
-		
-		// Box for Page
-		if ( is_page_have_tags() ) {
-			add_action('admin_menu', array(&$this, 'helperSuggestTags_Page'), 1);
-		}
+		// Box for post/page
+		add_action('admin_menu', array(&$this, 'helperSuggestTags'), 1);
 		
 		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array( 'title_bloc' => $this->getSuggestTagsTitle(), 'content_bloc' => __('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags') ) );
@@ -46,12 +41,16 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		return $title;
 	}
 	
-	function helperSuggestTags_Post() {
+	/**
+	 * Register metabox for suggest tags, for post, and optionnaly page.
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function helperSuggestTags() {
 		add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'post', 'advanced', 'core');
-	}
-	
-	function helperSuggestTags_Page() {
-		add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'page', 'advanced', 'core');
+		if ( is_page_have_tags() )
+			add_meta_box('suggestedtags', __('Suggested tags', 'simpletags'), array(&$this, 'boxSuggestTags'), 'page', 'advanced', 'core');
 	}
 	
 	/**

@@ -69,6 +69,10 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 				$newtag   = (isset($_POST['addterm_new'])) ? $_POST['addterm_new'] : '';
 				$this->addMatchTerms( $this->taxonomy, $matchtag, $newtag );
 			
+			} elseif ( $_POST['term_action'] == 'remove-rarelyterms'  ) {
+
+				$this->removeRarelyUsed( $this->taxonomy, (int) $_POST['number-rarely'] );
+
 			} /* elseif ( $_POST['term_action'] == 'editslug'  ) {
 				
 				$matchtag = (isset($_POST['tagname_match'])) ? $_POST['tagname_match'] : '';
@@ -212,6 +216,36 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 								</p>
 								
 								<input class="button-primary" type="submit" name="Add" value="<?php _e('Add', 'simpletags'); ?>" />
+							</form>
+						</fieldset>
+					</td>
+				</tr>
+				
+				<tr valign="top">
+					<th scope="row"><strong><?php _e('Remove rarely used terms', 'simpletags'); ?></strong></th>
+					<td>
+						<p><?php _e('This feature allows you to remove rarely used terms.', 'simpletags'); ?></p>
+						<p><?php _e('You can specify the number below which will be removed terms. If you put 5, all terms with a counter inferior to 5 will be deleted. The terms with a counter equal to 5 is keep.', 'simpletags'); ?></p>
+						
+						<fieldset>
+							<form action="" method="post">
+								<input type="hidden" name="taxo" value="<?php echo esc_attr($this->taxonomy); ?>" />
+								<input type="hidden" name="cpt" value="<?php echo esc_attr($this->post_type); ?>" />
+								
+								<input type="hidden" name="term_action" value="remove-rarelyterms" />
+								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
+								
+								<p>
+									<label for="number-delete"><?php _e('Numbers minimum:', 'simpletags'); ?></label>
+									<br />
+									<select name="number-rarely" id="number-delete">
+									<?php for( $i = 1; $i <= 100; $i++ ) : ?>
+										<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+									<?php endfor; ?>
+									</select>
+								</p>
+								
+								<input class="button-primary" type="submit" name="Delete" value="<?php _e('Delete rarely used', 'simpletags'); ?>" />
 							</form>
 						</fieldset>
 					</td>
@@ -512,6 +546,42 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 			$this->message = __('No term added.', 'simpletags');
 		} else {
 			$this->message = sprintf(__('Term(s) added to %1s post(s).', 'simpletags'), $counter);
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Delete terms when counter if inferior to a specific number
+	 *
+	 * @param string $taxonomy 
+	 * @param integer $number 
+	 * @return boolean
+	 * @author Amaury Balmer
+	 */
+	function removeRarelyUsed( $taxonomy = 'post_tag', $number = 0 ) {
+		global $wpdb;
+		
+		if ( (int) $number > 100 )
+			wp_die( 'Tcheater ?' );
+			
+		// Get terms with counter inferior to...
+		$terms_id = $wpdb->get_col( $wpdb->prepare("SELECT term_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s AND count < %d", $taxonomy, $number) );
+			
+		// Delete terms
+		$counter = 0;
+		foreach ( (array) $terms_id as $term_id ) {
+			if ( $term_id != 0 ) {
+				wp_delete_term( $term_id, $taxonomy );
+				clean_term_cache( $term_id, $taxonomy );
+				$counter++;
+			}
+		}
+		
+		if ( $counter == 0  ) {
+			$this->message = __('No term deleted.', 'simpletags');
+		} else {
+			$this->message = sprintf(__('%1s term(s) deleted.', 'simpletags'), $counter);
 		}
 		
 		return true;
