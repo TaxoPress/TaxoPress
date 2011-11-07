@@ -240,6 +240,8 @@ class SimpleTags_Admin {
 		
 		// Update or reset options
 		if ( isset($_POST['updateoptions']) ) {
+			check_admin_referer('updateresetoptions-simpletags');
+			
 			foreach( (array) $options as $key => $value) {
 				$newval = ( isset($_POST[$key]) ) ? stripslashes($_POST[$key]) : '0';
 				if ( $newval != $value ) {
@@ -250,6 +252,8 @@ class SimpleTags_Admin {
 			$this->message = __('Options saved', 'simpletags');
 			$this->status = 'updated';
 		} elseif ( isset($_POST['reset_options']) ) {
+			check_admin_referer('updateresetoptions-simpletags');
+			
 			$options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
 			update_option( STAGS_OPTIONS_NAME, $options );
 			$this->message = __('Simple Tags options resetted to default options!', 'simpletags');
@@ -301,6 +305,7 @@ class SimpleTags_Admin {
 				</div>
 				
 				<p>
+					<?php wp_nonce_field( 'updateresetoptions-simpletags' ); ?>
 					<input class="button-primary" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
 					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" />
 				</p>

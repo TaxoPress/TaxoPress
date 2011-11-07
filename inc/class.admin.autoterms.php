@@ -49,6 +49,8 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		
 		$action = false;
 		if ( isset($_POST['update_auto_list']) ) {
+			check_admin_referer('update_auto_list-simpletags');
+			
 			// Tags list
 			$terms_list = stripslashes($_POST['auto_list']);
 			$terms = explode(',', $terms_list);
@@ -212,6 +214,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 					</table>
 					
 					<p class="submit">
+						<?php wp_nonce_field( 'update_auto_list-simpletags' ); ?>
 						<input class="button-primary" type="submit" name="update_auto_list" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
 					</p>
 				</form>
