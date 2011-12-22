@@ -10,15 +10,28 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 		// Admin menu
 		add_action('admin_menu', array(&$this, 'adminMenu'));
 		
+		// Register taxo, parent method...
+		$this->registerDetermineTaxonomy();
+		
+		// Javascript
+		add_action('admin_enqueue_scripts', array(&$this, 'initJavaScript'), 11);
+	}
+
+	/**
+	 * Init somes JS and CSS need for this feature
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function initJavaScript() {
+		global $pagenow;
+		
 		wp_register_script('st-helper-manage', STAGS_URL.'/inc/js/helper-manage.min.js', array('jquery'), STAGS_VERSION);
 		
 		// add JS for manage click tags
 		if ( isset($_GET['page']) && $_GET['page'] == 'st_manage' ) {
 			wp_enqueue_script('st-helper-manage');
 		}
-		
-		// Register taxo, parent method...
-		$this->registerDetermineTaxonomy();
 	}
 	
 	/**

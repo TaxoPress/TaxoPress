@@ -4,13 +4,24 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 	var $yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 		
 	function SimpleTags_Admin_Suggest() {
-		global $pagenow;
-		
 		// Ajax action, JS Helper and admin action
 		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
 		// Box for post/page
 		add_action('admin_menu', array(&$this, 'helperSuggestTags'), 1);
+		
+		// Javascript
+		add_action('admin_enqueue_scripts', array(&$this, 'initJavaScript'), 11);
+	}
+
+	/**
+	 * Init somes JS and CSS need for this feature
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function initJavaScript() {
+		global $pagenow;
 		
 		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array( 'title_bloc' => $this->getSuggestTagsTitle(), 'content_bloc' => __('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags') ) );

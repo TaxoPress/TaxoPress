@@ -33,7 +33,7 @@ class SimpleTags_Admin {
 		add_action('admin_notices', array(&$this, 'displayMessage'));
 		
 		// Load JavaScript and CSS
-		$this->initJavaScript();
+		add_action('admin_enqueue_scripts', array(&$this, 'initJavaScript'));
 		
 		// Load custom part of plugin depending option
 		if ( isset($options['use_suggested_tags']) && $options['use_suggested_tags'] == 1 ) {

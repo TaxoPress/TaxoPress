@@ -65,6 +65,11 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 	function autoTermsPost( $object, $taxonomy = 'post_tag', $options = array(), $counter = false ) {
 		global $wpdb;
 		
+		// Option exists ?
+		if ( $options == false || empty($options) ) {
+			return false;
+		}
+		
 		if ( get_the_terms($object->ID, $taxonomy) != false && $options['at_empty'] == 1 ) {
 			return false; // Skip post with terms, if term only empty post option is checked
 		}
@@ -82,25 +87,27 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 		}
 		
 		// Auto term with specific auto terms list
-		$terms = (array) maybe_unserialize($options['auto_list']);
-		foreach ( $terms as $term ) {
-			if ( !is_string($term) && empty($term) )
-			 	continue;
-			
-			$term = trim($term);
-			
-			// Whole word ?
-			if ( (int) $options['only_full_word'] == 1 ) {
-				if ( preg_match("/\b".$term."\b/i", $content) )
+		if ( isset($options['auto_list']) ) {
+			$terms = (array) maybe_unserialize($options['auto_list']);
+			foreach ( $terms as $term ) {
+				if ( !is_string($term) && empty($term) )
+				 	continue;
+				
+				$term = trim($term);
+				
+				// Whole word ?
+				if ( (int) $options['only_full_word'] == 1 ) {
+					if ( preg_match("/\b".$term."\b/i", $content) )
+						$terms_to_add[] = $term;
+				} elseif ( stristr($content, $term) ) {
 					$terms_to_add[] = $term;
-			} elseif ( stristr($content, $term) ) {
-				$terms_to_add[] = $term;
+				}
 			}
+			unset($terms, $term);
 		}
-		unset($terms, $term);
 		
 		// Auto terms with all terms
-		if ( $options['at_all'] == 1 ) {
+		if ( isset($options['at_all']) && $options['at_all'] == 1 ) {
 			// Get all terms
 			$terms = $wpdb->get_col( $wpdb->prepare("SELECT DISTINCT name
 				FROM {$wpdb->terms} AS t

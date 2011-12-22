@@ -7,13 +7,24 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	function SimpleTags_Admin_ClickTags() {
-		global $pagenow;
-		
 		// Ajax action, JS Helper and admin action
 		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
 		// Box for post/page
 		add_action('admin_menu', array(&$this, 'helperClickTags'), 1);
+
+		// Javascript
+		add_action('admin_enqueue_scripts', array(&$this, 'initJavaScript'), 11);
+	}
+
+	/**
+	 * Init somes JS and CSS need for this feature
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function initJavaScript() {
+		global $pagenow;
 		
 		wp_register_script('st-helper-click-tags', STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );

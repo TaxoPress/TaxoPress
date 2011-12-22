@@ -2,10 +2,10 @@ jQuery(document).ready(function() {
 	jQuery("#term-list-inner a").click(function(event) {
 		event.preventDefault();
 		
-		addTerm(this.innerHTML, "renameterm_old");
-		addTerm(this.innerHTML, "deleteterm_name");
-		addTerm(this.innerHTML, "addterm_match");
-		addTerm(this.innerHTML, "termname_match");
+		addTerm(this.innerHTML, "renameterm_old"); // Rename terms
+		addTerm(this.innerHTML, "deleteterm_name"); // Delete terms
+		addTerm(this.innerHTML, "addterm_match"); // Add terms
+		//addTerm(this.innerHTML, "termname_match"); // Edit slug
 		
 		return false;
 	});

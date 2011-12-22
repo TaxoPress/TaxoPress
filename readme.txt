@@ -3,24 +3,19 @@ Contributors: momo360modena
 Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 2.1.2
+Tested up to: 3.3
+Stable tag: 2.2
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
 == Description ==
 
- **Caution UPDATE ! Custom post tags, manage tags and related posts are restored. **
-
- **Caution ! Somes features are removed : tags meta keyword, inline tags, related tags !**
-
 Simple Tags is the successor of Simple Tagging Plugin
-
-**This is THE perfect tool to manage perfectly your WP 3.0 and 3.1 terms for any taxonomy**
+**This is THE perfect tool to manage perfectly your WP terms for any taxonomy**
 
 It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
-This plugin is developped on WordPress 3.1, with the constant WP_DEBUG to TRUE.
+This plugin is developped on WordPress 3.3, with the constant WP_DEBUG to TRUE.
 
 * Administration
 	* Tags suggestion from Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB with AJAX request
@@ -54,7 +49,7 @@ The Simple Tags can be installed in 3 easy steps:
 
 = Simple Tags is compatible with which WordPress versions ? =
 
-* 2.0 and upper are compatible only with WordPress 3.0 & 3.1 !
+* 2.0 and upper are compatible only with WordPress 3.0 & 3.1 & 3.2 & 3.3 !
 * 1.7 and upper are compatible only with WordPress 2.8, 2.9 !
 * 1.6.7 and before are compatible with WordPress 2.3, 2.5, 2.6, 2.7
 * Before WP 2.3, you must use the plugin Simple Tagging.
@@ -70,6 +65,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.2 :
+	* Add compatibility with WP3.3
+	* Move JavaScript register/enqueue to dedicated hook
 * Version 2.1.2 :
 	* Add some nonces for improve security for settings panel
 * Version 2.1.1 :

@@ -2,8 +2,6 @@
 class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 	
 	function SimpleTags_Admin_Autocomplete() {
-		global $pagenow;
-		
 		// Ajax action, JS Helper and admin action
 		add_action('wp_ajax_'.'simpletags', array(&$this, 'ajaxCheck'));
 		
@@ -17,6 +15,19 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		add_action( 'simpletags-auto_terms', array(&$this, 'autoTermsJavaScript') );
 		add_action( 'simpletags-manage_terms', array(&$this, 'manageTermsJavaScript') );
 		add_action( 'simpletags-mass_terms', array(&$this, 'massTermsJavascript') );
+		
+		// Javascript
+		add_action('admin_enqueue_scripts', array(&$this, 'initJavaScript'), 11);
+	}
+
+	/**
+	 * Init somes JS and CSS need for this feature
+	 *
+	 * @return void
+	 * @author Amaury Balmer
+	 */
+	function initJavaScript() {
+		global $pagenow;
 		
 		// Register JS/CSS
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/ressources/jquery.bgiframe.min.js', array('jquery'), '2.1.1');
