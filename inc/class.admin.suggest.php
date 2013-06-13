@@ -446,4 +446,3 @@ class SimpleTags_Admin_Suggest extends SimpleTags_Admin {
 		exit();
 	}
 }
-?>

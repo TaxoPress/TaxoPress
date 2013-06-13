@@ -96,4 +96,3 @@ function is_page_have_tags() {
 	
 	return false;
 }
-?>

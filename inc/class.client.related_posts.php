@@ -411,4 +411,3 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 		return implode(', ', $output);
 	}
 }
-?>

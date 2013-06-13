@@ -166,4 +166,3 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 	}
 
 }
-?>

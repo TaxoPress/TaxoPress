@@ -252,4 +252,3 @@ class SimpleTags_Client {
 		}
 	}
 }
-?>

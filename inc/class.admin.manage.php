@@ -660,4 +660,3 @@ class SimpleTags_Admin_Manage extends SimpleTags_Admin {
 	}
 	*/
 }
-?>

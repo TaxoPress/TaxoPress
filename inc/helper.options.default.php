@@ -70,4 +70,3 @@ return array(
 	'cloud_unit' 		=> 'pt',
 	'cloud_adv_usage' 	=> ''
 );
-?>

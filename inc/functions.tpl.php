@@ -75,4 +75,3 @@ function st_get_related_posts( $args = '' ) {
 function st_related_posts( $args = '' ) {
 	echo st_get_related_posts( $args );
 }
-?>

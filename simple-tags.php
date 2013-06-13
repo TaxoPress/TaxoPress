@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
 Description: Extended Tagging for WordPress 3.1 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, Related Posts etc. NOW Compatible custom post type and custom taxonomy !
-Version: 2.2
+Version: 2.3
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -34,6 +34,10 @@ Todo:
 	Client :
 */
 
+// don't load directly
+if ( !defined('ABSPATH') )
+	die('-1');
+
 // Do a PHP version check, require 5.0 or newer
 if (version_compare(PHP_VERSION, '5.0.0', '<') ) {
 	// Silently deactivate plugin, keeps admin usable
@@ -45,13 +49,13 @@ if (version_compare(PHP_VERSION, '5.0.0', '<') ) {
 	wp_die(sprintf(__('Your PHP version is too old, please upgrade to a newer version. Your version is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins directory with FTP client.', 'simpletags'), phpversion(), '5.0.0'));
 }
 
-define( 'STAGS_VERSION', 			'2.2' );
+define( 'STAGS_VERSION', 			'2.3' );
 define( 'STAGS_OPTIONS_NAME', 		'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 	'simpletags-auto' ); // Option name for save settings auto terms
 define( 'STAGS_FOLDER', 			'simple-tags' );
 
 define ( 'STAGS_URL', plugins_url('', __FILE__) );
-define ( 'STAGS_DIR', dirname(__FILE__) );
+define ( 'STAGS_DIR', rtrim(plugin_dir_path(__FILE__), '/') );
 
 require( STAGS_DIR . '/inc/functions.inc.php'); // Internal functions
 require( STAGS_DIR . '/inc/functions.deprecated.php'); // Deprecated functions
@@ -83,4 +87,3 @@ function simple_tags_init() {
 	}
 }
 add_action( 'plugins_loaded', 'simple_tags_init' );
-?>

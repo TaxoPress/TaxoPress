@@ -88,4 +88,3 @@ class SimpleTags_Admin_Post_Settings extends SimpleTags_Admin {
 		}
 	}
 }
-?>

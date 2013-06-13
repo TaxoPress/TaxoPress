@@ -249,4 +249,3 @@ class SimpleTags_Admin_Autocomplete extends SimpleTags_Admin {
 		<?php
 	}
 }
-?>

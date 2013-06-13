@@ -214,4 +214,3 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 		return $content;
 	}
 }
-?>

@@ -272,4 +272,3 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	}
 
 }
-?>

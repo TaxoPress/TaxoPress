@@ -320,4 +320,3 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	}
 	
 }
-?>

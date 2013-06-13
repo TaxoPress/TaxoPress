@@ -53,4 +53,3 @@ function st_remove_related_tags( $args = '' ) {
 function st_get_remove_related_tags( $args = '' ) {
 	return '';
 }
-?>

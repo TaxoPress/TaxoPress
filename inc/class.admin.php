@@ -562,4 +562,3 @@ class SimpleTags_Admin {
 		}
 	}
 }
-?>

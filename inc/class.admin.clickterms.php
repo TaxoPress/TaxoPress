@@ -135,4 +135,3 @@ class SimpleTags_Admin_ClickTags extends SimpleTags_Admin {
 		exit();
 	}
 }
-?>

@@ -668,4 +668,3 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		return $terms;
 	}
 }
-?>

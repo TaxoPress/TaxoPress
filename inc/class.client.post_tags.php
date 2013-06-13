@@ -169,4 +169,3 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 		return $this->outputContent( '', 'string', '', $output, $copyright );
 	}
 }
-?>
