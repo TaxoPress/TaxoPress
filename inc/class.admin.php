@@ -149,6 +149,11 @@ class SimpleTags_Admin {
 					
 					echo '<select name="cpt" id="cpt-select">' . "\n";
 						foreach ( get_post_types( array('show_ui' => true ), 'objects') as $post_type ) {
+							$taxonomies = get_object_taxonomies($post_type->name);
+							if( empty($taxonomies) ) {
+								continue;
+							}
+							
 							echo '<option '.selected( $post_type->name, self::$post_type, false ).' value="'.esc_attr($post_type->name).'">'.esc_html($post_type->labels->name).'</option>' . "\n";
 						}
 					echo '</select>' . "\n";
@@ -156,8 +161,9 @@ class SimpleTags_Admin {
 					echo '<select name="taxo" id="taxonomy-select">' . "\n";
 						foreach ( get_object_taxonomies(self::$post_type) as $tax_name ) {
 							$taxonomy = get_taxonomy($tax_name);
-							if ( $taxonomy->show_ui == false )
+							if ( $taxonomy->show_ui == false ) {
 								continue;
+							}
 							
 							echo '<option '.selected( $tax_name, self::$taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->labels->name).'</option>' . "\n";
 						}

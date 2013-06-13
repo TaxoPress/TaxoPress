@@ -2,7 +2,7 @@
 /*
 Plugin Name: Simple Tags
 Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
-Description: Extended Tagging for WordPress 3.1 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, Related Posts etc. NOW Compatible custom post type and custom taxonomy !
+Description: Extended Tagging for WordPress 3.3, 3.4 & 3.5 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, Related Posts etc. NOW Compatible custom post type and custom taxonomy !
 Version: 2.3
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
@@ -61,19 +61,18 @@ require( STAGS_DIR . '/inc/functions.inc.php'); // Internal functions
 require( STAGS_DIR . '/inc/functions.deprecated.php'); // Deprecated functions
 require( STAGS_DIR . '/inc/functions.tpl.php');  // Templates functions
 
+require( STAGS_DIR . '/inc/class.plugin.php');
 require( STAGS_DIR . '/inc/class.client.php');
 require( STAGS_DIR . '/inc/class.client.tagcloud.php');
 require( STAGS_DIR . '/inc/class.widgets.php');
 
 // Activation, uninstall
-register_activation_hook( __FILE__, 'SimpleTags_Install'   );
-register_uninstall_hook ( __FILE__, 'SimpleTags_Uninstall' );
+register_activation_hook(__FILE__, array('SimpleTags_Plugin', 'activation'));
+register_deactivation_hook(__FILE__, array('SimpleTags_Plugin', 'deactivation'));
+register_uninstall_hook(__FILE__, array('SimpleTags_Plugin', 'uninstall'));
 
 // Init Simple Tags
-function simple_tags_init() {
-	// Load translations
-	load_plugin_textdomain ( 'simpletags', false, basename(rtrim(dirname(__FILE__), '/')) . '/languages' );
-	
+function init_simple_tags() {
 	// Load client
 	new SimpleTags_Client();
 	new SimpleTags_Client_TagCloud();
@@ -86,4 +85,4 @@ function simple_tags_init() {
 	
 	add_action( 'widgets_init', create_function('', 'return register_widget("SimpleTags_Widget");') );
 }
-add_action( 'plugins_loaded', 'simple_tags_init' );
+add_action( 'plugins_loaded', 'init_simple_tags' );

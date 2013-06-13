@@ -6,6 +6,9 @@ class SimpleTags_Client {
 	 * @return SimpleTags
 	 */
 	public function __construct() {
+		// Load translation
+		add_action( 'init', array(__CLASS__, 'init_translation') );
+		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -36,6 +39,11 @@ class SimpleTags_Client {
 		new SimpleTags_Client_PostTags();
 		
 		return true;
+	}
+	
+	public static function init_translation() {
+		// Load translations
+		load_plugin_textdomain ( 'simpletags', false, basename(rtrim(dirname(__FILE__), '/')) . '/languages' );
 	}
 	
 	/**

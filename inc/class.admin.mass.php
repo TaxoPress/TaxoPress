@@ -60,14 +60,14 @@ class SimpleTags_Admin_Mass {
 					$counter++;
 					
 					// Clean cache
-					if ( self::$post_type == 'page' ) {
+					if ( SimpleTags_Admin::$post_type == 'page' ) {
 						clean_page_cache($object_id);
 					} else {
 						clean_post_cache($object_id);
 					}
 				}
 				
-				add_settings_error( __CLASS__, __CLASS__, sprintf(__('%1$s %2$s(s) terms updated with success !', 'simpletags'), (int) $counter, strtolower(self::$post_type_name) ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf(__('%1$s %2$s(s) terms updated with success !', 'simpletags'), (int) $counter, strtolower(SimpleTags_Admin::$post_type_name) ), 'updated' );
 				return true;
 			}
 		}
@@ -95,16 +95,16 @@ class SimpleTags_Admin_Mass {
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_terms" />
 				<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-				<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
+				<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
 				
 				<h2><?php _e('Mass edit terms', 'simpletags'); ?></h2>
 				
 				<ul class="subsubsub">
 					<?php
 					$status_links = array();
-					$num_posts = wp_count_posts(self::$post_type, 'readable');
+					$num_posts = wp_count_posts(SimpleTags_Admin::$post_type, 'readable');
 					$class = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.self::$post_type.'&amp;taxo='.SimpleTags_Admin::$taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
+					$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.SimpleTags_Admin::$post_type.'&amp;taxo='.SimpleTags_Admin::$taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 						
@@ -117,7 +117,7 @@ class SimpleTags_Admin_Mass {
 						if ( isset($_GET['post_status']) && $status == $_GET['post_status'] )
 							$class = ' class="current"';
 						
-						$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.self::$post_type.'&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
+						$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.SimpleTags_Admin::$post_type.'&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
 					}
 					echo implode(' |</li>', $status_links) . '</li>';
 					unset($status_links);
@@ -156,7 +156,7 @@ class SimpleTags_Admin_Mass {
 					<div style="float: left">
 						<?php
 						if ( !is_singular() ) {
-							$arc_result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = %s ORDER BY post_date DESC", self::$post_type ) );
+							$arc_result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = %s ORDER BY post_date DESC", SimpleTags_Admin::$post_type ) );
 						
 							$month_count = count($arc_result);
 						
@@ -280,7 +280,7 @@ class SimpleTags_Admin_Mass {
 			$q['posts_per_page'] = 15;
 		
 		// Content type
-		$q['post_type'] = self::$post_type;
+		$q['post_type'] = SimpleTags_Admin::$post_type;
 		
 		// Post status
 		$post_stati  = array(	//	array( adj, noun )
@@ -292,7 +292,7 @@ class SimpleTags_Admin_Mass {
 		);
 		
 		$post_stati = apply_filters('post_stati', $post_stati);
-		$avail_post_stati = get_available_post_statuses(self::$post_type);
+		$avail_post_stati = get_available_post_statuses(SimpleTags_Admin::$post_type);
 		
 		$post_status_q = '';
 		if ( isset($q['post_status']) && in_array( $q['post_status'], array_keys($post_stati) ) ) {
