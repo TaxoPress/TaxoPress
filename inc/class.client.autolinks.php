@@ -42,36 +42,38 @@ class SimpleTags_Client_Autolinks {
 	 * @return boolean
 	 */
 	public static function get_tags_from_current_posts() {
-		global $wpdb;
-		
 		if ( is_array(self::$posts) && count(self::$posts) > 0 ) {
 			// Generate SQL from post id
 			$postlist = implode( "', '", self::$posts );
 			
 			// Generate key cache
 			$key = md5(maybe_serialize($postlist));
+ 			
+			$results = array();
 			
 			// Get cache if exist
-			if ( $cache = wp_cache_get( 'generate_keywords', 'simpletags' ) ) {
+			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
+			if ( $cache === false ) {
+				foreach ( self::$posts as $object_id ) {
+					// Get terms
+					$terms = get_object_term_cache($object_id, 'post_tag');
+					if ( false === $terms ) {
+						$terms = wp_get_object_terms($object_id, 'post_tag');
+					}
+
+					if( $terms != false ) {
+						$results = array_merge($results, $terms);
+					}
+				}
+				
+				$cache[$key] = $results;
+				wp_cache_set('generate_keywords', $cache, 'simpletags');
+			} else {
 				if ( isset( $cache[$key] ) ) {
 					return $cache[$key];
 				}
 			}
-			
-			// If cache not exist, get datas and set cache
-			$results = $wpdb->get_results("
-				SELECT t.name AS name, t.term_id AS term_id, tt.count AS count
-				FROM {$wpdb->term_relationships} AS tr
-				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
-				INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
-				WHERE tt.taxonomy = 'post_tag'
-				AND ( tr.object_id IN ('{$postlist}') )
-				GROUP BY t.term_id
-				ORDER BY tt.count DESC");
-			
-			$cache[$key] = $results;
-			wp_cache_set('generate_keywords', $cache, 'simpletags');
-			
+
 			return $results;
 		}
 		
@@ -93,7 +95,7 @@ class SimpleTags_Client_Autolinks {
 		
 		foreach ( (array) self::get_tags_from_current_posts() as $term ) {
 			if ( $term->count >= $auto_link_min ) {
-				self::$link_tags[$term->name] = esc_url(get_tag_link( $term->term_id ));
+				self::$link_tags[$term->name] = esc_url(get_term_link( $term, $term->taxonomy ));
 			}
 		}
 		
@@ -121,7 +123,7 @@ class SimpleTags_Client_Autolinks {
 		SimpleTags_Client::randomArray(self::$link_tags);
 		
 		// HTML Rel (tag/no-follow)
-		$rel = SimpleTags_Client::buildRel();
+		$rel = SimpleTags_Client::get_rel_attribute();
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );

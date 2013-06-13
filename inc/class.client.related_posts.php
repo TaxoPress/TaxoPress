@@ -59,7 +59,7 @@ class SimpleTags_Client_RelatedPosts {
 		}
 		
 		if ( $marker === true ) {
-			return ( $content . self::relatedPosts( '', false ) );
+			return ( $content . self::get_related_posts( '', false ) );
 		}
 		return $content;
 	}
@@ -70,7 +70,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * @param string $user_args
 	 * @return string|array
 	 */
-	public static function relatedPosts( $user_args = '', $copyright = true ) {
+	public static function get_related_posts( $user_args = '', $copyright = true ) {
 		global $wpdb;
 		
 		// Get options
@@ -137,6 +137,7 @@ class SimpleTags_Client_RelatedPosts {
 		
 		// Get cache if exist
 		$results = false;
+		
 		// Generate key cache
 		$key = md5(maybe_serialize($user_args).'-'.$object_id);
 		
@@ -267,9 +268,9 @@ class SimpleTags_Client_RelatedPosts {
 			
 			// Check if post_excerpt is used by xformat...
 			$select_excerpt = '';
-			if ( strpos( $xformat, '%post_excerpt%' ) ) {
-				$select_excerpt = ', p.post_content, p.post_excerpt, p.post_password';
-			}
+			//if ( strpos( $xformat, '%post_excerpt%' ) ) {
+			//	$select_excerpt = ', p.post_content, p.post_excerpt, p.post_password';
+			//}
 			
 			// If empty return no posts text
 			if ( empty($include_terms_sql) ) {
@@ -278,7 +279,7 @@ class SimpleTags_Client_RelatedPosts {
 			
 			// Posts: title, comments_count, date, permalink, post_id, counter
 			$results = $wpdb->get_results("
-				SELECT p.post_title, p.comment_count, p.post_date, p.ID, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
+				SELECT p.*, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
 				FROM {$wpdb->posts} AS p
 				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
@@ -317,7 +318,7 @@ class SimpleTags_Client_RelatedPosts {
 			$element_loop = $xformat;
 			$post_title = apply_filters( 'the_title', $result->post_title );
 			$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
-			$element_loop = str_replace('%post_permalink%', get_permalink($result->ID), $element_loop);
+			$element_loop = str_replace('%post_permalink%', get_permalink($result), $element_loop);
 			$element_loop = str_replace('%post_title%', $post_title, $element_loop);
 			$element_loop = str_replace('%post_title_attribute%', esc_html(strip_tags($post_title)), $element_loop);
 			$element_loop = str_replace('%post_comment%', (int) $result->comment_count, $element_loop);
@@ -325,10 +326,10 @@ class SimpleTags_Client_RelatedPosts {
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
 			
 			if ( isset($result->terms_id) )
-				$element_loop = str_replace('%post_relatedtags%', self::getTagsFromID($result->terms_id, $taxonomy), $element_loop);
+				$element_loop = str_replace('%post_relatedtags%', self::get_tags_from_id($result->terms_id, $taxonomy), $element_loop);
 				
 			if ( isset($result->post_excerpt) || isset($result->post_content) )
-				$element_loop = str_replace('%post_excerpt%', self::getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap ), $element_loop);
+				$element_loop = str_replace('%post_excerpt%', self::get_excerpt_post( $result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap ), $element_loop);
 				
 			$output[] = $element_loop;
 		}
@@ -350,7 +351,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	public static function getExcerptPost( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
+	public static function get_excerpt_post( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
 		if ( !empty($password) ) { // if there's a password
 			if ( $_COOKIE['wp-postpass_'.COOKIEHASH] != $password ) { // and it doesn't match the cookie
 				return __('There is no excerpt because this is a protected post.', 'simpletags');
@@ -385,7 +386,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	public static function getTagsFromID( $terms = '', $taxonomy = 'post_tag' ) {
+	public static function get_tags_from_id( $terms = '', $taxonomy = 'post_tag' ) {
 		if ( empty($terms) ) {
 			return '';
 		}
@@ -397,7 +398,7 @@ class SimpleTags_Client_RelatedPosts {
 		}
 		
 		// HTML Rel (tag)
-		$rel = SimpleTags_Client::buildRel();
+		$rel = SimpleTags_Client::get_rel_attribute();
 		
 		$output = array();
 		foreach ( (array) $terms as $term ) {

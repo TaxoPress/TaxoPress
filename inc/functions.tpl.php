@@ -55,7 +55,7 @@ function st_the_tags( $args = '' ) {
  */
 function st_get_related_posts( $args = '' ) {
 	if (class_exists('SimpleTags_Client_RelatedPosts') )
-		return SimpleTags_Client_RelatedPosts::relatedPosts( $args );
+		return SimpleTags_Client_RelatedPosts::get_related_posts( $args );
 		
 	return '';
 }

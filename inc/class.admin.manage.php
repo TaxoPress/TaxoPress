@@ -111,7 +111,7 @@ class SimpleTags_Admin_Manage {
 					<div>
 						<input type="hidden" name="page" value="st_manage" />
 						<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-						<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
+						<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
 						
 						<select name="order">
 							<option <?php selected( $_GET['order'], 'count-asc' ); ?> value="count-asc"><?php _e('Least used', 'simpletags'); ?></option>
@@ -149,7 +149,7 @@ class SimpleTags_Admin_Manage {
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-								<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
+								<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
 								
 								<input type="hidden" name="term_action" value="renameterm" />
 								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
@@ -181,7 +181,7 @@ class SimpleTags_Admin_Manage {
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-								<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
+								<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
 								
 								<input type="hidden" name="term_action" value="deleteterm" />
 								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
@@ -207,7 +207,7 @@ class SimpleTags_Admin_Manage {
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-								<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
+								<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
 								
 								<input type="hidden" name="term_action" value="addterm" />
 								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
@@ -239,7 +239,7 @@ class SimpleTags_Admin_Manage {
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-								<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
+								<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
 								
 								<input type="hidden" name="term_action" value="remove-rarelyterms" />
 								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
@@ -270,7 +270,7 @@ class SimpleTags_Admin_Manage {
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-								<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
+								<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
 								
 								<input type="hidden" name="term_action" value="editslug" />
 								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />

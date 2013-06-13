@@ -99,7 +99,7 @@ class SimpleTags_Client {
 	 *
 	 * @return string
 	 */
-	public static function buildRel() {
+	public static function get_rel_attribute() {
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		if ( !empty($rel) ) {
@@ -212,6 +212,37 @@ class SimpleTags_Client {
 		$element_loop = str_replace('%tag_delicious%', self::formatExternalTag( 'delicious', $term->name ), $element_loop);
 		
 		return $element_loop;
+	}
+	
+	/**
+	 * This is pretty filthy. Doing math in hex is much too weird. It's more likely to work, this way!
+	 * Provided from UTW. Thanks.
+	 *
+	 * @param integer $scale_color
+	 * @param string $min_color
+	 * @param string $max_color
+	 * @return string
+	 */
+	public static function getColorByScale($scale_color, $min_color, $max_color) {
+		$scale_color = $scale_color / 100;
+		
+		$minr = hexdec(substr($min_color, 1, 2));
+		$ming = hexdec(substr($min_color, 3, 2));
+		$minb = hexdec(substr($min_color, 5, 2));
+		
+		$maxr = hexdec(substr($max_color, 1, 2));
+		$maxg = hexdec(substr($max_color, 3, 2));
+		$maxb = hexdec(substr($max_color, 5, 2));
+		
+		$r = dechex(intval((($maxr - $minr) * $scale_color) + $minr));
+		$g = dechex(intval((($maxg - $ming) * $scale_color) + $ming));
+		$b = dechex(intval((($maxb - $minb) * $scale_color) + $minb));
+		
+		if (strlen($r) == 1) $r = '0'.$r;
+		if (strlen($g) == 1) $g = '0'.$g;
+		if (strlen($b) == 1) $b = '0'.$b;
+		
+		return '#'.$r.$g.$b;
 	}
 	
 	/**

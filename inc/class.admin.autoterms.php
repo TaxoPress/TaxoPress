@@ -37,15 +37,15 @@ class SimpleTags_Admin_AutoTags {
 		if ( $options == false ) // First save ?
 			$options = array();
 		
-		if ( !isset($options[self::$post_type]) ) { // First save for this CPT ?
-			$options[self::$post_type] = array();
+		if ( !isset($options[SimpleTags_Admin::$post_type]) ) { // First save for this CPT ?
+			$options[SimpleTags_Admin::$post_type] = array();
 		}
 		
-		if ( !isset($options[self::$post_type][SimpleTags_Admin::$taxonomy]) ) { // First save for this taxo ?
-			$options[self::$post_type][SimpleTags_Admin::$taxonomy] = array();
+		if ( !isset($options[SimpleTags_Admin::$post_type][SimpleTags_Admin::$taxonomy]) ) { // First save for this taxo ?
+			$options[SimpleTags_Admin::$post_type][SimpleTags_Admin::$taxonomy] = array();
 		}
 		
-		$taxo_options = $options[self::$post_type][SimpleTags_Admin::$taxonomy]; // Edit local option taxo
+		$taxo_options = $options[SimpleTags_Admin::$post_type][SimpleTags_Admin::$taxonomy]; // Edit local option taxo
 		
 		$action = false;
 		if ( isset($_POST['update_auto_list']) ) {
@@ -73,7 +73,7 @@ class SimpleTags_Admin_AutoTags {
 			// Full word ?
 			$taxo_options['only_full_word'] = ( isset($_POST['only_full_word']) && $_POST['only_full_word'] == '1' ) ? '1' : '0';
 			
-			$options[self::$post_type][SimpleTags_Admin::$taxonomy] = $taxo_options;
+			$options[SimpleTags_Admin::$post_type][SimpleTags_Admin::$taxonomy] = $taxo_options;
 			update_option( STAGS_OPTIONS_NAME_AUTO, $options );
 			
 			add_settings_error( __CLASS__, __CLASS__, __('Auto terms options updated !', 'simpletags'), 'updated' );
@@ -128,8 +128,16 @@ class SimpleTags_Admin_AutoTags {
 					$class = 'alternate';
 					$i = 0;
 					foreach ( get_post_types( array(), 'objects' ) as $post_type ) :
-						if ( !$post_type->show_ui || empty($post_type->labels->name) )
+						if ( !$post_type->show_ui || empty($post_type->labels->name) ) {
 							continue;
+						}
+						
+						// Get compatible taxo for current post type
+						$compatible_taxonomies = get_object_taxonomies( $post_type->name );
+						if ( empty($compatible_taxonomies) ) {
+							continue;
+						}
+							
 						
 						$i++;
 						$class = ( $class == 'alternate' ) ? '' : 'alternate';
@@ -137,9 +145,6 @@ class SimpleTags_Admin_AutoTags {
 						<tr id="custom type-<?php echo $i; ?>" class="<?php echo $class; ?>">
 							<th class="name column-name"><?php echo esc_html($post_type->labels->name); ?></th>
 							<?php
-							// Get compatible taxo for current post type
-							$compatible_taxonomies = get_object_taxonomies( $post_type->name );
-							
 							foreach ( get_taxonomies( array( 'show_ui' => true ), 'object' ) as $line_taxo ) {
 								if ( empty($line_taxo->labels->name) )
 									continue;
@@ -166,7 +171,7 @@ class SimpleTags_Admin_AutoTags {
 		</div>
 		
 		<div class="wrap st_wrap">
-			<h2><?php printf(__('Auto Terms for %s and %s', 'simpletags'), '<strong>'.self::$post_type_name.'</strong>',  '<strong>'.SimpleTags_Admin::$taxo_name.'</strong>' ); ?></h2>
+			<h2><?php printf(__('Auto Terms for %s and %s', 'simpletags'), '<strong>'.SimpleTags_Admin::$post_type_name.'</strong>',  '<strong>'.SimpleTags_Admin::$taxo_name.'</strong>' ); ?></h2>
 			
 			<?php if ( $action === false ) : ?>
 				
@@ -174,7 +179,7 @@ class SimpleTags_Admin_AutoTags {
 				<p><?php _e('This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, Simple Tags will add automatically "wordpress" as term for this post.', 'simpletags'); ?></p>
 				
 				<h3><?php _e('Options', 'simpletags'); ?></h3>
-				<form action="<?php echo self::$tools_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.self::$post_type; ?>" method="post">
+				<form action="<?php echo self::$tools_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.SimpleTags_Admin::$post_type; ?>" method="post">
 					<table class="form-table">
 						<tr valign="top">
 							<th scope="row"><?php _e('Activation', 'simpletags'); ?></th>
@@ -224,7 +229,7 @@ class SimpleTags_Admin_AutoTags {
 					<?php _e('Simple Tags can also tag all existing contents of your blog. This feature use auto terms list above-mentioned.', 'simpletags'); ?>
 				</p>
 				<p class="submit">
-					<a class="button-primary" href="<?php echo self::$tools_base_url.'st_auto&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;cpt='.self::$post_type.'&amp;action=auto_tag'; ?>"><?php _e('Auto terms all content &raquo;', 'simpletags'); ?></a>
+					<a class="button-primary" href="<?php echo self::$tools_base_url.'st_auto&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;cpt='.SimpleTags_Admin::$post_type.'&amp;action=auto_tag'; ?>"><?php _e('Auto terms all content &raquo;', 'simpletags'); ?></a>
 				</p>
 			
 			<?php else:
@@ -234,7 +239,7 @@ class SimpleTags_Admin_AutoTags {
 				}
 				
 				// Get objects
-				$objects = (array) $wpdb->get_results( $wpdb->prepare("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'publish' ORDER BY ID DESC LIMIT %d, 20", self::$post_type, $n) );
+				$objects = (array) $wpdb->get_results( $wpdb->prepare("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'publish' ORDER BY ID DESC LIMIT %d, 20", SimpleTags_Admin::$post_type, $n) );
 				
 				if( !empty($objects) ) {
 					echo '<ul>';
@@ -246,11 +251,11 @@ class SimpleTags_Admin_AutoTags {
 					}
 					echo '</ul>';
 					?>
-					<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="<?php echo self::$tools_base_url.'st_auto&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;cpt='.self::$post_type.'&amp;action=auto_tag&amp;n='.($n + 20); ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
+					<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="<?php echo self::$tools_base_url.'st_auto&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;cpt='.SimpleTags_Admin::$post_type.'&amp;action=auto_tag&amp;n='.($n + 20); ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
 					<script type="text/javascript">
 						// <![CDATA[
 						function nextPage() {
-							location.href = "<?php echo self::$tools_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.self::$post_type.'&action=auto_tag&n='.($n + 20); ?>";
+							location.href = "<?php echo self::$tools_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.SimpleTags_Admin::$post_type.'&action=auto_tag&n='.($n + 20); ?>";
 						}
 						window.setTimeout( 'nextPage()', 300 );
 						// ]]>

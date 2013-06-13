@@ -120,7 +120,13 @@ class SimpleTags_Client_PostTags {
 		$taxonomy = ( (int) $inc_cats == 0 ) ? 'post_tag' : array('post_tag', 'category');
 		
 		// Get terms
-		$terms = apply_filters( 'get_the_tags', wp_get_object_terms($object_id, $taxonomy) );
+		$terms = get_object_term_cache($object_id, $taxonomy);
+		if ( false === $terms ) {
+			$terms = wp_get_object_terms($object_id, $taxonomy);
+		}
+		
+		// Hook
+		$terms = apply_filters( 'get_the_tags', $terms );
 		
 		// Limit to max quantity if set
 		$number = (int) $number;
@@ -140,7 +146,7 @@ class SimpleTags_Client_PostTags {
 		}
 		
 		// HTML Rel
-		$rel = SimpleTags_Client::buildRel();
+		$rel = SimpleTags_Client::get_rel_attribute();
 		
 		// Prepare output
 		foreach ( (array) $terms as $term ) {
