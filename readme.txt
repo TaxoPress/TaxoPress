@@ -65,6 +65,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.3
+	* Convert all class to STATIC methods
+	* Use error message API (self::displayMessage();)
 * Version 2.2 :
 	* Add compatibility with WP3.3
 	* Move JavaScript register/enqueue to dedicated hook

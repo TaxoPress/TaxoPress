@@ -1,12 +1,12 @@
 <?php
-class SimpleTags_Client_PostTags extends SimpleTags_Client {
-	function SimpleTags_Client_PostTags() {
+class SimpleTags_Client_PostTags {
+	public function __construct() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Add adv post tags in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
 		if ( $options['tt_embedded'] != 'no' || $options['tt_feed'] == 1 ) {
-			add_filter('the_content', array(&$this, 'inlinePostTags'), 999992);
+			add_filter('the_content', array(__CLASS__, 'the_content'), 999992);
 		}
 	}
 	
@@ -16,7 +16,7 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 	 * @param string $content
 	 * @return string
 	 */
-	function inlinePostTags( $content = '' ) {
+	public static function the_content( $content = '' ) {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -53,7 +53,7 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 		}
 		
 		if ( $marker === true ) {
-			return ( $content . $this->extendedPostTags( '', false ) );
+			return ( $content . self::extendedPostTags( '', false ) );
 		}
 		return $content;
 	}
@@ -64,7 +64,7 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 	 * @param string $args
 	 * @return string
 	 */
-	function extendedPostTags( $args = '', $copyright = true ) {
+	public static function extendedPostTags( $args = '', $copyright = true ) {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -140,7 +140,7 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 		}
 		
 		// HTML Rel
-		$rel = $this->buildRel();
+		$rel = SimpleTags_Client::buildRel();
 		
 		// Prepare output
 		foreach ( (array) $terms as $term ) {
@@ -148,7 +148,7 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 				continue;
 			}
 			
-			$output[] = $this->formatInternalTag( $xformat, $term, $rel, null );
+			$output[] = SimpleTags_Client::formatInternalTag( $xformat, $term, $rel, null );
 		}
 		
 		// Clean memory
@@ -166,6 +166,6 @@ class SimpleTags_Client_PostTags extends SimpleTags_Client {
 		// Add container
 		$output = $before . $output . $after;
 		
-		return $this->outputContent( '', 'string', '', $output, $copyright );
+		return SimpleTags_Client::outputContent( '', 'string', '', $output, $copyright );
 	}
 }

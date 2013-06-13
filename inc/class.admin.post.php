@@ -1,17 +1,17 @@
 <?php
-class SimpleTags_Admin_Post_Settings extends SimpleTags_Admin {
+class SimpleTags_Admin_Post_Settings {
 	/**
-	 * Constructor, PHP4 mode
+	 * Constructor
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function SimpleTags_Admin_Post_Settings() {
+	public function __construct() {
 		// Save tags from advanced input
-		add_action( 'save_post', 	array(&$this, 'savePostSettings'), 10, 2 );
+		add_action( 'save_post', 	array(__CLASS__, 'savePostSettings'), 10, 2 );
 		
 		// Box for advanced tags
-		add_action( 'add_meta_boxes', array(&$this, 'registerMetaBox'), 10, 1 );
+		add_action( 'add_meta_boxes', array(__CLASS__, 'registerMetaBox'), 10, 1 );
 	}
 	
 	/**
@@ -21,8 +21,8 @@ class SimpleTags_Admin_Post_Settings extends SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function registerMetaBox( $post_type ) {
-		add_meta_box('simpletags-settings', __('Simple Tags - Settings', 'simpletags'), array(&$this, 'metaBoxSettings'), $post_type, 'side', 'low' );
+	public static function registerMetaBox( $post_type ) {
+		add_meta_box('simpletags-settings', __('Simple Tags - Settings', 'simpletags'), array(__CLASS__, 'metaBoxSettings'), $post_type, 'side', 'low' );
 	}
 	
 	/**
@@ -32,7 +32,7 @@ class SimpleTags_Admin_Post_Settings extends SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function metaBoxSettings( $post ) {
+	public static function metaBoxSettings( $post ) {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -66,7 +66,7 @@ class SimpleTags_Admin_Post_Settings extends SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function savePostSettings( $object_id = 0, $object = null ) {
+	public static function savePostSettings( $object_id = 0, $object = null ) {
 		if ( !isset($object) || $object == null ) {
 			$object = get_post( $object_id );
 		}

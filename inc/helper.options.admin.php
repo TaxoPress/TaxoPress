@@ -108,7 +108,7 @@ return array(
 		array('cloud_unit', __('The units to display the font sizes with, on tag clouds:', 'simpletags'), 'dropdown', 'pt/px/em/%',
 			__("The font size units option determines the units that the two font sizes use.", 'simpletags')),
 		array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
-			__('You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
+			__('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'tagspost' => array(
 		array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
@@ -132,7 +132,7 @@ return array(
 			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
 		array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
 		array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
-			__('You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
+			__('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'relatedposts' => array(
 		array('rp_taxonomy', __('Taxonomy:', 'simpletags'), 'text', 80,
@@ -164,7 +164,7 @@ return array(
 		array('rp_notagstext', __('Enter the text to show when there is no related post:', 'simpletags'), 'text', 80),
 		array('rp_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
 		array('rp_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
-			__('You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
+			__('You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'metakeywords' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')

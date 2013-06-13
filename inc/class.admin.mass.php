@@ -1,15 +1,15 @@
 <?php
-class SimpleTags_Admin_Mass extends SimpleTags_Admin {
+class SimpleTags_Admin_Mass {
 	
-	function SimpleTags_Admin_Mass() {
+	public function __construct() {
 		// Ajax action, JS Helper and admin action
-		add_action('admin_init', array(&$this, 'checkFormMassEdit'));
+		add_action('admin_init', array(__CLASS__, 'checkFormMassEdit'));
 		
 		// Admin menu
-		add_action('admin_menu', array(&$this, 'adminMenu'));
+		add_action('admin_menu', array(__CLASS__, 'adminMenu'));
 		
 		// Register taxo, parent method...
-		$this->registerDetermineTaxonomy();
+		SimpleTags_Admin::registerDetermineTaxonomy();
 	}
 	
 	/**
@@ -18,8 +18,8 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function adminMenu() {
-		add_management_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_terms', array(&$this, 'pageMassEditTags'));
+	public static function adminMenu() {
+		add_management_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_terms', array(__CLASS__, 'pageMassEditTags'));
 	}
 	
 	/**
@@ -27,7 +27,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 *
 	 * @param string $type
 	 */
-	function checkFormMassEdit() {
+	public static function checkFormMassEdit() {
 		if ( !current_user_can('simple_tags') ) {
 			return false;
 		}
@@ -39,8 +39,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		if ( isset($_POST['update_mass']) ) {
 			// origination and intention
 			if ( ! ( wp_verify_nonce($_POST['secure_mass'], 'st_mass_terms') ) ) {
-				$this->message = __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags');
-				$this->status = 'error';
+				add_settings_error( __CLASS__, __CLASS__, __('Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags'), 'error' );
 				return false;
 			}
 			
@@ -57,18 +56,18 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 					$tags = array_filter($tags, '_delete_empty_element');
 					
 					// Add new tag (no append ! replace !)
-					wp_set_object_terms( $object_id, $tags, $this->taxonomy );
+					wp_set_object_terms( $object_id, $tags, SimpleTags_Admin::$taxonomy );
 					$counter++;
 					
 					// Clean cache
-					if ( $this->post_type == 'page' ) {
+					if ( self::$post_type == 'page' ) {
 						clean_page_cache($object_id);
 					} else {
 						clean_post_cache($object_id);
 					}
 				}
-				$this->message = sprintf(__('%1$s %2$s(s) terms updated with success !', 'simpletags'), (int) $counter, strtolower($this->post_type_name) );
 				
+				add_settings_error( __CLASS__, __CLASS__, sprintf(__('%1$s %2$s(s) terms updated with success !', 'simpletags'), (int) $counter, strtolower(self::$post_type_name) ), 'updated' );
 				return true;
 			}
 		}
@@ -79,33 +78,33 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 * WP Page - Mass edit tags
 	 *
 	 */
-	function pageMassEditTags() {
-		global $wpdb, $wp_locale, $wp_query, $simple_tags;
-		list($post_stati, $avail_post_stati) = $this->edit_data_query();
+	public static function pageMassEditTags() {
+		global $wpdb, $wp_locale, $wp_query;
+		list($post_stati, $avail_post_stati) = self::edit_data_query();
 		
 		if ( !isset( $_GET['paged'] ) ) {
 			$_GET['paged'] = 1;
 		}
 		
 		// Display message
-		$this->displayMessage();
+		settings_errors( __CLASS__ );
 		?>
 		<div class="wrap">
-			<?php $this->boxSelectorTaxonomy( 'st_mass_terms' ); ?>
+			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_mass_terms' ); ?>
 			
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_terms" />
-				<input type="hidden" name="taxo" value="<?php echo esc_attr($this->taxonomy); ?>" />
-				<input type="hidden" name="cpt" value="<?php echo esc_attr($this->post_type); ?>" />
+				<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
+				<input type="hidden" name="cpt" value="<?php echo esc_attr(self::$post_type); ?>" />
 				
 				<h2><?php _e('Mass edit terms', 'simpletags'); ?></h2>
 				
 				<ul class="subsubsub">
 					<?php
 					$status_links = array();
-					$num_posts = wp_count_posts($this->post_type, 'readable');
+					$num_posts = wp_count_posts(self::$post_type, 'readable');
 					$class = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
+					$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.self::$post_type.'&amp;taxo='.SimpleTags_Admin::$taxonomy.'"'.$class.'>'.__('All', 'simpletags').'</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 						
@@ -118,7 +117,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 						if ( isset($_GET['post_status']) && $status == $_GET['post_status'] )
 							$class = ' class="current"';
 						
-						$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.$this->post_type.'&amp;taxo='.$this->taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
+						$status_links[] = '<li><a href="'.admin_url('tools.php').'?page=st_mass_terms&amp;cpt='.self::$post_type.'&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;post_status='.$status.'"'.$class.'>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n( $num_posts->$status )) . '</a>';
 					}
 					echo implode(' |</li>', $status_links) . '</li>';
 					unset($status_links);
@@ -157,7 +156,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 					<div style="float: left">
 						<?php
 						if ( !is_singular() ) {
-							$arc_result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = %s ORDER BY post_date DESC", $this->post_type ) );
+							$arc_result = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = %s ORDER BY post_date DESC", self::$post_type ) );
 						
 							$month_count = count($arc_result);
 						
@@ -217,7 +216,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 						<thead>
 							<tr>
 								<th class="manage-column"><?php _e('Post title', 'simpletags'); ?></th>
-								<th class="manage-column"><?php printf(__('Terms : %s', 'simpletags'), esc_html($this->taxo_name) ); ?></th>
+								<th class="manage-column"><?php printf(__('Terms : %s', 'simpletags'), esc_html(SimpleTags_Admin::$taxo_name) ); ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -229,7 +228,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 								?>
 								<tr valign="top" class="<?php echo $class; ?>">
 									<th scope="row"><a href="<?php echo admin_url('post.php?action=edit&amp;post='.get_the_ID()); ?>" title="<?php _e('Edit', 'simpletags'); ?>"><?php echo ( get_the_title() == '' ) ? the_ID() : the_title(); ?></a></th>
-									<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input" type="text" size="100" name="tags[<?php the_ID(); ?>]" value="<?php echo $this->getTermsToEdit( $this->taxonomy, get_the_ID() ); ?>" /></td>
+									<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input" type="text" size="100" name="tags[<?php the_ID(); ?>]" value="<?php echo SimpleTags_Admin::getTermsToEdit( SimpleTags_Admin::$taxonomy, get_the_ID() ); ?>" /></td>
 								</tr>
 								<?php
 							}
@@ -249,10 +248,10 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 			
 			<?php endif; ?>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-			<?php $this->printAdminFooter(); ?>
+			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
 		<?php
-		do_action( 'simpletags-mass_terms', $this->taxonomy );
+		do_action( 'simpletags-mass_terms', SimpleTags_Admin::$taxonomy );
 	}
 	
 	/**
@@ -262,7 +261,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function edit_data_query( $q = false ) {
+	public static function edit_data_query( $q = false ) {
 		if ( false === $q ) {
 			$q = $_GET;
 		}
@@ -281,7 +280,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 			$q['posts_per_page'] = 15;
 		
 		// Content type
-		$q['post_type'] = $this->post_type;
+		$q['post_type'] = self::$post_type;
 		
 		// Post status
 		$post_stati  = array(	//	array( adj, noun )
@@ -293,7 +292,7 @@ class SimpleTags_Admin_Mass extends SimpleTags_Admin {
 		);
 		
 		$post_stati = apply_filters('post_stati', $post_stati);
-		$avail_post_stati = get_available_post_statuses($this->post_type);
+		$avail_post_stati = get_available_post_statuses(self::$post_type);
 		
 		$post_status_q = '';
 		if ( isset($q['post_status']) && in_array( $q['post_status'], array_keys($post_stati) ) ) {

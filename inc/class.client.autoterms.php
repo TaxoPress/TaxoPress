@@ -1,14 +1,14 @@
 <?php
-class SimpleTags_Client_Autoterms extends SimpleTags_Client {
+class SimpleTags_Client_Autoterms {
 	/**
 	 * Constructor
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function SimpleTags_Client_Autoterms() {
-		add_action( 'save_post', 				array(&$this, 'saveAutoTerms'), 12, 2 );
-		add_action( 'post_syndicated_item', 	array(&$this, 'saveAutoTerms'), 12, 2 );
+	public function __construct() {
+		add_action( 'save_post', 				array(__CLASS__, 'save_post'), 12, 2 );
+		add_action( 'post_syndicated_item', 	array(__CLASS__, 'save_post'), 12, 2 );
 	}
 	
 	/**
@@ -18,7 +18,7 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 	 * @param object $object
 	 * @return boolean
 	 */
-	function saveAutoTerms( $post_id = null, $object = null ) {
+	public static function save_post( $post_id = null, $object = null ) {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
 		
@@ -37,7 +37,7 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 			if ( !isset($local_options['use_auto_terms']) || $local_options['use_auto_terms'] != '1' )
 				continue;
 			
-			$this->autoTermsPost( $object, $taxo_name, $local_options );
+			self::auto_terms_post( $object, $taxo_name, $local_options );
 			$flag = true;
 		}
 		
@@ -62,7 +62,7 @@ class SimpleTags_Client_Autoterms extends SimpleTags_Client {
 	 * @return boolean
 	 * @author Amaury Balmer
 	 */
-	function autoTermsPost( $object, $taxonomy = 'post_tag', $options = array(), $counter = false ) {
+	public static function auto_terms_post( $object, $taxonomy = 'post_tag', $options = array(), $counter = false ) {
 		global $wpdb;
 		
 		// Option exists ?

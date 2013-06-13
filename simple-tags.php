@@ -8,7 +8,7 @@ Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
 
-Copyright 2007-2011 - Amaury BALMER (amaury@balmer.fr)
+Copyright 2013 - Amaury BALMER (amaury@balmer.fr)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -71,19 +71,19 @@ register_uninstall_hook ( __FILE__, 'SimpleTags_Uninstall' );
 
 // Init Simple Tags
 function simple_tags_init() {
-	global $simple_tags;
-
 	// Load translations
 	load_plugin_textdomain ( 'simpletags', false, basename(rtrim(dirname(__FILE__), '/')) . '/languages' );
 	
 	// Load client
-	$simple_tags['client'] = new SimpleTags_Client();
-	$simple_tags['client-cloud'] = new SimpleTags_Client_TagCloud();
+	new SimpleTags_Client();
+	new SimpleTags_Client_TagCloud();
 	
 	// Admin and XML-RPC
 	if ( is_admin() ) {
 		require( STAGS_DIR . '/inc/class.admin.php' );
-		$simple_tags['admin'] = new SimpleTags_Admin();
+		new SimpleTags_Admin();
 	}
+	
+	add_action( 'widgets_init', create_function('', 'return register_widget("SimpleTags_Widget");') );
 }
 add_action( 'plugins_loaded', 'simple_tags_init' );

@@ -1,41 +1,39 @@
 <?php
 class SimpleTags_Client {
 	/**
-	 * PHP4 constructor - Initialize Simple Tags client
+	 * Initialize Simple Tags client
 	 *
 	 * @return SimpleTags
 	 */
-	function SimpleTags_Client() {
-		global $simple_tags;
-		
+	public function __construct() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Add pages in WP_Query
 		if ( isset($options['use_tag_pages']) && $options['use_tag_pages'] == 1 ) {
-			add_action( 'init', array(&$this, 'registerTagsForPage'), 11 );
-			add_action( 'parse_query', array(&$this, 'includePagePostType') );
+			add_action( 'init', array(__CLASS__, 'init'), 11 );
+			add_action( 'parse_query', array(__CLASS__, 'parse_query') );
 		}
 		
 		// Call autolinks ?
 		if ( isset($options['auto_link_tags']) && $options['auto_link_tags'] == '1' ) {
 			require( STAGS_DIR . '/inc/class.client.autolinks.php');
-			$simple_tags['client-autolinks'] = new SimpleTags_Client_Autolinks();
+			new SimpleTags_Client_Autolinks();
 		}
 		
 		// Call related posts ?
 		if ( isset($options['active_related_posts']) && $options['active_related_posts'] == '1' ) {
 			require( STAGS_DIR . '/inc/class.client.related_posts.php');
-			$simple_tags['client-related_posts'] = new SimpleTags_Client_RelatedPosts();
+			new SimpleTags_Client_RelatedPosts();
 		}
 		
 		// Call auto terms ?
 		require( STAGS_DIR . '/inc/class.client.autoterms.php');
-		$simple_tags['client-autoterms'] = new SimpleTags_Client_Autoterms();
+		new SimpleTags_Client_Autoterms();
 		
 		// Call post tags ?
 		require( STAGS_DIR . '/inc/class.client.post_tags.php');
-		$simple_tags['client-post_tags'] = new SimpleTags_Client_PostTags();
+		new SimpleTags_Client_PostTags();
 		
 		return true;
 	}
@@ -46,7 +44,7 @@ class SimpleTags_Client {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function registerTagsForPage() {
+	public static function init() {
 		register_taxonomy_for_object_type( 'post_tag', 'page' );
 	}
 	
@@ -57,7 +55,7 @@ class SimpleTags_Client {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function includePagePostType( $query ) {
+	public static function parse_query( $query ) {
 		if ( $query->is_tag == true ) {
 			if ( !isset($query->query_vars['post_type']) || $query->query_vars['post_type'] == 'post' ) {
 				$query->query_vars['post_type'] = array('post', 'page'); 
@@ -73,7 +71,7 @@ class SimpleTags_Client {
 	 * @param array $array
 	 * @return boolean
 	 */
-	function randomArray( &$array ) {
+	public static function randomArray( &$array ) {
 		if ( !is_array($array) || empty($array) ) {
 			return false;
 		}
@@ -93,7 +91,7 @@ class SimpleTags_Client {
 	 *
 	 * @return string
 	 */
-	function buildRel() {
+	public static function buildRel() {
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		if ( !empty($rel) ) {
@@ -114,7 +112,7 @@ class SimpleTags_Client {
 	 * @param string $separator
 	 * @return string|array
 	 */
-	function outputContent( $html_class= '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '' ) {
+	public static function outputContent( $html_class= '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '' ) {
 		if ( empty($content) ) {
 			return ''; // return nothing
 		}
@@ -180,7 +178,7 @@ class SimpleTags_Client {
 	 * @param string $mincolor
 	 * @return string
 	 */
-	function formatInternalTag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
+	public static function formatInternalTag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
 		// Need term object
 		$element_loop = str_replace('%tag_link%', esc_url(get_term_link($term, $term->taxonomy)), $element_loop);
 		$element_loop = str_replace('%tag_feed%', esc_url(get_term_feed_link($term->term_id, $term->taxonomy, '')), $element_loop);
@@ -195,28 +193,28 @@ class SimpleTags_Client {
 		
 		// Need max/min/scale and other :)
 		if ( $scale_result !== null ) {
-			$element_loop = str_replace('%tag_size%', 'font-size:'.$this->round(($scale_result - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 2).$unit.';', $element_loop);
-			$element_loop = str_replace('%tag_color%', 'color:'.$this->getColorByScale($this->round(($scale_result - $scale_min)*(100)/($scale_max - $scale_min), 2),$mincolor,$maxcolor).';', $element_loop);
+			$element_loop = str_replace('%tag_size%', 'font-size:'.self::round(($scale_result - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 2).$unit.';', $element_loop);
+			$element_loop = str_replace('%tag_color%', 'color:'.self::getColorByScale(self::round(($scale_result - $scale_min)*(100)/($scale_max - $scale_min), 2),$mincolor,$maxcolor).';', $element_loop);
 			$element_loop = str_replace('%tag_scale%', $scale_result, $element_loop);
 		}
 		
 		// External link
-		$element_loop = str_replace('%tag_technorati%', $this->formatExternalTag( 'technorati', $term->name ), $element_loop);
-		$element_loop = str_replace('%tag_flickr%', $this->formatExternalTag( 'flickr', $term->name ), $element_loop);
-		$element_loop = str_replace('%tag_delicious%', $this->formatExternalTag( 'delicious', $term->name ), $element_loop);
+		$element_loop = str_replace('%tag_technorati%', self::formatExternalTag( 'technorati', $term->name ), $element_loop);
+		$element_loop = str_replace('%tag_flickr%', self::formatExternalTag( 'flickr', $term->name ), $element_loop);
+		$element_loop = str_replace('%tag_delicious%', self::formatExternalTag( 'delicious', $term->name ), $element_loop);
 		
 		return $element_loop;
 	}
 	
 	/**
-	 * Extend the round PHP function for force a dot for all locales instead the comma.
+	 * Extend the round PHP public static function for force a dot for all locales instead the comma.
 	 *
 	 * @param string $value
 	 * @param string $approximation
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function round( $value, $approximation ) {
+	public static function round( $value, $approximation ) {
 		$value = round( $value, $approximation );
 		$value = str_replace( ',', '.', $value ); // Fixes locale comma
 		$value = str_replace( ' ', '' , $value ); // No space
@@ -230,7 +228,7 @@ class SimpleTags_Client {
 	 * @param string $tag_name
 	 * @return string
 	 */
-	function formatExternalTag( $type = '', $term_name = '' ) {
+	public static function formatExternalTag( $type = '', $term_name = '' ) {
 		if ( empty($term_name) ) {
 			return '';
 		}

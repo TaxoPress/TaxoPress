@@ -3,7 +3,6 @@
  * Simple Tags widget class
  *
  */
-add_action( 'widgets_init', create_function('', 'return register_widget("SimpleTags_Widget");') );
 class SimpleTags_Widget extends WP_Widget {
 	/**
 	 * Constructor widget
@@ -11,8 +10,8 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function SimpleTags_Widget() {
-		$this->WP_Widget( 'simpletags', __( 'Tag Cloud (Simple Tags)', 'simpletags' ),
+	public function __construct() {
+		parent::__construct( 'simpletags', __( 'Tag Cloud (Simple Tags)', 'simpletags' ),
 			array( 'classname' => 'widget-simpletags', 'description' => __( 'Your most used tags in cloud format with dynamic color and many options', 'simpletags' ) )
 		);
 	}
@@ -24,7 +23,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	function _get_current_taxonomy($instance) {
+	public static function _get_current_taxonomy($instance) {
 		if ( !empty($instance['taxonomy']) && taxonomy_exists($instance['taxonomy']) )
 			return $instance['taxonomy'];
 
@@ -37,7 +36,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function getFields() {
+	public static function get_fields() {
 		return array(
 			'taxonomy'		=> 'post_tag',
 			'title' 		=> __('Tag cloud', 'simpletags'),
@@ -69,7 +68,7 @@ class SimpleTags_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args );
 		
-		$current_taxonomy = $this->_get_current_taxonomy($instance);
+		$current_taxonomy = self::_get_current_taxonomy($instance);
 		
 		// Build or not the name of the widget
 		if ( !empty($instance['title']) ) {
@@ -88,7 +87,7 @@ class SimpleTags_Widget extends WP_Widget {
 		$title = apply_filters('widget_title', $title, $instance, $this->id_base);
 		
 		// Set values and clean it
-		foreach ( (array) $this->getFields() as $field => $field_value ) {
+		foreach ( (array) self::get_fields() as $field => $field_value ) {
 			${$field} = trim( $instance[$field] );
 		}
 		
@@ -159,7 +158,7 @@ class SimpleTags_Widget extends WP_Widget {
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		
-		foreach ( (array) $this->getFields() as $field => $field_value ) {
+		foreach ( (array) self::get_fields() as $field => $field_value ) {
 			$instance[$field] = strip_tags($new_instance[$field]);
 		}
 		
@@ -175,8 +174,8 @@ class SimpleTags_Widget extends WP_Widget {
 	 */
 	function form( $instance ) {
 		//Defaults
-		$instance = wp_parse_args( (array) $instance, $this->getFields() );
-		foreach ( (array) $this->getFields() as $field => $field_value ) {
+		$instance = wp_parse_args( (array) $instance, self::get_fields() );
+		foreach ( (array) self::get_fields() as $field => $field_value ) {
 			${$field} = esc_attr( $instance[$field] );
 		}
 		?>

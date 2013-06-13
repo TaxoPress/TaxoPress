@@ -1,18 +1,18 @@
 <?php
-class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
+class SimpleTags_Client_RelatedPosts {
 	/**
 	 * Constructor
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function SimpleTags_Client_RelatedPosts() {
+	public function __construct() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
 		if ( (isset($options['rp_embedded']) && $options['rp_embedded'] != 'no') || (isset($options['rp_feed']) && $options['rp_feed'] == 1) ) {
-			add_filter('the_content', array(&$this, 'inlineRelatedPosts'), 999993);
+			add_filter('the_content', array(__CLASS__, 'the_content'), 999993);
 		}
 	}
 	
@@ -22,7 +22,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 	 * @param string $content
 	 * @return string
 	 */
-	function inlineRelatedPosts( $content = '' ) {
+	public static function the_content( $content = '' ) {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -59,7 +59,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 		}
 		
 		if ( $marker === true ) {
-			return ( $content . $this->relatedPosts( '', false ) );
+			return ( $content . self::relatedPosts( '', false ) );
 		}
 		return $content;
 	}
@@ -70,7 +70,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 	 * @param string $user_args
 	 * @return string|array
 	 */
-	function relatedPosts( $user_args = '', $copyright = true ) {
+	public static function relatedPosts( $user_args = '', $copyright = true ) {
 		global $wpdb;
 		
 		// Get options
@@ -152,7 +152,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 			$current_terms = get_the_terms( (int) $object_id, $taxonomy );
 			
 			if ( $current_terms == false || is_wp_error($current_terms) ) {
-				return $this->outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+				return SimpleTags_Client::outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
 			}
 			
 			// Number - Limit
@@ -273,7 +273,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 			
 			// If empty return no posts text
 			if ( empty($include_terms_sql) ) {
-				return $this->outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+				return SimpleTags_Client::outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
 			}
 			
 			// Posts: title, comments_count, date, permalink, post_id, counter
@@ -300,7 +300,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 		if ( $format == 'object' || $format == 'array' ) {
 			return $results;
 		} elseif ( $results === false || empty($results) ) {
-			return $this->outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+			return SimpleTags_Client::outputContent( 'st-related-posts', $format, $title, $nopoststext, $copyright );
 		}
 		
 		if ( empty($dateformat) ) {
@@ -325,10 +325,10 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 			$element_loop = str_replace('%post_id%', $result->ID, $element_loop);
 			
 			if ( isset($result->terms_id) )
-				$element_loop = str_replace('%post_relatedtags%', $this->getTagsFromID($result->terms_id, $taxonomy), $element_loop);
+				$element_loop = str_replace('%post_relatedtags%', self::getTagsFromID($result->terms_id, $taxonomy), $element_loop);
 				
 			if ( isset($result->post_excerpt) || isset($result->post_content) )
-				$element_loop = str_replace('%post_excerpt%', $this->getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap ), $element_loop);
+				$element_loop = str_replace('%post_excerpt%', self::getExcerptPost( $result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap ), $element_loop);
 				
 			$output[] = $element_loop;
 		}
@@ -337,7 +337,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 		$results = array();
 		unset($results, $result);
 		
-		return $this->outputContent( 'st-related-posts', $format, $title, $output, $copyright, $separator );
+		return SimpleTags_Client::outputContent( 'st-related-posts', $format, $title, $output, $copyright, $separator );
 	}
 	
 	/**
@@ -350,7 +350,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	function getExcerptPost( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
+	public static function getExcerptPost( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
 		if ( !empty($password) ) { // if there's a password
 			if ( $_COOKIE['wp-postpass_'.COOKIEHASH] != $password ) { // and it doesn't match the cookie
 				return __('There is no excerpt because this is a protected post.', 'simpletags');
@@ -385,7 +385,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	function getTagsFromID( $terms = '', $taxonomy = 'post_tag' ) {
+	public static function getTagsFromID( $terms = '', $taxonomy = 'post_tag' ) {
 		if ( empty($terms) ) {
 			return '';
 		}
@@ -397,7 +397,7 @@ class SimpleTags_Client_RelatedPosts extends SimpleTags_Client {
 		}
 		
 		// HTML Rel (tag)
-		$rel = $this->buildRel();
+		$rel = SimpleTags_Client::buildRel();
 		
 		$output = array();
 		foreach ( (array) $terms as $term ) {

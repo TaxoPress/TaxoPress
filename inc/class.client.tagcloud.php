@@ -1,13 +1,13 @@
 <?php
-class SimpleTags_Client_TagCloud extends SimpleTags_Client {
-	function SimpleTags_Client_TagCloud() {
+class SimpleTags_Client_TagCloud {
+	public function __construct() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Embedded tag cloud
 		if ( isset($options['allow_embed_tcloud']) && $options['allow_embed_tcloud'] == 1 ) {
-			add_shortcode( 'st_tag_cloud', array(&$this, 'inlineTagCloud') );
-			add_shortcode( 'st-tag-cloud', array(&$this, 'inlineTagCloud') );
+			add_shortcode( 'st_tag_cloud', array(__CLASS__, 'shortcode') );
+			add_shortcode( 'st-tag-cloud', array(__CLASS__, 'shortcode') );
 		}
 	}
 	
@@ -17,7 +17,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 * @param array $atts
 	 * @return string
 	 */
-	function inlineTagCloud( $atts ) {
+	public static function shortcode( $atts ) {
 		extract(shortcode_atts(array('param' => ''), $atts));
 		
 		$param = trim($param);
@@ -25,7 +25,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 			$param = 'title=';
 		}
 		
-		return $this->extendedTagCloud( $param, false );
+		return self::extendedTagCloud( $param, false );
 	}
 	
 	/**
@@ -35,7 +35,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 * @param string $b
 	 * @return boolean
 	 */
-	function uksortByName( $a = '', $b = '' ) {
+	public static function uksortByName( $a = '', $b = '' ) {
 		return strnatcasecmp( remove_accents($a), remove_accents($b) );
 	}
 	
@@ -45,7 +45,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 * @param string $args
 	 * @return string|array
 	 */
-	function extendedTagCloud( $args = '', $copyright = true ) {
+	public static function extendedTagCloud( $args = '', $copyright = true ) {
 		$defaults = array(
 			'taxonomy' 	  => 'post_tag',
 			'size'		  => 'true',
@@ -97,10 +97,10 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		$args = wp_parse_args( $args, $defaults );
 		
 		// Get correct taxonomy ?
-		$taxonomy = $this->_get_current_taxonomy($args['taxonomy']);
+		$taxonomy = self::_get_current_taxonomy($args['taxonomy']);
 		
 		// Get terms
-		$terms = $this->getTags( $args, $taxonomy );
+		$terms = self::getTags( $args, $taxonomy );
 		extract($args); // Params to variables
 
 		// If empty use default xformat !
@@ -114,7 +114,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		unset($args, $defaults);
 		
 		if ( empty($terms) ) {
-			return $this->outputContent( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
+			return SimpleTags_Client::outputContent( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
 		}
 		
 		$counts = $terms_data = array();
@@ -153,7 +153,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		$scale = ($maxval > $minval) ? (($maxout - $minout) / ($maxval - $minval)) : 0;
 		
 		// HTML Rel (tag/no-follow)
-		$rel = $this->buildRel();
+		$rel = SimpleTags_Client::buildRel();
 		
 		// Remove color marquer if color = false
 		if ( $color == 'false' ) {
@@ -172,9 +172,9 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		if ( $orderby == 'count' ) {
 			asort($counts);
 		} elseif ( $orderby == 'name' ) {
-			uksort($counts, array( &$this, 'uksortByName'));
+			uksort($counts, array( __CLASS__, 'uksortByName'));
 		} else { // rand
-			$this->randomArray($counts);
+			SimpleTags_Client::randomArray($counts);
 		}
 		
 		$order = strtolower($order);
@@ -190,7 +190,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 			
 			$term = $terms_data[$term_name];
 			$scale_result = (int) (($term->count - $minval) * $scale + $minout);
-			$output[] = $this->formatInternalTag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			$output[] = SimpleTags_Client::formatInternalTag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
 		}
 		
 		// Remove unused variables
@@ -198,7 +198,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		$terms = array();
 		unset($counts, $terms, $term);
 		
-		return $this->outputContent( 'st-tag-cloud', $format, $title, $output, $copyright );
+		return SimpleTags_Client::outputContent( 'st-tag-cloud', $format, $title, $output, $copyright );
 	}
 	
 	/**
@@ -209,7 +209,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 * @return array|string
 	 * @author Amaury Balmer
 	 */
-	function _get_current_taxonomy( $taxonomies, $force_single = false ) {
+	public static function _get_current_taxonomy( $taxonomies, $force_single = false ) {
 		if ( is_array($taxonomies) ) {
 			foreach( $taxonomies as $key => $value ) {
 				if ( !taxonomy_exists($value) ) // Remove from array is taxonomy not exist !
@@ -234,7 +234,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 * @param string $max_color
 	 * @return string
 	 */
-	function getColorByScale($scale_color, $min_color, $max_color) {
+	public static function getColorByScale($scale_color, $min_color, $max_color) {
 		$scale_color = $scale_color / 100;
 		
 		$minr = hexdec(substr($min_color, 1, 2));
@@ -257,12 +257,12 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	}
 	
 	/**
-	 * Extended get_tags function that use getTerms function
+	 * Extended get_tags public static function that use getTerms function
 	 *
 	 * @param string $args
 	 * @return array
 	 */
-	function getTags( $args = '', $taxonomy = 'post_tag' ) {
+	public static function getTags( $args = '', $taxonomy = 'post_tag' ) {
 		$key = md5(maybe_serialize($args).$taxonomy);
 		
 		// Get cache if exist
@@ -273,7 +273,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		}
 		
 		// Get tags
-		$terms = $this->getTerms( $taxonomy, $args );
+		$terms = self::getTerms( $taxonomy, $args );
 		if ( empty($terms) ) {
 			return array();
 		}
@@ -286,14 +286,14 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	}
 	
 	/**
-	 * Helper function for keep compatibility with old options simple tags widgets
+	 * Helper public static function for keep compatibility with old options simple tags widgets
 	 *
 	 * @param string $old_value
 	 * @param string $key
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	function compatOldOrder( $old_value = '', $key = '' ) {
+	public static function compatOldOrder( $old_value = '', $key = '' ) {
 		$return = array();
 		
 		switch ( strtolower($old_value) ) { // count-asc/count-desc/name-asc/name-desc/random
@@ -323,7 +323,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	}
 	
 	/**
-	 * Extended get_terms function support
+	 * Extended get_terms public static function support
 	 * - Limit category
 	 * - Limit days
 	 * - Selection restrict
@@ -333,7 +333,7 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 	 * @param string $args
 	 * @return array
 	 */
-	function getTerms( $taxonomies, $args = '' ) {
+	public static function getTerms( $taxonomies, $args = '' ) {
 		global $wpdb;
 		$empty_array = array();
 		$join_relation = false;
@@ -363,8 +363,8 @@ class SimpleTags_Client_TagCloud extends SimpleTags_Client {
 		$args = wp_parse_args( $args, $defaults );
 		
 		// Translate selection order
-		$args['orderby'] = $this->compatOldOrder( $args['selectionby'], 'orderby' );
-		$args['order']   = $this->compatOldOrder( $args['selection'], 'order' );
+		$args['orderby'] = self::compatOldOrder( $args['selectionby'], 'orderby' );
+		$args['order']   = self::compatOldOrder( $args['selection'], 'order' );
 		
 		$args['number'] 	= absint( $args['number'] );
 		$args['offset'] 	= absint( $args['offset'] );

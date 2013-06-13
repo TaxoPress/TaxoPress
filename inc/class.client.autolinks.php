@@ -1,7 +1,7 @@
 <?php
-class SimpleTags_Client_Autolinks extends SimpleTags_Client {
-	var $posts 		= array();
-	var $link_tags 	= array();
+class SimpleTags_Client_Autolinks {
+	static $posts 		= array();
+	static $link_tags 	= array();
 	
 	/**
 	 * Constructor
@@ -9,14 +9,14 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function SimpleTags_Client_Autolinks() {
+	public function __construct() {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		if ( !isset($options['auto_link_priority']) || (int) $options['auto_link_priority'] == 0 )
 			$options['auto_link_priority'] = 12;
 			
 		// Auto link tags
-		add_filter( 'the_posts', 	array(&$this, 'getPostIds') );
-		add_filter( 'the_content', 	array(&$this, 'autoLinkTags'), $options['auto_link_priority'] );
+		add_filter( 'the_posts', 	array(__CLASS__, 'the_posts') );
+		add_filter( 'the_content', 	array(__CLASS__, 'the_content'), $options['auto_link_priority'] );
 	}
 	
 	/**
@@ -25,13 +25,13 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 * @param array $posts
 	 * @return array
 	 */
-	function getPostIds( $posts = array() ) {
+	public static function the_posts( $posts = array() ) {
 		if ( !empty($posts) && is_array($posts) ) {
 			foreach( (array) $posts as $post) {
-				$this->posts[] = (int) $post->ID;
+				self::$posts[] = (int) $post->ID;
 			}
 			
-			$this->posts = array_unique( $this->posts );
+			self::$posts = array_unique( self::$posts );
 		}
 		return $posts;
 	}
@@ -41,12 +41,12 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 *
 	 * @return boolean
 	 */
-	function getTagsFromCurrentPosts() {
+	public static function get_tags_from_current_posts() {
 		global $wpdb;
 		
-		if ( is_array($this->posts) && count($this->posts) > 0 ) {
+		if ( is_array(self::$posts) && count(self::$posts) > 0 ) {
 			// Generate SQL from post id
-			$postlist = implode( "', '", $this->posts );
+			$postlist = implode( "', '", self::$posts );
 			
 			// Generate key cache
 			$key = md5(maybe_serialize($postlist));
@@ -82,7 +82,7 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 * Get links for each tag for auto link feature
 	 *
 	 */
-	function prepareAutoLinkTags() {
+	public static function prepare_auto_link_tags() {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -91,9 +91,9 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 			$auto_link_min = 1;
 		}
 		
-		foreach ( (array) $this->getTagsFromCurrentPosts() as $term ) {
+		foreach ( (array) self::get_tags_from_current_posts() as $term ) {
 			if ( $term->count >= $auto_link_min ) {
-				$this->link_tags[$term->name] = esc_url(get_tag_link( $term->term_id ));
+				self::$link_tags[$term->name] = esc_url(get_tag_link( $term->term_id ));
 			}
 		}
 		
@@ -106,7 +106,7 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 	 * @param string $content
 	 * @return string
 	 */
-	function autoLinkTags( $content = '' ) {
+	public static function the_content( $content = '' ) {
 		global $post;
 		
 		// user preference for this post ?
@@ -115,19 +115,19 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 			return $content;
 		
 		// Get currents tags if no exists
-		$this->prepareAutoLinkTags();
+		self::prepare_auto_link_tags();
 		
 		// Shuffle array
-		$this->randomArray($this->link_tags);
+		SimpleTags_Client::randomArray(self::$link_tags);
 		
 		// HTML Rel (tag/no-follow)
-		$rel = $this->buildRel();
+		$rel = SimpleTags_Client::buildRel();
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// only continue if the database actually returned any links
-		if ( isset($this->link_tags) && is_array($this->link_tags) && count($this->link_tags) > 0 ) {
+		if ( isset(self::$link_tags) && is_array(self::$link_tags) && count(self::$link_tags) > 0 ) {
 			// Case option ?
 			$case = ( $options['auto_link_case'] == 1 ) ? 'i' : '';
 			$strpos_fnc = $options['auto_link_case'] ? 'stripos' : 'strpos';
@@ -142,7 +142,7 @@ class SimpleTags_Client_Autolinks extends SimpleTags_Client {
 			}
 			
 			$z = 0;
-			foreach ( (array) $this->link_tags as $term_name => $term_link ) {
+			foreach ( (array) self::$link_tags as $term_name => $term_link ) {
 				// Exclude terms ? next...
 				if ( in_array( $term_name, (array) $excludes_terms ) ) {
 					continue;

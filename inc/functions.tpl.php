@@ -7,8 +7,7 @@
  * @author Amaury Balmer
  */
 function st_get_tag_cloud( $args = '' ) {
-	global $simple_tags;
-	return $simple_tags['client-cloud']->extendedTagCloud( $args );
+	return SimpleTags_Client_TagCloud::extendedTagCloud( $args );
 }
 
 /**
@@ -30,10 +29,8 @@ function st_tag_cloud( $args = '' ) {
  * @author Amaury Balmer
  */
 function st_get_the_tags( $args = '' ) {
-	global $simple_tags;
-
-	if ( isset($simple_tags['client-post_tags']) )
-		return $simple_tags['client-post_tags']->extendedPostTags( $args );
+	if (class_exists('SimpleTags_Client_PostTags') )
+		return SimpleTags_Client_PostTags::extendedPostTags( $args );
 		
 	return '';
 }
@@ -57,10 +54,8 @@ function st_the_tags( $args = '' ) {
  * @author Amaury Balmer
  */
 function st_get_related_posts( $args = '' ) {
-	global $simple_tags;
-	
-	if ( isset($simple_tags['client-related_posts']) )
-		return $simple_tags['client-related_posts']->relatedPosts( $args );
+	if (class_exists('SimpleTags_Client_RelatedPosts') )
+		return SimpleTags_Client_RelatedPosts::relatedPosts( $args );
 		
 	return '';
 }

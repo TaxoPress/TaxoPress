@@ -1,86 +1,79 @@
 <?php
 class SimpleTags_Admin {
 	// CPT and Taxonomy support
-	var $post_type 			= 'post';
-	var $post_type_name		= '';
-	var $taxonomy 			= '';
-	var $taxo_name			= '';
-	
-	// Error management
-	var $message = '';
-	var $status = '';
+	static $post_type 			= 'post';
+	static $post_type_name		= '';
+	static $taxonomy 			= '';
+	static $taxo_name			= '';
 	
 	/**
-	 * PHP4 Constructor - Initialize Admin
+	 * Initialize Admin
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function SimpleTags_Admin() {
-		global $simple_tags;
-		
+	public function __construct() {
 		// DB Upgrade ?
-		$this->upgrade();
+		self::upgrade();
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Which taxo ?
-		$this->registerDetermineTaxonomy();
+		self::registerDetermineTaxonomy();
 		
 		// Admin menu
-		add_action('admin_menu', array(&$this, 'adminMenu'));
-		add_action('admin_notices', array(&$this, 'displayMessage'));
+		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
 		
 		// Load JavaScript and CSS
-		add_action('admin_enqueue_scripts', array(&$this, 'initJavaScript'));
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'admin_enqueue_scripts'));
 		
 		// Load custom part of plugin depending option
 		if ( isset($options['use_suggested_tags']) && $options['use_suggested_tags'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.suggest.php');
-			$simple_tags['admin-suggest'] = new SimpleTags_Admin_Suggest();
+			new SimpleTags_Admin_Suggest();
 		}
 		
 		if ( isset($options['use_click_tags']) && $options['use_click_tags'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.clickterms.php');
-			$simple_tags['admin-clicktags'] = new SimpleTags_Admin_ClickTags();
+			new SimpleTags_Admin_ClickTags();
 		}
 		
 		if ( isset($options['use_autocompletion']) && $options['use_autocompletion'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.autocomplete.php');
-			$simple_tags['admin-autocomplete'] = new SimpleTags_Admin_Autocomplete();
+			new SimpleTags_Admin_Autocomplete();
 		}
 		
 		if ( isset($options['active_mass_edit']) && $options['active_mass_edit'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.mass.php');
-			$simple_tags['admin-mass'] = new SimpleTags_Admin_Mass();
+			new SimpleTags_Admin_Mass();
 		}
 		
 		if ( isset($options['active_manage']) && $options['active_manage'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.manage.php');
-			$simple_tags['admin-manage'] = new SimpleTags_Admin_Manage();
+			new SimpleTags_Admin_Manage();
 		}
 		
 		if ( isset($options['active_autotags']) && $options['active_autotags'] == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.autoterms.php');
-			$simple_tags['admin-autotags'] = new SimpleTags_Admin_AutoTags();
+			new SimpleTags_Admin_AutoTags();
 		}
 		
 		if ( (isset($options['active_autotags']) && $options['active_autotags'] == 1) || (isset($options['auto_link_tags']) && $options['auto_link_tags'] == '1') ) {
 			require( STAGS_DIR . '/inc/class.admin.post.php');
-			$simple_tags['admin-post_settings'] = new SimpleTags_Admin_Post_Settings();
+			new SimpleTags_Admin_Post_Settings();
 		}
 	}
 	
 	/**
 	 * Init taxonomy class variable, load this action after all actions on init !
-	 * Make a function for call it from children class...
+	 * Make a public static function for call it from children class...
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function registerDetermineTaxonomy() {
-		add_action( 'init', array(&$this, 'determineTaxonomy'), 99999999 );
+	public static function registerDetermineTaxonomy() {
+		add_action( 'init', array(__CLASS__, 'init'), 99999999 );
 	}
 	
 	/**
@@ -89,19 +82,19 @@ class SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function determineTaxonomy() {
-		$this->taxo_name = __('Post tags', 'simpletags');
-		$this->post_type_name = __('Posts', 'simpletags');
+	public static function init() {
+		self::$taxo_name = __('Post tags', 'simpletags');
+		self::$post_type_name = __('Posts', 'simpletags');
 		
 		// Custom CPT ?
 		if ( isset($_GET['cpt']) && !empty($_GET['cpt']) && post_type_exists($_GET['cpt']) ) {
 			$cpt = get_post_type_object($_GET['cpt']);
-			$this->post_type 		= $cpt->name;
-			$this->post_type_name 	= $cpt->labels->name;
+			self::$post_type 		= $cpt->name;
+			self::$post_type_name 	= $cpt->labels->name;
 		}
 		
 		// Get compatible taxo for current post type
-		$compatible_taxonomies = get_object_taxonomies( $this->post_type );
+		$compatible_taxonomies = get_object_taxonomies( self::$post_type );
 		
 		// Custom taxo ?
 		if ( isset($_GET['taxo']) && !empty($_GET['taxo']) && taxonomy_exists($_GET['taxo']) ) {
@@ -109,8 +102,8 @@ class SimpleTags_Admin {
 			
 			// Taxo is compatible ?
 			if ( in_array( $taxo->name, $compatible_taxonomies ) ) {
-				$this->taxonomy 	= $taxo->name;
-				$this->taxo_name 	= $taxo->labels->name;
+				self::$taxonomy 	= $taxo->name;
+				self::$taxo_name 	= $taxo->labels->name;
 			} else {
 				unset($taxo);
 			}
@@ -125,8 +118,8 @@ class SimpleTags_Admin {
 				$taxo = get_taxonomy( current($compatible_taxonomies) );
 			}
 			
-			$this->taxonomy 	= $taxo->name;
-			$this->taxo_name 	= $taxo->labels->name;
+			self::$taxonomy 	= $taxo->name;
+			self::$taxo_name 	= $taxo->labels->name;
 			
 			// TODO: Redirect for help user that see the URL...
 		} elseif( !isset($taxo) ) {
@@ -144,9 +137,9 @@ class SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function boxSelectorTaxonomy( $page_value = '' ) {
+	public static function boxSelectorTaxonomy( $page_value = '' ) {
 		echo '<div class="box-selector-taxonomy">' . "\n";
-			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the custom post type "<span>%s</span>" and the taxonomy "<span>%s</span>"', 'simpletags'), $this->post_type_name, $this->taxo_name).'</p>' . "\n";
+			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the custom post type "<span>%s</span>" and the taxonomy "<span>%s</span>"', 'simpletags'), self::$post_type_name, self::$taxo_name).'</p>' . "\n";
 			
 			echo '<div class="change-taxo">' . "\n";
 				echo '<form action="" method="get">' . "\n";
@@ -156,17 +149,17 @@ class SimpleTags_Admin {
 					
 					echo '<select name="cpt" id="cpt-select">' . "\n";
 						foreach ( get_post_types( array('show_ui' => true ), 'objects') as $post_type ) {
-							echo '<option '.selected( $post_type->name, $this->post_type, false ).' value="'.esc_attr($post_type->name).'">'.esc_html($post_type->labels->name).'</option>' . "\n";
+							echo '<option '.selected( $post_type->name, self::$post_type, false ).' value="'.esc_attr($post_type->name).'">'.esc_html($post_type->labels->name).'</option>' . "\n";
 						}
 					echo '</select>' . "\n";
 					
 					echo '<select name="taxo" id="taxonomy-select">' . "\n";
-						foreach ( get_object_taxonomies($this->post_type) as $tax_name ) {
+						foreach ( get_object_taxonomies(self::$post_type) as $tax_name ) {
 							$taxonomy = get_taxonomy($tax_name);
 							if ( $taxonomy->show_ui == false )
 								continue;
 							
-							echo '<option '.selected( $tax_name, $this->taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->labels->name).'</option>' . "\n";
+							echo '<option '.selected( $tax_name, self::$taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->labels->name).'</option>' . "\n";
 						}
 					echo '</select>' . "\n";
 					
@@ -182,7 +175,7 @@ class SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function initJavaScript() {
+	public static function admin_enqueue_scripts() {
 		global $pagenow;
 		
 		// Library JS
@@ -222,8 +215,8 @@ class SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function adminMenu() {
-		add_options_page( __('Simple Tags: Options', 'simpletags'), __('Simple Tags', 'simpletags'), 'admin_simple_tags', 'st_options', array(&$this, 'pageOptions'));
+	public static function admin_menu() {
+		add_options_page( __('Simple Tags: Options', 'simpletags'), __('Simple Tags', 'simpletags'), 'admin_simple_tags', 'st_options', array(__CLASS__, 'page_options'));
 	}
 	
 	/**
@@ -232,7 +225,7 @@ class SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function pageOptions() {
+	public static function page_options() {
 		// Get default & current options and merge
 		$default_options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
 		$options = (array) get_option( STAGS_OPTIONS_NAME );
@@ -249,17 +242,18 @@ class SimpleTags_Admin {
 				}
 			}
 			update_option( STAGS_OPTIONS_NAME, $options );
-			$this->message = __('Options saved', 'simpletags');
-			$this->status = 'updated';
+			
+			add_settings_error( __CLASS__, __CLASS__, __('Options saved', 'simpletags'), 'updated' );
 		} elseif ( isset($_POST['reset_options']) ) {
 			check_admin_referer('updateresetoptions-simpletags');
 			
 			$options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
 			update_option( STAGS_OPTIONS_NAME, $options );
-			$this->message = __('Simple Tags options resetted to default options!', 'simpletags');
+			
+			add_settings_error( __CLASS__, __CLASS__, __('Simple Tags options resetted to default options!', 'simpletags'), 'updated' );
 		}
 		
-		$this->displayMessage();
+		settings_errors( __CLASS__ );
 		?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
@@ -295,13 +289,13 @@ class SimpleTags_Admin {
 							if ( isset($options['auto_link_tags']) && (int) $options['auto_link_tags'] == 0 && $key == 'auto-links' )
 								$style = 'display:none;';
 								
-							echo '<li style="'.$style.'"><a href="#'. sanitize_title ( $key ) .'">'.$this->getNiceTitleOptions($key).'</a></li>';
+							echo '<li style="'.$style.'"><a href="#'. sanitize_title ( $key ) .'">'.self::getNiceTitleOptions($key).'</a></li>';
 						}
 						?>
 					</ul>
 					<div class="clear"></div>
 					
-					<?php echo $this->printOptions( $option_data ); ?>
+					<?php echo self::printOptions( $option_data ); ?>
 				</div>
 				
 				<p>
@@ -310,7 +304,7 @@ class SimpleTags_Admin {
 					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" />
 				</p>
 			</form>
-		<?php $this->printAdminFooter(); ?>
+			<?php self::printAdminFooter(); ?>
 		</div>
 		<?php
 	}
@@ -323,7 +317,7 @@ class SimpleTags_Admin {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	function getTermsToEdit( $taxonomy = 'post_tag', $post_id = 0 ) {
+	public static function getTermsToEdit( $taxonomy = 'post_tag', $post_id = 0 ) {
 		$post_id = (int) $post_id;
 		if ( !$post_id )
 			return false;
@@ -346,7 +340,7 @@ class SimpleTags_Admin {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	function getDefaultContentBox() {
+	public static function getDefaultContentBox() {
 		if ( (int) wp_count_terms('post_tag', 'ignore_empty=false') == 0 ) { // TODO: Custom taxonomy
 			return __('This feature requires at least 1 tag to work. Begin by adding tags!', 'simpletags');
 		} else {
@@ -355,37 +349,15 @@ class SimpleTags_Admin {
 	}
 		
 	/**
-	 * A short function for display the same copyright on all admin pages
+	 * A short public static function for display the same copyright on all admin pages
 	 *
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function printAdminFooter() {
+	public static function printAdminFooter() {
 		?>
 		<p class="footer_st"><?php printf(__('&copy; Copyright 2007-2011 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags'), STAGS_VERSION); ?></p>
 		<?php
-	}
-	
-	/**
-	 * Display WP alert using class var
-	 *
-	 * @return void
-	 * @author Amaury Balmer
-	 */
-	function displayMessage() {
-		if ( $this->message != '') {
-			$message = $this->message;
-			$status = $this->status;
-			$this->message = $this->status = ''; // Reset
-		}
-		
-		if ( isset($message) && !empty($message) ) {
-		?>
-			<div id="message" class="<?php echo ($status != '') ? $status :'updated'; ?> fade">
-				<p><strong><?php echo $message; ?></strong></p>
-			</div>
-		<?php
-		}
 	}
 	
 	/**
@@ -395,14 +367,14 @@ class SimpleTags_Admin {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	function printOptions( $option_data ) {
+	public static function printOptions( $option_data ) {
 		// Get options
 		$option_actual = (array) get_option( STAGS_OPTIONS_NAME );
 		
 		// Generate output
 		$output = '';
 		foreach( $option_data as $section => $options) {
-			$output .= "\n" . '<div id="'. sanitize_title($section) .'"><fieldset class="options"><legend>' . $this->getNiceTitleOptions($section) . '</legend><table class="form-table">' . "\n";
+			$output .= "\n" . '<div id="'. sanitize_title($section) .'"><fieldset class="options"><legend>' . self::getNiceTitleOptions($section) . '</legend><table class="form-table">' . "\n";
 			foreach((array) $options as $option) {
 				// Helper
 				if (  $option[2] == 'helper' ) {
@@ -460,7 +432,7 @@ class SimpleTags_Admin {
 	 * @param string $id
 	 * @return string
 	 */
-	function getNiceTitleOptions( $id = '' ) {
+	public static function getNiceTitleOptions( $id = '' ) {
 		switch ( $id ) {
 			case 'administration':
 				return __('Administration', 'simpletags');
@@ -499,7 +471,7 @@ class SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function upgrade() {
+	public static function upgrade() {
 		// Get current version number
 		$current_version = get_option( STAGS_OPTIONS_NAME . '-version' );
 		
@@ -539,7 +511,7 @@ class SimpleTags_Admin {
 	 * @return array
 	 * @author Amaury Balmer
 	 */
-	function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC' ) {
+	public static function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC' ) {
 		global $wpdb;
 		
 		if ( !empty($search) ) {

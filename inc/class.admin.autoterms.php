@@ -1,16 +1,16 @@
 <?php
-class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
+class SimpleTags_Admin_AutoTags {
 	// Build admin URL
-	var $tools_base_url = '';
+	static $tools_base_url = '';
 	
-	function SimpleTags_Admin_AutoTags() {
-		$this->tools_base_url = admin_url('tools.php')  . '?page=';
+	public function __construct() {
+		self::$tools_base_url = admin_url('tools.php')  . '?page=';
 		
 		// Admin menu
-		add_action('admin_menu', array(&$this, 'adminMenu'));
+		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
 		
 		// Register taxo, parent method...
-		$this->registerDetermineTaxonomy();
+		SimpleTags_Admin::registerDetermineTaxonomy();
 	}
 	
 	/**
@@ -19,8 +19,8 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function adminMenu() {
-		add_management_page( __('Simple Terms: Auto Terms', 'simpletags'), __('Auto Terms', 'simpletags'), 'simple_tags', 'st_auto', array(&$this, 'pageAutoTerms'));
+	public static function admin_menu() {
+		add_management_page( __('Simple Terms: Auto Terms', 'simpletags'), __('Auto Terms', 'simpletags'), 'simple_tags', 'st_auto', array(__CLASS__, 'pageAutoTerms'));
 	}
 	
 	/**
@@ -29,23 +29,23 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function pageAutoTerms() {
-		global $simple_tags, $wpdb;
+	public static function pageAutoTerms() {
+		global $wpdb;
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
 		if ( $options == false ) // First save ?
 			$options = array();
 		
-		if ( !isset($options[$this->post_type]) ) { // First save for this CPT ?
-			$options[$this->post_type] = array();
+		if ( !isset($options[self::$post_type]) ) { // First save for this CPT ?
+			$options[self::$post_type] = array();
 		}
 		
-		if ( !isset($options[$this->post_type][$this->taxonomy]) ) { // First save for this taxo ?
-			$options[$this->post_type][$this->taxonomy] = array();
+		if ( !isset($options[self::$post_type][SimpleTags_Admin::$taxonomy]) ) { // First save for this taxo ?
+			$options[self::$post_type][SimpleTags_Admin::$taxonomy] = array();
 		}
 		
-		$taxo_options = $options[$this->post_type][$this->taxonomy]; // Edit local option taxo
+		$taxo_options = $options[self::$post_type][SimpleTags_Admin::$taxonomy]; // Edit local option taxo
 		
 		$action = false;
 		if ( isset($_POST['update_auto_list']) ) {
@@ -73,10 +73,10 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			// Full word ?
 			$taxo_options['only_full_word'] = ( isset($_POST['only_full_word']) && $_POST['only_full_word'] == '1' ) ? '1' : '0';
 			
-			$options[$this->post_type][$this->taxonomy] = $taxo_options;
+			$options[self::$post_type][SimpleTags_Admin::$taxonomy] = $taxo_options;
 			update_option( STAGS_OPTIONS_NAME_AUTO, $options );
 			
-			$this->message = __('Auto terms options updated !', 'simpletags');
+			add_settings_error( __CLASS__, __CLASS__, __('Auto terms options updated !', 'simpletags'), 'updated' );
 		} elseif ( isset($_GET['action']) && $_GET['action'] == 'auto_tag' ) {
 			$action = true;
 			$n = ( isset($_GET['n']) ) ? intval($_GET['n']) : 0;
@@ -90,7 +90,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			}
 		}
 		
-		$this->displayMessage();
+		settings_errors( __CLASS__ );
 		?>
 		<div class="wrap st_wrap">
 			<h2><?php _e('Overview', 'simpletags'); ?>
@@ -147,9 +147,9 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 								echo '<td>' . "\n";
 									if ( in_array($line_taxo->name, $compatible_taxonomies) ) {
 										if ( isset($options[$post_type->name][$line_taxo->name]) && isset($options[$post_type->name][$line_taxo->name]['use_auto_terms']) && $options[$post_type->name][$line_taxo->name]['use_auto_terms'] == '1' ) {
-											echo '<a href="'.$this->tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/inc/images/lightbulb.png" alt="'.__('Context configured & actived.', 'simpletags').'" /></a>' . "\n";
+											echo '<a href="'.self::$tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/inc/images/lightbulb.png" alt="'.__('Context configured & actived.', 'simpletags').'" /></a>' . "\n";
 										} else {
-											echo '<a href="'.$this->tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/inc/images/lightbulb_off.png" alt="'.__('Context unconfigured.', 'simpletags').'" /></a>' . "\n";
+											echo '<a href="'.self::$tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/inc/images/lightbulb_off.png" alt="'.__('Context unconfigured.', 'simpletags').'" /></a>' . "\n";
 										}
 									} else {
 										echo '-' . "\n";
@@ -166,7 +166,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 		</div>
 		
 		<div class="wrap st_wrap">
-			<h2><?php printf(__('Auto Terms for %s and %s', 'simpletags'), '<strong>'.$this->post_type_name.'</strong>',  '<strong>'.$this->taxo_name.'</strong>' ); ?></h2>
+			<h2><?php printf(__('Auto Terms for %s and %s', 'simpletags'), '<strong>'.self::$post_type_name.'</strong>',  '<strong>'.SimpleTags_Admin::$taxo_name.'</strong>' ); ?></h2>
 			
 			<?php if ( $action === false ) : ?>
 				
@@ -174,7 +174,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 				<p><?php _e('This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, Simple Tags will add automatically "wordpress" as term for this post.', 'simpletags'); ?></p>
 				
 				<h3><?php _e('Options', 'simpletags'); ?></h3>
-				<form action="<?php echo $this->tools_base_url.'st_auto&taxo='.$this->taxonomy.'&cpt='.$this->post_type; ?>" method="post">
+				<form action="<?php echo self::$tools_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.self::$post_type; ?>" method="post">
 					<table class="form-table">
 						<tr valign="top">
 							<th scope="row"><?php _e('Activation', 'simpletags'); ?></th>
@@ -224,7 +224,7 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 					<?php _e('Simple Tags can also tag all existing contents of your blog. This feature use auto terms list above-mentioned.', 'simpletags'); ?>
 				</p>
 				<p class="submit">
-					<a class="button-primary" href="<?php echo $this->tools_base_url.'st_auto&amp;taxo='.$this->taxonomy.'&amp;cpt='.$this->post_type.'&amp;action=auto_tag'; ?>"><?php _e('Auto terms all content &raquo;', 'simpletags'); ?></a>
+					<a class="button-primary" href="<?php echo self::$tools_base_url.'st_auto&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;cpt='.self::$post_type.'&amp;action=auto_tag'; ?>"><?php _e('Auto terms all content &raquo;', 'simpletags'); ?></a>
 				</p>
 			
 			<?php else:
@@ -234,23 +234,23 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 				}
 				
 				// Get objects
-				$objects = (array) $wpdb->get_results( $wpdb->prepare("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'publish' ORDER BY ID DESC LIMIT %d, 20", $this->post_type, $n) );
+				$objects = (array) $wpdb->get_results( $wpdb->prepare("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'publish' ORDER BY ID DESC LIMIT %d, 20", self::$post_type, $n) );
 				
 				if( !empty($objects) ) {
 					echo '<ul>';
 					foreach( $objects as $object ) {
-						$simple_tags['client-autoterms']->autoTermsPost( $object, $this->taxonomy, $taxo_options, true );
+						SimpleTags_Client_Autoterms::auto_terms_post( $object, SimpleTags_Admin::$taxonomy, $taxo_options, true );
 						
 						echo '<li>#'. $object->ID .' '. $object->post_title .'</li>';
 						unset($object);
 					}
 					echo '</ul>';
 					?>
-					<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="<?php echo $this->tools_base_url.'st_auto&amp;taxo='.$this->taxonomy.'&amp;cpt='.$this->post_type.'&amp;action=auto_tag&amp;n='.($n + 20); ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
+					<p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?> <a href="<?php echo self::$tools_base_url.'st_auto&amp;taxo='.SimpleTags_Admin::$taxonomy.'&amp;cpt='.self::$post_type.'&amp;action=auto_tag&amp;n='.($n + 20); ?>"><?php _e('Next content', 'simpletags'); ?></a></p>
 					<script type="text/javascript">
 						// <![CDATA[
 						function nextPage() {
-							location.href = "<?php echo $this->tools_base_url.'st_auto&taxo='.$this->taxonomy.'&cpt='.$this->post_type.'&action=auto_tag&n='.($n + 20); ?>";
+							location.href = "<?php echo self::$tools_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.self::$post_type.'&action=auto_tag&n='.($n + 20); ?>";
 						}
 						window.setTimeout( 'nextPage()', 300 );
 						// ]]>
@@ -265,10 +265,10 @@ class SimpleTags_Admin_AutoTags extends SimpleTags_Admin {
 			endif;
 			?>
 			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-			<?php $this->printAdminFooter(); ?>
+			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
 		<?php
-		do_action( 'simpletags-auto_terms', $this->taxonomy );
+		do_action( 'simpletags-auto_terms', SimpleTags_Admin::$taxonomy );
 	}
 
 }
