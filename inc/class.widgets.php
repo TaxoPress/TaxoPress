@@ -184,14 +184,14 @@ class SimpleTags_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>">
 				<?php _e('Title:', 'simpletags'); ?>
-				<input class="widefat" type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $title; ?>" />
+				<input class="widefat" type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($title); ?>" />
 			</label>
 		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('max'); ?>">
 				<?php _e('Max tags to display: (default: 45)', 'simpletags'); ?>
-				<input class="widefat" size="20" type="text" id="<?php echo $this->get_field_id('max'); ?>" name="<?php echo $this->get_field_name('max'); ?>" value="<?php echo $max; ?>" />
+				<input class="widefat" size="20" type="text" id="<?php echo $this->get_field_id('max'); ?>" name="<?php echo $this->get_field_name('max'); ?>" value="<?php echo esc_attr($max); ?>" />
 			</label>
 		</p>
 		
@@ -242,14 +242,14 @@ class SimpleTags_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('smini'); ?>">
 				<?php _e('Font size mini: (default: 8)', 'simpletags'); ?>
-				<input class="widefat" size="20"  type="text" id="<?php echo $this->get_field_id('smini'); ?>" name="<?php echo $this->get_field_name('smini'); ?>" value="<?php echo $smini; ?>" />
+				<input class="widefat" size="20"  type="text" id="<?php echo $this->get_field_id('smini'); ?>" name="<?php echo $this->get_field_name('smini'); ?>" value="<?php echo esc_attr($smini); ?>" />
 			</label>
 		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('smax'); ?>">
 				<?php _e('Font size max: (default: 22)', 'simpletags'); ?>
-				<input class="widefat" size="20" type="text" id="<?php echo $this->get_field_id('smax'); ?>" name="<?php echo $this->get_field_name('smax'); ?>" value="<?php echo $smax; ?>" />
+				<input class="widefat" size="20" type="text" id="<?php echo $this->get_field_id('smax'); ?>" name="<?php echo $this->get_field_name('smax'); ?>" value="<?php echo esc_attr($smax); ?>" />
 			</label>
 		</p>
 		
@@ -285,28 +285,28 @@ class SimpleTags_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('cmini'); ?>">
 				<?php _e('Font color mini: (default: #CCCCCC)', 'simpletags'); ?>
-				<input class="widefat" type="text" id="<?php echo $this->get_field_id('cmini'); ?>" name="<?php echo $this->get_field_name('cmini'); ?>" value="<?php echo $cmini; ?>" />
+				<input class="widefat" type="text" id="<?php echo $this->get_field_id('cmini'); ?>" name="<?php echo $this->get_field_name('cmini'); ?>" value="<?php echo esc_attr($cmini); ?>" />
 			</label>
 		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('cmax'); ?>">
 				<?php _e('Font color max: (default: #000000)', 'simpletags'); ?>
-				<input class="widefat" type="text" id="<?php echo $this->get_field_id('cmax'); ?>" name="<?php echo $this->get_field_name('cmax'); ?>" value="<?php echo $cmax; ?>" />
+				<input class="widefat" type="text" id="<?php echo $this->get_field_id('cmax'); ?>" name="<?php echo $this->get_field_name('cmax'); ?>" value="<?php echo esc_attr($cmax); ?>" />
 			</label>
 		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('xformat'); ?>">
 				<?php _e('Tag link format:', 'simpletags'); ?><br />
-				<input class="widefat" style="width: 100% !important;" type="text" id="<?php echo $this->get_field_id('xformat'); ?>" name="<?php echo $this->get_field_name('xformat'); ?>" value="<?php echo $xformat; ?>" />
+				<input class="widefat" style="width: 100% !important;" type="text" id="<?php echo $this->get_field_id('xformat'); ?>" name="<?php echo $this->get_field_name('xformat'); ?>" value="<?php echo esc_attr($xformat); ?>" />
 			</label>
 		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('adv_usage'); ?>">
 				<?php _e('Advanced usage:', 'simpletags'); ?><br />
-				<input class="adv_usage" style="width: 100% !important;" type="text" id="<?php echo $this->get_field_id('adv_usage'); ?>" name="<?php echo $this->get_field_name('adv_usage'); ?>" value="<?php echo $adv_usage; ?>" />
+				<input class="adv_usage" style="width: 100% !important;" type="text" id="<?php echo $this->get_field_id('adv_usage'); ?>" name="<?php echo $this->get_field_name('adv_usage'); ?>" value="<?php echo esc_attr($adv_usage); ?>" />
 			</label>
 		</p>
 		
