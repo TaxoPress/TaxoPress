@@ -26,7 +26,7 @@ class SimpleTags_Admin_Manage {
 	public static function initJavaScript() {
 		global $pagenow;
 		
-		wp_register_script('st-helper-manage', STAGS_URL.'/inc/js/helper-manage.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-manage', STAGS_URL.'/assets/js/helper-manage.js', array('jquery'), STAGS_VERSION);
 		
 		// add JS for manage click tags
 		if ( isset($_GET['page']) && $_GET['page'] == 'st_manage' ) {

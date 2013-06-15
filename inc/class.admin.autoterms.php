@@ -152,9 +152,9 @@ class SimpleTags_Admin_AutoTags {
 								echo '<td>' . "\n";
 									if ( in_array($line_taxo->name, $compatible_taxonomies) ) {
 										if ( isset($options[$post_type->name][$line_taxo->name]) && isset($options[$post_type->name][$line_taxo->name]['use_auto_terms']) && $options[$post_type->name][$line_taxo->name]['use_auto_terms'] == '1' ) {
-											echo '<a href="'.self::$tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/inc/images/lightbulb.png" alt="'.__('Context configured & actived.', 'simpletags').'" /></a>' . "\n";
+											echo '<a href="'.self::$tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/assets/images/lightbulb.png" alt="'.__('Context configured & actived.', 'simpletags').'" /></a>' . "\n";
 										} else {
-											echo '<a href="'.self::$tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/inc/images/lightbulb_off.png" alt="'.__('Context unconfigured.', 'simpletags').'" /></a>' . "\n";
+											echo '<a href="'.self::$tools_base_url.'st_auto&taxo='.$line_taxo->name.'&cpt='.$post_type->name.'"><img src="'.STAGS_URL.'/assets/images/lightbulb_off.png" alt="'.__('Context unconfigured.', 'simpletags').'" /></a>' . "\n";
 										}
 									} else {
 										echo '-' . "\n";

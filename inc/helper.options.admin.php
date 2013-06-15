@@ -28,7 +28,7 @@ return array(
 				<li>'.__('<code>textarea</code> &ndash; Textarea multiline.', 'simpletags').'</li>
 				<li>'.__('<code>input</code> &ndash; Text input, only one line. (default)', 'simpletags').'</li>
 			</ul>'),
-		array('autocomplete_min', __('Autocompletion Min Chars', 'simpletags'), 'text', '',
+		array('autocomplete_min', __('Autocompletion Min Chars', 'simpletags'), 'text', '10',
 			__('You can define how many characters from the autocompletion will be proposed. The default value in Simple Tags 2.0 is 0, prior this version, default parameter was 1.', 'simpletags')),
 		array('order_click_tags', __('Click tags order', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
 			'<ul>
@@ -38,11 +38,11 @@ return array(
 				<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
 				<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
 			</ul>'),
-		array('opencalais_key', __('OpenCalais API Key', 'simpletags'), 'text', '',
+		array('opencalais_key', __('OpenCalais API Key', 'simpletags'), 'text', '20',
 			__('You can create an API key from <a href="http://www.opencalais.com/">service website</a>', 'simpletags')),
-		array('alchemy_api', __('Alchemy API Key', 'simpletags'), 'text', '',
+		array('alchemy_api', __('Alchemy API Key', 'simpletags'), 'text', '20',
 			__('You can create an API key from <a href="http://www.alchemyapi.com/">service website</a>', 'simpletags')),
-		array('zemanta_key', __('Zemanta API Key', 'simpletags'), 'text', '',
+		array('zemanta_key', __('Zemanta API Key', 'simpletags'), 'text', '20',
 			__('You can create an API key from <a href="http://developer.zemanta.com/">service website</a>', 'simpletags'))
 	),
 	'auto-links' => array(
@@ -54,7 +54,7 @@ return array(
 			__('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags')),	
 		array('auto_link_case', __('Ignore case for auto link feature ?', 'simpletags'), 'checkbox', '1',
 			__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')),
-		array('auto_link_exclude', __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'), 'text', '',
+		array('auto_link_exclude', __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'), 'text', '20',
 			__('Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags')),
 		array('auto_link_priority', __('Priority on hook the_content', 'simpletags'), 'text', '12',
 			__('For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin. Default: 12.', 'simpletags')),

@@ -23,7 +23,7 @@ class SimpleTags_Admin_Suggest {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 		
-		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/inc/js/helper-suggested-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
+		wp_register_script('st-helper-suggested-tags', 	STAGS_URL.'/assets/js/helper-suggested-tags.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array( 'title_bloc' => self::get_suggest_tags_title(), 'content_bloc' => __('Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags') ) );
 		
 		// Register location
@@ -41,7 +41,7 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function get_suggest_tags_title() {
-		$title = '<img style="float:right; display:none;" id="st_ajax_loading" src="'.STAGS_URL.'/inc/images/ajax-loader.gif" alt="' .__('Ajax loading', 'simpletags').'" />';
+		$title = '<img style="float:right; display:none;" id="st_ajax_loading" src="'.STAGS_URL.'/assets/images/ajax-loader.gif" alt="' .__('Ajax loading', 'simpletags').'" />';
 		$title .=  __('Suggested tags from :', 'simpletags').'&nbsp;&nbsp;';
 		$title .= '<a class="local_db" href="#suggestedtags">'.__('Local tags', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="yahoo_api" href="#suggestedtags">'.__('Yahoo', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';

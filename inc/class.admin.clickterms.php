@@ -26,7 +26,7 @@ class SimpleTags_Admin_ClickTags {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 		
-		wp_register_script('st-helper-click-tags', STAGS_URL.'/inc/js/helper-click-tags.min.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
+		wp_register_script('st-helper-click-tags', STAGS_URL.'/assets/js/helper-click-tags.js', array('jquery', 'st-helper-add-tags'), STAGS_VERSION);
 		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array( 'show_txt' => __('Display click tags', 'simpletags'), 'hide_txt' => __('Hide click tags', 'simpletags') ) );
 		
 		// Register location

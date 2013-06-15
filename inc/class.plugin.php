@@ -12,7 +12,7 @@ class SimpleTags_Plugin {
 		// Put default options
 		$options_from_table = get_option(STAGS_OPTIONS_NAME);
 		if ($options_from_table == false) {
-			$options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
+			$options = (array) include( STAGS_DIR . '/inc/helper.options.default.php' );
 			add_option(STAGS_OPTIONS_NAME, $options);
 			unset($options);
 		}

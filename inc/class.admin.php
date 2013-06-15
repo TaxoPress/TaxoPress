@@ -6,6 +6,9 @@ class SimpleTags_Admin {
 	static $taxonomy 			= '';
 	static $taxo_name			= '';
 	
+	static $admin_url			= '';
+	const menu_slug = 'st_options';
+	
 	/**
 	 * Initialize Admin
 	 *
@@ -138,41 +141,41 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function boxSelectorTaxonomy( $page_value = '' ) {
-		echo '<div class="box-selector-taxonomy">' . "\n";
-			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the custom post type "<span>%s</span>" and the taxonomy "<span>%s</span>"', 'simpletags'), self::$post_type_name, self::$taxo_name).'</p>' . "\n";
+		echo '<div class="box-selector-taxonomy">' . PHP_EOL;
+			echo '<p class="current-taxonomy">'.sprintf(__('You currently use the custom post type "<span>%s</span>" and the taxonomy "<span>%s</span>"', 'simpletags'), self::$post_type_name, self::$taxo_name).'</p>' . PHP_EOL;
 			
-			echo '<div class="change-taxo">' . "\n";
-				echo '<form action="" method="get">' . "\n";
+			echo '<div class="change-taxo">' . PHP_EOL;
+				echo '<form action="" method="get">' . PHP_EOL;
 					if ( !empty($page_value) ) {
-						echo '<input type="hidden" name="page" value="'.$page_value.'" />' . "\n";
+						echo '<input type="hidden" name="page" value="'.$page_value.'" />' . PHP_EOL;
 					}
 					
-					echo '<select name="cpt" id="cpt-select">' . "\n";
+					echo '<select name="cpt" id="cpt-select">' . PHP_EOL;
 						foreach ( get_post_types( array('show_ui' => true ), 'objects') as $post_type ) {
 							$taxonomies = get_object_taxonomies($post_type->name);
 							if( empty($taxonomies) ) {
 								continue;
 							}
 							
-							echo '<option '.selected( $post_type->name, self::$post_type, false ).' value="'.esc_attr($post_type->name).'">'.esc_html($post_type->labels->name).'</option>' . "\n";
+							echo '<option '.selected( $post_type->name, self::$post_type, false ).' value="'.esc_attr($post_type->name).'">'.esc_html($post_type->labels->name).'</option>' . PHP_EOL;
 						}
-					echo '</select>' . "\n";
+					echo '</select>' . PHP_EOL;
 					
-					echo '<select name="taxo" id="taxonomy-select">' . "\n";
+					echo '<select name="taxo" id="taxonomy-select">' . PHP_EOL;
 						foreach ( get_object_taxonomies(self::$post_type) as $tax_name ) {
 							$taxonomy = get_taxonomy($tax_name);
 							if ( $taxonomy->show_ui == false ) {
 								continue;
 							}
 							
-							echo '<option '.selected( $tax_name, self::$taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->labels->name).'</option>' . "\n";
+							echo '<option '.selected( $tax_name, self::$taxonomy, false ).' value="'.esc_attr($tax_name).'">'.esc_html($taxonomy->labels->name).'</option>' . PHP_EOL;
 						}
-					echo '</select>' . "\n";
+					echo '</select>' . PHP_EOL;
 					
-					echo '<input type="submit" class="button" id="submit-change-taxo" value="'.__('Change selection', 'simpletags').'" />' . "\n";
-				echo '</form>' . "\n";
-			echo '</div>' . "\n";
-		echo '</div>' . "\n";
+					echo '<input type="submit" class="button" id="submit-change-taxo" value="'.__('Change selection', 'simpletags').'" />' . PHP_EOL;
+				echo '</form>' . PHP_EOL;
+			echo '</div>' . PHP_EOL;
+		echo '</div>' . PHP_EOL;
 	}
 	
 	/**
@@ -185,14 +188,14 @@ class SimpleTags_Admin {
 		global $pagenow;
 		
 		// Library JS
-		wp_register_script('jquery-cookie', STAGS_URL.'/ressources/jquery.cookie.min.js', array('jquery'), '1.0.0');
+		wp_register_script('jquery-cookie', STAGS_URL.'/assets/js/lib/jquery.cookie.js', array('jquery'), '1.0.0');
 		
 		// Helper simple tags
-		wp_register_script('st-helper-add-tags', STAGS_URL.'/inc/js/helper-add-tags.min.js', array('jquery'), STAGS_VERSION);
-		wp_register_script('st-helper-options', STAGS_URL.'/inc/js/helper-options.min.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-add-tags', STAGS_URL.'/assets/js/helper-add-tags.js', array('jquery'), STAGS_VERSION);
+		wp_register_script('st-helper-options', STAGS_URL.'/assets/js/helper-options.js', array('jquery'), STAGS_VERSION);
 		
 		// Register CSS
-		wp_register_style('st-admin', STAGS_URL.'/inc/css/admin.css', array(), STAGS_VERSION, 'all' );
+		wp_register_style('st-admin', STAGS_URL.'/assets/css/admin.css', array(), STAGS_VERSION, 'all' );
 		
 		// Register location
 		$wp_post_pages = array('post.php', 'post-new.php');
@@ -222,7 +225,8 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-		add_options_page( __('Simple Tags: Options', 'simpletags'), __('Simple Tags', 'simpletags'), 'admin_simple_tags', 'st_options', array(__CLASS__, 'page_options'));
+		add_options_page( __('Simple Tags: Options', 'simpletags'), __('Simple Tags', 'simpletags'), 'admin_simple_tags', self::menu_slug, array(__CLASS__, 'page_options'));
+		self::$admin_url = admin_url('/options-general.php?page='.self::menu_slug);
 	}
 	
 	/**
@@ -233,7 +237,7 @@ class SimpleTags_Admin {
 	 */
 	public static function page_options() {
 		// Get default & current options and merge
-		$default_options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
+		$default_options = (array) include( STAGS_DIR . '/inc/helper.options.default.php' );
 		$options = (array) get_option( STAGS_OPTIONS_NAME );
 		$options = array_merge( $default_options, $options );
 		
@@ -253,66 +257,14 @@ class SimpleTags_Admin {
 		} elseif ( isset($_POST['reset_options']) ) {
 			check_admin_referer('updateresetoptions-simpletags');
 			
-			$options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
+			$options = (array) include( STAGS_DIR . '/inc/helper.options.default.php' );
 			update_option( STAGS_OPTIONS_NAME, $options );
 			
 			add_settings_error( __CLASS__, __CLASS__, __('Simple Tags options resetted to default options!', 'simpletags'), 'updated' );
 		}
 		
 		settings_errors( __CLASS__ );
-		?>
-		<div class="wrap st_wrap">
-			<h2><?php _e('Simple Tags: Options', 'simpletags'); ?></h2>
-			
-			<div style="float:right">
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-					<input type="hidden" name="cmd" value="_s-xclick">
-					<input type="hidden" name="hosted_button_id" value="L9QU9QT9R5FQS">
-					<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG_global.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
-					<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1" />
-				</form>
-			</div>
-			
-			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/projects/show/simple-tags/">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
-			<form action="" method="post">
-				<p>
-					<input class="button-primary" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
-					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" /></p>
-				
-				<div id="printOptions">
-					<ul class="st_submenu">
-						<?php
-						// Get array options/description
-						$option_data = (array) include( dirname(__FILE__) . '/helper.options.admin.php' );
-						foreach ( $option_data as $key => $val ) {
-							$style = '';
-							
-							// Deactive tabs if feature not actived
-							if ( isset($options['active_related_posts']) && (int) $options['active_related_posts'] == 0 && $key == 'relatedposts' )
-								$style = 'display:none;';
-								
-							// Deactive tabs if feature not actived
-							if ( isset($options['auto_link_tags']) && (int) $options['auto_link_tags'] == 0 && $key == 'auto-links' )
-								$style = 'display:none;';
-								
-							echo '<li style="'.$style.'"><a href="#'. sanitize_title ( $key ) .'">'.self::getNiceTitleOptions($key).'</a></li>';
-						}
-						?>
-					</ul>
-					<div class="clear"></div>
-					
-					<?php echo self::printOptions( $option_data ); ?>
-				</div>
-				
-				<p>
-					<?php wp_nonce_field( 'updateresetoptions-simpletags' ); ?>
-					<input class="button-primary" type="submit" name="updateoptions" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
-					<input class="button" type="submit" name="reset_options" onclick="return confirm('<?php _e('Do you really want to restore the default options?', 'simpletags'); ?>');" value="<?php _e('Reset Options', 'simpletags'); ?>" />
-				</p>
-			</form>
-			<?php self::printAdminFooter(); ?>
-		</div>
-		<?php
+		include( STAGS_DIR . '/views/admin/page-settings.php' );
 	}
 	
 	/**
@@ -373,18 +325,23 @@ class SimpleTags_Admin {
 	 * @return string
 	 * @author Amaury Balmer
 	 */
-	public static function printOptions( $option_data ) {
+	public static function print_options( $option_data ) {
 		// Get options
 		$option_actual = (array) get_option( STAGS_OPTIONS_NAME );
 		
 		// Generate output
 		$output = '';
 		foreach( $option_data as $section => $options) {
-			$output .= "\n" . '<div id="'. sanitize_title($section) .'"><fieldset class="options"><legend>' . self::getNiceTitleOptions($section) . '</legend><table class="form-table">' . "\n";
+			$colspan = count($options) > 1 ? 'colspan="2"' : '';
+			
+			$output .= '<div class="group" id="'. sanitize_title($section) .'">' . PHP_EOL;
+			$output .= '<fieldset class="options">' . PHP_EOL;
+			$output .= '<legend>' . self::getNiceTitleOptions($section) . '</legend>' . PHP_EOL;
+			$output .= '<table class="form-table">' . PHP_EOL;
 			foreach((array) $options as $option) {
 				// Helper
 				if (  $option[2] == 'helper' ) {
-					$output .= '<tr style="vertical-align: middle;"><td class="helper" colspan="2">' . stripslashes($option[4]) . '</td></tr>' . "\n";
+					$output .= '<tr style="vertical-align: middle;"><td class="helper" '.$colspan.'>' . stripslashes($option[4]) . '</td></tr>' . PHP_EOL;
 					continue;
 				}
 				
@@ -394,39 +351,40 @@ class SimpleTags_Admin {
 				
 				switch ( $option[2] ) {
 					case 'checkbox':
-						$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />' . "\n";
+						$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />' . PHP_EOL;
 						break;
 					
 					case 'dropdown':
 						$selopts = explode('/', $option[3]);
 						$seldata = '';
 						foreach( (array) $selopts as $sel) {
-							$seldata .= '<option value="' . esc_attr($sel) . '" ' .((isset($option_actual[ $option[0] ]) &&$option_actual[ $option[0] ] == $sel) ? 'selected="selected"' : '') .' >' . ucfirst($sel) . '</option>' . "\n";
+							$seldata .= '<option value="' . esc_attr($sel) . '" ' .((isset($option_actual[ $option[0] ]) &&$option_actual[ $option[0] ] == $sel) ? 'selected="selected"' : '') .' >' . ucfirst($sel) . '</option>' . PHP_EOL;
 						}
-						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>' . "\n";
+						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>' . PHP_EOL;
 						break;
 					
 					case 'text-color':
-						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" /><div class="box_color ' . $option[0] . '"></div>' . "\n";
+						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" /><div class="box_color ' . $option[0] . '"></div>' . PHP_EOL;
 						break;
 					
 					case 'text':
 					default:
-						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />' . "\n";
+						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />' . PHP_EOL;
 						break;
 				}
 				
 				// Additional Information
 				$extra = '';
 				if( !empty($option[4]) ) {
-					$extra = '<div class="stpexplan">' . __($option[4]) . '</div>' . "\n";
+					$extra = '<div class="stpexplan">' . __($option[4]) . '</div>' . PHP_EOL;
 				}
 				
 				// Output
-				$output .= '<tr style="vertical-align: top;"><th scope="row"><label for="'.$option[0].'">' . __($option[1]) . '</label></th><td>' . $input_type . '	' . $extra . '</td></tr>' . "\n";
+				$output .= '<tr style="vertical-align: top;"><th scope="row"><label for="'.$option[0].'">' . __($option[1]) . '</label></th><td>' . $input_type . '	' . $extra . '</td></tr>' . PHP_EOL;
 			}
-			$output .= '</table>' . "\n";
-			$output .= '</fieldset></div>' . "\n";
+			$output .= '</table>' . PHP_EOL;
+			$output .= '</fieldset>' . PHP_EOL;
+			$output .= '</div>' . PHP_EOL;
 		}
 		
 		return $output;
@@ -484,7 +442,7 @@ class SimpleTags_Admin {
 		// Upgrade needed ?
 		if ( $current_version == false || version_compare($current_version, STAGS_VERSION, '<') ) {
 			$current_options = get_option( STAGS_OPTIONS_NAME );
-			$default_options = (array) include( dirname(__FILE__) . '/helper.options.default.php' );
+			$default_options = (array) include( STAGS_DIR . '/inc/helper.options.default.php' );
 			
 			// Add new options
 			foreach( $default_options as $key => $default_value ) {
