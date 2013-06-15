@@ -25,7 +25,7 @@ return array(
 	'opencalais_key' 	=> '',
 	'alchemy_api' 		=> '',
 	'zemanta_key' 		=> '',
-	'autocomplete_type' => '',
+	'autocomplete_type' => 'input',
 	'autocomplete_min'  => 0,
 	'autocomplete_mode' => '',
 	

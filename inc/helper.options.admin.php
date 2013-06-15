@@ -32,8 +32,8 @@ return array(
 		array('order_click_tags', __('Click tags order', 'simpletags'), 'radio',
 			array(
 				'count-asc' => __('<code>count-asc</code> &ndash; Least used.', 'simpletags'),
-				'count-desc' => __('<code>count-desc</code> &ndash; Most popular. (default)', 'simpletags'),
-				'name-asc' => __('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags'),
+				'count-desc' => __('<code>count-desc</code> &ndash; Most popular.', 'simpletags'),
+				'name-asc' => __('<code>name-asc</code> &ndash; Alphabetical. (default)', 'simpletags'),
 				'name-desc' => __('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags'),
 				'random' => __('<code>random</code> &ndash; Random.', 'simpletags'),
 			) ),
@@ -68,9 +68,9 @@ return array(
 			__('You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud.', 'simpletags')),
 		array('cloud_selectionby', __('Order by for tags selection:', 'simpletags'), 'radio',
 			array(
-				'count' => __('<code>count</code> &ndash; Counter.', 'simpletags'),
+				'count' => __('<code>count</code> &ndash; Counter. (default)', 'simpletags'),
 				'name' => __('<code>name</code> &ndash; Name.', 'simpletags'),
-				'random' => __('<code>random</code> &ndash; Random. (default)', 'simpletags'),
+				'random' => __('<code>random</code> &ndash; Random.', 'simpletags'),
 			) ),
 		array('cloud_selection', __('Order tags selection:', 'simpletags'), 'radio',
 			array(
