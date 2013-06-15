@@ -69,7 +69,6 @@ require( STAGS_DIR . '/inc/class.widgets.php');
 // Activation, uninstall
 register_activation_hook(__FILE__, array('SimpleTags_Plugin', 'activation'));
 register_deactivation_hook(__FILE__, array('SimpleTags_Plugin', 'deactivation'));
-register_uninstall_hook(__FILE__, array('SimpleTags_Plugin', 'uninstall'));
 
 // Init Simple Tags
 function init_simple_tags() {
