@@ -1,24 +1,11 @@
-﻿@media print  {
-.tabs-nav {display:none;}
-}
-@media projection,screen  {
-.tabs-hide {display:none;}
-}
 /* Footer admin   */
 .footer_st{text-align:center;font-size:.8em;}
+
 /* Block taxonomy  */
 .box-selector-taxonomy{border:1px solid;color:#9F6000;background-color:#FEEFB3;margin:10px 0 0;padding:15px 10px;}
 .box-selector-taxonomy .current-taxonomy{float:right;font-size:16px;font-weight:700;margin:0;}
 .box-selector-taxonomy .change-taxo select{width:200px;}
-/* Options - Menu   */
-.st_wrap .st_submenu{border-bottom:none;margin:0 0 3px;padding:0;height:auto !important;height: 25px;min-height: 25px;}
-.st_wrap .st_submenu li{background:#464646;height:25px;display:block;list-style:none;text-align:center;float:left;padding:0;margin: 0;}
-.st_wrap .st_submenu li a{border:none;color:#fff;font-size:12px;text-decoration:none;padding:0 10px;height: 25px;line-height:25px;vertical-align:middle;display: block;float: left;}
-.st_wrap .st_submenu li a:hover{background:#21759B;color:#fff;}
-.st_wrap .st_submenu li.ui-tabs-selected{font-weight:700;background:#D54E21;color:#fff;padding:0;}
-.st_wrap .st_submenu li.ui-tabs-selected a{color:#fff;}
-.st_wrap .st_submenu li.ui-tabs-selected a:hover{background:#21759B;color:#fff;}
-.st_wrap .tabs-hide{display:none;}
+
 /* Options Table   */
 .st_wrap fieldset.options legend{display:none;}
 .st_wrap fieldset.options{border:0;}
@@ -26,17 +13,23 @@
 .st_wrap .stpexplan{font-size:0.9em;}
 .st_wrap .stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
 .st_wrap .stpexplan ul li{margin:0;padding:0;}
+
 /* Options - Input Color   */
 .box_color{display:block;width:20px;height:20px;border:1px solid #ccc;}
+
 /* Auto tags   */
 .st_wrap .adv-tags-input{width:98%;margin:3px 0;padding:3px 5px;}
+
 /* Mass Edit Tags   */
 .st_wrap input.tags_input{width:90%;margin:3px 0 8px;padding:3px 10px;}
+
 /* Suggested Click Tags   */
 a#open_clicktags,a#close_clicktags{font-weight:700;color:red;border:0;text-decoration:none;display:block;margin-bottom:5px;}
 a#close_clicktags{display:none;}
+
 /* Ajax Click Tags   */
 #st-clicks-tags .container_clicktags{border:3px dashed #D1E6EF;display:none;max-height:300px;overflow:auto;margin:3px 0 0;padding:6px;}
+
 /* Click Tags   */
 .container_clicktags{display:block;}
 .container_clicktags span{display:block;float:left;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:3px;padding:3px 4px 3px 22px;}
@@ -51,8 +44,10 @@ a#close_clicktags{display:none;}
 .container_clicktags span.ttn_person:hover{background:#b6bdd2 url(../images/user.png) 3px 50% no-repeat;}
 .container_clicktags span.yahoo:hover{background:#b6bdd2 url(../images/yahoo_logo.gif) 3px 50% no-repeat;}
 .container_clicktags span.local:hover{background:#b6bdd2 url(../images/tag_purple.png) 3px 50% no-repeat;}
+
 /* Advanced tags input   */
 #adv-tags-input{padding:3px 5px;}
+
 /* Manage page */
 #term-list{float:left;width:20%;}
 #term-list-inner{padding-top:10px;text-align:center;}

@@ -333,6 +333,7 @@ class SimpleTags_Admin {
 		$output = '';
 		foreach( $option_data as $section => $options) {
 			$colspan = count($options) > 1 ? 'colspan="2"' : '';
+			$desc_html_tag = 'div';
 			
 			$output .= '<div class="group" id="'. sanitize_title($section) .'">' . PHP_EOL;
 			$output .= '<fieldset class="options">' . PHP_EOL;
@@ -350,7 +351,16 @@ class SimpleTags_Admin {
 					$option_actual[ $option[0] ] = '';
 				
 				switch ( $option[2] ) {
+					case 'radio':
+						$input_type = array();;
+						foreach ( $option[3] as $value => $text ) {
+							$input_type[] = '<label><input type="radio" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($value) . '" ' . checked($value, $option_actual[ $option[0] ], false) . ' /> ' . $text . '</label>' . PHP_EOL;
+						}
+						$input_type = implode('<br />', $input_type);
+						break;
+					
 					case 'checkbox':
+						$desc_html_tag = 'span';
 						$input_type = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" ' . ( ($option_actual[ $option[0] ]) ? 'checked="checked"' : '') . ' />' . PHP_EOL;
 						break;
 					
@@ -364,19 +374,24 @@ class SimpleTags_Admin {
 						break;
 					
 					case 'text-color':
-						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" /><div class="box_color ' . $option[0] . '"></div>' . PHP_EOL;
+						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" class="text-color ' . $option[3] .'" /><div class="box_color ' . $option[0] . '"></div>' . PHP_EOL;
 						break;
 					
 					case 'text':
 					default:
-						$input_type = '<input type="text" ' . ((isset($option[3]) && $option[3]>50) ? ' style="width: 95%" ' : '') . 'id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" size="' . $option[3] .'" />' . PHP_EOL;
+						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" class="' . $option[3] .'" />' . PHP_EOL;
+						break;
+					
+					case 'number':
+					default:
+						$input_type = '<input type="number" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[ $option[0] ]) . '" class="' . $option[3] .'" />' . PHP_EOL;
 						break;
 				}
 				
 				// Additional Information
 				$extra = '';
 				if( !empty($option[4]) ) {
-					$extra = '<div class="stpexplan">' . __($option[4]) . '</div>' . PHP_EOL;
+					$extra = '<'.$desc_html_tag.' class="stpexplan">' . __($option[4]) . '</'.$desc_html_tag.'>' . PHP_EOL;
 				}
 				
 				// Output

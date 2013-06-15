@@ -23,40 +23,39 @@ return array(
 			__('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WordPress replace this shortcode by a tag cloud.', 'simpletags'))	
 	),	
 	'administration' => array(
-		array('autocomplete_type', __('Type of old input', 'simpletags'), 'dropdown', 'input/textarea',
-			'<ul>
-				<li>'.__('<code>textarea</code> &ndash; Textarea multiline.', 'simpletags').'</li>
-				<li>'.__('<code>input</code> &ndash; Text input, only one line. (default)', 'simpletags').'</li>
-			</ul>'),
-		array('autocomplete_min', __('Autocompletion Min Chars', 'simpletags'), 'text', '10',
+		array('autocomplete_type', __('Type of old input', 'simpletags'), 'radio', array(
+				'textarea' => __('<code>textarea</code> &ndash; Textarea multiline.', 'simpletags'),
+				'input' => __('<code>input</code> &ndash; Text input, only one line. (default)', 'simpletags')
+			) ),
+		array('autocomplete_min', __('Autocompletion Min Chars', 'simpletags'), 'number', 'small-text',
 			__('You can define how many characters from the autocompletion will be proposed. The default value in Simple Tags 2.0 is 0, prior this version, default parameter was 1.', 'simpletags')),
-		array('order_click_tags', __('Click tags order', 'simpletags'), 'dropdown', 'count-asc/count-desc/name-asc/name-desc/random',
-			'<ul>
-				<li>'.__('<code>count-asc</code> &ndash; Least used.', 'simpletags').'</li>
-				<li>'.__('<code>count-desc</code> &ndash; Most popular. (default)', 'simpletags').'</li>
-				<li>'.__('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags').'</li>
-				<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
-				<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
-			</ul>'),
-		array('opencalais_key', __('OpenCalais API Key', 'simpletags'), 'text', '20',
+		array('order_click_tags', __('Click tags order', 'simpletags'), 'radio',
+			array(
+				'count-asc' => __('<code>count-asc</code> &ndash; Least used.', 'simpletags'),
+				'count-desc' => __('<code>count-desc</code> &ndash; Most popular. (default)', 'simpletags'),
+				'name-asc' => __('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags'),
+				'name-desc' => __('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags'),
+				'random' => __('<code>random</code> &ndash; Random.', 'simpletags'),
+			) ),
+		array('opencalais_key', __('OpenCalais API Key', 'simpletags'), 'text', 'regular-text',
 			__('You can create an API key from <a href="http://www.opencalais.com/">service website</a>', 'simpletags')),
-		array('alchemy_api', __('Alchemy API Key', 'simpletags'), 'text', '20',
+		array('alchemy_api', __('Alchemy API Key', 'simpletags'), 'text', 'regular-text',
 			__('You can create an API key from <a href="http://www.alchemyapi.com/">service website</a>', 'simpletags')),
-		array('zemanta_key', __('Zemanta API Key', 'simpletags'), 'text', '20',
+		array('zemanta_key', __('Zemanta API Key', 'simpletags'), 'text', 'regular-text',
 			__('You can create an API key from <a href="http://developer.zemanta.com/">service website</a>', 'simpletags'))
 	),
 	'auto-links' => array(
-		array('auto_link_min', __('Min usage for auto link tags:', 'simpletags'), 'text', '1',
+		array('auto_link_min', __('Min usage for auto link tags:', 'simpletags'), 'number', 'small-text',
 			__('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags')),
-		array('auto_link_max_by_post', __('Maximum number of links per article:', 'simpletags'), 'text', '10',
+		array('auto_link_max_by_post', __('Maximum number of links per article:', 'simpletags'), 'number', 'small-text',
 			__('This setting determines the maximum number of links created by article. Default: 10.', 'simpletags')),
-		array('auto_link_max_by_tag', __('Maximum number of links for the same tag:', 'simpletags'), 'text', '10',
+		array('auto_link_max_by_tag', __('Maximum number of links for the same tag:', 'simpletags'), 'number', 'small-text',
 			__('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags')),	
 		array('auto_link_case', __('Ignore case for auto link feature ?', 'simpletags'), 'checkbox', '1',
 			__('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')),
-		array('auto_link_exclude', __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'), 'text', '20',
+		array('auto_link_exclude', __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'), 'text', 'regular-text',
 			__('Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags')),
-		array('auto_link_priority', __('Priority on hook the_content', 'simpletags'), 'text', '12',
+		array('auto_link_priority', __('Priority on hook the_content', 'simpletags'), 'number', 'small-text',
 			__('For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin. Default: 12.', 'simpletags')),
 	),
 	'tagcloud' => array(
@@ -67,75 +66,75 @@ return array(
 			</ul>'.
 			__('<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />', 'simpletags').
 			__('You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud.', 'simpletags')),
-		array('cloud_selectionby', __('Order by for tags selection:', 'simpletags'), 'dropdown', 'count/name/random',
-			'<ul>
-				<li>'.__('<code>count</code> &ndash; Counter.', 'simpletags').'</li>
-				<li>'.__('<code>name</code> &ndash; Name.', 'simpletags').'</li>
-				<li>'.__('<code>random</code> &ndash; Random. (default)', 'simpletags').'</li>
-			</ul>'),
-		array('cloud_selection', __('Order tags selection:', 'simpletags'), 'dropdown', 'asc/desc',
-			'<ul>
-				<li>'.__('<code>asc</code> &ndash; Ascending.', 'simpletags').'</li>
-				<li>'.__('<code>desc</code> &ndash; Descending.', 'simpletags').'</li>
-			</ul>'),
-		array('cloud_orderby', __('Order by for tags display:', 'simpletags'), 'dropdown', 'count/name/random',
-			'<ul>
-				<li>'.__('<code>count</code> &ndash; Counter.', 'simpletags').'</li>
-				<li>'.__('<code>name</code> &ndash; Name.', 'simpletags').'</li>
-				<li>'.__('<code>random</code> &ndash; Random. (default)', 'simpletags').'</li>
-			</ul>'),
-		array('cloud_order', __('Order tags display:', 'simpletags'), 'dropdown', 'asc/desc',
-			'<ul>
-				<li>'.__('<code>asc</code> &ndash; Ascending.', 'simpletags').'</li>
-				<li>'.__('<code>desc</code> &ndash; Descending.', 'simpletags').'</li>
-			</ul>'),
-		array('cloud_format', __('Tags cloud type format:', 'simpletags'), 'dropdown', 'list/flat',
-			'<ul>
-				<li>'.__('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags').'</li>
-				<li>'.__('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags').'</li>
-			</ul>'),
-		array('cloud_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
+		array('cloud_selectionby', __('Order by for tags selection:', 'simpletags'), 'radio',
+			array(
+				'count' => __('<code>count</code> &ndash; Counter.', 'simpletags'),
+				'name' => __('<code>name</code> &ndash; Name.', 'simpletags'),
+				'random' => __('<code>random</code> &ndash; Random. (default)', 'simpletags'),
+			) ),
+		array('cloud_selection', __('Order tags selection:', 'simpletags'), 'radio',
+			array(
+				'asc' => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
+				'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
+			) ),
+		array('cloud_orderby', __('Order by for tags display:', 'simpletags'), 'radio',
+			array(
+				'count' => __('<code>count</code> &ndash; Counter.', 'simpletags'),
+				'name' => __('<code>name</code> &ndash; Name.', 'simpletags'),
+				'random' => __('<code>random</code> &ndash; Random. (default)', 'simpletags'),
+			) ),
+		array('cloud_order', __('Order tags display:', 'simpletags'), 'radio',
+			array(
+				'asc' => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
+				'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
+			) ),
+		array('cloud_format', __('Tags cloud type format:', 'simpletags'), 'radio',
+			array(
+				'list' => __('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags'),
+				'flat' => __('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags'),
+			) ),
+		array('cloud_xformat', __('Tag link format:', 'simpletags'), 'text', 'widefat',
 			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
-		array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'text', 10),
-		array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 80),
-		array('cloud_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
-		array('cloud_max_color', __('Most popular color:', 'simpletags'), 'text-color', 10,
+		array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'number', 'small-text'),
+		array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 'widefat'),
+		array('cloud_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 'widefat'),
+		array('cloud_max_color', __('Most popular color:', 'simpletags'), 'text-color', 'medium-text',
 			__("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags')),
-		array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text-color', 10),
-		array('cloud_max_size', __('Most popular font size:', 'simpletags'), 'text', 10,
+		array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text-color', 'medium-text'),
+		array('cloud_max_size', __('Most popular font size:', 'simpletags'), 'number', 'small-text',
 			__("The two font sizes are the size of the largest and smallest tags.", 'simpletags')),
-		array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'text', 10),
+		array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'number', 'small-text'),
 		array('cloud_unit', __('The units to display the font sizes with, on tag clouds:', 'simpletags'), 'dropdown', 'pt/px/em/%',
 			__("The font size units option determines the units that the two font sizes use.", 'simpletags')),
-		array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
+		array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 'widefat',
 			__('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'tagspost' => array(
 		array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
-		array('tt_embedded', __('Automatically display tags list into post content:', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly/homeonly/singularonly/pageonly/singleonly',
-			'<ul>
-				<li>'.__('<code>no</code> &ndash; Nowhere (default)', 'simpletags').'</li>
-				<li>'.__('<code>all</code> &ndash; On your blog and feeds.', 'simpletags').'</li>
-				<li>'.__('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags').'</li>
-				<li>'.__('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags').'</li>
-				<li>'.__('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags').'</li>
-				<li>'.__('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags').'</li>
-				<li>'.__('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags').'</li>
-			</ul>'),
-		array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 10),
-		array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 40),
-		array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 40),
-		array('tt_number', __('Max tags display:', 'simpletags'), 'text', 10,
+		array('tt_embedded', __('Automatically display tags list into post content:', 'simpletags'), 'radio',
+			array(
+				'no' => __('<code>no</code> &ndash; Nowhere (default)', 'simpletags'),
+				'all' => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
+				'blogonly' => __('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags'),
+				'homeonly' => __('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags'),
+				'singularonly' => __('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags'),
+				'singleonly' => __('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags'),
+				'pageonly' => __('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags'),
+			) ),
+		array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 'regular-text'),
+		array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 'regular-text'),
+		array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 'regular-text'),
+		array('tt_number', __('Max tags display:', 'simpletags'), 'number', 'small-text',
 			__('You must set zero (0) for display all tags.', 'simpletags')),
 		array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
-		array('tt_xformat', __('Tag link format:', 'simpletags'), 'text', 80,
+		array('tt_xformat', __('Tag link format:', 'simpletags'), 'text', 'widefat',
 			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
-		array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 80),
-		array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
+		array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 'widefat'),
+		array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 'widefat',
 			__('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'relatedposts' => array(
-		array('rp_taxonomy', __('Taxonomy:', 'simpletags'), 'text', 80,
+		array('rp_taxonomy', __('Taxonomy:', 'simpletags'), 'text', 'widefat',
 			__('By default, related posts work with post tags, but you can use a custom taxonomy. Default value : post_tag', 'simpletags')),
 		array('rp_feed', __('Automatically display related posts into feeds', 'simpletags'), 'checkbox', '1'),
 		array('rp_embedded', __('Automatically display related posts into post content', 'simpletags'), 'dropdown', 'no/all/blogonly/feedonly/homeonly/singularonly/pageonly/singleonly',
@@ -158,12 +157,12 @@ return array(
 				<li>'.__('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags').'</li>
 				<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
 			</ul>'),
-		array('rp_xformat', __('Post link format:', 'simpletags'), 'text', 80,
+		array('rp_xformat', __('Post link format:', 'simpletags'), 'text', 'widefat',
 			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
-		array('rp_limit_qty', __('Maximum number of related posts to display: (default: 5)', 'simpletags'), 'text', 10),
-		array('rp_notagstext', __('Enter the text to show when there is no related post:', 'simpletags'), 'text', 80),
-		array('rp_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 80),
-		array('rp_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 80,
+		array('rp_limit_qty', __('Maximum number of related posts to display: (default: 5)', 'simpletags'), 'text', 'regular-text'),
+		array('rp_notagstext', __('Enter the text to show when there is no related post:', 'simpletags'), 'text', 'widefat'),
+		array('rp_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 'widefat'),
+		array('rp_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 'widefat',
 			__('You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'metakeywords' => array(
