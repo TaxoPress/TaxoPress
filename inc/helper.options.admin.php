@@ -94,7 +94,7 @@ return array(
 				'flat' => __('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags'),
 			) ),
 		array('cloud_xformat', __('Tag link format:', 'simpletags'), 'text', 'widefat',
-			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
+			__('You can find markers and explanations <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">in the online documentation.</a>', 'simpletags')),
 		array('cloud_limit_qty', __('Maximum number of tags to display: (default: 45)', 'simpletags'), 'number', 'small-text'),
 		array('cloud_notagstext', __('Enter the text to show when there is no tag:', 'simpletags'), 'text', 'widefat'),
 		array('cloud_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 'widefat'),
@@ -107,7 +107,7 @@ return array(
 		array('cloud_unit', __('The units to display the font sizes with, on tag clouds:', 'simpletags'), 'dropdown', 'pt/px/em/%',
 			__("The font size units option determines the units that the two font sizes use.", 'simpletags')),
 		array('cloud_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 'widefat',
-			__('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
+			__('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'tagspost' => array(
 		array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
@@ -128,10 +128,10 @@ return array(
 			__('You must set zero (0) for display all tags.', 'simpletags')),
 		array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
 		array('tt_xformat', __('Tag link format:', 'simpletags'), 'text', 'widefat',
-			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
+			__('You can find markers and explanations <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">in the online documentation.</a>', 'simpletags')),
 		array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 'widefat'),
 		array('tt_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 'widefat',
-			__('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
+			__('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'relatedposts' => array(
 		array('rp_taxonomy', __('Taxonomy:', 'simpletags'), 'text', 'widefat',
@@ -158,12 +158,12 @@ return array(
 				<li>'.__('<code>random</code> &ndash; Random.', 'simpletags').'</li>
 			</ul>'),
 		array('rp_xformat', __('Post link format:', 'simpletags'), 'text', 'widefat',
-			__('You can find markers and explanations <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">in the online documentation.</a>', 'simpletags')),
+			__('You can find markers and explanations <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">in the online documentation.</a>', 'simpletags')),
 		array('rp_limit_qty', __('Maximum number of related posts to display: (default: 5)', 'simpletags'), 'text', 'regular-text'),
 		array('rp_notagstext', __('Enter the text to show when there is no related post:', 'simpletags'), 'text', 'widefat'),
 		array('rp_title', __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'), 'text', 'widefat'),
 		array('rp_adv_usage', __('<strong>Advanced usage</strong>:', 'simpletags'), 'text', 'widefat',
-			__('You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">documentation</a> for more details.', 'simpletags'))
+			__('You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">documentation</a> for more details.', 'simpletags'))
 	),
 	'metakeywords' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags')

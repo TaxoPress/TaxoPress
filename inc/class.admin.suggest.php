@@ -1,6 +1,6 @@
 <?php
 class SimpleTags_Admin_Suggest {
-	// Application entrypoint -> http://redmine.beapi.fr/projects/show/simple-tags/
+	// Application entrypoint -> https://github.com/herewithme/simple-tags/wiki/
 	const yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 		
 	public function __construct() {
