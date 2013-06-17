@@ -4,8 +4,8 @@
 **Donate link:** http://beapi.fr/donate/  
 **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
 **Requires at least:** 3.0  
-**Tested up to:** 3.3  
-**Stable tag:** 2.2  
+**Tested up to:** 3.5.1
+**Stable tag:** 2.3
 
 **Add some tools for taxonomies :** Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.  
 
@@ -50,6 +50,7 @@ The Simple Tags can be installed in 3 easy steps:
 
 ### Simple Tags is compatible with which WordPress versions ? ###
 
+* 2.3 and upper are compatible only with WordPress 3.5 !
 * 2.0 and upper are compatible only with WordPress 3.0 & 3.1 & 3.2 & 3.3 !
 * 1.7 and upper are compatible only with WordPress 2.8, 2.9 !
 * 1.6.7 and before are compatible with WordPress 2.3, 2.5, 2.6, 2.7
