@@ -65,7 +65,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		extract( $args );
 		
 		$current_taxonomy = self::_get_current_taxonomy($instance);
@@ -155,7 +155,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function update($new_instance, $old_instance) {
+	public function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		
 		foreach ( (array) self::get_fields() as $field => $field_value ) {
@@ -172,7 +172,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	function form( $instance ) {
+	public function form( $instance ) {
 		//Defaults
 		$instance = wp_parse_args( (array) $instance, self::get_fields() );
 		?>
@@ -199,8 +199,8 @@ class SimpleTags_Widget extends WP_Widget {
 					<option <?php selected( $instance['selectionby'], 'name' ); ?> value="name"><?php _e('Name', 'simpletags'); ?></option>
 					<option <?php selected( $instance['selectionby'], 'slug' ); ?> value="slug"><?php _e('Slug', 'simpletags'); ?></option>
 					<option <?php selected( $instance['selectionby'], 'term_group' ); ?> value="term_group"><?php _e('Term group', 'simpletags'); ?></option>
-					<option <?php selected( $instance['selectionby'], 'count' ); ?> value="count"><?php _e('Counter', 'simpletags'); ?></option>
-					<option <?php selected( $instance['selectionby'], 'random' ); ?> value="random"><?php _e('Random (default)', 'simpletags'); ?></option>
+					<option <?php selected( $instance['selectionby'], 'count' ); ?> value="count"><?php _e('Counter (default)', 'simpletags'); ?></option>
+					<option <?php selected( $instance['selectionby'], 'random' ); ?> value="random"><?php _e('Random', 'simpletags'); ?></option>
 				</select>
 			</label>
 		</p>

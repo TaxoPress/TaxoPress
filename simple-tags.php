@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple Tags
-Plugin URI: http://redmine.beapi.fr/projects/show/simple-tags
+Plugin URI: https://github.com/herewithme/simple-tags
 Description: Extended Tagging for WordPress 3.3, 3.4 & 3.5 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, Related Posts etc. NOW Compatible custom post type and custom taxonomy !
 Version: 2.3
 Author: Amaury BALMER

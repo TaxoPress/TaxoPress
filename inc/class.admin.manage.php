@@ -102,7 +102,7 @@ class SimpleTags_Admin_Manage {
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
 			
 			<h2><?php _e('Simple Tags: Manage Terms', 'simpletags'); ?></h2>
-			<p><?php _e('Visit the <a href="http://redmine.beapi.fr/wiki/simple-tags/Theme_integration">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
+			<p><?php _e('Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags'); ?></p>
 			
 			<div class="clear"></div>
 			<div id="term-list">

@@ -8,10 +8,10 @@ class SimpleTags_Admin_Post_Settings {
 	 */
 	public function __construct() {
 		// Save tags from advanced input
-		add_action( 'save_post', 	array(__CLASS__, 'savePostSettings'), 10, 2 );
+		add_action( 'save_post', 	array(__CLASS__, 'save_post'), 10, 2 );
 		
 		// Box for advanced tags
-		add_action( 'add_meta_boxes', array(__CLASS__, 'registerMetaBox'), 10, 1 );
+		add_action( 'add_meta_boxes', array(__CLASS__, 'add_meta_boxes'), 10, 1 );
 	}
 	
 	/**
@@ -21,8 +21,8 @@ class SimpleTags_Admin_Post_Settings {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function registerMetaBox( $post_type ) {
-		add_meta_box('simpletags-settings', __('Simple Tags - Settings', 'simpletags'), array(__CLASS__, 'metaBoxSettings'), $post_type, 'side', 'low' );
+	public static function add_meta_boxes( $post_type ) {
+		add_meta_box('simpletags-settings', __('Simple Tags - Settings', 'simpletags'), array(__CLASS__, 'metabox'), $post_type, 'side', 'low' );
 	}
 	
 	/**
@@ -32,7 +32,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function metaBoxSettings( $post ) {
+	public static function metabox( $post ) {
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
@@ -66,24 +66,20 @@ class SimpleTags_Admin_Post_Settings {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function savePostSettings( $object_id = 0, $object = null ) {
-		if ( !isset($object) || $object == null ) {
-			$object = get_post( $object_id );
-		}
-	
+	public static function save_post( $object_id = 0, $object = null ) {
 		if ( isset($_POST['_meta_autotags']) && $_POST['_meta_autotags'] == 'true' ) {
 			if ( isset($_POST['exclude_autotags']) ) {
-				update_post_meta( $object->ID, '_exclude_autotags', true );
+				update_post_meta( $object_id, '_exclude_autotags', true );
 			} else {
-				delete_post_meta( $object->ID, '_exclude_autotags' );
+				delete_post_meta( $object_id, '_exclude_autotags' );
 			}
 		}
 		
 		if( isset($_POST['_meta_autolink']) && $_POST['_meta_autolink'] == 'true' ) {
 			if ( isset($_POST['exclude_autolinks']) ) {
-				update_post_meta( $object->ID, '_exclude_autolinks', true );
+				update_post_meta( $object_id, '_exclude_autolinks', true );
 			} else {
-				delete_post_meta( $object->ID, '_exclude_autolinks' );
+				delete_post_meta( $object_id, '_exclude_autolinks' );
 			}
 		}
 	}

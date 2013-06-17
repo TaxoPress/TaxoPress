@@ -79,7 +79,7 @@ class SimpleTags_Client {
 	 * @param array $array
 	 * @return boolean
 	 */
-	public static function randomArray( &$array ) {
+	public static function random_array( &$array ) {
 		if ( !is_array($array) || empty($array) ) {
 			return false;
 		}
@@ -99,7 +99,7 @@ class SimpleTags_Client {
 	 *
 	 * @return string
 	 */
-	public static function get_rel_attribute() {
+	public static function get_rel_attribut() {
 		global $wp_rewrite;
 		$rel = ( is_object($wp_rewrite) && $wp_rewrite->using_permalinks() ) ? 'tag' : ''; // Tag ?
 		if ( !empty($rel) ) {
@@ -120,7 +120,7 @@ class SimpleTags_Client {
 	 * @param string $separator
 	 * @return string|array
 	 */
-	public static function outputContent( $html_class= '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '' ) {
+	public static function output_content( $html_class= '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '' ) {
 		if ( empty($content) ) {
 			return ''; // return nothing
 		}
@@ -186,7 +186,7 @@ class SimpleTags_Client {
 	 * @param string $mincolor
 	 * @return string
 	 */
-	public static function formatInternalTag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
+	public static function format_internal_tag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
 		// Need term object
 		$element_loop = str_replace('%tag_link%', esc_url(get_term_link($term, $term->taxonomy)), $element_loop);
 		$element_loop = str_replace('%tag_feed%', esc_url(get_term_feed_link($term->term_id, $term->taxonomy, '')), $element_loop);
@@ -202,14 +202,14 @@ class SimpleTags_Client {
 		// Need max/min/scale and other :)
 		if ( $scale_result !== null ) {
 			$element_loop = str_replace('%tag_size%', 'font-size:'.self::round(($scale_result - $scale_min)*($largest-$smallest)/($scale_max - $scale_min) + $smallest, 2).$unit.';', $element_loop);
-			$element_loop = str_replace('%tag_color%', 'color:'.self::getColorByScale(self::round(($scale_result - $scale_min)*(100)/($scale_max - $scale_min), 2),$mincolor,$maxcolor).';', $element_loop);
+			$element_loop = str_replace('%tag_color%', 'color:'.self::get_color_by_scale(self::round(($scale_result - $scale_min)*(100)/($scale_max - $scale_min), 2),$mincolor,$maxcolor).';', $element_loop);
 			$element_loop = str_replace('%tag_scale%', $scale_result, $element_loop);
 		}
 		
 		// External link
-		$element_loop = str_replace('%tag_technorati%', self::formatExternalTag( 'technorati', $term->name ), $element_loop);
-		$element_loop = str_replace('%tag_flickr%', self::formatExternalTag( 'flickr', $term->name ), $element_loop);
-		$element_loop = str_replace('%tag_delicious%', self::formatExternalTag( 'delicious', $term->name ), $element_loop);
+		$element_loop = str_replace('%tag_technorati%', self::format_external_tag( 'technorati', $term->name ), $element_loop);
+		$element_loop = str_replace('%tag_flickr%', self::format_external_tag( 'flickr', $term->name ), $element_loop);
+		$element_loop = str_replace('%tag_delicious%', self::format_external_tag( 'delicious', $term->name ), $element_loop);
 		
 		return $element_loop;
 	}
@@ -223,7 +223,7 @@ class SimpleTags_Client {
 	 * @param string $max_color
 	 * @return string
 	 */
-	public static function getColorByScale($scale_color, $min_color, $max_color) {
+	public static function get_color_by_scale($scale_color, $min_color, $max_color) {
 		$scale_color = $scale_color / 100;
 		
 		$minr = hexdec(substr($min_color, 1, 2));
@@ -267,7 +267,7 @@ class SimpleTags_Client {
 	 * @param string $tag_name
 	 * @return string
 	 */
-	public static function formatExternalTag( $type = '', $term_name = '' ) {
+	public static function format_external_tag( $type = '', $term_name = '' ) {
 		if ( empty($term_name) ) {
 			return '';
 		}

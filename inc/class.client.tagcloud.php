@@ -114,7 +114,7 @@ class SimpleTags_Client_TagCloud {
 		unset($args, $defaults);
 		
 		if ( empty($terms) ) {
-			return SimpleTags_Client::outputContent( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
+			return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
 		}
 		
 		$counts = $terms_data = array();
@@ -153,7 +153,7 @@ class SimpleTags_Client_TagCloud {
 		$scale = ($maxval > $minval) ? (($maxout - $minout) / ($maxval - $minval)) : 0;
 		
 		// HTML Rel (tag/no-follow)
-		$rel = SimpleTags_Client::get_rel_attribute();
+		$rel = SimpleTags_Client::get_rel_attribut();
 		
 		// Remove color marquer if color = false
 		if ( $color == 'false' ) {
@@ -174,7 +174,7 @@ class SimpleTags_Client_TagCloud {
 		} elseif ( $orderby == 'name' ) {
 			uksort($counts, array( __CLASS__, 'uksortByName'));
 		} else { // rand
-			SimpleTags_Client::randomArray($counts);
+			SimpleTags_Client::random_array($counts);
 		}
 		
 		$order = strtolower($order);
@@ -190,7 +190,7 @@ class SimpleTags_Client_TagCloud {
 			
 			$term = $terms_data[$term_name];
 			$scale_result = (int) (($term->count - $minval) * $scale + $minout);
-			$output[] = SimpleTags_Client::formatInternalTag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			$output[] = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
 		}
 		
 		// Remove unused variables
@@ -198,7 +198,7 @@ class SimpleTags_Client_TagCloud {
 		$terms = array();
 		unset($counts, $terms, $term);
 		
-		return SimpleTags_Client::outputContent( 'st-tag-cloud', $format, $title, $output, $copyright );
+		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright );
 	}
 	
 	/**

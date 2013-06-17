@@ -146,7 +146,7 @@ class SimpleTags_Client_PostTags {
 		}
 		
 		// HTML Rel
-		$rel = SimpleTags_Client::get_rel_attribute();
+		$rel = SimpleTags_Client::get_rel_attribut();
 		
 		// Prepare output
 		foreach ( (array) $terms as $term ) {
@@ -154,7 +154,7 @@ class SimpleTags_Client_PostTags {
 				continue;
 			}
 			
-			$output[] = SimpleTags_Client::formatInternalTag( $xformat, $term, $rel, null );
+			$output[] = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, null );
 		}
 		
 		// Clean memory
@@ -172,6 +172,6 @@ class SimpleTags_Client_PostTags {
 		// Add container
 		$output = $before . $output . $after;
 		
-		return SimpleTags_Client::outputContent( '', 'string', '', $output, $copyright );
+		return SimpleTags_Client::output_content( '', 'string', '', $output, $copyright );
 	}
 }

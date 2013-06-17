@@ -120,10 +120,10 @@ class SimpleTags_Client_Autolinks {
 		self::prepare_auto_link_tags();
 		
 		// Shuffle array
-		SimpleTags_Client::randomArray(self::$link_tags);
+		SimpleTags_Client::random_array(self::$link_tags);
 		
 		// HTML Rel (tag/no-follow)
-		$rel = SimpleTags_Client::get_rel_attribute();
+		$rel = SimpleTags_Client::get_rel_attribut();
 		
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME );
