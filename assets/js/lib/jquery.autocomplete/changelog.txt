@@ -1,0 +1,48 @@
+1.2.2 --AGA
+---
+*Merged agmcleaod's fork: Added failure to the options hash: `failure`
+*Merged borkor's fork: New option not to jump to first or last position: `scrollJumpPosition`
+*Deleted silly console.debug() line left over from testing.
+
+1.2.1 --AGA
+---
+*Added option to activate select list with one click instead of two. `clickFire` is false by default. (Requested/recommendation by fgosfacdjtq.)
+* Added option to forgo input focus on item select. `inputFocus` is set to true by default, but setting it to false in the options will cancel this behavior.
+* Circumvent browser JS bug when user clicked on results list scrollbar and then clicked outside of the list that caused the list to not hide.
+* Changed hijacking of PAGEUP/PAGEDOWN keys to prevent default behavior only when selections list is visible. Helps text navigation inside input element.
+
+1.2 --AGA
+---
+* Use recursive merging when extending setOptions. (Request/recommendation by smarques.)
+
+1.1.1 --AGA
+---
+* Changed hijacking of UP/DOWN arrow keys to prevent default behavior only when selections list is visible. Helps text navigation inside input element.
+
+1.1
+---
+* Added matchContains: "word" option, match only the start of words instead of everywhere
+* Fixed mustMatch to trigger result event when no match was found
+* Fixed the issue where an autocomplete was applied after the field had focus
+* Extended multiple complete to enable editing words not at the end of the field (doesn't work in Opera)
+
+1.0.2
+-----
+* Fixed missing semicolon
+
+1.0.1
+-----
+* Fixed element creation (<ul> to <ul/> and <li> to </li>)
+* Fixed ac_even class (was ac_event)
+* Fixed bgiframe usage: now its really optional
+* Removed the blur-on-return workaround, added a less obtrusive one only for Opera
+* Fixed hold cursor keys: Opera needs keypress, everyone else keydown to scroll through result list when holding cursor key
+* Updated package to jQuery 1.2.5, removing dimensions
+* Fixed multiple-mustMatch: Remove only the last term when no match is found
+* Fixed multiple without mustMatch: Don't select the last active when no match is found (on tab/return)
+* Fixed multiple cursor position: Put cursor at end of input after selecting a value
+
+1.0
+---
+
+* First release.
