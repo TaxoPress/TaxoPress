@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2013-06-17 22:38+0100\n"
-"PO-Revision-Date: 2013-06-17 22:38+0100\n"
+"POT-Creation-Date: 2013-06-17 23:31+0100\n"
+"PO-Revision-Date: 2013-06-17 23:31+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgid "All done! %s terms added."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:272 ../inc/class.admin.manage.php:105
-#: ../inc/class.admin.mass.php:250 ../views/admin/page-settings.php:34
+#: ../inc/class.admin.mass.php:250
 msgid ""
 "Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
@@ -1212,8 +1212,9 @@ msgstr ""
 #: ../inc/helper.options.admin.php:97 ../inc/helper.options.admin.php:131
 #: ../inc/helper.options.admin.php:161
 msgid ""
-"You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">in the online documentation.</a>"
+"You can find markers and explanations <a href=\"https://github.com/"
+"herewithme/simple-tags/wiki/Theme-functions-Integration\">in the online "
+"documentation.</a>"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:98
@@ -1271,8 +1272,9 @@ msgstr ""
 #: ../inc/helper.options.admin.php:110
 msgid ""
 "You can use the same syntax as <code>st_tag_cloud()</code> public static "
-"function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/herewithme/"
+"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"details."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:113
@@ -1343,8 +1345,9 @@ msgstr ""
 #: ../inc/helper.options.admin.php:134
 msgid ""
 "You can use the same syntax as <code>st_the_tags()</code> public static "
-"function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/herewithme/"
+"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"details."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:137
@@ -1405,8 +1408,9 @@ msgstr ""
 #: ../inc/helper.options.admin.php:166
 msgid ""
 "You can use the same syntax as <code>st_related_posts()</code>public static "
-"function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/herewithme/"
+"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"details."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:169 ../inc/helper.options.admin.php:177
@@ -1421,6 +1425,14 @@ msgstr ""
 
 #: ../inc/helper.options.default.php:41
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr ""
+
+#: ../views/admin/page-settings.php:34
+msgid ""
+"Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
+"homepage</a> for further details. If you find a bug, or have a fantastic "
+"idea for this plugin, <a href=\"https://github.com/herewithme/simple-tags/"
+"issues\">ask me</a> !"
 msgstr ""
 
 #: ../views/admin/page-settings.php:41

@@ -43,7 +43,7 @@ class SimpleTags_Client {
 	
 	public static function init_translation() {
 		// Load translations
-		load_plugin_textdomain ( 'simpletags', false, basename(rtrim(dirname(__FILE__), '/')) . '/languages' );
+		load_plugin_textdomain('simpletags', false, basename(STAGS_DIR) . '/languages');
 	}
 	
 	/**

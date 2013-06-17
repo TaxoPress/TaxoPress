@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2013-06-17 22:38+0100\n"
-"PO-Revision-Date: 2013-06-17 22:39+0100\n"
+"POT-Creation-Date: 2013-06-17 23:31+0100\n"
+"PO-Revision-Date: 2013-06-17 23:36+0100\n"
 "Last-Translator: Amaury Balmer <amaury@balmer.fr>\n"
 "Language-Team: Here With Me <amaury@wordpress-fr.net>\n"
 "Language: fr_FR\n"
@@ -186,17 +186,16 @@ msgid "All done! %s terms added."
 msgstr "Terminé ! %s terme(s) ajouté(s)."
 
 #: ../inc/class.admin.autoterms.php:272 ../inc/class.admin.manage.php:105
-#: ../inc/class.admin.mass.php:250 ../views/admin/page-settings.php:34
-#, fuzzy
+#: ../inc/class.admin.mass.php:250
 msgid ""
 "Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
 "idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr ""
-"Visitez le <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags/"
-"francais\">site internet du plugin</a> pour davantage d'informations. Si "
-"vous trouvez un bug, ou avez une idée fantastique pour ce plugin, <a href="
-"\"mailto:amaury@wordpress-fr.net\">contactez-moi</a> !"
+"Visitez le <a href=\"https://github.com/herewithme/simple-tags\">site "
+"internet du plugin</a> pour davantage d'informations. Si vous trouvez un "
+"bug, ou avez une idée fantastique pour ce plugin, <a href=\"mailto:"
+"amaury@wordpress-fr.net\">contactez-moi</a> !"
 
 #: ../inc/class.admin.clickterms.php:30
 msgid "Display click tags"
@@ -369,13 +368,12 @@ msgid "Add"
 msgstr "Ajouter"
 
 #: ../inc/class.admin.manage.php:234
-#, fuzzy
 msgid "Remove rarely used terms"
-msgstr "Supprimer les termes vides"
+msgstr "Supprimer les termes rarement utilisés"
 
 #: ../inc/class.admin.manage.php:236
 msgid "This feature allows you to remove rarely used terms."
-msgstr ""
+msgstr "Cette fonction vous permet de supprimer les termes rarement utilisés."
 
 #: ../inc/class.admin.manage.php:237
 msgid ""
@@ -383,15 +381,17 @@ msgid ""
 "all terms with a counter inferior to 5 will be deleted. The terms with a "
 "counter equal to 5 is keep."
 msgstr ""
+"Vous pouvez spécifier le nombre en-dessous duquel seront supprimés les "
+"termes. Si vous mettez 5, tous les termes avec un compteur inférieur à 5 "
+"seront supprimés. Les termes avec un compteur égal à 5 ​​seront gardés."
 
 #: ../inc/class.admin.manage.php:248
 msgid "Numbers minimum:"
-msgstr ""
+msgstr "Nombres minimum :"
 
 #: ../inc/class.admin.manage.php:257
-#, fuzzy
 msgid "Delete rarely used"
-msgstr "Effacer les termes"
+msgstr "Effacer les termes rarement utilisés"
 
 #: ../inc/class.admin.manage.php:298
 msgid "Technical informations"
@@ -620,13 +620,13 @@ msgstr ""
 "Activez-le dans votre navigateur web si vous le pouvez !"
 
 #: ../inc/class.admin.php:317
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "&copy; Copyright 2007-2013 <a href=\"http://www.herewithme.fr/\" title="
 "\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
 "plugins/simple-tags\">Simple Tags</a> | Version %s"
 msgstr ""
-"&copy; Copyright 2007-2010 <a href=\"http://www.herewithme.fr/\" title="
+"&copy; Copyright 2007-2013 <a href=\"http://www.herewithme.fr/\" title="
 "\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
 "plugins/simple-tags\">Simple Tags</a> | Version %s"
 
@@ -881,9 +881,8 @@ msgid "Term group"
 msgstr "Groupe du terme"
 
 #: ../inc/class.widgets.php:202
-#, fuzzy
 msgid "Counter (default)"
-msgstr "Point (défaut)"
+msgstr "Compteur (défaut)"
 
 #: ../inc/class.widgets.php:210
 msgid "Order for DB selection tags:"
@@ -1119,22 +1118,19 @@ msgstr ""
 
 #: ../inc/helper.options.admin.php:26
 msgid "Type of old input"
-msgstr ""
+msgstr "Format de l'ancien champ"
 
 #: ../inc/helper.options.admin.php:27
-#, fuzzy
 msgid "<code>textarea</code> &ndash; Textarea multiline."
-msgstr "<code>name</code> &ndash; Nom."
+msgstr "<code> textarea </code> &ndash; Champ texte multiligne."
 
 #: ../inc/helper.options.admin.php:28
-#, fuzzy
 msgid "<code>input</code> &ndash; Text input, only one line. (default)"
-msgstr "<code>no</code> &ndash; Nulle part (défaut)"
+msgstr "<code> input </code> &ndash; Champ texte, une ligne seulement (défaut)"
 
 #: ../inc/helper.options.admin.php:30
-#, fuzzy
 msgid "Autocompletion Min Chars"
-msgstr "Autocomplétion avec l'ancien champ"
+msgstr "Minimum de caractères pour l'autocomplétion"
 
 #: ../inc/helper.options.admin.php:31
 msgid ""
@@ -1142,6 +1138,9 @@ msgid ""
 "The default value in Simple Tags 2.0 is 0, prior this version, default "
 "parameter was 1."
 msgstr ""
+"Vous pouvez définir le nombre de caractères à partir du quel la saisie semi-"
+"automatique sera proposée. La valeur par défaut de Simple Tags 2.0 est égale "
+"à 0, avant cette version, le paramètre par défaut était fixé à 1."
 
 #: ../inc/helper.options.admin.php:32
 msgid "Click tags order"
@@ -1156,9 +1155,8 @@ msgid "<code>count-desc</code> &ndash; Most popular."
 msgstr "<code>count-desc</code> &ndash; Les plus populaires."
 
 #: ../inc/helper.options.admin.php:36
-#, fuzzy
 msgid "<code>name-asc</code> &ndash; Alphabetical. (default)"
-msgstr "<code>name-asc</code> &ndash; Ordre alphabétique."
+msgstr "<code>name-asc</code> &ndash; Ordre alphabétique. (défaut)"
 
 #: ../inc/helper.options.admin.php:37 ../inc/helper.options.admin.php:157
 msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
@@ -1334,9 +1332,8 @@ msgid "Order by for tags selection:"
 msgstr "Sens du tri lors de la récupération des mots clefs :"
 
 #: ../inc/helper.options.admin.php:71
-#, fuzzy
 msgid "<code>count</code> &ndash; Counter. (default)"
-msgstr "<code>count</code> &ndash; Compteur."
+msgstr "<code>count</code> &ndash; Compteur. (défaut)"
 
 #: ../inc/helper.options.admin.php:72 ../inc/helper.options.admin.php:83
 msgid "<code>name</code> &ndash; Name."
@@ -1387,12 +1384,13 @@ msgstr ""
 #: ../inc/helper.options.admin.php:97 ../inc/helper.options.admin.php:131
 #: ../inc/helper.options.admin.php:161
 msgid ""
-"You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">in the online documentation.</a>"
+"You can find markers and explanations <a href=\"https://github.com/"
+"herewithme/simple-tags/wiki/Theme-functions-Integration\">in the online "
+"documentation.</a>"
 msgstr ""
-"Vous pouvez trouver les marqueurs et les explications <a href=\"http://"
-"redmine.beapi.fr/wiki/simple-tags/Theme_integration\">sur la documentation "
-"en ligne.</a>"
+"Vous pouvez trouver les marqueurs et les explications <a href=\"https://"
+"github.com/herewithme/simple-tags/wiki/Theme-functions-Integration\">sur la "
+"documentation en ligne.</a>"
 
 #: ../inc/helper.options.admin.php:98
 msgid "Maximum number of tags to display: (default: 45)"
@@ -1456,16 +1454,16 @@ msgid "<strong>Advanced usage</strong>:"
 msgstr "<strong>Utilisation avancée</strong>:"
 
 #: ../inc/helper.options.admin.php:110
-#, fuzzy
 msgid ""
 "You can use the same syntax as <code>st_tag_cloud()</code> public static "
-"function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/herewithme/"
+"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"details."
 msgstr ""
 "Vous pouvez utiliser la même syntaxe que la fonction <code>st_tag_cloud()</"
-"code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine."
-"beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> pour plus "
-"d'informations."
+"code> pour personnaliser l'affichage. Consulter la <a href=\"https://github."
+"com/herewithme/simple-tags/wiki/Theme-functions-Integration\">documentation</"
+"a> pour plus d'informations."
 
 #: ../inc/helper.options.admin.php:113
 msgid "Automatically display tags list into feeds"
@@ -1537,16 +1535,16 @@ msgid "Text to display if no tags found:"
 msgstr "Texte à afficher si aucun mot clef n'a été trouvé:"
 
 #: ../inc/helper.options.admin.php:134
-#, fuzzy
 msgid ""
 "You can use the same syntax as <code>st_the_tags()</code> public static "
-"function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/herewithme/"
+"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"details."
 msgstr ""
 "Vous pouvez utiliser la même syntaxe que la fonction <code>st_the_tags()</"
-"code> pour personnaliser l'affichage. Consulter la <a href=\"http://redmine."
-"beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> pour plus "
-"d'informations."
+"code> pour personnaliser l'affichage. Consulter la <a href=\"https://github."
+"com/herewithme/simple-tags/wiki/Theme-functions-Integration\">documentation</"
+"a> pour plus d'informations."
 
 #: ../inc/helper.options.admin.php:137
 msgid "Taxonomy:"
@@ -1611,16 +1609,16 @@ msgid "Enter the text to show when there is no related post:"
 msgstr "Entrer le texte à afficher lorsqu'il n'y a pas d'articles relatifs:"
 
 #: ../inc/helper.options.admin.php:166
-#, fuzzy
 msgid ""
 "You can use the same syntax as <code>st_related_posts()</code>public static "
-"function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/"
-"simple-tags/Theme_integration\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/herewithme/"
+"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"details."
 msgstr ""
 "Vous pouvez utiliser la même syntaxe que la fonction <code>st_related_posts()"
-"</code> pour personnaliser l'affichage. Consulter la <a href=\"http://"
-"redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> pour "
-"plus d'informations."
+"</code> pour personnaliser l'affichage. Consulter la <a href=\"https://"
+"github.com/herewithme/simple-tags/wiki/Theme-functions-Integration"
+"\">documentation</a> pour plus d'informations."
 
 #: ../inc/helper.options.admin.php:169 ../inc/helper.options.admin.php:177
 msgid ""
@@ -1637,6 +1635,18 @@ msgstr "Aucun mot clef pour cet article."
 #: ../inc/helper.options.default.php:41
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+
+#: ../views/admin/page-settings.php:34
+msgid ""
+"Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
+"homepage</a> for further details. If you find a bug, or have a fantastic "
+"idea for this plugin, <a href=\"https://github.com/herewithme/simple-tags/"
+"issues\">ask me</a> !"
+msgstr ""
+"Visitez le <a href=\"https://github.com/herewithme/simple-tags\">site "
+"internet du plugin</a> pour davantage d'informations. Si vous trouvez un "
+"bug, ou avez une idée fantastique pour ce plugin, <a href=\"https://github."
+"com/herewithme/simple-tags/issues\">contactez-moi</a> !"
 
 #: ../views/admin/page-settings.php:41
 msgid "Do you really want to restore the default options?"
