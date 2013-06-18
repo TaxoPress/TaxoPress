@@ -15,7 +15,7 @@ class SimpleTags_Client_Autolinks {
 			$options['auto_link_priority'] = 12;
 			
 		// Auto link tags
-		add_filter( 'the_posts', 	array(__CLASS__, 'the_posts') );
+		add_filter( 'the_posts', 	array(__CLASS__, 'the_posts'), 10, 2 );
 		add_filter( 'the_content', 	array(__CLASS__, 'the_content'), $options['auto_link_priority'] );
 	}
 	
@@ -25,7 +25,18 @@ class SimpleTags_Client_Autolinks {
 	 * @param array $posts
 	 * @return array
 	 */
-	public static function the_posts( $posts = array() ) {
+	public static function the_posts( $posts, $query ) {
+		// Default value
+		$query->query_vars['post_type'] = empty($query->query_vars['post_type']) ? 'post' : $query->query_vars['post_type'];
+		
+		if ( 
+			!$query->is_main_query() 
+			|| ( isset($query->query_vars['post_type']) && is_string($query->query_vars['post_type']) && $query->query_vars['post_type'] != 'post' ) 
+			|| ( isset($query->query_vars['post_type']) && is_array($query->query_vars['post_type']) && in_array('post', $query->query_vars['post_type']) ) 
+			) {
+			return $posts;
+		}
+		
 		if ( !empty($posts) && is_array($posts) ) {
 			foreach( (array) $posts as $post) {
 				self::$posts[] = (int) $post->ID;
@@ -33,6 +44,7 @@ class SimpleTags_Client_Autolinks {
 			
 			self::$posts = array_unique( self::$posts );
 		}
+		
 		return $posts;
 	}
 	

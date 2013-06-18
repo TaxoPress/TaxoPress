@@ -59,7 +59,7 @@ class SimpleTags_Client {
 	/**
 	 * Add page post type during the query
 	 *
-	 * @param object $query 
+	 * @param WP_Query $query 
 	 * @return void
 	 * @author Amaury Balmer
 	 */
@@ -67,7 +67,7 @@ class SimpleTags_Client {
 		if ( $query->is_tag == true ) {
 			if ( !isset($query->query_vars['post_type']) || $query->query_vars['post_type'] == 'post' ) {
 				$query->query_vars['post_type'] = array('post', 'page'); 
-			} elseif( isset($query->query_vars['post_type']) && is_array($query->query_vars['post_type']) ) {
+			} elseif( isset($query->query_vars['post_type']) && is_array($query->query_vars['post_type']) && in_array('post', $query->query_vars['post_type']) ) {
 				$query->query_vars['post_type'][] = 'page';
 			}
 		}
