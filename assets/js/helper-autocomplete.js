@@ -13,7 +13,7 @@ function initAutoComplete( p_target, p_url, p_min_chars ) {
 		p_width = 200;
 	
 	// Init autocomplete
-	jQuery( ""+p_target ).autocomplete( p_url, {
+	jQuery( ""+p_target ).st_autocomplete( p_url, {
 		width: p_width,
 		multiple: true,
 		matchContains: true,

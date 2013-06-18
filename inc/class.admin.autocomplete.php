@@ -31,9 +31,9 @@ class SimpleTags_Admin_Autocomplete {
 		
 		// Register JS/CSS
 		wp_register_script('jquery-bgiframe',			STAGS_URL.'/assets/js/lib/jquery.bgiframe.js', array('jquery'), '2.1.1');
-		wp_register_script('jquery-autocomplete',		STAGS_URL.'/assets/js/lib/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.2.3');
+		wp_register_script('jquery-st-autocomplete',		STAGS_URL.'/assets/js/lib/jquery.autocomplete/jquery.autocomplete.min.js', array('jquery', 'jquery-bgiframe'), '1.2.3');
 		
-		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/assets/js/helper-autocomplete.js', array('jquery', 'jquery-autocomplete'), STAGS_VERSION);	
+		wp_register_script('st-helper-autocomplete', 	STAGS_URL.'/assets/js/helper-autocomplete.js', array('jquery', 'jquery-st-autocomplete'), STAGS_VERSION);	
 		wp_register_style ('jquery-autocomplete', 		STAGS_URL.'/assets/js/lib/jquery.autocomplete/jquery.autocomplete.css', array(), '1.2.3', 'all' );
 		
 		// Register location

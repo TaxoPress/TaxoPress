@@ -15,7 +15,7 @@
 ;(function($) {
 
 $.fn.extend({
-	autocomplete: function(urlOrData, options) {
+	st_autocomplete: function(urlOrData, options) {
 		var isUrl = typeof urlOrData == "string";
 		options = $.extend({}, $.Autocompleter.defaults, {
 			url: isUrl ? urlOrData : null,

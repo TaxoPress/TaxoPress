@@ -66,6 +66,8 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.3.1
+	* Rename jQuery autocomplete library, add prefix for fix JS conflict (event manager)
 * Version 2.3
 	* Convert all class to STATIC methods
 	* Use error message API (self::displayMessage();)

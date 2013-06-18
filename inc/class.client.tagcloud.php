@@ -5,7 +5,7 @@ class SimpleTags_Client_TagCloud {
 		$options = get_option( STAGS_OPTIONS_NAME );
 		
 		// Embedded tag cloud
-		if ( isset($options['allow_embed_tcloud']) && $options['allow_embed_tcloud'] == 1 ) {
+		if ( isset($options['allow_embed_tcloud']) && (int) $options['allow_embed_tcloud'] == 1 ) {
 			add_shortcode( 'st_tag_cloud', array(__CLASS__, 'shortcode') );
 			add_shortcode( 'st-tag-cloud', array(__CLASS__, 'shortcode') );
 		}
