@@ -42,11 +42,7 @@ class SimpleTags_Client_Autoterms {
 		}
 		
 		if ( $flag == true ) { // Clean cache ?
-			if ( isset($object->post_type) && $object->post_type == 'page' ) {
-				clean_page_cache($post_id);
-			} else {
-				clean_post_cache($post_id);
-			}
+			clean_post_cache($post_id);
 		}
 		
 		return true;
@@ -153,11 +149,7 @@ class SimpleTags_Client_Autoterms {
 			wp_set_object_terms( $object->ID, $terms_to_add, $taxonomy, true );
 			
 			// Clean cache
-			if ( isset($object->post_type) && $object->post_type = 'page' ) {
-				clean_page_cache($object->ID);
-			} else {
-				clean_post_cache($object->ID);
-			}
+			clean_post_cache($object->ID);
 			
 			return true;
 		}

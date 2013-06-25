@@ -121,11 +121,7 @@ class SimpleTags_Admin_Autocomplete {
 			wp_set_object_terms( $post_id, $tags, 'post_tag' );
 			
 			// Clean cache
-			if ( 'page' == $object->post_type ) {
-				clean_page_cache($post_id);
-			} else {
-				clean_post_cache($post_id);
-			}
+			clean_post_cache($post_id);
 			
 			return true;
 		}

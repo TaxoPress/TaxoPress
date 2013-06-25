@@ -60,11 +60,7 @@ class SimpleTags_Admin_Mass {
 					$counter++;
 					
 					// Clean cache
-					if ( SimpleTags_Admin::$post_type == 'page' ) {
-						clean_page_cache($object_id);
-					} else {
-						clean_post_cache($object_id);
-					}
+					clean_post_cache($object_id);
 				}
 				
 				add_settings_error( __CLASS__, __CLASS__, sprintf(__('%1$s %2$s(s) terms updated with success !', 'simpletags'), (int) $counter, strtolower(SimpleTags_Admin::$post_type_name) ), 'updated' );
