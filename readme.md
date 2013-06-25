@@ -5,7 +5,7 @@
 **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
 **Requires at least:** 3.0  
 **Tested up to:** 3.5.1
-**Stable tag:** 2.3
+**Stable tag:** 2.3.1
 
 **Add some tools for taxonomies :** Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.  
 
@@ -75,6 +75,10 @@ The Simple Tags can be installed in 3 easy steps:
 
 ## Changelog ##
 
+* Version 2.3.1
+	* Rename jQuery autocomplete library, add prefix for fix JS conflict (event manager)
+	* Fix OpenCalais suggest tags
+	* Replace clean_page_cache by clean_post_tag
 * Version 2.3
 	* Convert all class to STATIC methods
 	* Use error message API (self::displayMessage();)
