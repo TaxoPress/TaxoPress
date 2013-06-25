@@ -103,16 +103,6 @@ class SimpleTags_Admin_Suggest {
 		}
 	}
 	
-	public static function get_params_xml_opencalais() {
-		return '
-			<c:params xmlns:c="http://s.opencalais.com/1/pred/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-				<c:processingDirectives c:contentType="text/html" c:outputFormat="Text/Simple" c:enableMetadataType="GenericRelations,SocialTags"></c:processingDirectives>
-				<c:userDirectives c:allowDistribution="false" c:allowSearch="false" c:externalID="" c:submitter="Simple Tags"></c:userDirectives>
-				<c:externalMetadata></c:externalMetadata>
-			</c:params>
-		';
-	}
-	
 	/**
 	 * Suggest tags from OpenCalais Service
 	 *
@@ -138,22 +128,28 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 		
-		$reponse = wp_remote_post('http://api.opencalais.com/enlighten/rest/', array('body' => array(
+		$response = wp_remote_post('http://api.opencalais.com/enlighten/rest/', array('body' => array(
 			'licenseID' => $options['opencalais_key'],
 			'content' 	=> $content,
-			'paramsXML' => self::get_params_xml_opencalais()
+			'paramsXML' => self::_get_params_xml_opencalais()
 		)));
 		
-		if( !is_wp_error($reponse) && $reponse != null ) {
-			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
-				$data = $results = array();
-				preg_match('/<CalaisSimpleOutputFormat>(.*?)<\/CalaisSimpleOutputFormat>/s', wp_remote_retrieve_body($reponse), $data );
-				preg_match_all('/<(.*?)>(.*?)<\/(.*?)>/s', $data[1], $results );
-				$data = $results[2];
+		if( !is_wp_error($response) && $response != null ) {
+			if ( wp_remote_retrieve_response_code($response) == 200 ) {
+				$data_raw = json_decode(wp_remote_retrieve_body($response), true);
+				
+				$data = array();
+				if ( isset($data_raw) && is_array($data_raw) ) {
+					foreach( $data_raw as $_data_raw ) {
+						if ( isset($_data_raw['_typeGroup']) && $_data_raw['_typeGroup'] == 'socialTag' ) {
+							$data[] = $_data_raw['name'];
+						}
+					}
+				}
 			}
 		}
 		
-		if ( empty($data) || is_wp_error($reponse) ) {
+		if ( empty($data) || is_wp_error($response) ) {
 			echo '<p>'.__('No results from OpenCalais service.', 'simpletags').'</p>';
 			exit();
 		}
@@ -167,6 +163,16 @@ class SimpleTags_Admin_Suggest {
 		}
 		echo '<div class="clear"></div>';
 		exit();
+	}
+	
+	private static function _get_params_xml_opencalais() {
+		return '
+			<c:params xmlns:c="http://s.opencalais.com/1/pred/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+				<c:processingDirectives c:contentType="text/html" c:outputFormat="application/json" c:enableMetadataType="GenericRelations,SocialTags"></c:processingDirectives>
+				<c:userDirectives c:allowDistribution="false" c:allowSearch="false" c:externalID="" c:submitter="Simple Tags"></c:userDirectives>
+				<c:externalMetadata></c:externalMetadata>
+			</c:params>
+		';
 	}
 	
 	/**
@@ -196,15 +202,15 @@ class SimpleTags_Admin_Suggest {
 		
 		// Build params
 		$data = array();
-		$reponse = wp_remote_post( 'http://access.alchemyapi.com/calls/html/HTMLGetRankedKeywords', array('body' => array(
+		$response = wp_remote_post( 'http://access.alchemyapi.com/calls/html/HTMLGetRankedKeywords', array('body' => array(
 			'apikey' 	 => $options['alchemy_api'],
 			//'url' 		 => ' ',
 			'html' 		 => $content,
 			'outputMode' => 'json'
 		)));
-		if( !is_wp_error($reponse) && $reponse != null ) {
-			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
-				$data = wp_remote_retrieve_body($reponse);
+		if( !is_wp_error($response) && $response != null ) {
+			if ( wp_remote_retrieve_response_code($response) == 200 ) {
+				$data = wp_remote_retrieve_body($response);
 			}
 		}
 		
@@ -250,7 +256,7 @@ class SimpleTags_Admin_Suggest {
 		
 		// Build params
 		$data = array();
-		$reponse = wp_remote_post( 'http://api.zemanta.com/services/rest/0.0/', array('body' => array(
+		$response = wp_remote_post( 'http://api.zemanta.com/services/rest/0.0/', array('body' => array(
 			'method'	=> 'zemanta.suggest',
 			'api_key' 	=> $options['zemanta_key'],
 			'text' 		=> $content,
@@ -258,9 +264,9 @@ class SimpleTags_Admin_Suggest {
 			'return_rdf_links' => 0,
 			'return_images' => 0
 		)));
-		if( !is_wp_error($reponse) && $reponse != null ) {
-			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
-				$data = wp_remote_retrieve_body($reponse);
+		if( !is_wp_error($response) && $response != null ) {
+			if ( wp_remote_retrieve_response_code($response) == 200 ) {
+				$data = wp_remote_retrieve_body($response);
 			}
 		}
 		
@@ -304,10 +310,10 @@ class SimpleTags_Admin_Suggest {
 		$param .= '&output=php'; // Get PHP Array !
 		
 		$data = array();
-		$reponse = wp_remote_post( 'http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction', array('body' =>$param) );
-		if( !is_wp_error($reponse) && $reponse != null ) {
-			if ( wp_remote_retrieve_response_code($reponse) == 200 ) {
-				$data = maybe_unserialize( wp_remote_retrieve_body($reponse) );
+		$response = wp_remote_post( 'http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction', array('body' =>$param) );
+		if( !is_wp_error($response) && $response != null ) {
+			if ( wp_remote_retrieve_response_code($response) == 200 ) {
+				$data = maybe_unserialize( wp_remote_retrieve_body($response) );
 			}
 		}
 		
