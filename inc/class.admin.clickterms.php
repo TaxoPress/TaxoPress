@@ -91,13 +91,10 @@ class SimpleTags_Admin_ClickTags {
 		// Prepare search
 		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
 		
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
-		$options['order_click_tags'] = strtolower($options['order_click_tags']);
+		$order_click_tags = strtolower(SimpleTags_Plugin::get_option_value('order_click_tags'));
 		$order_by = $order = '';
-		switch ( $options['order_click_tags'] ) {
+		switch ( $order_click_tags ) {
 			case 'count-asc':
 				$order_by = 'tt.count';
 				$order = 'ASC';

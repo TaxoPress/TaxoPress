@@ -33,14 +33,11 @@ class SimpleTags_Admin_Post_Settings {
 	 * @author Amaury Balmer
 	 */
 	public static function metabox( $post ) {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Get auto options
 		$auto_options = get_option( STAGS_OPTIONS_NAME_AUTO );
 		
 		// Auto terms for this CPT ?
-		if ( isset($options['active_autotags']) && $options['active_autotags'] == 1 && isset($auto_options[$post->post_type]) && !empty($auto_options[$post->post_type]) ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('active_autotags') == 1 && isset($auto_options[$post->post_type]) && !empty($auto_options[$post->post_type]) ) {
 			$meta_value = get_post_meta( $post->ID, '_exclude_autotags', true );
 			echo '<p>' . "\n";
 				echo '<label><input type="checkbox" name="exclude_autotags" value="true" '.checked($meta_value, true, false).' /> '.__('Disable auto tags ?', 'simpletags').'</label><br />' . "\n";
@@ -49,7 +46,7 @@ class SimpleTags_Admin_Post_Settings {
 		} 
 		
 		$taxonomies = get_object_taxonomies( $post->post_type );
-		if( isset($options['auto_link_tags']) && $options['auto_link_tags'] == '1' && in_array('post_tag', $taxonomies) ) {
+		if( (int) SimpleTags_Plugin::get_option_value('auto_link_tags') == 1 && in_array('post_tag', $taxonomies) ) {
 			$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
 			echo '<p>' . "\n";
 				echo '<label><input type="checkbox" name="exclude_autolinks" value="true" '.checked($meta_value, true, false).' /> '.__('Disable auto links ?', 'simpletags').'</label><br />' . "\n";

@@ -57,6 +57,13 @@ return array(
 			__('Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags')),
 		array('auto_link_priority', __('Priority on hook the_content', 'simpletags'), 'number', 'small-text',
 			__('For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin. Default: 12.', 'simpletags')),
+		array('auto_link_views', __('Enable autolinks into post content for theses views:', 'simpletags'), 'radio',
+			array(
+				'no' => __('<code>no</code> &ndash; Nowhere', 'simpletags'),
+				'all' => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
+				'singular' => __('<code>singular</code> &ndash; Only on your singular view (single post & page) (default).', 'simpletags'),
+			)
+		),
 	),
 	'tagcloud' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')

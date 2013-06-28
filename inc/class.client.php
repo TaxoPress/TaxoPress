@@ -9,23 +9,20 @@ class SimpleTags_Client {
 		// Load translation
 		add_action( 'init', array(__CLASS__, 'init_translation') );
 		
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Add pages in WP_Query
-		if ( isset($options['use_tag_pages']) && $options['use_tag_pages'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('use_tag_pages') == 1 ) {
 			add_action( 'init', array(__CLASS__, 'init'), 11 );
 			add_action( 'parse_query', array(__CLASS__, 'parse_query') );
 		}
 		
 		// Call autolinks ?
-		if ( isset($options['auto_link_tags']) && $options['auto_link_tags'] == '1' ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('auto_link_tags') == 1 ) {
 			require( STAGS_DIR . '/inc/class.client.autolinks.php');
 			new SimpleTags_Client_Autolinks();
 		}
 		
 		// Call related posts ?
-		if ( isset($options['active_related_posts']) && $options['active_related_posts'] == '1' ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('active_related_posts') ==  1 ) {
 			require( STAGS_DIR . '/inc/class.client.related_posts.php');
 			new SimpleTags_Client_RelatedPosts();
 		}

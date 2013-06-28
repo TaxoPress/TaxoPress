@@ -10,13 +10,17 @@ class SimpleTags_Client_Autolinks {
 	 * @author Amaury Balmer
 	 */
 	public function __construct() {
-		$options = get_option( STAGS_OPTIONS_NAME );
-		if ( !isset($options['auto_link_priority']) || (int) $options['auto_link_priority'] == 0 )
-			$options['auto_link_priority'] = 12;
+		$auto_link_priority = SimpleTags_Plugin::get_option_value('auto_link_priority');
+		if ( (int) $auto_link_priority == 0 ) {
+			$auto_link_priority = 12;
+		}
 			
 		// Auto link tags
 		add_filter( 'the_posts', 	array(__CLASS__, 'the_posts'), 10, 2 );
-		add_filter( 'the_content', 	array(__CLASS__, 'the_content'), $options['auto_link_priority'] );
+		
+		if ( SimpleTags_Plugin::get_option_value('auto_link_views') != 'no' ) {
+			add_filter( 'the_content', 	array(__CLASS__, 'the_content'), $auto_link_priority );
+		}
 	}
 	
 	/**
@@ -86,10 +90,7 @@ class SimpleTags_Client_Autolinks {
 	 *
 	 */
 	public static function prepare_auto_link_tags() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
-		$auto_link_min = (int) $options['auto_link_min'];
+		$auto_link_min = (int) SimpleTags_Plugin::get_option_value('auto_link_min');
 		if ( $auto_link_min == 0 ) {
 			$auto_link_min = 1;
 		}
@@ -112,10 +113,16 @@ class SimpleTags_Client_Autolinks {
 	public static function the_content( $content = '' ) {
 		global $post;
 		
+		// Show only on singular view ? Check context
+		if ( SimpleTags_Plugin::get_option_value('auto_link_views') == 'singular' && !is_singular() ) {
+			return $content;
+		}
+		
 		// user preference for this post ?
 		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
-		if ( !empty($meta_value) )
+		if ( !empty($meta_value) ) {
 			return $content;
+		}
 		
 		// Get currents tags if no exists
 		self::prepare_auto_link_tags();
@@ -126,17 +133,14 @@ class SimpleTags_Client_Autolinks {
 		// HTML Rel (tag/no-follow)
 		$rel = SimpleTags_Client::get_rel_attribut();
 		
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// only continue if the database actually returned any links
 		if ( isset(self::$link_tags) && is_array(self::$link_tags) && count(self::$link_tags) > 0 ) {
 			// Case option ?
-			$case = ( $options['auto_link_case'] == 1 ) ? 'i' : '';
-			$strpos_fnc = $options['auto_link_case'] ? 'stripos' : 'strpos';
+			$case = ( (int) SimpleTags_Plugin::get_option_value('auto_link_case') == 1 ) ? 'i' : '';
+			$strpos_fnc = SimpleTags_Plugin::get_option_value('auto_link_case') ? 'stripos' : 'strpos';
 			
 			// Prepare exclude terms array
-			$excludes_terms = explode( ',', $options['auto_link_exclude'] );
+			$excludes_terms = explode( ',', SimpleTags_Plugin::get_option_value('auto_link_exclude') );
 			if ( $excludes_terms == false ) {
 				$excludes_terms = array();
 			} else {
@@ -190,7 +194,7 @@ class SimpleTags_Client_Autolinks {
 							if ($anchor_level == 0) { // linkify if not inside anchor tags
 								if ( preg_match($match, $token) ) { // use preg_match for compatibility with PHP 4
 									$j++;
-									if ( $j <= $options['auto_link_max_by_tag'] ) {// Limit replacement at 1 by default, or options value !
+									if ( $j <= SimpleTags_Plugin::get_option_value('auto_link_max_by_tag') ) {// Limit replacement at 1 by default, or options value !
 										$token = preg_replace($match, $substitute, $token); // only PHP 5 supports calling preg_replace with 5 arguments
 									}
 									$must_tokenize = true; // re-tokenize next time around
@@ -209,7 +213,7 @@ class SimpleTags_Client_Autolinks {
 				}
 				
 				$z++;
-				if ( $z > (int) $options['auto_link_max_by_post'] )
+				if ( $z > (int) SimpleTags_Plugin::get_option_value('auto_link_max_by_post') )
 					break;
 			}
 		}

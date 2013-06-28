@@ -7,11 +7,8 @@ class SimpleTags_Client_RelatedPosts {
 	 * @author Amaury Balmer
 	 */
 	public function __construct() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
-		if ( (isset($options['rp_embedded']) && $options['rp_embedded'] != 'no') || (isset($options['rp_feed']) && $options['rp_feed'] == 1) ) {
+		if ( (SimpleTags_Plugin::get_option_value('rp_embedded') != 'no') || (SimpleTags_Plugin::get_option_value('rp_feed') == 1) ) {
 			add_filter('the_content', array(__CLASS__, 'the_content'), 999993);
 		}
 	}
@@ -23,16 +20,16 @@ class SimpleTags_Client_RelatedPosts {
 	 * @return string
 	 */
 	public static function the_content( $content = '' ) {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
+		// Get option
+		$rp_embedded = SimpleTags_Plugin::get_option_value('rp_embedded');
 		
 		$marker = false;
 		if ( is_feed() ) {
-			if ( $options['rp_feed'] == '1' ) {
+			if ( SimpleTags_Plugin::get_option_value('rp_feed') == '1' ) {
 				$marker = true;
 			}
-		} elseif ( isset($options['rp_embedded']) ) {
-			switch ( $options['rp_embedded'] ) {
+		} elseif ( !empty($rp_embedded) ) {
+			switch ( $rp_embedded ) {
 				case 'blogonly' :
 					$marker = ( is_feed() ) ? false : true;
 					break;
@@ -74,7 +71,7 @@ class SimpleTags_Client_RelatedPosts {
 		global $wpdb;
 		
 		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
+		$options = SimpleTags_Plugin::get_option();
 		
 		$defaults = array(
 			'taxonomy' => 'post_tag',

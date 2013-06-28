@@ -19,6 +19,7 @@ return array(
 	'auto_link_max_by_post' => 10,
 	'auto_link_max_by_tag'  => 1,
 	'auto_link_priority'  	=> 12,
+	'auto_link_views'		=> 'singular',
 	
 	// Administration
 	'order_click_tags' 	=> 'name-asc',

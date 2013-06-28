@@ -108,14 +108,11 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function ajax_opencalais() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		status_header( 200 );
 		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
-		if ( empty($options['opencalais_key']) ) {
+		if ( SimpleTags_Plugin::get_option_value('opencalais_key') == '' ) {
 			echo '<p>'.__('OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
 			exit();
 		}
@@ -129,7 +126,7 @@ class SimpleTags_Admin_Suggest {
 		}
 		
 		$response = wp_remote_post('http://api.opencalais.com/enlighten/rest/', array('body' => array(
-			'licenseID' => $options['opencalais_key'],
+			'licenseID' => SimpleTags_Plugin::get_option_value('opencalais_key'),
 			'content' 	=> $content,
 			'paramsXML' => self::_get_params_xml_opencalais()
 		)));
@@ -180,14 +177,11 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function ajax_alchemy_api() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		status_header( 200 );
 		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
-		if ( empty($options['alchemy_api']) ) {
+		if ( SimpleTags_Plugin::get_option_value('alchemy_api') == '' ) {
 			echo '<p>'.__('AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
 			exit();
 		}
@@ -203,7 +197,7 @@ class SimpleTags_Admin_Suggest {
 		// Build params
 		$data = array();
 		$response = wp_remote_post( 'http://access.alchemyapi.com/calls/html/HTMLGetRankedKeywords', array('body' => array(
-			'apikey' 	 => $options['alchemy_api'],
+			'apikey' 	 => SimpleTags_Plugin::get_option_value('alchemy_api'),
 			//'url' 		 => ' ',
 			'html' 		 => $content,
 			'outputMode' => 'json'
@@ -234,14 +228,11 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function ajax_zemanta() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		status_header( 200 );
 		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		// API Key ?
-		if ( empty($options['zemanta_key']) ) {
+		if ( SimpleTags_Plugin::get_option_value('zemanta_key') == '' ) {
 			echo '<p>'.__('Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
 			exit();
 		}
@@ -255,10 +246,9 @@ class SimpleTags_Admin_Suggest {
 		}
 		
 		// Build params
-		$data = array();
 		$response = wp_remote_post( 'http://api.zemanta.com/services/rest/0.0/', array('body' => array(
 			'method'	=> 'zemanta.suggest',
-			'api_key' 	=> $options['zemanta_key'],
+			'api_key' 	=> SimpleTags_Plugin::get_option_value('zemanta_key'),
 			'text' 		=> $content,
 			'format' 	=> 'json',
 			'return_rdf_links' => 0,

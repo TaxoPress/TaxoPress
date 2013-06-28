@@ -161,12 +161,10 @@ class SimpleTags_Admin_Autocomplete {
 	 */
 	public static function metabox( $post ) {
 		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		if ( !isset($options['autocomplete_min']) )
-			$options['autocomplete_min'] = 0;
+		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value('autocomplete_min');
 		?>
 		<p>
-			<?php if ( isset($options['autocomplete_type']) && $options['autocomplete_type'] == 'textarea' ) : ?>
+			<?php if ( SimpleTags_Plugin::get_option_value('autocomplete_type') == 'textarea' ) : ?>
 				<textarea class="widefat" name="adv-tags-input" id="adv-tags-input" rows="3" cols="5"><?php echo SimpleTags_Admin::getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
 			<?php else : ?>
 				<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input" value="<?php echo esc_attr(SimpleTags_Admin::getTermsToEdit( 'post_tag', $post->ID )); ?>" />
@@ -176,7 +174,7 @@ class SimpleTags_Admin_Autocomplete {
 		</p>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', <?php echo (int) $options['autocomplete_min']; ?> );
+			initAutoComplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php
@@ -190,14 +188,12 @@ class SimpleTags_Admin_Autocomplete {
 	 * @author Amaury Balmer
 	 */
 	public static function auto_terms_js( $taxonomy = '' ) {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		if ( !isset($options['autocomplete_min']) )
-			$options['autocomplete_min'] = 0;
+		// Get option
+		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value('autocomplete_min');
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo (int) $options['autocomplete_min']; ?> );
+			initAutoComplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php
@@ -211,14 +207,12 @@ class SimpleTags_Admin_Autocomplete {
 	 * @author Amaury Balmer
 	 */
 	public static function manage_terms_js( $taxonomy = '' ) {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		if ( !isset($options['autocomplete_min']) )
-			$options['autocomplete_min'] = 0;
+		// Get option
+		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value('autocomplete_min');
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo (int) $options['autocomplete_min']; ?> );
+			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php
@@ -232,14 +226,12 @@ class SimpleTags_Admin_Autocomplete {
 	 * @author Amaury Balmer
 	 */
 	public static function mass_terms_js( $taxonomy = '' ) {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		if ( !isset($options['autocomplete_min']) )
-			$options['autocomplete_min'] = 0;
+		// Get option
+		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value('autocomplete_min');
 		?>
 		<script type="text/javascript">
 			<!--
-			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo (int) $options['autocomplete_min']; ?> );
+			initAutoComplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php

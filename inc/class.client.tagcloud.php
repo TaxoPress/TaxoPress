@@ -1,11 +1,8 @@
 <?php
 class SimpleTags_Client_TagCloud {
 	public function __construct() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Embedded tag cloud
-		if ( isset($options['allow_embed_tcloud']) && (int) $options['allow_embed_tcloud'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('allow_embed_tcloud') == 1 ) {
 			add_shortcode( 'st_tag_cloud', array(__CLASS__, 'shortcode') );
 			add_shortcode( 'st-tag-cloud', array(__CLASS__, 'shortcode') );
 		}
@@ -72,7 +69,7 @@ class SimpleTags_Client_TagCloud {
 		);
 		
 		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
+		$options = SimpleTags_Plugin::get_option();
 		
 		// Get values in DB
 		$defaults['taxonomy'] 	 = $options['cloud_taxonomy'];
@@ -470,9 +467,6 @@ class SimpleTags_Client_TagCloud {
 		
 		// ST Features : Limit posts date
 		if ( $limit_days != 0 ) {
-			// Get options
-			$options = get_option( STAGS_OPTIONS_NAME );
-			
 			$where .= " AND tr.object_id IN ( ";
 				$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND ".(is_page_have_tags() ? "p.post_type IN('page', 'post')" : "post_type = 'post'")." AND p.post_date_gmt > '" .date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ). "'";
 			$where .= " ) ";

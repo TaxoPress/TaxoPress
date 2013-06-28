@@ -19,9 +19,6 @@ class SimpleTags_Admin {
 		// DB Upgrade ?
 		self::upgrade();
 		
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Which taxo ?
 		self::registerDetermineTaxonomy();
 		
@@ -32,37 +29,37 @@ class SimpleTags_Admin {
 		add_action('admin_enqueue_scripts', array(__CLASS__, 'admin_enqueue_scripts'));
 		
 		// Load custom part of plugin depending option
-		if ( isset($options['use_suggested_tags']) && $options['use_suggested_tags'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('use_suggested_tags') == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.suggest.php');
 			new SimpleTags_Admin_Suggest();
 		}
 		
-		if ( isset($options['use_click_tags']) && $options['use_click_tags'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('use_click_tags') == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.clickterms.php');
 			new SimpleTags_Admin_ClickTags();
 		}
 		
-		if ( isset($options['use_autocompletion']) && $options['use_autocompletion'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('use_autocompletion') == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.autocomplete.php');
 			new SimpleTags_Admin_Autocomplete();
 		}
 		
-		if ( isset($options['active_mass_edit']) && $options['active_mass_edit'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('active_mass_edit') == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.mass.php');
 			new SimpleTags_Admin_Mass();
 		}
 		
-		if ( isset($options['active_manage']) && $options['active_manage'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('active_manage') == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.manage.php');
 			new SimpleTags_Admin_Manage();
 		}
 		
-		if ( isset($options['active_autotags']) && $options['active_autotags'] == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('active_autotags') == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.autoterms.php');
 			new SimpleTags_Admin_AutoTags();
 		}
 		
-		if ( (isset($options['active_autotags']) && $options['active_autotags'] == 1) || (isset($options['auto_link_tags']) && $options['auto_link_tags'] == '1') ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('active_autotags') == 1 || (int) SimpleTags_Plugin::get_option_value('auto_link_tags') == '1' ) {
 			require( STAGS_DIR . '/inc/class.admin.post.php');
 			new SimpleTags_Admin_Post_Settings();
 		}
@@ -236,10 +233,8 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function page_options() {
-		// Get default & current options and merge
-		$default_options = (array) include( STAGS_DIR . '/inc/helper.options.default.php' );
-		$options = (array) get_option( STAGS_OPTIONS_NAME );
-		$options = array_merge( $default_options, $options );
+		// Get options
+		$options = SimpleTags_Plugin::get_option();
 		
 		// Update or reset options
 		if ( isset($_POST['updateoptions']) ) {
@@ -251,14 +246,13 @@ class SimpleTags_Admin {
 					$options[$key] = $newval;
 				}
 			}
-			update_option( STAGS_OPTIONS_NAME, $options );
+			SimpleTags_Plugin::set_option( $options );
 			
 			add_settings_error( __CLASS__, __CLASS__, __('Options saved', 'simpletags'), 'updated' );
 		} elseif ( isset($_POST['reset_options']) ) {
 			check_admin_referer('updateresetoptions-simpletags');
 			
-			$options = (array) include( STAGS_DIR . '/inc/helper.options.default.php' );
-			update_option( STAGS_OPTIONS_NAME, $options );
+			SimpleTags_Plugin::set_default_option();
 			
 			add_settings_error( __CLASS__, __CLASS__, __('Simple Tags options resetted to default options!', 'simpletags'), 'updated' );
 		}
@@ -327,7 +321,7 @@ class SimpleTags_Admin {
 	 */
 	public static function print_options( $option_data ) {
 		// Get options
-		$option_actual = (array) get_option( STAGS_OPTIONS_NAME );
+		$option_actual = SimpleTags_Plugin::get_option();
 		
 		// Generate output
 		$output = '';
@@ -446,6 +440,7 @@ class SimpleTags_Admin {
 	
 	/**
 	 * This method allow to check if the DB is up to date, and if a upgrade is need for options
+	 * TODO, useful or delete ?
 	 *
 	 * @return void
 	 * @author Amaury Balmer

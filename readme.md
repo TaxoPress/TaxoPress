@@ -75,6 +75,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 ## Changelog ##
 
+* Version 2.3.2
+	* Move all get_option request into plugin class, use static
+	* Add option for limit autolinks to singular view (default setting, you need change this setting in DB for enable autolinks into all views)
 * Version 2.3.1
 	* Rename jQuery autocomplete library, add prefix for fix JS conflict (event manager)
 	* Fix OpenCalais suggest tags

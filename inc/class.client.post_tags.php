@@ -1,11 +1,8 @@
 <?php
 class SimpleTags_Client_PostTags {
 	public function __construct() {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
-		
 		// Add adv post tags in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
-		if ( $options['tt_embedded'] != 'no' || $options['tt_feed'] == 1 ) {
+		if ( SimpleTags_Plugin::get_option_value('tt_embedded') != 'no' || SimpleTags_Plugin::get_option_value('tt_feed') == 1 ) {
 			add_filter('the_content', array(__CLASS__, 'the_content'), 999992);
 		}
 	}
@@ -17,16 +14,16 @@ class SimpleTags_Client_PostTags {
 	 * @return string
 	 */
 	public static function the_content( $content = '' ) {
-		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
+		// Get option
+		$tt_embedded = SimpleTags_Plugin::get_option_value('tt_embedded');
 		
 		$marker = false;
 		if ( is_feed() ) {
-			if ( $options['tt_feed'] == '1' ) {
+			if ( SimpleTags_Plugin::get_option_value('tt_feed') == '1' ) {
 				$marker = true;
 			}
-		} elseif ( isset($options['tt_embedded']) ) {
-			switch ( $options['tt_embedded'] ) {
+		} elseif ( !empty($tt_embedded) ) {
+			switch ( $tt_embedded ) {
 				case 'blogonly' :
 					$marker = ( is_feed() ) ? false : true;
 					break;
@@ -66,7 +63,7 @@ class SimpleTags_Client_PostTags {
 	 */
 	public static function extendedPostTags( $args = '', $copyright = true ) {
 		// Get options
-		$options = get_option( STAGS_OPTIONS_NAME );
+		$options = SimpleTags_Plugin::get_option();
 		
 		// Default values
 		$defaults = array(
