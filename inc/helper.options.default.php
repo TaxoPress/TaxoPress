@@ -20,6 +20,7 @@ return array(
 	'auto_link_max_by_tag'  => 1,
 	'auto_link_priority'  	=> 12,
 	'auto_link_views'		=> 'singular',
+	'auto_link_dom'			=> 0,
 	
 	// Administration
 	'order_click_tags' 	=> 'name-asc',

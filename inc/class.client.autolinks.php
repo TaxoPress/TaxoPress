@@ -166,11 +166,11 @@ class SimpleTags_Client_Autolinks {
 				continue;
 			}
 			
-			
-			self::_replace_by_links_regexp($content, $term_name, $term_link, $case, $rel);
-
-			//self::_replace_by_links_dom($content, $term_name, $term_link, $case, $rel);
-
+			if ( (int) SimpleTags_Plugin::get_option_value('auto_link_dom') == 1 && class_exists('DOMDocument') && class_exists('DOMXPath') ) {
+				self::_replace_by_links_dom($content, $term_name, $term_link, $case, $rel);
+			} else {
+				self::_replace_by_links_regexp($content, $term_name, $term_link, $case, $rel);
+			}
 			
 			$z++;
 			if ($z > (int) SimpleTags_Plugin::get_option_value('auto_link_max_by_post'))
@@ -183,6 +183,7 @@ class SimpleTags_Client_Autolinks {
 
 	/**
 	 * Replace text by link, except HTML tag, and already text into link, use DOMdocument.
+	 * Code take from : http://stackoverflow.com/questions/4044812/regex-domdocument-match-and-replace-text-not-in-a-link
 	 * 
 	 * @param string $content
 	 * @param string $search
@@ -194,10 +195,12 @@ class SimpleTags_Client_Autolinks {
 		$dom = new DOMDocument();
 		
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
-		$dom->loadHtml(mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8"));
-
+		$result = $dom->loadHtml(mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8"));
+		if( $result === false ) {
+			return false;
+		}
+		
 		$xpath = new DOMXPath($dom);
-
 		foreach ($xpath->query('//text()[not(ancestor::a)]') as $node) {
 			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr(sprintf(__('Posts tagged with %s', 'simpletags'), $search)) . "\">$search</a>";
 			
