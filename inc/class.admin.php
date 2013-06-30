@@ -184,9 +184,6 @@ class SimpleTags_Admin {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 		
-		// Library JS
-		wp_register_script('jquery-cookie', STAGS_URL.'/assets/js/lib/jquery.cookie.js', array('jquery'), '1.0.0');
-		
 		// Helper simple tags
 		wp_register_script('st-helper-add-tags', STAGS_URL.'/assets/js/helper-add-tags.js', array('jquery'), STAGS_VERSION);
 		wp_register_script('st-helper-options', STAGS_URL.'/assets/js/helper-options.js', array('jquery'), STAGS_VERSION);
@@ -210,7 +207,6 @@ class SimpleTags_Admin {
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
 		if ( isset($_GET['page']) && $_GET['page'] == 'st_options' ) {
 			wp_enqueue_script('jquery-ui-tabs');
-			wp_enqueue_script('jquery-cookie');
 			wp_enqueue_script('st-helper-options');
 		}
 	}

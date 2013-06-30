@@ -3,7 +3,7 @@ jQuery(document).ready(function() {
 	jQuery("#st-clicks-tags .inside").html('<a href="#st_click_tags" id="open_clicktags">'+stHelperClickTagsL10n.show_txt+'</a><a href="#st_click_tags" id="close_clicktags">'+stHelperClickTagsL10n.hide_txt+'</a><div class="container_clicktags"></div>');
 	
 	// Show click tags
-	jQuery("a#open_clicktags").click(function(event) {
+	jQuery("#open_clicktags").click(function(event) {
 		event.preventDefault();
 	
 		jQuery("#st-clicks-tags .container_clicktags")
@@ -13,20 +13,20 @@ jQuery(document).ready(function() {
 					event.preventDefault();
 					addTag(this.innerHTML);
 				});
-				jQuery("a#open_clicktags").hide();
-				jQuery("a#close_clicktags").show();
+				jQuery("#open_clicktags").hide();
+				jQuery("#close_clicktags").show();
 			});
 		
 		return false;
 	});
 	
 	// Hide click tags
-	jQuery("a#close_clicktags").click(function(event) {
+	jQuery("#close_clicktags").click(function(event) {
 		event.preventDefault();
 		
 		jQuery("#st-clicks-tags .container_clicktags").fadeOut('slow', function() {
-			jQuery("a#open_clicktags").show();
-			jQuery("a#close_clicktags").hide();
+			jQuery("#open_clicktags").show();
+			jQuery("#close_clicktags").hide();
 		});
 		return false;
 	});
