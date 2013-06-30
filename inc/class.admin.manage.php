@@ -8,13 +8,13 @@ class SimpleTags_Admin_Manage {
 	 */
 	public function __construct() {
 		// Admin menu
-		add_action('admin_menu', array(__CLASS__, 'adminMenu'));
+		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
 		
 		// Register taxo, parent method...
 		SimpleTags_Admin::registerDetermineTaxonomy();
 		
 		// Javascript
-		add_action('admin_enqueue_scripts', array(__CLASS__, 'initJavaScript'), 11);
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'admin_enqueue_scripts'), 11);
 	}
 
 	/**
@@ -23,9 +23,7 @@ class SimpleTags_Admin_Manage {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function initJavaScript() {
-		global $pagenow;
-		
+	public static function admin_enqueue_scripts() {
 		wp_register_script('st-helper-manage', STAGS_URL.'/assets/js/helper-manage.js', array('jquery'), STAGS_VERSION);
 		
 		// add JS for manage click tags
@@ -40,8 +38,8 @@ class SimpleTags_Admin_Manage {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function adminMenu() {
-		add_management_page( __('Simple Terms: Manage Terms', 'simpletags'), __('Manage Terms', 'simpletags'), 'simple_tags', 'st_manage', array(__CLASS__, 'pageManageTags'));
+	public static function admin_menu() {
+		add_management_page( __('Simple Terms: Manage Terms', 'simpletags'), __('Manage Terms', 'simpletags'), 'simple_tags', 'st_manage', array(__CLASS__, 'page_manage_tags'));
 	}
 	
 	/**
@@ -50,7 +48,7 @@ class SimpleTags_Admin_Manage {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function pageManageTags() {
+	public static function page_manage_tags() {
 		// Control Post data
 		if ( isset($_POST['term_action']) ) {
 			if ( !wp_verify_nonce($_POST['term_nonce'], 'simpletags_admin') ) { // Origination and intention

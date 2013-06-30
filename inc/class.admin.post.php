@@ -8,7 +8,7 @@ class SimpleTags_Admin_Post_Settings {
 	 */
 	public function __construct() {
 		// Save tags from advanced input
-		add_action( 'save_post', 	array(__CLASS__, 'save_post'), 10, 2 );
+		add_action( 'save_post', 	array(__CLASS__, 'save_post'), 10, 1 );
 		
 		// Box for advanced tags
 		add_action( 'add_meta_boxes', array(__CLASS__, 'add_meta_boxes'), 10, 1 );
@@ -58,12 +58,11 @@ class SimpleTags_Admin_Post_Settings {
 	/**
 	 * Save this settings in post meta, delete if no exclude, clean DB :)
 	 *
-	 * @param integer $object_id 
-	 * @param object $object 
+	 * @param integer $object_id
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function save_post( $object_id = 0, $object = null ) {
+	public static function save_post( $object_id = 0 ) {
 		if ( isset($_POST['_meta_autotags']) && $_POST['_meta_autotags'] == 'true' ) {
 			if ( isset($_POST['exclude_autotags']) ) {
 				update_post_meta( $object_id, '_exclude_autotags', true );

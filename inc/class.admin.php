@@ -490,7 +490,7 @@ class SimpleTags_Admin {
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = %s
-				AND name LIKE %s
+				AND t.name LIKE %s
 				ORDER BY $order_by $order
 			", $taxonomy, '%'.$search.'%' ) );
 		} else {

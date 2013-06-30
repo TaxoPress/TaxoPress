@@ -3,10 +3,10 @@ class SimpleTags_Admin_Mass {
 	
 	public function __construct() {
 		// Ajax action, JS Helper and admin action
-		add_action('admin_init', array(__CLASS__, 'checkFormMassEdit'));
+		add_action('admin_init', array(__CLASS__, 'admin_init'));
 		
 		// Admin menu
-		add_action('admin_menu', array(__CLASS__, 'adminMenu'));
+		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
 		
 		// Register taxo, parent method...
 		SimpleTags_Admin::registerDetermineTaxonomy();
@@ -18,7 +18,7 @@ class SimpleTags_Admin_Mass {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function adminMenu() {
+	public static function admin_menu() {
 		add_management_page( __('Simple Terms: Mass Edit Terms', 'simpletags'), __('Mass Edit Terms', 'simpletags'), 'simple_tags', 'st_mass_terms', array(__CLASS__, 'pageMassEditTags'));
 	}
 	
@@ -27,7 +27,7 @@ class SimpleTags_Admin_Mass {
 	 *
 	 * @param string $type
 	 */
-	public static function checkFormMassEdit() {
+	public static function admin_init() {
 		if ( !current_user_can('simple_tags') ) {
 			return false;
 		}

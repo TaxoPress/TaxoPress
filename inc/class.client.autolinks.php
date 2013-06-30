@@ -191,7 +191,7 @@ class SimpleTags_Client_Autolinks {
 	 * @param string $case
 	 * @param string $rel
 	 */
-	public static function _replace_by_links_dom(&$content, $search = '', $replace = '', $case = '', $rel = '') {
+	private static function _replace_by_links_dom(&$content, $search = '', $replace = '', $case = '', $rel = '') {
 		$dom = new DOMDocument();
 		
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
@@ -228,7 +228,7 @@ class SimpleTags_Client_Autolinks {
 	 * @param string $case
 	 * @param string $rel
 	 */
-	public static function _replace_by_links_regexp(&$content, $search = '', $replace = '', $case = '', $rel = '') {
+	private static function _replace_by_links_regexp(&$content, $search = '', $replace = '', $case = '', $rel = '') {
 		$must_tokenize = true; // will perform basic tokenization
 		$tokens = null; // two kinds of tokens: markup and text
 

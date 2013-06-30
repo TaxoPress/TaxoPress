@@ -331,7 +331,7 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function ajax_suggest_local() {
-		status_header( 200 ); // Send good header HTTP
+		status_header( 200 );
 		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 		
 		if ( ((int) wp_count_terms('post_tag', 'ignore_empty=false')) == 0) { // No tags to suggest
