@@ -59,7 +59,7 @@ class SimpleTags_Admin {
 			new SimpleTags_Admin_AutoTags();
 		}
 		
-		if ( (int) SimpleTags_Plugin::get_option_value('active_autotags') == 1 || (int) SimpleTags_Plugin::get_option_value('auto_link_tags') == '1' ) {
+		if ( (int) SimpleTags_Plugin::get_option_value('active_autotags') == 1 || (int) SimpleTags_Plugin::get_option_value('auto_link_tags') == 1 ) {
 			require( STAGS_DIR . '/inc/class.admin.post.php');
 			new SimpleTags_Admin_Post_Settings();
 		}

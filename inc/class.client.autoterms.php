@@ -23,19 +23,22 @@ class SimpleTags_Client_Autoterms {
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
 		
 		// Auto terms for this CPT ?
-		if ( !isset($options[$object->post_type]) || empty($options[$object->post_type]) )
+		if ( !isset($options[$object->post_type]) || empty($options[$object->post_type]) ) {
 			return false;
+		}
 			
 		// user preference for this post ?
 		$meta_value = get_post_meta( $object->ID, '_exclude_autotags', true );
-		if ( !empty($meta_value) )
+		if ( !empty($meta_value) ) {
 			return false;
+		}
 		
 		// Loop option for find if autoterms is actived on any taxo
 		$flag = false;
 		foreach( $options[$object->post_type] as $taxo_name => $local_options ) {
-			if ( !isset($local_options['use_auto_terms']) || $local_options['use_auto_terms'] != '1' )
+			if ( !isset($local_options['use_auto_terms']) || (int) $local_options['use_auto_terms'] != 1 ) {
 				continue;
+			}
 			
 			self::auto_terms_post( $object, $taxo_name, $local_options );
 			$flag = true;
@@ -74,8 +77,9 @@ class SimpleTags_Client_Autoterms {
 		
 		// Merge title + content + excerpt to compare with terms
 		$content = $object->post_content. ' ' . $object->post_title;
-		if ( isset($object->post_excerpt) )
+		if ( isset($object->post_excerpt) ) {
 		 	$content .= ' ' . $object->post_excerpt;
+		}
 		
 		$content = trim(strip_tags($content));
 		if ( empty($content) ) {
@@ -86,15 +90,17 @@ class SimpleTags_Client_Autoterms {
 		if ( isset($options['auto_list']) ) {
 			$terms = (array) maybe_unserialize($options['auto_list']);
 			foreach ( $terms as $term ) {
-				if ( !is_string($term) && empty($term) )
+				if ( !is_string($term) && empty($term) ) {
 				 	continue;
+				}
 				
 				$term = trim($term);
 				
 				// Whole word ?
 				if ( (int) $options['only_full_word'] == 1 ) {
-					if ( preg_match("/\b".$term."\b/i", $content) )
+					if ( preg_match("/\b".$term."\b/i", $content) ) {
 						$terms_to_add[] = $term;
+					}
 				} elseif ( stristr($content, $term) ) {
 					$terms_to_add[] = $term;
 				}
@@ -115,8 +121,9 @@ class SimpleTags_Client_Autoterms {
 			foreach ( $terms as $term ) {
 				$term = stripslashes($term);
 				
-				if ( !is_string($term) && empty($term) )
+				if ( !is_string($term) && empty($term) ) {
 				 	continue;
+				}
 				
 				// Whole word ?
 				if ( (int) $options['only_full_word'] == 1 ) {

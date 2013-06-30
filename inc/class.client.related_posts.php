@@ -25,7 +25,7 @@ class SimpleTags_Client_RelatedPosts {
 		
 		$marker = false;
 		if ( is_feed() ) {
-			if ( SimpleTags_Plugin::get_option_value('rp_feed') == '1' ) {
+			if ( (int) SimpleTags_Plugin::get_option_value('rp_feed') == 1 ) {
 				$marker = true;
 			}
 		} elseif ( !empty($rp_embedded) ) {
@@ -400,8 +400,9 @@ class SimpleTags_Client_RelatedPosts {
 		$output = array();
 		foreach ( (array) $terms as $term ) {
 			$link = get_term_link($term->term_id, $term->taxonomy);
-			if ( empty($link) || is_wp_error($link) )
+			if ( empty($link) || is_wp_error($link) ) {
 				continue;
+			}
 				
 			$output[] = '<a href="'.$link.'" title="'.esc_attr(sprintf( _n('%d topic', '%d topics', (int) $term->count, 'simpletags'), $term->count )).'" '.$rel.'>'.esc_html($term->name).'</a>';
 		}

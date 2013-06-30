@@ -19,7 +19,7 @@ class SimpleTags_Client_PostTags {
 		
 		$marker = false;
 		if ( is_feed() ) {
-			if ( SimpleTags_Plugin::get_option_value('tt_feed') == '1' ) {
+			if ( (int) SimpleTags_Plugin::get_option_value('tt_feed') == 1 ) {
 				$marker = true;
 			}
 		} elseif ( !empty($tt_embedded) ) {
