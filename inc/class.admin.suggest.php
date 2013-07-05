@@ -195,13 +195,14 @@ class SimpleTags_Admin_Suggest {
 		}
 		
 		// Build params
-		$data = array();
-		$response = wp_remote_post( 'http://access.alchemyapi.com/calls/html/HTMLGetRankedKeywords', array('body' => array(
+		$response = wp_remote_post( 'http://access.alchemyapi.com/calls/html/HTMLGetRankedConcepts', array('body' => array(
 			'apikey' 	 => SimpleTags_Plugin::get_option_value('alchemy_api'),
-			//'url' 		 => ' ',
+			'maxRetrieve' => 30,
 			'html' 		 => $content,
-			'outputMode' => 'json'
+			'outputMode' => 'json',
+			'sourceText' => 'cleaned'
 		)));
+		
 		if( !is_wp_error($response) && $response != null ) {
 			if ( wp_remote_retrieve_response_code($response) == 200 ) {
 				$data = wp_remote_retrieve_body($response);
@@ -209,14 +210,16 @@ class SimpleTags_Admin_Suggest {
 		}
 		
 		$data = json_decode($data);
-		$data = $data->entities;
-		
-		if ( empty($data) ) {
+		if ( $data == false || !isset($data->concepts) ) {
+			return false;
+		}
+
+		if ( empty($data->concepts) ) {
 			echo '<p>'.__('No results from Alchemy API.', 'simpletags').'</p>';
 			exit();
 		}
 		
-		foreach ( (array) $data as $term ) {
+		foreach ( (array) $data->concepts as $term ) {
 			echo '<span class="local">'.esc_html($term->text).'</span>'."\n";
 		}
 		echo '<div class="clear"></div>';
