@@ -25,6 +25,8 @@ return array(
 	// Administration
 	'order_click_tags' 	=> 'name-asc',
 	'opencalais_key' 	=> '',
+	'datatxt_key'       => '',
+	'datatxt_id'        => '',
 	'alchemy_api' 		=> '',
 	'zemanta_key' 		=> '',
 	'autocomplete_type' => 'input',
