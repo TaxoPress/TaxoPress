@@ -67,6 +67,17 @@ jQuery(document).ready(function() {
 		});
 		return false;
 	});
+
+	// dataTXT
+	jQuery("a.datatxt").click(function(event) {
+		event.preventDefault();
+	
+		jQuery('#st_ajax_loading').show();
+		jQuery("#suggestedtags .container_clicktags").load( ajaxurl + '?action=simpletags&st_action=tags_from_datatxt', {content:getContentFromEditor(),title:jQuery("#title").val()}, function(){
+			registerClickTags();
+		});
+		return false;
+	});
 });
 
 function getContentFromEditor() {
