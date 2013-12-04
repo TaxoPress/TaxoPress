@@ -47,8 +47,9 @@ class SimpleTags_Admin_Suggest {
 		$title .= '<a class="yahoo_api" href="#suggestedtags">'.__('Yahoo', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="opencalais_api" href="#suggestedtags">'.__('OpenCalais', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="alchemyapi" href="#suggestedtags">'.__('AlchemyAPI', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="zemanta" href="#suggestedtags">'.__('Zemanta', 'simpletags').'</a>';
-		
+		$title .= '<a class="zemanta" href="#suggestedtags">'.__('Zemanta', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a class="datatxt" href="#suggestedtags">'.__('dataTXT', 'simpletags').'</a>';
+
 		return $title;
 	}
 	
@@ -92,6 +93,9 @@ class SimpleTags_Admin_Suggest {
 				break;
 				case 'tags_from_zemanta' :
 					self::ajax_zemanta();
+				break;
+				case 'tags_from_datatxt' :
+					self::ajax_datatxt();
 				break;
 				case 'tags_from_yahoo' :
 					self::ajax_yahoo();
@@ -278,6 +282,65 @@ class SimpleTags_Admin_Suggest {
 		exit();
 	}
 	
+	/**
+	 * Suggest tags from dataTXT
+	 *
+	 */
+	public static function ajax_datatxt() {
+		status_header( 200 );
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
+		
+		// API ID ?
+		if ( SimpleTags_Plugin::get_option_value('datatxt_id') == '' ) {
+			echo '<p>'.__('dataTXT needs an API ID to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+			exit();
+		}
+
+		// API Key ?
+		if ( SimpleTags_Plugin::get_option_value('datatxt_key') == '' ) {
+			echo '<p>'.__('dataTXT needs an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$content = trim($content);
+		if ( empty($content) ) {
+			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		// Build params
+		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array('body' => array(
+			'$app_key' 	=> SimpleTags_Plugin::get_option_value('datatxt_key'),
+			'$app_id' 	=> SimpleTags_Plugin::get_option_value('datatxt_id'),
+			'text' 		=> $content,
+		)));
+
+		if( !is_wp_error($response) && $response != null ) {
+			if ( wp_remote_retrieve_response_code($response) == 200 ) {
+				$data = wp_remote_retrieve_body($response);
+			}
+		}
+		
+		$data = json_decode($data);
+
+		// echo $data;
+
+		$data = $data->annotations;
+		
+		if ( empty($data) ) {
+			echo '<p>'.__('No results from dataTXT API.', 'simpletags').'</p>';
+			exit();
+		}
+		
+		foreach ( (array) $data as $term ) {
+			echo '<span class="local">'.esc_html($term->title).'</span>'."\n";
+		}
+		echo '<div class="clear"></div>';
+		exit();
+	}
+
 	/**
 	 * Suggest tags from Yahoo Term Extraction
 	 *
