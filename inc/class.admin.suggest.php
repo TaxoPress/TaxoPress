@@ -314,7 +314,8 @@ class SimpleTags_Admin_Suggest {
 		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array('body' => array(
 			'$app_key' 	=> SimpleTags_Plugin::get_option_value('datatxt_key'),
 			'$app_id' 	=> SimpleTags_Plugin::get_option_value('datatxt_id'),
-			'text' 		=> $content,
+			'min_confidence' => 0.6,
+			'text' 		=> $content
 		)));
 
 		if( !is_wp_error($response) && $response != null ) {
