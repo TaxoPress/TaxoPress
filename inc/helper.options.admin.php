@@ -46,7 +46,9 @@ return array(
 		array('datatxt_id', __('dataTXT API ID', 'simpletags'), 'text', 'regular-text',
 			__('You can create an API ID from <a href="https://dandelion.eu/">service website</a>', 'simpletags')),
 		array('datatxt_key', __('dataTXT API Key', 'simpletags'), 'text', 'regular-text',
-			__('You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simpletags'))
+			__('You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simpletags')),
+		array('datatxt_min_confidence', __('dataTXT API min_confidence (default: 0.6)', 'simpletags'), 'text', 'regular-text',
+			__('You can create an API ID from <a href="https://dandelion.eu/">service website</a>', 'simpletags'))
 	),
 	'auto-links' => array(
 		array('auto_link_min', __('Min usage for auto link tags:', 'simpletags'), 'number', 'small-text',

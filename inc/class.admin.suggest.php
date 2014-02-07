@@ -310,11 +310,15 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 		
+		$confidence = 0.6;
+		if(SimpleTags_Plugin::get_option_value('datatxt_min_confidence') != "")
+			$confidence = SimpleTags_Plugin::get_option_value('datatxt_min_confidence');
+
 		// Build params
 		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array('body' => array(
 			'$app_key' 	=> SimpleTags_Plugin::get_option_value('datatxt_key'),
 			'$app_id' 	=> SimpleTags_Plugin::get_option_value('datatxt_id'),
-			'min_confidence' => 0.6,
+			'min_confidence' => $confidence,
 			'text' 		=> $content
 		)));
 

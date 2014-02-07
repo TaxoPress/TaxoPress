@@ -27,6 +27,7 @@ return array(
 	'opencalais_key' 	=> '',
 	'datatxt_key'       => '',
 	'datatxt_id'        => '',
+	'datatxt_min_confidence'        => '',
 	'alchemy_api' 		=> '',
 	'zemanta_key' 		=> '',
 	'autocomplete_type' => 'input',
