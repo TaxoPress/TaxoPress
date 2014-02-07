@@ -321,7 +321,10 @@ class SimpleTags_Admin_Suggest {
 		if( !is_wp_error($response) && $response != null ) {
 			if ( wp_remote_retrieve_response_code($response) == 200 ) {
 				$data = wp_remote_retrieve_body($response);
-			}
+			} else {
+            	echo '<p>'.__('Invalid dataTXT ID or Key', 'simpletags').'</p>';
+                exit();
+            }
 		}
 		
 		$data = json_decode($data);
