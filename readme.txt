@@ -69,6 +69,7 @@ The Simple Tags can be installed in 3 easy steps:
 
 * Version 2.4
     * Test OK vs WP 4.0.x
+    * Fix Yahoo terms suggestion (use new API)
     * Fix conflict with ShareThis plugin
     * Add option for autolink title attribute
     * Add current state for "click tags" feature (opacity changed if tags is already selected)
