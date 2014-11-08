@@ -17,7 +17,9 @@ class SimpleTags_Client_TagCloud {
 	public static function shortcode( $atts ) {
 		extract(shortcode_atts(array('param' => ''), $atts));
 
+        $param = html_entity_decode($param);
 		$param = trim($param);
+
 		if ( empty($param) ) {
 			$param = 'title=';
 		}
