@@ -83,8 +83,8 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function ajax_check() {
-		if ( isset($_GET['st_action']) )  {
-			switch( $_GET['st_action'] ) {
+		if ( isset($_GET['stags_action']) )  {
+			switch( $_GET['stags_action'] ) {
 				case 'tags_from_opencalais' :
 					self::ajax_opencalais();
 				break;

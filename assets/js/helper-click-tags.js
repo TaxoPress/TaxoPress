@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
 	
 		jQuery("#st-clicks-tags .container_clicktags")
 			.fadeIn('slow')
-			.load( ajaxurl + '?action=simpletags&st_action=click_tags&post_id='+current_post_id, function() {
+			.load( ajaxurl + '?action=simpletags&stags_action=click_tags&post_id='+current_post_id, function() {
 				jQuery("#st-clicks-tags .container_clicktags span").click(function(event) {
 					event.preventDefault();
 					addTag(this.innerHTML);

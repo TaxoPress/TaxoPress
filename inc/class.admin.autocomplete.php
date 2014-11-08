@@ -47,7 +47,7 @@ class SimpleTags_Admin_Autocomplete {
 	 *
 	 */
 	public static function ajax_check() {
-		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'helper_js_collection' )  {
+		if ( isset($_GET['stags_action']) && $_GET['stags_action'] == 'helper_js_collection' )  {
 			self::ajax_local_tags();
 		}
 	}
@@ -172,7 +172,7 @@ class SimpleTags_Admin_Autocomplete {
 		</p>
 		<script type="text/javascript">
 			<!--
-			st_init_autocomplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&st_action=helper_js_collection"); ?>', <?php echo $autocomplete_min; ?> );
+			st_init_autocomplete( '#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&stags_action=helper_js_collection"); ?>', <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php
@@ -191,7 +191,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
 			<!--
-			st_init_autocomplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
+			st_init_autocomplete( '#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php
@@ -210,7 +210,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
 			<!--
-			st_init_autocomplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
+			st_init_autocomplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php
@@ -229,7 +229,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
 			<!--
-			st_init_autocomplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&st_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
+			st_init_autocomplete( '.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?> );
 			-->
 		</script>
 		<?php

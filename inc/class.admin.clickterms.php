@@ -68,7 +68,7 @@ class SimpleTags_Admin_ClickTags {
 	 * @author Amaury Balmer
 	 */
 	public static function ajax_check() {
-		if ( isset($_GET['st_action']) && $_GET['st_action'] == 'click_tags' )  {
+		if ( isset($_GET['stags_action']) && $_GET['stags_action'] == 'click_tags' )  {
 			self::ajax_click_tags();
 		}
 	}
