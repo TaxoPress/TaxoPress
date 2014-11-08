@@ -2,7 +2,10 @@
 class SimpleTags_Admin_AutoTags {
 	// Build admin URL
 	static $tools_base_url = '';
-	
+
+	/**
+	 *
+	 */
 	public function __construct() {
 		self::$tools_base_url = admin_url('tools.php')  . '?page=';
 		
