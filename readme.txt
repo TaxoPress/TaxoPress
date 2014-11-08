@@ -74,6 +74,9 @@ The Simple Tags can be installed in 3 easy steps:
     * Add current state for "click tags" feature (opacity changed if tags is already selected)
     * Fix order by tag cloud
     * Implement dataTXT provider for suggest terms feature (from Github contribution SpazioDati/master)
+    * Implement Tag4Site provider for suggest terms feature (from Sergey Zobin)
+    * Fix shortcode usage with &
+    * Add support of category name into tag cloud function
 * Version 2.3.2
 	* Move all get_option request into plugin class, use static
 	* Add option for limit autolinks to singular view (default setting, you need change this setting in DB for enable autolinks into all views)
