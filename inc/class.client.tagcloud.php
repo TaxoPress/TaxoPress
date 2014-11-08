@@ -100,8 +100,10 @@ class SimpleTags_Client_TagCloud {
         }
 
         // Translate selection order
-        $args['orderby'] = self::compatOldOrder( $args['cloud_order'], 'orderby' );
-        $args['order']   = self::compatOldOrder( $args['cloud_order'], 'order' );
+        if ( isset($args['cloud_order']) ) {
+            $args['orderby'] = self::compatOldOrder($args['cloud_order'], 'orderby');
+            $args['order'] = self::compatOldOrder($args['cloud_order'], 'order');
+        }
 
 		// Get correct taxonomy ?
 		$taxonomy = self::_get_current_taxonomy($args['taxonomy']);
