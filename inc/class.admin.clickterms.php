@@ -90,6 +90,7 @@ class SimpleTags_Admin_ClickTags {
 		
 		// Prepare search
 		$search = ( isset($_GET['q']) ) ? trim(stripslashes($_GET['q'])) : '';
+        $post_id = ( isset($_GET['post_id']) ) ? intval($_GET['post_id']) : 0;
 		
 		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
 		$order_click_tags = strtolower(SimpleTags_Plugin::get_option_value('order_click_tags'));
@@ -123,9 +124,16 @@ class SimpleTags_Admin_ClickTags {
 			echo '<p>'.__('No results from your WordPress database.', 'simpletags').'</p>';
 			exit();
 		}
-		
-		foreach ( (array) $terms as $term ) {
-			echo '<span class="local">'.esc_html(stripslashes($term->name)).'</span>'."\n";
+
+        // Get terms for current post
+        $post_terms = array();
+        if ( $post_id > 0 ) {
+            $post_terms = wp_get_post_terms( $post_id, 'post_tag', array('fields' => 'ids') );
+        }
+
+        foreach ( (array) $terms as $term ) {
+            $class_current = in_array( $term->term_id, $post_terms ) ? 'used_term' : '';
+			echo '<span class="local '.$class_current.'">'.esc_html(stripslashes($term->name)).'</span>'."\n";
 		}
 		echo '<div class="clear"></div>';
 

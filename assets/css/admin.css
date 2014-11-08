@@ -29,6 +29,7 @@ a#close_clicktags{display:none;}
 
 /* Ajax Click Tags   */
 #st-clicks-tags .container_clicktags{border:3px dashed #D1E6EF;display:none;max-height:300px;overflow:auto;margin:3px 0 0;padding:6px;}
+#st-clicks-tags .container_clicktags .used_term{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter: alpha(opacity=50); opacity: 0.5;}
 
 /* Click Tags   */
 .container_clicktags{display:block;}

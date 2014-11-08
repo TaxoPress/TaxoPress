@@ -87,7 +87,7 @@ class SimpleTags_Client_TagCloud {
 		$defaults['unit'] 		 = $options['cloud_unit'];
 		$defaults['xformat'] 	 = $options['cloud_xformat'];
 		$defaults['format'] 	 = $options['cloud_format'];
-        
+
 		if ( empty($args) ) {
 			$args = $options['cloud_adv_usage'];
 		}
