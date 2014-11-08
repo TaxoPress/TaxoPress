@@ -3,8 +3,8 @@ Contributors: momo360modena
 Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 2.3.2
+Tested up to: 4.0
+Stable tag: 2.4
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
@@ -66,6 +66,13 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.4
+    * Test OK vs WP 4.0.x
+    * Fix conflict with ShareThis plugin
+    * Add option for autolink title attribute
+    * Add current state for "click tags" feature (opacity changed if tags is already selected)
+    * Fix order by tag cloud
+    * Implement dataTXT provider for suggest terms feature (from Github contribution SpazioDati/master)
 * Version 2.3.2
 	* Move all get_option request into plugin class, use static
 	* Add option for limit autolinks to singular view (default setting, you need change this setting in DB for enable autolinks into all views)
