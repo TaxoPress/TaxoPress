@@ -72,7 +72,7 @@ return array(
 		),
 		array('auto_link_dom', __('Try new engine replacement ?', 'simpletags'), 'checkbox', '1',
 			__('An engine replacement alternative uses DOMDocument PHP class and theoretically offers better performance. If your server does not offer the functionality, the plugin will use the usual engine.', 'simpletags')),
-		
+        array('auto_link_title', __('Text to display into title attribute for links:', 'simpletags'), 'text', 'regular-text'),
 	),
 	'tagcloud' => array(
 		array('text_helper', 'text_helper', 'helper', '', __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')

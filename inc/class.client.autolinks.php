@@ -202,7 +202,7 @@ class SimpleTags_Client_Autolinks {
 		
 		$xpath = new DOMXPath($dom);
 		foreach ($xpath->query('//text()[not(ancestor::a)]') as $node) {
-			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr(sprintf(__('Posts tagged with %s', 'simpletags'), $search)) . "\">$search</a>";
+			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr(sprintf(SimpleTags_Plugin::get_option_value('auto_link_title'), $search)) . "\">$search</a>";
 			
 			if ( $case == 'i' ) {
 				$replaced = str_ireplace($search, $substitute, $node->wholeText);
@@ -236,7 +236,7 @@ class SimpleTags_Client_Autolinks {
 		$filtered = ''; // will filter text token by token
 
 		$match = '/(\PL|\A)(' . preg_quote($search, "/") . ')(\PL|\Z)/u' . $case;
-		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr(sprintf(__('Posts tagged with %s', 'simpletags'), $search)) . "\">$2</a>$3";
+		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr(sprintf(SimpleTags_Plugin::get_option_value('auto_link_title'), $search)) . "\">$2</a>$3";
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
 		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simpletags'), $search ) )."\">$0</a>";
