@@ -48,7 +48,7 @@ class SimpleTags_Admin_Suggest {
 		$title .= '<a class="opencalais_api" href="#suggestedtags">'.__('OpenCalais', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="alchemyapi" href="#suggestedtags">'.__('AlchemyAPI', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="zemanta" href="#suggestedtags">'.__('Zemanta', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="datatxt" href="#suggestedtags">'.__('dataTXT', 'simpletags').'</a>';
+		$title .= '<a class="datatxt" href="#suggestedtags">'.__('dataTXT', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
         $title .= '<a class="tag4site" href="#suggestedtags">'.__('Tag4Site.RU', 'simpletags').'</a>';
 
 		return $title;
@@ -421,35 +421,37 @@ class SimpleTags_Admin_Suggest {
 		
 		// Get data
 		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+        $content = strip_tags($content);
+        $content = str_replace( array('"',"'"), ' ', $content);
 		$content = trim($content);
 		if ( empty($content) ) {
 			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
 			exit();
 		}
-		
+
 		// Build params
 		$param = 'appid='.self::yahoo_id; // Yahoo ID
-		$param .= '&context='.urlencode($content); // Post content
+		$param .= '&q=select%20*%20from%20contentanalysis.analyze%20where%20context%3D%22'.urlencode($content).'%22'; //.; // Post content
 		if ( !empty($_POST['tags']) ) {
-			$param .= '&query='.urlencode(stripslashes($_POST['tags'])); // Existing tags
+			//$param .= '&query='.urlencode(stripslashes($_POST['tags'])); // Existing tags
 		}
-		$param .= '&output=php'; // Get PHP Array !
-		
+		$param .= '&format=json'; // Get json data !
+
 		$data = array();
-		$response = wp_remote_post( 'http://search.yahooapis.com/ContentAnalysisService/V1/termExtraction', array('body' =>$param) );
-		if( !is_wp_error($response) && $response != null ) {
+		$response = wp_remote_post( 'https://query.yahooapis.com/v1/public/yql', array('body' =>$param, 'sslverify' => false) );
+        if( !is_wp_error($response) && $response != null ) {
 			if ( wp_remote_retrieve_response_code($response) == 200 ) {
-				$data = maybe_unserialize( wp_remote_retrieve_body($response) );
+				$data = json_decode( wp_remote_retrieve_body($response), true );
 			}
 		}
-		
-		if ( empty($data) || empty($data['ResultSet']) || is_wp_error($data) ) {
+
+		if ( empty($data) || empty($data['query']['results']['Result']) ) {
 			echo '<p>'.__('No results from Yahoo! service.', 'simpletags').'</p>';
 			exit();
 		}
 		
 		// Get result value
-		$data = (array) $data['ResultSet']['Result'];
+		$data = $data['query']['results']['Result'];
 		
 		// Remove empty terms
 		$data = array_filter($data, '_delete_empty_element');
