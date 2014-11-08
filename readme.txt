@@ -49,6 +49,7 @@ The Simple Tags can be installed in 3 easy steps:
 
 = Simple Tags is compatible with which WordPress versions ? =
 
+* 2.4 and upper are compatible only with WordPress 4.0 !
 * 2.3 and upper are compatible only with WordPress 3.5 !
 * 2.0 and upper are compatible only with WordPress 3.0 & 3.1 & 3.2 & 3.3 !
 * 1.7 and upper are compatible only with WordPress 2.8, 2.9 !
