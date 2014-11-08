@@ -31,6 +31,7 @@ return array(
 	'datatxt_min_confidence'        => '0.6',
 	'alchemy_api' 		=> '',
 	'zemanta_key' 		=> '',
+    'tag4site_key' 		=> '',
 	'autocomplete_type' => 'input',
 	'autocomplete_min'  => 0,
 	'autocomplete_mode' => '',

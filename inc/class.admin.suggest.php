@@ -49,6 +49,7 @@ class SimpleTags_Admin_Suggest {
 		$title .= '<a class="alchemyapi" href="#suggestedtags">'.__('AlchemyAPI', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="zemanta" href="#suggestedtags">'.__('Zemanta', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="datatxt" href="#suggestedtags">'.__('dataTXT', 'simpletags').'</a>';
+        $title .= '<a class="tag4site" href="#suggestedtags">'.__('Tag4Site.RU', 'simpletags').'</a>';
 
 		return $title;
 	}
@@ -97,6 +98,9 @@ class SimpleTags_Admin_Suggest {
 				case 'tags_from_datatxt' :
 					self::ajax_datatxt();
 				break;
+                case 'tags_from_tag4site' :
+                    self::ajax_tag4site();
+                    break;
 				case 'tags_from_yahoo' :
 					self::ajax_yahoo();
 				break;
@@ -348,6 +352,64 @@ class SimpleTags_Admin_Suggest {
 		echo '<div class="clear"></div>';
 		exit();
 	}
+
+    /**
+     * Suggest tags from Tag4Site
+     *
+     */
+    public static function ajax_tag4site() {
+        status_header( 200 );
+        header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
+
+        // API Key ?
+        if ( SimpleTags_Plugin::get_option_value('tag4site_key') == '' ) {
+            echo '<p>'.__('Tag4Site need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+            exit();
+        }
+
+        // Get data
+        $content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+        $content = trim($content);
+        if ( empty($content) ) {
+            echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+            exit();
+        }
+
+        // Build params
+        $response = wp_remote_post( 'http://api.tag4site.ru/', array('timeout' => 30, 'body' => array(
+            'api_key' 	=> SimpleTags_Plugin::get_option_value('tag4site_key'),
+            'text' 		=> $content,
+            'format' 	=> 'json'
+        )));
+
+        if( !is_wp_error($response) && $response != null ) {
+            if ( wp_remote_retrieve_response_code($response) == 200 ) {
+                $data = wp_remote_retrieve_body($response);
+            }
+        }
+
+        $data = json_decode($data);
+
+        $code = $data->code;
+        if ( $code > 0 ) {
+            $err = $data->error;
+            echo '<p>'.__('Tag4Site API error #'.$code.': '.$err, 'simpletags').'</p>';
+            exit();
+        }
+
+        $data = $data->tags;
+
+        if ( empty($data) ) {
+            echo '<p>'.__('No data from Tag4Site API. Try again later.', 'simpletags').'</p>';
+            exit();
+        }
+
+        foreach ( (array) $data as $term ) {
+            echo '<span class="local">'.esc_html($term->name).'</span>'."\n";
+        }
+        echo '<div class="clear"></div>';
+        exit();
+    }
 
 	/**
 	 * Suggest tags from Yahoo Term Extraction

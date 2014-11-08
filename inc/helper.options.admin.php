@@ -41,6 +41,8 @@ return array(
 			__('You can create an API key from <a href="http://www.opencalais.com/">service website</a>', 'simpletags')),
 		array('alchemy_api', __('Alchemy API Key', 'simpletags'), 'text', 'regular-text',
 			__('You can create an API key from <a href="http://www.alchemyapi.com/">service website</a>', 'simpletags')),
+        array('tag4site_key', __('Tag4Site API Key', 'simpletags'), 'text', 'regular-text',
+            __('You can create an API key from <a href="http://tag4site.ru/">service website</a>', 'simpletags')),
 		array('zemanta_key', __('Zemanta API Key', 'simpletags'), 'text', 'regular-text',
 			__('You can create an API key from <a href="http://developer.zemanta.com/">service website</a>', 'simpletags')),
 		array('datatxt_id', __('dataTXT API ID', 'simpletags'), 'text', 'regular-text',
