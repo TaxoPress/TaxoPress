@@ -80,7 +80,7 @@ class SimpleTags_Client_Autoterms {
 		if ( isset($object->post_excerpt) ) {
 		 	$content .= ' ' . $object->post_excerpt;
 		}
-		
+
 		$content = trim(strip_tags($content));
 		if ( empty($content) ) {
 			return false;
@@ -97,10 +97,14 @@ class SimpleTags_Client_Autoterms {
 				$term = trim($term);
 				
 				// Whole word ?
-				if ( (int) $options['only_full_word'] == 1 ) {
+				if ( isset($options['only_full_word']) && (int) $options['only_full_word'] == 1 ) {
 					if ( preg_match("/\b".$term."\b/i", $content) ) {
 						$terms_to_add[] = $term;
 					}
+
+                    if ( isset($options['allow_hashtag_format']) && (int) $options['allow_hashtag_format'] == 1 && stristr($content, '#'.$term) ) {
+                        $terms_to_add[] = $term;
+                    }
 				} elseif ( stristr($content, $term) ) {
 					$terms_to_add[] = $term;
 				}
@@ -124,15 +128,19 @@ class SimpleTags_Client_Autoterms {
 				if ( !is_string($term) && empty($term) ) {
 				 	continue;
 				}
-				
-				// Whole word ?
-				if ( (int) $options['only_full_word'] == 1 ) {
-					$term = ' '.$term.' '; // Add space before and after !
-				}
-				
-				if ( stristr($content, $term) ) {
-					$terms_to_add[] = $term;
-				}
+
+                // Whole word ?
+                if ( isset($options['only_full_word']) && (int) $options['only_full_word'] == 1 ) {
+                    if ( preg_match("/\b".$term."\b/i", $content) ) {
+                        $terms_to_add[] = $term;
+                    }
+
+                    if ( isset($options['allow_hashtag_format']) && (int) $options['allow_hashtag_format'] == 1 && stristr($content, '#'.$term) ) {
+                        $terms_to_add[] = $term;
+                    }
+                } elseif ( stristr($content, $term) ) {
+                    $terms_to_add[] = $term;
+                }
 			}
 			
 			// Clean memory

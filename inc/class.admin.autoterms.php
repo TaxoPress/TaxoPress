@@ -75,6 +75,9 @@ class SimpleTags_Admin_AutoTags {
 			
 			// Full word ?
 			$taxo_options['only_full_word'] = ( isset($_POST['only_full_word']) && $_POST['only_full_word'] == '1' ) ? '1' : '0';
+
+            // Support hashtag format ?
+            $taxo_options['allow_hashtag_format'] = ( isset($_POST['allow_hashtag_format']) && $_POST['allow_hashtag_format'] == '1' ) ? '1' : '0';
 			
 			$options[SimpleTags_Admin::$post_type][SimpleTags_Admin::$taxonomy] = $taxo_options;
 			update_option( STAGS_OPTIONS_NAME_AUTO, $options );
@@ -212,6 +215,13 @@ class SimpleTags_Admin_AutoTags {
 								<label for="only_full_word"><?php _e('Autotag only a post when terms finded in the content are a the same name. (whole word only)', 'simpletags'); ?></label>
 							</td>
 						</tr>
+                        <tr valign="top">
+                            <th scope="row"><?php _e('Suport Hashtag format ?', 'simpletags'); ?></th>
+                            <td>
+                                <input type="checkbox" id="allow_hashtag_format" name="allow_hashtag_format" value="1" <?php echo ( isset($taxo_options['allow_hashtag_format']) && $taxo_options['allow_hashtag_format'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+                                <label for="allow_hashtag_format"><?php _e('When the whole word option is enabled, hashtag will not be autotag because of # prefix. This option allow to fixed this issue!', 'simpletags'); ?></label>
+                            </td>
+                        </tr>
 						<tr valign="top">
 							<th scope="row"><label for="auto_list"><?php _e('Keywords list', 'simpletags'); ?></label></th>
 							<td>
