@@ -21,7 +21,7 @@ Simple Tags is the successor of Simple Tagging Plugin
 This plugin is developped on WordPress 3.3, with the constant WP_DEBUG to TRUE.
 
 * Administration
-	* Tags suggestion from Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB with AJAX request
+	* Tags suggestion from Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB with AJAX request and dataTXT
 		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
 	* tags management (rename, delete, merge, search and add tags, edit tags ID)
 	* **Edit mass tags (more than 50 posts once)**
@@ -72,7 +72,7 @@ The Simple Tags can be installed in 3 easy steps:
 ![Add tags easily with click tags !](http://s.wordpress.org/extend/plugins/simple-tags/screenshot-3.png)
 
 **3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears :** you have only to choose ! You can choose the down direction to see all the tags.  
-###4. You also can suggest tags from lot's of service (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)###
+###4. You also can suggest tags from lot's of service (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB and dataTXT)###
 ![You also can suggest tags from lot's of service (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)](http://s.wordpress.org/extend/plugins/simple-tags/screenshot-4.png)
 
 
