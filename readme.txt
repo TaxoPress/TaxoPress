@@ -4,7 +4,7 @@ Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 2.4
+Stable tag: 2.4.1
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
@@ -22,7 +22,7 @@ It was written with this philosophy : best performances, more secured and brings
 This plugin is developped on WordPress 3.3, with the constant WP_DEBUG to TRUE.
 
 * Administration
-	* Tags suggestion from Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB with AJAX request
+	* Tags suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request 
 		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
 	* tags management (rename, delete, merge, search and add tags, edit tags ID)
 	* **Edit mass tags (more than 50 posts once)**
@@ -67,12 +67,13 @@ The Simple Tags can be installed in 3 easy steps:
 3. Autotagging your content !
 4. Add tags easily with click tags !
 3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
-6. You also can suggest tags from lot's of service (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)
+6. You also can suggest tags from lot's of service (Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms)
 
 == Changelog ==
 
 * Version 2.4.1
-
+	* Fix possible warning with preg_match function
+	* Specify user-agent for some provider
 * Version 2.4
     * Test OK vs WP 4.0.x
     * Fix Yahoo terms suggestion (use new API)

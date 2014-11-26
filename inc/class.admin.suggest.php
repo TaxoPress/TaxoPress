@@ -320,7 +320,7 @@ class SimpleTags_Admin_Suggest {
 
 		// Build params
 		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array(
-			'user-agent' => 'Wordpress Simple-tags',
+			'user-agent' => 'WordPress simple-tags',
 			'body' => array(
 				'$app_key' 	=> SimpleTags_Plugin::get_option_value('datatxt_key'),
 				'$app_id' 	=> SimpleTags_Plugin::get_option_value('datatxt_id'),
