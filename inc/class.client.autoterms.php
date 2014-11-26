@@ -98,7 +98,8 @@ class SimpleTags_Client_Autoterms {
 				
 				// Whole word ?
 				if ( isset($options['only_full_word']) && (int) $options['only_full_word'] == 1 ) {
-					if ( preg_match("/\b".$term."\b/i", $content) ) {
+					$preg_term = preg_quote($term, "/");
+					if ( preg_match("/\b".$preg_term."\b/i", $content) ) {
 						$terms_to_add[] = $term;
 					}
 
@@ -131,7 +132,8 @@ class SimpleTags_Client_Autoterms {
 
                 // Whole word ?
                 if ( isset($options['only_full_word']) && (int) $options['only_full_word'] == 1 ) {
-                    if ( preg_match("/\b".$term."\b/i", $content) ) {
+                	$preg_term = preg_quote($term, "/");
+                    if ( preg_match("/\b".$preg_term."\b/i", $content) ) {
                         $terms_to_add[] = $term;
                     }
 
