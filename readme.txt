@@ -12,6 +12,8 @@ Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Ter
 
 **I do not offer any support for this plugin. I do not participate in any subject on the WordPress.org support forum. If you find a bug, thank you for the report on the Github repository, and make a exhaustive request (plugin installed / error message / PHP function called). Thank you.**
 
+Github project homepage: https://github.com/herewithme/simple-tags
+
 Simple Tags is the successor of Simple Tagging Plugin
 **This is THE perfect tool to manage perfectly your WP terms for any taxonomy**
 
@@ -68,6 +70,8 @@ The Simple Tags can be installed in 3 easy steps:
 6. You also can suggest tags from lot's of service (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)
 
 == Changelog ==
+
+* Version 2.4.1
 
 * Version 2.4
     * Test OK vs WP 4.0.x
