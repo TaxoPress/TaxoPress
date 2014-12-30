@@ -100,29 +100,29 @@ class SimpleTags_Client_TagCloud {
 		}
 		$args = wp_parse_args( $args, $defaults );
 
-        // Add compatibility tips with old field syntax
-        if ( isset($args['cloud_sort']) ) {
-            $args['cloud_order'] = $args['cloud_sort'];
-            unset($args['cloud_sort']);
-        }
+		// Add compatibility tips with old field syntax
+		if ( isset($args['cloud_sort']) ) {
+				$args['cloud_order'] = $args['cloud_sort'];
+				unset($args['cloud_sort']);
+		}
 
-        // Translate selection order
-        if ( isset($args['cloud_order']) ) {
-            $args['orderby'] = self::compatOldOrder($args['cloud_order'], 'orderby');
-            $args['order'] = self::compatOldOrder($args['cloud_order'], 'order');
-        }
+		// Translate selection order
+		if ( isset($args['cloud_order']) ) {
+				$args['orderby'] = self::compatOldOrder($args['cloud_order'], 'orderby');
+				$args['order'] = self::compatOldOrder($args['cloud_order'], 'order');
+		}
 
-        // Category names to ID codes
-        if ( isset($args['category']) ) {
-            $category = explode(",", $args['category']);
-            foreach ($category as $key => $name) {
-                $category[$key] = is_numeric($name) ? $name : get_cat_ID($name);
-                if ( $category[$key] == 0 ) {
-                    unset($category[$key]);
-                }
-            }
-            $args['category'] = implode(",", $category);
-        }
+		// Category names to ID codes
+		if ( isset($args['category']) ) {
+				$category = explode(",", $args['category']);
+				foreach ($category as $key => $name) {
+						$category[$key] = is_numeric($name) ? $name : get_cat_ID($name);
+						if ( $category[$key] == 0 ) {
+								unset($category[$key]);
+						}
+				}
+				$args['category'] = implode(",", $category);
+		}
 
 		// Get correct taxonomy ?
 		$taxonomy = self::_get_current_taxonomy($args['taxonomy']);
