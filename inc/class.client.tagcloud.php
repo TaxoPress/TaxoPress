@@ -90,8 +90,11 @@ class SimpleTags_Client_TagCloud {
 		$defaults['xformat'] 	 = $options['cloud_xformat'];
 		$defaults['format'] 	 = $options['cloud_format'];
 
+		$adv_usage = $options['cloud_adv_usage'];
 		if ( empty($args) ) {
-			$args = $options['cloud_adv_usage'];
+			$args = $adv_usage;
+		} else {
+			$args = $adv_usage . "&" . $args;
 		}
 		$args = wp_parse_args( $args, $defaults );
 
