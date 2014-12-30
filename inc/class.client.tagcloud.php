@@ -74,21 +74,21 @@ class SimpleTags_Client_TagCloud {
 		$options = SimpleTags_Plugin::get_option();
 
 		// Get values in DB
-		$defaults['taxonomy'] 	 = $options['cloud_taxonomy'];
+		$defaults['taxonomy']    = $options['cloud_taxonomy'];
 		$defaults['selectionby'] = $options['cloud_selectionby'];
-		$defaults['selection'] 	 = $options['cloud_selection'];
-		$defaults['orderby'] 	 = $options['cloud_orderby'];
-		$defaults['order'] 		 = $options['cloud_order'];
-		$defaults['number'] 	 = $options['cloud_limit_qty'];
+		$defaults['selection']   = $options['cloud_selection'];
+		$defaults['orderby']     = $options['cloud_orderby'];
+		$defaults['order']       = $options['cloud_order'];
+		$defaults['number']      = $options['cloud_limit_qty'];
 		$defaults['notagstext']  = $options['cloud_notagstext'];
-		$defaults['title'] 		 = $options['cloud_title'];
-		$defaults['maxcolor'] 	 = $options['cloud_max_color'];
-		$defaults['mincolor'] 	 = $options['cloud_min_color'];
-		$defaults['largest'] 	 = $options['cloud_max_size'];
-		$defaults['smallest'] 	 = $options['cloud_min_size'];
-		$defaults['unit'] 		 = $options['cloud_unit'];
-		$defaults['xformat'] 	 = $options['cloud_xformat'];
-		$defaults['format'] 	 = $options['cloud_format'];
+		$defaults['title']       = $options['cloud_title'];
+		$defaults['maxcolor']    = $options['cloud_max_color'];
+		$defaults['mincolor']    = $options['cloud_min_color'];
+		$defaults['largest']     = $options['cloud_max_size'];
+		$defaults['smallest']    = $options['cloud_min_size'];
+		$defaults['unit']        = $options['cloud_unit'];
+		$defaults['xformat']     = $options['cloud_xformat'];
+		$defaults['format']      = $options['cloud_format'];
 
 		if ( empty($args) ) {
 			$args = $options['cloud_adv_usage'];
