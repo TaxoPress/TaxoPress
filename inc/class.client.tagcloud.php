@@ -164,7 +164,7 @@ class SimpleTags_Client_TagCloud {
 		}
 		
 		// Scaling - Hard value for the moment
-		$scale_min = 1;
+		$scale_min = 0;
 		$scale_max = 10;
 		
 		$minval = min($counts);
@@ -212,7 +212,7 @@ class SimpleTags_Client_TagCloud {
 			}
 			
 			$term = $terms_data[$term_name];
-			$scale_result = (int) (($term->count - $minval) * $scale + $minout);
+			$scale_result = (int) $scale ? (($term->count - $minval) * $scale + $minout) : ($scale_max - $scale_min) / 2;
 			$output[] = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
 		}
 		
