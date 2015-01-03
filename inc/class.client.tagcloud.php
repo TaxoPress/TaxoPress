@@ -46,49 +46,51 @@ class SimpleTags_Client_TagCloud {
 	 */
 	public static function extendedTagCloud( $args = '', $copyright = true ) {
 		$defaults = array(
-			'taxonomy' 	  => 'post_tag',
-			'size'		  => 'true',
-			'smallest' 	  => 8,
-			'largest' 	  => 22,
-			'unit' 		  => 'pt',
-			'color' 	  => 'true',
-			'maxcolor' 	  => '#000000',
-			'mincolor' 	  => '#CCCCCC',
-			'number' 	  => 45,
-			'format' 	  => 'flat',
+			// Simple Tag global options defaults
 			'selectionby' => 'count',
 			'selection'   => 'desc',
-			'orderby'	  => 'random',
-			'order'		  => 'asc',
-			'exclude' 	  => '',
-			'include' 	  => '',
+			'orderby'     => 'random',
+			'order'       => 'asc',
+			'format'      => 'flat',
+			'xformat'     => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
+			'number'      => 45,
+			'notagstext'  => __('No tags.', 'simpletags'),
+			'title'       => __('<h4>Tag Cloud</h4>', 'simpletags'),
+			'maxcolor'    => '#000000',
+			'mincolor'    => '#CCCCCC',
+			'largest'     => 22,
+			'smallest'    => 8,
+			'unit'        => 'pt',
+			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
+			// Simple Tag other defaults
+			'size'        => 'true',
+			'color'       => 'true',
+			'exclude'     => '',
+			'include'     => '',
 			'limit_days'  => 0,
 			'min_usage'   => 0,
-			'notagstext'  => __('No tags.', 'simpletags'),
-			'xformat' 	  => __('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags'),
-			'title' 	  => __('<h4>Tag Cloud</h4>', 'simpletags'),
-			'category' 	  => 0
+			'category'    => 0
 		);
 		
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
 		
 		// Get values in DB
-		$defaults['taxonomy'] 	 = $options['cloud_taxonomy'];
 		$defaults['selectionby'] = $options['cloud_selectionby'];
-		$defaults['selection'] 	 = $options['cloud_selection'];
-		$defaults['orderby'] 	 = $options['cloud_orderby'];
-		$defaults['order'] 		 = $options['cloud_order'];
-		$defaults['number'] 	 = $options['cloud_limit_qty'];
+		$defaults['selection']   = $options['cloud_selection'];
+		$defaults['orderby']     = $options['cloud_orderby'];
+		$defaults['order']       = $options['cloud_order'];
+		$defaults['format']      = $options['cloud_format'];
+		$defaults['xformat']     = $options['cloud_xformat'];
+		$defaults['number']      = $options['cloud_limit_qty'];
 		$defaults['notagstext']  = $options['cloud_notagstext'];
-		$defaults['title'] 		 = $options['cloud_title'];
-		$defaults['maxcolor'] 	 = $options['cloud_max_color'];
-		$defaults['mincolor'] 	 = $options['cloud_min_color'];
-		$defaults['largest'] 	 = $options['cloud_max_size'];
-		$defaults['smallest'] 	 = $options['cloud_min_size'];
-		$defaults['unit'] 		 = $options['cloud_unit'];
-		$defaults['xformat'] 	 = $options['cloud_xformat'];
-		$defaults['format'] 	 = $options['cloud_format'];
+		$defaults['title']       = $options['cloud_title'];
+		$defaults['maxcolor']    = $options['cloud_max_color'];
+		$defaults['mincolor']    = $options['cloud_min_color'];
+		$defaults['largest']     = $options['cloud_max_size'];
+		$defaults['smallest']    = $options['cloud_min_size'];
+		$defaults['unit']        = $options['cloud_unit'];
+		$defaults['taxonomy']    = $options['cloud_taxonomy'];
 
 		$adv_usage = $options['cloud_adv_usage'];
 		if ( empty($args) ) {
