@@ -78,6 +78,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 ## Changelog ##
 
+* Version 2.4.2
+    * Make tags all same count mid-sized (pull request #29) (from Github contribution Sophist-UK)
+    * Fix options Advanced Usage on widgets (pull request #28) (from Github contribution Sophist-UK)
 * Version 2.4.1
 	* Fix possible warning with preg_match function
 	* Specify user-agent for some provider

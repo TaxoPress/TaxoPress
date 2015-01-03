@@ -1,6 +1,6 @@
 <?php
 /**
- * Deprecated - Generate meta keywords for HTML header 
+ * Deprecated - Generate meta keywords for HTML header
  *
  * @return string
  */
@@ -29,6 +29,7 @@ function st_related_tags( $args = '' ) {
  * Deprecated - Get related tags
  *
  * @param string $args
+ *
  * @return string|array
  */
 function st_get_related_tags( $args = '' ) {
@@ -48,6 +49,7 @@ function st_remove_related_tags( $args = '' ) {
  * Deprecated - Get remove related tags
  *
  * @param string $args
+ *
  * @return string|array
  */
 function st_get_remove_related_tags( $args = '' ) {

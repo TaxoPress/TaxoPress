@@ -1,4 +1,5 @@
 <?php
+
 class SimpleTags_Plugin {
 
 	static $options = null;
@@ -21,15 +22,15 @@ class SimpleTags_Plugin {
 		// Init roles
 		if ( function_exists( 'get_role' ) ) {
 			$role = get_role( 'administrator' );
-			if ( $role != null && !$role->has_cap( 'simple_tags' ) ) {
+			if ( $role != null && ! $role->has_cap( 'simple_tags' ) ) {
 				$role->add_cap( 'simple_tags' );
 			}
-			if ( $role != null && !$role->has_cap( 'admin_simple_tags' ) ) {
+			if ( $role != null && ! $role->has_cap( 'admin_simple_tags' ) ) {
 				$role->add_cap( 'admin_simple_tags' );
 			}
 
 			$role = get_role( 'editor' );
-			if ( $role != null && !$role->has_cap( 'simple_tags' ) ) {
+			if ( $role != null && ! $role->has_cap( 'simple_tags' ) ) {
 				$role->add_cap( 'simple_tags' );
 			}
 
@@ -39,7 +40,7 @@ class SimpleTags_Plugin {
 	}
 
 	public static function deactivation() {
-		
+
 	}
 
 	private static function _load_option() {
@@ -59,7 +60,7 @@ class SimpleTags_Plugin {
 			self::_load_option();
 		}
 
-		return isset( self::$options[$key] ) ? self::$options[$key] : false;
+		return isset( self::$options[ $key ] ) ? self::$options[ $key ] : false;
 	}
 
 	public static function set_option_value( $key = '', $value = '', $auto_update = true ) {
@@ -67,8 +68,8 @@ class SimpleTags_Plugin {
 			self::_load_option();
 		}
 
-		if ( isset( self::$options[$key] ) ) {
-			self::$options[$key] = $value;
+		if ( isset( self::$options[ $key ] ) ) {
+			self::$options[ $key ] = $value;
 
 			if ( $auto_update == true ) {
 				self::update_option();
@@ -83,7 +84,7 @@ class SimpleTags_Plugin {
 			self::update_option();
 		}
 	}
-	
+
 	public static function set_default_option() {
 		self::$options = (array) include( STAGS_DIR . '/inc/helper.options.default.php' );
 		self::update_option();

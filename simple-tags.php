@@ -35,52 +35,54 @@ Todo:
 */
 
 // don't load directly
-if ( !defined('ABSPATH') )
-	die('-1');
-
-// Do a PHP version check, require 5.0 or newer
-if (version_compare(PHP_VERSION, '5.0.0', '<') ) {
-	// Silently deactivate plugin, keeps admin usable
-	if( function_exists('deactivate_plugins') ) {
-		deactivate_plugins(plugin_basename(__FILE__), true);
-	}
-	
-	//Spit out die messages
-	wp_die(sprintf(__('Your PHP version is too old, please upgrade to a newer version. Your version is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins directory with FTP client.', 'simpletags'), phpversion(), '5.0.0'));
+if ( ! defined( 'ABSPATH' ) ) {
+	die( '-1' );
 }
 
-define( 'STAGS_VERSION', 			'2.4' );
-define( 'STAGS_OPTIONS_NAME', 		'simpletags' ); // Option name for save settings
-define( 'STAGS_OPTIONS_NAME_AUTO', 	'simpletags-auto' ); // Option name for save settings auto terms
+// Do a PHP version check, require 5.0 or newer
+if ( version_compare( PHP_VERSION, '5.0.0', '<' ) ) {
+	// Silently deactivate plugin, keeps admin usable
+	if ( function_exists( 'deactivate_plugins' ) ) {
+		deactivate_plugins( plugin_basename( __FILE__ ), true );
+	}
 
-define ( 'STAGS_URL', plugins_url('', __FILE__) );
-define ( 'STAGS_DIR', rtrim(plugin_dir_path(__FILE__), '/') );
+	//Spit out die messages
+	wp_die( sprintf( __( 'Your PHP version is too old, please upgrade to a newer version. Your version is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins directory with FTP client.', 'simpletags' ), phpversion(), '5.0.0' ) );
+}
 
-require( STAGS_DIR . '/inc/functions.inc.php'); // Internal functions
-require( STAGS_DIR . '/inc/functions.deprecated.php'); // Deprecated functions
-require( STAGS_DIR . '/inc/functions.tpl.php');  // Templates functions
+define( 'STAGS_VERSION', '2.4' );
+define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
+define( 'STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto' ); // Option name for save settings auto terms
 
-require( STAGS_DIR . '/inc/class.plugin.php');
-require( STAGS_DIR . '/inc/class.client.php');
-require( STAGS_DIR . '/inc/class.client.tagcloud.php');
-require( STAGS_DIR . '/inc/class.widgets.php');
+define ( 'STAGS_URL', plugins_url( '', __FILE__ ) );
+define ( 'STAGS_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
+
+require( STAGS_DIR . '/inc/functions.inc.php' ); // Internal functions
+require( STAGS_DIR . '/inc/functions.deprecated.php' ); // Deprecated functions
+require( STAGS_DIR . '/inc/functions.tpl.php' );  // Templates functions
+
+require( STAGS_DIR . '/inc/class.plugin.php' );
+require( STAGS_DIR . '/inc/class.client.php' );
+require( STAGS_DIR . '/inc/class.client.tagcloud.php' );
+require( STAGS_DIR . '/inc/class.widgets.php' );
 
 // Activation, uninstall
-register_activation_hook(__FILE__, array('SimpleTags_Plugin', 'activation'));
-register_deactivation_hook(__FILE__, array('SimpleTags_Plugin', 'deactivation'));
+register_activation_hook( __FILE__, array( 'SimpleTags_Plugin', 'activation' ) );
+register_deactivation_hook( __FILE__, array( 'SimpleTags_Plugin', 'deactivation' ) );
 
 // Init Simple Tags
 function init_simple_tags() {
 	// Load client
 	new SimpleTags_Client();
 	new SimpleTags_Client_TagCloud();
-	
+
 	// Admin and XML-RPC
 	if ( is_admin() ) {
 		require( STAGS_DIR . '/inc/class.admin.php' );
 		new SimpleTags_Admin();
 	}
-	
-	add_action( 'widgets_init', create_function('', 'return register_widget("SimpleTags_Widget");') );
+
+	add_action( 'widgets_init', create_function( '', 'return register_widget("SimpleTags_Widget");' ) );
 }
+
 add_action( 'plugins_loaded', 'init_simple_tags' );
