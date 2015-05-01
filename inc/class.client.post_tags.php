@@ -173,6 +173,6 @@ class SimpleTags_Client_PostTags {
 		// Add container
 		$output = $before . $output . $after;
 
-		return SimpleTags_Client::output_content( '', 'string', '', $output, $copyright );
+		return SimpleTags_Client::output_content( 'st-post-tags', 'div', '', $output, $copyright );
 	}
 }
