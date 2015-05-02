@@ -20,10 +20,8 @@ class SimpleTags_Client_PostTags {
 		$tt_embedded = SimpleTags_Plugin::get_option_value( 'tt_embedded' );
 
 		$marker = false;
-		if ( is_feed() ) {
-			if ( (int) SimpleTags_Plugin::get_option_value( 'tt_feed' ) == 1 ) {
-				$marker = true;
-			}
+		if ( is_feed() && (int) SimpleTags_Plugin::get_option_value( 'tt_feed' ) == 1 ) {
+			$marker = true;
 		} elseif ( ! empty( $tt_embedded ) ) {
 			switch ( $tt_embedded ) {
 				case 'blogonly' :
