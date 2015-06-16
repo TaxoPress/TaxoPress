@@ -89,6 +89,17 @@ jQuery(document).ready(function() {
 		});
 		return false;
 	});
+	
+	// Proxem API
+	jQuery("a.proxem").click(function(event) {
+		event.preventDefault();
+	
+		jQuery('#st_ajax_loading').show();
+		jQuery("#suggestedtags .container_clicktags").load( ajaxurl + '?action=simpletags&stags_action=tags_from_proxem', {content:getContentFromEditor(),title:jQuery("#title").val(),tags:jQuery("#tags-input").val()}, function(){
+			registerClickTags();
+		});
+		return false;
+	});
 });
 
 function getContentFromEditor() {
