@@ -30,6 +30,8 @@ return array(
 	'alchemy_api'            => '',
 	'zemanta_key'            => '',
 	'tag4site_key'           => '',
+	'proxem_key'		=> '', 
+	'proxem_lang'		=> substr(get_locale(), 0, 2), 
 	'autocomplete_type'      => 'input',
 	'autocomplete_min'       => 0,
 	'autocomplete_mode'      => '',

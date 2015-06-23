@@ -56,7 +56,8 @@ class SimpleTags_Admin_Suggest {
 		$title .= '<a class="alchemyapi" href="#suggestedtags">' . __( 'AlchemyAPI', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="zemanta" href="#suggestedtags">' . __( 'Zemanta', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="datatxt" href="#suggestedtags">' . __( 'dataTXT', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="tag4site" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a>';
+		$title .= '<a class="tag4site" href="#suggestedtags">'.__('Tag4Site.RU', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a class="proxem" href="#suggestedtags">'.__('Proxem', 'simpletags').'</a>';
 
 		return $title;
 	}
@@ -121,6 +122,9 @@ class SimpleTags_Admin_Suggest {
 				case 'tags_from_local_db' :
 					self::ajax_suggest_local();
 					break;
+				case 'tags_from_proxem' :
+					self::ajax_proxem_api();
+				break;	
 			}
 		}
 	}
@@ -538,6 +542,60 @@ class SimpleTags_Admin_Suggest {
 			echo '<div class="clear"></div>';
 		}
 
+		exit();
+	}
+	/**
+	 * Suggest tags from ProxemAPI
+	 *
+	 */
+	public static function ajax_proxem_api() {
+		status_header( 200 );
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
+
+		// API Key ?
+		if ( SimpleTags_Plugin::get_option_value('proxem_key') == '' ) {
+			echo '<p>'.__('Proxem API need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+			exit();
+		}
+
+		// Get data
+		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
+		$content = trim($content);
+		if ( empty($content) ) {
+			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+			exit();
+		}
+
+		// Build params
+		$response = wp_remote_post( 'https://proxem-thematization.p.mashape.com/api/wikiAnnotator/GetCategories?nbtopcat=10', array('headers' => array(
+			'X-Mashape-Key' 	 => SimpleTags_Plugin::get_option_value('proxem_key'),
+			'Accept' => "application/json",
+			'Content-Type' 		 => "text/plain"
+		), 'body' => $content, 'timeout' => 15));
+		
+		if( !is_wp_error($response) && $response != null ) {
+			if ( wp_remote_retrieve_response_code($response) == 200 ) {
+				$data = wp_remote_retrieve_body($response);
+				
+			}
+		}
+		
+		$data = json_decode($data);
+		
+		if ( $data == false || !isset($data->categories) ) {
+			var_dump($response);
+			return false;
+		}
+
+		if ( empty($data->categories) ) {
+			echo '<p>'.__('No results from Proxem API.', 'simpletags').'</p>';
+			exit();
+		}
+
+		foreach ( (array) $data->categories as $term ) {
+			echo '<span class="local">'.esc_html($term->name).'</span>'."\n";
+		}
+		echo '<div class="clear"></div>';
 		exit();
 	}
 }
