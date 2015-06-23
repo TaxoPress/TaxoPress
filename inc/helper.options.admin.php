@@ -155,13 +155,7 @@ return array(
 			__('Proxem API Key', 'simpletags'), 
 			'text', 
 			'regular-text',
-			__('You can create an API key from <a href="https://www.mashape.com/proxem/ontology-based-topic-detection">service website</a>', 'simpletags')),
-		array(
-			'proxem_lang', 
-			__('Proxem API Language', 'simpletags'), 
-			'text', 
-			'regular-text',
-			__('The lang of your document', 'simpletags'))
+			__('You can create an API key from <a href="https://www.mashape.com/proxem/ontology-based-topic-detection">service website</a>', 'simpletags'))
 	),
 	'auto-links'     => array(
 		array(

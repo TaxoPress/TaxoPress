@@ -567,11 +567,11 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Build params
-		$response = wp_remote_post( 'https://proxem-thematization.p.mashape.com/api/wikiAnnotator/'. SimpleTags_Plugin::get_option_value('proxem_lang').'/GetCategories?nbtopcat=20', array('headers' => array(
+		$response = wp_remote_post( 'https://proxem-thematization.p.mashape.com/api/wikiAnnotator/GetCategories?nbtopcat=10', array('headers' => array(
 			'X-Mashape-Key' 	 => SimpleTags_Plugin::get_option_value('proxem_key'),
 			'Accept' => "application/json",
 			'Content-Type' 		 => "text/plain"
-		), 'body' => $content));
+		), 'body' => $content, 'timeout' => 15));
 		
 		if( !is_wp_error($response) && $response != null ) {
 			if ( wp_remote_retrieve_response_code($response) == 200 ) {
@@ -583,6 +583,7 @@ class SimpleTags_Admin_Suggest {
 		$data = json_decode($data);
 		
 		if ( $data == false || !isset($data->categories) ) {
+			var_dump($response);
 			return false;
 		}
 
