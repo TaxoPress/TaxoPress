@@ -383,7 +383,6 @@ class SimpleTags_Admin {
 						break;
 
 					case 'text':
-					default:
 						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="' . $option[3] . '" />' . PHP_EOL;
 						break;
 
