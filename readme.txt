@@ -4,7 +4,7 @@ Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.4.1
+Stable tag: 2.4.3
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
@@ -71,6 +71,8 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.4.3
+    * Fix metabox title WP 4.4
 * Version 2.4.2
     * Make tags all same count mid-sized (pull request #29) (from Github contribution Sophist-UK)
     * Fix options Advanced Usage on widgets (pull request #28) (from Github contribution Sophist-UK)
