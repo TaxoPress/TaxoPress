@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-	jQuery("#suggestedtags h3.hndle span").html( html_entity_decode(stHelperSuggestedTagsL10n.title_bloc) );
+	jQuery("#suggestedtags h2.hndle span").html( html_entity_decode(stHelperSuggestedTagsL10n.title_bloc) );
 	jQuery("#suggestedtags .inside .container_clicktags").html( stHelperSuggestedTagsL10n.content_bloc );
 	
 	// OpenCalais API
