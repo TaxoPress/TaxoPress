@@ -221,7 +221,7 @@ class SimpleTags_Client_TagCloud {
 			}
 
 			$term         = $terms_data[ $term_name ];
-			$scale_result = (int) $scale ? ( ( $term->count - $minval ) * $scale + $minout ) : ( $scale_max - $scale_min ) / 2;
+			$scale_result = (int) ($scale <> 0 ? ( ( $term->count - $minval ) * $scale + $minout ) : ( $scale_max - $scale_min ) / 2);
 			$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
 		}
 

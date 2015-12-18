@@ -20,10 +20,8 @@ class SimpleTags_Client_PostTags {
 		$tt_embedded = SimpleTags_Plugin::get_option_value( 'tt_embedded' );
 
 		$marker = false;
-		if ( is_feed() ) {
-			if ( (int) SimpleTags_Plugin::get_option_value( 'tt_feed' ) == 1 ) {
-				$marker = true;
-			}
+		if ( is_feed() && (int) SimpleTags_Plugin::get_option_value( 'tt_feed' ) == 1 ) {
+			$marker = true;
 		} elseif ( ! empty( $tt_embedded ) ) {
 			switch ( $tt_embedded ) {
 				case 'blogonly' :
@@ -118,12 +116,18 @@ class SimpleTags_Client_PostTags {
 		}
 
 		// Get categories ?
-		$taxonomy = ( (int) $inc_cats == 0 ) ? 'post_tag' : array( 'post_tag', 'category' );
+		$taxonomies = ( (int) $inc_cats == 0 ) ? 'post_tag' : array( 'post_tag', 'category' );
 
 		// Get terms
-		$terms = get_object_term_cache( $object_id, $taxonomy );
-		if ( false === $terms ) {
-			$terms = wp_get_object_terms( $object_id, $taxonomy );
+		// According to codex https://developer.wordpress.org/reference/functions/get_object_term_cache/, $taxonomy must be a string
+		$terms = array();
+		foreach ( (array) $taxonomies as $taxonomy) {
+			$taxterms = get_object_term_cache( $object_id, $taxonomy );
+			if ( false === $taxterms ) {
+				$taxterms = wp_get_object_terms( $object_id, $taxonomy );
+			}
+			// array_unique is slow for large arrays
+			$terms = array_keys( array_flip( $terms + $taxterms ) );
 		}
 
 		// Hook
@@ -173,6 +177,6 @@ class SimpleTags_Client_PostTags {
 		// Add container
 		$output = $before . $output . $after;
 
-		return SimpleTags_Client::output_content( '', 'string', '', $output, $copyright );
+		return SimpleTags_Client::output_content( 'st-post-tags', 'div', '', $output, $copyright );
 	}
 }
