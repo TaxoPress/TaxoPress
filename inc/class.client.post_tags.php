@@ -116,12 +116,18 @@ class SimpleTags_Client_PostTags {
 		}
 
 		// Get categories ?
-		$taxonomy = ( (int) $inc_cats == 0 ) ? 'post_tag' : array( 'post_tag', 'category' );
+		$taxonomies = ( (int) $inc_cats == 0 ) ? 'post_tag' : array( 'post_tag', 'category' );
 
 		// Get terms
-		$terms = get_object_term_cache( $object_id, $taxonomy );
-		if ( false === $terms ) {
-			$terms = wp_get_object_terms( $object_id, $taxonomy );
+		// According to codex https://developer.wordpress.org/reference/functions/get_object_term_cache/, $taxonomy must be a string
+		$terms = array();
+		foreach ( (array) $taxonomies as $taxonomy) {
+			$taxterms = get_object_term_cache( $object_id, $taxonomy );
+			if ( false === $taxterms ) {
+				$taxterms = wp_get_object_terms( $object_id, $taxonomy );
+			}
+			// array_unique is slow for large arrays
+			$terms = array_keys( array_flip( $terms + $taxterms ) );
 		}
 
 		// Hook
