@@ -32,9 +32,9 @@ class SimpleTags_Admin_Autocomplete {
 
 		// Register JS/CSS
 		wp_register_script( 'st-helper-autocomplete', STAGS_URL . '/assets/js/helper-autocomplete.js', array(
-				'jquery',
-				'jquery-ui-autocomplete'
-			), STAGS_VERSION );
+			'jquery',
+			'jquery-ui-autocomplete'
+		), STAGS_VERSION );
 
 		// Register location
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
@@ -42,10 +42,10 @@ class SimpleTags_Admin_Autocomplete {
 
 		// Helper for posts/pages and for Auto Tags, Mass Edit Tags and Manage tags !
 		if ( ( in_array( $pagenow, $wp_post_pages ) || ( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ) || ( isset( $_GET['page'] ) && in_array( $_GET['page'], array(
-						'st_auto',
-						'st_mass_terms',
-						'st_manage'
-					) ) )
+					'st_auto',
+					'st_mass_terms',
+					'st_manage'
+				) ) )
 		) {
 			wp_enqueue_script( 'st-helper-autocomplete' );
 		}
@@ -156,9 +156,9 @@ class SimpleTags_Admin_Autocomplete {
 			remove_meta_box( 'tagsdiv-' . 'post_tag', $post_type, 'side' );
 
 			add_meta_box( 'adv-tagsdiv', __( 'Tags (Simple Tags)', 'simpletags' ), array(
-					__CLASS__,
-					'metabox'
-				), $post_type, 'side', 'core', array( 'taxonomy' => 'post_tag' ) );
+				__CLASS__,
+				'metabox'
+			), $post_type, 'side', 'core', array( 'taxonomy' => 'post_tag' ) );
 
 			return true;
 		}
@@ -194,7 +194,7 @@ class SimpleTags_Admin_Autocomplete {
 			st_init_autocomplete('#adv-tags-input', '<?php echo admin_url("admin-ajax.php?action=simpletags&stags_action=helper_js_collection"); ?>', <?php echo $autocomplete_min; ?>);
 			-->
 		</script>
-	<?php
+		<?php
 	}
 
 	/**
@@ -214,7 +214,7 @@ class SimpleTags_Admin_Autocomplete {
 			st_init_autocomplete('#auto_list', "<?php echo admin_url('admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?>);
 			-->
 		</script>
-	<?php
+		<?php
 	}
 
 	/**
@@ -234,7 +234,7 @@ class SimpleTags_Admin_Autocomplete {
 			st_init_autocomplete('.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?>);
 			-->
 		</script>
-	<?php
+		<?php
 	}
 
 	/**
@@ -254,6 +254,6 @@ class SimpleTags_Admin_Autocomplete {
 			st_init_autocomplete('.autocomplete-input', "<?php echo admin_url('admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy='.$taxonomy); ?>", <?php echo $autocomplete_min; ?>);
 			-->
 		</script>
-	<?php
+		<?php
 	}
 }

@@ -13,8 +13,9 @@ class SimpleTags_Widget extends WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct( 'simpletags', __( 'Tag Cloud (Simple Tags)', 'simpletags' ),
-			array( 'classname'   => 'widget-simpletags',
-			       'description' => __( 'Your most used tags in cloud format with dynamic color and many options', 'simpletags' )
+			array(
+				'classname'   => 'widget-simpletags',
+				'description' => __( 'Your most used tags in cloud format with dynamic color and many options', 'simpletags' )
 			)
 		);
 	}
@@ -398,6 +399,6 @@ class SimpleTags_Widget extends WP_Widget {
 				</select>
 			</label>
 		</p>
-	<?php
+		<?php
 	}
 }

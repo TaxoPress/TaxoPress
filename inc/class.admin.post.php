@@ -25,9 +25,9 @@ class SimpleTags_Admin_Post_Settings {
 	 */
 	public static function add_meta_boxes( $post_type ) {
 		add_meta_box( 'simpletags-settings', __( 'Simple Tags - Settings', 'simpletags' ), array(
-				__CLASS__,
-				'metabox'
-			), $post_type, 'side', 'low' );
+			__CLASS__,
+			'metabox'
+		), $post_type, 'side', 'low' );
 	}
 
 	/**

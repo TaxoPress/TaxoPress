@@ -202,11 +202,11 @@ class SimpleTags_Admin {
 			in_array( $pagenow, $wp_post_pages ) ||
 			( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ||
 			( isset( $_GET['page'] ) && in_array( $_GET['page'], array(
-						'st_mass_terms',
-						'st_auto',
-						'st_options',
-						'st_manage'
-					) ) )
+					'st_mass_terms',
+					'st_auto',
+					'st_options',
+					'st_manage'
+				) ) )
 		) {
 			wp_enqueue_style( 'st-admin' );
 		}
@@ -226,9 +226,9 @@ class SimpleTags_Admin {
 	 */
 	public static function admin_menu() {
 		add_options_page( __( 'Simple Tags: Options', 'simpletags' ), __( 'Simple Tags', 'simpletags' ), 'admin_simple_tags', self::menu_slug, array(
-				__CLASS__,
-				'page_options'
-			) );
+			__CLASS__,
+			'page_options',
+		) );
 		self::$admin_url = admin_url( '/options-general.php?page=' . self::menu_slug );
 	}
 
@@ -318,7 +318,7 @@ class SimpleTags_Admin {
 	public static function printAdminFooter() {
 		?>
 		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2013 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
-	<?php
+		<?php
 	}
 
 	/**

@@ -121,7 +121,7 @@ class SimpleTags_Client_PostTags {
 		// Get terms
 		// According to codex https://developer.wordpress.org/reference/functions/get_object_term_cache/, $taxonomy must be a string
 		$terms = array();
-		foreach ( (array) $taxonomies as $taxonomy) {
+		foreach ( (array) $taxonomies as $taxonomy ) {
 			$taxterms = get_object_term_cache( $object_id, $taxonomy );
 			if ( false === $taxterms ) {
 				$taxterms = wp_get_object_terms( $object_id, $taxonomy );

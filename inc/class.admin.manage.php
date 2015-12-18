@@ -41,9 +41,9 @@ class SimpleTags_Admin_Manage {
 	 */
 	public static function admin_menu() {
 		add_management_page( __( 'Simple Terms: Manage Terms', 'simpletags' ), __( 'Manage Terms', 'simpletags' ), 'simple_tags', 'st_manage', array(
-				__CLASS__,
-				'page_manage_tags'
-			) );
+			__CLASS__,
+			'page_manage_tags'
+		) );
 	}
 
 	/**
@@ -101,203 +101,209 @@ class SimpleTags_Admin_Manage {
 		settings_errors( __CLASS__ );
 		?>
 		<div class="wrap st_wrap">
-		<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
+			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
 
-		<h2><?php _e( 'Simple Tags: Manage Terms', 'simpletags' ); ?></h2>
+			<h2><?php _e( 'Simple Tags: Manage Terms', 'simpletags' ); ?></h2>
 
-		<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
+			<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
 
-		<div class="clear"></div>
-		<div id="term-list">
-			<h3><?php _e( 'Click terms list:', 'simpletags' ); ?></h3>
+			<div class="clear"></div>
+			<div id="term-list">
+				<h3><?php _e( 'Click terms list:', 'simpletags' ); ?></h3>
 
-			<form action="" method="get">
-				<div>
-					<input type="hidden" name="page" value="st_manage"/>
-					<input type="hidden" name="taxo" value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
-					<input type="hidden" name="cpt" value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
+				<form action="" method="get">
+					<div>
+						<input type="hidden" name="page" value="st_manage"/>
+						<input type="hidden" name="taxo"
+						       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
+						<input type="hidden" name="cpt"
+						       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-					<select name="order">
-						<option <?php selected( $_GET['order'], 'count-asc' ); ?>
-							value="count-asc"><?php _e( 'Least used', 'simpletags' ); ?></option>
-						<option <?php selected( $_GET['order'], 'count-desc' ); ?>
-							value="count-desc"><?php _e( 'Most popular', 'simpletags' ); ?></option>
-						<option <?php selected( $_GET['order'], 'name-asc' ); ?>
-							value="name-asc"><?php _e( 'Alphabetical (default)', 'simpletags' ); ?></option>
-						<option <?php selected( $_GET['order'], 'name-desc' ); ?>
-							value="name-desc"><?php _e( 'Inverse Alphabetical', 'simpletags' ); ?></option>
-						<option <?php selected( $_GET['order'], 'random' ); ?>
-							value="random"><?php _e( 'Random', 'simpletags' ); ?></option>
-					</select>
-					<input class="button" type="submit" value="<?php _e( 'Sort', 'simpletags' ); ?>"/>
+						<select name="order">
+							<option <?php selected( $_GET['order'], 'count-asc' ); ?>
+								value="count-asc"><?php _e( 'Least used', 'simpletags' ); ?></option>
+							<option <?php selected( $_GET['order'], 'count-desc' ); ?>
+								value="count-desc"><?php _e( 'Most popular', 'simpletags' ); ?></option>
+							<option <?php selected( $_GET['order'], 'name-asc' ); ?>
+								value="name-asc"><?php _e( 'Alphabetical (default)', 'simpletags' ); ?></option>
+							<option <?php selected( $_GET['order'], 'name-desc' ); ?>
+								value="name-desc"><?php _e( 'Inverse Alphabetical', 'simpletags' ); ?></option>
+							<option <?php selected( $_GET['order'], 'random' ); ?>
+								value="random"><?php _e( 'Random', 'simpletags' ); ?></option>
+						</select>
+						<input class="button" type="submit" value="<?php _e( 'Sort', 'simpletags' ); ?>"/>
+					</div>
+				</form>
+
+				<div id="term-list-inner">
+					<?php
+					if ( isset( $_GET['order'] ) ) {
+						$order = explode( '-', stripslashes( $_GET['order'] ) );
+						if ( ! isset( $order[1] ) ) {
+							$order[1] = '';
+						} // for skip notice on random...
+
+						$order = '&selectionby=' . $order[0] . '&selection=' . $order[1] . '&orderby=' . $order[0] . '&order=' . $order[1];
+					} else {
+						$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
+					}
+					st_tag_cloud( 'hide_empty=false&number=&color=false&get=all&title=' . $order . '&taxonomy=' . SimpleTags_Admin::$taxonomy );
+					?>
 				</div>
-			</form>
-
-			<div id="term-list-inner">
-				<?php
-				if ( isset( $_GET['order'] ) ) {
-					$order = explode( '-', stripslashes( $_GET['order'] ) );
-					if ( ! isset( $order[1] ) ) {
-						$order[1] = '';
-					} // for skip notice on random...
-
-					$order = '&selectionby=' . $order[0] . '&selection=' . $order[1] . '&orderby=' . $order[0] . '&order=' . $order[1];
-				} else {
-					$order = '&selectionby=name&selection=asc&orderby=name&order=asc';
-				}
-				st_tag_cloud( 'hide_empty=false&number=&color=false&get=all&title=' . $order . '&taxonomy=' . SimpleTags_Admin::$taxonomy );
-				?>
 			</div>
-		</div>
 
-		<table id="manage-table-terms" class="form-table">
-			<tr valign="top">
-				<th scope="row"><strong><?php _e( 'Rename/Merge Terms', 'simpletags' ); ?></strong></th>
-				<td>
-					<p><?php _e( 'Enter the term to rename and its new value. You can use this feature to merge terms too. Click "Rename" and all posts which use this term will be updated.', 'simpletags' ); ?></p>
+			<table id="manage-table-terms" class="form-table">
+				<tr valign="top">
+					<th scope="row"><strong><?php _e( 'Rename/Merge Terms', 'simpletags' ); ?></strong></th>
+					<td>
+						<p><?php _e( 'Enter the term to rename and its new value. You can use this feature to merge terms too. Click "Rename" and all posts which use this term will be updated.', 'simpletags' ); ?></p>
 
-					<p><?php _e( 'You can specify multiple terms to rename by separating them with commas.', 'simpletags' ); ?></p>
+						<p><?php _e( 'You can specify multiple terms to rename by separating them with commas.', 'simpletags' ); ?></p>
 
-					<fieldset>
-						<form action="" method="post">
-							<input type="hidden" name="taxo"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
-							<input type="hidden" name="cpt"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
+						<fieldset>
+							<form action="" method="post">
+								<input type="hidden" name="taxo"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
+								<input type="hidden" name="cpt"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-							<input type="hidden" name="term_action" value="renameterm"/>
-							<input type="hidden" name="term_nonce"
-							       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+								<input type="hidden" name="term_action" value="renameterm"/>
+								<input type="hidden" name="term_nonce"
+								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
-							<p>
-								<label for="renameterm_old"><?php _e( 'Term(s) to rename:', 'simpletags' ); ?></label>
-								<br/>
-								<input type="text" class="autocomplete-input" id="renameterm_old" name="renameterm_old"
-								       value="" size="40"/>
-							</p>
-
-							<p>
-								<label for="renameterm_new"><?php _e( 'New term name(s):', 'simpletags' ); ?>
+								<p>
+									<label
+										for="renameterm_old"><?php _e( 'Term(s) to rename:', 'simpletags' ); ?></label>
 									<br/>
-									<input type="text" class="autocomplete-input" id="renameterm_new"
-									       name="renameterm_new" value="" size="40"/>
-							</p>
+									<input type="text" class="autocomplete-input" id="renameterm_old"
+									       name="renameterm_old"
+									       value="" size="40"/>
+								</p>
 
-							<input class="button-primary" type="submit" name="rename"
-							       value="<?php _e( 'Rename', 'simpletags' ); ?>"/>
-						</form>
-					</fieldset>
-				</td>
-			</tr>
+								<p>
+									<label for="renameterm_new"><?php _e( 'New term name(s):', 'simpletags' ); ?>
+										<br/>
+										<input type="text" class="autocomplete-input" id="renameterm_new"
+										       name="renameterm_new" value="" size="40"/>
+								</p>
 
-			<tr valign="top">
-				<th scope="row"><strong><?php _e( 'Delete Terms', 'simpletags' ); ?></strong></th>
-				<td>
-					<p><?php _e( 'Enter the name of terms to delete. Terms will be removed from all posts.', 'simpletags' ); ?></p>
+								<input class="button-primary" type="submit" name="rename"
+								       value="<?php _e( 'Rename', 'simpletags' ); ?>"/>
+							</form>
+						</fieldset>
+					</td>
+				</tr>
 
-					<p><?php _e( 'You can specify multiple terms to delete by separating them with commas', 'simpletags' ); ?>
-						.</p>
+				<tr valign="top">
+					<th scope="row"><strong><?php _e( 'Delete Terms', 'simpletags' ); ?></strong></th>
+					<td>
+						<p><?php _e( 'Enter the name of terms to delete. Terms will be removed from all posts.', 'simpletags' ); ?></p>
 
-					<fieldset>
-						<form action="" method="post">
-							<input type="hidden" name="taxo"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
-							<input type="hidden" name="cpt"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
+						<p><?php _e( 'You can specify multiple terms to delete by separating them with commas', 'simpletags' ); ?>
+							.</p>
 
-							<input type="hidden" name="term_action" value="deleteterm"/>
-							<input type="hidden" name="term_nonce"
-							       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+						<fieldset>
+							<form action="" method="post">
+								<input type="hidden" name="taxo"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
+								<input type="hidden" name="cpt"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-							<p>
-								<label for="deleteterm_name"><?php _e( 'Term(s) to delete:', 'simpletags' ); ?></label>
-								<br/>
-								<input type="text" class="autocomplete-input" id="deleteterm_name"
-								       name="deleteterm_name" value="" size="40"/>
-							</p>
+								<input type="hidden" name="term_action" value="deleteterm"/>
+								<input type="hidden" name="term_nonce"
+								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
-							<input class="button-primary" type="submit" name="delete"
-							       value="<?php _e( 'Delete', 'simpletags' ); ?>"/>
-						</form>
-					</fieldset>
-				</td>
-			</tr>
+								<p>
+									<label
+										for="deleteterm_name"><?php _e( 'Term(s) to delete:', 'simpletags' ); ?></label>
+									<br/>
+									<input type="text" class="autocomplete-input" id="deleteterm_name"
+									       name="deleteterm_name" value="" size="40"/>
+								</p>
 
-			<tr valign="top">
-				<th scope="row"><strong><?php _e( 'Add Terms', 'simpletags' ); ?></strong></th>
-				<td>
-					<p><?php _e( 'This feature lets you add one or more new terms to all posts which match any of the terms given.', 'simpletags' ); ?></p>
+								<input class="button-primary" type="submit" name="delete"
+								       value="<?php _e( 'Delete', 'simpletags' ); ?>"/>
+							</form>
+						</fieldset>
+					</td>
+				</tr>
 
-					<p><?php _e( 'You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all posts, then don\'t specify any terms to match.', 'simpletags' ); ?></p>
+				<tr valign="top">
+					<th scope="row"><strong><?php _e( 'Add Terms', 'simpletags' ); ?></strong></th>
+					<td>
+						<p><?php _e( 'This feature lets you add one or more new terms to all posts which match any of the terms given.', 'simpletags' ); ?></p>
 
-					<fieldset>
-						<form action="" method="post">
-							<input type="hidden" name="taxo"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
-							<input type="hidden" name="cpt"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
+						<p><?php _e( 'You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all posts, then don\'t specify any terms to match.', 'simpletags' ); ?></p>
 
-							<input type="hidden" name="term_action" value="addterm"/>
-							<input type="hidden" name="term_nonce"
-							       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+						<fieldset>
+							<form action="" method="post">
+								<input type="hidden" name="taxo"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
+								<input type="hidden" name="cpt"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-							<p>
-								<label for="addterm_match"><?php _e( 'Term(s) to match:', 'simpletags' ); ?></label>
-								<br/>
-								<input type="text" class="autocomplete-input" id="addterm_match" name="addterm_match"
-								       value="" size="40"/>
-							</p>
+								<input type="hidden" name="term_action" value="addterm"/>
+								<input type="hidden" name="term_nonce"
+								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
-							<p>
-								<label for="addterm_new"><?php _e( 'Term(s) to add:', 'simpletags' ); ?></label>
-								<br/>
-								<input type="text" class="autocomplete-input" id="addterm_new" name="addterm_new"
-								       value="" size="40"/>
-							</p>
+								<p>
+									<label for="addterm_match"><?php _e( 'Term(s) to match:', 'simpletags' ); ?></label>
+									<br/>
+									<input type="text" class="autocomplete-input" id="addterm_match"
+									       name="addterm_match"
+									       value="" size="40"/>
+								</p>
 
-							<input class="button-primary" type="submit" name="Add"
-							       value="<?php _e( 'Add', 'simpletags' ); ?>"/>
-						</form>
-					</fieldset>
-				</td>
-			</tr>
+								<p>
+									<label for="addterm_new"><?php _e( 'Term(s) to add:', 'simpletags' ); ?></label>
+									<br/>
+									<input type="text" class="autocomplete-input" id="addterm_new" name="addterm_new"
+									       value="" size="40"/>
+								</p>
 
-			<tr valign="top">
-				<th scope="row"><strong><?php _e( 'Remove rarely used terms', 'simpletags' ); ?></strong></th>
-				<td>
-					<p><?php _e( 'This feature allows you to remove rarely used terms.', 'simpletags' ); ?></p>
+								<input class="button-primary" type="submit" name="Add"
+								       value="<?php _e( 'Add', 'simpletags' ); ?>"/>
+							</form>
+						</fieldset>
+					</td>
+				</tr>
 
-					<p><?php _e( 'You can specify the number below which will be removed terms. If you put 5, all terms with a counter inferior to 5 will be deleted. The terms with a counter equal to 5 is keep.', 'simpletags' ); ?></p>
+				<tr valign="top">
+					<th scope="row"><strong><?php _e( 'Remove rarely used terms', 'simpletags' ); ?></strong></th>
+					<td>
+						<p><?php _e( 'This feature allows you to remove rarely used terms.', 'simpletags' ); ?></p>
 
-					<fieldset>
-						<form action="" method="post">
-							<input type="hidden" name="taxo"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
-							<input type="hidden" name="cpt"
-							       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
+						<p><?php _e( 'You can specify the number below which will be removed terms. If you put 5, all terms with a counter inferior to 5 will be deleted. The terms with a counter equal to 5 is keep.', 'simpletags' ); ?></p>
 
-							<input type="hidden" name="term_action" value="remove-rarelyterms"/>
-							<input type="hidden" name="term_nonce"
-							       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+						<fieldset>
+							<form action="" method="post">
+								<input type="hidden" name="taxo"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
+								<input type="hidden" name="cpt"
+								       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-							<p>
-								<label for="number-delete"><?php _e( 'Numbers minimum:', 'simpletags' ); ?></label>
-								<br/>
-								<select name="number-rarely" id="number-delete">
-									<?php for ( $i = 1; $i <= 100; $i ++ ) : ?>
-										<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-									<?php endfor; ?>
-								</select>
-							</p>
+								<input type="hidden" name="term_action" value="remove-rarelyterms"/>
+								<input type="hidden" name="term_nonce"
+								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
-							<input class="button-primary" type="submit" name="Delete"
-							       value="<?php _e( 'Delete rarely used', 'simpletags' ); ?>"/>
-						</form>
-					</fieldset>
-				</td>
-			</tr>
+								<p>
+									<label for="number-delete"><?php _e( 'Numbers minimum:', 'simpletags' ); ?></label>
+									<br/>
+									<select name="number-rarely" id="number-delete">
+										<?php for ( $i = 1; $i <= 100; $i ++ ) : ?>
+											<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+										<?php endfor; ?>
+									</select>
+								</p>
 
-			<?php /*
+								<input class="button-primary" type="submit" name="Delete"
+								       value="<?php _e( 'Delete rarely used', 'simpletags' ); ?>"/>
+							</form>
+						</fieldset>
+					</td>
+				</tr>
+
+				<?php /*
 				<tr valign="top">
 					<th scope="row"><strong><?php _e('Edit Term Slug', 'simpletags'); ?></strong></th>
 					<td>
@@ -330,22 +336,22 @@ class SimpleTags_Admin_Manage {
 					</td>
 				</tr>
 				*/
-			?>
+				?>
 
-			<tr>
-				<th scope="row"><strong><?php _e( 'Technical informations', 'simpletags' ); ?></strong></th>
-				<td>
-					<p><strong><?php _e( 'Renaming', 'simpletags' ); ?></strong></p>
+				<tr>
+					<th scope="row"><strong><?php _e( 'Technical informations', 'simpletags' ); ?></strong></th>
+					<td>
+						<p><strong><?php _e( 'Renaming', 'simpletags' ); ?></strong></p>
 
-					<p>
-						<em><?php _e( 'Simple Tags don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 terms : "Blogging" and "Bloging". When you want edit the term "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit "Bloging" for "Blogging", Simple Tags merge posts filled with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags' ); ?>
-							<em></p>
-				</td>
-			</tr>
-		</table>
+						<p>
+							<em><?php _e( 'Simple Tags don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 terms : "Blogging" and "Bloging". When you want edit the term "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit "Bloging" for "Blogging", Simple Tags merge posts filled with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags' ); ?>
+								<em></p>
+					</td>
+				</tr>
+			</table>
 
-		<div class="clear"></div>
-		<?php SimpleTags_Admin::printAdminFooter(); ?>
+			<div class="clear"></div>
+			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
 		<?php
 		do_action( 'simpletags-manage_terms', SimpleTags_Admin::$taxonomy );

@@ -25,9 +25,9 @@ class SimpleTags_Admin_AutoTags {
 	 */
 	public static function admin_menu() {
 		add_management_page( __( 'Simple Terms: Auto Terms', 'simpletags' ), __( 'Auto Terms', 'simpletags' ), 'simple_tags', 'st_auto', array(
-				__CLASS__,
-				'pageAutoTerms'
-			) );
+			__CLASS__,
+			'pageAutoTerms'
+		) );
 	}
 
 	/**
@@ -204,7 +204,7 @@ class SimpleTags_Admin_AutoTags {
 							<th scope="row"><?php _e( 'Activation', 'simpletags' ); ?></th>
 							<td>
 								<input type="checkbox" id="use_auto_terms" name="use_auto_terms"
-								       value="1" <?php echo ( isset( $taxo_options['use_auto_terms'] ) && $taxo_options['use_auto_terms'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								       value="1" <?php echo ( isset( $taxo_options['use_auto_terms'] ) && $taxo_options['use_auto_terms'] == 1 ) ? 'checked="checked"' : ''; ?> />
 								<label for="use_auto_terms"><?php _e( 'Active Auto Tags.', 'simpletags' ); ?></label>
 							</td>
 						</tr>
@@ -212,7 +212,7 @@ class SimpleTags_Admin_AutoTags {
 							<th scope="row"><?php _e( 'Terms database', 'simpletags' ); ?></th>
 							<td>
 								<input type="checkbox" id="at_all" name="at_all"
-								       value="1" <?php echo ( isset( $taxo_options['at_all'] ) && $taxo_options['at_all'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								       value="1" <?php echo ( isset( $taxo_options['at_all'] ) && $taxo_options['at_all'] == 1 ) ? 'checked="checked"' : ''; ?> />
 								<label
 									for="at_all"><?php _e( 'Use also local terms database with auto terms. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags' ); ?></label>
 							</td>
@@ -221,7 +221,7 @@ class SimpleTags_Admin_AutoTags {
 							<th scope="row"><?php _e( 'Target', 'simpletags' ); ?></th>
 							<td>
 								<input type="checkbox" id="at_empty" name="at_empty"
-								       value="1" <?php echo ( isset( $taxo_options['at_empty'] ) && $taxo_options['at_empty'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								       value="1" <?php echo ( isset( $taxo_options['at_empty'] ) && $taxo_options['at_empty'] == 1 ) ? 'checked="checked"' : ''; ?> />
 								<label
 									for="at_empty"><?php _e( 'Autotag only posts without terms.', 'simpletags' ); ?></label>
 							</td>
@@ -230,7 +230,7 @@ class SimpleTags_Admin_AutoTags {
 							<th scope="row"><?php _e( 'Whole Word ?', 'simpletags' ); ?></th>
 							<td>
 								<input type="checkbox" id="only_full_word" name="only_full_word"
-								       value="1" <?php echo ( isset( $taxo_options['only_full_word'] ) && $taxo_options['only_full_word'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								       value="1" <?php echo ( isset( $taxo_options['only_full_word'] ) && $taxo_options['only_full_word'] == 1 ) ? 'checked="checked"' : ''; ?> />
 								<label
 									for="only_full_word"><?php _e( 'Autotag only a post when terms finded in the content are a the same name. (whole word only)', 'simpletags' ); ?></label>
 							</td>
@@ -239,7 +239,7 @@ class SimpleTags_Admin_AutoTags {
 							<th scope="row"><?php _e( 'Suport Hashtag format ?', 'simpletags' ); ?></th>
 							<td>
 								<input type="checkbox" id="allow_hashtag_format" name="allow_hashtag_format"
-								       value="1" <?php echo ( isset( $taxo_options['allow_hashtag_format'] ) && $taxo_options['allow_hashtag_format'] == 1 ) ? 'checked="checked"' : ''; ?>  />
+								       value="1" <?php echo ( isset( $taxo_options['allow_hashtag_format'] ) && $taxo_options['allow_hashtag_format'] == 1 ) ? 'checked="checked"' : ''; ?> />
 								<label
 									for="allow_hashtag_format"><?php _e( 'When the whole word option is enabled, hashtag will not be autotag because of # prefix. This option allow to fixed this issue!', 'simpletags' ); ?></label>
 							</td>
@@ -281,7 +281,7 @@ class SimpleTags_Admin_AutoTags {
 			// Get objects
 			$objects = (array) $wpdb->get_results( $wpdb->prepare( "SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'publish' ORDER BY ID DESC LIMIT %d, 20", SimpleTags_Admin::$post_type, $n ) );
 
-			if ( ! empty( $objects )) {
+			if ( ! empty( $objects ) ) {
 			echo '<ul>';
 			foreach ( $objects as $object ) {
 				SimpleTags_Client_Autoterms::auto_terms_post( $object, SimpleTags_Admin::$taxonomy, $taxo_options, true );
@@ -302,7 +302,7 @@ class SimpleTags_Admin_AutoTags {
 					window.setTimeout('nextPage()', 300);
 					// ]]>
 				</script>
-			<?php
+				<?php
 			} else {
 				$counter = get_option( 'tmp_auto_terms_st' );
 				delete_option( 'tmp_auto_terms_st' );

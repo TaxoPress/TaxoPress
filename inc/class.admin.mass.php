@@ -21,9 +21,9 @@ class SimpleTags_Admin_Mass {
 	 */
 	public static function admin_menu() {
 		add_management_page( __( 'Simple Terms: Mass Edit Terms', 'simpletags' ), __( 'Mass Edit Terms', 'simpletags' ), 'simple_tags', 'st_mass_terms', array(
-				__CLASS__,
-				'pageMassEditTags'
-			) );
+			__CLASS__,
+			'pageMassEditTags',
+		) );
 	}
 
 	/**
@@ -195,7 +195,7 @@ class SimpleTags_Admin_Mass {
 									}
 									?>
 								</select>
-							<?php
+								<?php
 							}
 							?>
 
@@ -223,7 +223,7 @@ class SimpleTags_Admin_Mass {
 
 			<br style="clear:both;"/>
 
-			<?php if (have_posts()) :
+			<?php if ( have_posts() ) :
 				add_filter( 'the_title', 'esc_html' );
 				?>
 				<form name="post" id="post" method="post">
@@ -251,7 +251,7 @@ class SimpleTags_Admin_Mass {
 								           value="<?php echo SimpleTags_Admin::getTermsToEdit( SimpleTags_Admin::$taxonomy, get_the_ID() ); ?>"/>
 								</td>
 							</tr>
-						<?php
+							<?php
 						}
 						?>
 						</tbody>

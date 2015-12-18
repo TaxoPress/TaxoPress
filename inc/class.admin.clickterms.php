@@ -28,13 +28,13 @@ class SimpleTags_Admin_ClickTags {
 		global $pagenow;
 
 		wp_register_script( 'st-helper-click-tags', STAGS_URL . '/assets/js/helper-click-tags.js', array(
-				'jquery',
-				'st-helper-add-tags'
-			), STAGS_VERSION );
+			'jquery',
+			'st-helper-add-tags'
+		), STAGS_VERSION );
 		wp_localize_script( 'st-helper-click-tags', 'stHelperClickTagsL10n', array(
-				'show_txt' => __( 'Display click tags', 'simpletags' ),
-				'hide_txt' => __( 'Hide click tags', 'simpletags' )
-			) );
+			'show_txt' => __( 'Display click tags', 'simpletags' ),
+			'hide_txt' => __( 'Hide click tags', 'simpletags' )
+		) );
 
 		// Register location
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
@@ -54,14 +54,14 @@ class SimpleTags_Admin_ClickTags {
 	 */
 	public static function admin_menu() {
 		add_meta_box( 'st-clicks-tags', __( 'Click tags', 'simpletags' ), array(
-				__CLASS__,
-				'metabox'
-			), 'post', 'advanced', 'core' );
+			__CLASS__,
+			'metabox'
+		), 'post', 'advanced', 'core' );
 		if ( is_page_have_tags() ) {
 			add_meta_box( 'st-clicks-tags', __( 'Click tags', 'simpletags' ), array(
-					__CLASS__,
-					'metabox'
-				), 'page', 'advanced', 'core' );
+				__CLASS__,
+				'metabox'
+			), 'page', 'advanced', 'core' );
 		}
 	}
 
@@ -103,7 +103,7 @@ class SimpleTags_Admin_ClickTags {
 		}
 
 		// Prepare search
-		$search = ( isset( $_GET['q'] ) ) ? trim( stripslashes( $_GET['q'] ) ) : '';
+		$search  = ( isset( $_GET['q'] ) ) ? trim( stripslashes( $_GET['q'] ) ) : '';
 		$post_id = ( isset( $_GET['post_id'] ) ) ? intval( $_GET['post_id'] ) : 0;
 
 		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)

@@ -110,12 +110,13 @@ class SimpleTags_Client_RelatedPosts {
 		}
 
 		// Replace old markers by new
-		$markers = array( '%date%'         => '%post_date%',
-		                  '%permalink%'    => '%post_permalink%',
-		                  '%title%'        => '%post_title%',
-		                  '%commentcount%' => '%post_comment%',
-		                  '%tagcount%'     => '%post_tagcount%',
-		                  '%postid%'       => '%post_id%'
+		$markers = array(
+			'%date%'         => '%post_date%',
+			'%permalink%'    => '%post_permalink%',
+			'%title%'        => '%post_title%',
+			'%commentcount%' => '%post_comment%',
+			'%tagcount%'     => '%post_tagcount%',
+			'%postid%'       => '%post_id%'
 		);
 		if ( ! is_array( $user_args ) ) {
 			$user_args = strtr( $user_args, $markers );

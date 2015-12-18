@@ -25,13 +25,13 @@ class SimpleTags_Admin_Suggest {
 		global $pagenow;
 
 		wp_register_script( 'st-helper-suggested-tags', STAGS_URL . '/assets/js/helper-suggested-tags.js', array(
-				'jquery',
-				'st-helper-add-tags'
-			), STAGS_VERSION );
+			'jquery',
+			'st-helper-add-tags'
+		), STAGS_VERSION );
 		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
-				'title_bloc'   => self::get_suggest_tags_title(),
-				'content_bloc' => __( 'Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags' )
-			) );
+			'title_bloc'   => self::get_suggest_tags_title(),
+			'content_bloc' => __( 'Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags' )
+		) );
 
 		// Register location
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
@@ -56,8 +56,8 @@ class SimpleTags_Admin_Suggest {
 		$title .= '<a class="alchemyapi" href="#suggestedtags">' . __( 'AlchemyAPI', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="zemanta" href="#suggestedtags">' . __( 'Zemanta', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
 		$title .= '<a class="datatxt" href="#suggestedtags">' . __( 'dataTXT', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="tag4site" href="#suggestedtags">'.__('Tag4Site.RU', 'simpletags').'</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="proxem" href="#suggestedtags">'.__('Proxem', 'simpletags').'</a>';
+		$title .= '<a class="tag4site" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a class="proxem" href="#suggestedtags">' . __( 'Proxem', 'simpletags' ) . '</a>';
 
 		return $title;
 	}
@@ -70,14 +70,14 @@ class SimpleTags_Admin_Suggest {
 	 */
 	public static function admin_menu() {
 		add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simpletags' ), array(
-				__CLASS__,
-				'metabox'
-			), 'post', 'advanced', 'core' );
+			__CLASS__,
+			'metabox'
+		), 'post', 'advanced', 'core' );
 		if ( is_page_have_tags() ) {
 			add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simpletags' ), array(
-					__CLASS__,
-					'metabox'
-				), 'page', 'advanced', 'core' );
+				__CLASS__,
+				'metabox'
+			), 'page', 'advanced', 'core' );
 		}
 	}
 
@@ -91,7 +91,7 @@ class SimpleTags_Admin_Suggest {
 			<?php echo SimpleTags_Admin::getDefaultContentBox(); ?>
 			<div class="clear"></div>
 		</span>
-	<?php
+		<?php
 	}
 
 	/**
@@ -124,7 +124,7 @@ class SimpleTags_Admin_Suggest {
 					break;
 				case 'tags_from_proxem' :
 					self::ajax_proxem_api();
-				break;	
+					break;
 			}
 		}
 	}
@@ -470,9 +470,9 @@ class SimpleTags_Admin_Suggest {
 
 		$data     = array();
 		$response = wp_remote_post( 'https://query.yahooapis.com/v1/public/yql', array(
-				'body'      => $param,
-				'sslverify' => false
-			) );
+			'body'      => $param,
+			'sslverify' => false
+		) );
 		if ( ! is_wp_error( $response ) && $response != null ) {
 			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
 				$data = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -544,56 +544,62 @@ class SimpleTags_Admin_Suggest {
 
 		exit();
 	}
+
 	/**
 	 * Suggest tags from ProxemAPI
 	 *
 	 */
 	public static function ajax_proxem_api() {
 		status_header( 200 );
-		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
+		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
 
 		// API Key ?
-		if ( SimpleTags_Plugin::get_option_value('proxem_key') == '' ) {
-			echo '<p>'.__('Proxem API need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags').'</p>';
+		if ( SimpleTags_Plugin::get_option_value( 'proxem_key' ) == '' ) {
+			echo '<p>' . __( 'Proxem API need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
 		// Get data
-		$content = stripslashes($_POST['content']) .' '. stripslashes($_POST['title']);
-		$content = trim($content);
-		if ( empty($content) ) {
-			echo '<p>'.__('No text was sent.', 'simpletags').'</p>';
+		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
+		$content = trim( $content );
+		if ( empty( $content ) ) {
+			echo '<p>' . __( 'No text was sent.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
 		// Build params
-		$response = wp_remote_post( 'https://proxem-thematization.p.mashape.com/api/wikiAnnotator/GetCategories?nbtopcat=10', array('headers' => array(
-			'X-Mashape-Key' 	 => SimpleTags_Plugin::get_option_value('proxem_key'),
-			'Accept' => "application/json",
-			'Content-Type' 		 => "text/plain"
-		), 'body' => $content, 'timeout' => 15));
-		
-		if( !is_wp_error($response) && $response != null ) {
-			if ( wp_remote_retrieve_response_code($response) == 200 ) {
-				$data = wp_remote_retrieve_body($response);
-				
+		$response = wp_remote_post( 'https://proxem-thematization.p.mashape.com/api/wikiAnnotator/GetCategories?nbtopcat=10', array(
+			'headers' => array(
+				'X-Mashape-Key' => SimpleTags_Plugin::get_option_value( 'proxem_key' ),
+				'Accept'        => "application/json",
+				'Content-Type'  => "text/plain"
+			),
+			'body'    => $content,
+			'timeout' => 15
+		) );
+
+		if ( ! is_wp_error( $response ) && $response != null ) {
+			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
+				$data = wp_remote_retrieve_body( $response );
+
 			}
 		}
-		
-		$data = json_decode($data);
-		
-		if ( $data == false || !isset($data->categories) ) {
-			var_dump($response);
+
+		$data = json_decode( $data );
+
+		if ( $data == false || ! isset( $data->categories ) ) {
+			var_dump( $response );
+
 			return false;
 		}
 
-		if ( empty($data->categories) ) {
-			echo '<p>'.__('No results from Proxem API.', 'simpletags').'</p>';
+		if ( empty( $data->categories ) ) {
+			echo '<p>' . __( 'No results from Proxem API.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
 		foreach ( (array) $data->categories as $term ) {
-			echo '<span class="local">'.esc_html($term->name).'</span>'."\n";
+			echo '<span class="local">' . esc_html( $term->name ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
