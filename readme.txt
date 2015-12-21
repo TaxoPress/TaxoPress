@@ -1,10 +1,13 @@
 === Simple Tags ===
+
 Contributors: momo360modena, rahe, beapi, nicolaskulka
 Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.3
 Tested up to: 4.4
 Stable tag: 2.4.3
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
