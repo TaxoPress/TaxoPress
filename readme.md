@@ -1,6 +1,6 @@
 # Simple Tags #
 
-**Contributors:** momo360modena  
+**Contributors:** momo360modena, rahe, beapi, nicolaskulka
 **Donate link:** http://beapi.fr/donate/  
 **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
 **Requires at least:** 3.3
