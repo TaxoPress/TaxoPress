@@ -123,11 +123,17 @@ class SimpleTags_Client_PostTags {
 		$terms = array();
 		foreach ( (array) $taxonomies as $taxonomy ) {
 			$taxterms = get_object_term_cache( $object_id, $taxonomy );
+
 			if ( false === $taxterms ) {
 				$taxterms = wp_get_object_terms( $object_id, $taxonomy );
+				$to_cache = array();
+				foreach ( $taxterms as $key => $term ) {
+					$to_cache[ $key ] = $term->data;
+				}
+				wp_cache_add( $object_id, $to_cache, $taxonomy . '_relationships' );
 			}
-			// array_unique is slow for large arrays
-			$terms = array_keys( array_flip( $terms + $taxterms ) );
+
+			$terms = array_map( 'get_term', $taxterms );
 		}
 
 		// Hook
