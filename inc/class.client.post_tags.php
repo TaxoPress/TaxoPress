@@ -6,6 +6,29 @@ class SimpleTags_Client_PostTags {
 		if ( SimpleTags_Plugin::get_option_value( 'tt_embedded' ) != 'no' || SimpleTags_Plugin::get_option_value( 'tt_feed' ) == 1 ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), 999992 );
 		}
+
+		add_shortcode( 'st-the-tags', array( __CLASS__, 'shortcode' ) );
+		add_shortcode( 'st_the_tags', array( __CLASS__, 'shortcode' ) );
+	}
+
+	/**
+	 * Replace marker by tags in post content, use ShortCode
+	 *
+	 * @param array $atts
+	 *
+	 * @return string
+	 */
+	public static function shortcode( $atts ) {
+		extract( shortcode_atts( array( 'param' => '' ), $atts ) );
+
+		$param = html_entity_decode( $param );
+		$param = trim( $param );
+
+		if ( empty( $param ) ) {
+			$param = 'title=';
+		}
+
+		return SimpleTags_Client_PostTags::extendedPostTags( $param );
 	}
 
 	/**
