@@ -5,15 +5,13 @@ Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.4.4
+Stable tag: 2.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add some tools for taxonomies : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.
 
 == Description ==
-
-**I do not offer any support for this plugin. I do not participate in any subject on the WordPress.org support forum. If you find a bug, thank you for the report on the Github repository, and make a exhaustive request (plugin installed / error message / PHP function called). Thank you.**
 
 Github project homepage: https://github.com/BeAPI/simple-tags
 
@@ -74,6 +72,8 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.4.5
+    * Add shortcode [st-the-tags] and [st_the_tags]
 * Version 2.4.3
     * Fix metabox title WP 4.4
 * Version 2.4.2
