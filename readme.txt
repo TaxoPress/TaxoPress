@@ -74,6 +74,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 * Version 2.4.5
     * Add shortcode [st-the-tags] and [st_the_tags]
+    * Fix array_flip wp_get_object_terms
+* Version 2.4.4
+    * Fix error upload WordPress.org
 * Version 2.4.3
     * Fix metabox title WP 4.4
 * Version 2.4.2
