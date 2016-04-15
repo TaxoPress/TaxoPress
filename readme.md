@@ -4,8 +4,8 @@
 * **Donate link:** http://beapi.fr/donate/  
 * **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
 * **Requires at least:** 3.3
-* **Tested up to:** 4.4
-* **Stable tag:** 2.4.5
+* **Tested up to:** 4.5
+* **Stable tag:** 2.4.6
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,8 @@ The Simple Tags can be installed in 3 easy steps:
 
 ## Changelog ##
 
+* Version 2.4.6
+    * Compatibility WP 4.5
 * Version 2.4.5
     * Add shortcode [st-the-tags] and [st_the_tags]
     * Fix array_flip wp_get_object_terms

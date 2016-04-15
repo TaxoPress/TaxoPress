@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: https://github.com/herewithme/simple-tags
 Description: Extended Tagging for WordPress 4.0.x : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, Related Posts etc. NOW Compatible custom post type and custom taxonomy !
-Version: 2.4.5
+Version: 2.4.6
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
