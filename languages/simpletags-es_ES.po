@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Simple Tags 1.6.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-20 00:22+0100\n"
-"PO-Revision-Date: 2008-12-22 10:14+0100\n"
+"PO-Revision-Date: 2017-05-09 12:08+0200\n"
 "Last-Translator: Samuel Aguilera <contacto@agamum.net>\n"
 "Language-Team: Samuel Aguilera <contacto@agamum.net>\n"
 "MIME-Version: 1.0\n"
@@ -11,9 +11,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _e;_c;__\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: Spain\n"
-"X-Poedit-SearchPath-0: C:\\SVN\\ST WP.org\\trunk\n"
+"Language: es\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-SearchPath-0: C:/SVN/ST WP.org/trunk\n"
 
 # D:\SVN\Plugins\ST
 #: /simple-tags.php:52
@@ -26,141 +26,106 @@ msgid "You must use <a href=\"%1$s\">Simple Tagging Plugin</a> for it to work."
 msgstr "Debes usar <a href=\"%1$s\">Simple Tagging Plugin</a> para que funcione."
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:87
-#: /2.3/simple-tags.client.php:555
-#: /2.5/simple-tags.client.php:86
-#: /2.5/simple-tags.client.php:554
-#: /2.7/simple-tags.client.php:88
-#: /2.7/simple-tags.client.php:566
+#: /2.3/simple-tags.client.php:87 /2.3/simple-tags.client.php:555
+#: /2.5/simple-tags.client.php:86 /2.5/simple-tags.client.php:554
+#: /2.7/simple-tags.client.php:88 /2.7/simple-tags.client.php:566
 msgid "No related posts."
 msgstr "No hay entradas relacionadas."
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:88
-#: /2.3/simple-tags.client.php:554
-#: /2.5/simple-tags.client.php:87
-#: /2.5/simple-tags.client.php:553
-#: /2.7/simple-tags.client.php:89
-#: /2.7/simple-tags.client.php:565
+#: /2.3/simple-tags.client.php:88 /2.3/simple-tags.client.php:554
+#: /2.5/simple-tags.client.php:87 /2.5/simple-tags.client.php:553
+#: /2.7/simple-tags.client.php:89 /2.7/simple-tags.client.php:565
 msgid "<h4>Related posts</h4>"
 msgstr "<h4>Entradas relacionadas</h4>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:89
-#: /2.3/simple-tags.client.php:557
-#: /2.5/simple-tags.client.php:88
-#: /2.5/simple-tags.client.php:556
-#: /2.7/simple-tags.client.php:90
-#: /2.7/simple-tags.client.php:568
+#: /2.3/simple-tags.client.php:89 /2.3/simple-tags.client.php:557
+#: /2.5/simple-tags.client.php:88 /2.5/simple-tags.client.php:556
+#: /2.7/simple-tags.client.php:90 /2.7/simple-tags.client.php:568
 msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
 msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:95
-#: /2.3/simple-tags.client.php:1222
-#: /2.5/simple-tags.client.php:94
-#: /2.5/simple-tags.client.php:1253
-#: /2.7/simple-tags.client.php:96
-#: /2.7/simple-tags.client.php:1265
+#: /2.3/simple-tags.client.php:95 /2.3/simple-tags.client.php:1222
+#: /2.5/simple-tags.client.php:94 /2.5/simple-tags.client.php:1253
+#: /2.7/simple-tags.client.php:96 /2.7/simple-tags.client.php:1265
 msgid "No tags."
 msgstr "No hay etiquetas."
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:96
-#: /2.3/simple-tags.client.php:1224
-#: /2.5/simple-tags.client.php:95
-#: /2.5/simple-tags.client.php:1255
-#: /2.7/simple-tags.client.php:97
-#: /2.7/simple-tags.client.php:1267
+#: /2.3/simple-tags.client.php:96 /2.3/simple-tags.client.php:1224
+#: /2.5/simple-tags.client.php:95 /2.5/simple-tags.client.php:1255
+#: /2.7/simple-tags.client.php:97 /2.7/simple-tags.client.php:1267
 msgid "<h4>Tag Cloud</h4>"
 msgstr "<h4>Nube de etiquetas</h4>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:98
-#: /2.3/simple-tags.client.php:1223
-#: /2.5/simple-tags.client.php:97
-#: /2.5/simple-tags.client.php:1254
-#: /2.7/simple-tags.client.php:99
-#: /2.7/simple-tags.client.php:1266
+#: /2.3/simple-tags.client.php:98 /2.3/simple-tags.client.php:1223
+#: /2.5/simple-tags.client.php:97 /2.5/simple-tags.client.php:1254
+#: /2.7/simple-tags.client.php:99 /2.7/simple-tags.client.php:1266
 msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% entradas\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:110
-#: /2.3/simple-tags.client.php:1439
-#: /2.5/simple-tags.client.php:109
-#: /2.5/simple-tags.client.php:1499
-#: /2.7/simple-tags.client.php:111
-#: /2.7/simple-tags.client.php:1511
+#: /2.3/simple-tags.client.php:110 /2.3/simple-tags.client.php:1439
+#: /2.5/simple-tags.client.php:109 /2.5/simple-tags.client.php:1499
+#: /2.7/simple-tags.client.php:111 /2.7/simple-tags.client.php:1511
 msgid "Tags: "
 msgstr "Etiquetas: "
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:112
-#: /2.3/simple-tags.client.php:1446
-#: /2.5/simple-tags.client.php:1506
-#: /2.7/simple-tags.client.php:1518
+#: /2.3/simple-tags.client.php:112 /2.3/simple-tags.client.php:1446
+#: /2.5/simple-tags.client.php:1506 /2.7/simple-tags.client.php:1518
 msgid "No tag for this post."
 msgstr "No hay etiquetas para esta entrada."
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:115
-#: /2.3/simple-tags.client.php:1445
-#: /2.5/simple-tags.client.php:114
-#: /2.7/simple-tags.client.php:116
+#: /2.3/simple-tags.client.php:115 /2.3/simple-tags.client.php:1445
+#: /2.5/simple-tags.client.php:114 /2.7/simple-tags.client.php:116
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:123
-#: /2.3/simple-tags.client.php:874
-#: /2.5/simple-tags.client.php:122
-#: /2.5/simple-tags.client.php:904
-#: /2.7/simple-tags.client.php:124
-#: /2.7/simple-tags.client.php:916
+#: /2.3/simple-tags.client.php:123 /2.3/simple-tags.client.php:874
+#: /2.5/simple-tags.client.php:122 /2.5/simple-tags.client.php:904
+#: /2.7/simple-tags.client.php:124 /2.7/simple-tags.client.php:916
 msgid "<h4>Related tags</h4>"
 msgstr "<h4>Etiquetas relacionadas</h4>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:124
-#: /2.3/simple-tags.client.php:875
-#: /2.5/simple-tags.client.php:905
-#: /2.7/simple-tags.client.php:917
+#: /2.3/simple-tags.client.php:124 /2.3/simple-tags.client.php:875
+#: /2.5/simple-tags.client.php:905 /2.7/simple-tags.client.php:917
 msgid "No related tag found."
 msgstr "No se han encontrado etiquetas relacionadas."
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:125
-#: /2.5/simple-tags.client.php:124
+#: /2.3/simple-tags.client.php:125 /2.5/simple-tags.client.php:124
 #: /2.7/simple-tags.client.php:126
 msgid "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
 msgstr "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:130
-#: /2.5/simple-tags.client.php:129
+#: /2.3/simple-tags.client.php:130 /2.5/simple-tags.client.php:129
 #: /2.7/simple-tags.client.php:131
 msgid "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
 msgstr "&raquo; <a href=\"%tag_link_remove%\" title=\"Eliminar %tag_name_attribute% de la b&uacute;squeda\">Eliminar %tag_name%</a>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:272
-#: /2.5/simple-tags.client.php:266
+#: /2.3/simple-tags.client.php:272 /2.5/simple-tags.client.php:266
 #: /2.7/simple-tags.client.php:278
 #, php-format
 msgid "Posts tagged with %s"
 msgstr "Entradas etiquetadas con %s"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:786
-#: /2.5/simple-tags.client.php:825
+#: /2.3/simple-tags.client.php:786 /2.5/simple-tags.client.php:825
 #: /2.7/simple-tags.client.php:837
 msgid "There is no excerpt because this is a protected post."
 msgstr "No hay extracto porque esta es una entrada protegida."
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:876
-#: /2.5/simple-tags.client.php:906
+#: /2.3/simple-tags.client.php:876 /2.5/simple-tags.client.php:906
 #: /2.7/simple-tags.client.php:918
 msgid "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
 msgstr "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"Ver entradas con %tag_name_attribute%\">%tag_name%</a>"
@@ -171,126 +136,101 @@ msgid "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_
 msgstr "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Eliminar %tag_name_attribute% de la b&uacute;squeda\">Eliminar %tag_name%</a>"
 
 # C:\SVN\ST
-#: /2.3/simple-tags.client.php:1685
-#: /2.5/simple-tags.client.php:1751
+#: /2.3/simple-tags.client.php:1685 /2.5/simple-tags.client.php:1751
 #: /2.7/simple-tags.client.php:1763
 msgid "Invalid Taxonomy"
 msgstr "Taxonomía no válida"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:149
-#: /2.3/inc/simple-tags.admin.php:628
-#: /2.5/inc/simple-tags.admin.php:173
-#: /2.5/inc/simple-tags.admin.php:640
-#: /2.7/inc/simple-tags.admin.php:233
-#: /2.7/inc/simple-tags.admin.php:687
+#: /2.3/inc/simple-tags.admin.php:149 /2.3/inc/simple-tags.admin.php:628
+#: /2.5/inc/simple-tags.admin.php:173 /2.5/inc/simple-tags.admin.php:640
+#: /2.7/inc/simple-tags.admin.php:233 /2.7/inc/simple-tags.admin.php:687
 msgid "Simple Tags: Manage Tags"
 msgstr "Simple Tags: Gestionar etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:149
-#: /2.5/inc/simple-tags.admin.php:173
+#: /2.3/inc/simple-tags.admin.php:149 /2.5/inc/simple-tags.admin.php:173
 #: /2.7/inc/simple-tags.admin.php:233
 msgid "Manage Tags"
 msgstr "Gestionar etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:150
-#: /2.3/inc/simple-tags.admin.php:843
-#: /2.5/inc/simple-tags.admin.php:174
-#: /2.7/inc/simple-tags.admin.php:234
+#: /2.3/inc/simple-tags.admin.php:150 /2.3/inc/simple-tags.admin.php:843
+#: /2.5/inc/simple-tags.admin.php:174 /2.7/inc/simple-tags.admin.php:234
 msgid "Simple Tags: Mass Edit Tags"
 msgstr "Simple Tags: Edición masiva de etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:150
-#: /2.5/inc/simple-tags.admin.php:174
+#: /2.3/inc/simple-tags.admin.php:150 /2.5/inc/simple-tags.admin.php:174
 #: /2.7/inc/simple-tags.admin.php:234
 msgid "Mass Edit Tags"
 msgstr "Edición masiva de etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:151
-#: /2.3/inc/simple-tags.admin.php:209
-#: /2.5/inc/simple-tags.admin.php:175
-#: /2.7/inc/simple-tags.admin.php:235
+#: /2.3/inc/simple-tags.admin.php:151 /2.3/inc/simple-tags.admin.php:209
+#: /2.5/inc/simple-tags.admin.php:175 /2.7/inc/simple-tags.admin.php:235
 msgid "Simple Tags: Auto Tags"
 msgstr "Simple Tags: Autoetiquetado"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:151
-#: /2.5/inc/simple-tags.admin.php:175
-#: /2.5/inc/simple-tags.admin.php:232
-#: /2.7/inc/simple-tags.admin.php:235
+#: /2.3/inc/simple-tags.admin.php:151 /2.5/inc/simple-tags.admin.php:175
+#: /2.5/inc/simple-tags.admin.php:232 /2.7/inc/simple-tags.admin.php:235
 #: /2.7/inc/simple-tags.admin.php:292
 msgid "Auto Tags"
 msgstr "Autoetiquetado"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:152
-#: /2.3/inc/simple-tags.admin.php:522
-#: /2.5/inc/simple-tags.admin.php:176
-#: /2.5/inc/simple-tags.admin.php:536
-#: /2.7/inc/simple-tags.admin.php:236
-#: /2.7/inc/simple-tags.admin.php:592
+#: /2.3/inc/simple-tags.admin.php:152 /2.3/inc/simple-tags.admin.php:522
+#: /2.5/inc/simple-tags.admin.php:176 /2.5/inc/simple-tags.admin.php:536
+#: /2.7/inc/simple-tags.admin.php:236 /2.7/inc/simple-tags.admin.php:592
 msgid "Simple Tags: Options"
 msgstr "Simple Tags: Opciones"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:152
-#: /2.5/inc/simple-tags.admin.php:176
+#: /2.3/inc/simple-tags.admin.php:152 /2.5/inc/simple-tags.admin.php:176
 #: /2.7/inc/simple-tags.admin.php:236
 msgid "Simple Tags"
 msgstr "Simple Tags"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:194
-#: /2.5/inc/simple-tags.admin.php:218
+#: /2.3/inc/simple-tags.admin.php:194 /2.5/inc/simple-tags.admin.php:218
 #: /2.7/inc/simple-tags.admin.php:278
 msgid "Auto tags options updated !"
 msgstr "¡Opciones de autoetiquetado actualizadas!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:210
-#: /2.3/inc/simple-tags.admin.php:523
-#: /2.3/inc/simple-tags.admin.php:629
-#: /2.3/inc/simple-tags.admin.php:844
-#: /2.5/inc/simple-tags.admin.php:641
-#: /2.7/inc/simple-tags.admin.php:688
+#: /2.3/inc/simple-tags.admin.php:210 /2.3/inc/simple-tags.admin.php:523
+#: /2.3/inc/simple-tags.admin.php:629 /2.3/inc/simple-tags.admin.php:844
+#: /2.5/inc/simple-tags.admin.php:641 /2.7/inc/simple-tags.admin.php:688
 msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr "Visita la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">página del plugin</a> para más detalles. Si encuentras un fallo, o tienes una idea fantástica para esta extensión, ¡<a href=\"mailto:amaury@wordpress-fr.net\">consúltame</a>!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:214
-#: /2.5/inc/simple-tags.admin.php:237
+#: /2.3/inc/simple-tags.admin.php:214 /2.5/inc/simple-tags.admin.php:237
 #: /2.7/inc/simple-tags.admin.php:297
 msgid "Auto tags list"
 msgstr "Lista de autoetiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:215
-#: /2.5/inc/simple-tags.admin.php:238
+#: /2.3/inc/simple-tags.admin.php:215 /2.5/inc/simple-tags.admin.php:238
 #: /2.7/inc/simple-tags.admin.php:298
 msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
 msgstr "Esta función permite a WordPress mirar dentro del contenido y el título de las entradas, al guardar, en busca de etiquetas concretas. Si el contenido o el título de tu entrada contiene la palabra \"WordPress\" y tienes \"wordpress\" en la lista de autoetiquetado, Simple Tags añadirá automáticamente \"wordpress\" como etiqueta para dicha entrada."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:219
-#: /2.5/inc/simple-tags.admin.php:247
+#: /2.3/inc/simple-tags.admin.php:219 /2.5/inc/simple-tags.admin.php:247
 #: /2.7/inc/simple-tags.admin.php:307
 msgid "Active Auto Tags."
 msgstr "Activar autoetiquetado."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:222
-#: /2.5/inc/simple-tags.admin.php:254
+#: /2.3/inc/simple-tags.admin.php:222 /2.5/inc/simple-tags.admin.php:254
 #: /2.7/inc/simple-tags.admin.php:314
 msgid "Use also local tags database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many tags)"
-msgstr "Usar también la base de datos de etiquetas locales con autoetiquetar. (Atención, esta opción puede incrementar un montón el consumo de CPU si tienes muchas etiquetas)."
+msgstr "Usar también la base de datos de etiquetas locales con autoetiquetar. (Atención, esta opción puede incrementar un montón el consumo de CPU si tienes muchas etiquetas)"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:225
-#: /2.5/inc/simple-tags.admin.php:261
+#: /2.3/inc/simple-tags.admin.php:225 /2.5/inc/simple-tags.admin.php:261
 #: /2.7/inc/simple-tags.admin.php:321
 msgid "Autotag only posts without tags."
 msgstr "Autoetiquetar sólo entradas sin etiquetas."
@@ -306,15 +246,13 @@ msgid "Update list &raquo;"
 msgstr "Actualizar lista &raquo;"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:236
-#: /2.5/inc/simple-tags.admin.php:277
+#: /2.3/inc/simple-tags.admin.php:236 /2.5/inc/simple-tags.admin.php:277
 #: /2.7/inc/simple-tags.admin.php:336
 msgid "Auto tags old content"
 msgstr "Auto etiquetar contenido antiguo"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:237
-#: /2.5/inc/simple-tags.admin.php:278
+#: /2.3/inc/simple-tags.admin.php:237 /2.5/inc/simple-tags.admin.php:278
 #: /2.7/inc/simple-tags.admin.php:337
 msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
 msgstr "Simple Tags también puede etiquetar todos los contenidos existentes de tu blog. Esta función usa la lista de autoetiquetas mencionada arriba."
@@ -325,18 +263,14 @@ msgid "Auto tags all content"
 msgstr "Auto etiquetar todo el contenido"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:259
-#: /2.5/inc/simple-tags.admin.php:303
-#: /2.7/inc/simple-tags.admin.php:362
-#: /extras/simple-tags.importer.php:167
+#: /2.3/inc/simple-tags.admin.php:259 /2.5/inc/simple-tags.admin.php:303
+#: /2.7/inc/simple-tags.admin.php:362 /extras/simple-tags.importer.php:167
 msgid "If your browser doesn't start loading the next page automatically click this link:"
 msgstr "Si tu navegador no empieza a cargar la siguiente página automáticamente haz clic en este enlace:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:259
-#: /2.5/inc/simple-tags.admin.php:303
-#: /2.7/inc/simple-tags.admin.php:362
-#: /extras/simple-tags.importer.php:167
+#: /2.3/inc/simple-tags.admin.php:259 /2.5/inc/simple-tags.admin.php:303
+#: /2.7/inc/simple-tags.admin.php:362 /extras/simple-tags.importer.php:167
 msgid "Next content"
 msgstr "Siguiente contenido"
 
@@ -356,71 +290,61 @@ msgid "This feature need that option \"Add page in tags management\" is enabled.
 msgstr "Esta función necesita que esa opción de \"Añadir páginas en la gestión de etiquetas\" esté activada."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:289
-#: /2.5/inc/simple-tags.admin.php:334
+#: /2.3/inc/simple-tags.admin.php:289 /2.5/inc/simple-tags.admin.php:334
 #: /2.7/inc/simple-tags.admin.php:393
 msgid "Allow tag cloud in post/page content:"
 msgstr "Permitir nube de etiquetas en el contenido de la entrada/página:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:290
-#: /2.5/inc/simple-tags.admin.php:335
+#: /2.3/inc/simple-tags.admin.php:290 /2.5/inc/simple-tags.admin.php:335
 #: /2.7/inc/simple-tags.admin.php:394
 msgid "Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud."
 msgstr "Activar esto permitirá a WordPress buscar un marcador de nube de etiquetas <code>&lt;!--st_tag_cloud--&gt;</code> al mostrar entradas. WP sustituye este marcador por una nube de etiquetas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:291
-#: /2.5/inc/simple-tags.admin.php:336
+#: /2.3/inc/simple-tags.admin.php:291 /2.5/inc/simple-tags.admin.php:336
 #: /2.7/inc/simple-tags.admin.php:407
 msgid "Active auto link tags into post content:"
 msgstr "Activar autoenlazar etiquetas en el contenido:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:292
-#: /2.5/inc/simple-tags.admin.php:337
+#: /2.3/inc/simple-tags.admin.php:292 /2.5/inc/simple-tags.admin.php:337
 #: /2.7/inc/simple-tags.admin.php:408
 msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
 msgstr "Ejemplo: Tienes una etiqueta llamada \"WordPress\" y en el contenido de tu entrada aparece \"wordpress\", esta función sustituirá \"wordpress\" por un enlace a la página de la etiqueta \"wordpress\". (http://miblog.net/tag/wordpress/)"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:293
-#: /2.5/inc/simple-tags.admin.php:338
+#: /2.3/inc/simple-tags.admin.php:293 /2.5/inc/simple-tags.admin.php:338
 #: /2.7/inc/simple-tags.admin.php:409
 msgid "Min usage for auto link tags:"
 msgstr "Uso min. para autoenlazar etiquetas:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:294
-#: /2.5/inc/simple-tags.admin.php:339
+#: /2.3/inc/simple-tags.admin.php:294 /2.5/inc/simple-tags.admin.php:339
 #: /2.7/inc/simple-tags.admin.php:410
 msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
 msgstr "Este parámetro te permite fijar un valor de uso mínimo para las etiquetas. Predeterminado: 1."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:295
-#: /2.5/inc/simple-tags.admin.php:340
+#: /2.3/inc/simple-tags.admin.php:295 /2.5/inc/simple-tags.admin.php:340
 #: /2.7/inc/simple-tags.admin.php:413
 msgid "Ignore case for auto link feature ?"
 msgstr "¿Ignorar mayúsculas para la función de autoenlace?"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:296
-#: /2.5/inc/simple-tags.admin.php:341
+#: /2.3/inc/simple-tags.admin.php:296 /2.5/inc/simple-tags.admin.php:341
 #: /2.7/inc/simple-tags.admin.php:414
 msgid "Example: If you ignore case, auto link feature will replace the word \"wordpress\" by the tag link \"WordPress\"."
 msgstr "Ejemplo: Si ignoras las mayúsculas, la función de autoenlace sustituirá la palabra \"wordpress\" con el enlace a la etiqueta \"WordPress\"."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:297
-#: /2.5/inc/simple-tags.admin.php:342
+#: /2.3/inc/simple-tags.admin.php:297 /2.5/inc/simple-tags.admin.php:342
 #: /2.7/inc/simple-tags.admin.php:395
 msgid "Add the rel=\"nofollow\" on each tags link ?"
 msgstr "¿Añadir rel=\"nofollow\" en cada enlace de etiquetas?"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:298
-#: /2.5/inc/simple-tags.admin.php:343
+#: /2.3/inc/simple-tags.admin.php:298 /2.5/inc/simple-tags.admin.php:343
 #: /2.7/inc/simple-tags.admin.php:396
 msgid "Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index."
 msgstr "Nofollow es un valor de atributo HTML no estándar usado para indicar a los motores de búsqueda que un hiperenlace no debería influir en la clasificación del destino del enlace en el índice de los motores de búsqueda."
@@ -436,49 +360,42 @@ msgid "Add a tag input (and tag posts features) in page edition"
 msgstr "Añadir caja de texto para introducir etiquetas (y etiquetas sugeridas) en la edición de páginas"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:303
-#: /2.5/inc/simple-tags.admin.php:346
+#: /2.3/inc/simple-tags.admin.php:303 /2.5/inc/simple-tags.admin.php:346
 #: /2.7/inc/simple-tags.admin.php:399
 msgid "Activate click tags feature:"
 msgstr "Activar función de clic en etiquetas:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:304
-#: /2.5/inc/simple-tags.admin.php:347
+#: /2.3/inc/simple-tags.admin.php:304 /2.5/inc/simple-tags.admin.php:347
 #: /2.7/inc/simple-tags.admin.php:400
 msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
 msgstr "Esta función añade un enlace permitiéndote visualizar todas las etiquetas de tu base de datos. Una vez mostradas, puedes hacer clic encima para añadir etiquetas a la entrada."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:305
-#: /2.5/inc/simple-tags.admin.php:348
+#: /2.3/inc/simple-tags.admin.php:305 /2.5/inc/simple-tags.admin.php:348
 #: /2.7/inc/simple-tags.admin.php:401
 msgid "Activate autocompletion feature:"
 msgstr "Activar función de autocompletado:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:306
-#: /2.5/inc/simple-tags.admin.php:349
+#: /2.3/inc/simple-tags.admin.php:306 /2.5/inc/simple-tags.admin.php:349
 msgid "This feature displays a visual help allowing to enter tags more easily."
 msgstr "Esta función muestra una ayuda visual permitiendo introducir etiquetas más fácilmente."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:307
-#: /2.5/inc/simple-tags.admin.php:350
+#: /2.3/inc/simple-tags.admin.php:307 /2.5/inc/simple-tags.admin.php:350
 #: /2.7/inc/simple-tags.admin.php:403
 msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)"
-msgstr "Activar función de sugerencia de etiquetas: (API de extracción de términos de Yahoo!, Tag The Net, BBDD local)."
+msgstr "Activar función de sugerencia de etiquetas: (API de extracción de términos de Yahoo!, Tag The Net, BBDD local)"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:308
-#: /2.5/inc/simple-tags.admin.php:351
+#: /2.3/inc/simple-tags.admin.php:308 /2.5/inc/simple-tags.admin.php:351
 #: /2.7/inc/simple-tags.admin.php:404
 msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
 msgstr "Esta función añade una caja que te permite obtener etiquetas sugeridas, mediante la comparación"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:311
-#: /2.5/inc/simple-tags.admin.php:354
+#: /2.3/inc/simple-tags.admin.php:311 /2.5/inc/simple-tags.admin.php:354
 #: /2.7/inc/simple-tags.admin.php:417
 msgid "Automatically include in header:"
 msgstr "Incluir automáticamente en cabecera:"
@@ -489,1050 +406,835 @@ msgid "Includes the meta keywords tag automatically in your header (most, but no
 msgstr "Incluye automáticamente en la cabecera la etiqueta meta para palabras clave (la mayoría de los temas, no todos, admiten esto). Estas palabras clave a veces las usan los buscadores.<br /><strong>Atención:</strong> Si la extensión \"All in One SEO Pack\" está instalada y activada. Esta función está desactivada."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:313
-#: /2.5/inc/simple-tags.admin.php:356
+#: /2.3/inc/simple-tags.admin.php:313 /2.5/inc/simple-tags.admin.php:356
 #: /2.7/inc/simple-tags.admin.php:419
 msgid "Always add these keywords:"
 msgstr "Incluir siempre estas palabras clave:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:314
-#: /2.5/inc/simple-tags.admin.php:357
+#: /2.3/inc/simple-tags.admin.php:314 /2.5/inc/simple-tags.admin.php:357
 #: /2.7/inc/simple-tags.admin.php:420
 msgid "Max keywords display:"
 msgstr "Máx. de palabras clave a mostrar:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:315
-#: /2.5/inc/simple-tags.admin.php:358
+#: /2.3/inc/simple-tags.admin.php:315 /2.5/inc/simple-tags.admin.php:358
 #: /2.7/inc/simple-tags.admin.php:421
 msgid "You must set zero (0) for display all keywords in HTML header."
 msgstr "Debes fijarlo a cero (0) para mostrar todas las palabras clave en la cabecera HTML."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:318
-#: /2.5/inc/simple-tags.admin.php:361
+#: /2.3/inc/simple-tags.admin.php:318 /2.5/inc/simple-tags.admin.php:361
 #: /2.7/inc/simple-tags.admin.php:424
 msgid "Use embedded tags:"
 msgstr "Usar etiquetas incrustadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:319
-#: /2.5/inc/simple-tags.admin.php:362
+#: /2.3/inc/simple-tags.admin.php:319 /2.5/inc/simple-tags.admin.php:362
 #: /2.7/inc/simple-tags.admin.php:425
 msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
 msgstr "Activar esto permitirá a WordPress buscar etiquetas incrustadas al guardar y mostrar posts. Conjuntos de etiquetas tales como las marcadas con <code>[tags]esta, y esta[/tags]</code>, y se añaden a la entrada cuando se guarda, pero no se muestran en la entrada."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:320
-#: /2.5/inc/simple-tags.admin.php:363
+#: /2.3/inc/simple-tags.admin.php:320 /2.5/inc/simple-tags.admin.php:363
 #: /2.7/inc/simple-tags.admin.php:426
 msgid "Prefix for embedded tags:"
 msgstr "Prefijo para etiquetas incrustadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:321
-#: /2.5/inc/simple-tags.admin.php:364
+#: /2.3/inc/simple-tags.admin.php:321 /2.5/inc/simple-tags.admin.php:364
 #: /2.7/inc/simple-tags.admin.php:427
 msgid "Suffix for embedded tags:"
 msgstr "Sufijo para etiquetas incrustadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:324
-#: /2.5/inc/simple-tags.admin.php:367
+#: /2.3/inc/simple-tags.admin.php:324 /2.5/inc/simple-tags.admin.php:367
 #: /2.7/inc/simple-tags.admin.php:430
 msgid "Automatically display tags list into feeds"
-msgstr "Mostrar automáticamente la lista de etiquetas en los canales rss:"
+msgstr "Mostrar automáticamente la lista de etiquetas en los canales rss"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:325
-#: /2.5/inc/simple-tags.admin.php:368
+#: /2.3/inc/simple-tags.admin.php:325 /2.5/inc/simple-tags.admin.php:368
 #: /2.7/inc/simple-tags.admin.php:431
 msgid "Automatically display tags list into post content:"
 msgstr "Mostrar automáticamente la lista de etiquetas en el contenido de las entradas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:327
-#: /2.3/inc/simple-tags.admin.php:351
-#: /2.5/inc/simple-tags.admin.php:370
-#: /2.5/inc/simple-tags.admin.php:394
-#: /2.7/inc/simple-tags.admin.php:433
-#: /2.7/inc/simple-tags.admin.php:457
+#: /2.3/inc/simple-tags.admin.php:327 /2.3/inc/simple-tags.admin.php:351
+#: /2.5/inc/simple-tags.admin.php:370 /2.5/inc/simple-tags.admin.php:394
+#: /2.7/inc/simple-tags.admin.php:433 /2.7/inc/simple-tags.admin.php:457
 msgid "<code>no</code> &ndash; Nowhere (default)"
 msgstr "<code>no</code> &ndash; En ningún sitio (predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:328
-#: /2.3/inc/simple-tags.admin.php:352
-#: /2.5/inc/simple-tags.admin.php:371
-#: /2.5/inc/simple-tags.admin.php:395
-#: /2.7/inc/simple-tags.admin.php:434
-#: /2.7/inc/simple-tags.admin.php:458
+#: /2.3/inc/simple-tags.admin.php:328 /2.3/inc/simple-tags.admin.php:352
+#: /2.5/inc/simple-tags.admin.php:371 /2.5/inc/simple-tags.admin.php:395
+#: /2.7/inc/simple-tags.admin.php:434 /2.7/inc/simple-tags.admin.php:458
 msgid "<code>all</code> &ndash; On your blog and feeds."
 msgstr "<code>all</code> &ndash; En tu blog y el canal rss."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:329
-#: /2.3/inc/simple-tags.admin.php:353
-#: /2.5/inc/simple-tags.admin.php:372
-#: /2.5/inc/simple-tags.admin.php:396
-#: /2.7/inc/simple-tags.admin.php:435
-#: /2.7/inc/simple-tags.admin.php:459
+#: /2.3/inc/simple-tags.admin.php:329 /2.3/inc/simple-tags.admin.php:353
+#: /2.5/inc/simple-tags.admin.php:372 /2.5/inc/simple-tags.admin.php:396
+#: /2.7/inc/simple-tags.admin.php:435 /2.7/inc/simple-tags.admin.php:459
 msgid "<code>blogonly</code> &ndash; Only on your blog."
 msgstr "<code>blogonly</code> &ndash; Sólo en tu blog."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:330
-#: /2.3/inc/simple-tags.admin.php:354
-#: /2.5/inc/simple-tags.admin.php:373
-#: /2.5/inc/simple-tags.admin.php:397
-#: /2.7/inc/simple-tags.admin.php:436
-#: /2.7/inc/simple-tags.admin.php:460
+#: /2.3/inc/simple-tags.admin.php:330 /2.3/inc/simple-tags.admin.php:354
+#: /2.5/inc/simple-tags.admin.php:373 /2.5/inc/simple-tags.admin.php:397
+#: /2.7/inc/simple-tags.admin.php:436 /2.7/inc/simple-tags.admin.php:460
 msgid "<code>homeonly</code> &ndash; Only on your home page."
 msgstr "<code>homeonly</code> &ndash; Sólo en tu página principal."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:331
-#: /2.3/inc/simple-tags.admin.php:355
-#: /2.5/inc/simple-tags.admin.php:374
-#: /2.5/inc/simple-tags.admin.php:398
-#: /2.7/inc/simple-tags.admin.php:437
-#: /2.7/inc/simple-tags.admin.php:461
+#: /2.3/inc/simple-tags.admin.php:331 /2.3/inc/simple-tags.admin.php:355
+#: /2.5/inc/simple-tags.admin.php:374 /2.5/inc/simple-tags.admin.php:398
+#: /2.7/inc/simple-tags.admin.php:437 /2.7/inc/simple-tags.admin.php:461
 msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
 msgstr "<code>singularonly</code> &ndash; Sólo en la vista singular (entrada y páginas)."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:332
-#: /2.3/inc/simple-tags.admin.php:356
-#: /2.5/inc/simple-tags.admin.php:375
-#: /2.5/inc/simple-tags.admin.php:399
-#: /2.7/inc/simple-tags.admin.php:438
-#: /2.7/inc/simple-tags.admin.php:462
+#: /2.3/inc/simple-tags.admin.php:332 /2.3/inc/simple-tags.admin.php:356
+#: /2.5/inc/simple-tags.admin.php:375 /2.5/inc/simple-tags.admin.php:399
+#: /2.7/inc/simple-tags.admin.php:438 /2.7/inc/simple-tags.admin.php:462
 msgid "<code>singleonly</code> &ndash; Only on your single view."
 msgstr "<code>singleonly</code> &ndash; Sólo en la vista de entrada singular."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:333
-#: /2.3/inc/simple-tags.admin.php:357
-#: /2.5/inc/simple-tags.admin.php:376
-#: /2.5/inc/simple-tags.admin.php:400
-#: /2.7/inc/simple-tags.admin.php:439
-#: /2.7/inc/simple-tags.admin.php:463
+#: /2.3/inc/simple-tags.admin.php:333 /2.3/inc/simple-tags.admin.php:357
+#: /2.5/inc/simple-tags.admin.php:376 /2.5/inc/simple-tags.admin.php:400
+#: /2.7/inc/simple-tags.admin.php:439 /2.7/inc/simple-tags.admin.php:463
 msgid "<code>pageonly</code> &ndash; Only on your page view."
 msgstr "<code>pageonly</code> &ndash; Sólo en la vista de página."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:335
-#: /2.5/inc/simple-tags.admin.php:378
+#: /2.3/inc/simple-tags.admin.php:335 /2.5/inc/simple-tags.admin.php:378
 #: /2.7/inc/simple-tags.admin.php:441
 msgid "Post tag separator string:"
 msgstr "Cadena de separación de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:336
-#: /2.5/inc/simple-tags.admin.php:379
+#: /2.3/inc/simple-tags.admin.php:336 /2.5/inc/simple-tags.admin.php:379
 #: /2.7/inc/simple-tags.admin.php:442
 msgid "Text to display before tags list:"
 msgstr "Texto a mostrar antes de la lista de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:337
-#: /2.5/inc/simple-tags.admin.php:380
+#: /2.3/inc/simple-tags.admin.php:337 /2.5/inc/simple-tags.admin.php:380
 #: /2.7/inc/simple-tags.admin.php:443
 msgid "Text to display after tags list:"
 msgstr "Texto a mostrar después de la lista de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:338
-#: /2.5/inc/simple-tags.admin.php:381
+#: /2.3/inc/simple-tags.admin.php:338 /2.5/inc/simple-tags.admin.php:381
 #: /2.7/inc/simple-tags.admin.php:444
 msgid "Max tags display:"
 msgstr "Máx. de etiquetas a mostrar:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:339
-#: /2.5/inc/simple-tags.admin.php:382
+#: /2.3/inc/simple-tags.admin.php:339 /2.5/inc/simple-tags.admin.php:382
 #: /2.7/inc/simple-tags.admin.php:445
 msgid "You must set zero (0) for display all tags."
 msgstr "Debes fijarlo a cero (0) para mostrar todas las etiquetas."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:340
-#: /2.5/inc/simple-tags.admin.php:383
+#: /2.3/inc/simple-tags.admin.php:340 /2.5/inc/simple-tags.admin.php:383
 #: /2.7/inc/simple-tags.admin.php:446
 msgid "Include categories in result ?"
 msgstr "¿Incluir categorías en el resultado?"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:341
-#: /2.3/inc/simple-tags.admin.php:448
-#: /2.5/inc/simple-tags.admin.php:384
-#: /2.5/inc/simple-tags.admin.php:491
-#: /2.7/inc/simple-tags.admin.php:447
-#: /2.7/inc/simple-tags.admin.php:554
+#: /2.3/inc/simple-tags.admin.php:341 /2.3/inc/simple-tags.admin.php:448
+#: /2.5/inc/simple-tags.admin.php:384 /2.5/inc/simple-tags.admin.php:491
+#: /2.7/inc/simple-tags.admin.php:447 /2.7/inc/simple-tags.admin.php:554
 msgid "Tag link format:"
 msgstr "Formato de enlace de etiqueta:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:342
-#: /2.3/inc/simple-tags.admin.php:370
-#: /2.3/inc/simple-tags.admin.php:398
-#: /2.3/inc/simple-tags.admin.php:416
-#: /2.3/inc/simple-tags.admin.php:449
-#: /2.5/inc/simple-tags.admin.php:385
-#: /2.5/inc/simple-tags.admin.php:413
-#: /2.5/inc/simple-tags.admin.php:441
-#: /2.5/inc/simple-tags.admin.php:459
-#: /2.5/inc/simple-tags.admin.php:492
-#: /2.7/inc/simple-tags.admin.php:448
-#: /2.7/inc/simple-tags.admin.php:476
-#: /2.7/inc/simple-tags.admin.php:504
-#: /2.7/inc/simple-tags.admin.php:522
+#: /2.3/inc/simple-tags.admin.php:342 /2.3/inc/simple-tags.admin.php:370
+#: /2.3/inc/simple-tags.admin.php:398 /2.3/inc/simple-tags.admin.php:416
+#: /2.3/inc/simple-tags.admin.php:449 /2.5/inc/simple-tags.admin.php:385
+#: /2.5/inc/simple-tags.admin.php:413 /2.5/inc/simple-tags.admin.php:441
+#: /2.5/inc/simple-tags.admin.php:459 /2.5/inc/simple-tags.admin.php:492
+#: /2.7/inc/simple-tags.admin.php:448 /2.7/inc/simple-tags.admin.php:476
+#: /2.7/inc/simple-tags.admin.php:504 /2.7/inc/simple-tags.admin.php:522
 #: /2.7/inc/simple-tags.admin.php:555
 msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
 msgstr "Puedes encontrar marcadores y explicaciones <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">en la documentación online.</a>"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:343
-#: /2.5/inc/simple-tags.admin.php:386
+#: /2.3/inc/simple-tags.admin.php:343 /2.5/inc/simple-tags.admin.php:386
 #: /2.7/inc/simple-tags.admin.php:449
 msgid "Text to display if no tags found:"
 msgstr "Texto a mostrar si no hay etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:344
-#: /2.3/inc/simple-tags.admin.php:374
-#: /2.3/inc/simple-tags.admin.php:403
-#: /2.3/inc/simple-tags.admin.php:461
-#: /2.5/inc/simple-tags.admin.php:387
-#: /2.5/inc/simple-tags.admin.php:417
-#: /2.5/inc/simple-tags.admin.php:446
-#: /2.5/inc/simple-tags.admin.php:504
-#: /2.7/inc/simple-tags.admin.php:450
-#: /2.7/inc/simple-tags.admin.php:480
-#: /2.7/inc/simple-tags.admin.php:509
-#: /2.7/inc/simple-tags.admin.php:567
+#: /2.3/inc/simple-tags.admin.php:344 /2.3/inc/simple-tags.admin.php:374
+#: /2.3/inc/simple-tags.admin.php:403 /2.3/inc/simple-tags.admin.php:461
+#: /2.5/inc/simple-tags.admin.php:387 /2.5/inc/simple-tags.admin.php:417
+#: /2.5/inc/simple-tags.admin.php:446 /2.5/inc/simple-tags.admin.php:504
+#: /2.7/inc/simple-tags.admin.php:450 /2.7/inc/simple-tags.admin.php:480
+#: /2.7/inc/simple-tags.admin.php:509 /2.7/inc/simple-tags.admin.php:567
 msgid "<strong>Advanced usage</strong>:"
 msgstr "<strong>Uso avanzado</strong>:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:345
-#: /2.5/inc/simple-tags.admin.php:388
+#: /2.3/inc/simple-tags.admin.php:345 /2.5/inc/simple-tags.admin.php:388
 #: /2.7/inc/simple-tags.admin.php:451
 msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
 msgstr "Puedes usar la misma sintaxis que en la función <code>st_the_tags()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:348
-#: /2.5/inc/simple-tags.admin.php:391
+#: /2.3/inc/simple-tags.admin.php:348 /2.5/inc/simple-tags.admin.php:391
 #: /2.7/inc/simple-tags.admin.php:454
 msgid "Automatically display related posts into feeds"
 msgstr "Mostrar automáticamente entradas relacionadas en los feeds"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:349
-#: /2.5/inc/simple-tags.admin.php:392
+#: /2.3/inc/simple-tags.admin.php:349 /2.5/inc/simple-tags.admin.php:392
 #: /2.7/inc/simple-tags.admin.php:455
 msgid "Automatically display related posts into post content"
 msgstr "Mostrar automáticamente entradas relacionadas dentro del contenido de la entrada"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:359
-#: /2.5/inc/simple-tags.admin.php:402
+#: /2.3/inc/simple-tags.admin.php:359 /2.5/inc/simple-tags.admin.php:402
 #: /2.7/inc/simple-tags.admin.php:465
 msgid "Related Posts Order:"
 msgstr "Orden de las entradas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:361
-#: /2.5/inc/simple-tags.admin.php:404
+#: /2.3/inc/simple-tags.admin.php:361 /2.5/inc/simple-tags.admin.php:404
 #: /2.7/inc/simple-tags.admin.php:467
 msgid "<code>date-asc</code> &ndash; Older Entries."
 msgstr "<code>date-asc</code> &ndash; Entradas antiguas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:362
-#: /2.5/inc/simple-tags.admin.php:405
+#: /2.3/inc/simple-tags.admin.php:362 /2.5/inc/simple-tags.admin.php:405
 #: /2.7/inc/simple-tags.admin.php:468
 msgid "<code>date-desc</code> &ndash; Newer Entries."
 msgstr "<code>date-desc</code> &ndash; Entradas más nuevas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:363
-#: /2.5/inc/simple-tags.admin.php:406
+#: /2.3/inc/simple-tags.admin.php:363 /2.5/inc/simple-tags.admin.php:406
 #: /2.7/inc/simple-tags.admin.php:469
 msgid "<code>count-asc</code> &ndash; Least common tags between posts"
-msgstr "<code>count-asc</code> &ndash; Etiquetas menos comunes entre entradas."
+msgstr "<code>count-asc</code> &ndash; Etiquetas menos comunes entre entradas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:364
-#: /2.5/inc/simple-tags.admin.php:407
+#: /2.3/inc/simple-tags.admin.php:364 /2.5/inc/simple-tags.admin.php:407
 #: /2.7/inc/simple-tags.admin.php:470
 msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
 msgstr "<code>count-desc</code> &ndash; Etiquetas más comunes entre entradas (predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:365
-#: /2.3/inc/simple-tags.admin.php:383
-#: /2.3/inc/simple-tags.admin.php:430
-#: /2.3/inc/simple-tags.admin.php:438
-#: /2.5/inc/simple-tags.admin.php:408
-#: /2.5/inc/simple-tags.admin.php:426
-#: /2.5/inc/simple-tags.admin.php:473
-#: /2.5/inc/simple-tags.admin.php:481
-#: /2.7/inc/simple-tags.admin.php:471
-#: /2.7/inc/simple-tags.admin.php:489
-#: /2.7/inc/simple-tags.admin.php:536
-#: /2.7/inc/simple-tags.admin.php:544
+#: /2.3/inc/simple-tags.admin.php:365 /2.3/inc/simple-tags.admin.php:383
+#: /2.3/inc/simple-tags.admin.php:430 /2.3/inc/simple-tags.admin.php:438
+#: /2.5/inc/simple-tags.admin.php:408 /2.5/inc/simple-tags.admin.php:426
+#: /2.5/inc/simple-tags.admin.php:473 /2.5/inc/simple-tags.admin.php:481
+#: /2.7/inc/simple-tags.admin.php:471 /2.7/inc/simple-tags.admin.php:489
+#: /2.7/inc/simple-tags.admin.php:536 /2.7/inc/simple-tags.admin.php:544
 msgid "<code>name-asc</code> &ndash; Alphabetical."
 msgstr "<code>name-asc</code> &ndash; Alfabético."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:366
-#: /2.3/inc/simple-tags.admin.php:384
-#: /2.3/inc/simple-tags.admin.php:431
-#: /2.3/inc/simple-tags.admin.php:439
-#: /2.5/inc/simple-tags.admin.php:409
-#: /2.5/inc/simple-tags.admin.php:427
-#: /2.5/inc/simple-tags.admin.php:474
-#: /2.5/inc/simple-tags.admin.php:482
-#: /2.7/inc/simple-tags.admin.php:472
-#: /2.7/inc/simple-tags.admin.php:490
-#: /2.7/inc/simple-tags.admin.php:537
-#: /2.7/inc/simple-tags.admin.php:545
+#: /2.3/inc/simple-tags.admin.php:366 /2.3/inc/simple-tags.admin.php:384
+#: /2.3/inc/simple-tags.admin.php:431 /2.3/inc/simple-tags.admin.php:439
+#: /2.5/inc/simple-tags.admin.php:409 /2.5/inc/simple-tags.admin.php:427
+#: /2.5/inc/simple-tags.admin.php:474 /2.5/inc/simple-tags.admin.php:482
+#: /2.7/inc/simple-tags.admin.php:472 /2.7/inc/simple-tags.admin.php:490
+#: /2.7/inc/simple-tags.admin.php:537 /2.7/inc/simple-tags.admin.php:545
 msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
 msgstr "<code>name-desc</code> &ndash; Orden alfabético inverso."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:367
-#: /2.3/inc/simple-tags.admin.php:385
-#: /2.3/inc/simple-tags.admin.php:432
-#: /2.5/inc/simple-tags.admin.php:410
-#: /2.5/inc/simple-tags.admin.php:428
-#: /2.5/inc/simple-tags.admin.php:475
-#: /2.7/inc/simple-tags.admin.php:473
-#: /2.7/inc/simple-tags.admin.php:491
+#: /2.3/inc/simple-tags.admin.php:367 /2.3/inc/simple-tags.admin.php:385
+#: /2.3/inc/simple-tags.admin.php:432 /2.5/inc/simple-tags.admin.php:410
+#: /2.5/inc/simple-tags.admin.php:428 /2.5/inc/simple-tags.admin.php:475
+#: /2.7/inc/simple-tags.admin.php:473 /2.7/inc/simple-tags.admin.php:491
 #: /2.7/inc/simple-tags.admin.php:538
 msgid "<code>random</code> &ndash; Random."
 msgstr "<code>random</code> &ndash; Aleatorio."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:369
-#: /2.5/inc/simple-tags.admin.php:412
+#: /2.3/inc/simple-tags.admin.php:369 /2.5/inc/simple-tags.admin.php:412
 #: /2.7/inc/simple-tags.admin.php:475
 msgid "Post link format:"
 msgstr "Formato de enlace en entrada:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:371
-#: /2.5/inc/simple-tags.admin.php:414
+#: /2.3/inc/simple-tags.admin.php:371 /2.5/inc/simple-tags.admin.php:414
 #: /2.7/inc/simple-tags.admin.php:477
 msgid "Maximum number of related posts to display: (default: 5)"
 msgstr "Número máximo de entradas relacionadas a mostrar: (predeterminado 5)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:372
-#: /2.5/inc/simple-tags.admin.php:415
+#: /2.3/inc/simple-tags.admin.php:372 /2.5/inc/simple-tags.admin.php:415
 #: /2.7/inc/simple-tags.admin.php:478
 msgid "Enter the text to show when there is no related post:"
 msgstr "Introduce texto a mostrar cuando no hay entradas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:373
-#: /2.3/inc/simple-tags.admin.php:402
-#: /2.3/inc/simple-tags.admin.php:452
-#: /2.5/inc/simple-tags.admin.php:416
-#: /2.5/inc/simple-tags.admin.php:445
-#: /2.5/inc/simple-tags.admin.php:495
-#: /2.7/inc/simple-tags.admin.php:479
-#: /2.7/inc/simple-tags.admin.php:508
+#: /2.3/inc/simple-tags.admin.php:373 /2.3/inc/simple-tags.admin.php:402
+#: /2.3/inc/simple-tags.admin.php:452 /2.5/inc/simple-tags.admin.php:416
+#: /2.5/inc/simple-tags.admin.php:445 /2.5/inc/simple-tags.admin.php:495
+#: /2.7/inc/simple-tags.admin.php:479 /2.7/inc/simple-tags.admin.php:508
 #: /2.7/inc/simple-tags.admin.php:558
 msgid "Enter the positioned title before the list, leave blank for no title:"
 msgstr "Introduce título previo a la lista, déjalo en blanco para ninguno:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:375
-#: /2.5/inc/simple-tags.admin.php:418
+#: /2.3/inc/simple-tags.admin.php:375 /2.5/inc/simple-tags.admin.php:418
 #: /2.7/inc/simple-tags.admin.php:481
 msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
 msgstr "Puedes usar la misma sintaxis que en la función <code>st_related_posts()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:378
-#: /2.5/inc/simple-tags.admin.php:421
+#: /2.3/inc/simple-tags.admin.php:378 /2.5/inc/simple-tags.admin.php:421
 #: /2.7/inc/simple-tags.admin.php:484
 msgid "Maximum number of related tags to display: (default: 5)"
 msgstr "Número máximo de etiquetas relacionadas a mostrar: (predeterminado: 5)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:379
-#: /2.5/inc/simple-tags.admin.php:422
+#: /2.3/inc/simple-tags.admin.php:379 /2.5/inc/simple-tags.admin.php:422
 #: /2.7/inc/simple-tags.admin.php:485
 msgid "Order related tags:"
 msgstr "Orden etiquetas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:381
-#: /2.3/inc/simple-tags.admin.php:428
-#: /2.3/inc/simple-tags.admin.php:436
-#: /2.5/inc/simple-tags.admin.php:424
-#: /2.5/inc/simple-tags.admin.php:471
-#: /2.5/inc/simple-tags.admin.php:479
-#: /2.7/inc/simple-tags.admin.php:487
-#: /2.7/inc/simple-tags.admin.php:534
+#: /2.3/inc/simple-tags.admin.php:381 /2.3/inc/simple-tags.admin.php:428
+#: /2.3/inc/simple-tags.admin.php:436 /2.5/inc/simple-tags.admin.php:424
+#: /2.5/inc/simple-tags.admin.php:471 /2.5/inc/simple-tags.admin.php:479
+#: /2.7/inc/simple-tags.admin.php:487 /2.7/inc/simple-tags.admin.php:534
 #: /2.7/inc/simple-tags.admin.php:542
 msgid "<code>count-asc</code> &ndash; Least used."
 msgstr "<code>count-asc</code> &ndash; Menos usada."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:382
-#: /2.3/inc/simple-tags.admin.php:429
-#: /2.5/inc/simple-tags.admin.php:425
-#: /2.5/inc/simple-tags.admin.php:472
-#: /2.7/inc/simple-tags.admin.php:488
-#: /2.7/inc/simple-tags.admin.php:535
+#: /2.3/inc/simple-tags.admin.php:382 /2.3/inc/simple-tags.admin.php:429
+#: /2.5/inc/simple-tags.admin.php:425 /2.5/inc/simple-tags.admin.php:472
+#: /2.7/inc/simple-tags.admin.php:488 /2.7/inc/simple-tags.admin.php:535
 msgid "<code>count-desc</code> &ndash; Most popular. (default)"
-msgstr "<code>count-desc</code> &ndash; Más popular. (Predeterminado)."
+msgstr "<code>count-desc</code> &ndash; Más popular. (Predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:387
-#: /2.5/inc/simple-tags.admin.php:430
+#: /2.3/inc/simple-tags.admin.php:387 /2.5/inc/simple-tags.admin.php:430
 #: /2.7/inc/simple-tags.admin.php:493
 msgid "Related tags type format:"
 msgstr "Tipo de formato de etiquetas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:389
-#: /2.3/inc/simple-tags.admin.php:409
-#: /2.3/inc/simple-tags.admin.php:445
-#: /2.5/inc/simple-tags.admin.php:432
-#: /2.5/inc/simple-tags.admin.php:452
-#: /2.5/inc/simple-tags.admin.php:488
-#: /2.7/inc/simple-tags.admin.php:495
-#: /2.7/inc/simple-tags.admin.php:515
+#: /2.3/inc/simple-tags.admin.php:389 /2.3/inc/simple-tags.admin.php:409
+#: /2.3/inc/simple-tags.admin.php:445 /2.5/inc/simple-tags.admin.php:432
+#: /2.5/inc/simple-tags.admin.php:452 /2.5/inc/simple-tags.admin.php:488
+#: /2.7/inc/simple-tags.admin.php:495 /2.7/inc/simple-tags.admin.php:515
 #: /2.7/inc/simple-tags.admin.php:551
 msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
 msgstr "<code>list</code> &ndash; Mostrar una lista formateada (ul/li)."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:390
-#: /2.3/inc/simple-tags.admin.php:410
-#: /2.3/inc/simple-tags.admin.php:446
-#: /2.5/inc/simple-tags.admin.php:433
-#: /2.5/inc/simple-tags.admin.php:453
-#: /2.5/inc/simple-tags.admin.php:489
-#: /2.7/inc/simple-tags.admin.php:496
-#: /2.7/inc/simple-tags.admin.php:516
+#: /2.3/inc/simple-tags.admin.php:390 /2.3/inc/simple-tags.admin.php:410
+#: /2.3/inc/simple-tags.admin.php:446 /2.5/inc/simple-tags.admin.php:433
+#: /2.5/inc/simple-tags.admin.php:453 /2.5/inc/simple-tags.admin.php:489
+#: /2.7/inc/simple-tags.admin.php:496 /2.7/inc/simple-tags.admin.php:516
 #: /2.7/inc/simple-tags.admin.php:552
 msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
-msgstr "<code>flat</code> &ndash; Mostra en línea (sin lista, sólo un div)."
+msgstr "<code>flat</code> &ndash; Mostra en línea (sin lista, sólo un div)"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:392
-#: /2.5/inc/simple-tags.admin.php:435
+#: /2.3/inc/simple-tags.admin.php:392 /2.5/inc/simple-tags.admin.php:435
 #: /2.7/inc/simple-tags.admin.php:498
 msgid "Method of tags intersections and unions used to build related tags link:"
 msgstr "Método de intersecciones de etiquetas y uniones usado para construir enlace de relacionadas:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:394
-#: /2.5/inc/simple-tags.admin.php:437
+#: /2.3/inc/simple-tags.admin.php:394 /2.5/inc/simple-tags.admin.php:437
 #: /2.7/inc/simple-tags.admin.php:500
 msgid "<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</strong> the \"Tag2\" tag. (default)"
 msgstr "<code>OR</code> &ndash; Coge entradas que tengan tanto la  etiqueta \"Etiqueta1\" <strong>o</strong> la \"Etiqueta2\" . (predeterminado)"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:395
-#: /2.5/inc/simple-tags.admin.php:438
+#: /2.3/inc/simple-tags.admin.php:395 /2.5/inc/simple-tags.admin.php:438
 #: /2.7/inc/simple-tags.admin.php:501
 msgid "<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</strong> the \"Tag2\" tag."
 msgstr "<code>AND</code> &ndash; Coge entradas que tengan la etiqueta \"Etiqueta1\" <strong>y</strong> la \"Etiqueta2\"."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:397
-#: /2.5/inc/simple-tags.admin.php:440
+#: /2.3/inc/simple-tags.admin.php:397 /2.5/inc/simple-tags.admin.php:440
 #: /2.7/inc/simple-tags.admin.php:503
 msgid "Related tags link format:"
 msgstr "Formato de enlace de etiquetas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:399
-#: /2.5/inc/simple-tags.admin.php:442
+#: /2.3/inc/simple-tags.admin.php:399 /2.5/inc/simple-tags.admin.php:442
 #: /2.7/inc/simple-tags.admin.php:505
 msgid "Related tags separator:"
 msgstr "Separador de etiquetas relacionadas:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:400
-#: /2.3/inc/simple-tags.admin.php:413
-#: /2.5/inc/simple-tags.admin.php:443
-#: /2.5/inc/simple-tags.admin.php:456
-#: /2.7/inc/simple-tags.admin.php:506
-#: /2.7/inc/simple-tags.admin.php:519
+#: /2.3/inc/simple-tags.admin.php:400 /2.3/inc/simple-tags.admin.php:413
+#: /2.5/inc/simple-tags.admin.php:443 /2.5/inc/simple-tags.admin.php:456
+#: /2.7/inc/simple-tags.admin.php:506 /2.7/inc/simple-tags.admin.php:519
 msgid "Leave empty for list format."
 msgstr "Déjalo vacío para formato de lista."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:401
-#: /2.5/inc/simple-tags.admin.php:444
+#: /2.3/inc/simple-tags.admin.php:401 /2.5/inc/simple-tags.admin.php:444
 #: /2.7/inc/simple-tags.admin.php:507
 msgid "Enter the text to show when there is no related tags:"
 msgstr "Introduce el texto a mostrar cuando no hay etiquetas relacionadas:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:404
-#: /2.5/inc/simple-tags.admin.php:447
+#: /2.3/inc/simple-tags.admin.php:404 /2.5/inc/simple-tags.admin.php:447
 #: /2.7/inc/simple-tags.admin.php:510
 msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
 msgstr "Puedes usar la misma sintaxis que en la función <code>st_related_tags()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:406
-#: /2.5/inc/simple-tags.admin.php:449
+#: /2.3/inc/simple-tags.admin.php:406 /2.5/inc/simple-tags.admin.php:449
 #: /2.7/inc/simple-tags.admin.php:512
 msgid "Remove related Tags"
 msgstr "Eliminar etiquetas relacionadas"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:407
-#: /2.5/inc/simple-tags.admin.php:450
+#: /2.3/inc/simple-tags.admin.php:407 /2.5/inc/simple-tags.admin.php:450
 #: /2.7/inc/simple-tags.admin.php:513
 msgid "Remove related Tags type format:"
 msgstr "Eliminar tipo de formato de etiquetas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:412
-#: /2.5/inc/simple-tags.admin.php:455
+#: /2.3/inc/simple-tags.admin.php:412 /2.5/inc/simple-tags.admin.php:455
 #: /2.7/inc/simple-tags.admin.php:518
 msgid "Remove related tags separator:"
 msgstr "Eliminar separador de etiquetas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:414
-#: /2.5/inc/simple-tags.admin.php:457
+#: /2.3/inc/simple-tags.admin.php:414 /2.5/inc/simple-tags.admin.php:457
 #: /2.7/inc/simple-tags.admin.php:520
 msgid "Enter the text to show when there is no remove related tags:"
 msgstr "Introduce el texto a mostrar cuando no hay etiquetas relacioandas que eliminar:"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:415
-#: /2.5/inc/simple-tags.admin.php:458
+#: /2.3/inc/simple-tags.admin.php:415 /2.5/inc/simple-tags.admin.php:458
 #: /2.7/inc/simple-tags.admin.php:521
 msgid "Remove related tags  link format:"
 msgstr "Eliminar formato de enlace de etiquetas relacionadas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:419
-#: /2.5/inc/simple-tags.admin.php:462
+#: /2.3/inc/simple-tags.admin.php:419 /2.5/inc/simple-tags.admin.php:462
 #: /2.7/inc/simple-tags.admin.php:525
 msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
 msgstr "¿Qué diferencia hay entre <strong>&#8216;Orden selección de etiquetas&#8217;</strong> y <strong>&#8216;Orden visualización de etiquetas&#8217;</strong> ?<br />"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:421
-#: /2.5/inc/simple-tags.admin.php:464
+#: /2.3/inc/simple-tags.admin.php:421 /2.5/inc/simple-tags.admin.php:464
 #: /2.7/inc/simple-tags.admin.php:527
 msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
 msgstr "<strong>&#8216;Orden selección de etiquetas&#8217;</strong> es el primer paso durante la generación de la nube de etiquetas, correspondiente a la recopilación de etiquetas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:422
-#: /2.5/inc/simple-tags.admin.php:465
+#: /2.3/inc/simple-tags.admin.php:422 /2.5/inc/simple-tags.admin.php:465
 #: /2.7/inc/simple-tags.admin.php:528
 msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
 msgstr "<strong>&#8216;Orden visualización de etiquetas&#8217;</strong> es el segundo. Una vez elegidas las etiquetas, puedes reordenarlas antes de mostrarlas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:424
-#: /2.5/inc/simple-tags.admin.php:467
+#: /2.3/inc/simple-tags.admin.php:424 /2.5/inc/simple-tags.admin.php:467
 #: /2.7/inc/simple-tags.admin.php:530
 msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
 msgstr "<strong>Ejemplo:</strong> Quieres mostrar aleatoriamente las 100 etiquetas más populares.<br />"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:425
-#: /2.5/inc/simple-tags.admin.php:468
+#: /2.3/inc/simple-tags.admin.php:425 /2.5/inc/simple-tags.admin.php:468
 #: /2.7/inc/simple-tags.admin.php:531
 msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
 msgstr "Debes fijar &#8216;Orden selección de etiquetas&#8217; a <strong>contador-desc</strong> para obtener las 100 etiquetas más populares y &#8216;Orden visualización de etiquetas&#8217; a <strong>aleatorio</strong> para generar la nube aleatoriamente."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:426
-#: /2.5/inc/simple-tags.admin.php:469
+#: /2.3/inc/simple-tags.admin.php:426 /2.5/inc/simple-tags.admin.php:469
 #: /2.7/inc/simple-tags.admin.php:532
 msgid "Order tags selection:"
 msgstr "Orden selección de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:434
-#: /2.3/inc/simple-tags.widgets.php:167
-#: /2.5/inc/simple-tags.admin.php:477
-#: /2.5/inc/simple-tags.widgets.php:155
-#: /2.7/inc/simple-tags.admin.php:540
-#: /2.7/inc/simple-tags.widgets.php:155
+#: /2.3/inc/simple-tags.admin.php:434 /2.3/inc/simple-tags.widgets.php:167
+#: /2.5/inc/simple-tags.admin.php:477 /2.5/inc/simple-tags.widgets.php:155
+#: /2.7/inc/simple-tags.admin.php:540 /2.7/inc/simple-tags.widgets.php:155
 msgid "Order tags display:"
 msgstr "Orden visualización de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:437
-#: /2.5/inc/simple-tags.admin.php:480
+#: /2.3/inc/simple-tags.admin.php:437 /2.5/inc/simple-tags.admin.php:480
 #: /2.7/inc/simple-tags.admin.php:543
 msgid "<code>count-desc</code> &ndash; Most popular."
 msgstr "<code>countador-desc</code> &ndash; La más popular."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:440
-#: /2.5/inc/simple-tags.admin.php:483
+#: /2.3/inc/simple-tags.admin.php:440 /2.5/inc/simple-tags.admin.php:483
 #: /2.7/inc/simple-tags.admin.php:546
 msgid "<code>random</code> &ndash; Random. (default)"
 msgstr "<code>aleatorio</code> &ndash; Aleatorio. (predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:442
-#: /2.5/inc/simple-tags.admin.php:485
+#: /2.3/inc/simple-tags.admin.php:442 /2.5/inc/simple-tags.admin.php:485
 #: /2.7/inc/simple-tags.admin.php:548
 msgid "Include categories in tag cloud ?"
 msgstr "¿Incluir categorías en la nube de etiquetas?"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:443
-#: /2.5/inc/simple-tags.admin.php:486
+#: /2.3/inc/simple-tags.admin.php:443 /2.5/inc/simple-tags.admin.php:486
 #: /2.7/inc/simple-tags.admin.php:549
 msgid "Tags cloud type format:"
 msgstr "Tipo de formato de nube de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:450
-#: /2.5/inc/simple-tags.admin.php:493
+#: /2.3/inc/simple-tags.admin.php:450 /2.5/inc/simple-tags.admin.php:493
 #: /2.7/inc/simple-tags.admin.php:556
 msgid "Maximum number of tags to display: (default: 45)"
 msgstr "Número máximo de etiquetas a mostrar: (predeterminado: 45)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:451
-#: /2.5/inc/simple-tags.admin.php:494
+#: /2.3/inc/simple-tags.admin.php:451 /2.5/inc/simple-tags.admin.php:494
 #: /2.7/inc/simple-tags.admin.php:557
 msgid "Enter the text to show when there is no tag:"
 msgstr "Introduce el texto a mostrar cuando no hay etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:453
-#: /2.5/inc/simple-tags.admin.php:496
+#: /2.3/inc/simple-tags.admin.php:453 /2.5/inc/simple-tags.admin.php:496
 #: /2.7/inc/simple-tags.admin.php:559
 msgid "Most popular color:"
 msgstr "Color de más popular:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:454
-#: /2.5/inc/simple-tags.admin.php:497
+#: /2.3/inc/simple-tags.admin.php:454 /2.5/inc/simple-tags.admin.php:497
 #: /2.7/inc/simple-tags.admin.php:560
 msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
 msgstr "Los colores deben ponerse en hexadecimal, y necesitan tener los seis dígitos completos (#eee es la abreviatura de #eeeeee)."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:455
-#: /2.5/inc/simple-tags.admin.php:498
+#: /2.3/inc/simple-tags.admin.php:455 /2.5/inc/simple-tags.admin.php:498
 #: /2.7/inc/simple-tags.admin.php:561
 msgid "Least popular color:"
 msgstr "Color de menos popular:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:456
-#: /2.5/inc/simple-tags.admin.php:499
+#: /2.3/inc/simple-tags.admin.php:456 /2.5/inc/simple-tags.admin.php:499
 #: /2.7/inc/simple-tags.admin.php:562
 msgid "Most popular font size:"
 msgstr "Tamaño fuente más popular:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:457
-#: /2.5/inc/simple-tags.admin.php:500
+#: /2.3/inc/simple-tags.admin.php:457 /2.5/inc/simple-tags.admin.php:500
 #: /2.7/inc/simple-tags.admin.php:563
 msgid "The two font sizes are the size of the largest and smallest tags."
 msgstr "Los dos tamaños de fuentes son los tamaños de las etiquetas más grandes y más pequeñas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:458
-#: /2.5/inc/simple-tags.admin.php:501
+#: /2.3/inc/simple-tags.admin.php:458 /2.5/inc/simple-tags.admin.php:501
 #: /2.7/inc/simple-tags.admin.php:564
 msgid "Least popular font size:"
 msgstr "Tamaño fuente menos popular:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:459
-#: /2.5/inc/simple-tags.admin.php:502
+#: /2.3/inc/simple-tags.admin.php:459 /2.5/inc/simple-tags.admin.php:502
 #: /2.7/inc/simple-tags.admin.php:565
 msgid "The units to display the font sizes with, on tag clouds:"
 msgstr "Unidad para visualizar los tamaños de fuente en las nubes de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:460
-#: /2.5/inc/simple-tags.admin.php:503
+#: /2.3/inc/simple-tags.admin.php:460 /2.5/inc/simple-tags.admin.php:503
 #: /2.7/inc/simple-tags.admin.php:566
 msgid "The font size units option determines the units that the two font sizes use."
 msgstr "La opción de la unidad del tamaño de fuente determina la unidad de tamaño que usarán las dos fuentes."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:462
-#: /2.5/inc/simple-tags.admin.php:505
+#: /2.3/inc/simple-tags.admin.php:462 /2.5/inc/simple-tags.admin.php:505
 #: /2.7/inc/simple-tags.admin.php:568
 msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
 msgstr "Puedes usar la misma sintaxis que en la función <code>st_tag_cloud()</code> para personalizar la visualización. Consulta la <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentación</a> para más detalles."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:476
-#: /2.5/inc/simple-tags.admin.php:519
+#: /2.3/inc/simple-tags.admin.php:476 /2.5/inc/simple-tags.admin.php:519
 #: /2.7/inc/simple-tags.admin.php:582
 msgid "Options saved"
-msgstr "Opciones guardadas."
+msgstr "Opciones guardadas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:480
-#: /2.5/inc/simple-tags.admin.php:523
+#: /2.3/inc/simple-tags.admin.php:480 /2.5/inc/simple-tags.admin.php:523
 #: /2.7/inc/simple-tags.admin.php:586
 msgid "Simple Tags options resetted to default options!"
 msgstr "¡Las opciones de Simple Tags se han reiniciado a sus valores predeterminados!"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:486
-#: /2.5/inc/simple-tags.admin.php:529
+#: /2.3/inc/simple-tags.admin.php:486 /2.5/inc/simple-tags.admin.php:529
 #, php-format
 msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
-msgstr "¡Todas las opciones de Simple Tags están borradas!. ¡Ahora puedes <a href=\"%s\">desactivar la extensión</a>!."
+msgstr "¡Todas las opciones de Simple Tags están borradas!. ¡Ahora puedes <a href=\"%s\">desactivar la extensión</a>!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:526
-#: /2.3/inc/simple-tags.admin.php:550
+#: /2.3/inc/simple-tags.admin.php:526 /2.3/inc/simple-tags.admin.php:550
 msgid "Update Options &raquo;"
 msgstr "Actualizar opciones &raquo;"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:527
-#: /2.3/inc/simple-tags.admin.php:551
-#: /2.5/inc/simple-tags.admin.php:541
-#: /2.5/inc/simple-tags.admin.php:564
-#: /2.7/inc/simple-tags.admin.php:597
-#: /2.7/inc/simple-tags.admin.php:611
+#: /2.3/inc/simple-tags.admin.php:527 /2.3/inc/simple-tags.admin.php:551
+#: /2.5/inc/simple-tags.admin.php:541 /2.5/inc/simple-tags.admin.php:564
+#: /2.7/inc/simple-tags.admin.php:597 /2.7/inc/simple-tags.admin.php:611
 msgid "Do you really want to restore the default options?"
 msgstr "¿Realmente quieres restaurar las opciones predeterminadas?"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:527
-#: /2.3/inc/simple-tags.admin.php:551
-#: /2.5/inc/simple-tags.admin.php:541
-#: /2.5/inc/simple-tags.admin.php:564
-#: /2.7/inc/simple-tags.admin.php:597
-#: /2.7/inc/simple-tags.admin.php:611
+#: /2.3/inc/simple-tags.admin.php:527 /2.3/inc/simple-tags.admin.php:551
+#: /2.5/inc/simple-tags.admin.php:541 /2.5/inc/simple-tags.admin.php:564
+#: /2.7/inc/simple-tags.admin.php:597 /2.7/inc/simple-tags.admin.php:611
 msgid "Reset Options"
 msgstr "Reiniciar opciones"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:534
-#: /2.5/inc/simple-tags.admin.php:548
+#: /2.3/inc/simple-tags.admin.php:534 /2.5/inc/simple-tags.admin.php:548
 msgid "Uninstallation"
 msgstr "Desinstalación"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:540
-#: /2.5/inc/simple-tags.admin.php:554
+#: /2.3/inc/simple-tags.admin.php:540 /2.5/inc/simple-tags.admin.php:554
 msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
 msgstr "Generalmente, desactivar esta extensión no borra ninguno de sus datos, si te gustaría dejar de usar Simple Tags, por favor borra <strong>todas</strong> las opciones antes de desactivar la extensión."
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:541
-#: /2.5/inc/simple-tags.admin.php:555
+#: /2.3/inc/simple-tags.admin.php:541 /2.5/inc/simple-tags.admin.php:555
 msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
 msgstr "Esto borra todas la opciones de Simple Tags. <strong>¡Esto es irrevocable!. Ten cuidado.</strong>"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:544
-#: /2.5/inc/simple-tags.admin.php:558
+#: /2.3/inc/simple-tags.admin.php:544 /2.5/inc/simple-tags.admin.php:558
 msgid "Delete all options ?"
 msgstr "¿Borrar todas las opciones?"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:568
-#: /2.3/inc/simple-tags.admin.php:1714
-#: /2.5/inc/simple-tags.admin.php:580
-#: /2.5/inc/simple-tags.admin.php:1751
-#: /2.7/inc/simple-tags.admin.php:627
-#: /2.7/inc/simple-tags.admin.php:1725
+#: /2.3/inc/simple-tags.admin.php:568 /2.3/inc/simple-tags.admin.php:1714
+#: /2.5/inc/simple-tags.admin.php:580 /2.5/inc/simple-tags.admin.php:1751
+#: /2.7/inc/simple-tags.admin.php:627 /2.7/inc/simple-tags.admin.php:1725
 msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
 msgstr "Problema de seguridad. Inténtalo de nuevo. Si persiste este problema, contacta con <a href=\"mailto:amaury@wordpress-fr.net\">el autor del plugin</a>."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:601
-#: /2.3/inc/simple-tags.widgets.php:171
-#: /2.5/inc/simple-tags.admin.php:613
-#: /2.5/inc/simple-tags.widgets.php:159
-#: /2.7/inc/simple-tags.admin.php:660
-#: /2.7/inc/simple-tags.widgets.php:159
+#: /2.3/inc/simple-tags.admin.php:601 /2.3/inc/simple-tags.widgets.php:171
+#: /2.5/inc/simple-tags.admin.php:613 /2.5/inc/simple-tags.widgets.php:159
+#: /2.7/inc/simple-tags.admin.php:660 /2.7/inc/simple-tags.widgets.php:159
 msgid "Most popular"
 msgstr "Más popular"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:602
-#: /2.3/inc/simple-tags.widgets.php:161
-#: /2.3/inc/simple-tags.widgets.php:172
-#: /2.5/inc/simple-tags.admin.php:614
-#: /2.5/inc/simple-tags.widgets.php:149
-#: /2.5/inc/simple-tags.widgets.php:160
-#: /2.7/inc/simple-tags.admin.php:661
-#: /2.7/inc/simple-tags.widgets.php:149
+#: /2.3/inc/simple-tags.admin.php:602 /2.3/inc/simple-tags.widgets.php:161
+#: /2.3/inc/simple-tags.widgets.php:172 /2.5/inc/simple-tags.admin.php:614
+#: /2.5/inc/simple-tags.widgets.php:149 /2.5/inc/simple-tags.widgets.php:160
+#: /2.7/inc/simple-tags.admin.php:661 /2.7/inc/simple-tags.widgets.php:149
 #: /2.7/inc/simple-tags.widgets.php:160
 msgid "Least used"
 msgstr "Menos usada"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:603
-#: /2.3/inc/simple-tags.widgets.php:158
-#: /2.3/inc/simple-tags.widgets.php:169
-#: /2.5/inc/simple-tags.admin.php:615
-#: /2.5/inc/simple-tags.widgets.php:146
-#: /2.5/inc/simple-tags.widgets.php:157
-#: /2.7/inc/simple-tags.admin.php:662
-#: /2.7/inc/simple-tags.widgets.php:146
+#: /2.3/inc/simple-tags.admin.php:603 /2.3/inc/simple-tags.widgets.php:158
+#: /2.3/inc/simple-tags.widgets.php:169 /2.5/inc/simple-tags.admin.php:615
+#: /2.5/inc/simple-tags.widgets.php:146 /2.5/inc/simple-tags.widgets.php:157
+#: /2.7/inc/simple-tags.admin.php:662 /2.7/inc/simple-tags.widgets.php:146
 #: /2.7/inc/simple-tags.widgets.php:157
 msgid "Alphabetical"
 msgstr "Alfabéticamente"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:634
-#: /2.5/inc/simple-tags.admin.php:646
+#: /2.3/inc/simple-tags.admin.php:634 /2.5/inc/simple-tags.admin.php:646
 #: /2.7/inc/simple-tags.admin.php:693
 msgid "Existing Tags"
 msgstr "Etiquetas existentes"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:638
-#: /2.5/inc/simple-tags.admin.php:650
+#: /2.3/inc/simple-tags.admin.php:638 /2.5/inc/simple-tags.admin.php:650
 #: /2.7/inc/simple-tags.admin.php:697
 msgid "Search tags"
 msgstr "Buscar etiquetas"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:642
-#: /2.5/inc/simple-tags.admin.php:654
+#: /2.3/inc/simple-tags.admin.php:642 /2.5/inc/simple-tags.admin.php:654
 #: /2.7/inc/simple-tags.admin.php:701
 msgid "Go"
 msgstr "Ir"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:645
-#: /2.5/inc/simple-tags.admin.php:658
+#: /2.3/inc/simple-tags.admin.php:645 /2.5/inc/simple-tags.admin.php:658
 #: /2.7/inc/simple-tags.admin.php:705
 msgid "Sort Order:"
 msgstr "Ordenar por:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:660
-#: /2.3/inc/simple-tags.admin.php:1844
-#: /2.5/inc/simple-tags.admin.php:676
-#: /2.5/inc/simple-tags.admin.php:1880
-#: /2.7/inc/simple-tags.admin.php:723
-#: /2.7/inc/simple-tags.admin.php:1847
+#: /2.3/inc/simple-tags.admin.php:660 /2.3/inc/simple-tags.admin.php:1844
+#: /2.5/inc/simple-tags.admin.php:676 /2.5/inc/simple-tags.admin.php:1880
+#: /2.7/inc/simple-tags.admin.php:723 /2.7/inc/simple-tags.admin.php:1847
 #, php-format
 msgid "View all posts tagged with %s"
 msgstr "Ver todas las entradas etiquetadas con %s"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:671
-#: /2.3/inc/simple-tags.admin.php:1859
-#: /2.3/inc/simple-tags.admin.php:1861
-#: /2.5/inc/simple-tags.admin.php:684
-#: /2.5/inc/simple-tags.admin.php:1895
-#: /2.5/inc/simple-tags.admin.php:1897
-#: /2.7/inc/simple-tags.admin.php:731
-#: /2.7/inc/simple-tags.admin.php:1862
+#: /2.3/inc/simple-tags.admin.php:671 /2.3/inc/simple-tags.admin.php:1859
+#: /2.3/inc/simple-tags.admin.php:1861 /2.5/inc/simple-tags.admin.php:684
+#: /2.5/inc/simple-tags.admin.php:1895 /2.5/inc/simple-tags.admin.php:1897
+#: /2.7/inc/simple-tags.admin.php:731 /2.7/inc/simple-tags.admin.php:1862
 #: /2.7/inc/simple-tags.admin.php:1864
 msgid "Previous tags"
 msgstr "Etiquetas anteriores"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:671
-#: /2.3/inc/simple-tags.admin.php:1865
-#: /2.3/inc/simple-tags.admin.php:1867
-#: /2.5/inc/simple-tags.admin.php:684
-#: /2.5/inc/simple-tags.admin.php:1901
-#: /2.5/inc/simple-tags.admin.php:1903
-#: /2.7/inc/simple-tags.admin.php:731
-#: /2.7/inc/simple-tags.admin.php:1868
+#: /2.3/inc/simple-tags.admin.php:671 /2.3/inc/simple-tags.admin.php:1865
+#: /2.3/inc/simple-tags.admin.php:1867 /2.5/inc/simple-tags.admin.php:684
+#: /2.5/inc/simple-tags.admin.php:1901 /2.5/inc/simple-tags.admin.php:1903
+#: /2.7/inc/simple-tags.admin.php:731 /2.7/inc/simple-tags.admin.php:1868
 #: /2.7/inc/simple-tags.admin.php:1870
 msgid "Next tags"
-msgstr "Siguientes etiquetas."
+msgstr "Siguientes etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:679
-#: /2.5/inc/simple-tags.admin.php:691
+#: /2.3/inc/simple-tags.admin.php:679 /2.5/inc/simple-tags.admin.php:691
 #: /2.7/inc/simple-tags.admin.php:738
 msgid "Rename Tag"
 msgstr "Renombrar etiqueta"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:680
-#: /2.5/inc/simple-tags.admin.php:699
+#: /2.3/inc/simple-tags.admin.php:680 /2.5/inc/simple-tags.admin.php:699
 #: /2.7/inc/simple-tags.admin.php:746
 msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
 msgstr "Introduce la etiqueta a renombrar y su nuevo valor. También puedes usar esta función para combinar etiquetas. Haz clic en \"Renombrar\" y todas las entradas que usen esta etiqueta serán actualizadas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:681
-#: /2.3/inc/simple-tags.admin.php:722
-#: /2.5/inc/simple-tags.admin.php:700
-#: /2.5/inc/simple-tags.admin.php:774
-#: /2.7/inc/simple-tags.admin.php:747
-#: /2.7/inc/simple-tags.admin.php:821
+#: /2.3/inc/simple-tags.admin.php:681 /2.3/inc/simple-tags.admin.php:722
+#: /2.5/inc/simple-tags.admin.php:700 /2.5/inc/simple-tags.admin.php:774
+#: /2.7/inc/simple-tags.admin.php:747 /2.7/inc/simple-tags.admin.php:821
 msgid "You can specify multiple tags to rename by separating them with commas."
-msgstr "Puedes especificar múltiples etiquetas a renombrar separándolas con comas"
+msgstr "Puedes especificar múltiples etiquetas a renombrar separándolas con comas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:686
-#: /2.5/inc/simple-tags.admin.php:704
+#: /2.3/inc/simple-tags.admin.php:686 /2.5/inc/simple-tags.admin.php:704
 #: /2.7/inc/simple-tags.admin.php:751
 msgid "Tag(s) to rename:"
 msgstr "Etiqueta(s) a renombrar:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:687
-#: /2.5/inc/simple-tags.admin.php:708
+#: /2.3/inc/simple-tags.admin.php:687 /2.5/inc/simple-tags.admin.php:708
 #: /2.7/inc/simple-tags.admin.php:755
 msgid "New tag name(s):"
 msgstr "Nombre de nueva(s) etiqueta(s):"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:688
-#: /2.5/inc/simple-tags.admin.php:711
+#: /2.3/inc/simple-tags.admin.php:688 /2.5/inc/simple-tags.admin.php:711
 #: /2.7/inc/simple-tags.admin.php:758
 msgid "Rename"
 msgstr "Renombrar"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:693
-#: /2.5/inc/simple-tags.admin.php:717
+#: /2.3/inc/simple-tags.admin.php:693 /2.5/inc/simple-tags.admin.php:717
 #: /2.7/inc/simple-tags.admin.php:764
 msgid "Delete Tag"
 msgstr "Borrar etiqueta"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:694
-#: /2.5/inc/simple-tags.admin.php:725
+#: /2.3/inc/simple-tags.admin.php:694 /2.5/inc/simple-tags.admin.php:725
 #: /2.7/inc/simple-tags.admin.php:772
 msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
 msgstr "Introduce el nombre de la etiqueta a borrar. Esta etiqueta se eliminará de todas las entradas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:695
-#: /2.5/inc/simple-tags.admin.php:726
+#: /2.3/inc/simple-tags.admin.php:695 /2.5/inc/simple-tags.admin.php:726
 #: /2.7/inc/simple-tags.admin.php:773
 msgid "You can specify multiple tags to delete by separating them with commas"
 msgstr "Puedes especificar múltiples etiquetas a borrar separándolas con comas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:700
-#: /2.5/inc/simple-tags.admin.php:730
+#: /2.3/inc/simple-tags.admin.php:700 /2.5/inc/simple-tags.admin.php:730
 #: /2.7/inc/simple-tags.admin.php:777
 msgid "Tag(s) to delete:"
 msgstr "Etiqueta(s) a borrar:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:701
-#: /2.5/inc/simple-tags.admin.php:733
+#: /2.3/inc/simple-tags.admin.php:701 /2.5/inc/simple-tags.admin.php:733
 #: /2.7/inc/simple-tags.admin.php:780
 msgid "Delete"
 msgstr "Borrar"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:706
-#: /2.5/inc/simple-tags.admin.php:739
+#: /2.3/inc/simple-tags.admin.php:706 /2.5/inc/simple-tags.admin.php:739
 #: /2.7/inc/simple-tags.admin.php:786
 msgid "Add Tag"
 msgstr "Añadir etiqueta"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:707
-#: /2.5/inc/simple-tags.admin.php:747
+#: /2.3/inc/simple-tags.admin.php:707 /2.5/inc/simple-tags.admin.php:747
 #: /2.7/inc/simple-tags.admin.php:794
 msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
 msgstr "Esta función te permite añadir una o más nuevas etiquetas a todas las entradas que coincidan con cualquiera de las etiquetas dadas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:708
-#: /2.5/inc/simple-tags.admin.php:748
+#: /2.3/inc/simple-tags.admin.php:708 /2.5/inc/simple-tags.admin.php:748
 #: /2.7/inc/simple-tags.admin.php:795
 msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
 msgstr "Puedes especificar mútiples etiquetas a añadir separándolas con comas. Si quieres que las etiquetas sean añadidas a todas las entradas, entonces no especifiques ninguna etiqueta con la que coincidir."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:713
-#: /2.3/inc/simple-tags.admin.php:728
-#: /2.5/inc/simple-tags.admin.php:752
-#: /2.5/inc/simple-tags.admin.php:778
-#: /2.7/inc/simple-tags.admin.php:799
-#: /2.7/inc/simple-tags.admin.php:825
+#: /2.3/inc/simple-tags.admin.php:713 /2.3/inc/simple-tags.admin.php:728
+#: /2.5/inc/simple-tags.admin.php:752 /2.5/inc/simple-tags.admin.php:778
+#: /2.7/inc/simple-tags.admin.php:799 /2.7/inc/simple-tags.admin.php:825
 msgid "Tag(s) to match:"
 msgstr "Etiqueta(s) a encontrar:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:714
-#: /2.5/inc/simple-tags.admin.php:756
+#: /2.3/inc/simple-tags.admin.php:714 /2.5/inc/simple-tags.admin.php:756
 #: /2.7/inc/simple-tags.admin.php:803
 msgid "Tag(s) to add:"
 msgstr "Etiqueta(s) a añadir:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:715
-#: /2.5/inc/simple-tags.admin.php:759
+#: /2.3/inc/simple-tags.admin.php:715 /2.5/inc/simple-tags.admin.php:759
 #: /2.7/inc/simple-tags.admin.php:806
 msgid "Add"
 msgstr "Añadir"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:720
-#: /2.5/inc/simple-tags.admin.php:765
+#: /2.3/inc/simple-tags.admin.php:720 /2.5/inc/simple-tags.admin.php:765
 #: /2.7/inc/simple-tags.admin.php:812
 msgid "Edit Tag Slug"
 msgstr "Editar identificador de etiqueta"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:721
-#: /2.5/inc/simple-tags.admin.php:773
+#: /2.3/inc/simple-tags.admin.php:721 /2.5/inc/simple-tags.admin.php:773
 #: /2.7/inc/simple-tags.admin.php:820
 msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
 msgstr "Introduce el nombre de la etiqueta a editar y su nuevo identificador. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Definición de identificador</a>"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:732
-#: /2.5/inc/simple-tags.admin.php:782
+#: /2.3/inc/simple-tags.admin.php:732 /2.5/inc/simple-tags.admin.php:782
 #: /2.7/inc/simple-tags.admin.php:829
 msgid "Slug(s) to set:"
 msgstr "Identificador(es) a fijar:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:737
-#: /2.3/inc/simple-tags.admin.php:916
-#: /2.5/inc/simple-tags.admin.php:785
-#: /2.5/inc/simple-tags.admin.php:1050
-#: /2.7/inc/simple-tags.admin.php:832
-#: /2.7/inc/simple-tags.admin.php:1065
+#: /2.3/inc/simple-tags.admin.php:737 /2.3/inc/simple-tags.admin.php:916
+#: /2.5/inc/simple-tags.admin.php:785 /2.5/inc/simple-tags.admin.php:1050
+#: /2.7/inc/simple-tags.admin.php:832 /2.7/inc/simple-tags.admin.php:1065
 msgid "Edit"
 msgstr "Editar"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:743
-#: /2.5/inc/simple-tags.admin.php:791
+#: /2.3/inc/simple-tags.admin.php:743 /2.5/inc/simple-tags.admin.php:791
 #: /2.7/inc/simple-tags.admin.php:838
 msgid "Remove empty terms"
 msgstr "Eliminar términos vacíos"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:744
-#: /2.5/inc/simple-tags.admin.php:799
+#: /2.3/inc/simple-tags.admin.php:744 /2.5/inc/simple-tags.admin.php:799
 #: /2.7/inc/simple-tags.admin.php:846
 msgid "WordPress 2.3 have a small bug and can create empty terms. Remove it !"
 msgstr "WordPress 2.3 tiene un pequeño fallo y puede crear términos vacíos. ¡Elimínalos!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:748
-#: /2.5/inc/simple-tags.admin.php:800
+#: /2.3/inc/simple-tags.admin.php:748 /2.5/inc/simple-tags.admin.php:800
 #: /2.7/inc/simple-tags.admin.php:847
 msgid "Clean !"
 msgstr "¡Limpiar!"
@@ -1543,8 +1245,7 @@ msgid "Search terms&hellip;"
 msgstr "Buscar términos&hellip;"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:854
-#: /2.5/inc/simple-tags.admin.php:1020
+#: /2.3/inc/simple-tags.admin.php:854 /2.5/inc/simple-tags.admin.php:1020
 #: /2.7/inc/simple-tags.admin.php:1026
 msgid "Quantity&hellip;"
 msgstr "Cantidad&hellip;"
@@ -1620,14 +1321,12 @@ msgid "Filter &#187;"
 msgstr "Filtrar &#187;"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:912
-#: /2.3/inc/simple-tags.admin.php:922
+#: /2.3/inc/simple-tags.admin.php:912 /2.3/inc/simple-tags.admin.php:922
 msgid "Update all"
 msgstr "Actualizar todo"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:936
-#: /2.5/inc/simple-tags.admin.php:1080
+#: /2.3/inc/simple-tags.admin.php:936 /2.5/inc/simple-tags.admin.php:1080
 #: /2.7/inc/simple-tags.admin.php:1096
 msgid "No content to edit."
 msgstr "No hay contenido que editar."
@@ -1638,226 +1337,195 @@ msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
 msgstr "Etiquetas (separa múltiples etiquetas con comas: gatos, comida mascotas, perros)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1105
-#: /2.5/inc/simple-tags.admin.php:1338
+#: /2.3/inc/simple-tags.admin.php:1105 /2.5/inc/simple-tags.admin.php:1338
 #: /2.7/inc/simple-tags.admin.php:1329
 msgid "No new tag specified!"
 msgstr "¡No se ha especificado ninguna nueva etiqueta!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1124
-#: /2.5/inc/simple-tags.admin.php:1353
+#: /2.3/inc/simple-tags.admin.php:1124 /2.5/inc/simple-tags.admin.php:1353
 #: /2.7/inc/simple-tags.admin.php:1344
 msgid "No new/old valid tag specified!"
 msgstr "¡No se ha especificado ninguna etiqueta nueva/antigua válida!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1156
-#: /2.5/inc/simple-tags.admin.php:1389
+#: /2.3/inc/simple-tags.admin.php:1156 /2.5/inc/simple-tags.admin.php:1389
 #: /2.7/inc/simple-tags.admin.php:1380
 msgid "No tag renamed."
 msgstr "No se ha renombrado ninguna etiqueta."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1159
-#: /2.5/inc/simple-tags.admin.php:1391
+#: /2.3/inc/simple-tags.admin.php:1159 /2.5/inc/simple-tags.admin.php:1391
 #: /2.7/inc/simple-tags.admin.php:1382
 #, php-format
 msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
 msgstr "Etiqueta(s) renombrada(s) &laquo;%1$s&raquo; a &laquo;%2$s&raquo;"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1166
-#: /2.5/inc/simple-tags.admin.php:1398
+#: /2.3/inc/simple-tags.admin.php:1166 /2.5/inc/simple-tags.admin.php:1398
 #: /2.7/inc/simple-tags.admin.php:1389
 msgid "No valid new tag."
 msgstr "Nueva etiqueta no válida."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1183
-#: /2.5/inc/simple-tags.admin.php:1415
+#: /2.3/inc/simple-tags.admin.php:1183 /2.5/inc/simple-tags.admin.php:1415
 #: /2.7/inc/simple-tags.admin.php:1406
 msgid "No objects (post/page) found for specified old tags."
 msgstr "No se han encontrado objetos (entradas/páginas) para las etiquetas antiguas especificadas."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1208
-#: /2.5/inc/simple-tags.admin.php:1444
+#: /2.3/inc/simple-tags.admin.php:1208 /2.5/inc/simple-tags.admin.php:1444
 #: /2.7/inc/simple-tags.admin.php:1433
 msgid "No tag merged."
 msgstr "No se ha combinado ninguna etiqueta."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1211
-#: /2.5/inc/simple-tags.admin.php:1446
+#: /2.3/inc/simple-tags.admin.php:1211 /2.5/inc/simple-tags.admin.php:1446
 #: /2.7/inc/simple-tags.admin.php:1435
 #, php-format
 msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
 msgstr "Combinar etiqueta(s) &laquo;%1$s&raquo; a &laquo;%2$s&raquo;. %3$s objetos editados."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1214
-#: /2.5/inc/simple-tags.admin.php:1449
+#: /2.3/inc/simple-tags.admin.php:1214 /2.5/inc/simple-tags.admin.php:1449
 #: /2.7/inc/simple-tags.admin.php:1438
 msgid "Error. No enough tags for rename. Too for merge. Choose !"
 msgstr "Error. No hay suficientes etiquetas para renombrar. Demasiado para combinar. ¡Elige!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1240
-#: /2.5/inc/simple-tags.admin.php:1476
+#: /2.3/inc/simple-tags.admin.php:1240 /2.5/inc/simple-tags.admin.php:1476
 #: /2.7/inc/simple-tags.admin.php:1465
 msgid "No tag specified!"
 msgstr "¡No se ha especificado ninguna etiqueta!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1265
-#: /2.5/inc/simple-tags.admin.php:1499
+#: /2.3/inc/simple-tags.admin.php:1265 /2.5/inc/simple-tags.admin.php:1499
 #: /2.7/inc/simple-tags.admin.php:1488
 msgid "No tag deleted."
 msgstr "No se ha borrado ninguna etiqueta."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1268
-#: /2.5/inc/simple-tags.admin.php:1501
+#: /2.3/inc/simple-tags.admin.php:1268 /2.5/inc/simple-tags.admin.php:1501
 #: /2.7/inc/simple-tags.admin.php:1490
 #, php-format
 msgid "%1s tag(s) deleted."
 msgstr "%1s etiqueta(s) borrada(s)."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1280
-#: /2.5/inc/simple-tags.admin.php:1513
+#: /2.3/inc/simple-tags.admin.php:1280 /2.5/inc/simple-tags.admin.php:1513
 #: /2.7/inc/simple-tags.admin.php:1502
 msgid "No new tag(s) specified!"
 msgstr "¡No se han especificado nuevas etiquetas!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1328
-#: /2.5/inc/simple-tags.admin.php:1564
+#: /2.3/inc/simple-tags.admin.php:1328 /2.5/inc/simple-tags.admin.php:1564
 #: /2.7/inc/simple-tags.admin.php:1553
 msgid "No tag added."
 msgstr "No se ha añadido ninguna etiqueta."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1331
-#: /2.5/inc/simple-tags.admin.php:1566
+#: /2.3/inc/simple-tags.admin.php:1331 /2.5/inc/simple-tags.admin.php:1566
 #: /2.7/inc/simple-tags.admin.php:1555
 #, php-format
 msgid "Tag(s) added to %1s post(s)."
 msgstr "Etiqueta(s) añadida(s) a %1s entrada(s)."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1343
-#: /2.5/inc/simple-tags.admin.php:1578
+#: /2.3/inc/simple-tags.admin.php:1343 /2.5/inc/simple-tags.admin.php:1578
 #: /2.7/inc/simple-tags.admin.php:1567
 msgid "No new slug(s) specified!"
 msgstr "¡No se han especificado nuevos identificadores!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1359
-#: /2.5/inc/simple-tags.admin.php:1590
+#: /2.3/inc/simple-tags.admin.php:1359 /2.5/inc/simple-tags.admin.php:1590
 #: /2.7/inc/simple-tags.admin.php:1579
 msgid "Tags number and slugs number isn't the same!"
 msgstr "¡El número de etiquetas y de identificadores no son el mismo!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1383
-#: /2.5/inc/simple-tags.admin.php:1617
+#: /2.3/inc/simple-tags.admin.php:1383 /2.5/inc/simple-tags.admin.php:1617
 #: /2.7/inc/simple-tags.admin.php:1606
 msgid "No slug edited."
 msgstr "No se ha editado ningún identificador."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1386
-#: /2.5/inc/simple-tags.admin.php:1619
+#: /2.3/inc/simple-tags.admin.php:1386 /2.5/inc/simple-tags.admin.php:1619
 #: /2.7/inc/simple-tags.admin.php:1608
 #, php-format
 msgid "%s slug(s) edited."
 msgstr "%s identificador(es) editado(s)."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1404
-#: /2.5/inc/simple-tags.admin.php:1637
+#: /2.3/inc/simple-tags.admin.php:1404 /2.5/inc/simple-tags.admin.php:1637
 #: /2.7/inc/simple-tags.admin.php:1626
 msgid "Nothing to muck. Good job !"
-msgstr "Nada que limpiar. ¡Buen trabajo!."
+msgstr "Nada que limpiar. ¡Buen trabajo!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1429
-#: /2.5/inc/simple-tags.admin.php:1665
+#: /2.3/inc/simple-tags.admin.php:1429 /2.5/inc/simple-tags.admin.php:1665
 #: /2.7/inc/simple-tags.admin.php:1654
 #, php-format
 msgid "%s rows deleted. WordPress DB is clean now !"
 msgstr "%s filas borradas. ¡Ahora la BDD de WordPress está limpia!"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1452
-#: /2.5/inc/simple-tags.admin.php:1678
+#: /2.3/inc/simple-tags.admin.php:1452 /2.5/inc/simple-tags.admin.php:1678
 #: /2.7/inc/simple-tags.admin.php:130
 msgid "Display click tags"
 msgstr "Mostrar etiquetas"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1452
-#: /2.5/inc/simple-tags.admin.php:1679
+#: /2.3/inc/simple-tags.admin.php:1452 /2.5/inc/simple-tags.admin.php:1679
 #: /2.7/inc/simple-tags.admin.php:131
 msgid "Hide click tags"
 msgstr "Ocultar etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1504
-#: /2.5/inc/simple-tags.admin.php:1696
+#: /2.3/inc/simple-tags.admin.php:1504 /2.5/inc/simple-tags.admin.php:1696
 #: /2.7/inc/simple-tags.admin.php:1682
 msgid "Suggested tags from :"
 msgstr "Etiquetas sugeridas desde:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1505
-#: /2.5/inc/simple-tags.admin.php:1697
+#: /2.3/inc/simple-tags.admin.php:1505 /2.5/inc/simple-tags.admin.php:1697
 #: /2.7/inc/simple-tags.admin.php:1683
 msgid "Local tags"
-msgstr "Etiquetas locales."
+msgstr "Etiquetas locales"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1506
-#: /2.5/inc/simple-tags.admin.php:1698
+#: /2.3/inc/simple-tags.admin.php:1506 /2.5/inc/simple-tags.admin.php:1698
 #: /2.7/inc/simple-tags.admin.php:1684
 msgid "Yahoo"
 msgstr "Yahoo"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1507
-#: /2.5/inc/simple-tags.admin.php:1699
+#: /2.3/inc/simple-tags.admin.php:1507 /2.5/inc/simple-tags.admin.php:1699
 #: /2.7/inc/simple-tags.admin.php:1685
 msgid "Tag The Net"
 msgstr "Tag The Net"
 
 # F:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1513
-#: /2.5/inc/simple-tags.admin.php:1702
+#: /2.3/inc/simple-tags.admin.php:1513 /2.5/inc/simple-tags.admin.php:1702
 #: /2.7/inc/simple-tags.admin.php:136
 msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
 msgstr "Elige un proveedor para las etiquetas sugeridas (local, Yahoo o Tag the net)."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1742
-#: /2.5/inc/simple-tags.admin.php:1783
+#: /2.3/inc/simple-tags.admin.php:1742 /2.5/inc/simple-tags.admin.php:1783
 #: /2.7/inc/simple-tags.admin.php:1757
 #, php-format
 msgid "%s post(s) tags updated with success !"
 msgstr "¡%s etiqueta(s) de entrada(s) actualizada(s) con éxito!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:1744
-#: /2.5/inc/simple-tags.admin.php:1781
+#: /2.3/inc/simple-tags.admin.php:1744 /2.5/inc/simple-tags.admin.php:1781
 #: /2.7/inc/simple-tags.admin.php:1755
 #, php-format
 msgid "%s page(s) tags updated with success !"
 msgstr "¡%s etiqueta(s) de página(s) actualizada(s) con éxito!"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2155
-#: /2.5/inc/simple-tags.admin.php:2189
+#: /2.3/inc/simple-tags.admin.php:2155 /2.5/inc/simple-tags.admin.php:2189
 #, php-format
 msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
 msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s | Traducción por <a href=\"http://agamum.net/blog/\" title=\"Agamum.net\">Samuel Aguilera</a>"
@@ -1868,215 +1536,182 @@ msgid "Page: "
 msgstr "Página: "
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2274
-#: /2.5/inc/simple-tags.admin.php:2291
+#: /2.3/inc/simple-tags.admin.php:2274 /2.5/inc/simple-tags.admin.php:2291
 #: /2.7/inc/simple-tags.admin.php:2213
 msgid "General"
 msgstr "General"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2277
-#: /2.5/inc/simple-tags.admin.php:2294
+#: /2.3/inc/simple-tags.admin.php:2277 /2.5/inc/simple-tags.admin.php:2294
 #: /2.7/inc/simple-tags.admin.php:2207
 msgid "Administration"
 msgstr "Administración"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2280
-#: /2.5/inc/simple-tags.admin.php:2297
+#: /2.3/inc/simple-tags.admin.php:2280 /2.5/inc/simple-tags.admin.php:2297
 #: /2.7/inc/simple-tags.admin.php:2216
 msgid "Meta Keyword"
 msgstr "Palabras clave"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2283
-#: /2.5/inc/simple-tags.admin.php:2300
-#: /2.7/inc/simple-tags.admin.php:2219
-#: /extras/simple-tags.importer.php:242
+#: /2.3/inc/simple-tags.admin.php:2283 /2.5/inc/simple-tags.admin.php:2300
+#: /2.7/inc/simple-tags.admin.php:2219 /extras/simple-tags.importer.php:242
 msgid "Embedded Tags"
 msgstr "Incrustadas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2286
-#: /2.5/inc/simple-tags.admin.php:2303
+#: /2.3/inc/simple-tags.admin.php:2286 /2.5/inc/simple-tags.admin.php:2303
 #: /2.7/inc/simple-tags.admin.php:2222
 msgid "Tags for Current Post"
 msgstr "Entrada actual"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2289
-#: /2.5/inc/simple-tags.admin.php:2306
+#: /2.3/inc/simple-tags.admin.php:2289 /2.5/inc/simple-tags.admin.php:2306
 #: /2.7/inc/simple-tags.admin.php:2225
 msgid "Related Posts"
 msgstr "Entradas relacionadas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2292
-#: /2.5/inc/simple-tags.admin.php:2309
+#: /2.3/inc/simple-tags.admin.php:2292 /2.5/inc/simple-tags.admin.php:2309
 #: /2.7/inc/simple-tags.admin.php:2228
 msgid "Related Tags"
 msgstr "Etiq. relacionadas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.admin.php:2295
-#: /2.5/inc/simple-tags.admin.php:2312
+#: /2.3/inc/simple-tags.admin.php:2295 /2.5/inc/simple-tags.admin.php:2312
 #: /2.7/inc/simple-tags.admin.php:2231
 msgid "Tag cloud"
 msgstr "Nube de etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:143
-#: /2.5/inc/simple-tags.widgets.php:131
+#: /2.3/inc/simple-tags.widgets.php:143 /2.5/inc/simple-tags.widgets.php:131
 #: /2.7/inc/simple-tags.widgets.php:131
 msgid "Empty field will use default value."
 msgstr "Con el campo vacío se usará el valor predeterminado."
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:146
-#: /2.5/inc/simple-tags.widgets.php:134
+#: /2.3/inc/simple-tags.widgets.php:146 /2.5/inc/simple-tags.widgets.php:134
 #: /2.7/inc/simple-tags.widgets.php:134
 msgid "Title:"
 msgstr "Título:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:151
-#: /2.5/inc/simple-tags.widgets.php:139
+#: /2.3/inc/simple-tags.widgets.php:151 /2.5/inc/simple-tags.widgets.php:139
 #: /2.7/inc/simple-tags.widgets.php:139
 msgid "Max tags to display: (default: 45)"
 msgstr "Máx. de etiquetas a mostrar: (predeterminado: 45)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:156
-#: /2.5/inc/simple-tags.widgets.php:144
+#: /2.3/inc/simple-tags.widgets.php:156 /2.5/inc/simple-tags.widgets.php:144
 #: /2.7/inc/simple-tags.widgets.php:144
 msgid "Tags selection:"
 msgstr "Selección de etiquetas:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:159
-#: /2.3/inc/simple-tags.widgets.php:170
-#: /2.5/inc/simple-tags.widgets.php:147
-#: /2.5/inc/simple-tags.widgets.php:158
-#: /2.7/inc/simple-tags.widgets.php:147
-#: /2.7/inc/simple-tags.widgets.php:158
+#: /2.3/inc/simple-tags.widgets.php:159 /2.3/inc/simple-tags.widgets.php:170
+#: /2.5/inc/simple-tags.widgets.php:147 /2.5/inc/simple-tags.widgets.php:158
+#: /2.7/inc/simple-tags.widgets.php:147 /2.7/inc/simple-tags.widgets.php:158
 msgid "Inverse Alphabetical"
 msgstr "Alfabético inverso"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:160
-#: /2.5/inc/simple-tags.widgets.php:148
+#: /2.3/inc/simple-tags.widgets.php:160 /2.5/inc/simple-tags.widgets.php:148
 #: /2.7/inc/simple-tags.widgets.php:148
 msgid "Most popular (default)"
 msgstr "Más popular (predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:162
-#: /2.5/inc/simple-tags.widgets.php:150
+#: /2.3/inc/simple-tags.widgets.php:162 /2.5/inc/simple-tags.widgets.php:150
 #: /2.7/inc/simple-tags.widgets.php:150
 msgid "Random"
 msgstr "Aleatorio"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:173
-#: /2.5/inc/simple-tags.widgets.php:161
+#: /2.3/inc/simple-tags.widgets.php:173 /2.5/inc/simple-tags.widgets.php:161
 #: /2.7/inc/simple-tags.widgets.php:161
 msgid "Random (default)"
 msgstr "Aleatorio (predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:178
-#: /2.5/inc/simple-tags.widgets.php:166
+#: /2.3/inc/simple-tags.widgets.php:178 /2.5/inc/simple-tags.widgets.php:166
 #: /2.7/inc/simple-tags.widgets.php:166
 msgid "Font size mini: (default: 8)"
 msgstr "Tamaño min. de fuente: (predeterminado: 8)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:183
-#: /2.5/inc/simple-tags.widgets.php:171
+#: /2.3/inc/simple-tags.widgets.php:183 /2.5/inc/simple-tags.widgets.php:171
 #: /2.7/inc/simple-tags.widgets.php:171
 msgid "Font size max: (default: 22)"
 msgstr "Tamaño máx. de fuente: (predeterminado: 22)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:188
-#: /2.5/inc/simple-tags.widgets.php:176
+#: /2.3/inc/simple-tags.widgets.php:188 /2.5/inc/simple-tags.widgets.php:176
 #: /2.7/inc/simple-tags.widgets.php:176
 msgid "Unit font size:"
 msgstr "Unidad de tamaño de fuente:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:190
-#: /2.5/inc/simple-tags.widgets.php:178
+#: /2.3/inc/simple-tags.widgets.php:190 /2.5/inc/simple-tags.widgets.php:178
 #: /2.7/inc/simple-tags.widgets.php:178
 msgid "Point (default)"
 msgstr "Punto (predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:191
-#: /2.5/inc/simple-tags.widgets.php:179
+#: /2.3/inc/simple-tags.widgets.php:191 /2.5/inc/simple-tags.widgets.php:179
 #: /2.7/inc/simple-tags.widgets.php:179
 msgid "Pixel"
 msgstr "Pixel"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:192
-#: /2.5/inc/simple-tags.widgets.php:180
+#: /2.3/inc/simple-tags.widgets.php:192 /2.5/inc/simple-tags.widgets.php:180
 #: /2.7/inc/simple-tags.widgets.php:180
 msgid "Em"
 msgstr "Em"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:193
-#: /2.5/inc/simple-tags.widgets.php:181
+#: /2.3/inc/simple-tags.widgets.php:193 /2.5/inc/simple-tags.widgets.php:181
 #: /2.7/inc/simple-tags.widgets.php:181
 msgid "Pourcent"
 msgstr "Porcentaje"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:198
-#: /2.5/inc/simple-tags.widgets.php:186
+#: /2.3/inc/simple-tags.widgets.php:198 /2.5/inc/simple-tags.widgets.php:186
 #: /2.7/inc/simple-tags.widgets.php:186
 msgid "Format:"
 msgstr "Formato:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:200
-#: /2.5/inc/simple-tags.widgets.php:188
+#: /2.3/inc/simple-tags.widgets.php:200 /2.5/inc/simple-tags.widgets.php:188
 #: /2.7/inc/simple-tags.widgets.php:188
 msgid "Flat (default)"
 msgstr "Plano (predeterminado)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:201
-#: /2.5/inc/simple-tags.widgets.php:189
+#: /2.3/inc/simple-tags.widgets.php:201 /2.5/inc/simple-tags.widgets.php:189
 #: /2.7/inc/simple-tags.widgets.php:189
 msgid "List (UL/LI)"
 msgstr "Lista  (UL/LI)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:207
-#: /2.5/inc/simple-tags.widgets.php:195
+#: /2.3/inc/simple-tags.widgets.php:207 /2.5/inc/simple-tags.widgets.php:195
 #: /2.7/inc/simple-tags.widgets.php:195
 msgid "Use auto color cloud:"
 msgstr "Usar auto color de nube:"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:211
-#: /2.5/inc/simple-tags.widgets.php:199
+#: /2.3/inc/simple-tags.widgets.php:211 /2.5/inc/simple-tags.widgets.php:199
 #: /2.7/inc/simple-tags.widgets.php:199
 msgid "Font color mini: (default: #CCCCCC)"
 msgstr "Color fuente min.: (predeterminado: #CCCCCC)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:216
-#: /2.5/inc/simple-tags.widgets.php:204
+#: /2.3/inc/simple-tags.widgets.php:216 /2.5/inc/simple-tags.widgets.php:204
 #: /2.7/inc/simple-tags.widgets.php:204
 msgid "Font color max: (default: #000000)"
 msgstr "Color fuente máx.: (predeterminado: #000000)"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:221
-#: /2.5/inc/simple-tags.widgets.php:209
+#: /2.3/inc/simple-tags.widgets.php:221 /2.5/inc/simple-tags.widgets.php:209
 #: /2.7/inc/simple-tags.widgets.php:209
 msgid "Extended format: (advanced usage)"
 msgstr "Formato extendido: (uso avanzado)"
@@ -2087,268 +1722,221 @@ msgid "Tag Cloud Widgets"
 msgstr "Widgets de nube de etiquetas"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:253
-#: /2.5/inc/simple-tags.widgets.php:241
+#: /2.3/inc/simple-tags.widgets.php:253 /2.5/inc/simple-tags.widgets.php:241
 #: /2.7/inc/simple-tags.widgets.php:241
 msgid "How many tag cloud widgets would you like?"
 msgstr "¿Cuantos widgets de nube de etiquetas quieres?"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:257
-#: /2.5/inc/simple-tags.widgets.php:245
+#: /2.3/inc/simple-tags.widgets.php:257 /2.5/inc/simple-tags.widgets.php:245
 #: /2.7/inc/simple-tags.widgets.php:245
 msgid "Save"
 msgstr "Guardar"
 
 # C:\SVN\ST
-#: /2.3/inc/simple-tags.widgets.php:274
-#: /2.3/inc/simple-tags.widgets.php:275
+#: /2.3/inc/simple-tags.widgets.php:274 /2.3/inc/simple-tags.widgets.php:275
 #, php-format
 msgid "Extended Tag Cloud %d"
 msgstr "Nube de etiquetas extendida %d"
 
 # C:\SVN\ST
-#: /2.5/simple-tags.client.php:111
-#: /2.7/simple-tags.client.php:113
+#: /2.5/simple-tags.client.php:111 /2.7/simple-tags.client.php:113
 msgid "No tags for this post."
 msgstr "No hay etiquetas para esta entrada."
 
 # C:\SVN\ST
-#: /2.5/simple-tags.client.php:123
-#: /2.7/simple-tags.client.php:125
+#: /2.5/simple-tags.client.php:123 /2.7/simple-tags.client.php:125
 msgid "No related tags found."
 msgstr "No se han encontrado etiquetas relacionadas."
 
 # C:\SVN\ST
-#: /2.5/simple-tags.client.php:1116
-#: /2.7/simple-tags.client.php:1128
+#: /2.5/simple-tags.client.php:1116 /2.7/simple-tags.client.php:1128
 msgid "<a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
 msgstr "<a %tag_rel% href=\"%tag_link_remove%\" title=\"Eliminar %tag_name_attribute% de la búsqueda\">Eliminar %tag_name%</a>"
 
 # C:\SVN\ST
-#: /2.5/simple-tags.client.php:1505
-#: /2.7/simple-tags.client.php:1517
+#: /2.5/simple-tags.client.php:1505 /2.7/simple-tags.client.php:1517
 msgid "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:233
-#: /2.5/inc/simple-tags.admin.php:537
-#: /2.5/inc/simple-tags.admin.php:1083
-#: /2.7/inc/simple-tags.admin.php:293
-#: /2.7/inc/simple-tags.admin.php:593
-#: /2.7/inc/simple-tags.admin.php:1099
+#: /2.5/inc/simple-tags.admin.php:233 /2.5/inc/simple-tags.admin.php:537
+#: /2.5/inc/simple-tags.admin.php:1083 /2.7/inc/simple-tags.admin.php:293
+#: /2.7/inc/simple-tags.admin.php:593 /2.7/inc/simple-tags.admin.php:1099
 msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr "Visita la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">página del plugin</a> para más detalles. Si encuentras un fallo, o tienes una idea fantástica para esta extensión, ¡<a href=\"mailto:amaury@wordpress-fr.net\">consúltame</a>!"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:240
-#: /2.7/inc/simple-tags.admin.php:300
+#: /2.5/inc/simple-tags.admin.php:240 /2.7/inc/simple-tags.admin.php:300
 msgid "Options"
 msgstr "Opciones"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:244
-#: /2.7/inc/simple-tags.admin.php:304
+#: /2.5/inc/simple-tags.admin.php:244 /2.7/inc/simple-tags.admin.php:304
 msgid "Activation"
 msgstr "Activación"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:251
-#: /2.7/inc/simple-tags.admin.php:311
+#: /2.5/inc/simple-tags.admin.php:251 /2.7/inc/simple-tags.admin.php:311
 msgid "Tags database"
 msgstr "Base de datos de etiquetas"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:258
-#: /2.7/inc/simple-tags.admin.php:318
+#: /2.5/inc/simple-tags.admin.php:258 /2.7/inc/simple-tags.admin.php:318
 msgid "Target"
 msgstr "Destino"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:265
-#: /2.7/inc/simple-tags.admin.php:325
+#: /2.5/inc/simple-tags.admin.php:265 /2.7/inc/simple-tags.admin.php:325
 msgid "Keywords list"
 msgstr "Lista de palabras clave"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:268
-#: /2.7/inc/simple-tags.admin.php:328
+#: /2.5/inc/simple-tags.admin.php:268 /2.7/inc/simple-tags.admin.php:328
 msgid "Separated with a comma"
 msgstr "Separadas por coma"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:274
-#: /2.5/inc/simple-tags.admin.php:540
-#: /2.5/inc/simple-tags.admin.php:563
-#: /2.7/inc/simple-tags.admin.php:333
-#: /2.7/inc/simple-tags.admin.php:596
-#: /2.7/inc/simple-tags.admin.php:610
+#: /2.5/inc/simple-tags.admin.php:274 /2.5/inc/simple-tags.admin.php:540
+#: /2.5/inc/simple-tags.admin.php:563 /2.7/inc/simple-tags.admin.php:333
+#: /2.7/inc/simple-tags.admin.php:596 /2.7/inc/simple-tags.admin.php:610
 msgid "Update options &raquo;"
 msgstr "Actualizar opciones &raquo;"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:278
-#: /2.7/inc/simple-tags.admin.php:337
+#: /2.5/inc/simple-tags.admin.php:278 /2.7/inc/simple-tags.admin.php:337
 msgid "Auto tags all content &raquo;"
 msgstr "Auto etiquetar todo el contenido &raquo;"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:316
-#: /2.7/inc/simple-tags.admin.php:375
+#: /2.5/inc/simple-tags.admin.php:316 /2.7/inc/simple-tags.admin.php:375
 #, php-format
 msgid "All done! %s tags added."
 msgstr "¡Todo listo!, %s etiqueta(s) añadida(s)."
 
 # F:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:332
-#: /2.7/inc/simple-tags.admin.php:391
+#: /2.5/inc/simple-tags.admin.php:332 /2.7/inc/simple-tags.admin.php:391
 msgid "Active tags for page:"
 msgstr "Etiquetas activas para página:"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:333
-#: /2.7/inc/simple-tags.admin.php:392
+#: /2.5/inc/simple-tags.admin.php:333 /2.7/inc/simple-tags.admin.php:392
 msgid "This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page."
 msgstr "Esta función permite que la página sea etiquetada. Esta opción añade las páginas en la búsqueda de etiquetas. También añade gestión de etiquetas en escribir página."
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:355
-#: /2.7/inc/simple-tags.admin.php:418
+#: /2.5/inc/simple-tags.admin.php:355 /2.7/inc/simple-tags.admin.php:418
 msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is automatically disabled."
 msgstr "Incluye automáticamente en tu cabecera la etiqueta meta para palabras clave (la mayoría de los temas, no todos, admiten esto). Estas palabras clave a veces las usan los buscadores.<br /><strong>Atención:</strong> Si la extensión \"All in One SEO Pack\" está instalada y activada. Esta función se desactiva automáticamente."
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:880
-#: /2.7/inc/simple-tags.admin.php:886
+#: /2.5/inc/simple-tags.admin.php:880 /2.7/inc/simple-tags.admin.php:886
 msgid "Published"
 msgstr "Publicada"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:880
-#: /2.7/inc/simple-tags.admin.php:886
+#: /2.5/inc/simple-tags.admin.php:880 /2.7/inc/simple-tags.admin.php:886
 msgid "Published posts"
 msgstr "Entradas publicadas"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:881
-#: /2.7/inc/simple-tags.admin.php:887
+#: /2.5/inc/simple-tags.admin.php:881 /2.7/inc/simple-tags.admin.php:887
 msgid "Scheduled"
 msgstr "Programada"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:881
-#: /2.7/inc/simple-tags.admin.php:887
+#: /2.5/inc/simple-tags.admin.php:881 /2.7/inc/simple-tags.admin.php:887
 msgid "Scheduled posts"
 msgstr "Entradas programadas"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:882
-#: /2.7/inc/simple-tags.admin.php:888
+#: /2.5/inc/simple-tags.admin.php:882 /2.7/inc/simple-tags.admin.php:888
 msgid "Pending Review"
 msgstr "Pendiente de revisión"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:882
-#: /2.7/inc/simple-tags.admin.php:888
+#: /2.5/inc/simple-tags.admin.php:882 /2.7/inc/simple-tags.admin.php:888
 msgid "Pending posts"
 msgstr "Entradas pendientes"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:883
-#: /2.7/inc/simple-tags.admin.php:889
+#: /2.5/inc/simple-tags.admin.php:883 /2.7/inc/simple-tags.admin.php:889
 msgid "Draft"
 msgstr "Borrador"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:883
-#: /2.7/inc/simple-tags.admin.php:889
+#: /2.5/inc/simple-tags.admin.php:883 /2.7/inc/simple-tags.admin.php:889
 msgid "Drafts|manage posts header"
 msgstr "Borradores|cabecera de gestión de entradas"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:884
-#: /2.7/inc/simple-tags.admin.php:890
+#: /2.5/inc/simple-tags.admin.php:884 /2.7/inc/simple-tags.admin.php:890
 msgid "Private"
 msgstr "Privada"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:884
-#: /2.7/inc/simple-tags.admin.php:890
+#: /2.5/inc/simple-tags.admin.php:884 /2.7/inc/simple-tags.admin.php:890
 msgid "Private posts"
 msgstr "Entradas privadas"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:928
-#: /2.7/inc/simple-tags.admin.php:934
+#: /2.5/inc/simple-tags.admin.php:928 /2.7/inc/simple-tags.admin.php:934
 msgid "Mass edit tags"
 msgstr "Edición masiva de etiquetas"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:935
-#: /2.7/inc/simple-tags.admin.php:941
+#: /2.5/inc/simple-tags.admin.php:935 /2.7/inc/simple-tags.admin.php:941
 msgid "All Posts"
 msgstr "Todas las entradas"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:956
-#: /2.7/inc/simple-tags.admin.php:962
+#: /2.5/inc/simple-tags.admin.php:956 /2.7/inc/simple-tags.admin.php:962
 msgid "All Pages"
 msgstr "Todas las páginas"
 
 # F:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:965
-#: /2.7/inc/simple-tags.admin.php:971
+#: /2.5/inc/simple-tags.admin.php:965 /2.7/inc/simple-tags.admin.php:971
 msgid "Search Posts"
 msgstr "Buscar entradas"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:997
-#: /2.7/inc/simple-tags.admin.php:1003
+#: /2.5/inc/simple-tags.admin.php:997 /2.7/inc/simple-tags.admin.php:1003
 msgid "Show all dates"
 msgstr "Mostrar todas las fechas"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.admin.php:1017
-#: /2.7/inc/simple-tags.admin.php:1023
+#: /2.5/inc/simple-tags.admin.php:1017 /2.7/inc/simple-tags.admin.php:1023
 msgid "View all categories"
 msgstr "Ver todas las categorías"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:1030
-#: /2.7/inc/simple-tags.admin.php:1036
+#: /2.5/inc/simple-tags.admin.php:1030 /2.7/inc/simple-tags.admin.php:1036
 msgid "Filter"
 msgstr "Filtrar"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:1060
-#: /2.7/inc/simple-tags.admin.php:1076
+#: /2.5/inc/simple-tags.admin.php:1060 /2.7/inc/simple-tags.admin.php:1076
 msgid "Update all &raquo;"
 msgstr "Actualizar todo &raquo;"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.admin.php:1276
-#: /2.5/inc/simple-tags.admin.php:1291
+#: /2.5/inc/simple-tags.admin.php:1276 /2.5/inc/simple-tags.admin.php:1291
 msgid "Tags <small>(separate multiple tags with commas: cats, pet food, dogs)</small>"
 msgstr "Etiquetas <small>(separa múltiples etiquetas con comas: gatos, comida mascotas, perros)</small>"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.widgets.php:240
-#: /2.7/inc/simple-tags.widgets.php:240
+#: /2.5/inc/simple-tags.widgets.php:240 /2.7/inc/simple-tags.widgets.php:240
 msgid "Simple Tags : Tag Cloud Widgets"
 msgstr "Simple Tags : Widgets de nube de etiquetas"
 
 # D:\SVN\Plugins\ST
-#: /2.5/inc/simple-tags.widgets.php:253
-#: /2.7/inc/simple-tags.widgets.php:253
+#: /2.5/inc/simple-tags.widgets.php:253 /2.7/inc/simple-tags.widgets.php:253
 msgid "Your most used tags in cloud format with dynamic color and many options"
 msgstr "Tus etiquetas más usadas en formato de nube con color dinámico y varias opciones"
 
 # C:\SVN\ST
-#: /2.5/inc/simple-tags.widgets.php:263
-#: /2.5/inc/simple-tags.widgets.php:264
-#: /2.7/inc/simple-tags.widgets.php:263
-#: /2.7/inc/simple-tags.widgets.php:264
+#: /2.5/inc/simple-tags.widgets.php:263 /2.5/inc/simple-tags.widgets.php:264
+#: /2.7/inc/simple-tags.widgets.php:263 /2.7/inc/simple-tags.widgets.php:264
 #, php-format
 msgid "ST: Tag Cloud %d"
 msgstr "ST: Nube de etiquetas %d"
@@ -2376,8 +1964,7 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 # C:\SVN\ST
-#: /2.7/inc/simple-tags.admin.php:1305
-#: /2.7/inc/simple-tags.admin.php:1310
+#: /2.7/inc/simple-tags.admin.php:1305 /2.7/inc/simple-tags.admin.php:1310
 msgid "Tags (Simple Tags)"
 msgstr "Etiquetas (Simple Tags)"
 
@@ -2387,13 +1974,11 @@ msgid "Separate tags with commas"
 msgstr "Separa las etiquetas con comas"
 
 # F:\SVN\ST
-#: /2.7/inc/simple-tags.admin.php:1664
-#: /2.7/inc/simple-tags.admin.php:1669
+#: /2.7/inc/simple-tags.admin.php:1664 /2.7/inc/simple-tags.admin.php:1669
 msgid "Click tags"
 msgstr "Etiquetas a un clic"
 
-#: /2.7/inc/simple-tags.admin.php:1673
-#: /2.7/inc/simple-tags.admin.php:1702
+#: /2.7/inc/simple-tags.admin.php:1673 /2.7/inc/simple-tags.admin.php:1702
 msgid "This feature works only with activated JavaScript. Activate it in your Web browser so you can!"
 msgstr "Esta función funciona sólo con JavaScript activado. ¡Actívalo en tu navegador para que puedas!"
 
@@ -2402,16 +1987,13 @@ msgid "Ajax loading"
 msgstr "Carga Ajax"
 
 # C:\SVN\ST
-#: /2.7/inc/simple-tags.admin.php:1691
-#: /2.7/inc/simple-tags.admin.php:1696
+#: /2.7/inc/simple-tags.admin.php:1691 /2.7/inc/simple-tags.admin.php:1696
 msgid "Suggested tags"
 msgstr "Etiquetas sugeridas"
 
 # C:\SVN\ST
-#: /2.7/inc/simple-tags.admin.php:1889
-#: /2.7/inc/simple-tags.admin.php:1946
-#: /2.7/inc/simple-tags.admin.php:2013
-#: /2.7/inc/simple-tags.admin.php:2054
+#: /2.7/inc/simple-tags.admin.php:1889 /2.7/inc/simple-tags.admin.php:1946
+#: /2.7/inc/simple-tags.admin.php:2013 /2.7/inc/simple-tags.admin.php:2054
 msgid "No text was sent."
 msgstr "No se envió texto."
 
@@ -2427,8 +2009,7 @@ msgstr "No hay resultados del servicio Tag The Net."
 msgid "No tags in your WordPress database."
 msgstr "No hay etiquetas en tu base de datos de WordPress."
 
-#: /2.7/inc/simple-tags.admin.php:2027
-#: /2.7/inc/simple-tags.admin.php:2068
+#: /2.7/inc/simple-tags.admin.php:2027 /2.7/inc/simple-tags.admin.php:2068
 msgid "No results from your WordPress database."
 msgstr "No hay resultados de tu base de datos de WordPress."
 
@@ -2466,7 +2047,7 @@ msgstr "¡Hey!. Esto importa etiquetas incrustadas de Embedded Tags de este blog
 # C:\SVN\ST
 #: /extras/simple-tags.importer.php:69
 msgid "To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!"
-msgstr "Para acomodar grandes bases de datos para esos autores obsesionados con las etiquetas que hay por ahí, hemos convertido esto en un sencillo programa de 4 pasos para ayudarte a patear ese mal hábito de Embedded Tags. ¡Simplemente sigue haciendo clic y te haremos saber cuando has terminado!."
+msgstr "Para acomodar grandes bases de datos para esos autores obsesionados con las etiquetas que hay por ahí, hemos convertido esto en un sencillo programa de 4 pasos para ayudarte a patear ese mal hábito de Embedded Tags. ¡Simplemente sigue haciendo clic y te haremos saber cuando has terminado!"
 
 # C:\SVN\ST
 #: /extras/simple-tags.importer.php:70
@@ -2481,7 +2062,7 @@ msgstr "Paso 1 &raquo;"
 # C:\SVN\ST
 #: /extras/simple-tags.importer.php:95
 msgid "Missing parameters in URL. (Start or End)"
-msgstr "Faltan parámetros en la URL. (Comienzo o final)."
+msgstr "Faltan parámetros en la URL. (Comienzo o final)"
 
 # C:\SVN\ST
 #: /extras/simple-tags.importer.php:107
@@ -2531,7 +2112,7 @@ msgstr "¡Importación completada!"
 # C:\SVN\ST
 #: /extras/simple-tags.importer.php:200
 msgid "OK, so we lied about this being a 4-step program! You&#8217;re done!"
-msgstr "¡De acuerdo, mentimos acerca de que esto fuese un programa de 4 pasos!. ¡Todo listo!."
+msgstr "¡De acuerdo, mentimos acerca de que esto fuese un programa de 4 pasos!. ¡Todo listo!"
 
 # C:\SVN\ST
 #: /extras/simple-tags.importer.php:201
@@ -2547,4 +2128,3 @@ msgstr "¡Ahora puedes gestionar las etiquetas!"
 #: /extras/simple-tags.importer.php:242
 msgid "Import Embedded Tags into the new WordPress native tagging structure."
 msgstr "Importar Embedded Tags a la nueva estructura nativa de etiquetado de WordPress."
-
