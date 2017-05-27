@@ -219,7 +219,7 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
-		$content = mb_substr( $dom->saveXML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
+		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
 	}
 
 	/**
