@@ -2,13 +2,13 @@
 /*
 Plugin Name: Simple Tags
 Plugin URI: https://github.com/herewithme/simple-tags
-Description: Extended Tagging for WordPress 4.0.x : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, Related Posts etc. NOW Compatible custom post type and custom taxonomy !
-Version: 2.4.6
+Description: Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+Version: 2.4.7
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
 
-Copyright 2013 - Amaury BALMER (amaury@balmer.fr)
+Copyright 2013-2017 - Amaury BALMER (amaury@balmer.fr)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,11 +27,6 @@ Contributors:
 
 Credits Icons :
 	- famfamfam - http://www.famfamfam.com/lab/icons/silk/
-
-Todo:
-	Both :
-	Admin: 
-	Client :
 */
 
 // don't load directly
@@ -50,7 +45,7 @@ if ( version_compare( PHP_VERSION, '5.0.0', '<' ) ) {
 	wp_die( sprintf( __( 'Your PHP version is too old, please upgrade to a newer version. Your version is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins directory with FTP client.', 'simpletags' ), phpversion(), '5.0.0' ) );
 }
 
-define( 'STAGS_VERSION', '2.4.5' );
+define( 'STAGS_VERSION', '2.4.7' );
 define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto' ); // Option name for save settings auto terms
 

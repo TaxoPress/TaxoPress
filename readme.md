@@ -4,8 +4,8 @@
 * **Donate link:** http://beapi.fr/donate/  
 * **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
 * **Requires at least:** 3.3
-* **Tested up to:** 4.5
-* **Stable tag:** 2.4.6
+* **Tested up to:** 4.8
+* **Stable tag:** 2.4.7
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,7 +40,7 @@ And more...
 
 ## Installation ##
 
-**Required PHP5.**
+**Required PHP5 or upper.**
 
 The Simple Tags can be installed in 3 easy steps:
 
@@ -52,7 +52,7 @@ The Simple Tags can be installed in 3 easy steps:
 
 ### Simple Tags is compatible with which WordPress versions ? ###
 
-* 2.4 and upper are compatible only with WordPress 4.0 !
+* 2.4 and upper are compatible only with WordPress 4.x !
 * 2.3 and upper are compatible only with WordPress 3.5 !
 * 2.0 and upper are compatible only with WordPress 3.0 & 3.1 & 3.2 & 3.3 !
 * 1.7 and upper are compatible only with WordPress 2.8, 2.9 !
@@ -78,6 +78,10 @@ The Simple Tags can be installed in 3 easy steps:
 
 ## Changelog ##
 
+* Version 2.4.7
+    * Compatibility WP 4.8
+    * Fix bug for self-closing tags (https://github.com/BeAPI/simple-tags/pull/67)
+    * Updated spanish translation (https://github.com/BeAPI/simple-tags/pull/73)
 * Version 2.4.6
     * Compatibility WP 4.5
 * Version 2.4.5
