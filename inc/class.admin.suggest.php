@@ -151,12 +151,14 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 
-		$response = wp_remote_post( 'http://api.opencalais.com/enlighten/rest/', array(
-			'body' => array(
-				'licenseID' => SimpleTags_Plugin::get_option_value( 'opencalais_key' ),
-				'content'   => $content,
-				'paramsXML' => self::_get_params_xml_opencalais()
-			)
+		$response = wp_remote_post( 'https://api.thomsonreuters.com/permid/calais', array(
+			'timeout' => 30,
+			'headers' => array(
+				'X-AG-Access-Token' => SimpleTags_Plugin::get_option_value( 'opencalais_key' ),
+                'Content-Type' => 'text/html',
+                'outputFormat' => 'application/json'
+			),
+			'body' => $content
 		) );
 
 		if ( ! is_wp_error( $response ) && $response != null ) {
@@ -188,16 +190,6 @@ class SimpleTags_Admin_Suggest {
 		}
 		echo '<div class="clear"></div>';
 		exit();
-	}
-
-	private static function _get_params_xml_opencalais() {
-		return '
-			<c:params xmlns:c="http://s.opencalais.com/1/pred/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-				<c:processingDirectives c:contentType="text/html" c:outputFormat="application/json" c:enableMetadataType="GenericRelations,SocialTags"></c:processingDirectives>
-				<c:userDirectives c:allowDistribution="false" c:allowSearch="false" c:externalID="" c:submitter="Simple Tags"></c:userDirectives>
-				<c:externalMetadata></c:externalMetadata>
-			</c:params>
-		';
 	}
 
 	/**
