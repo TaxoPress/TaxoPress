@@ -6,10 +6,10 @@
  *
  * @return string
  */
-function _delete_empty_element( &$element ) {
-	$element = stripslashes( $element );
-	$element = trim( $element );
-	if ( ! empty( $element ) ) {
+function _delete_empty_element(&$element) {
+	$element = stripslashes($element);
+	$element = trim($element);
+	if ( ! empty($element)) {
 		return $element;
 	}
 }
@@ -21,8 +21,8 @@ function _delete_empty_element( &$element ) {
  * @author Amaury Balmer
  */
 function is_page_have_tags() {
-	$taxonomies = get_object_taxonomies( 'page' );
-	if ( in_array( 'post_tag', $taxonomies ) ) {
+	$taxonomies = get_object_taxonomies('page');
+	if (in_array('post_tag', $taxonomies)) {
 		return true;
 	}
 

@@ -9,13 +9,13 @@ class SimpleTags_Admin_ClickTags {
 	 */
 	public function __construct() {
 		// Ajax action, JS Helper and admin action
-		add_action( 'wp_ajax_' . 'simpletags', array( __CLASS__, 'ajax_check' ) );
+		add_action('wp_ajax_' . 'simpletags', array(__CLASS__, 'ajax_check'));
 
 		// Box for post/page
-		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ), 1 );
+		add_action('admin_menu', array(__CLASS__, 'admin_menu'), 1);
 
 		// Javascript
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'admin_enqueue_scripts'), 11);
 	}
 
 	/**
@@ -27,22 +27,22 @@ class SimpleTags_Admin_ClickTags {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
-		wp_register_script( 'st-helper-click-tags', STAGS_URL . '/assets/js/helper-click-tags.js', array(
+		wp_register_script('st-helper-click-tags', STAGS_URL . '/assets/js/helper-click-tags.js', array(
 			'jquery',
 			'st-helper-add-tags'
-		), STAGS_VERSION );
-		wp_localize_script( 'st-helper-click-tags', 'stHelperClickTagsL10n', array(
-			'show_txt' => __( 'Display click tags', 'simpletags' ),
-			'hide_txt' => __( 'Hide click tags', 'simpletags' )
-		) );
+		), STAGS_VERSION);
+		wp_localize_script('st-helper-click-tags', 'stHelperClickTagsL10n', array(
+			'show_txt' => __('Display click tags', 'simpletags'),
+			'hide_txt' => __('Hide click tags', 'simpletags')
+		));
 
 		// Register location
-		$wp_post_pages = array( 'post.php', 'post-new.php' );
-		$wp_page_pages = array( 'page.php', 'page-new.php' );
+		$wp_post_pages = array('post.php', 'post-new.php');
+		$wp_page_pages = array('page.php', 'page-new.php');
 
 		// Helper for posts/pages
-		if ( in_array( $pagenow, $wp_post_pages ) || ( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ) {
-			wp_enqueue_script( 'st-helper-click-tags' );
+		if (in_array($pagenow, $wp_post_pages) || (in_array($pagenow, $wp_page_pages) && is_page_have_tags())) {
+			wp_enqueue_script('st-helper-click-tags');
 		}
 	}
 
@@ -53,15 +53,15 @@ class SimpleTags_Admin_ClickTags {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-		add_meta_box( 'st-clicks-tags', __( 'Click tags', 'simpletags' ), array(
+		add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(
 			__CLASS__,
 			'metabox'
-		), 'post', 'advanced', 'core' );
-		if ( is_page_have_tags() ) {
-			add_meta_box( 'st-clicks-tags', __( 'Click tags', 'simpletags' ), array(
+		), 'post', 'advanced', 'core');
+		if (is_page_have_tags()) {
+			add_meta_box('st-clicks-tags', __('Click tags', 'simpletags'), array(
 				__CLASS__,
 				'metabox'
-			), 'page', 'advanced', 'core' );
+			), 'page', 'advanced', 'core');
 		}
 	}
 
@@ -82,7 +82,7 @@ class SimpleTags_Admin_ClickTags {
 	 * @author Amaury Balmer
 	 */
 	public static function ajax_check() {
-		if ( isset( $_GET['stags_action'] ) && $_GET['stags_action'] == 'click_tags' ) {
+		if (isset($_GET['stags_action']) && $_GET['stags_action'] == 'click_tags') {
 			self::ajax_click_tags();
 		}
 	}
@@ -94,22 +94,22 @@ class SimpleTags_Admin_ClickTags {
 	 * @author Amaury Balmer
 	 */
 	public static function ajax_click_tags() {
-		status_header( 200 ); // Send good header HTTP
-		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
+		status_header(200); // Send good header HTTP
+		header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 
-		if ( (int) wp_count_terms( 'post_tag', 'ignore_empty=false' ) == 0 ) { // No tags to suggest
-			echo '<p>' . __( 'No terms in your WordPress database.', 'simpletags' ) . '</p>';
+		if ((int) wp_count_terms('post_tag', 'ignore_empty=false') == 0) { // No tags to suggest
+			echo '<p>' . __('No terms in your WordPress database.', 'simpletags') . '</p>';
 			exit();
 		}
 
 		// Prepare search
-		$search  = ( isset( $_GET['q'] ) ) ? trim( stripslashes( $_GET['q'] ) ) : '';
-		$post_id = ( isset( $_GET['post_id'] ) ) ? intval( $_GET['post_id'] ) : 0;
+		$search  = (isset($_GET['q'])) ? trim(stripslashes($_GET['q'])) : '';
+		$post_id = (isset($_GET['post_id'])) ? intval($_GET['post_id']) : 0;
 
 		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
-		$order_click_tags = strtolower( SimpleTags_Plugin::get_option_value( 'order_click_tags' ) );
+		$order_click_tags = strtolower(SimpleTags_Plugin::get_option_value('order_click_tags'));
 		$order_by         = $order = '';
-		switch ( $order_click_tags ) {
+		switch ($order_click_tags) {
 			case 'count-asc':
 				$order_by = 'tt.count';
 				$order    = 'ASC';
@@ -133,21 +133,21 @@ class SimpleTags_Admin_ClickTags {
 		}
 
 		// Get all terms, or filter with search
-		$terms = SimpleTags_Admin::getTermsForAjax( 'post_tag', $search, $order_by, $order );
-		if ( empty( $terms ) || $terms == false ) {
-			echo '<p>' . __( 'No results from your WordPress database.', 'simpletags' ) . '</p>';
+		$terms = SimpleTags_Admin::getTermsForAjax('post_tag', $search, $order_by, $order);
+		if (empty($terms) || $terms == false) {
+			echo '<p>' . __('No results from your WordPress database.', 'simpletags') . '</p>';
 			exit();
 		}
 
 		// Get terms for current post
 		$post_terms = array();
-		if ( $post_id > 0 ) {
-			$post_terms = wp_get_post_terms( $post_id, 'post_tag', array( 'fields' => 'ids' ) );
+		if ($post_id > 0) {
+			$post_terms = wp_get_post_terms($post_id, 'post_tag', array('fields' => 'ids'));
 		}
 
-		foreach ( (array) $terms as $term ) {
-			$class_current = in_array( $term->term_id, $post_terms ) ? 'used_term' : '';
-			echo '<span class="local ' . $class_current . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
+		foreach ((array) $terms as $term) {
+			$class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
+			echo '<span class="local ' . $class_current . '">' . esc_html(stripslashes($term->name)) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 
