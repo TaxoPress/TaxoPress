@@ -78,6 +78,8 @@ The Simple Tags can be installed in 3 easy steps:
     * Updated spanish translation (https://github.com/BeAPI/simple-tags/pull/73)
     * Fix WPalchemy suggestion for latest API version
     * Code refactoring for JS tags suggest
+    * Fix JS bug with tabs and firefox (https://github.com/BeAPI/simple-tags/issues/58)
+    * Fix autolinks for "number tags" / only numeric characters term (https://github.com/BeAPI/simple-tags/issues/72)
 * Version 2.4.6
     * Compatibility WP 4.5
 * Version 2.4.5
