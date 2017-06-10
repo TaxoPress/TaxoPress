@@ -1,83 +1,57 @@
 // Switches option section
-jQuery(document).ready(function($) {
-	// Hide all by default
-	$('.group').hide();
-	
-	// Display active group
-	var activetab = '';
-	if (typeof(localStorage) != 'undefined') {
-		activetab = localStorage.getItem("activetab");
-	}
-	if (activetab != '' && $(activetab).length) {
-		$(activetab).fadeIn();
-	} else {
-		$('.group:first').fadeIn();
-	}
-	console.log(activetab);
+jQuery(document).ready(function() {
+    // Hide all by default
+    jQuery('.group').hide();
 
-	if (activetab != '' && $(activetab + '-tab').length) {
-		$(activetab + '-tab').addClass('nav-tab-active');
-	} else {
-		$('.nav-tab-wrapper a:first').addClass('nav-tab-active');
-	}
+    // Display active group
+    var activetab = '';
+    if (typeof(localStorage) != 'undefined') {
+        activetab = localStorage.getItem("activetab");
+    }
+    if (activetab !== '' && jQuery(activetab).length) {
+        jQuery(activetab).fadeIn();
+    } else {
+        jQuery('.group:first').fadeIn();
+    }
+    //console.log(activetab);
 
-	$('.nav-tab-wrapper a').click(function(evt) {
-		$('.nav-tab-wrapper a').removeClass('nav-tab-active');
-		$(this).addClass('nav-tab-active').blur();
-		var clicked_group = $(this).attr('href');
-		if (typeof(localStorage) != 'undefined') {
-			localStorage.setItem("activetab", $(this).attr('href'));
-		}
-		$('.group').hide();
-		$(clicked_group).fadeIn();
-		evt.preventDefault();
-	});
+    if (activetab !== '' && jQuery(activetab + '-tab').length) {
+        jQuery(activetab + '-tab').addClass('nav-tab-active');
+    } else {
+        jQuery('.nav-tab-wrapper a:first').addClass('nav-tab-active');
+    }
+
+    jQuery('.nav-tab-wrapper a').click(function(evt) {
+        jQuery('.nav-tab-wrapper a').removeClass('nav-tab-active');
+        jQuery(this).addClass('nav-tab-active').blur();
+        var clicked_group = jQuery(this).attr('href');
+        if (typeof(localStorage) != 'undefined') {
+            localStorage.setItem("activetab", jQuery(this).attr('href'));
+        }
+        jQuery('.group').hide();
+        jQuery(clicked_group).fadeIn();
+        evt.preventDefault();
+    });
 });
 
 jQuery(document).ready(function() {
-	jQuery('input#cloud_max_color')
-		.ready(function() {
-		cloudMaxColor()
-	})
-		.click(function() {
-		cloudMaxColor()
-	})
-		.blur(function() {
-		cloudMaxColor()
-	})
-		.change(function() {
-		cloudMaxColor()
-	})
-		.focus(function() {
-		cloudMaxColor()
-	});
+    jQuery('#input#cloud_max_color').on('ready click blur change focus', function(e) {
+        cloudMaxColor();
+    });
 
-	jQuery('input#cloud_min_color')
-		.ready(function() {
-		cloudMinColor()
-	})
-		.click(function() {
-		cloudMinColor()
-	})
-		.blur(function() {
-		cloudMinColor()
-	})
-		.change(function() {
-		cloudMinColor()
-	})
-		.focus(function() {
-		cloudMinColor()
-	});
+    jQuery('#input#cloud_min_color').on('ready click blur change focus', function(e) {
+        cloudMinColor();
+    });
 });
 
 function cloudMaxColor() {
-	jQuery('div.cloud_max_color').css({
-		backgroundColor: jQuery('input#cloud_max_color').val()
-	});
+    jQuery('div.cloud_max_color').css({
+        backgroundColor: jQuery('input#cloud_max_color').val()
+    });
 }
 
 function cloudMinColor() {
-	jQuery('div.cloud_min_color').css({
-		backgroundColor: jQuery('input#cloud_min_color').val()
-	});
-}	
+    jQuery('div.cloud_min_color').css({
+        backgroundColor: jQuery('input#cloud_min_color').val()
+    });
+}
