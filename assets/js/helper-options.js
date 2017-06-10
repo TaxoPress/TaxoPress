@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
 
     // Display active group
     var activetab = '';
-    if (typeof(localStorage) != 'undefined') {
+    if (typeof(localStorage) != 'undefined' && localStorage != null) {
         activetab = localStorage.getItem("activetab");
     }
     if (activetab !== '' && jQuery(activetab).length) {
@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
         jQuery('.nav-tab-wrapper a').removeClass('nav-tab-active');
         jQuery(this).addClass('nav-tab-active').blur();
         var clicked_group = jQuery(this).attr('href');
-        if (typeof(localStorage) != 'undefined') {
+        if (typeof(localStorage) != 'undefined' && localStorage != null) {
             localStorage.setItem("activetab", jQuery(this).attr('href'));
         }
         jQuery('.group').hide();
