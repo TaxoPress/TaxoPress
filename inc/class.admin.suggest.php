@@ -50,14 +50,14 @@ class SimpleTags_Admin_Suggest {
 	public static function get_suggest_tags_title() {
 		$title = '<img style="float:right; display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simpletags' ) . '" />';
 		$title .= __( 'Suggested tags from :', 'simpletags' ) . '&nbsp;&nbsp;';
-		$title .= '<a class="local_db" href="#suggestedtags">' . __( 'Local tags', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="yahoo_api" href="#suggestedtags">' . __( 'Yahoo', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="opencalais_api" href="#suggestedtags">' . __( 'OpenCalais', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="alchemyapi" href="#suggestedtags">' . __( 'AlchemyAPI', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="zemanta" href="#suggestedtags">' . __( 'Zemanta', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="datatxt" href="#suggestedtags">' . __( 'dataTXT', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="tag4site" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
-		$title .= '<a class="proxem" href="#suggestedtags">' . __( 'Proxem', 'simpletags' ) . '</a>';
+		$title .= '<a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a data-ajaxaction="tags_from_yahoo" class="suggest-action-link" href="#suggestedtags">' . __( 'Yahoo', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a data-ajaxaction="tags_from_alchemyapi" class="suggest-action-link" href="#suggestedtags">' . __( 'AlchemyAPI', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a data-ajaxaction="tags_from_zemanta" class="suggest-action-link" href="#suggestedtags">' . __( 'Zemanta', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a data-ajaxaction="tags_from_datatxt" class="suggest-action-link" href="#suggestedtags">' . __( 'dataTXT by Dandelion', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a data-ajaxaction="tags_from_tag4site" class="suggest-action-link" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a>&nbsp;&nbsp;-&nbsp;&nbsp;';
+		$title .= '<a data-ajaxaction="tags_from_proxem" class="suggest-action-link" href="#suggestedtags">' . __( 'Proxem', 'simpletags' ) . '</a>';
 
 		return $title;
 	}

@@ -76,6 +76,8 @@ The Simple Tags can be installed in 3 easy steps:
     * Compatibility WP 4.8
     * Fix bug for self-closing tags (https://github.com/BeAPI/simple-tags/pull/67)
     * Updated spanish translation (https://github.com/BeAPI/simple-tags/pull/73)
+    * Fix WPalchemy suggestion for latest API version
+    * Code refactoring for JS tags suggest
 * Version 2.4.6
     * Compatibility WP 4.5
 * Version 2.4.5
