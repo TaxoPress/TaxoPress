@@ -310,17 +310,7 @@ class SimpleTags_Admin_Suggest {
 		status_header( 200 );
 		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
 
-		// API ID ?
-		if ( SimpleTags_Plugin::get_option_value( 'datatxt_id' ) == '' ) {
-			echo '<p>' . __( 'dataTXT needs an API ID to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
-			exit();
-		}
-
-		// API Key ?
-		if ( SimpleTags_Plugin::get_option_value( 'datatxt_key' ) == '' ) {
-			echo '<p>' . __( 'dataTXT needs an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
-			exit();
-		}
+		$request_ws_args = array();
 
 		// Get data
 		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
@@ -330,27 +320,45 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 
-		$confidence = 0.6;
+		$request_ws_args['text'] = $content;
+
+		// Custom confidence ?
+		$request_ws_args['min_confidence'] = 0.6;
 		if ( SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' ) != "" ) {
-			$confidence = SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' );
+			$request_ws_args['min_confidence'] = SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' );
+		}
+
+		// Token ? or old ID/key ?
+		if ( SimpleTags_Plugin::get_option_value( 'datatxt_access_token' ) == '' ) {
+			// API ID ?
+			if ( SimpleTags_Plugin::get_option_value( 'datatxt_id' ) == '' ) {
+				echo '<p>' . __( 'dataTXT needs an API ID to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+				exit();
+			}
+
+			// API Key ?
+			if ( SimpleTags_Plugin::get_option_value( 'datatxt_key' ) == '' ) {
+				echo '<p>' . __( 'dataTXT needs an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+				exit();
+			}
+
+			$request_ws_args['$app_key'] = SimpleTags_Plugin::get_option_value( 'datatxt_key' );
+			$request_ws_args['$app_id'] = SimpleTags_Plugin::get_option_value( 'datatxt_id' );
+		} else {
+			$request_ws_args['token'] = SimpleTags_Plugin::get_option_value( 'datatxt_access_token' );
 		}
 
 		// Build params
 		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array(
 			'user-agent' => 'WordPress simple-tags',
-			'body'       => array(
-				'$app_key'       => SimpleTags_Plugin::get_option_value( 'datatxt_key' ),
-				'$app_id'        => SimpleTags_Plugin::get_option_value( 'datatxt_id' ),
-				'min_confidence' => $confidence,
-				'text'           => $content
-			)
+			'body'       => $request_ws_args
 		) );
 
 		if ( ! is_wp_error( $response ) && $response != null ) {
 			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
 				$data = wp_remote_retrieve_body( $response );
 			} else {
-				echo '<p>' . __( 'Invalid dataTXT ID or Key', 'simpletags' ) . '</p>';
+				echo '<p>' . __( 'Invalid dataTXT ID/Key or access token !', 'simpletags' ) . '</p>';
 				exit();
 			}
 		}
@@ -571,18 +579,14 @@ class SimpleTags_Admin_Suggest {
 		) );
 
 		if ( ! is_wp_error( $response ) && $response != null ) {
-			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
-				$data = wp_remote_retrieve_body( $response );
-
-			}
+			$data = wp_remote_retrieve_body( $response );
 		}
 
 		$data = json_decode( $data );
 
 		if ( $data == false || ! isset( $data->categories ) ) {
-			var_dump( $response );
-
-			return false;
+			echo '<p>' . __( 'Error from Proxem API: ', 'simpletags' ) . $data->message . '</p>';
+			exit();
 		}
 
 		if ( empty( $data->categories ) ) {

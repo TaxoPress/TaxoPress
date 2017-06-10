@@ -131,14 +131,21 @@ return array(
 		),
 		array(
 			'datatxt_id',
-			__( 'dataTXT API ID', 'simpletags' ),
+			__( 'Dandelion - Entity Extraction API - ID (deprecated)', 'simpletags' ),
 			'text',
 			'regular-text',
 			__( 'You can create an API ID from <a href="https://dandelion.eu/">service website</a>', 'simpletags' )
 		),
 		array(
 			'datatxt_key',
-			__( 'dataTXT API Key', 'simpletags' ),
+			__( 'Dandelion - Entity Extraction API - Key (deprecated)', 'simpletags' ),
+			'text',
+			'regular-text',
+			__( 'You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simpletags' )
+		),
+		array(
+			'datatxt_access_token',
+			__( 'Dandelion - Entity Extraction API - Access token (new !)', 'simpletags' ),
 			'text',
 			'regular-text',
 			__( 'You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simpletags' )
