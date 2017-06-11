@@ -22,9 +22,5 @@ function _delete_empty_element( &$element ) {
  */
 function is_page_have_tags() {
 	$taxonomies = get_object_taxonomies( 'page' );
-	if ( in_array( 'post_tag', $taxonomies ) ) {
-		return true;
-	}
-
-	return false;
+	return in_array( 'post_tag', $taxonomies );
 }
