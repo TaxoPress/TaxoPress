@@ -69,7 +69,7 @@ class SimpleTags_Client_RelatedPosts {
 	 *
 	 * @param string $user_args
 	 *
-	 * @return string|array
+	 * @return string|array|boolean
 	 */
 	public static function get_related_posts( $user_args = '', $copyright = true ) {
 		global $wpdb;

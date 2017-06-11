@@ -29,7 +29,6 @@ class SimpleTags_Admin_Mass {
 	/**
 	 * Control POST data for mass edit tags
 	 *
-	 * @param string $type
 	 */
 	public static function admin_init() {
 		if ( ! current_user_can( 'simple_tags' ) ) {

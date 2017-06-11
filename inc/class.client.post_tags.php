@@ -84,7 +84,7 @@ class SimpleTags_Client_PostTags {
 	 *
 	 * @param string $args
 	 *
-	 * @return string
+	 * @return string|array|boolean
 	 */
 	public static function extendedPostTags( $args = '', $copyright = true ) {
 		// Get options

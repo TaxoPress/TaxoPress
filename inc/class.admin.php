@@ -279,12 +279,12 @@ class SimpleTags_Admin {
 	public static function getTermsToEdit( $taxonomy = 'post_tag', $post_id = 0 ) {
 		$post_id = (int) $post_id;
 		if ( ! $post_id ) {
-			return false;
+			return '';
 		}
 
 		$terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
 		if ( $terms == false ) {
-			return false;
+			return '';
 		}
 
 		$terms = array_unique( $terms ); // Remove duplicate

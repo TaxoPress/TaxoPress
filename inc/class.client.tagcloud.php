@@ -265,7 +265,8 @@ class SimpleTags_Client_TagCloud {
 	/**
 	 * Extended get_tags public static function that use getTerms function
 	 *
-	 * @param string $args
+	 * @param string|array $args
+	 * @param string|array $taxonomy
 	 *
 	 * @return array
 	 */
@@ -341,7 +342,7 @@ class SimpleTags_Client_TagCloud {
 	 * @param string|array $taxonomies
 	 * @param string $args
 	 *
-	 * @return array
+	 * @return array|WP_Error
 	 */
 	public static function getTerms( $taxonomies, $args = '' ) {
 		global $wpdb;
@@ -598,7 +599,7 @@ class SimpleTags_Client_TagCloud {
 		}
 
 		// don't limit the query results when we have to descend the family tree
-		if ( ! empty( $number ) && ! $hierarchical && empty( $child_of ) && '' === $parent ) {
+		if ( ! empty( $number ) && ! $hierarchical && empty( $child_of ) && '' == $parent ) {
 			if ( $offset ) {
 				$limit = 'LIMIT ' . $offset . ',' . $number;
 			} else {

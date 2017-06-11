@@ -48,7 +48,7 @@ class SimpleTags_Client_Autolinks {
 	/**
 	 * Get tags from current post views
 	 *
-	 * @return boolean
+	 * @return array
 	 */
 	public static function get_tags_from_current_posts() {
 		if ( is_array( self::$posts ) && count( self::$posts ) > 0 ) {
