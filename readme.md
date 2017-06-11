@@ -13,12 +13,13 @@
 
 ## Description ##
 
-Simple Tags is the successor of Simple Tagging Plugin
+Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+
 **This is THE perfect tool to manage perfectly your WP terms for any taxonomy**
 
-**It was written with this philosophy :** best performances, more secured and brings a lot of new functions  
+It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
-This plugin is developped on WordPress 3.3, with the constant WP_DEBUG to TRUE.
+This plugin is developped on latest WordPress version, with the constant WP_DEBUG to TRUE.
 
 * Administration
 	* Tags suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request 
