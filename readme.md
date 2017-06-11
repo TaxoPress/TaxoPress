@@ -82,6 +82,12 @@ The Simple Tags can be installed in 3 easy steps:
     * Compatibility WP 4.8
     * Fix bug for self-closing tags (https://github.com/BeAPI/simple-tags/pull/67)
     * Updated spanish translation (https://github.com/BeAPI/simple-tags/pull/73)
+    * Fix WPalchemy suggestion for latest API version
+    * Code refactoring for JS tags suggest
+    * Fix JS bug with tabs and firefox (https://github.com/BeAPI/simple-tags/issues/58)
+    * Fix autolinks for "number tags" / only numeric characters term (https://github.com/BeAPI/simple-tags/issues/72)
+    * Add "access token" field settings for Dandelion suggestion API
+    * Improve "proxem" error message
 * Version 2.4.6
     * Compatibility WP 4.5
 * Version 2.4.5
