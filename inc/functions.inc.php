@@ -24,3 +24,10 @@ function is_page_have_tags() {
 	$taxonomies = get_object_taxonomies( 'page' );
 	return in_array( 'post_tag', $taxonomies );
 }
+
+/**
+ * Register SimpleTags widget
+ */
+function st_register_widget() {
+	register_widget('SimpleTags_Widget');
+}
