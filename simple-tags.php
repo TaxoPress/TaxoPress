@@ -76,8 +76,9 @@ function init_simple_tags() {
 		require( STAGS_DIR . '/inc/class.admin.php' );
 		new SimpleTags_Admin();
 	}
+	
+	add_action( 'widgets_init', 'st_register_widget' );
 
-	add_action( 'widgets_init', create_function( '', 'return register_widget("SimpleTags_Widget");' ) );
 }
 
 add_action( 'plugins_loaded', 'init_simple_tags' );
