@@ -17,7 +17,8 @@ class SimpleTags_Client_TagCloud {
 	 * @return string
 	 */
 	public static function shortcode( $atts ) {
-		extract( shortcode_atts( array( 'param' => '' ), $atts ) );
+		$atts = shortcode_atts( array( 'param' => '' ), $atts );
+		extract( $atts );
 
 		$param = html_entity_decode( $param );
 		$param = trim( $param );
