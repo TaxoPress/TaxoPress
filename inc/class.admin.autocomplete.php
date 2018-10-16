@@ -107,7 +107,7 @@ class SimpleTags_Admin_Autocomplete {
 	/**
 	 * Save tags input for old field
 	 *
-	 * @param string $post_id
+	 * @param int $post_id
 	 * @param object $object
 	 *
 	 * @return boolean
