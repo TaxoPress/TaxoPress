@@ -40,7 +40,6 @@ function getContentFromEditor() {
         data = WYM_INSTANCES[0].xhtml();
     } else if ( typeof wp.data != "undefined") {
         data = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'content' );
-        console.log(data);
 
     } else { // No editor, just quick tags
         data = jQuery("#content").val();
