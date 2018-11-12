@@ -72,13 +72,14 @@ function init_simple_tags() {
 	new SimpleTags_Client_TagCloud();
 
 	// Admin and XML-RPC
-	if ( is_admin() ) {
+	//if ( is_admin() ) {
 		require( STAGS_DIR . '/inc/class.admin.php' );
 		new SimpleTags_Admin();
-	}
+	//}
 	
 	add_action( 'widgets_init', 'st_register_widget' );
 
 }
 
 add_action( 'plugins_loaded', 'init_simple_tags' );
+
