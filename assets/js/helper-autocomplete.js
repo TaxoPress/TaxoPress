@@ -6,6 +6,7 @@ function st_extract_last(term) {
     return st_split(term).pop();
 }
 
+
 function st_init_autocomplete(p_target, p_url, p_min_chars) {
     // Dynamic width ?
     p_width = jQuery("" + p_target).width();
@@ -14,7 +15,7 @@ function st_init_autocomplete(p_target, p_url, p_min_chars) {
     }
 
     // Init jQuery UI autocomplete
-    jQuery(p_target).bind("keydown", function(event) {
+    jQuery(p_target).bind("keydown", function (event) {
         // don't navigate away from the field on tab when selecting an item
         if (event.keyCode === jQuery.ui.keyCode.TAB &&
             jQuery(this).data("ui-autocomplete").menu.active) {
@@ -22,16 +23,16 @@ function st_init_autocomplete(p_target, p_url, p_min_chars) {
         }
     }).autocomplete({
         minLength: p_min_chars,
-        source: function(request, response) {
+        source: function (request, response) {
             jQuery.getJSON(p_url, {
                 term: st_extract_last(request.term)
             }, response);
         },
-        focus: function() {
+        focus: function () {
             // prevent value inserted on focus
             return false;
         },
-        select: function(event, ui) {
+        select: function (event, ui) {
             var terms = st_split(this.value);
             // remove the current input
             terms.pop();
@@ -44,3 +45,41 @@ function st_init_autocomplete(p_target, p_url, p_min_chars) {
         }
     });
 }
+
+
+$(window).load(function () {
+
+    var advTag = jQuery('#adv-tags-input').val();
+
+    var advTag_default = advTag;
+
+    $("#adv-tags-input").keyup(function () {
+        advTag = $(this).val();
+    });
+
+    var editPost = wp.data.select('core/edit-post'),
+        lastIsSaving = false;
+
+
+    wp.data.subscribe(function () {
+        var isSaving = editPost.isSavingMetaBoxes();
+        if (isSaving !== lastIsSaving && !isSaving) {
+            lastIsSaving = isSaving;
+
+            if ($('.inside input:checked').length == 0) {
+                if (advTag == "") {
+                    $('#adv-tags-input').val(advTag_default);
+                }
+                else {
+                    $('#adv-tags-input').val(advTag);
+                }
+            }
+
+        }
+
+        lastIsSaving = isSaving;
+    });
+
+
+});
+

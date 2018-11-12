@@ -1,9 +1,9 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     jQuery("#suggestedtags .hndle span").html(html_entity_decode(stHelperSuggestedTagsL10n.title_bloc));
     jQuery("#suggestedtags .inside .container_clicktags").html(stHelperSuggestedTagsL10n.content_bloc);
 
     // Generica all for autocomplet API
-    jQuery("a.suggest-action-link").click(function(event) {
+    jQuery("a.suggest-action-link").click(function (event) {
         event.preventDefault();
 
         jQuery('#st_ajax_loading').show();
@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
             content: getContentFromEditor(),
             title: jQuery("#title").val(),
             tags: jQuery("#tags-input").val()
-        }, function() {
+        }, function () {
             registerClickTags();
         });
         return false;
@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
 function getContentFromEditor() {
     var data = '';
 
-    if ((typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()) { // Tiny MCE
+    if ((typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() && typeof wp.data == "undefined") { // Tiny MCE
         var ed = tinyMCE.activeEditor;
         if ('mce_fullscreen' == ed.id) {
             tinyMCE.get('content').setContent(ed.getContent({
@@ -38,8 +38,8 @@ function getContentFromEditor() {
         data = oEditor.GetHTML().stripTags();
     } else if (typeof WYM_INSTANCES != "undefined") { // Simple WYMeditor
         data = WYM_INSTANCES[0].xhtml();
-    } else if ( typeof wp.data != "undefined") {
-        data = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'content' );
+    } else if (typeof wp.data != "undefined" && typeof tinyMCE != "undefined") {
+        data = wp.data.select('core/editor').getEditedPostAttribute('content');
 
     } else { // No editor, just quick tags
         data = jQuery("#content").val();
@@ -55,10 +55,44 @@ function getContentFromEditor() {
 }
 
 function registerClickTags() {
-    jQuery("#suggestedtags .container_clicktags span").click(function(event) {
+    jQuery("#suggestedtags .container_clicktags span").click(function (event) {
         event.preventDefault();
 
         addTag(this.innerHTML);
+
+        var advTag = jQuery('#adv-tags-input').val();
+
+        var advTag_default = advTag;
+
+        $("#adv-tags-input").keyup(function () {
+            advTag = $(this).val();
+
+        });
+
+        var editPost = wp.data.select('core/edit-post'),
+            lastIsSaving = false;
+
+
+        wp.data.subscribe(function () {
+            var isSaving = editPost.isSavingMetaBoxes();
+            if (isSaving !== lastIsSaving && !isSaving) {
+                lastIsSaving = isSaving;
+
+                if ($('.inside input:checked').length == 0) {
+                    if (advTag == "") {
+                        $('#adv-tags-input').val(advTag_default);
+                    }
+                    else {
+                        $('#adv-tags-input').val(advTag);
+                    }
+                }
+
+            }
+
+            lastIsSaving = isSaving;
+        });
+
+
     });
 
     jQuery('#st_ajax_loading').hide();
@@ -78,3 +112,8 @@ function html_entity_decode(str) {
 function strip_tags(str) {
     return str.replace(/&lt;\/?[^&gt;]+&gt;/gi, "");
 }
+
+
+
+
+
