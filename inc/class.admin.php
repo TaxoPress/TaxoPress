@@ -26,6 +26,7 @@ class SimpleTags_Admin {
 		// Admin menu
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 
+
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
@@ -64,6 +65,12 @@ class SimpleTags_Admin {
 			require( STAGS_DIR . '/inc/class.admin.post.php' );
 			new SimpleTags_Admin_Post_Settings();
 		}
+		if ( (int) SimpleTags_Plugin::get_option_value( 'use_tracking' ) == 1 ) {
+			require( STAGS_DIR . '/inc/class.admin.tracking.php' );
+			new SimpleTags_Admin_Tracking();
+		}
+		require( STAGS_DIR . '/inc/class.admin.info.php' );
+		new SimpleTags_Notification();
 	}
 
 	/**
@@ -140,6 +147,7 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function boxSelectorTaxonomy( $page_value = '' ) {
+
 		echo '<div class="box-selector-taxonomy">' . PHP_EOL;
 		echo '<p class="current-taxonomy">' . sprintf( __( 'You currently use the custom post type "<span>%s</span>" and the taxonomy "<span>%s</span>"', 'simpletags' ), self::$post_type_name, self::$taxo_name ) . '</p>' . PHP_EOL;
 
@@ -205,6 +213,7 @@ class SimpleTags_Admin {
 					'st_mass_terms',
 					'st_auto',
 					'st_options',
+					'st_tracking',
 					'st_manage'
 				) ) )
 		) {
@@ -216,6 +225,7 @@ class SimpleTags_Admin {
 			wp_enqueue_script( 'jquery-ui-tabs' );
 			wp_enqueue_script( 'st-helper-options' );
 		}
+
 	}
 
 	/**
@@ -317,7 +327,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2018 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+        <p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2018 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
@@ -330,6 +340,7 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function print_options( $option_data ) {
+
 		// Get options
 		$option_actual = SimpleTags_Plugin::get_option();
 
@@ -444,6 +455,8 @@ class SimpleTags_Admin {
 			case 'tagcloud':
 				return __( 'Tag cloud', 'simpletags' );
 				break;
+			case 'tracking':
+				return __( ' Tracking', 'simpletags' );
 		}
 
 		return '';
@@ -519,4 +532,5 @@ class SimpleTags_Admin {
 			", $taxonomy ) );
 		}
 	}
+
 }
