@@ -4,6 +4,7 @@ Plugin Name: Simple Tags
 Plugin URI: https://github.com/herewithme/simple-tags
 Description: Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
 Version: 2.5.0
+Requires PHP: 5.6
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
