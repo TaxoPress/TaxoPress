@@ -5,7 +5,7 @@
 * **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
 * **Requires at least:** 3.3
 * **Tested up to:** 5.1
-* **Stable tag:** 2.5.0
+* **Stable tag:** 2.5.1
 * **Requires PHP:** 5.6
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
@@ -81,7 +81,9 @@ The Simple Tags can be installed in 3 easy steps:
 
 ## Changelog ##
 
-* Version 2.5
+* Version 2.5.1
+    * WP.org bumping
+* Version 2.5.0
     * Add PHP7.3 compatibility
     * Preparing compatibility with Gutenberg (Does not work with all features due to a bug into Gutenberg https://github.com/WordPress/gutenberg/issues/15147 ) 
     * Minor code refactoring 
