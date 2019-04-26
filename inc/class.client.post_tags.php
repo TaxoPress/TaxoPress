@@ -1,6 +1,10 @@
 <?php
 
 class SimpleTags_Client_PostTags {
+
+	/**
+	 * SimpleTags_Client_PostTags constructor.
+	 */
 	public function __construct() {
 		// Add adv post tags in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
 		if ( SimpleTags_Plugin::get_option_value( 'tt_embedded' ) != 'no' || SimpleTags_Plugin::get_option_value( 'tt_feed' ) == 1 ) {
@@ -84,6 +88,7 @@ class SimpleTags_Client_PostTags {
 	 * Generate current post tags
 	 *
 	 * @param string $args
+	 * @param bool $copyright
 	 *
 	 * @return string|array|boolean
 	 */

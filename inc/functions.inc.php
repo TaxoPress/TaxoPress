@@ -12,6 +12,8 @@ function _delete_empty_element( &$element ) {
 	if ( ! empty( $element ) ) {
 		return $element;
 	}
+
+	return false;
 }
 
 /**
@@ -25,6 +27,9 @@ function is_page_have_tags() {
 	return in_array( 'post_tag', $taxonomies );
 }
 
+/**
+ * Register widget on WP
+ */
 function st_register_widget() {
 	register_widget('SimpleTags_Widget');
 }

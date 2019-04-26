@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: https://github.com/herewithme/simple-tags
 Description: Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 2.4.7
+Version: 2.5.0
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
 Text Domain: simpletags
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Do a PHP version check, require 5.0 or newer
-if ( version_compare( PHP_VERSION, '5.0.0', '<' ) ) {
+if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 	// Silently deactivate plugin, keeps admin usable
 	if ( function_exists( 'deactivate_plugins' ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ), true );
@@ -45,7 +45,7 @@ if ( version_compare( PHP_VERSION, '5.0.0', '<' ) ) {
 	wp_die( sprintf( __( 'Your PHP version is too old, please upgrade to a newer version. Your version is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins directory with FTP client.', 'simpletags' ), phpversion(), '5.0.0' ) );
 }
 
-define( 'STAGS_VERSION', '2.4.7' );
+define( 'STAGS_VERSION', '2.5.0' );
 define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto' ); // Option name for save settings auto terms
 
@@ -80,7 +80,6 @@ function init_simple_tags() {
 	}
 
 	add_action( 'widgets_init', 'st_register_widget' );
-
 }
 
 add_action( 'plugins_loaded', 'init_simple_tags' );

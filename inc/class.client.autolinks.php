@@ -18,7 +18,7 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		// Auto link tags
-		add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10, 2 );
+		add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
 
 		if ( SimpleTags_Plugin::get_option_value( 'auto_link_views' ) != 'no' ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
@@ -33,7 +33,7 @@ class SimpleTags_Client_Autolinks {
 	 *
 	 * @return array
 	 */
-	public static function the_posts( $posts, $query ) {
+	public static function the_posts( $posts ) {
 		if ( ! empty( $posts ) && is_array( $posts ) ) {
 			foreach ( (array) $posts as $post ) {
 				self::$posts[] = (int) $post->ID;
@@ -196,6 +196,8 @@ class SimpleTags_Client_Autolinks {
 	 * @param string $replace
 	 * @param string $case
 	 * @param string $rel
+	 *
+	 * @return void
 	 */
 	private static function _replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '' ) {
 		$dom = new DOMDocument();
@@ -203,7 +205,7 @@ class SimpleTags_Client_Autolinks {
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
 		$result = $dom->loadHtml( mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" ) );
 		if ( $result === false ) {
-			return false;
+			return;
 		}
 
 		$xpath = new DOMXPath( $dom );

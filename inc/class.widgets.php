@@ -39,7 +39,7 @@ class SimpleTags_Widget extends WP_Widget {
 	/**
 	 * Default settings for widget
 	 *
-	 * @return void
+	 * @return array
 	 * @author Amaury Balmer
 	 */
 	public static function get_fields() {
@@ -178,10 +178,10 @@ class SimpleTags_Widget extends WP_Widget {
 	/**
 	 * Update widget settings
 	 *
-	 * @param string $new_instance
-	 * @param string $old_instance
+	 * @param array $new_instance
+	 * @param array $old_instance
 	 *
-	 * @return void
+	 * @return array
 	 * @author Amaury Balmer
 	 */
 	public function update( $new_instance, $old_instance ) {
@@ -197,7 +197,7 @@ class SimpleTags_Widget extends WP_Widget {
 	/**
 	 * Admin form for widgets
 	 *
-	 * @param string $instance
+	 * @param array $instance
 	 *
 	 * @return void
 	 * @author Amaury Balmer

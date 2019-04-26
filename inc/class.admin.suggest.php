@@ -1,9 +1,13 @@
 <?php
 
 class SimpleTags_Admin_Suggest {
+
 	// Application entrypoint -> https://github.com/herewithme/simple-tags/wiki/
 	const yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 
+	/**
+	 * SimpleTags_Admin_Suggest constructor.
+	 */
 	public function __construct() {
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_' . 'simpletags', array( __CLASS__, 'ajax_check' ) );
@@ -225,6 +229,7 @@ class SimpleTags_Admin_Suggest {
 			)
 		) );
 
+		$data = false;
 		if ( ! is_wp_error( $response ) && $response != null ) {
 			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
 				$data = wp_remote_retrieve_body( $response );
@@ -281,6 +286,8 @@ class SimpleTags_Admin_Suggest {
 				'return_images'    => 0
 			)
 		) );
+
+		$data = false;
 		if ( ! is_wp_error( $response ) && $response != null ) {
 			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
 				$data = wp_remote_retrieve_body( $response );
@@ -354,6 +361,7 @@ class SimpleTags_Admin_Suggest {
 			'body'       => $request_ws_args
 		) );
 
+		$data = false;
 		if ( ! is_wp_error( $response ) && $response != null ) {
 			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
 				$data = wp_remote_retrieve_body( $response );
@@ -413,6 +421,7 @@ class SimpleTags_Admin_Suggest {
 			)
 		) );
 
+		$data = false;
 		if ( ! is_wp_error( $response ) && $response != null ) {
 			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
 				$data = wp_remote_retrieve_body( $response );
@@ -575,6 +584,7 @@ class SimpleTags_Admin_Suggest {
 			'timeout' => 15
 		) );
 
+		$data = false;
 		if ( ! is_wp_error( $response ) && $response != null ) {
 			$data = wp_remote_retrieve_body( $response );
 		}

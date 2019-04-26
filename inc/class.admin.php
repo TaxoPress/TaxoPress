@@ -391,9 +391,10 @@ class SimpleTags_Admin {
 					$option_actual[ $option[0] ] = '';
 				}
 
+				$input_type = '';
 				switch ( $option[2] ) {
 					case 'radio':
-						$input_type = array();;
+						$input_type = array();
 						foreach ( $option[3] as $value => $text ) {
 							$input_type[] = '<label><input type="radio" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $value ) . '" ' . checked( $value, $option_actual[ $option[0] ], false ) . ' /> ' . $text . '</label>' . PHP_EOL;
 						}
@@ -518,8 +519,6 @@ class SimpleTags_Admin {
 			update_option( STAGS_OPTIONS_NAME . '-version', STAGS_VERSION );
 			update_option( STAGS_OPTIONS_NAME, $current_options );
 		}
-
-		return true;
 	}
 
 	/**

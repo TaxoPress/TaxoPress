@@ -505,7 +505,7 @@ class SimpleTags_Admin_Manage {
 	 * @return boolean
 	 * @author Amaury Balmer
 	 */
-	public static function deleteTermsByTermList( $taxonomy = 'post_tag', $delete ) {
+	public static function deleteTermsByTermList( $taxonomy = 'post_tag', $delete = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $delete ) ) ) == '' ) {
 			add_settings_error( __CLASS__, __CLASS__, __( 'No term specified!', 'simpletags' ), 'error' );
 

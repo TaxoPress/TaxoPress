@@ -68,6 +68,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * Generate related posts
 	 *
 	 * @param string $user_args
+	 * @param bool $copyright
 	 *
 	 * @return string|array|boolean
 	 */
@@ -396,6 +397,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * Get and format tags from list ID (SQL Group Concat)
 	 *
 	 * @param string $terms
+	 * @param string $taxonomy
 	 *
 	 * @return string
 	 * @author Amaury Balmer

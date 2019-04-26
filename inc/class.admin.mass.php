@@ -2,6 +2,9 @@
 
 class SimpleTags_Admin_Mass {
 
+	/**
+	 * SimpleTags_Admin_Mass constructor.
+	 */
 	public function __construct() {
 		// Ajax action, JS Helper and admin action
 		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
@@ -280,9 +283,9 @@ class SimpleTags_Admin_Mass {
 	/**
 	 * Clone the core WP function, add the possibility to manage the post type
 	 *
-	 * @param string $q
+	 * @param bool $q
 	 *
-	 * @return void
+	 * @return array
 	 * @author Amaury Balmer
 	 */
 	public static function edit_data_query( $q = false ) {

@@ -73,5 +73,5 @@ return array(
 	'cloud_max_size'         => 22,
 	'cloud_min_size'         => 8,
 	'cloud_unit'             => 'pt',
-	'cloud_adv_usage'        => ''
+	'cloud_adv_usage'        => '',
 );

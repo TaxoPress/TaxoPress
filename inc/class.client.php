@@ -4,7 +4,7 @@ class SimpleTags_Client {
 	/**
 	 * Initialize Simple Tags client
 	 *
-	 * @return SimpleTags
+	 * @return boolean
 	 */
 	public function __construct() {
 		// Load translation
@@ -39,8 +39,10 @@ class SimpleTags_Client {
 		return true;
 	}
 
+	/**
+	 * Load translations
+	 */
 	public static function init_translation() {
-		// Load translations
 		load_plugin_textdomain( 'simpletags', false, basename( STAGS_DIR ) . '/languages' );
 	}
 
@@ -86,9 +88,12 @@ class SimpleTags_Client {
 
 		$keys = array_keys( $array );
 		shuffle( $keys );
+
+		$new = array();
 		foreach ( (array) $keys as $key ) {
 			$new[ $key ] = $array[ $key ];
 		}
+
 		$array = $new;
 
 		return true;
@@ -261,13 +266,14 @@ class SimpleTags_Client {
 	 * @param string $value
 	 * @param string $approximation
 	 *
-	 * @return void
+	 * @return float
 	 * @author Amaury Balmer
 	 */
 	public static function round( $value, $approximation ) {
 		$value = round( $value, $approximation );
 		$value = str_replace( ',', '.', $value ); // Fixes locale comma
 		$value = str_replace( ' ', '', $value ); // No space
+
 		return $value;
 	}
 
@@ -275,7 +281,7 @@ class SimpleTags_Client {
 	 * Format nice URL depending service
 	 *
 	 * @param string $type
-	 * @param string $tag_name
+	 * @param string $term_name
 	 *
 	 * @return string
 	 */
