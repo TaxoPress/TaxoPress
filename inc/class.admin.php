@@ -10,7 +10,7 @@ class SimpleTags_Admin {
 	static $admin_url = '';
 	const menu_slug = 'st_options';
 
-	/**
+	/**helper_js_collection
 	 * Initialize Admin
 	 *
 	 * @return void
@@ -64,6 +64,42 @@ class SimpleTags_Admin {
 			require( STAGS_DIR . '/inc/class.admin.post.php' );
 			new SimpleTags_Admin_Post_Settings();
 		}
+
+		// Ajax action, JS Helper and admin action
+		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
+	}
+
+	/**
+	 * Ajax Dispatcher
+	 */
+	public static function ajax_check() {
+		if ( isset( $_GET['stags_action'] ) && 'maybe_create_tag' === $_GET['stags_action'] && isset( $_GET['tag'] ) ) {
+			self::maybe_create_tag( wp_unslash( $_GET['tag'] ) );
+		}
+	}
+
+	/**
+	 * Maybe create a tag, and return the term_id
+	 *
+	 * @param string $tag_name
+	 */
+	public static function maybe_create_tag( $tag_name = '' ) {
+		$term_id     = 0;
+		$result_term = term_exists( $tag_name, 'post_tag', 0 );
+		if ( 0 === $result_term || null === $result_term ) {
+			$result_term = wp_insert_term(
+				$tag_name,
+				'post_tag'
+			);
+
+			if ( ! is_wp_error( $result_term ) ) {
+				$term_id = (int) $result_term['term_id'];
+			}
+		} else {
+			$term_id = (int) $result_term['term_id'];
+		}
+
+		wp_send_json_success( [ 'term_id' => $term_id ] );
 	}
 
 	/**
@@ -302,7 +338,7 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function getDefaultContentBox() {
-		if ( (int) wp_count_terms( 'post_tag', 'ignore_empty=false' ) == 0 ) { // TODO: Custom taxonomy
+		if ( (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) == 0 ) { // TODO: Custom taxonomy
 			return __( 'This feature requires at least 1 tag to work. Begin by adding tags!', 'simpletags' );
 		} else {
 			return __( 'This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simpletags' );
@@ -317,7 +353,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2018 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+        <p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2018 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
@@ -501,7 +537,7 @@ class SimpleTags_Admin {
 		global $wpdb;
 
 		if ( ! empty( $search ) ) {
-			return $wpdb->get_results( $wpdb->prepare( "
+			$results = $wpdb->get_results( $wpdb->prepare( "
 				SELECT DISTINCT t.name, t.term_id
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
@@ -510,7 +546,7 @@ class SimpleTags_Admin {
 				ORDER BY $order_by $order
 			", $taxonomy, '%' . $search . '%' ) );
 		} else {
-			return $wpdb->get_results( $wpdb->prepare( "
+			$results = $wpdb->get_results( $wpdb->prepare( "
 				SELECT DISTINCT t.name, t.term_id
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
@@ -518,5 +554,7 @@ class SimpleTags_Admin {
 				ORDER BY $order_by $order
 			", $taxonomy ) );
 		}
+
+		return $results;
 	}
 }

@@ -59,6 +59,7 @@ require( STAGS_DIR . '/inc/functions.tpl.php' );  // Templates functions
 require( STAGS_DIR . '/inc/class.plugin.php' );
 require( STAGS_DIR . '/inc/class.client.php' );
 require( STAGS_DIR . '/inc/class.client.tagcloud.php' );
+require( STAGS_DIR . '/inc/class.rest.php' );
 require( STAGS_DIR . '/inc/class.widgets.php' );
 
 // Activation, uninstall
@@ -70,13 +71,14 @@ function init_simple_tags() {
 	// Load client
 	new SimpleTags_Client();
 	new SimpleTags_Client_TagCloud();
+	new SimpleTags_Rest();
 
 	// Admin and XML-RPC
 	if ( is_admin() ) {
 		require( STAGS_DIR . '/inc/class.admin.php' );
 		new SimpleTags_Admin();
 	}
-	
+
 	add_action( 'widgets_init', 'st_register_widget' );
 
 }
