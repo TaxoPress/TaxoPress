@@ -24,7 +24,10 @@ function addTag (tag) {
     }
     //jQuery('.tagadd').WithSelect()
 
-  } else if (typeof wp.data != 'undefined' && typeof wp.data.select('core/edit-post') != 'undefined') { // Gutenberg
+  } else if (typeof wp.data != 'undefined'
+    && typeof wp.data.select('core') != 'undefined'
+    && typeof wp.data.select('core/edit-post') != 'undefined'
+    && typeof wp.data.select('core/editor') != 'undefined') { // Gutenberg
 
     // Show the tags panel
     if (wp.data.select('core/edit-post').isEditorPanelOpened('taxonomy-panel-post_tag') === false) {
