@@ -21,7 +21,7 @@ jQuery(document).ready(function () {
 function getTitleFromEditor () {
   var data = ''
 
-  if (typeof wp.data != 'undefined') {
+  if (typeof wp.data != 'undefined' && typeof wp.data.select('core/editor') != 'undefined') {
     data = wp.data.select('core/editor').getEditedPostAttribute('title')
   } else { // No editor, just quick tags
     data = jQuery('#title').val()
@@ -39,7 +39,9 @@ function getTitleFromEditor () {
 function getContentFromEditor () {
   var data = ''
 
-  if ((typeof tinyMCE != 'undefined') && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden() && typeof wp.data == 'undefined') { // Tiny MCE
+  if (typeof wp.data != 'undefined' && typeof wp.data.select('core/editor') != 'undefined') { // Gutenberg
+    data = wp.data.select('core/editor').getEditedPostAttribute('content')
+  } else if ((typeof tinyMCE != 'undefined') && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()) { // Tiny MCE
     var ed = tinyMCE.activeEditor
     if ('mce_fullscreen' == ed.id) {
       tinyMCE.get('content').setContent(ed.getContent({
@@ -55,9 +57,6 @@ function getContentFromEditor () {
     data = oEditor.GetHTML().stripTags()
   } else if (typeof WYM_INSTANCES != 'undefined') { // Simple WYMeditor
     data = WYM_INSTANCES[0].xhtml()
-  } else if (typeof wp.data != 'undefined' && typeof tinyMCE != 'undefined') {
-    data = wp.data.select('core/editor').getEditedPostAttribute('content')
-
   } else { // No editor, just quick tags
     data = jQuery('#content').val()
   }

@@ -24,7 +24,7 @@ function addTag (tag) {
     }
     //jQuery('.tagadd').WithSelect()
 
-  } else if (typeof wp.data != 'undefined') { // Gutenberg
+  } else if (typeof wp.data != 'undefined' && typeof wp.data.select('core/edit-post') != 'undefined') { // Gutenberg
 
     // Show the tags panel
     if (wp.data.select('core/edit-post').isEditorPanelOpened('taxonomy-panel-post_tag') === false) {
@@ -36,7 +36,7 @@ function addTag (tag) {
     var tag_rest_base = tags_taxonomy && tags_taxonomy.rest_base
     var tags = tag_rest_base && wp.data.select('core/editor').getEditedPostAttribute(tag_rest_base)
 
-    var newTags = JSON.parse(JSON.stringify(tags));
+    var newTags = JSON.parse(JSON.stringify(tags))
 
     jQuery.ajax({
       url: ajaxurl + '?action=simpletags&stags_action=maybe_create_tag&tag=' + tag,
@@ -47,15 +47,10 @@ function addTag (tag) {
       if (result.data.term_id > 0) {
         newTags.push(result.data.term_id)
 
-        var new_tag = {};
-        new_tag[tag_rest_base] = newTags;
+        var new_tag = {}
+        new_tag[tag_rest_base] = newTags
 
-        console.log('core/editor');
-        console.log(new_tag);
-        console.log(tag_rest_base);
-        wp.data.dispatch('core/editor').editPost(new_tag);
-        //wp.data.dispatch('core/editor').editPost({tags: tags});
-
+        wp.data.dispatch('core/editor').editPost(new_tag)
         // See : https://riad.blog/2018/06/07/efficient-client-data-management-for-wordpress-plugins/
       }
     }).fail(function () {
