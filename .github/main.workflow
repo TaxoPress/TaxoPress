@@ -5,8 +5,8 @@ workflow "Deploy" {
 
 # Filter for tag
 action "tag" {
-    uses = "actions/bin/filter@master"
-    args = "tag"
+  uses = "actions/bin/filter@master"
+  args = "tag"
 }
 
 action "WordPress Plugin Deploy" {
@@ -14,6 +14,6 @@ action "WordPress Plugin Deploy" {
   uses = "10up/actions-wordpress/dotorg-plugin-deploy@master"
   secrets = ["SVN_USERNAME", "SVN_PASSWORD", "GITHUB_TOKEN"]
   env = {
-    SLUG = "my-super-cool-plugin"
+    SLUG = "simple-tags"
   }
 }
