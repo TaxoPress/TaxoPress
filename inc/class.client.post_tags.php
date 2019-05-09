@@ -24,7 +24,7 @@ class SimpleTags_Client_PostTags {
 	 */
 	public static function shortcode( $atts ) {
 		$atts = shortcode_atts( array( 'param' => '' ), $atts );
-		extract($atts);
+		extract( $atts );
 
 		$param = html_entity_decode( $param );
 		$param = trim( $param );
@@ -106,7 +106,7 @@ class SimpleTags_Client_PostTags {
 			'xformat'   => __( '<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags' ),
 			'notagtext' => __( 'No tag for this post.', 'simpletags' ),
 			'number'    => 0,
-			'format'    => ''
+			'format'    => '',
 		);
 
 		// Get values in DB
@@ -134,8 +134,7 @@ class SimpleTags_Client_PostTags {
 		$object_id = (int) $post_id;
 		if ( $object_id == 0 ) {
 			global $post;
-			$object_id = (int) $post->ID;
-			if ( $object_id == 0 ) {
+			if ( ! isset( $post->ID ) || 0 === (int) $post->ID ) {
 				return false;
 			}
 		}
