@@ -75,6 +75,10 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
+* Version 2.5.3
+    * Add tracking feature
+    * Bug #98: Fix a PHP notice with link manager
+    * Minor code styling
 * Version 2.5.2
     * Improve Gutenberg detection, fix bug with tag suggestion caused by some 3rd party plugins
 * Version 2.5.1
