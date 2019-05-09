@@ -103,9 +103,6 @@ class SimpleTags_Admin {
 		}
 
 		wp_send_json_success( [ 'term_id' => $term_id ] );
-
-		// tracking
-		add_action( 'admin_notices', array( __CLASS__, 'admin_setup_notices' ) );
 	}
 
 	/**
@@ -439,7 +436,7 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function getDefaultContentBox() {
-		if ( (int) wp_count_terms( 'post_tag', 'ignore_empty=false' ) == 0 ) { // TODO: Custom taxonomy
+		if ( (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) == 0 ) { // TODO: Custom taxonomy
 			return __( 'This feature requires at least 1 tag to work. Begin by adding tags!', 'simpletags' );
 		} else {
 			return __( 'This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simpletags' );
@@ -454,7 +451,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2018 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2019 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
