@@ -12,7 +12,7 @@ class SimpleTags_Admin_Manage {
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 
 		// Register taxo, parent method...
-		SimpleTags_Admin::registerDetermineTaxonomy();
+		SimpleTags_Admin::register_taxonomy();
 
 		// Javascript
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );

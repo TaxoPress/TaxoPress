@@ -10,7 +10,7 @@ class SimpleTags_Admin {
 	static $admin_url = '';
 	const menu_slug = 'st_options';
 
-	/**helper_js_collection
+	/**
 	 * Initialize Admin
 	 *
 	 * @return void
@@ -21,7 +21,7 @@ class SimpleTags_Admin {
 		self::upgrade();
 
 		// Which taxo ?
-		self::registerDetermineTaxonomy();
+		self::register_taxonomy();
 
 		// Admin menu
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
@@ -67,6 +67,9 @@ class SimpleTags_Admin {
 
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
+
+		// tracking
+		add_action( 'admin_notices', array( __CLASS__, 'admin_setup_notices' ) );
 	}
 
 	/**
@@ -100,6 +103,102 @@ class SimpleTags_Admin {
 		}
 
 		wp_send_json_success( [ 'term_id' => $term_id ] );
+
+		// tracking
+		add_action( 'admin_notices', array( __CLASS__, 'admin_setup_notices' ) );
+	}
+
+	/**
+	 * Show tracking dialog
+	 */
+	public static function admin_setup_notices() {
+		// Make sure they have the permissions to do something
+		if ( ! current_user_can( 'admin_simple_tags' ) ) {
+			return;
+		}
+
+		// Already show ?
+		if ( get_option( 'simpletags_tracking_notice' ) ) {
+			return;
+		}
+
+		// Feature already enabled ?
+		if ( SimpleTags_Plugin::get_option_value( 'use_tracking' ) ) {
+			return;
+		}
+
+		// Dev environment ?
+		if ( self::is_dev_url( network_site_url( '/' ) ) ) {
+			update_option( 'simpletags_tracking_notice', '1' );
+
+			return;
+		}
+
+		$optin_url  = add_query_arg( 'st_action', 'opt_into_tracking' );
+		$optout_url = add_query_arg( 'st_action', 'opt_out_of_tracking' );
+
+		echo '<div class="updated"><p>';
+		echo '<a href="' . esc_url( $optout_url ) . '" class="button-secondary" style="float:right;">' . __( 'Do not allow', 'simpletags' ) . '</a>';
+		echo '<a href="' . esc_url( $optin_url ) . '" class="button-primary" style="float:right; margin-right:10px;">' . __( 'Allow', 'simpletags' ) . '</a>';
+
+		echo __( '<strong>Simple Tags:</strong> By allowing us to track your usage, we can make a better plugin by knowing the features of the plugin you have activated.', 'simpletags' );
+		echo '<br />';
+		echo __( '<strong>Developer\'s Notes:</strong> It would help me a lot! Because I have absolutely no idea of the features you use in this plugin :)', 'simpletags' );
+		echo '</p></div>';
+	}
+
+	/**
+	 * Test if current URL is not a DEV environnement
+	 *
+	 * Copy from monsterinsights_is_dev_url(), thanks !
+	 *
+	 * @param string $url
+	 *
+	 * @return bool
+	 */
+	private static function is_dev_url( $url = '' ) {
+		$is_local_url = false;
+
+		// Trim it up
+		$url = strtolower( trim( $url ) );
+		// Need to get the host...so let's add the scheme so we can use parse_url
+		if ( false === strpos( $url, 'http://' ) && false === strpos( $url, 'https://' ) ) {
+			$url = 'http://' . $url;
+		}
+
+		$url_parts = wp_parse_url( $url );
+		$host      = ! empty( $url_parts['host'] ) ? $url_parts['host'] : false;
+		if ( ! empty( $url ) && ! empty( $host ) ) {
+			if ( false !== ip2long( $host ) ) {
+				if ( ! filter_var( $host, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+					$is_local_url = true;
+				}
+			} elseif ( 'localhost' === $host ) {
+				$is_local_url = true;
+			}
+
+			$tlds_to_check = array( '.local', ':8888', ':8080', ':8081', '.invalid', '.example', '.test' );
+			foreach ( $tlds_to_check as $tld ) {
+				if ( false !== strpos( $host, $tld ) ) {
+					$is_local_url = true;
+					break;
+				}
+			}
+
+			if ( substr_count( $host, '.' ) > 1 ) {
+				$subdomains_to_check = array( 'dev.', '*.staging.', 'beta.', 'test.' );
+				foreach ( $subdomains_to_check as $subdomain ) {
+					$subdomain = str_replace( '.', '(.)', $subdomain );
+					$subdomain = str_replace( array( '*', '(.)' ), '(.*)', $subdomain );
+					if ( preg_match( '/^(' . $subdomain . ')/', $host ) ) {
+						$is_local_url = true;
+						break;
+					}
+				}
+			}
+		}
+
+		return $is_local_url;
 	}
 
 	/**
@@ -109,7 +208,7 @@ class SimpleTags_Admin {
 	 * @return void
 	 * @author Amaury Balmer
 	 */
-	public static function registerDetermineTaxonomy() {
+	public static function register_taxonomy() {
 		add_action( 'init', array( __CLASS__, 'init' ), 99999999 );
 	}
 
@@ -290,6 +389,8 @@ class SimpleTags_Admin {
 			}
 			SimpleTags_Plugin::set_option( $options );
 
+			do_action( 'simpletags_settings_save_general_end' );
+
 			add_settings_error( __CLASS__, __CLASS__, __( 'Options saved', 'simpletags' ), 'updated' );
 		} elseif ( isset( $_POST['reset_options'] ) ) {
 			check_admin_referer( 'updateresetoptions-simpletags' );
@@ -338,7 +439,7 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function getDefaultContentBox() {
-		if ( (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) == 0 ) { // TODO: Custom taxonomy
+		if ( (int) wp_count_terms( 'post_tag', 'ignore_empty=false' ) == 0 ) { // TODO: Custom taxonomy
 			return __( 'This feature requires at least 1 tag to work. Begin by adding tags!', 'simpletags' );
 		} else {
 			return __( 'This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simpletags' );
@@ -353,7 +454,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-        <p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2018 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2018 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
@@ -536,7 +637,7 @@ class SimpleTags_Admin {
 		global $wpdb;
 
 		if ( ! empty( $search ) ) {
-			$results = $wpdb->get_results( $wpdb->prepare( "
+			return $wpdb->get_results( $wpdb->prepare( "
 				SELECT DISTINCT t.name, t.term_id
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
@@ -545,7 +646,7 @@ class SimpleTags_Admin {
 				ORDER BY $order_by $order
 			", $taxonomy, '%' . $search . '%' ) );
 		} else {
-			$results = $wpdb->get_results( $wpdb->prepare( "
+			return $wpdb->get_results( $wpdb->prepare( "
 				SELECT DISTINCT t.name, t.term_id
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id

@@ -84,3 +84,4 @@ function init_simple_tags() {
 }
 
 add_action( 'plugins_loaded', 'init_simple_tags' );
+

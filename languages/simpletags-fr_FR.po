@@ -1116,6 +1116,16 @@ msgstr ""
 "[st-tag-cloud]</code>. S'il existe, il sera automatiquement remplacé par un "
 "nuage de tags."
 
+#: ../inc/helper.options.admin.php:2
+msgid ""
+"By allowing us to track your usage, we can help you better because we will know with what"
+ "configuration WordPress, what"
+ "themes and what extensions we should perform tests"
+msgstr ""
+"En nous autorisant à suivre votre utilisation, nous pourrons mieux vous aider car nous saurons avec quelle"
+ "configuration WordPress, quels "
+" thèmes et quelles extensions nous devrions procéder à des tests."
+
 #: ../inc/helper.options.admin.php:26
 msgid "Type of old input"
 msgstr "Format de l'ancien champ"
