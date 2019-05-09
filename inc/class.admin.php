@@ -2,13 +2,13 @@
 
 class SimpleTags_Admin {
 	// CPT and Taxonomy support
-	static $post_type = 'post';
-	static $post_type_name = '';
-	static $taxonomy = '';
-	static $taxo_name = '';
+	public static $post_type = 'post';
+	public static $post_type_name = '';
+	public static $taxonomy = '';
+	public static $taxo_name = '';
+	public static $admin_url = '';
 
-	static $admin_url = '';
-	const menu_slug = 'st_options';
+	const MENU_SLUG = 'st_options';
 
 	/**
 	 * Initialize Admin
@@ -30,38 +30,38 @@ class SimpleTags_Admin {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
 		// Load custom part of plugin depending option
-		if ( (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.suggest.php' );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
+			require STAGS_DIR . '/inc/class.admin.suggest.php';
 			new SimpleTags_Admin_Suggest();
 		}
 
-		if ( (int) SimpleTags_Plugin::get_option_value( 'use_click_tags' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.clickterms.php' );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_click_tags' ) ) {
+			require STAGS_DIR . '/inc/class.admin.clickterms.php';
 			new SimpleTags_Admin_ClickTags();
 		}
 
-		if ( (int) SimpleTags_Plugin::get_option_value( 'use_autocompletion' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.autocomplete.php' );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_autocompletion' ) ) {
+			require STAGS_DIR . '/inc/class.admin.autocomplete.php';
 			new SimpleTags_Admin_Autocomplete();
 		}
 
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_mass_edit' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.mass.php' );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_mass_edit' ) ) {
+			require STAGS_DIR . '/inc/class.admin.mass.php';
 			new SimpleTags_Admin_Mass();
 		}
 
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_manage' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.manage.php' );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_manage' ) ) {
+			require STAGS_DIR . '/inc/class.admin.manage.php';
 			new SimpleTags_Admin_Manage();
 		}
 
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.autoterms.php' );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) ) {
+			require STAGS_DIR . '/inc/class.admin.autoterms.php';
 			new SimpleTags_Admin_AutoTags();
 		}
 
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) == 1 || (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.admin.post.php' );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) || 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) ) {
+			require STAGS_DIR . '/inc/class.admin.post.php';
 			new SimpleTags_Admin_Post_Settings();
 		}
 
@@ -245,7 +245,7 @@ class SimpleTags_Admin {
 		// Default taxo from CPT...
 		if ( ! isset( $taxo ) && is_array( $compatible_taxonomies ) && ! empty( $compatible_taxonomies ) ) {
 			// Take post_tag before category
-			if ( in_array( 'post_tag', $compatible_taxonomies ) ) {
+			if ( in_array( 'post_tag', $compatible_taxonomies, true ) ) {
 				$taxo = get_taxonomy( 'post_tag' );
 			} else {
 				$taxo = get_taxonomy( current( $compatible_taxonomies ) );
@@ -295,7 +295,7 @@ class SimpleTags_Admin {
 		echo '<select name="taxo" id="taxonomy-select">' . PHP_EOL;
 		foreach ( get_object_taxonomies( self::$post_type ) as $tax_name ) {
 			$taxonomy = get_taxonomy( $tax_name );
-			if ( $taxonomy->show_ui == false ) {
+			if ( false === (bool) $taxonomy->show_ui ) {
 				continue;
 			}
 
@@ -357,11 +357,17 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-		add_options_page( __( 'Simple Tags: Options', 'simpletags' ), __( 'Simple Tags', 'simpletags' ), 'admin_simple_tags', self::menu_slug, array(
-			__CLASS__,
-			'page_options',
-		) );
-		self::$admin_url = admin_url( '/options-general.php?page=' . self::menu_slug );
+		add_options_page(
+			__( 'Simple Tags: Options', 'simpletags' ),
+			__( 'Simple Tags', 'simpletags' ),
+			'admin_simple_tags',
+			self::MENU_SLUG,
+			array(
+				__CLASS__,
+				'page_options',
+			)
+		);
+		self::$admin_url = admin_url( '/options-general.php?page=' . self::MENU_SLUG );
 	}
 
 	/**
@@ -398,7 +404,7 @@ class SimpleTags_Admin {
 		}
 
 		settings_errors( __CLASS__ );
-		include( STAGS_DIR . '/views/admin/page-settings.php' );
+		include STAGS_DIR . '/views/admin/page-settings.php';
 	}
 
 	/**
@@ -417,7 +423,7 @@ class SimpleTags_Admin {
 		}
 
 		$terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
-		if ( $terms == false ) {
+		if ( empty( $terms ) ||  is_wp_error( $terms ) ) {
 			return '';
 		}
 
