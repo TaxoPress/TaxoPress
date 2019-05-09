@@ -39,11 +39,15 @@ class SimpleTags_Admin_Post_Settings {
 	 * @author Amaury Balmer
 	 */
 	public static function metabox( $post ) {
+		if ( ! isset( $post->post_type ) ) {
+			return;
+		}
+
 		// Get auto options
 		$auto_options = get_option( STAGS_OPTIONS_NAME_AUTO );
 
 		// Auto terms for this CPT ?
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) == 1 && isset( $auto_options[ $post->post_type ] ) && ! empty( $auto_options[ $post->post_type ] ) ) {
+		if ( (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) === 1 && isset( $auto_options[ $post->post_type ] ) && ! empty( $auto_options[ $post->post_type ] ) ) {
 			$meta_value = get_post_meta( $post->ID, '_exclude_autotags', true );
 			echo '<p>' . "\n";
 			echo '<label><input type="checkbox" name="exclude_autotags" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable auto tags ?', 'simpletags' ) . '</label><br />' . "\n";
@@ -52,7 +56,7 @@ class SimpleTags_Admin_Post_Settings {
 		}
 
 		$taxonomies = get_object_taxonomies( $post->post_type );
-		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) == 1 && in_array( 'post_tag', $taxonomies ) ) {
+		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 1 && in_array( 'post_tag', $taxonomies, true ) ) {
 			$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
 			echo '<p>' . "\n";
 			echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable auto links ?', 'simpletags' ) . '</label><br />' . "\n";
@@ -70,7 +74,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @author Amaury Balmer
 	 */
 	public static function save_post( $object_id = 0 ) {
-		if ( isset( $_POST['_meta_autotags'] ) && $_POST['_meta_autotags'] == 'true' ) {
+		if ( isset( $_POST['_meta_autotags'] ) && 'true' === $_POST['_meta_autotags'] ) {
 			if ( isset( $_POST['exclude_autotags'] ) ) {
 				update_post_meta( $object_id, '_exclude_autotags', true );
 			} else {
@@ -78,7 +82,7 @@ class SimpleTags_Admin_Post_Settings {
 			}
 		}
 
-		if ( isset( $_POST['_meta_autolink'] ) && $_POST['_meta_autolink'] == 'true' ) {
+		if ( isset( $_POST['_meta_autolink'] ) && 'true' === $_POST['_meta_autolink'] ) {
 			if ( isset( $_POST['exclude_autolinks'] ) ) {
 				update_post_meta( $object_id, '_exclude_autolinks', true );
 			} else {
