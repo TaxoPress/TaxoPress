@@ -1,5 +1,7 @@
 # Simple Tags #
 
+[![CodeFactor](https://www.codefactor.io/repository/github/beapi/simple-tags/badge)](https://www.codefactor.io/repository/github/beapi/simple-tags)
+
 * **Contributors:** momo360modena, rahe, beapi
 * **Donate link:** http://beapi.fr/donate/  
 * **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
