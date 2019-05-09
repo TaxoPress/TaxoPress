@@ -141,11 +141,6 @@ class SimpleTags_Client_TagCloud {
 			$xformat = $defaults['xformat'];
 		}
 
-		// Clean memory
-		$args     = array();
-		$defaults = array();
-		unset( $args, $defaults );
-
 		if ( empty( $terms ) ) {
 			return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
 		}

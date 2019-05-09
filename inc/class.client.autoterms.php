@@ -147,10 +147,6 @@ class SimpleTags_Client_Autoterms {
 					$terms_to_add[] = $term;
 				}
 			}
-
-			// Clean memory
-			$terms = array();
-			unset( $terms, $term );
 		}
 
 		// Append terms if terms to add

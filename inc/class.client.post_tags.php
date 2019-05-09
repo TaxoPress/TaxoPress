@@ -130,10 +130,6 @@ class SimpleTags_Client_PostTags {
 			$xformat = $defaults['xformat'];
 		}
 
-		// Clean memory
-		$args     = array();
-		$defaults = array();
-
 		// Choose post ID
 		$object_id = (int) $post_id;
 		if ( $object_id == 0 ) {
@@ -196,11 +192,6 @@ class SimpleTags_Client_PostTags {
 
 			$output[] = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, null );
 		}
-
-		// Clean memory
-		$terms = array();
-		unset( $terms, $term );
-
 
 		// Array to string
 		if ( is_array( $output ) && ! empty( $output ) ) {

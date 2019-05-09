@@ -131,10 +131,6 @@ class SimpleTags_Client_RelatedPosts {
 			$xformat = $defaults['xformat'];
 		}
 
-		// Clean memory
-		$args     = array();
-		$defaults = array();
-
 		// Get current post data
 		$object_id = (int) $post_id;
 		if ( $object_id == 0 ) {
@@ -345,10 +341,6 @@ class SimpleTags_Client_RelatedPosts {
 
 			$output[] = $element_loop;
 		}
-
-		// Clean memory
-		$results = array();
-		unset( $results, $result );
 
 		return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $output, $copyright, $separator );
 	}
