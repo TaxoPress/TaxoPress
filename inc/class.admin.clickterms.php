@@ -9,7 +9,7 @@ class SimpleTags_Admin_ClickTags {
 	 */
 	public function __construct() {
 		// Ajax action, JS Helper and admin action
-		add_action( 'wp_ajax_' . 'simpletags', array( __CLASS__, 'ajax_check' ) );
+		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
 
 		// Box for post/page
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ), 1 );

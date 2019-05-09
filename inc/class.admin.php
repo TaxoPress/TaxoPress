@@ -554,31 +554,22 @@ class SimpleTags_Admin {
 		switch ( $id ) {
 			case 'administration':
 				return __( 'Administration', 'simpletags' );
-				break;
 			case 'auto-links':
 				return __( 'Auto link', 'simpletags' );
-				break;
 			case 'features':
 				return __( 'Features', 'simpletags' );
-				break;
 			case 'metakeywords':
 				return __( 'Meta Keyword', 'simpletags' );
-				break;
 			case 'embeddedtags':
 				return __( 'Embedded Tags', 'simpletags' );
-				break;
 			case 'tagspost':
 				return __( 'Tags for Current Post', 'simpletags' );
-				break;
 			case 'relatedposts':
 				return __( 'Related Posts', 'simpletags' );
-				break;
 			case 'relatedtags':
 				return __( 'Related Tags', 'simpletags' );
-				break;
 			case 'tagcloud':
 				return __( 'Tag cloud', 'simpletags' );
-				break;
 		}
 
 		return '';
