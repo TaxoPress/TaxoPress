@@ -31,10 +31,15 @@ class SimpleTags_Admin_Autocomplete {
 		global $pagenow;
 
 		// Register JS/CSS
-		wp_register_script( 'st-helper-autocomplete', STAGS_URL . '/assets/js/helper-autocomplete.js', array(
-			'jquery',
-			'jquery-ui-autocomplete',
-		), STAGS_VERSION );
+		wp_register_script(
+			'st-helper-autocomplete',
+			STAGS_URL . '/assets/js/helper-autocomplete.js',
+			array(
+				'jquery',
+				'jquery-ui-autocomplete',
+			),
+			STAGS_VERSION
+		);
 
 		// Declare locations
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
@@ -109,10 +114,19 @@ class SimpleTags_Admin_Autocomplete {
 	 *
 	 * @param int $post_id
 	 *
-	 * @return boolean
+	 * @return void
 	 * @author Amaury Balmer
 	 */
 	public static function save_post( $post_id = 0 ) {
+		// Update only if metabox is display
+		if ( ! isset( $_POST['adv-tags-input-here'] ) ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['nonce-simple-tags'] ) || ! wp_verify_nonce( $_POST['nonce-simple-tags'], 'update-simple-tags' ) ) {
+			return;
+		}
+
 		if ( ! empty( $_POST['adv-tags-input'] ) ) {
 
 			// Trim/format data
@@ -128,19 +142,14 @@ class SimpleTags_Admin_Autocomplete {
 			// Add new tag (no append ! replace !)
 			wp_set_object_terms( $post_id, $tags, 'post_tag' );
 
-			// Clean cache
-			clean_post_cache( $post_id );
+		} else {
 
-			return true;
+			wp_delete_object_term_relationships( $post_id, 'post_tag' );
 
 		}
 
-		wp_delete_object_term_relationships( $post_id, 'post_tag' );
-
 		// Clean cache
 		clean_post_cache( $post_id );
-
-		return false;
 	}
 
 	/**
@@ -154,25 +163,33 @@ class SimpleTags_Admin_Autocomplete {
 
 
 	public static function add_meta_boxes( $post_type ) {
-
 		$taxonomies = get_object_taxonomies( $post_type );
-		if ( in_array( 'post_tag', $taxonomies, true ) ) {
-			if ( 'page' === $post_type && ! is_page_have_tags() ) {
-				return false;
-			}
-
-			remove_meta_box( 'post_tagdiv', $post_type, 'side' );
-			remove_meta_box( 'tagsdiv-post_tag', $post_type, 'side' );
-
-			add_meta_box( 'adv-tagsdiv', __( 'Tags (Simple Tags)', 'simpletags' ), array(
-				__CLASS__,
-				'metabox',
-			), $post_type, 'side', 'core', array( 'taxonomy' => 'post_tag' ) );
-
-			return true;
+		if ( ! in_array( 'post_tag', $taxonomies, true ) ) {
+			return;
 		}
 
-		return false;
+		if ( 'page' === $post_type && ! is_page_have_tags() ) {
+			return;
+		}
+
+		remove_meta_box( 'post_tagdiv', $post_type, 'side' );
+		remove_meta_box( 'tagsdiv-post_tag', $post_type, 'side' );
+
+		add_meta_box(
+			'adv-tagsdiv',
+			__( 'Tags (Simple Tags)', 'simpletags' ),
+			array(
+				__CLASS__,
+				'metabox',
+			),
+			$post_type,
+			'side',
+			'core',
+			array(
+				'taxonomy' => 'post_tag',
+			)
+		);
+
 	}
 
 	/**
@@ -187,23 +204,24 @@ class SimpleTags_Admin_Autocomplete {
 		// Get options
 		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value( 'autocomplete_min' );
 		?>
-        <p>
-            <input type="hidden" name="adv-tags-input-here" value="1"/>
+		<p>
+			<?php wp_nonce_field( 'update-simple-tags', 'nonce-simple-tags' ); ?>
+			<input type="hidden" name="adv-tags-input-here" value="1"/>
 			<?php if ( 'textarea' === SimpleTags_Plugin::get_option_value( 'autocomplete_type' ) ) : ?>
-                <textarea class="widefat" name="adv-tags-input" id="adv-tags-input" rows="3"
-                          cols="5"><?php echo SimpleTags_Admin::getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
+				<textarea class="widefat" name="adv-tags-input" id="adv-tags-input" rows="3"
+						  cols="5"><?php echo SimpleTags_Admin::getTermsToEdit( 'post_tag', $post->ID ); ?></textarea>
 			<?php else : ?>
-                <input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input"
-                       value="<?php echo esc_attr( SimpleTags_Admin::getTermsToEdit( 'post_tag', $post->ID ) ); ?>"/>
+				<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input"
+					   value="<?php echo esc_attr( SimpleTags_Admin::getTermsToEdit( 'post_tag', $post->ID ) ); ?>"/>
 			<?php endif; ?>
 
 			<?php esc_html_e( 'Separate tags with commas', 'simpletags' ); ?>
-        </p>
-        <script type="text/javascript">
+		</p>
+		<script type="text/javascript">
           <!--
           st_init_autocomplete('#adv-tags-input', '<?php echo admin_url( "admin-ajax.php?action=simpletags&stags_action=helper_js_collection" ); ?>', <?php echo $autocomplete_min; ?>)
           -->
-        </script>
+		</script>
 		<?php
 	}
 
@@ -219,11 +237,11 @@ class SimpleTags_Admin_Autocomplete {
 		// Get option
 		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value( 'autocomplete_min' );
 		?>
-        <script type="text/javascript">
+		<script type="text/javascript">
           <!--
           st_init_autocomplete('#auto_list', "<?php echo admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy ); ?>", <?php echo $autocomplete_min; ?>)
           -->
-        </script>
+		</script>
 		<?php
 	}
 
@@ -239,11 +257,11 @@ class SimpleTags_Admin_Autocomplete {
 		// Get option
 		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value( 'autocomplete_min' );
 		?>
-        <script type="text/javascript">
+		<script type="text/javascript">
           <!--
           st_init_autocomplete('.autocomplete-input', "<?php echo admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy ); ?>", <?php echo $autocomplete_min; ?>)
           -->
-        </script>
+		</script>
 		<?php
 	}
 
@@ -259,12 +277,11 @@ class SimpleTags_Admin_Autocomplete {
 		// Get option
 		$autocomplete_min = (int) SimpleTags_Plugin::get_option_value( 'autocomplete_min' );
 		?>
-        <script type="text/javascript">
+		<script type="text/javascript">
           <!--
           st_init_autocomplete('.autocomplete-input', "<?php echo admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy ); ?>", <?php echo $autocomplete_min; ?>)
           -->
-        </script>
+		</script>
 		<?php
 	}
 }
-
