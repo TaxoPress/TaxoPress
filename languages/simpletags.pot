@@ -1,81 +1,70 @@
 # Copyright (C) 2010 Simple Tags
 # This file is distributed under the same license as the Simple Tags package.
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Simple Tags 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2013-06-17 23:31+0100\n"
+"POT-Creation-Date: 2019-05-10 07:01+0200\n"
 "PO-Revision-Date: 2013-06-17 23:31+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../simple-tags.php:49
-#, php-format
-msgid ""
-"Your PHP version is too old, please upgrade to a newer version. Your version "
-"is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins "
-"directory with FTP client."
-msgstr ""
-
-#: ../inc/class.admin.autocomplete.php:152
+#: ../inc/class.admin.autocomplete.php:167
 msgid "Tags (Simple Tags)"
 msgstr ""
 
-#: ../inc/class.admin.autocomplete.php:179
-msgid "Separate tags with commas"
-msgstr ""
-
-#: ../inc/class.admin.autoterms.php:23
+#: ../inc/class.admin.autoterms.php:27
 msgid "Simple Terms: Auto Terms"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:23
+#: ../inc/class.admin.autoterms.php:27
 msgid "Auto Terms"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:79
+#: ../inc/class.admin.autoterms.php:91
 msgid "Auto terms options updated !"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:96
+#: ../inc/class.admin.autoterms.php:108
 msgid "Overview"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:97
+#: ../inc/class.admin.autoterms.php:109
 msgid ""
 "The bulb are lit when the association taxonomy and custom post type have the "
 "classification automatic activated. Otherwise, the bulb is off."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:101 ../inc/class.admin.autoterms.php:114
+#: ../inc/class.admin.autoterms.php:114 ../inc/class.admin.autoterms.php:129
 msgid "Custom types / Taxonomies"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:155
+#: ../inc/class.admin.autoterms.php:172
 msgid "Context configured & actived."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:157
+#: ../inc/class.admin.autoterms.php:174
 msgid "Context unconfigured."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:174
+#: ../inc/class.admin.autoterms.php:191
 #, php-format
 msgid "Auto Terms for %s and %s"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:178
+#: ../inc/class.admin.autoterms.php:195
 msgid "Auto terms list"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:179
+#: ../inc/class.admin.autoterms.php:196
 msgid ""
 "This feature allows Wordpress to look into post content and title for "
 "specified terms when saving posts. If your post content or title contains "
@@ -83,277 +72,279 @@ msgid ""
 "Tags will add automatically \"wordpress\" as term for this post."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:181
+#: ../inc/class.admin.autoterms.php:198
 msgid "Options"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:185
+#: ../inc/class.admin.autoterms.php:204
 msgid "Activation"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:188
+#: ../inc/class.admin.autoterms.php:208
 msgid "Active Auto Tags."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:192
+#: ../inc/class.admin.autoterms.php:212
 msgid "Terms database"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:195
+#: ../inc/class.admin.autoterms.php:217
 msgid ""
 "Use also local terms database with auto terms. (Warning, this option can "
 "increases the CPU consumption a lot if you have many terms)"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:199
+#: ../inc/class.admin.autoterms.php:221
 msgid "Target"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:202
+#: ../inc/class.admin.autoterms.php:226
 msgid "Autotag only posts without terms."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:206
+#: ../inc/class.admin.autoterms.php:230
 msgid "Whole Word ?"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:209
+#: ../inc/class.admin.autoterms.php:235
 msgid ""
 "Autotag only a post when terms finded in the content are a the same name. "
 "(whole word only)"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:213
+#: ../inc/class.admin.autoterms.php:239
+msgid "Suport Hashtag format ?"
+msgstr ""
+
+#: ../inc/class.admin.autoterms.php:244
+msgid ""
+"When the whole word option is enabled, hashtag will not be autotag because "
+"of # prefix. This option allow to fixed this issue!"
+msgstr ""
+
+#: ../inc/class.admin.autoterms.php:248
 msgid "Keywords list"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:216
+#: ../inc/class.admin.autoterms.php:253
 msgid "Separated with a comma"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:223 ../views/admin/page-settings.php:40
+#: ../inc/class.admin.autoterms.php:261 ../views/admin/page-settings.php:44
 msgid "Update options &raquo;"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:227
+#: ../inc/class.admin.autoterms.php:265
 msgid "Auto terms old content"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:229
+#: ../inc/class.admin.autoterms.php:267
 msgid ""
 "Simple Tags can also tag all existing contents of your blog. This feature "
 "use auto terms list above-mentioned."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:232
+#: ../inc/class.admin.autoterms.php:271
 msgid "Auto terms all content &raquo;"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:254
+#: ../inc/class.admin.autoterms.php:294
 msgid ""
 "If your browser doesn't start loading the next page automatically click this "
 "link:"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:254
+#: ../inc/class.admin.autoterms.php:295
 msgid "Next content"
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:267
+#: ../inc/class.admin.autoterms.php:309
 #, php-format
 msgid "All done! %s terms added."
 msgstr ""
 
-#: ../inc/class.admin.autoterms.php:272 ../inc/class.admin.manage.php:105
-#: ../inc/class.admin.mass.php:250
+#: ../inc/class.admin.autoterms.php:315 ../inc/class.admin.manage.php:108
+#: ../inc/class.admin.mass.php:276
 msgid ""
 "Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
 "idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
 msgstr ""
 
-#: ../inc/class.admin.clickterms.php:30
+#: ../inc/class.admin.clickterms.php:44
 msgid "Display click tags"
 msgstr ""
 
-#: ../inc/class.admin.clickterms.php:30
+#: ../inc/class.admin.clickterms.php:45
 msgid "Hide click tags"
 msgstr ""
 
-#: ../inc/class.admin.clickterms.php:49 ../inc/class.admin.clickterms.php:51
+#: ../inc/class.admin.clickterms.php:69 ../inc/class.admin.clickterms.php:82
 msgid "Click tags"
 msgstr ""
 
-#: ../inc/class.admin.clickterms.php:87 ../inc/class.admin.suggest.php:342
-msgid "No terms in your WordPress database."
-msgstr ""
-
-#: ../inc/class.admin.clickterms.php:126 ../inc/class.admin.suggest.php:358
-msgid "No results from your WordPress database."
-msgstr ""
-
-#: ../inc/class.admin.manage.php:44
+#: ../inc/class.admin.manage.php:43
 msgid "Simple Terms: Manage Terms"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:44
+#: ../inc/class.admin.manage.php:43
 msgid "Manage Terms"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:58 ../inc/class.admin.mass.php:42
+#: ../inc/class.admin.manage.php:60 ../inc/class.admin.mass.php:49
 msgid ""
 "Security problem. Try again. If this problem persist, contact <a href="
 "\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:62
+#: ../inc/class.admin.manage.php:64
 msgid ""
 "Missing valid taxonomy for work... Try again. If this problem persist, "
 "contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:104
+#: ../inc/class.admin.manage.php:106
 msgid "Simple Tags: Manage Terms"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:109
+#: ../inc/class.admin.manage.php:112
 msgid "Click terms list:"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:117
+#: ../inc/class.admin.manage.php:124
 msgid "Least used"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:118
+#: ../inc/class.admin.manage.php:126
 msgid "Most popular"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:119
+#: ../inc/class.admin.manage.php:128
 msgid "Alphabetical (default)"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:120
+#: ../inc/class.admin.manage.php:130
 msgid "Inverse Alphabetical"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:121 ../inc/class.widgets.php:203
+#: ../inc/class.admin.manage.php:132 ../inc/class.widgets.php:243
 msgid "Random"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:123
+#: ../inc/class.admin.manage.php:134
 msgid "Sort"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:144
+#: ../inc/class.admin.manage.php:157
 msgid "Rename/Merge Terms"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:146
+#: ../inc/class.admin.manage.php:159
 msgid ""
 "Enter the term to rename and its new value. You can use this feature to "
 "merge terms too. Click \"Rename\" and all posts which use this term will be "
 "updated."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:147
+#: ../inc/class.admin.manage.php:161
 msgid ""
 "You can specify multiple terms to rename by separating them with commas."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:158
+#: ../inc/class.admin.manage.php:176
 msgid "Term(s) to rename:"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:164
+#: ../inc/class.admin.manage.php:184
 msgid "New term name(s):"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:169
+#: ../inc/class.admin.manage.php:191
 msgid "Rename"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:176
+#: ../inc/class.admin.manage.php:198
 msgid "Delete Terms"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:178
+#: ../inc/class.admin.manage.php:200
 msgid ""
 "Enter the name of terms to delete. Terms will be removed from all posts."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:179
+#: ../inc/class.admin.manage.php:202
 msgid "You can specify multiple terms to delete by separating them with commas"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:190
+#: ../inc/class.admin.manage.php:218
 msgid "Term(s) to delete:"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:195
+#: ../inc/class.admin.manage.php:225
 msgid "Delete"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:202
+#: ../inc/class.admin.manage.php:232
 msgid "Add Terms"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:204
+#: ../inc/class.admin.manage.php:234
 msgid ""
 "This feature lets you add one or more new terms to all posts which match any "
 "of the terms given."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:205
+#: ../inc/class.admin.manage.php:236
 msgid ""
 "You can specify multiple terms to add by separating them with commas.  If "
 "you want the term(s) to be added to all posts, then don't specify any terms "
 "to match."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:216
+#: ../inc/class.admin.manage.php:250
 msgid "Term(s) to match:"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:222
+#: ../inc/class.admin.manage.php:258
 msgid "Term(s) to add:"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:227
+#: ../inc/class.admin.manage.php:265
 msgid "Add"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:234
+#: ../inc/class.admin.manage.php:272
 msgid "Remove rarely used terms"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:236
+#: ../inc/class.admin.manage.php:274
 msgid "This feature allows you to remove rarely used terms."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:237
+#: ../inc/class.admin.manage.php:276
 msgid ""
 "You can specify the number below which will be removed terms. If you put 5, "
 "all terms with a counter inferior to 5 will be deleted. The terms with a "
 "counter equal to 5 is keep."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:248
+#: ../inc/class.admin.manage.php:290
 msgid "Numbers minimum:"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:257
+#: ../inc/class.admin.manage.php:300
 msgid "Delete rarely used"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:298
+#: ../inc/class.admin.manage.php:342
 msgid "Technical informations"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:300
+#: ../inc/class.admin.manage.php:344
 msgid "Renaming"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:301
+#: ../inc/class.admin.manage.php:347
 msgid ""
 "Simple Tags don't use the same method as WordPress for rename a term. For "
 "example, in WordPress you have 2 terms : \"Blogging\" and \"Bloging\". When "
@@ -364,579 +355,664 @@ msgid ""
 "\"Bloging\". Another logic ;)"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:324
+#: ../inc/class.admin.manage.php:372
 msgid "No new term specified!"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:338
+#: ../inc/class.admin.manage.php:387
 msgid "No new/old valid term specified!"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:384
+#: ../inc/class.admin.manage.php:434
 msgid "No term renamed."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:386
+#: ../inc/class.admin.manage.php:436
 #, php-format
 msgid "Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:393
+#: ../inc/class.admin.manage.php:442
 msgid "No valid new term."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:409
+#: ../inc/class.admin.manage.php:459
 msgid "No objects found for specified old terms."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:437
+#: ../inc/class.admin.manage.php:488
 msgid "No term merged."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:439
+#: ../inc/class.admin.manage.php:490
 #, php-format
 msgid ""
 "Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:442
+#: ../inc/class.admin.manage.php:493
 msgid "Error. No enough terms for rename. Too for merge. Choose !"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:457
+#: ../inc/class.admin.manage.php:510
 msgid "No term specified!"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:479 ../inc/class.admin.manage.php:584
+#: ../inc/class.admin.manage.php:533 ../inc/class.admin.manage.php:642
 msgid "No term deleted."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:481 ../inc/class.admin.manage.php:586
+#: ../inc/class.admin.manage.php:535 ../inc/class.admin.manage.php:644
 #, php-format
 msgid "%1s term(s) deleted."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:498
+#: ../inc/class.admin.manage.php:553
 msgid "No new term(s) specified!"
 msgstr ""
 
-#: ../inc/class.admin.manage.php:548
+#: ../inc/class.admin.manage.php:604
 msgid "No term added."
 msgstr ""
 
-#: ../inc/class.admin.manage.php:550
+#: ../inc/class.admin.manage.php:606
 #, php-format
 msgid "Term(s) added to %1s post(s)."
 msgstr ""
 
-#: ../inc/class.admin.mass.php:22
+#: ../inc/class.admin.mass.php:26
 msgid "Simple Terms: Mass Edit Terms"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:22
+#: ../inc/class.admin.mass.php:26
 msgid "Mass Edit Terms"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:70
+#: ../inc/class.admin.mass.php:74
 #, php-format
 msgid "%1$s %2$s(s) terms updated with success !"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:100 ../inc/helper.options.admin.php:6
+#: ../inc/class.admin.mass.php:106 ../inc/helper.options.admin.php:13
 msgid "Mass edit terms"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:107
+#: ../inc/class.admin.mass.php:113
 msgid "All"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:135
+#: ../inc/class.admin.mass.php:143
 msgid "Search"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:168
+#: ../inc/class.admin.mass.php:180
 msgid "Show all dates"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:191
+#: ../inc/class.admin.mass.php:207
 msgid "Quantity&hellip;"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:201
+#: ../inc/class.admin.mass.php:217
 msgid "Filter"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:218
+#: ../inc/class.admin.mass.php:235
 msgid "Post title"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:219
+#: ../inc/class.admin.mass.php:236
 #, php-format
 msgid "Terms : %s"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:230
+#: ../inc/class.admin.mass.php:249
 msgid "Edit"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:241
+#: ../inc/class.admin.mass.php:266
 msgid "Update all &raquo;"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:247
+#: ../inc/class.admin.mass.php:272
 msgid "No content to edit."
 msgstr ""
 
-#: ../inc/class.admin.mass.php:287
+#: ../inc/class.admin.mass.php:319
 msgid "Published posts"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:288
+#: ../inc/class.admin.mass.php:324
 msgid "Scheduled posts"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:289
+#: ../inc/class.admin.mass.php:329
 msgid "Pending posts"
 msgstr ""
 
-#: ../inc/class.admin.mass.php:291
+#: ../inc/class.admin.mass.php:339
 msgid "Private posts"
 msgstr ""
 
-#: ../inc/class.admin.php:89
+#: ../inc/class.admin.php:138
+msgid "Do not allow"
+msgstr ""
+
+#: ../inc/class.admin.php:139
+msgid "Allow"
+msgstr ""
+
+#: ../inc/class.admin.php:141
+msgid ""
+"<strong>Simple Tags:</strong> By allowing us to track your usage, we can "
+"make a better plugin by knowing the features of the plugin you have "
+"activated."
+msgstr ""
+
+#: ../inc/class.admin.php:143
+msgid ""
+"<strong>Developer's Notes:</strong> It would help me a lot! Because I have "
+"absolutely no idea of the features you use in this plugin :)"
+msgstr ""
+
+#: ../inc/class.admin.php:219
 msgid "Post tags"
 msgstr ""
 
-#: ../inc/class.admin.php:90
+#: ../inc/class.admin.php:220
 msgid "Posts"
 msgstr ""
 
-#: ../inc/class.admin.php:129
+#: ../inc/class.admin.php:259
 msgid "This custom post type not have taxonomies."
 msgstr ""
 
-#: ../inc/class.admin.php:145
+#: ../inc/class.admin.php:276
 #, php-format
 msgid ""
 "You currently use the custom post type \"<span>%s</span>\" and the taxonomy "
 "\"<span>%s</span>\""
 msgstr ""
 
-#: ../inc/class.admin.php:175
+#: ../inc/class.admin.php:306
 msgid "Change selection"
 msgstr ""
 
-#: ../inc/class.admin.php:228 ../views/admin/page-settings.php:3
+#: ../inc/class.admin.php:361 ../views/admin/page-settings.php:3
 msgid "Simple Tags: Options"
 msgstr ""
 
-#: ../inc/class.admin.php:228
+#: ../inc/class.admin.php:362
 msgid "Simple Tags"
 msgstr ""
 
-#: ../inc/class.admin.php:256
+#: ../inc/class.admin.php:397
 msgid "Options saved"
 msgstr ""
 
-#: ../inc/class.admin.php:263
+#: ../inc/class.admin.php:403
 msgid "Simple Tags options resetted to default options!"
 msgstr ""
 
-#: ../inc/class.admin.php:303
+#: ../inc/class.admin.php:446
 msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
 msgstr ""
 
-#: ../inc/class.admin.php:305
+#: ../inc/class.admin.php:448
 msgid ""
 "This feature works only with activated JavaScript. Activate it in your Web "
 "browser so you can!"
 msgstr ""
 
-#: ../inc/class.admin.php:317
+#: ../inc/class.admin.php:460
 #, php-format
 msgid ""
-"&copy; Copyright 2007-2013 <a href=\"http://www.herewithme.fr/\" title="
+"&copy; Copyright 2007-2019 <a href=\"http://www.herewithme.fr/\" title="
 "\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
 "plugins/simple-tags\">Simple Tags</a> | Version %s"
 msgstr ""
 
-#: ../inc/class.admin.php:417
+#: ../inc/class.admin.php:562
 msgid "Administration"
 msgstr ""
 
-#: ../inc/class.admin.php:420
+#: ../inc/class.admin.php:564
 msgid "Auto link"
 msgstr ""
 
-#: ../inc/class.admin.php:423
+#: ../inc/class.admin.php:566
 msgid "Features"
 msgstr ""
 
-#: ../inc/class.admin.php:426
+#: ../inc/class.admin.php:568
 msgid "Meta Keyword"
 msgstr ""
 
-#: ../inc/class.admin.php:429
+#: ../inc/class.admin.php:570
 msgid "Embedded Tags"
 msgstr ""
 
-#: ../inc/class.admin.php:432
+#: ../inc/class.admin.php:572
 msgid "Tags for Current Post"
 msgstr ""
 
-#: ../inc/class.admin.php:435
+#: ../inc/class.admin.php:574
 msgid "Related Posts"
 msgstr ""
 
-#: ../inc/class.admin.php:438
+#: ../inc/class.admin.php:576
 msgid "Related Tags"
 msgstr ""
 
-#: ../inc/class.admin.php:441 ../inc/class.widgets.php:42
+#: ../inc/class.admin.php:578 ../inc/class.widgets.php:48
 msgid "Tag cloud"
 msgstr ""
 
-#: ../inc/class.admin.post.php:25
+#: ../inc/class.admin.post.php:27
 msgid "Simple Tags - Settings"
 msgstr ""
 
-#: ../inc/class.admin.post.php:46
+#: ../inc/class.admin.post.php:53
 msgid "Disable auto tags ?"
 msgstr ""
 
-#: ../inc/class.admin.post.php:55
+#: ../inc/class.admin.post.php:62
 msgid "Disable auto links ?"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:27
+#: ../inc/class.admin.suggest.php:37
 msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:44
+#: ../inc/class.admin.suggest.php:55
 msgid "Ajax loading"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:45
+#: ../inc/class.admin.suggest.php:56
 msgid "Suggested tags from :"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:46
+#: ../inc/class.admin.suggest.php:57
 msgid "Local tags"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:47
+#: ../inc/class.admin.suggest.php:58
 msgid "Yahoo"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:48
+#: ../inc/class.admin.suggest.php:59
 msgid "OpenCalais"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:49
+#: ../inc/class.admin.suggest.php:60
 msgid "AlchemyAPI"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:50
+#: ../inc/class.admin.suggest.php:61
 msgid "Zemanta"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:62 ../inc/class.admin.suggest.php:64
+#: ../inc/class.admin.suggest.php:62
+msgid "dataTXT by Dandelion"
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:63
+msgid "Tag4Site.RU"
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:64
+msgid "Proxem"
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:76 ../inc/class.admin.suggest.php:81
 msgid "Suggested tags"
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:129
+#: ../inc/class.admin.suggest.php:146
 msgid ""
 "OpenCalais need an API key to work. You can register on service website to "
 "obtain a key and set it on Simple Tags options."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:137 ../inc/class.admin.suggest.php:193
-#: ../inc/class.admin.suggest.php:247 ../inc/class.admin.suggest.php:294
-#: ../inc/class.admin.suggest.php:351
+#: ../inc/class.admin.suggest.php:154 ../inc/class.admin.suggest.php:217
+#: ../inc/class.admin.suggest.php:274 ../inc/class.admin.suggest.php:326
+#: ../inc/class.admin.suggest.php:410 ../inc/class.admin.suggest.php:468
+#: ../inc/class.admin.suggest.php:525 ../inc/class.admin.suggest.php:572
 msgid "No text was sent."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:157
+#: ../inc/class.admin.suggest.php:184
 msgid "No results from OpenCalais service."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:185
+#: ../inc/class.admin.suggest.php:209
 msgid ""
 "AlchemyAPI need an API key to work. You can register on service website to "
 "obtain a key and set it on Simple Tags options."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:215
+#: ../inc/class.admin.suggest.php:245
 msgid "No results from Alchemy API."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:239
+#: ../inc/class.admin.suggest.php:266
 msgid ""
 "Zemanta need an API key to work. You can register on service website to "
 "obtain a key and set it on Simple Tags options."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:271
+#: ../inc/class.admin.suggest.php:301
 msgid "No results from Zemanta API."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:315
+#: ../inc/class.admin.suggest.php:342
+msgid ""
+"dataTXT needs an API ID to work. You can register on service website to "
+"obtain a key and set it on Simple Tags options."
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:348
+msgid ""
+"dataTXT needs an API key to work. You can register on service website to "
+"obtain a key and set it on Simple Tags options."
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:369
+msgid "Invalid dataTXT ID/Key or access token !"
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:381
+msgid "No results from dataTXT API."
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:402
+msgid ""
+"Tag4Site need an API key to work. You can register on service website to "
+"obtain a key and set it on Simple Tags options."
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:436
+msgid "Tag4Site API error #"
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:443
+msgid "No data from Tag4Site API. Try again later."
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:489
 msgid "No results from Yahoo! service."
 msgstr ""
 
-#: ../inc/class.admin.suggest.php:372
+#: ../inc/class.admin.suggest.php:516
+msgid "No terms in your WordPress database."
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:532
+msgid "No results from your WordPress database."
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:546
 msgid ""
 "No correspondance between your content and terms from the WordPress database."
 msgstr ""
 
-#: ../inc/class.client.autolinks.php:165
-#, php-format
-msgid "Posts tagged with %s"
+#: ../inc/class.admin.suggest.php:564
+msgid ""
+"Proxem API need an API key to work. You can register on service website to "
+"obtain a key and set it on Simple Tags options."
 msgstr ""
 
-#: ../inc/class.client.post_tags.php:73 ../inc/helper.options.default.php:36
+#: ../inc/class.admin.suggest.php:595
+msgid "Error from Proxem API: "
+msgstr ""
+
+#: ../inc/class.admin.suggest.php:600
+msgid "No results from Proxem API."
+msgstr ""
+
+#: ../inc/class.client.post_tags.php:106 ../inc/helper.options.default.php:45
 msgid "Tags: "
 msgstr ""
 
-#: ../inc/class.client.post_tags.php:78
+#: ../inc/class.client.post_tags.php:111
 msgid ""
 "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</"
 "a>"
 msgstr ""
 
-#: ../inc/class.client.post_tags.php:79
+#: ../inc/class.client.post_tags.php:112
 msgid "No tag for this post."
 msgstr ""
 
-#: ../inc/class.client.related_posts.php:93
-#: ../inc/helper.options.default.php:51
+#: ../inc/class.client.related_posts.php:100
+#: ../inc/helper.options.default.php:59
 msgid "<h4>Related posts</h4>"
 msgstr ""
 
-#: ../inc/class.client.related_posts.php:94
-#: ../inc/helper.options.default.php:50
+#: ../inc/class.client.related_posts.php:101
+#: ../inc/helper.options.default.php:58
 msgid "No related posts."
 msgstr ""
 
-#: ../inc/class.client.related_posts.php:96
-#: ../inc/helper.options.default.php:52
+#: ../inc/class.client.related_posts.php:103
+#: ../inc/helper.options.default.php:60
 msgid ""
 "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title"
 "%</a> (%post_comment%)"
 msgstr ""
 
-#: ../inc/class.client.related_posts.php:357
+#: ../inc/class.client.related_posts.php:368
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: ../inc/class.client.tagcloud.php:68 ../inc/helper.options.default.php:62
-msgid "No tags."
-msgstr ""
-
-#: ../inc/class.client.tagcloud.php:69 ../inc/helper.options.default.php:65
+#: ../inc/class.client.tagcloud.php:64 ../inc/helper.options.default.php:72
 msgid ""
 "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%"
 "\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">"
 "%tag_name%</a>"
 msgstr ""
 
-#: ../inc/class.client.tagcloud.php:70 ../inc/helper.options.default.php:63
+#: ../inc/class.client.tagcloud.php:66 ../inc/helper.options.default.php:69
+msgid "No tags."
+msgstr ""
+
+#: ../inc/class.client.tagcloud.php:67 ../inc/helper.options.default.php:70
 msgid "<h4>Tag Cloud</h4>"
 msgstr ""
 
-#: ../inc/class.client.tagcloud.php:318
+#: ../inc/class.client.tagcloud.php:353
 msgid "Invalid Taxonomy"
 msgstr ""
 
-#: ../inc/class.widgets.php:14
+#: ../inc/class.widgets.php:15
 msgid "Tag Cloud (Simple Tags)"
 msgstr ""
 
-#: ../inc/class.widgets.php:15
+#: ../inc/class.widgets.php:18
 msgid "Your most used tags in cloud format with dynamic color and many options"
 msgstr ""
 
-#: ../inc/class.widgets.php:78
+#: ../inc/class.widgets.php:85
 msgid "Tags"
 msgstr ""
 
-#: ../inc/class.widgets.php:179
+#: ../inc/class.widgets.php:209
 msgid "Empty field will use default value."
 msgstr ""
 
-#: ../inc/class.widgets.php:183
+#: ../inc/class.widgets.php:213
 msgid "Title:"
 msgstr ""
 
-#: ../inc/class.widgets.php:190
+#: ../inc/class.widgets.php:222
 msgid "Max tags to display: (default: 45)"
 msgstr ""
 
-#: ../inc/class.widgets.php:197
+#: ../inc/class.widgets.php:231
 msgid "Order by for DB selection tags:"
 msgstr ""
 
-#: ../inc/class.widgets.php:199 ../inc/class.widgets.php:222
+#: ../inc/class.widgets.php:235 ../inc/class.widgets.php:267
 msgid "Name"
 msgstr ""
 
-#: ../inc/class.widgets.php:200
+#: ../inc/class.widgets.php:237
 msgid "Slug"
 msgstr ""
 
-#: ../inc/class.widgets.php:201
+#: ../inc/class.widgets.php:239
 msgid "Term group"
 msgstr ""
 
-#: ../inc/class.widgets.php:202
+#: ../inc/class.widgets.php:241
 msgid "Counter (default)"
 msgstr ""
 
-#: ../inc/class.widgets.php:210
+#: ../inc/class.widgets.php:250
 msgid "Order for DB selection tags:"
 msgstr ""
 
-#: ../inc/class.widgets.php:212 ../inc/class.widgets.php:233
+#: ../inc/class.widgets.php:254 ../inc/class.widgets.php:282
 msgid "ASC"
 msgstr ""
 
-#: ../inc/class.widgets.php:213 ../inc/class.widgets.php:234
+#: ../inc/class.widgets.php:256 ../inc/class.widgets.php:284
 msgid "DESC (default)"
 msgstr ""
 
-#: ../inc/class.widgets.php:220
+#: ../inc/class.widgets.php:263
 msgid "Order by for display tags:"
 msgstr ""
 
-#: ../inc/class.widgets.php:223
+#: ../inc/class.widgets.php:269
 msgid "Counter"
 msgstr ""
 
-#: ../inc/class.widgets.php:224
+#: ../inc/class.widgets.php:271
 msgid "Random (default)"
 msgstr ""
 
-#: ../inc/class.widgets.php:231
+#: ../inc/class.widgets.php:278
 msgid "Order for display tags:"
 msgstr ""
 
-#: ../inc/class.widgets.php:241
+#: ../inc/class.widgets.php:291
 msgid "Font size mini: (default: 8)"
 msgstr ""
 
-#: ../inc/class.widgets.php:248
+#: ../inc/class.widgets.php:300
 msgid "Font size max: (default: 22)"
 msgstr ""
 
-#: ../inc/class.widgets.php:255
+#: ../inc/class.widgets.php:309
 msgid "Unit font size:"
 msgstr ""
 
-#: ../inc/class.widgets.php:257
+#: ../inc/class.widgets.php:313
 msgid "Point (default)"
 msgstr ""
 
-#: ../inc/class.widgets.php:258
+#: ../inc/class.widgets.php:315
 msgid "Pixel"
 msgstr ""
 
-#: ../inc/class.widgets.php:259
+#: ../inc/class.widgets.php:317
 msgid "Em"
 msgstr ""
 
-#: ../inc/class.widgets.php:260
+#: ../inc/class.widgets.php:319
 msgid "Pourcent"
 msgstr ""
 
-#: ../inc/class.widgets.php:267
+#: ../inc/class.widgets.php:326
 msgid "Format:"
 msgstr ""
 
-#: ../inc/class.widgets.php:269
+#: ../inc/class.widgets.php:330
 msgid "Flat (default)"
 msgstr ""
 
-#: ../inc/class.widgets.php:270
+#: ../inc/class.widgets.php:332
 msgid "List (UL/LI)"
 msgstr ""
 
-#: ../inc/class.widgets.php:278
+#: ../inc/class.widgets.php:342
 msgid "Use auto color cloud:"
 msgstr ""
 
-#: ../inc/class.widgets.php:284
+#: ../inc/class.widgets.php:348
 msgid "Font color mini: (default: #CCCCCC)"
 msgstr ""
 
-#: ../inc/class.widgets.php:291
+#: ../inc/class.widgets.php:357
 msgid "Font color max: (default: #000000)"
 msgstr ""
 
-#: ../inc/class.widgets.php:298 ../inc/helper.options.admin.php:96
-#: ../inc/helper.options.admin.php:130
+#: ../inc/class.widgets.php:366 ../inc/helper.options.admin.php:315
+#: ../inc/helper.options.admin.php:398
 msgid "Tag link format:"
 msgstr ""
 
-#: ../inc/class.widgets.php:305
+#: ../inc/class.widgets.php:376
 msgid "Advanced usage:"
 msgstr ""
 
-#: ../inc/class.widgets.php:312
+#: ../inc/class.widgets.php:386
 msgid "What to show"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:4
+#: ../inc/helper.options.admin.php:6
 msgid "Auto links tags"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:5
+#: ../inc/helper.options.admin.php:9
 msgid ""
 "Example: You have a tag called \"WordPress\" and your post content contains "
 "\"wordpress\", this feature will replace \"wordpress\" by a link to "
 "\"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:7
+#: ../inc/helper.options.admin.php:16
 msgid ""
 "This feature allow to edit terms of any taxonomy for many posts per page."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:8
+#: ../inc/helper.options.admin.php:20
 msgid "Click tags feature"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:9
+#: ../inc/helper.options.admin.php:23
 msgid ""
 "This feature add a link allowing you to display all the tags of your "
 "database. Once displayed, you can click over to add tags to post."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:10
+#: ../inc/helper.options.admin.php:27
 msgid "Autocompletion with old input"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:11
+#: ../inc/helper.options.admin.php:30
 msgid ""
 "This feature displays a visual help allowing to enter tags more easily. As "
 "well add tags is easier than the autocompletion default of WordPress"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:12
+#: ../inc/helper.options.admin.php:34
 msgid "Suggested tags feature"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:13
+#: ../inc/helper.options.admin.php:37
 msgid ""
 "This feature add a box allowing you get suggested tags, by comparing post "
 "content and various sources of tags. (Yahoo! Term Extraction API, "
 "OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:14
+#: ../inc/helper.options.admin.php:41
 msgid "Advanced Manage Terms"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:15
+#: ../inc/helper.options.admin.php:44
 msgid ""
 "This feature allow to edit, merge, delete, add terms for any taxonomy. "
 "Please consider the plugin <a href=\"http://wordpress.org/extend/plugins/"
@@ -944,11 +1020,11 @@ msgid ""
 "only need to merge terms."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:16
+#: ../inc/helper.options.admin.php:48
 msgid "Related posts by terms"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:17
+#: ../inc/helper.options.admin.php:51
 msgid ""
 "This feature allow to display related posts with terms relation. Please "
 "consider plugins <a href=\"http://wordpress.org/extend/plugins/similar-posts/"
@@ -957,319 +1033,432 @@ msgid ""
 "Another Related Posts Plugin</a> for better results and performance."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:18
+#: ../inc/helper.options.admin.php:55
 msgid "Auto terms posts"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:19
+#: ../inc/helper.options.admin.php:58
 msgid ""
 "This feature allow to add automatically terms on a post by proceding to a "
 "search into content."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:20
+#: ../inc/helper.options.admin.php:62
 msgid "Tags for page"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:21
+#: ../inc/helper.options.admin.php:65
 msgid ""
 "This feature allow page post type to be tagged. This option add pages in "
 "tags search. Also add tag management in write page."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:22
+#: ../inc/helper.options.admin.php:69
+msgid "Tracking"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:72
+msgid ""
+"By allowing us to track your usage, we can help you better because we will "
+"know with what configuration WordPress, what themes and what extensions we "
+"should perform tests"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:76
 msgid "Tag cloud Shortcode"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:23
+#: ../inc/helper.options.admin.php:79
 msgid ""
-"Enabling this will allow Wordpress to look for tag cloud shortcode <code>"
-"[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. "
-"WordPress replace this shortcode by a tag cloud."
+"Enabling this will allow Wordpress to look for tag cloud shortcode "
+"<code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying "
+"posts. WordPress replace this shortcode by a tag cloud."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:26
+#: ../inc/helper.options.admin.php:85
 msgid "Type of old input"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:27
+#: ../inc/helper.options.admin.php:88
 msgid "<code>textarea</code> &ndash; Textarea multiline."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:28
+#: ../inc/helper.options.admin.php:89
 msgid "<code>input</code> &ndash; Text input, only one line. (default)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:30
+#: ../inc/helper.options.admin.php:94
 msgid "Autocompletion Min Chars"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:31
+#: ../inc/helper.options.admin.php:97
 msgid ""
 "You can define how many characters from the autocompletion will be proposed. "
 "The default value in Simple Tags 2.0 is 0, prior this version, default "
 "parameter was 1."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:32
+#: ../inc/helper.options.admin.php:101
 msgid "Click tags order"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:34
+#: ../inc/helper.options.admin.php:104
 msgid "<code>count-asc</code> &ndash; Least used."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:35
+#: ../inc/helper.options.admin.php:105
 msgid "<code>count-desc</code> &ndash; Most popular."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:36
+#: ../inc/helper.options.admin.php:106
 msgid "<code>name-asc</code> &ndash; Alphabetical. (default)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:37 ../inc/helper.options.admin.php:157
+#: ../inc/helper.options.admin.php:107 ../inc/helper.options.admin.php:447
 msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:38 ../inc/helper.options.admin.php:73
-#: ../inc/helper.options.admin.php:158
+#: ../inc/helper.options.admin.php:108 ../inc/helper.options.admin.php:273
+#: ../inc/helper.options.admin.php:448
 msgid "<code>random</code> &ndash; Random."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:40
+#: ../inc/helper.options.admin.php:113
+msgid "Click tags - Post edition default visibility"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:116
+msgid "Hidden, you must click on display tags. (default)"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:117
+msgid "Displayed, you can not hide them."
+msgstr ""
+
+#: ../inc/helper.options.admin.php:122
 msgid "OpenCalais API Key"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:41
+#: ../inc/helper.options.admin.php:125
 msgid ""
 "You can create an API key from <a href=\"http://www.opencalais.com/"
 "\">service website</a>"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:42
+#: ../inc/helper.options.admin.php:129
 msgid "Alchemy API Key"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:43
+#: ../inc/helper.options.admin.php:132
 msgid ""
 "You can create an API key from <a href=\"http://www.alchemyapi.com/"
 "\">service website</a>"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:44
+#: ../inc/helper.options.admin.php:136
+msgid "Tag4Site API Key"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:139
+msgid ""
+"You can create an API key from <a href=\"http://tag4site.ru/\">service "
+"website</a>"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:143
 msgid "Zemanta API Key"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:45
+#: ../inc/helper.options.admin.php:146
 msgid ""
 "You can create an API key from <a href=\"http://developer.zemanta.com/"
 "\">service website</a>"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:48
+#: ../inc/helper.options.admin.php:150
+msgid "Dandelion - Entity Extraction API - ID (deprecated)"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:153
+msgid ""
+"You can create an API ID from <a href=\"https://dandelion.eu/\">service "
+"website</a>"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:157
+msgid "Dandelion - Entity Extraction API - Key (deprecated)"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:160 ../inc/helper.options.admin.php:167
+msgid ""
+"You can create an API key from <a href=\"https://dandelion.eu/\">service "
+"website</a>"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:164
+msgid "Dandelion - Entity Extraction API - Access token (new !)"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:171
+msgid "dataTXT API min_confidence"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:174
+msgid "Default: 0.6"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:178
+msgid "Proxem API Key"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:181
+msgid ""
+"You can create an API key from <a href=\"https://www.mashape.com/proxem/"
+"ontology-based-topic-detection\">service website</a>"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:187
 msgid "Min usage for auto link tags:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:49
+#: ../inc/helper.options.admin.php:190
 msgid ""
 "This parameter allows to fix a minimal value of use of tags. Default: 1."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:50
+#: ../inc/helper.options.admin.php:194
 msgid "Maximum number of links per article:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:51
+#: ../inc/helper.options.admin.php:197
 msgid ""
 "This setting determines the maximum number of links created by article. "
 "Default: 10."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:52
+#: ../inc/helper.options.admin.php:201
 msgid "Maximum number of links for the same tag:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:53
+#: ../inc/helper.options.admin.php:204
 msgid ""
 "This setting determines the maximum number of links created by article for "
 "the same tag. Default: 1."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:54
+#: ../inc/helper.options.admin.php:208
 msgid "Ignore case for auto link feature ?"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:55
+#: ../inc/helper.options.admin.php:211
 msgid ""
 "Example: If you ignore case, auto link feature will replace the word "
 "\"wordpress\" by the tag link \"WordPress\"."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:56
+#: ../inc/helper.options.admin.php:215
 msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:57
+#: ../inc/helper.options.admin.php:218
 msgid ""
 "Example: If you enter the term \"Paris\", the auto link tags feature will "
 "never replace this term by this link."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:58
+#: ../inc/helper.options.admin.php:222
 msgid "Priority on hook the_content"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:59
+#: ../inc/helper.options.admin.php:225
 msgid ""
 "For expert, possibility to change the priority of autolinks functions on "
 "the_content hook. Useful for fix a conflict with an another plugin. Default: "
 "12."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:62
+#: ../inc/helper.options.admin.php:229
+msgid "Enable autolinks into post content for theses views:"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:232
+msgid "<code>no</code> &ndash; Nowhere"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:233 ../inc/helper.options.admin.php:377
+#: ../inc/helper.options.admin.php:428
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr ""
+
+#: ../inc/helper.options.admin.php:234
+msgid "<code>single</code> &ndash; Only on your single post view."
+msgstr ""
+
+#: ../inc/helper.options.admin.php:235
+msgid ""
+"<code>singular</code> &ndash; Only on your singular view (single post & "
+"page) (default)."
+msgstr ""
+
+#: ../inc/helper.options.admin.php:240
+msgid "Try new engine replacement ?"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:243
+msgid ""
+"An engine replacement alternative uses DOMDocument PHP class and "
+"theoretically offers better performance. If your server does not offer the "
+"functionality, the plugin will use the usual engine."
+msgstr ""
+
+#: ../inc/helper.options.admin.php:247
+msgid "Text to display into title attribute for links:"
+msgstr ""
+
+#: ../inc/helper.options.admin.php:258
 msgid ""
 "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> "
 "and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:64
+#: ../inc/helper.options.admin.php:260
 msgid ""
 "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during "
 "tag's cloud generation, corresponding to collect tags."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:65
+#: ../inc/helper.options.admin.php:261
 msgid ""
 "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags "
 "choosen, you can reorder them before display."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:67
+#: ../inc/helper.options.admin.php:263
 msgid ""
 "<strong>Example:</strong> You want display randomly the 100 tags most "
 "popular.<br />"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:68
+#: ../inc/helper.options.admin.php:264
 msgid ""
 "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</"
 "strong> for retrieve the 100 tags most popular and &#8216;Order tags "
 "display&#8217; to <strong>random</strong> for randomize cloud."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:69
+#: ../inc/helper.options.admin.php:268
 msgid "Order by for tags selection:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:71
+#: ../inc/helper.options.admin.php:271
 msgid "<code>count</code> &ndash; Counter. (default)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:72 ../inc/helper.options.admin.php:83
+#: ../inc/helper.options.admin.php:272 ../inc/helper.options.admin.php:291
 msgid "<code>name</code> &ndash; Name."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:75
+#: ../inc/helper.options.admin.php:278
 msgid "Order tags selection:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:77 ../inc/helper.options.admin.php:88
+#: ../inc/helper.options.admin.php:281 ../inc/helper.options.admin.php:300
 msgid "<code>asc</code> &ndash; Ascending."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:78 ../inc/helper.options.admin.php:89
+#: ../inc/helper.options.admin.php:282 ../inc/helper.options.admin.php:301
 msgid "<code>desc</code> &ndash; Descending."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:80
+#: ../inc/helper.options.admin.php:287
 msgid "Order by for tags display:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:82
+#: ../inc/helper.options.admin.php:290
 msgid "<code>count</code> &ndash; Counter."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:84
+#: ../inc/helper.options.admin.php:292
 msgid "<code>random</code> &ndash; Random. (default)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:86
+#: ../inc/helper.options.admin.php:297
 msgid "Order tags display:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:91
+#: ../inc/helper.options.admin.php:306
 msgid "Tags cloud type format:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:93
+#: ../inc/helper.options.admin.php:309
 msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:94
+#: ../inc/helper.options.admin.php:310
 msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:97 ../inc/helper.options.admin.php:131
-#: ../inc/helper.options.admin.php:161
+#: ../inc/helper.options.admin.php:318 ../inc/helper.options.admin.php:401
+#: ../inc/helper.options.admin.php:456
 msgid ""
 "You can find markers and explanations <a href=\"https://github.com/"
 "herewithme/simple-tags/wiki/Theme-functions-Integration\">in the online "
 "documentation.</a>"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:98
+#: ../inc/helper.options.admin.php:322
 msgid "Maximum number of tags to display: (default: 45)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:99
+#: ../inc/helper.options.admin.php:328
 msgid "Enter the text to show when there is no tag:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:100 ../inc/helper.options.admin.php:164
+#: ../inc/helper.options.admin.php:334 ../inc/helper.options.admin.php:472
 msgid "Enter the positioned title before the list, leave blank for no title:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:101
+#: ../inc/helper.options.admin.php:340
 msgid "Most popular color:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:102
+#: ../inc/helper.options.admin.php:343
 msgid ""
 "The colours are hexadecimal colours,  and need to have the full six digits "
 "(#eee is the shorthand version of #eeeeee)."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:103
+#: ../inc/helper.options.admin.php:345
 msgid "Least popular color:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:104
+#: ../inc/helper.options.admin.php:348
 msgid "Most popular font size:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:105
+#: ../inc/helper.options.admin.php:351
 msgid "The two font sizes are the size of the largest and smallest tags."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:106
+#: ../inc/helper.options.admin.php:353
 msgid "Least popular font size:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:107
+#: ../inc/helper.options.admin.php:356
 msgid "The units to display the font sizes with, on tag clouds:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:108
+#: ../inc/helper.options.admin.php:359
 msgid ""
 "The font size units option determines the units that the two font sizes use."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:109 ../inc/helper.options.admin.php:133
-#: ../inc/helper.options.admin.php:165
+#: ../inc/helper.options.admin.php:363 ../inc/helper.options.admin.php:406
+#: ../inc/helper.options.admin.php:478
 msgid "<strong>Advanced usage</strong>:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:110
+#: ../inc/helper.options.admin.php:366
 msgid ""
 "You can use the same syntax as <code>st_tag_cloud()</code> public static "
 "function to customize display. See <a href=\"https://github.com/herewithme/"
@@ -1277,72 +1466,68 @@ msgid ""
 "details."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:113
+#: ../inc/helper.options.admin.php:370
 msgid "Automatically display tags list into feeds"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:114
+#: ../inc/helper.options.admin.php:373
 msgid "Automatically display tags list into post content:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:116 ../inc/helper.options.admin.php:142
+#: ../inc/helper.options.admin.php:376 ../inc/helper.options.admin.php:427
 msgid "<code>no</code> &ndash; Nowhere (default)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:117 ../inc/helper.options.admin.php:143
-msgid "<code>all</code> &ndash; On your blog and feeds."
-msgstr ""
-
-#: ../inc/helper.options.admin.php:118 ../inc/helper.options.admin.php:144
+#: ../inc/helper.options.admin.php:378 ../inc/helper.options.admin.php:429
 msgid "<code>blogonly</code> &ndash; Only on your blog."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:119 ../inc/helper.options.admin.php:145
+#: ../inc/helper.options.admin.php:379 ../inc/helper.options.admin.php:430
 msgid "<code>homeonly</code> &ndash; Only on your home page."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:120 ../inc/helper.options.admin.php:146
+#: ../inc/helper.options.admin.php:380 ../inc/helper.options.admin.php:431
 msgid ""
 "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:121 ../inc/helper.options.admin.php:147
+#: ../inc/helper.options.admin.php:381 ../inc/helper.options.admin.php:432
 msgid "<code>singleonly</code> &ndash; Only on your single view."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:122 ../inc/helper.options.admin.php:148
+#: ../inc/helper.options.admin.php:382 ../inc/helper.options.admin.php:433
 msgid "<code>pageonly</code> &ndash; Only on your page view."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:124
+#: ../inc/helper.options.admin.php:385
 msgid "Post tag separator string:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:125
+#: ../inc/helper.options.admin.php:386
 msgid "Text to display before tags list:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:126
+#: ../inc/helper.options.admin.php:387
 msgid "Text to display after tags list:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:127
+#: ../inc/helper.options.admin.php:390
 msgid "Max tags display:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:128
+#: ../inc/helper.options.admin.php:393
 msgid "You must set zero (0) for display all tags."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:129
+#: ../inc/helper.options.admin.php:395
 msgid "Include categories in result ?"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:132
+#: ../inc/helper.options.admin.php:403
 msgid "Text to display if no tags found:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:134
+#: ../inc/helper.options.admin.php:409
 msgid ""
 "You can use the same syntax as <code>st_the_tags()</code> public static "
 "function to customize display. See <a href=\"https://github.com/herewithme/"
@@ -1350,62 +1535,62 @@ msgid ""
 "details."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:137
+#: ../inc/helper.options.admin.php:415
 msgid "Taxonomy:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:138
+#: ../inc/helper.options.admin.php:418
 msgid ""
 "By default, related posts work with post tags, but you can use a custom "
 "taxonomy. Default value : post_tag"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:139
+#: ../inc/helper.options.admin.php:420
 msgid "Automatically display related posts into feeds"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:140
+#: ../inc/helper.options.admin.php:423
 msgid "Automatically display related posts into post content"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:150
+#: ../inc/helper.options.admin.php:438
 msgid "Related Posts Order:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:152
+#: ../inc/helper.options.admin.php:442
 msgid "<code>date-asc</code> &ndash; Older Entries."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:153
+#: ../inc/helper.options.admin.php:443
 msgid "<code>date-desc</code> &ndash; Newer Entries."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:154
+#: ../inc/helper.options.admin.php:444
 msgid "<code>count-asc</code> &ndash; Least common tags between posts"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:155
+#: ../inc/helper.options.admin.php:445
 msgid ""
 "<code>count-desc</code> &ndash; Most common tags between posts (default)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:156
+#: ../inc/helper.options.admin.php:446
 msgid "<code>name-asc</code> &ndash; Alphabetical."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:160
+#: ../inc/helper.options.admin.php:453
 msgid "Post link format:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:162
+#: ../inc/helper.options.admin.php:460
 msgid "Maximum number of related posts to display: (default: 5)"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:163
+#: ../inc/helper.options.admin.php:466
 msgid "Enter the text to show when there is no related post:"
 msgstr ""
 
-#: ../inc/helper.options.admin.php:166
+#: ../inc/helper.options.admin.php:481
 msgid ""
 "You can use the same syntax as <code>st_related_posts()</code>public static "
 "function to customize display. See <a href=\"https://github.com/herewithme/"
@@ -1413,21 +1598,34 @@ msgid ""
 "details."
 msgstr ""
 
-#: ../inc/helper.options.admin.php:169 ../inc/helper.options.admin.php:177
+#: ../inc/helper.options.admin.php:490 ../inc/helper.options.admin.php:504
 msgid ""
 "This feature has been removed from Simple Tags because it is not relevant "
 "enough and there are better plugins like<br />"
 msgstr ""
 
-#: ../inc/helper.options.default.php:38
+#: ../inc/helper.options.default.php:24
+#, php-format
+msgid "Posts tagged with %s"
+msgstr ""
+
+#: ../inc/helper.options.default.php:47
 msgid "No tags for this post."
 msgstr ""
 
-#: ../inc/helper.options.default.php:41
+#: ../inc/helper.options.default.php:50
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 msgstr ""
 
-#: ../views/admin/page-settings.php:34
+#: ../simple-tags.php:46
+#, php-format
+msgid ""
+"Your PHP version is too old, please upgrade to a newer version. Your version "
+"is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins "
+"directory with FTP client."
+msgstr ""
+
+#: ../views/admin/page-settings.php:36
 msgid ""
 "Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
@@ -1435,10 +1633,10 @@ msgid ""
 "issues\">ask me</a> !"
 msgstr ""
 
-#: ../views/admin/page-settings.php:41
+#: ../views/admin/page-settings.php:46
 msgid "Do you really want to restore the default options?"
 msgstr ""
 
-#: ../views/admin/page-settings.php:41
+#: ../views/admin/page-settings.php:47
 msgid "Reset Options"
 msgstr ""
