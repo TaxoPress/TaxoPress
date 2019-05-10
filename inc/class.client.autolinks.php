@@ -2,8 +2,8 @@
 
 class SimpleTags_Client_Autolinks {
 
-	static $posts = array();
-	static $link_tags = array();
+	public static $posts = array();
+	public static $link_tags = array();
 
 	/**
 	 * Constructor
@@ -13,14 +13,14 @@ class SimpleTags_Client_Autolinks {
 	 */
 	public function __construct() {
 		$auto_link_priority = SimpleTags_Plugin::get_option_value( 'auto_link_priority' );
-		if ( (int) $auto_link_priority == 0 ) {
+		if ( 0 === (int) $auto_link_priority ) {
 			$auto_link_priority = 12;
 		}
 
 		// Auto link tags
 		add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
 
-		if ( SimpleTags_Plugin::get_option_value( 'auto_link_views' ) != 'no' ) {
+		if ( SimpleTags_Plugin::get_option_value( 'auto_link_views' ) !== 'no' ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
 		}
 	}
@@ -62,15 +62,15 @@ class SimpleTags_Client_Autolinks {
 
 			// Get cache if exist
 			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
-			if ( $cache === false ) {
+			if ( false === $cache ) {
 				foreach ( self::$posts as $object_id ) {
 					// Get terms
 					$terms = get_object_term_cache( $object_id, 'post_tag' );
-					if ( false === $terms ) {
+					if ( false === $terms || is_wp_error( $terms ) ) {
 						$terms = wp_get_object_terms( $object_id, 'post_tag' );
 					}
 
-					if ( $terms != false ) {
+					if ( false !== $terms && ! is_wp_error( $terms ) ) {
 						$results = array_merge( $results, $terms );
 					}
 				}
@@ -95,7 +95,7 @@ class SimpleTags_Client_Autolinks {
 	 */
 	public static function prepare_auto_link_tags() {
 		$auto_link_min = (int) SimpleTags_Plugin::get_option_value( 'auto_link_min' );
-		if ( $auto_link_min == 0 ) {
+		if ( 0 === $auto_link_min ) {
 			$auto_link_min = 1;
 		}
 
@@ -119,7 +119,12 @@ class SimpleTags_Client_Autolinks {
 		global $post;
 
 		// Show only on singular view ? Check context
-		if ( SimpleTags_Plugin::get_option_value( 'auto_link_views' ) == 'singular' && ! is_singular() ) {
+		if ( SimpleTags_Plugin::get_option_value( 'auto_link_views' ) === 'singular' && ! is_singular() ) {
+			return $content;
+		}
+
+		// Show only on single view ? Check context
+		if ( SimpleTags_Plugin::get_option_value( 'auto_link_views' ) === 'single' && ! is_single() ) {
 			return $content;
 		}
 
@@ -144,12 +149,12 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		// Case option ?
-		$case       = ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_case' ) == 1 ) ? 'i' : '';
-		$strpos_fnc = ( $case == 'i' ) ? 'stripos' : 'strpos';
+		$case       = ( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_case' ) ) ? 'i' : '';
+		$strpos_fnc = ( 'i' === $case ) ? 'stripos' : 'strpos';
 
 		// Prepare exclude terms array
 		$excludes_terms = explode( ',', SimpleTags_Plugin::get_option_value( 'auto_link_exclude' ) );
-		if ( $excludes_terms == false ) {
+		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
 			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
@@ -160,18 +165,18 @@ class SimpleTags_Client_Autolinks {
 		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
 			// Force string for tags "number"
 			$term_name = (string) $term_name;
-			
+
 			// Exclude terms ? next...
-			if ( in_array( $term_name, (array) $excludes_terms ) ) {
+			if ( in_array( $term_name, (array) $excludes_terms, true ) ) {
 				continue;
 			}
 
 			// Make a first test with PHP function, economize CPU with regexp
-			if ( $strpos_fnc( $content, $term_name ) === false ) {
+			if ( false === $strpos_fnc( $content, $term_name ) ) {
 				continue;
 			}
 
-			if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_dom' ) == 1 && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+			if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_dom' ) && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
 				self::_replace_by_links_dom( $content, $term_name, $term_link, $case, $rel );
 			} else {
 				self::_replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel );
@@ -212,7 +217,7 @@ class SimpleTags_Client_Autolinks {
 		foreach ( $xpath->query( '//text()[not(ancestor::a)]' ) as $node ) {
 			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( SimpleTags_Plugin::get_option_value( 'auto_link_title' ), $search ) ) . "\">$search</a>";
 
-			if ( $case == 'i' ) {
+			if ( 'i' === $case ) {
 				$replaced = str_ireplace( $search, $substitute, $node->wholeText );
 			} else {
 				$replaced = str_replace( $search, $substitute, $node->wholeText );

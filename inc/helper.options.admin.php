@@ -222,8 +222,9 @@ return array(
 			array(
 				'no'       => __( '<code>no</code> &ndash; Nowhere', 'simpletags' ),
 				'all'      => __( '<code>all</code> &ndash; On your blog and feeds.', 'simpletags' ),
+				'single'   => __( '<code>single</code> &ndash; Only on your single post view.', 'simpletags' ),
 				'singular' => __( '<code>singular</code> &ndash; Only on your singular view (single post & page) (default).', 'simpletags' ),
-			)
+			),
 		),
 		array(
 			'auto_link_dom',
