@@ -5,7 +5,7 @@ Donate link: http://beapi.fr/donate/
 Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
 Requires at least: 3.3
 Tested up to: 5.2
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -76,11 +76,13 @@ The Simple Tags can be installed in 3 easy steps:
 == Changelog ==
 
 * Version 2.5.3
-    * Add tracking feature
-    * Bug #98: Fix a PHP notice with link manager
-    * Feature #113: Add single option for auto-links
+    * Feature: Add tracking feature
+    * Bug #98 : Fix a PHP notice with link manager
+    * Bug: Fix a PHP notice with $post global
+    * Feature #113 : Add single option for auto-links
+    * Feature #70 : Add a visibility option for click tags feature
+    * Bug #35 : Fix a bug with multiple calls of the_content hook
     * Code refactoring in many files, remove old cleanup variables
-    * Feature #70: Add a visibility option for click tags feature
 * Version 2.5.2
     * Improve Gutenberg detection, fix bug with tag suggestion caused by some 3rd party plugins
 * Version 2.5.1
