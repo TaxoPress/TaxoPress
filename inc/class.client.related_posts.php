@@ -9,7 +9,7 @@ class SimpleTags_Client_RelatedPosts {
 	 */
 	public function __construct() {
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
-		if ( ( SimpleTags_Plugin::get_option_value( 'rp_embedded' ) != 'no' ) || ( SimpleTags_Plugin::get_option_value( 'rp_feed' ) == 1 ) ) {
+		if ( ( 'no' !== SimpleTags_Plugin::get_option_value( 'rp_embedded' ) ) || ( 1 === SimpleTags_Plugin::get_option_value( 'rp_feed' ) ) ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), 999993 );
 		}
 	}
@@ -22,35 +22,40 @@ class SimpleTags_Client_RelatedPosts {
 	 * @return string
 	 */
 	public static function the_content( $content = '' ) {
+		// Hook already executed ? Check if HTML class exists
+		if ( strpos( $content, 'st-related-posts' ) !== false ) {
+			return $content;
+		}
+
 		// Get option
 		$rp_embedded = SimpleTags_Plugin::get_option_value( 'rp_embedded' );
 
 		$marker = false;
 		if ( is_feed() ) {
-			if ( (int) SimpleTags_Plugin::get_option_value( 'rp_feed' ) == 1 ) {
+			if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'rp_feed' ) ) {
 				$marker = true;
 			}
 		} elseif ( ! empty( $rp_embedded ) ) {
 			switch ( $rp_embedded ) {
-				case 'blogonly' :
+				case 'blogonly':
 					$marker = ( is_feed() ) ? false : true;
 					break;
-				case 'homeonly' :
+				case 'homeonly':
 					$marker = ( is_home() ) ? true : false;
 					break;
-				case 'singularonly' :
+				case 'singularonly':
 					$marker = ( is_singular() ) ? true : false;
 					break;
-				case 'singleonly' :
+				case 'singleonly':
 					$marker = ( is_single() ) ? true : false;
 					break;
-				case 'pageonly' :
+				case 'pageonly':
 					$marker = ( is_page() ) ? true : false;
 					break;
-				case 'all' :
+				case 'all':
 					$marker = true;
 					break;
-				case 'no' :
+				case 'no':
 				default:
 					$marker = false;
 					break;
@@ -95,7 +100,7 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simpletags' ),
 			'nopoststext'   => __( 'No related posts.', 'simpletags' ),
 			'dateformat'    => get_option( 'date_format' ),
-			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags' )
+			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags' ),
 		);
 
 		// Get values in DB
@@ -117,7 +122,7 @@ class SimpleTags_Client_RelatedPosts {
 			'%title%'        => '%post_title%',
 			'%commentcount%' => '%post_comment%',
 			'%tagcount%'     => '%post_tagcount%',
-			'%postid%'       => '%post_id%'
+			'%postid%'       => '%post_id%',
 		);
 		if ( ! is_array( $user_args ) ) {
 			$user_args = strtr( $user_args, $markers );
@@ -131,14 +136,15 @@ class SimpleTags_Client_RelatedPosts {
 			$xformat = $defaults['xformat'];
 		}
 
-		// Get current post data
+		// Choose post ID
 		$object_id = (int) $post_id;
-		if ( $object_id == 0 ) {
+		if ( 0 === $object_id ) {
 			global $post;
-			$object_id = (int) $post->ID;
-			if ( $object_id == 0 ) {
+			if ( ! isset( $post->ID ) || 0 === (int) $post->ID ) {
 				return false;
 			}
+
+			$object_id = (int) $post->ID;
 		}
 
 		// Get cache if exist
@@ -370,7 +376,7 @@ class SimpleTags_Client_RelatedPosts {
 			$content = strip_tags( $content );
 
 			$excerpt_length = (int) $excerpt_length;
-			if ( $excerpt_length == 0 ) {
+			if ( 0 === $excerpt_length ) {
 				$excerpt_length = 55;
 			}
 
