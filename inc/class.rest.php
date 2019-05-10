@@ -7,7 +7,7 @@ class SimpleTags_Rest {
 	 * SimpleTags_Rest constructor.
 	 */
 	public function __construct() {
-		if ( (int) SimpleTags_Plugin::get_option_value( 'use_autocompletion' ) === 1 ) {
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_autocompletion' ) ) {
 			add_filter( 'rest_prepare_taxonomy', array( __CLASS__, 'rest_prepare_taxonomy' ), 10, 3 );
 		}
 	}
