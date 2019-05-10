@@ -423,7 +423,7 @@ class SimpleTags_Admin {
 		}
 
 		$terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
-		if ( empty( $terms ) ||  is_wp_error( $terms ) ) {
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
 			return '';
 		}
 
