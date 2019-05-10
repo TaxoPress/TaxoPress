@@ -109,6 +109,15 @@ return array(
 			)
 		),
 		array(
+			'visibility_click_tags',
+			__( 'Click tags - Post edition default visibility', 'simpletags' ),
+			'radio',
+			array(
+				'hide' => __( 'Hidden, you must click on display tags. (default)', 'simpletags' ),
+				'show' => __( 'Displayed, you can not hide them.', 'simpletags' ),
+			),
+		),
+		array(
 			'opencalais_key',
 			__( 'OpenCalais API Key', 'simpletags' ),
 			'text',

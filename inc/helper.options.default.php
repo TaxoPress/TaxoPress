@@ -24,10 +24,11 @@ return array(
 	'auto_link_title'        => __( 'Posts tagged with %s', 'simpletags' ),
 	// Administration
 	'order_click_tags'       => 'name-asc',
+	'visibility_click_tags'  => 'hide',
 	'opencalais_key'         => '',
 	'datatxt_key'            => '',
 	'datatxt_id'             => '',
-	'datatxt_access_token'	 => '',
+	'datatxt_access_token'   => '',
 	'datatxt_min_confidence' => '0.6',
 	'alchemy_api'            => '',
 	'zemanta_key'            => '',

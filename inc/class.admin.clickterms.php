@@ -27,21 +27,32 @@ class SimpleTags_Admin_ClickTags {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
-		wp_register_script( 'st-helper-click-tags', STAGS_URL . '/assets/js/helper-click-tags.js', array(
-			'jquery',
-			'st-helper-add-tags'
-		), STAGS_VERSION );
-		wp_localize_script( 'st-helper-click-tags', 'stHelperClickTagsL10n', array(
-			'show_txt' => __( 'Display click tags', 'simpletags' ),
-			'hide_txt' => __( 'Hide click tags', 'simpletags' )
-		) );
+		wp_register_script(
+			'st-helper-click-tags',
+			STAGS_URL . '/assets/js/helper-click-tags.js',
+			array(
+				'jquery',
+				'st-helper-add-tags',
+			),
+			STAGS_VERSION,
+			true
+		);
+		wp_localize_script(
+			'st-helper-click-tags',
+			'stHelperClickTagsL10n',
+			array(
+				'show_txt' => __( 'Display click tags', 'simpletags' ),
+				'hide_txt' => __( 'Hide click tags', 'simpletags' ),
+				'state'    => SimpleTags_Plugin::get_option_value( 'visibility_click_tags' ),
+			)
+		);
 
 		// Register location
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
 
 		// Helper for posts/pages
-		if ( in_array( $pagenow, $wp_post_pages ) || ( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ) {
+		if ( in_array( $pagenow, $wp_post_pages, true ) || ( in_array( $pagenow, $wp_page_pages, true ) && is_page_have_tags() ) ) {
 			wp_enqueue_script( 'st-helper-click-tags' );
 		}
 	}
@@ -53,15 +64,30 @@ class SimpleTags_Admin_ClickTags {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-		add_meta_box( 'st-clicks-tags', __( 'Click tags', 'simpletags' ), array(
-			__CLASS__,
-			'metabox'
-		), 'post', 'advanced', 'core' );
-		if ( is_page_have_tags() ) {
-			add_meta_box( 'st-clicks-tags', __( 'Click tags', 'simpletags' ), array(
+		add_meta_box(
+			'st-clicks-tags',
+			__( 'Click tags', 'simpletags' ),
+			array(
 				__CLASS__,
-				'metabox'
-			), 'page', 'advanced', 'core' );
+				'metabox',
+			),
+			'post',
+			'advanced',
+			'core'
+		);
+
+		if ( is_page_have_tags() ) {
+			add_meta_box(
+				'st-clicks-tags',
+				__( 'Click tags', 'simpletags' ),
+				array(
+					__CLASS__,
+					'metabox',
+				),
+				'page',
+				'advanced',
+				'core'
+			);
 		}
 	}
 
@@ -82,7 +108,7 @@ class SimpleTags_Admin_ClickTags {
 	 * @author Amaury Balmer
 	 */
 	public static function ajax_check() {
-		if ( isset( $_GET['stags_action'] ) && $_GET['stags_action'] == 'click_tags' ) {
+		if ( isset( $_GET['stags_action'] ) && 'click_tags' === $_GET['stags_action'] ) {
 			self::ajax_click_tags();
 		}
 	}
@@ -95,10 +121,10 @@ class SimpleTags_Admin_ClickTags {
 	 */
 	public static function ajax_click_tags() {
 		status_header( 200 ); // Send good header HTTP
-		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
+		header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 
-		if ( (int) wp_count_terms( 'post_tag', array('hide_empty' => false) ) == 0 ) { // No tags to suggest
-			echo '<p>' . __( 'No terms in your WordPress database.', 'simpletags' ) . '</p>';
+		if ( 0 === (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) ) { // No tags to suggest
+			echo '<p>' . esc_html__( 'No terms in your WordPress database.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -108,7 +134,6 @@ class SimpleTags_Admin_ClickTags {
 
 		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
 		$order_click_tags = strtolower( SimpleTags_Plugin::get_option_value( 'order_click_tags' ) );
-		$order_by         = $order = '';
 		switch ( $order_click_tags ) {
 			case 'count-asc':
 				$order_by = 'tt.count';
@@ -126,7 +151,7 @@ class SimpleTags_Admin_ClickTags {
 				$order_by = 't.name';
 				$order    = 'DESC';
 				break;
-			default : // name-asc
+			default: // name-asc
 				$order_by = 't.name';
 				$order    = 'ASC';
 				break;
@@ -134,8 +159,8 @@ class SimpleTags_Admin_ClickTags {
 
 		// Get all terms, or filter with search
 		$terms = SimpleTags_Admin::getTermsForAjax( 'post_tag', $search, $order_by, $order );
-		if ( empty( $terms ) || $terms == false ) {
-			echo '<p>' . __( 'No results from your WordPress database.', 'simpletags' ) . '</p>';
+		if ( empty( $terms ) ) {
+			echo '<p>' . esc_html__( 'No results from your WordPress database.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -146,8 +171,8 @@ class SimpleTags_Admin_ClickTags {
 		}
 
 		foreach ( (array) $terms as $term ) {
-			$class_current = in_array( $term->term_id, $post_terms ) ? 'used_term' : '';
-			echo '<span class="local ' . $class_current . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
+			$class_current = in_array( $term->term_id, $post_terms, true ) ? 'used_term' : '';
+			echo '<span class="local ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 

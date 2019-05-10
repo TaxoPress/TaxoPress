@@ -78,7 +78,9 @@ The Simple Tags can be installed in 3 easy steps:
 * Version 2.5.3
     * Add tracking feature
     * Bug #98: Fix a PHP notice with link manager
-    * Minor code styling
+    * Feature #113: Add single option for auto-links
+    * Code refactoring in many files, remove old cleanup variables
+    * Feature #70: Add a visibility option for click tags feature
 * Version 2.5.2
     * Improve Gutenberg detection, fix bug with tag suggestion caused by some 3rd party plugins
 * Version 2.5.1
