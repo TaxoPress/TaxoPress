@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: https://github.com/herewithme/simple-tags
 Description: Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 2.5.4
+Version: 2.5.5
 Requires PHP: 5.6
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
@@ -35,23 +35,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-// Do a PHP version check, require 5.6 or newer
-if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
-	// Silently deactivate plugin, keeps admin usable
-	if ( function_exists( 'deactivate_plugins' ) ) {
-		deactivate_plugins( plugin_basename( __FILE__ ), true );
-	}
-
-	//Spit out die messages
-	wp_die( sprintf( __( 'Your PHP version is too old, please upgrade to a newer version. Your version is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins directory with FTP client.', 'simpletags' ), phpversion(), '5.0.0' ) );
-}
-
-define( 'STAGS_VERSION', '2.5.4' );
+define( 'STAGS_VERSION', '2.5.5' );
+define( 'STAGS_MIN_PHP_VERSION', '5.6' );
 define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto' ); // Option name for save settings auto terms
 
 define( 'STAGS_URL', plugins_url( '', __FILE__ ) );
 define( 'STAGS_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
+
+// Check PHP min version
+if ( version_compare( PHP_VERSION, STAGS_MIN_PHP_VERSION, '<' ) ) {
+	require STAGS_DIR . '/inc/class.compatibility.php';
+
+	// possibly display a notice, trigger error
+	add_action( 'admin_init', array( 'SimpleTags_Compatibility', 'admin_init' ) );
+
+	// stop execution of this file
+	return;
+}
 
 require STAGS_DIR . '/inc/functions.inc.php'; // Internal functions
 require STAGS_DIR . '/inc/functions.deprecated.php'; // Deprecated functions
