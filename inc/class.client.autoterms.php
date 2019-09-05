@@ -93,11 +93,14 @@ class SimpleTags_Client_Autoterms {
 		if ( isset( $options['auto_list'] ) ) {
 			$terms = (array) maybe_unserialize( $options['auto_list'] );
 			foreach ( $terms as $term ) {
-				if ( ! is_string( $term ) && empty( $term ) ) {
+				if ( ! is_string( $term ) ) {
 					continue;
 				}
 
 				$term = trim( $term );
+				if ( empty( $term ) ) {
+					continue;
+				}
 
 				// Whole word ?
 				if ( isset( $options['only_full_word'] ) && (int) $options['only_full_word'] == 1 ) {
@@ -129,7 +132,12 @@ class SimpleTags_Client_Autoterms {
 			foreach ( $terms as $term ) {
 				$term = stripslashes( $term );
 
-				if ( ! is_string( $term ) && empty( $term ) ) {
+				if ( ! is_string( $term ) ) {
+					continue;
+				}
+
+				$term = trim( $term );
+				if ( empty( $term ) ) {
 					continue;
 				}
 
