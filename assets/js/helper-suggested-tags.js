@@ -21,7 +21,10 @@ jQuery(document).ready(function () {
 function getTitleFromEditor () {
   var data = ''
 
-  if (typeof wp.data != 'undefined' && typeof wp.data.select('core/editor') != 'undefined') {
+  if (typeof wp.data != 'undefined'
+    && typeof wp.data.select('core') != 'undefined'
+    && typeof wp.data.select('core/edit-post') != 'undefined'
+    && typeof wp.data.select('core/editor') != 'undefined') { // Gutenberg
     data = wp.data.select('core/editor').getEditedPostAttribute('title')
   } else { // No editor, just quick tags
     data = jQuery('#title').val()
@@ -39,7 +42,10 @@ function getTitleFromEditor () {
 function getContentFromEditor () {
   var data = ''
 
-  if (typeof wp.data != 'undefined' && typeof wp.data.select('core/editor') != 'undefined') { // Gutenberg
+  if (typeof wp.data != 'undefined'
+    && typeof wp.data.select('core') != 'undefined'
+    && typeof wp.data.select('core/edit-post') != 'undefined'
+    && typeof wp.data.select('core/editor') != 'undefined') { // Gutenberg
     data = wp.data.select('core/editor').getEditedPostAttribute('content')
   } else if ((typeof tinyMCE != 'undefined') && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden()) { // Tiny MCE
     var ed = tinyMCE.activeEditor
