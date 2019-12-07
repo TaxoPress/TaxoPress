@@ -9,7 +9,7 @@ class SimpleTags_Client_RelatedPosts {
 	 */
 	public function __construct() {
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
-		if ( ( 'no' !== SimpleTags_Plugin::get_option_value( 'rp_embedded' ) ) || ( 1 === SimpleTags_Plugin::get_option_value( 'rp_feed' ) ) ) {
+		if ( ( 'no' !== SimpleTags_Plugin::get_option_value( 'rp_embedded' ) ) || ( 1 === (int) SimpleTags_Plugin::get_option_value( 'rp_feed' ) ) ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), 999993 );
 		}
 	}
