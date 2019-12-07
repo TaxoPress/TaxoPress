@@ -89,7 +89,7 @@ class SimpleTags_Admin {
 	public static function maybe_create_tag( $tag_name = '' ) {
 		$term_id     = 0;
 		$result_term = term_exists( $tag_name, 'post_tag', 0 );
-		if ( 0 === $result_term || null === $result_term ) {
+		if ( empty( $result_term ) ) {
 			$result_term = wp_insert_term(
 				$tag_name,
 				'post_tag'

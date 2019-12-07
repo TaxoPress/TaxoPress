@@ -78,6 +78,7 @@ The Simple Tags can be installed in 3 easy steps:
 * Version 2.5.6
 	* Change: remove support of CKEditor for WordPress plugin (not maintained)
 	* Bug: Try to fix compat with Classic Editor
+	* Bug: Related posts do not appear in the RSS feed.
 * Version 2.5.5
     * Bug: Improves the deactivation of the plugin when the PHP version is too old.
 * Version 2.5.4
