@@ -3,7 +3,7 @@
 Plugin Name: Simple Tags
 Plugin URI: https://github.com/herewithme/simple-tags
 Description: Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 2.5.6
+Version: 2.5.7
 Requires PHP: 5.6
 Author: Amaury BALMER
 Author URI: http://www.herewithme.fr
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-define( 'STAGS_VERSION', '2.5.6' );
+define( 'STAGS_VERSION', '2.5.7' );
 define( 'STAGS_MIN_PHP_VERSION', '5.6' );
 define( 'STAGS_OPTIONS_NAME', 'simpletags' ); // Option name for save settings
 define( 'STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto' ); // Option name for save settings auto terms
