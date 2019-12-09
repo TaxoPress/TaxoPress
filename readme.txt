@@ -75,7 +75,7 @@ The Simple Tags can be installed in 3 easy steps:
 
 == Changelog ==
 
-* Version 2.5.6
+* Version 2.5.7
 	* Github actions...
 * Version 2.5.6
 	* Change: remove support of CKEditor for WordPress plugin (not maintained)
