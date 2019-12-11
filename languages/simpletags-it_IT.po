@@ -922,7 +922,7 @@ msgid "Example: If you ignore case, auto link feature will replace the word \"wo
 msgstr "Esempio: se ignori maiuscole/minuscole l'opzione autolink rimpiazzerà la parola \"wordpress\" con il collegamenteo al tag \"Wordpress\"."
 
 #: inc/array.options.php:37
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
 msgstr "Escludi alcuni termini dal tag link. Per sostituzioni di link, etc."
 
 #: inc/array.options.php:38

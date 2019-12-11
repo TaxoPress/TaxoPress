@@ -879,7 +879,7 @@ msgid "Example: If you ignore case, auto link feature will replace the word \"wo
 msgstr "例如：如果您選擇忽略大小寫，自動連結功能將會用 \"WordPress\" 這個標籤連結來取代 \"wordpress\" 。"
 
 #: inc/array.options.php:37
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
 msgstr "排除標籤連結中某些特定項目，以廣告連結來取代等。"
 
 #: inc/array.options.php:38

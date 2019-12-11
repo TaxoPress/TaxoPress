@@ -1263,7 +1263,7 @@ msgstr ""
 "clefs remplacera le mot \"wordpress\" par le lien du mot clef \"WordPress\"."
 
 #: ../inc/helper.options.admin.php:56
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
 msgstr ""
 "Exclure des termes depuis les liens automatiques de tags pour permettre "
 "l'utilisation de système alternatif (publicité, etc.)"

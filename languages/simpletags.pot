@@ -1257,7 +1257,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:215
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:218

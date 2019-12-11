@@ -273,8 +273,8 @@ msgid "Example: If you ignore case, auto link feature will replace the word \"wo
 msgstr "例: この設定を有効にすると、自動リンク機能は単語 \"wordpress\" をタグリンク \"WordPress\" で置き換えます。"
 
 #: inc/helper.options.admin.php:44
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
-msgstr "タグリンクにいくつかの用語を入れないようにしてください。 Ads Link subtition など"
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
+msgstr "タグリンクにいくつかの用語を入れないようにしてください。 Ads Link substitution など"
 
 #: inc/helper.options.admin.php:45
 msgid "Example: If you enter the term \"Paris\", the auto link tags feature will never replace this term by this link."

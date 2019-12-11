@@ -212,7 +212,7 @@ return array(
 		),
 		array(
 			'auto_link_exclude',
-			__( 'Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags' ),
+			__( 'Exclude some terms from tag link. For Ads Link substitution, etc.', 'simpletags' ),
 			'text',
 			'regular-text',
 			__( 'Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags' )
