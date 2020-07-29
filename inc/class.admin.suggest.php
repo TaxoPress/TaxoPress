@@ -155,7 +155,7 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 
-		$response = wp_remote_post( 'https://api.thomsonreuters.com/permid/calais', array(
+		$response = wp_remote_post( 'https://api-eit.refinitiv.com/permid/calais', array(
 			'timeout' => 30,
 			'headers' => array(
 				'X-AG-Access-Token' => SimpleTags_Plugin::get_option_value( 'opencalais_key' ),
