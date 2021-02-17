@@ -17,7 +17,7 @@ class SimpleTags_Compatibility {
 			return;
 		}
 
-		trigger_error( sprintf( 'Simple Tags requires PHP version %s or greater to be activated.', STAGS_MIN_PHP_VERSION ) );
+		trigger_error( sprintf( 'TaxoPress requires PHP version %s or greater to be activated.', STAGS_MIN_PHP_VERSION ) );
 
 		// Deactive self
 		deactivate_plugins( plugin_basename( STAGS_DIR . '/simple-tags.php' ) );
@@ -32,7 +32,7 @@ class SimpleTags_Compatibility {
 	 */
 	public static function admin_notices() {
 		echo '<div class="notice error is-dismissible">';
-		echo '<p>' . esc_html( sprintf( 'Simple Tags require PHP version %s or greater to be activated. Your server is currently running PHP version %s.', STAGS_MIN_PHP_VERSION, PHP_VERSION ) ) . '</p>';
+		echo '<p>' . esc_html( sprintf( 'TaxoPress require PHP version %s or greater to be activated. Your server is currently running PHP version %s.', STAGS_MIN_PHP_VERSION, PHP_VERSION ) ) . '</p>';
 		echo '</div>';
 	}
 }

@@ -68,7 +68,7 @@ require STAGS_DIR . '/inc/class.widgets.php';
 register_activation_hook( __FILE__, array( 'SimpleTags_Plugin', 'activation' ) );
 register_deactivation_hook( __FILE__, array( 'SimpleTags_Plugin', 'deactivation' ) );
 
-// Init Simple Tags
+// Init TaxoPress
 function init_simple_tags() {
 	new SimpleTags_Client();
 	new SimpleTags_Client_TagCloud();

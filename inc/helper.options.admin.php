@@ -94,7 +94,7 @@ return array(
 			__( 'Autocompletion Min Chars', 'simpletags' ),
 			'number',
 			'small-text',
-			__( 'You can define how many characters from the autocompletion will be proposed. The default value in Simple Tags 2.0 is 0, prior this version, default parameter was 1.', 'simpletags' )
+			__( 'You can define how many characters from the autocompletion will be proposed. The default value in TaxoPress 2.0 is 0, prior this version, default parameter was 1.', 'simpletags' )
 		),
 		array(
 			'order_click_tags',
@@ -487,7 +487,7 @@ return array(
 			'text_helper',
 			'helper',
 			'',
-			__( 'This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
+			__( 'This feature has been removed from TaxoPress because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
 			. '<ul style="list-style:square;margin-left:20px;">
 				<li><a href="http://wordpress.org/extend/plugins/seo-ultimate/" target="_blank">SEO Ultimate</a></li>
 				<li><a href="http://wordpress.org/extend/plugins/platinum-seo-pack/" target="_blank">Platinum SEO Pack</a></li>
@@ -501,7 +501,7 @@ return array(
 			'text_helper',
 			'helper',
 			'',
-			__( 'This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
+			__( 'This feature has been removed from TaxoPress because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
 			. '<ul style="list-style:square;margin-left:20px;">
 				<li><a href="http://wordpress.org/extend/plugins/query-multiple-taxonomies/" target="_blank">Query Multiple Taxonomies</a></li>
 			</ul>'
