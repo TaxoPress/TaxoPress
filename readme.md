@@ -1,6 +1,4 @@
-# Simple Tags #
-
-[![CodeFactor](https://www.codefactor.io/repository/github/beapi/simple-tags/badge)](https://www.codefactor.io/repository/github/beapi/simple-tags)
+# TaxoPress (formerly known as Simple Tags) #
 
 * **Contributors:** momo360modena, rahe, beapi
 * **Donate link:** http://beapi.fr/donate/  
