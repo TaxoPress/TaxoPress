@@ -103,7 +103,7 @@ class SimpleTags_Admin_Manage {
 		<div class="wrap st_wrap">
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
 
-			<h2><?php _e( 'Simple Tags: Manage Terms', 'simpletags' ); ?></h2>
+			<h2><?php _e( 'TaxoPress: Manage Terms', 'simpletags' ); ?></h2>
 
 			<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
 
@@ -344,7 +344,7 @@ class SimpleTags_Admin_Manage {
 						<p><strong><?php _e( 'Renaming', 'simpletags' ); ?></strong></p>
 
 						<p>
-							<em><?php _e( 'Simple Tags don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 terms : "Blogging" and "Bloging". When you want edit the term "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit "Bloging" for "Blogging", Simple Tags merge posts filled with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags' ); ?>
+							<em><?php _e( 'TaxoPress don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 terms : "Blogging" and "Bloging". When you want edit the term "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With TaxoPress, when you edit "Bloging" for "Blogging", TaxoPress merge posts filled with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags' ); ?>
 								<em></p>
 					</td>
 				</tr>
