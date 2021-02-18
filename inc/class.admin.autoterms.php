@@ -1,14 +1,17 @@
 <?php
 
 class SimpleTags_Admin_AutoTags {
+
+	const MENU_SLUG = 'st_options';
+
 	// Build admin URL
-	static $tools_base_url = '';
+	static $admin_base_url = '';
 
 	/**
 	 * SimpleTags_Admin_AutoTags constructor.
 	 */
 	public function __construct() {
-		self::$tools_base_url = admin_url( 'tools.php' ) . '?page=';
+		self::$admin_base_url = admin_url( 'admin.php' ) . '?page=';
 
 		// Admin menu
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
@@ -24,10 +27,17 @@ class SimpleTags_Admin_AutoTags {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-		add_management_page( __( 'Simple Terms: Auto Terms', 'simpletags' ), __( 'Auto Terms', 'simpletags' ), 'simple_tags', 'st_auto', array(
-			__CLASS__,
-			'pageAutoTerms'
-		) );
+		add_submenu_page(
+			self::MENU_SLUG,
+			__( 'Simple Terms: Auto Terms', 'simpletags' ),
+			__( 'Auto Terms', 'simpletags' ),
+			'simple_tags',
+			'st_auto',
+			array(
+				__CLASS__,
+				'pageAutoTerms',
+			)
+		);
 	}
 
 	/**
@@ -169,9 +179,9 @@ class SimpleTags_Admin_AutoTags {
 								echo '<td>' . "\n";
 								if ( in_array( $line_taxo->name, $compatible_taxonomies ) ) {
 									if ( isset( $options[ $post_type->name ][ $line_taxo->name ] ) && isset( $options[ $post_type->name ][ $line_taxo->name ]['use_auto_terms'] ) && $options[ $post_type->name ][ $line_taxo->name ]['use_auto_terms'] == '1' ) {
-										echo '<a href="' . self::$tools_base_url . 'st_auto&taxo=' . $line_taxo->name . '&cpt=' . $post_type->name . '"><img src="' . STAGS_URL . '/assets/images/lightbulb.png" alt="' . __( 'Context configured & actived.', 'simpletags' ) . '" /></a>' . "\n";
+										echo '<a href="' . self::$admin_base_url . 'st_auto&taxo=' . $line_taxo->name . '&cpt=' . $post_type->name . '"><img src="' . STAGS_URL . '/assets/images/lightbulb.png" alt="' . __( 'Context configured & actived.', 'simpletags' ) . '" /></a>' . "\n";
 									} else {
-										echo '<a href="' . self::$tools_base_url . 'st_auto&taxo=' . $line_taxo->name . '&cpt=' . $post_type->name . '"><img src="' . STAGS_URL . '/assets/images/lightbulb_off.png" alt="' . __( 'Context unconfigured.', 'simpletags' ) . '" /></a>' . "\n";
+										echo '<a href="' . self::$admin_base_url . 'st_auto&taxo=' . $line_taxo->name . '&cpt=' . $post_type->name . '"><img src="' . STAGS_URL . '/assets/images/lightbulb_off.png" alt="' . __( 'Context unconfigured.', 'simpletags' ) . '" /></a>' . "\n";
 									}
 								} else {
 									echo '-' . "\n";
@@ -197,7 +207,7 @@ class SimpleTags_Admin_AutoTags {
 
 				<h3><?php _e( 'Options', 'simpletags' ); ?></h3>
 				<form
-					action="<?php echo self::$tools_base_url . 'st_auto&taxo=' . SimpleTags_Admin::$taxonomy . '&cpt=' . SimpleTags_Admin::$post_type; ?>"
+					action="<?php echo self::$admin_base_url . 'st_auto&taxo=' . SimpleTags_Admin::$taxonomy . '&cpt=' . SimpleTags_Admin::$post_type; ?>"
 					method="post">
 					<table class="form-table">
 						<tr valign="top">
@@ -268,7 +278,7 @@ class SimpleTags_Admin_AutoTags {
 				</p>
 				<p class="submit">
 					<a class="button-primary"
-					   href="<?php echo self::$tools_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag'; ?>"><?php _e( 'Auto terms all content &raquo;', 'simpletags' ); ?></a>
+					   href="<?php echo self::$admin_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag'; ?>"><?php _e( 'Auto terms all content &raquo;', 'simpletags' ); ?></a>
 				</p>
 
 			<?php else:
@@ -292,12 +302,12 @@ class SimpleTags_Admin_AutoTags {
 			echo '</ul>';
 			?>
 				<p><?php _e( "If your browser doesn't start loading the next page automatically click this link:", 'simpletags' ); ?>
-					<a href="<?php echo self::$tools_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag&amp;n=' . ( $n + 20 ); ?>"><?php _e( 'Next content', 'simpletags' ); ?></a>
+					<a href="<?php echo self::$admin_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag&amp;n=' . ( $n + 20 ); ?>"><?php _e( 'Next content', 'simpletags' ); ?></a>
 				</p>
 				<script type="text/javascript">
 					// <![CDATA[
 					function nextPage() {
-						location.href = "<?php echo self::$tools_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.SimpleTags_Admin::$post_type.'&action=auto_tag&n='.($n + 20); ?>";
+						location.href = "<?php echo self::$admin_base_url.'st_auto&taxo='.SimpleTags_Admin::$taxonomy.'&cpt='.SimpleTags_Admin::$post_type.'&action=auto_tag&n='.($n + 20); ?>";
 					}
 					window.setTimeout('nextPage()', 300);
 					// ]]>
