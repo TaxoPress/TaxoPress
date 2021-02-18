@@ -1,6 +1,9 @@
 <?php
 
 class SimpleTags_Admin_Manage {
+
+	const MENU_SLUG = 'st_options';
+	
 	/**
 	 * Constructor
 	 *
@@ -40,10 +43,17 @@ class SimpleTags_Admin_Manage {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-		add_management_page( __( 'Simple Terms: Manage Terms', 'simpletags' ), __( 'Manage Terms', 'simpletags' ), 'simple_tags', 'st_manage', array(
-			__CLASS__,
-			'page_manage_tags'
-		) );
+		add_submenu_page(
+			self::MENU_SLUG,
+			__( 'Simple Terms: Manage Terms', 'simpletags' ),
+			__( 'Manage Terms', 'simpletags' ),
+			'simple_tags',
+			'st_manage',
+			array(
+				__CLASS__,
+				'page_manage_tags',
+			)
+		); 
 	}
 
 	/**
