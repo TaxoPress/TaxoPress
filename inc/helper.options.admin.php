@@ -481,30 +481,4 @@ return array(
 			__( 'You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">documentation</a> for more details.', 'simpletags' )
 		)
 	),
-	'metakeywords'   => array(
-		array(
-			'text_helper',
-			'text_helper',
-			'helper',
-			'',
-			__( 'This feature has been removed from TaxoPress because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
-			. '<ul style="list-style:square;margin-left:20px;">
-				<li><a href="http://wordpress.org/extend/plugins/seo-ultimate/" target="_blank">SEO Ultimate</a></li>
-				<li><a href="http://wordpress.org/extend/plugins/platinum-seo-pack/" target="_blank">Platinum SEO Pack</a></li>
-				<li><a href="http://wordpress.org/extend/plugins/wordpress-seo/" target="_blank">WordPress SEO by Yoast</a></li>
-			</ul>'
-		)
-	),
-	'relatedtags'    => array(
-		array(
-			'text_helper',
-			'text_helper',
-			'helper',
-			'',
-			__( 'This feature has been removed from TaxoPress because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
-			. '<ul style="list-style:square;margin-left:20px;">
-				<li><a href="http://wordpress.org/extend/plugins/query-multiple-taxonomies/" target="_blank">Query Multiple Taxonomies</a></li>
-			</ul>'
-		)
-	),
 );
