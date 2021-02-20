@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags 2.3\n"
+"Project-Id-Version: TaxoPress 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2013-06-17 23:31+0100\n"
 "PO-Revision-Date: 2013-06-17 23:36+0100\n"
@@ -21,15 +21,15 @@ msgstr ""
 #, php-format
 msgid ""
 "Your PHP version is too old, please upgrade to a newer version. Your version "
-"is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins "
+"is %s, TaxoPress requires %s. Remove the plugin from WordPress plugins "
 "directory with FTP client."
 msgstr ""
 "Votre version de PHP est trop ancienne, merci de faire la mise à jour vers "
-"une version plus récente. Votre version est %s, Simple Tags nécessite %s"
+"une version plus récente. Votre version est %s, TaxoPress nécessite %s"
 
 #: ../inc/class.admin.autocomplete.php:152
-msgid "Tags (Simple Tags)"
-msgstr "Tags (Simple Tags)"
+msgid "Tags (TaxoPress)"
+msgstr "Tags (TaxoPress)"
 
 #: ../inc/class.admin.autocomplete.php:179
 msgid "Separate tags with commas"
@@ -37,7 +37,7 @@ msgstr "Séparé avec une virgule"
 
 #: ../inc/class.admin.autoterms.php:23
 msgid "Simple Terms: Auto Terms"
-msgstr "Simple Tags: Auto Termes"
+msgstr "TaxoPress: Auto Termes"
 
 #: ../inc/class.admin.autoterms.php:23
 msgid "Auto Terms"
@@ -92,7 +92,7 @@ msgstr ""
 "des articles afin d'y trouver des termes spécifiques lors de la sauvegarde "
 "des articles. Si le contenu ou le titre de l'article contient le mot "
 "\"WordPress\" et que la liste auto tags contient le mot \"wordpress\", "
-"Simple Tags ajoutera automatiquement \"wordpress\" comme terme de l'article."
+"TaxoPress ajoutera automatiquement \"wordpress\" comme terme de l'article."
 
 #: ../inc/class.admin.autoterms.php:181
 msgid "Options"
@@ -157,10 +157,10 @@ msgstr "Classifie automatiquement le contenu existant"
 
 #: ../inc/class.admin.autoterms.php:229
 msgid ""
-"Simple Tags can also tag all existing contents of your blog. This feature "
+"TaxoPress can also tag all existing contents of your blog. This feature "
 "use auto terms list above-mentioned."
 msgstr ""
-"Simple Tags permet également de tagger automatiquement tout le contenu de "
+"TaxoPress permet également de tagger automatiquement tout le contenu de "
 "votre blog. Cette fonctionnalité utilise la liste des termes mentionnés ci-"
 "dessus."
 
@@ -219,7 +219,7 @@ msgstr "Aucun résultat depuis la base de données de WordPress."
 
 #: ../inc/class.admin.manage.php:44
 msgid "Simple Terms: Manage Terms"
-msgstr "Simple Tags: Gestion des termes"
+msgstr "TaxoPress: Gestion des termes"
 
 #: ../inc/class.admin.manage.php:44
 msgid "Manage Terms"
@@ -243,8 +243,8 @@ msgstr ""
 "plugin</a>."
 
 #: ../inc/class.admin.manage.php:104
-msgid "Simple Tags: Manage Terms"
-msgstr "Simple Tags: Gestion des termes"
+msgid "TaxoPress: Manage Terms"
+msgstr "TaxoPress: Gestion des termes"
 
 #: ../inc/class.admin.manage.php:109
 msgid "Click terms list:"
@@ -403,19 +403,19 @@ msgstr "Renommer"
 
 #: ../inc/class.admin.manage.php:301
 msgid ""
-"Simple Tags don't use the same method as WordPress for rename a term. For "
+"TaxoPress don't use the same method as WordPress for rename a term. For "
 "example, in WordPress you have 2 terms : \"Blogging\" and \"Bloging\". When "
 "you want edit the term \"Bloging\" for rename it on \"Blogging\", WordPress "
 "will keep the two terms with the same name but with a different slug. <br /"
-">With Simple Tags, when you edit \"Bloging\" for \"Blogging\", Simple Tags "
+">With TaxoPress, when you edit \"Bloging\" for \"Blogging\", TaxoPress "
 "merge posts filled with \"Bloging\" to \"Blogging\" and it delete the term "
 "\"Bloging\". Another logic ;)"
 msgstr ""
-"Simple Tags n'utilise pas la même méthode que WordPress pour renommer un "
+"TaxoPress n'utilise pas la même méthode que WordPress pour renommer un "
 "terme. Par exemple, dans WordPress vous posséder 2 mots clefs : \"Blogging\" "
 "et \"Bloging\". Lorsque vous éditez le mot clef \"Bloging\" pour le renommer "
 "en \"Blogging\", WordPress conservera les 2 termes avec le même nom mais un "
-"slug différent. <br />Avec Simple Tags, lorsque vous éditez le mot clef "
+"slug différent. <br />Avec TaxoPress, lorsque vous éditez le mot clef "
 "\"Bloging\" pour \"Blogging\", le plugin déplace les articles classés avec "
 "\"Bloging\" dans le terme \"Blogging\", et ensuite il efface le terme "
 "\"Bloging\". Une autre logique ;)"
@@ -492,7 +492,7 @@ msgstr "Terme(s) ajouté(s) à %1s article(s)."
 
 #: ../inc/class.admin.mass.php:22
 msgid "Simple Terms: Mass Edit Terms"
-msgstr "Simple Tags: Edition en masse de termes"
+msgstr "TaxoPress: Edition en masse de termes"
 
 #: ../inc/class.admin.mass.php:22
 msgid "Mass Edit Terms"
@@ -590,20 +590,20 @@ msgid "Change selection"
 msgstr "Modifier la sélection"
 
 #: ../inc/class.admin.php:228 ../views/admin/page-settings.php:3
-msgid "Simple Tags: Options"
-msgstr "Simple Tags: Options"
+msgid "TaxoPress: Options"
+msgstr "TaxoPress: Options"
 
 #: ../inc/class.admin.php:228
-msgid "Simple Tags"
-msgstr "Simple Tags"
+msgid "TaxoPress"
+msgstr "TaxoPress"
 
 #: ../inc/class.admin.php:256
 msgid "Options saved"
 msgstr "Les options ont été sauvegardées."
 
 #: ../inc/class.admin.php:263
-msgid "Simple Tags options resetted to default options!"
-msgstr "Les options par défaut de Simple Tags ont été restaurées."
+msgid "TaxoPress options resetted to default options!"
+msgstr "Les options par défaut de TaxoPress ont été restaurées."
 
 #: ../inc/class.admin.php:303
 msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
@@ -624,11 +624,11 @@ msgstr ""
 msgid ""
 "&copy; Copyright 2007-2013 <a href=\"http://www.herewithme.fr/\" title="
 "\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
-"plugins/simple-tags\">Simple Tags</a> | Version %s"
+"plugins/simple-tags\">TaxoPress</a> | Version %s"
 msgstr ""
 "&copy; Copyright 2007-2013 <a href=\"http://www.herewithme.fr/\" title="
 "\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
-"plugins/simple-tags\">Simple Tags</a> | Version %s"
+"plugins/simple-tags\">TaxoPress</a> | Version %s"
 
 #: ../inc/class.admin.php:417
 msgid "Administration"
@@ -667,8 +667,8 @@ msgid "Tag cloud"
 msgstr "Nuage de mots clefs"
 
 #: ../inc/class.admin.post.php:25
-msgid "Simple Tags - Settings"
-msgstr "Simple Tags: Options"
+msgid "TaxoPress - Settings"
+msgstr "TaxoPress: Options"
 
 #: ../inc/class.admin.post.php:46
 msgid "Disable auto tags ?"
@@ -719,11 +719,11 @@ msgstr "Mots clefs suggérés"
 #: ../inc/class.admin.suggest.php:129
 msgid ""
 "OpenCalais need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 "OpenCalais nécssite une clef API pour fonctionner. Vous pouvez vous inscrire "
 "sur le site du service pour obtenir une clef, puis fixez la dans les "
-"réglages de Simple Tags."
+"réglages de TaxoPress."
 
 #: ../inc/class.admin.suggest.php:137 ../inc/class.admin.suggest.php:193
 #: ../inc/class.admin.suggest.php:247 ../inc/class.admin.suggest.php:294
@@ -738,11 +738,11 @@ msgstr "Aucun résultat depuis le service OpenCalais."
 #: ../inc/class.admin.suggest.php:185
 msgid ""
 "AlchemyAPI need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 "AlchemyAPI nécessite une clef API pour fonctionner. Vous pouvez vous "
 "inscrire sur le site du service pour obtenir une clef, puis fixez la dans "
-"les réglages de Simple Tags."
+"les réglages de TaxoPress."
 
 #: ../inc/class.admin.suggest.php:215
 msgid "No results from Alchemy API."
@@ -751,11 +751,11 @@ msgstr "Aucun résultat depuis le service Alchemy."
 #: ../inc/class.admin.suggest.php:239
 msgid ""
 "Zemanta need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 "Zemanta nécessite une clef API pour fonctionner. Vous pouvez vous inscrire "
 "sur le site du service pour obtenir une clef, puis fixez la dans les "
-"réglages de Simple Tags."
+"réglages de TaxoPress."
 
 #: ../inc/class.admin.suggest.php:271
 msgid "No results from Zemanta API."
@@ -839,8 +839,8 @@ msgid "Invalid Taxonomy"
 msgstr "Taxinomie invalide."
 
 #: ../inc/class.widgets.php:14
-msgid "Tag Cloud (Simple Tags)"
-msgstr "Nuage de mots clefs (Simple Tags)"
+msgid "Tag Cloud (TaxoPress)"
+msgstr "Nuage de mots clefs (TaxoPress)"
 
 #: ../inc/class.widgets.php:15
 msgid "Your most used tags in cloud format with dynamic color and many options"
@@ -1145,11 +1145,11 @@ msgstr "Minimum de caractères pour l'autocomplétion"
 #: ../inc/helper.options.admin.php:31
 msgid ""
 "You can define how many characters from the autocompletion will be proposed. "
-"The default value in Simple Tags 2.0 is 0, prior this version, default "
+"The default value in TaxoPress 2.0 is 0, prior this version, default "
 "parameter was 1."
 msgstr ""
 "Vous pouvez définir le nombre de caractères à partir du quel la saisie semi-"
-"automatique sera proposée. La valeur par défaut de Simple Tags 2.0 est égale "
+"automatique sera proposée. La valeur par défaut de TaxoPress 2.0 est égale "
 "à 0, avant cette version, le paramètre par défaut était fixé à 1."
 
 #: ../inc/helper.options.admin.php:32
@@ -1632,10 +1632,10 @@ msgstr ""
 
 #: ../inc/helper.options.admin.php:169 ../inc/helper.options.admin.php:177
 msgid ""
-"This feature has been removed from Simple Tags because it is not relevant "
+"This feature has been removed from TaxoPress because it is not relevant "
 "enough and there are better plugins like<br />"
 msgstr ""
-"Cette fonctionnalité a été supprimée de Simple Tags car elle n'est plus "
+"Cette fonctionnalité a été supprimée de TaxoPress car elle n'est plus "
 "pertinente et d'autres plugins font mieux ce travail comme<br />"
 
 #: ../inc/helper.options.default.php:38
@@ -1797,11 +1797,11 @@ msgstr "Restaurer les options par défaut"
 #~ "Activer la création automatique de liens dans le contenu des articles:"
 
 #~ msgid ""
-#~ "This feature has been removed from Simple Tags because it is not relevant "
+#~ "This feature has been removed from TaxoPress because it is not relevant "
 #~ "enough and i recommended to use the core function of WP <code style="
 #~ "\"font-weight:700;\">the_tags()</code><br />"
 #~ msgstr ""
-#~ "Cette fonctionnalité a été supprimée de Simple Tags car elle n'est plus "
+#~ "Cette fonctionnalité a été supprimée de TaxoPress car elle n'est plus "
 #~ "pertinente. Je vous recommande d'utiliser la fonction native de WordPress "
 #~ "<code style=\"font-weight:700;\">the_tags()</code><br />"
 
@@ -2163,9 +2163,9 @@ msgstr "Restaurer les options par défaut"
 #~ msgid "Rename Tag"
 #~ msgstr "Renommer le tag"
 
-#~ msgid "Simple Tags can't work with this WordPress version !"
+#~ msgid "TaxoPress can't work with this WordPress version !"
 #~ msgstr ""
-#~ "Simple Tags ne peut pas fonctionner avec cette version de WordPress !"
+#~ "TaxoPress ne peut pas fonctionner avec cette version de WordPress !"
 
 #~ msgid ""
 #~ "You must use <a href=\"%1$s\">Simple Tagging Plugin</a> for it to work."
@@ -2228,10 +2228,10 @@ msgstr "Restaurer les options par défaut"
 #~ "installé et actif. Cette fonctionnalité est desactivée."
 
 #~ msgid ""
-#~ "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</"
+#~ "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</"
 #~ "a> now !"
 #~ msgstr ""
-#~ "Toutes les options de Simple Tags sont éffacées ! Vous pouvez <a href=\"%s"
+#~ "Toutes les options de TaxoPress sont éffacées ! Vous pouvez <a href=\"%s"
 #~ "\">désinstaller le plugin</a>  !"
 
 #~ msgid "Update Options &raquo;"
@@ -2242,19 +2242,19 @@ msgstr "Restaurer les options par défaut"
 
 #~ msgid ""
 #~ "Generally, deactivating this plugin does not erase any of its data, if "
-#~ "you like to quit using Simple Tags for good, please erase <strong>all</"
+#~ "you like to quit using TaxoPress for good, please erase <strong>all</"
 #~ "strong> options before deactivating the plugin."
 #~ msgstr ""
 #~ "Généralement, la désactivation d'un plugin, n'efface aucune donnée de ce "
-#~ "dernier, si vous voulez vraiment arrêter d'utiliser Simple Tags, merci "
+#~ "dernier, si vous voulez vraiment arrêter d'utiliser TaxoPress, merci "
 #~ "d'effacer <strong>toutes</strong> les options avant de désactiver le "
 #~ "plugin."
 
 #~ msgid ""
-#~ "This erases all Simple Tags options. <strong>This is irrevocable! Be "
+#~ "This erases all TaxoPress options. <strong>This is irrevocable! Be "
 #~ "careful.</strong>"
 #~ msgstr ""
-#~ "Ceci effacera toutes les options de Simple Tags. <strong>Cette action est "
+#~ "Ceci effacera toutes les options de TaxoPress. <strong>Cette action est "
 #~ "irréversible, soyez prudent.</strong>"
 
 #~ msgid "Delete all options ?"
@@ -2335,8 +2335,8 @@ msgstr "Restaurer les options par défaut"
 #~ "Tags <small>(séparez les tags multiples par des virgules : chat, "
 #~ "nourriture pour animaux, chien)</small>"
 
-#~ msgid "Simple Tags : Tag Cloud Widgets"
-#~ msgstr "Simple Tags : Nuage de tags Widgets"
+#~ msgid "TaxoPress : Tag Cloud Widgets"
+#~ msgstr "TaxoPress : Nuage de tags Widgets"
 
 #~ msgid "ST: Tag Cloud %d"
 #~ msgstr "Nuage de tags avancé %d"
@@ -2344,11 +2344,11 @@ msgstr "Restaurer les options par défaut"
 #~ msgid ""
 #~ "&copy; Copyright 2008 <a href=\"http://www.herewithme.fr/\" title=\"Here "
 #~ "With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
-#~ "plugins/simple-tags\">Simple Tags</a> | Version %s"
+#~ "plugins/simple-tags\">TaxoPress</a> | Version %s"
 #~ msgstr ""
 #~ "&copy; Copyright 2008<a href=\"http://www.herewithme.fr/\" title=\"Here "
 #~ "With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
-#~ "plugins/simple-tags\">Simple Tags</a> | Version %s"
+#~ "plugins/simple-tags\">TaxoPress</a> | Version %s"
 
 #~ msgid "WordPress 2.3 have a small bug and can create empty terms."
 #~ msgstr "WordPress 2.3 a un petit bug et permet la création de termes vides."
@@ -2411,8 +2411,8 @@ msgstr "Restaurer les options par défaut"
 #~ msgid "%s terms updated with success !"
 #~ msgstr "%s termes mises à jour avec succès !"
 
-#~ msgid "Simple Tags: Advanced Edit Terms"
-#~ msgstr "Simple Tags: Edition en masse de termes"
+#~ msgid "TaxoPress: Advanced Edit Terms"
+#~ msgstr "TaxoPress: Edition en masse de termes"
 
 #~ msgid ""
 #~ "Be careful with this page ! You can cause important damages, and lost all "
