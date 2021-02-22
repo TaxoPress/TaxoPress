@@ -322,7 +322,6 @@ class SimpleTags_Admin_AutoTags {
 
 			endif;
 			?>
-			<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
 			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
 		<?php
