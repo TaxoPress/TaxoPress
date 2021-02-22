@@ -9,7 +9,6 @@ return array(
 	'allow_embed_tcloud'     => 1,
 	'use_click_tags'         => 1,
 	'use_suggested_tags'     => 1,
-	'use_tracking'           => 0,
 	'use_autocompletion'     => 1,
 	// Auto link
 	'auto_link_tags'         => 0,

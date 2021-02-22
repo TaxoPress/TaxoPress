@@ -68,8 +68,6 @@ class SimpleTags_Admin {
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
 
-		// tracking
-		add_action( 'admin_notices', array( __CLASS__, 'admin_setup_notices' ) );
 	}
 
 	/**
@@ -104,46 +102,7 @@ class SimpleTags_Admin {
 
 		wp_send_json_success( [ 'term_id' => $term_id ] );
 	}
-
-	/**
-	 * Show tracking dialog
-	 */
-	public static function admin_setup_notices() {
-		// Make sure they have the permissions to do something
-		if ( ! current_user_can( 'admin_simple_tags' ) ) {
-			return;
-		}
-
-		// Already show ?
-		if ( get_option( 'simpletags_tracking_notice' ) ) {
-			return;
-		}
-
-		// Feature already enabled ?
-		if ( SimpleTags_Plugin::get_option_value( 'use_tracking' ) ) {
-			return;
-		}
-
-		// Dev environment ?
-		if ( self::is_dev_url( network_site_url( '/' ) ) ) {
-			update_option( 'simpletags_tracking_notice', '1' );
-
-			return;
-		}
-
-		$optin_url  = add_query_arg( 'st_action', 'opt_into_tracking' );
-		$optout_url = add_query_arg( 'st_action', 'opt_out_of_tracking' );
-
-		echo '<div class="updated"><p>';
-		echo '<a href="' . esc_url( $optout_url ) . '" class="button-secondary" style="float:right;">' . __( 'Do not allow', 'simpletags' ) . '</a>';
-		echo '<a href="' . esc_url( $optin_url ) . '" class="button-primary" style="float:right; margin-right:10px;">' . __( 'Allow', 'simpletags' ) . '</a>';
-
-		echo __( '<strong>TaxoPress:</strong> By allowing us to track your usage, we can make a better plugin by knowing the features of the plugin you have activated.', 'simpletags' );
-		echo '<br />';
-		echo __( '<strong>Developer\'s Notes:</strong> It would help me a lot! Because I have absolutely no idea of the features you use in this plugin :)', 'simpletags' );
-		echo '</p></div>';
-	}
-
+	
 	/**
 	 * Test if current URL is not a DEV environnement
 	 *
