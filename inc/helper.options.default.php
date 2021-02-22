@@ -3,10 +3,10 @@ return array(
 	// Features
 	'use_tag_pages'          => 1,
 	'active_mass_edit'       => 1,
-	'active_manage'          => 0,
-	'active_related_posts'   => 0,
+	'active_manage'          => 1,
+	'active_related_posts'   => 1,
 	'active_autotags'        => 1,
-	'allow_embed_tcloud'     => 0,
+	'allow_embed_tcloud'     => 1,
 	'use_click_tags'         => 1,
 	'use_suggested_tags'     => 1,
 	'use_tracking'           => 0,
