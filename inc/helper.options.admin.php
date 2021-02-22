@@ -65,13 +65,6 @@ return array(
 			__( 'This feature allow page post type to be tagged. This option add pages in tags search. Also add tag management in write page.', 'simpletags' )
 		),
 		array(
-			'use_tracking',
-			__( 'Tracking', 'simpletags' ),
-			'checkbox',
-			'1',
-			__( 'By allowing us to track your usage, we can help you better because we will know with what configuration WordPress, what themes and what extensions we should perform tests', 'simpletags' )
-		),
-		array(
 			'allow_embed_tcloud',
 			__( 'Tag cloud Shortcode', 'simpletags' ),
 			'checkbox',

@@ -28,10 +28,6 @@ class SimpleTags_Client {
 			new SimpleTags_Client_RelatedPosts();
 		}
 
-		// Tracking stats
-		require( STAGS_DIR . '/inc/class.client.tracking.php' );
-		new SimpleTags_Client_Tracking();
-
 		// Call auto terms ?
 		require( STAGS_DIR . '/inc/class.client.autoterms.php' );
 		new SimpleTags_Client_Autoterms();
