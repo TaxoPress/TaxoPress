@@ -1,60 +1,45 @@
-=== Simple Tags ===
-
-Contributors: momo360modena, rahe, beapi, nicolaskulka
-Donate link: http://beapi.fr/donate/
-Tags: tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy
+=== TaxoPress - Manage All Your Taxonomies, Tags, Categories ===
+Contributors: WebFactory, publishpress, kevinB, stevejburge, andergmartins, olatechpro
+Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
-Tested up to: 5.2
-Stable tag: 2.5.7
+Tested up to: 5.6
+Stable tag: 2.63
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+TaxoPress is the advanced taxonomy manager. This plugin can automatically create and link your taxonomy terms.
 
 == Description ==
 
-Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+TaxoPress is the advanced taxonomy manager. This plugin can automatically create and link your taxonomy terms.
 
-Github project homepage: https://github.com/BeAPI/simple-tags
+** TaxoPress is the perfect tool to manage all your WordPress taxonomy terms**
 
-**This is THE perfect tool to manage perfectly your WP terms for any taxonomy**
 
-It was written with this philosophy : best performances, more secured and brings a lot of new functions
+Here are some of the key features in TaxoPress:
 
-This plugin is developped on latest WordPress version, with the constant WP_DEBUG to TRUE.
-
-* Administration
-	* Tags suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request 
-		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
-	* tags management (rename, delete, merge, search and add tags, edit tags ID)
-	* **Edit mass tags (more than 50 posts once)**
-	* Auto link tags in post content
-	* Auto tags !
-	* Type-ahead input tags / Autocompletion Ajax
-	* Click tags
-	* Possibility to tag pages (not only posts) and include them inside the tags results
-	* **Easy configuration ! (in WP admin)**
-
-* Public
-	* Technorati, Flickr and Delicious tags
-	* Dynamic Tag Clouds with colors with Widgets (random order, etc)
-
-And more...
+* Term suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request
+* Term management. You can rename, delete, merge, search and add terms.
+* Edit mass tags for more than 50 posts at once.
+* Auto link tags in post content.
+* Automatically create tags for your content.
+* Tag pages (not only posts) and include them inside the tags results
+* Dynamic Tag Clouds with colors with widgets
 
 == Installation ==
 
-**Required PHP5 or upper.**
+**Requires PHP5 or upper.**
 
-The Simple Tags can be installed in 3 easy steps:
+TaxoPress can be installed in 3 easy steps:
 
-1. Unzip "Simple tags" archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
+1. Unzip the TaxoPress archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Inside the Wordpress admin, go to Options > Simple Tags, adjust the parameters according to your needs, and save them.
+3. Inside the WordPress admin, go to the 'TaxoPress' mennu.
 
 == Frequently Asked Questions ==
 
-= Simple Tags is compatible with which WordPress versions ? =
+= TaxoPress is compatible with which WordPress versions ? =
 
 * 2.5 and upper are compatible with WordPress 4.x and 5.x !
 * 2.4 and upper are compatible only with WordPress 4.x !
@@ -70,12 +55,32 @@ The Simple Tags can be installed in 3 easy steps:
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 3. Autotagging your content !
 4. Add tags easily with click tags !
-3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
+3. To help you to add easily tags, TaxoPress has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
 6. You also can suggest tags from lot's of service (Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms)
 
 == Changelog ==
 
-* Version 2.5.7
+v2.63 - 2021-01-14
+* fixed an unescaped database query
+* fixed a bug with custom post type name in URL when bulk editing posts
+
+v2.62 - 2020-10-27
+* removed all tracking code
+
+v2.61 - 2020-09-30
+* fixed issue with Maximum number of links for the same tag
+* added dismissible request to rate
+* added promo campaign for WP 301 Redirects
+
+v2.6 - 2020-09-10
+* fixes for WP v5.5
+* WebFactory took over maintenance of the plugin
+* 80,000 installs; 2,203,335 downloads
+
+* Version 2.5.8
+	* Fix issue that prevent Suggested Tags from working
+  * Fix OpenCalais issue (thanks @timbearcub for the help)
+* Version 2.5.6
 	* Github actions...
 * Version 2.5.6
 	* Change: remove support of CKEditor for WordPress plugin (not maintained)
@@ -208,7 +213,7 @@ The Simple Tags can be installed in 3 easy steps:
 	* Restore custom post tags feature : st_the_tags()
 	* Fix a bug with widget taxo option saving
 * Version 2.0-beta1 :
-	* This version is a back to fondamentals. Somes features are removed ! 
+	* This version is a back to fondamentals. Somes features are removed !
 	* This version need testing !
 	* Remove old marker <!--st_tag_cloud-->
 	* Remove related posts
@@ -474,7 +479,7 @@ The Simple Tags can be installed in 3 easy steps:
 	* Fixes 2-3 minors bugs
 * Version 1.0
 	* Initial version
-	
+
 == Upgrade Notice ==
 
 Nothing to say...
