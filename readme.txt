@@ -1,5 +1,5 @@
-=== TaxoPress - Tags Manager ===
-Contributors: stevejburge
+=== TaxoPress - Manage All Your Taxonomies, Tags, Categories ===
+Contributors: WebFactory, publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.6
@@ -8,43 +8,34 @@ Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Advanced Tagging & Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms. Easy tag manager!
+TaxoPress is the advanced taxonomy manager. This plugin can automatically create and link your taxonomy terms.
 
 == Description ==
 
-Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+TaxoPress is the advanced taxonomy manager. This plugin can automatically create and link your taxonomy terms.
 
-**The perfect tool to manage your WP terms for any taxonomy**
+** TaxoPress is the perfect tool to manage all your WordPress taxonomy terms**
 
-It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
-* Administration
-	* Tags suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request
-	* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
-	* tags management (rename, delete, merge, search and add tags, edit tags ID)
-	* **Edit mass tags (more than 50 posts at once)**
-	* Auto link tags in post content
-	* Auto tags !
-	* Type-ahead input tags / Autocompletion Ajax
-	* Click tags
-	* Possibility to tag pages (not only posts) and include them inside the tags results
-	* **Easy configuration ! (in WP admin)**
+Here are some of the key features in TaxoPress:
 
-* Public
-	* Technorati, Flickr and Delicious tags
-	* Dynamic Tag Clouds with colors with Widgets (random order, etc)
-
-And more...
+* Term suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request
+* Term management. You can rename, delete, merge, search and add terms.
+* Edit mass tags for more than 50 posts at once.
+* Auto link tags in post content.
+* Automatically create tags for your content.
+* Tag pages (not only posts) and include them inside the tags results
+* Dynamic Tag Clouds with colors with widgets
 
 == Installation ==
 
-**Required PHP5 or upper.**
+**Requires PHP5 or upper.**
 
-The TaxoPress can be installed in 3 easy steps:
+TaxoPress can be installed in 3 easy steps:
 
-1. Unzip "TaxoPress" archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
+1. Unzip the TaxoPress archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Inside the Wordpress admin, go to Options > TaxoPress, adjust the parameters according to your needs, and save them.
+3. Inside the WordPress admin, go to the 'TaxoPress' mennu.
 
 == Frequently Asked Questions ==
 
@@ -195,7 +186,7 @@ v2.6 - 2020-09-10
 	* Remove "include cat" on "Related Posts" settings
 	* Optimize function "Related posts"
 	* Reorganize admin for have a tab features with all features available
-	* Use a input text for TaxoPress autocompletion field
+	* Use a input text for Simple Tags autocompletion field
 	* Remove ID of term from autocompletion
 	* Fix autocompletion on mange terms page
 	* Add a field for advanced usage on tagcloud widget
@@ -240,7 +231,7 @@ v2.6 - 2020-09-10
 * Version 1.8.1 :
 	* Improve uninstaller
 	* Improve code widgets
-	* Improve support of custom taxonomies for TaxoPress features
+	* Improve support of custom taxonomies for simple tags features
 * Version 1.8.0 :
 	* Compatibility 3.0
 	* Add an option for auto-tags
@@ -310,9 +301,9 @@ v2.6 - 2020-09-10
 	* Fix a small bug with JSON class.
 * Version 1.6.2
 	* Click tags and suggested tags can work with default WordPress Tags.
-	* The TaxoPress auto completion replace default WordPress Tags input.
+	* The Simple Tags auto completion replace default WordPress Tags input.
 	* Restore administration options.
-	* Better management of TaxoPress with WP_Scripts and WP_Styles
+	* Better management of Simple Tags with WP_Scripts and WP_Styles
 	* Add an option for auto link tags.
 	* Fix a potential error with compatibility old markers.
 	* Update french and chineese translation.
@@ -354,7 +345,7 @@ v2.6 - 2020-09-10
 	* Fix internationalization when reset plugin options (and installation)
 	* Fix auto link feature (word replaced keep original case)
 * Version 1.3.7
-	* Improved performance of TaxoPress (specially Related Posts)
+	* Improved performance of Simple Tags (specially Related Posts)
 * Version 1.3.6
 	* Fix auto tags with all DB and this feature work also for auto tags save feature
 	* Clean lot's url
