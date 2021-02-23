@@ -268,7 +268,7 @@ class SimpleTags_Admin {
 	}
 
 	/**
-	 * Init somes JS and CSS need for simple tags.
+	 * Init somes JS and CSS need for TaxoPress.
 	 *
 	 * @return void
 	 * @author WebFactory Ltd
@@ -276,7 +276,7 @@ class SimpleTags_Admin {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
-		// Helper simple tags
+		// Helper TaxoPress
 		wp_register_script( 'st-helper-add-tags', STAGS_URL . '/assets/js/helper-add-tags.js', array( 'jquery' ), STAGS_VERSION );
 		wp_register_script( 'st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array( 'jquery' ), STAGS_VERSION );
 
@@ -316,8 +316,8 @@ class SimpleTags_Admin {
 	 */
 	public static function admin_menu() {
 		add_options_page(
-			__( 'Simple Tags: Options', 'simpletags' ),
-			__( 'Simple Tags', 'simpletags' ),
+			__( 'TaxoPress: Options', 'simpletags' ),
+			__( 'TaxoPress', 'simpletags' ),
 			'admin_simple_tags',
 			self::MENU_SLUG,
 			array(
@@ -358,7 +358,7 @@ class SimpleTags_Admin {
 
 			SimpleTags_Plugin::set_default_option();
 
-			add_settings_error( __CLASS__, __CLASS__, __( 'Simple Tags options resetted to default options!', 'simpletags' ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, __( 'TaxoPress options resetted to default options!', 'simpletags' ), 'updated' );
 		}
 
 		settings_errors( __CLASS__ );
@@ -394,7 +394,7 @@ class SimpleTags_Admin {
 	}
 
 	/**
-	 * Default content for meta box of Simple Tags
+	 * Default content for meta box of TaxoPress
 	 *
 	 * @return string
 	 * @author WebFactory Ltd
@@ -415,7 +415,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2021 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href="https://wordpress.org/plugins/simple-tags/">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2021 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href="https://wordpress.org/plugins/simple-tags/">TaxoPress</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 

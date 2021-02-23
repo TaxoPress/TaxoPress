@@ -104,7 +104,7 @@ class SimpleTags_Admin_Mass {
 				<input type="hidden" name="cpt" value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
         <h2><?php _e( 'Mass edit terms', 'simpletags' ); ?></h2>
-        <div class="simple-tags-review-box"><b>Simple Tags are kept free &amp; updated with reviews.</b> Please leave a review. It only takes a moment. Thank you!
+        <div class="simple-tags-review-box"><b>TaxoPress are kept free &amp; updated with reviews.</b> Please leave a review. It only takes a moment. Thank you!
 <br><a class="button button-primary" href="https://wordpress.org/support/plugin/simple-tags/reviews/#new-post" target="_blank">Leave a review 👍</a> <a href="#" class="simple-tags-dismiss-rating">I already rated the plugin</a>
 </div><br>
 

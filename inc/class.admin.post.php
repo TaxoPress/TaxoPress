@@ -16,7 +16,7 @@ class SimpleTags_Admin_Post_Settings {
 	}
 
 	/**
-	 * Register a new box for simple tags settings
+	 * Register a new box for TaxoPress settings
 	 *
 	 * @param string $post_type
 	 *
@@ -24,7 +24,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @author WebFactory Ltd
 	 */
 	public static function add_meta_boxes( $post_type ) {
-		add_meta_box( 'simpletags-settings', __( 'Simple Tags - Settings', 'simpletags' ), array(
+		add_meta_box( 'simpletags-settings', __( 'TaxoPress - Settings', 'simpletags' ), array(
 			__CLASS__,
 			'metabox'
 		), $post_type, 'side', 'low' );

@@ -193,10 +193,10 @@ class SimpleTags_Admin_AutoTags {
 			<?php if ( $action === false ) : ?>
 
         <h3><?php _e( 'Auto terms list', 'simpletags' ); ?></h3>
-        <div class="simple-tags-review-box"><b>Simple Tags are kept free &amp; updated with reviews.</b> Please leave a review. It only takes a moment. Thank you!
+        <div class="simple-tags-review-box"><b>TaxoPress are kept free &amp; updated with reviews.</b> Please leave a review. It only takes a moment. Thank you!
 <br><a class="button button-primary" href="https://wordpress.org/support/plugin/simple-tags/reviews/#new-post" target="_blank">Leave a review 👍</a> <a href="#" class="simple-tags-dismiss-rating">I already rated the plugin</a>
 </div>
-				<p><?php _e( 'This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, Simple Tags will add automatically "wordpress" as term for this post.', 'simpletags' ); ?></p>
+				<p><?php _e( 'This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will add automatically "wordpress" as term for this post.', 'simpletags' ); ?></p>
 
 				<h3><?php _e( 'Options', 'simpletags' ); ?></h3>
 				<form
@@ -267,7 +267,7 @@ class SimpleTags_Admin_AutoTags {
 
 				<h3><?php _e( 'Auto terms old content', 'simpletags' ); ?></h3>
 				<p>
-					<?php _e( 'Simple Tags can also tag all existing contents of your blog. This feature use auto terms list above-mentioned.', 'simpletags' ); ?>
+					<?php _e( 'TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned.', 'simpletags' ); ?>
 				</p>
 				<p class="submit">
 					<a class="button-primary"
