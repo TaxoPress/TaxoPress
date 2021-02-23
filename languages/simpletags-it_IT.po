@@ -2,1730 +2,1609 @@
 # Copyright (C) 2010 Amaury BALMER
 # This file is distributed under the same license as the TaxoPress package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: TaxoPress 1.7.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2010-01-31 17:45+0000\n"
-"PO-Revision-Date: 2021-02-22 08:16+0000\n"
+"PO-Revision-Date: 2010-02-01 00:42+0100\n"
 "Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
-"Language-Team: Italian\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n>1;\n"
+"Plural-Forms: nplurals=2; plural=n>1\n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"Language: it_IT\n"
-"X-Generator: Loco https://localise.biz/"
 
-#: inc/class.admin.mass.php:84
-#, fuzzy, php-format
-#| msgid "%s page(s) terms updated with success !"
-msgid "%1$s %2$s(s) terms updated with success !"
-msgstr "%s tag delle pagine aggiornati con successo!"
+#: extras/simple-tags.importer.php:56
+msgid "Import Embedded Tags"
+msgstr "Importa i tag inclusi"
 
-#: inc/class.admin.manage.php:543 inc/class.admin.manage.php:652
+#: extras/simple-tags.importer.php:57
+msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
+msgstr "Questi passaggi potrebbero richiedere alcuni minuti in base alla dimensione del database. Attendere prego."
+
+#: extras/simple-tags.importer.php:58
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visita la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"mailto:amaury@wordpress-fr.net\">scrivimi</a>!"
+
+#: extras/simple-tags.importer.php:67
+msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
+msgstr "Questo importa i tag dai tag inclusi nel blog usando la nuova struttura di tagging nativa di Wordpress."
+
+#: extras/simple-tags.importer.php:68
+msgid "To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!"
+msgstr "Per sistemare database grandi di autori che utilizzano molti tag abbiamo creato questo programma che con 4 semplici passaggi aiuta a sistemare i tag incorporati. Fai click e ti spiegheremo come fare."
+
+#: extras/simple-tags.importer.php:69
+msgid "Don&#8217;t be stupid - backup your database before proceeding!"
+msgstr "Non essere stupido, fai un backup del tuo database prima di procedere!"
+
+#: extras/simple-tags.importer.php:71
+msgid "Step 1 &raquo;"
+msgstr "Passaggio 1 &raquo;"
+
+#: extras/simple-tags.importer.php:94
+msgid "Missing parameters in URL. (Start or End)"
+msgstr "Parametro mancante nell'URL. (Inizio o fine)"
+
+#: extras/simple-tags.importer.php:106
+msgid "Configure and add tags to posts&#8230;"
+msgstr "Configura e aggiungi tag ai post&#8230;"
+
+#: extras/simple-tags.importer.php:113
+msgid "Start marker"
+msgstr "Punto di inizio"
+
+#: extras/simple-tags.importer.php:116
+msgid "End marker"
+msgstr "Punto di fine"
+
+#: extras/simple-tags.importer.php:119
+msgid "Delete embedded tags once imported ?"
+msgstr "Eliminare i tag incorporati una volta importati?"
+
+#: extras/simple-tags.importer.php:121
+msgid "Import also embedded tags from page ?"
+msgstr "Importare anche i tag incorporati dalle pagine?"
+
+#: extras/simple-tags.importer.php:124
+msgid "Start import &raquo;"
+msgstr "Inizio importazione &raquo;"
+
+#: extras/simple-tags.importer.php:165
+#: inc/admin.php:352
+msgid "If your browser doesn't start loading the next page automatically click this link:"
+msgstr "Se il browser non inizia il caricamento della prossima pagina automaticamente cliccare questo link:"
+
+#: extras/simple-tags.importer.php:165
+#: inc/admin.php:352
+msgid "Next content"
+msgstr "Contenuto successivo"
+
+#: extras/simple-tags.importer.php:178
+msgid "Done!"
+msgstr "Eseguito!"
+
+#: extras/simple-tags.importer.php:180
+msgid "Step 2 &raquo;"
+msgstr "Passaggio 2 &raquo;"
+
+#: extras/simple-tags.importer.php:197
+msgid "Import Complete!"
+msgstr "Importazione completa!"
+
+#: extras/simple-tags.importer.php:198
+msgid "OK, so we lied about this being a 4-step program! You&#8217;re done!"
+msgstr "OK, abbiamo scherzato riguardo i 4 passaggi del programma! Hai finito!"
+
+#: extras/simple-tags.importer.php:199
+msgid "Now wasn&#8217;t that easy?"
+msgstr "Non è stato facile?"
+
+#: extras/simple-tags.importer.php:200
+msgid "You can manage tags now !"
+msgstr "Ora puoi gestire i tag!"
+
+#: extras/simple-tags.importer.php:240
+#: inc/admin.php:2087
+msgid "Embedded Tags"
+msgstr "Tag incorporati"
+
+#: extras/simple-tags.importer.php:240
+msgid "Import Embedded Tags into the new WordPress native tagging structure."
+msgstr "Importa i tag incorporati nella nuova struttura di tagging nativa di Wordpress."
+
+#: inc/admin.php:36
+#, fuzzy
+msgid "Post tags"
+msgstr "Tag del post"
+
+#: inc/admin.php:106
+msgid "Display click tags"
+msgstr "Visualizza i tag selezionabili"
+
+#: inc/admin.php:106
+msgid "Hide click tags"
+msgstr "Nascondi i tag selezionabili"
+
+#: inc/admin.php:108
+msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
+msgstr "Scegli un provider per ricevere i tag (locale, Yahoo o Tag the net)."
+
+#: inc/admin.php:182
+#, fuzzy
+msgid "Simple Terms: Manage Terms"
+msgstr "TaxoPress: Gestisci i tag"
+
+#: inc/admin.php:182
+#, fuzzy
+msgid "Manage Terms"
+msgstr "Gestisci i tag"
+
+#: inc/admin.php:183
+#, fuzzy
+msgid "Simple Terms: Mass Edit Terms"
+msgstr "TaxoPress: Modifica tutti i tag"
+
+#: inc/admin.php:183
+#, fuzzy
+msgid "Mass Edit Terms"
+msgstr "Modifica tutti i tag"
+
+#: inc/admin.php:184
+#, fuzzy
+msgid "Simple Terms: Auto Terms"
+msgstr "TaxoPress: Auto tag"
+
+#: inc/admin.php:184
+#: inc/admin.php:275
+#, fuzzy
+msgid "Auto Terms"
+msgstr "Auto tag"
+
+#: inc/admin.php:185
+#: inc/admin.php:400
+msgid "TaxoPress: Options"
+msgstr "TaxoPress: Opzioni"
+
+#. #-#-#-#-#  plugin.pot (TaxoPress 1.7.4)  #-#-#-#-#
+#. Plugin Name of an extension
+#: inc/admin.php:185
+msgid "TaxoPress"
+msgstr "TaxoPress"
+
+#: inc/admin.php:196
+#, php-format
+msgid "You currently use the taxonomy : <span>%s</span>"
+msgstr ""
+
+#: inc/admin.php:210
+msgid "Change taxonomy"
+msgstr ""
+
+#: inc/admin.php:255
+msgid "Auto tags options updated !"
+msgstr "Opzione Auto tag aggiornata!"
+
+#: inc/admin.php:276
+#: inc/admin.php:401
+#: inc/admin.php:852
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visita la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"mailto:amaury@wordpress-fr.net\">scrivimi</a>!"
+
+#: inc/admin.php:280
+#, fuzzy
+msgid "Auto terms list"
+msgstr "Lista Auto tag"
+
+#: inc/admin.php:281
+#, fuzzy
+msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress will add automatically \"wordpress\" as term for this post."
+msgstr "Questa funzione permette a Wordpress di cercare nel contenuto di un post e nel titolo per specifici tag quando si salva il post. Se il contenuto del post o il titolo contiene la parola \"WordPress\" e tu hai \"wordpress\" nella lista di auto tag, TaxoPress aggiungerà automaticamente \"wordpress\" come tag per questo post."
+
+#: inc/admin.php:283
+msgid "Options"
+msgstr "Opzioni"
+
+#: inc/admin.php:287
+msgid "Activation"
+msgstr "Attivazione"
+
+#: inc/admin.php:290
+msgid "Active Auto Tags."
+msgstr "Attiva Auto Tag."
+
+#: inc/admin.php:294
+#, fuzzy
+msgid "Terms database"
+msgstr "Database dei tag"
+
+#: inc/admin.php:297
+#, fuzzy
+msgid "Use also local terms database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many terms)"
+msgstr "Usa anche il database locale dei tag con Auto Tag. (Attenzione, questa opzione aumenta di molto l'uso del processore se hai molti tag)"
+
+#: inc/admin.php:301
+msgid "Target"
+msgstr "Target"
+
+#: inc/admin.php:304
+#, fuzzy
+msgid "Autotag only posts without terms."
+msgstr "Autotagga solo i post senza tag."
+
+#: inc/admin.php:308
+msgid "Keywords list"
+msgstr "Lista delle parole chiave"
+
+#: inc/admin.php:311
+msgid "Separated with a comma"
+msgstr "Separati da una virgola"
+
+#: inc/admin.php:317
+#: inc/admin.php:404
+#: inc/admin.php:418
+msgid "Update options &raquo;"
+msgstr "Aggiorna opzioni &raquo;"
+
+#: inc/admin.php:321
+#, fuzzy
+msgid "Auto terms old content"
+msgstr "Autotagga i vecchi contenuti"
+
+#: inc/admin.php:323
+#, fuzzy
+msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
+msgstr "TaxoPress può anche taggare tutti i contenuti esistenti del tuo blog. Questa opzione usa la lista di Auto Tag su menzionata."
+
+#: inc/admin.php:326
+#, fuzzy
+msgid "Auto terms all content &raquo;"
+msgstr "Auto tagga tutti i contenuti &raquo;"
+
+#: inc/admin.php:365
 #, fuzzy, php-format
-#| msgid "%1s tag(s) deleted."
-msgid "%1s term(s) deleted."
+msgid "All done! %s terms added."
+msgstr "Fatto! %s tag aggiunti."
+
+#: inc/admin.php:390
+msgid "Options saved"
+msgstr "Opzioni salvate"
+
+#: inc/admin.php:394
+msgid "TaxoPress options resetted to default options!"
+msgstr "Le opzioni di default di TaxoPress sono state ripristinate!"
+
+#: inc/admin.php:405
+#: inc/admin.php:419
+msgid "Do you really want to restore the default options?"
+msgstr "Vuoi veramente ripristinare le opzioni di default?"
+
+#: inc/admin.php:405
+#: inc/admin.php:419
+msgid "Reset Options"
+msgstr "Ripristina opzioni di default"
+
+#: inc/admin.php:436
+#: inc/admin.php:1498
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "Problema di sicurezza. Prova di nuovo. Se il problema persiste contatta <a href=\"mailto:amaury@wordpress-fr.net\">l'autore del plugin</a>."
+
+#: inc/admin.php:471
+#, fuzzy
+msgid "TaxoPress: Manage Terms"
+msgstr "TaxoPress: Gestisci i tag"
+
+#: inc/admin.php:472
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Visita la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"mailto:amaury@wordpress-fr.net\">scrivimi</a>!"
+
+#: inc/admin.php:476
+msgid "Rename/Merge Terms"
+msgstr ""
+
+#: inc/admin.php:478
+#, fuzzy
+msgid "Enter the term to rename and its new value. You can use this feature to merge terms too. Click \"Rename\" and all posts which use this term will be updated."
+msgstr "Inserisci il tag da rinominare e il suo nuovo valore. Puoi usare questa funzione anche per unire tag diversi. Clicca \"Rename\" e tutti i post che usano questo tag verranno aggiornati. "
+
+#: inc/admin.php:479
+#: inc/admin.php:560
+#, fuzzy
+msgid "You can specify multiple terms to rename by separating them with commas."
+msgstr "Puoi specificare più tag da rinominare separandoli con virgole."
+
+#: inc/admin.php:487
+#, fuzzy
+msgid "Term(s) to rename:"
+msgstr "Tag da rinominare:"
+
+#: inc/admin.php:493
+#, fuzzy
+msgid "New term name(s):"
+msgstr "Nuovo nome(i) tag:"
+
+#: inc/admin.php:498
+msgid "Rename"
+msgstr "Rinomina"
+
+#: inc/admin.php:505
+#, fuzzy
+msgid "Delete Terms"
+msgstr "Cancella tag"
+
+#: inc/admin.php:507
+#, fuzzy
+msgid "Enter the name of terms to delete. Terms will be removed from all posts."
+msgstr "Inserire il nome del tag da cancellare. Questo tag verrà rimosso da tutti i post."
+
+#: inc/admin.php:508
+#, fuzzy
+msgid "You can specify multiple terms to delete by separating them with commas"
+msgstr "Puoi specificare più tag da cancellare separandoli con virgole"
+
+#: inc/admin.php:516
+#, fuzzy
+msgid "Term(s) to delete:"
+msgstr "Tag da cancellare"
+
+#: inc/admin.php:521
+msgid "Delete"
+msgstr "Cancella"
+
+#: inc/admin.php:528
+#, fuzzy
+msgid "Add Terms"
+msgstr "Aggiungi tag"
+
+#: inc/admin.php:530
+#, fuzzy
+msgid "This feature lets you add one or more new terms to all posts which match any of the terms given."
+msgstr "Questa funzione permette di aggiungere uno o più nuovi tag a tutti i post che corrispondono al tag scelto."
+
+#: inc/admin.php:531
+#, fuzzy
+msgid "You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all posts, then don't specify any terms to match."
+msgstr "Puoi specificare più tag da aggiungere separandoli con virgole. Se vuoi che i tag vengano aggiunti a tutti i post, allora non specificare alcun tag da ricercare."
+
+#: inc/admin.php:539
+#: inc/admin.php:568
+#, fuzzy
+msgid "Term(s) to match:"
+msgstr "Tag da ricercare:"
+
+#: inc/admin.php:545
+#, fuzzy
+msgid "Term(s) to add:"
+msgstr "Tag da aggiungere:"
+
+#: inc/admin.php:550
+msgid "Add"
+msgstr "Aggiungi"
+
+#: inc/admin.php:557
+#, fuzzy
+msgid "Edit Term Slug"
+msgstr "Modifica lo slug del tag"
+
+#: inc/admin.php:559
+#, fuzzy
+msgid "Enter the term name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
+msgstr "Inserisci il nome del tag da modificare e il suo nuovo slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Definizione di slug</a>"
+
+#: inc/admin.php:574
+msgid "Slug(s) to set:"
+msgstr "Slug da impostare:"
+
+#: inc/admin.php:579
+#: inc/admin.php:832
+msgid "Edit"
+msgstr "Modifica"
+
+#: inc/admin.php:586
+msgid "Remove empty terms"
+msgstr "Rimuovi termini vuoti"
+
+#: inc/admin.php:588
+msgid "Old WordPress versions have a small bug and allow to create empty terms. Remove it !"
+msgstr "Le vecchie versioni di Wordpress hanno un piccolo bug e permettono di creare termini vuoti. Rimuovili!"
+
+#: inc/admin.php:596
+msgid "Clean !"
+msgstr "Pulisci!"
+
+#: inc/admin.php:604
+msgid "Technical informations"
+msgstr ""
+
+#: inc/admin.php:606
+#, fuzzy
+msgid "Renaming"
+msgstr "Rinomina"
+
+#: inc/admin.php:607
+msgid "TaxoPress don't use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress will keep the two terms with the same name but with a different slug. <br />With TaxoPress, when you edit \"Bloging\" for \"Blogging\", TaxoPress merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term \"Bloging\". Another logic ;)"
+msgstr ""
+
+#: inc/admin.php:640
+#, fuzzy
+msgctxt "post"
+msgid "Published"
+msgstr "Post pubblicati"
+
+#: inc/admin.php:640
+msgid "Published posts"
+msgstr "Post pubblicati"
+
+#: inc/admin.php:640
+#, php-format
+msgid "Published <span class=\"count\">(%s)</span>"
+msgid_plural "Published <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:641
+#, fuzzy
+msgctxt "post"
+msgid "Scheduled"
+msgstr "Post programmati"
+
+#: inc/admin.php:641
+msgid "Scheduled posts"
+msgstr "Post programmati"
+
+#: inc/admin.php:641
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:642
+msgctxt "post"
+msgid "Pending Review"
+msgstr ""
+
+#: inc/admin.php:642
+msgid "Pending posts"
+msgstr "Post in sospeso"
+
+#: inc/admin.php:642
+#, php-format
+msgid "Pending Review <span class=\"count\">(%s)</span>"
+msgid_plural "Pending Review <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:643
+msgctxt "post"
+msgid "Draft"
+msgstr ""
+
+#: inc/admin.php:643
+msgctxt "manage posts header"
+msgid "Drafts"
+msgstr ""
+
+#: inc/admin.php:643
+#, php-format
+msgid "Draft <span class=\"count\">(%s)</span>"
+msgid_plural "Drafts <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:644
+#, fuzzy
+msgctxt "post"
+msgid "Private"
+msgstr "Post privati"
+
+#: inc/admin.php:644
+msgid "Private posts"
+msgstr "Post privati"
+
+#: inc/admin.php:644
+#, php-format
+msgid "Private <span class=\"count\">(%s)</span>"
+msgid_plural "Private <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/admin.php:699
+#, fuzzy
+msgid "Mass edit terms"
+msgstr "Modifica tutti i tag"
+
+#: inc/admin.php:706
+msgid "All Posts"
+msgstr "Tutti i post"
+
+#: inc/admin.php:726
+msgid "All Pages"
+msgstr "Tutte le pagine"
+
+#: inc/admin.php:735
+msgid "Search Posts"
+msgstr "Cerca post"
+
+#: inc/admin.php:767
+msgid "Show all dates"
+msgstr "Mostra tutte le date"
+
+#: inc/admin.php:789
+msgid "View all categories"
+msgstr "Vedi tutte le categorie"
+
+#: inc/admin.php:793
+msgid "Quantity&hellip;"
+msgstr "Quantità &hellip;"
+
+#: inc/admin.php:803
+msgid "Filter"
+msgstr "Filtro"
+
+#: inc/admin.php:820
+msgid "Post title"
+msgstr "Titolo del post"
+
+#: inc/admin.php:821
+#, php-format
+msgid "Terms : %s"
+msgstr ""
+
+#: inc/admin.php:843
+msgid "Update all &raquo;"
+msgstr "Aggiorna tutto &raquo;"
+
+#: inc/admin.php:849
+msgid "No content to edit."
+msgstr "Nessun contenuto da modificare."
+
+#: inc/admin.php:1055
+#: inc/admin.php:1060
+msgid "Tags (TaxoPress)"
+msgstr "Tag (TaxoPress)"
+
+#: inc/admin.php:1071
+msgid "Separate tags with commas"
+msgstr "Separa i tag con virgole"
+
+#: inc/admin.php:1082
+msgid "No new tag specified!"
+msgstr "Nessun nuovo tag specificato!"
+
+#: inc/admin.php:1097
+msgid "No new/old valid tag specified!"
+msgstr "Nessun nuovo/vecchio tag valido specificato!"
+
+#: inc/admin.php:1133
+msgid "No tag renamed."
+msgstr "Nessun tag rinominato."
+
+#: inc/admin.php:1135
+#, php-format
+msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr "Tag rinominati da &laquo;%1$s&raquo; a &laquo;%2$s&raquo;"
+
+#: inc/admin.php:1142
+msgid "No valid new tag."
+msgstr "Nessun nuovo tag valido."
+
+#: inc/admin.php:1159
+msgid "No objects (post/page) found for specified old tags."
+msgstr "Nessun oggetto (post/pagina) trovato per il vecchio tag specificato."
+
+#: inc/admin.php:1186
+msgid "No tag merged."
+msgstr "Nessun tag unito."
+
+#: inc/admin.php:1188
+#, php-format
+msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr "Unisci tag da &laquo;%1$s&raquo; a &laquo;%2$s&raquo;. %3$s oggetti modificati."
+
+#: inc/admin.php:1191
+msgid "Error. No enough tags for rename. Too for merge. Choose !"
+msgstr "Errore. Non ci sono abbastanza tag da rinominare o da unire. Scegli!"
+
+#: inc/admin.php:1218
+msgid "No tag specified!"
+msgstr "Nessun tag specificato!"
+
+#: inc/admin.php:1241
+msgid "No tag deleted."
+msgstr "Nessun tag cancellato."
+
+#: inc/admin.php:1243
+#, php-format
+msgid "%1s tag(s) deleted."
 msgstr "%1s tag cancellato(i)."
 
-#: inc/class.client.related_posts.php:424
+#: inc/admin.php:1255
+msgid "No new tag(s) specified!"
+msgstr "Nessun nuovo tag specificato!"
+
+#: inc/admin.php:1306
+msgid "No tag added."
+msgstr "Nessun tag aggiunto"
+
+#: inc/admin.php:1308
+#, php-format
+msgid "Tag(s) added to %1s post(s)."
+msgstr "Tag aggiunto(i) a %1s post."
+
+#: inc/admin.php:1320
+msgid "No new slug(s) specified!"
+msgstr "Nessun nuovo slug specificato!"
+
+#: inc/admin.php:1332
+msgid "Tags number and slugs number isn't the same!"
+msgstr "Il numero dei tag e il numero degli slug non è uguale!"
+
+#: inc/admin.php:1359
+msgid "No slug edited."
+msgstr "Nessuno slug modificato."
+
+#: inc/admin.php:1361
+#, php-format
+msgid "%s slug(s) edited."
+msgstr "%s slug modificato(i)."
+
+#: inc/admin.php:1379
+msgid "Nothing to muck. Good job !"
+msgstr "Niente da dire. Ottimo lavoro!"
+
+#: inc/admin.php:1407
+#, php-format
+msgid "%s rows deleted. WordPress DB is clean now !"
+msgstr "%s righe cancellate. Il database di Wordpress ora è pulito!"
+
+#: inc/admin.php:1417
+msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
+msgstr "Questa caratteristica richiede almeno 1 tag per funzionare. Inizia ad aggiungere tag!"
+
+#: inc/admin.php:1419
+msgid "This feature works only with activated JavaScript. Activate it in your Web browser so you can!"
+msgstr "Questa caratteristica funziona solo con JavaScript attivo. Attivalo nel tuo browser!"
+
+#: inc/admin.php:1429
+#: inc/admin.php:1434
+msgid "Click tags"
+msgstr "Clicca tag"
+
+#: inc/admin.php:1446
+msgid "Ajax loading"
+msgstr "Caricamento Ajax"
+
+#: inc/admin.php:1447
+msgid "Suggested tags from :"
+msgstr "Tag suggeriti da:"
+
+#: inc/admin.php:1448
+msgid "Local tags"
+msgstr "Tag locali"
+
+#: inc/admin.php:1449
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: inc/admin.php:1450
+msgid "OpenCalais"
+msgstr ""
+
+#: inc/admin.php:1451
+msgid "AlchemyAPI"
+msgstr ""
+
+#: inc/admin.php:1452
+msgid "Zemanta"
+msgstr ""
+
+#: inc/admin.php:1453
+msgid "Tag The Net"
+msgstr "Tag The Net"
+
+#: inc/admin.php:1459
+#: inc/admin.php:1464
+msgid "Suggested tags"
+msgstr "Tag suggeriti"
+
+#: inc/admin.php:1528
+#, fuzzy, php-format
+msgid "%s page(s) terms updated with success !"
+msgstr "%s tag delle pagine aggiornati con successo!"
+
+#: inc/admin.php:1530
+#, fuzzy, php-format
+msgid "%s post(s) terms updated with success !"
+msgstr "%s tag dei post aggiornati con successo!"
+
+#: inc/admin.php:1593
+msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
+msgstr ""
+
+#: inc/admin.php:1601
+#: inc/admin.php:1652
+#: inc/admin.php:1706
+#: inc/admin.php:1756
+#: inc/admin.php:1808
+#: inc/admin.php:1875
+msgid "No text was sent."
+msgstr "Nessun testo inviato."
+
+#: inc/admin.php:1619
+#, fuzzy
+msgid "No results from OpenCalais service."
+msgstr "Nessun risultato dal servizio di Yahoo."
+
+#: inc/admin.php:1644
+msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
+msgstr ""
+
+#: inc/admin.php:1677
+#, fuzzy
+msgid "No results from Alchemy API."
+msgstr "Nessun risultato dal servizio di Yahoo."
+
+#: inc/admin.php:1698
+msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
+msgstr ""
+
+#: inc/admin.php:1733
+#, fuzzy
+msgid "No results from Zemanta API."
+msgstr "Nessun risultato dal servizio di Yahoo."
+
+#: inc/admin.php:1777
+msgid "No results from Yahoo! service."
+msgstr "Nessun risultato dal servizio di Yahoo."
+
+#: inc/admin.php:1828
+msgid "No results from Tag The Net service."
+msgstr "Nessun risultato dal servizio Tag The Net."
+
+#: inc/admin.php:1866
+#: inc/admin.php:1910
+#, fuzzy
+msgid "No terms in your WordPress database."
+msgstr "Nessun tag nel tuo database di Wordpress."
+
+#: inc/admin.php:1883
+#: inc/admin.php:1922
+msgid "No results from your WordPress database."
+msgstr "Nessun risultato dal tuo database di Wordpress."
+
+#: inc/admin.php:1982
+#, php-format
+msgid "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">TaxoPress</a> | Version %s"
+msgstr "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">TaxoPress</a> | Versione %s"
+
+#: inc/admin.php:2075
+msgid "Administration"
+msgstr "Amministrazione"
+
+#: inc/admin.php:2078
+msgid "Auto link"
+msgstr "Autolink"
+
+#: inc/admin.php:2081
+msgid "General"
+msgstr "Generale"
+
+#: inc/admin.php:2084
+msgid "Meta Keyword"
+msgstr "Meta chiavi"
+
+#: inc/admin.php:2090
+msgid "Tags for Current Post"
+msgstr "Tag per il post corrente"
+
+#: inc/admin.php:2093
+msgid "Related Posts"
+msgstr "Post correlati"
+
+#: inc/admin.php:2096
+msgid "Related Tags"
+msgstr "Tag correlati"
+
+#: inc/admin.php:2099
+#: inc/widgets.php:17
+msgid "Tag cloud"
+msgstr "Tag cloud"
+
+#: inc/array.options.php:7
+msgid "Active tags for page:"
+msgstr "Tag attivi per pagina:"
+
+#: inc/array.options.php:8
+msgid "This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page."
+msgstr "Questa funzione permette alle pagine di essere taggate e le aggiunge alla ricerca dei tag. Inoltre aggiunge la gestione dei tag nella scrittura delle pagine."
+
+#: inc/array.options.php:9
+msgid "Allow tag cloud in post/page content:"
+msgstr "Permetti tag cloud nel contenuto del post/pagina:"
+
+#: inc/array.options.php:10
+msgid "Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> or <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WP replace this marker by a tag cloud."
+msgstr "Abilitando questa opzione si permetterà a Wordpress di cercare marcatori di tag cloud come <code>&lt;!--st_tag_cloud--&gt;</code> o <code>[st_tag_cloud]</code> o <code>[st-tag-cloud]</code> quando si mostrano i post. Wordpress sostituisce il marcatore con una tag cloud."
+
+#: inc/array.options.php:11
+msgid "Add the rel=\"nofollow\" on each tags link ?"
+msgstr "Aggiungo il rel=\"nofollow\" ad ogni link di tag?"
+
+#: inc/array.options.php:12
+msgid "Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index."
+msgstr "Nofollow è un attributo HTML non standard usato per dire ai motori di ricerca che un hyperlink non deve influenzare il ranking del link nell'indice del motore di ricerca."
+
+#: inc/array.options.php:15
+msgid "Activate click tags feature:"
+msgstr "Attivare l'opzione click tag:"
+
+#: inc/array.options.php:16
+msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
+msgstr "Questa funzione aggiunge un link che permette di mostrare tutti i tag del tuo database. Una volta mostrati, puoi cliccarci sopra per aggiungere un tag al post."
+
+#: inc/array.options.php:17
+msgid "Activate autocompletion feature with old input:"
+msgstr "Attivare l'opzione di autocompletamento con un vecchio input:"
+
+#: inc/array.options.php:18
+msgid "This feature displays a visual help allowing to enter tags more easily. As well add tags is easier than the autocompletion default of WordPress"
+msgstr "Questa funzione mostra un aiuto visuale che permette di inserire i tag più facilmente. Inoltre aggiungere tag è più semplice dell'autocompletamento predefinito di Wordpress "
+
+#: inc/array.options.php:19
+#, fuzzy
+msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)"
+msgstr "Attivare la funzione di suggerimento tag: (Yahoo! Term Extraction API, Tag The Net, DB Locale)"
+
+#: inc/array.options.php:20
+msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
+msgstr "Questa funzione aggiunge un campo con i tag suggeriti, confrontando il contenuto del post e diverse fonti di tag. (Esterne e interne)"
+
+#: inc/array.options.php:21
+msgid "OpenCalais API Key"
+msgstr ""
+
+#: inc/array.options.php:22
+msgid "You can create an API key from <a href=\"http://www.opencalais.com/\">service website</a>"
+msgstr ""
+
+#: inc/array.options.php:23
+msgid "Alchemy API Key"
+msgstr ""
+
+#: inc/array.options.php:24
+msgid "You can create an API key from <a href=\"http://www.alchemyapi.com/\">service website</a>"
+msgstr ""
+
+#: inc/array.options.php:25
+msgid "Zemanta API Key"
+msgstr ""
+
+#: inc/array.options.php:26
+msgid "You can create an API key from <a href=\"http://developer.zemanta.com/\">service website</a>"
+msgstr ""
+
+#: inc/array.options.php:29
+msgid "Active auto link tags into post content:"
+msgstr "Attivare il collegamento automatico dei tag nel contenuto dei post:"
+
+#: inc/array.options.php:30
+msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr "Esempio: se hai un tag che si chiama \"WordPress\" e il tuo post contiene la parola \"wordpress\", questa opzione rimpiazzerà \"wordpress\" con un link alla pagina dei tag \"wordpress\". (http://myblog.net/tag/wordpress/)"
+
+#: inc/array.options.php:31
+msgid "Min usage for auto link tags:"
+msgstr "Numero minimo per autolink tag:"
+
+#: inc/array.options.php:32
+msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
+msgstr "Questo parametro permette di fissare il valore minimo per i tag. Default: 1."
+
+#: inc/array.options.php:33
+msgid "Maximum number of links per article:"
+msgstr "Numero massimo di link per articolo:"
+
+#: inc/array.options.php:34
+msgid "This setting determines the maximum number of links created by article. Default: 10."
+msgstr "Questo parametro permette di fissare il numero massimo di link creati in ogni articolo. Predefinito: 10."
+
+#: inc/array.options.php:35
+msgid "Ignore case for auto link feature ?"
+msgstr "Ignorare maiuscole/minuscole per l'opzione auto link?"
+
+#: inc/array.options.php:36
+msgid "Example: If you ignore case, auto link feature will replace the word \"wordpress\" by the tag link \"WordPress\"."
+msgstr "Esempio: se ignori maiuscole/minuscole l'opzione autolink rimpiazzerà la parola \"wordpress\" con il collegamenteo al tag \"Wordpress\"."
+
+#: inc/array.options.php:37
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
+msgstr "Escludi alcuni termini dal tag link. Per sostituzioni di link, etc."
+
+#: inc/array.options.php:38
+msgid "Example: If you enter the term \"Paris\", the auto link tags feature will never replace this term by this link."
+msgstr "Esempio: se inserisci il termine \"Paris\", l'opzione autolink tag non sostituirà mai questo termine con questo link."
+
+#: inc/array.options.php:42
+msgid "Automatically include in header:"
+msgstr "Includi automaticamente nell'header"
+
+#: inc/array.options.php:43
+msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is automatically disabled."
+msgstr "Includi automaticamente nell'intestazione le parole chiave (molti, ma non tutti, i temi supportano questa funzione). Queste parole chiave sono frequentemente usate dai motori di ricerca. <br /><strong>Attenzione:</strong> Se il plugin \"All in One SEO Pack\" è installato e abilitato, questa funzione verrà automaticamente disabilitata."
+
+#: inc/array.options.php:44
+msgid "Always add these keywords:"
+msgstr "Aggiungi sempre queste parole chiave:"
+
+#: inc/array.options.php:45
+msgid "Max keywords display:"
+msgstr "Massimo numero di parole chiave mostrate:"
+
+#: inc/array.options.php:46
+msgid "You must set zero (0) for display all keywords in HTML header."
+msgstr "Devi inserire 0 (zero) per mostrare tutte le chiavi nell'intestazione HTML."
+
+#: inc/array.options.php:49
+msgid "Use embedded tags:"
+msgstr "Usa i tag inclusi:"
+
+#: inc/array.options.php:50
+msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
+msgstr "Abilitando questa voce si permetterà a Wordpress di cercare i tag inclusi. Questo insieme di tag viene marcato con <code>[tags]questo, e quest'altro[/tags]</code>, e viene aggiunto al post quando viene salvato, ma non viene visualizzato nel post."
+
+#: inc/array.options.php:51
+msgid "Prefix for embedded tags:"
+msgstr "Prefisso per i tag inclusi:"
+
+#: inc/array.options.php:52
+msgid "Suffix for embedded tags:"
+msgstr "Suffisso per i tag inclusi:"
+
+#: inc/array.options.php:55
+msgid "Automatically display tags list into feeds"
+msgstr "Mostra automaticamente i tag nei feed"
+
+#: inc/array.options.php:56
+msgid "Automatically display tags list into post content:"
+msgstr "Mostra automaticamente i tag nel contenuto dei post."
+
+#: inc/array.options.php:58
+#: inc/array.options.php:82
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>no</code> &ndash; Da nessuna parte (default)"
+
+#: inc/array.options.php:59
+#: inc/array.options.php:83
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>all</code> &ndash; Nel tuo blog e nei feed."
+
+#: inc/array.options.php:60
+#: inc/array.options.php:84
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash; Solo nel tuo blog."
+
+#: inc/array.options.php:61
+#: inc/array.options.php:85
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr "<code>homeonly</code> &ndash; Solo nella pagina iniziale."
+
+#: inc/array.options.php:62
+#: inc/array.options.php:86
+msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr "<code>singularonly</code> &ndash; Solo nelle viste singole (pagina e singolo post)."
+
+#: inc/array.options.php:63
+#: inc/array.options.php:87
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr "<code>singleonly</code> &ndash; Solo nella vista singola."
+
+#: inc/array.options.php:64
+#: inc/array.options.php:88
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr "<code>pageonly</code> &ndash; Solo nella pagina singola."
+
+#: inc/array.options.php:66
+msgid "Post tag separator string:"
+msgstr "Stringa di separazione dei tag nei post:"
+
+#: inc/array.options.php:67
+msgid "Text to display before tags list:"
+msgstr "Testo da mostrare prima della lista dei tag:"
+
+#: inc/array.options.php:68
+msgid "Text to display after tags list:"
+msgstr "Testo da mostrare dopo la lista dei tag:"
+
+#: inc/array.options.php:69
+msgid "Max tags display:"
+msgstr "Massima visualizzazione dei tag."
+
+#: inc/array.options.php:70
+msgid "You must set zero (0) for display all tags."
+msgstr "Deve essere 0 (zero) per mostrare tutti i tag."
+
+#: inc/array.options.php:71
+msgid "Include categories in result ?"
+msgstr "Includi le categorie nei risultati?"
+
+#: inc/array.options.php:72
+#: inc/array.options.php:185
+msgid "Tag link format:"
+msgstr "Formato dei collegamenti ai tag:"
+
+#: inc/array.options.php:73
+#: inc/array.options.php:101
+#: inc/array.options.php:129
+#: inc/array.options.php:147
+#: inc/array.options.php:186
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "Poi trovare i marker e le istruzioni <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">nella documentazione on-line</a>."
+
+#: inc/array.options.php:74
+msgid "Text to display if no tags found:"
+msgstr "Testo da mostrare se non viene trovato alcun tag:"
+
+#: inc/array.options.php:75
+#: inc/array.options.php:105
+#: inc/array.options.php:134
+#: inc/array.options.php:198
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>Uso avanzato</strong>:"
+
+#: inc/array.options.php:76
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_the_tags()</code> per personalizare la visualizzazione. Vai alla <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+
+#: inc/array.options.php:79
+msgid "Automatically display related posts into feeds"
+msgstr "Mostra automaticamente nei feed i post correlati"
+
+#: inc/array.options.php:80
+msgid "Automatically display related posts into post content"
+msgstr "Mostra automaticamente nel contenuto del post i post correlati."
+
+#: inc/array.options.php:90
+msgid "Related Posts Order:"
+msgstr "Ordine dei post correlati:"
+
+#: inc/array.options.php:92
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr "<code>date-asc</code> &ndash; Più vecchi."
+
+#: inc/array.options.php:93
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr "<code>date-desc</code> &ndash; Più recenti."
+
+#: inc/array.options.php:94
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr "<code>count-asc</code> &ndash; Tag meno comuni tra i post"
+
+#: inc/array.options.php:95
+msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr "<code>count-desc</code> &ndash; Tag più comuni tra i post (default)"
+
+#: inc/array.options.php:96
+#: inc/array.options.php:114
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr "<code>name-asc</code> &ndash; Alfabetico."
+
+#: inc/array.options.php:97
+#: inc/array.options.php:115
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr "<code>name-desc</code> &ndash; Alfabetico inverso."
+
+#: inc/array.options.php:98
+#: inc/array.options.php:116
+msgid "<code>random</code> &ndash; Random."
+msgstr "<code>random</code> &ndash; Casuale."
+
+#: inc/array.options.php:100
+msgid "Post link format:"
+msgstr "Formato dei link nei post:"
+
+#: inc/array.options.php:102
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr "Numero massimo di post correlati da visualizzare: (default: 5)"
+
+#: inc/array.options.php:103
+msgid "Enter the text to show when there is no related post:"
+msgstr "Inserisci il testo da mostrare quando non ci sono post correlati:"
+
+#: inc/array.options.php:104
+#: inc/array.options.php:133
+#: inc/array.options.php:189
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "Inserisci il titolo da posizionare prima della lista, lascia vuoto per nessun titolo:"
+
+#: inc/array.options.php:106
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_related_posts()</code> per personalizzare la visualizzazione. Vai alla <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+
+#: inc/array.options.php:109
+msgid "Maximum number of related tags to display: (default: 5)"
+msgstr "Numero massimo di tag correlati da visualizzare: (default: 5)"
+
+#: inc/array.options.php:110
+msgid "Order related tags:"
+msgstr "Ordinamento dei tag correlati:"
+
+#: inc/array.options.php:112
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr "<code>count-asc</code> &ndash; Meno usati."
+
+#: inc/array.options.php:113
+msgid "<code>count-desc</code> &ndash; Most popular. (default)"
+msgstr "<code>count-desc</code> &ndash; Più usati. (default)"
+
+#: inc/array.options.php:118
+msgid "Related tags type format:"
+msgstr "Tipo di formato dei tag correlati:"
+
+#: inc/array.options.php:120
+#: inc/array.options.php:140
+#: inc/array.options.php:182
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr "<code>list</code> &ndash; Mostra una lista formattata (ul/li)."
+
+#: inc/array.options.php:121
+#: inc/array.options.php:141
+#: inc/array.options.php:183
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr "<code>flat</code> &ndash; Mostra sulla stessa riga (no lista, solo un div)"
+
+#: inc/array.options.php:123
+msgid "Method of tags intersections and unions used to build related tags link:"
+msgstr "Metodo di intersezione e unione dei tag per costruire i collegamenti dei tag correlati:"
+
+#: inc/array.options.php:125
+msgid "<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</strong> the \"Tag2\" tag. (default)"
+msgstr "<code>OR</code> &ndash; Estrae i post con i tag \"Tag1\" <strong>oppure</strong> il tag \"Tag2\". (default)"
+
+#: inc/array.options.php:126
+msgid "<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</strong> the \"Tag2\" tag."
+msgstr "<code>AND</code> &ndash; Estrae i post con entrambi i tag \"Tag1\" <strong>e</strong>  \"Tag2\"."
+
+#: inc/array.options.php:128
+msgid "Related tags link format:"
+msgstr "Formato dei collegamenti per i tag correlati:"
+
+#: inc/array.options.php:130
+msgid "Related tags separator:"
+msgstr "Separatore per i tag correlati:"
+
+#: inc/array.options.php:131
+#: inc/array.options.php:144
+msgid "Leave empty for list format."
+msgstr "Lasciare vuoto per il formato lista"
+
+#: inc/array.options.php:132
+msgid "Enter the text to show when there is no related tags:"
+msgstr "Inserire il testo da mostrare quando non ci sono tag correlati:"
+
+#: inc/array.options.php:135
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_related_tags()</code> per personalizzare la visualizzazione. Controlla la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+
+#: inc/array.options.php:137
+msgid "Remove related Tags"
+msgstr "Elimina i tag correlati"
+
+#: inc/array.options.php:138
+msgid "Remove related Tags type format:"
+msgstr "Rimozione del tipo di formato dei tag correlati:"
+
+#: inc/array.options.php:143
+msgid "Remove related tags separator:"
+msgstr "Rimozione del separatore dei tag correlati:"
+
+#: inc/array.options.php:145
+msgid "Enter the text to show when there is no remove related tags:"
+msgstr "Inserire il testo da mostrare quando non ci sono tag correlati da rimuovere:"
+
+#: inc/array.options.php:146
+msgid "Remove related tags  link format:"
+msgstr "Rimozione del formato del link dei tag correlati:"
+
+#: inc/array.options.php:150
+msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
+msgstr "Che differenza c'è tra<strong>&#8216;Ordinare la selezione dei tag&#8217;</strong> e <strong>&#8216;Ordinare la visualizzazione dei tag&#8217;</strong>?<br />"
+
+#: inc/array.options.php:152
+msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
+msgstr "<strong>&#8216;Ordinare la selezione dei tag&#8217;</strong> è il primo passo della generazione della tag cloud, corrispondente alla raccolta dei tag."
+
+#: inc/array.options.php:153
+msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
+msgstr "<strong>&#8216;Ordinare la visualizzazione dei tag&#8217;</strong> è il secondo passo. Una volta che i tag vengono scelti, possono essere ordinati prima della visualizzazione."
+
+#: inc/array.options.php:155
+msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
+msgstr "<strong>Esempio:</strong> Vuoi mostrare in ordine casuale i 100 tag più usati.<br />"
+
+#: inc/array.options.php:156
+msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr "Devi impostare &#8216;Ordina la selezione dei tag&#8217; a <strong>count-desc</strong> per estrarre i 100 tag più usati e &#8216;Ordina la visualizzazione dei tag&#8217; a <strong>casuale</strong> per visualizzarli in maniera casuale."
+
+#: inc/array.options.php:157
+msgid "Order by for tags selection:"
+msgstr "Selezione dell'ordinamento dei tag"
+
+#: inc/array.options.php:159
+#: inc/array.options.php:170
+msgid "<code>count</code> &ndash; Counter."
+msgstr "<code>count</code> &ndash; Contatore."
+
+#: inc/array.options.php:160
+#: inc/array.options.php:171
+msgid "<code>name</code> &ndash; Name."
+msgstr "<code>name</code> &ndash; Nome."
+
+#: inc/array.options.php:161
+#: inc/array.options.php:172
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr "<code>random</code> &ndash; Casuale. (default)"
+
+#: inc/array.options.php:163
+msgid "Order tags selection:"
+msgstr "Ordina la selezione dei tag"
+
+#: inc/array.options.php:165
+#: inc/array.options.php:176
+msgid "<code>asc</code> &ndash; Ascending."
+msgstr "<code>asc</code> &ndash; Ascendente."
+
+#: inc/array.options.php:166
+#: inc/array.options.php:177
+msgid "<code>desc</code> &ndash; Descending."
+msgstr "<code>desc</code> &ndash; Discendente."
+
+#: inc/array.options.php:168
+msgid "Order by for tags display:"
+msgstr "Ordine per visualizzazione tag:"
+
+#: inc/array.options.php:174
+msgid "Order tags display:"
+msgstr "Ordine di visualizzazione:"
+
+#: inc/array.options.php:179
+msgid "Include categories in tag cloud ?"
+msgstr "Includere le categorie nella tag cloud?"
+
+#: inc/array.options.php:180
+msgid "Tags cloud type format:"
+msgstr "Tipo di formato della tag cloud:"
+
+#: inc/array.options.php:187
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "Massimo numero di tag da mostrare: (default: 45)"
+
+#: inc/array.options.php:188
+msgid "Enter the text to show when there is no tag:"
+msgstr "Inserire il testo da mostrare quando non ci sono tag:"
+
+#: inc/array.options.php:190
+msgid "Most popular color:"
+msgstr "Colore del tag più usato:"
+
+#: inc/array.options.php:191
+msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
+msgstr "I colori sono espressi in codice esadecimale e devono essere scritti con sei caratteri (#eee è l'abbreviazione di #eeeeee)."
+
+#: inc/array.options.php:192
+msgid "Least popular color:"
+msgstr "Colore del tag meno usato:"
+
+#: inc/array.options.php:193
+msgid "Most popular font size:"
+msgstr "Dimensione del tag più usato:"
+
+#: inc/array.options.php:194
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "Le dimensioni dei due caratteri sono le dimensioni del tag più grande e più piccolo."
+
+#: inc/array.options.php:195
+msgid "Least popular font size:"
+msgstr "Dimensione del tag meno usato:"
+
+#: inc/array.options.php:196
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "Il tipo di unita di misura del carattere nelle tag cloud:"
+
+#: inc/array.options.php:197
+msgid "The font size units option determines the units that the two font sizes use."
+msgstr "Il tipo di unita di misura del carattere determina l'unità di misura che i due caratteri usano."
+
+#: inc/array.options.php:199
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_tag_cloud()</code> per personalizzare la visualizzazione. Controla nella <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+
+#: inc/base.php:122
+#: inc/client.php:459
+msgid "No related posts."
+msgstr "Nessun post correlato."
+
+#: inc/base.php:123
+#: inc/client.php:458
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>Post correlati</h4>"
+
+#: inc/base.php:124
+#: inc/client.php:461
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+
+#: inc/base.php:133
+#: inc/client.php:1153
+msgid "No tags."
+msgstr "No tag."
+
+#: inc/base.php:134
+#: inc/client.php:1155
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>Tag Cloud</h4>"
+
+#: inc/base.php:136
+#: inc/client.php:1154
+msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+#: inc/base.php:149
+#: inc/client.php:1390
+msgid "Tags: "
+msgstr "Tag:"
+
+#: inc/base.php:151
+msgid "No tags for this post."
+msgstr "Nessun tag per questo post."
+
+#: inc/base.php:154
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+
+#: inc/base.php:163
+#: inc/client.php:804
+msgid "<h4>Related tags</h4>"
+msgstr "<h4>Tag correlati</h4>"
+
+#: inc/base.php:164
+msgid "No related tags found."
+msgstr "Nessun tag correlato è stato trovato."
+
+#: inc/base.php:165
+msgid "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+msgstr "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+
+#: inc/base.php:171
+msgid "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Rimuovi %tag_name%</a>"
+
+#: inc/client.php:70
+#: inc/client.php:72
+msgid "Categories"
+msgstr "Categorie"
+
+#: inc/client.php:71
+msgid "Post Tags"
+msgstr "Tag del post"
+
+#: inc/client.php:145
+#, php-format
+msgid "Posts tagged with %s"
+msgstr "Post taggati con %s"
+
+#: inc/client.php:724
+msgid "There is no excerpt because this is a protected post."
+msgstr "Non c'è alcun estratto perché il post è protetto."
+
+#: inc/client.php:771
 #, fuzzy, php-format
 msgid "%d topic"
 msgid_plural "%d topics"
 msgstr[0] "%d argomento"
 msgstr[1] "%d argomento"
 
-#: inc/helper.options.default.php:59 inc/class.client.related_posts.php:103
-msgid ""
-"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
-"%post_title%</a> (%post_comment%)"
-msgstr ""
-"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
-"%post_title%</a> (%post_comment%)"
-
-#: inc/class.client.tagcloud.php:64 inc/helper.options.default.php:71
-msgid ""
-"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
-"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
-"%tag_color%\">%tag_name%</a>"
-msgstr ""
-"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
-"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
-"%tag_color%\">%tag_name%</a>"
-
-#: inc/helper.options.default.php:49
-msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
-msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
-
-#: inc/class.client.post_tags.php:111
-msgid ""
-"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
-"%tag_name%</a>"
-msgstr ""
-"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
-"%tag_name%</a>"
-
-#: inc/helper.options.admin.php:226 inc/helper.options.admin.php:370
-#: inc/helper.options.admin.php:421
-msgid "<code>all</code> &ndash; On your blog and feeds."
-msgstr "<code>all</code> &ndash; Nel tuo blog e nei feed."
-
-#: inc/helper.options.admin.php:274 inc/helper.options.admin.php:293
-msgid "<code>asc</code> &ndash; Ascending."
-msgstr "<code>asc</code> &ndash; Ascendente."
-
-#: inc/helper.options.admin.php:371 inc/helper.options.admin.php:422
-msgid "<code>blogonly</code> &ndash; Only on your blog."
-msgstr "<code>blogonly</code> &ndash; Solo nel tuo blog."
-
-#: inc/helper.options.admin.php:437
-msgid "<code>count-asc</code> &ndash; Least common tags between posts"
-msgstr "<code>count-asc</code> &ndash; Tag meno comuni tra i post"
-
-#: inc/helper.options.admin.php:97
-msgid "<code>count-asc</code> &ndash; Least used."
-msgstr "<code>count-asc</code> &ndash; Meno usati."
-
-#: inc/helper.options.admin.php:438
-msgid ""
-"<code>count-desc</code> &ndash; Most common tags between posts (default)"
-msgstr "<code>count-desc</code> &ndash; Tag più comuni tra i post (default)"
-
-#: inc/helper.options.admin.php:98
-#, fuzzy
-#| msgid "<code>count-desc</code> &ndash; Most popular. (default)"
-msgid "<code>count-desc</code> &ndash; Most popular."
-msgstr "<code>count-desc</code> &ndash; Più usati. (default)"
-
-#: inc/helper.options.admin.php:283
-msgid "<code>count</code> &ndash; Counter."
-msgstr "<code>count</code> &ndash; Contatore."
-
-#: inc/helper.options.admin.php:264
-msgid "<code>count</code> &ndash; Counter. (default)"
-msgstr ""
-
-#: inc/helper.options.admin.php:435
-msgid "<code>date-asc</code> &ndash; Older Entries."
-msgstr "<code>date-asc</code> &ndash; Più vecchi."
-
-#: inc/helper.options.admin.php:436
-msgid "<code>date-desc</code> &ndash; Newer Entries."
-msgstr "<code>date-desc</code> &ndash; Più recenti."
-
-#: inc/helper.options.admin.php:275 inc/helper.options.admin.php:294
-msgid "<code>desc</code> &ndash; Descending."
-msgstr "<code>desc</code> &ndash; Discendente."
-
-#: inc/helper.options.admin.php:303
-msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
-msgstr ""
-"<code>flat</code> &ndash; Mostra sulla stessa riga (no lista, solo un div)"
-
-#: inc/helper.options.admin.php:372 inc/helper.options.admin.php:423
-msgid "<code>homeonly</code> &ndash; Only on your home page."
-msgstr "<code>homeonly</code> &ndash; Solo nella pagina iniziale."
-
-#: inc/helper.options.admin.php:82
-msgid "<code>input</code> &ndash; Text input, only one line. (default)"
-msgstr ""
-
-#: inc/helper.options.admin.php:302
-msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
-msgstr "<code>list</code> &ndash; Mostra una lista formattata (ul/li)."
-
-#: inc/helper.options.admin.php:439
-msgid "<code>name-asc</code> &ndash; Alphabetical."
-msgstr "<code>name-asc</code> &ndash; Alfabetico."
-
-#: inc/helper.options.admin.php:99
-msgid "<code>name-asc</code> &ndash; Alphabetical. (default)"
-msgstr ""
-
-#: inc/helper.options.admin.php:100 inc/helper.options.admin.php:440
-msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
-msgstr "<code>name-desc</code> &ndash; Alfabetico inverso."
-
-#: inc/helper.options.admin.php:265 inc/helper.options.admin.php:284
-msgid "<code>name</code> &ndash; Name."
-msgstr "<code>name</code> &ndash; Nome."
-
-#: inc/helper.options.admin.php:225
-msgid "<code>no</code> &ndash; Nowhere"
-msgstr ""
-
-#: inc/helper.options.admin.php:369 inc/helper.options.admin.php:420
-msgid "<code>no</code> &ndash; Nowhere (default)"
-msgstr "<code>no</code> &ndash; Da nessuna parte (default)"
-
-#: inc/helper.options.admin.php:375 inc/helper.options.admin.php:426
-msgid "<code>pageonly</code> &ndash; Only on your page view."
-msgstr "<code>pageonly</code> &ndash; Solo nella pagina singola."
-
-#: inc/helper.options.admin.php:101 inc/helper.options.admin.php:266
-#: inc/helper.options.admin.php:441
-msgid "<code>random</code> &ndash; Random."
-msgstr "<code>random</code> &ndash; Casuale."
-
-#: inc/helper.options.admin.php:285
-msgid "<code>random</code> &ndash; Random. (default)"
-msgstr "<code>random</code> &ndash; Casuale. (default)"
-
-#: inc/helper.options.admin.php:227
-msgid "<code>single</code> &ndash; Only on your single post view."
-msgstr ""
-
-#: inc/helper.options.admin.php:374 inc/helper.options.admin.php:425
-msgid "<code>singleonly</code> &ndash; Only on your single view."
-msgstr "<code>singleonly</code> &ndash; Solo nella vista singola."
-
-#: inc/helper.options.admin.php:228
-msgid ""
-"<code>singular</code> &ndash; Only on your singular view (single post & page)"
-" (default)."
-msgstr ""
-
-#: inc/helper.options.admin.php:373 inc/helper.options.admin.php:424
-msgid ""
-"<code>singularonly</code> &ndash; Only on your singular view (single & page)."
-msgstr ""
-"<code>singularonly</code> &ndash; Solo nelle viste singole (pagina e singolo "
-"post)."
-
-#: inc/helper.options.admin.php:81
-msgid "<code>textarea</code> &ndash; Textarea multiline."
-msgstr ""
-
-#: inc/helper.options.default.php:58 inc/class.client.related_posts.php:100
-msgid "<h4>Related posts</h4>"
-msgstr "<h4>Post correlati</h4>"
-
-#: inc/class.client.tagcloud.php:67 inc/helper.options.default.php:69
-msgid "<h4>Tag Cloud</h4>"
-msgstr "<h4>Tag Cloud</h4>"
-
-#: inc/helper.options.admin.php:254
-msgid ""
-"<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags "
-"choosen, you can reorder them before display."
-msgstr ""
-"<strong>&#8216;Ordinare la visualizzazione dei tag&#8217;</strong> è il "
-"secondo passo. Una volta che i tag vengono scelti, possono essere ordinati "
-"prima della visualizzazione."
-
-#: inc/helper.options.admin.php:253
-msgid ""
-"<strong>&#8216;Order tags selection&#8217;</strong> is the first step during "
-"tag's cloud generation, corresponding to collect tags."
-msgstr ""
-"<strong>&#8216;Ordinare la selezione dei tag&#8217;</strong> è il primo "
-"passo della generazione della tag cloud, corrispondente alla raccolta dei "
-"tag."
-
-#: inc/helper.options.admin.php:356 inc/helper.options.admin.php:399
-#: inc/helper.options.admin.php:471
-msgid "<strong>Advanced usage</strong>:"
-msgstr "<strong>Uso avanzato</strong>:"
-
-#: inc/helper.options.admin.php:256
-msgid ""
-"<strong>Example:</strong> You want display randomly the 100 tags most "
-"popular.<br />"
-msgstr ""
-"<strong>Esempio:</strong> Vuoi mostrare in ordine casuale i 100 tag più "
-"usati.<br />"
-
-#: inc/class.admin.autoterms.php:214
-msgid "Activation"
-msgstr "Attivazione"
-
-#: inc/class.admin.autoterms.php:218
-msgid "Active Auto Tags."
-msgstr "Attiva Auto Tag."
-
-#: inc/class.admin.manage.php:273
-msgid "Add"
-msgstr "Aggiungi"
-
-#: inc/class.admin.manage.php:240
-#, fuzzy
-msgid "Add Terms"
-msgstr "Aggiungi tag"
-
-#: inc/class.admin.php:536
-msgid "Administration"
-msgstr "Amministrazione"
-
-#: inc/helper.options.admin.php:41
-msgid "Advanced Manage Terms"
-msgstr ""
-
-#: inc/class.widgets.php:376
-msgid "Advanced usage:"
-msgstr ""
-
-#: inc/class.admin.suggest.php:55
-msgid "Ajax loading"
-msgstr "Caricamento Ajax"
-
-#: inc/helper.options.admin.php:122
-msgid "Alchemy API Key"
-msgstr ""
-
-#: inc/class.admin.suggest.php:60
-msgid "AlchemyAPI"
-msgstr ""
-
-#: inc/class.admin.suggest.php:209
-msgid ""
-"AlchemyAPI need an API key to work. You can register on service website to "
-"obtain a key and set it on TaxoPress options."
-msgstr ""
-
-#: inc/class.admin.mass.php:123
-msgid "All"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:319
-#, fuzzy, php-format
-msgid "All done! %s terms added."
-msgstr "Fatto! %s tag aggiunti."
-
-#: inc/class.admin.manage.php:136
-msgid "Alphabetical (default)"
-msgstr ""
-
-#: inc/helper.options.admin.php:236
-msgid ""
-"An engine replacement alternative uses DOMDocument PHP class and "
-"theoretically offers better performance. If your server does not offer the "
-"functionality, the plugin will use the usual engine."
-msgstr ""
-
-#: inc/class.widgets.php:254 inc/class.widgets.php:282
-msgid "ASC"
-msgstr "ASC"
-
-#: inc/class.admin.php:538
-msgid "Auto link"
-msgstr "Autolink"
-
-#: inc/helper.options.admin.php:6
-msgid "Auto links tags"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:33
-#, fuzzy
-msgid "Auto Terms"
-msgstr "Auto tag"
-
-#: inc/class.admin.autoterms.php:281
-#, fuzzy
-msgid "Auto terms all content &raquo;"
-msgstr "Auto tagga tutti i contenuti &raquo;"
-
-#: inc/class.admin.autoterms.php:201
-#, php-format
-msgid "Auto Terms for %s and %s"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:205
-#, fuzzy
-msgid "Auto terms list"
-msgstr "Lista Auto tag"
-
-#: inc/class.admin.autoterms.php:275
-#, fuzzy
-msgid "Auto terms old content"
-msgstr "Autotagga i vecchi contenuti"
-
-#: inc/class.admin.autoterms.php:101
-#, fuzzy
-#| msgid "Auto tags options updated !"
-msgid "Auto terms options updated !"
-msgstr "Opzione Auto tag aggiornata!"
-
-#: inc/helper.options.admin.php:55
-msgid "Auto terms posts"
-msgstr ""
-
-#: inc/helper.options.admin.php:87
-msgid "Autocompletion Min Chars"
-msgstr ""
-
-#: inc/helper.options.admin.php:27
-msgid "Autocompletion with old input"
-msgstr ""
-
-#: inc/helper.options.admin.php:413
-msgid "Automatically display related posts into feeds"
-msgstr "Mostra automaticamente nei feed i post correlati"
-
-#: inc/helper.options.admin.php:416
-msgid "Automatically display related posts into post content"
-msgstr "Mostra automaticamente nel contenuto del post i post correlati."
-
-#: inc/helper.options.admin.php:363
-msgid "Automatically display tags list into feeds"
-msgstr "Mostra automaticamente i tag nei feed"
-
-#: inc/helper.options.admin.php:366
-msgid "Automatically display tags list into post content:"
-msgstr "Mostra automaticamente i tag nel contenuto dei post."
-
-#: inc/class.admin.autoterms.php:245
-msgid ""
-"Autotag only a post when terms finded in the content are a the same name. "
-"(whole word only)"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:236
-#, fuzzy
-msgid "Autotag only posts without terms."
-msgstr "Autotagga solo i post senza tag."
-
-#: inc/helper.options.admin.php:411
-msgid ""
-"By default, related posts work with post tags, but you can use a custom "
-"taxonomy. Default value : post_tag"
-msgstr ""
-
-#: inc/class.admin.php:265
-msgid "Change selection"
-msgstr ""
-
-#: inc/class.admin.suggest.php:37
-msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
-msgstr "Scegli un provider per ricevere i tag (locale, Yahoo o Tag the net)."
-
-#: inc/class.admin.clickterms.php:69 inc/class.admin.clickterms.php:82
-msgid "Click tags"
-msgstr "Clicca tag"
-
-#: inc/helper.options.admin.php:106
-msgid "Click tags - Post edition default visibility"
-msgstr ""
-
-#: inc/helper.options.admin.php:20
-msgid "Click tags feature"
-msgstr ""
-
-#: inc/helper.options.admin.php:94
-msgid "Click tags order"
-msgstr ""
-
-#: inc/class.admin.manage.php:120
-msgid "Click terms list:"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:182
-msgid "Context configured & actived."
-msgstr ""
-
-#: inc/class.admin.autoterms.php:184
-msgid "Context unconfigured."
-msgstr ""
-
-#: inc/class.widgets.php:269
-msgid "Counter"
-msgstr "Contatore"
-
-#: inc/class.widgets.php:241
-msgid "Counter (default)"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:124 inc/class.admin.autoterms.php:139
-msgid "Custom types / Taxonomies"
-msgstr ""
-
-#: inc/helper.options.admin.php:157
-msgid "Dandelion - Entity Extraction API - Access token (new !)"
-msgstr ""
-
-#: inc/helper.options.admin.php:143
-msgid "Dandelion - Entity Extraction API - ID (deprecated)"
-msgstr ""
-
-#: inc/helper.options.admin.php:150
-msgid "Dandelion - Entity Extraction API - Key (deprecated)"
-msgstr ""
-
-#: inc/helper.options.admin.php:164
-msgid "dataTXT API min_confidence"
-msgstr ""
-
-#: inc/class.admin.suggest.php:62
-msgid "dataTXT by Dandelion"
-msgstr ""
-
-#: inc/class.admin.suggest.php:342
-msgid ""
-"dataTXT needs an API ID to work. You can register on service website to "
-"obtain a key and set it on TaxoPress options."
-msgstr ""
-
-#: inc/class.admin.suggest.php:348
-msgid ""
-"dataTXT needs an API key to work. You can register on service website to "
-"obtain a key and set it on TaxoPress options."
-msgstr ""
-
-#: inc/helper.options.admin.php:167
-msgid "Default: 0.6"
-msgstr ""
-
-#: inc/class.admin.manage.php:233
-msgid "Delete"
-msgstr "Cancella"
-
-#: inc/class.admin.manage.php:308
-msgid "Delete rarely used"
-msgstr ""
-
-#: inc/class.admin.manage.php:206
-#, fuzzy
-msgid "Delete Terms"
-msgstr "Cancella tag"
-
-#: inc/class.widgets.php:256 inc/class.widgets.php:284
-msgid "DESC (default)"
-msgstr "DISC (default)"
-
-#: inc/class.admin.post.php:68
-msgid "Disable auto links ?"
-msgstr ""
-
-#: inc/class.admin.post.php:59
-msgid "Disable auto tags ?"
-msgstr ""
-
-#: inc/class.admin.clickterms.php:44
-msgid "Display click tags"
-msgstr "Visualizza i tag selezionabili"
-
-#: inc/helper.options.admin.php:110
-msgid "Displayed, you can not hide them."
-msgstr ""
-
-#: views/admin/page-settings.php:35
-msgid "Do you really want to restore the default options?"
-msgstr "Vuoi veramente ripristinare le opzioni di default?"
-
-#: inc/class.admin.mass.php:259
-msgid "Edit"
-msgstr "Modifica"
-
-#: inc/class.widgets.php:317
-msgid "Em"
-msgstr "Em"
-
-#: inc/class.admin.php:542
-msgid "Embedded Tags"
-msgstr "Tag incorporati"
-
-#: inc/class.widgets.php:209
-msgid "Empty field will use default value."
-msgstr "Ai campi vuoti verranno assegnati valori di default"
-
-#: inc/helper.options.admin.php:222
-msgid "Enable autolinks into post content for theses views:"
-msgstr ""
-
-#: inc/helper.options.admin.php:72
-msgid ""
-"Enabling this will allow Wordpress to look for tag cloud shortcode <code>"
-"[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. "
-"WordPress replace this shortcode by a tag cloud."
-msgstr ""
-
-#: inc/class.admin.manage.php:208
-#, fuzzy
-msgid ""
-"Enter the name of terms to delete. Terms will be removed from all posts."
-msgstr ""
-"Inserire il nome del tag da cancellare. Questo tag verrà rimosso da tutti i "
-"post."
-
-#: inc/helper.options.admin.php:327 inc/helper.options.admin.php:465
-msgid "Enter the positioned title before the list, leave blank for no title:"
-msgstr ""
-"Inserisci il titolo da posizionare prima della lista, lascia vuoto per "
-"nessun titolo:"
-
-#: inc/class.admin.manage.php:167
-#, fuzzy
-msgid ""
-"Enter the term to rename and its new value. You can use this feature to "
-"merge terms too. Click \"Rename\" and all posts which use this term will be "
-"updated."
-msgstr ""
-"Inserisci il tag da rinominare e il suo nuovo valore. Puoi usare questa "
-"funzione anche per unire tag diversi. Clicca \"Rename\" e tutti i post che "
-"usano questo tag verranno aggiornati. "
-
-#: inc/helper.options.admin.php:459
-msgid "Enter the text to show when there is no related post:"
-msgstr "Inserisci il testo da mostrare quando non ci sono post correlati:"
-
-#: inc/helper.options.admin.php:321
-msgid "Enter the text to show when there is no tag:"
-msgstr "Inserire il testo da mostrare quando non ci sono tag:"
-
-#: inc/class.admin.suggest.php:595
-msgid "Error from Proxem API: "
-msgstr ""
-
-#: inc/class.admin.manage.php:501
-#, fuzzy
-#| msgid "Error. No enough tags for rename. Too for merge. Choose !"
-msgid "Error. No enough terms for rename. Too for merge. Choose !"
-msgstr "Errore. Non ci sono abbastanza tag da rinominare o da unire. Scegli!"
-
-#: inc/helper.options.admin.php:211
-msgid ""
-"Example: If you enter the term \"Paris\", the auto link tags feature will "
-"never replace this term by this link."
-msgstr ""
-"Esempio: se inserisci il termine \"Paris\", l'opzione autolink tag non "
-"sostituirà mai questo termine con questo link."
-
-#: inc/helper.options.admin.php:204
-msgid ""
-"Example: If you ignore case, auto link feature will replace the word "
-"\"wordpress\" by the tag link \"WordPress\"."
-msgstr ""
-"Esempio: se ignori maiuscole/minuscole l'opzione autolink rimpiazzerà la "
-"parola \"wordpress\" con il collegamenteo al tag \"Wordpress\"."
-
-#: inc/helper.options.admin.php:9
-msgid ""
-"Example: You have a tag called \"WordPress\" and your post content contains "
-"\"wordpress\", this feature will replace \"wordpress\" by a link to "
-"\"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
-msgstr ""
-"Esempio: se hai un tag che si chiama \"WordPress\" e il tuo post contiene la "
-"parola \"wordpress\", questa opzione rimpiazzerà \"wordpress\" con un link "
-"alla pagina dei tag \"wordpress\". (http://myblog.net/tag/wordpress/)"
-
-#: inc/helper.options.admin.php:208
-msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
-msgstr "Escludi alcuni termini dal tag link. Per sostituzioni di link, etc."
-
-#. Description of the plugin
-msgid ""
-"Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto "
-"link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc."
-msgstr ""
-
-#: inc/class.admin.php:540
-msgid "Features"
-msgstr ""
-
-#: inc/class.admin.mass.php:227
-msgid "Filter"
-msgstr "Filtro"
-
-#: inc/class.widgets.php:330
-msgid "Flat (default)"
-msgstr "In riga"
-
-#: inc/class.widgets.php:357
-msgid "Font color max: (default: #000000)"
-msgstr "Colore del carattere più grande: (default: #000000)"
-
-#: inc/class.widgets.php:348
-msgid "Font color mini: (default: #CCCCCC)"
-msgstr "Colore del carattere più piccolo: (default: #CCCCCC)"
-
-#: inc/class.widgets.php:300
-msgid "Font size max: (default: 22)"
-msgstr "Dimensione massima carattere: (default: 22)"
-
-#: inc/class.widgets.php:291
-msgid "Font size mini: (default: 8)"
-msgstr "Dimensione minima carattere: (default: 8)"
-
-#: inc/helper.options.admin.php:218
-msgid ""
-"For expert, possibility to change the priority of autolinks functions on "
-"the_content hook. Useful for fix a conflict with an another plugin. Default: "
-"12."
-msgstr ""
-
-#: inc/class.widgets.php:326
-msgid "Format:"
-msgstr "Formato:"
-
-#: inc/helper.options.admin.php:109
-msgid "Hidden, you must click on display tags. (default)"
-msgstr ""
-
-#: inc/class.admin.clickterms.php:45
-msgid "Hide click tags"
-msgstr "Nascondi i tag selezionabili"
-
-#. URI of the plugin
-#. Author URI of the plugin
-msgid "https://taxopress.com"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:304
-msgid ""
-"If your browser doesn't start loading the next page automatically click this "
-"link:"
-msgstr ""
-"Se il browser non inizia il caricamento della prossima pagina "
-"automaticamente cliccare questo link:"
-
-#: inc/helper.options.admin.php:201
-msgid "Ignore case for auto link feature ?"
-msgstr "Ignorare maiuscole/minuscole per l'opzione auto link?"
-
-#: inc/helper.options.admin.php:388
-msgid "Include categories in result ?"
-msgstr "Includi le categorie nei risultati?"
-
-#: inc/class.admin.suggest.php:369
-msgid "Invalid dataTXT ID/Key or access token !"
-msgstr ""
-
-#: inc/class.admin.manage.php:138
-msgid "Inverse Alphabetical"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:258
-msgid "Keywords list"
-msgstr "Lista delle parole chiave"
-
-#: inc/helper.options.admin.php:338
-msgid "Least popular color:"
-msgstr "Colore del tag meno usato:"
-
-#: inc/helper.options.admin.php:346
-msgid "Least popular font size:"
-msgstr "Dimensione del tag meno usato:"
-
-#: inc/class.admin.manage.php:132
-msgid "Least used"
-msgstr ""
-
-#: inc/class.widgets.php:332
-msgid "List (UL/LI)"
-msgstr "In lista"
-
-#: inc/class.admin.suggest.php:57
-msgid "Local tags"
-msgstr "Tag locali"
-
-#: inc/class.admin.manage.php:49
-#, fuzzy
-msgid "Manage Terms"
-msgstr "Gestisci i tag"
-
-#: inc/class.admin.mass.php:32
-#, fuzzy
-msgid "Mass Edit Terms"
-msgstr "Modifica tutti i tag"
-
-#: inc/class.admin.mass.php:116 inc/helper.options.admin.php:13
-#, fuzzy
-msgid "Mass edit terms"
-msgstr "Modifica tutti i tag"
-
-#: inc/helper.options.admin.php:383
-msgid "Max tags display:"
-msgstr "Massima visualizzazione dei tag."
-
-#: inc/class.widgets.php:222
-msgid "Max tags to display: (default: 45)"
-msgstr "Numero massimo di tag da mostrare: (default: 45)"
-
-#: inc/helper.options.admin.php:194
-msgid "Maximum number of links for the same tag:"
-msgstr ""
-
-#: inc/helper.options.admin.php:187
-msgid "Maximum number of links per article:"
-msgstr "Numero massimo di link per articolo:"
-
-#: inc/helper.options.admin.php:453
-msgid "Maximum number of related posts to display: (default: 5)"
-msgstr "Numero massimo di post correlati da visualizzare: (default: 5)"
-
-#: inc/helper.options.admin.php:315
-msgid "Maximum number of tags to display: (default: 45)"
-msgstr "Massimo numero di tag da mostrare: (default: 45)"
-
-#: inc/class.admin.manage.php:498
-#, fuzzy, php-format
-#| msgid ""
-#| "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects "
-#| "edited."
-msgid ""
-"Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
-msgstr ""
-"Unisci tag da &laquo;%1$s&raquo; a &laquo;%2$s&raquo;. %3$s oggetti "
-"modificati."
-
-#: inc/helper.options.admin.php:180
-msgid "Min usage for auto link tags:"
-msgstr "Numero minimo per autolink tag:"
-
-#: inc/class.admin.manage.php:74
-msgid ""
-"Missing valid taxonomy for work... Try again. If this problem persist, "
-"contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
-msgstr ""
-
-#: inc/class.admin.manage.php:134
-msgid "Most popular"
-msgstr ""
-
-#: inc/helper.options.admin.php:333
-msgid "Most popular color:"
-msgstr "Colore del tag più usato:"
-
-#: inc/helper.options.admin.php:341
-msgid "Most popular font size:"
-msgstr "Dimensione del tag più usato:"
-
-#: inc/class.widgets.php:235 inc/class.widgets.php:267
-msgid "Name"
-msgstr "Nome"
-
-#: inc/class.admin.manage.php:192
-#, fuzzy
-msgid "New term name(s):"
-msgstr "Nuovo nome(i) tag:"
-
-#: inc/class.admin.autoterms.php:305
-msgid "Next content"
-msgstr "Contenuto successivo"
-
-#: inc/class.admin.mass.php:282
-msgid "No content to edit."
-msgstr "Nessun contenuto da modificare."
-
-#: inc/class.admin.suggest.php:546
-msgid ""
-"No correspondance between your content and terms from the WordPress database."
-msgstr ""
-
-#: inc/class.admin.suggest.php:443
-msgid "No data from Tag4Site API. Try again later."
-msgstr ""
-
-#: inc/class.admin.manage.php:380
-#, fuzzy
-#| msgid "No new tag specified!"
-msgid "No new term specified!"
-msgstr "Nessun nuovo tag specificato!"
-
-#: inc/class.admin.manage.php:561
-#, fuzzy
-#| msgid "No new tag(s) specified!"
-msgid "No new term(s) specified!"
-msgstr "Nessun nuovo tag specificato!"
-
-#: inc/class.admin.manage.php:395
-#, fuzzy
-#| msgid "No new/old valid tag specified!"
-msgid "No new/old valid term specified!"
-msgstr "Nessun nuovo/vecchio tag valido specificato!"
-
-#: inc/class.admin.manage.php:467
-msgid "No objects found for specified old terms."
-msgstr ""
-
-#: inc/helper.options.default.php:57 inc/class.client.related_posts.php:101
-msgid "No related posts."
-msgstr "Nessun post correlato."
-
-#: inc/class.admin.suggest.php:245
-#, fuzzy
-msgid "No results from Alchemy API."
-msgstr "Nessun risultato dal servizio di Yahoo."
-
-#: inc/class.admin.suggest.php:381
-msgid "No results from dataTXT API."
-msgstr ""
-
-#: inc/class.admin.suggest.php:184
-#, fuzzy
-msgid "No results from OpenCalais service."
-msgstr "Nessun risultato dal servizio di Yahoo."
-
-#: inc/class.admin.suggest.php:600
-msgid "No results from Proxem API."
-msgstr ""
-
-#: inc/class.admin.suggest.php:489
-msgid "No results from Yahoo! service."
-msgstr "Nessun risultato dal servizio di Yahoo."
-
-#: inc/class.admin.suggest.php:532 inc/class.admin.clickterms.php:163
-msgid "No results from your WordPress database."
-msgstr "Nessun risultato dal tuo database di Wordpress."
-
-#: inc/class.admin.suggest.php:301
-#, fuzzy
-msgid "No results from Zemanta API."
-msgstr "Nessun risultato dal servizio di Yahoo."
-
-#: inc/class.client.post_tags.php:112
+#: inc/client.php:805
+msgid "No related tag found."
+msgstr "Nessun tag correlato è stato trovato."
+
+#: inc/client.php:806
+msgid "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
+msgstr "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"Vedi post con %tag_name_attribute%\">%tag_name%</a>"
+
+#: inc/client.php:1012
+msgid "<a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
+msgstr "<a %tag_rel% href=\"%tag_link_remove%\" title=\"Rimuovi %tag_name_attribute% dalla ricerca\">Remove %tag_name%</a>"
+
+#: inc/client.php:1396
+msgid "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
+
+#: inc/client.php:1397
 msgid "No tag for this post."
 msgstr "Nessun tag per questo post."
 
-#: inc/helper.options.default.php:46
-msgid "No tags for this post."
-msgstr "Nessun tag per questo post."
-
-#: inc/class.client.tagcloud.php:66 inc/helper.options.default.php:68
-msgid "No tags."
-msgstr "No tag."
-
-#: inc/class.admin.manage.php:612
-#, fuzzy
-#| msgid "No tag added."
-msgid "No term added."
-msgstr "Nessun tag aggiunto"
-
-#: inc/class.admin.manage.php:541 inc/class.admin.manage.php:650
-#, fuzzy
-#| msgid "No tag deleted."
-msgid "No term deleted."
-msgstr "Nessun tag cancellato."
-
-#: inc/class.admin.manage.php:496
-#, fuzzy
-#| msgid "No tag merged."
-msgid "No term merged."
-msgstr "Nessun tag unito."
-
-#: inc/class.admin.manage.php:442
-#, fuzzy
-#| msgid "No tag renamed."
-msgid "No term renamed."
-msgstr "Nessun tag rinominato."
-
-#: inc/class.admin.manage.php:518
-#, fuzzy
-#| msgid "No tag specified!"
-msgid "No term specified!"
-msgstr "Nessun tag specificato!"
-
-#: inc/class.admin.suggest.php:516 inc/class.admin.clickterms.php:127
-#, fuzzy
-msgid "No terms in your WordPress database."
-msgstr "Nessun tag nel tuo database di Wordpress."
-
-#: inc/class.admin.suggest.php:154 inc/class.admin.suggest.php:217
-#: inc/class.admin.suggest.php:274 inc/class.admin.suggest.php:326
-#: inc/class.admin.suggest.php:410 inc/class.admin.suggest.php:468
-#: inc/class.admin.suggest.php:525 inc/class.admin.suggest.php:572
-msgid "No text was sent."
-msgstr "Nessun testo inviato."
-
-#: inc/class.admin.manage.php:450
-#, fuzzy
-#| msgid "No valid new tag."
-msgid "No valid new term."
-msgstr "Nessun nuovo tag valido."
-
-#: inc/class.admin.manage.php:298
-msgid "Numbers minimum:"
-msgstr ""
-
-#: inc/class.admin.suggest.php:59
-msgid "OpenCalais"
-msgstr ""
-
-#: inc/helper.options.admin.php:115
-msgid "OpenCalais API Key"
-msgstr ""
-
-#: inc/class.admin.suggest.php:146
-msgid ""
-"OpenCalais need an API key to work. You can register on service website to "
-"obtain a key and set it on TaxoPress options."
-msgstr ""
-
-#: inc/class.admin.autoterms.php:208
-msgid "Options"
-msgstr "Opzioni"
-
-#: inc/class.admin.php:371
-msgid "Options saved"
-msgstr "Opzioni salvate"
-
-#: inc/class.widgets.php:231
-msgid "Order by for DB selection tags:"
-msgstr "Ordina per selezione di tag nel database:"
-
-#: inc/class.widgets.php:263
-msgid "Order by for display tags:"
-msgstr "Ordina per tag mostrati:"
-
-#: inc/helper.options.admin.php:280
-msgid "Order by for tags display:"
-msgstr "Ordine per visualizzazione tag:"
-
-#: inc/helper.options.admin.php:261
-msgid "Order by for tags selection:"
-msgstr "Selezione dell'ordinamento dei tag"
-
-#: inc/class.widgets.php:250
-msgid "Order for DB selection tags:"
-msgstr "Ordina selezione di tag nel database:"
-
-#: inc/class.widgets.php:278
-msgid "Order for display tags:"
-msgstr "Ordina tag mostrati:"
-
-#: inc/helper.options.admin.php:290
-msgid "Order tags display:"
-msgstr "Ordine di visualizzazione:"
-
-#: inc/helper.options.admin.php:271
-msgid "Order tags selection:"
-msgstr "Ordina la selezione dei tag"
-
-#: inc/class.admin.autoterms.php:118
-msgid "Overview"
-msgstr ""
-
-#: inc/class.widgets.php:315
-msgid "Pixel"
-msgstr "Pixel"
-
-#: inc/class.widgets.php:313
-msgid "Point (default)"
-msgstr "Punti (default)"
-
-#: inc/helper.options.admin.php:446
-msgid "Post link format:"
-msgstr "Formato dei link nei post:"
-
-#: inc/helper.options.admin.php:378
-msgid "Post tag separator string:"
-msgstr "Stringa di separazione dei tag nei post:"
-
-#: inc/class.admin.php:178
-#, fuzzy
-msgid "Post tags"
-msgstr "Tag del post"
-
-#: inc/class.admin.mass.php:245
-msgid "Post title"
-msgstr "Titolo del post"
-
-#: inc/class.admin.php:179
-msgid "Posts"
-msgstr ""
-
-#: inc/helper.options.default.php:23
-#, php-format
-msgid "Posts tagged with %s"
-msgstr "Post taggati con %s"
-
-#: inc/class.widgets.php:319
-msgid "Pourcent"
-msgstr "Percentuale"
-
-#: inc/helper.options.admin.php:215
-msgid "Priority on hook the_content"
-msgstr ""
-
-#: inc/class.admin.suggest.php:64
-msgid "Proxem"
-msgstr ""
-
-#: inc/helper.options.admin.php:171
-msgid "Proxem API Key"
-msgstr ""
-
-#: inc/class.admin.suggest.php:564
-msgid ""
-"Proxem API need an API key to work. You can register on service website to "
-"obtain a key and set it on TaxoPress options."
-msgstr ""
-
-#: inc/class.admin.mass.php:217
-msgid "Quantity&hellip;"
-msgstr "Quantità &hellip;"
-
-#: inc/class.admin.manage.php:140 inc/class.widgets.php:243
-msgid "Random"
-msgstr ""
-
-#: inc/class.widgets.php:271
-msgid "Random (default)"
-msgstr "Casuale (default)"
-
-#: inc/class.admin.php:546
-msgid "Related Posts"
-msgstr "Post correlati"
-
-#: inc/helper.options.admin.php:48
-msgid "Related posts by terms"
-msgstr ""
-
-#: inc/helper.options.admin.php:431
-msgid "Related Posts Order:"
-msgstr "Ordine dei post correlati:"
-
-#: inc/class.admin.manage.php:280
-msgid "Remove rarely used terms"
-msgstr ""
-
-#: inc/class.admin.manage.php:199
-msgid "Rename"
-msgstr "Rinomina"
-
-#: inc/class.admin.manage.php:165
-msgid "Rename/Merge Terms"
-msgstr ""
-
-#: inc/class.admin.manage.php:444
-#, fuzzy, php-format
-#| msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
-msgid "Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
-msgstr "Tag rinominati da &laquo;%1$s&raquo; a &laquo;%2$s&raquo;"
-
-#: inc/class.admin.manage.php:352
-#, fuzzy
-msgid "Renaming"
-msgstr "Rinomina"
-
-#: views/admin/page-settings.php:36
-msgid "Reset Options"
-msgstr "Ripristina opzioni di default"
-
-#: inc/class.admin.mass.php:153
-msgid "Search"
-msgstr ""
-
-#: inc/class.admin.manage.php:70 inc/class.admin.mass.php:59
-msgid ""
-"Security problem. Try again. If this problem persist, contact <a "
-"href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
-msgstr ""
-"Problema di sicurezza. Prova di nuovo. Se il problema persiste contatta <a "
-"href=\"mailto:amaury@wordpress-fr.net\">l'autore del plugin</a>."
-
-#: inc/class.admin.autocomplete.php:218
-msgid "Separate tags with commas"
-msgstr "Separa i tag con virgole"
-
-#: inc/class.admin.autoterms.php:263
-msgid "Separated with a comma"
-msgstr "Separati da una virgola"
-
-#: inc/class.admin.php:337
-msgid "Settings"
-msgstr ""
-
-#: inc/class.admin.mass.php:190
-msgid "Show all dates"
-msgstr "Mostra tutte le date"
-
-#: inc/class.admin.autoterms.php:32
-#, fuzzy
-msgid "Simple Terms: Auto Terms"
-msgstr "TaxoPress: Auto tag"
-
-#: inc/class.admin.manage.php:48
-#, fuzzy
-msgid "Simple Terms: Manage Terms"
-msgstr "TaxoPress: Gestisci i tag"
-
-#: inc/class.admin.mass.php:31
-#, fuzzy
-msgid "Simple Terms: Mass Edit Terms"
-msgstr "TaxoPress: Modifica tutti i tag"
-
-#: inc/class.widgets.php:237
-msgid "Slug"
-msgstr "Slug"
-
-#: inc/class.admin.manage.php:142
-msgid "Sort"
-msgstr ""
-
-#: inc/class.admin.suggest.php:76 inc/class.admin.suggest.php:81
-msgid "Suggested tags"
-msgstr "Tag suggeriti"
-
-#: inc/helper.options.admin.php:34
-msgid "Suggested tags feature"
-msgstr ""
-
-#: inc/class.admin.suggest.php:56
-msgid "Suggested tags from :"
-msgstr "Tag suggeriti da:"
-
-#: inc/class.admin.autoterms.php:249
-msgid "Suport Hashtag format ?"
-msgstr ""
-
-#: inc/class.admin.php:548 inc/class.widgets.php:48
-msgid "Tag cloud"
-msgstr "Tag cloud"
-
-#: inc/class.widgets.php:15
+#: inc/client.php:1657
+msgid "Invalid Taxonomy"
+msgstr "Classificazione non valida"
+
+#: inc/widgets.php:10
 msgid "Tag Cloud (TaxoPress)"
 msgstr "Tag Cloud (TaxoPress)"
 
-#: inc/helper.options.admin.php:69
-msgid "Tag cloud Shortcode"
-msgstr ""
+#: inc/widgets.php:11
+msgid "Your most used tags in cloud format with dynamic color and many options"
+msgstr "I tag più usati in formato tag cloud con colori dinamici e molte opzioni"
 
-#: inc/class.widgets.php:366 inc/helper.options.admin.php:308
-#: inc/helper.options.admin.php:391
-msgid "Tag link format:"
-msgstr "Formato dei collegamenti ai tag:"
+#: inc/widgets.php:102
+msgid "Empty field will use default value."
+msgstr "Ai campi vuoti verranno assegnati valori di default"
 
-#: inc/helper.options.admin.php:129
-msgid "Tag4Site API Key"
-msgstr ""
-
-#: inc/class.admin.suggest.php:402
-msgid ""
-"Tag4Site need an API key to work. You can register on service website to "
-"obtain a key and set it on TaxoPress options."
-msgstr ""
-
-#: inc/class.admin.suggest.php:63
-msgid "Tag4Site.RU"
-msgstr ""
-
-#: inc/class.widgets.php:85
-msgid "Tags"
-msgstr ""
-
-#: inc/class.admin.autocomplete.php:180
-msgid "Tags (TaxoPress)"
-msgstr "Tag (TaxoPress)"
-
-#: inc/helper.options.admin.php:299
-msgid "Tags cloud type format:"
-msgstr "Tipo di formato della tag cloud:"
-
-#: inc/class.admin.php:544
-msgid "Tags for Current Post"
-msgstr "Tag per il post corrente"
-
-#: inc/helper.options.admin.php:62
-msgid "Tags for page"
-msgstr ""
-
-#: inc/helper.options.default.php:44 inc/class.client.post_tags.php:106
-msgid "Tags: "
-msgstr "Tag:"
-
-#: inc/class.admin.autoterms.php:231
-msgid "Target"
-msgstr "Target"
-
-#: inc/helper.options.admin.php:408
-msgid "Taxonomy:"
-msgstr ""
-
-#. Name of the plugin
-#. Author of the plugin
-#: inc/class.admin.php:324
-msgid "TaxoPress"
-msgstr "TaxoPress"
-
-#: inc/class.admin.post.php:32
-msgid "TaxoPress - Settings"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:277
-#, fuzzy
-msgid ""
-"TaxoPress can also tag all existing contents of your blog. This feature use "
-"auto terms list above-mentioned."
-msgstr ""
-"TaxoPress può anche taggare tutti i contenuti esistenti del tuo blog. Questa "
-"opzione usa la lista di Auto Tag su menzionata."
-
-#: inc/class.admin.manage.php:355
-msgid ""
-"TaxoPress don't use the same method as WordPress for rename a term. For "
-"example, in WordPress you have 2 terms : \"Blogging\" and \"Bloging\". When "
-"you want edit the term \"Bloging\" for rename it on \"Blogging\", WordPress "
-"will keep the two terms with the same name but with a different slug. <br />"
-"With TaxoPress, when you edit \"Bloging\" for \"Blogging\", TaxoPress merge "
-"posts filled with \"Bloging\" to \"Blogging\" and it delete the term "
-"\"Bloging\". Another logic ;)"
-msgstr ""
-
-#: inc/class.admin.php:377
-msgid "TaxoPress options resetted to default options!"
-msgstr "Le opzioni di default di TaxoPress sono state ripristinate!"
-
-#: inc/class.admin.manage.php:116
-#, fuzzy
-msgid "TaxoPress: Manage Terms"
-msgstr "TaxoPress: Gestisci i tag"
-
-#: inc/class.admin.php:323 inc/class.admin.php:336
-#: views/admin/page-settings.php:3
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: Opzioni"
-
-#: inc/class.admin.manage.php:350
-msgid "Technical informations"
-msgstr ""
-
-#: inc/class.widgets.php:239
-msgid "Term group"
-msgstr "Gruppo di termine"
-
-#: inc/class.admin.manage.php:614
-#, fuzzy, php-format
-#| msgid "Tag(s) added to %1s post(s)."
-msgid "Term(s) added to %1s post(s)."
-msgstr "Tag aggiunto(i) a %1s post."
-
-#: inc/class.admin.manage.php:266
-#, fuzzy
-msgid "Term(s) to add:"
-msgstr "Tag da aggiungere:"
-
-#: inc/class.admin.manage.php:226
-#, fuzzy
-msgid "Term(s) to delete:"
-msgstr "Tag da cancellare"
-
-#: inc/class.admin.manage.php:258
-#, fuzzy
-msgid "Term(s) to match:"
-msgstr "Tag da ricercare:"
-
-#: inc/class.admin.manage.php:184
-#, fuzzy
-msgid "Term(s) to rename:"
-msgstr "Tag da rinominare:"
-
-#: inc/class.admin.mass.php:246
-#, php-format
-msgid "Terms : %s"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:222
-#, fuzzy
-msgid "Terms database"
-msgstr "Database dei tag"
-
-#: inc/helper.options.admin.php:380
-msgid "Text to display after tags list:"
-msgstr "Testo da mostrare dopo la lista dei tag:"
-
-#: inc/helper.options.admin.php:379
-msgid "Text to display before tags list:"
-msgstr "Testo da mostrare prima della lista dei tag:"
-
-#: inc/helper.options.admin.php:396
-msgid "Text to display if no tags found:"
-msgstr "Testo da mostrare se non viene trovato alcun tag:"
-
-#: inc/helper.options.admin.php:240
-msgid "Text to display into title attribute for links:"
-msgstr ""
-
-#: inc/class.admin.php:434
-#, php-format
-msgid ""
-"Thanks for using TaxoPress | <a href=\"http://wordpress."
-"org/extend/plugins/simple-tags\">TaxoPress.com</a> | Version %s"
-msgstr ""
-
-#: inc/class.admin.autoterms.php:119
-msgid ""
-"The bulb are lit when the association taxonomy and custom post type have the "
-"classification automatic activated. Otherwise, the bulb is off."
-msgstr ""
-
-#: inc/helper.options.admin.php:336
-msgid ""
-"The colours are hexadecimal colours,  and need to have the full six digits "
-"(#eee is the shorthand version of #eeeeee)."
-msgstr ""
-"I colori sono espressi in codice esadecimale e devono essere scritti con sei "
-"caratteri (#eee è l'abbreviazione di #eeeeee)."
-
-#: inc/helper.options.admin.php:352
-msgid ""
-"The font size units option determines the units that the two font sizes use."
-msgstr ""
-"Il tipo di unita di misura del carattere determina l'unità di misura che i "
-"due caratteri usano."
-
-#: inc/helper.options.admin.php:344
-msgid "The two font sizes are the size of the largest and smallest tags."
-msgstr ""
-"Le dimensioni dei due caratteri sono le dimensioni del tag più grande e più "
-"piccolo."
-
-#: inc/helper.options.admin.php:349
-msgid "The units to display the font sizes with, on tag clouds:"
-msgstr "Il tipo di unita di misura del carattere nelle tag cloud:"
-
-#: inc/class.client.related_posts.php:368
-msgid "There is no excerpt because this is a protected post."
-msgstr "Non c'è alcun estratto perché il post è protetto."
-
-#: inc/class.admin.php:218
-msgid "This custom post type not have taxonomies."
-msgstr ""
-
-#: inc/helper.options.admin.php:37
-msgid ""
-"This feature add a box allowing you get suggested tags, by comparing post "
-"content and various sources of tags. (Yahoo! Term Extraction API, OpenCalais,"
-" Alchemy, Zemanta, Tag The Net, Local DB)"
-msgstr ""
-
-#: inc/helper.options.admin.php:23
-msgid ""
-"This feature add a link allowing you to display all the tags of your "
-"database. Once displayed, you can click over to add tags to post."
-msgstr ""
-"Questa funzione aggiunge un link che permette di mostrare tutti i tag del "
-"tuo database. Una volta mostrati, puoi cliccarci sopra per aggiungere un tag "
-"al post."
-
-#: inc/helper.options.admin.php:65
-#, fuzzy
-#| msgid ""
-#| "This feature allow page to be tagged. This option add pages in tags "
-#| "search. Also this feature add tag management in write page."
-msgid ""
-"This feature allow page post type to be tagged. This option add pages in "
-"tags search. Also add tag management in write page."
-msgstr ""
-"Questa funzione permette alle pagine di essere taggate e le aggiunge alla "
-"ricerca dei tag. Inoltre aggiunge la gestione dei tag nella scrittura delle "
-"pagine."
-
-#: inc/helper.options.admin.php:58
-msgid ""
-"This feature allow to add automatically terms on a post by proceding to a "
-"search into content."
-msgstr ""
-
-#: inc/helper.options.admin.php:51
-msgid ""
-"This feature allow to display related posts with terms relation. Please "
-"consider plugins <a href=\"http://wordpress.org/extend/plugins/similar-"
-"posts/\" target=\"_blank\">Similar Posts</a> or <a href=\"http://wordpress."
-"org/extend/plugins/yet-another-related-posts-plugin/\" target=\"_blank\">Yet "
-"Another Related Posts Plugin</a> for better results and performance."
-msgstr ""
-
-#: inc/helper.options.admin.php:16
-msgid ""
-"This feature allow to edit terms of any taxonomy for many posts per page."
-msgstr ""
-
-#: inc/helper.options.admin.php:44
-msgid ""
-"This feature allow to edit, merge, delete, add terms for any taxonomy. "
-"Please consider the plugin <a href=\"http://wordpress."
-"org/extend/plugins/term-management-tools/\" target=\"_blank\">Term "
-"Management Tools</a> if you only need to merge terms."
-msgstr ""
-
-#: inc/class.admin.autoterms.php:206
-#, fuzzy
-msgid ""
-"This feature allows Wordpress to look into post content and title for "
-"specified terms when saving posts. If your post content or title contains "
-"the word \"WordPress\" and you have \"wordpress\" in auto terms list, "
-"TaxoPress will add automatically \"wordpress\" as term for this post."
-msgstr ""
-"Questa funzione permette a Wordpress di cercare nel contenuto di un post e "
-"nel titolo per specifici tag quando si salva il post. Se il contenuto del "
-"post o il titolo contiene la parola \"WordPress\" e tu hai \"wordpress\" "
-"nella lista di auto tag, TaxoPress aggiungerà automaticamente \"wordpress\" "
-"come tag per questo post."
-
-#: inc/class.admin.manage.php:282
-msgid "This feature allows you to remove rarely used terms."
-msgstr ""
-
-#: inc/helper.options.admin.php:30
-msgid ""
-"This feature displays a visual help allowing to enter tags more easily. As "
-"well add tags is easier than the autocompletion default of WordPress"
-msgstr ""
-"Questa funzione mostra un aiuto visuale che permette di inserire i tag più "
-"facilmente. Inoltre aggiungere tag è più semplice dell'autocompletamento "
-"predefinito di Wordpress "
-
-#: inc/class.admin.manage.php:242
-#, fuzzy
-msgid ""
-"This feature lets you add one or more new terms to all posts which match any "
-"of the terms given."
-msgstr ""
-"Questa funzione permette di aggiungere uno o più nuovi tag a tutti i post "
-"che corrispondono al tag scelto."
-
-#: inc/class.admin.php:420
-msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
-msgstr ""
-"Questa caratteristica richiede almeno 1 tag per funzionare. Inizia ad "
-"aggiungere tag!"
-
-#: inc/class.admin.php:422
-msgid ""
-"This feature works only with activated JavaScript. Activate it in your Web "
-"browser so you can!"
-msgstr ""
-"Questa caratteristica funziona solo con JavaScript attivo. Attivalo nel tuo "
-"browser!"
-
-#: inc/helper.options.admin.php:183
-msgid ""
-"This parameter allows to fix a minimal value of use of tags. Default: 1."
-msgstr ""
-"Questo parametro permette di fissare il valore minimo per i tag. Default: 1."
-
-#: inc/helper.options.admin.php:197
-msgid ""
-"This setting determines the maximum number of links created by article for "
-"the same tag. Default: 1."
-msgstr ""
-
-#: inc/helper.options.admin.php:190
-msgid ""
-"This setting determines the maximum number of links created by article. "
-"Default: 10."
-msgstr ""
-"Questo parametro permette di fissare il numero massimo di link creati in "
-"ogni articolo. Predefinito: 10."
-
-#: inc/class.widgets.php:213
+#: inc/widgets.php:106
 msgid "Title:"
 msgstr "Titolo:"
 
-#: inc/helper.options.admin.php:233
-msgid "Try new engine replacement ?"
-msgstr ""
+#: inc/widgets.php:113
+msgid "Max tags to display: (default: 45)"
+msgstr "Numero massimo di tag da mostrare: (default: 45)"
 
-#: inc/helper.options.admin.php:78
-msgid "Type of old input"
-msgstr ""
+#: inc/widgets.php:120
+msgid "Order by for DB selection tags:"
+msgstr "Ordina per selezione di tag nel database:"
 
-#: inc/class.widgets.php:309
+#: inc/widgets.php:122
+#: inc/widgets.php:144
+msgid "Name"
+msgstr "Nome"
+
+#: inc/widgets.php:123
+msgid "Slug"
+msgstr "Slug"
+
+#: inc/widgets.php:124
+msgid "Term group"
+msgstr "Gruppo di termine"
+
+#: inc/widgets.php:125
+#: inc/widgets.php:145
+msgid "Counter"
+msgstr "Contatore"
+
+#: inc/widgets.php:126
+#: inc/widgets.php:146
+msgid "Random (default)"
+msgstr "Casuale (default)"
+
+#: inc/widgets.php:133
+msgid "Order for DB selection tags:"
+msgstr "Ordina selezione di tag nel database:"
+
+#: inc/widgets.php:135
+#: inc/widgets.php:155
+msgid "ASC"
+msgstr "ASC"
+
+#: inc/widgets.php:136
+#: inc/widgets.php:156
+msgid "DESC (default)"
+msgstr "DISC (default)"
+
+#: inc/widgets.php:142
+msgid "Order by for display tags:"
+msgstr "Ordina per tag mostrati:"
+
+#: inc/widgets.php:153
+msgid "Order for display tags:"
+msgstr "Ordina tag mostrati:"
+
+#: inc/widgets.php:162
+msgid "Font size mini: (default: 8)"
+msgstr "Dimensione minima carattere: (default: 8)"
+
+#: inc/widgets.php:169
+msgid "Font size max: (default: 22)"
+msgstr "Dimensione massima carattere: (default: 22)"
+
+#: inc/widgets.php:176
 msgid "Unit font size:"
 msgstr "Unità di misura del carattere:"
 
-#: inc/class.admin.mass.php:276
-msgid "Update all &raquo;"
-msgstr "Aggiorna tutto &raquo;"
+#: inc/widgets.php:178
+msgid "Point (default)"
+msgstr "Punti (default)"
 
-#: inc/class.admin.autoterms.php:271 views/admin/page-settings.php:33
-msgid "Update options &raquo;"
-msgstr "Aggiorna opzioni &raquo;"
+#: inc/widgets.php:179
+msgid "Pixel"
+msgstr "Pixel"
 
-#: inc/class.admin.autoterms.php:227
-#, fuzzy
-#| msgid ""
-#| "Use also local terms database with auto tags. (Warning, this option can "
-#| "increases the CPU consumption a lot if you have many terms)"
-msgid ""
-"Use also local terms database with auto terms. (Warning, this option can "
-"increases the CPU consumption a lot if you have many terms)"
-msgstr ""
-"Usa anche il database locale dei tag con Auto Tag. (Attenzione, questa "
-"opzione aumenta di molto l'uso del processore se hai molti tag)"
+#: inc/widgets.php:180
+msgid "Em"
+msgstr "Em"
 
-#: inc/class.widgets.php:342
+#: inc/widgets.php:181
+msgid "Pourcent"
+msgstr "Percentuale"
+
+#: inc/widgets.php:188
+msgid "Format:"
+msgstr "Formato:"
+
+#: inc/widgets.php:190
+msgid "Flat (default)"
+msgstr "In riga"
+
+#: inc/widgets.php:191
+msgid "List (UL/LI)"
+msgstr "In lista"
+
+#: inc/widgets.php:199
 msgid "Use auto color cloud:"
 msgstr "Usa colori automatici per la cloud:"
 
-#: inc/class.widgets.php:386
-msgid "What to show"
+#: inc/widgets.php:205
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "Colore del carattere più piccolo: (default: #CCCCCC)"
+
+#: inc/widgets.php:212
+msgid "Font color max: (default: #000000)"
+msgstr "Colore del carattere più grande: (default: #000000)"
+
+#: inc/widgets.php:219
+msgid "Extended format: (advanced usage)"
+msgstr "Formato esteso: (utilizzo avanzato)"
+
+#. Plugin URI of an extension
+msgid "http://wordpress.org/extend/plugins/simple-tags"
 msgstr ""
 
-#: inc/class.admin.autoterms.php:254
-msgid ""
-"When the whole word option is enabled, hashtag will not be autotag because "
-"of # prefix. This option allow to fixed this issue!"
+#. Description of an extension
+msgid "Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !"
 msgstr ""
 
-#: inc/helper.options.admin.php:251
-msgid ""
-"Which difference between <strong>&#8216;Order tags selection&#8217;</strong> "
-"and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
-msgstr ""
-"Che differenza c'è tra<strong>&#8216;Ordinare la selezione dei tag&#8217;"
-"</strong> e <strong>&#8216;Ordinare la visualizzazione dei tag&#8217;"
-"</strong>?<br />"
-
-#: inc/class.admin.autoterms.php:240
-msgid "Whole Word ?"
+#. Author of an extension
+msgid "Amaury BALMER"
 msgstr ""
 
-#: inc/class.admin.suggest.php:58
-msgid "Yahoo"
-msgstr "Yahoo"
-
-#: inc/helper.options.admin.php:146
-msgid ""
-"You can create an API ID from <a href=\"https://dandelion.eu/\">service "
-"website</a>"
+#. Author URI of an extension
+msgid "http://www.herewithme.fr"
 msgstr ""
 
-#: inc/helper.options.admin.php:139
-msgid ""
-"You can create an API key from <a href=\"http://developer.zemanta.com/\">"
-"service website</a>"
-msgstr ""
+#~ msgid "Most popular"
+#~ msgstr "Più comune"
 
-#: inc/helper.options.admin.php:132
-msgid ""
-"You can create an API key from <a href=\"http://tag4site.ru/\">service "
-"website</a>"
-msgstr ""
+#~ msgid "Least used"
+#~ msgstr "Meno comune"
 
-#: inc/helper.options.admin.php:125
-msgid ""
-"You can create an API key from <a href=\"http://www.alchemyapi.com/\">"
-"service website</a>"
-msgstr ""
+#~ msgid "Alphabetical"
+#~ msgstr "Alfabetico"
 
-#: inc/helper.options.admin.php:118
-msgid ""
-"You can create an API key from <a href=\"http://www.opencalais.com/\">"
-"service website</a>"
-msgstr ""
+#~ msgid "Existing Tags"
+#~ msgstr "Tag esistente"
 
-#: inc/helper.options.admin.php:153 inc/helper.options.admin.php:160
-msgid ""
-"You can create an API key from <a href=\"https://dandelion.eu/\">service "
-"website</a>"
-msgstr ""
+#~ msgid "Search tags"
+#~ msgstr "Cerca tag"
 
-#: inc/helper.options.admin.php:174
-msgid ""
-"You can create an API key from <a href=\"https://www.mashape."
-"com/proxem/ontology-based-topic-detection\">service website</a>"
-msgstr ""
+#~ msgid "Go"
+#~ msgstr "Vai"
 
-#: inc/helper.options.admin.php:90
-msgid ""
-"You can define how many characters from the autocompletion will be proposed. "
-"The default value in TaxoPress 2.0 is 0, prior this version, default "
-"parameter was 1."
-msgstr ""
+#~ msgid "Sort Order:"
+#~ msgstr "Organizza ordine:"
 
-#: inc/helper.options.admin.php:311 inc/helper.options.admin.php:394
-#: inc/helper.options.admin.php:449
-msgid ""
-"You can find markers and explanations <a href=\"https://github."
-"com/herewithme/simple-tags/wiki/Theme-functions-Integration\">in the online "
-"documentation.</a>"
-msgstr ""
+#~ msgid "View all posts tagged with %s"
+#~ msgstr "Vedi tutti i post taggati con %s"
 
-#: inc/class.admin.manage.php:244
-#, fuzzy
-msgid ""
-"You can specify multiple terms to add by separating them with commas.  If "
-"you want the term(s) to be added to all posts, then don't specify any terms "
-"to match."
-msgstr ""
-"Puoi specificare più tag da aggiungere separandoli con virgole. Se vuoi che "
-"i tag vengano aggiunti a tutti i post, allora non specificare alcun tag da "
-"ricercare."
+#~ msgid "Previous tags"
+#~ msgstr "Tag precedente"
 
-#: inc/class.admin.manage.php:210
-#, fuzzy
-msgid "You can specify multiple terms to delete by separating them with commas"
-msgstr "Puoi specificare più tag da cancellare separandoli con virgole"
+#~ msgid "Next tags"
+#~ msgstr "Tag successivo"
 
-#: inc/class.admin.manage.php:169
-#, fuzzy
-msgid ""
-"You can specify multiple terms to rename by separating them with commas."
-msgstr "Puoi specificare più tag da rinominare separandoli con virgole."
+#~ msgid "Rename Tag"
+#~ msgstr "Rinomina tag"
 
-#: inc/class.admin.manage.php:284
-msgid ""
-"You can specify the number below which will be removed terms. If you put 5, "
-"all terms with a counter inferior to 5 will be deleted. The terms with a "
-"counter equal to 5 is keep."
-msgstr ""
-
-#: inc/helper.options.admin.php:474
-msgid ""
-"You can use the same syntax as <code>st_related_posts()</code>public static "
-"function to customize display. See <a href=\"https://github."
-"com/herewithme/simple-tags/wiki/Theme-functions-Integration\">"
-"documentation</a> for more details."
-msgstr ""
-
-#: inc/helper.options.admin.php:359
-msgid ""
-"You can use the same syntax as <code>st_tag_cloud()</code> public static "
-"function to customize display. See <a href=\"https://github."
-"com/herewithme/simple-tags/wiki/Theme-functions-Integration\">"
-"documentation</a> for more details."
-msgstr ""
-
-#: inc/helper.options.admin.php:402
-msgid ""
-"You can use the same syntax as <code>st_the_tags()</code> public static "
-"function to customize display. See <a href=\"https://github."
-"com/herewithme/simple-tags/wiki/Theme-functions-Integration\">"
-"documentation</a> for more details."
-msgstr ""
-
-#: inc/class.admin.php:235
-#, php-format
-msgid ""
-"You currently use the custom post type \"<span>%s</span>\" and the taxonomy "
-"\"<span>%s</span>\""
-msgstr ""
-
-#: inc/helper.options.admin.php:257
-msgid ""
-"You must set &#8216;Order tags selection&#8217; to <strong>count-"
-"desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags "
-"display&#8217; to <strong>random</strong> for randomize cloud."
-msgstr ""
-"Devi impostare &#8216;Ordina la selezione dei tag&#8217; a <strong>count-"
-"desc</strong> per estrarre i 100 tag più usati e &#8216;Ordina la "
-"visualizzazione dei tag&#8217; a <strong>casuale</strong> per visualizzarli "
-"in maniera casuale."
-
-#: inc/helper.options.admin.php:386
-msgid "You must set zero (0) for display all tags."
-msgstr "Deve essere 0 (zero) per mostrare tutti i tag."
-
-#: inc/class.widgets.php:18
-msgid "Your most used tags in cloud format with dynamic color and many options"
-msgstr ""
-"I tag più usati in formato tag cloud con colori dinamici e molte opzioni"
-
-#: inc/class.admin.suggest.php:61
-msgid "Zemanta"
-msgstr ""
-
-#: inc/helper.options.admin.php:136
-msgid "Zemanta API Key"
-msgstr ""
-
-#: inc/class.admin.suggest.php:266
-msgid ""
-"Zemanta need an API key to work. You can register on service website to "
-"obtain a key and set it on TaxoPress options."
-msgstr ""
+#~ msgid "Tags"
+#~ msgstr "Tag"
