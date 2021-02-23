@@ -525,16 +525,12 @@ class SimpleTags_Admin {
 				return __( 'Auto link', 'simpletags' );
 			case 'features':
 				return __( 'Features', 'simpletags' );
-			case 'metakeywords':
-				return __( 'Meta Keyword', 'simpletags' );
 			case 'embeddedtags':
 				return __( 'Embedded Tags', 'simpletags' );
 			case 'tagspost':
 				return __( 'Tags for Current Post', 'simpletags' );
 			case 'relatedposts':
 				return __( 'Related Posts', 'simpletags' );
-			case 'relatedtags':
-				return __( 'Related Tags', 'simpletags' );
 			case 'tagcloud':
 				return __( 'Tag cloud', 'simpletags' );
 		}
