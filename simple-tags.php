@@ -1,12 +1,12 @@
 <?php
 /*
-Plugin Name: TaxoPress
-Plugin URI: https://taxopress.com
+Plugin Name: Simple Tags
+Plugin URI: https://github.com/herewithme/simple-tags
 Description: Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
 Version: 2.5.7
 Requires PHP: 5.6
-Author: TaxoPress
-Author URI: https://taxopress.com
+Author: Amaury BALMER
+Author URI: http://www.herewithme.fr
 Text Domain: simpletags
 
 Copyright 2013-2019 - Amaury BALMER (amaury@balmer.fr)
