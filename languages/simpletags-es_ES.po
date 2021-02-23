@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags 1.6.4\n"
+"Project-Id-Version: TaxoPress 1.6.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-20 00:22+0100\n"
 "PO-Revision-Date: 2017-05-09 12:08+0200\n"
@@ -17,8 +17,8 @@ msgstr ""
 
 # D:\SVN\Plugins\ST
 #: /simple-tags.php:52
-msgid "Simple Tags can't work with this WordPress version !"
-msgstr "¡Simple Tags no puede funcionar con esta versión de WordPress!"
+msgid "TaxoPress can't work with this WordPress version !"
+msgstr "¡TaxoPress no puede funcionar con esta versión de WordPress!"
 
 # D:\SVN\Plugins\ST
 #, php-format
@@ -145,8 +145,8 @@ msgstr "Taxonomía no válida"
 #: /2.3/inc/simple-tags.admin.php:149 /2.3/inc/simple-tags.admin.php:628
 #: /2.5/inc/simple-tags.admin.php:173 /2.5/inc/simple-tags.admin.php:640
 #: /2.7/inc/simple-tags.admin.php:233 /2.7/inc/simple-tags.admin.php:687
-msgid "Simple Tags: Manage Tags"
-msgstr "Simple Tags: Gestionar etiquetas"
+msgid "TaxoPress: Manage Tags"
+msgstr "TaxoPress: Gestionar etiquetas"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:149 /2.5/inc/simple-tags.admin.php:173
@@ -157,8 +157,8 @@ msgstr "Gestionar etiquetas"
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:150 /2.3/inc/simple-tags.admin.php:843
 #: /2.5/inc/simple-tags.admin.php:174 /2.7/inc/simple-tags.admin.php:234
-msgid "Simple Tags: Mass Edit Tags"
-msgstr "Simple Tags: Edición masiva de etiquetas"
+msgid "TaxoPress: Mass Edit Tags"
+msgstr "TaxoPress: Edición masiva de etiquetas"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:150 /2.5/inc/simple-tags.admin.php:174
@@ -169,8 +169,8 @@ msgstr "Edición masiva de etiquetas"
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:151 /2.3/inc/simple-tags.admin.php:209
 #: /2.5/inc/simple-tags.admin.php:175 /2.7/inc/simple-tags.admin.php:235
-msgid "Simple Tags: Auto Tags"
-msgstr "Simple Tags: Autoetiquetado"
+msgid "TaxoPress: Auto Tags"
+msgstr "TaxoPress: Autoetiquetado"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:151 /2.5/inc/simple-tags.admin.php:175
@@ -183,14 +183,14 @@ msgstr "Autoetiquetado"
 #: /2.3/inc/simple-tags.admin.php:152 /2.3/inc/simple-tags.admin.php:522
 #: /2.5/inc/simple-tags.admin.php:176 /2.5/inc/simple-tags.admin.php:536
 #: /2.7/inc/simple-tags.admin.php:236 /2.7/inc/simple-tags.admin.php:592
-msgid "Simple Tags: Options"
-msgstr "Simple Tags: Opciones"
+msgid "TaxoPress: Options"
+msgstr "TaxoPress: Opciones"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:152 /2.5/inc/simple-tags.admin.php:176
 #: /2.7/inc/simple-tags.admin.php:236
-msgid "Simple Tags"
-msgstr "Simple Tags"
+msgid "TaxoPress"
+msgstr "TaxoPress"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:194 /2.5/inc/simple-tags.admin.php:218
@@ -214,8 +214,8 @@ msgstr "Lista de autoetiquetas"
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:215 /2.5/inc/simple-tags.admin.php:238
 #: /2.7/inc/simple-tags.admin.php:298
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
-msgstr "Esta función permite a WordPress mirar dentro del contenido y el título de las entradas, al guardar, en busca de etiquetas concretas. Si el contenido o el título de tu entrada contiene la palabra \"WordPress\" y tienes \"wordpress\" en la lista de autoetiquetado, Simple Tags añadirá automáticamente \"wordpress\" como etiqueta para dicha entrada."
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, TaxoPress will add automatically \"wordpress\" as tag for this post."
+msgstr "Esta función permite a WordPress mirar dentro del contenido y el título de las entradas, al guardar, en busca de etiquetas concretas. Si el contenido o el título de tu entrada contiene la palabra \"WordPress\" y tienes \"wordpress\" en la lista de autoetiquetado, TaxoPress añadirá automáticamente \"wordpress\" como etiqueta para dicha entrada."
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:219 /2.5/inc/simple-tags.admin.php:247
@@ -254,8 +254,8 @@ msgstr "Auto etiquetar contenido antiguo"
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:237 /2.5/inc/simple-tags.admin.php:278
 #: /2.7/inc/simple-tags.admin.php:337
-msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
-msgstr "Simple Tags también puede etiquetar todos los contenidos existentes de tu blog. Esta función usa la lista de autoetiquetas mencionada arriba."
+msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "TaxoPress también puede etiquetar todos los contenidos existentes de tu blog. Esta función usa la lista de autoetiquetas mencionada arriba."
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:238
@@ -962,14 +962,14 @@ msgstr "Opciones guardadas"
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:480 /2.5/inc/simple-tags.admin.php:523
 #: /2.7/inc/simple-tags.admin.php:586
-msgid "Simple Tags options resetted to default options!"
-msgstr "¡Las opciones de Simple Tags se han reiniciado a sus valores predeterminados!"
+msgid "TaxoPress options resetted to default options!"
+msgstr "¡Las opciones de TaxoPress se han reiniciado a sus valores predeterminados!"
 
 # F:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:486 /2.5/inc/simple-tags.admin.php:529
 #, php-format
-msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
-msgstr "¡Todas las opciones de Simple Tags están borradas!. ¡Ahora puedes <a href=\"%s\">desactivar la extensión</a>!"
+msgid "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "¡Todas las opciones de TaxoPress están borradas!. ¡Ahora puedes <a href=\"%s\">desactivar la extensión</a>!"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:526 /2.3/inc/simple-tags.admin.php:550
@@ -997,13 +997,13 @@ msgstr "Desinstalación"
 
 # F:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:540 /2.5/inc/simple-tags.admin.php:554
-msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
-msgstr "Generalmente, desactivar esta extensión no borra ninguno de sus datos, si te gustaría dejar de usar Simple Tags, por favor borra <strong>todas</strong> las opciones antes de desactivar la extensión."
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using TaxoPress for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "Generalmente, desactivar esta extensión no borra ninguno de sus datos, si te gustaría dejar de usar TaxoPress, por favor borra <strong>todas</strong> las opciones antes de desactivar la extensión."
 
 # F:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:541 /2.5/inc/simple-tags.admin.php:555
-msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
-msgstr "Esto borra todas la opciones de Simple Tags. <strong>¡Esto es irrevocable!. Ten cuidado.</strong>"
+msgid "This erases all TaxoPress options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "Esto borra todas la opciones de TaxoPress. <strong>¡Esto es irrevocable!. Ten cuidado.</strong>"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:544 /2.5/inc/simple-tags.admin.php:558
@@ -1527,8 +1527,8 @@ msgstr "¡%s etiqueta(s) de página(s) actualizada(s) con éxito!"
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:2155 /2.5/inc/simple-tags.admin.php:2189
 #, php-format
-msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s"
-msgstr "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s | Traducción por <a href=\"http://agamum.net/blog/\" title=\"Agamum.net\">Samuel Aguilera</a>"
+msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
+msgstr "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s | Traducción por <a href=\"http://agamum.net/blog/\" title=\"Agamum.net\">Samuel Aguilera</a>"
 
 # C:\SVN\ST
 #: /2.3/inc/simple-tags.admin.php:2195
@@ -1926,8 +1926,8 @@ msgstr "Etiquetas <small>(separa múltiples etiquetas con comas: gatos, comida m
 
 # C:\SVN\ST
 #: /2.5/inc/simple-tags.widgets.php:240 /2.7/inc/simple-tags.widgets.php:240
-msgid "Simple Tags : Tag Cloud Widgets"
-msgstr "Simple Tags : Widgets de nube de etiquetas"
+msgid "TaxoPress : Tag Cloud Widgets"
+msgstr "TaxoPress : Widgets de nube de etiquetas"
 
 # D:\SVN\Plugins\ST
 #: /2.5/inc/simple-tags.widgets.php:253 /2.7/inc/simple-tags.widgets.php:253
@@ -1965,8 +1965,8 @@ msgstr "Etiquetas"
 
 # C:\SVN\ST
 #: /2.7/inc/simple-tags.admin.php:1305 /2.7/inc/simple-tags.admin.php:1310
-msgid "Tags (Simple Tags)"
-msgstr "Etiquetas (Simple Tags)"
+msgid "Tags (TaxoPress)"
+msgstr "Etiquetas (TaxoPress)"
 
 # C:\SVN\ST
 #: /2.7/inc/simple-tags.admin.php:1317
@@ -2016,8 +2016,8 @@ msgstr "No hay resultados de tu base de datos de WordPress."
 # C:\SVN\ST
 #: /2.7/inc/simple-tags.admin.php:2114
 #, php-format
-msgid "&copy; Copyright 2008 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s"
-msgstr "&copy; Copyright 2008 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s | Traducción por <a href=\"http://agamum.net/blog/\" title=\"Agamum.net\">Samuel Aguilera</a>"
+msgid "&copy; Copyright 2008 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
+msgstr "&copy; Copyright 2008 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s | Traducción por <a href=\"http://agamum.net/blog/\" title=\"Agamum.net\">Samuel Aguilera</a>"
 
 # C:\SVN\ST
 #: /2.7/inc/simple-tags.admin.php:2210

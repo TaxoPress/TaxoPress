@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags\n"
+"Project-Id-Version: TaxoPress\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2008-04-24 08:23+0100\n"
 "Last-Translator: Songline <NickRita@Web.de>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\simple-tags\n"
 
 #: /simple-tags.php:41
-msgid "Simple Tags can't work with this WordPress version !"
-msgstr "Simple Tags läuft nicht unter dieser Wordpress Version!"
+msgid "TaxoPress can't work with this WordPress version !"
+msgstr "TaxoPress läuft nicht unter dieser Wordpress Version!"
 
 #: /simple-tags.php:41
 #, php-format
@@ -141,8 +141,8 @@ msgstr "Ungültige Taxonomie"
 #: /2.3/inc/simple-tags.admin.php:628
 #: /2.5/inc/simple-tags.admin.php:161
 #: /2.5/inc/simple-tags.admin.php:628
-msgid "Simple Tags: Manage Tags"
-msgstr "Simple Tags: Tags verwalten"
+msgid "TaxoPress: Manage Tags"
+msgstr "TaxoPress: Tags verwalten"
 
 #: /2.3/inc/simple-tags.admin.php:149
 #: /2.5/inc/simple-tags.admin.php:161
@@ -152,8 +152,8 @@ msgstr "Tags verwalten"
 #: /2.3/inc/simple-tags.admin.php:150
 #: /2.3/inc/simple-tags.admin.php:843
 #: /2.5/inc/simple-tags.admin.php:162
-msgid "Simple Tags: Mass Edit Tags"
-msgstr "Simple Tags: Massenbearbeitung"
+msgid "TaxoPress: Mass Edit Tags"
+msgstr "TaxoPress: Massenbearbeitung"
 
 #: /2.3/inc/simple-tags.admin.php:150
 #: /2.5/inc/simple-tags.admin.php:162
@@ -164,8 +164,8 @@ msgstr "Massenbearbeitung"
 #: /2.3/inc/simple-tags.admin.php:209
 #: /2.5/inc/simple-tags.admin.php:163
 #, fuzzy
-msgid "Simple Tags: Auto Tags"
-msgstr "Simple Tags: Tags verwalten"
+msgid "TaxoPress: Auto Tags"
+msgstr "TaxoPress: Tags verwalten"
 
 #: /2.3/inc/simple-tags.admin.php:151
 #: /2.5/inc/simple-tags.admin.php:163
@@ -178,13 +178,13 @@ msgstr "Tag hinzufügen"
 #: /2.3/inc/simple-tags.admin.php:522
 #: /2.5/inc/simple-tags.admin.php:164
 #: /2.5/inc/simple-tags.admin.php:524
-msgid "Simple Tags: Options"
-msgstr "Simple Tags: Einstellungen"
+msgid "TaxoPress: Options"
+msgstr "TaxoPress: Einstellungen"
 
 #: /2.3/inc/simple-tags.admin.php:152
 #: /2.5/inc/simple-tags.admin.php:164
-msgid "Simple Tags"
-msgstr "Simple Tags"
+msgid "TaxoPress"
+msgstr "TaxoPress"
 
 #: /2.3/inc/simple-tags.admin.php:194
 #: /2.5/inc/simple-tags.admin.php:206
@@ -206,8 +206,8 @@ msgstr "Auto tags Liste"
 
 #: /2.3/inc/simple-tags.admin.php:215
 #: /2.5/inc/simple-tags.admin.php:226
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
-msgstr "Dieses Feature erlaubt Wordpress, den Beitrag beim Speichern nach bestimmten Tags zu durchsuchen. Wenn Dein Beitrag das Wort \"WordPress\" enthält und Du \"wordpress\" in der auto tag Liste hast, wird Simple Tags automatisch \"wordpress\" als Tag für den Beitrag hinzufügen."
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, TaxoPress will add automatically \"wordpress\" as tag for this post."
+msgstr "Dieses Feature erlaubt Wordpress, den Beitrag beim Speichern nach bestimmten Tags zu durchsuchen. Wenn Dein Beitrag das Wort \"WordPress\" enthält und Du \"wordpress\" in der auto tag Liste hast, wird TaxoPress automatisch \"wordpress\" als Tag für den Beitrag hinzufügen."
 
 #: /2.3/inc/simple-tags.admin.php:219
 #: /2.5/inc/simple-tags.admin.php:235
@@ -239,8 +239,8 @@ msgstr "Auto Tags alter Inhalt"
 
 #: /2.3/inc/simple-tags.admin.php:237
 #: /2.5/inc/simple-tags.admin.php:266
-msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
-msgstr "Simple Tags kann den gesamten Inhalt Deines Internetauftrittes mit Hilfe der Auto-Tag-Liste mit Tags versehen."
+msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "TaxoPress kann den gesamten Inhalt Deines Internetauftrittes mit Hilfe der Auto-Tag-Liste mit Tags versehen."
 
 #: /2.3/inc/simple-tags.admin.php:238
 msgid "Auto tags all content"
@@ -877,14 +877,14 @@ msgstr "Einstellungen gespeichert."
 
 #: /2.3/inc/simple-tags.admin.php:480
 #: /2.5/inc/simple-tags.admin.php:511
-msgid "Simple Tags options resetted to default options!"
+msgid "TaxoPress options resetted to default options!"
 msgstr "Einstellungen auf Standard zurückgesetzt!"
 
 #: /2.3/inc/simple-tags.admin.php:486
 #: /2.5/inc/simple-tags.admin.php:517
 #, php-format
-msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
-msgstr "Alle Simple Tags Optionen wurden gelöscht. Du kannst das <a href=\"%s\">Plugin nun deaktivieren</a> !"
+msgid "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "Alle TaxoPress Optionen wurden gelöscht. Du kannst das <a href=\"%s\">Plugin nun deaktivieren</a> !"
 
 #: /2.3/inc/simple-tags.admin.php:526
 #: /2.3/inc/simple-tags.admin.php:550
@@ -913,13 +913,13 @@ msgstr "Deinstallation"
 
 #: /2.3/inc/simple-tags.admin.php:540
 #: /2.5/inc/simple-tags.admin.php:542
-msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
-msgstr "Beim Deaktivieren werden keine Daten gelöscht. Wenn Du Simple Tags nicht mehr nutzen möchtest, lösche <strong>alle </strong> Optionen, bevor Du das Plugin deaktivierst."
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using TaxoPress for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "Beim Deaktivieren werden keine Daten gelöscht. Wenn Du TaxoPress nicht mehr nutzen möchtest, lösche <strong>alle </strong> Optionen, bevor Du das Plugin deaktivierst."
 
 #: /2.3/inc/simple-tags.admin.php:541
 #: /2.5/inc/simple-tags.admin.php:543
-msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
-msgstr "Dies löscht alle Simple Tags Optionen. <strong>Vorsicht! Vorgang kann nicht rückgängig gemacht werden!</strong>"
+msgid "This erases all TaxoPress options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "Dies löscht alle TaxoPress Optionen. <strong>Vorsicht! Vorgang kann nicht rückgängig gemacht werden!</strong>"
 
 #: /2.3/inc/simple-tags.admin.php:544
 #: /2.5/inc/simple-tags.admin.php:546
@@ -1383,7 +1383,7 @@ msgstr "%s Tag(s) in Seiten erfolgreich aktualisiert!"
 #: /2.3/inc/simple-tags.admin.php:2155
 #: /2.5/inc/simple-tags.admin.php:2163
 #, fuzzy, php-format
-msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s"
+msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
 msgstr "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a>"
 
 #: /2.3/inc/simple-tags.admin.php:2195
@@ -1738,7 +1738,7 @@ msgstr "Tags (trenne mehrere Tags durch Kommas: Katze, Tierfutter, Hunde)"
 
 #: /2.5/inc/simple-tags.widgets.php:240
 #, fuzzy
-msgid "Simple Tags : Tag Cloud Widgets"
+msgid "TaxoPress : Tag Cloud Widgets"
 msgstr "Tag Cloud Widgets"
 
 #: /2.5/inc/simple-tags.widgets.php:253
