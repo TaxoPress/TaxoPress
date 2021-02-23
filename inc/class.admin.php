@@ -329,6 +329,17 @@ class SimpleTags_Admin {
 			'dashicons-tag',
 			69.999
 		);
+		add_submenu_page(
+			self::MENU_SLUG,
+			__( 'TaxoPress: Options', 'simpletags' ),
+			__( 'Settings', 'simpletags' ),
+			'admin_simple_tags',
+			self::MENU_SLUG,
+			array(
+				__CLASS__,
+				'page_options',
+			)
+		);
 	}
 
 	/**
