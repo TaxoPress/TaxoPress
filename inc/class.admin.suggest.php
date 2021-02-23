@@ -143,7 +143,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) == '' ) {
-			echo '<p>' . __( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -206,7 +206,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'alchemy_api' ) == '' ) {
-			echo '<p>' . __( 'AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -263,7 +263,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'zemanta_key' ) == '' ) {
-			echo '<p>' . __( 'Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -339,13 +339,13 @@ class SimpleTags_Admin_Suggest {
 		if ( SimpleTags_Plugin::get_option_value( 'datatxt_access_token' ) == '' ) {
 			// API ID ?
 			if ( SimpleTags_Plugin::get_option_value( 'datatxt_id' ) == '' ) {
-				echo '<p>' . __( 'dataTXT needs an API ID to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+				echo '<p>' . __( 'dataTXT needs an API ID to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
 				exit();
 			}
 
 			// API Key ?
 			if ( SimpleTags_Plugin::get_option_value( 'datatxt_key' ) == '' ) {
-				echo '<p>' . __( 'dataTXT needs an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+				echo '<p>' . __( 'dataTXT needs an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
 				exit();
 			}
 
@@ -399,7 +399,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'tag4site_key' ) == '' ) {
-			echo '<p>' . __( 'Tag4Site need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'Tag4Site need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -561,7 +561,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'proxem_key' ) == '' ) {
-			echo '<p>' . __( 'Proxem API need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'Proxem API need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 

@@ -1,4 +1,4 @@
-=== Simple Tags - Tags Manager ===
+=== TaxoPress - Tags Manager ===
 Contributors: stevejburge
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
@@ -40,15 +40,15 @@ And more...
 
 **Required PHP5 or upper.**
 
-The Simple Tags can be installed in 3 easy steps:
+The TaxoPress can be installed in 3 easy steps:
 
-1. Unzip "Simple tags" archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
+1. Unzip "TaxoPress" archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Inside the Wordpress admin, go to Options > Simple Tags, adjust the parameters according to your needs, and save them.
+3. Inside the Wordpress admin, go to Options > TaxoPress, adjust the parameters according to your needs, and save them.
 
 == Frequently Asked Questions ==
 
-= Simple Tags is compatible with which WordPress versions ? =
+= TaxoPress is compatible with which WordPress versions ? =
 
 * 2.5 and upper are compatible with WordPress 4.x and 5.x !
 * 2.4 and upper are compatible only with WordPress 4.x !
@@ -64,7 +64,7 @@ The Simple Tags can be installed in 3 easy steps:
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 3. Autotagging your content !
 4. Add tags easily with click tags !
-3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
+3. To help you to add easily tags, TaxoPress has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
 6. You also can suggest tags from lot's of service (Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms)
 
 == Changelog ==
@@ -195,7 +195,7 @@ v2.6 - 2020-09-10
 	* Remove "include cat" on "Related Posts" settings
 	* Optimize function "Related posts"
 	* Reorganize admin for have a tab features with all features available
-	* Use a input text for Simple Tags autocompletion field
+	* Use a input text for TaxoPress autocompletion field
 	* Remove ID of term from autocompletion
 	* Fix autocompletion on mange terms page
 	* Add a field for advanced usage on tagcloud widget
@@ -240,7 +240,7 @@ v2.6 - 2020-09-10
 * Version 1.8.1 :
 	* Improve uninstaller
 	* Improve code widgets
-	* Improve support of custom taxonomies for simple tags features
+	* Improve support of custom taxonomies for TaxoPress features
 * Version 1.8.0 :
 	* Compatibility 3.0
 	* Add an option for auto-tags
@@ -310,9 +310,9 @@ v2.6 - 2020-09-10
 	* Fix a small bug with JSON class.
 * Version 1.6.2
 	* Click tags and suggested tags can work with default WordPress Tags.
-	* The Simple Tags auto completion replace default WordPress Tags input.
+	* The TaxoPress auto completion replace default WordPress Tags input.
 	* Restore administration options.
-	* Better management of Simple Tags with WP_Scripts and WP_Styles
+	* Better management of TaxoPress with WP_Scripts and WP_Styles
 	* Add an option for auto link tags.
 	* Fix a potential error with compatibility old markers.
 	* Update french and chineese translation.
@@ -354,7 +354,7 @@ v2.6 - 2020-09-10
 	* Fix internationalization when reset plugin options (and installation)
 	* Fix auto link feature (word replaced keep original case)
 * Version 1.3.7
-	* Improved performance of Simple Tags (specially Related Posts)
+	* Improved performance of TaxoPress (specially Related Posts)
 * Version 1.3.6
 	* Fix auto tags with all DB and this feature work also for auto tags save feature
 	* Clean lot's url

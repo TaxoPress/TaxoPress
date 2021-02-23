@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Simple Tags
+Plugin Name: TaxoPress
 Plugin URI: https://wordpress.org/plugins/simple-tags/
 Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
 Version: 2.63
 Requires PHP: 5.6
 Requires at least: 3.3
 Tested up to: 5.6
-Author: WebFactory Ltd
-Author URI: https://www.webfactoryltd.com/
+Author: TaxoPress
+Author URI: https://taxopress.com
 Text Domain: simpletags
 
 Copyright 2013-2021  WebFactory Ltd  (email: support@webfactoryltd.com)
@@ -70,7 +70,7 @@ require STAGS_DIR . '/inc/class.widgets.php';
 register_activation_hook( __FILE__, array( 'SimpleTags_Plugin', 'activation' ) );
 register_deactivation_hook( __FILE__, array( 'SimpleTags_Plugin', 'deactivation' ) );
 
-// Init Simple Tags
+// Init TaxoPress
 function init_simple_tags() {
 	new SimpleTags_Client();
 	new SimpleTags_Client_TagCloud();
