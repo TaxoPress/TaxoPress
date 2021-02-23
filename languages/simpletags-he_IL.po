@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress\n"
+"Project-Id-Version: Simple Tags\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2007-11-27 21:10+0200\n"
 "Last-Translator: Hannit Cohen <hannit@gmail.com>\n"
@@ -208,8 +208,8 @@ msgstr "ייבוא תגיות משולבות בטקסט לתוך מנגנון ה
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:125
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "Simple Tags"
+msgstr "Simple Tags"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:125
@@ -219,8 +219,8 @@ msgstr "תגיות"
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:126
 #: WP.org\trunk/inc/simple-tags.admin.php:488
-msgid "TaxoPress: Manage Tags"
-msgstr "TaxoPress: ניהול תגיות"
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: ניהול תגיות"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:126
@@ -230,8 +230,8 @@ msgstr "ניהול תגיות"
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:127
 #: WP.org\trunk/inc/simple-tags.admin.php:639
-msgid "TaxoPress: Mass Edit Tags"
-msgstr "TaxoPress: עריכת תגיות קבוצתית"
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: עריכת תגיות קבוצתית"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:127
@@ -241,8 +241,8 @@ msgstr "עריכת תגיות קבוצתית"
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:128
 #: WP.org\trunk/inc/simple-tags.admin.php:177
-msgid "TaxoPress: Auto Tags"
-msgstr "TaxoPress: תגיות אוטומטיות"
+msgid "Simple Tags: Auto Tags"
+msgstr "Simple Tags: תגיות אוטומטיות"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:128
@@ -252,8 +252,8 @@ msgstr "תגיות אוטומטיות"
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:129
 #: WP.org\trunk/inc/simple-tags.admin.php:399
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: אפשרויות"
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: אפשרויות"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:129
@@ -272,7 +272,7 @@ msgstr "רשימת תגיות אוטומטיות"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:182
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, TaxoPress will add automatically \"wordpress\" as tag for this post."
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
 msgstr "מנגנון זה מאפשר לוורדפרס לבדוק את כותרת הפוסט ותוכנו בחיפוש אחר תגיות בזמן שמירת הפוסט. אם הפוסט מכיל את המילה \"וורדפרס\" וסימנת את התגית \"וורדפרס\" בתגיות אוטמטיות, אז התגית תתווסף לפוסט אוטומטית."
 
 #: C:\SVN\ST
@@ -297,7 +297,7 @@ msgstr "תיוג אוטומטי של תוכן ישן"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:196
-msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
 msgstr "המערכת יכולה לתייג את כל תוכן הבלוג שלך. על ידי שימוש במנגנון התיוג האוטומטי המוזכר למעלה."
 
 #: C:\SVN\ST
@@ -729,7 +729,7 @@ msgstr "אפשרויות נשמרו"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:387
-msgid "TaxoPress options resetted to default options!"
+msgid "Simple Tags options resetted to default options!"
 msgstr "האפשרויות אופסו לברירת המחדל!"
 
 #: C:\SVN\ST
@@ -1135,8 +1135,8 @@ msgstr "שגיאה. אין מספיק תגיות לשינוי שם, יותר מ�
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:1250
 #, php-format
-msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">TaxoPress</a> | Version %s"
-msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">TaxoPress</a> | גירסה %s"
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | גירסה %s"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:1356
