@@ -25,7 +25,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * Init some JS and CSS need for this feature
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
@@ -66,7 +66,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * Display a javascript collection for autocompletion script !
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function ajax_local_tags() {
 		status_header( 200 ); // Send good header HTTP
@@ -115,7 +115,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param int $post_id
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function save_post( $post_id = 0 ) {
 		// Update only if metabox is display
@@ -158,7 +158,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $post_type
 	 *
 	 * @return boolean
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 
 
@@ -198,7 +198,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param object $post
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function metabox( $post ) {
 		// Get options
@@ -231,7 +231,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $taxonomy
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function auto_terms_js( $taxonomy = '' ) {
 		// Get option
@@ -251,7 +251,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $taxonomy
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function manage_terms_js( $taxonomy = '' ) {
 		// Get option
@@ -271,7 +271,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $taxonomy
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function mass_terms_js( $taxonomy = '' ) {
 		// Get option

@@ -5,7 +5,7 @@ class SimpleTags_Admin_Manage {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
 		// Admin menu
@@ -22,7 +22,7 @@ class SimpleTags_Admin_Manage {
 	 * Init somes JS and CSS need for this feature
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_enqueue_scripts() {
 		wp_register_script( 'st-helper-manage', STAGS_URL . '/assets/js/helper-manage.js', array( 'jquery' ), STAGS_VERSION );
@@ -37,7 +37,7 @@ class SimpleTags_Admin_Manage {
 	 * Add WP admin menu for Tags
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_menu() {
 		add_management_page( __( 'Simple Terms: Manage Terms', 'simpletags' ), __( 'Manage Terms', 'simpletags' ), 'simple_tags', 'st_manage', array(
@@ -50,18 +50,18 @@ class SimpleTags_Admin_Manage {
 	 * Method for build the page HTML manage tags
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function page_manage_tags() {
 		// Control Post data
 		if ( isset( $_POST['term_action'] ) ) {
 			if ( ! wp_verify_nonce( $_POST['term_nonce'], 'simpletags_admin' ) ) { // Origination and intention
 
-				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simpletags' ), 'error' );
 
 			} elseif ( ! isset( SimpleTags_Admin::$taxonomy ) || ! taxonomy_exists( SimpleTags_Admin::$taxonomy ) ) { // Valid taxo ?
 
-				add_settings_error( __CLASS__, __CLASS__, __( 'Missing valid taxonomy for work... Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, __( 'Missing valid taxonomy for work... Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simpletags' ), 'error' );
 
 			} elseif ( $_POST['term_action'] == 'renameterm' ) {
 
@@ -85,11 +85,11 @@ class SimpleTags_Admin_Manage {
 				self::removeRarelyUsed( SimpleTags_Admin::$taxonomy, (int) $_POST['number-rarely'] );
 
 			} /* elseif ( $_POST['term_action'] == 'editslug'  ) {
-				
+
 				$matchtag = (isset($_POST['tagname_match'])) ? $_POST['tagname_match'] : '';
 				$newslug  = (isset($_POST['tagslug_new'])) ? $_POST['tagslug_new'] : '';
 				self::editTermSlug( SimpleTags_Admin::$taxonomy, $matchtag, $newslug );
-			
+
 			}*/
 		}
 
@@ -104,8 +104,6 @@ class SimpleTags_Admin_Manage {
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
 
 			<h2><?php _e( 'Simple Tags: Manage Terms', 'simpletags' ); ?></h2>
-
-			<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
 
 			<div class="clear"></div>
 			<div id="term-list">
@@ -309,27 +307,27 @@ class SimpleTags_Admin_Manage {
 					<td>
 						<p><?php _e('Enter the term name to edit and its new slug. <a href="http://codex.wordpress.org/Glossary#Slug">Slug definition</a>', 'simpletags'); ?></p>
 						<p><?php _e('You can specify multiple terms to rename by separating them with commas.', 'simpletags'); ?></p>
-						
+
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
 								<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
-								
+
 								<input type="hidden" name="term_action" value="editslug" />
 								<input type="hidden" name="term_nonce" value="<?php echo wp_create_nonce('simpletags_admin'); ?>" />
-								
+
 								<p>
 									<label for="tagname_match"><?php _e('Term(s) to match:', 'simpletags'); ?></label>
 									<br />
 									<input type="text" class="autocomplete-input" id="tagname_match" name="tagname_match" value="" size="40" />
 								</p>
-								
+
 								<p>
 									<label for="tagslug_new"><?php _e('Slug(s) to set:', 'simpletags'); ?></label>
 									<br />
 									<input type="text" class="autocomplete-input" id="tagslug_new" name="tagslug_new" value="" size="40" />
 								</p>
-								
+
 								<input class="button-primary" type="submit" name="edit" value="<?php _e('Edit', 'simpletags'); ?>" />
 							</form>
 						</fieldset>
@@ -365,7 +363,7 @@ class SimpleTags_Admin_Manage {
 	 * @param string $new
 	 *
 	 * @return boolean
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function renameTerms( $taxonomy = 'post_tag', $old = '', $new = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $new ) ) ) == '' ) {
@@ -503,7 +501,7 @@ class SimpleTags_Admin_Manage {
 	 * @param string $delete
 	 *
 	 * @return boolean
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function deleteTermsByTermList( $taxonomy = 'post_tag', $delete = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $delete ) ) ) == '' ) {
@@ -546,7 +544,7 @@ class SimpleTags_Admin_Manage {
 	 * @param string $new
 	 *
 	 * @return boolean
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function addMatchTerms( $taxonomy = 'post_tag', $match = '', $new = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $new ) ) ) == '' ) {
@@ -616,7 +614,7 @@ class SimpleTags_Admin_Manage {
 	 * @param integer $number
 	 *
 	 * @return boolean
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function removeRarelyUsed( $taxonomy = 'post_tag', $number = 0 ) {
 		global $wpdb;
@@ -655,7 +653,7 @@ class SimpleTags_Admin_Manage {
 	 * @param string $slugs
 	 *
 	 * @return boolean
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	/*
 	public static function editTermSlug( $taxonomy = 'post_tag', $names = '', $slugs = '') {
@@ -663,13 +661,13 @@ class SimpleTags_Admin_Manage {
 			add_settings_error( __CLASS__, __CLASS__, __('No new slug(s) specified!', 'simpletags'), 'error' );
 			return false;
 		}
-		
+
 		$match_names = explode(',', $names);
 		$new_slugs = explode(',', $slugs);
-		
+
 		$match_names = array_filter($match_names, '_delete_empty_element');
 		$new_slugs = array_filter($new_slugs, '_delete_empty_element');
-		
+
 		if ( count($match_names) != count($new_slugs) ) {
 			add_settings_error( __CLASS__, __CLASS__, __('Terms number and slugs number isn\'t the same!', 'simpletags'), 'error' );
 			return false;
@@ -678,30 +676,30 @@ class SimpleTags_Admin_Manage {
 			foreach ( (array) $match_names as $i => $match_name ) {
 				// Sanitize slug + Escape
 				$new_slug = sanitize_title($new_slugs[$i]);
-				
+
 				// Get term by name
 				$term = get_term_by('name', $match_name, $taxonomy);
 				if ( !$term ) {
 					continue;
 				}
-				
+
 				// Increment
 				$counter++;
-				
+
 				// Update term
 				wp_update_term($term->term_id, $taxonomy, array('slug' => $new_slug));
-				
+
 				// Clean cache
 				clean_term_cache($term->term_id, $taxonomy);
 			}
 		}
-		
+
 		if ( $counter == 0  ) {
 			add_settings_error( __CLASS__, __CLASS__, __('No slug edited.', 'simpletags'), 'updated' );
 		} else {
 			add_settings_error( __CLASS__, __CLASS__, sprintf(__('%s slug(s) edited.', 'simpletags'), $counter), 'updated' );
 		}
-		
+
 		return true;
 	}
 	*/

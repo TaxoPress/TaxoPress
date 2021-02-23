@@ -5,7 +5,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
 		// Save tags from advanced input
@@ -21,7 +21,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @param string $post_type
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function add_meta_boxes( $post_type ) {
 		add_meta_box( 'simpletags-settings', __( 'Simple Tags - Settings', 'simpletags' ), array(
@@ -36,7 +36,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @param object $post
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function metabox( $post ) {
 		if ( ! isset( $post->post_type ) ) {
@@ -71,7 +71,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @param integer $object_id
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function save_post( $object_id = 0 ) {
 		if ( isset( $_POST['_meta_autotags'] ) && 'true' === $_POST['_meta_autotags'] ) {

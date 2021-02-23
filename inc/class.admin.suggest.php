@@ -2,7 +2,7 @@
 
 class SimpleTags_Admin_Suggest {
 
-	// Application entrypoint -> https://github.com/herewithme/simple-tags/wiki/
+	// Application entrypoint -> https://wordpress.org/plugins/simple-tags/wiki/
 	const yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 
 	/**
@@ -23,7 +23,7 @@ class SimpleTags_Admin_Suggest {
 	 * Init somes JS and CSS need for this feature
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
@@ -70,7 +70,7 @@ class SimpleTags_Admin_Suggest {
 	 * Register metabox for suggest tags, for post, and optionnaly page.
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_menu() {
 		add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simpletags' ), array(
@@ -155,7 +155,7 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 
-		$response = wp_remote_post( 'https://api.thomsonreuters.com/permid/calais', array(
+		$response = wp_remote_post( 'https://api-eit.refinitiv.com/permid/calais', array(
 			'timeout' => 30,
 			'headers' => array(
 				'X-AG-Access-Token' => SimpleTags_Plugin::get_option_value( 'opencalais_key' ),

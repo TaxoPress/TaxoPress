@@ -44,3 +44,18 @@ function st_init_autocomplete (p_target, p_url, p_min_chars) {
     }
   })
 }
+
+jQuery(document).ready(function($) {
+  $('.simple-tags-dismiss-rating').on('click', function(e) {
+    e.preventDefault();
+
+    localStorage.setItem('simple-tags-dismiss-rating', true);
+    $('.simple-tags-review-box').hide();
+
+    return false;
+  });
+
+  if (localStorage.getItem('simple-tags-dismiss-rating')) {
+    $('.simple-tags-review-box').hide();
+  }
+});

@@ -5,7 +5,7 @@ class SimpleTags_Admin_ClickTags {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
 		// Ajax action, JS Helper and admin action
@@ -22,7 +22,7 @@ class SimpleTags_Admin_ClickTags {
 	 * Init somes JS and CSS need for this feature
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
@@ -61,7 +61,7 @@ class SimpleTags_Admin_ClickTags {
 	 * Register metabox
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_menu() {
 		add_meta_box(
@@ -95,7 +95,7 @@ class SimpleTags_Admin_ClickTags {
 	 * Put default HTML for people without JS
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function metabox() {
 		echo SimpleTags_Admin::getDefaultContentBox();
@@ -105,7 +105,7 @@ class SimpleTags_Admin_ClickTags {
 	 * Ajax Dispatcher
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function ajax_check() {
 		if ( isset( $_GET['stags_action'] ) && 'click_tags' === $_GET['stags_action'] ) {
@@ -117,7 +117,7 @@ class SimpleTags_Admin_ClickTags {
 	 * Display a span list for click tags
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function ajax_click_tags() {
 		status_header( 200 ); // Send good header HTTP

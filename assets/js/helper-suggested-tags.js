@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-  jQuery('#suggestedtags .hndle span').html(html_entity_decode(stHelperSuggestedTagsL10n.title_bloc))
+  jQuery('#suggestedtags .hndle').html(html_entity_decode(stHelperSuggestedTagsL10n.title_bloc))
   jQuery('#suggestedtags .inside .container_clicktags').html(stHelperSuggestedTagsL10n.content_bloc)
 
   // Generi call for autocomplete API
