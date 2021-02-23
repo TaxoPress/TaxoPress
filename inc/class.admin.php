@@ -415,7 +415,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2021 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href="https://wordpress.org/plugins/simple-tags/">TaxoPress</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="http://wordpress.org/extend/plugins/simple-tags">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
