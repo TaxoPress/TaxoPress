@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TaxoPress widget class
+ * Simple Tags widget class
  *
  */
 class SimpleTags_Widget extends WP_Widget {
@@ -12,7 +12,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @author Amaury Balmer
 	 */
 	public function __construct() {
-		parent::__construct( 'simpletags', __( 'Tag Cloud (TaxoPress)', 'simpletags' ),
+		parent::__construct( 'simpletags', __( 'Tag Cloud (Simple Tags)', 'simpletags' ),
 			array(
 				'classname'   => 'widget-simpletags',
 				'description' => __( 'Your most used tags in cloud format with dynamic color and many options', 'simpletags' )

@@ -12,7 +12,7 @@ class SimpleTags_Admin_Autocomplete {
 		// Box for advanced tags
 		add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ), 999 );
 
-		// TaxoPress hook
+		// Simple Tags hook
 		add_action( 'simpletags-auto_terms', array( __CLASS__, 'auto_terms_js' ) );
 		add_action( 'simpletags-manage_terms', array( __CLASS__, 'manage_terms_js' ) );
 		add_action( 'simpletags-mass_terms', array( __CLASS__, 'mass_terms_js' ) );
@@ -177,7 +177,7 @@ class SimpleTags_Admin_Autocomplete {
 
 		add_meta_box(
 			'adv-tagsdiv',
-			__( 'Tags (TaxoPress)', 'simpletags' ),
+			__( 'Tags (Simple Tags)', 'simpletags' ),
 			array(
 				__CLASS__,
 				'metabox',
@@ -193,7 +193,7 @@ class SimpleTags_Admin_Autocomplete {
 	}
 
 	/**
-	 * Content of custom meta box of TaxoPress
+	 * Content of custom meta box of Simple Tags
 	 *
 	 * @param object $post
 	 *

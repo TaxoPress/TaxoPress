@@ -288,7 +288,7 @@ class SimpleTags_Client_TagCloud {
 	}
 
 	/**
-	 * Helper public static function for keep compatibility with old options TaxoPress widgets
+	 * Helper public static function for keep compatibility with old options simple tags widgets
 	 *
 	 * @param string $old_value
 	 * @param string $key
@@ -375,7 +375,7 @@ class SimpleTags_Client_TagCloud {
 			'pad_counts'    => false,
 			'offset'        => '',
 			'search'        => '',
-			// TaxoPress added
+			// Simple tags added
 			'limit_days'    => 0,
 			'category'      => 0,
 			'min_usage'     => 0,

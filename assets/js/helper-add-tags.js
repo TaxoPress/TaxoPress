@@ -2,7 +2,7 @@ function addTag (tag) {
   // Trim tag
   tag = tag.replace(/^\s+/, '').replace(/\s+$/, '')
 
-  if (document.getElementById('adv-tags-input')) { // Tags input from TaxoPress
+  if (document.getElementById('adv-tags-input')) { // Tags input from Simple Tags
 
     var tag_entry = document.getElementById('adv-tags-input')
     if (tag_entry.value.length > 0 && !tag_entry.value.match(/,\s*$/)) {
