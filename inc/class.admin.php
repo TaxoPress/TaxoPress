@@ -357,10 +357,7 @@ class SimpleTags_Admin {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-
-		self::$admin_url = admin_url( 'admin.php?page=' . self::MENU_SLUG );
-
-		add_menu_page(
+		add_options_page(
 			__( 'TaxoPress: Options', 'simpletags' ),
 			__( 'TaxoPress', 'simpletags' ),
 			'admin_simple_tags',
@@ -368,10 +365,9 @@ class SimpleTags_Admin {
 			array(
 				__CLASS__,
 				'page_options',
-			),
-			'dashicons-tag',
-			69.999
+			)
 		);
+		self::$admin_url = admin_url( '/options-general.php?page=' . self::MENU_SLUG );
 	}
 
 	/**

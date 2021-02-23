@@ -2,8 +2,6 @@
 
 class SimpleTags_Admin_Mass {
 
-	const MENU_SLUG = 'st_options';
-
 	/**
 	 * SimpleTags_Admin_Mass constructor.
 	 */
@@ -25,18 +23,10 @@ class SimpleTags_Admin_Mass {
 	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
-
-		add_submenu_page(
-			self::MENU_SLUG,
-			__( 'Simple Terms: Mass Edit Terms', 'simpletags' ),
-			__( 'Mass Edit Terms', 'simpletags' ),
-			'simple_tags',
-			'st_mass_terms',
-			array(
-				__CLASS__,
-				'pageMassEditTags',
-			)
-		); 
+		add_management_page( __( 'Simple Terms: Mass Edit Terms', 'simpletags' ), __( 'Mass Edit Terms', 'simpletags' ), 'simple_tags', 'st_mass_terms', array(
+			__CLASS__,
+			'pageMassEditTags',
+		) );
 	}
 
 	/**
@@ -120,7 +110,7 @@ class SimpleTags_Admin_Mass {
 					$status_links   = array();
 					$num_posts      = wp_count_posts( SimpleTags_Admin::$post_type, 'readable' );
 					$class          = ( empty( $_GET['post_status'] ) && empty( $_GET['post_type'] ) ) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . __( 'All', 'simpletags' ) . '</a>';
+					$status_links[] = '<li><a href="' . admin_url( 'tools.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . __( 'All', 'simpletags' ) . '</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 
@@ -135,7 +125,7 @@ class SimpleTags_Admin_Mass {
 							$class = ' class="current"';
 						}
 
-						$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;post_status=' . $status . '"' . $class . '>' . sprintf( _n( $label[2][0], $label[2][1], (int) $num_posts->$status ), number_format_i18n( $num_posts->$status ) ) . '</a>';
+						$status_links[] = '<li><a href="' . admin_url( 'tools.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;post_status=' . $status . '"' . $class . '>' . sprintf( _n( $label[2][0], $label[2][1], (int) $num_posts->$status ), number_format_i18n( $num_posts->$status ) ) . '</a>';
 					}
 					echo implode( ' |</li>', $status_links ) . '</li>';
 					unset( $status_links );
