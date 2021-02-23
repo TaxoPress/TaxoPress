@@ -1,5 +1,5 @@
-=== TaxoPress - Manage All Your Taxonomies, Tags, Categories ===
-Contributors: WebFactory, publishpress, kevinB, stevejburge, andergmartins, olatechpro
+=== Simple Tags - Tags Manager ===
+Contributors: stevejburge
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.6
@@ -8,38 +8,47 @@ Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-TaxoPress is the advanced taxonomy manager. This plugin can automatically create and link your taxonomy terms.
+Advanced Tagging & Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms. Easy tag manager!
 
 == Description ==
 
-TaxoPress is the advanced taxonomy manager. This plugin can automatically create and link your taxonomy terms.
+Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
 
-** TaxoPress is the perfect tool to manage all your WordPress taxonomy terms**
+**The perfect tool to manage your WP terms for any taxonomy**
 
+It was written with this philosophy : best performances, more secured and brings a lot of new functions
 
-Here are some of the key features in TaxoPress:
+* Administration
+	* Tags suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request
+	* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
+	* tags management (rename, delete, merge, search and add tags, edit tags ID)
+	* **Edit mass tags (more than 50 posts at once)**
+	* Auto link tags in post content
+	* Auto tags !
+	* Type-ahead input tags / Autocompletion Ajax
+	* Click tags
+	* Possibility to tag pages (not only posts) and include them inside the tags results
+	* **Easy configuration ! (in WP admin)**
 
-* Term suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request
-* Term management. You can rename, delete, merge, search and add terms.
-* Edit mass tags for more than 50 posts at once.
-* Auto link tags in post content.
-* Automatically create tags for your content.
-* Tag pages (not only posts) and include them inside the tags results
-* Dynamic Tag Clouds with colors with widgets
+* Public
+	* Technorati, Flickr and Delicious tags
+	* Dynamic Tag Clouds with colors with Widgets (random order, etc)
+
+And more...
 
 == Installation ==
 
-**Requires PHP5 or upper.**
+**Required PHP5 or upper.**
 
-TaxoPress can be installed in 3 easy steps:
+The Simple Tags can be installed in 3 easy steps:
 
-1. Unzip the TaxoPress archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
+1. Unzip "Simple tags" archive and put all files into a folder like "/wp-content/plugins/simple-tags/"
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Inside the WordPress admin, go to the 'TaxoPress' mennu.
+3. Inside the Wordpress admin, go to Options > Simple Tags, adjust the parameters according to your needs, and save them.
 
 == Frequently Asked Questions ==
 
-= TaxoPress is compatible with which WordPress versions ? =
+= Simple Tags is compatible with which WordPress versions ? =
 
 * 2.5 and upper are compatible with WordPress 4.x and 5.x !
 * 2.4 and upper are compatible only with WordPress 4.x !
@@ -55,7 +64,7 @@ TaxoPress can be installed in 3 easy steps:
 2. Do you have a not yet tagged blog ? Edit mass tags options is perfect for you : tag 20, 30 or 50 articles with autocompletion in one step !
 3. Autotagging your content !
 4. Add tags easily with click tags !
-3. To help you to add easily tags, TaxoPress has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
+3. To help you to add easily tags, Simple Tags has an autocompletion script. When you begin to tape a letter or more, a list a tags appears : you have only to choose ! You can choose the down direction to see all the tags.
 6. You also can suggest tags from lot's of service (Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms)
 
 == Changelog ==

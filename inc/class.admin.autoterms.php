@@ -21,7 +21,7 @@ class SimpleTags_Admin_AutoTags {
 	 * Add WP admin menu for Tags
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_menu() {
 		add_management_page( __( 'Simple Terms: Auto Terms', 'simpletags' ), __( 'Auto Terms', 'simpletags' ), 'simple_tags', 'st_auto', array(
@@ -34,7 +34,7 @@ class SimpleTags_Admin_AutoTags {
 	 * WP Page - Auto Tags
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function pageAutoTerms() {
 		global $wpdb;
@@ -192,7 +192,10 @@ class SimpleTags_Admin_AutoTags {
 
 			<?php if ( $action === false ) : ?>
 
-				<h3><?php _e( 'Auto terms list', 'simpletags' ); ?></h3>
+        <h3><?php _e( 'Auto terms list', 'simpletags' ); ?></h3>
+        <div class="simple-tags-review-box"><b>Simple Tags are kept free &amp; updated with reviews.</b> Please leave a review. It only takes a moment. Thank you!
+<br><a class="button button-primary" href="https://wordpress.org/support/plugin/simple-tags/reviews/#new-post" target="_blank">Leave a review 👍</a> <a href="#" class="simple-tags-dismiss-rating">I already rated the plugin</a>
+</div>
 				<p><?php _e( 'This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, Simple Tags will add automatically "wordpress" as term for this post.', 'simpletags' ); ?></p>
 
 				<h3><?php _e( 'Options', 'simpletags' ); ?></h3>
@@ -312,7 +315,6 @@ class SimpleTags_Admin_AutoTags {
 
 			endif;
 			?>
-			<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
 			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
 		<?php

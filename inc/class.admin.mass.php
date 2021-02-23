@@ -20,7 +20,7 @@ class SimpleTags_Admin_Mass {
 	 * Add WP admin menu for Tags
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_menu() {
 		add_management_page( __( 'Simple Terms: Mass Edit Terms', 'simpletags' ), __( 'Mass Edit Terms', 'simpletags' ), 'simple_tags', 'st_mass_terms', array(
@@ -46,7 +46,7 @@ class SimpleTags_Admin_Mass {
 		if ( isset( $_POST['update_mass'] ) ) {
 			// origination and intention
 			if ( ! ( wp_verify_nonce( $_POST['secure_mass'], 'st_mass_terms' ) ) ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simpletags' ), 'error' );
 
 				return false;
 			}
@@ -103,7 +103,10 @@ class SimpleTags_Admin_Mass {
 				<input type="hidden" name="taxo" value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
 				<input type="hidden" name="cpt" value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-				<h2><?php _e( 'Mass edit terms', 'simpletags' ); ?></h2>
+        <h2><?php _e( 'Mass edit terms', 'simpletags' ); ?></h2>
+        <div class="simple-tags-review-box"><b>Simple Tags are kept free &amp; updated with reviews.</b> Please leave a review. It only takes a moment. Thank you!
+<br><a class="button button-primary" href="https://wordpress.org/support/plugin/simple-tags/reviews/#new-post" target="_blank">Leave a review 👍</a> <a href="#" class="simple-tags-dismiss-rating">I already rated the plugin</a>
+</div><br>
 
 				<ul class="subsubsub">
 					<?php
@@ -273,7 +276,6 @@ class SimpleTags_Admin_Mass {
 
 				<?php endif; ?>
 
-			<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
 			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
 		<?php
@@ -286,7 +288,7 @@ class SimpleTags_Admin_Mass {
 	 * @param bool $q
 	 *
 	 * @return array
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function edit_data_query( $q = false ) {
 		if ( false === $q ) {

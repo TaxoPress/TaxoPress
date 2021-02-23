@@ -166,9 +166,9 @@ msgstr ""
 #: ../inc/class.admin.autoterms.php:315 ../inc/class.admin.manage.php:108
 #: ../inc/class.admin.mass.php:276
 msgid ""
-"Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
+"Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
-"idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+"idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
 msgstr ""
 
 #: ../inc/class.admin.clickterms.php:44
@@ -194,13 +194,13 @@ msgstr ""
 #: ../inc/class.admin.manage.php:60 ../inc/class.admin.mass.php:49
 msgid ""
 "Security problem. Try again. If this problem persist, contact <a href="
-"\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+"\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:64
 msgid ""
 "Missing valid taxonomy for work... Try again. If this problem persist, "
-"contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+"contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:106
@@ -567,8 +567,8 @@ msgstr ""
 #: ../inc/class.admin.php:460
 #, php-format
 msgid ""
-"&copy; Copyright 2007-2019 <a href=\"http://www.herewithme.fr/\" title="
-"\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
+"&copy; Copyright 2007-2020 <a href=\"https://www.webfactoryltd.com/\" title="
+">WebFactory Ltd</a> | <a href=\"http://wordpress.org/"
 "plugins/simple-tags\">Simple Tags</a> | Version %s"
 msgstr ""
 
@@ -1015,7 +1015,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:44
 msgid ""
 "This feature allow to edit, merge, delete, add terms for any taxonomy. "
-"Please consider the plugin <a href=\"http://wordpress.org/extend/plugins/"
+"Please consider the plugin <a href=\"http://wordpress.org/plugins/"
 "term-management-tools/\" target=\"_blank\">Term Management Tools</a> if you "
 "only need to merge terms."
 msgstr ""
@@ -1027,7 +1027,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:51
 msgid ""
 "This feature allow to display related posts with terms relation. Please "
-"consider plugins <a href=\"http://wordpress.org/extend/plugins/similar-posts/"
+"consider plugins <a href=\"http://wordpress.org/plugins/similar-posts/"
 "\" target=\"_blank\">Similar Posts</a> or <a href=\"http://wordpress.org/"
 "extend/plugins/yet-another-related-posts-plugin/\" target=\"_blank\">Yet "
 "Another Related Posts Plugin</a> for better results and performance."
@@ -1051,10 +1051,6 @@ msgstr ""
 msgid ""
 "This feature allow page post type to be tagged. This option add pages in "
 "tags search. Also add tag management in write page."
-msgstr ""
-
-#: ../inc/helper.options.admin.php:69
-msgid "Tracking"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:72
@@ -1141,7 +1137,7 @@ msgstr ""
 
 #: ../inc/helper.options.admin.php:125
 msgid ""
-"You can create an API key from <a href=\"http://www.opencalais.com/"
+"You can create an API key from <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en"
 "\">service website</a>"
 msgstr ""
 
@@ -1257,7 +1253,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:215
-msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:218
@@ -1402,7 +1398,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:456
 msgid ""
 "You can find markers and explanations <a href=\"https://github.com/"
-"herewithme/simple-tags/wiki/Theme-functions-Integration\">in the online "
+"WebFactoryLtd/simple-tags/wiki/Theme-functions-Integration\">in the online "
 "documentation.</a>"
 msgstr ""
 
@@ -1461,7 +1457,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:366
 msgid ""
 "You can use the same syntax as <code>st_tag_cloud()</code> public static "
-"function to customize display. See <a href=\"https://github.com/herewithme/"
+"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
 "simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
 "details."
 msgstr ""
@@ -1530,7 +1526,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:409
 msgid ""
 "You can use the same syntax as <code>st_the_tags()</code> public static "
-"function to customize display. See <a href=\"https://github.com/herewithme/"
+"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
 "simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
 "details."
 msgstr ""
@@ -1593,7 +1589,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:481
 msgid ""
 "You can use the same syntax as <code>st_related_posts()</code>public static "
-"function to customize display. See <a href=\"https://github.com/herewithme/"
+"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
 "simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
 "details."
 msgstr ""
@@ -1627,9 +1623,9 @@ msgstr ""
 
 #: ../views/admin/page-settings.php:36
 msgid ""
-"Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
+"Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
-"idea for this plugin, <a href=\"https://github.com/herewithme/simple-tags/"
+"idea for this plugin, <a href=\"https://wordpress.org/plugins/simple-tags/"
 "issues\">ask me</a> !"
 msgstr ""
 

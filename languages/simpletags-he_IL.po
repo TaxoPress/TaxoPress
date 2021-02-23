@@ -95,8 +95,8 @@ msgstr "פעולה זו עשויה לקחת מספר דקות כתלות בגו�
 #: WP.org\trunk/inc/simple-tags.admin.php:400
 #: WP.org\trunk/inc/simple-tags.admin.php:489
 #: WP.org\trunk/inc/simple-tags.admin.php:640
-msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "בקרו <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">בדף התוסף</a> לפרטים נוספים. אם מצאתם באג, או שיש לכם רעיון נפלא לתוסף, <a href=\"mailto:amaury@wordpress-fr.net\">דברו איתי</a> !"
+msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
+msgstr "בקרו <a href=\"https://wordpress.org/plugins/simple-tags\">בדף התוסף</a> לפרטים נוספים. אם מצאתם באג, או שיש לכם רעיון נפלא לתוסף, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">דברו איתי</a> !"
 
 #: C:\SVN\ST
 #: WP.org\trunk/extras/simple-tags.importer.php:75
@@ -521,8 +521,8 @@ msgstr "<strong>שימוש מתקדם</strong>:"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:303
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
-msgstr "ניתן להשתמש באותו מבנה כמו של הפונקציה  <code>st_the_tags()</code> כדי לשנות את התצוגה. ראה <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://wordpress.org/plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "ניתן להשתמש באותו מבנה כמו של הפונקציה  <code>st_the_tags()</code> כדי לשנות את התצוגה. ראה <a href=\"https://wordpress.org/plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:305
@@ -602,8 +602,8 @@ msgstr "הכותרת שלפני הרשימה, ניתן להשאיר ריק:"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:331
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
-msgstr "ניתן להשתמש באותו מבנה כמו של הפונקציה  <code>st_related_posts()</code> כדי לשנות את התצוגה. ראה <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"https://wordpress.org/plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "ניתן להשתמש באותו מבנה כמו של הפונקציה  <code>st_related_posts()</code> כדי לשנות את התצוגה. ראה <a href=\"https://wordpress.org/plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:333
@@ -719,8 +719,8 @@ msgstr "יחידות אלו קובעות את היחידות של גודל הפ�
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:369
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">documentation</a> for more details."
-msgstr "ניתן להשתמש באותו המבנה כמו פונקציית <code>st_tag_cloud()</code> כדי לשנות את התצוגה. ראה <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://wordpress.org/plugins/simple-tags#advanced-usage\">documentation</a> for more details."
+msgstr "ניתן להשתמש באותו המבנה כמו פונקציית <code>st_tag_cloud()</code> כדי לשנות את התצוגה. ראה <a href=\"https://wordpress.org/plugins/simple-tags#advanced-usage\">תיעוד</a> לפרטים נוספים."
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:382
@@ -753,8 +753,8 @@ msgstr "איפוס אפשרויות"
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:428
 #: WP.org\trunk/inc/simple-tags.admin.php:1537
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
-msgstr "בעית אבטחה. נסו שוב. אם הבעיה חוזרת, יש ליצור קשר עם <a href=\"mailto:amaury@wordpress-fr.net\">כותב התוסף</a>."
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
+msgstr "בעית אבטחה. נסו שוב. אם הבעיה חוזרת, יש ליצור קשר עם <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">כותב התוסף</a>."
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:454
@@ -1135,8 +1135,8 @@ msgstr "שגיאה. אין מספיק תגיות לשינוי שם, יותר מ�
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:1250
 #, php-format
-msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
-msgstr "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | גירסה %s"
+msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | גירסה %s"
 
 #: C:\SVN\ST
 #: WP.org\trunk/inc/simple-tags.admin.php:1356

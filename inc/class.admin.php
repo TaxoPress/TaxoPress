@@ -14,7 +14,7 @@ class SimpleTags_Admin {
 	 * Initialize Admin
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
 		// DB Upgrade ?
@@ -67,9 +67,6 @@ class SimpleTags_Admin {
 
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
-
-		// tracking
-		add_action( 'admin_notices', array( __CLASS__, 'admin_setup_notices' ) );
 	}
 
 	/**
@@ -103,45 +100,6 @@ class SimpleTags_Admin {
 		}
 
 		wp_send_json_success( [ 'term_id' => $term_id ] );
-	}
-
-	/**
-	 * Show tracking dialog
-	 */
-	public static function admin_setup_notices() {
-		// Make sure they have the permissions to do something
-		if ( ! current_user_can( 'admin_simple_tags' ) ) {
-			return;
-		}
-
-		// Already show ?
-		if ( get_option( 'simpletags_tracking_notice' ) ) {
-			return;
-		}
-
-		// Feature already enabled ?
-		if ( SimpleTags_Plugin::get_option_value( 'use_tracking' ) ) {
-			return;
-		}
-
-		// Dev environment ?
-		if ( self::is_dev_url( network_site_url( '/' ) ) ) {
-			update_option( 'simpletags_tracking_notice', '1' );
-
-			return;
-		}
-
-		$optin_url  = add_query_arg( 'st_action', 'opt_into_tracking' );
-		$optout_url = add_query_arg( 'st_action', 'opt_out_of_tracking' );
-
-		echo '<div class="updated"><p>';
-		echo '<a href="' . esc_url( $optout_url ) . '" class="button-secondary" style="float:right;">' . __( 'Do not allow', 'simpletags' ) . '</a>';
-		echo '<a href="' . esc_url( $optin_url ) . '" class="button-primary" style="float:right; margin-right:10px;">' . __( 'Allow', 'simpletags' ) . '</a>';
-
-		echo __( '<strong>Simple Tags:</strong> By allowing us to track your usage, we can make a better plugin by knowing the features of the plugin you have activated.', 'simpletags' );
-		echo '<br />';
-		echo __( '<strong>Developer\'s Notes:</strong> It would help me a lot! Because I have absolutely no idea of the features you use in this plugin :)', 'simpletags' );
-		echo '</p></div>';
 	}
 
 	/**
@@ -203,7 +161,7 @@ class SimpleTags_Admin {
 	 * Make a public static function for call it from children class...
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function register_taxonomy() {
 		add_action( 'init', array( __CLASS__, 'init' ), 99999999 );
@@ -213,7 +171,7 @@ class SimpleTags_Admin {
 	 * Put in var class the current taxonomy choose by the user
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function init() {
 		self::$taxo_name      = __( 'Post tags', 'simpletags' );
@@ -269,7 +227,7 @@ class SimpleTags_Admin {
 	 * @param string $page_value
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function boxSelectorTaxonomy( $page_value = '' ) {
 		echo '<div class="box-selector-taxonomy">' . PHP_EOL;
@@ -313,7 +271,7 @@ class SimpleTags_Admin {
 	 * Init somes JS and CSS need for simple tags.
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
@@ -354,7 +312,7 @@ class SimpleTags_Admin {
 	 * Add settings page on WordPress admin menu
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_menu() {
 		add_options_page(
@@ -374,7 +332,7 @@ class SimpleTags_Admin {
 	 * Build HTML for page options, manage also save/reset settings
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function page_options() {
 		// Get options
@@ -414,7 +372,7 @@ class SimpleTags_Admin {
 	 * @param integer $post_id
 	 *
 	 * @return string
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function getTermsToEdit( $taxonomy = 'post_tag', $post_id = 0 ) {
 		$post_id = (int) $post_id;
@@ -439,7 +397,7 @@ class SimpleTags_Admin {
 	 * Default content for meta box of Simple Tags
 	 *
 	 * @return string
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function getDefaultContentBox() {
 		if ( (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) == 0 ) { // TODO: Custom taxonomy
@@ -453,11 +411,11 @@ class SimpleTags_Admin {
 	 * A short public static function for display the same copyright on all admin pages
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2019 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2021 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href="https://wordpress.org/plugins/simple-tags/">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
@@ -467,7 +425,7 @@ class SimpleTags_Admin {
 	 * @param array $option_data
 	 *
 	 * @return string
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function print_options( $option_data ) {
 		// Get options
@@ -586,7 +544,7 @@ class SimpleTags_Admin {
 	 * TODO, useful or delete ?
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function upgrade() {
 		// Get current version number
@@ -625,7 +583,7 @@ class SimpleTags_Admin {
 	 * @param string $order
 	 *
 	 * @return array
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC' ) {
 		global $wpdb;
@@ -648,7 +606,5 @@ class SimpleTags_Admin {
 				ORDER BY $order_by $order
 			", $taxonomy ) );
 		}
-
-		return $results;
 	}
 }
