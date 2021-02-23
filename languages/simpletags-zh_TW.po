@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags\n"
+"Project-Id-Version: TaxoPress\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2010-01-31 17:45+0000\n"
 "PO-Revision-Date: 2010-02-01 11:12+0800\n"
@@ -159,14 +159,14 @@ msgstr "自動標籤"
 
 #: inc/admin.php:185
 #: inc/admin.php:400
-msgid "Simple Tags: Options"
-msgstr "Simple Tags: 設定"
+msgid "TaxoPress: Options"
+msgstr "TaxoPress: 設定"
 
-#. #-#-#-#-#  plugin.pot (Simple Tags 1.7.4)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (TaxoPress 1.7.4)  #-#-#-#-#
 #. Plugin Name of an extension
 #: inc/admin.php:185
-msgid "Simple Tags"
-msgstr "Simple Tags"
+msgid "TaxoPress"
+msgstr "TaxoPress"
 
 #: inc/admin.php:196
 #, php-format
@@ -192,8 +192,8 @@ msgid "Auto terms list"
 msgstr "自動標籤清單"
 
 #: inc/admin.php:281
-msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, Simple Tags will add automatically \"wordpress\" as term for this post."
-msgstr "此功能允許 WordPress 在存檔的時候尋找文章與標題中的特定標籤，舉例來說，當您的文章內容或標題含有 \"WordPress\"  這個字，而且在您的自動標籤清單中剛好有 \"wordpress\"  這個字，Simple Tags 將會自動將 \"wordpress\"  加入成為此篇文章的標籤。"
+msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress will add automatically \"wordpress\" as term for this post."
+msgstr "此功能允許 WordPress 在存檔的時候尋找文章與標題中的特定標籤，舉例來說，當您的文章內容或標題含有 \"WordPress\"  這個字，而且在您的自動標籤清單中剛好有 \"wordpress\"  這個字，TaxoPress 將會自動將 \"wordpress\"  加入成為此篇文章的標籤。"
 
 #: inc/admin.php:283
 msgid "Options"
@@ -242,8 +242,8 @@ msgid "Auto terms old content"
 msgstr "自動加入標籤至舊文章"
 
 #: inc/admin.php:323
-msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
-msgstr "Simple Tags 可以同時將標籤加入到所有網誌現存的文章中，此功能使用上述的自動標籤清單進行加入的動作。"
+msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
+msgstr "TaxoPress 可以同時將標籤加入到所有網誌現存的文章中，此功能使用上述的自動標籤清單進行加入的動作。"
 
 #: inc/admin.php:326
 msgid "Auto terms all content &raquo;"
@@ -259,8 +259,8 @@ msgid "Options saved"
 msgstr "設定已儲存"
 
 #: inc/admin.php:394
-msgid "Simple Tags options resetted to default options!"
-msgstr "Simple Tags 設定已重置為預設狀態！"
+msgid "TaxoPress options resetted to default options!"
+msgstr "TaxoPress 設定已重置為預設狀態！"
 
 #: inc/admin.php:405
 #: inc/admin.php:419
@@ -278,8 +278,8 @@ msgid "Security problem. Try again. If this problem persist, contact <a href=\"h
 msgstr "這是安全問題，請重試，若問題一再發生，請聯絡 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">外掛作者</a>。"
 
 #: inc/admin.php:471
-msgid "Simple Tags: Manage Terms"
-msgstr "Simple Tags: 管理標籤"
+msgid "TaxoPress: Manage Terms"
+msgstr "TaxoPress: 管理標籤"
 
 #: inc/admin.php:472
 msgid "Visit the <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
@@ -393,8 +393,8 @@ msgid "Renaming"
 msgstr "重新命名"
 
 #: inc/admin.php:607
-msgid "Simple Tags don't use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit \"Bloging\" for \"Blogging\", Simple Tags merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term \"Bloging\". Another logic ;)"
-msgstr "Simple Tags 跟 WordPress 對標籤使用不同的更改名稱方式，舉例來說，若在 WordPress 裡您有兩個標籤： \"Blogging\" 和 \"Bloging\"，當您想將 \"Bloging\" 更名為 \"Blogging\"，那麼 WordPress 將會以不同的代稱方式同時保留這兩個同名標籤。 <br />但若以 Simple Tags 來更名的話，當您要將 \"Bloging\" 更名為 \"Blogging\" 的時候，Simple Tags 會將具有 \"Bloging\" 標籤的文章全部更改為 \"Blogging\" 並且刪除原有的 \"Bloging\" 標籤。 這就是不同的邏輯 ;)"
+msgid "TaxoPress don't use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress will keep the two terms with the same name but with a different slug. <br />With TaxoPress, when you edit \"Bloging\" for \"Blogging\", TaxoPress merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term \"Bloging\". Another logic ;)"
+msgstr "TaxoPress 跟 WordPress 對標籤使用不同的更改名稱方式，舉例來說，若在 WordPress 裡您有兩個標籤： \"Blogging\" 和 \"Bloging\"，當您想將 \"Bloging\" 更名為 \"Blogging\"，那麼 WordPress 將會以不同的代稱方式同時保留這兩個同名標籤。 <br />但若以 TaxoPress 來更名的話，當您要將 \"Bloging\" 更名為 \"Blogging\" 的時候，TaxoPress 會將具有 \"Bloging\" 標籤的文章全部更改為 \"Blogging\" 並且刪除原有的 \"Bloging\" 標籤。 這就是不同的邏輯 ;)"
 
 #: inc/admin.php:640
 msgctxt "post"
@@ -528,8 +528,8 @@ msgstr "無內容可供編輯"
 
 #: inc/admin.php:1055
 #: inc/admin.php:1060
-msgid "Tags (Simple Tags)"
-msgstr "標籤 (Simple Tags)"
+msgid "Tags (TaxoPress)"
+msgstr "標籤 (TaxoPress)"
 
 #: inc/admin.php:1071
 msgid "Separate tags with commas"
@@ -686,8 +686,8 @@ msgid "%s post(s) terms updated with success !"
 msgstr "%s 篇文章的標籤已成功更新！"
 
 #: inc/admin.php:1593
-msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
-msgstr "OpenCalais 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 Simple Tags 的選項中。"
+msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
+msgstr "OpenCalais 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 TaxoPress 的選項中。"
 
 #: inc/admin.php:1601
 #: inc/admin.php:1652
@@ -703,16 +703,16 @@ msgid "No results from OpenCalais service."
 msgstr "無法從 OpenCalais 服務獲取資料。"
 
 #: inc/admin.php:1644
-msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
-msgstr "AlchemyAPI 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 Simple Tags 的選項中。"
+msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
+msgstr "AlchemyAPI 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 TaxoPress 的選項中。"
 
 #: inc/admin.php:1677
 msgid "No results from Alchemy API."
 msgstr "無法從 Alchemy API 獲取資料。"
 
 #: inc/admin.php:1698
-msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
-msgstr "Zemanta 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 Simple Tags 的選項中。"
+msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
+msgstr "Zemanta 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 TaxoPress 的選項中。"
 
 #: inc/admin.php:1733
 msgid "No results from Zemanta API."
@@ -738,8 +738,8 @@ msgstr "無法從您的 WordPress 資料庫獲取資料。"
 
 #: inc/admin.php:1982
 #, php-format
-msgid "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s"
-msgstr "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s | <a href=\"http://www.wmfield.idv.tw/\" title=\"正體中文語系檔\">Neil Lin</a>"
+msgid "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
+msgstr "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s | <a href=\"http://www.wmfield.idv.tw/\" title=\"正體中文語系檔\">Neil Lin</a>"
 
 #: inc/admin.php:2075
 msgid "Administration"
@@ -1390,8 +1390,8 @@ msgid "Invalid Taxonomy"
 msgstr "無效的分類"
 
 #: inc/widgets.php:10
-msgid "Tag Cloud (Simple Tags)"
-msgstr "標籤雲 (Simple Tags)"
+msgid "Tag Cloud (TaxoPress)"
+msgstr "標籤雲 (TaxoPress)"
 
 #: inc/widgets.php:11
 msgid "Your most used tags in cloud format with dynamic color and many options"
@@ -1554,8 +1554,8 @@ msgstr "https://www.webfactoryltd.com"
 #~ msgstr "重新命名標籤"
 #~ msgid "Tags"
 #~ msgstr "標籤"
-#~ msgid "Simple Tags can't work with this WordPress version !"
-#~ msgstr "Simple Tags 與此WordPress版本不相容！"
+#~ msgid "TaxoPress can't work with this WordPress version !"
+#~ msgstr "TaxoPress 與此WordPress版本不相容！"
 #~ msgid ""
 #~ "You must use <a href=\"%1$s\">Simple Tagging Plugin</a> for it to work."
 #~ msgstr "您必須使用 <a href=\"%1$s\">Simple Tagging Plugin</a> 才能運作。"
@@ -1597,25 +1597,25 @@ msgstr "https://www.webfactoryltd.com"
 #~ msgid "<code>count-desc</code> &ndash; Most popular."
 #~ msgstr "<code>count-desc</code> &ndash; 最熱門的排在前面"
 #~ msgid ""
-#~ "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</"
+#~ "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</"
 #~ "a> now !"
 #~ msgstr ""
-#~ "已刪除全部的Simple Tags設定！現在您可以<a href=\"%s\">停用此外掛</a>了！"
+#~ "已刪除全部的TaxoPress設定！現在您可以<a href=\"%s\">停用此外掛</a>了！"
 #~ msgid "Update Options &raquo;"
 #~ msgstr "更新選項 &raquo;"
 #~ msgid "Uninstallation"
 #~ msgstr "解除安裝"
 #~ msgid ""
 #~ "Generally, deactivating this plugin does not erase any of its data, if "
-#~ "you like to quit using Simple Tags for good, please erase <strong>all</"
+#~ "you like to quit using TaxoPress for good, please erase <strong>all</"
 #~ "strong> options before deactivating the plugin."
 #~ msgstr ""
-#~ "一般來說，停用此外掛並不會刪除它的任何資料，如果您想徹底移除Simple Tags，"
+#~ "一般來說，停用此外掛並不會刪除它的任何資料，如果您想徹底移除TaxoPress，"
 #~ "請在停用外掛之前刪除 <strong>全部的</strong> 設定。"
 #~ msgid ""
-#~ "This erases all Simple Tags options. <strong>This is irrevocable! Be "
+#~ "This erases all TaxoPress options. <strong>This is irrevocable! Be "
 #~ "careful.</strong>"
-#~ msgstr "這會刪除所有的Simple Tags設定，<strong>這是不能回復的！請小心。"
+#~ msgstr "這會刪除所有的TaxoPress設定，<strong>這是不能回復的！請小心。"
 #~ msgid "Delete all options ?"
 #~ msgstr "刪除所有的設定？"
 #~ msgid "Search terms&hellip;"
@@ -1676,18 +1676,18 @@ msgstr "https://www.webfactoryltd.com"
 #~ "Tags <small>(separate multiple tags with commas: cats, pet food, dogs)</"
 #~ "small>"
 #~ msgstr "標籤 <small>（以半形逗號相隔：貓, 寵物飼料, 狗）</small>"
-#~ msgid "Simple Tags : Tag Cloud Widgets"
-#~ msgstr "Simple Tags : 標籤雲模組"
+#~ msgid "TaxoPress : Tag Cloud Widgets"
+#~ msgstr "TaxoPress : 標籤雲模組"
 #~ msgid "ST: Tag Cloud %d"
 #~ msgstr "ST: 標籤雲 %d"
 #~ msgid ""
 #~ "&copy; Copyright 2008 - 2020 <a href=\"https://www.webfactoryltd.com\""
 #~ ">WebFactory Ltd</a> | <a href=\"http://wordpress.org/"
-#~ "plugins/simple-tags\">Simple Tags</a> | Version %s"
+#~ "plugins/simple-tags\">TaxoPress</a> | Version %s"
 #~ msgstr ""
 #~ "&copy; Copyright 2008 - 2020<a href=\"https://www.webfactoryltd.com\""
 #~ ">WebFactory Ltd</a> | <a href=\"http://wordpress.org/"
-#~ "plugins/simple-tags\">Simple Tags</a> | Version %s | <a href=\"http://www."
+#~ "plugins/simple-tags\">TaxoPress</a> | Version %s | <a href=\"http://www."
 #~ "wmfield.idv.tw/\" title=\"正體中文語系檔\">Neil Lin</a>"
 #~ msgid "Advanced tags"
 #~ msgstr "進階標籤管理"
@@ -1699,8 +1699,8 @@ msgstr "https://www.webfactoryltd.com"
 #~ msgstr "關閉"
 #~ msgid "%s terms updated with success !"
 #~ msgstr "%s 個項目已更新成功！"
-#~ msgid "Simple Tags: Advanced Edit Terms"
-#~ msgstr "Simple Tags: 進階編輯項目"
+#~ msgid "TaxoPress: Advanced Edit Terms"
+#~ msgstr "TaxoPress: 進階編輯項目"
 #~ msgid ""
 #~ "Be careful with this page ! You can cause important damages, and lost all "
 #~ "tags and categories of your WordPress installation."

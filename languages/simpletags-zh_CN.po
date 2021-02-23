@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags\n"
+"Project-Id-Version: TaxoPress\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-01 00:00+0800\n"
 "PO-Revision-Date: 2008-04-01 00:36+0800\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wp\\wp-content\\plugins\\simple-tags\n"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/simple-tags.php:40
-msgid "Simple Tags can't work with this WordPress version !"
-msgstr "Simple Tags 不能使用在该版本的 WordPress 中！"
+msgid "TaxoPress can't work with this WordPress version !"
+msgstr "TaxoPress 不能使用在该版本的 WordPress 中！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/simple-tags.php:40
 #, php-format
@@ -134,8 +134,8 @@ msgstr "无效的分类"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:149
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:628
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:158
-msgid "Simple Tags: Manage Tags"
-msgstr "Simple Tags：管理标签"
+msgid "TaxoPress: Manage Tags"
+msgstr "TaxoPress：管理标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:149
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:158
@@ -145,8 +145,8 @@ msgstr "管理标签"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:150
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:843
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:159
-msgid "Simple Tags: Mass Edit Tags"
-msgstr "Simple Tags：批量编辑标签"
+msgid "TaxoPress: Mass Edit Tags"
+msgstr "TaxoPress：批量编辑标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:150
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:159
@@ -156,8 +156,8 @@ msgstr "批量编辑标签"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:151
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:209
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:160
-msgid "Simple Tags: Auto Tags"
-msgstr "Simple Tags：智能标签"
+msgid "TaxoPress: Auto Tags"
+msgstr "TaxoPress：智能标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:151
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:160
@@ -169,13 +169,13 @@ msgstr "智能标签"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:522
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:161
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:521
-msgid "Simple Tags: Options"
-msgstr "Simple Tags： 选项"
+msgid "TaxoPress: Options"
+msgstr "TaxoPress： 选项"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:152
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:161
-msgid "Simple Tags"
-msgstr "Simple Tags"
+msgid "TaxoPress"
+msgstr "TaxoPress"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:194
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:203
@@ -196,8 +196,8 @@ msgstr "智能标签列表"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:215
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:223
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
-msgstr "该功能将允许 WordPress 在保存日志的时候针对特定的标签检查日志内容和标题。如果日志内容或标题中含有词语“WordPress”并且“WordPress”在智能标签列表中，则 Simple Tags 将自动为该日志加上标签“WordPress”。"
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, TaxoPress will add automatically \"wordpress\" as tag for this post."
+msgstr "该功能将允许 WordPress 在保存日志的时候针对特定的标签检查日志内容和标题。如果日志内容或标题中含有词语“WordPress”并且“WordPress”在智能标签列表中，则 TaxoPress 将自动为该日志加上标签“WordPress”。"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:219
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:232
@@ -229,8 +229,8 @@ msgstr "自动为旧内容添加标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:237
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:263
-msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
-msgstr "Simple Tags 也可以为博客中已有的内容添加标签，该功能要用到上面的智能标签列表。"
+msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "TaxoPress 也可以为博客中已有的内容添加标签，该功能要用到上面的智能标签列表。"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:238
 msgid "Auto tags all content"
@@ -852,14 +852,14 @@ msgstr "选项已保存"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:480
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:508
-msgid "Simple Tags options resetted to default options!"
-msgstr "Simple Tags 的选项已重置为默认值!"
+msgid "TaxoPress options resetted to default options!"
+msgstr "TaxoPress 的选项已重置为默认值!"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:486
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:514
 #, php-format
-msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
-msgstr "Simple Tags 所有选项都已删除。您可以<a href=\"%s\"> 立即禁用 Simple Tags</a>！"
+msgid "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "TaxoPress 所有选项都已删除。您可以<a href=\"%s\"> 立即禁用 TaxoPress</a>！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:526
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:550
@@ -887,13 +887,13 @@ msgstr "卸载"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:540
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:539
-msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
-msgstr "一般来说，禁用插件并不清除其已有数据。如果您将永不再使用 Simple Tags，在禁用它之前，请清除 Simple Tags 的<strong>所有</strong>选项。"
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using TaxoPress for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "一般来说，禁用插件并不清除其已有数据。如果您将永不再使用 TaxoPress，在禁用它之前，请清除 TaxoPress 的<strong>所有</strong>选项。"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:541
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:540
-msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
-msgstr "这将清除 Simple Tags 的所有选项。<strong>本操作不可撤消，请务必小心。</strong>"
+msgid "This erases all TaxoPress options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "这将清除 TaxoPress 的所有选项。<strong>本操作不可撤消，请务必小心。</strong>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:544
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:543
@@ -1285,8 +1285,8 @@ msgstr "成功更新 %s 个页面的标签!"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2155
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1566
 #, php-format
-msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | Version %s"
-msgstr "&copy; 版权所有 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">Simple Tags</a> | 版本 %s"
+msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
+msgstr "&copy; 版权所有 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | 版本 %s"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2195
 msgid "Page: "
@@ -1723,8 +1723,8 @@ msgstr "导入内嵌标签为 WordPress 原生标签"
 #~ msgstr "成功更新 %s 个标签！"
 #~ msgid "Category"
 #~ msgstr "分类"
-#~ msgid "Simple Tags: Advanced Edit Terms"
-#~ msgstr "Simple Tags：标签高级编辑"
+#~ msgid "TaxoPress: Advanced Edit Terms"
+#~ msgstr "TaxoPress：标签高级编辑"
 #~ msgid ""
 #~ "Be careful with this page ! You can cause important damages, and lost all "
 #~ "tags and categories of your WordPress installation."
