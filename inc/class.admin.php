@@ -138,7 +138,7 @@ class SimpleTags_Admin {
 		echo '<a href="' . esc_url( $optout_url ) . '" class="button-secondary" style="float:right;">' . __( 'Do not allow', 'simpletags' ) . '</a>';
 		echo '<a href="' . esc_url( $optin_url ) . '" class="button-primary" style="float:right; margin-right:10px;">' . __( 'Allow', 'simpletags' ) . '</a>';
 
-		echo __( '<strong>TaxoPress:</strong> By allowing us to track your usage, we can make a better plugin by knowing the features of the plugin you have activated.', 'simpletags' );
+		echo __( '<strong>Simple Tags:</strong> By allowing us to track your usage, we can make a better plugin by knowing the features of the plugin you have activated.', 'simpletags' );
 		echo '<br />';
 		echo __( '<strong>Developer\'s Notes:</strong> It would help me a lot! Because I have absolutely no idea of the features you use in this plugin :)', 'simpletags' );
 		echo '</p></div>';
@@ -310,7 +310,7 @@ class SimpleTags_Admin {
 	}
 
 	/**
-	 * Init somes JS and CSS need for TaxoPress.
+	 * Init somes JS and CSS need for simple tags.
 	 *
 	 * @return void
 	 * @author Amaury Balmer
@@ -318,7 +318,7 @@ class SimpleTags_Admin {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
-		// Helper TaxoPress
+		// Helper simple tags
 		wp_register_script( 'st-helper-add-tags', STAGS_URL . '/assets/js/helper-add-tags.js', array( 'jquery' ), STAGS_VERSION );
 		wp_register_script( 'st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array( 'jquery' ), STAGS_VERSION );
 
@@ -358,8 +358,8 @@ class SimpleTags_Admin {
 	 */
 	public static function admin_menu() {
 		add_options_page(
-			__( 'TaxoPress: Options', 'simpletags' ),
-			__( 'TaxoPress', 'simpletags' ),
+			__( 'Simple Tags: Options', 'simpletags' ),
+			__( 'Simple Tags', 'simpletags' ),
 			'admin_simple_tags',
 			self::MENU_SLUG,
 			array(
@@ -400,7 +400,7 @@ class SimpleTags_Admin {
 
 			SimpleTags_Plugin::set_default_option();
 
-			add_settings_error( __CLASS__, __CLASS__, __( 'TaxoPress options resetted to default options!', 'simpletags' ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, __( 'Simple Tags options resetted to default options!', 'simpletags' ), 'updated' );
 		}
 
 		settings_errors( __CLASS__ );
@@ -436,7 +436,7 @@ class SimpleTags_Admin {
 	}
 
 	/**
-	 * Default content for meta box of TaxoPress
+	 * Default content for meta box of Simple Tags
 	 *
 	 * @return string
 	 * @author Amaury Balmer
@@ -457,7 +457,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2019 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">TaxoPress</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( '&copy; Copyright 2007-2019 <a href="http://www.herewithme.fr/" title="Here With Me">Amaury Balmer</a> | <a href="http://wordpress.org/extend/plugins/simple-tags">Simple Tags</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 

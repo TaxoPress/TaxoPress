@@ -1,6 +1,6 @@
 <div class="wrap st_wrap">
 	<div id="icon-themes" class="icon32"><br></div>
-	<h2><?php _e( 'TaxoPress: Options', 'simpletags' ); ?></h2>
+	<h2><?php _e( 'Simple Tags: Options', 'simpletags' ); ?></h2>
 
 	<h2 class="nav-tab-wrapper">
 		<?php
