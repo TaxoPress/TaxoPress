@@ -60,6 +60,15 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.0 - 2021-02-24
+* Enable 'Advanced Manage Terms', 'Related posts by terms' and 'Tag cloud Shortcode' by default
+* Removed review request box and link
+* Fixed metabox showing up empty if not used
+* Removed unused 'Meta keyword' and 'Related Tags' tabs
+* Organized all plugin options under one admin menu
+* Update footer copyright text
+* Changed plugin name to "TaxoPress"
+
 v2.63 - 2021-01-14
 * fixed an unescaped database query
 * fixed a bug with custom post type name in URL when bulk editing posts
