@@ -20,7 +20,7 @@ function _delete_empty_element( &$element ) {
  * Test if page have tags or not...
  *
  * @return boolean
- * @author Amaury Balmer
+ * @author WebFactory Ltd
  */
 function is_page_have_tags() {
 	$taxonomies = get_object_taxonomies( 'page' );

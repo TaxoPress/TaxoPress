@@ -1,9 +1,9 @@
-# Copyright (C) 2010 Simple Tags
-# This file is distributed under the same license as the Simple Tags package.
+# Copyright (C) 2010 TaxoPress
+# This file is distributed under the same license as the TaxoPress package.
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags 2.3\n"
+"Project-Id-Version: TaxoPress 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2019-05-10 07:01+0200\n"
 "PO-Revision-Date: 2013-06-17 23:31+0100\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../inc/class.admin.autocomplete.php:167
-msgid "Tags (Simple Tags)"
+msgid "Tags (TaxoPress)"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:27
@@ -140,7 +140,7 @@ msgstr ""
 
 #: ../inc/class.admin.autoterms.php:267
 msgid ""
-"Simple Tags can also tag all existing contents of your blog. This feature "
+"TaxoPress can also tag all existing contents of your blog. This feature "
 "use auto terms list above-mentioned."
 msgstr ""
 
@@ -166,9 +166,9 @@ msgstr ""
 #: ../inc/class.admin.autoterms.php:315 ../inc/class.admin.manage.php:108
 #: ../inc/class.admin.mass.php:276
 msgid ""
-"Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
+"Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
-"idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+"idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
 msgstr ""
 
 #: ../inc/class.admin.clickterms.php:44
@@ -194,17 +194,17 @@ msgstr ""
 #: ../inc/class.admin.manage.php:60 ../inc/class.admin.mass.php:49
 msgid ""
 "Security problem. Try again. If this problem persist, contact <a href="
-"\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+"\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:64
 msgid ""
 "Missing valid taxonomy for work... Try again. If this problem persist, "
-"contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+"contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:106
-msgid "Simple Tags: Manage Terms"
+msgid "TaxoPress: Manage Terms"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:112
@@ -346,11 +346,11 @@ msgstr ""
 
 #: ../inc/class.admin.manage.php:347
 msgid ""
-"Simple Tags don't use the same method as WordPress for rename a term. For "
+"TaxoPress don't use the same method as WordPress for rename a term. For "
 "example, in WordPress you have 2 terms : \"Blogging\" and \"Bloging\". When "
 "you want edit the term \"Bloging\" for rename it on \"Blogging\", WordPress "
 "will keep the two terms with the same name but with a different slug. <br /"
-">With Simple Tags, when you edit \"Bloging\" for \"Blogging\", Simple Tags "
+">With TaxoPress, when you edit \"Bloging\" for \"Blogging\", TaxoPress "
 "merge posts filled with \"Bloging\" to \"Blogging\" and it delete the term "
 "\"Bloging\". Another logic ;)"
 msgstr ""
@@ -504,7 +504,7 @@ msgstr ""
 
 #: ../inc/class.admin.php:141
 msgid ""
-"<strong>Simple Tags:</strong> By allowing us to track your usage, we can "
+"<strong>TaxoPress:</strong> By allowing us to track your usage, we can "
 "make a better plugin by knowing the features of the plugin you have "
 "activated."
 msgstr ""
@@ -539,11 +539,11 @@ msgid "Change selection"
 msgstr ""
 
 #: ../inc/class.admin.php:361 ../views/admin/page-settings.php:3
-msgid "Simple Tags: Options"
+msgid "TaxoPress: Options"
 msgstr ""
 
 #: ../inc/class.admin.php:362
-msgid "Simple Tags"
+msgid "TaxoPress"
 msgstr ""
 
 #: ../inc/class.admin.php:397
@@ -551,7 +551,7 @@ msgid "Options saved"
 msgstr ""
 
 #: ../inc/class.admin.php:403
-msgid "Simple Tags options resetted to default options!"
+msgid "TaxoPress options resetted to default options!"
 msgstr ""
 
 #: ../inc/class.admin.php:446
@@ -567,9 +567,9 @@ msgstr ""
 #: ../inc/class.admin.php:460
 #, php-format
 msgid ""
-"&copy; Copyright 2007-2019 <a href=\"http://www.herewithme.fr/\" title="
-"\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
-"plugins/simple-tags\">Simple Tags</a> | Version %s"
+"&copy; Copyright 2007-2020 <a href=\"https://www.webfactoryltd.com/\" title="
+">WebFactory Ltd</a> | <a href=\"http://wordpress.org/"
+"plugins/simple-tags\">TaxoPress</a> | Version %s"
 msgstr ""
 
 #: ../inc/class.admin.php:562
@@ -609,7 +609,7 @@ msgid "Tag cloud"
 msgstr ""
 
 #: ../inc/class.admin.post.php:27
-msgid "Simple Tags - Settings"
+msgid "TaxoPress - Settings"
 msgstr ""
 
 #: ../inc/class.admin.post.php:53
@@ -671,7 +671,7 @@ msgstr ""
 #: ../inc/class.admin.suggest.php:146
 msgid ""
 "OpenCalais need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:154 ../inc/class.admin.suggest.php:217
@@ -688,7 +688,7 @@ msgstr ""
 #: ../inc/class.admin.suggest.php:209
 msgid ""
 "AlchemyAPI need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:245
@@ -698,7 +698,7 @@ msgstr ""
 #: ../inc/class.admin.suggest.php:266
 msgid ""
 "Zemanta need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:301
@@ -708,13 +708,13 @@ msgstr ""
 #: ../inc/class.admin.suggest.php:342
 msgid ""
 "dataTXT needs an API ID to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:348
 msgid ""
 "dataTXT needs an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:369
@@ -728,7 +728,7 @@ msgstr ""
 #: ../inc/class.admin.suggest.php:402
 msgid ""
 "Tag4Site need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:436
@@ -759,7 +759,7 @@ msgstr ""
 #: ../inc/class.admin.suggest.php:564
 msgid ""
 "Proxem API need an API key to work. You can register on service website to "
-"obtain a key and set it on Simple Tags options."
+"obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:595
@@ -825,7 +825,7 @@ msgid "Invalid Taxonomy"
 msgstr ""
 
 #: ../inc/class.widgets.php:15
-msgid "Tag Cloud (Simple Tags)"
+msgid "Tag Cloud (TaxoPress)"
 msgstr ""
 
 #: ../inc/class.widgets.php:18
@@ -1015,7 +1015,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:44
 msgid ""
 "This feature allow to edit, merge, delete, add terms for any taxonomy. "
-"Please consider the plugin <a href=\"http://wordpress.org/extend/plugins/"
+"Please consider the plugin <a href=\"http://wordpress.org/plugins/"
 "term-management-tools/\" target=\"_blank\">Term Management Tools</a> if you "
 "only need to merge terms."
 msgstr ""
@@ -1027,7 +1027,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:51
 msgid ""
 "This feature allow to display related posts with terms relation. Please "
-"consider plugins <a href=\"http://wordpress.org/extend/plugins/similar-posts/"
+"consider plugins <a href=\"http://wordpress.org/plugins/similar-posts/"
 "\" target=\"_blank\">Similar Posts</a> or <a href=\"http://wordpress.org/"
 "extend/plugins/yet-another-related-posts-plugin/\" target=\"_blank\">Yet "
 "Another Related Posts Plugin</a> for better results and performance."
@@ -1051,10 +1051,6 @@ msgstr ""
 msgid ""
 "This feature allow page post type to be tagged. This option add pages in "
 "tags search. Also add tag management in write page."
-msgstr ""
-
-#: ../inc/helper.options.admin.php:69
-msgid "Tracking"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:72
@@ -1094,7 +1090,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:97
 msgid ""
 "You can define how many characters from the autocompletion will be proposed. "
-"The default value in Simple Tags 2.0 is 0, prior this version, default "
+"The default value in TaxoPress 2.0 is 0, prior this version, default "
 "parameter was 1."
 msgstr ""
 
@@ -1141,7 +1137,7 @@ msgstr ""
 
 #: ../inc/helper.options.admin.php:125
 msgid ""
-"You can create an API key from <a href=\"http://www.opencalais.com/"
+"You can create an API key from <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en"
 "\">service website</a>"
 msgstr ""
 
@@ -1257,7 +1253,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:215
-msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:218
@@ -1402,7 +1398,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:456
 msgid ""
 "You can find markers and explanations <a href=\"https://github.com/"
-"herewithme/simple-tags/wiki/Theme-functions-Integration\">in the online "
+"WebFactoryLtd/simple-tags/wiki/Theme-functions-Integration\">in the online "
 "documentation.</a>"
 msgstr ""
 
@@ -1461,7 +1457,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:366
 msgid ""
 "You can use the same syntax as <code>st_tag_cloud()</code> public static "
-"function to customize display. See <a href=\"https://github.com/herewithme/"
+"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
 "simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
 "details."
 msgstr ""
@@ -1530,7 +1526,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:409
 msgid ""
 "You can use the same syntax as <code>st_the_tags()</code> public static "
-"function to customize display. See <a href=\"https://github.com/herewithme/"
+"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
 "simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
 "details."
 msgstr ""
@@ -1593,14 +1589,14 @@ msgstr ""
 #: ../inc/helper.options.admin.php:481
 msgid ""
 "You can use the same syntax as <code>st_related_posts()</code>public static "
-"function to customize display. See <a href=\"https://github.com/herewithme/"
+"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
 "simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
 "details."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:490 ../inc/helper.options.admin.php:504
 msgid ""
-"This feature has been removed from Simple Tags because it is not relevant "
+"This feature has been removed from TaxoPress because it is not relevant "
 "enough and there are better plugins like<br />"
 msgstr ""
 
@@ -1621,15 +1617,15 @@ msgstr ""
 #, php-format
 msgid ""
 "Your PHP version is too old, please upgrade to a newer version. Your version "
-"is %s, Simple Tags requires %s. Remove the plugin from WordPress plugins "
+"is %s, TaxoPress requires %s. Remove the plugin from WordPress plugins "
 "directory with FTP client."
 msgstr ""
 
 #: ../views/admin/page-settings.php:36
 msgid ""
-"Visit the <a href=\"https://github.com/herewithme/simple-tags\">plugin's "
+"Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's "
 "homepage</a> for further details. If you find a bug, or have a fantastic "
-"idea for this plugin, <a href=\"https://github.com/herewithme/simple-tags/"
+"idea for this plugin, <a href=\"https://wordpress.org/plugins/simple-tags/"
 "issues\">ask me</a> !"
 msgstr ""
 

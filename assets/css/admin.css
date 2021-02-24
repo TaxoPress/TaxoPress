@@ -58,3 +58,22 @@ a#close_clicktags{display:none;}
 
 /* Autocomplete */
 .ac_over { background-color: #0A246A; color: white !important; }
+
+.simple-tags-review-box a.button {
+  margin-top: 10px;
+  display: inline-block;
+}
+.simple-tags-review-box {
+  border: 1px solid black;
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: white;
+}
+.simple-tags-dismiss-rating {
+  vertical-align: bottom;
+  color: #444;
+  margin-left: 10px;
+  font-style: italic;
+}

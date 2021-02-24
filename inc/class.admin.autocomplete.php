@@ -12,7 +12,7 @@ class SimpleTags_Admin_Autocomplete {
 		// Box for advanced tags
 		add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ), 999 );
 
-		// Simple Tags hook
+		// TaxoPress hook
 		add_action( 'simpletags-auto_terms', array( __CLASS__, 'auto_terms_js' ) );
 		add_action( 'simpletags-manage_terms', array( __CLASS__, 'manage_terms_js' ) );
 		add_action( 'simpletags-mass_terms', array( __CLASS__, 'mass_terms_js' ) );
@@ -25,7 +25,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * Init some JS and CSS need for this feature
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
@@ -66,7 +66,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * Display a javascript collection for autocompletion script !
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function ajax_local_tags() {
 		status_header( 200 ); // Send good header HTTP
@@ -115,7 +115,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param int $post_id
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function save_post( $post_id = 0 ) {
 		// Update only if metabox is display
@@ -158,7 +158,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $post_type
 	 *
 	 * @return boolean
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 
 
@@ -177,7 +177,7 @@ class SimpleTags_Admin_Autocomplete {
 
 		add_meta_box(
 			'adv-tagsdiv',
-			__( 'Tags (Simple Tags)', 'simpletags' ),
+			__( 'Tags (TaxoPress)', 'simpletags' ),
 			array(
 				__CLASS__,
 				'metabox',
@@ -193,12 +193,12 @@ class SimpleTags_Admin_Autocomplete {
 	}
 
 	/**
-	 * Content of custom meta box of Simple Tags
+	 * Content of custom meta box of TaxoPress
 	 *
 	 * @param object $post
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function metabox( $post ) {
 		// Get options
@@ -231,7 +231,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $taxonomy
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function auto_terms_js( $taxonomy = '' ) {
 		// Get option
@@ -251,7 +251,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $taxonomy
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function manage_terms_js( $taxonomy = '' ) {
 		// Get option
@@ -271,7 +271,7 @@ class SimpleTags_Admin_Autocomplete {
 	 * @param string $taxonomy
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function mass_terms_js( $taxonomy = '' ) {
 		// Get option
