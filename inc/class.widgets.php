@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TaxoPress widget class
+ * Simple Tags widget class
  *
  */
 class SimpleTags_Widget extends WP_Widget {
@@ -9,10 +9,10 @@ class SimpleTags_Widget extends WP_Widget {
 	 * Constructor widget
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function __construct() {
-		parent::__construct( 'simpletags', __( 'Tag Cloud (TaxoPress)', 'simpletags' ),
+		parent::__construct( 'simpletags', __( 'Tag Cloud (Simple Tags)', 'simpletags' ),
 			array(
 				'classname'   => 'widget-simpletags',
 				'description' => __( 'Your most used tags in cloud format with dynamic color and many options', 'simpletags' )
@@ -26,7 +26,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @param array $instance
 	 *
 	 * @return string
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function _get_current_taxonomy( $instance ) {
 		if ( ! empty( $instance['taxonomy'] ) && taxonomy_exists( $instance['taxonomy'] ) ) {
@@ -40,7 +40,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * Default settings for widget
 	 *
 	 * @return array
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function get_fields() {
 		return array(
@@ -70,7 +70,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @param array $instance
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function widget( $args, $instance ) {
 		extract( $args );
@@ -182,7 +182,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @param array $old_instance
 	 *
 	 * @return array
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
@@ -200,7 +200,7 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @param array $instance
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function form( $instance ) {
 		//Defaults

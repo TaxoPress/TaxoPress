@@ -2,7 +2,7 @@
 
 class SimpleTags_Admin_Suggest {
 
-	// Application entrypoint -> https://wordpress.org/plugins/simple-tags/wiki/
+	// Application entrypoint -> https://github.com/herewithme/simple-tags/wiki/
 	const yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 
 	/**
@@ -23,7 +23,7 @@ class SimpleTags_Admin_Suggest {
 	 * Init somes JS and CSS need for this feature
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
@@ -70,7 +70,7 @@ class SimpleTags_Admin_Suggest {
 	 * Register metabox for suggest tags, for post, and optionnaly page.
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function admin_menu() {
 		add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simpletags' ), array(
@@ -143,7 +143,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) == '' ) {
-			echo '<p>' . __( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -155,7 +155,7 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 
-		$response = wp_remote_post( 'https://api-eit.refinitiv.com/permid/calais', array(
+		$response = wp_remote_post( 'https://api.thomsonreuters.com/permid/calais', array(
 			'timeout' => 30,
 			'headers' => array(
 				'X-AG-Access-Token' => SimpleTags_Plugin::get_option_value( 'opencalais_key' ),
@@ -206,7 +206,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'alchemy_api' ) == '' ) {
-			echo '<p>' . __( 'AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -263,7 +263,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'zemanta_key' ) == '' ) {
-			echo '<p>' . __( 'Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -339,13 +339,13 @@ class SimpleTags_Admin_Suggest {
 		if ( SimpleTags_Plugin::get_option_value( 'datatxt_access_token' ) == '' ) {
 			// API ID ?
 			if ( SimpleTags_Plugin::get_option_value( 'datatxt_id' ) == '' ) {
-				echo '<p>' . __( 'dataTXT needs an API ID to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
+				echo '<p>' . __( 'dataTXT needs an API ID to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 				exit();
 			}
 
 			// API Key ?
 			if ( SimpleTags_Plugin::get_option_value( 'datatxt_key' ) == '' ) {
-				echo '<p>' . __( 'dataTXT needs an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
+				echo '<p>' . __( 'dataTXT needs an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 				exit();
 			}
 
@@ -399,7 +399,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'tag4site_key' ) == '' ) {
-			echo '<p>' . __( 'Tag4Site need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'Tag4Site need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 
@@ -561,7 +561,7 @@ class SimpleTags_Admin_Suggest {
 
 		// API Key ?
 		if ( SimpleTags_Plugin::get_option_value( 'proxem_key' ) == '' ) {
-			echo '<p>' . __( 'Proxem API need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'Proxem API need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options.', 'simpletags' ) . '</p>';
 			exit();
 		}
 

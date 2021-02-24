@@ -5,7 +5,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function __construct() {
 		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
@@ -360,7 +360,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * @param integer $excerpt_length
 	 *
 	 * @return string
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function get_excerpt_post( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
 		if ( ! empty( $password ) ) { // if there's a password
@@ -398,7 +398,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * @param string $taxonomy
 	 *
 	 * @return string
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function get_tags_from_id( $terms = '', $taxonomy = 'post_tag' ) {
 		if ( empty( $terms ) ) {
