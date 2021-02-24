@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress 2.0\n"
+"Project-Id-Version: Simple Tags 2.0\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: kazuhisa <kvex@c-atwork.com>\n"
@@ -35,28 +35,28 @@ msgstr "選択を変更"
 
 #: inc/class.admin.php:217
 #: inc/class.admin.php:248
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: 設定"
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: 設定"
 
-#. #-#-#-#-#  plugin.pot (TaxoPress 2.0)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Simple Tags 2.0)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: inc/class.admin.php:217
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "Simple Tags"
+msgstr "Simple Tags"
 
 #: inc/class.admin.php:237
 msgid "Options saved"
 msgstr "設定は保存されました。"
 
 #: inc/class.admin.php:242
-msgid "TaxoPress options resetted to default options!"
-msgstr "TaxoPress の設定をデフォルトにリセットしました !"
+msgid "Simple Tags options resetted to default options!"
+msgstr "Simple Tags の設定をデフォルトにリセットしました !"
 
 #: inc/class.admin.php:249
 #: inc/class.admin.mass.php:261
 #: inc/class.admin.autoterms.php:273
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "詳しい情報は <a href=\"https://wordpress.org/plugins/simple-tags/\">プラグインのホームページ</a> を参照してください。バグを見つけた場合、また、このプラグインのためのすばらしいアイディアをお持ちの方は <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">私にお知らせください</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "詳しい情報は <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">プラグインのホームページ</a> を参照してください。バグを見つけた場合、また、このプラグインのためのすばらしいアイディアをお持ちの方は <a href=\"mailto:amaury@wordpress-fr.net\">私にお知らせください</a> !"
 
 #: inc/class.admin.php:252
 #: inc/class.admin.php:271
@@ -83,8 +83,8 @@ msgid "This feature works only with activated JavaScript. Activate it in your We
 msgstr "これらは JavaScript で働いています。 動作させるには、ウェブブラウザで JavaScript をアクティブにしてください！"
 
 #: inc/class.admin.php:323
-msgid "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
-msgstr "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
+msgid "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
 
 #: inc/class.admin.php:420
 msgid "Administration"
@@ -129,8 +129,8 @@ msgstr "タグクラウド"
 
 #: inc/class.admin.autocomplete.php:93
 #: inc/class.admin.autocomplete.php:96
-msgid "Tags (TaxoPress)"
-msgstr "タグ (TaxoPress)"
+msgid "Tags (Simple Tags)"
+msgstr "タグ (Simple Tags)"
 
 #: inc/class.admin.autocomplete.php:115
 msgid "Separate tags with commas"
@@ -213,8 +213,8 @@ msgid "OpenCalais API Key"
 msgstr "OpenCalais API Key"
 
 #: inc/helper.options.admin.php:27
-msgid "You can create an API key from <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en\">service website</a>"
-msgstr "新しい API キーは <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en\">サービス公式サイト</a> から入手できます。"
+msgid "You can create an API key from <a href=\"http://www.opencalais.com/\">service website</a>"
+msgstr "新しい API キーは <a href=\"http://www.opencalais.com/\">サービス公式サイト</a> から入手できます。"
 
 #: inc/helper.options.admin.php:28
 msgid "Alchemy API Key"
@@ -273,8 +273,8 @@ msgid "Example: If you ignore case, auto link feature will replace the word \"wo
 msgstr "例: この設定を有効にすると、自動リンク機能は単語 \"wordpress\" をタグリンク \"WordPress\" で置き換えます。"
 
 #: inc/helper.options.admin.php:44
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
-msgstr "タグリンクにいくつかの用語を入れないようにしてください。 Ads Link subtition など"
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
+msgstr "タグリンクにいくつかの用語を入れないようにしてください。 Ads Link substitution など"
 
 #: inc/helper.options.admin.php:45
 msgid "Example: If you enter the term \"Paris\", the auto link tags feature will never replace this term by this link."
@@ -358,8 +358,8 @@ msgid "Tag link format:"
 msgstr "タグリンクのフォーマット:"
 
 #: inc/helper.options.admin.php:83
-msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
-msgstr "マーカーや解説については <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">オンラインドキュメント</a>を参照してください"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "マーカーや解説については <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">オンラインドキュメント</a>を参照してください"
 
 #: inc/helper.options.admin.php:84
 msgid "Maximum number of tags to display: (default: 45)"
@@ -410,22 +410,22 @@ msgid "<strong>Advanced usage</strong>:"
 msgstr "<strong>高度な利用</strong>:"
 
 #: inc/helper.options.admin.php:96
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "<code>st_tag_cloud()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">ドキュメンテーション</a> を参照してください。"
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "<code>st_tag_cloud()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">ドキュメンテーション</a> を参照してください。"
 
 #: inc/helper.options.admin.php:96
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "<code>st_the_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">ドキュメンテーション</a> を参照してください。"
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "<code>st_the_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">ドキュメンテーション</a> を参照してください。"
 
 #: inc/helper.options.admin.php:99
 #: inc/helper.options.admin.php:110
 #: inc/helper.options.admin.php:117
 #: inc/helper.options.admin.php:123
-msgid "This feature has been removed from TaxoPress because it is not relevant enough and there are better plugins like<br />"
+msgid "This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />"
 msgstr "この機能は、よりよいプラグインがあるために、Simple Tag から削除されています。<br />"
 
 #: inc/helper.options.admin.php:107
-msgid "This feature has been removed from TaxoPress because it is not relevant enough and i recommended to use the core function of WP <code style=\"font-weight:700;\">the_tags()</code><br />"
+msgid "This feature has been removed from Simple Tags because it is not relevant enough and i recommended to use the core function of WP <code style=\"font-weight:700;\">the_tags()</code><br />"
 msgstr ""
 
 #: inc/class.admin.clickterms.php:14
@@ -468,15 +468,15 @@ msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_sc
 
 #: inc/class.admin.mass.php:22
 msgid "Simple Terms: Mass Edit Terms"
-msgstr "TaxoPress: タグの一括編集"
+msgstr "Simple Tags: タグの一括編集"
 
 #: inc/class.admin.mass.php:22
 msgid "Mass Edit Terms"
 msgstr "タグ一括編集"
 
 #: inc/class.admin.mass.php:42
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
-msgstr "セキュリティ問題があります。再度お試しください。もしこの問題が続くようなら <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">プラグイン作者</a>連絡してください"
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "セキュリティ問題があります。再度お試しください。もしこの問題が続くようなら <a href=\"mailto:amaury@wordpress-fr.net\">プラグイン作者</a>連絡してください"
 
 #: inc/class.admin.mass.php:70
 msgid "%1$s %2$s(s) terms updated with success !"
@@ -603,8 +603,8 @@ msgstr[0] "プライベート <span class=\"count\">(%s)</span>"
 msgstr[1] "プライベート <span class=\"count\">(%s)</span>"
 
 #: inc/class.widgets.php:15
-msgid "Tag Cloud (TaxoPress)"
-msgstr "タグクラウド(TaxoPress)"
+msgid "Tag Cloud (Simple Tags)"
+msgstr "タグクラウド(Simple Tags)"
 
 #: inc/class.widgets.php:16
 msgid "Your most used tags in cloud format with dynamic color and many options"
@@ -777,8 +777,8 @@ msgid "Suggested tags"
 msgstr "お奨めのタグ"
 
 #: inc/class.admin.suggest.php:125
-msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "OpenCalais は API キーを必要とします。TaxoPress オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
+msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgstr "OpenCalais は API キーを必要とします。Simple Tags オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
 
 #: inc/class.admin.suggest.php:133
 #: inc/class.admin.suggest.php:189
@@ -794,16 +794,16 @@ msgid "No results from OpenCalais service."
 msgstr "OpenCalais のサービスから応答がありません。"
 
 #: inc/class.admin.suggest.php:181
-msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "AlchemyAPI は API キーを必要とします。TaxoPress オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
+msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgstr "AlchemyAPI は API キーを必要とします。Simple Tags オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
 
 #: inc/class.admin.suggest.php:211
 msgid "No results from Alchemy API."
 msgstr "Alchemy API から応答がありません。"
 
 #: inc/class.admin.suggest.php:235
-msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "Zemanta は API キーを必要とします。TaxoPress オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
+msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgstr "Zemanta は API キーを必要とします。Simple Tags オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
 
 #: inc/class.admin.suggest.php:267
 msgid "No results from Zemanta API."
@@ -831,7 +831,7 @@ msgstr "%s タグの付いた投稿"
 
 #: inc/class.admin.autoterms.php:23
 msgid "Simple Terms: Auto Terms"
-msgstr "TaxoPress: 自動タグ"
+msgstr "Simple Tags: 自動タグ"
 
 #: inc/class.admin.autoterms.php:23
 msgid "Auto Terms"
@@ -871,8 +871,8 @@ msgid "Auto terms list"
 msgstr "自動タグリスト"
 
 #: inc/class.admin.autoterms.php:181
-msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress will add automatically \"wordpress\" as term for this post."
-msgstr "この機能は、投稿保存時に投稿内やタイトルに指定されたタグを探します。例えば、\"WordPress\" という単語が投稿内やタイトルに含まれていて、自動タグリストに \"wordpress\" があれば、TaxoPress がこの投稿に自動的に \"wordpress\" タグを付けます。"
+msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, Simple Tags will add automatically \"wordpress\" as term for this post."
+msgstr "この機能は、投稿保存時に投稿内やタイトルに指定されたタグを探します。例えば、\"WordPress\" という単語が投稿内やタイトルに含まれていて、自動タグリストに \"wordpress\" があれば、Simple Tags がこの投稿に自動的に \"wordpress\" タグを付けます。"
 
 #: inc/class.admin.autoterms.php:183
 msgid "Options"
@@ -923,8 +923,8 @@ msgid "Auto terms old content"
 msgstr "以前のコンテンツへの自動タグ"
 
 #: inc/class.admin.autoterms.php:230
-msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
-msgstr "TaxoPress は既存のすべてのブログコンテンツにもタグ付けすることができます。この機能は上記の自動タグリストを使用します。"
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
+msgstr "Simple Tags は既存のすべてのブログコンテンツにもタグ付けすることができます。この機能は上記の自動タグリストを使用します。"
 
 #: inc/class.admin.autoterms.php:233
 msgid "Auto terms all content &raquo;"
@@ -943,20 +943,20 @@ msgid "All done! %s terms added."
 msgstr "完了 ! %s のタグを追加しました。"
 
 #. Plugin URI of the plugin/theme
-msgid "https://wordpress.org/plugins/simple-tags"
-msgstr "https://wordpress.org/plugins/simple-tags"
+msgid "http://redmine.beapi.fr/projects/show/simple-tags"
+msgstr "http://redmine.beapi.fr/projects/show/simple-tags"
 
 #. Description of the plugin/theme
 msgid "Extended Tagging for WordPress 3.0 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, etc. NOW Compatible custom post type and custom taxonomy !"
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "WebFactory Ltd"
-msgstr "WebFactory Ltd"
+msgid "Amaury BALMER"
+msgstr "Amaury BALMER"
 
 #. Author URI of the plugin/theme
-msgid "https://www.webfactoryltd.com"
-msgstr "https://www.webfactoryltd.com"
+msgid "http://www.herewithme.fr"
+msgstr "http://www.herewithme.fr"
 
 #: /2.7/inc/simple-tags.admin.php:430
 msgid "Automatically display tags list into feeds"

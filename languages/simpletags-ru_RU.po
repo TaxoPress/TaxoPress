@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress 1.5.1 for WP2.3 & WP2.5\n"
+"Project-Id-Version: Simple Tags 1.5.1 for WP2.3 & WP2.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-01 20:19+0600\n"
 "PO-Revision-Date: 2008-04-01 20:39+0600\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: X:\\web\\Модификации\\wordpress\\tags\\simple-tags-wp23-wp25\\simple-tags\n"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/simple-tags.php:40
-msgid "TaxoPress can't work with this WordPress version !"
-msgstr "TaxoPress не может работать с этой версией WordPress !"
+msgid "Simple Tags can't work with this WordPress version !"
+msgstr "Simple Tags не может работать с этой версией WordPress !"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/simple-tags.php:40
 #, php-format
@@ -137,8 +137,8 @@ msgstr "Недопустимая таксономия"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:149
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:628
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:158
-msgid "TaxoPress: Manage Tags"
-msgstr "TaxoPress: Управление метками"
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags: Управление метками"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:149
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:158
@@ -148,8 +148,8 @@ msgstr "Управление метками"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:150
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:843
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:159
-msgid "TaxoPress: Mass Edit Tags"
-msgstr "TaxoPress: Массовое редактирование меток"
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags: Массовое редактирование меток"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:150
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:159
@@ -159,8 +159,8 @@ msgstr "Массовое редактирование меток"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:151
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:209
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:160
-msgid "TaxoPress: Auto Tags"
-msgstr "TaxoPress: Автоматические метки"
+msgid "Simple Tags: Auto Tags"
+msgstr "Simple Tags: Автоматические метки"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:151
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:160
@@ -172,13 +172,13 @@ msgstr "Автоматические метки"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:522
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:161
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:521
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: Настройки"
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: Настройки"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:152
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:161
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "Simple Tags"
+msgstr "Simple Tags"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:194
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:203
@@ -189,8 +189,8 @@ msgstr "Настройка автоматических меток обновл�
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:523
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:629
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:844
-msgid "Visit the <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "Посетите <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">обращайтесь ко мне</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Посетите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"mailto:amaury@wordpress-fr.net\">обращайтесь ко мне</a> !"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:214
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:222
@@ -199,8 +199,8 @@ msgstr "Список автоматических меток"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:215
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:223
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, TaxoPress will add automatically \"wordpress\" as tag for this post."
-msgstr "Эта функция позволит Wordpress просматривать содержимое записи и заголовка на предмет заданных меток при сохранении записей. если ваша запись или заголовок содержат слово \"WordPress\" и вы имеете  \"wordpress\" в списке автоматических меток, TaxoPress автоматически добавит \"wordpress\" в качестве меток для вашей записи."
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
+msgstr "Эта функция позволит Wordpress просматривать содержимое записи и заголовка на предмет заданных меток при сохранении записей. если ваша запись или заголовок содержат слово \"WordPress\" и вы имеете  \"wordpress\" в списке автоматических меток, Simple Tags автоматически добавит \"wordpress\" в качестве меток для вашей записи."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:219
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:232
@@ -232,8 +232,8 @@ msgstr "Автоматически пометить старый контент"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:237
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:263
-msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
-msgstr "TaxoPress может также добавить метки в весь существующий контент вашего блога. Эта функция использует список автоматических меток заданный выше."
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "Simple Tags может также добавить метки в весь существующий контент вашего блога. Эта функция использует список автоматических меток заданный выше."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:238
 msgid "Auto tags all content"
@@ -501,8 +501,8 @@ msgstr "Формат ссылки метки:"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:426
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:444
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:477
-msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
-msgstr "Вы можете найти маркеры и разъяснения функций на страницах онлайн-документации: <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">оригинальной</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русской</a> чтобы лучше разобраться в настройках."
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "Вы можете найти маркеры и разъяснения функций на страницах онлайн-документации: <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальной</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русской</a> чтобы лучше разобраться в настройках."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:343
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:371
@@ -522,8 +522,8 @@ msgstr "<strong>Расширенное использование</strong>:"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:345
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:373
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_the_tags()</code> для настройки отображения. Смотрите <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">оригинальную</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_the_tags()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:348
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:376
@@ -617,8 +617,8 @@ msgstr "Введите заголовок, показываемый перед �
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:375
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:403
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_posts()</code> для настройки отображения. Смотрите <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_posts()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:378
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:406
@@ -708,8 +708,8 @@ msgstr "Введите текст, отображаемый если нет св
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:404
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:432
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_tags()</code> для настройки отображения. Смотрите <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_related_tags()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:406
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:434
@@ -845,8 +845,8 @@ msgstr "Опция единиц измерения размеров шрифта
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:462
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:490
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_tag_cloud()</code> для настройки отображения. Смотрите <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "Вы можете использовать тот же синтаксис как для функции <code>st_tag_cloud()</code> для настройки отображения. Смотрите <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">оригинальную</a> или <a href=\"http://http://lecactus.ru/2007/10/07/851\">русскую</a> документацию для больших деталей."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:476
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:504
@@ -855,14 +855,14 @@ msgstr "Настройки сохранены"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:480
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:508
-msgid "TaxoPress options resetted to default options!"
-msgstr "Настройки TaxoPress восстановлены по умолчанию!"
+msgid "Simple Tags options resetted to default options!"
+msgstr "Настройки Simple Tags восстановлены по умолчанию!"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:486
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:514
 #, php-format
-msgid "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
-msgstr "Все настройки TaxoPress удалены! Вы <a href=\"%s\">деактивировали плагин</a> ! "
+msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "Все настройки Simple Tags удалены! Вы <a href=\"%s\">деактивировали плагин</a> ! "
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:526
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:550
@@ -890,13 +890,13 @@ msgstr "Деинсталляция"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:540
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:539
-msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using TaxoPress for good, please erase <strong>all</strong> options before deactivating the plugin."
-msgstr "Обычно, деактивация плагина не удаляет любые его данные, если вы хотите прекратить использвать TaxoPress, пожалуйста удалите <strong>все</strong> настройки перед деактивацией плагина."
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "Обычно, деактивация плагина не удаляет любые его данные, если вы хотите прекратить использвать Simple Tags, пожалуйста удалите <strong>все</strong> настройки перед деактивацией плагина."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:541
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:540
-msgid "This erases all TaxoPress options. <strong>This is irrevocable! Be careful.</strong>"
-msgstr "Это удалит все настройки TaxoPress. <strong>Это необратимо! Будьте осторожны.</strong>"
+msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "Это удалит все настройки Simple Tags. <strong>Это необратимо! Будьте осторожны.</strong>"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:544
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:543
@@ -907,8 +907,8 @@ msgstr "Удалить все настройки ?"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:1714
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:565
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:1206
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
-msgstr "Проблема с безопасностью. Попробуйте снова. Если проблема постоянная, свяжитесь с <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">автором плагина</a>."
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "Проблема с безопасностью. Попробуйте снова. Если проблема постоянная, свяжитесь с <a href=\"mailto:amaury@wordpress-fr.net\">автором плагина</a>."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:601
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.widgets.php:171
@@ -1288,8 +1288,8 @@ msgstr "%s меток страниц успешно обновлено !"
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:2155
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:1566
 #, php-format
-msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
-msgstr "&copy; Копирайт 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Версия %s, перевод на русский язык <a href=\"http://lecactus.ru/\" title=\"Lecactus\">Lecactus</a>"
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Копирайт 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Версия %s, перевод на русский язык <a href=\"http://lecactus.ru/\" title=\"Lecactus\">Lecactus</a>"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.3/inc/simple-tags.admin.php:2195
 msgid "Page: "
@@ -1491,8 +1491,8 @@ msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_nam
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:522
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:575
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:818
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "Посетите <a href=\"https://wordpress.org/plugins/simple-tags/\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">свяжитесь со мной</a> !"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Посетите <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"mailto:amaury@wordpress-fr.net\">свяжитесь со мной</a> !"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/2.5/inc/simple-tags.admin.php:225
 msgid "Options"
@@ -1643,8 +1643,8 @@ msgid "Steps may take a few minutes depending on the size of your database. Plea
 msgstr "Шаги могут занять несколько минут, в зависимости от размера вашей базы данных. Пожалуйста, будьте терпеливы."
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/extras/simple-tags.importer.php:59
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "Посетите <a href=\"https://wordpress.org/plugins/simple-tags\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">напишите мне</a> !"
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "Посетите <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">домашнюю страницу плагина</a> для больших деталей. Если вы нашли ошибку, или имеете фантастическую идею для этого плагина, <a href=\"mailto:amaury@wordpress-fr.net\">напишите мне</a> !"
 
 #: X:\web\Ìîäèôèêàöèè\wordpress\tags\simple-tags-wp23-wp25\simple-tags/extras/simple-tags.importer.php:68
 msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
@@ -1724,8 +1724,8 @@ msgstr "Импорт встраиваемых (embedded) меток в нову�
 #~ msgstr "%s терминов успешно обновлено !"
 #~ msgid "Category"
 #~ msgstr "Рубрика"
-#~ msgid "TaxoPress: Advanced Edit Terms"
-#~ msgstr "TaxoPress: Расширенное редактирование терминов"
+#~ msgid "Simple Tags: Advanced Edit Terms"
+#~ msgstr "Simple Tags: Расширенное редактирование терминов"
 #~ msgid ""
 #~ "Be careful with this page ! You can cause important damages, and lost all "
 #~ "tags and categories of your WordPress installation."

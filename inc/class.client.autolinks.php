@@ -9,7 +9,7 @@ class SimpleTags_Client_Autolinks {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function __construct() {
 		$auto_link_priority = SimpleTags_Plugin::get_option_value( 'auto_link_priority' );
@@ -180,12 +180,9 @@ class SimpleTags_Client_Autolinks {
 				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel );
 			} else {
 				self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel );
-
-
 			}
 
 			$z ++;
-
 			if ( $z > (int) SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' ) ) {
 				break;
 			}
@@ -278,9 +275,8 @@ class SimpleTags_Client_Autolinks {
 					if ( $anchor_level === 0 ) { // linkify if not inside anchor tags
 						if ( preg_match( $match, $token ) ) { // use preg_match for compatibility with PHP 4
 							$j ++;
-
 							if ( $j <= SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' ) || 0 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' ) ) {// Limit replacement at 1 by default, or options value !
-								$token = preg_replace( $match, $substitute, $token, SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' ) ); // only PHP 5 supports calling preg_replace with 5 arguments
+								$token = preg_replace( $match, $substitute, $token ); // only PHP 5 supports calling preg_replace with 5 arguments
 							}
 							$must_tokenize = true; // re-tokenize next time around
 						}

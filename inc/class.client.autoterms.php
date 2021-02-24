@@ -5,7 +5,7 @@ class SimpleTags_Client_Autoterms {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function __construct() {
 		add_action( 'save_post', array( __CLASS__, 'save_post' ), 12, 2 );
@@ -62,7 +62,7 @@ class SimpleTags_Client_Autoterms {
 	 * @param boolean $counter
 	 *
 	 * @return boolean
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function auto_terms_post( $object, $taxonomy = 'post_tag', $options = array(), $counter = false ) {
 		global $wpdb;

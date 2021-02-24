@@ -5,7 +5,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public function __construct() {
 		// Save tags from advanced input
@@ -16,24 +16,18 @@ class SimpleTags_Admin_Post_Settings {
 	}
 
 	/**
-	 * Register a new box for TaxoPress settings
+	 * Register a new box for simple tags settings
 	 *
 	 * @param string $post_type
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function add_meta_boxes( $post_type ) {
-		// Get auto options
-		$auto_options = get_option( STAGS_OPTIONS_NAME_AUTO );
-		$taxonomies = get_object_taxonomies( $post_type );
-		// Auto terms for this CPT ?
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) === 1 && isset( $auto_options[ $post_type ] ) && ! empty( $auto_options[ $post_type ] ) ||  (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 1 && in_array( 'post_tag', $taxonomies, true ) ) {
-		add_meta_box( 'simpletags-settings', __( 'TaxoPress - Settings', 'simpletags' ), array(
+		add_meta_box( 'simpletags-settings', __( 'Simple Tags - Settings', 'simpletags' ), array(
 			__CLASS__,
 			'metabox'
 		), $post_type, 'side', 'low' );
-		}
 	}
 
 	/**
@@ -42,7 +36,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @param object $post
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function metabox( $post ) {
 		if ( ! isset( $post->post_type ) ) {
@@ -77,7 +71,7 @@ class SimpleTags_Admin_Post_Settings {
 	 * @param integer $object_id
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function save_post( $object_id = 0 ) {
 		if ( isset( $_POST['_meta_autotags'] ) && 'true' === $_POST['_meta_autotags'] ) {

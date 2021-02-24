@@ -8,7 +8,7 @@ class SimpleTags_Plugin {
 	 * Add initial ST options in DB, init roles/permissions
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
+	 * @author Amaury Balmer
 	 */
 	public static function activation() {
 		// Put default options

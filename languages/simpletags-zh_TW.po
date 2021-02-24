@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress\n"
+"Project-Id-Version: Simple Tags\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2010-01-31 17:45+0000\n"
 "PO-Revision-Date: 2010-02-01 11:12+0800\n"
@@ -26,8 +26,8 @@ msgid "Steps may take a few minutes depending on the size of your database. Plea
 msgstr "接下來的步驟需要幾分鐘，看您的資料有多少而定。請耐心等候。"
 
 #: extras/simple-tags.importer.php:58
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "您可以藉由拜訪 <a href=\"https://wordpress.org/plugins/simple-tags\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">請與我聯絡</a>！"
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "您可以藉由拜訪 <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
 
 #: extras/simple-tags.importer.php:67
 msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
@@ -159,14 +159,14 @@ msgstr "自動標籤"
 
 #: inc/admin.php:185
 #: inc/admin.php:400
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: 設定"
+msgid "Simple Tags: Options"
+msgstr "Simple Tags: 設定"
 
-#. #-#-#-#-#  plugin.pot (TaxoPress 1.7.4)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Simple Tags 1.7.4)  #-#-#-#-#
 #. Plugin Name of an extension
 #: inc/admin.php:185
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "Simple Tags"
+msgstr "Simple Tags"
 
 #: inc/admin.php:196
 #, php-format
@@ -184,16 +184,16 @@ msgstr "自動標籤的設定已更新！"
 #: inc/admin.php:276
 #: inc/admin.php:401
 #: inc/admin.php:852
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "您可以藉由拜訪 <a href=\"https://wordpress.org/plugins/simple-tags/\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">請與我聯絡</a>！"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "您可以藉由拜訪 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
 
 #: inc/admin.php:280
 msgid "Auto terms list"
 msgstr "自動標籤清單"
 
 #: inc/admin.php:281
-msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress will add automatically \"wordpress\" as term for this post."
-msgstr "此功能允許 WordPress 在存檔的時候尋找文章與標題中的特定標籤，舉例來說，當您的文章內容或標題含有 \"WordPress\"  這個字，而且在您的自動標籤清單中剛好有 \"wordpress\"  這個字，TaxoPress 將會自動將 \"wordpress\"  加入成為此篇文章的標籤。"
+msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, Simple Tags will add automatically \"wordpress\" as term for this post."
+msgstr "此功能允許 WordPress 在存檔的時候尋找文章與標題中的特定標籤，舉例來說，當您的文章內容或標題含有 \"WordPress\"  這個字，而且在您的自動標籤清單中剛好有 \"wordpress\"  這個字，Simple Tags 將會自動將 \"wordpress\"  加入成為此篇文章的標籤。"
 
 #: inc/admin.php:283
 msgid "Options"
@@ -242,8 +242,8 @@ msgid "Auto terms old content"
 msgstr "自動加入標籤至舊文章"
 
 #: inc/admin.php:323
-msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
-msgstr "TaxoPress 可以同時將標籤加入到所有網誌現存的文章中，此功能使用上述的自動標籤清單進行加入的動作。"
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
+msgstr "Simple Tags 可以同時將標籤加入到所有網誌現存的文章中，此功能使用上述的自動標籤清單進行加入的動作。"
 
 #: inc/admin.php:326
 msgid "Auto terms all content &raquo;"
@@ -259,8 +259,8 @@ msgid "Options saved"
 msgstr "設定已儲存"
 
 #: inc/admin.php:394
-msgid "TaxoPress options resetted to default options!"
-msgstr "TaxoPress 設定已重置為預設狀態！"
+msgid "Simple Tags options resetted to default options!"
+msgstr "Simple Tags 設定已重置為預設狀態！"
 
 #: inc/admin.php:405
 #: inc/admin.php:419
@@ -274,16 +274,16 @@ msgstr "重置設定"
 
 #: inc/admin.php:436
 #: inc/admin.php:1498
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
-msgstr "這是安全問題，請重試，若問題一再發生，請聯絡 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">外掛作者</a>。"
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "這是安全問題，請重試，若問題一再發生，請聯絡 <a href=\"mailto:amaury@wordpress-fr.net\">外掛作者</a>。"
 
 #: inc/admin.php:471
-msgid "TaxoPress: Manage Terms"
-msgstr "TaxoPress: 管理標籤"
+msgid "Simple Tags: Manage Terms"
+msgstr "Simple Tags: 管理標籤"
 
 #: inc/admin.php:472
-msgid "Visit the <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "您可以藉由拜訪 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">請與我聯絡</a>！"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "您可以藉由拜訪 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">外掛首頁</a> 以獲得更多訊息。如果您發現臭蟲或對本外掛有奇妙的點子， <a href=\"mailto:amaury@wordpress-fr.net\">請與我聯絡</a>！"
 
 #: inc/admin.php:476
 msgid "Rename/Merge Terms"
@@ -393,8 +393,8 @@ msgid "Renaming"
 msgstr "重新命名"
 
 #: inc/admin.php:607
-msgid "TaxoPress don't use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress will keep the two terms with the same name but with a different slug. <br />With TaxoPress, when you edit \"Bloging\" for \"Blogging\", TaxoPress merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term \"Bloging\". Another logic ;)"
-msgstr "TaxoPress 跟 WordPress 對標籤使用不同的更改名稱方式，舉例來說，若在 WordPress 裡您有兩個標籤： \"Blogging\" 和 \"Bloging\"，當您想將 \"Bloging\" 更名為 \"Blogging\"，那麼 WordPress 將會以不同的代稱方式同時保留這兩個同名標籤。 <br />但若以 TaxoPress 來更名的話，當您要將 \"Bloging\" 更名為 \"Blogging\" 的時候，TaxoPress 會將具有 \"Bloging\" 標籤的文章全部更改為 \"Blogging\" 並且刪除原有的 \"Bloging\" 標籤。 這就是不同的邏輯 ;)"
+msgid "Simple Tags don't use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit \"Bloging\" for \"Blogging\", Simple Tags merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term \"Bloging\". Another logic ;)"
+msgstr "Simple Tags 跟 WordPress 對標籤使用不同的更改名稱方式，舉例來說，若在 WordPress 裡您有兩個標籤： \"Blogging\" 和 \"Bloging\"，當您想將 \"Bloging\" 更名為 \"Blogging\"，那麼 WordPress 將會以不同的代稱方式同時保留這兩個同名標籤。 <br />但若以 Simple Tags 來更名的話，當您要將 \"Bloging\" 更名為 \"Blogging\" 的時候，Simple Tags 會將具有 \"Bloging\" 標籤的文章全部更改為 \"Blogging\" 並且刪除原有的 \"Bloging\" 標籤。 這就是不同的邏輯 ;)"
 
 #: inc/admin.php:640
 msgctxt "post"
@@ -528,8 +528,8 @@ msgstr "無內容可供編輯"
 
 #: inc/admin.php:1055
 #: inc/admin.php:1060
-msgid "Tags (TaxoPress)"
-msgstr "標籤 (TaxoPress)"
+msgid "Tags (Simple Tags)"
+msgstr "標籤 (Simple Tags)"
 
 #: inc/admin.php:1071
 msgid "Separate tags with commas"
@@ -686,8 +686,8 @@ msgid "%s post(s) terms updated with success !"
 msgstr "%s 篇文章的標籤已成功更新！"
 
 #: inc/admin.php:1593
-msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "OpenCalais 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 TaxoPress 的選項中。"
+msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgstr "OpenCalais 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 Simple Tags 的選項中。"
 
 #: inc/admin.php:1601
 #: inc/admin.php:1652
@@ -703,16 +703,16 @@ msgid "No results from OpenCalais service."
 msgstr "無法從 OpenCalais 服務獲取資料。"
 
 #: inc/admin.php:1644
-msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "AlchemyAPI 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 TaxoPress 的選項中。"
+msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgstr "AlchemyAPI 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 Simple Tags 的選項中。"
 
 #: inc/admin.php:1677
 msgid "No results from Alchemy API."
 msgstr "無法從 Alchemy API 獲取資料。"
 
 #: inc/admin.php:1698
-msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "Zemanta 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 TaxoPress 的選項中。"
+msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgstr "Zemanta 需要 API 金鑰才能運作。您可以在該服務的網站上註冊以取得金鑰，並將它設定在 Simple Tags 的選項中。"
 
 #: inc/admin.php:1733
 msgid "No results from Zemanta API."
@@ -738,8 +738,8 @@ msgstr "無法從您的 WordPress 資料庫獲取資料。"
 
 #: inc/admin.php:1982
 #, php-format
-msgid "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
-msgstr "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s | <a href=\"http://www.wmfield.idv.tw/\" title=\"正體中文語系檔\">Neil Lin</a>"
+msgid "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s | <a href=\"http://www.wmfield.idv.tw/\" title=\"正體中文語系檔\">Neil Lin</a>"
 
 #: inc/admin.php:2075
 msgid "Administration"
@@ -827,8 +827,8 @@ msgid "OpenCalais API Key"
 msgstr "OpenCalais API 金鑰"
 
 #: inc/array.options.php:22
-msgid "You can create an API key from <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en\">service website</a>"
-msgstr "您可以從 <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en\">服務網站</a> 中取得 API 金鑰"
+msgid "You can create an API key from <a href=\"http://www.opencalais.com/\">service website</a>"
+msgstr "您可以從 <a href=\"http://www.opencalais.com/\">服務網站</a> 中取得 API 金鑰"
 
 #: inc/array.options.php:23
 msgid "Alchemy API Key"
@@ -879,7 +879,7 @@ msgid "Example: If you ignore case, auto link feature will replace the word \"wo
 msgstr "例如：如果您選擇忽略大小寫，自動連結功能將會用 \"WordPress\" 這個標籤連結來取代 \"wordpress\" 。"
 
 #: inc/array.options.php:37
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
 msgstr "排除標籤連結中某些特定項目，以廣告連結來取代等。"
 
 #: inc/array.options.php:38
@@ -999,8 +999,8 @@ msgstr "標籤連結格式："
 #: inc/array.options.php:129
 #: inc/array.options.php:147
 #: inc/array.options.php:186
-msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
-msgstr "您可以在 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">線上說明文件</a> 中找到標記語法及說明。"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "您可以在 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">線上說明文件</a> 中找到標記語法及說明。"
 
 #: inc/array.options.php:74
 msgid "Text to display if no tags found:"
@@ -1014,8 +1014,8 @@ msgid "<strong>Advanced usage</strong>:"
 msgstr "<strong>進階使用</strong>:"
 
 #: inc/array.options.php:76
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_the_tags()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">說明文件</a>。"
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_the_tags()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">說明文件</a>。"
 
 #: inc/array.options.php:79
 msgid "Automatically display related posts into feeds"
@@ -1079,8 +1079,8 @@ msgid "Enter the positioned title before the list, leave blank for no title:"
 msgstr "在清單前要顯示的標題，留白表示不要標題："
 
 #: inc/array.options.php:106
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_related_posts()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">說明文件</a>。"
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_related_posts()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱<a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">說明文件</a>。"
 
 #: inc/array.options.php:109
 msgid "Maximum number of related tags to display: (default: 5)"
@@ -1144,8 +1144,8 @@ msgid "Enter the text to show when there is no related tags:"
 msgstr "當沒有相關標籤時要顯示的文字："
 
 #: inc/array.options.php:135
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_related_tags()</code>功能一樣的語法來設定顯示方式。詳細情形請參閱 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">說明文件</a> 。"
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_related_tags()</code>功能一樣的語法來設定顯示方式。詳細情形請參閱 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">說明文件</a> 。"
 
 #: inc/array.options.php:137
 msgid "Remove related Tags"
@@ -1277,8 +1277,8 @@ msgid "The font size units option determines the units that the two font sizes u
 msgstr "字型大小的單位設定決定了兩種字型大小使用的單位。"
 
 #: inc/array.options.php:199
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用如同 <code>st_tag_cloud()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">說明文件</a>。"
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用如同 <code>st_tag_cloud()</code> 功能一樣的語法來設定顯示方式。詳細情形請參閱 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">說明文件</a>。"
 
 #: inc/base.php:122
 #: inc/client.php:459
@@ -1390,8 +1390,8 @@ msgid "Invalid Taxonomy"
 msgstr "無效的分類"
 
 #: inc/widgets.php:10
-msgid "Tag Cloud (TaxoPress)"
-msgstr "標籤雲 (TaxoPress)"
+msgid "Tag Cloud (Simple Tags)"
+msgstr "標籤雲 (Simple Tags)"
 
 #: inc/widgets.php:11
 msgid "Your most used tags in cloud format with dynamic color and many options"
@@ -1515,20 +1515,20 @@ msgid "Extended format: (advanced usage)"
 msgstr "延伸格式：（進階使用）"
 
 #. Plugin URI of an extension
-msgid "https://wordpress.org/plugins/simple-tags/"
-msgstr "https://wordpress.org/plugins/simple-tags/"
+msgid "http://wordpress.org/extend/plugins/simple-tags"
+msgstr "http://wordpress.org/extend/plugins/simple-tags"
 
 #. Description of an extension
 msgid "Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Tags, Tag Cloud Widgets, Related Posts, Mass edit tags !"
 msgstr "擴展 WordPress 2.8 和 2.9 的標籤功能！自動填入籤標、建議標籤、標籤雲模組、相關文章、大量編輯標籤！"
 
 #. Author of an extension
-msgid "WebFactory Ltd"
-msgstr "WebFactory Ltd"
+msgid "Amaury BALMER"
+msgstr "Amaury BALMER"
 
 #. Author URI of an extension
-msgid "https://www.webfactoryltd.com"
-msgstr "https://www.webfactoryltd.com"
+msgid "http://www.herewithme.fr"
+msgstr "http://www.herewithme.fr"
 
 #~ msgid "Most popular"
 #~ msgstr "最熱門的排在前面"
@@ -1554,8 +1554,8 @@ msgstr "https://www.webfactoryltd.com"
 #~ msgstr "重新命名標籤"
 #~ msgid "Tags"
 #~ msgstr "標籤"
-#~ msgid "TaxoPress can't work with this WordPress version !"
-#~ msgstr "TaxoPress 與此WordPress版本不相容！"
+#~ msgid "Simple Tags can't work with this WordPress version !"
+#~ msgstr "Simple Tags 與此WordPress版本不相容！"
 #~ msgid ""
 #~ "You must use <a href=\"%1$s\">Simple Tagging Plugin</a> for it to work."
 #~ msgstr "您必須使用 <a href=\"%1$s\">Simple Tagging Plugin</a> 才能運作。"
@@ -1597,25 +1597,25 @@ msgstr "https://www.webfactoryltd.com"
 #~ msgid "<code>count-desc</code> &ndash; Most popular."
 #~ msgstr "<code>count-desc</code> &ndash; 最熱門的排在前面"
 #~ msgid ""
-#~ "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</"
+#~ "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</"
 #~ "a> now !"
 #~ msgstr ""
-#~ "已刪除全部的TaxoPress設定！現在您可以<a href=\"%s\">停用此外掛</a>了！"
+#~ "已刪除全部的Simple Tags設定！現在您可以<a href=\"%s\">停用此外掛</a>了！"
 #~ msgid "Update Options &raquo;"
 #~ msgstr "更新選項 &raquo;"
 #~ msgid "Uninstallation"
 #~ msgstr "解除安裝"
 #~ msgid ""
 #~ "Generally, deactivating this plugin does not erase any of its data, if "
-#~ "you like to quit using TaxoPress for good, please erase <strong>all</"
+#~ "you like to quit using Simple Tags for good, please erase <strong>all</"
 #~ "strong> options before deactivating the plugin."
 #~ msgstr ""
-#~ "一般來說，停用此外掛並不會刪除它的任何資料，如果您想徹底移除TaxoPress，"
+#~ "一般來說，停用此外掛並不會刪除它的任何資料，如果您想徹底移除Simple Tags，"
 #~ "請在停用外掛之前刪除 <strong>全部的</strong> 設定。"
 #~ msgid ""
-#~ "This erases all TaxoPress options. <strong>This is irrevocable! Be "
+#~ "This erases all Simple Tags options. <strong>This is irrevocable! Be "
 #~ "careful.</strong>"
-#~ msgstr "這會刪除所有的TaxoPress設定，<strong>這是不能回復的！請小心。"
+#~ msgstr "這會刪除所有的Simple Tags設定，<strong>這是不能回復的！請小心。"
 #~ msgid "Delete all options ?"
 #~ msgstr "刪除所有的設定？"
 #~ msgid "Search terms&hellip;"
@@ -1676,18 +1676,18 @@ msgstr "https://www.webfactoryltd.com"
 #~ "Tags <small>(separate multiple tags with commas: cats, pet food, dogs)</"
 #~ "small>"
 #~ msgstr "標籤 <small>（以半形逗號相隔：貓, 寵物飼料, 狗）</small>"
-#~ msgid "TaxoPress : Tag Cloud Widgets"
-#~ msgstr "TaxoPress : 標籤雲模組"
+#~ msgid "Simple Tags : Tag Cloud Widgets"
+#~ msgstr "Simple Tags : 標籤雲模組"
 #~ msgid "ST: Tag Cloud %d"
 #~ msgstr "ST: 標籤雲 %d"
 #~ msgid ""
-#~ "&copy; Copyright 2008 - 2020 <a href=\"https://www.webfactoryltd.com\""
-#~ ">WebFactory Ltd</a> | <a href=\"http://wordpress.org/"
-#~ "plugins/simple-tags\">TaxoPress</a> | Version %s"
+#~ "&copy; Copyright 2008 <a href=\"http://www.herewithme.fr/\" title=\"Here "
+#~ "With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
+#~ "plugins/simple-tags\">Simple Tags</a> | Version %s"
 #~ msgstr ""
-#~ "&copy; Copyright 2008 - 2020<a href=\"https://www.webfactoryltd.com\""
-#~ ">WebFactory Ltd</a> | <a href=\"http://wordpress.org/"
-#~ "plugins/simple-tags\">TaxoPress</a> | Version %s | <a href=\"http://www."
+#~ "&copy; Copyright 2008 <a href=\"http://www.herewithme.fr/\" title=\"Here "
+#~ "With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/"
+#~ "plugins/simple-tags\">Simple Tags</a> | Version %s | <a href=\"http://www."
 #~ "wmfield.idv.tw/\" title=\"正體中文語系檔\">Neil Lin</a>"
 #~ msgid "Advanced tags"
 #~ msgstr "進階標籤管理"
@@ -1699,8 +1699,8 @@ msgstr "https://www.webfactoryltd.com"
 #~ msgstr "關閉"
 #~ msgid "%s terms updated with success !"
 #~ msgstr "%s 個項目已更新成功！"
-#~ msgid "TaxoPress: Advanced Edit Terms"
-#~ msgstr "TaxoPress: 進階編輯項目"
+#~ msgid "Simple Tags: Advanced Edit Terms"
+#~ msgstr "Simple Tags: 進階編輯項目"
 #~ msgid ""
 #~ "Be careful with this page ! You can cause important damages, and lost all "
 #~ "tags and categories of your WordPress installation."

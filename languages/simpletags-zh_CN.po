@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress\n"
+"Project-Id-Version: Simple Tags\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-01 00:00+0800\n"
 "PO-Revision-Date: 2008-04-01 00:36+0800\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wp\\wp-content\\plugins\\simple-tags\n"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/simple-tags.php:40
-msgid "TaxoPress can't work with this WordPress version !"
-msgstr "TaxoPress 不能使用在该版本的 WordPress 中！"
+msgid "Simple Tags can't work with this WordPress version !"
+msgstr "Simple Tags 不能使用在该版本的 WordPress 中！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/simple-tags.php:40
 #, php-format
@@ -134,8 +134,8 @@ msgstr "无效的分类"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:149
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:628
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:158
-msgid "TaxoPress: Manage Tags"
-msgstr "TaxoPress：管理标签"
+msgid "Simple Tags: Manage Tags"
+msgstr "Simple Tags：管理标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:149
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:158
@@ -145,8 +145,8 @@ msgstr "管理标签"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:150
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:843
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:159
-msgid "TaxoPress: Mass Edit Tags"
-msgstr "TaxoPress：批量编辑标签"
+msgid "Simple Tags: Mass Edit Tags"
+msgstr "Simple Tags：批量编辑标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:150
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:159
@@ -156,8 +156,8 @@ msgstr "批量编辑标签"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:151
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:209
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:160
-msgid "TaxoPress: Auto Tags"
-msgstr "TaxoPress：智能标签"
+msgid "Simple Tags: Auto Tags"
+msgstr "Simple Tags：智能标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:151
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:160
@@ -169,13 +169,13 @@ msgstr "智能标签"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:522
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:161
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:521
-msgid "TaxoPress: Options"
-msgstr "TaxoPress： 选项"
+msgid "Simple Tags: Options"
+msgstr "Simple Tags： 选项"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:152
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:161
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "Simple Tags"
+msgstr "Simple Tags"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:194
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:203
@@ -186,8 +186,8 @@ msgstr "智能标签选项已更新！"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:523
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:629
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:844
-msgid "Visit the <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "访问 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">与我联系</a> ！"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "访问 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"mailto:amaury@wordpress-fr.net\">与我联系</a> ！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:214
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:222
@@ -196,8 +196,8 @@ msgstr "智能标签列表"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:215
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:223
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, TaxoPress will add automatically \"wordpress\" as tag for this post."
-msgstr "该功能将允许 WordPress 在保存日志的时候针对特定的标签检查日志内容和标题。如果日志内容或标题中含有词语“WordPress”并且“WordPress”在智能标签列表中，则 TaxoPress 将自动为该日志加上标签“WordPress”。"
+msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, Simple Tags will add automatically \"wordpress\" as tag for this post."
+msgstr "该功能将允许 WordPress 在保存日志的时候针对特定的标签检查日志内容和标题。如果日志内容或标题中含有词语“WordPress”并且“WordPress”在智能标签列表中，则 Simple Tags 将自动为该日志加上标签“WordPress”。"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:219
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:232
@@ -229,8 +229,8 @@ msgstr "自动为旧内容添加标签"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:237
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:263
-msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
-msgstr "TaxoPress 也可以为博客中已有的内容添加标签，该功能要用到上面的智能标签列表。"
+msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
+msgstr "Simple Tags 也可以为博客中已有的内容添加标签，该功能要用到上面的智能标签列表。"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:238
 msgid "Auto tags all content"
@@ -498,8 +498,8 @@ msgstr "标签链接格式："
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:426
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:444
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:477
-msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
-msgstr "您可以在 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">在线文档</a> 中找到标记及其相关说明"
+msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
+msgstr "您可以在 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">在线文档</a> 中找到标记及其相关说明"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:343
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:371
@@ -519,8 +519,8 @@ msgstr "<strong>高级用法</strong>："
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:345
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:373
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用与 <code>st_the_tags()</code> 函数一样的语法来定制显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用与 <code>st_the_tags()</code> 函数一样的语法来定制显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:348
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:376
@@ -614,8 +614,8 @@ msgstr "列表定位标题，留空则不定义："
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:375
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:403
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_related_posts()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用和 <code>st_related_posts()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:378
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:406
@@ -705,8 +705,8 @@ msgstr "没有相关标签时显示的文本："
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:404
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:432
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_related_tags()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用和 <code>st_related_tags()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:406
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:434
@@ -842,8 +842,8 @@ msgstr "字号单位选项决定了以上两个字号的单位"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:462
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:490
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_tag_cloud()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
+msgstr "您可以使用和 <code>st_tag_cloud()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">技术文档</a>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:476
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:504
@@ -852,14 +852,14 @@ msgstr "选项已保存"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:480
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:508
-msgid "TaxoPress options resetted to default options!"
-msgstr "TaxoPress 的选项已重置为默认值!"
+msgid "Simple Tags options resetted to default options!"
+msgstr "Simple Tags 的选项已重置为默认值!"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:486
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:514
 #, php-format
-msgid "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
-msgstr "TaxoPress 所有选项都已删除。您可以<a href=\"%s\"> 立即禁用 TaxoPress</a>！"
+msgid "All Simple Tags options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
+msgstr "Simple Tags 所有选项都已删除。您可以<a href=\"%s\"> 立即禁用 Simple Tags</a>！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:526
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:550
@@ -887,13 +887,13 @@ msgstr "卸载"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:540
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:539
-msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using TaxoPress for good, please erase <strong>all</strong> options before deactivating the plugin."
-msgstr "一般来说，禁用插件并不清除其已有数据。如果您将永不再使用 TaxoPress，在禁用它之前，请清除 TaxoPress 的<strong>所有</strong>选项。"
+msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using Simple Tags for good, please erase <strong>all</strong> options before deactivating the plugin."
+msgstr "一般来说，禁用插件并不清除其已有数据。如果您将永不再使用 Simple Tags，在禁用它之前，请清除 Simple Tags 的<strong>所有</strong>选项。"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:541
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:540
-msgid "This erases all TaxoPress options. <strong>This is irrevocable! Be careful.</strong>"
-msgstr "这将清除 TaxoPress 的所有选项。<strong>本操作不可撤消，请务必小心。</strong>"
+msgid "This erases all Simple Tags options. <strong>This is irrevocable! Be careful.</strong>"
+msgstr "这将清除 Simple Tags 的所有选项。<strong>本操作不可撤消，请务必小心。</strong>"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:544
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:543
@@ -904,8 +904,8 @@ msgstr "清除所有选项"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1714
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:565
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1206
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
-msgstr "安全问题，请重试。如果该问题仍然存在，请联系  <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">插件作者</a>."
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
+msgstr "安全问题，请重试。如果该问题仍然存在，请联系  <a href=\"mailto:amaury@wordpress-fr.net\">插件作者</a>."
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:601
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:171
@@ -1285,8 +1285,8 @@ msgstr "成功更新 %s 个页面的标签!"
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2155
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1566
 #, php-format
-msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
-msgstr "&copy; 版权所有 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | 版本 %s"
+msgid "&copy; Copyright 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
+msgstr "&copy; 版权所有 2007 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | 版本 %s"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2195
 msgid "Page: "
@@ -1488,8 +1488,8 @@ msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_nam
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:522
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:575
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:818
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "访问 <a href=\"https://wordpress.org/plugins/simple-tags/\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">与我联系</a> ！"
+msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "访问 <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"mailto:amaury@wordpress-fr.net\">与我联系</a> ！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:225
 msgid "Options"
@@ -1640,8 +1640,8 @@ msgid "Steps may take a few minutes depending on the size of your database. Plea
 msgstr "这些步骤可能要花上几分钟时间，这取决于您的数据库大小。请稍具耐心。"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:59
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "访问 <a href=\"https://wordpress.org/plugins/simple-tags\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">与我联系</a> ！"
+msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
+msgstr "访问 <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"mailto:amaury@wordpress-fr.net\">与我联系</a> ！"
 
 #: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:68
 msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
@@ -1723,8 +1723,8 @@ msgstr "导入内嵌标签为 WordPress 原生标签"
 #~ msgstr "成功更新 %s 个标签！"
 #~ msgid "Category"
 #~ msgstr "分类"
-#~ msgid "TaxoPress: Advanced Edit Terms"
-#~ msgstr "TaxoPress：标签高级编辑"
+#~ msgid "Simple Tags: Advanced Edit Terms"
+#~ msgstr "Simple Tags：标签高级编辑"
 #~ msgid ""
 #~ "Be careful with this page ! You can cause important damages, and lost all "
 #~ "tags and categories of your WordPress installation."

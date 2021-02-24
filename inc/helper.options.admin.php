@@ -13,49 +13,49 @@ return array(
 			__( 'Mass edit terms', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature allows you to edit the terms of any taxonomy for multiple posts at the same time.', 'simpletags' )
+			__( 'This feature allow to edit terms of any taxonomy for many posts per page.', 'simpletags' )
 		),
 		array(
 			'use_click_tags',
 			__( 'Click tags feature', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature will allow you to load all the local tags in your database inside the Suggested Tags meta box inside the editor. Once displayed, you can click to add tags to your post.', 'simpletags' )
+			__( 'This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post.', 'simpletags' )
 		),
 		array(
 			'use_autocompletion',
 			__( 'Autocompletion with old input', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature displays the tags field in the old style, making it easier to add existing tags than the default WordPress autocomplete', 'simpletags' )
+			__( 'This feature displays a visual help allowing to enter tags more easily. As well add tags is easier than the autocompletion default of WordPress', 'simpletags' )
 		),
 		array(
 			'use_suggested_tags',
 			__( 'Suggested tags feature', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature adds a meta box in the editor which will display suggested tags obtained by comparing your post content with various sources of tags. (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)', 'simpletags' )
+			__( 'This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)', 'simpletags' )
 		),
 		array(
 			'active_manage',
 			__( 'Advanced Manage Terms', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature allows you to edit, merge, delete and add terms for any taxonomy.', 'simpletags' )
+			__( 'This feature allow to edit, merge, delete, add terms for any taxonomy. Please consider the plugin <a href="http://wordpress.org/extend/plugins/term-management-tools/" target="_blank">Term Management Tools</a> if you only need to merge terms.', 'simpletags' )
 		),
 		array(
 			'active_related_posts',
 			__( 'Related posts by terms', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature allows you to display related posts based on terms relation.', 'simpletags' )
+			__( 'This feature allow to display related posts with terms relation. Please consider plugins <a href="http://wordpress.org/extend/plugins/similar-posts/" target="_blank">Similar Posts</a> or <a href="http://wordpress.org/extend/plugins/yet-another-related-posts-plugin/" target="_blank">Yet Another Related Posts Plugin</a> for better results and performance.', 'simpletags' )
 		),
 		array(
 			'active_autotags',
 			__( 'Auto terms posts', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature allow automatically add terms on a post by proceding to a search into content.', 'simpletags' )
+			__( 'This feature allow to add automatically terms on a post by proceding to a search into content.', 'simpletags' )
 		),
 		array(
 			'use_tag_pages',
@@ -63,6 +63,13 @@ return array(
 			'checkbox',
 			'1',
 			__( 'This feature allow page post type to be tagged. This option add pages in tags search. Also add tag management in write page.', 'simpletags' )
+		),
+		array(
+			'use_tracking',
+			__( 'Tracking', 'simpletags' ),
+			'checkbox',
+			'1',
+			__( 'By allowing us to track your usage, we can help you better because we will know with what configuration WordPress, what themes and what extensions we should perform tests', 'simpletags' )
 		),
 		array(
 			'allow_embed_tcloud',
@@ -87,7 +94,7 @@ return array(
 			__( 'Autocompletion Min Chars', 'simpletags' ),
 			'number',
 			'small-text',
-			__( 'You can define how many characters from the autocompletion will be proposed. The default value in TaxoPress 2.0 is 0, prior this version, default parameter was 1.', 'simpletags' )
+			__( 'You can define how many characters from the autocompletion will be proposed. The default value in Simple Tags 2.0 is 0, prior this version, default parameter was 1.', 'simpletags' )
 		),
 		array(
 			'order_click_tags',
@@ -115,7 +122,7 @@ return array(
 			__( 'OpenCalais API Key', 'simpletags' ),
 			'text',
 			'regular-text',
-			__( 'You can create an API key from <a href="https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en">service website</a>', 'simpletags' )
+			__( 'You can create an API key from <a href="http://www.opencalais.com/">service website</a>', 'simpletags' )
 		),
 		array(
 			'alchemy_api',
@@ -205,7 +212,7 @@ return array(
 		),
 		array(
 			'auto_link_exclude',
-			__( 'Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags' ),
+			__( 'Exclude some terms from tag link. For Ads Link substitution, etc.', 'simpletags' ),
 			'text',
 			'regular-text',
 			__( 'Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags' )
@@ -308,7 +315,7 @@ return array(
 			__( 'Tag link format:', 'simpletags' ),
 			'text',
 			'widefat',
-			__( 'You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags' )
+			__( 'You can find markers and explanations <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">in the online documentation.</a>', 'simpletags' )
 		),
 		array(
 			'cloud_limit_qty',
@@ -356,7 +363,7 @@ return array(
 			__( '<strong>Advanced usage</strong>:', 'simpletags' ),
 			'text',
 			'widefat',
-			__( 'You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags' )
+			__( 'You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">documentation</a> for more details.', 'simpletags' )
 		)
 	),
 	'tagspost'       => array(
@@ -391,7 +398,7 @@ return array(
 			__( 'Tag link format:', 'simpletags' ),
 			'text',
 			'widefat',
-			__( 'You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags' )
+			__( 'You can find markers and explanations <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">in the online documentation.</a>', 'simpletags' )
 		),
 		array( 'tt_notagstext', __( 'Text to display if no tags found:', 'simpletags' ), 'text', 'widefat' ),
 		array(
@@ -399,7 +406,7 @@ return array(
 			__( '<strong>Advanced usage</strong>:', 'simpletags' ),
 			'text',
 			'widefat',
-			__( 'You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags' )
+			__( 'You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">documentation</a> for more details.', 'simpletags' )
 		)
 	),
 	'relatedposts'   => array(
@@ -446,7 +453,7 @@ return array(
 			__( 'Post link format:', 'simpletags' ),
 			'text',
 			'widefat',
-			__( 'You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags' )
+			__( 'You can find markers and explanations <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">in the online documentation.</a>', 'simpletags' )
 		),
 		array(
 			'rp_limit_qty',
@@ -471,7 +478,33 @@ return array(
 			__( '<strong>Advanced usage</strong>:', 'simpletags' ),
 			'text',
 			'widefat',
-			__( 'You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags' )
+			__( 'You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="https://github.com/herewithme/simple-tags/wiki/Theme-functions-Integration">documentation</a> for more details.', 'simpletags' )
+		)
+	),
+	'metakeywords'   => array(
+		array(
+			'text_helper',
+			'text_helper',
+			'helper',
+			'',
+			__( 'This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
+			. '<ul style="list-style:square;margin-left:20px;">
+				<li><a href="http://wordpress.org/extend/plugins/seo-ultimate/" target="_blank">SEO Ultimate</a></li>
+				<li><a href="http://wordpress.org/extend/plugins/platinum-seo-pack/" target="_blank">Platinum SEO Pack</a></li>
+				<li><a href="http://wordpress.org/extend/plugins/wordpress-seo/" target="_blank">WordPress SEO by Yoast</a></li>
+			</ul>'
+		)
+	),
+	'relatedtags'    => array(
+		array(
+			'text_helper',
+			'text_helper',
+			'helper',
+			'',
+			__( 'This feature has been removed from Simple Tags because it is not relevant enough and there are better plugins like<br />', 'simpletags' )
+			. '<ul style="list-style:square;margin-left:20px;">
+				<li><a href="http://wordpress.org/extend/plugins/query-multiple-taxonomies/" target="_blank">Query Multiple Taxonomies</a></li>
+			</ul>'
 		)
 	),
 );
