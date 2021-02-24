@@ -22,7 +22,7 @@ Here are some of the key features in TaxoPress:
 * Term suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request
 * Term management. You can rename, delete, merge, search and add terms.
 * Edit mass tags for more than 50 posts at once.
-* Auto link tags in post content.
+* Auto link tags in post content. 
 * Automatically create tags for your content.
 * Tag pages (not only posts) and include them inside the tags results
 * Dynamic Tag Clouds with colors with widgets
@@ -48,7 +48,7 @@ TaxoPress can be installed in 3 easy steps:
 * 1.7 and upper are compatible only with WordPress 2.8, 2.9 !
 * 1.6.7 and before are compatible with WordPress 2.3, 2.5, 2.6, 2.7
 * Before WP 2.3, you must use the plugin Simple Tagging.
-
+ 
 == Screenshots ==
 
 1. A example tag cloud (with dynamic color and size)
