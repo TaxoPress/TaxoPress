@@ -1,15 +1,15 @@
-# Translation of the WordPress plugin Simple Tags 1.7.4 by Amaury BALMER.
-# Copyright (C) 2010 Amaury BALMER
-# This file is distributed under the same license as the Simple Tags package.
+# Translation of the WordPress plugin TaxoPress 1.7.4 by WebFactory Ltd.
+# Copyright (C) 2010 WebFactory Ltd
+# This file is distributed under the same license as the TaxoPress package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Tags 1.7.4\n"
+"Project-Id-Version: TaxoPress 1.7.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2010-01-31 17:45+0000\n"
 "PO-Revision-Date: 2010-02-01 00:42+0100\n"
-"Last-Translator: Amaury Balmer <amaury@wordpress-fr.net>\n"
+"Last-Translator: WebFactory Ltd <support@webfactoryltd.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,8 +28,8 @@ msgid "Steps may take a few minutes depending on the size of your database. Plea
 msgstr "Questi passaggi potrebbero richiedere alcuni minuti in base alla dimensione del database. Attendere prego."
 
 #: extras/simple-tags.importer.php:58
-msgid "Visit the <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visita la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"mailto:amaury@wordpress-fr.net\">scrivimi</a>!"
+msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
+msgstr "Visita la <a href=\"https://wordpress.org/plugins/simple-tags\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">scrivimi</a>!"
 
 #: extras/simple-tags.importer.php:67
 msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
@@ -138,7 +138,7 @@ msgstr "Scegli un provider per ricevere i tag (locale, Yahoo o Tag the net)."
 #: inc/admin.php:182
 #, fuzzy
 msgid "Simple Terms: Manage Terms"
-msgstr "Simple Tags: Gestisci i tag"
+msgstr "TaxoPress: Gestisci i tag"
 
 #: inc/admin.php:182
 #, fuzzy
@@ -148,7 +148,7 @@ msgstr "Gestisci i tag"
 #: inc/admin.php:183
 #, fuzzy
 msgid "Simple Terms: Mass Edit Terms"
-msgstr "Simple Tags: Modifica tutti i tag"
+msgstr "TaxoPress: Modifica tutti i tag"
 
 #: inc/admin.php:183
 #, fuzzy
@@ -158,7 +158,7 @@ msgstr "Modifica tutti i tag"
 #: inc/admin.php:184
 #, fuzzy
 msgid "Simple Terms: Auto Terms"
-msgstr "Simple Tags: Auto tag"
+msgstr "TaxoPress: Auto tag"
 
 #: inc/admin.php:184
 #: inc/admin.php:275
@@ -168,14 +168,14 @@ msgstr "Auto tag"
 
 #: inc/admin.php:185
 #: inc/admin.php:400
-msgid "Simple Tags: Options"
-msgstr "Simple Tags: Opzioni"
+msgid "TaxoPress: Options"
+msgstr "TaxoPress: Opzioni"
 
-#. #-#-#-#-#  plugin.pot (Simple Tags 1.7.4)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (TaxoPress 1.7.4)  #-#-#-#-#
 #. Plugin Name of an extension
 #: inc/admin.php:185
-msgid "Simple Tags"
-msgstr "Simple Tags"
+msgid "TaxoPress"
+msgstr "TaxoPress"
 
 #: inc/admin.php:196
 #, php-format
@@ -193,8 +193,8 @@ msgstr "Opzione Auto tag aggiornata!"
 #: inc/admin.php:276
 #: inc/admin.php:401
 #: inc/admin.php:852
-msgid "Visit the <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visita la <a href=\"http://redmine.beapi.fr/projects/show/simple-tags/\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"mailto:amaury@wordpress-fr.net\">scrivimi</a>!"
+msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
+msgstr "Visita la <a href=\"https://wordpress.org/plugins/simple-tags/\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">scrivimi</a>!"
 
 #: inc/admin.php:280
 #, fuzzy
@@ -203,8 +203,8 @@ msgstr "Lista Auto tag"
 
 #: inc/admin.php:281
 #, fuzzy
-msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, Simple Tags will add automatically \"wordpress\" as term for this post."
-msgstr "Questa funzione permette a Wordpress di cercare nel contenuto di un post e nel titolo per specifici tag quando si salva il post. Se il contenuto del post o il titolo contiene la parola \"WordPress\" e tu hai \"wordpress\" nella lista di auto tag, Simple Tags aggiungerà automaticamente \"wordpress\" come tag per questo post."
+msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress will add automatically \"wordpress\" as term for this post."
+msgstr "Questa funzione permette a Wordpress di cercare nel contenuto di un post e nel titolo per specifici tag quando si salva il post. Se il contenuto del post o il titolo contiene la parola \"WordPress\" e tu hai \"wordpress\" nella lista di auto tag, TaxoPress aggiungerà automaticamente \"wordpress\" come tag per questo post."
 
 #: inc/admin.php:283
 msgid "Options"
@@ -258,8 +258,8 @@ msgstr "Autotagga i vecchi contenuti"
 
 #: inc/admin.php:323
 #, fuzzy
-msgid "Simple Tags can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
-msgstr "Simple Tags può anche taggare tutti i contenuti esistenti del tuo blog. Questa opzione usa la lista di Auto Tag su menzionata."
+msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
+msgstr "TaxoPress può anche taggare tutti i contenuti esistenti del tuo blog. Questa opzione usa la lista di Auto Tag su menzionata."
 
 #: inc/admin.php:326
 #, fuzzy
@@ -276,8 +276,8 @@ msgid "Options saved"
 msgstr "Opzioni salvate"
 
 #: inc/admin.php:394
-msgid "Simple Tags options resetted to default options!"
-msgstr "Le opzioni di default di Simple Tags sono state ripristinate!"
+msgid "TaxoPress options resetted to default options!"
+msgstr "Le opzioni di default di TaxoPress sono state ripristinate!"
 
 #: inc/admin.php:405
 #: inc/admin.php:419
@@ -291,17 +291,17 @@ msgstr "Ripristina opzioni di default"
 
 #: inc/admin.php:436
 #: inc/admin.php:1498
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"mailto:amaury@wordpress-fr.net\">plugin author</a>."
-msgstr "Problema di sicurezza. Prova di nuovo. Se il problema persiste contatta <a href=\"mailto:amaury@wordpress-fr.net\">l'autore del plugin</a>."
+msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
+msgstr "Problema di sicurezza. Prova di nuovo. Se il problema persiste contatta <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">l'autore del plugin</a>."
 
 #: inc/admin.php:471
 #, fuzzy
-msgid "Simple Tags: Manage Terms"
-msgstr "Simple Tags: Gestisci i tag"
+msgid "TaxoPress: Manage Terms"
+msgstr "TaxoPress: Gestisci i tag"
 
 #: inc/admin.php:472
-msgid "Visit the <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"mailto:amaury@wordpress-fr.net\">ask me</a> !"
-msgstr "Visita la <a href=\"http://www.herewithme.fr/wordpress-plugins/simple-tags\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"mailto:amaury@wordpress-fr.net\">scrivimi</a>!"
+msgid "Visit the <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
+msgstr "Visita la <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">pagina del plugin</a> per maggiori dettagli. Se trovi un bug o hai un'idea fantastica per questo plugin <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">scrivimi</a>!"
 
 #: inc/admin.php:476
 msgid "Rename/Merge Terms"
@@ -427,7 +427,7 @@ msgid "Renaming"
 msgstr "Rinomina"
 
 #: inc/admin.php:607
-msgid "Simple Tags don't use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress will keep the two terms with the same name but with a different slug. <br />With Simple Tags, when you edit \"Bloging\" for \"Blogging\", Simple Tags merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term \"Bloging\". Another logic ;)"
+msgid "TaxoPress don't use the same method as WordPress for rename a term. For example, in WordPress you have 2 tags : \"Blogging\" and \"Bloging\". When you want edit the tag \"Bloging\" for rename it on \"Blogging\", WordPress will keep the two terms with the same name but with a different slug. <br />With TaxoPress, when you edit \"Bloging\" for \"Blogging\", TaxoPress merge posts tagged with \"Bloging\" to \"Blogging\" and it delete the term \"Bloging\". Another logic ;)"
 msgstr ""
 
 #: inc/admin.php:640
@@ -566,8 +566,8 @@ msgstr "Nessun contenuto da modificare."
 
 #: inc/admin.php:1055
 #: inc/admin.php:1060
-msgid "Tags (Simple Tags)"
-msgstr "Tag (Simple Tags)"
+msgid "Tags (TaxoPress)"
+msgstr "Tag (TaxoPress)"
 
 #: inc/admin.php:1071
 msgid "Separate tags with commas"
@@ -724,7 +724,7 @@ msgid "%s post(s) terms updated with success !"
 msgstr "%s tag dei post aggiornati con successo!"
 
 #: inc/admin.php:1593
-msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: inc/admin.php:1601
@@ -742,7 +742,7 @@ msgid "No results from OpenCalais service."
 msgstr "Nessun risultato dal servizio di Yahoo."
 
 #: inc/admin.php:1644
-msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: inc/admin.php:1677
@@ -751,7 +751,7 @@ msgid "No results from Alchemy API."
 msgstr "Nessun risultato dal servizio di Yahoo."
 
 #: inc/admin.php:1698
-msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on Simple Tags options."
+msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: inc/admin.php:1733
@@ -780,8 +780,8 @@ msgstr "Nessun risultato dal tuo database di Wordpress."
 
 #: inc/admin.php:1982
 #, php-format
-msgid "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Version %s"
-msgstr "&copy; Copyright 2010 <a href=\"http://www.herewithme.fr/\" title=\"Here With Me\">Amaury Balmer</a> | <a href=\"http://wordpress.org/extend/plugins/simple-tags\">Simple Tags</a> | Versione %s"
+msgid "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
+msgstr "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Versione %s"
 
 #: inc/admin.php:2075
 msgid "Administration"
@@ -870,7 +870,7 @@ msgid "OpenCalais API Key"
 msgstr ""
 
 #: inc/array.options.php:22
-msgid "You can create an API key from <a href=\"http://www.opencalais.com/\">service website</a>"
+msgid "You can create an API key from <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en\">service website</a>"
 msgstr ""
 
 #: inc/array.options.php:23
@@ -922,7 +922,7 @@ msgid "Example: If you ignore case, auto link feature will replace the word \"wo
 msgstr "Esempio: se ignori maiuscole/minuscole l'opzione autolink rimpiazzerà la parola \"wordpress\" con il collegamenteo al tag \"Wordpress\"."
 
 #: inc/array.options.php:37
-msgid "Exclude some terms from tag link. For Ads Link substitution, etc."
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
 msgstr "Escludi alcuni termini dal tag link. Per sostituzioni di link, etc."
 
 #: inc/array.options.php:38
@@ -1042,8 +1042,8 @@ msgstr "Formato dei collegamenti ai tag:"
 #: inc/array.options.php:129
 #: inc/array.options.php:147
 #: inc/array.options.php:186
-msgid "You can find markers and explanations <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">in the online documentation.</a>"
-msgstr "Poi trovare i marker e le istruzioni <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">nella documentazione on-line</a>."
+msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
+msgstr "Poi trovare i marker e le istruzioni <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">nella documentazione on-line</a>."
 
 #: inc/array.options.php:74
 msgid "Text to display if no tags found:"
@@ -1057,8 +1057,8 @@ msgid "<strong>Advanced usage</strong>:"
 msgstr "<strong>Uso avanzato</strong>:"
 
 #: inc/array.options.php:76
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi della funzione <code>st_the_tags()</code> per personalizare la visualizzazione. Vai alla <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_the_tags()</code> per personalizare la visualizzazione. Vai alla <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentazione</a> per maggiori dettagli."
 
 #: inc/array.options.php:79
 msgid "Automatically display related posts into feeds"
@@ -1122,8 +1122,8 @@ msgid "Enter the positioned title before the list, leave blank for no title:"
 msgstr "Inserisci il titolo da posizionare prima della lista, lascia vuoto per nessun titolo:"
 
 #: inc/array.options.php:106
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi della funzione <code>st_related_posts()</code> per personalizzare la visualizzazione. Vai alla <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_related_posts()</code> per personalizzare la visualizzazione. Vai alla <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentazione</a> per maggiori dettagli."
 
 #: inc/array.options.php:109
 msgid "Maximum number of related tags to display: (default: 5)"
@@ -1187,8 +1187,8 @@ msgid "Enter the text to show when there is no related tags:"
 msgstr "Inserire il testo da mostrare quando non ci sono tag correlati:"
 
 #: inc/array.options.php:135
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi della funzione <code>st_related_tags()</code> per personalizzare la visualizzazione. Controlla la <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_related_tags()</code> per personalizzare la visualizzazione. Controlla la <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentazione</a> per maggiori dettagli."
 
 #: inc/array.options.php:137
 msgid "Remove related Tags"
@@ -1320,8 +1320,8 @@ msgid "The font size units option determines the units that the two font sizes u
 msgstr "Il tipo di unita di misura del carattere determina l'unità di misura che i due caratteri usano."
 
 #: inc/array.options.php:199
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"http://redmine.beapi.fr/wiki/simple-tags/Theme_integration\">documentation</a> for more details."
-msgstr "Puoi usare la stessa sintassi della funzione <code>st_tag_cloud()</code> per personalizzare la visualizzazione. Controla nella <a href=\"http://code.google.com/p/simple-tags/wiki/ThemeIntegration\">documentazione</a> per maggiori dettagli."
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr "Puoi usare la stessa sintassi della funzione <code>st_tag_cloud()</code> per personalizzare la visualizzazione. Controla nella <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentazione</a> per maggiori dettagli."
 
 #: inc/base.php:122
 #: inc/client.php:459
@@ -1433,8 +1433,8 @@ msgid "Invalid Taxonomy"
 msgstr "Classificazione non valida"
 
 #: inc/widgets.php:10
-msgid "Tag Cloud (Simple Tags)"
-msgstr "Tag Cloud (Simple Tags)"
+msgid "Tag Cloud (TaxoPress)"
+msgstr "Tag Cloud (TaxoPress)"
 
 #: inc/widgets.php:11
 msgid "Your most used tags in cloud format with dynamic color and many options"
@@ -1558,7 +1558,7 @@ msgid "Extended format: (advanced usage)"
 msgstr "Formato esteso: (utilizzo avanzato)"
 
 #. Plugin URI of an extension
-msgid "http://wordpress.org/extend/plugins/simple-tags"
+msgid "https://wordpress.org/plugins/simple-tags/"
 msgstr ""
 
 #. Description of an extension
@@ -1566,11 +1566,11 @@ msgid "Extended Tagging for WordPress 2.8 and 2.9 ! Autocompletion, Suggested Ta
 msgstr ""
 
 #. Author of an extension
-msgid "Amaury BALMER"
+msgid "WebFactory Ltd"
 msgstr ""
 
 #. Author URI of an extension
-msgid "http://www.herewithme.fr"
+msgid "https://www.webfactoryltd.com"
 msgstr ""
 
 #~ msgid "Most popular"

@@ -21,7 +21,7 @@ class SimpleTags_Client_TagCloud {
 	 * @return string
 	 */
 	public static function shortcode( $atts ) {
-		$atts = shortcode_atts( array( 'param' => '' ), $atts );
+        $atts = shortcode_atts( array( 'param' => '' ), $atts );
 		extract( $atts );
 
 		$param = html_entity_decode( $param );
@@ -133,7 +133,7 @@ class SimpleTags_Client_TagCloud {
 			$args['category'] = implode( ",", $category );
 		}
 
-		// Get correct taxonomy ?
+        // Get correct taxonomy ?
 		$taxonomy = self::_get_current_taxonomy( $args['taxonomy'] );
 
 		// Get terms
@@ -235,7 +235,7 @@ class SimpleTags_Client_TagCloud {
 	 * @param boolean $force_single
 	 *
 	 * @return array|string
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function _get_current_taxonomy( $taxonomies, $force_single = false ) {
 		if ( is_array( $taxonomies ) ) {
@@ -288,13 +288,13 @@ class SimpleTags_Client_TagCloud {
 	}
 
 	/**
-	 * Helper public static function for keep compatibility with old options simple tags widgets
+	 * Helper public static function for keep compatibility with old options TaxoPress widgets
 	 *
 	 * @param string $old_value
 	 * @param string $key
 	 *
 	 * @return string
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function compatOldOrder( $old_value = '', $key = '' ) {
 		$return = array();
@@ -375,7 +375,7 @@ class SimpleTags_Client_TagCloud {
 			'pad_counts'    => false,
 			'offset'        => '',
 			'search'        => '',
-			// Simple tags added
+			// TaxoPress added
 			'limit_days'    => 0,
 			'category'      => 0,
 			'min_usage'     => 0,
@@ -629,14 +629,16 @@ class SimpleTags_Client_TagCloud {
 		// Add inner to relation table ?
 		$join_relation = $join_relation == false ? '' : "INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id";
 
-		$query = "SELECT $select_this
+    // Query parts are individually escaped above, $taxonomies are individually checked if they exists
+		$query = $wpdb->prepare("SELECT $select_this
 			FROM $wpdb->terms AS t
 			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
 			$join_relation
-			WHERE tt.taxonomy IN ($in_taxonomies)
+			WHERE 1 = %d AND tt.taxonomy IN ($in_taxonomies)
 			$where
 			$orderby $order
-			$limit";
+      $limit",
+      1);
 		// GROUP BY t.term_id
 
 		if ( 'count' == $fields ) {

@@ -2,6 +2,8 @@
 
 class SimpleTags_Admin_Mass {
 
+	const MENU_SLUG = 'st_options';
+
 	/**
 	 * SimpleTags_Admin_Mass constructor.
 	 */
@@ -20,13 +22,20 @@ class SimpleTags_Admin_Mass {
 	 * Add WP admin menu for Tags
 	 *
 	 * @return void
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function admin_menu() {
-		add_management_page( __( 'Simple Terms: Mass Edit Terms', 'simpletags' ), __( 'Mass Edit Terms', 'simpletags' ), 'simple_tags', 'st_mass_terms', array(
-			__CLASS__,
-			'pageMassEditTags',
-		) );
+		add_submenu_page(
+			self::MENU_SLUG,
+			__( 'Simple Terms: Mass Edit Terms', 'simpletags' ),
+			__( 'Mass Edit Terms', 'simpletags' ),
+			'simple_tags',
+			'st_mass_terms',
+			array(
+				__CLASS__,
+				'pageMassEditTags',
+			)
+		);
 	}
 
 	/**
@@ -46,7 +55,7 @@ class SimpleTags_Admin_Mass {
 		if ( isset( $_POST['update_mass'] ) ) {
 			// origination and intention
 			if ( ! ( wp_verify_nonce( $_POST['secure_mass'], 'st_mass_terms' ) ) ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="mailto:amaury@wordpress-fr.net">plugin author</a>.', 'simpletags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simpletags' ), 'error' );
 
 				return false;
 			}
@@ -103,14 +112,15 @@ class SimpleTags_Admin_Mass {
 				<input type="hidden" name="taxo" value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
 				<input type="hidden" name="cpt" value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-				<h2><?php _e( 'Mass edit terms', 'simpletags' ); ?></h2>
+        <h2><?php _e( 'Mass edit terms', 'simpletags' ); ?></h2>
+      <br>
 
 				<ul class="subsubsub">
 					<?php
 					$status_links   = array();
 					$num_posts      = wp_count_posts( SimpleTags_Admin::$post_type, 'readable' );
 					$class          = ( empty( $_GET['post_status'] ) && empty( $_GET['post_type'] ) ) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="' . admin_url( 'tools.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . __( 'All', 'simpletags' ) . '</a>';
+					$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . __( 'All', 'simpletags' ) . '</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 
@@ -125,7 +135,7 @@ class SimpleTags_Admin_Mass {
 							$class = ' class="current"';
 						}
 
-						$status_links[] = '<li><a href="' . admin_url( 'tools.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;post_status=' . $status . '"' . $class . '>' . sprintf( _n( $label[2][0], $label[2][1], (int) $num_posts->$status ), number_format_i18n( $num_posts->$status ) ) . '</a>';
+						$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;post_status=' . $status . '"' . $class . '>' . sprintf( _n( $label[2][0], $label[2][1], (int) $num_posts->$status ), number_format_i18n( $num_posts->$status ) ) . '</a>';
 					}
 					echo implode( ' |</li>', $status_links ) . '</li>';
 					unset( $status_links );
@@ -273,7 +283,6 @@ class SimpleTags_Admin_Mass {
 
 				<?php endif; ?>
 
-			<p><?php _e( 'Visit the <a href="https://github.com/herewithme/simple-tags">plugin\'s homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href="mailto:amaury@wordpress-fr.net">ask me</a> !', 'simpletags' ); ?></p>
 			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
 		<?php
@@ -286,7 +295,7 @@ class SimpleTags_Admin_Mass {
 	 * @param bool $q
 	 *
 	 * @return array
-	 * @author Amaury Balmer
+	 * @author WebFactory Ltd
 	 */
 	public static function edit_data_query( $q = false ) {
 		if ( false === $q ) {
