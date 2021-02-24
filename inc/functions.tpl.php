@@ -5,7 +5,7 @@
  * @param string $args
  *
  * @return string
- * @author Amaury Balmer
+ * @author WebFactory Ltd
  */
 function st_get_tag_cloud( $args = '' ) {
 	return SimpleTags_Client_TagCloud::extendedTagCloud( $args );
@@ -17,7 +17,7 @@ function st_get_tag_cloud( $args = '' ) {
  * @param string $args
  *
  * @return void
- * @author Amaury Balmer
+ * @author WebFactory Ltd
  */
 function st_tag_cloud( $args = '' ) {
 	echo st_get_tag_cloud( $args );
@@ -29,7 +29,7 @@ function st_tag_cloud( $args = '' ) {
  * @param string $args
  *
  * @return string
- * @author Amaury Balmer
+ * @author WebFactory Ltd
  */
 function st_get_the_tags( $args = '' ) {
 	if ( class_exists( 'SimpleTags_Client_PostTags' ) ) {
@@ -45,7 +45,7 @@ function st_get_the_tags( $args = '' ) {
  * @param string $args
  *
  * @return void
- * @author Amaury Balmer
+ * @author WebFactory Ltd
  */
 function st_the_tags( $args = '' ) {
 	echo st_get_the_tags( $args );
@@ -57,7 +57,7 @@ function st_the_tags( $args = '' ) {
  * @param string $args
  *
  * @return string|array
- * @author Amaury Balmer
+ * @author WebFactory Ltd
  */
 function st_get_related_posts( $args = '' ) {
 	if ( class_exists( 'SimpleTags_Client_RelatedPosts' ) ) {
@@ -73,7 +73,7 @@ function st_get_related_posts( $args = '' ) {
  * @param string $args
  *
  * @return void
- * @author Amaury Balmer
+ * @author WebFactory Ltd
  */
 function st_related_posts( $args = '' ) {
 	echo st_get_related_posts( $args );
