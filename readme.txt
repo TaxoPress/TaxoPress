@@ -60,7 +60,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.0 - 2021-02-24
+v3.0.0 - 2021-02-24
 * Enable 'Advanced Manage Terms', 'Related posts by terms' and 'Tag cloud Shortcode' by default
 * Removed review request box and link
 * Fixed metabox showing up empty if not used
