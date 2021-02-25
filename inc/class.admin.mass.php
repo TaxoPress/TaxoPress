@@ -238,7 +238,7 @@ class SimpleTags_Admin_Mass {
 			<?php if ( have_posts() ) :
 				add_filter( 'the_title', 'esc_html' );
 				?>
-				<form name="post" id="post" method="post">
+				<form name="post" id="post" method="post" class="st-mass-edit">
 					<table class="widefat post fixed">
 						<thead>
 						<tr>

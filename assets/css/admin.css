@@ -22,6 +22,9 @@
 
 /* Mass Edit Tags   */
 .st_wrap input.tags_input{width:90%;margin:3px 0 8px;padding:3px 10px;}
+.st-mass-edit input.tags_input{
+  width: -webkit-fill-available !important;
+}
 
 /* Suggested Click Tags   */
 a#open_clicktags,a#close_clicktags{font-weight:700;color:red;border:0;text-decoration:none;display:block;margin-bottom:5px;}
