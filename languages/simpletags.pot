@@ -22,7 +22,7 @@ msgid "Tags (TaxoPress)"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:27
-msgid "Simple Terms: Auto Terms"
+msgid "TaxoPress: Auto Terms"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:27
@@ -30,17 +30,16 @@ msgid "Auto Terms"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:91
-msgid "Auto terms options updated !"
+msgid "Auto terms options successfully updated!"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:108
-msgid "Overview"
+msgid "Overview for Auto Terms"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:109
 msgid ""
-"The bulb are lit when the association taxonomy and custom post type have the "
-"classification automatic activated. Otherwise, the bulb is off."
+"If the bulb is yellow, this means the taxonomy and custom post type are using Auto Tags. If the bulb is white, Auto Tags are not enabled."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:114 ../inc/class.admin.autoterms.php:129
@@ -61,15 +60,15 @@ msgid "Auto Terms for %s and %s"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:195
-msgid "Auto terms list"
+msgid "Settings for Auto Terms"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:196
 msgid ""
-"This feature allows Wordpress to look into post content and title for "
-"specified terms when saving posts. If your post content or title contains "
-"the word \"WordPress\" and you have \"wordpress\" in auto terms list, Simple "
-"Tags will add automatically \"wordpress\" as term for this post."
+"This feature will automatically add specified terms to your content."
+"For example, you can choose \"wordpress\" on this screen.
+"If your post content or title contains the word \"WordPress\"
+"TaxoPress will add automatically \"wordpress\" as a term for that post."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:198
@@ -77,7 +76,7 @@ msgid "Options"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:204
-msgid "Activation"
+msgid "Enable Auto Terms"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:208
@@ -90,62 +89,60 @@ msgstr ""
 
 #: ../inc/class.admin.autoterms.php:217
 msgid ""
-"Use also local terms database with auto terms. (Warning, this option can "
+"Use also local terms database with Auto Terms. (Warning, this option can "
 "increases the CPU consumption a lot if you have many terms)"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:221
-msgid "Target"
+msgid "Restrict the use of Auto Terms?"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:226
-msgid "Autotag only posts without terms."
+msgid "Only usee Auto Terms for posts with no terms."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:230
-msgid "Whole Word ?"
+msgid "Whole Word?"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:235
 msgid ""
-"Autotag only a post when terms finded in the content are a the same name. "
-"(whole word only)"
+"Only add a term if the Auto Terms keyword exactly matches the word in the content"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:239
-msgid "Suport Hashtag format ?"
+msgid "Suport Hashtag format?"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:244
 msgid ""
-"When the whole word option is enabled, hashtag will not be autotag because "
-"of # prefix. This option allow to fixed this issue!"
+"When the whole word option is enabled, any words using a hashtag will skipped. This option provides a fix for this issue."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:248
-msgid "Keywords list"
+msgid "Choose the terms to use with Auto Terms:"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:253
-msgid "Separated with a comma"
+msgid "Terms are separated with a comma"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:261 ../views/admin/page-settings.php:44
-msgid "Update options &raquo;"
+msgid "Update Auto Terms options &raquo;"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:265
-msgid "Auto terms old content"
+msgid "Add Auto Terms for existing content"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:267
 msgid ""
-"TaxoPress can also tag all existing contents of your blog. This feature "
-"use auto terms list above-mentioned."
+"TaxoPress can also tag all the existing content on your site. This feature "
+"uses the auto terms list above-mentioned."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:271
-msgid "Auto terms all content &raquo;"
+msgid "Add Auto Terms for existing content &raquo;"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:294
@@ -172,19 +169,19 @@ msgid ""
 msgstr ""
 
 #: ../inc/class.admin.clickterms.php:44
-msgid "Display click tags"
+msgid "Display the Click Tags box"
 msgstr ""
 
 #: ../inc/class.admin.clickterms.php:45
-msgid "Hide click tags"
+msgid "Hide the Click Tags box"
 msgstr ""
 
 #: ../inc/class.admin.clickterms.php:69 ../inc/class.admin.clickterms.php:82
-msgid "Click tags"
+msgid "Click to see Tags"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:43
-msgid "Simple Terms: Manage Terms"
+msgid "TaxoPress: Manage Terms"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:43
@@ -193,13 +190,13 @@ msgstr ""
 
 #: ../inc/class.admin.manage.php:60 ../inc/class.admin.mass.php:49
 msgid ""
-"Security problem. Try again. If this problem persist, contact <a href="
+"Security problem. Please try again, and if this problem persists, contact <a href="
 "\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:64
 msgid ""
-"Missing valid taxonomy for work... Try again. If this problem persist, "
+"Missing valid taxonomy. Please try again, and if this problem persists, "
 "contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
 msgstr ""
 
@@ -208,7 +205,7 @@ msgid "TaxoPress: Manage Terms"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:112
-msgid "Click terms list:"
+msgid "Click Terms list:"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:124
@@ -224,7 +221,7 @@ msgid "Alphabetical (default)"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:130
-msgid "Inverse Alphabetical"
+msgid "Reverse Alphabetical"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:132 ../inc/class.widgets.php:243
@@ -236,7 +233,7 @@ msgid "Sort"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:157
-msgid "Rename/Merge Terms"
+msgid "Rename and / or Merge Terms"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:159
@@ -290,15 +287,14 @@ msgstr ""
 
 #: ../inc/class.admin.manage.php:234
 msgid ""
-"This feature lets you add one or more new terms to all posts which match any "
-"of the terms given."
+"This feature lets you add terms to multiple posts."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:236
 msgid ""
-"You can specify multiple terms to add by separating them with commas.  If "
-"you want the term(s) to be added to all posts, then don't specify any terms "
-"to match."
+"You can specify terms to add by separating them with commas. "
+"If you want the terms to be added to all posts, then don't specify any terms to match."
+"If you want the terms to be added to only to posts with a specific term, enter that term in the first field."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:250
@@ -314,7 +310,7 @@ msgid "Add"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:272
-msgid "Remove rarely used terms"
+msgid "Remove Rarely Used Terms"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:274
@@ -323,17 +319,15 @@ msgstr ""
 
 #: ../inc/class.admin.manage.php:276
 msgid ""
-"You can specify the number below which will be removed terms. If you put 5, "
-"all terms with a counter inferior to 5 will be deleted. The terms with a "
-"counter equal to 5 is keep."
+"If you choose 5, all terms with less than 5 uses will be deleted."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:290
-msgid "Numbers minimum:"
+msgid "Choose number. Any terms with fewer uses will be deleted:"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:300
-msgid "Delete rarely used"
+msgid "Delete"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:342
@@ -360,7 +354,7 @@ msgid "No new term specified!"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:387
-msgid "No new/old valid term specified!"
+msgid "No valid terms specified!"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:434
@@ -373,7 +367,7 @@ msgid "Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:442
-msgid "No valid new term."
+msgid "No valid new terms."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:459
@@ -391,7 +385,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/class.admin.manage.php:493
-msgid "Error. No enough terms for rename. Too for merge. Choose !"
+msgid "Error. Not enough terms for renaming. Too many for merging."
 msgstr ""
 
 #: ../inc/class.admin.manage.php:510
@@ -421,7 +415,7 @@ msgid "Term(s) added to %1s post(s)."
 msgstr ""
 
 #: ../inc/class.admin.mass.php:26
-msgid "Simple Terms: Mass Edit Terms"
+msgid "TaxoPress: Mass Edit Terms"
 msgstr ""
 
 #: ../inc/class.admin.mass.php:26
@@ -524,7 +518,7 @@ msgid "Posts"
 msgstr ""
 
 #: ../inc/class.admin.php:259
-msgid "This custom post type not have taxonomies."
+msgid "This custom post type does not have taxonomies."
 msgstr ""
 
 #: ../inc/class.admin.php:276
@@ -551,24 +545,24 @@ msgid "Options saved"
 msgstr ""
 
 #: ../inc/class.admin.php:403
-msgid "TaxoPress options resetted to default options!"
+msgid "TaxoPress options are now reset to the defaults!"
 msgstr ""
 
 #: ../inc/class.admin.php:446
-msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
+msgid "This feature requires at least one tag to work. Please begin by adding tags!"
 msgstr ""
 
 #: ../inc/class.admin.php:448
 msgid ""
 "This feature works only with activated JavaScript. Activate it in your Web "
-"browser so you can!"
+"browser."
 msgstr ""
 
 #: ../inc/class.admin.php:460
 #, php-format
 msgid ""
-"&copy; Copyright 2007-2020 <a href=\"https://www.webfactoryltd.com/\" title="
-">WebFactory Ltd</a> | <a href=\"http://wordpress.org/"
+"&copy; Copyright 2007-2020 <a href=\"https://www.taxopress.com/\" title="
+">TaxoPress</a> | <a href=\"http://wordpress.org/"
 "plugins/simple-tags\">TaxoPress</a> | Version %s"
 msgstr ""
 
@@ -613,15 +607,15 @@ msgid "TaxoPress - Settings"
 msgstr ""
 
 #: ../inc/class.admin.post.php:53
-msgid "Disable auto tags ?"
+msgid "Disable auto tags?"
 msgstr ""
 
 #: ../inc/class.admin.post.php:62
-msgid "Disable auto links ?"
+msgid "Disable auto links?"
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:37
-msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
+msgid "Choose a provider to get suggested tags"
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:55
@@ -629,7 +623,7 @@ msgid "Ajax loading"
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:56
-msgid "Suggested tags from :"
+msgid "Suggested tags from:"
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:57
@@ -670,7 +664,7 @@ msgstr ""
 
 #: ../inc/class.admin.suggest.php:146
 msgid ""
-"OpenCalais need an API key to work. You can register on service website to "
+"OpenCalais needs an API key to work. You can register on their website to "
 "obtain a key and set it on TaxoPress options."
 msgstr ""
 
@@ -682,22 +676,22 @@ msgid "No text was sent."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:184
-msgid "No results from OpenCalais service."
+msgid "No results from the OpenCalais service."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:209
 msgid ""
-"AlchemyAPI need an API key to work. You can register on service website to "
+"AlchemyAPI needs an API key to work. You can register on their website to "
 "obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:245
-msgid "No results from Alchemy API."
+msgid "No results from the Alchemy API."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:266
 msgid ""
-"Zemanta need an API key to work. You can register on service website to "
+"Zemanta needs an API key to work. You can register on their website to "
 "obtain a key and set it on TaxoPress options."
 msgstr ""
 
@@ -707,13 +701,13 @@ msgstr ""
 
 #: ../inc/class.admin.suggest.php:342
 msgid ""
-"dataTXT needs an API ID to work. You can register on service website to "
+"dataTXT needs an API ID to work. You can register on their website to "
 "obtain a key and set it on TaxoPress options."
 msgstr ""
 
 #: ../inc/class.admin.suggest.php:348
 msgid ""
-"dataTXT needs an API key to work. You can register on service website to "
+"dataTXT needs an API key to work. You can register on their website to "
 "obtain a key and set it on TaxoPress options."
 msgstr ""
 
@@ -727,7 +721,7 @@ msgstr ""
 
 #: ../inc/class.admin.suggest.php:402
 msgid ""
-"Tag4Site need an API key to work. You can register on service website to "
+"Tag4Site needs an API key to work. You can register on their website to "
 "obtain a key and set it on TaxoPress options."
 msgstr ""
 
@@ -758,7 +752,7 @@ msgstr ""
 
 #: ../inc/class.admin.suggest.php:564
 msgid ""
-"Proxem API need an API key to work. You can register on service website to "
+"Proxem API needs an API key to work. You can register on service website to "
 "obtain a key and set it on TaxoPress options."
 msgstr ""
 
@@ -781,7 +775,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/class.client.post_tags.php:112
-msgid "No tag for this post."
+msgid "No tags for this post."
 msgstr ""
 
 #: ../inc/class.client.related_posts.php:100
@@ -829,7 +823,7 @@ msgid "Tag Cloud (TaxoPress)"
 msgstr ""
 
 #: ../inc/class.widgets.php:18
-msgid "Your most used tags in cloud format with dynamic color and many options"
+msgid "Your most used tags in a cloud display"
 msgstr ""
 
 #: ../inc/class.widgets.php:85
@@ -837,7 +831,7 @@ msgid "Tags"
 msgstr ""
 
 #: ../inc/class.widgets.php:209
-msgid "Empty field will use default value."
+msgid "Any empty fields will use the default values."
 msgstr ""
 
 #: ../inc/class.widgets.php:213
@@ -845,7 +839,7 @@ msgid "Title:"
 msgstr ""
 
 #: ../inc/class.widgets.php:222
-msgid "Max tags to display: (default: 45)"
+msgid "Maximum number of tags to display:"
 msgstr ""
 
 #: ../inc/class.widgets.php:231
@@ -897,11 +891,11 @@ msgid "Order for display tags:"
 msgstr ""
 
 #: ../inc/class.widgets.php:291
-msgid "Font size mini: (default: 8)"
+msgid "Minimum font size:"
 msgstr ""
 
 #: ../inc/class.widgets.php:300
-msgid "Font size max: (default: 22)"
+msgid "Maximum font size:"
 msgstr ""
 
 #: ../inc/class.widgets.php:309
@@ -909,7 +903,7 @@ msgid "Unit font size:"
 msgstr ""
 
 #: ../inc/class.widgets.php:313
-msgid "Point (default)"
+msgid "Point"
 msgstr ""
 
 #: ../inc/class.widgets.php:315
@@ -929,7 +923,7 @@ msgid "Format:"
 msgstr ""
 
 #: ../inc/class.widgets.php:330
-msgid "Flat (default)"
+msgid "Flat"
 msgstr ""
 
 #: ../inc/class.widgets.php:332
@@ -941,11 +935,11 @@ msgid "Use auto color cloud:"
 msgstr ""
 
 #: ../inc/class.widgets.php:348
-msgid "Font color mini: (default: #CCCCCC)"
+msgid "Font color minimum:"
 msgstr ""
 
 #: ../inc/class.widgets.php:357
-msgid "Font color max: (default: #000000)"
+msgid "Font color maximum:"
 msgstr ""
 
 #: ../inc/class.widgets.php:366 ../inc/helper.options.admin.php:315
@@ -962,29 +956,29 @@ msgid "What to show"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:6
-msgid "Auto links tags"
+msgid "Enable the Auto Links feature?"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:9
 msgid ""
-"Example: You have a tag called \"WordPress\" and your post content contains "
-"\"wordpress\", this feature will replace \"wordpress\" by a link to "
-"\"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+"Example: If you have a tag called \"WordPress\" and your post content contains "
+"\"WordPress\", this feature will replace \"WordPress\" with a link to the"
+"\"WordPress\" tags page. (http://myblog.net/tag/wordpress/)"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:16
 msgid ""
-"This feature allow to edit terms of any taxonomy for many posts per page."
+"This features allow to edit terms of any taxonomy for many posts per page."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:20
-msgid "Click tags feature"
+msgid "Enable the Click tags feature?"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:23
 msgid ""
 "This feature add a link allowing you to display all the tags of your "
-"database. Once displayed, you can click over to add tags to post."
+"database. Once displayed, you can easily click to add tags to post."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:27
@@ -998,7 +992,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:34
-msgid "Suggested tags feature"
+msgid "Enable the Suggested Tags feature"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:37
@@ -1009,7 +1003,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:41
-msgid "Advanced Manage Terms"
+msgid "Enable the Manage Terms feature?"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:44
@@ -1021,20 +1015,16 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:48
-msgid "Related posts by terms"
+msgid "Enable the Related Posts feature?"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:51
 msgid ""
-"This feature allow to display related posts with terms relation. Please "
-"consider plugins <a href=\"http://wordpress.org/plugins/similar-posts/"
-"\" target=\"_blank\">Similar Posts</a> or <a href=\"http://wordpress.org/"
-"extend/plugins/yet-another-related-posts-plugin/\" target=\"_blank\">Yet "
-"Another Related Posts Plugin</a> for better results and performance."
+"This feature allow to display related posts based on their common terms."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:55
-msgid "Auto terms posts"
+msgid "Enable the Auto Terms feature?"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:58
@@ -1044,7 +1034,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:62
-msgid "Tags for page"
+msgid "Enable Tags for Pages"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:65
@@ -1061,14 +1051,14 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:76
-msgid "Tag cloud Shortcode"
+msgid "Tag Cloud shortcode"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:79
 msgid ""
 "Enabling this will allow Wordpress to look for tag cloud shortcode "
 "<code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying "
-"posts. WordPress replace this shortcode by a tag cloud."
+"posts. WordPress replace this shortcode with a tag cloud."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:85
@@ -1084,7 +1074,7 @@ msgid "<code>input</code> &ndash; Text input, only one line. (default)"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:94
-msgid "Autocompletion Min Chars"
+msgid "Autocompletion Minimum Characterss"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:97
@@ -1111,7 +1101,7 @@ msgid "<code>name-asc</code> &ndash; Alphabetical. (default)"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:107 ../inc/helper.options.admin.php:447
-msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgid "<code>name-desc</code> &ndash; Reverse Alphabetical."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:108 ../inc/helper.options.admin.php:273
@@ -1120,15 +1110,15 @@ msgid "<code>random</code> &ndash; Random."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:113
-msgid "Click tags - Post edition default visibility"
+msgid "Visibility for the Click Tags feature"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:116
-msgid "Hidden, you must click on display tags. (default)"
+msgid "Hidden, you must click to display Tags."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:117
-msgid "Displayed, you can not hide them."
+msgid "Visible: Tags are shown by default."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:122
@@ -1313,7 +1303,7 @@ msgstr ""
 
 #: ../inc/helper.options.admin.php:258
 msgid ""
-"Which difference between <strong>&#8216;Order tags selection&#8217;</strong> "
+"What is difference between <strong>&#8216;Order tags selection&#8217;</strong> "
 "and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
 msgstr ""
 
@@ -1331,15 +1321,15 @@ msgstr ""
 
 #: ../inc/helper.options.admin.php:263
 msgid ""
-"<strong>Example:</strong> You want display randomly the 100 tags most "
-"popular.<br />"
+"<strong>Example:</strong> You want to randomly display the 100 most popular "
+"tags.<br />"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:264
 msgid ""
 "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</"
-"strong> for retrieve the 100 tags most popular and &#8216;Order tags "
-"display&#8217; to <strong>random</strong> for randomize cloud."
+"strong> to retrieve the 100 tags most popular and &#8216;Order tags "
+"display&#8217; to <strong>random</strong>."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:268
@@ -1397,13 +1387,12 @@ msgstr ""
 #: ../inc/helper.options.admin.php:318 ../inc/helper.options.admin.php:401
 #: ../inc/helper.options.admin.php:456
 msgid ""
-"You can find markers and explanations <a href=\"https://github.com/"
-"WebFactoryLtd/simple-tags/wiki/Theme-functions-Integration\">in the online "
+"You can find markers and explanations <a href=\"https://taxopress.com/docs/">in the online "
 "documentation.</a>"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:322
-msgid "Maximum number of tags to display: (default: 45)"
+msgid "Maximum number of tags to display:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:328
@@ -1411,7 +1400,7 @@ msgid "Enter the text to show when there is no tag:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:334 ../inc/helper.options.admin.php:472
-msgid "Enter the positioned title before the list, leave blank for no title:"
+msgid "Enter the title to show before the list. Leave blank for no title."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:340
@@ -1420,8 +1409,8 @@ msgstr ""
 
 #: ../inc/helper.options.admin.php:343
 msgid ""
-"The colours are hexadecimal colours,  and need to have the full six digits "
-"(#eee is the shorthand version of #eeeeee)."
+"The colors are hexadecimal colors, and need to have the full six digits "
+""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:345
@@ -1429,19 +1418,19 @@ msgid "Least popular color:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:348
-msgid "Most popular font size:"
+msgid "Font size for most popular tags:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:351
-msgid "The two font sizes are the size of the largest and smallest tags."
+msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:353
-msgid "Least popular font size:"
+msgid "Font size for the least popular tags:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:356
-msgid "The units to display the font sizes with, on tag clouds:"
+msgid "The units to display the font sizes with:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:359
@@ -1463,7 +1452,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:370
-msgid "Automatically display tags list into feeds"
+msgid "Automatically display tags list into RSS feeds"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:373
@@ -1479,7 +1468,7 @@ msgid "<code>blogonly</code> &ndash; Only on your blog."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:379 ../inc/helper.options.admin.php:430
-msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgid "<code>homeonly</code> &ndash; Only on your homepage."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:380 ../inc/helper.options.admin.php:431
@@ -1496,7 +1485,7 @@ msgid "<code>pageonly</code> &ndash; Only on your page view."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:385
-msgid "Post tag separator string:"
+msgid "Post tag separator:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:386
@@ -1508,26 +1497,25 @@ msgid "Text to display after tags list:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:390
-msgid "Max tags display:"
+msgid "Maximum number of tags to display:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:393
-msgid "You must set zero (0) for display all tags."
+msgid "You must set zero (0) to display all tags."
 msgstr ""
 
 #: ../inc/helper.options.admin.php:395
-msgid "Include categories in result ?"
+msgid "Include Categories in output?"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:403
-msgid "Text to display if no tags found:"
+msgid "Text to display if no tags are found:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:409
 msgid ""
 "You can use the same syntax as <code>st_the_tags()</code> public static "
-"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
-"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"function to customize display. See <a href=\"https://taxopress.com/docs/">documentation</a> for more "
 "details."
 msgstr ""
 
@@ -1542,7 +1530,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/helper.options.admin.php:420
-msgid "Automatically display related posts into feeds"
+msgid "Automatically display related posts into RSS feeds"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:423
@@ -1550,7 +1538,7 @@ msgid "Automatically display related posts into post content"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:438
-msgid "Related Posts Order:"
+msgid "Related Posts order:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:442
@@ -1579,7 +1567,7 @@ msgid "Post link format:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:460
-msgid "Maximum number of related posts to display: (default: 5)"
+msgid "Maximum number of related posts to display:"
 msgstr ""
 
 #: ../inc/helper.options.admin.php:466
@@ -1589,8 +1577,7 @@ msgstr ""
 #: ../inc/helper.options.admin.php:481
 msgid ""
 "You can use the same syntax as <code>st_related_posts()</code>public static "
-"function to customize display. See <a href=\"https://github.com/WebFactoryLtd/"
-"simple-tags/wiki/Theme-functions-Integration\">documentation</a> for more "
+"function to customize display. See <a href=\"https://taxopress.com/docs/">documentation</a> for more "
 "details."
 msgstr ""
 
