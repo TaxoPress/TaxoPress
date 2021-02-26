@@ -332,10 +332,10 @@ return array(
 			'cloud_max_color',
 			__( 'Most popular color:', 'simpletags' ),
 			'text-color',
-			'medium-text',
+			'medium-text st-color-field',
 			__( "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags' )
 		),
-		array( 'cloud_min_color', __( 'Least popular color:', 'simpletags' ), 'text-color', 'medium-text' ),
+		array( 'cloud_min_color', __( 'Least popular color:', 'simpletags' ), 'text-color', 'medium-text st-color-field' ),
 		array(
 			'cloud_max_size',
 			__( 'Most popular font size:', 'simpletags' ),
