@@ -34,7 +34,7 @@ return array(
 			__( 'Suggested tags feature', 'simpletags' ),
 			'checkbox',
 			'1',
-			__( 'This feature adds a meta box in the editor which will display suggested tags obtained by comparing your post content with various sources of tags. (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)', 'simpletags' )
+			__( 'This feature adds a meta box in the editor which will display suggested tags obtained by comparing your post content with various sources of tags. (Yahoo! Term Extraction API, OpenCalais, Tag The Net, Local DB)', 'simpletags' )
 		),
 		array(
 			'active_manage',
@@ -115,14 +115,7 @@ return array(
 			__( 'OpenCalais API Key', 'simpletags' ),
 			'text',
 			'regular-text',
-			__( 'You can create an API key from <a href="https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en">service website</a>', 'simpletags' )
-		),
-		array(
-			'alchemy_api',
-			__( 'Alchemy API Key', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'You can create an API key from <a href="http://www.alchemyapi.com/">service website</a>', 'simpletags' )
+			__( 'You can create an API key from <a href="https://developers.refinitiv.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation">service website</a>', 'simpletags' )
 		),
 		array(
 			'tag4site_key',
@@ -131,48 +124,6 @@ return array(
 			'regular-text',
 			__( 'You can create an API key from <a href="http://tag4site.ru/">service website</a>', 'simpletags' )
 		),
-		array(
-			'zemanta_key',
-			__( 'Zemanta API Key', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'You can create an API key from <a href="http://developer.zemanta.com/">service website</a>', 'simpletags' )
-		),
-		array(
-			'datatxt_id',
-			__( 'Dandelion - Entity Extraction API - ID (deprecated)', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'You can create an API ID from <a href="https://dandelion.eu/">service website</a>', 'simpletags' )
-		),
-		array(
-			'datatxt_key',
-			__( 'Dandelion - Entity Extraction API - Key (deprecated)', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simpletags' )
-		),
-		array(
-			'datatxt_access_token',
-			__( 'Dandelion - Entity Extraction API - Access token (new !)', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simpletags' )
-		),
-		array(
-			'datatxt_min_confidence',
-			__( 'dataTXT API min_confidence', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'Default: 0.6', 'simpletags' )
-		),
-		array(
-			'proxem_key',
-			__( 'Proxem API Key', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'You can create an API key from <a href="https://www.mashape.com/proxem/ontology-based-topic-detection">service website</a>', 'simpletags' )
-		)
 	),
 	'auto-links'     => array(
 		array(
