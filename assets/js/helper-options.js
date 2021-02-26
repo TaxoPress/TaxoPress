@@ -35,13 +35,8 @@ jQuery(document).ready(function() {
 });
 
 jQuery(document).ready(function($) {
-    jQuery('#input#cloud_max_color').on('ready click blur change focus', function(e) {
-        cloudMaxColor();
-    });
-
-    jQuery('#input#cloud_min_color').on('ready click blur change focus', function(e) {
-        cloudMinColor();
-    });
+    
+    $('.text-color').wpColorPicker();
 
     $('.simple-tags-dismiss-rating').on('click', function(e) {
       e.preventDefault();
@@ -56,15 +51,3 @@ jQuery(document).ready(function($) {
       $('.simple-tags-review-box').hide();
     }
 });
-
-function cloudMaxColor() {
-    jQuery('div.cloud_max_color').css({
-        backgroundColor: jQuery('input#cloud_max_color').val()
-    });
-}
-
-function cloudMinColor() {
-    jQuery('div.cloud_min_color').css({
-        backgroundColor: jQuery('input#cloud_min_color').val()
-    });
-}

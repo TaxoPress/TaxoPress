@@ -275,10 +275,13 @@ class SimpleTags_Admin {
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
+  	
+		//color picker style
+  		wp_enqueue_style( 'wp-color-picker' );
 
 		// Helper TaxoPress
 		wp_register_script( 'st-helper-add-tags', STAGS_URL . '/assets/js/helper-add-tags.js', array( 'jquery' ), STAGS_VERSION );
-		wp_register_script( 'st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array( 'jquery' ), STAGS_VERSION );
+		wp_register_script( 'st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array( 'jquery', 'wp-color-picker' ), STAGS_VERSION );
 
 		// Register CSS
 		wp_register_style( 'st-admin', STAGS_URL . '/assets/css/admin.css', array(), STAGS_VERSION, 'all' );
@@ -492,7 +495,7 @@ class SimpleTags_Admin {
 						break;
 
 					case 'text-color':
-						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="text-color ' . $option[3] . '" /><div class="box_color ' . $option[0] . '"></div>' . PHP_EOL;
+						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="text-color ' . $option[3] . '" />' . PHP_EOL;
 						break;
 
 					case 'text':
