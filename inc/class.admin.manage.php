@@ -346,16 +346,6 @@ class SimpleTags_Admin_Manage {
 				*/
 				?>
 
-				<tr>
-					<th scope="row"><strong><?php _e( 'Technical informations', 'simpletags' ); ?></strong></th>
-					<td>
-						<p><strong><?php _e( 'Renaming', 'simpletags' ); ?></strong></p>
-
-						<p>
-							<em><?php _e( 'TaxoPress don\'t use the same method as WordPress for rename a term. For example, in WordPress you have 2 terms : "Blogging" and "Bloging". When you want edit the term "Bloging" for rename it on "Blogging", WordPress will keep the two terms with the same name but with a different slug. <br />With TaxoPress, when you edit "Bloging" for "Blogging", TaxoPress merge posts filled with "Bloging" to "Blogging" and it delete the term "Bloging". Another logic ;)', 'simpletags' ); ?>
-								<em></p>
-					</td>
-				</tr>
 			</table>
 
 			<div class="clear"></div>
