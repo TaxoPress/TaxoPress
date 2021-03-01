@@ -148,6 +148,13 @@ return array(
 			__( 'This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags' )
 		),
 		array(
+			'auto_link_all',
+			__( 'Auto link all tags ?', 'simpletags' ),
+			'checkbox',
+			'1',
+			__( 'If checked, tags found in post will be auto linked even if not included in post tags.', 'simpletags' )
+		),
+		array(
 			'auto_link_case',
 			__( 'Ignore case for auto link feature ?', 'simpletags' ),
 			'checkbox',

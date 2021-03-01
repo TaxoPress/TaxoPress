@@ -13,6 +13,7 @@ return array(
 	// Auto link
 	'auto_link_tags'         => 0,
 	'auto_link_min'          => 1,
+	'auto_link_all'          => 1,
 	'auto_link_case'         => 1,
 	'auto_link_exclude'      => '',
 	'auto_link_max_by_post'  => 10,
