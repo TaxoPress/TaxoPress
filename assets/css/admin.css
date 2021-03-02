@@ -80,3 +80,7 @@ a#close_clicktags{display:none;}
   margin-left: 10px;
   font-style: italic;
 }
+
+.st-hide-content {
+  display: none;
+}
