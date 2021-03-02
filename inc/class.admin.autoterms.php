@@ -115,85 +115,8 @@ class SimpleTags_Admin_AutoTags {
 		?>
 		<div class="wrap st_wrap">
 			<h2><?php _e( 'Overview', 'simpletags' ); ?>
-				<p><?php _e( 'The bulb are lit when the association taxonomy and custom post type have the classification automatic activated. Otherwise, the bulb is off.', 'simpletags' ); ?>
-				<table class="widefat tag fixed" cellspacing="0">
-					<thead>
-					<tr>
-						<th scope="col" id="label"
-						    class="manage-column column-name"><?php _e( 'Custom types / Taxonomies', 'simpletags' ); ?></th>
-						<?php
-						foreach ( get_taxonomies( array( 'show_ui' => true ), 'object' ) as $taxo ) {
-							if ( empty( $taxo->labels->name ) ) {
-								continue;
-							}
-
-							echo '<th scope="col">' . esc_html( $taxo->labels->name ) . '</th>';
-						}
-						?>
-					</tr>
-					</thead>
-					<tfoot>
-					<tr>
-						<th scope="col"
-						    class="manage-column column-name"><?php _e( 'Custom types / Taxonomies', 'simpletags' ); ?></th>
-						<?php
-						foreach ( get_taxonomies( array( 'show_ui' => true ), 'object' ) as $taxo ) {
-							if ( empty( $taxo->labels->name ) ) {
-								continue;
-							}
-
-							echo '<th scope="col">' . esc_html( $taxo->labels->name ) . '</th>';
-						}
-						?>
-					</tr>
-					</tfoot>
-
-					<tbody id="the-list" class="list:taxonomies">
-					<?php
-					$class = 'alternate';
-					$i     = 0;
-					foreach ( get_post_types( array(), 'objects' ) as $post_type ) :
-						if ( ! $post_type->show_ui || empty( $post_type->labels->name ) ) {
-							continue;
-						}
-
-						// Get compatible taxo for current post type
-						$compatible_taxonomies = get_object_taxonomies( $post_type->name );
-						if ( empty( $compatible_taxonomies ) ) {
-							continue;
-						}
-
-
-						$i ++;
-						$class = ( $class == 'alternate' ) ? '' : 'alternate';
-						?>
-						<tr id="custom type-<?php echo $i; ?>" class="<?php echo $class; ?>">
-							<th class="name column-name"><?php echo esc_html( $post_type->labels->name ); ?></th>
-							<?php
-							foreach ( get_taxonomies( array( 'show_ui' => true ), 'object' ) as $line_taxo ) {
-								if ( empty( $line_taxo->labels->name ) ) {
-									continue;
-								}
-
-								echo '<td>' . "\n";
-								if ( in_array( $line_taxo->name, $compatible_taxonomies ) ) {
-									if ( isset( $options[ $post_type->name ][ $line_taxo->name ] ) && isset( $options[ $post_type->name ][ $line_taxo->name ]['use_auto_terms'] ) && $options[ $post_type->name ][ $line_taxo->name ]['use_auto_terms'] == '1' ) {
-										echo '<a href="' . self::$admin_base_url . 'st_auto&taxo=' . $line_taxo->name . '&cpt=' . $post_type->name . '"><img src="' . STAGS_URL . '/assets/images/lightbulb.png" alt="' . __( 'Context configured & actived.', 'simpletags' ) . '" /></a>' . "\n";
-									} else {
-										echo '<a href="' . self::$admin_base_url . 'st_auto&taxo=' . $line_taxo->name . '&cpt=' . $post_type->name . '"><img src="' . STAGS_URL . '/assets/images/lightbulb_off.png" alt="' . __( 'Context unconfigured.', 'simpletags' ) . '" /></a>' . "\n";
-									}
-								} else {
-									echo '-' . "\n";
-								}
-								echo '</td>' . "\n";
-							}
-							?>
-						</tr>
-					<?php endforeach; ?>
-					</tbody>
-				</table>
-
-				<div class="clear"></div>
+			<?php SimpleTags_Admin::boxSelectorAutoTerms( 'st_auto' ); ?>
+			<div class="clear"></div>
 		</div>
 
 		<div class="wrap st_wrap">
