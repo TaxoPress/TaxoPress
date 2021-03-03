@@ -3,7 +3,7 @@ Contributors: WebFactory, publishpress, kevinB, stevejburge, andergmartins, olat
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.6
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,24 @@ TaxoPress can be installed in 3 easy steps:
 6. You also can suggest tags from lot's of service (Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms)
 
 == Changelog ==
+
+v3.0.1 - 2021-03-03
+* Fixed issue with the "tag link format" been stripped out in widgets
+* Fixed input display for "Mass Edit Terms" screen going beyond wrapper
+* Added valid color picker to color select field in TaxoPress > Settings > Tag cloud
+* Updated OpenCalais broken API documentation link
+* Removed Alchemy API
+* Removed Zemanta API
+* Removed Dandelion API
+* Removed Proxem API
+* Removed Yahoo API
+* Hide suggested services in post if there is no active API key
+* Delete "Technical informations" in manage terms
+* Added auto links for all tags even if post doesn't contain tags
+* Updated Auto terms filter layout
+* Fixed "Click Tags" for the new input(Gutenberg) not working
+* Fixed auto tag still been added after been disabled in general settings
+* Updated plugin logo and banner for WordPress.org
 
 v3.0.0 - 2021-02-24
 * Enable 'Advanced Manage Terms', 'Related posts by terms' and 'Tag cloud Shortcode' by default
