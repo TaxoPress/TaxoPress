@@ -27,7 +27,7 @@ class SimpleTags_Admin_Mass {
 	public static function admin_menu() {
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Simple Terms: Mass Edit Terms', 'simpletags' ),
+			__( 'TaxoPress: Mass Edit Terms', 'simpletags' ),
 			__( 'Mass Edit Terms', 'simpletags' ),
 			'simple_tags',
 			'st_mass_terms',
