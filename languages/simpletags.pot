@@ -98,7 +98,7 @@ msgid "Restrict the use of Auto Terms?"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:226
-msgid "Only usee Auto Terms for posts with no terms."
+msgid "Only use Auto Terms for posts with no terms."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:230
