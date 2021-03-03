@@ -188,7 +188,7 @@ class SimpleTags_Widget extends WP_Widget {
 		$instance = $old_instance;
 
 		foreach ( (array) self::get_fields() as $field => $field_value ) {
-			$instance[ $field ] = strip_tags( $new_instance[ $field ] );
+			$instance[ $field ] = $new_instance[ $field ];
 		}
 
 		return $instance;

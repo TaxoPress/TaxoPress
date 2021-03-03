@@ -268,6 +268,62 @@ class SimpleTags_Admin {
 	}
 
 	/**
+	 * Build HTML form for allow user to change taxonomy for the current page.
+	 *
+	 * @param string $page_value
+	 *
+	 * @return void
+	 * @author Olatechpro
+	 */
+	public static function boxSelectorAutoTerms( $page_value = '' ) {
+		echo '<div class="box-selector-taxonomy">' . PHP_EOL;
+
+		echo '<div class="change-taxo">' . PHP_EOL;
+		echo '<form action="" method="get">' . PHP_EOL;
+		if ( ! empty( $page_value ) ) {
+			echo '<input type="hidden" name="page" value="' . $page_value . '" />' . PHP_EOL;
+		}
+		$taxonomies = [];
+		echo '<select name="cpt" id="cpt-select" class="st-cpt-select">' . PHP_EOL;
+		foreach ( get_post_types( array( 'show_ui' => true ), 'objects' ) as $post_type ) {
+			$taxonomies_children = get_object_taxonomies( $post_type->name );
+			if ( empty( $taxonomies_children ) ) {
+				continue;
+			}
+			$taxonomies[$post_type->name] = $taxonomies_children;
+			echo '<option ' . selected( $post_type->name, self::$post_type, false ) . ' value="' . esc_attr( $post_type->name ) . '">' . esc_html( $post_type->labels->name ) . '</option>' . PHP_EOL;
+		}
+		echo '</select>' . PHP_EOL;
+
+		echo '<select name="taxo" id="taxonomy-select" class="st-taxonomy-select">' . PHP_EOL;
+		foreach ( $taxonomies as $parent_post => $taxonomy ) {
+			if ( count($taxonomy) > 0){
+				foreach($taxonomy as $tax_name){
+			$taxonomy = get_taxonomy( $tax_name );
+			if ( false === (bool) $taxonomy->show_ui ) {
+				continue;
+			}
+
+			if(  self::$post_type == $parent_post){
+				 $class = "";
+			}else{
+				$class="st-hide-content";
+			}
+
+			echo '<option ' . selected( $tax_name, self::$taxonomy, false ) . ' value="' . esc_attr( $tax_name ) . '" data-post="'.$parent_post.'" class="'.$class.'">' . esc_html( $taxonomy->labels->name ) . '</option>' . PHP_EOL;
+			}
+		}
+		}
+		echo '</select>' . PHP_EOL;
+
+		echo '<input type="submit" class="button" id="submit-change-taxo" value="' . __( 'Change selection', 'simpletags' ) . '" />' . PHP_EOL;
+		echo '</form>' . PHP_EOL;
+		echo '</div>' . PHP_EOL;
+		echo '</div>' . PHP_EOL;
+
+	}
+
+	/**
 	 * Init somes JS and CSS need for TaxoPress.
 	 *
 	 * @return void
@@ -276,12 +332,19 @@ class SimpleTags_Admin {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
+		//color picker style
+  		wp_enqueue_style( 'wp-color-picker' );
+
 		// Helper TaxoPress
 		wp_register_script( 'st-helper-add-tags', STAGS_URL . '/assets/js/helper-add-tags.js', array( 'jquery' ), STAGS_VERSION );
-		wp_register_script( 'st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array( 'jquery' ), STAGS_VERSION );
+		wp_register_script( 'st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array( 'jquery', 'wp-color-picker' ), STAGS_VERSION );
 
 		// Register CSS
 		wp_register_style( 'st-admin', STAGS_URL . '/assets/css/admin.css', array(), STAGS_VERSION, 'all' );
+
+		//Register and enqueue admin js
+		wp_register_script( 'st-admin-js', STAGS_URL . '/assets/js/admin.js', array( 'jquery' ), STAGS_VERSION );
+		wp_enqueue_script( 'st-admin-js' );
 
 		// Register location
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
@@ -429,7 +492,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="http://wordpress.org/extend/plugins/simple-tags">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
@@ -492,7 +555,7 @@ class SimpleTags_Admin {
 						break;
 
 					case 'text-color':
-						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="text-color ' . $option[3] . '" /><div class="box_color ' . $option[0] . '"></div>' . PHP_EOL;
+						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="text-color ' . $option[3] . '" />' . PHP_EOL;
 						break;
 
 					case 'text':

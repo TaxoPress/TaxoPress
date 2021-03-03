@@ -21,6 +21,12 @@ class SimpleTags_Client_Autoterms {
 	 * @return boolean
 	 */
 	public static function save_post( $post_id = null, $object = null ) {
+
+		//return if general auto terms settings is disabled
+		if ( 0 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) ) {
+			return false;
+		}
+
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
 

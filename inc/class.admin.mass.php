@@ -27,7 +27,7 @@ class SimpleTags_Admin_Mass {
 	public static function admin_menu() {
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Simple Terms: Mass Edit Terms', 'simpletags' ),
+			__( 'TaxoPress: Mass Edit Terms', 'simpletags' ),
 			__( 'Mass Edit Terms', 'simpletags' ),
 			'simple_tags',
 			'st_mass_terms',
@@ -238,7 +238,7 @@ class SimpleTags_Admin_Mass {
 			<?php if ( have_posts() ) :
 				add_filter( 'the_title', 'esc_html' );
 				?>
-				<form name="post" id="post" method="post">
+				<form name="post" id="post" method="post" class="st-mass-edit">
 					<table class="widefat post fixed">
 						<thead>
 						<tr>

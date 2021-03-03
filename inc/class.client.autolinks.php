@@ -90,6 +90,50 @@ class SimpleTags_Client_Autolinks {
 	}
 
 	/**
+	 * Get all available local tags
+	 *
+	 * @return array
+	 */
+	public static function get_all_post_tags() {
+		if ( is_array( self::$posts ) && count( self::$posts ) > 0 ) {
+			// Generate SQL from post id
+			$postlist = implode( "', '", self::$posts );
+
+			// Generate key cache
+			$key = md5( maybe_serialize( $postlist ) );
+
+			$results = get_tags();
+
+			// Get cache if exist
+			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
+			if ( false === $cache ) {
+				foreach ( self::$posts as $object_id ) {
+					// Get terms
+					$terms = get_object_term_cache( $object_id, 'post_tag' );
+					if ( false === $terms || is_wp_error( $terms ) ) {
+						$terms = wp_get_object_terms( $object_id, 'post_tag' );
+					}
+
+					if ( false !== $terms && ! is_wp_error( $terms ) ) {
+						$results = array_merge( $results, $terms );
+					}
+				}
+
+				$cache[ $key ] = $results;
+				wp_cache_set( 'generate_keywords', $cache, 'simpletags' );
+			} else {
+				if ( isset( $cache[ $key ] ) ) {
+					return $cache[ $key ];
+				}
+			}
+
+			return $results;
+		}
+
+		return array();
+	}
+
+	/**
 	 * Get links for each tag for auto link feature
 	 *
 	 */
@@ -98,8 +142,12 @@ class SimpleTags_Client_Autolinks {
 		if ( 0 === $auto_link_min ) {
 			$auto_link_min = 1;
 		}
-
-		foreach ( (array) self::get_tags_from_current_posts() as $term ) {
+		if( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_all' ) ){
+			$terms = self::get_all_post_tags();
+		}else{
+			$terms = self::get_tags_from_current_posts();
+		}
+		foreach ( (array) $terms as $term ) {
 			if ( $term->count >= $auto_link_min ) {
 				self::$link_tags[ $term->name ] = esc_url( get_term_link( $term, $term->taxonomy ) );
 			}

@@ -37,7 +37,7 @@ function load_click_tags () {
     .fadeIn('slow')
     .load(ajaxurl + '?action=simpletags&stags_action=click_tags&post_id=' + current_post_id, function () {
       jQuery('#st-clicks-tags .container_clicktags span').click(function (event) {
-        event.preventDefault()
+        event.preventDefault();
         addTag(this.innerHTML)
         jQuery(this).addClass('used_term')
       })
