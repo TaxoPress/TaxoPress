@@ -69,6 +69,7 @@ v3.0.1 - 2021-03-03
 * Removed Zemanta API
 * Removed Dandelion API
 * Removed Proxem API
+* Removed Yahoo API
 * Hide suggested services in post if there is no active API key
 * Delete "Technical informations" in manage terms
 * Added auto links for all tags even if post doesn't contain tags
