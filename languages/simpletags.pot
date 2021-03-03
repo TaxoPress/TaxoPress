@@ -323,7 +323,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/class.admin.manage.php:290
-msgid "Choose number. Any terms with fewer uses will be deleted:"
+msgid "Choose a number. Any terms with fewer uses will be deleted:"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:300
