@@ -89,8 +89,8 @@ msgstr ""
 
 #: ../inc/class.admin.autoterms.php:217
 msgid ""
-"Use also local terms database with Auto Terms. (Warning, this option can "
-"increases the CPU consumption a lot if you have many terms)"
+"Use your local terms database with Auto Terms. (Warning: this option can "
+"increase the CPU consumption a lot if you have many terms)"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:221
@@ -98,7 +98,7 @@ msgid "Restrict the use of Auto Terms?"
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:226
-msgid "Only usee Auto Terms for posts with no terms."
+msgid "Only use Auto Terms for posts with no terms."
 msgstr ""
 
 #: ../inc/class.admin.autoterms.php:230
@@ -323,7 +323,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/class.admin.manage.php:290
-msgid "Choose number. Any terms with fewer uses will be deleted:"
+msgid "Choose a number. Any terms with fewer uses will be deleted:"
 msgstr ""
 
 #: ../inc/class.admin.manage.php:300
