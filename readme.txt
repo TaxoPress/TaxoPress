@@ -60,6 +60,22 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.0.1 - 2021-03-03
+* Fixed issue with the "tag link format" been stripped out in widgets
+* Fixed input display for "Mass Edit Terms" screen going beyond wrapper
+* Added valid color picker to color select field in TaxoPress > Settings > Tag cloud
+* Updated OpenCalais broken API documentation link
+* Removed Alchemy API
+* Removed Zemanta API
+* Removed Dandelion API
+* Removed Proxem API
+* Hide suggested services in post if there is no active API key
+* Delete "Technical informations" in manage terms
+* Added auto links for all tags even if post doesn't contain tags
+* Updated Auto terms filter layout
+* Fixed "Click Tags" for the new input(Gutenberg) not working
+* Fixed auto tag still been added after been disabled in general settings
+
 v3.0.0 - 2021-02-24
 * Enable 'Advanced Manage Terms', 'Related posts by terms' and 'Tag cloud Shortcode' by default
 * Removed review request box and link
