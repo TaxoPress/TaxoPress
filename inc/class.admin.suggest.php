@@ -3,7 +3,6 @@
 class SimpleTags_Admin_Suggest {
 
 	// Application entrypoint -> https://wordpress.org/plugins/simple-tags/wiki/
-	const yahoo_id = 'h4c6gyLV34Fs7nHCrHUew7XDAU8YeQ_PpZVrzgAGih2mU12F0cI.ezr6e7FMvskR7Vu.AA--';
 
 	/**
 	 * SimpleTags_Admin_Suggest constructor.
@@ -34,7 +33,7 @@ class SimpleTags_Admin_Suggest {
 		), STAGS_VERSION );
 		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
 			'title_bloc'   => self::get_suggest_tags_title(),
-			'content_bloc' => __( 'Choose a provider to get suggested tags (local, yahoo or tag the net).', 'simpletags' )
+			'content_bloc' => __( 'Click a provider name.', 'simpletags' )
 		) );
 
 		// Register location
@@ -52,23 +51,21 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function get_suggest_tags_title() {
-		$seperator = '&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;';
+		$seperator = '&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;';
 		$title = '<img style="float:right; display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simpletags' ) . '" />';
 		$title .= __( 'Suggested tags from :', 'simpletags' ) . '';
-		$title .= '<a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simpletags' ) . '</a> -';
+		$title .= '<a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simpletags' ) . '</a>';
 		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) !== '' ) {
-		$title .= '<a data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simpletags' ) . '</a> -';
+		$title .= ' - <a data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simpletags' ) . '</a>';
 		}else{
-			$seperator .= '&emsp;&emsp;&emsp;&emsp;&emsp;';
+			$seperator .= '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;';
 		}
 
 		if ( SimpleTags_Plugin::get_option_value( 'tag4site_key' ) !== '' ) {
-		$title .= '<a data-ajaxaction="tags_from_tag4site" class="suggest-action-link" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a> -';
+		$title .= ' - <a data-ajaxaction="tags_from_tag4site" class="suggest-action-link" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a>';
 		}else{
-			$seperator .= '&emsp;&emsp;&emsp;&emsp;&emsp;';
+			$seperator .= '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;';
 		}
-
-		$title .= '<a data-ajaxaction="tags_from_yahoo" class="suggest-action-link" href="#suggestedtags">' . __( 'Yahoo', 'simpletags' ) . '</a>';
 
 		$title .= $seperator;
 
@@ -119,9 +116,6 @@ class SimpleTags_Admin_Suggest {
 					break;
 				case 'tags_from_tag4site' :
 					self::ajax_tag4site();
-					break;
-				case 'tags_from_yahoo' :
-					self::ajax_yahoo();
 					break;
 				case 'tags_from_local_db' :
 					self::ajax_suggest_local();
@@ -250,59 +244,6 @@ class SimpleTags_Admin_Suggest {
 
 		foreach ( (array) $data as $term ) {
 			echo '<span class="local">' . esc_html( $term->name ) . '</span>' . "\n";
-		}
-		echo '<div class="clear"></div>';
-		exit();
-	}
-
-	/**
-	 * Suggest tags from Yahoo Term Extraction
-	 *
-	 */
-	public static function ajax_yahoo() {
-		status_header( 200 );
-		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
-
-		// Get data
-		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
-		$content = strip_tags( $content );
-		$content = str_replace( array( '"', "'" ), ' ', $content );
-		$content = trim( $content );
-		if ( empty( $content ) ) {
-			echo '<p>' . __( 'No text was sent.', 'simpletags' ) . '</p>';
-			exit();
-		}
-
-		// Build params
-		$param = 'appid=' . self::yahoo_id; // Yahoo ID
-		$param .= '&q=select%20*%20from%20contentanalysis.analyze%20where%20context%3D%22' . urlencode( $content ) . '%22'; //.; // Post content
-		$param .= '&format=json'; // Get json data !
-
-		$data     = array();
-		$response = wp_remote_post( 'https://query.yahooapis.com/v1/public/yql', array(
-			'body'      => $param,
-			'sslverify' => false
-		) );
-		if ( ! is_wp_error( $response ) && $response != null ) {
-			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
-				$data = json_decode( wp_remote_retrieve_body( $response ), true );
-			}
-		}
-
-		if ( empty( $data ) || empty( $data['query']['results']['Result'] ) ) {
-			echo '<p>' . __( 'No results from Yahoo! service.', 'simpletags' ) . '</p>';
-			exit();
-		}
-
-		// Get result value
-		$data = $data['query']['results']['Result'];
-
-		// Remove empty terms
-		$data = array_filter( $data, '_delete_empty_element' );
-		$data = array_unique( $data );
-
-		foreach ( (array) $data as $term ) {
-			echo '<span class="yahoo">' . esc_html( $term ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();

@@ -41,8 +41,8 @@ class SimpleTags_Admin_ClickTags {
 			'st-helper-click-tags',
 			'stHelperClickTagsL10n',
 			array(
-				'show_txt' => __( 'Display click tags', 'simpletags' ),
-				'hide_txt' => __( 'Hide click tags', 'simpletags' ),
+				'show_txt' => __( 'Click to display tags', 'simpletags' ),
+				'hide_txt' => __( 'Click to hide tags', 'simpletags' ),
 				'state'    => SimpleTags_Plugin::get_option_value( 'visibility_click_tags' ),
 			)
 		);
