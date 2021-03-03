@@ -45,7 +45,7 @@ class SimpleTags_Admin_Manage {
 	public static function admin_menu() {
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Simple Terms: Manage Terms', 'simpletags' ),
+			__( 'TaxoPress: Manage Terms', 'simpletags' ),
 			__( 'Manage Terms', 'simpletags' ),
 			'simple_tags',
 			'st_manage',

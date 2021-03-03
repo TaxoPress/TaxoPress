@@ -28,7 +28,7 @@ class SimpleTags_Admin_AutoTags {
 	public static function admin_menu() {
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Simple Terms: Auto Terms', 'simpletags' ),
+			__( 'TaxoPress: Auto Terms', 'simpletags' ),
 			__( 'Auto Terms', 'simpletags' ),
 			'simple_tags',
 			'st_auto',
