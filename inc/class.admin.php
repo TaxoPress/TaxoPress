@@ -331,7 +331,7 @@ class SimpleTags_Admin {
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
-  	
+
 		//color picker style
   		wp_enqueue_style( 'wp-color-picker' );
 
@@ -492,7 +492,7 @@ class SimpleTags_Admin {
 	 */
 	public static function printAdminFooter() {
 		?>
-		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="http://wordpress.org/extend/plugins/simple-tags">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
 	}
 
