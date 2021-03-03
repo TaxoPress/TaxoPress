@@ -89,7 +89,7 @@ msgstr ""
 
 #: ../inc/class.admin.autoterms.php:217
 msgid ""
-"Use also local terms database with Auto Terms. (Warning, this option can "
+"Use your local terms database with Auto Terms. (Warning: this option can "
 "increase the CPU consumption a lot if you have many terms)"
 msgstr ""
 
