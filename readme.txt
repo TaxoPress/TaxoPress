@@ -75,6 +75,7 @@ v3.0.1 - 2021-03-03
 * Updated Auto terms filter layout
 * Fixed "Click Tags" for the new input(Gutenberg) not working
 * Fixed auto tag still been added after been disabled in general settings
+* Updated plugin logo and banner for WordPress.org
 
 v3.0.0 - 2021-02-24
 * Enable 'Advanced Manage Terms', 'Related posts by terms' and 'Tag cloud Shortcode' by default
