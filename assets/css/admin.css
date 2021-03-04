@@ -84,3 +84,7 @@ a#close_clicktags{display:none;}
 .st-hide-content {
   display: none;
 }
+
+#suggestedtags .postbox-header .hndle {
+  flex-grow: unset !important;
+}

@@ -51,23 +51,23 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function get_suggest_tags_title() {
-		$seperator = '&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;';
-		$title = '<img style="float:right; display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simpletags' ) . '" />';
+		$title = '&nbsp; <img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simpletags' ) . '" />';
 		$title .= __( 'Suggested tags from :', 'simpletags' ) . '';
-		$title .= '<a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simpletags' ) . '</a>';
+		
+		$title .= '&nbsp; <a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simpletags' ) . '</a>';
+
+		if ( SimpleTags_Plugin::get_option_value( 'datatxt_access_token' ) !== '' ) {
+		$title .= '&nbsp; - &nbsp;<a data-ajaxaction="tags_from_datatxt" class="suggest-action-link" href="#suggestedtags">' . __( 'dataTXT by Dandelion', 'simpletags' ) . '</a>';
+		}
+
 		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) !== '' ) {
-		$title .= ' - <a data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simpletags' ) . '</a>';
-		}else{
-			$seperator .= '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;';
+		$title .= '&nbsp; - &nbsp;<a data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simpletags' ) . '</a>';
 		}
 
 		if ( SimpleTags_Plugin::get_option_value( 'tag4site_key' ) !== '' ) {
-		$title .= ' - <a data-ajaxaction="tags_from_tag4site" class="suggest-action-link" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a>';
-		}else{
-			$seperator .= '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;';
+		$title .= '&nbsp; - &nbsp;<a data-ajaxaction="tags_from_tag4site" class="suggest-action-link" href="#suggestedtags">' . __( 'Tag4Site.RU', 'simpletags' ) . '</a>';
 		}
 
-		$title .= $seperator;
 
 		return $title;
 	}
@@ -111,6 +111,9 @@ class SimpleTags_Admin_Suggest {
 	public static function ajax_check() {
 		if ( isset( $_GET['stags_action'] ) ) {
 			switch ( $_GET['stags_action'] ) {
+				case 'tags_from_datatxt' :
+					self::ajax_datatxt();
+					break;
 				case 'tags_from_opencalais' :
 					self::ajax_opencalais();
 					break;
@@ -182,6 +185,68 @@ class SimpleTags_Admin_Suggest {
 
 		foreach ( (array) $data as $term ) {
 			echo '<span class="local">' . esc_html( strip_tags( $term ) ) . '</span>' . "\n";
+		}
+		echo '<div class="clear"></div>';
+		exit();
+	}
+
+	/**
+	 * Suggest tags from dataTXT
+	 *
+	 */
+	public static function ajax_datatxt() {
+		status_header( 200 );
+		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
+
+		$request_ws_args = array();
+
+		// Get data
+		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
+		$content = trim( $content );
+		if ( empty( $content ) ) {
+			echo '<p>' . __( 'No text was sent.', 'simpletags' ) . '</p>';
+			exit();
+		}
+
+		$request_ws_args['text'] = $content;
+
+		// Custom confidence ?
+		$request_ws_args['min_confidence'] = 0.6;
+		if ( SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' ) != "" ) {
+			$request_ws_args['min_confidence'] = SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' );
+		}
+
+		$request_ws_args['token'] = SimpleTags_Plugin::get_option_value( 'datatxt_access_token' );
+
+		// Build params
+		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array(
+			'user-agent' => 'WordPress simple-tags',
+			'body'       => $request_ws_args
+		) );
+
+		$data = false;
+		if ( ! is_wp_error( $response ) && $response != null ) {
+			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
+				$data = wp_remote_retrieve_body( $response );
+			} else {
+				echo '<p>' . __( 'Invalid access token !', 'simpletags' ) . '</p>';
+				exit();
+			}
+		}
+
+		$data = json_decode( $data );
+
+		// echo $data;
+
+		$data = $data->annotations;
+
+		if ( empty( $data ) ) {
+			echo '<p>' . __( 'No results from dataTXT API.', 'simpletags' ) . '</p>';
+			exit();
+		}
+
+		foreach ( (array) $data as $term ) {
+			echo '<span class="local">' . esc_html( $term->title ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();

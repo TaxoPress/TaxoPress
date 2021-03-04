@@ -124,6 +124,20 @@ return array(
 			'regular-text',
 			__( 'You can create an API key from <a href="http://tag4site.ru/">service website</a>', 'simpletags' )
 		),
+		array(
+			'datatxt_access_token',
+			__( 'Dandelion - Entity Extraction API - Access token', 'simpletags' ),
+			'text',
+			'regular-text',
+			__( 'You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simpletags' )
+		),
+		array(
+			'datatxt_min_confidence',
+			__( 'dataTXT API min_confidence', 'simpletags' ),
+			'text',
+			'regular-text',
+			__( 'Default: 0.6', 'simpletags' )
+		),
 	),
 	'auto-links'     => array(
 		array(
