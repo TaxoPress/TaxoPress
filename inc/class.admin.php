@@ -85,6 +85,8 @@ class SimpleTags_Admin {
 	 */
 	public static function maybe_create_tag( $tag_name = '' ) {
 		$term_id     = 0;
+		//restore & in tag post 
+		$tag_name = str_replace("simpletagand", "&", $tag_name);
 		$result_term = term_exists( $tag_name, 'post_tag', 0 );
 		if ( empty( $result_term ) ) {
 			$result_term = wp_insert_term(
