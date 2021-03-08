@@ -34,10 +34,13 @@ function addTag (tag) {
     var tag_rest_base = tags_taxonomy && tags_taxonomy.rest_base
     var tags = tag_rest_base && wp.data.select('core/editor').getEditedPostAttribute(tag_rest_base)
 
-    var newTags = JSON.parse(JSON.stringify(tags))
+    //clean tag of & to enable sending in ajax parameter
+    tag = tag.replace('&amp;', 'simpletagand');
 
+    var newTags = JSON.parse(JSON.stringify(tags));
+    
     jQuery.ajax({
-      url: ajaxurl + '?action=simpletags&stags_action=maybe_create_tag&tag=' + tag,
+      url: ajaxurl + '?action=simpletags&stags_action=maybe_create_tag&tag=' + ""+tag+"",
       cache: false,
       //async: false,
       dataType: 'json'
