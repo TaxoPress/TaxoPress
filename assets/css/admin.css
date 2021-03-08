@@ -88,3 +88,12 @@ a#close_clicktags{display:none;}
 #suggestedtags .postbox-header .hndle {
   flex-grow: unset !important;
 }
+.st-add-suggestion-input {
+  margin-left: 10px;
+}
+.auto-terms-keyword-list input {
+  margin-bottom: 10px;
+}
+.st-delete-suggestion-input {
+  margin-right: 5px;
+}
