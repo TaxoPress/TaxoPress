@@ -30,6 +30,23 @@
     
     });
 
+    // -------------------------------------------------------------
+    //   Add auto tags suggestion tag
+    // -------------------------------------------------------------
+    $(document).on('click', '.st-add-suggestion-input', function (e) {
+      e.preventDefault();
+      $('.auto-terms-keyword-list').append('<input type="text" name="auto_list[]" /> <input class="st-delete-suggestion-input" type="button" value="Delete"/>');
+    });
+
+    // -------------------------------------------------------------
+    //   Delete auto tags suggestion input field
+    // -------------------------------------------------------------
+    $(document).on('click', '.st-delete-suggestion-input', function (e) {
+      e.preventDefault();
+      $(this).prev('input').remove();
+      $(this).remove();
+    });
+
   
   });
 

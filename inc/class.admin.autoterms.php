@@ -70,8 +70,7 @@ class SimpleTags_Admin_AutoTags {
 			check_admin_referer( 'update_auto_list-simpletags' );
 
 			// Tags list
-			$terms_list = stripslashes( $_POST['auto_list'] );
-			$terms      = explode( ',', $terms_list );
+			$terms = isset($_POST['auto_list']) ? (array) $_POST['auto_list'] : [];
 
 			// Remove empty and duplicate elements
 			$terms = array_filter( $terms, '_delete_empty_element' );
@@ -103,12 +102,14 @@ class SimpleTags_Admin_AutoTags {
 			$n      = ( isset( $_GET['n'] ) ) ? intval( $_GET['n'] ) : 0;
 		}
 
-		$terms_list = '';
+		$terms_list = [];
 		if ( isset( $taxo_options['auto_list'] ) && ! empty( $taxo_options['auto_list'] ) ) {
 			$terms = maybe_unserialize( $taxo_options['auto_list'] );
 			if ( is_array( $terms ) ) {
-				$terms_list = implode( ', ', $terms );
+				$terms_list = $terms;
 			}
+		}else{
+
 		}
 
 		settings_errors( __CLASS__ );
@@ -126,13 +127,13 @@ class SimpleTags_Admin_AutoTags {
 
         <h3><?php _e( 'Auto terms list', 'simpletags' ); ?></h3>
 
+		<form action="<?php echo self::$admin_base_url . 'st_auto&taxo=' . SimpleTags_Admin::$taxonomy . '&cpt=' . SimpleTags_Admin::$post_type; ?>"
+					method="post">
+
 				<p><?php _e( 'This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will add automatically "wordpress" as term for this post.', 'simpletags' ); ?></p>
 
-				<h3><?php _e( 'Options', 'simpletags' ); ?></h3>
-				<form
-					action="<?php echo self::$admin_base_url . 'st_auto&taxo=' . SimpleTags_Admin::$taxonomy . '&cpt=' . SimpleTags_Admin::$post_type; ?>"
-					method="post">
-					<table class="form-table">
+				<table class="form-table">
+
 						<tr valign="top">
 							<th scope="row"><?php _e( 'Activation', 'simpletags' ); ?></th>
 							<td>
@@ -150,6 +151,30 @@ class SimpleTags_Admin_AutoTags {
 									for="at_all"><?php _e( 'Use also local terms database with auto terms. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags' ); ?></label>
 							</td>
 						</tr>
+				
+					</table>
+		<h3><?php _e( 'Keywords list', 'simpletags' ); ?> <input class="st-add-suggestion-input" type="button" value="Add +"/></h3>
+		<div class="auto-terms-keyword-list">
+			<?php 
+			if(count($terms_list) > 0 ){
+				$current = 0;
+				foreach($terms_list as $term){
+					$current++;
+						echo '<input type="text" name="auto_list[]" value="'.esc_attr( $term ).'" /> <input class="st-delete-suggestion-input" type="button" value="Delete"/>';
+				}
+			}else{
+				echo '<input type="text" name="auto_list[]" /> <input class="st-delete-suggestion-input" type="button" value="Delete"/>';
+			}
+
+			?>
+       		
+		</div>
+    	
+
+				<h3><?php _e( 'Options', 'simpletags' ); ?></h3>
+
+					<table class="form-table">
+
 						<tr valign="top">
 							<th scope="row"><?php _e( 'Target', 'simpletags' ); ?></th>
 							<td>
@@ -175,15 +200,6 @@ class SimpleTags_Admin_AutoTags {
 								       value="1" <?php echo ( isset( $taxo_options['allow_hashtag_format'] ) && $taxo_options['allow_hashtag_format'] == 1 ) ? 'checked="checked"' : ''; ?> />
 								<label
 									for="allow_hashtag_format"><?php _e( 'When the whole word option is enabled, hashtag will not be autotag because of # prefix. This option allow to fixed this issue!', 'simpletags' ); ?></label>
-							</td>
-						</tr>
-						<tr valign="top">
-							<th scope="row"><label for="auto_list"><?php _e( 'Keywords list', 'simpletags' ); ?></label>
-							</th>
-							<td>
-								<input type="text" id="auto_list" class="auto_list" name="auto_list"
-								       value="<?php echo esc_attr( $terms_list ); ?>" style="width:98%;"/>
-								<br/><?php _e( 'Separated with a comma', 'simpletags' ); ?>
 							</td>
 						</tr>
 					</table>
