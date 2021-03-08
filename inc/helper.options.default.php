@@ -28,7 +28,6 @@ return array(
 	'opencalais_key'         => '',
 	'datatxt_access_token'   => '',
 	'datatxt_min_confidence' => '0.6',
-	'tag4site_key'           => '',
 	'autocomplete_type'      => 'input',
 	'autocomplete_min'       => 0,
 	'autocomplete_mode'      => '',

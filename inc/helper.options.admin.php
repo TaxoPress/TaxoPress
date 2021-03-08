@@ -118,13 +118,6 @@ return array(
 			__( 'You can create an API key from <a href="https://developers.refinitiv.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation">service website</a>', 'simpletags' )
 		),
 		array(
-			'tag4site_key',
-			__( 'Tag4Site API Key', 'simpletags' ),
-			'text',
-			'regular-text',
-			__( 'You can create an API key from <a href="http://tag4site.ru/">service website</a>', 'simpletags' )
-		),
-		array(
 			'datatxt_access_token',
 			__( 'Dandelion - Entity Extraction API - Access token', 'simpletags' ),
 			'text',
