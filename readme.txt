@@ -1,5 +1,5 @@
 === TaxoPress - Manage All Your Taxonomies, Tags, Categories ===
-Contributors: WebFactory, publishpress, kevinB, stevejburge, andergmartins, olatechpro
+Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.6
