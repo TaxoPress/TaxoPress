@@ -140,7 +140,7 @@ class SimpleTags_Admin_AutoTags
                             <th scope="row"><?php _e('Activation', 'simpletags'); ?></th>
                             <td>
                                 <input type="checkbox" id="use_auto_terms" name="use_auto_terms" value="1" <?php echo (isset($taxo_options['use_auto_terms']) && $taxo_options['use_auto_terms'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="use_auto_terms"><?php printf(__('Active Auto Tags for the %s Taxonomy', 'simpletags'), SimpleTags_Admin::$taxo_name); ?>
+                                <label for="use_auto_terms"><?php printf(__('Activate Auto Tags for the %s taxonomy', 'simpletags'), SimpleTags_Admin::$taxo_name); ?>
                                 </label>
                             </td>
                         </tr>
@@ -148,12 +148,13 @@ class SimpleTags_Admin_AutoTags
                             <th scope="row"><?php _e('Terms database', 'simpletags'); ?></th>
                             <td>
                                 <input type="checkbox" id="at_all" name="at_all" value="1" <?php echo (isset($taxo_options['at_all']) && $taxo_options['at_all'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="at_all"><?php _e('Use all the terms on your website. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags'); ?></label>
+                                <label for="at_all"><label for="use_auto_terms"><?php printf(__('Use all the terms in the %s taxonomy. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
                             </td>
                         </tr>
 
                     </table>
-                    <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simpletags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list"><?php _e('Use this options if you don\'t want to use all the terms on your website. You can select specfific terms to use.', 'simpletags'); ?></label>
+                    <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simpletags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list"><?php printf(__('Use this options if you don\'t want to use all the terms in your %s taxonomy. You can select specfific terms to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?>
+                    </label>
                     <div class="auto-terms-keyword-list">
                         <?php
                         if (count($terms_list) > 0) {
