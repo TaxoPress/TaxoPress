@@ -54,7 +54,20 @@ class SimpleTags_Plugin {
 	 * Load plugin option, combine DB options with default
 	 */
 	private static function load_option() {
-		self::$options = wp_parse_args( (array) get_option( STAGS_OPTIONS_NAME ), self::load_default_option() );
+		$saved_option = wp_parse_args( (array) get_option( STAGS_OPTIONS_NAME ), self::load_default_option() );
+		
+		
+		if (($key = array_search('datatxt_access_token', $saved_option)) !== FALSE) {
+			if($saved_option['datatxt_access_token'] == '0'){
+				$saved_option['datatxt_access_token'] = '';
+			}
+		}
+		if (($key = array_search('datatxt_min_confidence', $saved_option)) !== FALSE) {
+			if($saved_option['datatxt_min_confidence'] == '0'){
+				$saved_option['datatxt_min_confidence'] = '0.6';
+			}
+		}
+		self::$options = $saved_option;
 	}
 
 	/*
