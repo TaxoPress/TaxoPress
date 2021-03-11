@@ -153,7 +153,7 @@ class SimpleTags_Admin_AutoTags
                         </tr>
 
                     </table>
-                    <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simpletags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific term to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?>
+                    <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simpletags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific terms to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?>
                     </label>
                     <div class="auto-terms-keyword-list">
                         <?php
