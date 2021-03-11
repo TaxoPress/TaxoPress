@@ -89,11 +89,26 @@ a#close_clicktags{display:none;}
   flex-grow: unset !important;
 }
 .st-add-suggestion-input {
-  margin-left: 10px;
+  margin-left: 110px;
+  margin-right: 10px;
 }
 .auto-terms-keyword-list input {
   margin-bottom: 10px;
 }
 .st-delete-suggestion-input {
   margin-right: 5px;
+}
+.auto-terms-keyword-list {
+  margin-top: 20px;
+}
+.auto-terms-keyword-title {
+  display: inline;
+}
+@media only screen and (max-width: 1024px) {
+    .st-add-suggestion-input {
+        margin-left: 0px;
+    }
+    .auto-terms-keyword-title {
+        display: block;
+    }
 }
