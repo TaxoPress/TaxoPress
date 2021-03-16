@@ -24,17 +24,17 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 Contributors:
-	- Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
-	- Martin Modler (modler@webformatik.com - http://www.webformatik.com)
-	- Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
+    - Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
+    - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
+    - Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
 
 Credits Icons :
-	- famfamfam - http://www.famfamfam.com/lab/icons/silk/
+    - famfamfam - http://www.famfamfam.com/lab/icons/silk/
 */
 
 // don't load directly
 if (!defined('ABSPATH')) {
-	die('-1');
+    die('-1');
 }
 
 define('STAGS_VERSION', '3.0.0');
@@ -47,13 +47,13 @@ define('STAGS_DIR', rtrim(plugin_dir_path(__FILE__), '/'));
 
 // Check PHP min version
 if (version_compare(PHP_VERSION, STAGS_MIN_PHP_VERSION, '<')) {
-	require STAGS_DIR . '/inc/class.compatibility.php';
+    require STAGS_DIR . '/inc/class.compatibility.php';
 
-	// possibly display a notice, trigger error
-	add_action('admin_init', array('SimpleTags_Compatibility', 'admin_init'));
+    // possibly display a notice, trigger error
+    add_action('admin_init', array('SimpleTags_Compatibility', 'admin_init'));
 
-	// stop execution of this file
-	return;
+    // stop execution of this file
+    return;
 }
 
 require STAGS_DIR . '/inc/functions.inc.php'; // Internal functions
@@ -63,7 +63,6 @@ require STAGS_DIR . '/inc/functions.tpl.php';  // Templates functions
 require STAGS_DIR . '/inc/class.plugin.php';
 require STAGS_DIR . '/inc/class.client.php';
 require STAGS_DIR . '/inc/class.client.tagcloud.php';
-require STAGS_DIR . '/inc/class.rest.php';
 require STAGS_DIR . '/inc/class.widgets.php';
 
 // Activation, uninstall
@@ -73,17 +72,16 @@ register_deactivation_hook(__FILE__, array('SimpleTags_Plugin', 'deactivation'))
 // Init TaxoPress
 function init_simple_tags()
 {
-	new SimpleTags_Client();
-	new SimpleTags_Client_TagCloud();
-	new SimpleTags_Rest();
+    new SimpleTags_Client();
+    new SimpleTags_Client_TagCloud();
 
-	// Admin and XML-RPC
-	if (is_admin()) {
-		require STAGS_DIR . '/inc/class.admin.php';
-		new SimpleTags_Admin();
-	}
+    // Admin and XML-RPC
+    if (is_admin()) {
+        require STAGS_DIR . '/inc/class.admin.php';
+        new SimpleTags_Admin();
+    }
 
-	add_action('widgets_init', 'st_register_widget');
+    add_action('widgets_init', 'st_register_widget');
 }
 
 add_action('plugins_loaded', 'init_simple_tags');

@@ -23,13 +23,6 @@ return array(
             __('This feature will allow you to load all the local tags in your database inside the Suggested Tags meta box inside the editor. Once displayed, you can click to add tags to your post.', 'simpletags')
         ),
         array(
-            'use_autocompletion',
-            __('Autocompletion with old input', 'simpletags'),
-            'checkbox',
-            '1',
-            __('This feature displays the tags field in the old style, making it easier to add existing tags than the default WordPress autocomplete', 'simpletags')
-        ),
-        array(
             'use_suggested_tags',
             __('Suggested tags feature', 'simpletags'),
             'checkbox',
@@ -73,22 +66,6 @@ return array(
         )
     ),
     'administration' => array(
-        array(
-            'autocomplete_type',
-            __('Type of old input', 'simpletags'),
-            'radio',
-            array(
-                'textarea' => __('<code>textarea</code> &ndash; Textarea multiline.', 'simpletags'),
-                'input'    => __('<code>input</code> &ndash; Text input, only one line. (default)', 'simpletags')
-            )
-        ),
-        array(
-            'autocomplete_min',
-            __('Autocompletion Min Chars', 'simpletags'),
-            'number',
-            'small-text',
-            __('You can define how many characters from the autocompletion will be proposed. The default value in TaxoPress 2.0 is 0, prior this version, default parameter was 1.', 'simpletags')
-        ),
         array(
             'order_click_tags',
             __('Click tags order', 'simpletags'),

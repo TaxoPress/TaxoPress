@@ -41,10 +41,8 @@ class SimpleTags_Admin {
 			new SimpleTags_Admin_ClickTags();
 		}
 
-		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_autocompletion' ) ) {
-			require STAGS_DIR . '/inc/class.admin.autocomplete.php';
-			new SimpleTags_Admin_Autocomplete();
-		}
+        require STAGS_DIR . '/inc/class.admin.autocomplete.php';
+        new SimpleTags_Admin_Autocomplete();
 
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_mass_edit' ) ) {
 			require STAGS_DIR . '/inc/class.admin.mass.php';
