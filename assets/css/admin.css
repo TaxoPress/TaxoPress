@@ -27,7 +27,11 @@
 }
 
 /* Suggested Click Tags   */
-a#open_clicktags,a#close_clicktags{font-weight:700;color:red;border:0;text-decoration:none;display:block;margin-bottom:5px;}
+a#open_clicktags {
+    color:red;
+}
+a#open_clicktags,
+a#close_clicktags{font-weight:700;border:0;text-decoration:none;display:block;margin-bottom:5px;}
 a#close_clicktags{display:none;}
 
 /* Ajax Click Tags   */
@@ -87,6 +91,7 @@ a#close_clicktags{display:none;}
 
 #suggestedtags .postbox-header .hndle {
   flex-grow: unset !important;
+  display: block !important;
 }
 .st-add-suggestion-input {
   margin-left: 56px;

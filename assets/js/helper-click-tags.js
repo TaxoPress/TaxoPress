@@ -1,9 +1,9 @@
 jQuery(document).ready(function () {
   if (stHelperClickTagsL10n.state === 'hide') {
     // Display initial link
-    jQuery('#st-clicks-tags .inside').html('<a href="#st_click_tags" id="open_clicktags">' + stHelperClickTagsL10n.show_txt + '</a><a href="#st_click_tags" id="close_clicktags">' + stHelperClickTagsL10n.hide_txt + '</a><div class="container_clicktags"></div>')
+    jQuery('#st-clicks-tags .inside').html('<a href="#st_click_tags" id="open_clicktags">' + stHelperClickTagsL10n.show_txt + '</a><span id="close_clicktags">' + stHelperClickTagsL10n.hide_txt + '</span><div class="container_clicktags"></div>')
   } else {
-    jQuery('#st-clicks-tags .inside').html('<div class="container_clicktags"></div>')
+    jQuery('#st-clicks-tags .inside').html('<a href="#st_click_tags" id="open_clicktags">' + stHelperClickTagsL10n.show_txt + '</a><span id="close_clicktags">' + stHelperClickTagsL10n.hide_txt + '</span><div class="container_clicktags"></div>')
   }
 
   // Take current post ID
@@ -17,17 +17,6 @@ jQuery(document).ready(function () {
   jQuery('#open_clicktags').click(function (event) {
     event.preventDefault()
     load_click_tags()
-    return false
-  })
-
-  // Hide click tags
-  jQuery('#close_clicktags').click(function (event) {
-    event.preventDefault()
-
-    jQuery('#st-clicks-tags .container_clicktags').fadeOut('slow', function () {
-      jQuery('#open_clicktags').show()
-      jQuery('#close_clicktags').hide()
-    })
     return false
   })
 })
