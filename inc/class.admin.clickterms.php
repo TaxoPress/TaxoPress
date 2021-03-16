@@ -42,8 +42,8 @@ class SimpleTags_Admin_ClickTags {
 			'stHelperClickTagsL10n',
 			array(
 				'show_txt' => __( 'Click to display tags', 'simpletags' ),
-				'hide_txt' => __( 'Click to hide tags', 'simpletags' ),
-				'state'    => SimpleTags_Plugin::get_option_value( 'visibility_click_tags' ),
+				'hide_txt' => __( 'Click Tags to add them to this post', 'simpletags' ),
+				'state'    => 'show',//SimpleTags_Plugin::get_option_value( 'visibility_click_tags' ),
 			)
 		);
 
@@ -66,7 +66,7 @@ class SimpleTags_Admin_ClickTags {
 	public static function admin_menu() {
 		add_meta_box(
 			'st-clicks-tags',
-			__( 'Click tags', 'simpletags' ),
+			__( 'Show all local tags', 'simpletags' ),
 			array(
 				__CLASS__,
 				'metabox',
@@ -79,7 +79,7 @@ class SimpleTags_Admin_ClickTags {
 		if ( is_page_have_tags() ) {
 			add_meta_box(
 				'st-clicks-tags',
-				__( 'Click tags', 'simpletags' ),
+				__( 'Show all local tags', 'simpletags' ),
 				array(
 					__CLASS__,
 					'metabox',
