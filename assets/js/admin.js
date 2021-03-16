@@ -66,6 +66,32 @@
     if ($('.load-st-default-tab').length > 0) {
       $(".simple-tags-nav-tab-wrapper").find("[data-page='" + $('.load-st-default-tab').attr('data-page') + "']").trigger('click'); 
     }
+
+    // -------------------------------------------------------------
+    //   Term to use source check
+    // -------------------------------------------------------------
+    $(document).on('click', '.update_auto_list', function (e) {
+      $('.auto-terms-error-red').hide();
+      var prevent_default = false;
+      if (!$('#at_all').prop("checked") && !$('#at_all_no').prop("checked")) {
+        prevent_default = true;
+      }else if ($('#at_all').prop("checked")) {
+        prevent_default = false;
+      }else if ($('#at_all_no').prop("checked")) {
+        prevent_default = false;
+      } else {
+        prevent_default = false;
+      }
+
+      if (prevent_default) {
+        $('.auto-terms-error-red').show();
+        $('html, body').animate({
+          scrollTop: $(".auto-terms-error-red").offset().top - 200
+      }, 'fast');
+          e.preventDefault();
+      }
+
+    });
     
   
   });

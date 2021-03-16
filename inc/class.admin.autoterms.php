@@ -88,6 +88,9 @@ class SimpleTags_Admin_AutoTags
             // All terms ?
             $taxo_options['at_all'] = (isset($_POST['at_all']) && $_POST['at_all'] == '1') ? '1' : '0';
 
+            // Selected terms ?
+            $taxo_options['at_all_no'] = (isset($_POST['at_all_no']) && $_POST['at_all_no'] == '1') ? '1' : '0';
+
             // Empty only ?
             $taxo_options['at_empty'] = (isset($_POST['at_empty']) && $_POST['at_empty'] == '1') ? '1' : '0';
 
@@ -145,16 +148,22 @@ class SimpleTags_Admin_AutoTags
                             </td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row"><?php _e('Terms database', 'simpletags'); ?></th>
+                            <th scope="row"><?php _e('Terms to use', 'simpletags'); ?></th>
                             <td>
                                 <input type="checkbox" id="at_all" name="at_all" value="1" <?php echo (isset($taxo_options['at_all']) && $taxo_options['at_all'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="at_all"><label for="use_auto_terms"><?php printf(__('Use all the terms in the %s taxonomy. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
-                            </td>
-                        </tr>
+                                <label for="at_all"><?php printf(__('Use all the terms in the %s taxonomy. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
 
-                    </table>
-                    <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simpletags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific terms to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?>
-                    </label>
+                                <br /><br />
+                                <input type="checkbox" id="at_all_no" name="at_all_no" value="1" <?php echo (isset($taxo_options['at_all_no']) && $taxo_options['at_all_no'] == 1) ? 'checked="checked"' : ''; ?> />
+                                <label for="at_all_no"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific term to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
+
+                    <div class="auto-terms-error-red"> <?php echo __('Please choose an option for "Terms to use"', 'simpletags'); ?> </div>
+
+                                <br /><br />
+                                 <div class="auto-terms-keyword-list-wrapper">
+                                <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simpletags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list">
+                                </label>
+                    
                     <div class="auto-terms-keyword-list">
                         <?php
                         if (count($terms_list) > 0) {
@@ -170,6 +179,15 @@ class SimpleTags_Admin_AutoTags
                         ?>
 
                     </div>
+                        
+
+                    
+                    </div>
+
+                            </td>
+                        </tr>
+
+                    </table>
 
 
                     <h3><?php _e('Options', 'simpletags'); ?></h3>
@@ -201,7 +219,7 @@ class SimpleTags_Admin_AutoTags
 
                     <p class="submit">
                         <?php wp_nonce_field('update_auto_list-simpletags'); ?>
-                        <input class="button-primary" type="submit" name="update_auto_list" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
+                        <input class="button-primary update_auto_list" type="submit" name="update_auto_list" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
                     </p>
                 </form>
 

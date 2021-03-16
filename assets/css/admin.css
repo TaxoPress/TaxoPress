@@ -89,7 +89,7 @@ a#close_clicktags{display:none;}
   flex-grow: unset !important;
 }
 .st-add-suggestion-input {
-  margin-left: 110px;
+  margin-left: 56px;
   margin-right: 10px;
 }
 .auto-terms-keyword-list input {
@@ -125,11 +125,29 @@ a#close_clicktags{display:none;}
 .auto-terms-content input[type="submit"] {
     margin-top: 10px;
 }
+.auto-terms-keyword-list-wrapper {
+    margin-left: 100px;
+}
+.auto-terms-error-red {
+    display:none;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-left-width: 4px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+    margin: 5px 15px 2px;
+    padding: 10px 12px;
+    border-left-color: #d63638;
+    margin-top: 20px;
+    margin-left: 0px;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
     }
     .auto-terms-keyword-title {
         display: block;
+    }
+    .auto-terms-keyword-list-wrapper {
+        margin-left: 0;
     }
 }
