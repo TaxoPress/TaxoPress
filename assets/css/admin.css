@@ -104,6 +104,27 @@ a#close_clicktags{display:none;}
 .auto-terms-keyword-title {
   display: inline;
 }
+.taxopress_page_st_manage .wrap {
+    margin-top: 35px;
+}
+
+
+.simple-tags-nav-tab-wrapper .nav-tab {
+    color: inherit;
+    cursor: pointer;
+}
+
+.simple-tags-nav-tab-wrapper .nav-tab-active,
+.simple-tags-nav-tab-wrapper .nav-tab:hover,
+.simple-tags-nav-tab-wrapper .nav-tab:active,
+.simple-tags-nav-tab-wrapper .nav-tab:focus {
+    border-top-color: #655997;
+    color: #655997;
+}
+
+.auto-terms-content input[type="submit"] {
+    margin-top: 10px;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
