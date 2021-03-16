@@ -228,6 +228,187 @@ class SimpleTags_Client_TagCloud {
 		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright );
 	}
 
+
+	/**
+	 * Generate extended tag result
+	 *
+	 * @param string $args
+	 *
+	 * @return array
+	 */
+	public static function extendedTagResult( $args = '', $copyright = true ) {
+		$defaults = array(
+			// Simple Tag global options defaults
+			'selectionby' => 'count',
+			'selection'   => 'desc',
+			'orderby'     => 'random',
+			'order'       => 'asc',
+			'format'      => 'flat',
+			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags' ),
+			'number'      => 45,
+			'notagstext'  => __( 'No tags.', 'simpletags' ),
+			'title'       => __( '<h4>Tag Cloud</h4>', 'simpletags' ),
+			'maxcolor'    => '#000000',
+			'mincolor'    => '#CCCCCC',
+			'largest'     => 22,
+			'smallest'    => 8,
+			'unit'        => 'pt',
+			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
+			// Simple Tag other defaults
+			'size'        => 'true',
+			'color'       => 'true',
+			'exclude'     => '',
+			'include'     => '',
+			'limit_days'  => 0,
+			'min_usage'   => 0,
+			'category'    => 0
+		);
+
+		// Get options
+		$options = SimpleTags_Plugin::get_option();
+
+		// Get values in DB
+		$defaults['selectionby'] = $options['cloud_selectionby'];
+		$defaults['selection']   = $options['cloud_selection'];
+		$defaults['orderby']     = $options['cloud_orderby'];
+		$defaults['order']       = $options['cloud_order'];
+		$defaults['format']      = $options['cloud_format'];
+		$defaults['xformat']     = $options['cloud_xformat'];
+		$defaults['number']      = $options['cloud_limit_qty'];
+		$defaults['notagstext']  = $options['cloud_notagstext'];
+		$defaults['title']       = $options['cloud_title'];
+		$defaults['maxcolor']    = $options['cloud_max_color'];
+		$defaults['mincolor']    = $options['cloud_min_color'];
+		$defaults['largest']     = $options['cloud_max_size'];
+		$defaults['smallest']    = $options['cloud_min_size'];
+		$defaults['unit']        = $options['cloud_unit'];
+		$defaults['taxonomy']    = $options['cloud_taxonomy'];
+
+		$adv_usage = $options['cloud_adv_usage'];
+		if ( empty( $args ) ) {
+			$args = $adv_usage;
+		} else {
+			$args = $adv_usage . "&" . $args;
+		}
+		$args = wp_parse_args( $args, $defaults );
+
+		// Add compatibility tips with old field syntax
+		if ( isset( $args['cloud_sort'] ) ) {
+			$args['cloud_order'] = $args['cloud_sort'];
+			unset( $args['cloud_sort'] );
+		}
+
+		// Translate selection order
+		if ( isset( $args['cloud_order'] ) ) {
+			$args['orderby'] = self::compatOldOrder( $args['cloud_order'], 'orderby' );
+			$args['order']   = self::compatOldOrder( $args['cloud_order'], 'order' );
+		}
+
+		// Category names to ID codes
+		if ( isset( $args['category'] ) ) {
+			$category = explode( ",", $args['category'] );
+			foreach ( $category as $key => $name ) {
+				$category[ $key ] = is_numeric( $name ) ? $name : get_cat_ID( $name );
+				if ( $category[ $key ] == 0 ) {
+					unset( $category[ $key ] );
+				}
+			}
+			$args['category'] = implode( ",", $category );
+		}
+
+        // Get correct taxonomy ?
+		$taxonomy = self::_get_current_taxonomy( $args['taxonomy'] );
+
+		// Get terms
+		$terms = self::getTags( $args, $taxonomy );
+		extract( $args ); // Params to variables
+
+		// If empty use default xformat !
+		if ( empty( $xformat ) ) {
+			$xformat = $defaults['xformat'];
+		}
+
+		if ( empty( $terms ) ) {
+			return [];
+		}
+
+		$counts = $terms_data = array();
+		foreach ( (array) $terms as $term ) {
+			$counts[ $term->name ]     = $term->count;
+			$terms_data[ $term->name ] = $term;
+		}
+
+		// Remove temp data from memory
+		$terms = array();
+		unset( $terms );
+
+		// Use full RBG code
+		if ( strlen( $maxcolor ) == 4 ) {
+			$maxcolor = $maxcolor . substr( $maxcolor, 1, strlen( $maxcolor ) );
+		}
+		if ( strlen( $mincolor ) == 4 ) {
+			$mincolor = $mincolor . substr( $mincolor, 1, strlen( $mincolor ) );
+		}
+
+		// Check as smallest inferior or egal to largest
+		if ( $smallest > $largest ) {
+			$smallest = $largest;
+		}
+
+		// Scaling - Hard value for the moment
+		$scale_min = 0;
+		$scale_max = 10;
+
+		$minval = min( $counts );
+		$maxval = max( $counts );
+
+		$minout = max( $scale_min, 0 );
+		$maxout = max( $scale_max, $minout );
+
+		$scale = ( $maxval > $minval ) ? ( ( $maxout - $minout ) / ( $maxval - $minval ) ) : 0;
+
+		// HTML Rel (tag/no-follow)
+		$rel = SimpleTags_Client::get_rel_attribut();
+
+		// Remove color marquer if color = false
+		if ( $color == 'false' ) {
+			$xformat = str_replace( '%tag_color%', '', $xformat );
+		}
+
+		// Remove size marquer if size = false
+		if ( $size == 'false' ) {
+			$xformat = str_replace( '%tag_size%', '', $xformat );
+		}
+
+		// Order terms before output
+		// count, name, rand | asc, desc
+
+		$orderby = strtolower( $orderby );
+		if ( $orderby == 'count' ) {
+			asort( $counts );
+		} elseif ( $orderby == 'name' ) {
+			uksort( $counts, array( __CLASS__, 'uksort_by_name' ) );
+		} else { // rand
+			SimpleTags_Client::random_array( $counts );
+		}
+
+		$order = strtolower( $order );
+		if ( $order == 'desc' && $orderby != 'random' ) {
+			$counts = array_reverse( $counts );
+		}
+
+		$output = array();
+		foreach ( (array) $counts as $term_name => $count ) {
+			if ( ! is_object( $terms_data[ $term_name ] ) ) {
+				continue;
+			}
+			$output[]   = $terms_data[ $term_name ];
+		}
+
+
+		return $output;
+	}
+
 	/**
 	 * Check if taxonomy exist and return it, otherwise return default post tags.
 	 *

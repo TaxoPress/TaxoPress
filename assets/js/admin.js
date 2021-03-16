@@ -47,6 +47,26 @@
       $(this).remove();
     });
 
+    // -------------------------------------------------------------
+    //   Auto terms tab action
+    // -------------------------------------------------------------
+    $(document).on('click', '.simple-tags-nav-tab-wrapper li', function (e) {
+      e.preventDefault();
+      //change active tab
+      $('.nav-tab').removeClass('nav-tab-active');
+      $(this).addClass('nav-tab-active');
+      //change active content
+      $('.auto-terms-content').hide();
+      $($(this).attr('data-page')).show();
+    });
+
+    // -------------------------------------------------------------
+    //   Default tab click trigger
+    // -------------------------------------------------------------
+    if ($('.load-st-default-tab').length > 0) {
+      $(".simple-tags-nav-tab-wrapper").find("[data-page='" + $('.load-st-default-tab').attr('data-page') + "']").trigger('click'); 
+    }
+    
   
   });
 

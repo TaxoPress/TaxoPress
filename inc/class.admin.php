@@ -29,6 +29,7 @@ class SimpleTags_Admin {
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
+
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
 			require STAGS_DIR . '/inc/class.admin.suggest.php';
@@ -51,8 +52,9 @@ class SimpleTags_Admin {
 		}
 
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_manage' ) ) {
+			require STAGS_DIR . '/inc/class-tag-table.php';
 			require STAGS_DIR . '/inc/class.admin.manage.php';
-			new SimpleTags_Admin_Manage();
+			SimpleTags_Admin_Manage::get_instance();
 		}
 
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) ) {
