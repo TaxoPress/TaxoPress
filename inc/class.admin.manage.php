@@ -223,7 +223,7 @@ class SimpleTags_Admin_Manage {
                             <li class="nav-tab" data-page=".st-merge-terms">Merge terms</li>
                             <li class="nav-tab" data-page=".st-remove-terms">Remove terms</li>
                             <li class="nav-tab" data-page=".st-delete-terms">Delete terms</li>
-                            <li class="nav-tab" data-page=".st-delete-unuused-terms">Delete unuused terms</li>
+                            <li class="nav-tab" data-page=".st-delete-unuused-terms">Delete unused terms</li>
                         </ul>
                         <div class="clear"></div>
 
