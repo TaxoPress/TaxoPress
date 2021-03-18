@@ -66,6 +66,7 @@ v3.0.3 - 2021-03-17
 * Removed "Autocompletion with old input"
 * Small adjustment to the AutoTerms screen
 * Small improvements to metaboxes
+* Added search to clicktags
 
 v3.0.2 - 2021-03-10
 * Restore Dandelion API
