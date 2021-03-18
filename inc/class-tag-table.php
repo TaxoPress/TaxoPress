@@ -148,7 +148,7 @@ class Termcloud_List extends WP_List_Table {
 	 */
 	protected function column_name( $item ) {
         $title = sprintf(
-                '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>', 
+                '<a href="%1$s" class="tag-cloud-link"><strong><span class="row-title">%2$s</span></strong></a>', 
                esc_url( get_term_link( $item, $item->taxonomy )), 
                 esc_html($item->name)
             );

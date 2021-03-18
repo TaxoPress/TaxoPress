@@ -189,9 +189,10 @@ class SimpleTags_Admin_Manage {
         
         <hr class="wp-header-end">
         <div id="ajax-response"></div>
-        <form class="search-form wp-clearfix" method="get">
+        <form class="search-form wp-clearfix st-tag-cloud-search-form" method="get">
             <?php $this->terms_table->search_box(sprintf(__('Search %s ', 'simpletags'), SimpleTags_Admin::$taxo_name), 'term'); ?>
         </form>
+        <div class="clear"></div>
 
         <div id="col-container" class="wp-clearfix">
 
@@ -223,7 +224,7 @@ class SimpleTags_Admin_Manage {
                             <li class="nav-tab" data-page=".st-merge-terms">Merge terms</li>
                             <li class="nav-tab" data-page=".st-remove-terms">Remove terms</li>
                             <li class="nav-tab" data-page=".st-delete-terms">Delete terms</li>
-                            <li class="nav-tab" data-page=".st-delete-unuused-terms">Delete unuused terms</li>
+                            <li class="nav-tab" data-page=".st-delete-unuused-terms">Delete unused terms</li>
                         </ul>
                         <div class="clear"></div>
 
@@ -254,16 +255,16 @@ class SimpleTags_Admin_Manage {
 								<p>
 									<label for="addterm_match"><?php _e( 'Term(s) to match:', 'simpletags' ); ?></label>
 									<br/>
-									<input type="text" class="autocomplete-input" id="addterm_match"
+									<input type="text" class="autocomplete-input tag-cloud-input" id="addterm_match"
 									       name="addterm_match"
-									       value="" size="40"/>
+									       value="" size="80"/>
 								</p>
 
 								<p>
 									<label for="addterm_new"><?php _e( 'Term(s) to add:', 'simpletags' ); ?></label>
 									<br/>
 									<input type="text" class="autocomplete-input" id="addterm_new" name="addterm_new"
-									       value="" size="40"/>
+									       value="" size="80"/>
 								</p>
 
 								<input class="button-primary" type="submit" name="Add"
@@ -295,16 +296,16 @@ class SimpleTags_Admin_Manage {
 									<label
 										for="renameterm_old"><?php _e( 'Term(s) to rename:', 'simpletags' ); ?></label>
 									<br/>
-									<input type="text" class="autocomplete-input" id="renameterm_old"
+									<input type="text" class="autocomplete-input tag-cloud-input" id="renameterm_old"
 									       name="renameterm_old"
-									       value="" size="40"/>
+									       value="" size="80"/>
 								</p>
 
 								<p>
 									<label for="renameterm_new"><?php _e( 'New term name(s):', 'simpletags' ); ?>
 										<br/>
 										<input type="text" class="autocomplete-input" id="renameterm_new"
-										       name="renameterm_new" value="" size="40"/>
+										       name="renameterm_new" value="" size="80"/>
 								</p>
 
 								<input class="button-primary" type="submit" name="rename"
@@ -336,16 +337,16 @@ class SimpleTags_Admin_Manage {
 									<label
 										for="renameterm_old"><?php _e( 'Term(s) to merge:', 'simpletags' ); ?></label>
 									<br/>
-									<input type="text" class="autocomplete-input" id="renameterm_old"
+									<input type="text" class="autocomplete-input tag-cloud-input" id="mergeterm_old"
 									       name="renameterm_old"
-									       value="" size="40"/>
+									       value="" size="80"/>
 								</p>
 
 								<p>
 									<label for="renameterm_new"><?php _e( 'New term name:', 'simpletags' ); ?>
 										<br/>
 										<input type="text" class="autocomplete-input" id="renameterm_new"
-										       name="renameterm_new" value="" size="40"/>
+										       name="renameterm_new" value="" size="80"/>
 								</p>
 
 								<input class="button-primary" type="submit" name="merge"
@@ -377,9 +378,9 @@ class SimpleTags_Admin_Manage {
 									<label
 										for="renameterm_old"><?php _e( 'Term(s) to remove:', 'simpletags' ); ?></label>
 									<br/>
-									<input type="text" class="autocomplete-input" id="remove_term_input"
+									<input type="text" class="autocomplete-input  tag-cloud-input" id="remove_term_input"
 									       name="remove_term_input"
-									       value="" size="40"/>
+									       value="" size="80"/>
 								</p>
 
 								<input class="button-primary" type="submit" name="rename"
@@ -412,8 +413,8 @@ class SimpleTags_Admin_Manage {
 									<label
 										for="deleteterm_name"><?php _e( 'Term(s) to delete:', 'simpletags' ); ?></label>
 									<br/>
-									<input type="text" class="autocomplete-input" id="deleteterm_name"
-									       name="deleteterm_name" value="" size="40"/>
+									<input type="text" class="autocomplete-input  tag-cloud-input" id="deleteterm_name"
+									       name="deleteterm_name" value="" size="80"/>
 								</p>
 
 								<input class="button-primary" type="submit" name="delete"
@@ -476,13 +477,13 @@ class SimpleTags_Admin_Manage {
 								<p>
 									<label for="tagname_match"><?php _e('Term(s) to match:', 'simpletags'); ?></label>
 									<br />
-									<input type="text" class="autocomplete-input" id="tagname_match" name="tagname_match" value="" size="40" />
+									<input type="text" class="autocomplete-input" id="tagname_match" name="tagname_match" value="" size="80" />
 								</p>
 
 								<p>
 									<label for="tagslug_new"><?php _e('Slug(s) to set:', 'simpletags'); ?></label>
 									<br />
-									<input type="text" class="autocomplete-input" id="tagslug_new" name="tagslug_new" value="" size="40" />
+									<input type="text" class="autocomplete-input" id="tagslug_new" name="tagslug_new" value="" size="80" />
 								</p>
 
 								<input class="button-primary" type="submit" name="edit" value="<?php _e('Edit', 'simpletags'); ?>" />

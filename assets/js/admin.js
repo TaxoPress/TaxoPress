@@ -92,6 +92,16 @@
       }
 
     });
+
+    // -------------------------------------------------------------
+    //   Restrict terms to use to only one checkbox
+    // -------------------------------------------------------------
+    $(document).on('click', '#at_all', function (e) {
+        $('#at_all_no').prop("checked", false);
+    });
+    $(document).on('click', '#at_all_no', function (e) {
+        $('#at_all').prop("checked", false);
+    });
     
   
   });
