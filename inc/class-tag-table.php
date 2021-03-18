@@ -298,7 +298,7 @@ class Termcloud_List extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = $this->get_items_per_page( 'termcloud_per_page', 5 );
+        $per_page = $this->get_items_per_page( 'termcloud_per_page', 10 );
 
         /**
          * handle bulk actions.

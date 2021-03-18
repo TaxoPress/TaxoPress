@@ -24,9 +24,10 @@ return array(
     // Administration
     'order_click_tags'       => 'name-asc',
     'visibility_click_tags'  => 'hide',
+    'click_tags_limit'       => '100',
     'opencalais_key'         => '',
     'datatxt_access_token'   => '',
-    'datatxt_min_confidence' => '0.6',
+    'datatxt_min_confidence'  => '0.6',
     'autocomplete_mode'      => '',
     // The tags
     'tt_feed'                => 0,

@@ -660,7 +660,7 @@ class SimpleTags_Admin {
 	 * @return array
 	 * @author WebFactory Ltd
 	 */
-	public static function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC' ) {
+	public static function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC', $limit = '' ) {
 		global $wpdb;
 
 		if ( ! empty( $search ) ) {
@@ -670,7 +670,7 @@ class SimpleTags_Admin {
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = %s
 				AND t.name LIKE %s
-				ORDER BY $order_by $order
+				ORDER BY $order_by $order $limit
 			", $taxonomy, '%' . $search . '%' ) );
 		} else {
 			return $wpdb->get_results( $wpdb->prepare( "
@@ -678,7 +678,7 @@ class SimpleTags_Admin {
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = %s
-				ORDER BY $order_by $order
+				ORDER BY $order_by $order $limit
 			", $taxonomy ) );
 		}
 	}
