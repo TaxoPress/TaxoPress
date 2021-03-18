@@ -145,6 +145,14 @@ a#close_clicktags{display:none;}
     margin-top: 20px;
     margin-left: 0px;
 }
+.st-tag-cloud-search-form {
+    float: left;
+}
+
+.auto-terms-content input[type=text] {
+    min-height: 40px;
+}
+
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
