@@ -239,7 +239,7 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Add Terms', 'simpletags' ); ?></h2>
 						<p><?php printf(__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
-						<p><?php printf(__('You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all %s , then don\'t specify any terms to match.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(__('You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all %s, then don\'t specify any terms to match.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -393,7 +393,7 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" style="display:none;" class="auto-terms-content st-delete-terms">
 					<td>
                         <h2><?php _e( 'Delete Terms', 'simpletags' ); ?></h2>
-						<p><?php printf(__('AEnter the name of terms to delete. Terms will be removed from all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php _e( 'Enter the name of terms to delete.', 'simpletags' ); ?></p>
 
 						<p><?php _e( 'You can specify multiple terms to delete by separating them with commas', 'simpletags' ); ?>
 							.</p>
