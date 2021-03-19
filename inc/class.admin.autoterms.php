@@ -135,7 +135,7 @@ class SimpleTags_Admin_AutoTags
 
                 <form action="<?php echo self::$admin_base_url . 'st_auto&taxo=' . SimpleTags_Admin::$taxonomy . '&cpt=' . SimpleTags_Admin::$post_type; ?>" method="post">
 
-                    <p><?php _e('This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will add automatically "wordpress" as term for this post.', 'simpletags'); ?></p>
+                    <p><?php printf(__('This feature allows Wordpress to look into %s content and title for specified terms when saving %s. If your %s content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will add automatically "wordpress" as term for this %s.', 'simpletags'), SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name); ?></p>
 
                     <table class="form-table">
 
@@ -198,14 +198,14 @@ class SimpleTags_Admin_AutoTags
                             <th scope="row"><?php _e('Target', 'simpletags'); ?></th>
                             <td>
                                 <input type="checkbox" id="at_empty" name="at_empty" value="1" <?php echo (isset($taxo_options['at_empty']) && $taxo_options['at_empty'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="at_empty"><?php _e('Autotag only posts without terms.', 'simpletags'); ?></label>
+                                <label for="at_empty"><?php printf(__('Autotag only %s without terms.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label>
                             </td>
                         </tr>
                         <tr valign="top">
                             <th scope="row"><?php _e('Whole Word ?', 'simpletags'); ?></th>
                             <td>
                                 <input type="checkbox" id="only_full_word" name="only_full_word" value="1" <?php echo (isset($taxo_options['only_full_word']) && $taxo_options['only_full_word'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="only_full_word"><?php _e('Autotag only a post when terms finded in the content are a the same name. (whole word only)', 'simpletags'); ?></label>
+                                <label for="only_full_word"><?php printf(__('Autotag only a %s when terms finded in the content are a the same name. (whole word only).', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label>
                             </td>
                         </tr>
                         <tr valign="top">
