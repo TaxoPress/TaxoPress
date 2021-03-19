@@ -161,6 +161,7 @@ a#close_clicktags{display:none;}
 .st-manage-terms-page .tablenav.top {
     display: none;
 }
+
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
