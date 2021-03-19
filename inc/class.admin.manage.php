@@ -77,9 +77,9 @@ class SimpleTags_Admin_Manage {
 
 		$option = 'per_page';
 		$args   = [
-			'label'   => 'Customers',
-			'default' => 5,
-			'option'  => 'customers_per_page'
+			'label'   => 'Terms',
+			'default' => 10,
+			'option'  => 'termcloud_per_page'
 		];
 
 		add_screen_option( $option, $args );
