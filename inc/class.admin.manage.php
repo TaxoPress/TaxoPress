@@ -429,7 +429,7 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Remove rarely used terms', 'simpletags' ); ?></h2>
 						<p><?php _e( 'This feature allows you to remove rarely used terms.', 'simpletags' ); ?></p>
 
-						<p><?php _e( 'You can specify the number below which will be removed terms. If you put 5, all terms with a counter inferior to 5 will be deleted. The terms with a counter equal to 5 is keep.', 'simpletags' ); ?></p>
+						<p><?php printf(__('If you choose 5, Taxopress will delete all terms attached to less than 5 %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -443,7 +443,7 @@ class SimpleTags_Admin_Manage {
 								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
 								<p>
-									<label for="number-delete"><?php _e( 'Numbers minimum:', 'simpletags' ); ?></label>
+									<label for="number-delete"><?php _e( 'Minimum number of uses for each term:', 'simpletags' ); ?></label>
 									<br/>
 									<select name="number-rarely" id="number-delete">
 										<?php for ( $i = 1; $i <= 100; $i ++ ) : ?>
