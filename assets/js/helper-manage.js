@@ -1,12 +1,13 @@
 jQuery(document).ready(function() {
-    jQuery("#term-list-inner a").click(function(event) {
-        event.preventDefault();
-
-        st_add_term(this.innerHTML, "renameterm_old"); // Rename terms
-        st_add_term(this.innerHTML, "deleteterm_name"); // Delete terms
-        st_add_term(this.innerHTML, "addterm_match"); // Add terms
-        //st_add_term(this.innerHTML, "termname_match"); // Edit slug
-
+    jQuery(".tag-cloud-link").click(function(event) {
+      event.preventDefault();
+      var tag = jQuery(this).find('.row-title').html();
+      st_add_term(tag, "addterm_match");
+      st_add_term(tag, "renameterm_old");
+      st_add_term(tag, "mergeterm_old");
+      st_add_term(tag, "remove_term_input");
+      st_add_term(tag, "deleteterm_name");
+      
         return false;
     });
 });

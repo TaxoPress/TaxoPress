@@ -155,7 +155,7 @@ class SimpleTags_Admin_AutoTags
 
                                 <br /><br />
                                 <input type="checkbox" id="at_all_no" name="at_all_no" value="1" <?php echo (isset($taxo_options['at_all_no']) && $taxo_options['at_all_no'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="at_all_no"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific term to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
+                                <label for="at_all_no"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific terms to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
 
                     <div class="auto-terms-error-red"> <?php echo __('Please choose an option for "Terms to use"', 'simpletags'); ?> </div>
 

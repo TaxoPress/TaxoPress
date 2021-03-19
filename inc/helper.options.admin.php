@@ -88,6 +88,13 @@ return array(
             ),
         ),
         array(
+            'click_tags_limit',
+            __('Click tags limit', 'simpletags'),
+            'number',
+            'regular-text',
+            __('Click tags limit on post screen', 'simpletags')
+        ),
+        array(
             'opencalais_key',
             __('OpenCalais API Key', 'simpletags'),
             'text',
