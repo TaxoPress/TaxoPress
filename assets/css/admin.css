@@ -147,6 +147,7 @@ a#close_clicktags{display:none;}
 }
 .st-tag-cloud-search-form {
     float: left;
+    margin-bottom: 6px;
 }
 
 .auto-terms-content input[type=text] {
@@ -157,7 +158,9 @@ a#close_clicktags{display:none;}
     display: block;
     margin-bottom: 10px;
 }
-
+.st-manage-terms-page .tablenav.top {
+    display: none;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
