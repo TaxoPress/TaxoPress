@@ -277,7 +277,7 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" style="display:none;" class="auto-terms-content st-rename-terms">
 					<td>
                         <h2><?php _e( 'Rename Terms', 'simpletags' ); ?> </h2>
-						<p><?php _e( 'Enter the term to rename and its new value.', 'simpletags' ); ?></p>
+						<p><?php _e( 'Enter the terms to rename and their new names.', 'simpletags' ); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
