@@ -43,7 +43,7 @@ class SimpleTags_Admin_ClickTags {
 			array(
 				'show_txt'    => __( 'Click to display tags', 'simpletags' ),
 				'hide_txt'    => __( 'Click Tags to add them to this post', 'simpletags' ),
-				'state'       => 'show',//SimpleTags_Plugin::get_option_value( 'visibility_click_tags' ),
+				'state'       => 'show',
 				'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
 				'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simpletags').'" size="26" autocomplete="off">',
 			)
