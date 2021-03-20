@@ -104,7 +104,7 @@
     });
 
     // -------------------------------------------------------------
-    //   Manage terms add terns option check
+    //   Manage terms add terms option check
     // -------------------------------------------------------------
     $(document).on('click', '.addterm_type_matched_only', function (e) {
       $('#addterm_match').val($('#addterm_match').attr('data-prev'));

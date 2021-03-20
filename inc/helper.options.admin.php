@@ -79,15 +79,6 @@ return array(
             )
         ),
         array(
-            'visibility_click_tags',
-            __('Click tags - Post edition default visibility', 'simpletags'),
-            'radio',
-            array(
-                'hide' => __('Hidden, you must click on display tags. (default)', 'simpletags'),
-                'show' => __('Displayed, you can not hide them.', 'simpletags'),
-            ),
-        ),
-        array(
             'click_tags_limit',
             __('Click tags limit', 'simpletags'),
             'number',
