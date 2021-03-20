@@ -239,7 +239,7 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Add Terms', 'simpletags' ); ?></h2>
 						<p><?php printf(__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
-						<p><?php printf(__('If you want the term(s) to be added to all %s, then don\'t specify any terms to match.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(__('Terms will be added to all %s If no "Term(s) to match" is specified.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -253,6 +253,12 @@ class SimpleTags_Admin_Manage {
 								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
 								<p>
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts"><?php _e( 'Add terms to all posts.', 'simpletags' ); ?></label><br>
+
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only" checked="checked"> <?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
+								</p>
+
+								<p class="terms-to-maatch-input">
 									<label for="addterm_match"><?php _e( 'Term(s) to match:', 'simpletags' ); ?></label>
 									<br/>
 									<input type="text" class="autocomplete-input tag-cloud-input" id="addterm_match"
