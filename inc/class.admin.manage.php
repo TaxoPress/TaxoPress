@@ -356,7 +356,7 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" style="display:none;" class="auto-terms-content st-remove-terms">
 					<td>
                         <h2><?php echo sprintf(__('Remove Terms from %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></h2>
-						<p><?php echo sprintf(__('Enter the term to remove from all %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></p>
+						<p><?php echo sprintf(__('Enter the terms to remove from all %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></p>
 
 
 						<fieldset>
