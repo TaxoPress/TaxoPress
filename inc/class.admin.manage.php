@@ -164,7 +164,7 @@ class SimpleTags_Admin_Manage {
 
 		settings_errors( __CLASS__ );
 		?>
-		<div class="wrap st_wrap">
+		<div class="wrap st_wrap st-manage-terms-page">
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
 
 			<h2><?php _e( 'TaxoPress: Manage Terms', 'simpletags' ); ?></h2>
@@ -239,7 +239,7 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Add Terms', 'simpletags' ); ?></h2>
 						<p><?php printf(__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
-						<p><?php printf(__('You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all %s, then don\'t specify any terms to match.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(__('If you want the term(s) to be added to all %s, then don\'t specify any terms to match.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -278,8 +278,6 @@ class SimpleTags_Admin_Manage {
 					<td>
                         <h2><?php _e( 'Rename Terms', 'simpletags' ); ?> </h2>
 						<p><?php _e( 'Enter the term to rename and its new value.', 'simpletags' ); ?></p>
-
-						<p><?php _e( 'You can specify multiple terms to rename by separating them with commas.', 'simpletags' ); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -320,7 +318,6 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Merge Terms', 'simpletags' ); ?> </h2>
 						<p><?php printf(__('Enter the term to merge and its new value. Click "Merge" and all %s which use this term will be updated.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
-						<p><?php _e( 'You can specify multiple terms to merge by separating them with commas.', 'simpletags' ); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -361,7 +358,6 @@ class SimpleTags_Admin_Manage {
                         <h2><?php echo sprintf(__('Remove Terms from %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></h2>
 						<p><?php echo sprintf(__('Enter the term to remove from all %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></p>
 
-						<p><?php _e( 'You can specify multiple terms to remove by separating them with commas.', 'simpletags' ); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -395,8 +391,6 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Delete Terms', 'simpletags' ); ?></h2>
 						<p><?php _e( 'Enter the name of terms to delete.', 'simpletags' ); ?></p>
 
-						<p><?php _e( 'You can specify multiple terms to delete by separating them with commas', 'simpletags' ); ?>
-							.</p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -464,8 +458,7 @@ class SimpleTags_Admin_Manage {
 					<th scope="row"><strong><?php _e('Edit Term Slug', 'simpletags'); ?></strong></th>
 					<td>
 						<p><?php _e('Enter the term name to edit and its new slug. <a href="http://codex.wordpress.org/Glossary#Slug">Slug definition</a>', 'simpletags'); ?></p>
-						<p><?php _e('You can specify multiple terms to rename by separating them with commas.', 'simpletags'); ?></p>
-
+						
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
