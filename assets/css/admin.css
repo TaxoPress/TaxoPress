@@ -167,6 +167,13 @@ a#close_clicktags{display:none;}
 .st-manage-terms-page .column-slug {
     width: 35%;
 }
+.addterm_type_all_posts,
+.addterm_type_matched_only {
+    margin-right: 9px !important;
+}
+.terms-type-options {
+    margin-bottom: 15px !important;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;

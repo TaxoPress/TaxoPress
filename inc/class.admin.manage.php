@@ -252,10 +252,10 @@ class SimpleTags_Admin_Manage {
 								<input type="hidden" name="term_nonce"
 								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
-								<p>
-                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts"><?php _e( 'Add terms to all posts.', 'simpletags' ); ?></label><br>
+								<p class="terms-type-options">
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts"><?php printf(__('Add terms to all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label><br>
 
-                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only" checked="checked"> <?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only" checked="checked"><?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
 								</p>
 
 								<p class="terms-to-maatch-input">
