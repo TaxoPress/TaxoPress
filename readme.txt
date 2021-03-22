@@ -2,7 +2,7 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
-Tested up to: 5.6
+Tested up to: 5.7
 Stable tag: 3.0.3
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -60,7 +60,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.0.3 - 2021-03-17
+v3.0.3 - 2021-03-22
 * Improved the "Manage Terms" page
 * Added feature to untag all posts with specific tag to "Manage Terms" page
 * Removed "Autocompletion with old input"
