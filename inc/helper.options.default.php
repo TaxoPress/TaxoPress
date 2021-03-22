@@ -23,7 +23,6 @@ return array(
     'auto_link_title'        => __('Posts tagged with %s', 'simpletags'),
     // Administration
     'order_click_tags'       => 'name-asc',
-    'visibility_click_tags'  => 'hide',
     'click_tags_limit'       => '100',
     'opencalais_key'         => '',
     'datatxt_access_token'   => '',

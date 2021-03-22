@@ -102,6 +102,19 @@
     $(document).on('click', '#at_all_no', function (e) {
         $('#at_all').prop("checked", false);
     });
+
+    // -------------------------------------------------------------
+    //   Manage terms add terms option check
+    // -------------------------------------------------------------
+    $(document).on('click', '.addterm_type_matched_only', function (e) {
+      $('#addterm_match').val($('#addterm_match').attr('data-prev'));
+      $('.terms-to-maatch-input').show();
+    });
+    $(document).on('click', '.addterm_type_all_posts', function (e) {
+      $('#addterm_match').attr('data-prev', $('#addterm_match').val());
+      $('#addterm_match').val('');
+      $('.terms-to-maatch-input').hide();
+    });
     
   
   });

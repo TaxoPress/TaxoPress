@@ -77,9 +77,9 @@ class SimpleTags_Admin_Manage {
 
 		$option = 'per_page';
 		$args   = [
-			'label'   => 'Customers',
-			'default' => 5,
-			'option'  => 'customers_per_page'
+			'label'   => 'Terms',
+			'default' => 10,
+			'option'  => 'termcloud_per_page'
 		];
 
 		add_screen_option( $option, $args );
@@ -164,7 +164,7 @@ class SimpleTags_Admin_Manage {
 
 		settings_errors( __CLASS__ );
 		?>
-		<div class="wrap st_wrap">
+		<div class="wrap st_wrap st-manage-terms-page">
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
 
 			<h2><?php _e( 'TaxoPress: Manage Terms', 'simpletags' ); ?></h2>
@@ -239,7 +239,7 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Add Terms', 'simpletags' ); ?></h2>
 						<p><?php printf(__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
-						<p><?php printf(__('You can specify multiple terms to add by separating them with commas.  If you want the term(s) to be added to all %s , then don\'t specify any terms to match.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(__('Terms will be added to all %s If no "Term(s) to match" is specified.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -252,7 +252,13 @@ class SimpleTags_Admin_Manage {
 								<input type="hidden" name="term_nonce"
 								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
-								<p>
+								<p class="terms-type-options">
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts"><?php printf(__('Add terms to all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label><br>
+
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only" checked="checked"><?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
+								</p>
+
+								<p class="terms-to-maatch-input">
 									<label for="addterm_match"><?php _e( 'Term(s) to match:', 'simpletags' ); ?></label>
 									<br/>
 									<input type="text" class="autocomplete-input tag-cloud-input" id="addterm_match"
@@ -277,9 +283,7 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" style="display:none;" class="auto-terms-content st-rename-terms">
 					<td>
                         <h2><?php _e( 'Rename Terms', 'simpletags' ); ?> </h2>
-						<p><?php _e( 'Enter the term to rename and its new value.', 'simpletags' ); ?></p>
-
-						<p><?php _e( 'You can specify multiple terms to rename by separating them with commas.', 'simpletags' ); ?></p>
+						<p><?php _e( 'Enter the terms to rename and their new names.', 'simpletags' ); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -320,7 +324,6 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Merge Terms', 'simpletags' ); ?> </h2>
 						<p><?php printf(__('Enter the term to merge and its new value. Click "Merge" and all %s which use this term will be updated.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
-						<p><?php _e( 'You can specify multiple terms to merge by separating them with commas.', 'simpletags' ); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -359,9 +362,8 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" style="display:none;" class="auto-terms-content st-remove-terms">
 					<td>
                         <h2><?php echo sprintf(__('Remove Terms from %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></h2>
-						<p><?php echo sprintf(__('Enter the term to remove from all %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></p>
+						<p><?php echo sprintf(__('Enter the terms to remove from all %s ', 'simpletags'), SimpleTags_Admin::$post_type_name) ?></p>
 
-						<p><?php _e( 'You can specify multiple terms to remove by separating them with commas.', 'simpletags' ); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -393,10 +395,8 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" style="display:none;" class="auto-terms-content st-delete-terms">
 					<td>
                         <h2><?php _e( 'Delete Terms', 'simpletags' ); ?></h2>
-						<p><?php printf(__('AEnter the name of terms to delete. Terms will be removed from all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php _e( 'Enter the name of terms to delete.', 'simpletags' ); ?></p>
 
-						<p><?php _e( 'You can specify multiple terms to delete by separating them with commas', 'simpletags' ); ?>
-							.</p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -429,7 +429,7 @@ class SimpleTags_Admin_Manage {
                         <h2><?php _e( 'Remove rarely used terms', 'simpletags' ); ?></h2>
 						<p><?php _e( 'This feature allows you to remove rarely used terms.', 'simpletags' ); ?></p>
 
-						<p><?php _e( 'You can specify the number below which will be removed terms. If you put 5, all terms with a counter inferior to 5 will be deleted. The terms with a counter equal to 5 is keep.', 'simpletags' ); ?></p>
+						<p><?php printf(__('If you choose 5, Taxopress will delete all terms attached to less than 5 %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -443,7 +443,7 @@ class SimpleTags_Admin_Manage {
 								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
 								<p>
-									<label for="number-delete"><?php _e( 'Numbers minimum:', 'simpletags' ); ?></label>
+									<label for="number-delete"><?php _e( 'Minimum number of uses for each term:', 'simpletags' ); ?></label>
 									<br/>
 									<select name="number-rarely" id="number-delete">
 										<?php for ( $i = 1; $i <= 100; $i ++ ) : ?>
@@ -464,8 +464,7 @@ class SimpleTags_Admin_Manage {
 					<th scope="row"><strong><?php _e('Edit Term Slug', 'simpletags'); ?></strong></th>
 					<td>
 						<p><?php _e('Enter the term name to edit and its new slug. <a href="http://codex.wordpress.org/Glossary#Slug">Slug definition</a>', 'simpletags'); ?></p>
-						<p><?php _e('You can specify multiple terms to rename by separating them with commas.', 'simpletags'); ?></p>
-
+						
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
@@ -854,7 +853,7 @@ class SimpleTags_Admin_Manage {
 			clean_term_cache( $terms_id, $taxonomy );
 		} else { // Add for all posts
 			// Page or not ?
-			$post_type_sql = ( is_page_have_tags() ) ? "post_type IN('page', 'post')" : "post_type = 'post'"; // TODO, CPT
+			$post_type_sql = "post_status = 'publish' AND post_type = '".SimpleTags_Admin::$post_type."'";
 
 			// Get all posts ID
 			global $wpdb;
@@ -873,7 +872,7 @@ class SimpleTags_Admin_Manage {
 		if ( $counter == 0 ) {
 			add_settings_error( __CLASS__, __CLASS__, __( 'No term added.', 'simpletags' ), 'updated' );
 		} else {
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term(s) added to %1s post(s).', 'simpletags' ), $counter ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term(s) added to %1s %2s.', 'simpletags' ), $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 		}
 
 		return true;
