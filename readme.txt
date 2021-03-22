@@ -60,7 +60,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.0.3 - 2021-03-17
+v3.0.3 - 2021-03-22
 * Improved the "Manage Terms" page
 * Added feature to untag all posts with specific tag to "Manage Terms" page
 * Removed "Autocompletion with old input"
