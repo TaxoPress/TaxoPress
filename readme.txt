@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.7
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,14 @@ TaxoPress can be installed in 3 easy steps:
 6. You also can suggest tags from lot's of service (Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms)
 
 == Changelog ==
+
+v3.0.3 - 2021-03-22
+* Improved the "Manage Terms" page
+* Added feature to untag all posts with specific tag to "Manage Terms" page
+* Removed "Autocompletion with old input"
+* Small adjustment to the AutoTerms screen
+* Small improvements to metaboxes
+* Added search to clicktags
 
 v3.0.2 - 2021-03-10
 * Restore Dandelion API
