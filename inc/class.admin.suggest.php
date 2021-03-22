@@ -51,8 +51,8 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function get_suggest_tags_title() {
-		$title = '&nbsp; <img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simpletags' ) . '" />';
-		$title .= __( 'Suggested tags from :', 'simpletags' ) . '';
+		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simpletags' ) . '" />';
+		$title .= __( 'Automatic tag suggestions:', 'simpletags' ) . '';
 		
 		$title .= '&nbsp; <a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simpletags' ) . '</a>';
 

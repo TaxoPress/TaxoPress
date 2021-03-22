@@ -27,7 +27,11 @@
 }
 
 /* Suggested Click Tags   */
-a#open_clicktags,a#close_clicktags{font-weight:700;color:red;border:0;text-decoration:none;display:block;margin-bottom:5px;}
+a#open_clicktags {
+    color:red;
+}
+a#open_clicktags,
+a#close_clicktags{font-weight:700;border:0;text-decoration:none;display:block;margin-bottom:5px;}
 a#close_clicktags{display:none;}
 
 /* Ajax Click Tags   */
@@ -87,9 +91,10 @@ a#close_clicktags{display:none;}
 
 #suggestedtags .postbox-header .hndle {
   flex-grow: unset !important;
+  display: block !important;
 }
 .st-add-suggestion-input {
-  margin-left: 110px;
+  margin-left: 56px;
   margin-right: 10px;
 }
 .auto-terms-keyword-list input {
@@ -104,11 +109,79 @@ a#close_clicktags{display:none;}
 .auto-terms-keyword-title {
   display: inline;
 }
+.taxopress_page_st_manage .wrap {
+    margin-top: 35px;
+}
+
+
+.simple-tags-nav-tab-wrapper .nav-tab {
+    color: inherit;
+    cursor: pointer;
+}
+
+.simple-tags-nav-tab-wrapper .nav-tab-active,
+.simple-tags-nav-tab-wrapper .nav-tab:hover,
+.simple-tags-nav-tab-wrapper .nav-tab:active,
+.simple-tags-nav-tab-wrapper .nav-tab:focus {
+    border-top-color: #655997;
+    color: #655997;
+}
+
+.auto-terms-content input[type="submit"] {
+    margin-top: 10px;
+}
+.auto-terms-keyword-list-wrapper {
+    margin-left: 100px;
+}
+.auto-terms-error-red {
+    display:none;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-left-width: 4px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+    margin: 5px 15px 2px;
+    padding: 10px 12px;
+    border-left-color: #d63638;
+    margin-top: 20px;
+    margin-left: 0px;
+}
+.st-tag-cloud-search-form {
+    float: left;
+    margin-bottom: 6px;
+}
+
+.auto-terms-content input[type=text] {
+    min-height: 40px;
+}
+
+.click-tag-search-box {
+    display: block;
+    margin-bottom: 10px;
+}
+.st-manage-terms-page .tablenav.top {
+    display: none;
+}
+.st-manage-terms-page .column-name {
+    width: 40%;
+}
+.st-manage-terms-page .column-slug {
+    width: 35%;
+}
+.addterm_type_all_posts,
+.addterm_type_matched_only {
+    margin-right: 9px !important;
+}
+.terms-type-options {
+    margin-bottom: 15px !important;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
     }
     .auto-terms-keyword-title {
         display: block;
+    }
+    .auto-terms-keyword-list-wrapper {
+        margin-left: 0;
     }
 }

@@ -29,6 +29,7 @@ class SimpleTags_Admin {
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
+
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
 			require STAGS_DIR . '/inc/class.admin.suggest.php';
@@ -40,10 +41,8 @@ class SimpleTags_Admin {
 			new SimpleTags_Admin_ClickTags();
 		}
 
-		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_autocompletion' ) ) {
-			require STAGS_DIR . '/inc/class.admin.autocomplete.php';
-			new SimpleTags_Admin_Autocomplete();
-		}
+        require STAGS_DIR . '/inc/class.admin.autocomplete.php';
+        new SimpleTags_Admin_Autocomplete();
 
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_mass_edit' ) ) {
 			require STAGS_DIR . '/inc/class.admin.mass.php';
@@ -51,8 +50,9 @@ class SimpleTags_Admin {
 		}
 
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_manage' ) ) {
+			require STAGS_DIR . '/inc/class-tag-table.php';
 			require STAGS_DIR . '/inc/class.admin.manage.php';
-			new SimpleTags_Admin_Manage();
+			SimpleTags_Admin_Manage::get_instance();
 		}
 
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) ) {
@@ -660,7 +660,7 @@ class SimpleTags_Admin {
 	 * @return array
 	 * @author WebFactory Ltd
 	 */
-	public static function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC' ) {
+	public static function getTermsForAjax( $taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC', $limit = '' ) {
 		global $wpdb;
 
 		if ( ! empty( $search ) ) {
@@ -670,7 +670,7 @@ class SimpleTags_Admin {
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = %s
 				AND t.name LIKE %s
-				ORDER BY $order_by $order
+				ORDER BY $order_by $order $limit
 			", $taxonomy, '%' . $search . '%' ) );
 		} else {
 			return $wpdb->get_results( $wpdb->prepare( "
@@ -678,7 +678,7 @@ class SimpleTags_Admin {
 				FROM {$wpdb->terms} AS t
 				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 				WHERE tt.taxonomy = %s
-				ORDER BY $order_by $order
+				ORDER BY $order_by $order $limit
 			", $taxonomy ) );
 		}
 	}
