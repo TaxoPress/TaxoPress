@@ -853,7 +853,7 @@ class SimpleTags_Admin_Manage {
 			clean_term_cache( $terms_id, $taxonomy );
 		} else { // Add for all posts
 			// Page or not ?
-			$post_type_sql = ( is_page_have_tags() ) ? "post_type IN('page', 'post')" : "post_type = 'post'"; // TODO, CPT
+			$post_type_sql = "post_status = 'publish' AND post_type = '".SimpleTags_Admin::$post_type."'";
 
 			// Get all posts ID
 			global $wpdb;
@@ -872,7 +872,7 @@ class SimpleTags_Admin_Manage {
 		if ( $counter == 0 ) {
 			add_settings_error( __CLASS__, __CLASS__, __( 'No term added.', 'simpletags' ), 'updated' );
 		} else {
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term(s) added to %1s post(s).', 'simpletags' ), $counter ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term(s) added to %1s %2s.', 'simpletags' ), $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 		}
 
 		return true;
