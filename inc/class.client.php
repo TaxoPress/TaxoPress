@@ -10,6 +10,9 @@ class SimpleTags_Client {
 		// Load translation
 		add_action( 'init', array( __CLASS__, 'init_translation' ) );
 
+		// Register media tags taxonomy
+		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
+
 		// Add pages in WP_Query
 		if ( (int) SimpleTags_Plugin::get_option_value( 'use_tag_pages' ) == 1 ) {
 			add_action( 'init', array( __CLASS__, 'init' ), 11 );
@@ -38,6 +41,57 @@ class SimpleTags_Client {
 
 		return true;
 	}
+    
+    
+	/**
+	 * Taxonomy: Media Tags.
+	 */
+	public function simple_tags_register_media_tag() {
+
+	$labels = [
+		"name" => __( "Media Tags", "simpletags" ),
+		"singular_name" => __( "Media Tag", "simpletags" ),
+		"menu_name" => __( "Media Tags", "simpletags" ),
+		"all_items" => __( "All Media Tags", "simpletags" ),
+		"edit_item" => __( "Edit Media Tag", "simpletags" ),
+		"view_item" => __( "View Media Tag", "simpletags" ),
+		"update_item" => __( "Update Media Tag name", "simpletags" ),
+		"add_new_item" => __( "Add new Media Tag", "simpletags" ),
+		"new_item_name" => __( "New Media Tag name", "simpletags" ),
+		"parent_item" => __( "Parent Media Tag", "simpletags" ),
+		"parent_item_colon" => __( "Parent Media Tag:", "simpletags" ),
+		"search_items" => __( "Search Media Tags", "simpletags" ),
+		"popular_items" => __( "Popular Media Tags", "simpletags" ),
+		"separate_items_with_commas" => __( "Separate Media Tags with commas", "simpletags" ),
+		"add_or_remove_items" => __( "Add or remove Media Tags", "simpletags" ),
+		"choose_from_most_used" => __( "Choose from the most used Media Tags", "simpletags" ),
+		"not_found" => __( "No Media Tags found", "simpletags" ),
+		"no_terms" => __( "No Media Tags", "simpletags" ),
+		"items_list_navigation" => __( "Media Tags list navigation", "simpletags" ),
+		"items_list" => __( "Media Tags list", "simpletags" ),
+		"back_to_items" => __( "Back to Media Tags", "simpletags" ),
+	];
+
+	$args = [
+		"label" => __( "Media Tags", "simpletags" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => false,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"update_count_callback" => '_update_generic_term_count',
+		"rewrite" => [ 'slug' => 'media_tag', 'with_front' => true, ],
+		"show_admin_column" => false,
+		"show_in_rest" => true,
+		"rest_base" => "media_tag",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"show_in_quick_edit" => false,
+	];
+	register_taxonomy( "media_tag", [ "attachment" ], $args );
+    }
 
 	/**
 	 * Load translations
