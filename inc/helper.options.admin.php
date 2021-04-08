@@ -51,13 +51,6 @@ return array(
             __('This feature allow automatically add terms on a post by proceding to a search into content.', 'simpletags')
         ),
         array(
-            'use_tag_pages',
-            __('Tags for page', 'simpletags'),
-            'checkbox',
-            '1',
-            __('This feature allow page post type to be tagged. This option add pages in tags search. Also add tag management in write page.', 'simpletags')
-        ),
-        array(
             'allow_embed_tcloud',
             __('Tag cloud Shortcode', 'simpletags'),
             'checkbox',

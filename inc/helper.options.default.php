@@ -1,7 +1,6 @@
 <?php
 return array(
     // Features
-    'use_tag_pages'          => 1,
     'active_mass_edit'       => 1,
     'active_manage'          => 1,
     'active_related_posts'   => 1,

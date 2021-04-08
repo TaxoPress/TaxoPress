@@ -77,7 +77,7 @@ class SimpleTags_Admin_Manage {
 
 		$option = 'per_page';
 		$args   = [
-			'label'   => 'Terms',
+			'label'   => __( 'Number of items per page', 'simpletags' ),
 			'default' => 10,
 			'option'  => 'termcloud_per_page'
 		];
