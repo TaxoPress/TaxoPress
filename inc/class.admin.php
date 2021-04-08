@@ -65,8 +65,14 @@ class SimpleTags_Admin {
 			new SimpleTags_Admin_Post_Settings();
 		}
 
+        require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
+        require STAGS_DIR . '/inc/class-taxonomies-table.php';
+        require STAGS_DIR . '/inc/taxonomies.php';
+        SimpleTags_Admin_Taxonomies::get_instance();
+
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
+
 	}
 
 	/**

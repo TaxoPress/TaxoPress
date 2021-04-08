@@ -1,0 +1,422 @@
+.posttypesui, .taxonomiesui {
+    width: calc(100% - 300px);
+}
+
+.posttypesui .taxopress-section:first-child, .taxonomiesui .taxopress-section:first-child {
+    margin-top: 30px;
+}
+
+.posttypesui .postbox-container, .taxonomiesui .postbox-container {
+    width: 100%;
+}
+
+.posttypesui .postbox .toggle-indicator:before, .taxonomiesui .postbox .toggle-indicator:before {
+    content: "\f142";
+    display: inline-block;
+    font: normal 20px/1 dashicons;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
+
+.posttypesui .postbox.closed .handlediv .toggle-indicator::before, .taxonomiesui .postbox.closed .handlediv .toggle-indicator::before {
+    content: "\f140";
+}
+
+.posttypesui .postbox .hndle, .taxonomiesui .postbox .hndle {
+    cursor: pointer;
+}
+
+.posttypesui .required, .taxonomiesui .required {
+    color: red;
+}
+
+.taxopress-table td.outer {
+    vertical-align: top;
+    width: 50%;
+}
+
+.taxopress-table input[type="text"] {
+    width: 75%;
+}
+
+.taxopress-table .question:hover {
+    cursor: pointer;
+}
+
+.taxopress-table th p {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.taxopress-table .taxopress-slug-details {
+    margin-top: 15px;
+}
+
+.taxopress-table #slugchanged, .taxopress-table #slugexists {
+    color: red;
+    font-weight: bold;
+}
+
+.taxopress-table #slugchanged.hidemessage, .taxopress-table #slugexists.hidemessage {
+    display: none;
+}
+
+.taxopress-support #support .question {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.taxopress-support #support .question:before {
+    content: "\f139";
+    display: inline-block;
+    font: normal 25px/1 'dashicons';
+    margin-left: -25px;
+    position: absolute;
+    -webkit-font-smoothing: antialiased;
+}
+
+.taxopress-support #support .question.active:before {
+    content: "\f140";
+}
+
+.taxopress-support #support .answer {
+    margin: 10px 0 0 20px;
+}
+
+.taxopress-support #support ol li {
+    list-style: none;
+}
+
+.taxopress-support #support li {
+    position: relative;
+}
+
+.taxopress-field-description {
+    font-style: italic;
+}
+
+#taxopress_select_post_type,
+#taxopress_select_taxonomy {
+    margin-top: 15px;
+}
+
+.taxopress_post_import,
+.taxopress_tax_import {
+    height: 200px;
+    margin-bottom: 10px;
+    resize: vertical;
+    width: 100%;
+}
+
+.taxopress_post_type_get_code,
+.taxopress_tax_get_code {
+    height: 300px;
+    resize: vertical;
+}
+
+.about-wrap .taxopress-feature {
+    overflow: visible !important;
+    *zoom: 1;
+}
+
+.about-wrap .taxopress-feature:before, .about-wrap .taxopress-feature:after {
+    content: " ";
+    display: table;
+}
+
+.about-wrap .taxopress-feature:after {
+    clear: both;
+}
+
+.about-wrap h3 + .taxopress-feature {
+    margin-top: 0;
+}
+
+.about-wrap .changelog h2 {
+    text-align: center;
+}
+
+.about-wrap .feature-rest div {
+    width: 50% !important;
+    padding-right: 100px;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+.about-wrap .feature-rest div.last-feature {
+    padding-left: 100px;
+    padding-right: 0;
+}
+
+.about-wrap .feature-rest div.icon {
+    width: 0 !important;
+    padding: 0;
+    margin: 0;
+}
+
+.about-wrap .feature-rest div.icon:before {
+    font-weight: normal;
+    width: 100%;
+    font-size: 170px;
+    line-height: 125px;
+    color: #9c5d90;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    speak: none;
+    margin: 0 0 0 -100px;
+    content: "\e01d";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.about-wrap .about-integrations {
+    background: #fff;
+    margin: 20px 0;
+    padding: 1px 20px 10px;
+}
+
+.about-wrap .changelog h4 {
+    line-height: 1.4;
+}
+
+.about-wrap .taxopress-about-text {
+    margin-bottom: 1em !important;
+    margin-right: 0;
+    max-width: calc(100% - 173px);
+}
+
+.email-octopus-form-row input:-ms-input-placeholder {
+    color: #cccccc;
+}
+
+.email-octopus-form-row input::placeholder {
+    color: #cccccc;
+}
+
+.email-octopus-form-row-hp {
+    visibility: hidden;
+}
+
+.taxopress-intro-devblock {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.taxopress-help {
+    color: #424242;
+    margin-left: 4px;
+    opacity: 0.5;
+    text-decoration: none;
+    width: 16px;
+}
+
+fieldset .taxopress-help {
+    position: relative;
+    top: 4px;
+}
+
+.taxopress-help:hover {
+    color: #0074a2;
+    opacity: 1;
+}
+
+.taxopress-help:focus {
+    box-shadow: none;
+}
+
+#menu_icon_preview {
+    float: right;
+    padding-left: 8px;
+}
+
+#menu_icon_preview img {
+    display: block;
+    height: 20px;
+    width: 20px;
+}
+
+.visuallyhidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.taxopress-spacer {
+    display: block;
+    margin-top: 25px;
+}
+
+.taxopress-right-sidebar-wrapper {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.taxopress-right-sidebar-wrapper label {
+    margin-bottom: 10px;
+}
+
+.taxopress-right-sidebar-wrapper .button-primary,
+.taxopress-right-sidebar-wrapper .action-button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.wdsoctosignup h2 {
+    text-align: left;
+}
+
+.taxopress-right-sidebar {
+    float: right;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 275px;
+}
+
+.taxopress-right-sidebar-about {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+
+.taxopress-right-sidebar-about a:nth-child(1) {
+    -ms-flex-order: 0;
+    order: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-item-align: auto;
+    -ms-grid-row-align: auto;
+    align-self: auto;
+}
+
+.taxopress-right-sidebar-about a:nth-child(2) {
+    -ms-flex-order: 0;
+    order: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-item-align: auto;
+    -ms-grid-row-align: auto;
+    align-self: auto;
+}
+
+.taxopress-right-sidebar-about a:nth-child(3) {
+    -ms-flex-order: 0;
+    order: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-item-align: auto;
+    -ms-grid-row-align: auto;
+    align-self: auto;
+}
+
+.taxopress-right-sidebar-about p {
+    padding: 0 5px;
+}
+
+.taxopress-right-sidebar-about p:nth-child(1) {
+    padding-left: 0;
+}
+
+.taxopress-right-sidebar-about p:nth-child(4) {
+    padding-right: 0;
+}
+
+.no-js #taxopress_choose_icon {
+    display: none;
+}
+
+.taxopress-listings th {
+    font-weight: bold;
+}
+
+.taxopress-listings .post-type-listing th {
+    width: 16.66667%;
+}
+
+.taxopress-listings .taxonomy-listing th {
+    width: 20%;
+}
+
+#poststuff {
+    min-width: 463px;
+}
+
+@media screen and (min-width: 769px) {
+    .taxopress-badge {
+        margin-top: -42px;
+        height: 173px;
+        width: 173px;
+        color: #fafafa;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 10px;
+        background: url(../images/taxopress-icon-173x173.png) no-repeat;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .taxopress-table #description {
+        width: 100%;
+    }
+
+    .taxopress-right-sidebar-about {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .taxopress-right-sidebar-about p {
+        margin: 5px auto;
+    }
+
+    .taxopress-right-sidebar-about p:nth-child(1) {
+        padding-left: 5px;
+    }
+
+    .taxopress-right-sidebar-about p:nth-child(4) {
+        padding-right: 5px;
+    }
+
+    .taxopress-table td.outer {
+        width: 100%;
+    }
+
+    #taxopress_debug_info_email {
+        width: 100%;
+    }
+}
+
+.taxopress-warning {
+    border: 1px solid rgb(230, 219, 84);
+    color: #8a8a8a;
+    font-size: 13px;
+    padding: 12px 25px;
+    background-color: rgb(254, 255, 224);
+}
+
+@media only screen and (max-width: 1024px) {
+    .taxopress-right-sidebar {
+        float: none;
+        margin: initial;
+        width: -webkit-fill-available;
+    }
+}
