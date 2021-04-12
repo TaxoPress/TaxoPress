@@ -65,9 +65,11 @@ class Taxonomy_List extends WP_List_Table
         $columns = [
             'cb'          => '<input type="checkbox" />',
             'name'        => __('Name', 'simpletags'),
+            'registration_key' => __('Registration key', 'simpletags'),
             'description' => __('Description', 'simpletags'),
             'active'      => __('Active', 'simpletags'),
-            'posttypes'   => __('Post Types', 'simpletags')
+            'posttypes'   => __('Post Types', 'simpletags'),
+            'count'   => __('Count', 'simpletags')
         ];
 
         return $columns;
@@ -265,6 +267,7 @@ class Taxonomy_List extends WP_List_Table
         $sortable_columns = [
             'name'        => ['name', true],
             'description' => ['description', true],
+            'registration_key' => ['name', true],
         ];
 
         return $sortable_columns;
@@ -379,6 +382,32 @@ class Taxonomy_List extends WP_List_Table
     }
 
     /**
+     * Method for registration_key column
+     *
+     * @param array $item
+     *
+     * @return string
+     */
+    protected function column_registration_key($item)
+    {
+        $title = sprintf(
+            '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
+            add_query_arg(
+                [
+                    'page'               => 'st_taxonomies',
+                    'add'                => 'taxonomy',
+                    'action'             => 'edit',
+                    'taxopress_taxonomy' => $item->name,
+                ],
+                taxopress_admin_url('admin.php')
+            ),
+            esc_html($item->name)
+        );
+
+        return $title;
+    }
+
+    /**
      * The action column
      *
      * @param $item
@@ -431,6 +460,30 @@ class Taxonomy_List extends WP_List_Table
         }
 
         return $posttype;
+    }
+
+    /**
+     * Method for count column
+     *
+     * @param array $item
+     *
+     * @return string
+     */
+    protected function column_count($item)
+    {
+        $terms = get_terms($item->name, array('hide_empty' => false, 'fields' => 'ids'));
+        $title = sprintf(
+            '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
+            add_query_arg(
+                [
+                    'taxonomy' => $item->name,
+                ],
+                taxopress_admin_url('edit-tags.php')
+            ),
+            count($terms)
+        );
+
+        return $title;
     }
 
 

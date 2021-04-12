@@ -142,10 +142,6 @@ class SimpleTags_Admin_Taxonomies
 
         settings_errors(__CLASS__);
 
-
-        //delete_option('taxopress_taxonomies');
-//    var_dump(get_all_taxopress_taxonomies());
-
         if (!isset($_GET['add'])) {
             //all tax
             ?>
@@ -2011,7 +2007,14 @@ function taxopress_process_taxonomy()
         return;
     }
 
-    if (!empty($_GET) && isset($_GET['page']) && 'st_taxonomies' !== $_GET['page']) {
+    if (empty($_GET)) {
+        return;
+    }
+
+    if (!isset($_GET['page'])) {
+        return;
+    }
+    if ( 'st_taxonomies' !== $_GET['page'] ) {
         return;
     }
 
@@ -3003,7 +3006,7 @@ function taxopress_get_deactivated_taxonomy()
  */
 function taxopress_noaction_admin_notice()
 {
-    echo taxopress_admin_notices_helper(esc_html__('Kindly select an action in bulk action dropdown', 'simpletags'),
+    echo taxopress_admin_notices_helper(esc_html__('Kindly select an action in bulk action dropdown!', 'simpletags'),
         false);
 }
 
