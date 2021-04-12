@@ -3256,6 +3256,7 @@ function taxopress_convert_external_taxonomy($taxonomy_object, $request_tax)
     }
 
     $taxonomy_data = (array)$taxonomy_object;
+
     foreach ($taxonomy_data as $key => $value) {
         //change label to array
         if ($key === 'labels') {
@@ -3283,6 +3284,7 @@ function taxopress_convert_external_taxonomy($taxonomy_object, $request_tax)
         }
         //set rewrite
         if ($key === 'rewrite') {
+            if(!empty($value) && is_array($value)){
             if (count($value) > 0) {
                 foreach ($value as $holdkey => $holdvalue) {
                     if ($holdkey === 'with_front') {
@@ -3293,6 +3295,11 @@ function taxopress_convert_external_taxonomy($taxonomy_object, $request_tax)
                 }
             }
             $taxonomy_data[$key] = (count($value) > 0) ? 'true' : 'false';
+        }else{
+            $taxonomy_data[$key] = 'false';
+            $taxonomy_data['rewrite_hierarchical'] = '';
+            $taxonomy_data['rewrite_withfront'] = '';
+        }
         }
         //dispose bool value
         if (is_bool($value)) {
