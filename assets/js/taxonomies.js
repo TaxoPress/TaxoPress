@@ -4,7 +4,7 @@
   jQuery(document).ready(function($) {
 
 
-    // Confirm our deletions
+    // Taxonomy tab
     $('ul.st-taxonomy-tab li').on('click', function(e) {
       e.preventDefault()
       var tab_content = $(this).attr('data-content');
@@ -13,7 +13,7 @@
       $(this).addClass('active');
 
       $('.st-taxonomy-content table').hide();
-      $('.st-taxonomy-content table.'+tab_content).show();
+      $('.st-taxonomy-content table.' + tab_content).show();
     })
 
 
@@ -278,41 +278,45 @@
       
     })
 
-    $('.st-tags-label-populate').on( 'click tap', function(e){
-      e.preventDefault();
-      var slug     = $('#name').val();
-      var plural   = $('#label').val();
-      var singular = $('#singular_label').val();
-      var fields   = $('.taxopress-section input[type="text"]');
-  
-      if ( '' === slug ) {
-        return;
+
+    $('#name, #label, #singular_label').on('change paste', function(e) {
+      if ('edit' === getParameterByName('action')) {
+        return
       }
-      if ( '' === plural ) {
-        plural = slug;
+      var slug = $('#name').val()
+      var plural = $('#label').val()
+      var singular = $('#singular_label').val()
+      var fields = $('.taxonomy_labels input[type="text"]')
+
+      if ('' === slug) {
+        return
       }
-      if ( '' === singular ) {
-        singular = slug;
+      if ('' === plural) {
+        plural = slug
       }
-  
-      $(fields).each( function( i, el ) {
-        var newval = $( el ).data( 'label' );
-        var plurality = $(el).data('plurality');
-        if (plurality) {
-          if ('undefined' !== newval) {
-            // "slug" is our placeholder from the labels.
-            if ('plural' === plurality) {
-              newval = newval.replace(/item/gi, plural);
-            } else {
-              newval = newval.replace(/item/gi, singular);
-            }
-            if ($(el).val() === '') {
-              $(el).val(newval);
-            }
+      if ('' === singular) {
+        singular = slug
+      }
+
+      $(fields).each(function (i, el) {
+
+        var newval = $(el).data('label')
+        var plurality = $(el).data('plurality')
+        if ('undefined' !== newval) {
+          // "slug" is our placeholder from the labels.
+          if ('plural' === plurality) {
+            newval = newval.replace(/item/gi, plural)
+          } else {
+            newval = newval.replace(/item/gi, singular)
+          }
+          if ($(el).val() === '')
+          {
+            $(el).val(newval)
           }
         }
-      } );
-    });
+      })
+       })
+
 
   })
 
