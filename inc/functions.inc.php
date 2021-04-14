@@ -35,39 +35,8 @@ function st_register_widget() {
 	register_widget( 'SimpleTags_Widget' );
 }
 
-
-/**
- * Change menu item order
- */
-//add_filter( 'custom_menu_order', 'submenu_order' );
-/*
-function submenu_order( $menu_order ) {
-    # Get submenu key location based on slug
-    global $submenu;
-
-
-    $settings = $submenu['st_options'];
-    $unset_settings = false;
-    $unset_taxonomies = false;
-    foreach ( $settings as $key => $details ) {
-        if ( $details[2] == 'st_options' ) {
-            $index = $key;
-        }
-        if ( $details[2] == 'st_taxonomies' ) {
-            $index = $key;
-        }
-    }
-    # Set the 'Blogging' menu below 'General'
-    //$submenu['options-general.php'][11] = $submenu['options-general.php'][$index];
-    unset( $submenu['st_options'][$index] );
-    # Reorder the menu based on the keys in ascending order
-    ksort( $submenu['st_options'] );
-    # Return the new submenu order
-    return $menu_order;
-}*/
-
-add_action('custom_menu_order', 'acmeReorderSubmenuItems');	
-function acmeReorderSubmenuItems()	{	    
+add_action('custom_menu_order', 'taxopress_re_order_menu');	
+function taxopress_re_order_menu()	{	    
     global $submenu;	    
     $newSubmenu = [];	    
     foreach ($submenu as $menuName => $menuItems) {	        
