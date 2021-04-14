@@ -546,7 +546,7 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['hierarchical']) : '';
                                             $select['selected'] = !empty($selected) ? $current['hierarchical'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'hierarchical',
                                                 'labeltext'  => esc_html__('Parent-Child Relationships', 'simpletags'),
@@ -554,6 +554,7 @@ class SimpleTags_Admin_Taxonomies
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
+                                        
 
 
                                                 echo $ui->get_td_end() . $ui->get_tr_end();
@@ -703,7 +704,7 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite']) : '';
                                             $select['selected'] = !empty($selected) ? $current['rewrite'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite',
                                                 'labeltext'  => esc_html__('Rewrite', 'simpletags'),
@@ -737,7 +738,7 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_withfront']) : '';
                                             $select['selected'] = !empty($selected) ? $current['rewrite_withfront'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_withfront',
                                                 'labeltext'  => esc_html__('Rewrite With Front', 'simpletags'),
@@ -761,7 +762,7 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_hierarchical']) : '';
                                             $select['selected'] = !empty($selected) ? $current['rewrite_hierarchical'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_hierarchical',
                                                 'labeltext'  => esc_html__('Rewrite Hierarchical', 'simpletags'),
@@ -795,12 +796,11 @@ class SimpleTags_Admin_Taxonomies
                                                 ];
                                                 $selected           = isset($current) ? taxopress_disp_boolean($current['show_ui']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_ui'] : '';
-                                                echo $ui->get_select_input([
+                                                echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_ui',
                                                     'labeltext'  => esc_html__('Show UI', 'simpletags'),
-                                                    'aftertext'  => esc_html__('(default: true) Whether to generate a default UI for managing this custom taxonomy.',
-                                                        'simpletags'),
+                                                    'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
 
@@ -819,12 +819,11 @@ class SimpleTags_Admin_Taxonomies
                                                 ];
                                                 $selected           = isset($current) ? taxopress_disp_boolean($current['show_in_menu']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_in_menu'] : '';
-                                                echo $ui->get_select_input([
+                                                echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_menu',
-                                                    'labeltext'  => esc_html__('Show in menu', 'simpletags'),
-                                                    'aftertext'  => esc_html__('(default: value of show_ui) Whether to show the taxonomy in the admin menu.',
-                                                        'simpletags'),
+                                                    'labeltext'  => esc_html__('Show in admin menus', 'simpletags'),
+                                                    'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
 
@@ -843,12 +842,11 @@ class SimpleTags_Admin_Taxonomies
                                                 ];
                                                 $selected           = (isset($current) && !empty($current['show_in_nav_menus'])) ? taxopress_disp_boolean($current['show_in_nav_menus']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_in_nav_menus'] : '';
-                                                echo $ui->get_select_input([
+                                                echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_nav_menus',
-                                                    'labeltext'  => esc_html__('Show in nav menus', 'simpletags'),
-                                                    'aftertext'  => esc_html__('(default: value of public) Whether to make the taxonomy available for selection in navigation menus.',
-                                                        'simpletags'),
+                                                    'labeltext'  => esc_html__('Show in frontend menus', 'simpletags'),
+                                                    'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
 
@@ -868,36 +866,11 @@ class SimpleTags_Admin_Taxonomies
                                                 ];
                                                 $selected           = isset($current) ? taxopress_disp_boolean($current['show_admin_column']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_admin_column'] : '';
-                                                echo $ui->get_select_input([
+                                                echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_admin_column',
-                                                    'labeltext'  => esc_html__('Show Admin Column', 'simpletags'),
-                                                    'aftertext'  => esc_html__('(default: false) Whether to allow automatic creation of taxonomy columns on associated post-types.',
-                                                        'simpletags'),
-                                                    'selections' => $select,
-                                                ]);
-
-                                                $select             = [
-                                                    'options' => [
-                                                        [
-                                                            'attr' => '0',
-                                                            'text' => esc_attr__('False', 'simpletags'),
-                                                        ],
-                                                        [
-                                                            'attr'    => '1',
-                                                            'text'    => esc_attr__('True', 'simpletags'),
-                                                            'default' => 'true',
-                                                        ],
-                                                    ],
-                                                ];
-                                                $selected           = isset($current) ? taxopress_disp_boolean($current['show_in_rest']) : '';
-                                                $select['selected'] = !empty($selected) ? $current['show_in_rest'] : '';
-                                                echo $ui->get_select_input([
-                                                    'namearray'  => 'cpt_custom_tax',
-                                                    'name'       => 'show_in_rest',
-                                                    'labeltext'  => esc_html__('Show in REST API', 'simpletags'),
-                                                    'aftertext'  => esc_html__('(Custom Post Type UI default: true) Whether to show this taxonomy data in the WP REST API.',
-                                                        'simpletags'),
+                                                    'labeltext'  => esc_html__('Show admin column', 'simpletags'),
+                                                    'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
 
@@ -916,13 +889,12 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = (isset($current) && !empty($current['show_in_quick_edit'])) ? taxopress_disp_boolean($current['show_in_quick_edit']) : '';
                                             $select['selected'] = !empty($selected) ? $current['show_in_quick_edit'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'show_in_quick_edit',
                                                 'labeltext'  => esc_html__('Show in "Quick Edit" and "Bulk Edit"',
                                                     'simpletags'),
-                                                'aftertext'  => esc_html__('(default: false) Whether to show the taxonomy in the quick/bulk edit panel.',
-                                                    'simpletags'),
+                                                'aftertext'  => '',
                                                 'selections' => $select,
                                             ]);
 
@@ -1283,6 +1255,29 @@ class SimpleTags_Admin_Taxonomies
                                                    style="display:none;">
                                                 <?php
 
+                                                $select             = [
+                                                    'options' => [
+                                                        [
+                                                            'attr' => '0',
+                                                            'text' => esc_attr__('False', 'simpletags'),
+                                                        ],
+                                                        [
+                                                            'attr'    => '1',
+                                                            'text'    => esc_attr__('True', 'simpletags'),
+                                                            'default' => 'true',
+                                                        ],
+                                                    ],
+                                                ];
+                                                $selected           = isset($current) ? taxopress_disp_boolean($current['show_in_rest']) : '';
+                                                $select['selected'] = !empty($selected) ? $current['show_in_rest'] : '';
+                                                echo $ui->get_select_checkbox_input([
+                                                    'namearray'  => 'cpt_custom_tax',
+                                                    'name'       => 'show_in_rest',
+                                                    'labeltext'  => esc_html__('Show in REST API', 'simpletags'),
+                                                    'aftertext'  => '',
+                                                    'selections' => $select,
+                                                ]);
+
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'rest_base',
@@ -1327,7 +1322,7 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['public']) : '';
                                             $select['selected'] = !empty($selected) ? $current['public'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'public',
                                                 'labeltext'  => esc_html__('Public', 'simpletags'),
@@ -1351,7 +1346,7 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['publicly_queryable']) : '';
                                             $select['selected'] = !empty($selected) ? $current['publicly_queryable'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'publicly_queryable',
                                                 'labeltext'  => esc_html__('Public Queryable', 'simpletags'),
@@ -1375,7 +1370,7 @@ class SimpleTags_Admin_Taxonomies
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['query_var']) : '';
                                             $select['selected'] = !empty($selected) ? $current['query_var'] : '';
-                                            echo $ui->get_select_input([
+                                            echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'query_var',
                                                 'labeltext'  => esc_html__('Query Var', 'simpletags'),
