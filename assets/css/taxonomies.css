@@ -423,6 +423,21 @@ ul.st-taxonomy-tab li.taxonomy_posttypes_tab a::before {
 ul.st-taxonomy-tab li.taxonomy_general_tab a::before {
     content: "\f107";
 }
+ul.st-taxonomy-tab li.taxonomy_delete_tab a::before {
+    content: "\f530";
+}
+
+.taxopress-section .reactivate a,
+.taxopress-section .deactivate a {
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+.taxopress-delete-bottom {
+    color: red !important;
+    border-color: red !important;
+}
+
 ul.st-taxonomy-tab li a span {
     margin-left: .618em;
     margin-right: .618em;
