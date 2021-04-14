@@ -176,6 +176,48 @@ function taxopress_delete_taxonomy($data = [])
 function taxopress_update_taxonomy($data = [])
 {
 
+    //update our custom checkbox value if not checked
+
+if (!isset($data['cpt_custom_tax']['hierarchical'])) {
+    $data['cpt_custom_tax']['hierarchical'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['rewrite'])) {
+    $data['cpt_custom_tax']['rewrite'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['rewrite_withfront'])) {
+    $data['cpt_custom_tax']['rewrite_withfront'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['rewrite_hierarchical'])) {
+    $data['cpt_custom_tax']['rewrite_hierarchical'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['show_ui'])) {
+    $data['cpt_custom_tax']['show_ui'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['show_in_menu'])) {
+    $data['cpt_custom_tax']['show_in_menu'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['show_in_nav_menus'])) {
+    $data['cpt_custom_tax']['show_in_nav_menus'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['show_admin_column'])) {
+    $data['cpt_custom_tax']['show_admin_column'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['show_in_rest'])) {
+    $data['cpt_custom_tax']['show_in_rest'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['show_in_quick_edit'])) {
+    $data['cpt_custom_tax']['show_in_quick_edit'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['public'])) {
+    $data['cpt_custom_tax']['public'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['publicly_queryable'])) {
+    $data['cpt_custom_tax']['publicly_queryable'] = 0;
+}
+if (!isset($data['cpt_custom_tax']['query_var'])) {
+    $data['cpt_custom_tax']['query_var'] = 0;
+}
+
     /**
      * Fires before a taxonomy is updated to our saved options.
      *
@@ -284,7 +326,6 @@ function taxopress_update_taxonomy($data = [])
     if ('false' === $maybe_false) {
         $meta_box_cb = $maybe_false;
     }
-
 
     if (!isset($data['taxonomy_external_edit'])) {
 

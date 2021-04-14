@@ -83,7 +83,92 @@ class taxopress_admin_ui
      * @param array $args Arguments to use with the `<select>` input.
      * @return string $value Complete <select> input with options and selected attribute.
      */
-    public function get_select_input($args = [])
+    public function get_select_checkbox_input($args = [])
+    {
+        $defaults = $this->get_default_input_parameters(
+            ['selections' => []]
+        );
+
+        $args = wp_parse_args($args, $defaults);
+
+        $value = '';
+        if ($args['wrap']) {
+            $value = $this->get_tr_start();
+            $value .= $this->get_th_start();
+            $value .= $this->get_label($args['name'], $args['labeltext']);
+            if ($args['required']) {
+                $value .= $this->get_required_span();
+            }
+            if (!empty($args['helptext'])) {
+                $value .= $this->get_help($args['helptext']);
+            }
+            $value .= $this->get_th_end();
+            $value .= $this->get_td_start();
+        }
+
+        $checkbox_html = '<input type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" />';
+        
+        if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
+            foreach ($args['selections']['options'] as $val) {
+                $result = '';
+                $selected_result = false;
+                $bool   = taxopress_disp_boolean($val['attr']);
+
+                if (is_numeric($args['selections']['selected'])) {
+                    $selected = taxopress_disp_boolean($args['selections']['selected']);
+                } elseif (in_array($args['selections']['selected'], ['true', 'false'], true)) {
+                    $selected = $args['selections']['selected'];
+                }
+
+
+                if (!empty($selected) && $selected === $bool) {
+                    $result = ' selected="selected"';
+                    $selected_result = true;
+                } else {
+                    if (array_key_exists('default', $val) && !empty($val['default'])) {
+                        if (empty($selected)) {
+                            $result = ' selected="selected"';
+                    $selected_result = true;
+                        }
+                    }
+                }
+
+                if (!is_numeric($args['selections']['selected']) && (!empty($args['selections']['selected']) && $args['selections']['selected'] === $val['attr'])) {
+                    $result = ' selected="selected"';
+                    $selected_result = true;
+                }
+
+                if($selected_result){
+
+                }
+
+                if($selected_result && (int)$val['attr'] === 1){
+                    $checkbox_html = '<input type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" checked="checked" />';
+                }
+
+            }
+        }
+        $value .= $checkbox_html;
+
+        if (!empty($args['aftertext'])) {
+            $value .= ' ' . $this->get_description($args['aftertext']);
+        }
+
+        if ($args['wrap']) {
+            $value .= $this->get_td_end();
+            $value .= $this->get_tr_end();
+        }
+
+        return $value;
+    }
+
+    /**
+     * Return a populated `<select>` input.
+     *
+     * @param array $args Arguments to use with the `<select>` input.
+     * @return string $value Complete <select> input with options and selected attribute.
+     */
+    public function get_select_checkbox_input_main($args = [])
     {
         $defaults = $this->get_default_input_parameters(
             ['selections' => []]
