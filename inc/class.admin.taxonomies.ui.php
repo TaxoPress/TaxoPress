@@ -151,7 +151,7 @@ class taxopress_admin_ui
         $value .= $checkbox_html;
 
         if (!empty($args['aftertext'])) {
-            $value .= ' ' . $this->get_description($args['aftertext']);
+            $value .= ' ' . $args['aftertext'];
         }
 
         if ($args['wrap']) {
