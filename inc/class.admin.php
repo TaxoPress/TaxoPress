@@ -366,7 +366,8 @@ class SimpleTags_Admin {
 					'st_mass_terms',
 					'st_auto',
 					'st_options',
-					'st_manage'
+					'st_manage',
+					'st_taxonomies'
 				) ) )
 		) {
 			wp_enqueue_style( 'st-admin' );
