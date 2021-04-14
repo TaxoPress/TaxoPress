@@ -11,7 +11,7 @@ Author: TaxoPress
 Author URI: https://taxopress.com
 Text Domain: simpletags
 
-Copyright 2013-2021  WebFactory Ltd  (email: support@webfactoryltd.com)
+Copyright 2013-2021  TaxoPress 
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,10 +23,12 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-Contributors:
+Contributors to the TaxoPress code include:
     - Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
     - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
     - Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
+
+Sections of the TaxoPress code are based on Custom Post Type UI by WebDevStudios.
 
 Credits Icons :
     - famfamfam - http://www.famfamfam.com/lab/icons/silk/
