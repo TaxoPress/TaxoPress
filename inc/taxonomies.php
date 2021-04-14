@@ -27,7 +27,6 @@ class SimpleTags_Admin_Taxonomies
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
 
-        //delete_option( 'taxopress_taxonomies' );
     }
 
     /**
@@ -297,46 +296,6 @@ class SimpleTags_Admin_Taxonomies
                             wp_nonce_field('taxopress_addedit_taxonomy_nonce_action',
                                 'taxopress_addedit_taxonomy_nonce_field');
                             if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-
-
-                                <?php
-
-                                $activate_action_link   = add_query_arg(
-                                    [
-                                        'page'               => 'st_taxonomies',
-                                        'add'                => 'taxonomy',
-                                        'action'             => 'edit',
-                                        'action2'            => 'taxopress-reactivate-taxonomy',
-                                        'taxonomy'           => esc_attr($request_tax),
-                                        '_wpnonce'           => wp_create_nonce('taxonomy-action-request-nonce'),
-                                        'taxopress_taxonomy' => $request_tax,
-                                    ],
-                                    taxopress_admin_url('admin.php')
-                                );
-                                $deactivate_action_link = add_query_arg(
-                                    [
-                                        'page'               => 'st_taxonomies',
-                                        'add'                => 'taxonomy',
-                                        'action'             => 'edit',
-                                        'action2'            => 'taxopress-deactivate-taxonomy',
-                                        'taxonomy'           => esc_attr($request_tax),
-                                        '_wpnonce'           => wp_create_nonce('taxonomy-action-request-nonce'),
-                                        'taxopress_taxonomy' => $request_tax,
-                                    ],
-                                    taxopress_admin_url('admin.php')
-                                );
-
-                                if (in_array($request_tax, taxopress_get_deactivated_taxonomy())) {
-                                    ?>
-                                    <span class="action-button reactivate"><a
-                                            href="<?php echo $activate_action_link; ?>"><?php echo __('Re-activate Taxonomy',
-                                                'simpletags'); ?></a></span>
-                                <?php } else { ?>
-                                    <span class="action-button deactivate"><a
-                                            href="<?php echo $deactivate_action_link; ?>"><?php echo __('Deactivate Taxonomy',
-                                                'simpletags'); ?></a></span>
-                                <?php } ?>
-
                                 <?php
 
                                 /**
@@ -349,20 +308,6 @@ class SimpleTags_Admin_Taxonomies
                                        value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_edit',
                                            esc_attr__('Save Taxonomy', 'simpletags'))); ?>"/>
                                 <?php
-
-                                /**
-                                 * Filters the text value to use on the button when deleting.
-                                 *
-                                 * @param string $value Text to use for the button.
-                                 */
-                                if (!$external_edit) {
-                                    ?>
-                                    <input type="submit" class="button-secondary taxopress-delete-bottom"
-                                           name="cpt_delete"
-                                           id="cpt_submit_delete"
-                                           value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
-                                               __('Delete Taxonomy', 'simpletags'))); ?>"/>
-                                <?php }
                             } else { ?>
                             <?php
 
@@ -450,6 +395,11 @@ class SimpleTags_Admin_Taxonomies
 
                                             <li class="taxonomy_advanced_tab" data-content="taxonomy_advanced">
                                                 <a href="#taxonomy_advanced"><span><?php esc_html_e('Advanced',
+                                                            'simpletags'); ?></span></a>
+                                            </li>
+
+                                            <li class="taxonomy_delete_tab" data-content="taxonomy_delete">
+                                                <a href="#taxonomy_delete"><span><?php esc_html_e('Deactivate or Delete',
                                                             'simpletags'); ?></span></a>
                                             </li>
                                         </ul>
@@ -1362,6 +1312,82 @@ class SimpleTags_Admin_Taxonomies
                                             ]);
                                             ?>
                                         </table>
+
+
+                                            <table class="form-table taxopress-table taxonomy_delete"
+                                                   style="display:none;">
+                                                <?php
+                                                echo $ui->get_tr_start() . $ui->get_th_start();
+
+                                                ?>
+<?php
+                            if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
+
+
+                                <?php
+
+                                $activate_action_link   = add_query_arg(
+                                    [
+                                        'page'               => 'st_taxonomies',
+                                        'add'                => 'taxonomy',
+                                        'action'             => 'edit',
+                                        'action2'            => 'taxopress-reactivate-taxonomy',
+                                        'taxonomy'           => esc_attr($request_tax),
+                                        '_wpnonce'           => wp_create_nonce('taxonomy-action-request-nonce'),
+                                        'taxopress_taxonomy' => $request_tax,
+                                    ],
+                                    taxopress_admin_url('admin.php')
+                                );
+                                $deactivate_action_link = add_query_arg(
+                                    [
+                                        'page'               => 'st_taxonomies',
+                                        'add'                => 'taxonomy',
+                                        'action'             => 'edit',
+                                        'action2'            => 'taxopress-deactivate-taxonomy',
+                                        'taxonomy'           => esc_attr($request_tax),
+                                        '_wpnonce'           => wp_create_nonce('taxonomy-action-request-nonce'),
+                                        'taxopress_taxonomy' => $request_tax,
+                                    ],
+                                    taxopress_admin_url('admin.php')
+                                );
+
+                                if (in_array($request_tax, taxopress_get_deactivated_taxonomy())) {
+                                    ?>
+                                    <span class="action-button reactivate"><a class="button-primary"
+                                            href="<?php echo $activate_action_link; ?>"><?php echo __('Re-activate Taxonomy',
+                                                'simpletags'); ?></a></span>
+                                <?php } else { ?>
+                                    <span class="action-button deactivate"><a class="button-primary"
+                                            href="<?php echo $deactivate_action_link; ?>"><?php echo __('Deactivate Taxonomy',
+                                                'simpletags'); ?></a></span>
+                                <?php }
+                                /**
+                                 * Filters the text value to use on the button when deleting.
+                                 *
+                                 * @param string $value Text to use for the button.
+                                 */
+                                if (!$external_edit) {
+                                    ?>
+                                    <input type="submit" class="button-secondary taxopress-delete-bottom"
+                                           name="cpt_delete"
+                                           id="cpt_submit_delete"
+                                           value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
+                                               __('Delete Taxonomy', 'simpletags'))); ?>"/>
+                                <?php }else{
+                                     echo '<div class="taxopress-warning" style="color:red;">' . __('You can only delete taxonomy created with taxopress.',
+                                    'simpletags') . '</div>';
+                                }
+                            }
+                            ?>
+
+                                                <?php
+                                               
+                                                echo $ui->get_th_end(). $ui->get_tr_end();
+
+
+                                                ?>
+
+                                            </table>
 
 
                                     </div>

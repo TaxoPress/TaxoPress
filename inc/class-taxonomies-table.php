@@ -95,37 +95,6 @@ class Taxonomy_List extends WP_List_Table
     }
 
     /**
-     * Render the bulk edit checkbox
-     *
-     * @param array $item
-     *
-     * @return string
-     */
-    function column_cb($item)
-    {
-
-        return sprintf(
-            '<input type="checkbox" name="taxonomy-bulk-checked[]" value="%s" />', $item->name
-        );
-
-    }
-
-    /**
-     * Returns an associative array containing the bulk action
-     *
-     * @return array
-     */
-    public function get_bulk_actions()
-    {
-        $actions = [
-            'st-bulk-deactivate-term' => __('Deactivate', 'simpletags'),
-            'st-bulk-activate-term'   => __('Activate', 'simpletags'),
-        ];
-
-        return $actions;
-    }
-
-    /**
      * Displays the search box.
      *
      * @param string $text The 'submit' button label.
@@ -300,57 +269,6 @@ class Taxonomy_List extends WP_List_Table
                 __('Edit', 'simpletags')
             ),
         ];
-
-        if (in_array($item->name, taxopress_get_deactivated_taxonomy())) {
-            $actions = array_merge($actions, [
-                'reactivate' => sprintf(
-                    '<a href="%s">%s</a>',
-                    add_query_arg(
-                        [
-                            'page'     => 'st_taxonomies',
-                            'action'   => 'taxopress-reactivate-taxonomy',
-                            'taxonomy' => esc_attr($item->name),
-                            '_wpnonce' => wp_create_nonce('taxonomy-action-request-nonce')
-                        ],
-                        admin_url('admin.php')
-                    ),
-                    __('Re-activate', 'simpletags')
-                ),
-            ]);
-        } else {
-            $actions = array_merge($actions, [
-                'deactivate' => sprintf(
-                    '<a href="%s">%s</a>',
-                    add_query_arg(
-                        [
-                            'page'     => 'st_taxonomies',
-                            'action'   => 'taxopress-deactivate-taxonomy',
-                            'taxonomy' => esc_attr($item->name),
-                            '_wpnonce' => wp_create_nonce('taxonomy-action-request-nonce')
-                        ],
-                        admin_url('admin.php')
-                    ),
-                    __('Deactivate', 'simpletags')
-                ),
-            ]);
-
-        }
-
-        if (in_array($item->name, taxopress_get_taxonomy_slugs())) {
-            $actions = array_merge($actions, [
-                'delete' => sprintf(
-                    '<a href="%s" class="delete-role">%s</a>',
-                    add_query_arg([
-                        'page'     => 'st_taxonomies',
-                        'action'   => 'taxopress-delete-taxonomy',
-                        'taxonomy' => esc_attr($item->name),
-                        '_wpnonce' => wp_create_nonce('taxonomy-action-request-nonce')
-                    ],
-                        admin_url('admin.php')),
-                    __('Delete', 'simpletags')
-                ),
-            ]);
-        }
 
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
     }

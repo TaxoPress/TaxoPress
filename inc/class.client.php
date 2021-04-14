@@ -14,10 +14,10 @@ class SimpleTags_Client {
 		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
 
 		// Add pages in WP_Query
-		if ( (int) SimpleTags_Plugin::get_option_value( 'use_tag_pages' ) == 1 ) {
+		/*if ( (int) SimpleTags_Plugin::get_option_value( 'use_tag_pages' ) == 1 ) {
 			add_action( 'init', array( __CLASS__, 'init' ), 11 );
 			add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
-		}
+		}*/
 
 		// Call autolinks ?
 		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) == 1 ) {
@@ -41,8 +41,8 @@ class SimpleTags_Client {
 
 		return true;
 	}
-    
-    
+
+
 	/**
 	 * Taxonomy: Media Tags.
 	 */
