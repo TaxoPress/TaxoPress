@@ -168,7 +168,7 @@ class SimpleTags_Admin_Taxonomies
 
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
-                <form class="search-form wp-clearfix st-tag-cloud-search-form" method="get">
+                <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
                     <?php $this->terms_table->search_box(__('Search Taxonomies', 'simpletags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>

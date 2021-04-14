@@ -741,10 +741,13 @@ class SimpleTags_Client_TagCloud {
 		}
 
         if(!$set_post_type){
+
+            if(!is_admin()){
 			$where .= " AND tr.object_id IN ( ";
 			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status IN('inherit', 'publish') AND " . ( $post_type_2 ? $post_type_2 : "p.post_type = 'post'" ) . "";
 			$where .= " ) ";
 			$join_relation = true;
+            }
         }
 
    
