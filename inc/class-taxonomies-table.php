@@ -28,7 +28,7 @@ class Taxonomy_List extends WP_List_Table
      */
     public static function get_st_taxonomies()
     {
-        return get_all_taxopress_taxonomies();
+        return get_all_taxopress_public_taxonomies();
     }
 
     /**
@@ -38,7 +38,7 @@ class Taxonomy_List extends WP_List_Table
      */
     public static function record_count()
     {
-        return count(get_all_taxopress_taxonomies());
+        return count(get_all_taxopress_public_taxonomies());
     }
 
     /**

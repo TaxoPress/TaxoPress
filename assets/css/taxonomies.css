@@ -360,6 +360,88 @@ fieldset .taxopress-help {
     min-width: 463px;
 }
 
+ul.st-taxonomy-tab {
+    margin: 0;
+    width: 20%;
+    float: left;
+    line-height: 1em;
+    padding: 0 0 10px;
+    position: relative;
+    background-color: #fafafa;
+    border-right: 1px solid #eee;
+    box-sizing: border-box;
+}
+.st-taxonomy-content {
+    float: left;
+    width: 80%;
+    min-height: 275px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+ul.st-taxonomy-tab li {
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+}
+ul.st-taxonomy-tab li a {
+    margin: 0;
+    padding: 10px;
+    display: block;
+    box-shadow: none;
+    text-decoration: none;
+    line-height: 20px!important;
+    border-bottom: 1px solid #eee;
+}
+
+ul.st-taxonomy-tab li a::before {
+    font-family: Dashicons;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "";
+    font-variant: normal;
+    text-decoration: none;
+}
+
+ul.st-taxonomy-tab li.taxonomy_advanced_tab a::before {
+    content: "\f111";
+}
+ul.st-taxonomy-tab li.taxonomy_restapi_tab a::before {
+    content: "\f17d";
+}
+ul.st-taxonomy-tab li.taxonomy_labels_tab a::before {
+    content: "\f326";
+}
+ul.st-taxonomy-tab li.taxonomy_menus_tab a::before {
+    content: "\f333";
+}
+ul.st-taxonomy-tab li.taxonomy_posttypes_tab a::before {
+    content: "\f186";
+}
+ul.st-taxonomy-tab li.taxonomy_general_tab a::before {
+    content: "\f107";
+}
+ul.st-taxonomy-tab li a span {
+    margin-left: .618em;
+    margin-right: .618em;
+}
+ul.st-taxonomy-tab li.active a {
+    color: #555;
+    position: relative;
+    background-color: #eee;
+}
+.taxopress-section fieldset:focus {
+    outline: none;
+}
+
+
+#poststuff .taxopress-section.postbox .inside {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+}
 @media screen and (min-width: 769px) {
     .taxopress-badge {
         margin-top: -42px;
