@@ -2,10 +2,23 @@
 
 
   jQuery(document).ready(function($) {
-    postboxes.add_postbox_toggles(pagenow)
+
+
+    // Confirm our deletions
+    $('ul.st-taxonomy-tab li').on('click', function(e) {
+      e.preventDefault()
+      var tab_content = $(this).attr('data-content');
+      
+      $('.st-taxonomy-tab li').removeClass('active');
+      $(this).addClass('active');
+
+      $('.st-taxonomy-content table').hide();
+      $('.st-taxonomy-content table.'+tab_content).show();
+    })
+
 
     if ($('.taxonomy_external_edit').length > 0) {
-      $('table.taxopress-table').find("tr:first").hide()
+      $('table.taxonomy_general').find("tr:first").hide()
     }
 
     if ('edit' === getParameterByName('action')) {
@@ -233,7 +246,8 @@
       $('#menu_icon_preview').html(composePreviewContent(value))
     })
 
-    $('.taxopress-taxonomy-submit').on('click', function(e) {
+    $('.taxopress-taxonomy-submit').on('click', function (e) {
+      $('.taxonomy-required-field').html('');
       if ($('.taxopress-table :checkbox:checked').length == 0) {
         e.preventDefault()
         var no_associated_type_warning = $('<div class="taxopress-taxonomy-empty-types-dialog">' + taxopress_tax_data.no_associated_type + '</div>').appendTo('#poststuff').dialog({
@@ -247,44 +261,58 @@
           }
         })
       }
-    })
 
-    $('#name, #label, #singular_label').on('change paste', function(e) {
-      if ('edit' === getParameterByName('action')) {
-        return
-      }
-      var slug = $('#name').val()
-      var plural = $('#label').val()
-      var singular = $('#singular_label').val()
-      var fields = $('.taxopress-labels input[type="text"]')
 
-      if ('' === slug) {
-        return
-      }
-      if ('' === plural) {
-        plural = slug
-      }
-      if ('' === singular) {
-        singular = slug
-      }
-
-      $(fields).each(function(i, el) {
-        var newval = $(el).data('label')
-        var plurality = $(el).data('plurality')
-        if ('undefined' !== newval) {
-          // "slug" is our placeholder from the labels.
-          if ('plural' === plurality) {
-            newval = newval.replace(/item/gi, plural)
-          } else {
-            newval = newval.replace(/item/gi, singular)
-          }
-          //if ($(el).val() === '')
-          {
-            $(el).val(newval)
+      var fields = $(".taxopress-section").find("select, textarea, input").serializeArray(),
+        field_label,
+        field_object;
+      $.each(fields, function (i, field) {
+        field_object = $('input[name="' + field.name + '"]');
+        if (field_object.attr('required')) {
+          if (!field.value) {
+            field_label = field_object.closest('tr').find('label').html();
+            $('.taxonomy-required-field').append('<br /><font color="red">-' + field_label + ' is required</font>');
           }
         }
-      })
+     });
+      
     })
+
+    $('.st-tags-label-populate').on( 'click tap', function(e){
+      e.preventDefault();
+      var slug     = $('#name').val();
+      var plural   = $('#label').val();
+      var singular = $('#singular_label').val();
+      var fields   = $('.taxopress-section input[type="text"]');
+  
+      if ( '' === slug ) {
+        return;
+      }
+      if ( '' === plural ) {
+        plural = slug;
+      }
+      if ( '' === singular ) {
+        singular = slug;
+      }
+  
+      $(fields).each( function( i, el ) {
+        var newval = $( el ).data( 'label' );
+        var plurality = $(el).data('plurality');
+        if (plurality) {
+          if ('undefined' !== newval) {
+            // "slug" is our placeholder from the labels.
+            if ('plural' === plurality) {
+              newval = newval.replace(/item/gi, plural);
+            } else {
+              newval = newval.replace(/item/gi, singular);
+            }
+            if ($(el).val() === '') {
+              $(el).val(newval);
+            }
+          }
+        }
+      } );
+    });
 
   })
 

@@ -57,6 +57,7 @@ if (version_compare(PHP_VERSION, STAGS_MIN_PHP_VERSION, '<')) {
 }
 
 require STAGS_DIR . '/inc/functions.inc.php'; // Internal functions
+require STAGS_DIR . '/inc/taxonomies-functions.php'; // Taxonomy functions
 require STAGS_DIR . '/inc/functions.deprecated.php'; // Deprecated functions
 require STAGS_DIR . '/inc/functions.tpl.php';  // Templates functions
 
