@@ -248,7 +248,7 @@
 
     $('.taxopress-taxonomy-submit').on('click', function (e) {
       $('.taxonomy-required-field').html('');
-      if ($('.taxopress-table :checkbox:checked').length == 0) {
+      if ($('.taxonomy_posttypes :checkbox:checked').length == 0) {
         e.preventDefault()
         var no_associated_type_warning = $('<div class="taxopress-taxonomy-empty-types-dialog">' + taxopress_tax_data.no_associated_type + '</div>').appendTo('#poststuff').dialog({
           'dialogClass': 'wp-dialog',
