@@ -901,6 +901,31 @@ class SimpleTags_Admin_Taxonomies
                                                     'selections' => $select,
                                                 ]);
 
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'false',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = (isset($current) && !empty($current['show_in_quick_edit'])) ? taxopress_disp_boolean($current['show_in_quick_edit']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['show_in_quick_edit'] : '';
+                                            echo $ui->get_select_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'show_in_quick_edit',
+                                                'labeltext'  => esc_html__('Show in "Quick Edit" and "Bulk Edit"',
+                                                    'simpletags'),
+                                                'aftertext'  => esc_html__('(default: false) Whether to show the taxonomy in the quick/bulk edit panel.',
+                                                    'simpletags'),
+                                                'selections' => $select,
+                                            ]);
+
                                                 ?>
 
                                             </table>
@@ -1368,31 +1393,6 @@ class SimpleTags_Admin_Taxonomies
                                                 'labeltext' => esc_html__('Custom Query Var String', 'simpletags'),
                                                 'helptext'  => esc_html__('Sets a custom query_var slug for this taxonomy.',
                                                     'simpletags'),
-                                            ]);
-
-                                            $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simpletags'),
-                                                        'default' => 'false',
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simpletags'),
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = (isset($current) && !empty($current['show_in_quick_edit'])) ? taxopress_disp_boolean($current['show_in_quick_edit']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['show_in_quick_edit'] : '';
-                                            echo $ui->get_select_input([
-                                                'namearray'  => 'cpt_custom_tax',
-                                                'name'       => 'show_in_quick_edit',
-                                                'labeltext'  => esc_html__('Show in quick/bulk edit panel.',
-                                                    'simpletags'),
-                                                'aftertext'  => esc_html__('(default: false) Whether to show the taxonomy in the quick/bulk edit panel.',
-                                                    'simpletags'),
-                                                'selections' => $select,
                                             ]);
 
                                             echo $ui->get_text_input([
