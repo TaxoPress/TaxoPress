@@ -408,6 +408,11 @@ class SimpleTags_Admin_Taxonomies
                                                             'simpletags'); ?></span></a>
                                             </li>
 
+                                            <li class="taxonomy_permalinks_tab" data-content="taxonomy_permalinks">
+                                                <a href="#taxonomy_permalinks"><span><?php esc_html_e('Permalinks',
+                                                            'simpletags'); ?></span></a>
+                                            </li>
+
                                             <li class="taxonomy_menus_tab" data-content="taxonomy_menus">
                                                 <a href="#taxonomy_menus"><span><?php esc_html_e('Menus',
                                                             'simpletags'); ?></span></a>
@@ -441,7 +446,10 @@ class SimpleTags_Admin_Taxonomies
 
                                             <table class="form-table taxopress-table taxonomy_general">
                                                 <?php
-                                                echo $ui->get_tr_start() . $ui->get_th_start();
+                                                echo $ui->get_tr_start();
+
+                                                if(!$taxonomy_edit){
+                                                    echo $ui->get_th_start();
                                                 echo $ui->get_label('name',
                                                         esc_html__('Taxonomy Slug',
                                                             'simpletags')) . $ui->get_required_span();
@@ -494,6 +502,11 @@ class SimpleTags_Admin_Taxonomies
                                                     ]);
                                                     echo '</div>';
                                                 }
+
+                                            }
+
+
+
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'label',
@@ -577,6 +590,157 @@ class SimpleTags_Admin_Taxonomies
 
                                                 echo $ui->get_fieldset_end() . $ui->get_td_end() . $ui->get_tr_end();
 
+
+                                                ?>
+
+                                            </table>
+
+
+                                            <table class="form-table taxopress-table taxonomy_permalinks"
+                                                   style="display:none;">
+                                                <?php
+
+
+                                                if($taxonomy_edit){
+                                                    
+                                                    echo $ui->get_th_start();
+                                                echo $ui->get_label('name',
+                                                        esc_html__('Taxonomy Slug',
+                                                            'simpletags')) . $ui->get_required_span();
+
+                                                if ('edit' === $tab) {
+                                                    echo '<p id="slugchanged" class="hidemessage">' . esc_html__('Slug has changed',
+                                                            'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                }
+                                                echo '<p id="slugexists" class="hidemessage">' . esc_html__('Slug already exists',
+                                                        'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+
+                                                echo $ui->get_th_end() . $ui->get_td_start();
+
+                                                echo $ui->get_text_input([
+                                                    'namearray'   => 'cpt_custom_tax',
+                                                    'name'        => 'name',
+                                                    'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
+                                                    'maxlength'   => '32',
+                                                    'helptext'    => esc_attr__('Enter the taxonomy slug',
+                                                        'simpletags'),
+                                                    'required'    => true,
+                                                    'placeholder' => false,
+                                                    'wrap'        => false,
+                                                ]);
+
+                                                echo '<p class="taxopress-slug-details">';
+                                                esc_html_e('This slug must be unique and it\'s been used for various queries for taxonomy content. 
+                                        
+                                        Slugs can only contain alphanumeric, latin characters and underscores.',
+                                                    'simpletags');
+                                                echo '</p>';
+
+                                                if ('edit' === $tab) {
+                                                    echo '<p>';
+                                                    esc_html_e('DO NOT EDIT the taxonomy slug unless also planning to migrate terms. Changing the slug registers a new taxonomy entry.',
+                                                        'simpletags');
+                                                    echo '</p>';
+
+                                                    echo '<div class="taxopress-spacer">';
+                                                    echo $ui->get_check_input([
+                                                        'checkvalue' => 'update_taxonomy',
+                                                        'checked'    => 'false',
+                                                        'name'       => 'update_taxonomy',
+                                                        'namearray'  => 'update_taxonomy',
+                                                        'labeltext'  => esc_html__('Migrate terms to newly renamed taxonomy?',
+                                                            'simpletags'),
+                                                        'helptext'   => '',
+                                                        'default'    => false,
+                                                        'wrap'       => false,
+                                                    ]);
+                                                    echo '</div>';
+                                                }
+
+                                            }
+
+
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr' => '0',
+                                                        'text' => esc_attr__('False', 'simpletags'),
+                                                    ],
+                                                    [
+                                                        'attr'    => '1',
+                                                        'text'    => esc_attr__('True', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['rewrite'] : '';
+                                            echo $ui->get_select_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'rewrite',
+                                                'labeltext'  => esc_html__('Rewrite', 'simpletags'),
+                                                'aftertext'  => esc_html__('(default: true) Whether or not WordPress should use rewrites for this taxonomy.',
+                                                    'simpletags'),
+                                                'selections' => $select,
+                                            ]);
+
+                                            echo $ui->get_text_input([
+                                                'namearray' => 'cpt_custom_tax',
+                                                'name'      => 'rewrite_slug',
+                                                'textvalue' => isset($current['rewrite_slug']) ? esc_attr($current['rewrite_slug']) : '',
+                                                'aftertext' => esc_attr__('(default: taxonomy name)', 'simpletags'),
+                                                'labeltext' => esc_html__('Custom Rewrite Slug', 'simpletags'),
+                                                'helptext'  => esc_html__('Custom taxonomy rewrite slug.',
+                                                    'simpletags'),
+                                            ]);
+
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr' => '0',
+                                                        'text' => esc_attr__('False', 'simpletags'),
+                                                    ],
+                                                    [
+                                                        'attr'    => '1',
+                                                        'text'    => esc_attr__('True', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_withfront']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['rewrite_withfront'] : '';
+                                            echo $ui->get_select_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'rewrite_withfront',
+                                                'labeltext'  => esc_html__('Rewrite With Front', 'simpletags'),
+                                                'aftertext'  => esc_html__('(default: true) Should the permastruct be prepended with the front base.',
+                                                    'simpletags'),
+                                                'selections' => $select,
+                                            ]);
+
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'false',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_hierarchical']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['rewrite_hierarchical'] : '';
+                                            echo $ui->get_select_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'rewrite_hierarchical',
+                                                'labeltext'  => esc_html__('Rewrite Hierarchical', 'simpletags'),
+                                                'aftertext'  => esc_html__('(default: false) Should the permastruct allow hierarchical urls.',
+                                                    'simpletags'),
+                                                'selections' => $select,
+                                            ]);
 
                                                 ?>
 
@@ -718,21 +882,6 @@ class SimpleTags_Admin_Taxonomies
                                                    style="display:none;">
 
                                                 <?php
-
-                                                $link_text = ('new' === $tab) ?
-                                                    esc_html__('Populate additional labels based on chosen labels.',
-                                                        'simpletags') :
-                                                    esc_html__('Populate missing labels based on chosen labels.',
-                                                        'simpletags');
-                                                echo $ui->get_tr_end();
-                                                echo $ui->get_th_start() . esc_html__('Auto-populate labels',
-                                                        'simpletags') . $ui->get_th_end();
-                                                echo $ui->get_td_start();
-                                                ?>
-                                                <a href="#"
-                                                   class="st-tags-label-populate"><?php echo esc_html($link_text); ?></a>
-                                                <?php
-                                                echo $ui->get_td_end() . $ui->get_tr_end();
 
                                                 if (isset($current['description'])) {
                                                     $current['description'] = stripslashes_deep($current['description']);
@@ -1215,88 +1364,6 @@ class SimpleTags_Admin_Taxonomies
                                                 'labeltext' => esc_html__('Custom Query Var String', 'simpletags'),
                                                 'helptext'  => esc_html__('Sets a custom query_var slug for this taxonomy.',
                                                     'simpletags'),
-                                            ]);
-
-                                            $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr' => '0',
-                                                        'text' => esc_attr__('False', 'simpletags'),
-                                                    ],
-                                                    [
-                                                        'attr'    => '1',
-                                                        'text'    => esc_attr__('True', 'simpletags'),
-                                                        'default' => 'true',
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['rewrite'] : '';
-                                            echo $ui->get_select_input([
-                                                'namearray'  => 'cpt_custom_tax',
-                                                'name'       => 'rewrite',
-                                                'labeltext'  => esc_html__('Rewrite', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: true) Whether or not WordPress should use rewrites for this taxonomy.',
-                                                    'simpletags'),
-                                                'selections' => $select,
-                                            ]);
-
-                                            echo $ui->get_text_input([
-                                                'namearray' => 'cpt_custom_tax',
-                                                'name'      => 'rewrite_slug',
-                                                'textvalue' => isset($current['rewrite_slug']) ? esc_attr($current['rewrite_slug']) : '',
-                                                'aftertext' => esc_attr__('(default: taxonomy name)', 'simpletags'),
-                                                'labeltext' => esc_html__('Custom Rewrite Slug', 'simpletags'),
-                                                'helptext'  => esc_html__('Custom taxonomy rewrite slug.',
-                                                    'simpletags'),
-                                            ]);
-
-                                            $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr' => '0',
-                                                        'text' => esc_attr__('False', 'simpletags'),
-                                                    ],
-                                                    [
-                                                        'attr'    => '1',
-                                                        'text'    => esc_attr__('True', 'simpletags'),
-                                                        'default' => 'true',
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_withfront']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['rewrite_withfront'] : '';
-                                            echo $ui->get_select_input([
-                                                'namearray'  => 'cpt_custom_tax',
-                                                'name'       => 'rewrite_withfront',
-                                                'labeltext'  => esc_html__('Rewrite With Front', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: true) Should the permastruct be prepended with the front base.',
-                                                    'simpletags'),
-                                                'selections' => $select,
-                                            ]);
-
-                                            $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simpletags'),
-                                                        'default' => 'false',
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simpletags'),
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_hierarchical']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['rewrite_hierarchical'] : '';
-                                            echo $ui->get_select_input([
-                                                'namearray'  => 'cpt_custom_tax',
-                                                'name'       => 'rewrite_hierarchical',
-                                                'labeltext'  => esc_html__('Rewrite Hierarchical', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: false) Should the permastruct allow hierarchical urls.',
-                                                    'simpletags'),
-                                                'selections' => $select,
                                             ]);
 
                                             $select             = [
