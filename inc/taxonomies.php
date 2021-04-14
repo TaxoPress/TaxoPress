@@ -397,11 +397,12 @@ class SimpleTags_Admin_Taxonomies
                                                 <a href="#taxonomy_advanced"><span><?php esc_html_e('Advanced',
                                                             'simpletags'); ?></span></a>
                                             </li>
-
+                                            <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                             <li class="taxonomy_delete_tab" data-content="taxonomy_delete">
                                                 <a href="#taxonomy_delete"><span><?php esc_html_e('Deactivate or Delete',
                                                             'simpletags'); ?></span></a>
                                             </li>
+                                            <?php } ?>
                                         </ul>
 
 
