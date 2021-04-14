@@ -335,9 +335,14 @@ class Taxonomy_List extends WP_List_Table
     protected function column_description($item)
     {
         if (in_array($item->name, ['category', 'post_tag'])) {
-            return __('This is built-in WordPress Taxonomy', 'simpletags');
+            return __('WordPress core', 'simpletags');
         } else {
-            return !empty($item->description) ? $item->description : '&mdash;';
+            if( $item->name === 'media_tag' || array_key_exists($item->name, taxopress_get_taxonomy_data())){
+                $alt_description = __('TaxoPress', 'simpletags');
+            }else{
+                $alt_description = '&mdash;';
+            }
+            return !empty($item->description) ? $item->description : $alt_description;
         }
     }
 
