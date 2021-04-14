@@ -528,6 +528,34 @@ class SimpleTags_Admin_Taxonomies
                                                         'simpletags'),
                                                     'required'  => true,
                                                 ]);
+
+
+
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = isset($current) ? taxopress_disp_boolean($current['hierarchical']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['hierarchical'] : '';
+                                            echo $ui->get_select_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'hierarchical',
+                                                'labeltext'  => esc_html__('Parent-Child Relationships', 'simpletags'),
+                                                'aftertext'  => esc_html__('Can terms in this taxonomy be organized into hierarchical relationships?',
+                                                    'simpletags'),
+                                                'selections' => $select,
+                                            ]);
+
+
                                                 echo $ui->get_td_end() . $ui->get_tr_end();
                                                 ?>
                                             </table>
@@ -1303,30 +1331,6 @@ class SimpleTags_Admin_Taxonomies
                                                 'name'       => 'publicly_queryable',
                                                 'labeltext'  => esc_html__('Public Queryable', 'simpletags'),
                                                 'aftertext'  => esc_html__('(default: value of "public" setting) Whether or not the taxonomy should be publicly queryable.',
-                                                    'simpletags'),
-                                                'selections' => $select,
-                                            ]);
-
-                                            $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simpletags'),
-                                                        'default' => 'true',
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simpletags'),
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = isset($current) ? taxopress_disp_boolean($current['hierarchical']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['hierarchical'] : '';
-                                            echo $ui->get_select_input([
-                                                'namearray'  => 'cpt_custom_tax',
-                                                'name'       => 'hierarchical',
-                                                'labeltext'  => esc_html__('Hierarchical', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: false) Whether the taxonomy can have parent-child relationships.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
