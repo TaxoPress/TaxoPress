@@ -241,6 +241,8 @@ class SimpleTags_Admin_Taxonomies
 
         $external_edit = false;
         $taxonomy_edit = false;
+        $core_edit = false;
+
         if ('edit' === $tab) {
 
             $taxonomies = taxopress_get_taxonomy_data();
@@ -263,6 +265,14 @@ class SimpleTags_Admin_Taxonomies
             }
         }
 
+        if($taxonomy_edit){
+            $wordpress_core_tax = array_keys(get_taxonomies(['_builtin' => true]));
+            $wordpress_core_tax[] = 'post_tag';
+            $wordpress_core_tax[] = 'category';
+            if(in_array($current['name'], $wordpress_core_tax)){
+                $core_edit = true;
+            }
+        }
 
         $ui = new taxopress_admin_ui();
         ?>
@@ -278,8 +288,27 @@ class SimpleTags_Admin_Taxonomies
                     <div class="taxopress-right-sidebar-wrapper">
 
                         <?php
-                        if ($external_edit) {
-                            echo '<div class="taxopress-warning">' . __('This is an external taxonomy and not created with taxopress.',
+                        if($taxonomy_edit){
+                        if ($core_edit) {
+                            echo '<div class="taxopress-warning">' . __('This taxonomy is part of the WordPress core.',
+                                    'simpletags') . '
+
+                                                <br /><br />
+                                                ' . __('Registration key',
+                                    'simpletags') . ': <font color="green">' . $current["name"] . '</font>
+                                                
+                                                </div>';
+                        }elseif ($external_edit) {
+                            echo '<div class="taxopress-warning">' . __('This is an external taxonomy and not created with TaxoPress.',
+                                    'simpletags') . '
+
+                                                <br /><br />
+                                                ' . __('Registration key',
+                                    'simpletags') . ': <font color="green">' . $current["name"] . '</font>
+                                                
+                                                </div>';
+                        }else{
+                            echo '<div class="taxopress-warning">' . __('This taxonomy was created by TaxoPress.',
                                     'simpletags') . '
 
                                                 <br /><br />
@@ -288,6 +317,7 @@ class SimpleTags_Admin_Taxonomies
                                                 
                                                 </div>';
                         }
+                    }
                         ?>
 
                         <p class="submit">
