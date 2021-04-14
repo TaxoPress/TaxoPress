@@ -35,6 +35,9 @@ function st_register_widget() {
 	register_widget( 'SimpleTags_Widget' );
 }
 
+/**
+ * Change menu item order
+ */
 add_action('custom_menu_order', 'taxopress_re_order_menu');	
 function taxopress_re_order_menu()	{	    
     global $submenu;	    
