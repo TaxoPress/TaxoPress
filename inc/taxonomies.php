@@ -62,7 +62,7 @@ class SimpleTags_Admin_Taxonomies
                 [
                     'confirm'             => esc_html__('Are you sure you want to delete this? Deleting will NOT remove created content.',
                         'simpletags'),
-                    'no_associated_type'  => esc_html__('Please select a post type to associate with.', 'simpletags'),
+                    'no_associated_type'  => esc_html__('Please select at least one post type.', 'simpletags'),
                     'existing_taxonomies' => $registered_taxonomies,
                 ]
             );
@@ -565,11 +565,8 @@ class SimpleTags_Admin_Taxonomies
                                             <table class="form-table taxopress-table taxonomy_posttypes"
                                                    style="display:none;">
                                                 <?php
-                                                echo $ui->get_tr_start() . $ui->get_th_start() . esc_html__('Attach to Post Type',
-                                                        'simpletags') . $ui->get_required_span();
-                                                echo $ui->get_p(esc_html__('Add support for available registered post types. At least one is required. Only public post types listed by default.',
-                                                    'simpletags'));
-                                                echo $ui->get_th_end() . $ui->get_td_start() . $ui->get_fieldset_start();
+                                                echo $ui->get_tr_start();
+                                                echo $ui->get_td_start() . $ui->get_fieldset_start();
 
                                                 echo $ui->get_legend_start() . esc_html__('Post type options',
                                                         'simpletags') . $ui->get_legend_end();
@@ -604,7 +601,7 @@ class SimpleTags_Admin_Taxonomies
                                                         'post',
                                                         'page',
                                                         'attachment',
-                                                    ], true) ? esc_html__('(WP Core)', 'simpletags') : '';
+                                                    ], true) ? '' : '';
                                                     echo $ui->get_check_input([
                                                         'checkvalue' => $post_type->name,
                                                         'checked'    => (!empty($current['object_types']) && is_array($current['object_types']) && in_array($post_type->name,
