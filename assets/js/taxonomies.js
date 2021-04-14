@@ -18,7 +18,7 @@
 
 
     if ($('.taxonomy_external_edit').length > 0) {
-      $('table.taxonomy_general').find("tr:first").hide()
+      $('table.taxonomy_permalinks').find("tr:first").hide()
     }
 
     if ('edit' === getParameterByName('action')) {

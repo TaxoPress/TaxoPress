@@ -426,6 +426,9 @@ ul.st-taxonomy-tab li.taxonomy_general_tab a::before {
 ul.st-taxonomy-tab li.taxonomy_delete_tab a::before {
     content: "\f530";
 }
+ul.st-taxonomy-tab li.taxonomy_permalinks_tab a::before {
+    content: "\f103";
+}
 
 .taxopress-section .reactivate a,
 .taxopress-section .deactivate a {
