@@ -468,19 +468,11 @@ class SimpleTags_Admin_Taxonomies
                                                     'name'        => 'name',
                                                     'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
                                                     'maxlength'   => '32',
-                                                    'helptext'    => esc_attr__('Enter the taxonomy slug',
-                                                        'simpletags'),
+                                                    'helptext'    => 'Slugs can only contain alphanumeric, latin characters and underscores.',
                                                     'required'    => true,
                                                     'placeholder' => false,
                                                     'wrap'        => false,
                                                 ]);
-
-                                                echo '<p class="taxopress-slug-details">';
-                                                esc_html_e('This slug must be unique and it\'s been used for various queries for taxonomy content. 
-                                        
-                                        Slugs can only contain alphanumeric, latin characters and underscores.',
-                                                    'simpletags');
-                                                echo '</p>';
 
                                                 if ('edit' === $tab) {
                                                     echo '<p>';
@@ -513,8 +505,7 @@ class SimpleTags_Admin_Taxonomies
                                                     'textvalue' => isset($current['label']) ? esc_attr($current['label']) : '',
                                                     'aftertext' => esc_html__('(e.g. Jobs)', 'simpletags'),
                                                     'labeltext' => esc_html__('Plural Label', 'simpletags'),
-                                                    'helptext'  => esc_attr__('Used for the taxonomy admin menu item.',
-                                                        'simpletags'),
+                                                    'helptext'  => '',
                                                     'required'  => true,
                                                 ]);
 
@@ -524,8 +515,7 @@ class SimpleTags_Admin_Taxonomies
                                                     'textvalue' => isset($current['singular_label']) ? esc_attr($current['singular_label']) : '',
                                                     'aftertext' => esc_html__('(e.g. Job)', 'simpletags'),
                                                     'labeltext' => esc_html__('Singular Label', 'simpletags'),
-                                                    'helptext'  => esc_attr__('Used when a singular label is needed.',
-                                                        'simpletags'),
+                                                    'helptext'  => '',
                                                     'required'  => true,
                                                 ]);
 
@@ -649,19 +639,11 @@ class SimpleTags_Admin_Taxonomies
                                                     'name'        => 'name',
                                                     'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
                                                     'maxlength'   => '32',
-                                                    'helptext'    => esc_attr__('Enter the taxonomy slug',
-                                                        'simpletags'),
+                                                    'helptext'    => 'Slugs can only contain alphanumeric, latin characters and underscores.',
                                                     'required'    => true,
                                                     'placeholder' => false,
                                                     'wrap'        => false,
                                                 ]);
-
-                                                echo '<p class="taxopress-slug-details">';
-                                                esc_html_e('This slug must be unique and it\'s been used for various queries for taxonomy content. 
-                                        
-                                        Slugs can only contain alphanumeric, latin characters and underscores.',
-                                                    'simpletags');
-                                                echo '</p>';
 
                                                 if ('edit' === $tab) {
                                                     echo '<p>';
