@@ -1451,7 +1451,7 @@ class SimpleTags_Admin_Taxonomies
                                            value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
                                                __('Delete Taxonomy', 'simpletags'))); ?>"/>
                                 <?php }else{
-                                     echo '<div class="taxopress-warning" style="color:red;">' . __('You can only delete taxonomy created with taxopress.',
+                                     echo '<div class="taxopress-warning" style="color:red;">' . __('You can only delete taxonomies created with TaxoPress.',
                                     'simpletags') . '</div>';
                                 }
                             }
