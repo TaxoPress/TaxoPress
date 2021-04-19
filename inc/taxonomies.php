@@ -705,7 +705,7 @@ class SimpleTags_Admin_Taxonomies
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite',
                                                 'labeltext'  => esc_html__('Rewrite', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: true) Whether or not WordPress should use rewrites for this taxonomy.',
+                                                'aftertext'  => esc_html__('Whether or not WordPress should use rewrites for this taxonomy.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -739,7 +739,7 @@ class SimpleTags_Admin_Taxonomies
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_withfront',
                                                 'labeltext'  => esc_html__('Rewrite With Front', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: true) Should the permastruct be prepended with the front base.',
+                                                'aftertext'  => esc_html__('Should the permastruct be prepended with the front base.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -763,7 +763,7 @@ class SimpleTags_Admin_Taxonomies
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_hierarchical',
                                                 'labeltext'  => esc_html__('Rewrite Hierarchical', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: false) Should the permastruct allow hierarchical urls.',
+                                                'aftertext'  => esc_html__('Should the permastruct allow hierarchical urls.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -1289,7 +1289,7 @@ class SimpleTags_Admin_Taxonomies
                                                     'name'      => 'rest_controller_class',
                                                     'labeltext' => esc_html__('REST API controller class',
                                                         'simpletags'),
-                                                    'aftertext' => esc_attr__('(default: WP_REST_Terms_Controller) Custom controller to use instead of WP_REST_Terms_Controller.',
+                                                    'aftertext' => esc_attr__('Custom controller to use instead of WP_REST_Terms_Controller.',
                                                         'simpletags'),
                                                     'textvalue' => isset($current['rest_controller_class']) ? esc_attr($current['rest_controller_class']) : '',
                                                 ]);
@@ -1323,7 +1323,7 @@ class SimpleTags_Admin_Taxonomies
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'public',
                                                 'labeltext'  => esc_html__('Public', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: true) Whether a taxonomy is intended for use publicly either via the admin interface or by front-end users.',
+                                                'aftertext'  => esc_html__('Whether a taxonomy is intended for use publicly either via the admin interface or by front-end users.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -1347,7 +1347,7 @@ class SimpleTags_Admin_Taxonomies
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'publicly_queryable',
                                                 'labeltext'  => esc_html__('Public Queryable', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: value of "public" setting) Whether or not the taxonomy should be publicly queryable.',
+                                                'aftertext'  => esc_html__('Whether or not the taxonomy should be publicly queryable.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -1371,7 +1371,7 @@ class SimpleTags_Admin_Taxonomies
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'query_var',
                                                 'labeltext'  => esc_html__('Query Var', 'simpletags'),
-                                                'aftertext'  => esc_html__('(default: true) Sets the query_var key for this taxonomy.',
+                                                'aftertext'  => esc_html__('Sets the query_var key for this taxonomy.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -1380,7 +1380,7 @@ class SimpleTags_Admin_Taxonomies
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'query_var_slug',
                                                 'textvalue' => isset($current['query_var_slug']) ? esc_attr($current['query_var_slug']) : '',
-                                                'aftertext' => esc_attr__('(default: taxonomy slug). Query var needs to be true to use.',
+                                                'aftertext' => esc_attr__('Query var needs to be true to use.',
                                                     'simpletags'),
                                                 'labeltext' => esc_html__('Custom Query Var String', 'simpletags'),
                                                 'helptext'  => esc_html__('Sets a custom query_var slug for this taxonomy.',
