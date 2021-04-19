@@ -144,7 +144,7 @@ class SimpleTags_Admin_Taxonomies
         if (!isset($_GET['add'])) {
             //all tax
             ?>
-            <div class="wrap st_wrap st-manage-terms-page">
+            <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
                 <h1 class="wp-heading-inline"><?php _e('Taxonomies', 'simpletags'); ?></h1>
