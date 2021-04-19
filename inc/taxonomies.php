@@ -414,7 +414,7 @@ class SimpleTags_Admin_Taxonomies
                                             </li>
 
                                             <li class="taxonomy_menus_tab" data-content="taxonomy_menus">
-                                                <a href="#taxonomy_menus"><span><?php esc_html_e('Menus',
+                                                <a href="#taxonomy_menus"><span><?php esc_html_e('Admin area',
                                                             'simpletags'); ?></span></a>
                                             </li>
 
@@ -796,7 +796,7 @@ class SimpleTags_Admin_Taxonomies
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_ui',
-                                                    'labeltext'  => esc_html__('Show UI', 'simpletags'),
+                                                    'labeltext'  => esc_html__('Show user interface', 'simpletags'),
                                                     'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
