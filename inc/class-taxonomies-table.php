@@ -63,7 +63,6 @@ class Taxonomy_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'cb'          => '<input type="checkbox" />',
             'name'        => __('Name', 'simpletags'),
             'registration_key' => __('Registration key', 'simpletags'),
             'description' => __('Description', 'simpletags'),
