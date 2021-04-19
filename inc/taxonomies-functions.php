@@ -144,6 +144,11 @@ function taxopress_delete_taxonomy($data = [])
             $success = update_option('taxopress_taxonomies', $taxonomies);
         }
     }
+
+    if ($data['cpt_custom_tax']['name'] === 'media_tag') {
+        $success = update_option('taxopress_media_tag_deleted', 1);
+    }
+
     delete_option("default_term_{$data['cpt_custom_tax']['name']}");
 
     /**
@@ -1985,6 +1990,10 @@ function taxopress_recreate_custom_taxonomies()
 
     if (is_array($taxes)) {
         foreach ($taxes as $tax) {
+            if ( $tax['name'] === 'media_tag' && (int)get_option('taxopress_media_tag_deleted') > 0 ) {
+                continue;
+            }
+
             taxopress_re_register_single_taxonomy($tax);
         }
     }

@@ -263,6 +263,10 @@ class SimpleTags_Admin_Taxonomies
                     $taxonomy_edit = true;
                 }
             }
+
+            if($request_tax === 'media_tag'){
+                $external_edit = false;
+            }
         }
 
         if($taxonomy_edit){

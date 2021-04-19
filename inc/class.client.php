@@ -48,6 +48,7 @@ class SimpleTags_Client {
 	 */
 	public function simple_tags_register_media_tag() {
 
+    if((int)get_option('taxopress_media_tag_deleted') === 0){
 	$labels = [
 		"name" => __( "Media Tags", "simpletags" ),
 		"singular_name" => __( "Media Tag", "simpletags" ),
@@ -91,6 +92,7 @@ class SimpleTags_Client {
 		"show_in_quick_edit" => false,
 	];
 	register_taxonomy( "media_tag", [ "attachment" ], $args );
+    }
     }
 
 	/**
