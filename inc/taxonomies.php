@@ -565,11 +565,6 @@ class SimpleTags_Admin_Taxonomies
                                             <table class="form-table taxopress-table taxonomy_posttypes"
                                                    style="display:none;">
                                                 <?php
-                                                echo $ui->get_tr_start();
-                                                echo $ui->get_td_start() . $ui->get_fieldset_start();
-
-                                                echo $ui->get_legend_start() . esc_html__('Post type options',
-                                                        'simpletags') . $ui->get_legend_end();
 
                                                 /**
                                                  * Filters the arguments for post types to list for taxonomy association.
@@ -602,6 +597,10 @@ class SimpleTags_Admin_Taxonomies
                                                         'page',
                                                         'attachment',
                                                     ], true) ? '' : '';
+
+
+                                                echo '<tr valign="top"><th scope="row"><label for="'.$post_type->name.'">'.$post_type->label.'</label></th><td>';
+                                                
                                                     echo $ui->get_check_input([
                                                         'checkvalue' => $post_type->name,
                                                         'checked'    => (!empty($current['object_types']) && is_array($current['object_types']) && in_array($post_type->name,
@@ -609,12 +608,14 @@ class SimpleTags_Admin_Taxonomies
                                                         'name'       => $post_type->name,
                                                         'namearray'  => 'cpt_post_types',
                                                         'textvalue'  => $post_type->name,
-                                                        'labeltext'  => "{$post_type->label} {$core_label}",
+                                                        'labeltext'  => "",
                                                         'wrap'       => false,
                                                     ]);
+                                                
+                                                echo '</td></tr>';
+
                                                 }
 
-                                                echo $ui->get_fieldset_end() . $ui->get_td_end() . $ui->get_tr_end();
 
 
                                                 ?>
