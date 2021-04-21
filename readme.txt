@@ -60,9 +60,9 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.0.4 - 2021-04-21
+v3.0.4 - 2021-04-08
 * Added taxonomy manage page
-* Added media tags taxonomy for media page
+* Added media tags taxonomy
 * Added option to add new taxonomy
 * Added option to edit inbuilt and custom taxonomy
 * Added option to assign taxonomy to custom post(s)
