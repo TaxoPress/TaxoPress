@@ -37,22 +37,6 @@ class SimpleTags_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Check if post type exist and return it, otherwise return default post.
-	 *
-	 * @param array $instance
-	 *
-	 * @return string
-	 * @author Olatechpro
-	 */
-	public static function _get_current_post_type( $instance ) {
-		if ( ! empty( $instance['post_type'] ) && post_type_exists( $instance['post_type'] ) ) {
-			return $instance['post_type'];
-		}
-
-		return 'post';
-	}
-
-	/**
 	 * Default settings for widget
 	 *
 	 * @return array
@@ -61,7 +45,6 @@ class SimpleTags_Widget extends WP_Widget {
 	public static function get_fields() {
 		return array(
 			'taxonomy'    => 'post_tag',
-			'post_type'    => 'post',
 			'title'       => __( 'Tag cloud', 'simpletags' ),
 			'max'         => 45,
 			'selectionby' => 'count',
@@ -93,8 +76,6 @@ class SimpleTags_Widget extends WP_Widget {
 		extract( $args );
 
 		$current_taxonomy = self::_get_current_taxonomy( $instance );
-
-		$current_post_type = self::_get_current_post_type( $instance );
 
 		// Build or not the name of the widget
 		if ( ! empty( $instance['title'] ) ) {
@@ -185,8 +166,7 @@ class SimpleTags_Widget extends WP_Widget {
 
 		// Taxonomy
 		$param .= '&taxonomy=' . $current_taxonomy;
-        // Post type
-		$param .= '&post_type=' . $current_post_type;
+
 		echo $before_widget;
 		if ( ! empty( $title ) ) {
 			echo $before_title . $title . $after_title;
@@ -407,28 +387,13 @@ class SimpleTags_Widget extends WP_Widget {
 				<select id="<?php echo $this->get_field_id( 'taxonomy' ); ?>"
 				        name="<?php echo $this->get_field_name( 'taxonomy' ); ?>" style="width:100%;">
 					<?php
-					foreach ( get_all_taxopress_taxonomies() as $_taxonomy ) {
-                        $_taxonomy = $_taxonomy->name;
+					foreach ( get_object_taxonomies( 'post' ) as $_taxonomy ) {
 						$tax = get_taxonomy( $_taxonomy );
 						if ( ! $tax->show_tagcloud || empty( $tax->labels->name ) ) {
 							continue;
 						}
 
 						echo '<option ' . selected( $instance['taxonomy'], $tax->name, false ) . ' value="' . esc_attr( $tax->name ) . '">' . esc_html( $tax->labels->name ) . '</option>';
-					}
-					?>
-				</select>
-			</label>
-		</p>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'post_type' ); ?>">
-				<?php _e( "Post type", 'simpletags' ); ?><br/>
-				<select id="<?php echo $this->get_field_id( 'post_type' ); ?>"
-				        name="<?php echo $this->get_field_name( 'post_type' ); ?>" style="width:100%;">
-					<?php
-					foreach ( get_post_types(['public' => true], 'objects') as $_post_type ) {
-						echo '<option ' . selected( $instance['post_type'], $_post_type->name, false ) . ' value="' . esc_attr( $_post_type->name ) . '">' . esc_html( $_post_type->label ) . '</option>';
 					}
 					?>
 				</select>
