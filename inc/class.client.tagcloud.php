@@ -71,6 +71,7 @@ class SimpleTags_Client_TagCloud {
 			'smallest'    => 8,
 			'unit'        => 'pt',
 			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
+			'post_type'    => '', // Note: saved as an option but no UI to set it
 			// Simple Tag other defaults
 			'size'        => 'true',
 			'color'       => 'true',
@@ -83,7 +84,6 @@ class SimpleTags_Client_TagCloud {
 
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
-
 		// Get values in DB
 		$defaults['selectionby'] = $options['cloud_selectionby'];
 		$defaults['selection']   = $options['cloud_selection'];
@@ -556,6 +556,7 @@ class SimpleTags_Client_TagCloud {
 			'pad_counts'    => false,
 			'offset'        => '',
 			'search'        => '',
+            'post_type'    => '',
 			// TaxoPress added
 			'limit_days'    => 0,
 			'category'      => 0,
@@ -699,6 +700,15 @@ class SimpleTags_Client_TagCloud {
 		$exclusions = apply_filters( 'list_terms_exclusions', $exclusions, $args );
 		$where      .= $exclusions;
 
+        if(!empty($args['post_type'])){
+            $post_type = "AND p.post_type = '".$args['post_type']."'";
+            $post_type_2 = "p.post_type = '".$args['post_type']."'";
+        }else{
+            $post_type = $post_type_2 = '';
+        }
+
+        $set_post_type = false;
+
 		// ST Features : Restrict category
 		if ( $category != 0 ) {
 			if ( ! is_array( $taxonomies ) ) {
@@ -711,9 +721,10 @@ class SimpleTags_Client_TagCloud {
 			$incategories = "'" . implode( "', '", $incategories ) . "'";
 
 			$where .= " AND tr.object_id IN ( ";
-			$where .= "SELECT tr.object_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id INNER JOIN $wpdb->posts as p ON tr.object_id=p.ID WHERE tt.term_id IN ($incategories) AND p.post_status='publish'";
+			$where .= "SELECT tr.object_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id INNER JOIN $wpdb->posts as p ON tr.object_id=p.ID WHERE tt.term_id IN ($incategories) AND p.post_status IN('inherit', 'publish') $post_type";
 			$where .= " ) ";
-
+            
+            $set_post_type = true;
 			$join_relation = true;
 			unset( $incategories, $category );
 		}
@@ -721,13 +732,25 @@ class SimpleTags_Client_TagCloud {
 		// ST Features : Limit posts date
 		if ( $limit_days != 0 ) {
 			$where .= " AND tr.object_id IN ( ";
-			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND " . ( is_page_have_tags() ? "p.post_type IN('page', 'post')" : "post_type = 'post'" ) . " AND p.post_date_gmt > '" . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . "'";
+			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status IN('inherit', 'publish') AND " . ( $post_type_2 ? $post_type_2 : "p.post_type = 'post'" ) . " AND p.post_date_gmt > '" . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . "'";
 			$where .= " ) ";
 
+            $set_post_type = true;
 			$join_relation = true;
 			unset( $limit_days );
 		}
 
+        if(!$set_post_type){
+
+            if(!is_admin()){
+			$where .= " AND tr.object_id IN ( ";
+			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status IN('inherit', 'publish') AND " . ( $post_type_2 ? $post_type_2 : "p.post_type = 'post'" ) . "";
+			$where .= " ) ";
+			$join_relation = true;
+            }
+        }
+
+   
 		if ( ! empty( $slug ) ) {
 			$slug  = sanitize_title( $slug );
 			$where .= " AND t.slug = '$slug'";

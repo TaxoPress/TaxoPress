@@ -3,7 +3,7 @@
 Plugin Name: TaxoPress
 Plugin URI: https://wordpress.org/plugins/simple-tags/
 Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 3.0.3
+Version: 3.0.4
 Requires PHP: 5.6
 Requires at least: 3.3
 Tested up to: 5.6
@@ -11,7 +11,7 @@ Author: TaxoPress
 Author URI: https://taxopress.com
 Text Domain: simpletags
 
-Copyright 2013-2021  WebFactory Ltd  (email: support@webfactoryltd.com)
+Copyright 2013-2021  TaxoPress 
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,10 +23,12 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-Contributors:
+Contributors to the TaxoPress code include:
     - Kevin Drouvin (kevin.drouvin@gmail.com - http://inside-dev.net)
     - Martin Modler (modler@webformatik.com - http://www.webformatik.com)
     - Vladimir Kolesnikov (vladimir@extrememember.com - http://blog.sjinks.pro)
+
+Sections of the TaxoPress code are based on Custom Post Type UI by WebDevStudios.
 
 Credits Icons :
     - famfamfam - http://www.famfamfam.com/lab/icons/silk/
@@ -37,7 +39,7 @@ if (!defined('ABSPATH')) {
     die('-1');
 }
 
-define('STAGS_VERSION', '3.0.3');
+define('STAGS_VERSION', '3.0.4');
 define('STAGS_MIN_PHP_VERSION', '5.6');
 define('STAGS_OPTIONS_NAME', 'simpletags'); // Option name for save settings
 define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save settings auto terms
@@ -57,6 +59,7 @@ if (version_compare(PHP_VERSION, STAGS_MIN_PHP_VERSION, '<')) {
 }
 
 require STAGS_DIR . '/inc/functions.inc.php'; // Internal functions
+require STAGS_DIR . '/inc/taxonomies-functions.php'; // Taxonomy functions
 require STAGS_DIR . '/inc/functions.deprecated.php'; // Deprecated functions
 require STAGS_DIR . '/inc/functions.tpl.php';  // Templates functions
 
