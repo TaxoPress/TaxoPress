@@ -43,13 +43,29 @@ function taxopress_re_order_menu()	{
     global $submenu;	    
     $newSubmenu = [];	    
     foreach ($submenu as $menuName => $menuItems) {	        
-        if ('st_options' === $menuName) {	            
-            $newSubmenu[0] = $menuItems[4];	            
-            $newSubmenu[1] = $menuItems[1];	          
-            $newSubmenu[2] = $menuItems[2];	          
-            $newSubmenu[3] = $menuItems[3];	        
-            $newSubmenu[4] = $menuItems[0];	            
-            $submenu['st_options'] = $newSubmenu;	            
+        if ('st_options' === $menuName) {
+
+            $taxopress_submenus = $submenu['st_options'];
+            foreach($taxopress_submenus  as $key => $taxopress_submenu){
+                if($taxopress_submenu[2] === 'st_options'){//settings
+                    $taxopress_settings = $taxopress_submenu;
+                    $taxopress_settings_key= $key;
+                    unset($taxopress_submenus[$key]);
+                }
+                if($taxopress_submenu[2] === 'st_taxonomies'){//taxonomies
+                    $taxopress_taxonomies = $taxopress_submenu;
+                    $taxopress_taxonomies_key= $key;
+                    unset($taxopress_submenus[$key]);
+                }
+            }
+            //swicth position
+            $taxopress_submenus[$taxopress_settings_key] = $taxopress_taxonomies;
+            $taxopress_submenus[$taxopress_taxonomies_key] = $taxopress_settings;
+
+            //resort array
+            ksort($taxopress_submenus);
+
+            $submenu['st_options'] = $taxopress_submenus;	            
            break;	        
         }	    
     }	
