@@ -165,7 +165,7 @@ class Taxonomy_List extends WP_List_Table
          */
         function usort_reorder($a, $b)
         {
-            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'name'; //If no sort, default to role
+            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'label'; //If no sort, default to role
             $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'asc'; //If no order, default to asc
             $result  = strnatcasecmp($a->$orderby,
                 $b->$orderby); //Determine sort order, case insensitive, natural order
@@ -233,7 +233,7 @@ class Taxonomy_List extends WP_List_Table
     protected function get_sortable_columns()
     {
         $sortable_columns = [
-            'name'        => ['name', true],
+            'name'        => ['label', true],
             'description' => ['description', true],
             'registration_key' => ['name', true],
         ];
