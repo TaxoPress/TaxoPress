@@ -1,0 +1,5 @@
+{
+    "require": {
+        "publishpress/wordpress-version-notices": "^1.1"
+    }
+}
