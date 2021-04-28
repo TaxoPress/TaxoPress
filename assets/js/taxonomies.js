@@ -309,7 +309,7 @@
           } else {
             newval = newval.replace(/item/gi, singular)
           }
-          if ($(el).val() === '')
+          if ( $(el).val() === '' || $(el).val() === slug )
           {
             $(el).val(newval)
           }
