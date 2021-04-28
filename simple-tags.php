@@ -46,6 +46,7 @@ define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save se
 
 define('STAGS_URL', plugins_url('', __FILE__));
 define('STAGS_DIR', rtrim(plugin_dir_path(__FILE__), '/'));
+define('TAXOPRESS_ABSPATH', __DIR__);
 
 // Check PHP min version
 if (version_compare(PHP_VERSION, STAGS_MIN_PHP_VERSION, '<')) {
@@ -83,6 +84,11 @@ function init_simple_tags()
         require STAGS_DIR . '/inc/class.admin.php';
         new SimpleTags_Admin();
     }
+    
+	if (is_admin() && !defined('PUBLISHPRESS_ST_PRO_VERSION')) {
+		require_once(__DIR__ . '/includes-core/TaxopressCoreAdmin.php');
+		new \PublishPress\Taxopress\TaxopressCoreAdmin();
+	}
 
     add_action('widgets_init', 'st_register_widget');
 }
