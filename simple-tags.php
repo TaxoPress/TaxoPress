@@ -86,8 +86,8 @@ function init_simple_tags()
     }
     
 	if (is_admin() && !defined('PUBLISHPRESS_ST_PRO_VERSION')) {
-		require_once(__DIR__ . '/includes-core/TaxopressCoreAdmin.php');
-		new \PublishPress\Taxopress\TaxopressCoreAdmin();
+		//require_once(__DIR__ . '/includes-core/TaxopressCoreAdmin.php');
+		//new \PublishPress\Taxopress\TaxopressCoreAdmin();
 	}
 
     add_action('widgets_init', 'st_register_widget');
