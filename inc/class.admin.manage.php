@@ -853,7 +853,7 @@ class SimpleTags_Admin_Manage {
 			clean_term_cache( $terms_id, $taxonomy );
 		} else { // Add for all posts
 			// Page or not ?
-			$post_type_sql = "post_status = 'publish' AND post_type = '".SimpleTags_Admin::$post_type."'";
+			$post_type_sql = "(post_status = 'publish' OR post_status = 'inherit') AND post_type = '".SimpleTags_Admin::$post_type."'";
 
 			// Get all posts ID
 			global $wpdb;
