@@ -284,7 +284,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		if ( $flag == false ) {
-			echo '<p>' . __( 'No correspondance between your content and terms from the WordPress database.', 'simpletags' ) . '</p>';
+			echo '<p>' . __( 'No correspondence between your content and terms from the WordPress database.', 'simpletags' ) . '</p>';
 		} else {
 			echo '<div class="clear"></div>';
 		}
