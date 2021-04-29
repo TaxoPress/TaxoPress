@@ -3,6 +3,7 @@ jQuery(document).ready(function() {
       event.preventDefault();
       var tag = jQuery(this).find('.row-title').html();
       st_add_term(tag, "addterm_match");
+      st_add_term(tag, "addterm_new");
       st_add_term(tag, "renameterm_old");
       st_add_term(tag, "mergeterm_old");
       st_add_term(tag, "remove_term_input");
