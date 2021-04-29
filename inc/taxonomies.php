@@ -412,6 +412,13 @@ class SimpleTags_Admin_Taxonomies
                                                             'simpletags'); ?></span></a>
                                             </li>
 
+                                            <?php if($taxonomy_edit){ ?>
+                                            <li class="taxonomy_slug_tab" data-content="taxonomy_slug">
+                                                <a href="#taxonomy_slug"><span><?php esc_html_e('Slug',
+                                                            'simpletags'); ?></span></a>
+                                            </li>
+                                            <?php } ?>
+
                                             <li class="taxonomy_permalinks_tab" data-content="taxonomy_permalinks">
                                                 <a href="#taxonomy_permalinks"><span><?php esc_html_e('Permalinks',
                                                             'simpletags'); ?></span></a>
@@ -617,7 +624,7 @@ class SimpleTags_Admin_Taxonomies
                                             </table>
 
 
-                                            <table class="form-table taxopress-table taxonomy_permalinks"
+                                            <table class="form-table taxopress-table taxonomy_slug"
                                                    style="display:none;">
                                                 <?php
 
@@ -671,6 +678,15 @@ class SimpleTags_Admin_Taxonomies
                                                 }
 
                                             }
+
+                                                ?>
+
+                                            </table>
+
+
+                                            <table class="form-table taxopress-table taxonomy_permalinks"
+                                                   style="display:none;">
+                                                <?php
 
 
                                             $select             = [
