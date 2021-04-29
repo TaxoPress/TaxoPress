@@ -3,1762 +3,2440 @@ msgstr ""
 "Project-Id-Version: TaxoPress\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-01 00:00+0800\n"
-"PO-Revision-Date: 2008-04-01 00:36+0800\n"
+"PO-Revision-Date: 2021-04-29 15:14+0000\n"
 "Last-Translator: Leo <skyros[at]gmail(dot)com>\n"
-"Language-Team: WordPress 中文团队\n"
+"Language-Team: Chinese (China)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: C:\\xampp\\htdocs\\wp\\wp-content\\plugins\\simple-tags\n"
-"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wp\\wp-content\\plugins\\simple-tags\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wp\\wp-content\\plugins\\simple-"
+"tags\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Loco https://localise.biz/"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/simple-tags.php:40
-msgid "TaxoPress can't work with this WordPress version !"
-msgstr "TaxoPress 不能使用在该版本的 WordPress 中！"
+#: inc/class.admin.mass.php:83
+#, fuzzy, php-format
+#| msgid "%s page(s) tags updated with success !"
+msgid "%1$s %2$s(s) terms updated with success !"
+msgstr "成功更新 %s 个页面的标签!"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/simple-tags.php:40
+#: inc/class.admin.manage.php:804 inc/class.admin.manage.php:913
+#, fuzzy, php-format
+#| msgid "%1s tag(s) deleted."
+msgid "%1s term(s) deleted."
+msgstr "已删除 %s 个缩略名。"
+
+#: inc/class.client.related_posts.php:424
 #, php-format
-msgid "You must use <a href=\"%1$s\">Simple Tagging Plugin</a> for it to work."
-msgstr "您必须使用 <a href=\"%1$s\">Simple Tagging Plugin</a>。"
+msgid "%d topic"
+msgid_plural "%d topics"
+msgstr[0] ""
+msgstr[1] ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:87
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:556
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:86
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:551
-msgid "No related posts."
-msgstr "无相关日志"
+#: inc/taxonomies-functions.php:1050 inc/taxonomies-functions.php:1448
+#, php-format
+msgid "%s has been successfully added"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:88
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:555
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:87
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:550
-msgid "<h4>Related posts</h4>"
-msgstr "<h4>相关日志</h4>"
+#: inc/taxonomies-functions.php:1104 inc/taxonomies-functions.php:1460
+#, php-format
+msgid "%s has been successfully deleted"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:89
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:558
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:88
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:553
-msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
-msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+#: inc/taxonomies-functions.php:1466
+#, php-format
+msgid "%s has been successfully imported"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:95
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1223
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:94
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1250
-msgid "No tags."
-msgstr "无标签"
+#: inc/taxonomies-functions.php:1077 inc/taxonomies-functions.php:1454
+#, php-format
+msgid "%s has been successfully updated"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:96
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1225
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:95
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1252
-msgid "<h4>Tag Cloud</h4>"
-msgstr "<h4>标签云</h4>"
+#: inc/taxonomies-functions.php:1063 inc/taxonomies-functions.php:1450
+#, php-format
+msgid "%s has failed to be added"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:98
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1224
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:97
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1251
-msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
-msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% 个主题\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+#: inc/taxonomies-functions.php:1117 inc/taxonomies-functions.php:1462
+#, php-format
+msgid "%s has failed to be deleted"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:110
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1440
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:109
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1496
-msgid "Tags: "
-msgstr "标签："
+#: inc/taxonomies-functions.php:1468
+#, php-format
+msgid "%s has failed to be imported"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:112
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1447
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1503
-msgid "No tag for this post."
-msgstr "该日志未加标签"
+#: inc/taxonomies-functions.php:1090 inc/taxonomies-functions.php:1456
+#, php-format
+msgid "%s has failed to be updated"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:115
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1446
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:114
+#. Used for autofill
+#: inc/taxonomies.php:1215
+#, php-format
+msgid "%s list"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1198
+#, php-format
+msgid "%s list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:736
+msgid "(default: taxonomy name)"
+msgstr ""
+
+#: inc/taxonomies.php:1241
+msgid "(e.g. &larr; Back to jobs"
+msgstr ""
+
+#: inc/taxonomies.php:1010
+msgid "(e.g. Add New Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1124
+msgid "(e.g. Add or remove Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:945
+msgid "(e.g. All Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1142
+msgid "(e.g. Choose from the most used Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:961
+msgid "(e.g. Edit Job)"
+msgstr ""
+
+#: inc/taxonomies.php:527
+msgid "(e.g. Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1191
+msgid "(e.g. Jobs list navigation)"
+msgstr ""
+
+#: inc/taxonomies.php:1209
+msgid "(e.g. Jobs list)"
+msgstr ""
+
+#: inc/taxonomies.php:517 inc/taxonomies.php:931
+msgid "(e.g. Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1026
+msgid "(e.g. New Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:1159
+msgid "(e.g. No Jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1225
+msgid "(e.g. No jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1175
+msgid "(e.g. No jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1042
+msgid "(e.g. Parent Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1058
+msgid "(e.g. Parent Job:)"
+msgstr ""
+
+#: inc/taxonomies.php:1090
+msgid "(e.g. Popular Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1074
+msgid "(e.g. Search Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1106
+msgid "(e.g. Separate Jobs with commas)"
+msgstr ""
+
+#: inc/taxonomies.php:993
+msgid "(e.g. Update Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:977
+msgid "(e.g. View Job)"
+msgstr ""
+
+#: inc/helper.options.default.php:49 inc/class.client.related_posts.php:103
+msgid ""
+"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
+"%post_title%</a> (%post_comment%)"
+msgstr ""
+"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
+"%post_title%</a> (%post_comment%)"
+
+#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:247
+#: inc/helper.options.default.php:61
+msgid ""
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
+"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
+"%tag_color%\">%tag_name%</a>"
+msgstr ""
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
+"t%tag_scale%\" title=\"%tag_count% 个主题\" %tag_rel% style=\"%tag_size% "
+"%tag_color%\">%tag_name%</a>"
+
+#: inc/helper.options.default.php:39
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:123
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:875
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:122
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:901
-msgid "<h4>Related tags</h4>"
-msgstr "<h4>相关标签</h4>"
+#: inc/class.client.post_tags.php:111
+msgid ""
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
+"%tag_name%</a>"
+msgstr ""
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
+"%tag_name%</a>"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:124
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:876
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:902
-msgid "No related tag found."
-msgstr "未找到相关标签。"
+#: inc/helper.options.admin.php:159 inc/helper.options.admin.php:303
+#: inc/helper.options.admin.php:354
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>all</code> &ndash; 在博客与 Feed 中显示"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:125
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:124
-msgid "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
-msgstr "<span>%tag_count%</span> <a href=\"%tag_link_add%\">+</a> <a href=\"%tag_link%\">%tag_name%</a>"
+#: inc/helper.options.admin.php:207 inc/helper.options.admin.php:226
+msgid "<code>asc</code> &ndash; Ascending."
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:130
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:129
-msgid "&raquo; <a href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
-msgstr "&raquo; <a href=\"%tag_link_remove%\" title=\"从搜索中移除 %tag_name_attribute%\">移除 %tag_name%</a>"
+#: inc/helper.options.admin.php:304 inc/helper.options.admin.php:355
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash; 仅在博客上显示"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:272
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:262
+#: inc/helper.options.admin.php:370
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr "<code>count-asc</code> &ndash; 相同标签数少的日志在前"
+
+#: inc/helper.options.admin.php:67
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr "<code>count-asc</code> &ndash; 冷门标签在前"
+
+#: inc/helper.options.admin.php:371
+msgid ""
+"<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr "<code>count-desc</code> &ndash; 相同标签数多的日志在前（默认）"
+
+#: inc/helper.options.admin.php:68
+msgid "<code>count-desc</code> &ndash; Most popular."
+msgstr "<code>count-desc</code> &ndash; 最热门"
+
+#: inc/helper.options.admin.php:216
+msgid "<code>count</code> &ndash; Counter."
+msgstr ""
+
+#: inc/helper.options.admin.php:197
+msgid "<code>count</code> &ndash; Counter. (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:368
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr "<codeg>date-asc</code> &ndash; 旧日志在前"
+
+#: inc/helper.options.admin.php:369
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr "<code>date-desc</code> &ndash; 新日志在前"
+
+#: inc/helper.options.admin.php:208 inc/helper.options.admin.php:227
+msgid "<code>desc</code> &ndash; Descending."
+msgstr ""
+
+#: inc/helper.options.admin.php:236
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr "<code>flat</code> &ndash; 行内显示（非列表，仅 div）"
+
+#: inc/helper.options.admin.php:305 inc/helper.options.admin.php:356
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr "<code>homeonly</code> &ndash; 仅在首页显示"
+
+#: inc/helper.options.admin.php:235
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr "<code>list</code> &ndash; 显示一个规格化的列表 （ul/li）"
+
+#: inc/helper.options.admin.php:372
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr "<code>name-asc</code> &ndash; 字母顺序"
+
+#: inc/helper.options.admin.php:69
+msgid "<code>name-asc</code> &ndash; Alphabetical. (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:70 inc/helper.options.admin.php:373
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr "<code>name-desc</code> &ndash; 字母倒序"
+
+#: inc/helper.options.admin.php:198 inc/helper.options.admin.php:217
+msgid "<code>name</code> &ndash; Name."
+msgstr ""
+
+#: inc/helper.options.admin.php:158
+msgid "<code>no</code> &ndash; Nowhere"
+msgstr ""
+
+#: inc/helper.options.admin.php:302 inc/helper.options.admin.php:353
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>no</code> &ndash; 不显示 （默认）"
+
+#: inc/helper.options.admin.php:308 inc/helper.options.admin.php:359
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr "<code>pageonly</code> &ndash; 仅在页面中显示"
+
+#: inc/helper.options.admin.php:71 inc/helper.options.admin.php:199
+#: inc/helper.options.admin.php:374
+msgid "<code>random</code> &ndash; Random."
+msgstr "<code>random</code> &ndash; 随机"
+
+#: inc/helper.options.admin.php:218
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr "<code>random</code> &ndash; 随机 （默认）"
+
+#: inc/helper.options.admin.php:160
+msgid "<code>single</code> &ndash; Only on your single post view."
+msgstr ""
+
+#: inc/helper.options.admin.php:307 inc/helper.options.admin.php:358
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr "<code>singleonly</code> &ndash; 仅在单独日志中显示"
+
+#: inc/helper.options.admin.php:161
+msgid ""
+"<code>singular</code> &ndash; Only on your singular view (single post & page)"
+" (default)."
+msgstr ""
+
+#: inc/helper.options.admin.php:306 inc/helper.options.admin.php:357
+msgid ""
+"<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr "<code>singularonly</code> &ndash; 仅在页面和单独日志中显示"
+
+#: inc/helper.options.default.php:48 inc/class.client.related_posts.php:100
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>相关日志</h4>"
+
+#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:250
+#: inc/helper.options.default.php:59
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>标签云</h4>"
+
+#: inc/helper.options.admin.php:187
+msgid ""
+"<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags "
+"choosen, you can reorder them before display."
+msgstr "<strong>“标签显示”</strong>是第二个步骤。选择好标签后，您可以在显示它们之前重新对它们排序。"
+
+#: inc/helper.options.admin.php:186
+msgid ""
+"<strong>&#8216;Order tags selection&#8217;</strong> is the first step during "
+"tag's cloud generation, corresponding to collect tags."
+msgstr "<strong>“标签选择”</strong>是生成标签云的第一个步骤，即收集标签。"
+
+#: inc/helper.options.admin.php:289 inc/helper.options.admin.php:332
+#: inc/helper.options.admin.php:404
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>高级用法</strong>："
+
+#: inc/helper.options.admin.php:189
+msgid ""
+"<strong>Example:</strong> You want display randomly the 100 tags most "
+"popular.<br />"
+msgstr "<strong>范例：</strong> 您希望按随机顺序显示 100 个最热门的标签<br />"
+
+#: inc/class.admin.autoterms.php:146
+#, php-format
+msgid "Activate Auto Tags for the %s taxonomy"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:143
+msgid "Activation"
+msgstr "启用"
+
+#: inc/class-taxonomies-table.php:69
+msgid "Active"
+msgstr ""
+
+#: inc/class.admin.manage.php:277
+msgid "Add"
+msgstr "添加"
+
+#: inc/taxonomies.php:152
+msgid "Add New"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1548 inc/taxonomies-functions.php:1566
+#: inc/taxonomies-functions.php:1589 inc/taxonomies-functions.php:1608
+#: inc/taxonomies.php:1016
+#, php-format
+msgid "Add new %s"
+msgstr ""
+
+#: inc/taxonomies.php:1011
+msgid "Add New Item"
+msgstr ""
+
+#: inc/class.client.php:60
+msgid "Add new Media Tag"
+msgstr ""
+
+#: inc/taxonomies.php:396
+msgid "Add new Taxonomy"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1569 inc/taxonomies-functions.php:1616
+#: inc/taxonomies.php:1131
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#: inc/taxonomies.php:1126
+msgid "Add or Remove Items"
+msgstr ""
+
+#: inc/class.client.php:67
+msgid "Add or remove Media Tags"
+msgstr ""
+
+#: inc/taxonomies.php:356
+msgid "Add Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:239
+msgid "Add Terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:258
+msgid "Add terms only to posts with specific terms attached."
+msgstr ""
+
+#: inc/class.admin.manage.php:256
+#, php-format
+msgid "Add terms to all %s."
+msgstr ""
+
+#: inc/taxonomies.php:428
+msgid "Admin Area"
+msgstr ""
+
+#: inc/class.admin.php:606
+msgid "Administration"
+msgstr "管理"
+
+#: inc/taxonomies.php:443
+msgid "Advanced"
+msgstr ""
+
+#: inc/helper.options.admin.php:34
+msgid "Advanced Manage Terms"
+msgstr ""
+
+#: inc/class.widgets.php:376
+msgid "Advanced usage:"
+msgstr ""
+
+#: inc/class.admin.suggest.php:54
+msgid "Ajax loading"
+msgstr ""
+
+#: inc/class.admin.mass.php:123
+msgid "All"
+msgstr "全部"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1553 inc/taxonomies-functions.php:1561
+#: inc/taxonomies-functions.php:1596 inc/taxonomies-functions.php:1614
+#: inc/taxonomies.php:951
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:269
+#, fuzzy, php-format
+#| msgid "All done! %s tags added."
+msgid "All done! %s terms added."
+msgstr "完成！已添加 %s 个标签。"
+
+#: inc/taxonomies.php:946
+msgid "All Items"
+msgstr ""
+
+#: inc/class.client.php:56
+msgid "All Media Tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:169
+msgid ""
+"An engine replacement alternative uses DOMDocument PHP class and "
+"theoretically offers better performance. If your server does not offer the "
+"functionality, the plugin will use the usual engine."
+msgstr ""
+
+#: inc/taxonomies.php:63
+msgid ""
+"Are you sure you want to delete this? Deleting will NOT remove created "
+"content."
+msgstr ""
+
+#: inc/class.widgets.php:254 inc/class.widgets.php:282
+msgid "ASC"
+msgstr ""
+
+#: inc/class.admin.php:608
+msgid "Auto link"
+msgstr ""
+
+#: inc/helper.options.admin.php:127
+msgid "Auto link all tags ?"
+msgstr ""
+
+#: inc/helper.options.admin.php:6
+msgid "Auto links tags"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:35
+#, fuzzy
+#| msgid "Auto Tags"
+msgid "Auto Terms"
+msgstr "智能标签"
+
+#: inc/class.admin.autoterms.php:231
+#, fuzzy
+#| msgid "Auto tags all content &raquo;"
+msgid "Auto terms all content &raquo;"
+msgstr "自动为所有内容添加标签 &raquo;"
+
+#: inc/class.admin.autoterms.php:130
+#, php-format
+msgid "Auto Terms for %s and %s"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:134
+#, fuzzy
+#| msgid "Auto tags list"
+msgid "Auto terms list"
+msgstr "智能标签列表"
+
+#: inc/class.admin.autoterms.php:226
+#, fuzzy
+#| msgid "Auto tags old content"
+msgid "Auto terms old content"
+msgstr "自动为旧内容添加标签"
+
+#: inc/class.admin.autoterms.php:106
+#, fuzzy
+#| msgid "Auto tags options updated !"
+msgid "Auto terms options updated !"
+msgstr "智能标签选项已更新！"
+
+#: inc/helper.options.admin.php:48
+msgid "Auto terms posts"
+msgstr ""
+
+#: inc/class.admin.suggest.php:55
+msgid "Automatic tag suggestions:"
+msgstr ""
+
+#: inc/helper.options.admin.php:346
+msgid "Automatically display related posts into feeds"
+msgstr "在 Feed 结尾显示相关日志列表："
+
+#: inc/helper.options.admin.php:349
+msgid "Automatically display related posts into post content"
+msgstr "在日志结尾显示相关日志列表："
+
+#: inc/helper.options.admin.php:296
+msgid "Automatically display tags list into feeds"
+msgstr "在 Feed 结尾显示标签列表："
+
+#: inc/helper.options.admin.php:299
+msgid "Automatically display tags list into post content:"
+msgstr "在日志结尾显示标签列表："
+
+#: inc/class.admin.autoterms.php:201
+#, fuzzy
+#| msgid "Autotag only posts without tags."
+msgid "Autotag only %s without terms."
+msgstr "仅对未加标签的日志使用智能标签功能"
+
+#: inc/class.admin.autoterms.php:208
+#, php-format
+msgid ""
+"Autotag only a %s when terms finded in the content are a the same name. "
+"(whole word only)."
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1248
+#, php-format
+msgid "Back to %s"
+msgstr ""
+
+#: inc/taxonomies.php:1243
+msgid "Back to Items"
+msgstr ""
+
+#: inc/class.client.php:73
+msgid "Back to Media Tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:344
+msgid ""
+"By default, related posts work with post tags, but you can use a custom "
+"taxonomy. Default value : post_tag"
+msgstr ""
+
+#: inc/taxonomies.php:554
+msgid ""
+"Can terms in this taxonomy be organized into hierarchical relationships?"
+msgstr ""
+
+#: inc/class.admin.php:272 inc/class.admin.php:327
+msgid "Change selection"
+msgstr ""
+
+#: inc/helper.options.admin.php:100
+msgid ""
+"Choose a value between 0 and 1. A high value such as 0.8 will provide a few, "
+"accurate suggestions. A low value such as 0.2 will produce more suggestions, "
+"but they may be less accurate."
+msgstr ""
+
+#: inc/taxonomies.php:1144
+msgid "Choose From Most Used"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1570 inc/taxonomies-functions.php:1617
+#: inc/taxonomies.php:1149
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: inc/class.client.php:68
+msgid "Choose from the most used Media Tags"
+msgstr ""
+
+#: inc/class.admin.suggest.php:36
+msgid "Click a provider name."
+msgstr ""
+
+#: inc/helper.options.admin.php:20
+msgid "Click tags feature"
+msgstr ""
+
+#: inc/helper.options.admin.php:76
+msgid "Click tags limit"
+msgstr ""
+
+#: inc/helper.options.admin.php:79
+msgid "Click tags limit on post screen"
+msgstr ""
+
+#: inc/helper.options.admin.php:64
+msgid "Click tags order"
+msgstr ""
+
+#: inc/class.admin.clickterms.php:45
+msgid "Click Tags to add them to this post"
+msgstr ""
+
+#: inc/class.admin.manage.php:174
+msgid "Click terms list:"
+msgstr ""
+
+#: inc/class.admin.clickterms.php:44
+msgid "Click to display tags"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:71 inc/class-tag-table.php:43
+msgid "Count"
+msgstr ""
+
+#: inc/class.widgets.php:269
+msgid "Counter"
+msgstr ""
+
+#: inc/class.widgets.php:241
+msgid "Counter (default)"
+msgstr ""
+
+#: inc/taxonomies.php:933
+msgid "Custom admin menu name for your taxonomy."
+msgstr ""
+
+#: inc/taxonomies.php:1297
+msgid "Custom controller to use instead of WP_REST_Terms_Controller."
+msgstr ""
+
+#: inc/taxonomies.php:1390
+msgid "Custom Query Var String"
+msgstr ""
+
+#: inc/taxonomies.php:737
+msgid "Custom Rewrite Slug"
+msgstr ""
+
+#: inc/taxonomies.php:995 inc/taxonomies.php:1028 inc/taxonomies.php:1044
+#: inc/taxonomies.php:1060 inc/taxonomies.php:1076 inc/taxonomies.php:1092
+#: inc/taxonomies.php:1110 inc/taxonomies.php:1127 inc/taxonomies.php:1145
+#: inc/taxonomies.php:1161
+msgid ""
+"Custom taxonomy label. Used in the admin menu for displaying taxonomies."
+msgstr ""
+
+#: inc/taxonomies.php:738
+msgid "Custom taxonomy rewrite slug."
+msgstr ""
+
+#: inc/helper.options.admin.php:97
+msgid "Dandelion API confidence value"
+msgstr ""
+
+#: inc/helper.options.admin.php:90
+msgid "Dandelion API token"
+msgstr ""
+
+#: inc/class.admin.suggest.php:60
+msgid "dataTXT by Dandelion"
+msgstr ""
+
+#: inc/taxonomies.php:448
+msgid "Deactivate or Delete"
+msgstr ""
+
+#: inc/taxonomies.php:1460
+msgid "Deactivate Taxonomy"
+msgstr ""
+
+#: inc/taxonomies.php:1408
+msgid "Default Term"
+msgstr ""
+
+#: inc/class.admin.manage.php:421 inc/class-tag-table.php:195
+msgid "Delete"
+msgstr "删除"
+
+#: inc/class.admin.manage.php:456
+msgid "Delete rarely used"
+msgstr ""
+
+#: inc/taxonomies.php:1474
+msgid "Delete Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:397
+msgid "Delete Terms"
+msgstr ""
+
+#: inc/class.widgets.php:256 inc/class.widgets.php:284
+msgid "DESC (default)"
+msgstr ""
+
+#: inc/taxonomies.php:571
+msgid "Describe what your taxonomy is used for."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:68 inc/taxonomies.php:570
+msgid "Description"
+msgstr ""
+
+#: inc/taxonomies.php:183
+msgid "Description here."
+msgstr ""
+
+#: inc/class.admin.post.php:68
+msgid "Disable auto links ?"
+msgstr ""
+
+#: inc/class.admin.post.php:59
+msgid "Disable auto tags ?"
+msgstr ""
+
+#: inc/taxonomies.php:490 inc/taxonomies.php:677
+msgid ""
+"DO NOT EDIT the taxonomy slug unless also planning to migrate terms. "
+"Changing the slug registers a new taxonomy entry."
+msgstr ""
+
+#: views/admin/page-settings.php:35
+msgid "Do you really want to restore the default options?"
+msgstr "确定要恢复默认选项吗？"
+
+#: inc/class-taxonomies-table.php:268 inc/class.admin.mass.php:259
+msgid "Edit"
+msgstr "编辑"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1549 inc/taxonomies-functions.php:1564
+#: inc/taxonomies-functions.php:1590 inc/taxonomies-functions.php:1606
+#: inc/taxonomies.php:967
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: inc/taxonomies.php:962
+msgid "Edit Item"
+msgstr ""
+
+#: inc/class.client.php:57
+msgid "Edit Media Tag"
+msgstr ""
+
+#: inc/taxonomies.php:394
+msgid "Edit Taxonomy"
+msgstr ""
+
+#: inc/class.widgets.php:317
+msgid "Em"
+msgstr "Em"
+
+#: inc/class.admin.php:612
+msgid "Embedded Tags"
+msgstr "内嵌标签"
+
+#: inc/class.widgets.php:209
+msgid "Empty field will use default value."
+msgstr "空字段将使用默认值"
+
+#: inc/helper.options.admin.php:155
+msgid "Enable autolinks into post content for theses views:"
+msgstr ""
+
+#: inc/helper.options.admin.php:58
+msgid ""
+"Enabling this will allow Wordpress to look for tag cloud shortcode <code>"
+"[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. "
+"WordPress replace this shortcode by a tag cloud."
+msgstr ""
+
+#: inc/class.admin.manage.php:398
+msgid "Enter the name of terms to delete."
+msgstr ""
+
+#: inc/helper.options.admin.php:260 inc/helper.options.admin.php:398
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "列表定位标题，留空则不定义："
+
+#: inc/class.admin.manage.php:325
+#, php-format
+msgid ""
+"Enter the term to merge and its new value. Click \"Merge\" and all %s which "
+"use this term will be updated."
+msgstr ""
+
+#: inc/class.admin.manage.php:365
+#, php-format
+msgid "Enter the terms to remove from all %s "
+msgstr ""
+
+#: inc/class.admin.manage.php:286
+msgid "Enter the terms to rename and their new names."
+msgstr ""
+
+#: inc/helper.options.admin.php:392
+msgid "Enter the text to show when there is no related post:"
+msgstr "没有相关日志时显示的文本："
+
+#: inc/helper.options.admin.php:254
+msgid "Enter the text to show when there is no tag:"
+msgstr "没有标签时显示的文本："
+
+#: inc/class.admin.manage.php:762
+msgid "Error. No enough terms for rename."
+msgstr ""
+
+#: inc/class.admin.manage.php:677
+msgid "Error. No enough terms specified."
+msgstr ""
+
+#: inc/class.admin.manage.php:612
+msgid "Error. You need to enter a single term to merge to in new term name !"
+msgstr ""
+
+#: inc/helper.options.admin.php:144
+msgid ""
+"Example: If you enter the term \"Paris\", the auto link tags feature will "
+"never replace this term by this link."
+msgstr ""
+
+#: inc/helper.options.admin.php:137
+msgid ""
+"Example: If you ignore case, auto link feature will replace the word "
+"\"wordpress\" by the tag link \"WordPress\"."
+msgstr "范例：若忽略大小写，“wordpress”将会被替换成“WordPress”的标签链接"
+
+#: inc/helper.options.admin.php:9
+msgid ""
+"Example: You have a tag called \"WordPress\" and your post content contains "
+"\"wordpress\", this feature will replace \"wordpress\" by a link to "
+"\"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr ""
+"范例: "
+"您已经有了一个“WordPress”标签，并且日志含有短语“WordPress”，该功能将把“WordPress”短语替换成“WordPress”的标签页链接（http"
+"://yourblog.net/tag/wordpress/）"
+
+#: inc/helper.options.admin.php:141
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, "
+"Ajax Autocompletion, Click Terms, Advanced manage terms, etc."
+msgstr ""
+
+#: inc/taxonomies.php:539 inc/taxonomies.php:712 inc/taxonomies.php:746
+#: inc/taxonomies.php:770 inc/taxonomies.php:804 inc/taxonomies.php:827
+#: inc/taxonomies.php:850 inc/taxonomies.php:874 inc/taxonomies.php:897
+#: inc/taxonomies.php:1264 inc/taxonomies.php:1316 inc/taxonomies.php:1340
+#: inc/taxonomies.php:1364
+msgid "False"
+msgstr ""
+
+#: inc/class.admin.php:610
+msgid "Features"
+msgstr ""
+
+#: inc/class.admin.mass.php:227
+msgid "Filter"
+msgstr "筛选"
+
+#: inc/class.widgets.php:330
+msgid "Flat (default)"
+msgstr "平铺（默认）"
+
+#: inc/class.widgets.php:357
+msgid "Font color max: (default: #000000)"
+msgstr "最热门标签颜色 （默认#000000）："
+
+#: inc/class.widgets.php:348
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "最冷门标签颜色 （默认#CCCCCC）："
+
+#: inc/class.widgets.php:300
+msgid "Font size max: (default: 22)"
+msgstr "最热门标签尺寸（默认 22）："
+
+#: inc/class.widgets.php:291
+msgid "Font size mini: (default: 8)"
+msgstr "最冷门标签尺寸（默认 8）："
+
+#: inc/helper.options.admin.php:151
+msgid ""
+"For expert, possibility to change the priority of autolinks functions on "
+"the_content hook. Useful for fix a conflict with an another plugin. Default: "
+"12."
+msgstr ""
+
+#: inc/class.widgets.php:326
+msgid "Format:"
+msgstr "样式："
+
+#: inc/taxonomies.php:406
+msgid "General"
+msgstr "常规"
+
+#. Author URI of the plugin
+msgid "https://taxopress.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/simple-tags/"
+msgstr ""
+
+#: inc/helper.options.admin.php:130
+msgid ""
+"If checked, tags found in post will be auto linked even if not included in "
+"post tags."
+msgstr ""
+
+#: inc/class.admin.manage.php:432
+#, php-format
+msgid ""
+"If you choose 5, Taxopress will delete all terms attached to less than 5 %s."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:254
+msgid ""
+"If your browser doesn't start loading the next page automatically click this "
+"link:"
+msgstr "如果浏览器没有自动跳转到下个页面，请点击："
+
+#: inc/helper.options.admin.php:134
+msgid "Ignore case for auto link feature ?"
+msgstr "使用自动链接标签时忽略大小写："
+
+#: inc/helper.options.admin.php:321
+msgid "Include categories in result ?"
+msgstr "在搜索结果中包括分类："
+
+#: inc/class.admin.suggest.php:225
+msgid "Invalid access token !"
+msgstr ""
+
+#: inc/taxonomies.php:1210
+msgid "Items List"
+msgstr ""
+
+#: inc/taxonomies.php:1193
+msgid "Items List Navigation"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:164
+msgid "Keywords list"
+msgstr "关键词列表"
+
+#: inc/taxonomies-functions.php:1688
+msgid "Kindly select an action in bulk action dropdown!"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1697
+msgid "Kindly select atleast one taxonomy to proceed"
+msgstr ""
+
+#: inc/helper.options.admin.php:271
+msgid "Least popular color:"
+msgstr "最冷门标签颜色："
+
+#: inc/helper.options.admin.php:279
+msgid "Least popular font size:"
+msgstr "最冷门标签字号："
+
+#: inc/class.widgets.php:332
+msgid "List (UL/LI)"
+msgstr "列表（UL/LI）"
+
+#: inc/class.admin.suggest.php:57
+msgid "Local tags"
+msgstr "本地标签"
+
+#: inc/taxonomies.php:286
+msgid "Manage Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:61
+#, fuzzy
+#| msgid "Manage Tags"
+msgid "Manage Terms"
+msgstr "管理标签"
+
+#: inc/class.admin.mass.php:31
+#, fuzzy
+#| msgid "Mass edit tags"
+msgid "Mass Edit Terms"
+msgstr "批量编辑标签"
+
+#: inc/class.admin.mass.php:115 inc/helper.options.admin.php:13
+#, fuzzy
+#| msgid "Mass Edit Tags"
+msgid "Mass edit terms"
+msgstr "批量编辑标签"
+
+#: inc/helper.options.admin.php:316
+msgid "Max tags display:"
+msgstr "标签显示上限："
+
+#: inc/class.widgets.php:222
+msgid "Max tags to display: (default: 45)"
+msgstr "标签显示个数限制（默认 45）："
+
+#: inc/helper.options.admin.php:120
+msgid "Maximum number of links for the same tag:"
+msgstr ""
+
+#: inc/helper.options.admin.php:113
+msgid "Maximum number of links per article:"
+msgstr ""
+
+#: inc/helper.options.admin.php:386
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr "相关日志数量限制（默认 5）："
+
+#: inc/helper.options.admin.php:248
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "标签显示数量限制（默认 45）："
+
+#: inc/class.client.php:54
+msgid "Media Tag"
+msgstr ""
+
+#: inc/class.client.php:53 inc/class.client.php:55 inc/class.client.php:77
+msgid "Media Tags"
+msgstr ""
+
+#: inc/class.client.php:72
+msgid "Media Tags list"
+msgstr ""
+
+#: inc/class.client.php:71
+msgid "Media Tags list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:932
+msgid "Menu Name"
+msgstr ""
+
+#: inc/class.admin.manage.php:356
+msgid "Merge"
+msgstr ""
+
+#: inc/class.admin.manage.php:609
+#, fuzzy, php-format
+#| msgid ""
+#| "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects "
+#| "edited."
+msgid ""
+"Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr "成功将标签 &laquo;%1$s&raquo; 合并为 &laquo;%2$s&raquo;。 %3$s 个对象被编辑。"
+
+#: inc/class.admin.manage.php:324
+msgid "Merge Terms"
+msgstr ""
+
+#: inc/taxonomies.php:1399
+msgid "Metabox callback"
+msgstr ""
+
+#: inc/taxonomies.php:500 inc/taxonomies.php:687
+msgid "Migrate terms to newly renamed taxonomy?"
+msgstr ""
+
+#: inc/helper.options.admin.php:106
+msgid "Min usage for auto link tags:"
+msgstr "自动链接标签的最低使用度："
+
+#: inc/class.admin.manage.php:446
+msgid "Minimum number of uses for each term:"
+msgstr ""
+
+#: inc/class.admin.manage.php:106
+msgid ""
+"Missing valid taxonomy for work... Try again. If this problem persist, "
+"contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-"
+"topic-0\">plugin author</a>."
+msgstr ""
+
+#: inc/helper.options.admin.php:266
+msgid "Most popular color:"
+msgstr "最热门标签颜色："
+
+#: inc/helper.options.admin.php:274
+msgid "Most popular font size:"
+msgstr "最热门标签字号："
+
+#: inc/class-taxonomies-table.php:66 inc/class-tag-table.php:41
+#: inc/class.widgets.php:235 inc/class.widgets.php:267
+msgid "Name"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1550 inc/taxonomies-functions.php:1591
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1567 inc/taxonomies-functions.php:1609
+#: inc/taxonomies.php:1032
+#, php-format
+msgid "New %s name"
+msgstr ""
+
+#: inc/taxonomies.php:1027
+msgid "New Item Name"
+msgstr ""
+
+#: inc/class.client.php:61
+msgid "New Media Tag name"
+msgstr ""
+
+#: inc/class.admin.manage.php:309
+#, fuzzy
+#| msgid "New tag name(s):"
+msgid "New term name(s):"
+msgstr "标签新名称："
+
+#: inc/class.admin.manage.php:349
+msgid "New term name:"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:255
+msgid "Next content"
+msgstr "下条内容"
+
+#: inc/class-taxonomies-table.php:359
+#, fuzzy
+#| msgid "Go"
+msgid "No"
+msgstr "搜索"
+
+#. Used for autofill
+#: inc/taxonomies.php:1181
+#, php-format
+msgid "No %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1165 inc/taxonomies.php:1231
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1556 inc/taxonomies-functions.php:1599
+#, php-format
+msgid "No %s found in trash."
+msgstr ""
+
+#: inc/taxonomies-functions.php:1555 inc/taxonomies-functions.php:1598
+#, php-format
+msgid "No %s found."
+msgstr ""
+
+#: inc/class.admin.mass.php:282
+msgid "No content to edit."
+msgstr "没有可供编辑的内容。"
+
+#: inc/class.admin.suggest.php:287
+msgid ""
+"No correspondence between your content and terms from the WordPress database."
+msgstr ""
+
+#: inc/class.client.php:70
+msgid "No Media Tags"
+msgstr ""
+
+#: inc/class.client.php:69
+msgid "No Media Tags found"
+msgstr ""
+
+#: inc/class.admin.manage.php:536 inc/class.admin.manage.php:695
+#, fuzzy
+#| msgid "No new tag specified!"
+msgid "No new term specified!"
+msgstr "未指定新标签！"
+
+#: inc/class.admin.manage.php:822
+#, fuzzy
+#| msgid "No new tag(s) specified!"
+msgid "No new term(s) specified!"
+msgstr "未指定新标签！"
+
+#: inc/class.admin.manage.php:551 inc/class.admin.manage.php:710
+#, fuzzy
+#| msgid "No new/old valid tag specified!"
+msgid "No new/old valid term specified!"
+msgstr "未指定有效的标签！"
+
+#: inc/class.admin.manage.php:578
+msgid "No objects found for specified old terms."
+msgstr ""
+
+#: inc/helper.options.default.php:47 inc/class.client.related_posts.php:101
+msgid "No related posts."
+msgstr "无相关日志"
+
+#: inc/class.admin.suggest.php:237
+msgid "No results from dataTXT API."
+msgstr ""
+
+#: inc/class.admin.suggest.php:171
+msgid "No results from OpenCalais service."
+msgstr ""
+
+#: inc/class.admin.suggest.php:273 inc/class.admin.clickterms.php:171
+msgid "No results from your WordPress database."
+msgstr ""
+
+#: inc/class.client.post_tags.php:112
+msgid "No tag for this post."
+msgstr "该日志未加标签"
+
+#: inc/helper.options.default.php:36
+msgid "No tags for this post."
+msgstr "该日志未加标签。"
+
+#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:249
+#: inc/helper.options.default.php:58
+msgid "No tags."
+msgstr "无标签"
+
+#: inc/class.admin.manage.php:873
+#, fuzzy
+#| msgid "No tag added."
+msgid "No term added."
+msgstr "没有标签被添加。"
+
+#: inc/class-taxonomies-table.php:93 inc/class-tag-table.php:125
+msgid "No term avaliable."
+msgstr ""
+
+#: inc/class.admin.manage.php:802 inc/class.admin.manage.php:911
+#, fuzzy
+#| msgid "No tag deleted."
+msgid "No term deleted."
+msgstr "未删除标签。"
+
+#: inc/class.admin.manage.php:607
+#, fuzzy
+#| msgid "No tag merged."
+msgid "No term merged."
+msgstr "没有标签被合并。"
+
+#: inc/class.admin.manage.php:672
+msgid "No term removed."
+msgstr ""
+
+#: inc/class.admin.manage.php:757
+#, fuzzy
+#| msgid "No tag renamed."
+msgid "No term renamed."
+msgstr "没有标签被重命名。"
+
+#: inc/class.admin.manage.php:630 inc/class.admin.manage.php:779
+#, fuzzy
+#| msgid "No tag specified!"
+msgid "No term specified!"
+msgstr "未指定标签！"
+
+#: inc/taxonomies.php:1176
+msgid "No terms"
+msgstr ""
+
+#: inc/class.admin.suggest.php:257 inc/class.admin.clickterms.php:129
+msgid "No terms in your WordPress database."
+msgstr ""
+
+#: inc/class.admin.suggest.php:141 inc/class.admin.suggest.php:200
+#: inc/class.admin.suggest.php:266
+msgid "No text was sent."
+msgstr ""
+
+#: inc/class.admin.manage.php:561
+#, fuzzy
+#| msgid "No valid new tag."
+msgid "No valid new term."
+msgstr "新标签无效。"
+
+#: inc/class.admin.manage.php:643
+msgid "No valid term specified!"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1128
+msgid "Nonce failed verification"
+msgstr ""
+
+#: inc/taxonomies.php:1226
+msgid "Not Found"
+msgstr ""
+
+#: inc/taxonomies.php:1160
+msgid "Not found"
+msgstr ""
+
+#: inc/class.admin.manage.php:80 inc/taxonomies.php:119
+msgid "Number of items per page"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1020
+msgid "Object"
+msgstr ""
+
+#: inc/class.admin.suggest.php:64
+msgid "OpenCalais"
+msgstr ""
+
+#: inc/helper.options.admin.php:83
+msgid "OpenCalais API Key"
+msgstr ""
+
+#: inc/class.admin.suggest.php:133
+msgid ""
+"OpenCalais need an API key to work. You can register on service website to "
+"obtain a key and set it on TaxoPress options."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:193
+msgid "Options"
+msgstr "选项"
+
+#: inc/class.admin.php:441
+msgid "Options saved"
+msgstr "选项已保存"
+
+#: inc/class.widgets.php:231
+msgid "Order by for DB selection tags:"
+msgstr ""
+
+#: inc/class.widgets.php:263
+msgid "Order by for display tags:"
+msgstr ""
+
+#: inc/helper.options.admin.php:213
+msgid "Order by for tags display:"
+msgstr ""
+
+#: inc/helper.options.admin.php:194
+msgid "Order by for tags selection:"
+msgstr ""
+
+#: inc/class.widgets.php:250
+msgid "Order for DB selection tags:"
+msgstr ""
+
+#: inc/class.widgets.php:278
+msgid "Order for display tags:"
+msgstr ""
+
+#: inc/helper.options.admin.php:223
+msgid "Order tags display:"
+msgstr "标签显示排序："
+
+#: inc/helper.options.admin.php:204
+msgid "Order tags selection:"
+msgstr "标签选择依据："
+
+#: inc/taxonomies.php:433
+msgid "Other Labels"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:124
+msgid "Overview"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1562 inc/taxonomies-functions.php:1604
+#: inc/taxonomies.php:1048
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1563 inc/taxonomies-functions.php:1605
+#: inc/taxonomies.php:1064
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: inc/taxonomies.php:1043
+msgid "Parent Item"
+msgstr ""
+
+#: inc/taxonomies.php:1059
+msgid "Parent Item Colon"
+msgstr ""
+
+#: inc/class.client.php:62
+msgid "Parent Media Tag"
+msgstr ""
+
+#: inc/class.client.php:63
+msgid "Parent Media Tag:"
+msgstr ""
+
+#: inc/taxonomies.php:553
+msgid "Parent-Child Relationships"
+msgstr ""
+
+#: inc/taxonomies.php:423
+msgid "Permalinks"
+msgstr ""
+
+#: inc/class.widgets.php:315
+msgid "Pixel"
+msgstr "px"
+
+#: inc/taxonomies-functions.php:1177
+#, php-format
+msgid ""
+"Please choose a different post type name. %s matches an existing page slug, "
+"which can cause conflicts."
+msgstr ""
+
+#: inc/taxonomies-functions.php:1141
+#, php-format
+msgid "Please choose a different taxonomy name. %s is already registered."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:160
+msgid "Please choose an option for \"Terms to use\""
+msgstr ""
+
+#: inc/taxonomies-functions.php:1191
+msgid "Please do not use quotes in post type/taxonomy names or rewrite slugs"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1154
+msgid "Please provide a post type to attach to."
+msgstr ""
+
+#: inc/taxonomies-functions.php:236
+msgid "Please provide a taxonomy name"
+msgstr ""
+
+#: inc/taxonomies-functions.php:119 inc/taxonomies-functions.php:1830
+msgid "Please provide a taxonomy to delete"
+msgstr ""
+
+#: inc/taxonomies.php:65
+msgid "Please select at least one post type."
+msgstr ""
+
+#: inc/taxonomies.php:518
+msgid "Plural Label"
+msgstr ""
+
+#: inc/class.widgets.php:313
+msgid "Point (default)"
+msgstr "pt （默认）"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1560 inc/taxonomies-functions.php:1613
+#: inc/taxonomies.php:1096
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: inc/taxonomies.php:1091
+msgid "Popular Items"
+msgstr ""
+
+#: inc/class.client.php:65
+msgid "Popular Media Tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:379
+msgid "Post link format:"
+msgstr "日志链接格式："
+
+#: inc/helper.options.admin.php:311
+msgid "Post tag separator string:"
+msgstr "日志标签分隔字串："
+
+#: inc/class.admin.php:185
+msgid "Post tags"
+msgstr ""
+
+#: inc/class.admin.mass.php:245
+msgid "Post title"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:70 inc/taxonomies.php:411
+msgid "Post Types"
+msgstr ""
+
+#: inc/class.admin.php:186
+#, fuzzy
+#| msgid "Post"
+msgid "Posts"
+msgstr "日志"
+
+#: inc/helper.options.default.php:22
 #, php-format
 msgid "Posts tagged with %s"
 msgstr "标签 %s 下的日志"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:787
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:822
-msgid "There is no excerpt because this is a protected post."
-msgstr "日志受保护，不能显示摘要。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:877
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:903
-msgid "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"See posts with %tag_name_attribute%\">%tag_name%</a>"
-msgstr "<span>%tag_count%</span> <a %tag_rel% href=\"%tag_link_add%\">+</a> <a %tag_rel% href=\"%tag_link%\" title=\"查看 %tag_name_attribute% 下的日志\">%tag_name%</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1079
-msgid "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
-msgstr "&raquo; <a %tag_rel% href=\"%tag_link_remove%\" title=\"从搜索中移除 %tag_name_attribute%\">移除 %tag_name%</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/simple-tags.client.php:1686
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1761
-msgid "Invalid Taxonomy"
-msgstr "无效的分类"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:149
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:628
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:158
-msgid "TaxoPress: Manage Tags"
-msgstr "TaxoPress：管理标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:149
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:158
-msgid "Manage Tags"
-msgstr "管理标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:150
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:843
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:159
-msgid "TaxoPress: Mass Edit Tags"
-msgstr "TaxoPress：批量编辑标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:150
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:159
-msgid "Mass Edit Tags"
-msgstr "批量编辑标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:151
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:209
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:160
-msgid "TaxoPress: Auto Tags"
-msgstr "TaxoPress：智能标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:151
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:160
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:217
-msgid "Auto Tags"
-msgstr "智能标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:152
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:522
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:161
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:521
-msgid "TaxoPress: Options"
-msgstr "TaxoPress： 选项"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:152
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:161
-msgid "TaxoPress"
-msgstr "TaxoPress"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:194
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:203
-msgid "Auto tags options updated !"
-msgstr "智能标签选项已更新！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:210
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:523
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:629
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:844
-msgid "Visit the <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "访问 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">与我联系</a> ！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:214
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:222
-msgid "Auto tags list"
-msgstr "智能标签列表"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:215
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:223
-msgid "This feature allows Wordpress to look into post content and title for specified tags when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto tags list, TaxoPress will add automatically \"wordpress\" as tag for this post."
-msgstr "该功能将允许 WordPress 在保存日志的时候针对特定的标签检查日志内容和标题。如果日志内容或标题中含有词语“WordPress”并且“WordPress”在智能标签列表中，则 TaxoPress 将自动为该日志加上标签“WordPress”。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:219
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:232
-msgid "Active Auto Tags."
-msgstr "启用智能标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:222
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:239
-msgid "Use also local tags database with auto tags. (Warning, this option can increases the CPU consumption a lot if you have many tags)"
-msgstr "同时使用本地已有标签以实现智能标签（提醒：如果标签数较多，本选项会消耗大量 CPU 资源）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:225
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:246
-msgid "Autotag only posts without tags."
-msgstr "仅对未加标签的日志使用智能标签功能"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:227
-msgid "Keywords list: (separated with a comma)"
-msgstr "关键词列表（英文逗号隔开）："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:233
-msgid "Update list &raquo;"
-msgstr "更新列表 &raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:236
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:262
-msgid "Auto tags old content"
-msgstr "自动为旧内容添加标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:237
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:263
-msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto tags list above-mentioned."
-msgstr "TaxoPress 也可以为博客中已有的内容添加标签，该功能要用到上面的智能标签列表。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:238
-msgid "Auto tags all content"
-msgstr "自动为所有内容添加标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:259
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:288
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:167
-msgid "If your browser doesn't start loading the next page automatically click this link:"
-msgstr "如果浏览器没有自动跳转到下个页面，请点击："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:259
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:288
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:167
-msgid "Next content"
-msgstr "下条内容"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:271
-msgid "All done!"
-msgstr "全部完成！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:287
-msgid "Include page in tag search:"
-msgstr "在标签搜索结果中包括页面："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:288
-msgid "This feature need that option \"Add page in tags management\" is enabled."
-msgstr "使用该功能需要启用 “在页面编辑中加入标签管理”"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:289
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:319
-msgid "Allow tag cloud in post/page content:"
-msgstr "在日志和页面内容中显示标签云："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:290
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:320
-msgid "Enabling this will allow Wordpress to look for tag cloud marker <code>&lt;!--st_tag_cloud--&gt;</code> when displaying posts. WP replace this marker by a tag cloud."
-msgstr "让 WordPress 在显示日志时寻找标记 <code>&lt;!--st_tag_cloud--&gt;</code> ，并用标签云代替该标记"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:291
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:321
-msgid "Active auto link tags into post content:"
-msgstr "在日志内容中自动加入标签链接："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:292
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:322
-msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
-msgstr "范例: 您已经有了一个“WordPress”标签，并且日志含有短语“WordPress”，该功能将把“WordPress”短语替换成“WordPress”的标签页链接（http://yourblog.net/tag/wordpress/）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:293
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:323
-msgid "Min usage for auto link tags:"
-msgstr "自动链接标签的最低使用度："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:294
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:324
-msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
-msgstr "该参数允许强制设置标签使用度的最小值。默认值：1"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:295
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:325
-msgid "Ignore case for auto link feature ?"
-msgstr "使用自动链接标签时忽略大小写："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:296
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:326
-msgid "Example: If you ignore case, auto link feature will replace the word \"wordpress\" by the tag link \"WordPress\"."
-msgstr "范例：若忽略大小写，“wordpress”将会被替换成“WordPress”的标签链接"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:297
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:327
-msgid "Add the rel=\"nofollow\" on each tags link ?"
-msgstr "在每个标签链接中加入 rel=\"nofollow\"："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:298
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:328
-msgid "Nofollow is a non-standard HTML attribute value used to instruct search engines that a hyperlink should not influence the link target's ranking in the search engine's index."
-msgstr "Nofollow 是一个非标准的 HTML 属性值，用于告知搜索引擎该链接不应影响链接对象的评级"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:301
-msgid "Add page in tags management:"
-msgstr "在页面编辑中加入标签管理："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:302
-msgid "Add a tag input (and tag posts features) in page edition"
-msgstr "编辑页面时显示标签输入框"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:303
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:331
-msgid "Activate click tags feature:"
-msgstr "启动一键标签特性："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:304
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:332
-msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
-msgstr "允许显示本地所有标签，可点击任一标签将其添加到日志中"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:305
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:333
-msgid "Activate autocompletion feature:"
-msgstr "启动自动完成特性："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:306
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:334
-msgid "This feature displays a visual help allowing to enter tags more easily."
-msgstr "提供 Ajax 标签输入界面，使标签输入更方便轻松"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:307
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:335
-msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, Tag The Net, Local DB)"
-msgstr "启用标签推荐功能：（Yahoo! 标签提取 API, Tag The Net, 本地标签）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:308
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:336
-msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
-msgstr "通过比较日志内容与多种标签来源（外部内部均有）以提供推荐标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:311
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:339
-msgid "Automatically include in header:"
-msgstr "自动在 header 中加入元关键词："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:312
-msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is disabled."
-msgstr "自动在 header 中加入这些元关键词（受大多数主题支持）。搜索引擎有时会使用这些关键词<br /><strong>警告：</strong> 如果启用了插件 All in One SEO Pack，则该功能被禁用"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:313
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:341
-msgid "Always add these keywords:"
-msgstr "总是添加以下关键词："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:314
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:342
-msgid "Max keywords display:"
-msgstr "关键词数量上限："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:315
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:343
-msgid "You must set zero (0) for display all keywords in HTML header."
-msgstr "置零（0）则在 header 中加入所有关键词"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:318
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:346
-msgid "Use embedded tags:"
-msgstr "使用内嵌标签："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:319
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:347
-msgid "Enabling this will allow Wordpress to look for embedded tags when saving and displaying posts. Such set of tags is marked <code>[tags]like this, and this[/tags]</code>, and is added to the post when the post is saved, but does not display on the post."
-msgstr "启用该项将允许 WordPress 在保存与显示日志时寻找内嵌标签。内嵌标签标记为<code>[tags]like this, and this[/tags]</code>，当保存日志的时候会被添加，但并不加以显示"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:320
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:348
-msgid "Prefix for embedded tags:"
-msgstr "内嵌标签的前缀："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:321
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:349
-msgid "Suffix for embedded tags:"
-msgstr "内嵌标签的后缀："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:324
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:352
-msgid "Automatically display tags list into feeds"
-msgstr "在 Feed 结尾显示标签列表："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:325
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:353
-msgid "Automatically display tags list into post content:"
-msgstr "在日志结尾显示标签列表："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:327
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:351
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:355
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:379
-msgid "<code>no</code> &ndash; Nowhere (default)"
-msgstr "<code>no</code> &ndash; 不显示 （默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:328
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:352
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:356
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:380
-msgid "<code>all</code> &ndash; On your blog and feeds."
-msgstr "<code>all</code> &ndash; 在博客与 Feed 中显示"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:329
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:353
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:357
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:381
-msgid "<code>blogonly</code> &ndash; Only on your blog."
-msgstr "<code>blogonly</code> &ndash; 仅在博客上显示"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:330
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:354
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:358
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:382
-msgid "<code>homeonly</code> &ndash; Only on your home page."
-msgstr "<code>homeonly</code> &ndash; 仅在首页显示"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:331
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:355
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:359
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:383
-msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
-msgstr "<code>singularonly</code> &ndash; 仅在页面和单独日志中显示"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:332
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:356
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:360
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:384
-msgid "<code>singleonly</code> &ndash; Only on your single view."
-msgstr "<code>singleonly</code> &ndash; 仅在单独日志中显示"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:333
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:357
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:361
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:385
-msgid "<code>pageonly</code> &ndash; Only on your page view."
-msgstr "<code>pageonly</code> &ndash; 仅在页面中显示"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:335
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:363
-msgid "Post tag separator string:"
-msgstr "日志标签分隔字串："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:336
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:364
-msgid "Text to display before tags list:"
-msgstr "显示在标签列表前面的文本："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:337
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:365
-msgid "Text to display after tags list:"
-msgstr "显示在标签列表后面的文本："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:338
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:366
-msgid "Max tags display:"
-msgstr "标签显示上限："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:339
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:367
-msgid "You must set zero (0) for display all tags."
-msgstr "置零（0）以显示全部标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:340
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:368
-msgid "Include categories in result ?"
-msgstr "在搜索结果中包括分类："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:341
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:448
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:369
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:476
-msgid "Tag link format:"
-msgstr "标签链接格式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:342
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:370
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:398
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:416
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:449
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:370
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:398
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:426
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:444
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:477
-msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
-msgstr "您可以在 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">在线文档</a> 中找到标记及其相关说明"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:343
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:371
-msgid "Text to display if no tags found:"
-msgstr "没有标签时显示的文本："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:344
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:374
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:403
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:461
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:372
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:402
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:431
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:489
-msgid "<strong>Advanced usage</strong>:"
-msgstr "<strong>高级用法</strong>："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:345
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:373
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用与 <code>st_the_tags()</code> 函数一样的语法来定制显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:348
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:376
-msgid "Automatically display related posts into feeds"
-msgstr "在 Feed 结尾显示相关日志列表："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:349
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:377
-msgid "Automatically display related posts into post content"
-msgstr "在日志结尾显示相关日志列表："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:359
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:387
-msgid "Related Posts Order:"
-msgstr "相关日志排序："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:361
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:389
-msgid "<code>date-asc</code> &ndash; Older Entries."
-msgstr "<codeg>date-asc</code> &ndash; 旧日志在前"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:362
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:390
-msgid "<code>date-desc</code> &ndash; Newer Entries."
-msgstr "<code>date-desc</code> &ndash; 新日志在前"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:363
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:391
-msgid "<code>count-asc</code> &ndash; Least common tags between posts"
-msgstr "<code>count-asc</code> &ndash; 相同标签数少的日志在前"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:364
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:392
-msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
-msgstr "<code>count-desc</code> &ndash; 相同标签数多的日志在前（默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:365
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:383
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:430
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:438
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:393
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:411
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:458
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:466
-msgid "<code>name-asc</code> &ndash; Alphabetical."
-msgstr "<code>name-asc</code> &ndash; 字母顺序"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:366
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:384
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:431
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:439
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:394
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:412
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:459
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:467
-msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
-msgstr "<code>name-desc</code> &ndash; 字母倒序"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:367
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:385
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:432
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:395
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:413
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:460
-msgid "<code>random</code> &ndash; Random."
-msgstr "<code>random</code> &ndash; 随机"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:369
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:397
-msgid "Post link format:"
-msgstr "日志链接格式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:371
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:399
-msgid "Maximum number of related posts to display: (default: 5)"
-msgstr "相关日志数量限制（默认 5）："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:372
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:400
-msgid "Enter the text to show when there is no related post:"
-msgstr "没有相关日志时显示的文本："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:373
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:402
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:452
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:401
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:430
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:480
-msgid "Enter the positioned title before the list, leave blank for no title:"
-msgstr "列表定位标题，留空则不定义："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:375
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:403
-msgid "You can use the same syntax as <code>st_related_posts()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_related_posts()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:378
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:406
-msgid "Maximum number of related tags to display: (default: 5)"
-msgstr "相关标签数量限制（默认 5）："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:379
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:407
-msgid "Order related tags:"
-msgstr "相关标签排序："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:381
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:428
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:436
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:409
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:456
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:464
-msgid "<code>count-asc</code> &ndash; Least used."
-msgstr "<code>count-asc</code> &ndash; 冷门标签在前"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:382
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:429
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:410
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:457
-msgid "<code>count-desc</code> &ndash; Most popular. (default)"
-msgstr "<code>count-desc</code> &ndash; 热门标签在前 （默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:387
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:415
-msgid "Related tags type format:"
-msgstr "相关标签类型格式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:389
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:409
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:445
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:417
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:437
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:473
-msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
-msgstr "<code>list</code> &ndash; 显示一个规格化的列表 （ul/li）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:390
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:410
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:446
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:418
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:438
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:474
-msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
-msgstr "<code>flat</code> &ndash; 行内显示（非列表，仅 div）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:392
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:420
-msgid "Method of tags intersections and unions used to build related tags link:"
-msgstr "相关标签链接生成方式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:394
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:422
-msgid "<code>OR</code> &ndash; Fetches posts with either the \"Tag1\" <strong>or</strong> the \"Tag2\" tag. (default)"
-msgstr "<code>OR</code> &ndash; 获取在标签“Tag1” <strong>或</strong> 标签“Tag2”下的日志。（默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:395
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:423
-msgid "<code>AND</code> &ndash; Fetches posts with both the \"Tag1\" <strong>and</strong> the \"Tag2\" tag."
-msgstr "<code>AND</code> &ndash; 获取在标签“Tag1” <strong>与</strong> 标签“Tag2”下的日志。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:397
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:425
-msgid "Related tags link format:"
-msgstr "相关标签链接格式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:399
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:427
-msgid "Related tags separator:"
-msgstr "相关标签分隔："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:400
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:413
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:428
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:441
-msgid "Leave empty for list format."
-msgstr "若类型格式为list，则请在此处留空"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:401
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:429
-msgid "Enter the text to show when there is no related tags:"
-msgstr "没有相关标签时显示的文本："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:404
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:432
-msgid "You can use the same syntax as <code>st_related_tags()</code>function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_related_tags()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:406
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:434
-msgid "Remove related Tags"
-msgstr "删除相关标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:407
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:435
-msgid "Remove related Tags type format:"
-msgstr "移除相关标签类型格式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:412
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:440
-msgid "Remove related tags separator:"
-msgstr "删除相关标签分隔符："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:414
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:442
-msgid "Enter the text to show when there is no remove related tags:"
-msgstr "无移除相关标签时则显示："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:415
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:443
-msgid "Remove related tags  link format:"
-msgstr "移除相关标签链接格式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:419
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:447
-msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
-msgstr "<strong>“标签选择”</strong>与<strong>“标签显示”</strong> 有何区别？<br />"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:421
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:449
-msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
-msgstr "<strong>“标签选择”</strong>是生成标签云的第一个步骤，即收集标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:422
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:450
-msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
-msgstr "<strong>“标签显示”</strong>是第二个步骤。选择好标签后，您可以在显示它们之前重新对它们排序。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:424
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:452
-msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
-msgstr "<strong>范例：</strong> 您希望按随机顺序显示 100 个最热门的标签<br />"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:425
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:453
-msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
-msgstr "您必须设置“标签选择依据”为<strong>count-desc</strong> 以获取最热门的 100 个标签，设置“标签显示排序”为<strong>random</strong> 以在标签云中随机对它们排序。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:426
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:454
-msgid "Order tags selection:"
-msgstr "标签选择依据："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:434
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:167
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:462
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:157
-msgid "Order tags display:"
-msgstr "标签显示排序："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:437
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:465
-msgid "<code>count-desc</code> &ndash; Most popular."
-msgstr "<code>count-desc</code> &ndash; 最热门"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:440
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:468
-msgid "<code>random</code> &ndash; Random. (default)"
-msgstr "<code>random</code> &ndash; 随机 （默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:442
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:470
-msgid "Include categories in tag cloud ?"
-msgstr "在标签云中包括分类："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:443
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:471
-msgid "Tags cloud type format:"
-msgstr "标签云类型格式："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:450
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:478
-msgid "Maximum number of tags to display: (default: 45)"
-msgstr "标签显示数量限制（默认 45）："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:451
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:479
-msgid "Enter the text to show when there is no tag:"
-msgstr "没有标签时显示的文本："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:453
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:481
-msgid "Most popular color:"
-msgstr "最热门标签颜色："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:454
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:482
-msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
-msgstr "颜色用十六进制数字表示，不能使用简写形式。（例如，#EEE 就是 #EEEEEE 的简写形式）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:455
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:483
-msgid "Least popular color:"
-msgstr "最冷门标签颜色："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:456
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:484
-msgid "Most popular font size:"
-msgstr "最热门标签字号："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:457
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:485
-msgid "The two font sizes are the size of the largest and smallest tags."
-msgstr "两种字号分别对应最大标签和最小标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:458
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:486
-msgid "Least popular font size:"
-msgstr "最冷门标签字号："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:459
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:487
-msgid "The units to display the font sizes with, on tag clouds:"
-msgstr "标签云字号单位："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:460
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:488
-msgid "The font size units option determines the units that the two font sizes use."
-msgstr "字号单位选项决定了以上两个字号的单位"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:462
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:490
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "您可以使用和 <code>st_tag_cloud()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:476
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:504
-msgid "Options saved"
-msgstr "选项已保存"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:480
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:508
-msgid "TaxoPress options resetted to default options!"
-msgstr "TaxoPress 的选项已重置为默认值!"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:486
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:514
-#, php-format
-msgid "All TaxoPress options are deleted ! You <a href=\"%s\">deactive plugin</a> now !"
-msgstr "TaxoPress 所有选项都已删除。您可以<a href=\"%s\"> 立即禁用 TaxoPress</a>！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:526
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:550
-msgid "Update Options &raquo;"
-msgstr "更新选项  &raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:527
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:551
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:526
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:549
-msgid "Do you really want to restore the default options?"
-msgstr "确定要恢复默认选项吗？"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:527
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:551
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:526
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:549
-msgid "Reset Options"
-msgstr "重置选项"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:534
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:533
-msgid "Uninstallation"
-msgstr "卸载"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:540
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:539
-msgid "Generally, deactivating this plugin does not erase any of its data, if you like to quit using TaxoPress for good, please erase <strong>all</strong> options before deactivating the plugin."
-msgstr "一般来说，禁用插件并不清除其已有数据。如果您将永不再使用 TaxoPress，在禁用它之前，请清除 TaxoPress 的<strong>所有</strong>选项。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:541
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:540
-msgid "This erases all TaxoPress options. <strong>This is irrevocable! Be careful.</strong>"
-msgstr "这将清除 TaxoPress 的所有选项。<strong>本操作不可撤消，请务必小心。</strong>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:544
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:543
-msgid "Delete all options ?"
-msgstr "清除所有选项"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:568
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1714
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:565
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1206
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
-msgstr "安全问题，请重试。如果该问题仍然存在，请联系  <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">插件作者</a>."
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:601
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:171
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:161
-msgid "Most popular"
-msgstr "热门度"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:602
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:161
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:172
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:151
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:162
-msgid "Least used"
-msgstr "冷门度"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:603
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:158
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:169
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:148
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:159
-msgid "Alphabetical"
-msgstr "字母顺序"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:634
-msgid "Existing Tags"
-msgstr "已有标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:638
-msgid "Search tags"
-msgstr "搜索标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:642
-msgid "Go"
-msgstr "搜索"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:645
-msgid "Sort Order:"
-msgstr "排序依据："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:660
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1844
-#, php-format
-msgid "View all posts tagged with %s"
-msgstr "查看 %s 下的所有日志"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:671
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1859
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1861
-msgid "Previous tags"
-msgstr "下一页"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:671
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1865
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1867
-msgid "Next tags"
-msgstr "上一页"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:679
-msgid "Rename Tag"
-msgstr "重命名标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:680
-msgid "Enter the tag to rename and its new value.  You can use this feature to merge tags too. Click \"Rename\" and all posts which use this tag will be updated."
-msgstr "在下方输入待重命名的标签原有名称和新名称。 您也可以借此合并标签。点击“重命名”后，该标签下的日志都会被更新。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:681
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:722
-msgid "You can specify multiple tags to rename by separating them with commas."
-msgstr "您可以用英文逗号作为分隔符以指定多个待重命名的标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:686
-msgid "Tag(s) to rename:"
-msgstr "待重命名的标签："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:687
-msgid "New tag name(s):"
-msgstr "标签新名称："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:688
-msgid "Rename"
-msgstr "重命名"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:693
-msgid "Delete Tag"
-msgstr "删除标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:694
-msgid "Enter the name of the tag to delete.  This tag will be removed from all posts."
-msgstr "输入待删除的标签。这些标签将从所有日志中移除。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:695
-msgid "You can specify multiple tags to delete by separating them with commas"
-msgstr "您可以用英文逗号作为分隔符以指定多个待删除的标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:700
-msgid "Tag(s) to delete:"
-msgstr "待删除的标签："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:701
-msgid "Delete"
-msgstr "删除"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:706
-msgid "Add Tag"
-msgstr "添加标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:707
-msgid "This feature lets you add one or more new tags to all posts which match any of the tags given."
-msgstr "该功能可以让您为匹配指定标签的日志加上一个或多个新标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:708
-msgid "You can specify multiple tags to add by separating them with commas.  If you want the tag(s) to be added to all posts, then don't specify any tags to match."
-msgstr "您可以用英文逗号作为分隔符以指定多个标签。如果您想把标签加到所有日志中，则不要指定任何待匹配的标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:713
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:728
-msgid "Tag(s) to match:"
-msgstr "待匹配的标签："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:714
-msgid "Tag(s) to add:"
-msgstr "待添加的标签："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:715
-msgid "Add"
-msgstr "添加"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:720
-msgid "Edit Tag Slug"
-msgstr "编辑标签缩略名"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:721
-msgid "Enter the tag name to edit and its new slug. <a href=\"http://codex.wordpress.org/Glossary#Slug\">Slug definition</a>"
-msgstr "输入标签名与其缩略名。 <a href=\"http://codex.wordpress.org/Glossary#Slug\">缩略名定义</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:732
-msgid "Slug(s) to set:"
-msgstr "待设置的缩略名："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:737
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:916
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:785
-msgid "Edit"
-msgstr "编辑"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:743
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:577
-msgid "Remove empty terms"
-msgstr "清理空白标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:744
-msgid "WordPress 2.3 have a small bug and can create empty terms. Remove it !"
-msgstr "WordPress 2.3 有一个小 Bug，会产生空白标签，可以在此清理。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:748
-msgid "Clean !"
-msgstr "清理!"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:849
-msgid "Search terms&hellip;"
-msgstr "搜索关键词&hellip;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:854
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:755
-msgid "Quantity&hellip;"
-msgstr "数量&hellip;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:872
-msgid "Author&hellip;"
-msgstr "作者&hellip;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:873
-msgid "Any"
-msgstr "任何"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:878
-msgid "Type&hellip;"
-msgstr "类型&hellip;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:880
-msgid "Post"
-msgstr "日志"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:882
-msgid "Page"
-msgstr "页面"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:888
-msgid "Order&hellip;"
-msgstr "排序&hellip;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:890
-msgid "Date (descending)"
-msgstr "日期 （降序）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:891
-msgid "Date (ascending)"
-msgstr "日期 （升序）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:892
-msgid "ID (descending)"
-msgstr "ID （降序）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:893
-msgid "ID (ascending)"
-msgstr "ID （升序）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:898
-msgid "Filter&hellip;"
-msgstr "过滤&hellip;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:900
-msgid "All"
-msgstr "全部"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:901
-msgid "Untagged only"
-msgstr "仅显示无标签条目"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:905
-msgid "Filter &#187;"
-msgstr "过滤 &#187;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:912
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:922
-msgid "Update all"
-msgstr "全部更新"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:936
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:815
-msgid "No content to edit."
-msgstr "没有可供编辑的内容。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1053
-msgid "Tags (separate multiple tags with commas: cats, pet food, dogs)"
-msgstr "标签 (以英文逗号分隔多个标签：cats, pet food, dogs)"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1105
-msgid "No new tag specified!"
-msgstr "未指定新标签！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1124
-msgid "No new/old valid tag specified!"
-msgstr "未指定有效的标签！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1156
-msgid "No tag renamed."
-msgstr "没有标签被重命名。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1159
-#, php-format
-msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
-msgstr "成功将标签 &laquo;%1$s&raquo; 重命名为 &laquo;%2$s&raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1166
-msgid "No valid new tag."
-msgstr "新标签无效。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1183
-msgid "No objects (post/page) found for specified old tags."
-msgstr "未找到指定旧标签下的日志或页面。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1208
-msgid "No tag merged."
-msgstr "没有标签被合并。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1211
-#, php-format
-msgid "Merge tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
-msgstr "成功将标签 &laquo;%1$s&raquo; 合并为 &laquo;%2$s&raquo;。 %3$s 个对象被编辑。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1214
-msgid "Error. No enough tags for rename. Too for merge. Choose !"
-msgstr "错误：待重命名的标签太少，待合并的标签太多。请重新选择！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1240
-msgid "No tag specified!"
-msgstr "未指定标签！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1265
-msgid "No tag deleted."
-msgstr "未删除标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1268
-#, php-format
-msgid "%1s tag(s) deleted."
-msgstr "已删除 %s 个缩略名。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1280
-msgid "No new tag(s) specified!"
-msgstr "未指定新标签！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1328
-msgid "No tag added."
-msgstr "没有标签被添加。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1331
-#, php-format
-msgid "Tag(s) added to %1s post(s)."
-msgstr "标签被添加到 %1s 条日志。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1343
-msgid "No new slug(s) specified!"
-msgstr "未指定新缩略名！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1359
-msgid "Tags number and slugs number isn't the same!"
-msgstr "标签数量与缩略名数量不同！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1383
-msgid "No slug edited."
-msgstr "未编辑缩略名。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1386
-#, php-format
-msgid "%s slug(s) edited."
-msgstr "已编辑 %s 个缩略名。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1404
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1089
-msgid "Nothing to muck. Good job !"
-msgstr "没有可供清理的项目。干得漂亮！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1429
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1117
-#, php-format
-msgid "%s rows deleted. WordPress DB is clean now !"
-msgstr "已删除 %s 行。 WordPress 数据库清理完毕！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1452
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1130
-msgid "Display click tags"
-msgstr "显示一键标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1452
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1131
-msgid "Hide click tags"
-msgstr "隐藏一键标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1504
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1148
-msgid "Suggested tags from :"
-msgstr "推荐标签来源："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1505
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1149
-msgid "Local tags"
-msgstr "本地标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1506
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1150
-msgid "Yahoo"
-msgstr "Yahoo"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1507
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1151
-msgid "Tag The Net"
-msgstr "Tag The Net"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1513
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1154
-msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
-msgstr "选择推荐标签来源（本地标签、Yahoo! 或 Tag The Net）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1742
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1238
-#, php-format
-msgid "%s post(s) tags updated with success !"
-msgstr "成功更新 %s 篇日志的标签!"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:1744
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1236
-#, php-format
-msgid "%s page(s) tags updated with success !"
-msgstr "成功更新 %s 个页面的标签!"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2155
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1566
-#, php-format
-msgid "&copy; Copyright 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
-msgstr "&copy; 版权所有 2007 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | 版本 %s"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2195
-msgid "Page: "
-msgstr "分页："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2274
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1668
-msgid "General"
-msgstr "常规"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2277
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1671
-msgid "Administration"
-msgstr "管理"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2280
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1674
-msgid "Meta Keyword"
-msgstr "元关键词"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2283
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1677
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:242
-msgid "Embedded Tags"
-msgstr "内嵌标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2286
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1680
-msgid "Tags for Current Post"
-msgstr "当前日志标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2289
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1683
-msgid "Related Posts"
-msgstr "相关日志"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2292
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1686
-msgid "Related Tags"
-msgstr "相关标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.admin.php:2295
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1689
-msgid "Tag cloud"
-msgstr "标签云"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:143
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:133
-msgid "Empty field will use default value."
-msgstr "空字段将使用默认值"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:146
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:136
-msgid "Title:"
-msgstr "标题："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:151
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:141
-msgid "Max tags to display: (default: 45)"
-msgstr "标签显示个数限制（默认 45）："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:156
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:146
-msgid "Tags selection:"
-msgstr "标签选择依据："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:159
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:170
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:149
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:160
-msgid "Inverse Alphabetical"
-msgstr "字母倒序"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:160
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:150
-msgid "Most popular (default)"
-msgstr "热门度（默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:162
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:152
-msgid "Random"
-msgstr "随机"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:173
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:163
-msgid "Random (default)"
-msgstr "随机（默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:178
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:168
-msgid "Font size mini: (default: 8)"
-msgstr "最冷门标签尺寸（默认 8）："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:183
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:173
-msgid "Font size max: (default: 22)"
-msgstr "最热门标签尺寸（默认 22）："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:188
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:178
-msgid "Unit font size:"
-msgstr "字号单位："
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:190
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:180
-msgid "Point (default)"
-msgstr "pt （默认）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:191
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:181
-msgid "Pixel"
-msgstr "px"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:192
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:182
-msgid "Em"
-msgstr "Em"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:193
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:183
+#: inc/class.widgets.php:319
 msgid "Pourcent"
 msgstr "百分比"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:198
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:188
-msgid "Format:"
-msgstr "样式："
+#: inc/helper.options.admin.php:148
+msgid "Priority on hook the_content"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:200
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:190
-msgid "Flat (default)"
-msgstr "平铺（默认）"
+#: inc/taxonomies.php:1330
+msgid "Public"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:201
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:191
-msgid "List (UL/LI)"
-msgstr "列表（UL/LI）"
+#: inc/taxonomies.php:1354
+msgid "Public Queryable"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:207
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:197
-msgid "Use auto color cloud:"
-msgstr "自动为标签云定义颜色："
+#: inc/class.admin.mass.php:217
+msgid "Quantity&hellip;"
+msgstr "数量&hellip;"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:211
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:201
-msgid "Font color mini: (default: #CCCCCC)"
-msgstr "最冷门标签颜色 （默认#CCCCCC）："
+#: inc/taxonomies.php:1378
+msgid "Query Var"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:216
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:206
-msgid "Font color max: (default: #000000)"
-msgstr "最热门标签颜色 （默认#000000）："
+#: inc/taxonomies.php:1388
+msgid "Query var needs to be true to use."
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:221
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:211
-msgid "Extended format: (advanced usage)"
-msgstr "扩展格式（高级用法）："
+#: inc/class.widgets.php:243
+msgid "Random"
+msgstr "随机"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:252
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:242
-msgid "Tag Cloud Widgets"
-msgstr "标签云 Widgets"
+#: inc/class.widgets.php:271
+msgid "Random (default)"
+msgstr "随机（默认）"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:253
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:243
-msgid "How many tag cloud widgets would you like?"
-msgstr "标签云 Widgets 数量："
+#: inc/taxonomies.php:1456
+msgid "Re-activate Taxonomy"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:257
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:247
-msgid "Save"
-msgstr "保存"
+#: inc/class-taxonomies-table.php:67 inc/taxonomies.php:301
+#: inc/taxonomies.php:310 inc/taxonomies.php:319
+msgid "Registration key"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:274
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.3/inc/simple-tags.widgets.php:275
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:265
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:266
+#: inc/class.admin.php:616
+msgid "Related Posts"
+msgstr "相关日志"
+
+#: inc/helper.options.admin.php:41
+msgid "Related posts by terms"
+msgstr ""
+
+#: inc/helper.options.admin.php:364
+msgid "Related Posts Order:"
+msgstr "相关日志排序："
+
+#: inc/class.admin.manage.php:389
+msgid "Remove"
+msgstr ""
+
+#: inc/class.admin.manage.php:429
+msgid "Remove rarely used terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:364
 #, php-format
-msgid "Extended Tag Cloud %d"
-msgstr "扩展标签云 %d"
+msgid "Remove Terms from %s "
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:111
-msgid "No tags for this post."
-msgstr "该日志未加标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:123
-msgid "No related tags found."
-msgstr "未找到相关标签。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1113
-msgid "<a %tag_rel% href=\"%tag_link_remove%\" title=\"Remove %tag_name_attribute% from search\">Remove %tag_name%</a>"
-msgstr "<a %tag_rel% href=\"%tag_link_remove%\" title=\"从搜索中移除 %tag_name_attribute%\">移除 %tag_name%</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/simple-tags.client.php:1502
-msgid "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
-msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:218
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:522
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:575
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:818
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "访问 <a href=\"https://wordpress.org/plugins/simple-tags/\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">与我联系</a> ！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:225
-msgid "Options"
-msgstr "选项"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:229
-msgid "Activation"
-msgstr "启用"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:236
-msgid "Tags database"
-msgstr "标签数据库"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:243
-msgid "Target"
-msgstr "目标"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:250
-msgid "Keywords list"
-msgstr "关键词列表"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:253
-msgid "Separated with a comma"
-msgstr "关键词列表（英文逗号隔开）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:259
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:525
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:548
-msgid "Update options &raquo;"
-msgstr "更新选项 &raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:263
-msgid "Auto tags all content &raquo;"
-msgstr "自动为所有内容添加标签 &raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:301
+#: inc/class.admin.manage.php:674
 #, php-format
-msgid "All done! %s tags added."
-msgstr "完成！已添加 %s 个标签。"
+msgid "Removed term(s) &laquo;%1$s&raquo; from %2$s"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:317
-msgid "Active tags for page:"
-msgstr "对页面启用标签功能："
+#: inc/class.admin.manage.php:316
+msgid "Rename"
+msgstr "重命名"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:318
-msgid "This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page."
-msgstr "启用该选项可以对页面添加标签。"
+#: inc/class.admin.manage.php:285
+msgid "Rename Terms"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:340
-msgid "Includes the meta keywords tag automatically in your header (most, but not all, themes support this). These keywords are sometimes used by search engines.<br /><strong>Warning:</strong> If the plugin \"All in One SEO Pack\" is installed and enabled. This feature is automatically disabled."
-msgstr "自动在 header 中加入这些元关键词（受大多数主题支持）。搜索引擎有时会利用这些关键词<br /><strong>警告：</strong> 如果启用了插件 All in One SEO Pack，则该功能被禁用。"
+#: inc/class.admin.manage.php:759
+#, fuzzy, php-format
+#| msgid "Renamed tag(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgid "Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr "成功将标签 &laquo;%1$s&raquo; 重命名为 &laquo;%2$s&raquo;"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:574
-msgid "Advanced tags management"
-msgstr "高级标签管理"
+#: views/admin/page-settings.php:36
+msgid "Reset Options"
+msgstr "重置选项"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:581
-msgid "WordPress 2.3 have a small bug and can create empty terms."
-msgstr "WordPress 2.3 有一个小 Bug，会产生空白标签。"
+#: inc/taxonomies.php:438
+msgid "REST API"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:581
-msgid "Clean it !"
-msgstr "清理!"
+#: inc/taxonomies.php:1286
+msgid "REST API base slug"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:615
-msgid "Published"
-msgstr "已发布"
+#: inc/taxonomies.php:1295
+msgid "REST API controller class"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:615
-msgid "Published posts"
-msgstr "已发布的日志"
+#: inc/taxonomies.php:726
+msgid "Rewrite"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:616
-msgid "Scheduled"
-msgstr "待发布"
+#: inc/taxonomies.php:784
+msgid "Rewrite Hierarchical"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:616
-msgid "Scheduled posts"
-msgstr "待发布的日志"
+#: inc/taxonomies.php:760
+msgid "Rewrite With Front"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:617
-msgid "Pending Review"
-msgstr "待审核"
+#: inc/taxonomies.php:343
+msgid "Save Taxonomy"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:617
-msgid "Pending posts"
-msgstr "待审核的日志"
+#: inc/taxonomies.php:1211
+msgid ""
+"Screen reader text for the items list heading on the term listing screen."
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:618
-msgid "Draft"
-msgstr "草稿"
+#: inc/taxonomies.php:1194
+msgid ""
+"Screen reader text for the pagination heading on the term listing screen."
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:619
-msgid "Private"
-msgstr "私人"
+#: inc/class.admin.mass.php:153
+msgid "Search"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:619
-msgid "Private posts"
-msgstr "私人日志"
+#. Used for autofill
+#: inc/taxonomies-functions.php:1554 inc/taxonomies-functions.php:1559
+#: inc/taxonomies-functions.php:1597 inc/taxonomies-functions.php:1612
+#: inc/taxonomies.php:1080
+#, php-format
+msgid "Search %s"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:663
-msgid "Mass edit tags"
-msgstr "批量编辑标签"
+#: inc/class.admin.manage.php:193
+#, php-format
+msgid "Search %s "
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:670
-msgid "All Posts"
-msgstr "全部日志"
+#: inc/taxonomies.php:1075
+#, fuzzy
+#| msgid "Search tags"
+msgid "Search Items"
+msgstr "搜索标签"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:691
-msgid "All Pages"
-msgstr "全部页面"
+#: inc/class.client.php:64
+msgid "Search Media Tags"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:700
-msgid "Search Posts"
-msgstr "搜索日志"
+#. %s: search keywords
+#: inc/class.admin.manage.php:180 inc/taxonomies.php:158
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:732
+#: inc/taxonomies.php:172
+msgid "Search Taxonomies"
+msgstr ""
+
+#: inc/class.admin.manage.php:102 inc/class.admin.mass.php:58
+msgid ""
+"Security problem. Try again. If this problem persist, contact <a "
+"href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">"
+"plugin author</a>."
+msgstr ""
+"安全问题，请重试。如果该问题仍然存在，请联系  <a href=\"https://wordpress."
+"org/support/plugin/simple-tags/#new-topic-0\">插件作者</a>."
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1568 inc/taxonomies-functions.php:1615
+#: inc/taxonomies.php:1114
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: inc/taxonomies.php:1108
+msgid "Separate Items with Commas"
+msgstr ""
+
+#: inc/class.client.php:66
+msgid "Separate Media Tags with commas"
+msgstr ""
+
+#: inc/class.admin.autocomplete.php:124
+msgid "Separate tags with commas"
+msgstr ""
+
+#: inc/taxonomies.php:1409
+msgid ""
+"Set a default term for the taxonomy. Able to set a name, slug, and "
+"description. Only a name is required if setting a default, others are "
+"optional. Set values in the following order, separated by comma. Example: "
+"name, slug, description"
+msgstr ""
+
+#: inc/taxonomies.php:1400
+msgid ""
+"Sets a callback function name for the meta box display. Hierarchical default:"
+" post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To "
+"remove the metabox completely, use \"false\"."
+msgstr ""
+
+#: inc/taxonomies.php:1391
+msgid "Sets a custom query_var slug for this taxonomy."
+msgstr ""
+
+#: inc/taxonomies.php:1379
+msgid "Sets the query_var key for this taxonomy."
+msgstr ""
+
+#: inc/class.admin.php:407
+msgid "Settings"
+msgstr ""
+
+#: inc/taxonomies.php:785
+msgid "Should the permastruct allow hierarchical urls."
+msgstr ""
+
+#: inc/taxonomies.php:761
+msgid "Should the permastruct be prepended with the front base."
+msgstr ""
+
+#: inc/taxonomies.php:888
+msgid "Show admin column"
+msgstr ""
+
+#: inc/class.admin.mass.php:190
 msgid "Show all dates"
 msgstr "所有日期"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:752
-msgid "View all categories"
-msgstr "所有分类"
+#: inc/class.admin.clickterms.php:71 inc/class.admin.clickterms.php:84
+msgid "Show all local tags"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:765
-msgid "Filter"
-msgstr "筛选"
+#: inc/taxonomies.php:911
+msgid "Show in \"Quick Edit\" and \"Bulk Edit\""
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:795
+#: inc/taxonomies.php:841
+msgid "Show in admin menus"
+msgstr ""
+
+#: inc/taxonomies.php:864
+msgid "Show in frontend menus"
+msgstr ""
+
+#: inc/taxonomies.php:1278
+msgid "Show in REST API"
+msgstr ""
+
+#: inc/taxonomies.php:818
+msgid "Show user interface"
+msgstr ""
+
+#: inc/taxonomies.php:528
+msgid "Singular Label"
+msgstr ""
+
+#: inc/class-tag-table.php:42 inc/class.widgets.php:237 inc/taxonomies.php:417
+msgid "Slug"
+msgstr ""
+
+#: inc/taxonomies.php:472 inc/taxonomies.php:659
+msgid "Slug already exists"
+msgstr ""
+
+#: inc/taxonomies.php:469 inc/taxonomies.php:656
+msgid "Slug has changed"
+msgstr ""
+
+#: inc/taxonomies.php:1287
+msgid "Slug to use in REST API URLs."
+msgstr ""
+
+#: inc/class.admin.clickterms.php:48
+msgid "Start typing to search"
+msgstr ""
+
+#: inc/class.admin.suggest.php:78 inc/class.admin.suggest.php:83
+msgid "Suggested tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:27
+msgid "Suggested tags feature"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:212
+msgid "Suport Hashtag format ?"
+msgstr ""
+
+#: inc/class-tag-table.php:12
+msgid "Tag Cloud"
+msgstr ""
+
+#: inc/class.admin.php:618 inc/class.widgets.php:48
+msgid "Tag cloud"
+msgstr "标签云"
+
+#: inc/class.widgets.php:15
+msgid "Tag Cloud (TaxoPress)"
+msgstr ""
+
+#: inc/helper.options.admin.php:55
+msgid "Tag cloud Shortcode"
+msgstr ""
+
+#: inc/class.widgets.php:366 inc/helper.options.admin.php:241
+#: inc/helper.options.admin.php:324
+msgid "Tag link format:"
+msgstr "标签链接格式："
+
+#: inc/class.widgets.php:85
+msgid "Tags"
+msgstr ""
+
+#: inc/class-tag-table.php:13
+msgid "Tags Cloud"
+msgstr ""
+
+#: inc/helper.options.admin.php:232
+msgid "Tags cloud type format:"
+msgstr "标签云类型格式："
+
+#: inc/class.admin.php:614
+msgid "Tags for Current Post"
+msgstr "当前日志标签"
+
+#: inc/helper.options.default.php:34 inc/class.client.post_tags.php:106
+msgid "Tags: "
+msgstr "标签："
+
+#: inc/class.admin.autoterms.php:198
+msgid "Target"
+msgstr "目标"
+
+#: inc/class-taxonomies-table.php:15 inc/taxonomies.php:98
+#: inc/taxonomies.php:99 inc/taxonomies.php:150
+msgid "Taxonomies"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:14
+msgid "Taxonomy"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1714
+msgid "Taxonomy has been successfully activated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1706
+msgid "Taxonomy has been successfully deactivated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1722
+msgid "Taxonomy has been successfully deleted"
+msgstr ""
+
+#: inc/taxonomies.php:465 inc/taxonomies.php:652
+msgid "Taxonomy Slug"
+msgstr ""
+
+#: inc/helper.options.admin.php:341
+msgid "Taxonomy:"
+msgstr ""
+
+#. Name of the plugin
+#. Author of the plugin
+#: inc/class.admin.php:394 inc/class-taxonomies-table.php:340
+msgid "TaxoPress"
+msgstr "TaxoPress"
+
+#: inc/class.admin.post.php:32
+msgid "TaxoPress - Settings"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:228
+#, fuzzy
+#| msgid ""
+#| "TaxoPress can also tag all existing contents of your blog. This feature "
+#| "use auto tags list above-mentioned."
+msgid ""
+"TaxoPress can also tag all existing contents of your blog. This feature use "
+"auto terms list above-mentioned."
+msgstr "TaxoPress 也可以为博客中已有的内容添加标签，该功能要用到上面的智能标签列表。"
+
+#: inc/class.admin.php:447
+msgid "TaxoPress options resetted to default options!"
+msgstr "TaxoPress 的选项已重置为默认值!"
+
+#: inc/class.admin.autoterms.php:34
+#, fuzzy
+#| msgid "TaxoPress: Auto Tags"
+msgid "TaxoPress: Auto Terms"
+msgstr "TaxoPress：智能标签"
+
+#: inc/class.admin.manage.php:60 inc/class.admin.manage.php:170
+#, fuzzy
+#| msgid "TaxoPress: Manage Tags"
+msgid "TaxoPress: Manage Terms"
+msgstr "TaxoPress：管理标签"
+
+#: inc/class.admin.mass.php:30
+#, fuzzy
+#| msgid "TaxoPress: Mass Edit Tags"
+msgid "TaxoPress: Mass Edit Terms"
+msgstr "TaxoPress：批量编辑标签"
+
+#: inc/class.admin.php:393 inc/class.admin.php:406
+#: views/admin/page-settings.php:3
+msgid "TaxoPress: Options"
+msgstr "TaxoPress： 选项"
+
+#: inc/class.widgets.php:239
+msgid "Term group"
+msgstr ""
+
+#: inc/class.admin.manage.php:875
+#, php-format
+msgid "Term(s) added to %1s %2s."
+msgstr ""
+
+#: inc/class.admin.manage.php:270
+#, fuzzy
+#| msgid "Tag(s) to add:"
+msgid "Term(s) to add:"
+msgstr "待添加的标签："
+
+#: inc/class.admin.manage.php:414
+#, fuzzy
+#| msgid "Tag(s) to delete:"
+msgid "Term(s) to delete:"
+msgstr "待删除的标签："
+
+#: inc/class.admin.manage.php:262
+#, fuzzy
+#| msgid "Tag(s) to match:"
+msgid "Term(s) to match:"
+msgstr "待匹配的标签："
+
+#: inc/class.admin.manage.php:341
+msgid "Term(s) to merge:"
+msgstr ""
+
+#: inc/class.admin.manage.php:381
+msgid "Term(s) to remove:"
+msgstr ""
+
+#: inc/class.admin.manage.php:301
+#, fuzzy
+#| msgid "Tag(s) to rename:"
+msgid "Term(s) to rename:"
+msgstr "待重命名的标签："
+
+#: inc/class.admin.mass.php:246
+#, php-format
+msgid "Terms : %s"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:151
+msgid "Terms to use"
+msgstr ""
+
+#: inc/class.admin.manage.php:242
+#, php-format
+msgid "Terms will be added to all %s If no \"Term(s) to match\" is specified."
+msgstr ""
+
+#: inc/helper.options.admin.php:313
+msgid "Text to display after tags list:"
+msgstr "显示在标签列表后面的文本："
+
+#: inc/helper.options.admin.php:312
+msgid "Text to display before tags list:"
+msgstr "显示在标签列表前面的文本："
+
+#: inc/helper.options.admin.php:329
+msgid "Text to display if no tags found:"
+msgstr "没有标签时显示的文本："
+
+#: inc/helper.options.admin.php:173
+msgid "Text to display into title attribute for links:"
+msgstr ""
+
+#: inc/class.admin.php:504
+#, php-format
+msgid ""
+"Thanks for using TaxoPress | <a href=\"https://taxopress.com/\">TaxoPress."
+"com</a> | Version %s"
+msgstr ""
+
+#: inc/helper.options.admin.php:269
+msgid ""
+"The colours are hexadecimal colours,  and need to have the full six digits "
+"(#eee is the shorthand version of #eeeeee)."
+msgstr "颜色用十六进制数字表示，不能使用简写形式。（例如，#EEE 就是 #EEEEEE 的简写形式）"
+
+#: inc/helper.options.admin.php:285
+msgid ""
+"The font size units option determines the units that the two font sizes use."
+msgstr "字号单位选项决定了以上两个字号的单位"
+
+#: inc/taxonomies.php:1244
+msgid ""
+"The text displayed after a term has been updated for a link back to main "
+"index."
+msgstr ""
+
+#: inc/taxonomies.php:1227
+msgid ""
+"The text displayed via clicking ‘Choose from the most used items’ in the "
+"taxonomy meta box when no items are available."
+msgstr ""
+
+#: inc/helper.options.admin.php:277
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "两种字号分别对应最大标签和最小标签"
+
+#: inc/helper.options.admin.php:282
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "标签云字号单位："
+
+#: inc/class.client.related_posts.php:368
+msgid "There is no excerpt because this is a protected post."
+msgstr "日志受保护，不能显示摘要。"
+
+#: inc/class.admin.php:225
+msgid "This custom post type not have taxonomies."
+msgstr ""
+
+#: inc/helper.options.admin.php:30
+msgid ""
+"This feature adds a meta box in the editor which will display suggested tags "
+"obtained by comparing your post content with various sources of tags. (Yahoo!"
+" Term Extraction API, OpenCalais, Tag The Net, Local DB)"
+msgstr ""
+
+#: inc/helper.options.admin.php:51
+msgid ""
+"This feature allow automatically add terms on a post by proceding to a "
+"search into content."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:138
+#, fuzzy
+#| msgid ""
+#| "This feature allows Wordpress to look into post content and title for "
+#| "specified tags when saving posts. If your post content or title contains "
+#| "the word \"WordPress\" and you have \"wordpress\" in auto tags list, "
+#| "TaxoPress will add automatically \"wordpress\" as tag for this post."
+msgid ""
+"This feature allows Wordpress to look into %s content and title for "
+"specified terms when saving %s. If your %s content or title contains the "
+"word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress "
+"will add automatically \"wordpress\" as term for this %s."
+msgstr ""
+"该功能将允许 WordPress "
+"在保存日志的时候针对特定的标签检查日志内容和标题。如果日志内容或标题中含有词语“WordPress”并且“WordPress”在智能标签列表中，则 "
+"TaxoPress 将自动为该日志加上标签“WordPress”。"
+
+#: inc/helper.options.admin.php:44
+msgid ""
+"This feature allows you to display related posts based on terms relation."
+msgstr ""
+
+#: inc/helper.options.admin.php:16
+msgid ""
+"This feature allows you to edit the terms of any taxonomy for multiple posts "
+"at the same time."
+msgstr ""
+
+#: inc/helper.options.admin.php:37
+msgid ""
+"This feature allows you to edit, merge, delete and add terms for any "
+"taxonomy."
+msgstr ""
+
+#: inc/class.admin.manage.php:430
+msgid "This feature allows you to remove rarely used terms."
+msgstr ""
+
+#: inc/class.admin.manage.php:240
+#, fuzzy
+#| msgid ""
+#| "This feature lets you add one or more new tags to all posts which match "
+#| "any of the tags given."
+msgid ""
+"This feature lets you add one or more new terms to all %s which match any of "
+"the terms given."
+msgstr "该功能可以让您为匹配指定标签的日志加上一个或多个新标签。"
+
+#: inc/class.admin.php:490
+msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
+msgstr ""
+
+#: inc/helper.options.admin.php:23
+msgid ""
+"This feature will allow you to load all the local tags in your database "
+"inside the Suggested Tags meta box inside the editor. Once displayed, you "
+"can click to add tags to your post."
+msgstr ""
+
+#: inc/class.admin.php:492
+msgid ""
+"This feature works only with activated JavaScript. Activate it in your Web "
+"browser so you can!"
+msgstr ""
+
+#: inc/taxonomies.php:306
+msgid "This is an external taxonomy and not created with TaxoPress."
+msgstr ""
+
+#: inc/helper.options.admin.php:109
+msgid ""
+"This parameter allows to fix a minimal value of use of tags. Default: 1."
+msgstr "该参数允许强制设置标签使用度的最小值。默认值：1"
+
+#: inc/helper.options.admin.php:123
+msgid ""
+"This setting determines the maximum number of links created by article for "
+"the same tag. Default: 1."
+msgstr ""
+
+#: inc/helper.options.admin.php:116
+msgid ""
+"This setting determines the maximum number of links created by article. "
+"Default: 10."
+msgstr ""
+
+#: inc/taxonomies.php:297
+msgid "This taxonomy is part of the WordPress core."
+msgstr ""
+
+#: inc/taxonomies.php:315
+msgid "This taxonomy was created by TaxoPress."
+msgstr ""
+
+#: inc/class.widgets.php:213
+msgid "Title:"
+msgstr "标题："
+
+#: inc/taxonomies.php:544 inc/taxonomies.php:716 inc/taxonomies.php:750
+#: inc/taxonomies.php:775 inc/taxonomies.php:808 inc/taxonomies.php:831
+#: inc/taxonomies.php:854 inc/taxonomies.php:879 inc/taxonomies.php:902
+#: inc/taxonomies.php:1268 inc/taxonomies.php:1320 inc/taxonomies.php:1344
+#: inc/taxonomies.php:1368
+msgid "True"
+msgstr ""
+
+#: inc/helper.options.admin.php:166
+msgid "Try new engine replacement ?"
+msgstr ""
+
+#: inc/class.widgets.php:309
+msgid "Unit font size:"
+msgstr "字号单位："
+
+#: inc/taxonomies-functions.php:1565 inc/taxonomies-functions.php:1607
+#, fuzzy
+#| msgid "Update all"
+msgid "Update %s"
+msgstr "全部更新"
+
+#. Used for autofill
+#: inc/taxonomies.php:999
+#, php-format
+msgid "Update %s name"
+msgstr ""
+
+#: inc/class.admin.mass.php:276
 msgid "Update all &raquo;"
 msgstr "全部更新 &raquo;"
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1009
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.admin.php:1024
-msgid "Tags <small>(separate multiple tags with commas: cats, pet food, dogs)</small>"
-msgstr "标签 <small> ( 以英文逗号分隔多个标签：cats, pet food, dogs)</small>"
+#: inc/taxonomies.php:994
+msgid "Update Item Name"
+msgstr ""
 
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/2.5/inc/simple-tags.widgets.php:255
+#: inc/class.client.php:59
+msgid "Update Media Tag name"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:222 views/admin/page-settings.php:33
+msgid "Update options &raquo;"
+msgstr "更新选项 &raquo;"
+
+#: inc/class.admin.autoterms.php:154
+#, php-format
+msgid ""
+"Use all the terms in the %s taxonomy. (Warning, this option can increases "
+"the CPU consumption a lot if you have many terms)"
+msgstr ""
+
+#: inc/class.widgets.php:342
+msgid "Use auto color cloud:"
+msgstr "自动为标签云定义颜色："
+
+#: inc/class.admin.autoterms.php:158
+#, php-format
+msgid ""
+"Use this option if you don't want to use all the terms in your %s taxonomy. "
+"You can select specific terms to use."
+msgstr ""
+
+#: inc/taxonomies.php:947
+msgid ""
+"Used as tab text when showing all terms for hierarchical taxonomy while "
+"editing post."
+msgstr ""
+
+#: inc/taxonomies.php:1012
+msgid ""
+"Used at the top of the term editor screen and button text for a new taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:963
+msgid ""
+"Used at the top of the term editor screen for an existing taxonomy term."
+msgstr ""
+
+#: inc/taxonomies.php:979
+msgid ""
+"Used in the admin bar when viewing editor screen for an existing taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:1177
+msgid ""
+"Used when indicating that there are no terms in the given taxonomy "
+"associated with an object."
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1551 inc/taxonomies-functions.php:1552
+#: inc/taxonomies-functions.php:1592 inc/taxonomies-functions.php:1595
+#: inc/taxonomies.php:983
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: inc/taxonomies.php:978
+msgid "View Item"
+msgstr ""
+
+#: inc/class.client.php:58
+msgid "View Media Tag"
+msgstr ""
+
+#: inc/class.widgets.php:386
+msgid "What to show"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:215
+msgid ""
+"When the whole word option is enabled, hashtag will not be autotag because "
+"of # prefix. This option allow to fixed this issue!"
+msgstr ""
+
+#: inc/taxonomies.php:1331
+msgid ""
+"Whether a taxonomy is intended for use publicly either via the admin "
+"interface or by front-end users."
+msgstr ""
+
+#: inc/taxonomies.php:1355
+msgid "Whether or not the taxonomy should be publicly queryable."
+msgstr ""
+
+#: inc/helper.options.admin.php:184
+msgid ""
+"Which difference between <strong>&#8216;Order tags selection&#8217;</strong> "
+"and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
+msgstr "<strong>“标签选择”</strong>与<strong>“标签显示”</strong> 有何区别？<br />"
+
+#: inc/class.admin.autoterms.php:205
+msgid "Whole Word ?"
+msgstr ""
+
+#: inc/taxonomies.php:727
+msgid ""
+"WordPress can use a custom permalink for this taxonomy. It does not have to "
+"match the slug."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:337
+msgid "WordPress core"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:361
+msgid "Yes"
+msgstr ""
+
+#: inc/helper.options.admin.php:93
+msgid ""
+"You can create an API key from <a href=\"https://dandelion.eu/\">service "
+"website</a>"
+msgstr ""
+
+#: inc/helper.options.admin.php:86
+msgid ""
+"You can create an API key from <a href=\"https://developers.refinitiv."
+"com/en/api-catalog/open-perm-id/intelligent-tagging-restful-"
+"api/documentation\">service website</a>"
+msgstr ""
+
+#: inc/helper.options.admin.php:244 inc/helper.options.admin.php:327
+#: inc/helper.options.admin.php:382
+msgid ""
+"You can find markers and explanations <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
+msgstr ""
+"您可以在 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">在线文档</a> "
+"中找到标记及其相关说明"
+
+#: inc/taxonomies.php:1476
+msgid "You can only delete taxonomies created with TaxoPress."
+msgstr ""
+
+#: inc/helper.options.admin.php:407
+#, fuzzy
+#| msgid ""
+#| "You can use the same syntax as <code>st_related_posts()</code>function to "
+#| "customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-"
+#| "tags/wiki\">documentation</a> for more details."
+msgid ""
+"You can use the same syntax as <code>st_related_posts()</code>public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+"您可以使用和 <code>st_related_posts()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https:"
+"//github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
+
+#: inc/helper.options.admin.php:292
+#, fuzzy
+#| msgid ""
+#| "You can use the same syntax as <code>st_tag_cloud()</code> function to "
+#| "customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-"
+#| "tags/wiki\">documentation</a> for more details."
+msgid ""
+"You can use the same syntax as <code>st_tag_cloud()</code> public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+"您可以使用和 <code>st_tag_cloud()</code> 函数一样的语法来自定义显示效果。详情请查看 <a href=\"https:"
+"//github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
+
+#: inc/helper.options.admin.php:335
+#, fuzzy
+#| msgid ""
+#| "You can use the same syntax as <code>st_the_tags()</code> function to "
+#| "customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-"
+#| "tags/wiki\">documentation</a> for more details."
+msgid ""
+"You can use the same syntax as <code>st_the_tags()</code> public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+"您可以使用与 <code>st_the_tags()</code> 函数一样的语法来定制显示效果。详情请查看 <a href=\"https:"
+"//github.com/WebFactoryLtd/simple-tags/wiki\">技术文档</a>"
+
+#: inc/class.admin.php:242
+#, php-format
+msgid ""
+"You currently use the custom post type \"<span>%s</span>\" and the taxonomy "
+"\"<span>%s</span>\""
+msgstr ""
+
+#: inc/helper.options.admin.php:190
+msgid ""
+"You must set &#8216;Order tags selection&#8217; to <strong>count-"
+"desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags "
+"display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr ""
+"您必须设置“标签选择依据”为<strong>count-desc</strong> 以获取最热门的 100 个标签，设置“标签显示排序”为<strong>"
+"random</strong> 以在标签云中随机对它们排序。"
+
+#: inc/helper.options.admin.php:319
+msgid "You must set zero (0) for display all tags."
+msgstr "置零（0）以显示全部标签"
+
+#: inc/class.widgets.php:18
 msgid "Your most used tags in cloud format with dynamic color and many options"
 msgstr "以标签云形式显示最常用的标签，有大量选项，可设置渐变色"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:57
-msgid "Import Embedded Tags"
-msgstr "导入内嵌标签"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:58
-msgid "Steps may take a few minutes depending on the size of your database. Please be patient."
-msgstr "这些步骤可能要花上几分钟时间，这取决于您的数据库大小。请稍具耐心。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:59
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "访问 <a href=\"https://wordpress.org/plugins/simple-tags\">插件主页</a> 以查看详情。如果您发现任何 Bug 或有更好的主意，请 <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">与我联系</a> ！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:68
-msgid "Howdy! This imports tags from embedded tags into this blog using the new WordPress native tagging structure."
-msgstr "您好！这将使用 WordPress 原生标签系统把内嵌标签导入到博客中。"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:69
-msgid "To accommodate larger databases for those tag-crazy authors out there, we have made this into an easy 4-step program to help you kick that nasty Embedded Tags habit. Just keep clicking along and we will let you know when you are in the clear!"
-msgstr "为了适应某些“标签狂人”的庞大数据库，我们准备了四个步骤的过程来帮助您戒除使用内嵌标签的恶习。只须一路点击，就可以完成了！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:70
-msgid "Don&#8217;t be stupid - backup your database before proceeding!"
-msgstr "不要犯糊涂 - 正式开始之前请备份你的数据库！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:72
-msgid "Step 1 &raquo;"
-msgstr "步骤 1 &raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:95
-msgid "Missing parameters in URL. (Start or End)"
-msgstr "URL 中缺少参数。（起始或结束）"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:107
-msgid "Configure and add tags to posts&#8230;"
-msgstr "配置并添加标签到日志中&#8230;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:114
-msgid "Start marker"
-msgstr "起始标记"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:117
-msgid "End marker"
-msgstr "结束标记"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:120
-msgid "Delete embedded tags once imported ?"
-msgstr "导入后删除内嵌标签？"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:122
-msgid "Import also embedded tags from page ?"
-msgstr "顺带导入页面中的内嵌标签？"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:125
-msgid "Start import &raquo;"
-msgstr "开始导入 &raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:180
-msgid "Done!"
-msgstr "完成！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:182
-msgid "Step 2 &raquo;"
-msgstr "步骤 2 &raquo;"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:199
-msgid "Import Complete!"
-msgstr "导入完成！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:200
-msgid "OK, so we lied about this being a 4-step program! You&#8217;re done!"
-msgstr "OK，我们对这四个步骤的过程撒了点谎！您已经完成了！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:201
-msgid "Now wasn&#8217;t that easy?"
-msgstr "很简单，不是吗？"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:202
-msgid "You can manage tags now !"
-msgstr "您现在就可以开始管理标签！"
-
-#: C:\xampp\htdocs\wp\wp-content\plugins\simple-tags/extras/simple-tags.importer.php:242
-msgid "Import Embedded Tags into the new WordPress native tagging structure."
-msgstr "导入内嵌标签为 WordPress 原生标签"
-
-#~ msgid "Drafts|manage posts header"
-#~ msgstr "草稿|manage posts header"
-#~ msgid "Close"
-#~ msgstr "关闭"
-#~ msgid "%s terms updated with success !"
-#~ msgstr "成功更新 %s 个标签！"
-#~ msgid "Category"
-#~ msgstr "分类"
-#~ msgid "TaxoPress: Advanced Edit Terms"
-#~ msgstr "TaxoPress：标签高级编辑"
-#~ msgid ""
-#~ "Be careful with this page ! You can cause important damages, and lost all "
-#~ "tags and categories of your WordPress installation."
-#~ msgstr "请小心！您的操作可能会导致会丢失所有标签和分类！"
-#~ msgid "Taxonomy&hellip;"
-#~ msgstr "分类&hellip;"
-#~ msgid "Counter (descending)"
-#~ msgstr "数量（降序）"
-#~ msgid "Counter (ascending)"
-#~ msgstr "数量（升序）"
-#~ msgid "Name (descending)"
-#~ msgstr "名称（降序）"
-#~ msgid "Name (ascending)"
-#~ msgstr "名称（升序）"
-#~ msgid "ID (no editing)"
-#~ msgstr "ID （不可编辑）"
-#~ msgid "Name"
-#~ msgstr "名称"
-#~ msgid "Slug (unique)"
-#~ msgstr "缩略名（唯一）"
-#~ msgid "Term group"
-#~ msgstr "标签组"
-#~ msgid "Taxonomy"
-#~ msgstr "分类"
-#~ msgid "Count"
-#~ msgstr "数量"
-#~ msgid "Parent"
-#~ msgstr "上级"
-#~ msgid "Description"
-#~ msgstr "描述"
-#~ msgid "Delete ?"
-#~ msgstr "删除？"
-#~ msgid "Update all terms"
-#~ msgstr "更新所有标签"
-#~ msgid "No terms to edit."
-#~ msgstr "没有可供编辑标签。"
-
