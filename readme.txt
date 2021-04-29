@@ -112,6 +112,14 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.0.4.2 - 2021-04-29
+* Fixed Mass Edit Terms Bugs when media is selected
+* Updated Taxonomy edit screen
+* Updated default taxonomy list sort by name
+* Updated to redirect to edit screen after creating new taxonomy
+* Fixed other miscellaneous bugs
+
+
 v3.0.4.1 - 2021-04-21
 * Fixed last release bugs
 
