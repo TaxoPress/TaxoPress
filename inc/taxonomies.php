@@ -555,6 +555,22 @@ class SimpleTags_Admin_Taxonomies
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
+
+
+
+                                                if (isset($current['description'])) {
+                                                    $current['description'] = stripslashes_deep($current['description']);
+                                                }
+                                                echo $ui->get_textarea_input([
+                                                    'namearray' => 'cpt_custom_tax',
+                                                    'name'      => 'description',
+                                                    'rows'      => '4',
+                                                    'cols'      => '40',
+                                                    'textvalue' => isset($current['description']) ? esc_textarea($current['description']) : '',
+                                                    'labeltext' => esc_html__('Description', 'simpletags'),
+                                                    'helptext'  => esc_attr__('Describe what your taxonomy is used for.',
+                                                        'simpletags'),
+                                                ]);
                                         
 
 
@@ -907,20 +923,6 @@ class SimpleTags_Admin_Taxonomies
                                                    style="display:none;">
 
                                                 <?php
-
-                                                if (isset($current['description'])) {
-                                                    $current['description'] = stripslashes_deep($current['description']);
-                                                }
-                                                echo $ui->get_textarea_input([
-                                                    'namearray' => 'cpt_custom_tax',
-                                                    'name'      => 'description',
-                                                    'rows'      => '4',
-                                                    'cols'      => '40',
-                                                    'textvalue' => isset($current['description']) ? esc_textarea($current['description']) : '',
-                                                    'labeltext' => esc_html__('Description', 'simpletags'),
-                                                    'helptext'  => esc_attr__('Describe what your taxonomy is used for.',
-                                                        'simpletags'),
-                                                ]);
 
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
