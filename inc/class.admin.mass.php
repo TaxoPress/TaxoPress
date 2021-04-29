@@ -348,10 +348,20 @@ class SimpleTags_Admin_Mass {
 				__( 'Private posts' ),
 				_n_noop( 'Private <span class="count">(%s)</span>', 'Private <span class="count">(%s)</span>' )
 			),
+			'inherit' => array(
+				_x( 'Inherit', 'post' ),
+				__( 'Inherit posts' ),
+				_n_noop( 'Inherit <span class="count">(%s)</span>', 'Inherit <span class="count">(%s)</span>' )
+			),
 		);
 
 		$post_stati       = apply_filters( 'post_stati', $post_stati );
 		$avail_post_stati = get_available_post_statuses( SimpleTags_Admin::$post_type );
+
+
+        if($q['post_type'] === 'attachment'){
+			$q['post_status'] = 'inherit';
+        }
 
 		$post_status_q = '';
 		if ( isset( $q['post_status'] ) && in_array( $q['post_status'], array_keys( $post_stati ) ) ) {
@@ -360,7 +370,8 @@ class SimpleTags_Admin_Mass {
 		} elseif ( ! isset( $q['post_status'] ) ) {
 			$q['post_status'] = '';
 		}
-
+        
+ 
 		if ( 'pending' === $q['post_status'] ) {
 			$order   = 'ASC';
 			$orderby = 'modified';
