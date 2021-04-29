@@ -183,45 +183,45 @@ function taxopress_update_taxonomy($data = [])
 
     //update our custom checkbox value if not checked
 
-if (!isset($data['cpt_custom_tax']['hierarchical'])) {
-    $data['cpt_custom_tax']['hierarchical'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['rewrite'])) {
-    $data['cpt_custom_tax']['rewrite'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['rewrite_withfront'])) {
-    $data['cpt_custom_tax']['rewrite_withfront'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['rewrite_hierarchical'])) {
-    $data['cpt_custom_tax']['rewrite_hierarchical'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['show_ui'])) {
-    $data['cpt_custom_tax']['show_ui'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['show_in_menu'])) {
-    $data['cpt_custom_tax']['show_in_menu'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['show_in_nav_menus'])) {
-    $data['cpt_custom_tax']['show_in_nav_menus'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['show_admin_column'])) {
-    $data['cpt_custom_tax']['show_admin_column'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['show_in_rest'])) {
-    $data['cpt_custom_tax']['show_in_rest'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['show_in_quick_edit'])) {
-    $data['cpt_custom_tax']['show_in_quick_edit'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['public'])) {
-    $data['cpt_custom_tax']['public'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['publicly_queryable'])) {
-    $data['cpt_custom_tax']['publicly_queryable'] = 0;
-}
-if (!isset($data['cpt_custom_tax']['query_var'])) {
-    $data['cpt_custom_tax']['query_var'] = 0;
-}
+    if (!isset($data['cpt_custom_tax']['hierarchical'])) {
+        $data['cpt_custom_tax']['hierarchical'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['rewrite'])) {
+        $data['cpt_custom_tax']['rewrite'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['rewrite_withfront'])) {
+        $data['cpt_custom_tax']['rewrite_withfront'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['rewrite_hierarchical'])) {
+        $data['cpt_custom_tax']['rewrite_hierarchical'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['show_ui'])) {
+        $data['cpt_custom_tax']['show_ui'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['show_in_menu'])) {
+        $data['cpt_custom_tax']['show_in_menu'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['show_in_nav_menus'])) {
+        $data['cpt_custom_tax']['show_in_nav_menus'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['show_admin_column'])) {
+        $data['cpt_custom_tax']['show_admin_column'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['show_in_rest'])) {
+        $data['cpt_custom_tax']['show_in_rest'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['show_in_quick_edit'])) {
+        $data['cpt_custom_tax']['show_in_quick_edit'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['public'])) {
+        $data['cpt_custom_tax']['public'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['publicly_queryable'])) {
+        $data['cpt_custom_tax']['publicly_queryable'] = 0;
+    }
+    if (!isset($data['cpt_custom_tax']['query_var'])) {
+        $data['cpt_custom_tax']['query_var'] = 0;
+    }
 
     /**
      * Fires before a taxonomy is updated to our saved options.
@@ -650,6 +650,13 @@ function taxopress_process_taxonomy()
         return;
     }
 
+    if (isset($_GET['new_taxonomy'])) {
+        if ((int)$_GET['new_taxonomy'] === 1) {
+            add_action('admin_notices', "taxopress_add_success_message_admin_notice");
+            add_filter('removable_query_args', 'taxopress_filter_removable_query_args_3');
+        }
+    }
+
     if (!empty($_POST) && (isset($_POST['cpt_submit']) || isset($_POST['cpt_delete']))) {
         $result = '';
         if (isset($_POST['cpt_submit'])) {
@@ -1018,10 +1025,30 @@ function taxopress_get_object_from_post_global()
  */
 function taxopress_add_success_admin_notice()
 {
+    //redirect to new taxonomy if success
+    wp_safe_redirect(
+        add_query_arg(
+            [
+                'page'               => 'st_taxonomies',
+                'add'                => 'taxonomy',
+                'action'             => 'edit',
+                'taxopress_taxonomy' => taxopress_get_object_from_post_global(),
+                'new_taxonomy'       => 1,
+            ],
+            taxopress_admin_url('admin.php')
+        )
+    );
+}
+
+/**
+ * Successful add callback.
+ */
+function taxopress_add_success_message_admin_notice()
+{
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has been successfully added', 'simpletags'),
-            taxopress_get_object_from_post_global()
+            $_GET['taxopress_taxonomy']
         )
     );
 }
@@ -1769,6 +1796,21 @@ function taxopress_filter_removable_query_args_2(array $args)
     ]);
 }
 
+/**
+ * Filters the list of query arguments which get removed from admin area URLs in WordPress.
+ *
+ * @link https://core.trac.wordpress.org/ticket/23367
+ *
+ * @param string[] $args Array of removable query arguments.
+ * @return string[] Updated array of removable query arguments.
+ */
+function taxopress_filter_removable_query_args_3(array $args)
+{
+    return array_merge($args, [
+        'new_taxonomy',
+    ]);
+}
+
 
 /**
  * Delete our custom taxonomy from the array of taxonomies.
@@ -1990,7 +2032,7 @@ function taxopress_recreate_custom_taxonomies()
 
     if (is_array($taxes)) {
         foreach ($taxes as $tax) {
-            if ( $tax['name'] === 'media_tag' && (int)get_option('taxopress_media_tag_deleted') > 0 ) {
+            if ($tax['name'] === 'media_tag' && (int)get_option('taxopress_media_tag_deleted') > 0) {
                 continue;
             }
 

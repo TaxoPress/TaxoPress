@@ -2,1016 +2,2380 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TaxoPress 2.0\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2021-04-29 15:14+0000\n"
 "Last-Translator: kazuhisa <kvex@c-atwork.com>\n"
-"Language-Team: c-atwork <master@c-atwork.com>\n"
+"Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n>1\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"Language: ja\n"
+"X-Generator: Loco https://localise.biz/"
 
-#: inc/class.admin.php:90
-msgid "Post tags"
-msgstr "投稿タグ"
-
-#: inc/class.admin.php:91
-msgid "Posts"
-msgstr "投稿"
-
-#: inc/class.admin.php:124
-msgid "This custom post type not have taxonomies."
-msgstr "このカスタム投稿タイプにはタクソノミがありません。"
-
-#: inc/class.admin.php:140
-msgid "You currently use the custom post type \"<span>%s</span>\" and the taxonomy \"<span>%s</span>\""
-msgstr "現在のカスタム投稿タイプは \"<span>%s</span>\" 、タクソノミは \"<span>%s</span>\""
-
-#: inc/class.admin.php:164
-msgid "Change selection"
-msgstr "選択を変更"
-
-#: inc/class.admin.php:217
-#: inc/class.admin.php:248
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: 設定"
-
-#. #-#-#-#-#  plugin.pot (TaxoPress 2.0)  #-#-#-#-#
-#. Plugin Name of the plugin/theme
-#: inc/class.admin.php:217
-msgid "TaxoPress"
-msgstr "TaxoPress"
-
-#: inc/class.admin.php:237
-msgid "Options saved"
-msgstr "設定は保存されました。"
-
-#: inc/class.admin.php:242
-msgid "TaxoPress options resetted to default options!"
-msgstr "TaxoPress の設定をデフォルトにリセットしました !"
-
-#: inc/class.admin.php:249
-#: inc/class.admin.mass.php:261
-#: inc/class.admin.autoterms.php:273
-msgid "Visit the <a href=\"https://wordpress.org/plugins/simple-tags/\">plugin's homepage</a> for further details. If you find a bug, or have a fantastic idea for this plugin, <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">ask me</a> !"
-msgstr "詳しい情報は <a href=\"https://wordpress.org/plugins/simple-tags/\">プラグインのホームページ</a> を参照してください。バグを見つけた場合、また、このプラグインのためのすばらしいアイディアをお持ちの方は <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">私にお知らせください</a> !"
-
-#: inc/class.admin.php:252
-#: inc/class.admin.php:271
-#: inc/class.admin.autoterms.php:224
-msgid "Update options &raquo;"
-msgstr "設定を更新する &raquo;"
-
-#: inc/class.admin.php:253
-#: inc/class.admin.php:272
-msgid "Do you really want to restore the default options?"
-msgstr "デフォルトの設定に戻しますか ?"
-
-#: inc/class.admin.php:253
-#: inc/class.admin.php:272
-msgid "Reset Options"
-msgstr "設定のリセット"
-
-#: inc/class.admin.php:311
-msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
-msgstr "これらを動作させるためには、少なくとも1個のタグを必要とします。タグを加えてから開始してください！"
-
-#: inc/class.admin.php:313
-msgid "This feature works only with activated JavaScript. Activate it in your Web browser so you can!"
-msgstr "これらは JavaScript で働いています。 動作させるには、ウェブブラウザで JavaScript をアクティブにしてください！"
-
-#: inc/class.admin.php:323
-msgid "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
-msgstr "&copy; Copyright 2010 - 2020 <a href="https://www.webfactoryltd.com/" >WebFactory Ltd</a> | <a href=\"https://wordpress.org/plugins/simple-tags/\">TaxoPress</a> | Version %s"
-
-#: inc/class.admin.php:420
-msgid "Administration"
-msgstr "管理"
-
-#: inc/class.admin.php:423
-msgid "Auto link"
-msgstr "自動リンク"
-
-#: inc/class.admin.php:426
-msgid "General"
-msgstr "一般設定"
-
-#: inc/class.admin.php:429
-msgid "Meta Keyword"
-msgstr "メタキーワード"
-
-#: inc/class.admin.php:432
-msgid "Embedded Tags"
-msgstr "埋め込みタグ"
-
-#: inc/class.admin.php:435
-msgid "Tags for Current Post"
-msgstr "投稿内でのタグ表示"
-
-#: inc/class.admin.php:438
-msgid "Related Posts"
-msgstr "関連投稿"
-
-#: inc/class.admin.php:441
-msgid "Related Tags"
-msgstr "関連タグ"
-
-#: inc/class.admin.php:444
-msgid "Manage Tags"
-msgstr "タグの管理"
-
-#: inc/class.admin.php:447
-#: inc/class.widgets.php:43
-msgid "Tag cloud"
-msgstr "タグクラウド"
-
-#: inc/class.admin.autocomplete.php:93
-#: inc/class.admin.autocomplete.php:96
-msgid "Tags (TaxoPress)"
-msgstr "タグ (TaxoPress)"
-
-#: inc/class.admin.autocomplete.php:115
-msgid "Separate tags with commas"
-msgstr "カンマで区切ってください"
-
-#: inc/helper.options.admin.php:4
-msgid "Active feature : mass edit"
-msgstr "アクティブな機能 : 一括編集"
-
-#: inc/helper.options.admin.php:5
-msgid "Active feature : autotags"
-msgstr "アクティブな機能 : 自動タグ"
-
-#: inc/helper.options.admin.php:6
-msgid "Active tags for page:"
-msgstr "ページで使用中のタグ"
-
-#: inc/helper.options.admin.php:7
-msgid "This feature allow page to be tagged. This option add pages in tags search. Also this feature add tag management in write page."
-msgstr "これはページへのタグ付けを可能にします。このオプションはタグ検索にページを追加します。また、ページのタグ管理を追加します。"
-
-#: inc/helper.options.admin.php:8
-msgid "Allow tag cloud in post/page content:"
-msgstr "投稿 / ページ内のタグクラウドを許可する:"
-
-#: inc/helper.options.admin.php:9
-msgid "Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WP replace this shortcode by a tag cloud."
-msgstr "これを有効にすると、ショートコード<code>[st_tag_cloud]</code> または <code>[st-tag-cloud]</code>でタグクラウドが表示されます。WP がタグクラウドでこのショートコードを置き換えます。"
-
-#: inc/helper.options.admin.php:12
-msgid "Activate click tags feature:"
-msgstr "クリックタグ機能を有効にする:"
-
-#: inc/helper.options.admin.php:13
-msgid "This feature add a link allowing you to display all the tags of your database. Once displayed, you can click over to add tags to post."
-msgstr "この機能はデータベース内のすべてのタグを表示するためのリンクを追加します。この機能を有効にするとクリックするだけでタグを投稿に追加することができます。"
-
-#: inc/helper.options.admin.php:14
-msgid "Click tags order"
-msgstr "クリックタグの表示順"
-
-#: inc/helper.options.admin.php:16
-msgid "<code>count-asc</code> &ndash; Least used."
-msgstr "<code>カウント-昇順</code> &ndash; 使われる回数が少ない順"
-
-#: inc/helper.options.admin.php:17
-msgid "<code>count-desc</code> &ndash; Most popular. (default)"
-msgstr "<code>カウント - 降順</code> &ndash; もっとも使われている順 (初期値)"
-
-#: inc/helper.options.admin.php:18
-msgid "<code>name-asc</code> &ndash; Alphabetical."
-msgstr "<code>名前順 - 昇順</code> &ndash; アルファベット順"
-
-#: inc/helper.options.admin.php:19
-msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
-msgstr "<code>名前順 - 降順</code> &ndash; アルファベット降順"
-
-#: inc/helper.options.admin.php:20
-msgid "<code>random</code> &ndash; Random."
-msgstr "<code>ランダム</code> &ndash; ランダム"
-
-#: inc/helper.options.admin.php:22
-msgid "Activate autocompletion feature with old input:"
-msgstr "自動補完機能を有効にする:"
-
-#: inc/helper.options.admin.php:23
-msgid "This feature displays a visual help allowing to enter tags more easily. As well add tags is easier than the autocompletion default of WordPress"
-msgstr "タグをより簡単に入力するためのヘルプを表示します。簡単に Wordpress の標準のタグ機能を保管できます。"
-
-#: inc/helper.options.admin.php:24
-msgid "Activate suggested tags feature: (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net, Local DB)"
-msgstr "おすすめタグ機能を有効にする: (Yahoo! Term Extraction API, OpenCalais, Alchemy, Zemanta, Tag The Net,ローカル DB)"
-
-#: inc/helper.options.admin.php:25
-msgid "This feature add a box allowing you get suggested tags, by comparing post content and various sources of tags. (external and internal)"
-msgstr "この機能は、投稿内容とさまざまなタグの引用元 (外部と内部) を比較して、おすすめタグの表示ボックスを追加します。"
-
-#: inc/helper.options.admin.php:26
-msgid "OpenCalais API Key"
-msgstr "OpenCalais API Key"
-
-#: inc/helper.options.admin.php:27
-msgid "You can create an API key from <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en\">service website</a>"
-msgstr "新しい API キーは <a href=\"https://iamui.thomsonreuters.com/iamui/UI/createUser?app_id=Bold&realm=Bold&realm=Bold&lang=en\">サービス公式サイト</a> から入手できます。"
-
-#: inc/helper.options.admin.php:28
-msgid "Alchemy API Key"
-msgstr "Alchemy API Key"
-
-#: inc/array.options.php:24
-msgid "You can create an API key from <a href=\"http://www.alchemyapi.com/\">service website</a>"
-msgstr "新しい API キーは <a href=\"http://www.alchemyapi.com/\">サービスウェブサイト</a> から入手できます。"
-
-#: inc/helper.options.admin.php:30
-msgid "Zemanta API Key"
-msgstr "Zemanta API Key"
-
-#: inc/array.options.php:26
-msgid "You can create an API key from <a href=\"http://developer.zemanta.com/\">service website</a>"
-msgstr "新しい API キーは <a href=\"http://developer.zemanta.com/\">サービスウェブサイト</a> から入手できます。"
-
-#: inc/helper.options.admin.php:34
-msgid "Active auto link tags into post content:"
-msgstr "投稿内の自動リンクタグを有効にする:"
-
-#: inc/helper.options.admin.php:35
-msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
-msgstr "例: \"WordPress\" タグがあり、投稿内に \"wordpress\" が含まれているとき、この機能は \"wordpress\" を \"wordpress\" タグのページ (http://myblog.net/tag/wordpress/) へのリンクに置き換えます。"
-
-#: inc/helper.options.admin.php:36
-msgid "Min usage for auto link tags:"
-msgstr "自動リンクタグの最小使用数:"
-
-#: inc/helper.options.admin.php:37
-msgid "This parameter allows to fix a minimal value of use of tags. Default: 1."
-msgstr "このパラメータはタグの最小使用値を固定します。デフォルト: 1。"
-
-#: inc/helper.options.admin.php:38
-msgid "Maximum number of links per article:"
-msgstr "記事ごとの最大リンク数"
-
-#: inc/array.options.php:34
-msgid "This setting determines the maximum number of links created by article. Default: 10."
-msgstr "記事内のリンクの最大数を調べます。 デフォルト: 10。"
-
-#: inc/helper.options.admin.php:40
-msgid "Maximum number of links for the same tag:"
-msgstr "同じタグのリンクの最大数"
-
-#: inc/helper.options.admin.php:41
-msgid "This setting determines the maximum number of links created by article for the same tag. Default: 1."
-msgstr "この設定は、記事の同じタグによって作成されるリンクの最大数を決定します。初期値：1"
-
-#: inc/helper.options.admin.php:42
-msgid "Ignore case for auto link feature ?"
-msgstr "自動リンク機能で大文字 / 小文字を区別しない ?"
-
-#: inc/helper.options.admin.php:43
-msgid "Example: If you ignore case, auto link feature will replace the word \"wordpress\" by the tag link \"WordPress\"."
-msgstr "例: この設定を有効にすると、自動リンク機能は単語 \"wordpress\" をタグリンク \"WordPress\" で置き換えます。"
-
-#: inc/helper.options.admin.php:44
-msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
-msgstr "タグリンクにいくつかの用語を入れないようにしてください。 Ads Link subtition など"
-
-#: inc/helper.options.admin.php:45
-msgid "Example: If you enter the term \"Paris\", the auto link tags feature will never replace this term by this link."
-msgstr "使用例： 例えば \"Paris\" という単語を入力すると、 この単語をリンクに置き換えません。"
-
-#: inc/helper.options.admin.php:48
-msgid "Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
-msgstr "<strong>'タグの選択順'</strong> と <strong>'タグの表示順'</strong> の違いは ?<br />"
-
-#: inc/helper.options.admin.php:50
-msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
-msgstr "<strong>&#8216;タグの選択順&#8217;</strong> はタグクラウド生成の最初のステップで、表示するタグの選択基準を設定します。"
-
-#: inc/helper.options.admin.php:51
-msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
-msgstr "<strong>&#8216;タグの表示順&#8217;</strong> は二番目のステップで、選択されたタグを並び替えて表示します。"
-
-#: inc/helper.options.admin.php:53
-msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
-msgstr "<strong>例:</strong> 最もよく使用されている 100 個のタグをランダムに表示するとします。<br />"
-
-#: inc/helper.options.admin.php:54
-msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
-msgstr "最もよく使用されている 100 個のタグを取得するため、&#8216;タグの選択順&#8217; で <strong>count-desc</strong> を設定し、ランダムなクラウドを表示するため、&#8216;タグの表示順&#8217; で <strong>random</strong> を設定します。"
-
-#: inc/helper.options.admin.php:55
-msgid "Order by for tags selection:"
-msgstr "タグの選択順:"
-
-#: inc/helper.options.admin.php:57
-#: inc/helper.options.admin.php:68
-msgid "<code>count</code> &ndash; Counter."
-msgstr "<code>count</code> &ndash; 使用頻度順"
-
-#: inc/helper.options.admin.php:58
-#: inc/helper.options.admin.php:69
-msgid "<code>name</code> &ndash; Name."
-msgstr "<code>count</code> &ndash; 名称順"
-
-#: inc/helper.options.admin.php:59
-#: inc/helper.options.admin.php:70
-msgid "<code>random</code> &ndash; Random. (default)"
-msgstr "<code>random</code> &ndash; ランダム (初期値)"
-
-#: inc/helper.options.admin.php:61
-msgid "Order tags selection:"
-msgstr "タグの選択順:"
-
-#: inc/helper.options.admin.php:63
-#: inc/helper.options.admin.php:74
-msgid "<code>asc</code> &ndash; Ascending."
-msgstr "<code>asc</code> &ndash; 昇順"
-
-#: inc/helper.options.admin.php:64
-#: inc/helper.options.admin.php:75
-msgid "<code>desc</code> &ndash; Descending."
-msgstr "<code>desc</code> &ndash; 降順"
-
-#: inc/helper.options.admin.php:66
-msgid "Order by for tags display:"
-msgstr "タグの表示順:"
-
-#: inc/helper.options.admin.php:72
-msgid "Order tags display:"
-msgstr "タグの表示順:"
-
-#: inc/helper.options.admin.php:77
-msgid "Tags cloud type format:"
-msgstr "タグクラウドの表示形式:"
-
-#: inc/helper.options.admin.php:79
-msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
-msgstr "<code>list</code> &ndash; フォーマットされたリストを表示します (ul/li)。"
-
-#: inc/helper.options.admin.php:80
-msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
-msgstr "<code>flat</code> &ndash; インライン表示 (リストなし、div のみ)"
-
-#: inc/helper.options.admin.php:82
-msgid "Tag link format:"
-msgstr "タグリンクのフォーマット:"
-
-#: inc/helper.options.admin.php:83
-msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
-msgstr "マーカーや解説については <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">オンラインドキュメント</a>を参照してください"
-
-#: inc/helper.options.admin.php:84
-msgid "Maximum number of tags to display: (default: 45)"
-msgstr "表示するタグの最大数: (デフォルト: 45)"
-
-#: inc/helper.options.admin.php:85
-msgid "Enter the text to show when there is no tag:"
-msgstr "タグが無いときに表示するテキスト:"
-
-#: inc/helper.options.admin.php:86
-msgid "Enter the positioned title before the list, leave blank for no title:"
-msgstr "リストの前 (上) に表示するタイトル:"
-
-#: inc/helper.options.admin.php:87
-msgid "Most popular color:"
-msgstr "最も使用されているタグの色:"
-
-#: inc/helper.options.admin.php:88
-msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
-msgstr "色は 6 桁の 16 進数で入力します (#eee は #eeeeee の省略形です)。"
-
-#: inc/helper.options.admin.php:89
-msgid "Least popular color:"
-msgstr "最も使用されていないタグの色:"
-
-#: inc/helper.options.admin.php:90
-msgid "Most popular font size:"
-msgstr "最も使用されているタグのフォントサイズ:"
-
-#: inc/helper.options.admin.php:91
-msgid "The two font sizes are the size of the largest and smallest tags."
-msgstr "この 2 つのフォントサイズはそれぞれ最も使用されているタグと最も使用されていないタグのサイズです。"
-
-#: inc/helper.options.admin.php:92
-msgid "Least popular font size:"
-msgstr "最も使用されていないタグのフォントサイズ:"
-
-#: inc/helper.options.admin.php:93
-msgid "The units to display the font sizes with, on tag clouds:"
-msgstr "タグクラウドのフォントサイズで使用する単位:"
-
-#: inc/helper.options.admin.php:94
-msgid "The font size units option determines the units that the two font sizes use."
-msgstr "この 2 つのフォントサイズで使用するフォントの単位です。"
-
-#: inc/helper.options.admin.php:95
-msgid "<strong>Advanced usage</strong>:"
-msgstr "<strong>高度な利用</strong>:"
-
-#: inc/helper.options.admin.php:96
-msgid "You can use the same syntax as <code>st_tag_cloud()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "<code>st_tag_cloud()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">ドキュメンテーション</a> を参照してください。"
-
-#: inc/helper.options.admin.php:96
-msgid "You can use the same syntax as <code>st_the_tags()</code> function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
-msgstr "<code>st_the_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">ドキュメンテーション</a> を参照してください。"
-
-#: inc/helper.options.admin.php:99
-#: inc/helper.options.admin.php:110
-#: inc/helper.options.admin.php:117
-#: inc/helper.options.admin.php:123
-msgid "This feature has been removed from TaxoPress because it is not relevant enough and there are better plugins like<br />"
-msgstr "この機能は、よりよいプラグインがあるために、Simple Tag から削除されています。<br />"
-
-#: inc/helper.options.admin.php:107
-msgid "This feature has been removed from TaxoPress because it is not relevant enough and i recommended to use the core function of WP <code style=\"font-weight:700;\">the_tags()</code><br />"
-msgstr ""
-
-#: inc/class.admin.clickterms.php:14
-msgid "Display click tags"
-msgstr "クリックタグを表示する"
-
-#: inc/class.admin.clickterms.php:14
-msgid "Hide click tags"
-msgstr "クリックタグを隠す"
-
-#: inc/class.admin.clickterms.php:27
-#: inc/class.admin.clickterms.php:29
-msgid "Click tags"
-msgstr "タグをクリック"
-
-#: inc/class.admin.clickterms.php:55
-#: inc/class.admin.suggest.php:404
-msgid "No terms in your WordPress database."
-msgstr "あなたの Wordpress にはタグがありません。"
-
-#: inc/class.admin.clickterms.php:94
-#: inc/class.admin.suggest.php:420
-msgid "No results from your WordPress database."
-msgstr "あなたの Wordpress のデータベースから応答がありません。"
-
-#: inc/helper.options.default.php:33
-#: inc/class.client.tagcloud.php:68
-msgid "No tags."
-msgstr "タグはありません。"
-
-#: inc/helper.options.default.php:34
-#: inc/class.client.tagcloud.php:70
-msgid "<h4>Tag Cloud</h4>"
-msgstr "<h4>タグクラウド</h4>"
-
-#: inc/helper.options.default.php:36
-#: inc/class.client.tagcloud.php:69
-msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
-msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
-
-#: inc/class.admin.mass.php:22
-msgid "Simple Terms: Mass Edit Terms"
-msgstr "TaxoPress: タグの一括編集"
-
-#: inc/class.admin.mass.php:22
-msgid "Mass Edit Terms"
-msgstr "タグ一括編集"
-
-#: inc/class.admin.mass.php:42
-msgid "Security problem. Try again. If this problem persist, contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">plugin author</a>."
-msgstr "セキュリティ問題があります。再度お試しください。もしこの問題が続くようなら <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">プラグイン作者</a>連絡してください"
-
-#: inc/class.admin.mass.php:70
+#: inc/class.admin.mass.php:83
 msgid "%1$s %2$s(s) terms updated with success !"
 msgstr "%1$s %2$s(s) タグをアップデートしました！"
 
-#: inc/class.admin.mass.php:111
-msgid "Mass edit terms"
-msgstr "タグの一括編集"
-
-#: inc/class.admin.mass.php:118
-msgid "All"
-msgstr "全て"
-
-#: inc/class.admin.mass.php:146
-msgid "Search"
-msgstr "検索"
-
-#: inc/class.admin.mass.php:179
-msgid "Show all dates"
-msgstr "全ての日付を表示"
-
-#: inc/class.admin.mass.php:202
-msgid "Quantity&hellip;"
-msgstr "表示数&hellip;"
-
-#: inc/class.admin.mass.php:212
-msgid "Filter"
-msgstr "フィルター"
-
-#: inc/class.admin.mass.php:229
-msgid "Post title"
-msgstr "投稿表題"
-
-#: inc/class.admin.mass.php:230
-msgid "Terms : %s"
-msgstr "タグ : %s"
-
-#: inc/class.admin.mass.php:241
-msgid "Edit"
-msgstr "編集"
-
-#: inc/class.admin.mass.php:252
-msgid "Update all &raquo;"
-msgstr "全て更新 &raquo;"
-
-#: inc/class.admin.mass.php:258
-msgid "No content to edit."
-msgstr "編集するコンテンツはありません。"
-
-#: inc/class.admin.mass.php:297
-msgctxt "post"
-msgid "Published"
-msgstr "公開"
-
-#: inc/class.admin.mass.php:297
-msgid "Published posts"
-msgstr "投稿を公開しました"
-
-#: inc/class.admin.mass.php:297
-msgid "Published <span class=\"count\">(%s)</span>"
-msgid_plural "Published <span class=\"count\">(%s)</span>"
-msgstr[0] "公開 <span class=\"count\">(%s)</span>"
-msgstr[1] "公開 <span class=\"count\">(%s)</span>"
-
-#: inc/class.admin.mass.php:298
-msgctxt "post"
-msgid "Scheduled"
-msgstr "予約"
-
-#: inc/class.admin.mass.php:298
-msgid "Scheduled posts"
-msgstr "投稿を予約しました"
-
-#: inc/class.admin.mass.php:298
-msgid "Scheduled <span class=\"count\">(%s)</span>"
-msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
-msgstr[0] "予約 <span class=\"count\">(%s)</span>"
-msgstr[1] "予約 <span class=\"count\">(%s)</span>"
-
-#: inc/class.admin.mass.php:299
-msgctxt "post"
-msgid "Pending Review"
-msgstr "承認待ち"
-
-#: inc/class.admin.mass.php:299
-msgid "Pending posts"
-msgstr "投稿待ち"
-
-#: inc/class.admin.mass.php:299
-msgid "Pending Review <span class=\"count\">(%s)</span>"
-msgid_plural "Pending Review <span class=\"count\">(%s)</span>"
-msgstr[0] "承認待ち <span class=\"count\">(%s)</span>"
-msgstr[1] "承認待ち <span class=\"count\">(%s)</span>"
-
-#: inc/class.admin.mass.php:300
-msgctxt "post"
-msgid "Draft"
-msgstr "下書き"
-
-#: inc/class.admin.mass.php:300
-msgctxt "manage posts header"
-msgid "Drafts"
-msgstr "下書き"
-
-#: inc/class.admin.mass.php:300
-msgid "Draft <span class=\"count\">(%s)</span>"
-msgid_plural "Drafts <span class=\"count\">(%s)</span>"
-msgstr[0] "下書き <span class=\"count\">(%s)</span>"
-msgstr[1] "下書き <span class=\"count\">(%s)</span>"
-
-#: inc/class.admin.mass.php:301
-msgctxt "post"
-msgid "Private"
-msgstr "プライベート"
-
-#: inc/class.admin.mass.php:301
-msgid "Private posts"
-msgstr "プライベート投稿"
-
-#: inc/class.admin.mass.php:301
-msgid "Private <span class=\"count\">(%s)</span>"
-msgid_plural "Private <span class=\"count\">(%s)</span>"
-msgstr[0] "プライベート <span class=\"count\">(%s)</span>"
-msgstr[1] "プライベート <span class=\"count\">(%s)</span>"
-
-#: inc/class.widgets.php:15
-msgid "Tag Cloud (TaxoPress)"
-msgstr "タグクラウド(TaxoPress)"
-
-#: inc/class.widgets.php:16
-msgid "Your most used tags in cloud format with dynamic color and many options"
-msgstr "タグクラウドで、使用の多いタグの表示設定"
-
-#: inc/class.widgets.php:78
-msgid "Tags"
-msgstr "ｔａｇｕ"
-
-#: inc/class.widgets.php:172
-msgid "Empty field will use default value."
-msgstr "空白の欄ではデフォルトの値が使用されます。"
-
-#: inc/class.widgets.php:176
-msgid "Title:"
-msgstr "タイトル:"
-
-#: inc/class.widgets.php:183
-msgid "Max tags to display: (default: 45)"
-msgstr "表示するタグの数: (デフォルト: 45)"
-
-#: inc/class.widgets.php:190
-msgid "Order by for DB selection tags:"
-msgstr "DB選択のタグ順"
-
-#: inc/class.widgets.php:192
-#: inc/class.widgets.php:215
-msgid "Name"
-msgstr "名前"
-
-#: inc/class.widgets.php:193
-msgid "Slug"
-msgstr "スラグ"
-
-#: inc/class.widgets.php:194
-msgid "Term group"
-msgstr "カテゴリ名"
-
-#: inc/class.widgets.php:195
-#: inc/class.widgets.php:216
-msgid "Counter"
-msgstr "使用数"
-
-#: inc/class.widgets.php:196
-#: inc/class.widgets.php:217
-msgid "Random (default)"
-msgstr "ランダム (初期値)"
-
-#: inc/class.widgets.php:203
-msgid "Order for DB selection tags:"
-msgstr "DB選択のタグ順"
-
-#: inc/class.widgets.php:205
-#: inc/class.widgets.php:226
-msgid "ASC"
-msgstr "昇順"
-
-#: inc/class.widgets.php:206
-#: inc/class.widgets.php:227
-msgid "DESC (default)"
-msgstr "降順 (デフォルト)"
-
-#: inc/class.widgets.php:213
-msgid "Order by for display tags:"
-msgstr "表示用のタグ順"
-
-#: inc/class.widgets.php:224
-msgid "Order for display tags:"
-msgstr "表示用のタグ順"
-
-#: inc/class.widgets.php:234
-msgid "Font size mini: (default: 8)"
-msgstr "最大フォントサイズ: (デフォルト: 8)"
-
-#: inc/class.widgets.php:241
-msgid "Font size max: (default: 22)"
-msgstr "フォントの最大サイズ: (デフォルト: 22)"
-
-#: inc/class.widgets.php:248
-msgid "Unit font size:"
-msgstr "フォントサイズの単位:"
-
-#: inc/class.widgets.php:250
-msgid "Point (default)"
-msgstr "ポイント (デフォルト)"
-
-#: inc/class.widgets.php:251
-msgid "Pixel"
-msgstr "ピクセル"
-
-#: inc/class.widgets.php:252
-msgid "Em"
-msgstr "em"
-
-#: inc/class.widgets.php:253
-msgid "Pourcent"
-msgstr "パーセント"
-
-#: inc/class.widgets.php:260
-msgid "Format:"
-msgstr "フォーマット:"
-
-#: inc/class.widgets.php:262
-msgid "Flat (default)"
-msgstr "フラット (デフォルト)"
-
-#: inc/class.widgets.php:263
-msgid "List (UL/LI)"
-msgstr "リスト (UL/LI)"
-
-#: inc/class.widgets.php:271
-msgid "Use auto color cloud:"
-msgstr "クラウドを自動的に色付けする:"
-
-#: inc/class.widgets.php:277
-msgid "Font color mini: (default: #CCCCCC)"
-msgstr "最小フォント色: (デフォルト: #CCCCCC)"
-
-#: inc/class.widgets.php:284
-msgid "Font color max: (default: #000000)"
-msgstr "最大フォント色: (デフォルト: #000000)"
-
-#: inc/class.widgets.php:291
-msgid "Extended format: (advanced usage)"
-msgstr "拡張フォーマット: (高度な用法)"
-
-#: inc/class.widgets.php:298
-msgid "What to show"
-msgstr "なにを表示する"
-
-#: inc/class.admin.suggest.php:21
-msgid "Choose a provider to get suggested tags (local, yahoo or tag the net)."
-msgstr "おすすめタグの提供元を選択してください (ローカル、yahoo もしくは tag the net)。"
-
-#: inc/class.admin.suggest.php:38
-msgid "Ajax loading"
-msgstr "Ajax loading"
-
-#: inc/class.admin.suggest.php:39
-msgid "Suggested tags from :"
-msgstr "おすすめタグの引用元:"
-
-#: inc/class.admin.suggest.php:40
-msgid "Local tags"
-msgstr "ローカルタグ"
-
-#: inc/class.admin.suggest.php:41
-msgid "Yahoo"
-msgstr "Yahoo"
-
-#: inc/class.admin.suggest.php:42
-msgid "OpenCalais"
-msgstr "OpenCalais"
-
-#: inc/class.admin.suggest.php:43
-msgid "AlchemyAPI"
-msgstr "AlchemyAPI"
-
-#: inc/class.admin.suggest.php:44
-msgid "Zemanta"
-msgstr "Zemanta"
-
-#: inc/class.admin.suggest.php:45
-msgid "Tag The Net"
-msgstr "Tag The Net"
-
-#: inc/class.admin.suggest.php:50
-#: inc/class.admin.suggest.php:54
-msgid "Suggested tags"
-msgstr "お奨めのタグ"
-
-#: inc/class.admin.suggest.php:125
-msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "OpenCalais は API キーを必要とします。TaxoPress オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
-
-#: inc/class.admin.suggest.php:133
-#: inc/class.admin.suggest.php:189
-#: inc/class.admin.suggest.php:243
-#: inc/class.admin.suggest.php:290
-#: inc/class.admin.suggest.php:342
-#: inc/class.admin.suggest.php:413
-msgid "No text was sent."
-msgstr "テキストが送信されませんでした。"
-
-#: inc/class.admin.suggest.php:153
-msgid "No results from OpenCalais service."
-msgstr "OpenCalais のサービスから応答がありません。"
-
-#: inc/class.admin.suggest.php:181
-msgid "AlchemyAPI need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "AlchemyAPI は API キーを必要とします。TaxoPress オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
-
-#: inc/class.admin.suggest.php:211
-msgid "No results from Alchemy API."
-msgstr "Alchemy API から応答がありません。"
-
-#: inc/class.admin.suggest.php:235
-msgid "Zemanta need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
-msgstr "Zemanta は API キーを必要とします。TaxoPress オプションを設定するためにサービスウェブサイトで API キーを入手してください。"
-
-#: inc/class.admin.suggest.php:267
-msgid "No results from Zemanta API."
-msgstr "Zemanta API から応答がありません。"
-
-#: inc/class.admin.suggest.php:311
-msgid "No results from Yahoo! service."
-msgstr "Yahoo! のサービスから応答がありません。"
-
-#: inc/class.admin.suggest.php:359
-msgid "No results from Tag The Net service."
-msgstr "Tag The Net サービスから応答がありません。"
-
-#: inc/class.admin.suggest.php:434
-msgid "No correspondance between your content and terms from the WordPress database."
-msgstr "WordPressデータベースに コンテンツやタグがありません。"
-
-#: inc/class.client.tagcloud.php:437
-msgid "Invalid Taxonomy"
-msgstr "無効なタクソノミ"
-
-#: inc/class.client.autolinks.php:150
-msgid "Posts tagged with %s"
-msgstr "%s タグの付いた投稿"
-
-#: inc/class.admin.autoterms.php:23
-msgid "Simple Terms: Auto Terms"
-msgstr "TaxoPress: 自動タグ"
-
-#: inc/class.admin.autoterms.php:23
-msgid "Auto Terms"
-msgstr "自動タグ"
-
-#: inc/class.admin.autoterms.php:77
-msgid "Auto terms options updated !"
-msgstr "自動タグのオプションを更新しました！"
-
-#: inc/class.admin.autoterms.php:103
-msgid "Overview"
-msgstr "概要"
-
-#: inc/class.admin.autoterms.php:104
-msgid "The bulb are lit when the association taxonomy and custom post type have the classification automatic activated. Otherwise, the bulb is off."
-msgstr "電球は、関連するタクソノミおよびカスタムポストタイプがアクティブのとき自動が点灯します。それ以外の場合は、電球がオフになっています。"
-
-#: inc/class.admin.autoterms.php:108
-#: inc/class.admin.autoterms.php:121
-msgid "Custom types / Taxonomies"
-msgstr "カスタムタイプ / タクソノミ"
-
-#: inc/class.admin.autoterms.php:157
-msgid "Context configured & actived."
-msgstr "コンテキスト設定及び有効化"
-
-#: inc/class.admin.autoterms.php:159
-msgid "Context unconfigured."
-msgstr "コンテキスト無効"
-
-#: inc/class.admin.autoterms.php:176
-msgid "Auto Terms for %s and %s"
-msgstr "%s と %s の自動タグ"
-
-#: inc/class.admin.autoterms.php:180
-msgid "Auto terms list"
-msgstr "自動タグリスト"
-
-#: inc/class.admin.autoterms.php:181
-msgid "This feature allows Wordpress to look into post content and title for specified terms when saving posts. If your post content or title contains the word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress will add automatically \"wordpress\" as term for this post."
-msgstr "この機能は、投稿保存時に投稿内やタイトルに指定されたタグを探します。例えば、\"WordPress\" という単語が投稿内やタイトルに含まれていて、自動タグリストに \"wordpress\" があれば、TaxoPress がこの投稿に自動的に \"wordpress\" タグを付けます。"
-
-#: inc/class.admin.autoterms.php:183
-msgid "Options"
-msgstr "設定"
-
-#: inc/class.admin.autoterms.php:187
+#: inc/class.admin.manage.php:804 inc/class.admin.manage.php:913
+#, php-format
+msgid "%1s term(s) deleted."
+msgstr ""
+
+#: inc/class.client.related_posts.php:424
+#, php-format
+msgid "%d topic"
+msgid_plural "%d topics"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/taxonomies-functions.php:1050 inc/taxonomies-functions.php:1448
+#, php-format
+msgid "%s has been successfully added"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1104 inc/taxonomies-functions.php:1460
+#, php-format
+msgid "%s has been successfully deleted"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1466
+#, php-format
+msgid "%s has been successfully imported"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1077 inc/taxonomies-functions.php:1454
+#, php-format
+msgid "%s has been successfully updated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1063 inc/taxonomies-functions.php:1450
+#, php-format
+msgid "%s has failed to be added"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1117 inc/taxonomies-functions.php:1462
+#, php-format
+msgid "%s has failed to be deleted"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1468
+#, php-format
+msgid "%s has failed to be imported"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1090 inc/taxonomies-functions.php:1456
+#, php-format
+msgid "%s has failed to be updated"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1215
+#, php-format
+msgid "%s list"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1198
+#, php-format
+msgid "%s list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:736
+msgid "(default: taxonomy name)"
+msgstr ""
+
+#: inc/taxonomies.php:1241
+msgid "(e.g. &larr; Back to jobs"
+msgstr ""
+
+#: inc/taxonomies.php:1010
+msgid "(e.g. Add New Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1124
+msgid "(e.g. Add or remove Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:945
+msgid "(e.g. All Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1142
+msgid "(e.g. Choose from the most used Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:961
+msgid "(e.g. Edit Job)"
+msgstr ""
+
+#: inc/taxonomies.php:527
+msgid "(e.g. Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1191
+msgid "(e.g. Jobs list navigation)"
+msgstr ""
+
+#: inc/taxonomies.php:1209
+msgid "(e.g. Jobs list)"
+msgstr ""
+
+#: inc/taxonomies.php:517 inc/taxonomies.php:931
+msgid "(e.g. Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1026
+msgid "(e.g. New Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:1159
+msgid "(e.g. No Jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1225
+msgid "(e.g. No jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1175
+msgid "(e.g. No jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1042
+msgid "(e.g. Parent Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1058
+msgid "(e.g. Parent Job:)"
+msgstr ""
+
+#: inc/taxonomies.php:1090
+msgid "(e.g. Popular Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1074
+msgid "(e.g. Search Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1106
+msgid "(e.g. Separate Jobs with commas)"
+msgstr ""
+
+#: inc/taxonomies.php:993
+msgid "(e.g. Update Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:977
+msgid "(e.g. View Job)"
+msgstr ""
+
+#: inc/helper.options.default.php:49 inc/class.client.related_posts.php:103
+msgid ""
+"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
+"%post_title%</a> (%post_comment%)"
+msgstr ""
+
+#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:247
+#: inc/helper.options.default.php:61
+msgid ""
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
+"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
+"%tag_color%\">%tag_name%</a>"
+msgstr ""
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
+"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
+"%tag_color%\">%tag_name%</a>"
+
+#: inc/helper.options.default.php:39
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr ""
+
+#: inc/class.client.post_tags.php:111
+msgid ""
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
+"%tag_name%</a>"
+msgstr ""
+
+#: inc/helper.options.admin.php:159 inc/helper.options.admin.php:303
+#: inc/helper.options.admin.php:354
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>all</code> &ndash; ブログとフィード。"
+
+#: inc/helper.options.admin.php:207 inc/helper.options.admin.php:226
+msgid "<code>asc</code> &ndash; Ascending."
+msgstr "<code>asc</code> &ndash; 昇順"
+
+#: inc/helper.options.admin.php:304 inc/helper.options.admin.php:355
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash; ブログのみ表示。"
+
+#: inc/helper.options.admin.php:370
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr ""
+
+#: inc/helper.options.admin.php:67
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr "<code>カウント-昇順</code> &ndash; 使われる回数が少ない順"
+
+#: inc/helper.options.admin.php:371
+msgid ""
+"<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:68
+#, fuzzy
+#| msgid "<code>count-desc</code> &ndash; Most popular. (default)"
+msgid "<code>count-desc</code> &ndash; Most popular."
+msgstr "<code>カウント - 降順</code> &ndash; もっとも使われている順 (初期値)"
+
+#: inc/helper.options.admin.php:216
+msgid "<code>count</code> &ndash; Counter."
+msgstr "<code>count</code> &ndash; 使用頻度順"
+
+#: inc/helper.options.admin.php:197
+msgid "<code>count</code> &ndash; Counter. (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:368
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr ""
+
+#: inc/helper.options.admin.php:369
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr ""
+
+#: inc/helper.options.admin.php:208 inc/helper.options.admin.php:227
+msgid "<code>desc</code> &ndash; Descending."
+msgstr "<code>desc</code> &ndash; 降順"
+
+#: inc/helper.options.admin.php:236
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr "<code>flat</code> &ndash; インライン表示 (リストなし、div のみ)"
+
+#: inc/helper.options.admin.php:305 inc/helper.options.admin.php:356
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr "<code>homeonly</code> &ndash; フロントページのみ表示。"
+
+#: inc/helper.options.admin.php:235
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr "<code>list</code> &ndash; フォーマットされたリストを表示します (ul/li)。"
+
+#: inc/helper.options.admin.php:372
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr "<code>名前順 - 昇順</code> &ndash; アルファベット順"
+
+#: inc/helper.options.admin.php:69
+msgid "<code>name-asc</code> &ndash; Alphabetical. (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:70 inc/helper.options.admin.php:373
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr "<code>名前順 - 降順</code> &ndash; アルファベット降順"
+
+#: inc/helper.options.admin.php:198 inc/helper.options.admin.php:217
+msgid "<code>name</code> &ndash; Name."
+msgstr "<code>count</code> &ndash; 名称順"
+
+#: inc/helper.options.admin.php:158
+msgid "<code>no</code> &ndash; Nowhere"
+msgstr ""
+
+#: inc/helper.options.admin.php:302 inc/helper.options.admin.php:353
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>no</code> &ndash; 表示しない (初期値)"
+
+#: inc/helper.options.admin.php:308 inc/helper.options.admin.php:359
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr "<code>pageonly</code> &ndash; 固定ページのみ"
+
+#: inc/helper.options.admin.php:71 inc/helper.options.admin.php:199
+#: inc/helper.options.admin.php:374
+msgid "<code>random</code> &ndash; Random."
+msgstr "<code>ランダム</code> &ndash; ランダム"
+
+#: inc/helper.options.admin.php:218
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr "<code>random</code> &ndash; ランダム (初期値)"
+
+#: inc/helper.options.admin.php:160
+msgid "<code>single</code> &ndash; Only on your single post view."
+msgstr ""
+
+#: inc/helper.options.admin.php:307 inc/helper.options.admin.php:358
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr "<code>singleonly</code> &ndash; シングルページのみ（投稿のみ）"
+
+#: inc/helper.options.admin.php:161
+msgid ""
+"<code>singular</code> &ndash; Only on your singular view (single post & page)"
+" (default)."
+msgstr ""
+
+#: inc/helper.options.admin.php:306 inc/helper.options.admin.php:357
+msgid ""
+"<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr "<code>singularonly</code> &ndash; シングルページのみ表示 (投稿と固定ページ)."
+
+#: inc/helper.options.default.php:48 inc/class.client.related_posts.php:100
+msgid "<h4>Related posts</h4>"
+msgstr ""
+
+#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:250
+#: inc/helper.options.default.php:59
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>タグクラウド</h4>"
+
+#: inc/helper.options.admin.php:187
+msgid ""
+"<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags "
+"choosen, you can reorder them before display."
+msgstr "<strong>&#8216;タグの表示順&#8217;</strong> は二番目のステップで、選択されたタグを並び替えて表示します。"
+
+#: inc/helper.options.admin.php:186
+msgid ""
+"<strong>&#8216;Order tags selection&#8217;</strong> is the first step during "
+"tag's cloud generation, corresponding to collect tags."
+msgstr ""
+"<strong>&#8216;タグの選択順&#8217;</strong> はタグクラウド生成の最初のステップで、表示するタグの選択基準を設定します。"
+
+#: inc/helper.options.admin.php:289 inc/helper.options.admin.php:332
+#: inc/helper.options.admin.php:404
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>高度な利用</strong>:"
+
+#: inc/helper.options.admin.php:189
+msgid ""
+"<strong>Example:</strong> You want display randomly the 100 tags most "
+"popular.<br />"
+msgstr "<strong>例:</strong> 最もよく使用されている 100 個のタグをランダムに表示するとします。<br />"
+
+#: inc/class.admin.autoterms.php:146
+#, php-format
+msgid "Activate Auto Tags for the %s taxonomy"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:143
 msgid "Activation"
 msgstr "アクティベーション"
 
-#: inc/class.admin.autoterms.php:190
-msgid "Active Auto Tags."
-msgstr "自動タグを有効にする。"
-
-#: inc/class.admin.autoterms.php:194
-msgid "Terms database"
-msgstr "タグデータベース"
-
-#: inc/class.admin.autoterms.php:197
-msgid "Use also local terms database with auto terms. (Warning, this option can increases the CPU consumption a lot if you have many terms)"
+#: inc/class-taxonomies-table.php:69
+msgid "Active"
 msgstr ""
 
-#: inc/class.admin.autoterms.php:201
-msgid "Target"
-msgstr "ターゲット"
-
-#: inc/class.admin.autoterms.php:204
-msgid "Autotag only posts without terms."
-msgstr "タグの無い投稿だけに自動タグを適用する。"
-
-#: inc/class.admin.autoterms.php:208
-msgid "Whole Word ?"
-msgstr "タンゴ全体？"
-
-#: inc/class.admin.autoterms.php:211
-msgid "Autotag only a post when terms finded in the content are a the same name. (whole word only)"
+#: inc/class.admin.manage.php:277
+msgid "Add"
 msgstr ""
 
-#: inc/class.admin.autoterms.php:215
-msgid "Keywords list"
-msgstr "キーワードリスト"
+#: inc/taxonomies.php:152
+msgid "Add New"
+msgstr ""
 
-#: inc/class.admin.autoterms.php:218
-msgid "Separated with a comma"
-msgstr "カンマで区切ってください"
+#. Used for autofill
+#: inc/taxonomies-functions.php:1548 inc/taxonomies-functions.php:1566
+#: inc/taxonomies-functions.php:1589 inc/taxonomies-functions.php:1608
+#: inc/taxonomies.php:1016
+#, php-format
+msgid "Add new %s"
+msgstr ""
 
-#: inc/class.admin.autoterms.php:228
-msgid "Auto terms old content"
-msgstr "以前のコンテンツへの自動タグ"
+#: inc/taxonomies.php:1011
+msgid "Add New Item"
+msgstr ""
 
-#: inc/class.admin.autoterms.php:230
-msgid "TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned."
-msgstr "TaxoPress は既存のすべてのブログコンテンツにもタグ付けすることができます。この機能は上記の自動タグリストを使用します。"
+#: inc/class.client.php:60
+msgid "Add new Media Tag"
+msgstr ""
 
-#: inc/class.admin.autoterms.php:233
+#: inc/taxonomies.php:396
+msgid "Add new Taxonomy"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1569 inc/taxonomies-functions.php:1616
+#: inc/taxonomies.php:1131
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#: inc/taxonomies.php:1126
+msgid "Add or Remove Items"
+msgstr ""
+
+#: inc/class.client.php:67
+msgid "Add or remove Media Tags"
+msgstr ""
+
+#: inc/taxonomies.php:356
+msgid "Add Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:239
+msgid "Add Terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:258
+msgid "Add terms only to posts with specific terms attached."
+msgstr ""
+
+#: inc/class.admin.manage.php:256
+#, php-format
+msgid "Add terms to all %s."
+msgstr ""
+
+#: inc/taxonomies.php:428
+msgid "Admin Area"
+msgstr ""
+
+#: inc/class.admin.php:606
+msgid "Administration"
+msgstr "管理"
+
+#: inc/taxonomies.php:443
+msgid "Advanced"
+msgstr ""
+
+#: inc/helper.options.admin.php:34
+msgid "Advanced Manage Terms"
+msgstr ""
+
+#: inc/class.widgets.php:376
+msgid "Advanced usage:"
+msgstr ""
+
+#: inc/class.admin.suggest.php:54
+msgid "Ajax loading"
+msgstr "Ajax loading"
+
+#: inc/class.admin.mass.php:123
+msgid "All"
+msgstr "全て"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1553 inc/taxonomies-functions.php:1561
+#: inc/taxonomies-functions.php:1596 inc/taxonomies-functions.php:1614
+#: inc/taxonomies.php:951
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:269
+msgid "All done! %s terms added."
+msgstr "完了 ! %s のタグを追加しました。"
+
+#: inc/taxonomies.php:946
+msgid "All Items"
+msgstr ""
+
+#: inc/class.client.php:56
+msgid "All Media Tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:169
+msgid ""
+"An engine replacement alternative uses DOMDocument PHP class and "
+"theoretically offers better performance. If your server does not offer the "
+"functionality, the plugin will use the usual engine."
+msgstr ""
+
+#: inc/taxonomies.php:63
+msgid ""
+"Are you sure you want to delete this? Deleting will NOT remove created "
+"content."
+msgstr ""
+
+#: inc/class.widgets.php:254 inc/class.widgets.php:282
+msgid "ASC"
+msgstr "昇順"
+
+#: inc/class.admin.php:608
+msgid "Auto link"
+msgstr "自動リンク"
+
+#: inc/helper.options.admin.php:127
+msgid "Auto link all tags ?"
+msgstr ""
+
+#: inc/helper.options.admin.php:6
+msgid "Auto links tags"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:35
+msgid "Auto Terms"
+msgstr "自動タグ"
+
+#: inc/class.admin.autoterms.php:231
 msgid "Auto terms all content &raquo;"
 msgstr "すべてのコンテンツに自動タグ付けを実行する &raquo;"
 
-#: inc/class.admin.autoterms.php:255
-msgid "If your browser doesn't start loading the next page automatically click this link:"
+#: inc/class.admin.autoterms.php:130
+msgid "Auto Terms for %s and %s"
+msgstr "%s と %s の自動タグ"
+
+#: inc/class.admin.autoterms.php:134
+msgid "Auto terms list"
+msgstr "自動タグリスト"
+
+#: inc/class.admin.autoterms.php:226
+msgid "Auto terms old content"
+msgstr "以前のコンテンツへの自動タグ"
+
+#: inc/class.admin.autoterms.php:106
+msgid "Auto terms options updated !"
+msgstr "自動タグのオプションを更新しました！"
+
+#: inc/helper.options.admin.php:48
+msgid "Auto terms posts"
+msgstr ""
+
+#: inc/class.admin.suggest.php:55
+msgid "Automatic tag suggestions:"
+msgstr ""
+
+#: inc/helper.options.admin.php:346
+msgid "Automatically display related posts into feeds"
+msgstr ""
+
+#: inc/helper.options.admin.php:349
+msgid "Automatically display related posts into post content"
+msgstr ""
+
+#: inc/helper.options.admin.php:296
+msgid "Automatically display tags list into feeds"
+msgstr "フィードに自動的にタグの一覧を表示"
+
+#: inc/helper.options.admin.php:299
+msgid "Automatically display tags list into post content:"
+msgstr "投稿に自動的にタグの一覧を表示"
+
+#: inc/class.admin.autoterms.php:201
+#, fuzzy
+#| msgid "Autotag only posts without terms."
+msgid "Autotag only %s without terms."
+msgstr "タグの無い投稿だけに自動タグを適用する。"
+
+#: inc/class.admin.autoterms.php:208
+#, php-format
+msgid ""
+"Autotag only a %s when terms finded in the content are a the same name. "
+"(whole word only)."
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1248
+#, php-format
+msgid "Back to %s"
+msgstr ""
+
+#: inc/taxonomies.php:1243
+msgid "Back to Items"
+msgstr ""
+
+#: inc/class.client.php:73
+msgid "Back to Media Tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:344
+msgid ""
+"By default, related posts work with post tags, but you can use a custom "
+"taxonomy. Default value : post_tag"
+msgstr ""
+
+#: inc/taxonomies.php:554
+msgid ""
+"Can terms in this taxonomy be organized into hierarchical relationships?"
+msgstr ""
+
+#: inc/class.admin.php:272 inc/class.admin.php:327
+msgid "Change selection"
+msgstr "選択を変更"
+
+#: inc/helper.options.admin.php:100
+msgid ""
+"Choose a value between 0 and 1. A high value such as 0.8 will provide a few, "
+"accurate suggestions. A low value such as 0.2 will produce more suggestions, "
+"but they may be less accurate."
+msgstr ""
+
+#: inc/taxonomies.php:1144
+msgid "Choose From Most Used"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1570 inc/taxonomies-functions.php:1617
+#: inc/taxonomies.php:1149
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: inc/class.client.php:68
+msgid "Choose from the most used Media Tags"
+msgstr ""
+
+#: inc/class.admin.suggest.php:36
+msgid "Click a provider name."
+msgstr ""
+
+#: inc/helper.options.admin.php:20
+msgid "Click tags feature"
+msgstr ""
+
+#: inc/helper.options.admin.php:76
+msgid "Click tags limit"
+msgstr ""
+
+#: inc/helper.options.admin.php:79
+msgid "Click tags limit on post screen"
+msgstr ""
+
+#: inc/helper.options.admin.php:64
+msgid "Click tags order"
+msgstr "クリックタグの表示順"
+
+#: inc/class.admin.clickterms.php:45
+msgid "Click Tags to add them to this post"
+msgstr ""
+
+#: inc/class.admin.manage.php:174
+msgid "Click terms list:"
+msgstr ""
+
+#: inc/class.admin.clickterms.php:44
+msgid "Click to display tags"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:71 inc/class-tag-table.php:43
+msgid "Count"
+msgstr ""
+
+#: inc/class.widgets.php:269
+msgid "Counter"
+msgstr "使用数"
+
+#: inc/class.widgets.php:241
+msgid "Counter (default)"
+msgstr ""
+
+#: inc/taxonomies.php:933
+msgid "Custom admin menu name for your taxonomy."
+msgstr ""
+
+#: inc/taxonomies.php:1297
+msgid "Custom controller to use instead of WP_REST_Terms_Controller."
+msgstr ""
+
+#: inc/taxonomies.php:1390
+msgid "Custom Query Var String"
+msgstr ""
+
+#: inc/taxonomies.php:737
+msgid "Custom Rewrite Slug"
+msgstr ""
+
+#: inc/taxonomies.php:995 inc/taxonomies.php:1028 inc/taxonomies.php:1044
+#: inc/taxonomies.php:1060 inc/taxonomies.php:1076 inc/taxonomies.php:1092
+#: inc/taxonomies.php:1110 inc/taxonomies.php:1127 inc/taxonomies.php:1145
+#: inc/taxonomies.php:1161
+msgid ""
+"Custom taxonomy label. Used in the admin menu for displaying taxonomies."
+msgstr ""
+
+#: inc/taxonomies.php:738
+msgid "Custom taxonomy rewrite slug."
+msgstr ""
+
+#: inc/helper.options.admin.php:97
+msgid "Dandelion API confidence value"
+msgstr ""
+
+#: inc/helper.options.admin.php:90
+msgid "Dandelion API token"
+msgstr ""
+
+#: inc/class.admin.suggest.php:60
+msgid "dataTXT by Dandelion"
+msgstr ""
+
+#: inc/taxonomies.php:448
+msgid "Deactivate or Delete"
+msgstr ""
+
+#: inc/taxonomies.php:1460
+msgid "Deactivate Taxonomy"
+msgstr ""
+
+#: inc/taxonomies.php:1408
+msgid "Default Term"
+msgstr ""
+
+#: inc/class.admin.manage.php:421 inc/class-tag-table.php:195
+msgid "Delete"
+msgstr ""
+
+#: inc/class.admin.manage.php:456
+msgid "Delete rarely used"
+msgstr ""
+
+#: inc/taxonomies.php:1474
+msgid "Delete Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:397
+msgid "Delete Terms"
+msgstr ""
+
+#: inc/class.widgets.php:256 inc/class.widgets.php:284
+msgid "DESC (default)"
+msgstr "降順 (デフォルト)"
+
+#: inc/taxonomies.php:571
+msgid "Describe what your taxonomy is used for."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:68 inc/taxonomies.php:570
+msgid "Description"
+msgstr ""
+
+#: inc/taxonomies.php:183
+msgid "Description here."
+msgstr ""
+
+#: inc/class.admin.post.php:68
+msgid "Disable auto links ?"
+msgstr ""
+
+#: inc/class.admin.post.php:59
+msgid "Disable auto tags ?"
+msgstr ""
+
+#: inc/taxonomies.php:490 inc/taxonomies.php:677
+msgid ""
+"DO NOT EDIT the taxonomy slug unless also planning to migrate terms. "
+"Changing the slug registers a new taxonomy entry."
+msgstr ""
+
+#: views/admin/page-settings.php:35
+msgid "Do you really want to restore the default options?"
+msgstr "デフォルトの設定に戻しますか ?"
+
+#: inc/class-taxonomies-table.php:268 inc/class.admin.mass.php:259
+msgid "Edit"
+msgstr "編集"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1549 inc/taxonomies-functions.php:1564
+#: inc/taxonomies-functions.php:1590 inc/taxonomies-functions.php:1606
+#: inc/taxonomies.php:967
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: inc/taxonomies.php:962
+msgid "Edit Item"
+msgstr ""
+
+#: inc/class.client.php:57
+msgid "Edit Media Tag"
+msgstr ""
+
+#: inc/taxonomies.php:394
+msgid "Edit Taxonomy"
+msgstr ""
+
+#: inc/class.widgets.php:317
+msgid "Em"
+msgstr "em"
+
+#: inc/class.admin.php:612
+msgid "Embedded Tags"
+msgstr "埋め込みタグ"
+
+#: inc/class.widgets.php:209
+msgid "Empty field will use default value."
+msgstr "空白の欄ではデフォルトの値が使用されます。"
+
+#: inc/helper.options.admin.php:155
+msgid "Enable autolinks into post content for theses views:"
+msgstr ""
+
+#: inc/helper.options.admin.php:58
+#, fuzzy
+#| msgid ""
+#| "Enabling this will allow Wordpress to look for tag cloud shortcode <code>"
+#| "[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying "
+#| "posts. WP replace this shortcode by a tag cloud."
+msgid ""
+"Enabling this will allow Wordpress to look for tag cloud shortcode <code>"
+"[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. "
+"WordPress replace this shortcode by a tag cloud."
+msgstr ""
+"これを有効にすると、ショートコード<code>[st_tag_cloud]</code> または <code>[st-tag-cloud]</code>"
+"でタグクラウドが表示されます。WP がタグクラウドでこのショートコードを置き換えます。"
+
+#: inc/class.admin.manage.php:398
+msgid "Enter the name of terms to delete."
+msgstr ""
+
+#: inc/helper.options.admin.php:260 inc/helper.options.admin.php:398
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "リストの前 (上) に表示するタイトル:"
+
+#: inc/class.admin.manage.php:325
+#, php-format
+msgid ""
+"Enter the term to merge and its new value. Click \"Merge\" and all %s which "
+"use this term will be updated."
+msgstr ""
+
+#: inc/class.admin.manage.php:365
+#, php-format
+msgid "Enter the terms to remove from all %s "
+msgstr ""
+
+#: inc/class.admin.manage.php:286
+msgid "Enter the terms to rename and their new names."
+msgstr ""
+
+#: inc/helper.options.admin.php:392
+msgid "Enter the text to show when there is no related post:"
+msgstr ""
+
+#: inc/helper.options.admin.php:254
+msgid "Enter the text to show when there is no tag:"
+msgstr "タグが無いときに表示するテキスト:"
+
+#: inc/class.admin.manage.php:762
+msgid "Error. No enough terms for rename."
+msgstr ""
+
+#: inc/class.admin.manage.php:677
+msgid "Error. No enough terms specified."
+msgstr ""
+
+#: inc/class.admin.manage.php:612
+msgid "Error. You need to enter a single term to merge to in new term name !"
+msgstr ""
+
+#: inc/helper.options.admin.php:144
+msgid ""
+"Example: If you enter the term \"Paris\", the auto link tags feature will "
+"never replace this term by this link."
+msgstr "使用例： 例えば \"Paris\" という単語を入力すると、 この単語をリンクに置き換えません。"
+
+#: inc/helper.options.admin.php:137
+msgid ""
+"Example: If you ignore case, auto link feature will replace the word "
+"\"wordpress\" by the tag link \"WordPress\"."
+msgstr "例: この設定を有効にすると、自動リンク機能は単語 \"wordpress\" をタグリンク \"WordPress\" で置き換えます。"
+
+#: inc/helper.options.admin.php:9
+msgid ""
+"Example: You have a tag called \"WordPress\" and your post content contains "
+"\"wordpress\", this feature will replace \"wordpress\" by a link to "
+"\"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr ""
+"例: \"WordPress\" タグがあり、投稿内に \"wordpress\" が含まれているとき、この機能は \"wordpress\" を "
+"\"wordpress\" タグのページ (http://myblog.net/tag/wordpress/) へのリンクに置き換えます。"
+
+#: inc/helper.options.admin.php:141
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgstr "タグリンクにいくつかの用語を入れないようにしてください。 Ads Link subtition など"
+
+#. Description of the plugin
+msgid ""
+"Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, "
+"Ajax Autocompletion, Click Terms, Advanced manage terms, etc."
+msgstr ""
+
+#: inc/taxonomies.php:539 inc/taxonomies.php:712 inc/taxonomies.php:746
+#: inc/taxonomies.php:770 inc/taxonomies.php:804 inc/taxonomies.php:827
+#: inc/taxonomies.php:850 inc/taxonomies.php:874 inc/taxonomies.php:897
+#: inc/taxonomies.php:1264 inc/taxonomies.php:1316 inc/taxonomies.php:1340
+#: inc/taxonomies.php:1364
+msgid "False"
+msgstr ""
+
+#: inc/class.admin.php:610
+msgid "Features"
+msgstr ""
+
+#: inc/class.admin.mass.php:227
+msgid "Filter"
+msgstr "フィルター"
+
+#: inc/class.widgets.php:330
+msgid "Flat (default)"
+msgstr "フラット (デフォルト)"
+
+#: inc/class.widgets.php:357
+msgid "Font color max: (default: #000000)"
+msgstr "最大フォント色: (デフォルト: #000000)"
+
+#: inc/class.widgets.php:348
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "最小フォント色: (デフォルト: #CCCCCC)"
+
+#: inc/class.widgets.php:300
+msgid "Font size max: (default: 22)"
+msgstr "フォントの最大サイズ: (デフォルト: 22)"
+
+#: inc/class.widgets.php:291
+msgid "Font size mini: (default: 8)"
+msgstr "最大フォントサイズ: (デフォルト: 8)"
+
+#: inc/helper.options.admin.php:151
+msgid ""
+"For expert, possibility to change the priority of autolinks functions on "
+"the_content hook. Useful for fix a conflict with an another plugin. Default: "
+"12."
+msgstr ""
+
+#: inc/class.widgets.php:326
+msgid "Format:"
+msgstr "フォーマット:"
+
+#: inc/taxonomies.php:406
+msgid "General"
+msgstr "一般設定"
+
+#. Author URI of the plugin
+msgid "https://taxopress.com"
+msgstr ""
+
+#. URI of the plugin
+#, fuzzy
+#| msgid "https://wordpress.org/plugins/simple-tags"
+msgid "https://wordpress.org/plugins/simple-tags/"
+msgstr "https://wordpress.org/plugins/simple-tags"
+
+#: inc/helper.options.admin.php:130
+msgid ""
+"If checked, tags found in post will be auto linked even if not included in "
+"post tags."
+msgstr ""
+
+#: inc/class.admin.manage.php:432
+#, php-format
+msgid ""
+"If you choose 5, Taxopress will delete all terms attached to less than 5 %s."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:254
+msgid ""
+"If your browser doesn't start loading the next page automatically click this "
+"link:"
 msgstr "あなたのブラウザが次のページをロードし始めない場合、自動的にこのリンクをクリックする:"
+
+#: inc/helper.options.admin.php:134
+msgid "Ignore case for auto link feature ?"
+msgstr "自動リンク機能で大文字 / 小文字を区別しない ?"
+
+#: inc/helper.options.admin.php:321
+msgid "Include categories in result ?"
+msgstr "検索結果にカテゴリを含める？"
+
+#: inc/class.admin.suggest.php:225
+msgid "Invalid access token !"
+msgstr ""
+
+#: inc/taxonomies.php:1210
+msgid "Items List"
+msgstr ""
+
+#: inc/taxonomies.php:1193
+msgid "Items List Navigation"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:164
+msgid "Keywords list"
+msgstr "キーワードリスト"
+
+#: inc/taxonomies-functions.php:1688
+msgid "Kindly select an action in bulk action dropdown!"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1697
+msgid "Kindly select atleast one taxonomy to proceed"
+msgstr ""
+
+#: inc/helper.options.admin.php:271
+msgid "Least popular color:"
+msgstr "最も使用されていないタグの色:"
+
+#: inc/helper.options.admin.php:279
+msgid "Least popular font size:"
+msgstr "最も使用されていないタグのフォントサイズ:"
+
+#: inc/class.widgets.php:332
+msgid "List (UL/LI)"
+msgstr "リスト (UL/LI)"
+
+#: inc/class.admin.suggest.php:57
+msgid "Local tags"
+msgstr "ローカルタグ"
+
+#: inc/taxonomies.php:286
+msgid "Manage Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:61
+#, fuzzy
+#| msgid "Manage Tags"
+msgid "Manage Terms"
+msgstr "タグの管理"
+
+#: inc/class.admin.mass.php:31
+msgid "Mass Edit Terms"
+msgstr "タグ一括編集"
+
+#: inc/class.admin.mass.php:115 inc/helper.options.admin.php:13
+msgid "Mass edit terms"
+msgstr "タグの一括編集"
+
+#: inc/helper.options.admin.php:316
+msgid "Max tags display:"
+msgstr "表示されるタグの最大数："
+
+#: inc/class.widgets.php:222
+msgid "Max tags to display: (default: 45)"
+msgstr "表示するタグの数: (デフォルト: 45)"
+
+#: inc/helper.options.admin.php:120
+msgid "Maximum number of links for the same tag:"
+msgstr "同じタグのリンクの最大数"
+
+#: inc/helper.options.admin.php:113
+msgid "Maximum number of links per article:"
+msgstr "記事ごとの最大リンク数"
+
+#: inc/helper.options.admin.php:386
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr ""
+
+#: inc/helper.options.admin.php:248
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "表示するタグの最大数: (デフォルト: 45)"
+
+#: inc/class.client.php:54
+msgid "Media Tag"
+msgstr ""
+
+#: inc/class.client.php:53 inc/class.client.php:55 inc/class.client.php:77
+msgid "Media Tags"
+msgstr ""
+
+#: inc/class.client.php:72
+msgid "Media Tags list"
+msgstr ""
+
+#: inc/class.client.php:71
+msgid "Media Tags list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:932
+msgid "Menu Name"
+msgstr ""
+
+#: inc/class.admin.manage.php:356
+msgid "Merge"
+msgstr ""
+
+#: inc/class.admin.manage.php:609
+#, php-format
+msgid ""
+"Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr ""
+
+#: inc/class.admin.manage.php:324
+msgid "Merge Terms"
+msgstr ""
+
+#: inc/taxonomies.php:1399
+msgid "Metabox callback"
+msgstr ""
+
+#: inc/taxonomies.php:500 inc/taxonomies.php:687
+msgid "Migrate terms to newly renamed taxonomy?"
+msgstr ""
+
+#: inc/helper.options.admin.php:106
+msgid "Min usage for auto link tags:"
+msgstr "自動リンクタグの最小使用数:"
+
+#: inc/class.admin.manage.php:446
+msgid "Minimum number of uses for each term:"
+msgstr ""
+
+#: inc/class.admin.manage.php:106
+msgid ""
+"Missing valid taxonomy for work... Try again. If this problem persist, "
+"contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-"
+"topic-0\">plugin author</a>."
+msgstr ""
+
+#: inc/helper.options.admin.php:266
+msgid "Most popular color:"
+msgstr "最も使用されているタグの色:"
+
+#: inc/helper.options.admin.php:274
+msgid "Most popular font size:"
+msgstr "最も使用されているタグのフォントサイズ:"
+
+#: inc/class-taxonomies-table.php:66 inc/class-tag-table.php:41
+#: inc/class.widgets.php:235 inc/class.widgets.php:267
+msgid "Name"
+msgstr "名前"
+
+#: inc/taxonomies-functions.php:1550 inc/taxonomies-functions.php:1591
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1567 inc/taxonomies-functions.php:1609
+#: inc/taxonomies.php:1032
+#, php-format
+msgid "New %s name"
+msgstr ""
+
+#: inc/taxonomies.php:1027
+msgid "New Item Name"
+msgstr ""
+
+#: inc/class.client.php:61
+msgid "New Media Tag name"
+msgstr ""
+
+#: inc/class.admin.manage.php:309
+msgid "New term name(s):"
+msgstr ""
+
+#: inc/class.admin.manage.php:349
+msgid "New term name:"
+msgstr ""
 
 #: inc/class.admin.autoterms.php:255
 msgid "Next content"
 msgstr "次のコンテンツ"
 
-#: inc/class.admin.autoterms.php:268
-msgid "All done! %s terms added."
-msgstr "完了 ! %s のタグを追加しました。"
-
-#. Plugin URI of the plugin/theme
-msgid "https://wordpress.org/plugins/simple-tags"
-msgstr "https://wordpress.org/plugins/simple-tags"
-
-#. Description of the plugin/theme
-msgid "Extended Tagging for WordPress 3.0 : Suggested Tags, Mass edit tags, Auto-tags, Autocompletion, etc. NOW Compatible custom post type and custom taxonomy !"
+#: inc/class-taxonomies-table.php:359
+msgid "No"
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "WebFactory Ltd"
-msgstr "WebFactory Ltd"
+#. Used for autofill
+#: inc/taxonomies.php:1181
+#, php-format
+msgid "No %s"
+msgstr ""
 
-#. Author URI of the plugin/theme
-msgid "https://www.webfactoryltd.com"
-msgstr "https://www.webfactoryltd.com"
+#. Used for autofill
+#: inc/taxonomies.php:1165 inc/taxonomies.php:1231
+#, php-format
+msgid "No %s found"
+msgstr ""
 
-#: /2.7/inc/simple-tags.admin.php:430
-msgid "Automatically display tags list into feeds"
-msgstr "フィードに自動的にタグの一覧を表示"
+#: inc/taxonomies-functions.php:1556 inc/taxonomies-functions.php:1599
+#, php-format
+msgid "No %s found in trash."
+msgstr ""
 
-#: /2.7/inc/simple-tags.admin.php:431
-msgid "Automatically display tags list into post content:"
-msgstr "投稿に自動的にタグの一覧を表示"
+#: inc/taxonomies-functions.php:1555 inc/taxonomies-functions.php:1598
+#, php-format
+msgid "No %s found."
+msgstr ""
 
-#: /2.7/inc/simple-tags.admin.php:441
+#: inc/class.admin.mass.php:282
+msgid "No content to edit."
+msgstr "編集するコンテンツはありません。"
+
+#: inc/class.admin.suggest.php:287
+#, fuzzy
+#| msgid ""
+#| "No correspondance between your content and terms from the WordPress "
+#| "database."
+msgid ""
+"No correspondence between your content and terms from the WordPress database."
+msgstr "WordPressデータベースに コンテンツやタグがありません。"
+
+#: inc/class.client.php:70
+msgid "No Media Tags"
+msgstr ""
+
+#: inc/class.client.php:69
+msgid "No Media Tags found"
+msgstr ""
+
+#: inc/class.admin.manage.php:536 inc/class.admin.manage.php:695
+msgid "No new term specified!"
+msgstr ""
+
+#: inc/class.admin.manage.php:822
+msgid "No new term(s) specified!"
+msgstr ""
+
+#: inc/class.admin.manage.php:551 inc/class.admin.manage.php:710
+msgid "No new/old valid term specified!"
+msgstr ""
+
+#: inc/class.admin.manage.php:578
+msgid "No objects found for specified old terms."
+msgstr ""
+
+#: inc/helper.options.default.php:47 inc/class.client.related_posts.php:101
+msgid "No related posts."
+msgstr ""
+
+#: inc/class.admin.suggest.php:237
+#, fuzzy
+#| msgid "No results from Zemanta API."
+msgid "No results from dataTXT API."
+msgstr "Zemanta API から応答がありません。"
+
+#: inc/class.admin.suggest.php:171
+msgid "No results from OpenCalais service."
+msgstr "OpenCalais のサービスから応答がありません。"
+
+#: inc/class.admin.suggest.php:273 inc/class.admin.clickterms.php:171
+msgid "No results from your WordPress database."
+msgstr "あなたの Wordpress のデータベースから応答がありません。"
+
+#: inc/class.client.post_tags.php:112
+msgid "No tag for this post."
+msgstr ""
+
+#: inc/helper.options.default.php:36
+msgid "No tags for this post."
+msgstr ""
+
+#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:249
+#: inc/helper.options.default.php:58
+msgid "No tags."
+msgstr "タグはありません。"
+
+#: inc/class.admin.manage.php:873
+msgid "No term added."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:93 inc/class-tag-table.php:125
+msgid "No term avaliable."
+msgstr ""
+
+#: inc/class.admin.manage.php:802 inc/class.admin.manage.php:911
+msgid "No term deleted."
+msgstr ""
+
+#: inc/class.admin.manage.php:607
+msgid "No term merged."
+msgstr ""
+
+#: inc/class.admin.manage.php:672
+msgid "No term removed."
+msgstr ""
+
+#: inc/class.admin.manage.php:757
+msgid "No term renamed."
+msgstr ""
+
+#: inc/class.admin.manage.php:630 inc/class.admin.manage.php:779
+msgid "No term specified!"
+msgstr ""
+
+#: inc/taxonomies.php:1176
+msgid "No terms"
+msgstr ""
+
+#: inc/class.admin.suggest.php:257 inc/class.admin.clickterms.php:129
+msgid "No terms in your WordPress database."
+msgstr "あなたの Wordpress にはタグがありません。"
+
+#: inc/class.admin.suggest.php:141 inc/class.admin.suggest.php:200
+#: inc/class.admin.suggest.php:266
+msgid "No text was sent."
+msgstr "テキストが送信されませんでした。"
+
+#: inc/class.admin.manage.php:561
+msgid "No valid new term."
+msgstr ""
+
+#: inc/class.admin.manage.php:643
+msgid "No valid term specified!"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1128
+msgid "Nonce failed verification"
+msgstr ""
+
+#: inc/taxonomies.php:1226
+msgid "Not Found"
+msgstr ""
+
+#: inc/taxonomies.php:1160
+msgid "Not found"
+msgstr ""
+
+#: inc/class.admin.manage.php:80 inc/taxonomies.php:119
+msgid "Number of items per page"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1020
+msgid "Object"
+msgstr ""
+
+#: inc/class.admin.suggest.php:64
+msgid "OpenCalais"
+msgstr "OpenCalais"
+
+#: inc/helper.options.admin.php:83
+msgid "OpenCalais API Key"
+msgstr "OpenCalais API Key"
+
+#: inc/class.admin.suggest.php:133
+msgid ""
+"OpenCalais need an API key to work. You can register on service website to "
+"obtain a key and set it on TaxoPress options."
+msgstr ""
+"OpenCalais は API キーを必要とします。TaxoPress オプションを設定するためにサービスウェブサイトで API "
+"キーを入手してください。"
+
+#: inc/class.admin.autoterms.php:193
+msgid "Options"
+msgstr "設定"
+
+#: inc/class.admin.php:441
+msgid "Options saved"
+msgstr "設定は保存されました。"
+
+#: inc/class.widgets.php:231
+msgid "Order by for DB selection tags:"
+msgstr "DB選択のタグ順"
+
+#: inc/class.widgets.php:263
+msgid "Order by for display tags:"
+msgstr "表示用のタグ順"
+
+#: inc/helper.options.admin.php:213
+msgid "Order by for tags display:"
+msgstr "タグの表示順:"
+
+#: inc/helper.options.admin.php:194
+msgid "Order by for tags selection:"
+msgstr "タグの選択順:"
+
+#: inc/class.widgets.php:250
+msgid "Order for DB selection tags:"
+msgstr "DB選択のタグ順"
+
+#: inc/class.widgets.php:278
+msgid "Order for display tags:"
+msgstr "表示用のタグ順"
+
+#: inc/helper.options.admin.php:223
+msgid "Order tags display:"
+msgstr "タグの表示順:"
+
+#: inc/helper.options.admin.php:204
+msgid "Order tags selection:"
+msgstr "タグの選択順:"
+
+#: inc/taxonomies.php:433
+msgid "Other Labels"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:124
+msgid "Overview"
+msgstr "概要"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1562 inc/taxonomies-functions.php:1604
+#: inc/taxonomies.php:1048
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1563 inc/taxonomies-functions.php:1605
+#: inc/taxonomies.php:1064
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: inc/taxonomies.php:1043
+msgid "Parent Item"
+msgstr ""
+
+#: inc/taxonomies.php:1059
+msgid "Parent Item Colon"
+msgstr ""
+
+#: inc/class.client.php:62
+msgid "Parent Media Tag"
+msgstr ""
+
+#: inc/class.client.php:63
+msgid "Parent Media Tag:"
+msgstr ""
+
+#: inc/taxonomies.php:553
+msgid "Parent-Child Relationships"
+msgstr ""
+
+#: inc/taxonomies.php:423
+msgid "Permalinks"
+msgstr ""
+
+#: inc/class.widgets.php:315
+msgid "Pixel"
+msgstr "ピクセル"
+
+#: inc/taxonomies-functions.php:1177
+#, php-format
+msgid ""
+"Please choose a different post type name. %s matches an existing page slug, "
+"which can cause conflicts."
+msgstr ""
+
+#: inc/taxonomies-functions.php:1141
+#, php-format
+msgid "Please choose a different taxonomy name. %s is already registered."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:160
+msgid "Please choose an option for \"Terms to use\""
+msgstr ""
+
+#: inc/taxonomies-functions.php:1191
+msgid "Please do not use quotes in post type/taxonomy names or rewrite slugs"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1154
+msgid "Please provide a post type to attach to."
+msgstr ""
+
+#: inc/taxonomies-functions.php:236
+msgid "Please provide a taxonomy name"
+msgstr ""
+
+#: inc/taxonomies-functions.php:119 inc/taxonomies-functions.php:1830
+msgid "Please provide a taxonomy to delete"
+msgstr ""
+
+#: inc/taxonomies.php:65
+msgid "Please select at least one post type."
+msgstr ""
+
+#: inc/taxonomies.php:518
+msgid "Plural Label"
+msgstr ""
+
+#: inc/class.widgets.php:313
+msgid "Point (default)"
+msgstr "ポイント (デフォルト)"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1560 inc/taxonomies-functions.php:1613
+#: inc/taxonomies.php:1096
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: inc/taxonomies.php:1091
+msgid "Popular Items"
+msgstr ""
+
+#: inc/class.client.php:65
+msgid "Popular Media Tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:379
+msgid "Post link format:"
+msgstr ""
+
+#: inc/helper.options.admin.php:311
 msgid "Post tag separator string:"
 msgstr "タグの区切り文字："
 
-#: /2.7/inc/simple-tags.admin.php:442
-msgid "Text to display before tags list:"
-msgstr "タグ一覧の前に挿入する文字："
+#: inc/class.admin.php:185
+msgid "Post tags"
+msgstr "投稿タグ"
 
-#: /2.7/inc/simple-tags.admin.php:443
+#: inc/class.admin.mass.php:245
+msgid "Post title"
+msgstr "投稿表題"
+
+#: inc/class-taxonomies-table.php:70 inc/taxonomies.php:411
+msgid "Post Types"
+msgstr ""
+
+#: inc/class.admin.php:186
+msgid "Posts"
+msgstr "投稿"
+
+#: inc/helper.options.default.php:22
+msgid "Posts tagged with %s"
+msgstr "%s タグの付いた投稿"
+
+#: inc/class.widgets.php:319
+msgid "Pourcent"
+msgstr "パーセント"
+
+#: inc/helper.options.admin.php:148
+msgid "Priority on hook the_content"
+msgstr ""
+
+#: inc/taxonomies.php:1330
+msgid "Public"
+msgstr ""
+
+#: inc/taxonomies.php:1354
+msgid "Public Queryable"
+msgstr ""
+
+#: inc/class.admin.mass.php:217
+msgid "Quantity&hellip;"
+msgstr "表示数&hellip;"
+
+#: inc/taxonomies.php:1378
+msgid "Query Var"
+msgstr ""
+
+#: inc/taxonomies.php:1388
+msgid "Query var needs to be true to use."
+msgstr ""
+
+#: inc/class.widgets.php:243
+msgid "Random"
+msgstr ""
+
+#: inc/class.widgets.php:271
+msgid "Random (default)"
+msgstr "ランダム (初期値)"
+
+#: inc/taxonomies.php:1456
+msgid "Re-activate Taxonomy"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:67 inc/taxonomies.php:301
+#: inc/taxonomies.php:310 inc/taxonomies.php:319
+msgid "Registration key"
+msgstr ""
+
+#: inc/class.admin.php:616
+msgid "Related Posts"
+msgstr "関連投稿"
+
+#: inc/helper.options.admin.php:41
+msgid "Related posts by terms"
+msgstr ""
+
+#: inc/helper.options.admin.php:364
+msgid "Related Posts Order:"
+msgstr ""
+
+#: inc/class.admin.manage.php:389
+msgid "Remove"
+msgstr ""
+
+#: inc/class.admin.manage.php:429
+msgid "Remove rarely used terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:364
+#, php-format
+msgid "Remove Terms from %s "
+msgstr ""
+
+#: inc/class.admin.manage.php:674
+#, php-format
+msgid "Removed term(s) &laquo;%1$s&raquo; from %2$s"
+msgstr ""
+
+#: inc/class.admin.manage.php:316
+msgid "Rename"
+msgstr ""
+
+#: inc/class.admin.manage.php:285
+msgid "Rename Terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:759
+#, php-format
+msgid "Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr ""
+
+#: views/admin/page-settings.php:36
+msgid "Reset Options"
+msgstr "設定のリセット"
+
+#: inc/taxonomies.php:438
+msgid "REST API"
+msgstr ""
+
+#: inc/taxonomies.php:1286
+msgid "REST API base slug"
+msgstr ""
+
+#: inc/taxonomies.php:1295
+msgid "REST API controller class"
+msgstr ""
+
+#: inc/taxonomies.php:726
+msgid "Rewrite"
+msgstr ""
+
+#: inc/taxonomies.php:784
+msgid "Rewrite Hierarchical"
+msgstr ""
+
+#: inc/taxonomies.php:760
+msgid "Rewrite With Front"
+msgstr ""
+
+#: inc/taxonomies.php:343
+msgid "Save Taxonomy"
+msgstr ""
+
+#: inc/taxonomies.php:1211
+msgid ""
+"Screen reader text for the items list heading on the term listing screen."
+msgstr ""
+
+#: inc/taxonomies.php:1194
+msgid ""
+"Screen reader text for the pagination heading on the term listing screen."
+msgstr ""
+
+#: inc/class.admin.mass.php:153
+msgid "Search"
+msgstr "検索"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1554 inc/taxonomies-functions.php:1559
+#: inc/taxonomies-functions.php:1597 inc/taxonomies-functions.php:1612
+#: inc/taxonomies.php:1080
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: inc/class.admin.manage.php:193
+#, php-format
+msgid "Search %s "
+msgstr ""
+
+#: inc/taxonomies.php:1075
+msgid "Search Items"
+msgstr ""
+
+#: inc/class.client.php:64
+msgid "Search Media Tags"
+msgstr ""
+
+#. %s: search keywords
+#: inc/class.admin.manage.php:180 inc/taxonomies.php:158
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: inc/taxonomies.php:172
+msgid "Search Taxonomies"
+msgstr ""
+
+#: inc/class.admin.manage.php:102 inc/class.admin.mass.php:58
+msgid ""
+"Security problem. Try again. If this problem persist, contact <a "
+"href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">"
+"plugin author</a>."
+msgstr ""
+"セキュリティ問題があります。再度お試しください。もしこの問題が続くようなら <a href=\"https://wordpress."
+"org/support/plugin/simple-tags/#new-topic-0\">プラグイン作者</a>連絡してください"
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1568 inc/taxonomies-functions.php:1615
+#: inc/taxonomies.php:1114
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: inc/taxonomies.php:1108
+msgid "Separate Items with Commas"
+msgstr ""
+
+#: inc/class.client.php:66
+msgid "Separate Media Tags with commas"
+msgstr ""
+
+#: inc/class.admin.autocomplete.php:124
+msgid "Separate tags with commas"
+msgstr "カンマで区切ってください"
+
+#: inc/taxonomies.php:1409
+msgid ""
+"Set a default term for the taxonomy. Able to set a name, slug, and "
+"description. Only a name is required if setting a default, others are "
+"optional. Set values in the following order, separated by comma. Example: "
+"name, slug, description"
+msgstr ""
+
+#: inc/taxonomies.php:1400
+msgid ""
+"Sets a callback function name for the meta box display. Hierarchical default:"
+" post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To "
+"remove the metabox completely, use \"false\"."
+msgstr ""
+
+#: inc/taxonomies.php:1391
+msgid "Sets a custom query_var slug for this taxonomy."
+msgstr ""
+
+#: inc/taxonomies.php:1379
+msgid "Sets the query_var key for this taxonomy."
+msgstr ""
+
+#: inc/class.admin.php:407
+msgid "Settings"
+msgstr ""
+
+#: inc/taxonomies.php:785
+msgid "Should the permastruct allow hierarchical urls."
+msgstr ""
+
+#: inc/taxonomies.php:761
+msgid "Should the permastruct be prepended with the front base."
+msgstr ""
+
+#: inc/taxonomies.php:888
+msgid "Show admin column"
+msgstr ""
+
+#: inc/class.admin.mass.php:190
+msgid "Show all dates"
+msgstr "全ての日付を表示"
+
+#: inc/class.admin.clickterms.php:71 inc/class.admin.clickterms.php:84
+msgid "Show all local tags"
+msgstr ""
+
+#: inc/taxonomies.php:911
+msgid "Show in \"Quick Edit\" and \"Bulk Edit\""
+msgstr ""
+
+#: inc/taxonomies.php:841
+msgid "Show in admin menus"
+msgstr ""
+
+#: inc/taxonomies.php:864
+msgid "Show in frontend menus"
+msgstr ""
+
+#: inc/taxonomies.php:1278
+msgid "Show in REST API"
+msgstr ""
+
+#: inc/taxonomies.php:818
+msgid "Show user interface"
+msgstr ""
+
+#: inc/taxonomies.php:528
+msgid "Singular Label"
+msgstr ""
+
+#: inc/class-tag-table.php:42 inc/class.widgets.php:237 inc/taxonomies.php:417
+msgid "Slug"
+msgstr "スラグ"
+
+#: inc/taxonomies.php:472 inc/taxonomies.php:659
+msgid "Slug already exists"
+msgstr ""
+
+#: inc/taxonomies.php:469 inc/taxonomies.php:656
+msgid "Slug has changed"
+msgstr ""
+
+#: inc/taxonomies.php:1287
+msgid "Slug to use in REST API URLs."
+msgstr ""
+
+#: inc/class.admin.clickterms.php:48
+msgid "Start typing to search"
+msgstr ""
+
+#: inc/class.admin.suggest.php:78 inc/class.admin.suggest.php:83
+msgid "Suggested tags"
+msgstr "お奨めのタグ"
+
+#: inc/helper.options.admin.php:27
+msgid "Suggested tags feature"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:212
+msgid "Suport Hashtag format ?"
+msgstr ""
+
+#: inc/class-tag-table.php:12
+msgid "Tag Cloud"
+msgstr ""
+
+#: inc/class.admin.php:618 inc/class.widgets.php:48
+msgid "Tag cloud"
+msgstr "タグクラウド"
+
+#: inc/class.widgets.php:15
+msgid "Tag Cloud (TaxoPress)"
+msgstr "タグクラウド(TaxoPress)"
+
+#: inc/helper.options.admin.php:55
+msgid "Tag cloud Shortcode"
+msgstr ""
+
+#: inc/class.widgets.php:366 inc/helper.options.admin.php:241
+#: inc/helper.options.admin.php:324
+msgid "Tag link format:"
+msgstr "タグリンクのフォーマット:"
+
+#: inc/class.widgets.php:85
+msgid "Tags"
+msgstr "ｔａｇｕ"
+
+#: inc/class-tag-table.php:13
+msgid "Tags Cloud"
+msgstr ""
+
+#: inc/helper.options.admin.php:232
+msgid "Tags cloud type format:"
+msgstr "タグクラウドの表示形式:"
+
+#: inc/class.admin.php:614
+msgid "Tags for Current Post"
+msgstr "投稿内でのタグ表示"
+
+#: inc/helper.options.default.php:34 inc/class.client.post_tags.php:106
+msgid "Tags: "
+msgstr ""
+
+#: inc/class.admin.autoterms.php:198
+msgid "Target"
+msgstr "ターゲット"
+
+#: inc/class-taxonomies-table.php:15 inc/taxonomies.php:98
+#: inc/taxonomies.php:99 inc/taxonomies.php:150
+msgid "Taxonomies"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:14
+msgid "Taxonomy"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1714
+msgid "Taxonomy has been successfully activated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1706
+msgid "Taxonomy has been successfully deactivated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1722
+msgid "Taxonomy has been successfully deleted"
+msgstr ""
+
+#: inc/taxonomies.php:465 inc/taxonomies.php:652
+msgid "Taxonomy Slug"
+msgstr ""
+
+#: inc/helper.options.admin.php:341
+msgid "Taxonomy:"
+msgstr ""
+
+#. Name of the plugin
+#. Author of the plugin
+#: inc/class.admin.php:394 inc/class-taxonomies-table.php:340
+msgid "TaxoPress"
+msgstr "TaxoPress"
+
+#: inc/class.admin.post.php:32
+msgid "TaxoPress - Settings"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:228
+msgid ""
+"TaxoPress can also tag all existing contents of your blog. This feature use "
+"auto terms list above-mentioned."
+msgstr "TaxoPress は既存のすべてのブログコンテンツにもタグ付けすることができます。この機能は上記の自動タグリストを使用します。"
+
+#: inc/class.admin.php:447
+msgid "TaxoPress options resetted to default options!"
+msgstr "TaxoPress の設定をデフォルトにリセットしました !"
+
+#: inc/class.admin.autoterms.php:34
+msgid "TaxoPress: Auto Terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:60 inc/class.admin.manage.php:170
+msgid "TaxoPress: Manage Terms"
+msgstr ""
+
+#: inc/class.admin.mass.php:30
+msgid "TaxoPress: Mass Edit Terms"
+msgstr ""
+
+#: inc/class.admin.php:393 inc/class.admin.php:406
+#: views/admin/page-settings.php:3
+msgid "TaxoPress: Options"
+msgstr "TaxoPress: 設定"
+
+#: inc/class.widgets.php:239
+msgid "Term group"
+msgstr "カテゴリ名"
+
+#: inc/class.admin.manage.php:875
+#, php-format
+msgid "Term(s) added to %1s %2s."
+msgstr ""
+
+#: inc/class.admin.manage.php:270
+msgid "Term(s) to add:"
+msgstr ""
+
+#: inc/class.admin.manage.php:414
+msgid "Term(s) to delete:"
+msgstr ""
+
+#: inc/class.admin.manage.php:262
+msgid "Term(s) to match:"
+msgstr ""
+
+#: inc/class.admin.manage.php:341
+msgid "Term(s) to merge:"
+msgstr ""
+
+#: inc/class.admin.manage.php:381
+msgid "Term(s) to remove:"
+msgstr ""
+
+#: inc/class.admin.manage.php:301
+msgid "Term(s) to rename:"
+msgstr ""
+
+#: inc/class.admin.mass.php:246
+msgid "Terms : %s"
+msgstr "タグ : %s"
+
+#: inc/class.admin.autoterms.php:151
+msgid "Terms to use"
+msgstr ""
+
+#: inc/class.admin.manage.php:242
+#, php-format
+msgid "Terms will be added to all %s If no \"Term(s) to match\" is specified."
+msgstr ""
+
+#: inc/helper.options.admin.php:313
 msgid "Text to display after tags list:"
 msgstr "タグ一覧の後に挿入する文字："
 
-#: /2.7/inc/simple-tags.admin.php:444
-msgid "Max tags display:"
-msgstr "表示されるタグの最大数："
+#: inc/helper.options.admin.php:312
+msgid "Text to display before tags list:"
+msgstr "タグ一覧の前に挿入する文字："
 
-#: /2.7/inc/simple-tags.admin.php:445
-msgid "You must set zero (0) for display all tags."
-msgstr "全てのタグを表示するためには（0）をセットする。"
-
-#: /2.7/inc/simple-tags.admin.php:446
-msgid "Include categories in result ?"
-msgstr "検索結果にカテゴリを含める？"
-
-#: /2.7/inc/simple-tags.admin.php:449
+#: inc/helper.options.admin.php:329
 msgid "Text to display if no tags found:"
 msgstr "タグが無かった場合の文字列:"
 
-msgid "<code>no</code> &ndash; Nowhere (default)"
-msgstr "<code>no</code> &ndash; 表示しない (初期値)"
+#: inc/helper.options.admin.php:173
+msgid "Text to display into title attribute for links:"
+msgstr ""
 
-msgid "<code>all</code> &ndash; On your blog and feeds."
-msgstr "<code>all</code> &ndash; ブログとフィード。"
+#: inc/class.admin.php:504
+#, php-format
+msgid ""
+"Thanks for using TaxoPress | <a href=\"https://taxopress.com/\">TaxoPress."
+"com</a> | Version %s"
+msgstr ""
 
-msgid "<code>blogonly</code> &ndash; Only on your blog."
-msgstr "<code>blogonly</code> &ndash; ブログのみ表示。"
+#: inc/helper.options.admin.php:269
+msgid ""
+"The colours are hexadecimal colours,  and need to have the full six digits "
+"(#eee is the shorthand version of #eeeeee)."
+msgstr "色は 6 桁の 16 進数で入力します (#eee は #eeeeee の省略形です)。"
 
-msgid "<code>homeonly</code> &ndash; Only on your home page."
-msgstr "<code>homeonly</code> &ndash; フロントページのみ表示。"
+#: inc/helper.options.admin.php:285
+msgid ""
+"The font size units option determines the units that the two font sizes use."
+msgstr "この 2 つのフォントサイズで使用するフォントの単位です。"
 
-msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
-msgstr "<code>singularonly</code> &ndash; シングルページのみ表示 (投稿と固定ページ)."
+#: inc/taxonomies.php:1244
+msgid ""
+"The text displayed after a term has been updated for a link back to main "
+"index."
+msgstr ""
 
-msgid "<code>singleonly</code> &ndash; Only on your single view."
-msgstr "<code>singleonly</code> &ndash; シングルページのみ（投稿のみ）"
+#: inc/taxonomies.php:1227
+msgid ""
+"The text displayed via clicking ‘Choose from the most used items’ in the "
+"taxonomy meta box when no items are available."
+msgstr ""
 
-msgid "<code>pageonly</code> &ndash; Only on your page view."
-msgstr "<code>pageonly</code> &ndash; 固定ページのみ"
+#: inc/helper.options.admin.php:277
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "この 2 つのフォントサイズはそれぞれ最も使用されているタグと最も使用されていないタグのサイズです。"
 
+#: inc/helper.options.admin.php:282
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "タグクラウドのフォントサイズで使用する単位:"
+
+#: inc/class.client.related_posts.php:368
+msgid "There is no excerpt because this is a protected post."
+msgstr ""
+
+#: inc/class.admin.php:225
+msgid "This custom post type not have taxonomies."
+msgstr "このカスタム投稿タイプにはタクソノミがありません。"
+
+#: inc/helper.options.admin.php:30
+msgid ""
+"This feature adds a meta box in the editor which will display suggested tags "
+"obtained by comparing your post content with various sources of tags. (Yahoo!"
+" Term Extraction API, OpenCalais, Tag The Net, Local DB)"
+msgstr ""
+
+#: inc/helper.options.admin.php:51
+msgid ""
+"This feature allow automatically add terms on a post by proceding to a "
+"search into content."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:138
+#, fuzzy
+#| msgid ""
+#| "This feature allows Wordpress to look into post content and title for "
+#| "specified terms when saving posts. If your post content or title contains "
+#| "the word \"WordPress\" and you have \"wordpress\" in auto terms list, "
+#| "TaxoPress will add automatically \"wordpress\" as term for this post."
+msgid ""
+"This feature allows Wordpress to look into %s content and title for "
+"specified terms when saving %s. If your %s content or title contains the "
+"word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress "
+"will add automatically \"wordpress\" as term for this %s."
+msgstr ""
+"この機能は、投稿保存時に投稿内やタイトルに指定されたタグを探します。例えば、\"WordPress\" "
+"という単語が投稿内やタイトルに含まれていて、自動タグリストに \"wordpress\" があれば、TaxoPress がこの投稿に自動的に "
+"\"wordpress\" タグを付けます。"
+
+#: inc/helper.options.admin.php:44
+msgid ""
+"This feature allows you to display related posts based on terms relation."
+msgstr ""
+
+#: inc/helper.options.admin.php:16
+msgid ""
+"This feature allows you to edit the terms of any taxonomy for multiple posts "
+"at the same time."
+msgstr ""
+
+#: inc/helper.options.admin.php:37
+msgid ""
+"This feature allows you to edit, merge, delete and add terms for any "
+"taxonomy."
+msgstr ""
+
+#: inc/class.admin.manage.php:430
+msgid "This feature allows you to remove rarely used terms."
+msgstr ""
+
+#: inc/class.admin.manage.php:240
+#, php-format
+msgid ""
+"This feature lets you add one or more new terms to all %s which match any of "
+"the terms given."
+msgstr ""
+
+#: inc/class.admin.php:490
+msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
+msgstr "これらを動作させるためには、少なくとも1個のタグを必要とします。タグを加えてから開始してください！"
+
+#: inc/helper.options.admin.php:23
+msgid ""
+"This feature will allow you to load all the local tags in your database "
+"inside the Suggested Tags meta box inside the editor. Once displayed, you "
+"can click to add tags to your post."
+msgstr ""
+
+#: inc/class.admin.php:492
+msgid ""
+"This feature works only with activated JavaScript. Activate it in your Web "
+"browser so you can!"
+msgstr "これらは JavaScript で働いています。 動作させるには、ウェブブラウザで JavaScript をアクティブにしてください！"
+
+#: inc/taxonomies.php:306
+msgid "This is an external taxonomy and not created with TaxoPress."
+msgstr ""
+
+#: inc/helper.options.admin.php:109
+msgid ""
+"This parameter allows to fix a minimal value of use of tags. Default: 1."
+msgstr "このパラメータはタグの最小使用値を固定します。デフォルト: 1。"
+
+#: inc/helper.options.admin.php:123
+msgid ""
+"This setting determines the maximum number of links created by article for "
+"the same tag. Default: 1."
+msgstr "この設定は、記事の同じタグによって作成されるリンクの最大数を決定します。初期値：1"
+
+#: inc/helper.options.admin.php:116
+msgid ""
+"This setting determines the maximum number of links created by article. "
+"Default: 10."
+msgstr "記事内のリンクの最大数を調べます。 デフォルト: 10。"
+
+#: inc/taxonomies.php:297
+msgid "This taxonomy is part of the WordPress core."
+msgstr ""
+
+#: inc/taxonomies.php:315
+msgid "This taxonomy was created by TaxoPress."
+msgstr ""
+
+#: inc/class.widgets.php:213
+msgid "Title:"
+msgstr "タイトル:"
+
+#: inc/taxonomies.php:544 inc/taxonomies.php:716 inc/taxonomies.php:750
+#: inc/taxonomies.php:775 inc/taxonomies.php:808 inc/taxonomies.php:831
+#: inc/taxonomies.php:854 inc/taxonomies.php:879 inc/taxonomies.php:902
+#: inc/taxonomies.php:1268 inc/taxonomies.php:1320 inc/taxonomies.php:1344
+#: inc/taxonomies.php:1368
+msgid "True"
+msgstr ""
+
+#: inc/helper.options.admin.php:166
+msgid "Try new engine replacement ?"
+msgstr ""
+
+#: inc/class.widgets.php:309
+msgid "Unit font size:"
+msgstr "フォントサイズの単位:"
+
+#: inc/taxonomies-functions.php:1565 inc/taxonomies-functions.php:1607
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:999
+#, php-format
+msgid "Update %s name"
+msgstr ""
+
+#: inc/class.admin.mass.php:276
+msgid "Update all &raquo;"
+msgstr "全て更新 &raquo;"
+
+#: inc/taxonomies.php:994
+msgid "Update Item Name"
+msgstr ""
+
+#: inc/class.client.php:59
+msgid "Update Media Tag name"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:222 views/admin/page-settings.php:33
+msgid "Update options &raquo;"
+msgstr "設定を更新する &raquo;"
+
+#: inc/class.admin.autoterms.php:154
+#, php-format
+msgid ""
+"Use all the terms in the %s taxonomy. (Warning, this option can increases "
+"the CPU consumption a lot if you have many terms)"
+msgstr ""
+
+#: inc/class.widgets.php:342
+msgid "Use auto color cloud:"
+msgstr "クラウドを自動的に色付けする:"
+
+#: inc/class.admin.autoterms.php:158
+#, php-format
+msgid ""
+"Use this option if you don't want to use all the terms in your %s taxonomy. "
+"You can select specific terms to use."
+msgstr ""
+
+#: inc/taxonomies.php:947
+msgid ""
+"Used as tab text when showing all terms for hierarchical taxonomy while "
+"editing post."
+msgstr ""
+
+#: inc/taxonomies.php:1012
+msgid ""
+"Used at the top of the term editor screen and button text for a new taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:963
+msgid ""
+"Used at the top of the term editor screen for an existing taxonomy term."
+msgstr ""
+
+#: inc/taxonomies.php:979
+msgid ""
+"Used in the admin bar when viewing editor screen for an existing taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:1177
+msgid ""
+"Used when indicating that there are no terms in the given taxonomy "
+"associated with an object."
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1551 inc/taxonomies-functions.php:1552
+#: inc/taxonomies-functions.php:1592 inc/taxonomies-functions.php:1595
+#: inc/taxonomies.php:983
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: inc/taxonomies.php:978
+msgid "View Item"
+msgstr ""
+
+#: inc/class.client.php:58
+msgid "View Media Tag"
+msgstr ""
+
+#: inc/class.widgets.php:386
+msgid "What to show"
+msgstr "なにを表示する"
+
+#: inc/class.admin.autoterms.php:215
+msgid ""
+"When the whole word option is enabled, hashtag will not be autotag because "
+"of # prefix. This option allow to fixed this issue!"
+msgstr ""
+
+#: inc/taxonomies.php:1331
+msgid ""
+"Whether a taxonomy is intended for use publicly either via the admin "
+"interface or by front-end users."
+msgstr ""
+
+#: inc/taxonomies.php:1355
+msgid "Whether or not the taxonomy should be publicly queryable."
+msgstr ""
+
+#: inc/helper.options.admin.php:184
+msgid ""
+"Which difference between <strong>&#8216;Order tags selection&#8217;</strong> "
+"and <strong>&#8216;Order tags display&#8217;</strong> ?<br />"
+msgstr "<strong>'タグの選択順'</strong> と <strong>'タグの表示順'</strong> の違いは ?<br />"
+
+#: inc/class.admin.autoterms.php:205
+msgid "Whole Word ?"
+msgstr "タンゴ全体？"
+
+#: inc/taxonomies.php:727
+msgid ""
+"WordPress can use a custom permalink for this taxonomy. It does not have to "
+"match the slug."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:337
+msgid "WordPress core"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:361
+msgid "Yes"
+msgstr ""
+
+#: inc/helper.options.admin.php:93
+#, fuzzy
+#| msgid ""
+#| "You can create an API key from <a href=\"http://www.alchemyapi.com/\">"
+#| "service website</a>"
+msgid ""
+"You can create an API key from <a href=\"https://dandelion.eu/\">service "
+"website</a>"
+msgstr ""
+"新しい API キーは <a href=\"http://www.alchemyapi.com/\">サービスウェブサイト</a> から入手できます。"
+
+#: inc/helper.options.admin.php:86
+msgid ""
+"You can create an API key from <a href=\"https://developers.refinitiv."
+"com/en/api-catalog/open-perm-id/intelligent-tagging-restful-"
+"api/documentation\">service website</a>"
+msgstr ""
+
+#: inc/helper.options.admin.php:244 inc/helper.options.admin.php:327
+#: inc/helper.options.admin.php:382
+msgid ""
+"You can find markers and explanations <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
+msgstr ""
+"マーカーや解説については <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">"
+"オンラインドキュメント</a>を参照してください"
+
+#: inc/taxonomies.php:1476
+msgid "You can only delete taxonomies created with TaxoPress."
+msgstr ""
+
+#: inc/helper.options.admin.php:407
+msgid ""
+"You can use the same syntax as <code>st_related_posts()</code>public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+
+#: inc/helper.options.admin.php:292
+#, fuzzy
+#| msgid ""
+#| "You can use the same syntax as <code>st_tag_cloud()</code> function to "
+#| "customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-"
+#| "tags/wiki\">documentation</a> for more details."
+msgid ""
+"You can use the same syntax as <code>st_tag_cloud()</code> public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+"<code>st_tag_cloud()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a "
+"href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">ドキュメンテーション</a> "
+"を参照してください。"
+
+#: inc/helper.options.admin.php:335
+#, fuzzy
+#| msgid ""
+#| "You can use the same syntax as <code>st_the_tags()</code> function to "
+#| "customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-"
+#| "tags/wiki\">documentation</a> for more details."
+msgid ""
+"You can use the same syntax as <code>st_the_tags()</code> public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+"<code>st_the_tags()</code> 関数と同じシンタックスを使用して表示をカスタマイズできます。詳しくは <a "
+"href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">ドキュメンテーション</a> "
+"を参照してください。"
+
+#: inc/class.admin.php:242
+msgid ""
+"You currently use the custom post type \"<span>%s</span>\" and the taxonomy "
+"\"<span>%s</span>\""
+msgstr "現在のカスタム投稿タイプは \"<span>%s</span>\" 、タクソノミは \"<span>%s</span>\""
+
+#: inc/helper.options.admin.php:190
+msgid ""
+"You must set &#8216;Order tags selection&#8217; to <strong>count-"
+"desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags "
+"display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr ""
+"最もよく使用されている 100 個のタグを取得するため、&#8216;タグの選択順&#8217; で <strong>count-"
+"desc</strong> を設定し、ランダムなクラウドを表示するため、&#8216;タグの表示順&#8217; で <strong>"
+"random</strong> を設定します。"
+
+#: inc/helper.options.admin.php:319
+msgid "You must set zero (0) for display all tags."
+msgstr "全てのタグを表示するためには（0）をセットする。"
+
+#: inc/class.widgets.php:18
+msgid "Your most used tags in cloud format with dynamic color and many options"
+msgstr "タグクラウドで、使用の多いタグの表示設定"
