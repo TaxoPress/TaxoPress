@@ -3,7 +3,7 @@
 Plugin Name: TaxoPress
 Plugin URI: https://wordpress.org/plugins/simple-tags/
 Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 3.0.4.2
+Version: 3.0.4.3
 Requires PHP: 5.6
 Requires at least: 3.3
 Tested up to: 5.6
@@ -39,7 +39,52 @@ if (!defined('ABSPATH')) {
     die('-1');
 }
 
-define('STAGS_VERSION', '3.0.4.2');
+if (!defined('STAGS_VERSION')) {
+define('STAGS_VERSION', '3.0.4.3');
+}
+
+
+$pro_active = false;
+
+foreach ((array)get_option('active_plugins') as $plugin_file) {
+    if (false !== strpos($plugin_file, 'taxopress-pro.php')) {
+        $pro_active = true;
+        break;
+    }
+}
+
+if (!$pro_active && is_multisite()) {
+    foreach (array_keys((array)get_site_option('active_sitewide_plugins')) as $plugin_file) {
+        if (false !== strpos($plugin_file, 'taxopress-pro.php')) {
+            $pro_active = true;
+            break;
+        }
+    }
+}
+
+if ($pro_active) {
+    add_filter(
+        'plugin_row_meta',
+        function($links, $file)
+        {
+            if ($file == plugin_basename(__FILE__)) {
+                $links[]= __('<strong>This plugin can be deleted.</strong>', 'press-permit-core');
+            }
+
+            return $links;
+        },
+        10, 2
+    );
+}
+
+if (defined('TAXOPRESS_FILE') || $pro_active) {
+	return;
+}
+
+
+
+define ( 'TAXOPRESS_FILE', __FILE__ );
+
 define('STAGS_MIN_PHP_VERSION', '5.6');
 define('STAGS_OPTIONS_NAME', 'simpletags'); // Option name for save settings
 define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save settings auto terms
@@ -72,25 +117,5 @@ require STAGS_DIR . '/inc/class.widgets.php';
 // Activation, uninstall
 register_activation_hook(__FILE__, array('SimpleTags_Plugin', 'activation'));
 register_deactivation_hook(__FILE__, array('SimpleTags_Plugin', 'deactivation'));
-
-// Init TaxoPress
-function init_simple_tags()
-{
-    new SimpleTags_Client();
-    new SimpleTags_Client_TagCloud();
-
-    // Admin and XML-RPC
-    if (is_admin()) {
-        require STAGS_DIR . '/inc/class.admin.php';
-        new SimpleTags_Admin();
-    }
-    
-	if (is_admin() && !defined('PUBLISHPRESS_ST_PRO_VERSION')) {
-		//require_once(__DIR__ . '/includes-core/TaxopressCoreAdmin.php');
-		//new \PublishPress\Taxopress\TaxopressCoreAdmin();
-	}
-
-    add_action('widgets_init', 'st_register_widget');
-}
 
 add_action('plugins_loaded', 'init_simple_tags');
