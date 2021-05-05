@@ -44,6 +44,7 @@ function taxopress_re_order_menu()	{
     $newSubmenu = [];	    
     foreach ($submenu as $menuName => $menuItems) {	        
         if ('st_options' === $menuName) {
+            $taxopress_settings = $taxopress_taxonomies = false;
 
             $taxopress_submenus = $submenu['st_options'];
             foreach($taxopress_submenus  as $key => $taxopress_submenu){
@@ -58,9 +59,11 @@ function taxopress_re_order_menu()	{
                     unset($taxopress_submenus[$key]);
                 }
             }
+            if($taxopress_settings && $taxopress_taxonomies ){
             //swicth position
             $taxopress_submenus[$taxopress_settings_key] = $taxopress_taxonomies;
             $taxopress_submenus[$taxopress_taxonomies_key] = $taxopress_settings;
+            }
 
             //resort array
             ksort($taxopress_submenus);
@@ -69,4 +72,24 @@ function taxopress_re_order_menu()	{
            break;	        
         }	    
     }	
+}
+
+// Init TaxoPress
+function init_simple_tags()
+{
+    new SimpleTags_Client();
+    new SimpleTags_Client_TagCloud();
+
+    // Admin and XML-RPC
+    if (is_admin()) {
+        require STAGS_DIR . '/inc/class.admin.php';
+        new SimpleTags_Admin();
+    }
+    
+	if (is_admin() && !defined('TAXOPRESS_PRO_VERSION')) {
+		require_once(TAXOPRESS_ABSPATH . '/includes-core/TaxopressCoreAdmin.php');
+		new \PublishPress\Taxopress\TaxopressCoreAdmin();
+	}
+
+    add_action('widgets_init', 'st_register_widget');
 }
