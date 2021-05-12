@@ -1,5 +1,9 @@
 {
     "require": {
-        "publishpress/wordpress-version-notices": "^1.1"
+        "publishpress/wordpress-version-notices": "^1.1",
+        "pimple/pimple": "3.2.3.*",
+        "symfony/polyfill-ctype": "1.19.*",
+        "sabre/vobject": "^3.4",
+        "psr/container": "1.0.0"
     }
 }
