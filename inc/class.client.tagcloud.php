@@ -700,7 +700,7 @@ class SimpleTags_Client_TagCloud {
 		$where      .= $exclusions;
 
 		// ST Features : Restrict category
-		if ( $category != 0 ) {
+		if (!empty($category)) {
 			if ( ! is_array( $taxonomies ) ) {
 				$taxonomies = array( $taxonomies );
 			}
