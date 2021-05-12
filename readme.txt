@@ -112,7 +112,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.0.5 - 2021-05-05
+v3.0.5 - 2021-05-10
 * Introduced pro version
 * Fixed bugs
 
