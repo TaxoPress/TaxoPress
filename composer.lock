@@ -4,33 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1aca8576766c0fba9ae6c812691974f",
+    "content-hash": "696f9bfa283ffdbcd9273e92c4f1c9fb",
     "packages": [
         {
             "name": "pimple/pimple",
-            "version": "v3.4.0",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "86406047271859ffc13424a048541f4531f53601"
+                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/86406047271859ffc13424a048541f4531f53601",
-                "reference": "86406047271859ffc13424a048541f4531f53601",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/9e403941ef9d65d20cba7d54e29fe906db42cf32",
+                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
-                "psr/container": "^1.1"
+                "php": ">=5.3.0",
+                "psr/container": "^1.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^5.0"
+                "symfony/phpunit-bridge": "^3.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.4.x-dev"
+                    "dev-master": "3.2.x-dev"
                 }
             },
             "autoload": {
@@ -49,34 +49,40 @@
                 }
             ],
             "description": "Pimple, a simple Dependency Injection Container",
-            "homepage": "https://pimple.symfony.com",
+            "homepage": "http://pimple.sensiolabs.org",
             "keywords": [
                 "container",
                 "dependency injection"
             ],
             "support": {
-                "source": "https://github.com/silexphp/Pimple/tree/v3.4.0"
+                "issues": "https://github.com/silexphp/Pimple/issues",
+                "source": "https://github.com/silexphp/Pimple/tree/master"
             },
-            "time": "2021-03-06T08:28:00+00:00"
+            "time": "2018-01-21T07:42:36+00:00"
         },
         {
             "name": "psr/container",
-            "version": "1.1.1",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf"
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/8622567409010282b7aeebe4bb841fe98b58dcaf",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=5.3.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -89,7 +95,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
+                    "homepage": "http://www.php-fig.org/"
                 }
             ],
             "description": "Common Container Interface (PHP FIG PSR-11)",
@@ -103,9 +109,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.1"
+                "source": "https://github.com/php-fig/container/tree/master"
             },
-            "time": "2021-03-05T17:36:06+00:00"
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "publishpress/wordpress-version-notices",
@@ -152,6 +158,156 @@
                 "source": "https://github.com/publishpress/WordPress-Version-Notices/tree/master"
             },
             "time": "2020-08-11T03:28:34+00:00"
+        },
+        {
+            "name": "sabre/vobject",
+            "version": "3.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/vobject.git",
+                "reference": "129d80533a9ec0d9cacfb50b51180c34edb6874c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/vobject/zipball/129d80533a9ec0d9cacfb50b51180c34edb6874c",
+                "reference": "129d80533a9ec0d9cacfb50b51180c34edb6874c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "bin": [
+                "bin/vobject",
+                "bin/generate_vcards"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sabre\\VObject\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dominik Tobschall",
+                    "email": "dominik@fruux.com",
+                    "homepage": "http://tobschall.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The VObject library for PHP allows you to easily parse and manipulate iCalendar and vCard objects",
+            "homepage": "http://sabre.io/vobject/",
+            "keywords": [
+                "VObject",
+                "iCalendar",
+                "jCal",
+                "jCard",
+                "vCard"
+            ],
+            "support": {
+                "forum": "https://groups.google.com/group/sabredav-discuss",
+                "issues": "https://github.com/sabre-io/vobject/issues",
+                "source": "https://github.com/fruux/sabre-vobject"
+            },
+            "time": "2016-10-07T03:20:40+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.19.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "aed596913b70fae57be53d86faa2e9ef85a2297b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/aed596913b70fae57be53d86faa2e9ef85a2297b",
+                "reference": "aed596913b70fae57be53d86faa2e9ef85a2297b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.19-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.19.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-23T09:01:57+00:00"
         }
     ],
     "packages-dev": [],
