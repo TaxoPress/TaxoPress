@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.7
-Stable tag: 3.0.5
+Stable tag: 3.0.5.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -112,7 +112,10 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.0.5 - 2021-05-05
+v3.0.5.1 - 2021-05-13
+* Fixed bugs
+
+v3.0.5 - 2021-05-10
 * Introduced pro version
 * Fixed bugs
 
