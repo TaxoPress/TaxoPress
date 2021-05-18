@@ -4,6 +4,7 @@ namespace PublishPress\Taxopress;
 class TaxopressCoreAdmin {
     function __construct() {
 
+        if ( current_user_can( 'simple_tags' ) ) {
         if (is_admin()) {
             $autoloadPath = TAXOPRESS_ABSPATH . '/vendor/autoload.php';
 			if (file_exists($autoloadPath)) {
@@ -43,6 +44,8 @@ class TaxopressCoreAdmin {
 
                             return $settings;
                         });
+
+        }
 
 
     }
