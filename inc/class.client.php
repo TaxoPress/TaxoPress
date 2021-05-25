@@ -19,6 +19,8 @@ class SimpleTags_Client {
 			add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
 		}*/
 
+        add_action( 'parse_query', array( __CLASS__, 'cpt_taxonomy_parse_query' ) );
+
 		// Call autolinks ?
 		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) == 1 ) {
 			require( STAGS_DIR . '/inc/class.client.autolinks.php' );
@@ -42,6 +44,32 @@ class SimpleTags_Client {
 		return true;
 	}
 
+
+	/**
+	 * Add cpt to taxonomy during the query
+	 *
+	 * @param WP_Query $query
+	 *
+	 * @return void
+	 * @author Olatechpro
+	 */
+	public static function cpt_taxonomy_parse_query( $query ) {
+        if(function_exists('get_current_screen')){
+            $screen = get_current_screen();
+        }
+
+        if(is_admin()){
+            return $query;
+        }
+        if(isset($screen->id) && $screen->id == 'edit-post'){
+            return $query;
+        }
+        
+        if ( $query->is_category == true || $query->is_tag == true || $query->is_tax == true ) {
+            $post_types = get_taxonomy( get_queried_object()->taxonomy )->object_type;
+            $query->query_vars['post_type'] = $post_types;
+		}
+	}
 
 	/**
 	 * Taxonomy: Media Tags.
