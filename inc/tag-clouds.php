@@ -331,6 +331,7 @@ class SimpleTags_Tag_Clouds
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'taxonomy',
 								                        'labeltext'  => esc_html__( 'Taxonomy', 'simpletags' ),
+                                                        'required'   => true,
 								                        'selections' => $select,
 							                    ] );
 
