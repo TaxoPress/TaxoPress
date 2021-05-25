@@ -110,8 +110,56 @@ function taxopress_process_tagcloud()
         add_filter('removable_query_args', 'taxopress_delete_tagcloud_filter_removable_query_args');
     }
 }
-
 add_action('init', 'taxopress_process_tagcloud', 8);
+
+
+
+/**
+ * Create default cloud tag.
+ */
+function taxopress_create_default_tag_cloud()
+{
+
+    if (wp_doing_ajax()) {
+        return;
+    }
+
+    if (!is_admin()) {
+        return;
+    }
+
+    if ((int)get_option('taxopress_default_tagclouds') > 0 ) {
+        return;
+    }
+
+    if (count(taxopress_get_tagcloud_data()) > 0 ) {
+        return;
+    }
+
+    $default = [];
+    $default['taxopress_tag_cloud']['title'] = 'Tag Cloud';
+    $default['taxopress_tag_cloud']['post_type'] = '';
+    $default['taxopress_tag_cloud']['taxonomy'] = 'post_tag';
+    $default['taxopress_tag_cloud']['max'] = 45;
+    $default['taxopress_tag_cloud']['selectionby'] = 'count';
+    $default['taxopress_tag_cloud']['selection'] = 'desc';
+    $default['taxopress_tag_cloud']['orderby'] = 'random';
+    $default['taxopress_tag_cloud']['order'] = 'desc';
+    $default['taxopress_tag_cloud']['smallest'] = 8;
+    $default['taxopress_tag_cloud']['largest'] = 22;
+    $default['taxopress_tag_cloud']['unit'] = 'pt';
+    $default['taxopress_tag_cloud']['format'] = 'flat';
+    $default['taxopress_tag_cloud']['color'] = 1;
+    $default['taxopress_tag_cloud']['mincolor'] = '#CCCCCC';
+    $default['taxopress_tag_cloud']['maxcolor'] = '#000000';
+    $default['taxopress_tag_cloud']['xformat'] = '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>';
+    $default['taxopress_tag_cloud']['limit_days'] = 0;
+    $default['tagcloud_submit'] = 'Add Tag Cloud';
+    $default['cpt_tax_status'] = 'new';
+    $result = taxopress_update_tagcloud($default);
+    update_option('taxopress_default_tagclouds', $result);
+}
+add_action('init', 'taxopress_create_default_tag_cloud', 8);
 
 
 /**
