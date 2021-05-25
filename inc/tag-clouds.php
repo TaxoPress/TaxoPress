@@ -286,6 +286,28 @@ class SimpleTags_Tag_Clouds
                                                     'wrap'        => false,
                                                 ]);
 
+                                                $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = ( isset($current) && isset($current['hide_title']) ) ? taxopress_disp_boolean($current['hide_title']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['hide_title'] : '';
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'taxopress_tag_cloud',
+                                                'name'       => 'hide_title',
+                                                'labeltext'  => esc_html__('Hide title in output ?', 'simpletags'),
+                                                'selections' => $select,
+                                            ]);
+
                                                 $options = [];
                                                 foreach ( get_all_taxopress_taxonomies() as $_taxonomy ) {
                                                     $_taxonomy = $_taxonomy->name;

@@ -79,7 +79,8 @@ class SimpleTags_Client_TagCloud {
 			'limit_days'  => 0,
 			'min_usage'   => 0,
 			'category'    => 0,
-			'ID'          => 0
+			'ID'          => 0,
+			'hide_title'  => 0,
 		);
 
 		// Get options
@@ -145,6 +146,11 @@ class SimpleTags_Client_TagCloud {
 		if ( empty( $xformat ) ) {
 			$xformat = $defaults['xformat'];
 		}
+
+        //remove title if in settings
+        if((int)$hide_title > 0){
+            $title = '';
+        }
 
 		if ( empty( $terms ) ) {
 			return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
@@ -561,7 +567,7 @@ class SimpleTags_Client_TagCloud {
 			'limit_days'    => 0,
 			'category'      => 0,
 			'min_usage'     => 0,
-			'st_name__like' => ''
+			'st_name__like' => '',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
