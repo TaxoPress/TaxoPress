@@ -86,7 +86,7 @@ class SimpleTags_Admin_Autocomplete {
 			exit();
 		}
 
-		// Format terms
+		// Format 
 		$results = array();
 		foreach ( (array) $terms as $term ) {
 			$term->name = stripslashes( $term->name );
