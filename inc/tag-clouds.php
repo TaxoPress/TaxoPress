@@ -256,7 +256,11 @@ class SimpleTags_Tag_Clouds
                                         <div class="st-taxonomy-content">
 
                                         <?php if($tag_cloud_limit){
-                                            echo '<p><div class="taxopress-warning" style="color:red">' . __('You have reached the limit for free version. Kindly upgrade to TaxoPress Pro to add more instance.','simpletags').'</p>';
+                                            echo '<div class="taxopress-warning" style="color:red">
+                                            <p>
+                                            
+                                            ' . __('You have reached the limit for free version. Kindly upgrade to TaxoPress Pro to add more instance.','simpletags').'</p>
+                                            </div>';
 
                                         }else{
                                         ?>
