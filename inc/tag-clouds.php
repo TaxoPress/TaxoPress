@@ -258,8 +258,11 @@ class SimpleTags_Tag_Clouds
                                         <?php if($tag_cloud_limit){
                                             echo '<div class="taxopress-warning" style="color:red">
                                             <p>
+
+                                            <h4 style="margin-bottom: 5px;">' . __('To create more Tag Clouds, please upgrade to TaxoPress Pro.','simpletags').'</h4>
+                                            ' . __('With TaxoPress Pro, you can create unlimited Tag Clouds. You can create Tag Clouds for any taxonomy and then display those Tag Clouds anywhere on your site.','simpletags').'
                                             
-                                            ' . __('You have reached the limit for free version. Kindly upgrade to TaxoPress Pro to add more instance.','simpletags').'</p>
+                                            </p>
                                             </div>';
 
                                         }else{
@@ -551,6 +554,13 @@ class SimpleTags_Tag_Clouds
                         </div>
 
 
+
+
+                        <?php if($tag_cloud_limit){ ?>
+                                
+                                <div class="pp-version-notice-bold-purple" style="margin-left:0px;"><div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free. The Pro version has more features and support. </div><div class="pp-version-notice-bold-purple-button"><a href="https://taxopress.com/pro" target="_blank">Upgrade to Pro</a></div></div>
+
+                        <?php } ?>
                         <?php
                         /**
                          * Fires after the default fieldsets on the taxonomy screen.
@@ -563,6 +573,7 @@ class SimpleTags_Tag_Clouds
                     </div>
                 </div>
             </form>
+            
         </div><!-- End .wrap -->
 
         <div class="clear"></div>
