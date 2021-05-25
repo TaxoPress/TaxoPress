@@ -32,7 +32,6 @@ class SimpleTags_Admin {
 
 
         //tag clouds
-        //require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
         require STAGS_DIR . '/inc/tag-clouds-table.php';
         require STAGS_DIR . '/inc/tag-clouds.php';
         SimpleTags_Tag_Clouds::get_instance();
