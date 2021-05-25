@@ -192,6 +192,7 @@ a#close_clicktags{display:none;}
 .taxopress_page_st_tagclouds .shortcode.column-shortcode input[type=text] {
     width: -webkit-fill-available;
 }
+.taxopress_page_st_tagclouds #col-container,
 .tagcloudui #poststuff {
     min-height: 600px;
 }
