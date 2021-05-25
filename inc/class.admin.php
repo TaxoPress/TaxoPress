@@ -30,6 +30,13 @@ class SimpleTags_Admin {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
 
+
+        //tag clouds
+        //require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
+        require STAGS_DIR . '/inc/tag-clouds-table.php';
+        require STAGS_DIR . '/inc/tag-clouds.php';
+        SimpleTags_Tag_Clouds::get_instance();
+
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
 			require STAGS_DIR . '/inc/class.admin.suggest.php';
@@ -65,6 +72,7 @@ class SimpleTags_Admin {
 			new SimpleTags_Admin_Post_Settings();
 		}
 
+        //taxonomies
         require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
         require STAGS_DIR . '/inc/class-taxonomies-table.php';
         require STAGS_DIR . '/inc/taxonomies.php';
@@ -367,17 +375,19 @@ class SimpleTags_Admin {
 					'st_auto',
 					'st_options',
 					'st_manage',
-					'st_taxonomies'
+					'st_taxonomies',
+					'st_tagclouds'
 				) ) )
 		) {
 			wp_enqueue_style( 'st-admin' );
 		}
 
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
-		if ( isset( $_GET['page'] ) && $_GET['page'] == 'st_options' ) {
+		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], array('st_options','st_tagclouds') ) ) {
 			wp_enqueue_script( 'jquery-ui-tabs' );
 			wp_enqueue_script( 'st-helper-options' );
 		}
+
 	}
 
 	/**
