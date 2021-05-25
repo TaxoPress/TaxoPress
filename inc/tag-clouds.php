@@ -308,6 +308,23 @@ class SimpleTags_Tag_Clouds
                                                 'selections' => $select,
                                             ]);
 
+                                                $options[] = [ 'attr' => '', 'text' => __('None', 'simpletags'), 'default' => 'true' ];
+                                                foreach ( get_post_types(['public' => true], 'objects') as $post_type ) {
+                                                    $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
+                                                }
+
+                                                $select = [
+								                    'options' => $options,
+							                    ];
+							                    $selected = ( isset( $current ) && isset($current['post_type']) ) ? taxopress_disp_boolean( $current['post_type'] ) : '';
+							                    $select['selected'] = ! empty( $selected ) ? $current['post_type'] : '';
+                                                echo $ui->get_select_checkbox_input_main( [
+								                        'namearray'  => 'taxopress_tag_cloud',
+								                        'name'       => 'post_type',
+								                        'labeltext'  => esc_html__( 'Post Type', 'simpletags' ),
+								                        'selections' => $select,
+							                    ] );
+
                                                 $options = [];
                                                 foreach ( get_all_taxopress_taxonomies() as $_taxonomy ) {
                                                     $_taxonomy = $_taxonomy->name;

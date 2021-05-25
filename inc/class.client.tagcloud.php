@@ -81,6 +81,7 @@ class SimpleTags_Client_TagCloud {
 			'category'    => 0,
 			'ID'          => 0,
 			'hide_title'  => 0,
+			'post_type'   => '',
 		);
 
 		// Get options
@@ -568,6 +569,7 @@ class SimpleTags_Client_TagCloud {
 			'category'      => 0,
 			'min_usage'     => 0,
 			'st_name__like' => '',
+			'post_type'     => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -726,12 +728,24 @@ class SimpleTags_Client_TagCloud {
 
 		// ST Features : Limit posts date
 		if ( (int)$limit_days > 0 ) {
+            if($post_type){
+                $post_type = "AND post_type = '$post_type'";
+            }else{
+                $post_type = '';
+            }
 			$where .= " AND tr.object_id IN ( ";
-			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_date_gmt > '" . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . "'";
+			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_date_gmt > '" . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . "' $post_type";
 			$where .= " ) ";
 			$join_relation = true;
 			unset( $limit_days );
-		}
+		}else{
+            if($post_type){
+			$where .= " AND tr.object_id IN ( ";
+			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE post_type = '$post_type'";
+			$where .= " ) ";
+			$join_relation = true;
+            }
+        }
 
 		if ( ! empty( $slug ) ) {
 			$slug  = sanitize_title( $slug );

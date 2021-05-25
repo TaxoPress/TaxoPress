@@ -65,6 +65,7 @@ class TagClouds_List extends WP_List_Table
         $columns = [
             'title'        => __('Title', 'simpletags'),
             'taxonomy'     => __('Taxonomy', 'simpletags'),
+            'post_type'    => __('Post Type', 'simpletags'),
             'max'          => __('Max tags to display', 'simpletags'),
             'limit_days'   => __('Timeframe', 'simpletags'),
             'shortcode'    => __('Shortcode', 'simpletags')
@@ -151,8 +152,7 @@ class TagClouds_List extends WP_List_Table
         if ((!empty($_REQUEST['s'])) && $search = $_REQUEST['s']) {
             $data_filtered = [];
             foreach ($data as $item) {
-                if ($this->str_contains($item['title'], $search, false) || $this->str_contains($item['taxonomy'], $search,
-                        false)) {
+                if ( $this->str_contains($item['title'], $search, false) ) {
                     $data_filtered[] = $item;
                 }
             }
@@ -328,6 +328,34 @@ class TagClouds_List extends WP_List_Table
             ),
             esc_html($taxonomy->labels->name)
         );
+
+        return $title;
+    }
+
+    /**
+     * Method for post_type column
+     *
+     * @param array $item
+     *
+     * @return string
+     */
+    protected function column_post_type($item)
+    {
+        if( isset($item['post_type']) && !empty(trim($item['post_type'])) ){
+        $post_type = get_post_type_object($item['post_type']);
+        $title = sprintf(
+            '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
+            add_query_arg(
+                [
+                    'post_type' => $item['post_type'],
+                ],
+                admin_url('edit.php')
+            ),
+            esc_html($post_type->label)
+        );
+    }else{
+        $title = '&mdash;';
+    }
 
         return $title;
     }
