@@ -623,8 +623,8 @@ class SimpleTags_Admin {
 				return __( 'Tags for Current Post', 'simpletags' );
 			case 'relatedposts':
 				return __( 'Related Posts', 'simpletags' );
-			case 'tagcloud':
-				return __( 'Tag cloud', 'simpletags' );
+			case 'legacy':
+				return __( 'Legacy', 'simpletags' );
 		}
 
 		return '';

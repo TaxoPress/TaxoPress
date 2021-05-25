@@ -175,123 +175,6 @@ return array(
             'regular-text'
         ),
     ),
-    'tagcloud'       => array(
-        array(
-            'text_helper',
-            'text_helper',
-            'helper',
-            '',
-            __('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
-                . '<ul style="list-style:square;margin-left:20px;">
-				<li>' . __('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags') . '</li>
-				<li>' . __('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags') . '</li>
-			</ul>' .
-                __('<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />', 'simpletags') .
-                __('You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud.', 'simpletags')
-        ),
-        array(
-            'cloud_selectionby',
-            __('Order by for tags selection:', 'simpletags'),
-            'radio',
-            array(
-                'count'  => __('<code>count</code> &ndash; Counter. (default)', 'simpletags'),
-                'name'   => __('<code>name</code> &ndash; Name.', 'simpletags'),
-                'random' => __('<code>random</code> &ndash; Random.', 'simpletags'),
-            )
-        ),
-        array(
-            'cloud_selection',
-            __('Order tags selection:', 'simpletags'),
-            'radio',
-            array(
-                'asc'  => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
-                'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
-            )
-        ),
-        array(
-            'cloud_orderby',
-            __('Order by for tags display:', 'simpletags'),
-            'radio',
-            array(
-                'count'  => __('<code>count</code> &ndash; Counter.', 'simpletags'),
-                'name'   => __('<code>name</code> &ndash; Name.', 'simpletags'),
-                'random' => __('<code>random</code> &ndash; Random. (default)', 'simpletags'),
-            )
-        ),
-        array(
-            'cloud_order',
-            __('Order tags display:', 'simpletags'),
-            'radio',
-            array(
-                'asc'  => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
-                'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
-            )
-        ),
-        array(
-            'cloud_format',
-            __('Tags cloud type format:', 'simpletags'),
-            'radio',
-            array(
-                'list' => __('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags'),
-                'flat' => __('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags'),
-            )
-        ),
-        array(
-            'cloud_xformat',
-            __('Tag link format:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags')
-        ),
-        array(
-            'cloud_limit_qty',
-            __('Maximum number of tags to display: (default: 45)', 'simpletags'),
-            'number',
-            'small-text'
-        ),
-        array(
-            'cloud_notagstext',
-            __('Enter the text to show when there is no tag:', 'simpletags'),
-            'text',
-            'widefat'
-        ),
-        array(
-            'cloud_title',
-            __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'),
-            'text',
-            'widefat'
-        ),
-        array(
-            'cloud_max_color',
-            __('Most popular color:', 'simpletags'),
-            'text-color',
-            'medium-text st-color-field',
-            __("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags')
-        ),
-        array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text-color', 'medium-text st-color-field'),
-        array(
-            'cloud_max_size',
-            __('Most popular font size:', 'simpletags'),
-            'number',
-            'small-text',
-            __("The two font sizes are the size of the largest and smallest tags.", 'simpletags')
-        ),
-        array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'number', 'small-text'),
-        array(
-            'cloud_unit',
-            __('The units to display the font sizes with, on tag clouds:', 'simpletags'),
-            'dropdown',
-            'pt/px/em/%',
-            __("The font size units option determines the units that the two font sizes use.", 'simpletags')
-        ),
-        array(
-            'cloud_adv_usage',
-            __('<strong>Advanced usage</strong>:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
-        )
-    ),
     'tagspost'       => array(
         array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
         array(
@@ -405,6 +288,123 @@ return array(
             'text',
             'widefat',
             __('You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
+        )
+    ),
+    'legacy'       => array(
+        array(
+            'text_helper',
+            'text_helper',
+            'helper',
+            '',
+            '<h3 style="margin: 0;"><strong>'.__('Tag Cloud', 'simpletags').'</strong></h3><br /><p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Tag Clouds" screen instead.', 'simpletags').'</strong></p><br /><br />'.__('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
+                . '<ul style="list-style:square;margin-left:20px;">
+				<li>' . __('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags') . '</li>
+				<li>' . __('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags') . '</li>
+			</ul>' .
+                __('<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />', 'simpletags') .
+                __('You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud.', 'simpletags')
+        ),
+        array(
+            'cloud_selectionby',
+            __('Order by for tags selection:', 'simpletags'),
+            'radio',
+            array(
+                'count'  => __('<code>count</code> &ndash; Counter. (default)', 'simpletags'),
+                'name'   => __('<code>name</code> &ndash; Name.', 'simpletags'),
+                'random' => __('<code>random</code> &ndash; Random.', 'simpletags'),
+            )
+        ),
+        array(
+            'cloud_selection',
+            __('Order tags selection:', 'simpletags'),
+            'radio',
+            array(
+                'asc'  => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
+                'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
+            )
+        ),
+        array(
+            'cloud_orderby',
+            __('Order by for tags display:', 'simpletags'),
+            'radio',
+            array(
+                'count'  => __('<code>count</code> &ndash; Counter.', 'simpletags'),
+                'name'   => __('<code>name</code> &ndash; Name.', 'simpletags'),
+                'random' => __('<code>random</code> &ndash; Random. (default)', 'simpletags'),
+            )
+        ),
+        array(
+            'cloud_order',
+            __('Order tags display:', 'simpletags'),
+            'radio',
+            array(
+                'asc'  => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
+                'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
+            )
+        ),
+        array(
+            'cloud_format',
+            __('Tags cloud type format:', 'simpletags'),
+            'radio',
+            array(
+                'list' => __('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags'),
+                'flat' => __('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags'),
+            )
+        ),
+        array(
+            'cloud_xformat',
+            __('Tag link format:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags')
+        ),
+        array(
+            'cloud_limit_qty',
+            __('Maximum number of tags to display: (default: 45)', 'simpletags'),
+            'number',
+            'small-text'
+        ),
+        array(
+            'cloud_notagstext',
+            __('Enter the text to show when there is no tag:', 'simpletags'),
+            'text',
+            'widefat'
+        ),
+        array(
+            'cloud_title',
+            __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'),
+            'text',
+            'widefat'
+        ),
+        array(
+            'cloud_max_color',
+            __('Most popular color:', 'simpletags'),
+            'text-color',
+            'medium-text st-color-field',
+            __("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags')
+        ),
+        array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text-color', 'medium-text st-color-field'),
+        array(
+            'cloud_max_size',
+            __('Most popular font size:', 'simpletags'),
+            'number',
+            'small-text',
+            __("The two font sizes are the size of the largest and smallest tags.", 'simpletags')
+        ),
+        array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'number', 'small-text'),
+        array(
+            'cloud_unit',
+            __('The units to display the font sizes with, on tag clouds:', 'simpletags'),
+            'dropdown',
+            'pt/px/em/%',
+            __("The font size units option determines the units that the two font sizes use.", 'simpletags')
+        ),
+        array(
+            'cloud_adv_usage',
+            __('<strong>Advanced usage</strong>:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
         )
     ),
 );
