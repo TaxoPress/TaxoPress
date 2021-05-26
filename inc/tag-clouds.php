@@ -356,7 +356,7 @@ class SimpleTags_Tag_Clouds
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'max',
                                                     'textvalue' => isset($current['max']) ? esc_attr($current['max']) : '45',
-                                                    'labeltext' => esc_html__('Max terms to display', 'simpletags'),
+                                                    'labeltext' => esc_html__('Maximum terms to display', 'simpletags'),
                                                     'helptext'    => 'default: 45',
                                                     'required'  => true,
                                                 ]);
@@ -433,7 +433,7 @@ class SimpleTags_Tag_Clouds
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'smallest',
                                                     'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '8',
-                                                    'labeltext' => esc_html__('Font size mini', 'simpletags'),
+                                                    'labeltext' => esc_html__('Font size minimum', 'simpletags'),
                                                     'helptext'    => 'default: 8',
                                                     'required'  => true,
                                                 ]);
@@ -442,7 +442,7 @@ class SimpleTags_Tag_Clouds
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'largest',
                                                     'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
-                                                    'labeltext' => esc_html__('Font size max', 'simpletags'),
+                                                    'labeltext' => esc_html__('Font size maximum', 'simpletags'),
                                                     'helptext'    => 'default: 22',
                                                     'required'  => true,
                                                 ]);
@@ -484,7 +484,7 @@ class SimpleTags_Tag_Clouds
                                                     'name'      => 'mincolor',
                                                     'class'     => 'text-color',
                                                     'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#CCCCCC',
-                                                    'labeltext' => esc_html__('Font color mini', 'simpletags'),
+                                                    'labeltext' => esc_html__('Font color minimum', 'simpletags'),
                                                     'required'  => true,
                                                 ]);
 
@@ -493,7 +493,7 @@ class SimpleTags_Tag_Clouds
                                                     'name'      => 'maxcolor',
                                                     'class'     => 'text-color',
                                                     'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
-                                                    'labeltext' => esc_html__('Font color max', 'simpletags'),
+                                                    'labeltext' => esc_html__('Font color maximum', 'simpletags'),
                                                     'required'  => true,
                                                 ]);
 
