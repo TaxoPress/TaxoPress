@@ -196,6 +196,9 @@ a#close_clicktags{display:none;}
 .tagcloudui #poststuff {
     min-height: 600px;
 }
+.st-full-width {
+    width: -webkit-fill-available !important;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
