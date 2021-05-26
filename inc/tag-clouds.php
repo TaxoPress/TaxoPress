@@ -479,6 +479,24 @@ class SimpleTags_Tag_Clouds
 								                        'selections' => $select,
 							                    ] );
 
+                                            echo $ui->get_text_input([
+                                                    'namearray' => 'taxopress_tag_cloud',
+                                                    'name'      => 'mincolor',
+                                                    'class'     => 'text-color',
+                                                    'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#CCCCCC',
+                                                    'labeltext' => esc_html__('Font color mini', 'simpletags'),
+                                                    'required'  => true,
+                                                ]);
+
+                                            echo $ui->get_text_input([
+                                                    'namearray' => 'taxopress_tag_cloud',
+                                                    'name'      => 'maxcolor',
+                                                    'class'     => 'text-color',
+                                                    'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
+                                                    'labeltext' => esc_html__('Font color max', 'simpletags'),
+                                                    'required'  => true,
+                                                ]);
+
 
 
                                             $select             = [
@@ -499,27 +517,9 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'taxopress_tag_cloud',
                                                 'name'       => 'color',
-                                                'labeltext'  => esc_html__('Use auto color cloud', 'simpletags'),
+                                                'labeltext'  => esc_html__('Automatically fill colors between maximum and minimum', 'simpletags'),
                                                 'selections' => $select,
                                             ]);
-
-                                            echo $ui->get_text_input([
-                                                    'namearray' => 'taxopress_tag_cloud',
-                                                    'name'      => 'mincolor',
-                                                    'class'     => 'text-color',
-                                                    'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#CCCCCC',
-                                                    'labeltext' => esc_html__('Font color mini', 'simpletags'),
-                                                    'required'  => true,
-                                                ]);
-
-                                            echo $ui->get_text_input([
-                                                    'namearray' => 'taxopress_tag_cloud',
-                                                    'name'      => 'maxcolor',
-                                                    'class'     => 'text-color',
-                                                    'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
-                                                    'labeltext' => esc_html__('Font color max', 'simpletags'),
-                                                    'required'  => true,
-                                                ]);
 
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
