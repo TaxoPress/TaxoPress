@@ -524,6 +524,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'xformat',
+                                                    'class'     => 'st-full-width',
                                                     'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>'),
                                                     'labeltext' => esc_html__('Term link format', 'simpletags'),
                                                     'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the online documentation.</a>', 'simpletags'),
