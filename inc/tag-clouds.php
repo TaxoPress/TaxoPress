@@ -376,7 +376,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'selectionby',
-								                        'labeltext'  => esc_html__( 'Order by for DB selection tags', 'simpletags' ),
+								                        'labeltext'  => esc_html__( 'Method for choosing terms from the database', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
 
@@ -392,7 +392,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'selection',
-								                        'labeltext'  => esc_html__( 'Order for DB selection tags', 'simpletags' ),
+								                        'labeltext'  => esc_html__( 'Ordering for choosing term from the database', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
 
@@ -409,7 +409,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'orderby',
-								                        'labeltext'  => esc_html__( 'Order by for display tags', 'simpletags' ),
+								                        'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
 
@@ -425,7 +425,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'order',
-								                        'labeltext'  => esc_html__( 'Order for display tags', 'simpletags' ),
+								                        'labeltext'  => esc_html__( 'Ordering for choosing terms for display', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
 
@@ -526,7 +526,7 @@ class SimpleTags_Tag_Clouds
                                                     'name'      => 'xformat',
                                                     'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>'),
                                                     'labeltext' => esc_html__('Tag link format', 'simpletags'),
-                                                    'helptext'  => __('You can find markers and explanations <a target="blank" href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags'),
+                                                    'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the online documentation.</a>', 'simpletags'),
                                                     'required'  => false,
                                                 ]);
 
