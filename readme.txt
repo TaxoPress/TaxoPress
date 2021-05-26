@@ -117,6 +117,7 @@ v3.0.6- 2021-05-25
 * Added New Tag Cloud widget
 * Deprecated Old Tag Cloud settings
 * Deprecated Old Tag Cloud widget
+* Fixed taxonomy archive page to include all asigned post type posts
 
 v3.0.5.2 - 2021-05-18
 * Fixed bugs

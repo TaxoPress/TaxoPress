@@ -66,8 +66,11 @@ class SimpleTags_Client {
         }
         
         if ( $query->is_category == true || $query->is_tag == true || $query->is_tax == true ) {
-            $post_types = get_taxonomy( get_queried_object()->taxonomy )->object_type;
-            $query->query_vars['post_type'] = $post_types;
+            $get_queried_object = get_queried_object();
+            if(is_object($get_queried_object)){
+                $post_types = get_taxonomy( $get_queried_object->taxonomy )->object_type;
+                $query->query_vars['post_type'] = $post_types;
+            }
 		}
 	}
 
