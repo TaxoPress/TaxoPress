@@ -357,7 +357,7 @@ class SimpleTags_Tag_Clouds
                                                     'name'      => 'max',
                                                     'textvalue' => isset($current['max']) ? esc_attr($current['max']) : '45',
                                                     'labeltext' => esc_html__('Maximum terms to display', 'simpletags'),
-                                                    'helptext'    => 'default: 45',
+                                                    'helptext'    => '',
                                                     'required'  => true,
                                                 ]);
 
@@ -367,7 +367,7 @@ class SimpleTags_Tag_Clouds
 									                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simpletags' ) ],
 									                    [ 'attr' => 'slug', 'text' => esc_attr__( 'Slug', 'simpletags' ) ],
 									                    [ 'attr' => 'term_group', 'text' => esc_attr__( 'Term group', 'simpletags' ) ],
-									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter (default)', 'simpletags'), 'default' => 'true' ],
+									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simpletags'), 'default' => 'true' ],
 									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simpletags' ) ],
 								                    ],
 							                    ];
@@ -384,7 +384,7 @@ class SimpleTags_Tag_Clouds
 							                    $select = [
 								                    'options' => [
 									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simpletags' ) ],
-									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending (default)', 'simpletags'), 'default' => 'true' ],
+									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simpletags'), 'default' => 'true' ],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['selection'] ) : '';
@@ -401,7 +401,7 @@ class SimpleTags_Tag_Clouds
 								                    'options' => [
 									                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simpletags' ) ],
 									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simpletags') ],
-									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random (default)', 'simpletags' ), 'default' => 'true' ],
+									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simpletags' ), 'default' => 'true' ],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
@@ -417,7 +417,7 @@ class SimpleTags_Tag_Clouds
 							                    $select = [
 								                    'options' => [
 									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simpletags' ) ],
-									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending (default)', 'simpletags'), 'default' => 'true' ],
+									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simpletags'), 'default' => 'true' ],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['order'] ) : '';
@@ -434,7 +434,7 @@ class SimpleTags_Tag_Clouds
                                                     'name'      => 'smallest',
                                                     'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '8',
                                                     'labeltext' => esc_html__('Font size minimum', 'simpletags'),
-                                                    'helptext'    => 'default: 8',
+                                                    'helptext'    => '',
                                                     'required'  => true,
                                                 ]);
 
@@ -443,13 +443,13 @@ class SimpleTags_Tag_Clouds
                                                     'name'      => 'largest',
                                                     'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
                                                     'labeltext' => esc_html__('Font size maximum', 'simpletags'),
-                                                    'helptext'    => 'default: 22',
+                                                    'helptext'    => '',
                                                     'required'  => true,
                                                 ]);
                                                 
                                                 $select = [
 								                    'options' => [
-									                    [ 'attr' => 'pt', 'text' => esc_attr__( 'Point (default)', 'simpletags' ), 'default' => 'true' ],
+									                    [ 'attr' => 'pt', 'text' => esc_attr__( 'Point', 'simpletags' ), 'default' => 'true' ],
 									                    [ 'attr' => 'px', 'text' => esc_attr__( 'Pixel', 'simpletags' ) ],
 									                    [ 'attr' => 'em', 'text' => esc_attr__( 'Em', 'simpletags') ],
 									                    [ 'attr' => '%', 'text' => esc_attr__( 'Percent', 'simpletags') ],
@@ -466,7 +466,7 @@ class SimpleTags_Tag_Clouds
                                                 
                                                 $select = [
 								                    'options' => [
-									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Flat (default)', 'simpletags' ), 'default' => 'true' ],
+									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Flat', 'simpletags' ), 'default' => 'true' ],
 									                    [ 'attr' => 'list', 'text' => esc_attr__( 'List (UL/LI)', 'simpletags' ) ],
 								                    ],
 							                    ];
@@ -539,7 +539,7 @@ class SimpleTags_Tag_Clouds
 									                    [ 'attr' => '30', 'text' => esc_attr__( '1 month', 'simpletags' ) ],
 									                    [ 'attr' => '180', 'text' => esc_attr__( '6 months', 'simpletags' ) ],
 									                    [ 'attr' => '365', 'text' => esc_attr__( '1 year', 'simpletags' ) ],
-									                    [ 'attr' => '0', 'text' => esc_attr__( 'No limit (default)', 'simpletags'), 'default' => 'true' ],
+									                    [ 'attr' => '0', 'text' => esc_attr__( 'No limit', 'simpletags'), 'default' => 'true' ],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['limit_days'] ) : '';
