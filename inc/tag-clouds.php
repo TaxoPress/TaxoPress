@@ -356,7 +356,7 @@ class SimpleTags_Tag_Clouds
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'max',
                                                     'textvalue' => isset($current['max']) ? esc_attr($current['max']) : '45',
-                                                    'labeltext' => esc_html__('Max tags to display', 'simpletags'),
+                                                    'labeltext' => esc_html__('Max terms to display', 'simpletags'),
                                                     'helptext'    => 'default: 45',
                                                     'required'  => true,
                                                 ]);
@@ -525,7 +525,7 @@ class SimpleTags_Tag_Clouds
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'xformat',
                                                     'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>'),
-                                                    'labeltext' => esc_html__('Tag link format', 'simpletags'),
+                                                    'labeltext' => esc_html__('Term link format', 'simpletags'),
                                                     'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the online documentation.</a>', 'simpletags'),
                                                     'required'  => false,
                                                 ]);
@@ -546,7 +546,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_number_select( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'limit_days',
-								                        'labeltext'  => esc_html__( 'Limit tags based on timeframe', 'simpletags' ),
+								                        'labeltext'  => esc_html__( 'Limit terms based on timeframe', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
 
