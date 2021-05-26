@@ -203,10 +203,11 @@ function taxopress_update_tagcloud($data = [])
         $success = update_option('taxopress_tagclouds', $tagclouds);
         //return 'update_success';
     }else{
-        $tagcloud_id = time();
+        $tagcloud_id = (int)get_option('taxopress_tagclouds_ids_increament')+1;
         $data['taxopress_tag_cloud']['ID'] = $tagcloud_id;
         $tagclouds[$tagcloud_id] = $data['taxopress_tag_cloud'];
         $success = update_option('taxopress_tagclouds', $tagclouds);
+        $update_id = update_option('taxopress_tagclouds_ids_increament', $tagcloud_id);
         //return 'add_success';
     }
     return $tagcloud_id;
