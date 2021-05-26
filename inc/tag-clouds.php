@@ -308,7 +308,7 @@ class SimpleTags_Tag_Clouds
                                                 'selections' => $select,
                                             ]);
 
-                                                $options[] = [ 'attr' => '', 'text' => __('None', 'simpletags'), 'default' => 'true' ];
+                                                $options[] = [ 'attr' => '', 'text' => __('All post types', 'simpletags'), 'default' => 'true' ];
                                                 foreach ( get_post_types(['public' => true], 'objects') as $post_type ) {
                                                     $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
                                                 }
