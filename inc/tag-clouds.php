@@ -383,8 +383,8 @@ class SimpleTags_Tag_Clouds
 
 							                    $select = [
 								                    'options' => [
-									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'ASC', 'simpletags' ) ],
-									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'DESC (default)', 'simpletags'), 'default' => 'true' ],
+									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simpletags' ) ],
+									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending (default)', 'simpletags'), 'default' => 'true' ],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['selection'] ) : '';
@@ -416,8 +416,8 @@ class SimpleTags_Tag_Clouds
 
 							                    $select = [
 								                    'options' => [
-									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'ASC', 'simpletags' ) ],
-									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'DESC (default)', 'simpletags'), 'default' => 'true' ],
+									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simpletags' ) ],
+									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending (default)', 'simpletags'), 'default' => 'true' ],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['order'] ) : '';
