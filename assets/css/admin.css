@@ -199,6 +199,21 @@ a#close_clicktags{display:none;}
 .st-full-width {
     width: -webkit-fill-available !important;
 }
+.tagcloudui {
+    width: calc(100% - 300px);
+    display: inline-block;
+}
+.taxopress-right-sidebar {
+    float: right;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 275px;
+}
+.taxopress-right-sidebar-wrapper {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 20px;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
@@ -207,6 +222,13 @@ a#close_clicktags{display:none;}
         display: block;
     }
     .auto-terms-keyword-list-wrapper {
+        margin-left: 0;
+    }
+    .tagcloudui,
+    .taxopress-right-sidebar {
+        display: block;
+        width: 100%;
+        float: none;
         margin-left: 0;
     }
 }
