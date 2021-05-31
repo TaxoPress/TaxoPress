@@ -360,6 +360,41 @@ class SimpleTags_Tag_Clouds
                                                     'helptext'    => '',
                                                     'required'  => true,
                                                 ]);
+                                                
+                                                $select = [
+								                    'options' => [
+									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simpletags' ), 'default' => 'true' ],
+									                    [ 'attr' => 'list', 'text' => esc_attr__( 'List (UL/LI)', 'simpletags' ) ],
+								                    ],
+							                    ];
+							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';
+							                    $select['selected'] = ! empty( $selected ) ? $current['format'] : '';
+                                                echo $ui->get_select_checkbox_input_main( [
+								                        'namearray'  => 'taxopress_tag_cloud',
+								                        'name'       => 'format',
+								                        'labeltext'  => esc_html__( 'Display format', 'simpletags' ),
+								                        'selections' => $select,
+							                    ] );
+
+                                            $select = [
+								                    'options' => [
+									                    [ 'attr' => '1', 'text' => esc_attr__( '24 hours', 'simpletags' ) ],
+									                    [ 'attr' => '7', 'text' => esc_attr__( '7 days', 'simpletags' ) ],
+									                    [ 'attr' => '14', 'text' => esc_attr__( '2 weeks', 'simpletags' ) ],
+									                    [ 'attr' => '30', 'text' => esc_attr__( '1 month', 'simpletags' ) ],
+									                    [ 'attr' => '180', 'text' => esc_attr__( '6 months', 'simpletags' ) ],
+									                    [ 'attr' => '365', 'text' => esc_attr__( '1 year', 'simpletags' ) ],
+									                    [ 'attr' => '0', 'text' => esc_attr__( 'No limit', 'simpletags'), 'default' => 'true' ],
+								                    ],
+							                    ];
+							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['limit_days'] ) : '';
+							                    $select['selected'] = ! empty( $selected ) ? $current['limit_days'] : '';
+                                                echo $ui->get_select_number_select( [
+								                        'namearray'  => 'taxopress_tag_cloud',
+								                        'name'       => 'limit_days',
+								                        'labeltext'  => esc_html__( 'Limit terms based on timeframe', 'simpletags' ),
+								                        'selections' => $select,
+							                    ] );
 
 
 							                    $select = [
@@ -463,21 +498,6 @@ class SimpleTags_Tag_Clouds
 								                        'labeltext'  => esc_html__( 'Unit font size', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
-                                                
-                                                $select = [
-								                    'options' => [
-									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Flat', 'simpletags' ), 'default' => 'true' ],
-									                    [ 'attr' => 'list', 'text' => esc_attr__( 'List (UL/LI)', 'simpletags' ) ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['format'] : '';
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'format',
-								                        'labeltext'  => esc_html__( 'Format', 'simpletags' ),
-								                        'selections' => $select,
-							                    ] );
 
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
@@ -530,26 +550,6 @@ class SimpleTags_Tag_Clouds
                                                     'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the online documentation.</a>', 'simpletags'),
                                                     'required'  => false,
                                                 ]);
-
-                                            $select = [
-								                    'options' => [
-									                    [ 'attr' => '1', 'text' => esc_attr__( '24 hours', 'simpletags' ) ],
-									                    [ 'attr' => '7', 'text' => esc_attr__( '7 days', 'simpletags' ) ],
-									                    [ 'attr' => '14', 'text' => esc_attr__( '2 weeks', 'simpletags' ) ],
-									                    [ 'attr' => '30', 'text' => esc_attr__( '1 month', 'simpletags' ) ],
-									                    [ 'attr' => '180', 'text' => esc_attr__( '6 months', 'simpletags' ) ],
-									                    [ 'attr' => '365', 'text' => esc_attr__( '1 year', 'simpletags' ) ],
-									                    [ 'attr' => '0', 'text' => esc_attr__( 'No limit', 'simpletags'), 'default' => 'true' ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['limit_days'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['limit_days'] : '';
-                                                echo $ui->get_select_number_select( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'limit_days',
-								                        'labeltext'  => esc_html__( 'Limit terms based on timeframe', 'simpletags' ),
-								                        'selections' => $select,
-							                    ] );
 
                                                 echo $ui->get_td_end() . $ui->get_tr_end();
                                                 ?>
