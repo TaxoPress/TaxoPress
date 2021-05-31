@@ -555,33 +555,6 @@ class SimpleTags_Tag_Clouds
                                                 ?>
                                             </table>
 
-                                            <p class="submit">
-
-                            <?php
-                            wp_nonce_field('taxopress_addedit_tagcloud_nonce_action',
-                                'taxopress_addedit_tagcloud_nonce_field');
-                            if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
-                                       value="<?php echo esc_attr(esc_attr__('Save Terms Display', 'simpletags')); ?>"/>
-                                <?php
-                            } else { ?>
-                            <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
-                                   value="<?php echo esc_attr(esc_attr__('Add Terms Display', 'simpletags')); ?>"/>
-                    <?php } ?>
-
-                        <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
-                               value="<?php echo esc_attr($tab); ?>"/>
-                        </p>
-
-                        <?php if (!empty($current)) { 
-                            ?>
-                        <p>
-                            <?php echo '<div class="taxopress-warning" style="">' . __('Shortcode: ','simpletags'); ?> &nbsp;
-                            <input type="text" value='[taxopress_termsdisplay id="<?php echo $current['ID']; ?>"]' />
-                            </div>
-                        </p>
-                        <?php } ?>
-
                         <?php }//end new fields ?>
 
 
@@ -613,6 +586,54 @@ class SimpleTags_Tag_Clouds
 
                     </div>
                 </div>
+                
+
+                </div>
+
+                <div class="taxopress-right-sidebar">
+                    <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;">
+
+                        
+                <?php 
+                    if(!$tag_cloud_limit){ ?>
+                        <p class="submit">
+
+                            <?php
+                            wp_nonce_field('taxopress_addedit_tagcloud_nonce_action',
+                                'taxopress_addedit_tagcloud_nonce_field');
+                            if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
+                                <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
+                                       value="<?php echo esc_attr(esc_attr__('Save Terms Display', 'simpletags')); ?>"/>
+                                <?php
+                            } else { ?>
+                            <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
+                                   value="<?php echo esc_attr(esc_attr__('Add Terms Display', 'simpletags')); ?>"/>
+                    <?php } ?>
+
+                        <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
+                               value="<?php echo esc_attr($tab); ?>"/>
+                        </p>
+
+                        <?php if (!empty($current)) { 
+                            ?>
+                        <p>
+                            <?php echo '<div class="taxopress-warning" style="">' . __('Shortcode: ','simpletags'); ?> &nbsp;
+                            <textarea style="resize: none;padding: 5px;">[taxopress_termsdisplay id="<?php echo $current['ID']; ?>"]</textarea>
+                            </div>
+                        </p>
+                        <?php } ?>
+
+                   <?php 
+                    }
+                ?>
+
+                    </div>
+
+                </div>
+
+                <div class="clear"></div>
+
+
             </form>
             
         </div><!-- End .wrap -->
