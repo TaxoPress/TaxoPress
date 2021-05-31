@@ -1,6 +1,6 @@
 <?php 
 /**
- * Fetch our TAXOPRESS Tag Clouds option.
+ * Fetch our TAXOPRESS Terms Display option.
  *
  * @return mixed
  */
@@ -21,8 +21,8 @@ function taxopress_get_current_tagcloud()
 
     $tagclouds = false;
 
-    if (!empty($_GET) && isset($_GET['taxopress_tagcloud'])) {
-        $tagclouds = sanitize_text_field($_GET['taxopress_tagcloud']);
+    if (!empty($_GET) && isset($_GET['taxopress_termsdisplay'])) {
+        $tagclouds = sanitize_text_field($_GET['taxopress_termsdisplay']);
     } else {
         $tagclouds = taxopress_get_tagcloud_data();
         if (!empty($tagclouds)) {
@@ -60,20 +60,20 @@ function taxopress_process_tagcloud()
     if (!isset($_GET['page'])) {
         return;
     }
-    if ('st_tagclouds' !== $_GET['page']) {
+    if ('st_terms_display' !== $_GET['page']) {
         return;
     }
 
     if (isset($_GET['new_tagcloud'])) {
         if ((int)$_GET['new_tagcloud'] === 1) {
-            add_action('admin_notices', "taxopress_tagcloud_update_success_admin_notice");
+            add_action('admin_notices', "taxopress_termsdisplay_update_success_admin_notice");
             add_filter('removable_query_args', 'taxopress_saved_tagcloud_filter_removable_query_args');
         }
     }
 
     if (isset($_GET['deleted_tagcloud'])) {
         if ((int)$_GET['deleted_tagcloud'] === 1) {
-            add_action('admin_notices', "taxopress_tagcloud_delete_success_admin_notice");
+            add_action('admin_notices', "taxopress_termsdisplay_delete_success_admin_notice");
             add_filter('removable_query_args', 'taxopress_deleted_tagcloud_filter_removable_query_args');
         }
     }
@@ -90,10 +90,10 @@ function taxopress_process_tagcloud()
             wp_safe_redirect(
                 add_query_arg(
                 [
-                    'page'               => 'st_tagclouds',
+                    'page'               => 'st_terms_display',
                     'add'                => 'new_item',
                     'action'             => 'edit',
-                    'taxopress_tagcloud' => $result,
+                    'taxopress_termsdisplay' => $result,
                     'new_tagcloud'       => 1,
                 ],
                 taxopress_admin_url('admin.php')
@@ -105,7 +105,7 @@ function taxopress_process_tagcloud()
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-tagcloud') {
         $nonce = esc_attr($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'tagcloud-action-request-nonce')) {
-            taxopress_action_delete_tagcloud($_REQUEST['taxopress_tagcloud']);
+            taxopress_action_delete_tagcloud($_REQUEST['taxopress_termsdisplay']);
         }
         add_filter('removable_query_args', 'taxopress_delete_tagcloud_filter_removable_query_args');
     }
@@ -137,7 +137,7 @@ function taxopress_create_default_tag_cloud()
     }
 
     $default = [];
-    $default['taxopress_tag_cloud']['title'] = 'Tag Cloud';
+    $default['taxopress_tag_cloud']['title'] = 'Terms Display';
     $default['taxopress_tag_cloud']['post_type'] = '';
     $default['taxopress_tag_cloud']['taxonomy'] = 'post_tag';
     $default['taxopress_tag_cloud']['max'] = 45;
@@ -154,7 +154,7 @@ function taxopress_create_default_tag_cloud()
     $default['taxopress_tag_cloud']['maxcolor'] = '#000000';
     $default['taxopress_tag_cloud']['xformat'] = '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>';
     $default['taxopress_tag_cloud']['limit_days'] = 0;
-    $default['tagcloud_submit'] = 'Add Tag Cloud';
+    $default['tagcloud_submit'] = 'Add Terms Display';
     $default['cpt_tax_status'] = 'new';
     $result = taxopress_update_tagcloud($default);
     update_option('taxopress_default_tagclouds', $result);
@@ -203,11 +203,11 @@ function taxopress_update_tagcloud($data = [])
         $success = update_option('taxopress_tagclouds', $tagclouds);
         //return 'update_success';
     }else{
-        $tagcloud_id = (int)get_option('taxopress_tagclouds_ids_increament')+1;
+        $tagcloud_id = (int)get_option('taxopress_tagcloud_ids_increament')+1;
         $data['taxopress_tag_cloud']['ID'] = $tagcloud_id;
         $tagclouds[$tagcloud_id] = $data['taxopress_tag_cloud'];
         $success = update_option('taxopress_tagclouds', $tagclouds);
-        $update_id = update_option('taxopress_tagclouds_ids_increament', $tagcloud_id);
+        $update_id = update_option('taxopress_tagcloud_ids_increament', $tagcloud_id);
         //return 'add_success';
     }
     return $tagcloud_id;
@@ -217,7 +217,7 @@ function taxopress_update_tagcloud($data = [])
 /**
  * Successful update callback.
  */
-function taxopress_tagcloud_update_success_admin_notice()
+function taxopress_termsdisplay_update_success_admin_notice()
 {
     echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simpletags'));
 }
@@ -225,9 +225,9 @@ function taxopress_tagcloud_update_success_admin_notice()
 /**
  * Successful deleted callback.
  */
-function taxopress_tagcloud_delete_success_admin_notice()
+function taxopress_termsdisplay_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Tag cloud successfully deleted.', 'simpletags'), false);
+    echo taxopress_admin_notices_helper(__('Terms Display successfully deleted.', 'simpletags'), false);
 }
 
 /**
@@ -272,7 +272,7 @@ function taxopress_delete_tagcloud_filter_removable_query_args(array $args)
 {
     return array_merge($args, [
         'action',
-        'taxopress_tagcloud',
+        'taxopress_termsdisplay',
         '_wpnonce',
     ]);
 }
@@ -295,7 +295,7 @@ function taxopress_action_delete_tagcloud($tagcloud_id)
         wp_safe_redirect(
             add_query_arg(
             [
-                'page'               => 'st_tagclouds',
+                'page'               => 'st_terms_display',
                 'deleted_tagcloud'   => 1,
             ],
             taxopress_admin_url('admin.php')
@@ -305,8 +305,8 @@ function taxopress_action_delete_tagcloud($tagcloud_id)
     }
 }
 
-add_shortcode('taxopress_tagcloud', 'taxopress_tagcloud_shortcode');
-function taxopress_tagcloud_shortcode($atts)
+add_shortcode('taxopress_termsdisplay', 'taxopress_termsdisplay_shortcode');
+function taxopress_termsdisplay_shortcode($atts)
     {
         extract(shortcode_atts(array(
             'id' => 0
@@ -322,7 +322,7 @@ function taxopress_tagcloud_shortcode($atts)
             echo SimpleTags_Client_TagCloud::extendedTagCloud( $tagcloud_arg );
 
         } else {
-            echo __('Tag cloud not found.', 'simpletags');
+            echo __('Terms Display not found.', 'simpletags');
         }
 
         $html = ob_get_clean();

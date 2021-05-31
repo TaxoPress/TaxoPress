@@ -186,13 +186,13 @@ a#close_clicktags{display:none;}
     padding: 12px 25px;
     background-color: rgb(254, 255, 224);
 }
-.taxopress_page_st_tagclouds .manage-column.column-shortcode {
+.taxopress_page_st_terms_display .manage-column.column-shortcode {
     width: 25%;
 }
-.taxopress_page_st_tagclouds .shortcode.column-shortcode input[type=text] {
+.taxopress_page_st_terms_display .shortcode.column-shortcode input[type=text] {
     width: -webkit-fill-available;
 }
-.taxopress_page_st_tagclouds #col-container,
+.taxopress_page_st_terms_display #col-container,
 .tagcloudui #poststuff {
     min-height: 600px;
 }

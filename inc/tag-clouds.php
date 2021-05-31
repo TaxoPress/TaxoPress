@@ -39,7 +39,7 @@ class SimpleTags_Tag_Clouds
     {
 
         // add JS for manage click tags
-        if (isset($_GET['page']) && $_GET['page'] == 'st_tagclouds') {
+        if (isset($_GET['page']) && $_GET['page'] == 'st_terms_display') {
             wp_enqueue_style('st-taxonomies-css');
         }
     }
@@ -69,10 +69,10 @@ class SimpleTags_Tag_Clouds
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Tag Clouds', 'simpletags'),
-            __('Tag Clouds', 'simpletags'),
+            __('Terms Display', 'simpletags'),
+            __('Terms Display', 'simpletags'),
             'simple_tags',
-            'st_tagclouds',
+            'st_terms_display',
             [
                 $this,
                 'page_manage_tagclouds',
@@ -92,7 +92,7 @@ class SimpleTags_Tag_Clouds
         $args   = [
             'label'   => __('Number of items per page', 'simpletags'),
             'default' => 20,
-            'option'  => 'st_tagclouds_per_page'
+            'option'  => 'st_terms_display_per_page'
         ];
 
         add_screen_option($option, $args);
@@ -121,8 +121,8 @@ class SimpleTags_Tag_Clouds
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php _e('Tag Clouds', 'simpletags'); ?></h1>
-                <a href="<?php echo esc_url(admin_url('admin.php?page=st_tagclouds&add=new_item')); ?>"
+                <h1 class="wp-heading-inline"><?php _e('Terms Display', 'simpletags'); ?></h1>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=st_terms_display&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
 
@@ -143,7 +143,7 @@ class SimpleTags_Tag_Clouds
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(__('Search Tag Clouds', 'simpletags'), 'term'); ?>
+                    <?php $this->terms_table->search_box(__('Search Terms Display', 'simpletags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>
 
@@ -223,7 +223,7 @@ class SimpleTags_Tag_Clouds
 
 
         <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo __('Manage Tag Cloud', 'simpletags'); ?></h1>
+            <h1><?php echo __('Manage Terms Display', 'simpletags'); ?></h1>
             <div class="wp-clearfix"></div>
 
             <form method="post" action="">
@@ -240,11 +240,11 @@ class SimpleTags_Tag_Clouds
                                     <h2 class="hndle ui-sortable-handle">
                                         <?php
                                         if ($tag_cloud_edit) {
-                                            echo esc_html__('Edit Tag cloud', 'simpletags');
+                                            echo esc_html__('Edit Terms Display', 'simpletags');
                                             echo '<input type="hidden" name="edited_tagcloud" value="'.$current['ID'].'" />';
                                             echo '<input type="hidden" name="taxopress_tag_cloud[ID]" value="'.$current['ID'].'" />';
                                         } else {
-                                            echo esc_html__('Add new Tag cloud', 'simpletags');
+                                            echo esc_html__('Add new Terms Display', 'simpletags');
                                         }
                                         ?>
                                     </h2>
@@ -259,8 +259,8 @@ class SimpleTags_Tag_Clouds
                                             echo '<div class="taxopress-warning" style="color:red">
                                             <p>
 
-                                            <h4 style="margin-bottom: 5px;">' . __('To create more Tag Clouds, please upgrade to TaxoPress Pro.','simpletags').'</h4>
-                                            ' . __('With TaxoPress Pro, you can create unlimited Tag Clouds. You can create Tag Clouds for any taxonomy and then display those Tag Clouds anywhere on your site.','simpletags').'
+                                            <h4 style="margin-bottom: 5px;">' . __('To create more Terms Display, please upgrade to TaxoPress Pro.','simpletags').'</h4>
+                                            ' . __('With TaxoPress Pro, you can create unlimited Terms Display. You can create Terms Display for any taxonomy and then display those Terms Display anywhere on your site.','simpletags').'
                                             
                                             </p>
                                             </div>';
@@ -562,11 +562,11 @@ class SimpleTags_Tag_Clouds
                                 'taxopress_addedit_tagcloud_nonce_field');
                             if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                 <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
-                                       value="<?php echo esc_attr(esc_attr__('Save Tag Cloud', 'simpletags')); ?>"/>
+                                       value="<?php echo esc_attr(esc_attr__('Save Terms Display', 'simpletags')); ?>"/>
                                 <?php
                             } else { ?>
                             <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
-                                   value="<?php echo esc_attr(esc_attr__('Add Tag Cloud', 'simpletags')); ?>"/>
+                                   value="<?php echo esc_attr(esc_attr__('Add Terms Display', 'simpletags')); ?>"/>
                     <?php } ?>
 
                         <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
@@ -577,7 +577,7 @@ class SimpleTags_Tag_Clouds
                             ?>
                         <p>
                             <?php echo '<div class="taxopress-warning" style="">' . __('Shortcode: ','simpletags'); ?> &nbsp;
-                            <input type="text" value='[taxopress_tagcloud id="<?php echo $current['ID']; ?>"]' />
+                            <input type="text" value='[taxopress_termsdisplay id="<?php echo $current['ID']; ?>"]' />
                             </div>
                         </p>
                         <?php } ?>

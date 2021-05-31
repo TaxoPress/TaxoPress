@@ -12,10 +12,10 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
 	 * @author Olatechpro
 	 */
 	public function __construct() {
-		parent::__construct( 'simpletags-shortcode', __( 'Tag Cloud (TaxoPress Shortcode)', 'simpletags' ),
+		parent::__construct( 'simpletags-shortcode', __( 'Terms Display (TaxoPress Shortcode)', 'simpletags' ),
 			array(
 				'classname'   => 'widget-simpletags-shortcode',
-				'description' => __( 'Taxopress Tag clouds Shortcode', 'simpletags' )
+				'description' => __( 'Taxopress Terms Display Shortcode', 'simpletags' )
 			)
 		);
 	}
@@ -69,7 +69,7 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
 		}//$tagcloud_id;
 
 		echo $before_widget;
-		echo do_shortcode('[taxopress_tagcloud id="'.$tagcloud_id.'"]');
+		echo do_shortcode('[taxopress_termsdisplay id="'.$tagcloud_id.'"]');
 		echo $after_widget;
 	}
 
@@ -110,21 +110,21 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
                 '<a href="%s">%s</a>',
                 add_query_arg(
                     [
-                        'page'               => 'st_tagclouds',
+                        'page'               => 'st_terms_display',
                     ],
                     admin_url('admin.php')
                 ),
                 __('this page.', 'simpletags')
             );
 
-            echo '<p>'.__( 'Tag Cloud are added on ', 'simpletags' );
+            echo '<p>'.__( 'Terms Display are added on ', 'simpletags' );
             echo $shortcode_page;
             echo '</p>'
 
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'tagcloud_id' ); ?>">
-            <?php _e( 'Select widget tag cloud.', 'simpletags' ); ?>
+            <?php _e( 'Select widget terms display.', 'simpletags' ); ?>
 				<select id="<?php echo $this->get_field_id( 'tagcloud_id' ); ?>"
 				        name="<?php echo $this->get_field_name( 'tagcloud_id' ); ?>">
                         <?php foreach($tagcloud_data as $key => $value ){   ?>
@@ -141,14 +141,14 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
                 '<a href="%s">%s</a>',
                 add_query_arg(
                     [
-                        'page'               => 'st_tagclouds',
+                        'page'               => 'st_terms_display',
                     ],
                     admin_url('admin.php')
                 ),
                 __('Here', 'simpletags')
             );
 
-            echo '<br />'.__( 'No tag cloud shortcode available. Add new shortcode ', 'simpletags' );
+            echo '<br />'.__( 'No terms display shortcode available. Add new shortcode ', 'simpletags' );
             echo $shortcode_page;
             echo '<br /><br />';
         }
