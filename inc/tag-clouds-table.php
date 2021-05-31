@@ -11,22 +11,22 @@ class TagClouds_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Tag Cloud', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Tag Clouds', 'simpletags'), //plural name of the listed records
+            'singular' => __('Terms Display', 'simpletags'), //singular name of the listed records
+            'plural'   => __('Terms Display', 'simpletags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
     }
 
     /**
-     * Retrieve st_tagclouds data from the database
+     * Retrieve st_terms_display data from the database
      *
      * @param int $per_page
      * @param int $page_number
      *
      * @return mixed
      */
-    public static function get_st_tagclouds()
+    public static function get_st_terms_display()
     {
         return taxopress_get_tagcloud_data();
     }
@@ -66,7 +66,7 @@ class TagClouds_List extends WP_List_Table
             'title'        => __('Title', 'simpletags'),
             'taxonomy'     => __('Taxonomy', 'simpletags'),
             'post_type'    => __('Post Type', 'simpletags'),
-            'max'          => __('Max tags to display', 'simpletags'),
+            'max'          => __('Max terms to display', 'simpletags'),
             'limit_days'   => __('Timeframe', 'simpletags'),
             'shortcode'    => __('Shortcode', 'simpletags')
         ];
@@ -139,12 +139,12 @@ class TagClouds_List extends WP_List_Table
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = $this->get_items_per_page('st_tagclouds_per_page', 20);
+        $per_page = $this->get_items_per_page('st_terms_display_per_page', 20);
 
         /**
          * Fetch the data
          */
-        $data = self::get_st_tagclouds();
+        $data = self::get_st_terms_display();
 
         /**
          * Handle search
@@ -257,10 +257,10 @@ class TagClouds_List extends WP_List_Table
                 '<a href="%s">%s</a>',
                 add_query_arg(
                     [
-                        'page'               => 'st_tagclouds',
+                        'page'               => 'st_terms_display',
                         'add'                => 'new_item',
                         'action'             => 'edit',
-                        'taxopress_tagcloud' => $item['ID'],
+                        'taxopress_termsdisplay' => $item['ID'],
                     ],
                     admin_url('admin.php')
                 ),
@@ -269,9 +269,9 @@ class TagClouds_List extends WP_List_Table
             'delete' => sprintf(
                     '<a href="%s" class="delete-tagcloud">%s</a>',
                     add_query_arg([
-                        'page'     => 'st_tagclouds',
+                        'page'     => 'st_terms_display',
                         'action'   => 'taxopress-delete-tagcloud',
-                        'taxopress_tagcloud' => esc_attr($item['ID']),
+                        'taxopress_termsdisplay' => esc_attr($item['ID']),
                         '_wpnonce' => wp_create_nonce('tagcloud-action-request-nonce')
                     ],
                         admin_url('admin.php')),
@@ -295,10 +295,10 @@ class TagClouds_List extends WP_List_Table
             '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
             add_query_arg(
                 [
-                    'page'               => 'st_tagclouds',
+                    'page'               => 'st_terms_display',
                     'add'                => 'new_item',
                     'action'             => 'edit',
-                    'taxopress_tagcloud' => $item['ID'],
+                    'taxopress_termsdisplay' => $item['ID'],
                 ],
                 admin_url('admin.php')
             ),
@@ -354,7 +354,7 @@ class TagClouds_List extends WP_List_Table
             esc_html($post_type->label)
         );
     }else{
-        $title = '&mdash;';
+        $title = __( 'All', 'simpletags' );
     }
 
         return $title;
@@ -405,7 +405,7 @@ class TagClouds_List extends WP_List_Table
     protected function column_shortcode($item)
     {
 
-        return '<input type="text" value=\'[taxopress_tagcloud id="'.$item['ID'].'"]\' />';
+        return '<input type="text" value=\'[taxopress_termsdisplay id="'.$item['ID'].'"]\' />';
     }
 
 

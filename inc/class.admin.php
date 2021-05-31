@@ -375,14 +375,14 @@ class SimpleTags_Admin {
 					'st_options',
 					'st_manage',
 					'st_taxonomies',
-					'st_tagclouds'
+					'st_terms_display'
 				) ) )
 		) {
 			wp_enqueue_style( 'st-admin' );
 		}
 
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
-		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], array('st_options','st_tagclouds') ) ) {
+		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], array('st_options','st_terms_display') ) ) {
 			wp_enqueue_script( 'jquery-ui-tabs' );
 			wp_enqueue_script( 'st-helper-options' );
 		}
