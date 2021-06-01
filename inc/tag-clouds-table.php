@@ -318,18 +318,8 @@ class TagClouds_List extends WP_List_Table
     protected function column_taxonomy($item)
     {
         $taxonomy = get_taxonomy( $item['taxonomy'] );
-        $title = sprintf(
-            '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
-            add_query_arg(
-                [
-                    'taxonomy' => $item['taxonomy'],
-                ],
-                admin_url('edit-tags.php')
-            ),
-            esc_html($taxonomy->labels->name)
-        );
 
-        return $title;
+        return $taxonomy->labels->name;
     }
 
     /**
