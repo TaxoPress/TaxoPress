@@ -112,9 +112,9 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.0.6- 2021-05-25
-* Added New Tag Cloud menu
-* Added New Tag Cloud widget
+v3.0.6 - 2021-06-01
+* Added New Terms display menu
+* Added New Terms display widget
 * Deprecated Old Tag Cloud settings
 * Deprecated Old Tag Cloud widget
 * Fixed taxonomy archive page to include all asigned post type posts

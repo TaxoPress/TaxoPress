@@ -257,7 +257,7 @@ class SimpleTags_Admin_Taxonomies
                 //not out taxonomy
                 $external_taxonomy = get_taxonomies(['name' => $request_tax], 'objects');
                 if (isset($external_taxonomy) > 0) {
-                    $current = taxopress_convert_external_taxonomy($external_taxonomy[$request_tax],
+                    $current       = taxopress_convert_external_taxonomy($external_taxonomy[$request_tax],
                         $request_tax);
                     $external_edit = true;
                     $taxonomy_edit = true;
