@@ -69,7 +69,6 @@ class Taxonomy_List extends WP_List_Table
             'active'      => __('Active', 'simpletags'),
             'posttypes'   => __('Post Types', 'simpletags'),
             'count'   => __('Count', 'simpletags'),
-            'template_hierarchy'   => __('Template Hierarchy', 'simpletags')
         ];
 
         return $columns;
@@ -407,28 +406,6 @@ class Taxonomy_List extends WP_List_Table
         );
 
         return $title;
-    }
-
-    /**
-     * Method for template_hierarchy column
-     *
-     * @param array $item
-     *
-     * @return string
-     */
-    protected function column_template_hierarchy($item)
-    {
-        $template_hierarchy = '
-        <ul style="margin-top: 0;">
-        <li style="list-style: decimal;">taxonomy-'.esc_html( $item->name ).'-term_slug.php *</li>
-        <li style="list-style: decimal;">taxonomy-'. esc_html( $item->name ).'.php</li>
-        <li style="list-style: decimal;">taxonomy.php</li>
-        <li style="list-style: decimal;">archive.php</li>
-        <li style="list-style: decimal;">index.php</li>
-        </ul>
-        <p style="font-weight:bolder;">'.esc_html__( '*Replace "term_slug" with the slug of the actual taxonomy term.', 'simpletags' ).'</p>';
-
-        return $template_hierarchy;
     }
 
 

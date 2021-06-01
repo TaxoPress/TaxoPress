@@ -435,6 +435,9 @@ ul.st-taxonomy-tab li.taxonomy_permalinks_tab a::before {
 ul.st-taxonomy-tab li.taxonomy_slug_tab a::before {
     content: "\f546";
 }
+ul.st-taxonomy-tab li.taxonomy_templates_tab a::before {
+    content: "\f163";
+}
 
 .taxopress-section .reactivate a,
 .taxopress-section .deactivate a {
