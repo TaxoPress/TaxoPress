@@ -13,11 +13,7 @@ class SimpleTags_Client {
 		// Register media tags taxonomy
 		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
 
-		// Add pages in WP_Query
-		/*if ( (int) SimpleTags_Plugin::get_option_value( 'use_tag_pages' ) == 1 ) {
-			add_action( 'init', array( __CLASS__, 'init' ), 11 );
-			add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
-		}*/
+        add_action( 'parse_query', array( __CLASS__, 'cpt_taxonomy_parse_query' ) );
 
 		// Call autolinks ?
 		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) == 1 ) {
@@ -39,9 +35,48 @@ class SimpleTags_Client {
 		require( STAGS_DIR . '/inc/class.client.post_tags.php' );
 		new SimpleTags_Client_PostTags();
 
+         $saved_option = get_option( STAGS_OPTIONS_NAME );
+        if ((array_key_exists('use_tag_pages', $saved_option))) {
+			if((int)$saved_option['use_tag_pages'] === 1){
+                if ( !array_key_exists('post_tag', taxopress_get_extername_taxonomy_data()) ) {
+			        add_action( 'init', array( __CLASS__, 'init' ), 11 );
+			        add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
+                }
+		    }
+        }
+
 		return true;
 	}
 
+
+	/**
+	 * Add cpt to taxonomy during the query
+	 *
+	 * @param WP_Query $query
+	 *
+	 * @return void
+	 * @author Olatechpro
+	 */
+	public static function cpt_taxonomy_parse_query( $query ) {
+        if(function_exists('get_current_screen')){
+            $screen = get_current_screen();
+        }
+
+        if(is_admin()){
+            return $query;
+        }
+        if(isset($screen->id) && $screen->id == 'edit-post'){
+            return $query;
+        }
+        
+        if ( $query->is_category == true || $query->is_tag == true || $query->is_tax == true ) {
+            $get_queried_object = get_queried_object();
+            if(is_object($get_queried_object)){
+                $post_types = get_taxonomy( $get_queried_object->taxonomy )->object_type;
+                $query->query_vars['post_type'] = $post_types;
+            }
+		}
+	}
 
 	/**
 	 * Taxonomy: Media Tags.
@@ -130,11 +165,11 @@ class SimpleTags_Client {
         }
         
         if ( $query->is_tag == true ) {
-			if ( ! isset( $query->query_vars['post_type'] ) || $query->query_vars['post_type'] == 'post' ) {
-				$query->query_vars['post_type'] = array( 'post', 'page' );
-			} elseif ( isset( $query->query_vars['post_type'] ) && is_array( $query->query_vars['post_type'] ) && in_array( 'post', $query->query_vars['post_type'] ) ) {
+			if ( isset( $query->query_vars['post_type'] ) && is_array( $query->query_vars['post_type'] ) ) {
 				$query->query_vars['post_type'][] = 'page';
-			}
+			}else{
+                $query->query_vars['post_type'] = array( 'post', 'page' );
+            }
 		}
 	}
 

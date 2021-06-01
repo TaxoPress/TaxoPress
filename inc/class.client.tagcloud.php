@@ -78,7 +78,10 @@ class SimpleTags_Client_TagCloud {
 			'include'     => '',
 			'limit_days'  => 0,
 			'min_usage'   => 0,
-			'category'    => 0
+			'category'    => 0,
+			'ID'          => 0,
+			'hide_title'  => 0,
+			'post_type'   => '',
 		);
 
 		// Get options
@@ -144,6 +147,11 @@ class SimpleTags_Client_TagCloud {
 		if ( empty( $xformat ) ) {
 			$xformat = $defaults['xformat'];
 		}
+
+        //remove title if in settings
+        if((int)$hide_title > 0){
+            $title = '';
+        }
 
 		if ( empty( $terms ) ) {
 			return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
@@ -560,7 +568,8 @@ class SimpleTags_Client_TagCloud {
 			'limit_days'    => 0,
 			'category'      => 0,
 			'min_usage'     => 0,
-			'st_name__like' => ''
+			'st_name__like' => '',
+			'post_type'     => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -713,20 +722,30 @@ class SimpleTags_Client_TagCloud {
 			$where .= " AND tr.object_id IN ( ";
 			$where .= "SELECT tr.object_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id INNER JOIN $wpdb->posts as p ON tr.object_id=p.ID WHERE tt.term_id IN ($incategories) AND p.post_status='publish'";
 			$where .= " ) ";
-
 			$join_relation = true;
 			unset( $incategories, $category );
 		}
 
 		// ST Features : Limit posts date
-		if ( $limit_days != 0 ) {
+		if ( (int)$limit_days > 0 ) {
+            if($post_type){
+                $post_type = "AND post_type = '$post_type'";
+            }else{
+                $post_type = '';
+            }
 			$where .= " AND tr.object_id IN ( ";
-			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_status='publish' AND " . ( is_page_have_tags() ? "p.post_type IN('page', 'post')" : "post_type = 'post'" ) . " AND p.post_date_gmt > '" . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . "'";
+			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_date_gmt > '" . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . "' $post_type";
 			$where .= " ) ";
-
 			$join_relation = true;
 			unset( $limit_days );
-		}
+		}else{
+            if($post_type){
+			$where .= " AND tr.object_id IN ( ";
+			$where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE post_type = '$post_type'";
+			$where .= " ) ";
+			$join_relation = true;
+            }
+        }
 
 		if ( ! empty( $slug ) ) {
 			$slug  = sanitize_title( $slug );
@@ -763,6 +782,8 @@ class SimpleTags_Client_TagCloud {
 
 		}
 
+        if(in_array($taxonomies[0], ['post_tag', 'category'])){
+        //TODO - count not working for attachment and/or CPT ?
 		// ST Features : Add min usage
 		if ( $hide_empty && ! $hierarchical ) {
 			if ( $min_usage == 0 ) {
@@ -771,6 +792,7 @@ class SimpleTags_Client_TagCloud {
 				$where .= $wpdb->prepare( ' AND tt.count >= %d', $min_usage );
 			}
 		}
+        }
 
 		// don't limit the query results when we have to descend the family tree
 		if ( ! empty( $number ) && ! $hierarchical && empty( $child_of ) && '' == $parent ) {
@@ -809,7 +831,6 @@ class SimpleTags_Client_TagCloud {
 
 		// Add inner to relation table ?
 		$join_relation = $join_relation == false ? '' : "INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id";
-
     // Query parts are individually escaped above, $taxonomies are individually checked if they exists
 		$query = $wpdb->prepare("SELECT $select_this
 			FROM $wpdb->terms AS t

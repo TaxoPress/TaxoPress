@@ -235,6 +235,78 @@ class taxopress_admin_ui
     }
 
     /**
+     * Return a populated `<select>` input.
+     *
+     * @param array $args Arguments to use with the `<select>` input.
+     * @return string $value Complete <select> input with options and selected attribute.
+     */
+    public function get_select_number_select($args = [])
+    {
+        $defaults = $this->get_default_input_parameters(
+            ['selections' => []]
+        );
+
+        $args = wp_parse_args($args, $defaults);
+
+        $value = '';
+        if ($args['wrap']) {
+            $value = $this->get_tr_start();
+            $value .= $this->get_th_start();
+            $value .= $this->get_label($args['name'], $args['labeltext']);
+            if ($args['required']) {
+                $value .= $this->get_required_span();
+            }
+            if (!empty($args['helptext'])) {
+                $value .= $this->get_help($args['helptext']);
+            }
+            $value .= $this->get_th_end();
+            $value .= $this->get_td_start();
+        }
+
+        $value .= '<select id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']">';
+        if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
+            foreach ($args['selections']['options'] as $val) {
+                $result = '';
+                $bool   = ($val['attr']);
+
+                if (is_numeric($args['selections']['selected'])) {
+                    $selected = ($args['selections']['selected']);
+                } elseif (in_array($args['selections']['selected'], ['true', 'false'], true)) {
+                    $selected = $args['selections']['selected'];
+                }
+
+                if (!empty($selected) && $selected === $bool) {
+                    $result = ' selected="selected"';
+                } else {
+                    if (array_key_exists('default', $val) && !empty($val['default'])) {
+                        if (empty($selected)) {
+                            $result = ' selected="selected"';
+                        }
+                    }
+                }
+
+                if (!is_numeric($args['selections']['selected']) && (!empty($args['selections']['selected']) && $args['selections']['selected'] === $val['attr'])) {
+                    $result = ' selected="selected"';
+                }
+
+                $value .= '<option value="' . $val['attr'] . '"' . $result . '>' . $val['text'] . '</option>';
+            }
+        }
+        $value .= '</select>';
+
+        if (!empty($args['aftertext'])) {
+            $value .= ' ' . $this->get_description($args['aftertext']);
+        }
+
+        if ($args['wrap']) {
+            $value .= $this->get_td_end();
+            $value .= $this->get_tr_end();
+        }
+
+        return $value;
+    }
+
+    /**
      * Return some array_merged default arguments for all input types.
      *
      * @param array $additions Arguments array to merge with our defaults.
@@ -375,6 +447,7 @@ class taxopress_admin_ui
             [
                 'maxlength' => '',
                 'onblur'    => '',
+                'class'    => '',
             ]
         );
         $args     = wp_parse_args($args, $defaults);
@@ -391,7 +464,79 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $value .= '<input type="text" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
+        $value .= '<input type="text" id="' . $args['name'] . '" class="' . $args['class'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
+
+        if ($args['maxlength']) {
+            $value .= ' ' . $this->get_maxlength($args['maxlength']);
+        }
+
+        if ($args['onblur']) {
+            $value .= ' ' . $this->get_onblur($args['onblur']);
+        }
+
+        $value .= ' ' . $this->get_aria_required($args['required']);
+
+        $value .= ' ' . $this->get_required_attribute($args['required']);
+
+        if (!empty($args['aftertext'])) {
+            if ($args['placeholder']) {
+                $value .= ' ' . $this->get_placeholder($args['aftertext']);
+            }
+        }
+
+        if (!empty($args['data'])) {
+            foreach ($args['data'] as $dkey => $dvalue) {
+                $value .= " data-{$dkey}=\"{$dvalue}\"";
+            }
+        }
+
+        $value .= ' />';
+
+        if (!empty($args['aftertext'])) {
+            $value .= $this->get_hidden_text($args['aftertext']);
+        }
+
+        if ($args['helptext']) {
+            $value .= '<br/>' . $this->get_description($args['helptext']);
+        }
+
+        if ($args['wrap']) {
+            $value .= $this->get_td_end();
+            $value .= $this->get_tr_end();
+        }
+
+        return $value;
+    }
+
+    /**
+     * Return a number input.
+     *
+     * @param array $args Arguments to use with the text input.
+     * @return string Complete text `<input>` with proper attributes.
+     */
+    public function get_number_input($args = [])
+    {
+        $defaults = $this->get_default_input_parameters(
+            [
+                'maxlength' => '',
+                'onblur'    => '',
+            ]
+        );
+        $args     = wp_parse_args($args, $defaults);
+
+        $value = '';
+        if ($args['wrap']) {
+            $value .= $this->get_tr_start();
+            $value .= $this->get_th_start();
+            $value .= $this->get_label($args['name'], $args['labeltext']);
+            if ($args['required']) {
+                $value .= $this->get_required_span();
+            }
+            $value .= $this->get_th_end();
+            $value .= $this->get_td_start();
+        }
+
+        $value .= '<input type="number" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
 
         if ($args['maxlength']) {
             $value .= ' ' . $this->get_maxlength($args['maxlength']);

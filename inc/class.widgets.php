@@ -12,10 +12,10 @@ class SimpleTags_Widget extends WP_Widget {
 	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
-		parent::__construct( 'simpletags', __( 'Tag Cloud (TaxoPress)', 'simpletags' ),
+		parent::__construct( 'simpletags', __( 'Tag Cloud (TaxoPress Legacy)', 'simpletags' ),
 			array(
 				'classname'   => 'widget-simpletags',
-				'description' => __( 'Your most used tags in cloud format with dynamic color and many options', 'simpletags' )
+				'description' => __( '[DEPRECATED] - Your most used tags in cloud format with dynamic color and many options', 'simpletags' )
 			)
 		);
 	}
@@ -206,7 +206,7 @@ class SimpleTags_Widget extends WP_Widget {
 		//Defaults
 		$instance = wp_parse_args( (array) $instance, self::get_fields() );
 		?>
-		<p><?php _e( 'Empty field will use default value.', 'simpletags' ); ?></p>
+		<p style="color:red;"><?php _e( 'This widget is no longer being updated. Please use the "Tag Cloud (TaxoPress Shortcode)" widget instead.', 'simpletags' ); ?></p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>">
