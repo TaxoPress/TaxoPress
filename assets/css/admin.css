@@ -214,6 +214,19 @@ a#close_clicktags{display:none;}
     margin-bottom: 10px;
     padding: 20px;
 }
+.manage-term-screen-options {
+    margin-top: -20px;
+}
+.manage-term-screen-options label {
+    color: #1d2327;
+    font-size: 1.3em;
+}
+.taxopress_page_st_manage #search-submit {
+    margin-right: 10px;
+}
+.taxopress_page_st_manage .screen-options {
+    display: none;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
