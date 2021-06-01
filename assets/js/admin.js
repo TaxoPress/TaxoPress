@@ -115,6 +115,10 @@
       $('#addterm_match').val('');
       $('.terms-to-maatch-input').hide();
     });
+    $(document).on('click', '#termcloud_per_page_dummy_apply', function (e) {
+      $('#termcloud_per_page').val($('#termcloud_per_page_dummy').val());
+      $('#screen-options-apply')[0].click();
+    });
     
   
   });

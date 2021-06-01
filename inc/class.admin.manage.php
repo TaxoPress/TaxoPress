@@ -192,6 +192,13 @@ class SimpleTags_Admin_Manage {
         <form class="search-form wp-clearfix st-tag-cloud-search-form" method="get">
             <?php $this->terms_table->search_box(sprintf(__('Search %s ', 'simpletags'), SimpleTags_Admin::$taxo_name), 'term'); ?>
         </form>
+
+        <fieldset class="manage-term-screen-options">
+		<label for="termcloud_per_page_dummy"><?php echo __('Pagination ', 'simpletags'); ?></label><br />
+        <input type="number" step="1" min="1" max="999" class="screen-per-page" id="termcloud_per_page_dummy" maxlength="3" value="<?php echo (int) get_user_option( 'termcloud_per_page' ); ?>">
+        <input type="submit" id="termcloud_per_page_dummy_apply" class="button button-primary" value="Apply">
+		</fieldset>
+
         <div class="clear"></div>
 
         <div id="col-container" class="wp-clearfix">
