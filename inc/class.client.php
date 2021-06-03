@@ -71,6 +71,9 @@ class SimpleTags_Client {
         if ( $query->is_category == true || $query->is_tag == true || $query->is_tax == true ) {
             $get_queried_object = @get_queried_object();
             if(is_object($get_queried_object)){
+                if(!taxopress_show_all_cpt_in_archive_result($get_queried_object->taxonomy)){
+                    return $query;
+                }
                 $get_taxonomy = get_taxonomy( $get_queried_object->taxonomy );
                 if(is_object($get_taxonomy)){
                     $post_types = $get_taxonomy->object_type;

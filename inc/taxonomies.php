@@ -639,8 +639,36 @@ class SimpleTags_Admin_Taxonomies
                                                 
                                                 echo '</td></tr>';
 
+                                            
                                                 }
 
+
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = isset($current) && isset($current['include_in_result']) ? taxopress_disp_boolean($current['include_in_result']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['include_in_result'] : '';
+
+                                            echo '<td><hr /></td>';
+
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'include_in_result',
+                                                'labeltext'  => esc_html__('Archive page result', 'simpletags'),
+                                                'aftertext'  => esc_html__('Show content from all post types on archive page',
+                                                    'simpletags'),
+                                                'selections' => $select,
+                                            ]);
 
 
                                                 ?>
