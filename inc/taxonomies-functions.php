@@ -222,6 +222,9 @@ function taxopress_update_taxonomy($data = [])
     if (!isset($data['cpt_custom_tax']['query_var'])) {
         $data['cpt_custom_tax']['query_var'] = 0;
     }
+    if (!isset($data['cpt_custom_tax']['include_in_result'])) {
+        $data['cpt_custom_tax']['include_in_result'] = 0;
+    }
 
     /**
      * Fires before a taxonomy is updated to our saved options.
@@ -341,6 +344,7 @@ function taxopress_update_taxonomy($data = [])
             'description'           => $description,
             'public'                => taxopress_disp_boolean($data['cpt_custom_tax']['public']),
             'publicly_queryable'    => taxopress_disp_boolean($data['cpt_custom_tax']['publicly_queryable']),
+            'include_in_result'     => taxopress_disp_boolean($data['cpt_custom_tax']['include_in_result']),
             'hierarchical'          => taxopress_disp_boolean($data['cpt_custom_tax']['hierarchical']),
             'show_ui'               => taxopress_disp_boolean($data['cpt_custom_tax']['show_ui']),
             'show_in_menu'          => taxopress_disp_boolean($data['cpt_custom_tax']['show_in_menu']),
@@ -391,6 +395,7 @@ function taxopress_update_taxonomy($data = [])
             'description'           => $description,
             'public'                => taxopress_disp_boolean($data['cpt_custom_tax']['public']),
             'publicly_queryable'    => taxopress_disp_boolean($data['cpt_custom_tax']['publicly_queryable']),
+            'include_in_result'     => taxopress_disp_boolean($data['cpt_custom_tax']['include_in_result']),
             'hierarchical'          => taxopress_disp_boolean($data['cpt_custom_tax']['hierarchical']),
             'show_ui'               => taxopress_disp_boolean($data['cpt_custom_tax']['show_ui']),
             'show_in_menu'          => taxopress_disp_boolean($data['cpt_custom_tax']['show_in_menu']),
@@ -2190,4 +2195,25 @@ function taxopress_re_register_single_taxonomy($taxonomy)
     $args = apply_filters('taxopress_pre_register_taxonomy', $args, $taxonomy['name'], $taxonomy, $object_type);
 
     return register_taxonomy($taxonomy['name'], $object_type, $args);
+}
+
+function taxopress_show_all_cpt_in_archive_result($request_tax){
+            
+            $taxonomies = taxopress_get_taxonomy_data();
+
+            $current = false;
+            if ($request_tax && array_key_exists($request_tax, $taxonomies)) {
+                $current       = $taxonomies[$selected_taxonomy];
+            } elseif (taxonomy_exists($request_tax)) {
+                //not out taxonomy
+                $external_taxonomy = get_taxonomies(['name' => $request_tax], 'objects');
+                if (isset($external_taxonomy) > 0) {
+                    $current       = taxopress_convert_external_taxonomy($external_taxonomy[$request_tax],
+                        $request_tax);
+                }
+            }
+
+            $status = isset($current) && isset($current['include_in_result']) ? get_taxopress_disp_boolean($current['include_in_result']) : false;
+
+            return $status;
 }
