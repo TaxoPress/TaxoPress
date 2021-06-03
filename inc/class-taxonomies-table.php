@@ -68,7 +68,7 @@ class Taxonomy_List extends WP_List_Table
             'description' => __('Description', 'simpletags'),
             'active'      => __('Active', 'simpletags'),
             'posttypes'   => __('Post Types', 'simpletags'),
-            'count'   => __('Count', 'simpletags')
+            'count'   => __('Count', 'simpletags'),
         ];
 
         return $columns;

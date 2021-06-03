@@ -68,14 +68,37 @@ class SimpleTags_Client {
         if(isset($screen->id) && $screen->id == 'edit-post'){
             return $query;
         }
-        
         if ( $query->is_category == true || $query->is_tag == true || $query->is_tax == true ) {
-            $get_queried_object = get_queried_object();
+            $get_queried_object = @get_queried_object();
             if(is_object($get_queried_object)){
-                $post_types = get_taxonomy( $get_queried_object->taxonomy )->object_type;
-                $query->query_vars['post_type'] = $post_types;
+                if(!taxopress_show_all_cpt_in_archive_result($get_queried_object->taxonomy)){
+                    return $query;
+                }
+                $get_taxonomy = get_taxonomy( $get_queried_object->taxonomy );
+                if(is_object($get_taxonomy)){
+                    $post_types = $get_taxonomy->object_type;
+                        if ( isset( $query->query_vars['post_type'] )){
+                            if(is_array( $query->query_vars['post_type'] )){
+                                $post_types = array_filter(array_merge($$query->query_vars['post_type'],$post_types));
+                            }elseif(is_string( $query->query_vars['post_type'] )){
+                                $original_post_type = $query->query_vars['post_type'];
+                                $get_post_type_object = get_post_type_object( $original_post_type );
+                                if(is_object($get_post_type_object)){
+                                    if((int)$get_post_type_object->public === 0){
+                                        return $query;
+                                    }
+                                }
+                                $post_types[] = $query->query_vars['post_type'];
+                            }
+                            $new_post_object = $post_types;
+                        }else{
+                            $new_post_object = $post_types;
+                        }
+                        $query->query_vars['post_type'] = $new_post_object;
+                }
             }
 		}
+        return $query;
 	}
 
 	/**

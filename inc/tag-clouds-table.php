@@ -66,8 +66,7 @@ class TagClouds_List extends WP_List_Table
             'title'        => __('Title', 'simpletags'),
             'taxonomy'     => __('Taxonomy', 'simpletags'),
             'post_type'    => __('Post Type', 'simpletags'),
-            'max'          => __('Max terms to display', 'simpletags'),
-            'limit_days'   => __('Timeframe', 'simpletags'),
+            'format'   => __('Display format', 'simpletags'),
             'shortcode'    => __('Shortcode', 'simpletags')
         ];
 
@@ -234,7 +233,6 @@ class TagClouds_List extends WP_List_Table
         $sortable_columns = [
             'title'        => ['title', true],
             'taxonomy'     => ['taxonomy', true],
-            'max'          => ['max', true],
         ];
 
         return $sortable_columns;
@@ -318,18 +316,8 @@ class TagClouds_List extends WP_List_Table
     protected function column_taxonomy($item)
     {
         $taxonomy = get_taxonomy( $item['taxonomy'] );
-        $title = sprintf(
-            '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
-            add_query_arg(
-                [
-                    'taxonomy' => $item['taxonomy'],
-                ],
-                admin_url('edit-tags.php')
-            ),
-            esc_html($taxonomy->labels->name)
-        );
 
-        return $title;
+        return $taxonomy->labels->name;
     }
 
     /**
@@ -367,32 +355,15 @@ class TagClouds_List extends WP_List_Table
      *
      * @return string
      */
-    protected function column_max($item)
-    {
-        return $item['max'];
-    }
-
-    /**
-     * The action column
-     *
-     * @param $item
-     *
-     * @return string
-     */
-    protected function column_limit_days($item)
+    protected function column_format($item)
     {
 
         $days_options = [
-            '1' => esc_attr__( '24 hours', 'simpletags' ),
-            '7' => esc_attr__( '7 days', 'simpletags' ),
-            '14' => esc_attr__( '2 weeks', 'simpletags' ),
-            '30' => esc_attr__( '1 month', 'simpletags' ),
-            '180' => esc_attr__( '6 months', 'simpletags' ),
-            '365' => esc_attr__( '1 year', 'simpletags' ),
-            '0' => esc_attr__( 'None', 'simpletags' ),
+            'flat' => esc_attr__( 'Cloud', 'simpletags' ),
+            'list' => esc_attr__( 'List (UL/LI)', 'simpletags' ),
         ];
         
-        return $days_options[$item['limit_days']];
+        return $days_options[$item['format']];
     }
 
     /**

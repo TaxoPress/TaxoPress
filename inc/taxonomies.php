@@ -443,6 +443,13 @@ class SimpleTags_Admin_Taxonomies
                                                             'simpletags'); ?></span></a>
                                             </li>
                                             <?php } ?>
+
+                                            <?php if($taxonomy_edit){ ?>
+                                            <li class="taxonomy_templates_tab" data-content="taxonomy_templates">
+                                                <a href="#taxonomy_templates"><span><?php esc_html_e('Templates',
+                                                            'simpletags'); ?></span></a>
+                                            </li>
+                                            <?php } ?>
                                             
                                             <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                             <li class="taxonomy_delete_tab" data-content="taxonomy_delete">
@@ -632,8 +639,36 @@ class SimpleTags_Admin_Taxonomies
                                                 
                                                 echo '</td></tr>';
 
+                                            
                                                 }
 
+
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = isset($current) && isset($current['include_in_result']) ? taxopress_disp_boolean($current['include_in_result']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['include_in_result'] : '';
+
+                                            echo '<td><hr /></td>';
+
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'include_in_result',
+                                                'labeltext'  => esc_html__('Archive page result', 'simpletags'),
+                                                'aftertext'  => esc_html__('Show content from all post types on archive page',
+                                                    'simpletags'),
+                                                'selections' => $select,
+                                            ]);
 
 
                                                 ?>
@@ -698,6 +733,37 @@ class SimpleTags_Admin_Taxonomies
 
                                                 ?>
 
+                                            </table>
+
+
+                                            <table class="form-table taxopress-table taxonomy_templates"
+                                                   style="display:none;">
+                                                   <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
+                                                <?php
+                                                echo $ui->get_tr_start() . $ui->get_th_start();
+                                                echo 'Template Hierarchy';
+                                                echo $ui->get_th_end();
+
+                                                $template_hierarchy_slug = isset($current['name']) ? esc_attr($current['name']) : '';
+                                                $template_hierarchy = '
+        <ul style="margin-top: 0;">
+        <li style="list-style: decimal;">taxonomy-'.esc_html( $template_hierarchy_slug ).'-term_slug.php *</li>
+        <li style="list-style: decimal;">taxonomy-'. esc_html( $template_hierarchy_slug ).'.php</li>
+        <li style="list-style: decimal;">taxonomy.php</li>
+        <li style="list-style: decimal;">archive.php</li>
+        <li style="list-style: decimal;">index.php</li>
+        </ul>
+        <p style="font-weight:bolder;">'.esc_html__( '*Replace "term_slug" with the slug of the actual taxonomy term.', 'simpletags' ).'</p>';
+
+        echo '<td>';
+        echo $template_hierarchy;
+        echo '</td>';
+         }
+                                               
+                                                echo $ui->get_tr_end();
+
+
+                                                ?>
                                             </table>
 
 
