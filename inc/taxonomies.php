@@ -479,6 +479,7 @@ class SimpleTags_Admin_Taxonomies
                                                 }
                                                 echo '<p id="slugexists" class="hidemessage">' . esc_html__('Slug already exists',
                                                         'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
 
                                                 echo $ui->get_th_end() . $ui->get_td_start();
 
@@ -488,6 +489,7 @@ class SimpleTags_Admin_Taxonomies
                                                     'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
                                                     'maxlength'   => '32',
                                                     'helptext'    => 'Slugs can only contain alphanumeric, latin characters and underscores.',
+                                                    'class'     => 'tax-slug-input',
                                                     'required'    => true,
                                                     'placeholder' => false,
                                                     'wrap'        => false,
@@ -694,6 +696,8 @@ class SimpleTags_Admin_Taxonomies
                                                 }
                                                 echo '<p id="slugexists" class="hidemessage">' . esc_html__('Slug already exists',
                                                         'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                        
+                                                echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
 
                                                 echo $ui->get_th_end() . $ui->get_td_start();
 
@@ -703,6 +707,7 @@ class SimpleTags_Admin_Taxonomies
                                                     'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
                                                     'maxlength'   => '32',
                                                     'helptext'    => 'Slugs can only contain alphanumeric, latin characters and underscores.',
+                                                    'class'     => 'tax-slug-input',
                                                     'required'    => true,
                                                     'placeholder' => false,
                                                     'wrap'        => false,
