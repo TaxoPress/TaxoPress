@@ -234,6 +234,10 @@ a#close_clicktags{display:none;}
 .hidemessage {
     display: none;
 }
+.taxopress-taxonomy-empty-types-dialog p {
+color: red;
+font-weight: bold;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
