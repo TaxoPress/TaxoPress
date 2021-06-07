@@ -227,6 +227,13 @@ a#close_clicktags{display:none;}
 .taxopress_page_st_manage .screen-options {
     display: none;
 }
+#st-tags-slug-error-input {
+    color: red;
+    font-weight: bold;
+}
+.hidemessage {
+    display: none;
+}
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
