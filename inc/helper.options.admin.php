@@ -175,49 +175,6 @@ return array(
             'regular-text'
         ),
     ),
-    'tagspost'       => array(
-        array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
-        array(
-            'tt_embedded',
-            __('Automatically display tags list into post content:', 'simpletags'),
-            'radio',
-            array(
-                'no'           => __('<code>no</code> &ndash; Nowhere (default)', 'simpletags'),
-                'all'          => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
-                'blogonly'     => __('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags'),
-                'homeonly'     => __('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags'),
-                'singularonly' => __('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags'),
-                'singleonly'   => __('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags'),
-                'pageonly'     => __('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags'),
-            )
-        ),
-        array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 'regular-text'),
-        array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 'regular-text'),
-        array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 'regular-text'),
-        array(
-            'tt_number',
-            __('Max tags display:', 'simpletags'),
-            'number',
-            'small-text',
-            __('You must set zero (0) for display all tags.', 'simpletags')
-        ),
-        array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
-        array(
-            'tt_xformat',
-            __('Tag link format:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags')
-        ),
-        array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 'widefat'),
-        array(
-            'tt_adv_usage',
-            __('<strong>Advanced usage</strong>:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
-        )
-    ),
     'relatedposts'   => array(
         array(
             'rp_taxonomy',
@@ -291,12 +248,14 @@ return array(
         )
     ),
     'legacy'       => array(
+
+        //tag cloud legecy
         array(
             'text_helper',
             'text_helper',
             'helper',
             '',
-            '<h3 style="margin: 0;"><strong>'.__('Tag Cloud', 'simpletags').'</strong></h3><br /><p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Tag Clouds" screen instead.', 'simpletags').'</strong></p><br /><br />'.__('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
+            '<h3 style="margin: 0;"><strong>'.__('Tag Cloud', 'simpletags').'</strong></h3><br /><p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Terms Display" screen instead.', 'simpletags').'</strong></p><br /><br />'.__('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
                 . '<ul style="list-style:square;margin-left:20px;">
 				<li>' . __('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags') . '</li>
 				<li>' . __('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags') . '</li>
@@ -405,6 +364,60 @@ return array(
             'text',
             'widefat',
             __('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
-        )
+        ),
+
+
+
+        //tags for current post legacy
+        array(
+            'text_helper',
+            'text_helper',
+            'helper',
+            '',
+            '<h3 style="margin: 0;"><strong>'.__('Tags for Current Post', 'simpletags').'</strong></h3><br /><p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Tags for Current Post" screen instead.', 'simpletags').'</strong></p><br /><br />'.__('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
+        ),
+        array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
+        array(
+            'tt_embedded',
+            __('Automatically display tags list into post content:', 'simpletags'),
+            'radio',
+            array(
+                'no'           => __('<code>no</code> &ndash; Nowhere (default)', 'simpletags'),
+                'all'          => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
+                'blogonly'     => __('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags'),
+                'homeonly'     => __('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags'),
+                'singularonly' => __('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags'),
+                'singleonly'   => __('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags'),
+                'pageonly'     => __('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags'),
+            )
+        ),
+        array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 'regular-text'),
+        array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 'regular-text'),
+        array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 'regular-text'),
+        array(
+            'tt_number',
+            __('Max tags display:', 'simpletags'),
+            'number',
+            'small-text',
+            __('You must set zero (0) for display all tags.', 'simpletags')
+        ),
+        array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
+        array(
+            'tt_xformat',
+            __('Tag link format:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags')
+        ),
+        array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 'widefat'),
+        array(
+            'tt_adv_usage',
+            __('<strong>Advanced usage</strong>:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
+        ),
+
+
     ),
 );

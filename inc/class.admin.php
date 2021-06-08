@@ -36,6 +36,11 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/tag-clouds.php';
         SimpleTags_Tag_Clouds::get_instance();
 
+        //post tags
+        require STAGS_DIR . '/inc/post-tags-table.php';
+        require STAGS_DIR . '/inc/post-tags.php';
+        SimpleTags_Post_Tags::get_instance();
+
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
 			require STAGS_DIR . '/inc/class.admin.suggest.php';
@@ -375,7 +380,8 @@ class SimpleTags_Admin {
 					'st_options',
 					'st_manage',
 					'st_taxonomies',
-					'st_terms_display'
+					'st_terms_display',
+					'st_post_tags'
 				) ) )
 		) {
 			wp_enqueue_style( 'st-admin' );
