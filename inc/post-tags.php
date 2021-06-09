@@ -289,6 +289,8 @@ class SimpleTags_Post_Tags
                                                         ]);
 
                                                         $options = [];
+                                                        $main_option = [];
+                                                        $other_option = [];
                                                         foreach (get_all_taxopress_taxonomies() as $_taxonomy) {
                                                             $_taxonomy = $_taxonomy->name;
                                                             $tax       = get_taxonomy($_taxonomy);
@@ -296,18 +298,19 @@ class SimpleTags_Post_Tags
                                                                 continue;
                                                             }
                                                             if ($tax->name === 'post_tag') {
-                                                                $options[] = [
+                                                                $main_option[] = [
                                                                     'attr'    => $tax->name,
                                                                     'text'    => $tax->labels->name,
                                                                     'default' => 'true'
                                                                 ];
                                                             } else {
-                                                                $options[] = [
+                                                                $other_option[] = [
                                                                     'attr' => $tax->name,
                                                                     'text' => $tax->labels->name
                                                                 ];
                                                             }
                                                         }
+                                                        $options = array_merge($main_option, $other_option);
 
                                                         $select             = [
                                                             'options' => $options,
