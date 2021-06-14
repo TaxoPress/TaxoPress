@@ -668,17 +668,19 @@ class SimpleTags_Admin_Manage {
             );
             $posts = get_posts($args);
             foreach ( $posts as $post ){
-                wp_remove_object_terms( $post->ID, $term, $taxonomy );
-				clean_object_term_cache( $post->ID, $taxonomy );
-				clean_term_cache( $term, $taxonomy );
-                $counter ++;
+                $remove = wp_remove_object_terms( $post->ID, $term, $taxonomy );
+                if($remove){
+				    clean_object_term_cache( $post->ID, $taxonomy );
+				    clean_term_cache( $term, $taxonomy );
+                    $counter ++;
+                }
             }       
         }
 
 			if ( $counter == 0 ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'No term removed.', 'simpletags' ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term not associated to with any %1$s.', 'simpletags' ), SimpleTags_Admin::$post_type_name ), 'error' );
 			} else {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Removed term(s) &laquo;%1$s&raquo; from %2$s', 'simpletags' ), $new, SimpleTags_Admin::$post_type_name ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s', 'simpletags' ), $new, $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 			}
 		} else { // Error
 			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Error. No enough terms specified.', 'simpletags' ), $old ), 'error' );
