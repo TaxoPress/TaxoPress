@@ -374,7 +374,7 @@ return array(
             'text_helper',
             'helper',
             '',
-            '<h3 style="margin: 0;"><strong>'.__('Tags for Current Post', 'simpletags').'</strong></h3><br /><p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Tags for Current Post" screen instead.', 'simpletags').'</strong></p><br /><br />'.__('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
+            '<h3 style="margin: 0;"><strong>'.__('Tags for Current Post', 'simpletags').'</strong></h3><br /><p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Terms for Current Post" screen instead.', 'simpletags').'</strong></p><br /><br />'.__('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
         ),
         array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
         array(

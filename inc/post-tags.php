@@ -69,8 +69,8 @@ class SimpleTags_Post_Tags
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Tags for Current Post', 'simpletags'),
-            __('Tags for Current Post', 'simpletags'),
+            __('Terms for Current Post', 'simpletags'),
+            __('Terms for Current Post', 'simpletags'),
             'simple_tags',
             'st_post_tags',
             [
@@ -121,7 +121,7 @@ class SimpleTags_Post_Tags
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php _e('Tags for Current Post', 'simpletags'); ?></h1>
+                <h1 class="wp-heading-inline"><?php _e('Terms for Current Post', 'simpletags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_post_tags&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
@@ -143,7 +143,7 @@ class SimpleTags_Post_Tags
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(__('Search Tags for Current Post', 'simpletags'), 'term'); ?>
+                    <?php $this->terms_table->search_box(__('Search Terms for Current Post', 'simpletags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>
 
@@ -223,7 +223,7 @@ class SimpleTags_Post_Tags
 
 
             <div class="wrap <?php echo esc_attr($tab_class); ?>">
-                <h1><?php echo __('Manage Tags for Current Post', 'simpletags'); ?></h1>
+                <h1><?php echo __('Manage Terms for Current Post', 'simpletags'); ?></h1>
                 <div class="wp-clearfix"></div>
 
                 <form method="post" action="">
@@ -239,11 +239,11 @@ class SimpleTags_Post_Tags
                                         <h2 class="hndle ui-sortable-handle">
                                             <?php
                                             if ($post_tags_edit) {
-                                                echo esc_html__('Edit Tags for Current Post', 'simpletags');
+                                                echo esc_html__('Edit Terms for Current Post', 'simpletags');
                                                 echo '<input type="hidden" name="edited_posttags" value="' . $current['ID'] . '" />';
                                                 echo '<input type="hidden" name="taxopress_post_tags[ID]" value="' . $current['ID'] . '" />';
                                             } else {
-                                                echo esc_html__('Add new Tags for Current Post', 'simpletags');
+                                                echo esc_html__('Add new Terms for Current Post', 'simpletags');
                                             }
                                             ?>
                                         </h2>
@@ -258,9 +258,9 @@ class SimpleTags_Post_Tags
                                                     echo '<div class="taxopress-warning" style="color:red">
                                             <p>
 
-                                            <h4 style="margin-bottom: 5px;">' . __('To create more Tags for Current Post, please upgrade to TaxoPress Pro.',
+                                            <h4 style="margin-bottom: 5px;">' . __('To create more Terms for Current Post, please upgrade to TaxoPress Pro.',
                                                             'simpletags') . '</h4>
-                                            ' . __('With TaxoPress Pro, you can create unlimited Tags for Current Post. You can create Tags for Current Post for any taxonomy and then display those Tags for Current Post anywhere on your site.',
+                                            ' . __('With TaxoPress Pro, you can create unlimited Terms for Current Post. You can create Terms for Current Post for any taxonomy and then display those Terms for Current Post anywhere on your site.',
                                                             'simpletags') . '
                                             
                                             </p>
@@ -511,13 +511,13 @@ class SimpleTags_Post_Tags
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                     <input type="submit" class="button-primary taxopress-taxonomy-submit"
                                            name="posttags_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Save Tags for Current Post',
+                                           value="<?php echo esc_attr(esc_attr__('Save Terms for Current Post',
                                                'simpletags')); ?>"/>
                                     <?php
                                 } else { ?>
                                     <input type="submit" class="button-primary taxopress-taxonomy-submit"
                                            name="posttags_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Add Tags for Current Post',
+                                           value="<?php echo esc_attr(esc_attr__('Add Terms for Current Post',
                                                'simpletags')); ?>"/>
                                 <?php } ?>
 
