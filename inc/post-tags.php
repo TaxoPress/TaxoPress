@@ -448,7 +448,7 @@ class SimpleTags_Post_Tags
                                                             'class'     => 'st-full-width',
                                                             'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>'),
                                                             'labeltext' => esc_html__('Term link format', 'simpletags'),
-                                                            'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the online documentation.</a>',
+                                                            'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-terms-current-post/">in the online documentation.</a>',
                                                                 'simpletags'),
                                                             'required'  => false,
                                                         ]);
