@@ -66,7 +66,6 @@ class PostTags_List extends WP_List_Table
             'title'     => __('Title', 'simpletags'),
             'taxonomy'  => __('Taxonomy', 'simpletags'),
             'embedded'  => __('Automatically display in post content', 'simpletags'),
-            'feed'      => __('Automatically display in feed', 'simpletags'),
             'shortcode' => __('Shortcode', 'simpletags')
         ];
 
@@ -341,24 +340,6 @@ class PostTags_List extends WP_List_Table
         ];
 
         return $embedded_options[$item['embedded']];
-    }
-
-    /**
-     * Method for feed column
-     *
-     * @param array $item
-     *
-     * @return string
-     */
-    protected function column_feed($item)
-    {
-        if (isset($item['feed']) && !empty(trim($item['feed']))) {
-            $title = __('Yes', 'simpletags');
-        } else {
-            $title = __('No', 'simpletags');
-        }
-
-        return $title;
     }
 
     /**
