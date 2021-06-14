@@ -325,49 +325,38 @@ class SimpleTags_Post_Tags
                                                             'selections' => $select,
                                                         ]);
 
-                                                        $select             = [
-                                                            'options' => [
-                                                                [
-                                                                    'attr'    => 'no',
-                                                                    'text'    => esc_attr__('No where', 'simpletags'),
-                                                                    'default' => 'true'
-                                                                ],
-                                                                [
-                                                                    'attr' => 'homeonly',
-                                                                    'text' => esc_attr__('Homepage', 'simpletags')
-                                                                ],
-                                                                [
-                                                                    'attr' => 'blogonly',
-                                                                    'text' => esc_attr__('Blog', 'simpletags')
-                                                                ],
-                                                                [
-                                                                    'attr' => 'all',
-                                                                    'text' => esc_attr__('Blog and Feeds', 'simpletags')
-                                                                ],
-                                                                [
-                                                                    'attr' => 'singleonly',
-                                                                    'text' => esc_attr__('Single view', 'simpletags')
-                                                                ],
-                                                                [
-                                                                    'attr' => 'pageonly',
-                                                                    'text' => esc_attr__('Page view', 'simpletags')
-                                                                ],
-                                                                [
-                                                                    'attr' => 'singularonly',
-                                                                    'text' => esc_attr__('Single and Page',
-                                                                        'simpletags')
-                                                                ],
-                                                            ],
-                                                        ];
-                                                        $selected           = isset($current) ? taxopress_disp_boolean($current['embedded']) : '';
-                                                        $select['selected'] = !empty($selected) ? $current['embedded'] : '';
-                                                        echo $ui->get_select_checkbox_input_main([
-                                                            'namearray'  => 'taxopress_post_tags',
-                                                            'name'       => 'embedded',
-                                                            'labeltext'  => esc_html__('Automatically display terms list into post content',
-                                                                'simpletags'),
-                                                            'selections' => $select,
-                                                        ]);
+                                                
+                                                $term_auto_locations = [
+                                                    'homeonly' => esc_attr__('Homepage', 'simpletags'),
+                                                    'blogonly' => esc_attr__('Blog display', 'simpletags'),
+                                                    'singleonly' => esc_attr__('Single post display', 'simpletags'),
+                                                    'feed' => esc_attr__('RSS feed', 'simpletags'),
+                                                ];
+
+                                                    echo '<tr valign="top"><th scope="row"><label>'.esc_html__('Automatically display terms list into post content', 'simpletags').'</label></th><td>
+                                                    <table>';
+                                                foreach ($term_auto_locations as $key => $value ) {
+
+
+                                                echo '<tr valign="top"><th scope="row"><label for="'.$key.'">'.$value.'</label></th><td>';
+                                                
+                                                    echo $ui->get_check_input([
+                                                        'checkvalue' => $key,
+                                                        'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
+                                                                $current['embedded'], true)) ? 'true' : 'false',
+                                                        'name'       => $key,
+                                                        'namearray'  => 'embedded',
+                                                        'textvalue'  => $key,
+                                                        'labeltext'  => "",
+                                                        'wrap'       => false,
+                                                    ]);
+                                                
+                                                echo '</td></tr>';
+
+                                            
+                                                }
+                                                echo '</table></td></tr>';
+
 
                                                         echo $ui->get_number_input([
                                                             'namearray' => 'taxopress_post_tags',
@@ -417,29 +406,6 @@ class SimpleTags_Post_Tags
                                                                 'simpletags'),
                                                             'helptext'  => '',
                                                             'required'  => false,
-                                                        ]);
-
-                                                        $select             = [
-                                                            'options' => [
-                                                                [
-                                                                    'attr'    => '0',
-                                                                    'text'    => esc_attr__('False', 'simpletags'),
-                                                                    'default' => 'true',
-                                                                ],
-                                                                [
-                                                                    'attr' => '1',
-                                                                    'text' => esc_attr__('True', 'simpletags'),
-                                                                ],
-                                                            ],
-                                                        ];
-                                                        $selected           = isset($current) && isset($current['feed']) ? taxopress_disp_boolean($current['feed']) : '';
-                                                        $select['selected'] = !empty($selected) ? $current['feed'] : '';
-                                                        echo $ui->get_select_checkbox_input([
-                                                            'namearray'  => 'taxopress_post_tags',
-                                                            'name'       => 'feed',
-                                                            'labeltext'  => esc_html__('Automatically display terms list into feeds',
-                                                                'simpletags'),
-                                                            'selections' => $select,
                                                         ]);
 
                                                         echo $ui->get_text_input([
