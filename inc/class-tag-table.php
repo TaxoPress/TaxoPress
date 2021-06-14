@@ -276,6 +276,12 @@ class Termcloud_List extends WP_List_Table {
         if (!empty($_REQUEST['page'])) {
             echo '<input type="hidden" name="page" value="' . esc_attr($_REQUEST['page']) . '" />';
         }
+        if (!empty($_REQUEST['cpt'])) {
+            echo '<input type="hidden" name="cpt" value="' . esc_attr($_REQUEST['cpt']) . '" />';
+        }
+        if (!empty($_REQUEST['taxo'])) {
+            echo '<input type="hidden" name="taxo" value="' . esc_attr($_REQUEST['taxo']) . '" />';
+        }
         ?>
         <p class="search-box">
             <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
