@@ -328,18 +328,23 @@ class PostTags_List extends WP_List_Table
      */
     protected function column_embedded($item)
     {
-
-        $embedded_options = [
-            'no'           => esc_attr__('No', 'simpletags'),
-            'homeonly'     => esc_attr__('Homepage', 'simpletags'),
-            'blogonly'     => esc_attr__('Blog', 'simpletags'),
-            'all'          => esc_attr__('Blog and Feeds', 'simpletags'),
-            'singleonly'   => esc_attr__('Single view', 'simpletags'),
-            'pageonly'     => esc_attr__('Page view', 'simpletags'),
-            'singularonly' => esc_attr__('Single and Page', 'simpletags'),
-        ];
-
-        return $embedded_options[$item['embedded']];
+        $embedded = (isset($item['embedded']) && is_array($item['embedded']) && count($item['embedded']) > 0) ? $item['embedded'] : false;
+        if($embedded){
+            $result_array = [];
+            $embedded_options = [
+                'homeonly'     => esc_attr__('Homepage', 'simpletags'),
+                'blogonly'     => esc_attr__('Blog display', 'simpletags'),
+                'singleonly'   => esc_attr__('Single post display', 'simpletags'),
+                'feed'         => esc_attr__('RSS feed', 'simpletags'),
+            ];
+            foreach ($embedded as $location){
+                $result_array[] = $embedded_options[$location];
+            }
+            $result = join(', ', $result_array);
+        }else{
+            $result = esc_attr__('No', 'simpletags');
+        }
+        return $result;
     }
 
     /**
