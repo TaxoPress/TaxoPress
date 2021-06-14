@@ -871,6 +871,8 @@ class SimpleTags_Admin_Manage {
 			// Add new tags for all posts
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append terms
+                clean_object_term_cache( $object_id, $taxonomy );
+				clean_term_cache( $new_terms, $taxonomy );
 				$counter ++;
 			}
 
