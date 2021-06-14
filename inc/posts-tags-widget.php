@@ -1,5 +1,5 @@
 <?php
-j
+
 /**
  * TaxoPress widget class
  *
