@@ -162,7 +162,7 @@ function taxopress_create_default_post_tags()
     $post_tags_default                                     = [];
     $post_tags_default['taxopress_post_tags']['title']     = 'Terms for Current Post';
     $post_tags_default['taxopress_post_tags']['taxonomy']  = 'post_tag';
-    $post_tags_default['taxopress_post_tags']['embedded']  = 'no';
+    $post_tags_default['taxopress_post_tags']['embedded']  = [];
     $post_tags_default['taxopress_post_tags']['number']    = $defaults['number'];
     $post_tags_default['taxopress_post_tags']['separator'] = $defaults['separator'];
     $post_tags_default['taxopress_post_tags']['after']     = $defaults['after'];
@@ -268,6 +268,7 @@ function taxopress_update_posttags($data = [])
 
     $xformat                                = $data['taxopress_post_tags']['xformat'];
     $data['taxopress_post_tags']['xformat'] = stripslashes_deep($xformat);
+    $data['taxopress_post_tags']['embedded']  = isset($data['embedded']) ? $data['embedded'] : [];
 
     if (isset($data['edited_posttags'])) {
         $posttags_id             = $data['edited_posttags'];
@@ -360,42 +361,23 @@ function taxopress_posttags_the_content($content = '')
 
     if (count($post_tags) > 0) {
         foreach ($post_tags as $post_tag) {
-            // Get option
-            $tt_embedded = isset($post_tag['embedded']) ? $post_tag['embedded'] : 'no';
-            $tt_feed     = isset($post_tag['feed']) ? (int)$post_tag['feed'] : 0;
 
-            if ('no' == $tt_embedded && 0 === $tt_feed) {
+            // Get option
+            $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
+
+            if (!$embedded) {
                 continue;
             }
 
             $marker = false;
-            if (is_feed() && 1 === $tt_feed) {
+            if (is_feed() && in_array('feed', $embedded)) {
                 $marker = true;
-            } elseif (!empty($tt_embedded)) {
-                switch($tt_embedded) {
-                    case 'blogonly':
-                        $marker = (is_feed()) ? false : true;
-                        break;
-                    case 'homeonly':
-                        $marker = (is_home()) ? true : false;
-                        break;
-                    case 'singularonly':
-                        $marker = (is_singular()) ? true : false;
-                        break;
-                    case 'singleonly':
-                        $marker = (is_single()) ? true : false;
-                        break;
-                    case 'pageonly':
-                        $marker = (is_page()) ? true : false;
-                        break;
-                    case 'all':
-                        $marker = true;
-                        break;
-                    case 'no':
-                    default:
-                        $marker = false;
-                        break;
-                }
+            }elseif (is_home() && in_array('homeonly', $embedded)) {
+                $marker = true;
+            }elseif (is_feed() && in_array('blogonly', $embedded)) {
+                $marker = true;
+            }elseif (is_singular() && in_array('singleonly', $embedded)) {
+                $marker = true;
             }
             if (true === $marker) {
                 $posttags_arg = build_query($post_tag);
