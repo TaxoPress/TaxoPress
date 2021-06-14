@@ -260,12 +260,12 @@ class SimpleTags_Admin_Manage {
 								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
 								<p class="terms-type-options">
-                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts"><?php printf(__('Add terms to all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label><br>
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts" checked="checked"><?php printf(__('Add terms to all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label><br>
 
-                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only" checked="checked"><?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only"><?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
 								</p>
 
-								<p class="terms-to-maatch-input">
+								<p class="terms-to-maatch-input" style="display: none;">
 									<label for="addterm_match"><?php _e( 'Term(s) to match:', 'simpletags' ); ?></label>
 									<br/>
 									<input type="text" class="autocomplete-input tag-cloud-input" id="addterm_match"
