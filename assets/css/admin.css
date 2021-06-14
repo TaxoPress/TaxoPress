@@ -251,6 +251,16 @@ a#close_clicktags{display:none;}
 color: red;
 font-weight: bold;
 }
+@media only screen and (max-width: 1270px) {
+    .tagcloudui,
+    .taxopress-right-sidebar {
+        display: block;
+        width: 100%;
+        float: none;
+        margin-left: 0;
+    }
+}
+
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;
