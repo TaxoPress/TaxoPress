@@ -352,7 +352,7 @@ class PostTags_List extends WP_List_Table
     protected function column_shortcode($item)
     {
 
-        return '<input type="text" value=\'[taxopress_posttags id="' . $item['ID'] . '"]\' />';
+        return '<input type="text" value=\'[taxopress_postterms id="' . $item['ID'] . '"]\' />';
     }
 
 

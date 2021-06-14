@@ -381,7 +381,7 @@ class SimpleTags_Admin {
 					'st_manage',
 					'st_taxonomies',
 					'st_terms_display',
-					'st_post_tags'
+					'st_post_tags',
 				) ) )
 		) {
 			wp_enqueue_style( 'st-admin' );
