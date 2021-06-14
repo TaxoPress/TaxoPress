@@ -251,6 +251,29 @@ a#close_clicktags{display:none;}
 color: red;
 font-weight: bold;
 }
+
+.st-legacy-subtab {
+    margin: 8px 0 0;
+    padding: 0;
+    font-size: 13px;
+    color: #646970;
+}
+.st-legacy-subtab span {
+    margin: 0;
+    white-space: nowrap;
+    line-height: 2;
+    padding: .2em;
+}
+.st-legacy-subtab span.active {
+    color: #000;
+    font-weight: 600;
+    border: none;
+}
+.st-legacy-subtab span:not(.active) {
+    color: #2271b1;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 1270px) {
     .tagcloudui,
     .taxopress-right-sidebar {
