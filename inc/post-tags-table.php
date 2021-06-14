@@ -11,8 +11,8 @@ class PostTags_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Tags for Current Post', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Tags for Current Post', 'simpletags'), //plural name of the listed records
+            'singular' => __('Terms for Current Post', 'simpletags'), //singular name of the listed records
+            'plural'   => __('Terms for Current Post', 'simpletags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
