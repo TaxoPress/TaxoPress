@@ -316,7 +316,7 @@ function taxopress_action_delete_posttags($posttags_id)
     }
 }
 
-add_shortcode('taxopress_posttags', 'taxopress_posttags_shortcode');
+add_shortcode('taxopress_postterms', 'taxopress_posttags_shortcode');
 function taxopress_posttags_shortcode($atts)
 {
     extract(shortcode_atts([
@@ -333,7 +333,7 @@ function taxopress_posttags_shortcode($atts)
         echo SimpleTags_Client_PostTags::extendedPostTags($posttags_arg);
 
     } else {
-        echo __('Invalid post tags ID.', 'simpletags');
+        echo __('Invalid post terms ID.', 'simpletags');
     }
 
     $html = ob_get_clean();

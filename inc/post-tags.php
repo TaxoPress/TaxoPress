@@ -531,7 +531,7 @@ class SimpleTags_Post_Tags
                                 <?php echo '<div class="taxopress-warning" style="">' . __('Shortcode: ',
                                         'simpletags'); ?> &nbsp;
                                 <textarea
-                                    style="resize: none;padding: 5px;">[taxopress_posttags id="<?php echo $current['ID']; ?>"]</textarea>
+                                    style="resize: none;padding: 5px;">[taxopress_postterms id="<?php echo $current['ID']; ?>"]</textarea>
                         </div>
                         </p>
                         <?php } ?>
