@@ -9,6 +9,18 @@
   $(document).ready(function () {
 
     // -------------------------------------------------------------
+    //   Settings sub tab click
+    // -------------------------------------------------------------
+    $(document).on('click', '.st-legacy-subtab span', function (e) {
+      e.preventDefault();
+      var current_content = $(this).attr('data-content');
+      $('.st-legacy-subtab span').removeClass('active');
+      $('.legacy-tab-content').addClass('st-hide-content');
+      $(this).addClass('active');
+      $(current_content).removeClass('st-hide-content');
+    });
+
+    // -------------------------------------------------------------
     //   Show taxonomy option based on selected CPT
     // -------------------------------------------------------------
     $(document).on('change paste keyup', '.st-cpt-select', function (e) {
