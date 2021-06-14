@@ -176,6 +176,9 @@ class taxopress_admin_ui
 
         $args = wp_parse_args($args, $defaults);
 
+        $selectedresult = (isset($args['selections']) && isset($args['selections']['selected']) && !empty(trim($args['selections']['selected']))) ? true : false;
+
+
         $value = '';
         if ($args['wrap']) {
             $value = $this->get_tr_start();
@@ -207,7 +210,7 @@ class taxopress_admin_ui
                     $result = ' selected="selected"';
                 } else {
                     if (array_key_exists('default', $val) && !empty($val['default'])) {
-                        if (empty($selected)) {
+                        if (empty($selected) && !$selectedresult) {
                             $result = ' selected="selected"';
                         }
                     }
