@@ -125,6 +125,8 @@ class SimpleTags_Tag_Clouds
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_terms_display&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
+                   <div class="taxopress-description">This feature allows you show all the terms in one taxonomy.</div>
+
 
                 <?php
                 if (isset($_REQUEST['s']) && $search = esc_attr(wp_unslash($_REQUEST['s']))) {
