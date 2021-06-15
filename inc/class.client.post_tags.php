@@ -112,6 +112,10 @@ class SimpleTags_Client_PostTags {
 			'notagtext' => __( 'No tag for this post.', 'simpletags' ),
 			'number'    => 0,
 			'format'    => '',
+			'ID'        => false,
+			'taxonomy'  => false,
+			'embedded'  => false,
+			'feed'      => false,
 		);
 
 		// Get values in DB
@@ -147,7 +151,11 @@ class SimpleTags_Client_PostTags {
 		}
 
 		// Get categories ?
-		$taxonomies = ( 0 === (int) $inc_cats ) ? 'post_tag' : array( 'post_tag', 'category' );
+        if($ID){
+		    $taxonomies = $taxonomy;
+        }else{
+		    $taxonomies = ( 0 === (int) $inc_cats ) ? 'post_tag' : array( 'post_tag', 'category' );
+        }
 
 		// Get terms
 		// According to codex https://developer.wordpress.org/reference/functions/get_object_term_cache/, $taxonomy must be a string

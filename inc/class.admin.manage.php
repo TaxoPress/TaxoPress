@@ -260,12 +260,12 @@ class SimpleTags_Admin_Manage {
 								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
 
 								<p class="terms-type-options">
-                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts"><?php printf(__('Add terms to all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label><br>
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts" checked="checked"><?php printf(__('Add terms to all %s.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label><br>
 
-                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only" checked="checked"><?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only"><?php _e( 'Add terms only to posts with specific terms attached.', 'simpletags' ); ?></label>
 								</p>
 
-								<p class="terms-to-maatch-input">
+								<p class="terms-to-maatch-input" style="display: none;">
 									<label for="addterm_match"><?php _e( 'Term(s) to match:', 'simpletags' ); ?></label>
 									<br/>
 									<input type="text" class="autocomplete-input tag-cloud-input" id="addterm_match"
@@ -668,17 +668,19 @@ class SimpleTags_Admin_Manage {
             );
             $posts = get_posts($args);
             foreach ( $posts as $post ){
-                wp_remove_object_terms( $post->ID, $term, $taxonomy );
-				clean_object_term_cache( $post->ID, $taxonomy );
-				clean_term_cache( $term, $taxonomy );
-                $counter ++;
+                $remove = wp_remove_object_terms( $post->ID, $term, $taxonomy );
+                if($remove){
+				    clean_object_term_cache( $post->ID, $taxonomy );
+				    clean_term_cache( $term, $taxonomy );
+                    $counter ++;
+                }
             }       
         }
 
 			if ( $counter == 0 ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'No term removed.', 'simpletags' ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term not associated to with any %1$s.', 'simpletags' ), SimpleTags_Admin::$post_type_name ), 'error' );
 			} else {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Removed term(s) &laquo;%1$s&raquo; from %2$s', 'simpletags' ), $new, SimpleTags_Admin::$post_type_name ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s', 'simpletags' ), $new, $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 			}
 		} else { // Error
 			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Error. No enough terms specified.', 'simpletags' ), $old ), 'error' );
@@ -869,6 +871,8 @@ class SimpleTags_Admin_Manage {
 			// Add new tags for all posts
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_terms, $taxonomy, true ); // Append terms
+                clean_object_term_cache( $object_id, $taxonomy );
+				clean_term_cache( $new_terms, $taxonomy );
 				$counter ++;
 			}
 

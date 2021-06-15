@@ -36,6 +36,11 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/tag-clouds.php';
         SimpleTags_Tag_Clouds::get_instance();
 
+        //post tags
+        require STAGS_DIR . '/inc/post-tags-table.php';
+        require STAGS_DIR . '/inc/post-tags.php';
+        SimpleTags_Post_Tags::get_instance();
+
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
 			require STAGS_DIR . '/inc/class.admin.suggest.php';
@@ -375,7 +380,8 @@ class SimpleTags_Admin {
 					'st_options',
 					'st_manage',
 					'st_taxonomies',
-					'st_terms_display'
+					'st_terms_display',
+					'st_post_tags',
 				) ) )
 		) {
 			wp_enqueue_style( 'st-admin' );
@@ -532,14 +538,24 @@ class SimpleTags_Admin {
 			$colspan       = count( $options ) > 1 ? 'colspan="2"' : '';
 			$desc_html_tag = 'div';
 
+            if($section === 'legacy'){
+                $output .= '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span></div>' . PHP_EOL;
+            }
+
 			$output .= '<div class="group" id="' . sanitize_title( $section ) . '">' . PHP_EOL;
 			$output .= '<fieldset class="options">' . PHP_EOL;
 			$output .= '<legend>' . self::getNiceTitleOptions( $section ) . '</legend>' . PHP_EOL;
 			$output .= '<table class="form-table">' . PHP_EOL;
 			foreach ( (array) $options as $option ) {
+            
+                $class = '';
+                if($section === 'legacy'){
+                    $class = $option[5];
+                }
+
 				// Helper
 				if ( $option[2] == 'helper' ) {
-					$output .= '<tr style="vertical-align: middle;"><td class="helper" ' . $colspan . '>' . stripslashes( $option[4] ) . '</td></tr>' . PHP_EOL;
+					$output .= '<tr style="vertical-align: middle;" class="'.$class.'"><td class="helper" ' . $colspan . '>' . stripslashes( $option[4] ) . '</td></tr>' . PHP_EOL;
 					continue;
 				}
 
@@ -592,7 +608,7 @@ class SimpleTags_Admin {
 				}
 
 				// Output
-				$output .= '<tr style="vertical-align: top;"><th scope="row"><label for="' . $option[0] . '">' . __( $option[1] ) . '</label></th><td>' . $input_type . '	' . $extra . '</td></tr>' . PHP_EOL;
+				$output .= '<tr style="vertical-align: top;" class="'.$class.'"><th scope="row"><label for="' . $option[0] . '">' . __( $option[1] ) . '</label></th><td>' . $input_type . '	' . $extra . '</td></tr>' . PHP_EOL;
 			}
 			$output .= '</table>' . PHP_EOL;
 			$output .= '</fieldset>' . PHP_EOL;

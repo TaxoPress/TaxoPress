@@ -24,6 +24,7 @@
 .st_wrap input.tags_input{width:90%;margin:3px 0 8px;padding:3px 10px;}
 .st-mass-edit input.tags_input{
   width: -webkit-fill-available !important;
+  width: -moz-available !important;
 }
 
 /* Suggested Click Tags   */
@@ -191,23 +192,39 @@ a#close_clicktags{display:none;}
 }
 .taxopress_page_st_terms_display .shortcode.column-shortcode input[type=text] {
     width: -webkit-fill-available;
+    width: -moz-available;
 }
 .taxopress_page_st_terms_display #col-container,
+.taxopress_page_st_post_tags #col-container,
 .tagcloudui #poststuff {
     min-height: 600px;
 }
+
+.taxopress_page_st_post_tags .manage-column.column-shortcode {
+    width: 25%;
+}
+.taxopress_page_st_post_tags .shortcode.column-shortcode input[type=text] {
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+
+.taxopress_page_st_post_tags .manage-column.column-embedded {
+    width: 20%;
+}
+
 .st-full-width {
     width: -webkit-fill-available !important;
+    width: -moz-available !important;
 }
 .tagcloudui {
-    width: calc(100% - 300px);
+    width: calc(100% - 350px);
     display: inline-block;
 }
 .taxopress-right-sidebar {
     float: right;
     margin-left: 20px;
     margin-top: 10px;
-    width: 275px;
+    width: 325px;
 }
 .taxopress-right-sidebar-wrapper {
     background: #fff;
@@ -227,6 +244,56 @@ a#close_clicktags{display:none;}
 .taxopress_page_st_manage .screen-options {
     display: none;
 }
+#st-tags-slug-error-input {
+    color: red;
+    font-weight: bold;
+}
+.hidemessage {
+    display: none;
+}
+.taxopress-taxonomy-empty-types-dialog p {
+color: red;
+font-weight: bold;
+}
+
+.st-legacy-subtab {
+    margin: 8px 0 0;
+    padding: 0;
+    font-size: 13px;
+    color: #646970;
+}
+.st-legacy-subtab span {
+    margin: 0;
+    white-space: nowrap;
+    line-height: 2;
+    padding: .2em;
+}
+.st-legacy-subtab span.active {
+    color: #000;
+    font-weight: 600;
+    border: none;
+}
+.st-legacy-subtab span:not(.active) {
+    color: #2271b1;
+    cursor: pointer;
+}
+.taxopress-warning textarea {
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+}
+.taxopress-description {
+    margin: 10px 0;
+}
+@media only screen and (max-width: 1270px) {
+    .tagcloudui,
+    .taxopress-right-sidebar {
+        display: block;
+        width: 100%;
+        float: none;
+        margin-left: 0;
+    }
+}
+
 @media only screen and (max-width: 1024px) {
     .st-add-suggestion-input {
         margin-left: 0px;

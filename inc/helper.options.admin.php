@@ -175,49 +175,6 @@ return array(
             'regular-text'
         ),
     ),
-    'tagspost'       => array(
-        array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1'),
-        array(
-            'tt_embedded',
-            __('Automatically display tags list into post content:', 'simpletags'),
-            'radio',
-            array(
-                'no'           => __('<code>no</code> &ndash; Nowhere (default)', 'simpletags'),
-                'all'          => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
-                'blogonly'     => __('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags'),
-                'homeonly'     => __('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags'),
-                'singularonly' => __('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags'),
-                'singleonly'   => __('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags'),
-                'pageonly'     => __('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags'),
-            )
-        ),
-        array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 'regular-text'),
-        array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 'regular-text'),
-        array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 'regular-text'),
-        array(
-            'tt_number',
-            __('Max tags display:', 'simpletags'),
-            'number',
-            'small-text',
-            __('You must set zero (0) for display all tags.', 'simpletags')
-        ),
-        array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1'),
-        array(
-            'tt_xformat',
-            __('Tag link format:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags')
-        ),
-        array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 'widefat'),
-        array(
-            'tt_adv_usage',
-            __('<strong>Advanced usage</strong>:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
-        )
-    ),
     'relatedposts'   => array(
         array(
             'rp_taxonomy',
@@ -291,18 +248,21 @@ return array(
         )
     ),
     'legacy'       => array(
+
+
+        //tag cloud legecy
         array(
             'text_helper',
             'text_helper',
             'helper',
             '',
-            '<h3 style="margin: 0;"><strong>'.__('Tag Cloud', 'simpletags').'</strong></h3><br /><p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Tag Clouds" screen instead.', 'simpletags').'</strong></p><br /><br />'.__('Which difference between <strong>&#8216;Order tags selection&#8217;</strong> and <strong>&#8216;Order tags display&#8217;</strong> ?<br />', 'simpletags')
-                . '<ul style="list-style:square;margin-left:20px;">
+            '<p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Terms Display" screen instead.', 'simpletags').'</strong></p><br /><br /><ul style="list-style:square;margin-left:20px;">
 				<li>' . __('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simpletags') . '</li>
 				<li>' . __('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simpletags') . '</li>
 			</ul>' .
                 __('<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />', 'simpletags') .
-                __('You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud.', 'simpletags')
+                __('You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud.', 'simpletags'),
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_selectionby',
@@ -312,7 +272,9 @@ return array(
                 'count'  => __('<code>count</code> &ndash; Counter. (default)', 'simpletags'),
                 'name'   => __('<code>name</code> &ndash; Name.', 'simpletags'),
                 'random' => __('<code>random</code> &ndash; Random.', 'simpletags'),
-            )
+            ),
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_selection',
@@ -321,7 +283,9 @@ return array(
             array(
                 'asc'  => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
                 'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
-            )
+            ),
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_orderby',
@@ -331,7 +295,9 @@ return array(
                 'count'  => __('<code>count</code> &ndash; Counter.', 'simpletags'),
                 'name'   => __('<code>name</code> &ndash; Name.', 'simpletags'),
                 'random' => __('<code>random</code> &ndash; Random. (default)', 'simpletags'),
-            )
+            ),
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_order',
@@ -340,7 +306,9 @@ return array(
             array(
                 'asc'  => __('<code>asc</code> &ndash; Ascending.', 'simpletags'),
                 'desc' => __('<code>desc</code> &ndash; Descending.', 'simpletags'),
-            )
+            ),
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_format',
@@ -349,62 +317,151 @@ return array(
             array(
                 'list' => __('<code>list</code> &ndash; Display a formatted list (ul/li).', 'simpletags'),
                 'flat' => __('<code>flat</code> &ndash; Display inline (no list, just a div)', 'simpletags'),
-            )
+            ),
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_xformat',
             __('Tag link format:', 'simpletags'),
             'text',
             'widefat',
-            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags')
+            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags'),
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_limit_qty',
             __('Maximum number of tags to display: (default: 45)', 'simpletags'),
             'number',
-            'small-text'
+            'small-text',
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_notagstext',
             __('Enter the text to show when there is no tag:', 'simpletags'),
             'text',
-            'widefat'
+            'widefat',
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_title',
             __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'),
             'text',
-            'widefat'
+            'widefat',
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_max_color',
             __('Most popular color:', 'simpletags'),
             'text-color',
             'medium-text st-color-field',
-            __("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags')
+            __("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simpletags'),
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
-        array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text-color', 'medium-text st-color-field'),
+        array('cloud_min_color', __('Least popular color:', 'simpletags'), 'text-color', 'medium-text st-color-field',
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'),
         array(
             'cloud_max_size',
             __('Most popular font size:', 'simpletags'),
             'number',
             'small-text',
-            __("The two font sizes are the size of the largest and smallest tags.", 'simpletags')
+            __("The two font sizes are the size of the largest and smallest tags.", 'simpletags'),
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
-        array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'number', 'small-text'),
+        array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'number', 'small-text',
+            '',
+            'legacy-tab-content legacy-tag-cloud-content'),
         array(
             'cloud_unit',
             __('The units to display the font sizes with, on tag clouds:', 'simpletags'),
             'dropdown',
             'pt/px/em/%',
-            __("The font size units option determines the units that the two font sizes use.", 'simpletags')
+            __("The font size units option determines the units that the two font sizes use.", 'simpletags'),
+            'legacy-tab-content legacy-tag-cloud-content'
         ),
         array(
             'cloud_adv_usage',
             __('<strong>Advanced usage</strong>:', 'simpletags'),
             'text',
             'widefat',
-            __('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
-        )
+            __('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags'),
+            'legacy-tab-content legacy-tag-cloud-content'
+        ),
+
+
+
+        //tags for current post legacy
+        array(
+            'text_helper',
+            'text_helper',
+            'helper',
+            '',
+            '<p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Terms for Current Post" screen instead.', 'simpletags').'</strong></p><br /><br />',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
+        array('tt_feed', __('Automatically display tags list into feeds', 'simpletags'), 'checkbox', '1',
+            '',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+        array(
+            'tt_embedded',
+            __('Automatically display tags list into post content:', 'simpletags'),
+            'radio',
+            array(
+                'no'           => __('<code>no</code> &ndash; Nowhere (default)', 'simpletags'),
+                'all'          => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
+                'blogonly'     => __('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags'),
+                'homeonly'     => __('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags'),
+                'singularonly' => __('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags'),
+                'singleonly'   => __('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags'),
+                'pageonly'     => __('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags'),
+            ),
+            '',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
+        array('tt_separator', __('Post tag separator string:', 'simpletags'), 'text', 'regular-text',
+            '',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+        array('tt_before', __('Text to display before tags list:', 'simpletags'), 'text', 'regular-text',
+            '',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+        array('tt_after', __('Text to display after tags list:', 'simpletags'), 'text', 'regular-text',
+            '',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+        array(
+            'tt_number',
+            __('Max tags display:', 'simpletags'),
+            'number',
+            'small-text',
+            __('You must set zero (0) for display all tags.', 'simpletags'),
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
+        array('tt_inc_cats', __('Include categories in result ?', 'simpletags'), 'checkbox', '1',
+            '',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+        array(
+            'tt_xformat',
+            __('Tag link format:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags'),
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
+        array('tt_notagstext', __('Text to display if no tags found:', 'simpletags'), 'text', 'widefat',
+            '',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+        array(
+            'tt_adv_usage',
+            __('<strong>Advanced usage</strong>:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags'),
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
+
+
     ),
 );
