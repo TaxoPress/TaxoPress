@@ -281,6 +281,9 @@ font-weight: bold;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
 }
+.taxopress-description {
+    margin: 10px 0;
+}
 @media only screen and (max-width: 1270px) {
     .tagcloudui,
     .taxopress-right-sidebar {
