@@ -2,7 +2,7 @@
     margin-left: 8px;
 }
 .posttypesui, .taxonomiesui {
-    width: calc(100% - 300px);
+    width: calc(100% - 350px);
 }
 
 .posttypesui .taxopress-section:first-child, .taxonomiesui .taxopress-section:first-child {
@@ -282,7 +282,7 @@ fieldset .taxopress-help {
     float: right;
     margin-left: 20px;
     margin-top: 10px;
-    width: 275px;
+    width: 325px;
 }
 
 .taxopress-right-sidebar-about {
@@ -527,5 +527,6 @@ ul.st-taxonomy-tab li.active a {
         float: none;
         margin: initial;
         width: -webkit-fill-available;
+        width: -moz-available;
     }
 }
