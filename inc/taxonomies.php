@@ -151,6 +151,8 @@ class SimpleTags_Admin_Taxonomies
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_taxonomies&add=taxonomy')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
+                   <div class="taxopress-description">This feature allows you to create new taxonomies and edit all the settings for each taxonomy.</div>
+
 
                 <?php
                 if (isset($_REQUEST['s']) && $search = esc_attr(wp_unslash($_REQUEST['s']))) {
