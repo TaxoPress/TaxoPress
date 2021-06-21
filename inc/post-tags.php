@@ -328,12 +328,42 @@ class SimpleTags_Post_Tags
                                                         ]);
 
                                                 
+                                                
+
+                                                /**
+                                                 * Filters the arguments for post types to list for taxonomy association.
+                                                 *
+                                                 *
+                                                 * @param array $value Array of default arguments.
+                                                 */
+                                                $args = apply_filters('taxopress_attach_post_types_to_taxonomy',
+                                                    ['public' => true]);
+
+                                                // If they don't return an array, fall back to the original default. Don't need to check for empty, because empty array is default for $args param in get_post_types anyway.
+                                                if (!is_array($args)) {
+                                                    $args = ['public' => true];
+                                                }
+                                                $output = 'objects'; // Or objects.
+
+                                                /**
+                                                 * Filters the results returned to display for available post types for taxonomy.
+                                                 *
+                                                 * @param array $value Array of post type objects.
+                                                 * @param array $args Array of arguments for the post type query.
+                                                 * @param string $output The output type we want for the results.
+                                                 */
+                                                $post_types = apply_filters('taxopress_get_post_types_for_taxonomies',
+                                                    get_post_types($args, $output), $args, $output);
+
                                                 $term_auto_locations = [
                                                     'homeonly' => esc_attr__('Homepage', 'simpletags'),
                                                     'blogonly' => esc_attr__('Blog display', 'simpletags'),
                                                     'singleonly' => esc_attr__('Single post display', 'simpletags'),
-                                                    'feed' => esc_attr__('RSS feed', 'simpletags'),
                                                 ];
+                                                foreach ($post_types as $post_type) {
+                                                     $term_auto_locations[$post_type->name] = $post_type->label;
+                                                }
+                                                $term_auto_locations['feed'] = esc_attr__('RSS feed', 'simpletags');
 
                                                     echo '<tr valign="top"><th scope="row"><label>'.esc_html__('Automatically display terms list into post content', 'simpletags').'</label></th><td>
                                                     <table>';
