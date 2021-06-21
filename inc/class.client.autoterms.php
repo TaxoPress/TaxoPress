@@ -96,7 +96,7 @@ class SimpleTags_Client_Autoterms {
 		}
 
 		// Auto term with specific auto terms list
-		if ( isset( $options['auto_list'] ) ) {
+		if ( isset( $options['auto_list'] ) && isset( $options['at_all_no'] ) && $options['at_all_no'] == 1 ) {
 			$terms = (array) maybe_unserialize( $options['auto_list'] );
 			foreach ( $terms as $term ) {
 				if ( ! is_string( $term ) ) {
