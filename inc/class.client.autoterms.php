@@ -36,11 +36,10 @@ class SimpleTags_Client_Autoterms {
 		}
 
 		// user preference for this post ?
-		$meta_value = get_post_meta( $object->ID, '_exclude_autotags', true );
-		if ( ! empty( $meta_value ) ) {
+		$meta_value = isset($_POST['exclude_autotags']) ? $_POST['exclude_autotags'] : false;
+		if ( $meta_value ) {
 			return false;
 		}
-
 		// Loop option for find if autoterms is actived on any taxo
 		$flag = false;
 		foreach ( $options[ $object->post_type ] as $taxo_name => $local_options ) {
