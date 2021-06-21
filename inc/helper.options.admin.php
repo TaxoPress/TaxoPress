@@ -49,13 +49,6 @@ return array(
             'checkbox',
             '1',
             __('This feature allow automatically add terms on a post by proceding to a search into content.', 'simpletags')
-        ),
-        array(
-            'allow_embed_tcloud',
-            __('Tag cloud Shortcode', 'simpletags'),
-            'checkbox',
-            '1',
-            __('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WordPress replace this shortcode by a tag cloud.', 'simpletags')
         )
     ),
     'administration' => array(
@@ -389,6 +382,14 @@ return array(
             'text',
             'widefat',
             __('You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags'),
+            'legacy-tab-content legacy-tag-cloud-content'
+        ),
+        array(
+            'allow_embed_tcloud',
+            __('Tag cloud Shortcode', 'simpletags'),
+            'checkbox',
+            '1',
+            __('Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WordPress replace this shortcode by a tag cloud.', 'simpletags'),
             'legacy-tab-content legacy-tag-cloud-content'
         ),
 
