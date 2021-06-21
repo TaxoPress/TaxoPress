@@ -403,7 +403,6 @@ class SimpleTags_Tag_Clouds
 								                    'options' => [
 									                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simpletags' ) ],
 									                    [ 'attr' => 'slug', 'text' => esc_attr__( 'Slug', 'simpletags' ) ],
-									                    [ 'attr' => 'term_group', 'text' => esc_attr__( 'Term group', 'simpletags' ) ],
 									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simpletags'), 'default' => 'true' ],
 									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simpletags' ) ],
 								                    ],
