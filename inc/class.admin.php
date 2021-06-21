@@ -539,10 +539,13 @@ class SimpleTags_Admin {
 			$desc_html_tag = 'div';
 
             if($section === 'legacy'){
-                $output .= '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span></div>' . PHP_EOL;
+                $table_sub_tab = '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span></div>' . PHP_EOL;
+            }else{
+                $table_sub_tab = '';
             }
 
 			$output .= '<div class="group" id="' . sanitize_title( $section ) . '">' . PHP_EOL;
+            $output .= $table_sub_tab;
 			$output .= '<fieldset class="options">' . PHP_EOL;
 			$output .= '<legend>' . self::getNiceTitleOptions( $section ) . '</legend>' . PHP_EOL;
 			$output .= '<table class="form-table">' . PHP_EOL;
