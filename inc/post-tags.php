@@ -358,12 +358,10 @@ class SimpleTags_Post_Tags
                                                 $term_auto_locations = [
                                                     'homeonly' => esc_attr__('Homepage', 'simpletags'),
                                                     'blogonly' => esc_attr__('Blog display', 'simpletags'),
-                                                    'singleonly' => esc_attr__('Single post display', 'simpletags'),
                                                 ];
                                                 foreach ($post_types as $post_type) {
                                                      $term_auto_locations[$post_type->name] = $post_type->label;
                                                 }
-                                                $term_auto_locations['feed'] = esc_attr__('RSS feed', 'simpletags');
 
                                                     echo '<tr valign="top"><th scope="row"><label>'.esc_html__('Automatically display terms list into post content', 'simpletags').'</label></th><td>
                                                     <table>';
@@ -384,6 +382,11 @@ class SimpleTags_Post_Tags
                                                     ]);
                                                 
                                                 echo '</td></tr>';
+
+                                                if($key === 'blogonly'){
+                                                    echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
+                                                }
+
 
                                             
                                                 }
