@@ -36,11 +36,10 @@ class SimpleTags_Client_Autoterms {
 		}
 
 		// user preference for this post ?
-		$meta_value = get_post_meta( $object->ID, '_exclude_autotags', true );
-		if ( ! empty( $meta_value ) ) {
+		$meta_value = isset($_POST['exclude_autotags']) ? $_POST['exclude_autotags'] : false;
+		if ( $meta_value ) {
 			return false;
 		}
-
 		// Loop option for find if autoterms is actived on any taxo
 		$flag = false;
 		foreach ( $options[ $object->post_type ] as $taxo_name => $local_options ) {
@@ -96,7 +95,7 @@ class SimpleTags_Client_Autoterms {
 		}
 
 		// Auto term with specific auto terms list
-		if ( isset( $options['auto_list'] ) ) {
+		if ( isset( $options['auto_list'] ) && isset( $options['at_all_no'] ) && $options['at_all_no'] == 1 ) {
 			$terms = (array) maybe_unserialize( $options['auto_list'] );
 			foreach ( $terms as $term ) {
 				if ( ! is_string( $term ) ) {
@@ -114,6 +113,14 @@ class SimpleTags_Client_Autoterms {
 					if ( preg_match( "/\b" . $preg_term . "\b/i", $content ) ) {
 						$terms_to_add[] = $term;
 					}
+
+                    //make exception for hashtag special character
+                    if (substr($term, 0, strlen('#')) === '#') {
+                        $trim_term = ltrim($term, '#');
+					    if ( preg_match( "/\B(\#+$trim_term\b)(?!;)/i", $content ) ) {
+						    $terms_to_add[] = $term;
+					    }
+                    }
 
 					if ( isset( $options['allow_hashtag_format'] ) && (int) $options['allow_hashtag_format'] == 1 && stristr( $content, '#' . $term ) ) {
 						$terms_to_add[] = $term;
@@ -153,6 +160,14 @@ class SimpleTags_Client_Autoterms {
 					if ( preg_match( "/\b" . $preg_term . "\b/i", $content ) ) {
 						$terms_to_add[] = $term;
 					}
+
+                    //make exception for hashtag special character
+                    if (substr($term, 0, strlen('#')) === '#') {
+                        $trim_term = ltrim($term, '#');
+					    if ( preg_match( "/\B(\#+$trim_term\b)(?!;)/i", $content ) ) {
+						    $terms_to_add[] = $term;
+					    }
+                    }
 
 					if ( isset( $options['allow_hashtag_format'] ) && (int) $options['allow_hashtag_format'] == 1 && stristr( $content, '#' . $term ) ) {
 						$terms_to_add[] = $term;

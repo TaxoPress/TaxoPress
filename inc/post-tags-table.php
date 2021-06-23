@@ -330,6 +330,13 @@ class PostTags_List extends WP_List_Table
     {
         $embedded = (isset($item['embedded']) && is_array($item['embedded']) && count($item['embedded']) > 0) ? $item['embedded'] : false;
         if($embedded){
+            $args = apply_filters('taxopress_attach_post_types_to_taxonomy', ['public' => true]);
+            if (!is_array($args)) {
+                   $args = ['public' => true];
+            }
+            $output = 'objects'; // Or objects.
+            $post_types = apply_filters('taxopress_get_post_types_for_taxonomies', get_post_types($args, $output), $args, $output);
+
             $result_array = [];
             $embedded_options = [
                 'homeonly'     => esc_attr__('Homepage', 'simpletags'),
@@ -337,8 +344,11 @@ class PostTags_List extends WP_List_Table
                 'singleonly'   => esc_attr__('Single post display', 'simpletags'),
                 'feed'         => esc_attr__('RSS feed', 'simpletags'),
             ];
+            foreach ($post_types as $post_type) {
+                $embedded_options[$post_type->name] = $post_type->label;
+            }
             foreach ($embedded as $location){
-                $result_array[] = $embedded_options[$location];
+                $result_array[] = isset($embedded_options[$location]) ? $embedded_options[$location] : '';
             }
             $result = join(', ', $result_array);
         }else{

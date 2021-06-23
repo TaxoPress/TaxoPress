@@ -356,7 +356,6 @@ add_filter('the_content', 'taxopress_posttags_the_content', 999992);
 function taxopress_posttags_the_content($content = '')
 {
 
-
     $post_tags = taxopress_get_posttags_data();
 
     if (count($post_tags) > 0) {
@@ -377,6 +376,8 @@ function taxopress_posttags_the_content($content = '')
             }elseif (is_feed() && in_array('blogonly', $embedded)) {
                 $marker = true;
             }elseif (is_singular() && in_array('singleonly', $embedded)) {
+                $marker = true;
+            }elseif (is_singular() && in_array(get_post_type(), $embedded)) {
                 $marker = true;
             }
             if (true === $marker) {
