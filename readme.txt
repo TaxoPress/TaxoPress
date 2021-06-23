@@ -112,6 +112,16 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.0.7.1 - 2021-06-23
+* Fixed: Legacy setting showing on all settings pages #571
+* Fixed: "Terms for current post" includes all post types #580
+* Fixed: Terms been added automatically even when "disable auto tags" is selected #581
+* Fixed: "Keywords list" is always added even when the option is unchecked in Auto Terms #575
+* Fixed: Added support for hashtag when "whole word" option is selected in auto terms #586
+* Removed: Remove "Tag cloud Shortcode" setting #570
+* Removed: Remove "Term Group" from "Terms Diplay" method for choosing terms from the database options #567
+
+
 v3.0.7 - 2021-06-15
 * Added New Terms for Current Post menu
 * Added New Terms for Current Post widget
