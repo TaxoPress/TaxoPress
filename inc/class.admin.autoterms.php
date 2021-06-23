@@ -205,7 +205,7 @@ class SimpleTags_Admin_AutoTags
                             <th scope="row"><?php _e('Whole Word ?', 'simpletags'); ?></th>
                             <td>
                                 <input type="checkbox" id="only_full_word" name="only_full_word" value="1" <?php echo (isset($taxo_options['only_full_word']) && $taxo_options['only_full_word'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="only_full_word"><?php printf(__('Autotag only a %s when terms finded in the content are a the same name. (whole word only).', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label>
+                                <label for="only_full_word"><?php printf(__('Autotag %s only when terms found in the content are the same word.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label>
                             </td>
                         </tr>
                         <tr valign="top">
