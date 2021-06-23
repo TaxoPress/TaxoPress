@@ -114,6 +114,14 @@ class SimpleTags_Client_Autoterms {
 						$terms_to_add[] = $term;
 					}
 
+                    //make exception for hashtag special character
+                    if (substr($term, 0, strlen('#')) === '#') {
+                        $trim_term = ltrim($term, '#');
+					    if ( preg_match( "/\B(\#+$trim_term\b)(?!;)/i", $content ) ) {
+						    $terms_to_add[] = $term;
+					    }
+                    }
+
 					if ( isset( $options['allow_hashtag_format'] ) && (int) $options['allow_hashtag_format'] == 1 && stristr( $content, '#' . $term ) ) {
 						$terms_to_add[] = $term;
 					}
@@ -152,6 +160,14 @@ class SimpleTags_Client_Autoterms {
 					if ( preg_match( "/\b" . $preg_term . "\b/i", $content ) ) {
 						$terms_to_add[] = $term;
 					}
+
+                    //make exception for hashtag special character
+                    if (substr($term, 0, strlen('#')) === '#') {
+                        $trim_term = ltrim($term, '#');
+					    if ( preg_match( "/\B(\#+$trim_term\b)(?!;)/i", $content ) ) {
+						    $terms_to_add[] = $term;
+					    }
+                    }
 
 					if ( isset( $options['allow_hashtag_format'] ) && (int) $options['allow_hashtag_format'] == 1 && stristr( $content, '#' . $term ) ) {
 						$terms_to_add[] = $term;
