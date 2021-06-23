@@ -320,7 +320,7 @@ function taxopress_update_taxonomy($data = [])
         $singular_label = str_replace('"', '', htmlspecialchars_decode($data['cpt_custom_tax']['singular_label']));
         $singular_label = htmlspecialchars(stripslashes($singular_label));
     }
-    $description           = stripslashes_deep($data['cpt_custom_tax']['description']);
+    $description           = sanitize_textarea_field(stripslashes_deep($data['cpt_custom_tax']['description']));
     $query_var_slug        = trim($data['cpt_custom_tax']['query_var_slug']);
     $rewrite_slug          = trim($data['cpt_custom_tax']['rewrite_slug']);
     $rest_base             = trim($data['cpt_custom_tax']['rest_base']);
