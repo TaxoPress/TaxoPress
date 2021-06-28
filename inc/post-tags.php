@@ -363,7 +363,7 @@ class SimpleTags_Post_Tags
                                                      $term_auto_locations[$post_type->name] = $post_type->label;
                                                 }
 
-                                                    echo '<tr valign="top"><th scope="row"><label>'.esc_html__('Automatically display terms list into post content', 'simpletags').'</label></th><td>
+                                                   echo '<tr valign="top"><th scope="row"><label>'.esc_html__('Attempt to automatically display terms', 'simpletags').'</label><br /><small style=" color: #646970;">'.esc_html__('TaxoPress will attempt to automatically display terms in this content. It may not be successful for all post types and layouts.', 'simpletags').'</small></th><td>
                                                     <table>';
                                                 foreach ($term_auto_locations as $key => $value ) {
 
