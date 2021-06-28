@@ -209,7 +209,7 @@ class SimpleTags_Admin_AutoTags
                             </td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row"><?php _e('Suport Hashtag format ?', 'simpletags'); ?></th>
+                            <th scope="row"><?php _e('Support Hashtag format ?', 'simpletags'); ?></th>
                             <td>
                                 <input type="checkbox" id="allow_hashtag_format" name="allow_hashtag_format" value="1" <?php echo (isset($taxo_options['allow_hashtag_format']) && $taxo_options['allow_hashtag_format'] == 1) ? 'checked="checked"' : ''; ?> />
                                 <label for="allow_hashtag_format"><?php _e('When the whole word option is enabled, hashtag will not be autotag because of # prefix. This option allow to fixed this issue!', 'simpletags'); ?></label>
