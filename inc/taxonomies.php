@@ -178,6 +178,21 @@ class SimpleTags_Admin_Taxonomies
                 <div id="col-container" class="wp-clearfix">
 
                     <div class="col-wrap">
+<?php 
+$selected_option = 'public';
+if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
+    $selected_option = 'all';
+}elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
+    $selected_option = 'private';
+}
+?>
+<div class="taxopress-taxonomy-type-wrap">
+<select name="taxopress-taxonomy-type" class="taxopress-taxonomy-type">
+    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo __('All Taxonomies', 'simpletags'); ?></option>
+    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo __('Public Taxonomies', 'simpletags'); ?></option>
+    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo __('Private Taxonomies', 'simpletags'); ?></option>
+</select>
+</div>
                         <form action="<?php echo add_query_arg('', '') ?>" method="post">
                             <?php $this->terms_table->display(); //Display the table ?>
                         </form>
