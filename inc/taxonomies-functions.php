@@ -1626,6 +1626,38 @@ function taxopress_get_preserved_labels()
 }
 
 
+function get_all_taxopress_taxonomies_request()
+{
+
+    $category              = get_taxonomies(
+        ['name' => 'category'],
+        'objects');
+    $post_tag              = get_taxonomies(
+        ['name' => 'post_tag'],
+        'objects');
+    $public                = get_taxonomies([
+        '_builtin' => false,
+        'public'   => true,
+    ],
+        'objects');
+    $private               = get_taxonomies([
+        '_builtin' => false,
+        'public'   => false,
+    ],
+        'objects');
+        
+    if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
+        $registered_taxonomies = array_merge($category, $post_tag, $public, $private);
+    }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
+        $registered_taxonomies = array_merge($category, $post_tag, $private);
+    }else{
+        $registered_taxonomies = array_merge($category, $post_tag, $public);
+    }
+
+    return $registered_taxonomies;
+}
+
+
 function get_all_taxopress_taxonomies()
 {
 

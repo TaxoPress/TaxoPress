@@ -28,7 +28,7 @@ class Taxonomy_List extends WP_List_Table
      */
     public static function get_st_taxonomies()
     {
-        return get_all_taxopress_public_taxonomies();
+        return get_all_taxopress_taxonomies_request();
     }
 
     /**
@@ -38,7 +38,7 @@ class Taxonomy_List extends WP_List_Table
      */
     public static function record_count()
     {
-        return count(get_all_taxopress_public_taxonomies());
+        return count(get_all_taxopress_taxonomies_request());
     }
 
     /**
@@ -117,6 +117,9 @@ class Taxonomy_List extends WP_List_Table
         }
         if (!empty($_REQUEST['page'])) {
             echo '<input type="hidden" name="page" value="' . esc_attr($_REQUEST['page']) . '" />';
+        }
+        if (!empty($_REQUEST['taxonomy_type'])) {
+            echo '<input type="hidden" name="taxonomy_type" value="' . esc_attr($_REQUEST['taxonomy_type']) . '" />';
         }
         ?>
         <p class="search-box">
