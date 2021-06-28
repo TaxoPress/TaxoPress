@@ -65,7 +65,7 @@ class PostTags_List extends WP_List_Table
         $columns = [
             'title'     => __('Title', 'simpletags'),
             'taxonomy'  => __('Taxonomy', 'simpletags'),
-            'embedded'  => __('Automatically display in post content', 'simpletags'),
+            'embedded'  => __('Automatic display', 'simpletags'),
             'shortcode' => __('Shortcode', 'simpletags')
         ];
 
