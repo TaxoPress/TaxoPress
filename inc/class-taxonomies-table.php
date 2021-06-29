@@ -344,7 +344,7 @@ class Taxonomy_List extends WP_List_Table
             }else{
                 $alt_description = '&mdash;';
             }
-            return !empty($item->description) ? $item->description : $alt_description;
+            return !empty($item->description) ? esc_html($item->description) : $alt_description;
         }
     }
 
