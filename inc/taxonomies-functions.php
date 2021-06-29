@@ -320,7 +320,7 @@ function taxopress_update_taxonomy($data = [])
         $singular_label = str_replace('"', '', htmlspecialchars_decode($data['cpt_custom_tax']['singular_label']));
         $singular_label = htmlspecialchars(stripslashes($singular_label));
     }
-    $description           = stripslashes_deep($data['cpt_custom_tax']['description']);
+    $description           = sanitize_textarea_field(stripslashes_deep($data['cpt_custom_tax']['description']));
     $query_var_slug        = trim($data['cpt_custom_tax']['query_var_slug']);
     $rewrite_slug          = trim($data['cpt_custom_tax']['rewrite_slug']);
     $rest_base             = trim($data['cpt_custom_tax']['rest_base']);
@@ -1623,6 +1623,38 @@ function taxopress_get_preserved_labels()
             ],
         ],
     ];
+}
+
+
+function get_all_taxopress_taxonomies_request()
+{
+
+    $category              = get_taxonomies(
+        ['name' => 'category'],
+        'objects');
+    $post_tag              = get_taxonomies(
+        ['name' => 'post_tag'],
+        'objects');
+    $public                = get_taxonomies([
+        '_builtin' => false,
+        'public'   => true,
+    ],
+        'objects');
+    $private               = get_taxonomies([
+        '_builtin' => false,
+        'public'   => false,
+    ],
+        'objects');
+        
+    if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
+        $registered_taxonomies = array_merge($category, $post_tag, $public, $private);
+    }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
+        $registered_taxonomies = array_merge($category, $post_tag, $private);
+    }else{
+        $registered_taxonomies = array_merge($category, $post_tag, $public);
+    }
+
+    return $registered_taxonomies;
 }
 
 

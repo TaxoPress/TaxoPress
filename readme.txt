@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.7
-Stable tag: 3.0.7.1
+Stable tag: 3.0.7.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -112,6 +112,10 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.0.7.2- 2021-06-29
+* Added: Add taxonomy privacy filter to taxonomy screen #599
+* Fixed: Fixed bugs
+
 v3.0.7.1 - 2021-06-23
 * Fixed: Legacy setting showing on all settings pages #571
 * Fixed: "Terms for current post" includes all post types #580
@@ -119,7 +123,7 @@ v3.0.7.1 - 2021-06-23
 * Fixed: "Keywords list" is always added even when the option is unchecked in Auto Terms #575
 * Fixed: Added support for hashtag when "whole word" option is selected in auto terms #586
 * Removed: Remove "Tag cloud Shortcode" setting #570
-* Removed: Remove "Term Group" from "Terms Diplay" method for choosing terms from the database options #567
+* Removed: Remove "Term Group" from "Terms Display" method for choosing terms from the database options #567
 
 
 v3.0.7 - 2021-06-15
