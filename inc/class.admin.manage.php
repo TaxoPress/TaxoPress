@@ -655,6 +655,13 @@ class SimpleTags_Admin_Manage {
         $counter = 0;
         if ( count($new_terms) > 0 ) {
 			foreach ( (array) $new_terms as $term ) {
+                $term = get_term_by('name', $term, $taxonomy);
+                if( empty($term) || !is_object($term) ){
+                    continue;
+                }
+
+                $term = $term->term_id;
+
             $args = array(
                 'post_type' => $post_type, // post_type
                 'posts_per_page' => -1,
