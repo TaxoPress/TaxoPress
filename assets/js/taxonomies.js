@@ -25,6 +25,23 @@
       // Store our original slug on page load for edit checking.
       var original_slug = $('#name').val()
     }
+
+    //taxonomy var visibility toggle
+    if ($('input[name="cpt_custom_tax[query_var]"]').length > 0) {
+      if( $('input[name="cpt_custom_tax[query_var]"]').is(":checked") ) {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').show();
+      }else {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').hide();
+      }
+    }
+    $('input[name="cpt_custom_tax[query_var]"]').on('change', function (e) {
+      if( $(this).is(":checked") ) {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').show();
+      }else {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').hide();
+      }
+    })
+
     // Confirm our deletions
     $('.taxopress-delete-top, .taxopress-delete-bottom').on('click', function(e) {
       e.preventDefault()
@@ -256,8 +273,6 @@
       var value = $(this).val().trim()
       $('#menu_icon_preview').html(composePreviewContent(value))
     })
-
-
 
     $('.taxopress-taxonomy-submit').on('click', function (e) {
       $('.taxonomy-required-field').html('');
