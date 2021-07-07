@@ -1417,7 +1417,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'public',
                                                 'labeltext'  => esc_html__('Public', 'simpletags'),
-                                                'aftertext'  => esc_html__('Whether a taxonomy is intended for use publicly either via the admin interface or by front-end users.',
+                                                'aftertext'  => esc_html__('The taxonomy is for public use. It can be seen by frontend users.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -1441,7 +1441,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'publicly_queryable',
                                                 'labeltext'  => esc_html__('Public Queryable', 'simpletags'),
-                                                'aftertext'  => esc_html__('Whether or not the taxonomy should be publicly queryable.',
+                                                'aftertext'  => esc_html__('The taxonomy is publicly queryable.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -1465,7 +1465,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'query_var',
                                                 'labeltext'  => esc_html__('Query Var', 'simpletags'),
-                                                'aftertext'  => esc_html__('Sets the query_var key for this taxonomy.',
+                                                'aftertext'  => esc_html__('Enable a custom query_var key for this taxonomy.',
                                                     'simpletags'),
                                                 'selections' => $select,
                                             ]);
@@ -1474,8 +1474,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'query_var_slug',
                                                 'textvalue' => isset($current['query_var_slug']) ? esc_attr($current['query_var_slug']) : '',
-                                                'aftertext' => esc_attr__('Query var needs to be true to use.',
-                                                    'simpletags'),
+                                                'aftertext' => '',
                                                 'labeltext' => esc_html__('Custom Query Var String', 'simpletags'),
                                                 'helptext'  => esc_html__('Sets a custom query_var slug for this taxonomy.',
                                                     'simpletags'),
