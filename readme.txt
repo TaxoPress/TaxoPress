@@ -115,6 +115,7 @@ TaxoPress can be installed in 3 easy steps:
 v3.1.0- 2021-07-01 [UNRELEASED]
 * Fixed: Manage terms 'remove terms' not working when term is number only #610
 * Fixed: Failed redirection with header error when adding/editing taxonomies #617
+* Fixed: Categories and Tags showing on both Public and Private Taxonomies #621
 
 v3.0.7.2- 2021-06-29
 * Added: Add taxonomy privacy filter to taxonomy screen #599
