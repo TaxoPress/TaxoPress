@@ -1601,6 +1601,25 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
         </div><!-- End .wrap -->
 
         <div class="clear"></div>
+
+<?php # Modal Windows; ?>
+<div class="remodal" data-remodal-id="taxopress-modal-alert"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simpletags'); ?></div>
+    <div id="taxopress-modal-alert-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simpletags'); ?></button>
+</div>
+
+<div class="remodal" data-remodal-id="taxopress-modal-confirm"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+    <div id="taxopress-modal-confirm-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simpletags'); ?></button>
+    <button data-remodal-action="confirm"
+            class="remodal-confirm"><?php echo __('Yes', 'simpletags'); ?></button>
+</div>
+
         <?php
     }
 
