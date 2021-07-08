@@ -366,6 +366,11 @@ class SimpleTags_Admin {
 		wp_register_script( 'st-admin-js', STAGS_URL . '/assets/js/admin.js', array( 'jquery' ), STAGS_VERSION );
 		wp_enqueue_script( 'st-admin-js' );
 
+        //Register remodal assets 
+		wp_register_script( 'st-remodal-js', STAGS_URL . '/assets/js/remodal.min.js', array( 'jquery' ), STAGS_VERSION );
+		wp_register_style( 'st-remodal-css', STAGS_URL . '/assets/css/remodal.css', array(), STAGS_VERSION, 'all' );
+		wp_register_style( 'st-remodal-default-theme-css', STAGS_URL . '/assets/css/remodal-default-theme.css', array(), STAGS_VERSION, 'all' );
+
 		// Register location
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
@@ -384,6 +389,9 @@ class SimpleTags_Admin {
 					'st_post_tags',
 				) ) )
 		) {
+			wp_enqueue_script( 'st-remodal-js' );
+			wp_enqueue_style( 'st-remodal-css' );
+			wp_enqueue_style( 'st-remodal-default-theme-css' );
 			wp_enqueue_style( 'st-admin' );
 		}
 
