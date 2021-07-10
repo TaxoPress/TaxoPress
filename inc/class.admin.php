@@ -29,8 +29,6 @@ class SimpleTags_Admin {
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
-
-
         //tag clouds
         require STAGS_DIR . '/inc/tag-clouds-table.php';
         require STAGS_DIR . '/inc/tag-clouds.php';
@@ -40,6 +38,11 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/post-tags-table.php';
         require STAGS_DIR . '/inc/post-tags.php';
         SimpleTags_Post_Tags::get_instance();
+
+        //Related Posts
+        require STAGS_DIR . '/inc/related-posts-table.php';
+        require STAGS_DIR . '/inc/related-posts.php';
+        SimpleTags_Related_Post::get_instance();
 
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
@@ -387,6 +390,7 @@ class SimpleTags_Admin {
 					'st_taxonomies',
 					'st_terms_display',
 					'st_post_tags',
+					'st_related_posts',
 				) ) )
 		) {
 			wp_enqueue_script( 'st-remodal-js' );
@@ -547,7 +551,7 @@ class SimpleTags_Admin {
 			$desc_html_tag = 'div';
 
             if($section === 'legacy'){
-                $table_sub_tab = '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span></div>' . PHP_EOL;
+                $table_sub_tab = '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span> | <span data-content=".legacy-related-posts-content">Related Posts</span></div>' . PHP_EOL;
             }else{
                 $table_sub_tab = '';
             }
