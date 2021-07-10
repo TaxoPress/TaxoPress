@@ -344,8 +344,6 @@ function taxopress_posttags_shortcode($atts)
 
 }
 
-add_filter('the_content', 'taxopress_posttags_the_content', 999992);
-
 /**
  * Auto add current tags post to post content
  *
@@ -389,3 +387,4 @@ function taxopress_posttags_the_content($content = '')
 
     return $content;
 }
+add_filter('the_content', 'taxopress_posttags_the_content', 999992);

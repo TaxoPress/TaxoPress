@@ -37,13 +37,6 @@ return array(
             __('This feature allows you to edit, merge, delete and add terms for any taxonomy.', 'simpletags')
         ),
         array(
-            'active_related_posts',
-            __('Related posts by terms', 'simpletags'),
-            'checkbox',
-            '1',
-            __('This feature allows you to display related posts based on terms relation.', 'simpletags')
-        ),
-        array(
             'active_autotags',
             __('Auto terms posts', 'simpletags'),
             'checkbox',
@@ -167,78 +160,6 @@ return array(
             'text',
             'regular-text'
         ),
-    ),
-    'relatedposts'   => array(
-        array(
-            'rp_taxonomy',
-            __('Taxonomy:', 'simpletags'),
-            'text',
-            'widefat',
-            __('By default, related posts work with post tags, but you can use a custom taxonomy. Default value : post_tag', 'simpletags')
-        ),
-        array('rp_feed', __('Automatically display related posts into feeds', 'simpletags'), 'checkbox', '1'),
-        array(
-            'rp_embedded',
-            __('Automatically display related posts into post content', 'simpletags'),
-            'dropdown',
-            'no/all/blogonly/feedonly/homeonly/singularonly/pageonly/singleonly',
-            '<ul>
-				<li>' . __('<code>no</code> &ndash; Nowhere (default)', 'simpletags') . '</li>
-				<li>' . __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags') . '</li>
-				<li>' . __('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags') . '</li>
-				<li>' . __('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags') . '</li>
-				<li>' . __('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags') . '</li>
-				<li>' . __('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags') . '</li>
-				<li>' . __('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags') . '</li>
-			</ul>'
-        ),
-        array(
-            'rp_order',
-            __('Related Posts Order:', 'simpletags'),
-            'dropdown',
-            'count-asc/count-desc/date-asc/date-desc/name-asc/name-desc/random',
-            '<ul>
-				<li>' . __('<code>date-asc</code> &ndash; Older Entries.', 'simpletags') . '</li>
-				<li>' . __('<code>date-desc</code> &ndash; Newer Entries.', 'simpletags') . '</li>
-				<li>' . __('<code>count-asc</code> &ndash; Least common tags between posts', 'simpletags') . '</li>
-				<li>' . __('<code>count-desc</code> &ndash; Most common tags between posts (default)', 'simpletags') . '</li>
-				<li>' . __('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags') . '</li>
-				<li>' . __('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags') . '</li>
-				<li>' . __('<code>random</code> &ndash; Random.', 'simpletags') . '</li>
-			</ul>'
-        ),
-        array(
-            'rp_xformat',
-            __('Post link format:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags')
-        ),
-        array(
-            'rp_limit_qty',
-            __('Maximum number of related posts to display: (default: 5)', 'simpletags'),
-            'text',
-            'regular-text'
-        ),
-        array(
-            'rp_notagstext',
-            __('Enter the text to show when there is no related post:', 'simpletags'),
-            'text',
-            'widefat'
-        ),
-        array(
-            'rp_title',
-            __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'),
-            'text',
-            'widefat'
-        ),
-        array(
-            'rp_adv_usage',
-            __('<strong>Advanced usage</strong>:', 'simpletags'),
-            'text',
-            'widefat',
-            __('You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags')
-        )
     ),
     'legacy'       => array(
 
@@ -462,6 +383,109 @@ return array(
             __('You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags'),
             'legacy-tab-content legacy-post-tags-content st-hide-content'
         ),
+
+
+
+
+        //related posts legacy
+        array(
+            'text_helper',
+            'text_helper',
+            'helper',
+            '',
+            '<p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Related Posts" screen instead.', 'simpletags').'</strong></p><br /><br />',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'rp_taxonomy',
+            __('Taxonomy:', 'simpletags'),
+            'text',
+            'widefat',
+            __('By default, related posts work with post tags, but you can use a custom taxonomy. Default value : post_tag', 'simpletags'),
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array('rp_feed', __('Automatically display related posts into feeds', 'simpletags'), 'checkbox', '1', '',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'),
+        array(
+            'rp_embedded',
+            __('Automatically display related posts into post content', 'simpletags'),
+            'dropdown',
+            'no/all/blogonly/feedonly/homeonly/singularonly/pageonly/singleonly',
+            '<ul>
+				<li>' . __('<code>no</code> &ndash; Nowhere (default)', 'simpletags') . '</li>
+				<li>' . __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags') . '</li>
+				<li>' . __('<code>blogonly</code> &ndash; Only on your blog.', 'simpletags') . '</li>
+				<li>' . __('<code>homeonly</code> &ndash; Only on your home page.', 'simpletags') . '</li>
+				<li>' . __('<code>singularonly</code> &ndash; Only on your singular view (single & page).', 'simpletags') . '</li>
+				<li>' . __('<code>singleonly</code> &ndash; Only on your single view.', 'simpletags') . '</li>
+				<li>' . __('<code>pageonly</code> &ndash; Only on your page view.', 'simpletags') . '</li>
+			</ul>',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'rp_order',
+            __('Related Posts Order:', 'simpletags'),
+            'dropdown',
+            'count-asc/count-desc/date-asc/date-desc/name-asc/name-desc/random',
+            '<ul>
+				<li>' . __('<code>date-asc</code> &ndash; Older Entries.', 'simpletags') . '</li>
+				<li>' . __('<code>date-desc</code> &ndash; Newer Entries.', 'simpletags') . '</li>
+				<li>' . __('<code>count-asc</code> &ndash; Least common tags between posts', 'simpletags') . '</li>
+				<li>' . __('<code>count-desc</code> &ndash; Most common tags between posts (default)', 'simpletags') . '</li>
+				<li>' . __('<code>name-asc</code> &ndash; Alphabetical.', 'simpletags') . '</li>
+				<li>' . __('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simpletags') . '</li>
+				<li>' . __('<code>random</code> &ndash; Random.', 'simpletags') . '</li>
+			</ul>',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'rp_xformat',
+            __('Post link format:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simpletags'),
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'rp_limit_qty',
+            __('Maximum number of related posts to display: (default: 5)', 'simpletags'),
+            'text',
+            'regular-text',
+            '',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'rp_notagstext',
+            __('Enter the text to show when there is no related post:', 'simpletags'),
+            'text',
+            'widefat',
+            '',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'rp_title',
+            __('Enter the positioned title before the list, leave blank for no title:', 'simpletags'),
+            'text',
+            'widefat',
+            '',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'rp_adv_usage',
+            __('<strong>Advanced usage</strong>:', 'simpletags'),
+            'text',
+            'widefat',
+            __('You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">documentation</a> for more details.', 'simpletags'),
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
+        array(
+            'active_related_posts',
+            __('Related posts by terms', 'simpletags'),
+            'checkbox',
+            '1',
+            __('This feature allows you to display related posts based on terms relation.', 'simpletags'),
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        )
 
 
     ),

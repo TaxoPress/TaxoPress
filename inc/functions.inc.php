@@ -35,6 +35,7 @@ function st_register_widget() {
 	register_widget( 'SimpleTags_Widget' );
 	register_widget( 'SimpleTags_Shortcode_Widget' );
 	register_widget( 'SimpleTags_PostTags_Widget' );
+	register_widget( 'SimpleTags_RelatedPosts_Widget' );
 }
 
 /**

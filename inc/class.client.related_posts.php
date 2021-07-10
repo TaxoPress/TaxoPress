@@ -78,7 +78,7 @@ class SimpleTags_Client_RelatedPosts {
 	 * @return string|array|boolean
 	 */
 	public static function get_related_posts( $user_args = '', $copyright = true ) {
-		global $wpdb;
+		global $wpdb, $post;
 
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
@@ -101,6 +101,9 @@ class SimpleTags_Client_RelatedPosts {
 			'nopoststext'   => __( 'No related posts.', 'simpletags' ),
 			'dateformat'    => get_option( 'date_format' ),
 			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags' ),
+			'ID'            => 0,
+			'hide_title'    => 0,
+			'title_header'  => '',
 		);
 
 		// Get values in DB
@@ -139,7 +142,6 @@ class SimpleTags_Client_RelatedPosts {
 		// Choose post ID
 		$object_id = (int) $post_id;
 		if ( 0 === $object_id ) {
-			global $post;
 			if ( ! isset( $post->ID ) || 0 === (int) $post->ID ) {
 				return false;
 			}
@@ -158,6 +160,25 @@ class SimpleTags_Client_RelatedPosts {
 				$results = $cache[ $key ];
 			}
 		}
+
+
+        //set title
+        if((int)$ID > 0){
+            $copyright = false;
+            if((int)$hide_title > 0){
+                $title = '';
+            }else{
+                $new_title = '';
+                if(!empty($title_header)){
+                    $new_title .= '<'.$title_header.'>';
+                }
+                $new_title .= $title;
+                if(!empty($title_header)){
+                    $new_title .= '</'.$title_header.'>';
+                }
+                $title = $new_title;
+            }
+        }
 
 		// If cache not exist, get datas and set cache
 		if ( $results === false || $results === null ) {
@@ -213,20 +234,30 @@ class SimpleTags_Client_RelatedPosts {
 			}
 			unset( $limit_days );
 
+            //get post type for current selection
+            if($post_type === 'st_current_posttype'){
+                $post_type = [get_post_type($post)];
+            }
+
 			// Make array post type
 			if ( is_string( $post_type ) ) {
 				$post_type = explode( ',', $post_type );
 			}
 
+
 			// Include_page
 			$include_page = strtolower( $include_page );
-			if ( $include_page == 'true' ) {
+			if ( $include_page == 'true' && (int)$hide_title === 0) {
 				$post_type[] = 'page';
 			}
 			unset( $include_page );
 
 			// Build post type SQL
-			$restrict_sql = "AND p.post_type IN ('" . implode( "', '", $post_type ) . "')";
+            if(in_array('st_all_posttype', $post_type)){//if all post type is selected
+                $restrict_sql = '';
+            }else{
+                $restrict_sql = "AND p.post_type IN ('" . implode( "', '", $post_type ) . "')";
+            }
 
 			// Restrict posts
 			$exclude_posts_sql = '';
