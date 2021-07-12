@@ -147,7 +147,7 @@ function taxopress_create_default_related_post()
     $default['taxopress_related_post']['limit_days']   = 0;
     $default['taxopress_related_post']['order']        = 'count-desc';
     $default['taxopress_related_post']['nopoststext']  = __('No related posts.', 'simpletags');
-    $default['taxopress_related_post']['xformat']      = '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)';
+    $default['taxopress_related_post']['xformat']      = '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>';
     $default['relatedpost_submit']                     = 'Add Related Posts';
     $default['cpt_tax_status']                         = 'new';
     $result                                            = taxopress_update_relatedpost($default);
