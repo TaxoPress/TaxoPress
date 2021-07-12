@@ -112,7 +112,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.1.0- 2021-07-12 [UNRELEASED]
+v3.1.0- 2021-07-12
 * Added: Add Related Posts screen #491
 * Added: Add Related Posts widget #264
 * Added: Add Related Posts Gutenberg block #328

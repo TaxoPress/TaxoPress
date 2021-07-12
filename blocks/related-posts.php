@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register our block and shortcode.
+ * Register our block.
  */
 function st_related_posts_block_init()
 {

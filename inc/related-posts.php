@@ -601,7 +601,7 @@ class SimpleTags_Related_Post
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'xformat',
                                                             'class'     => 'st-full-width',
-                                                            'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)'),
+                                                            'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>'),
                                                             'labeltext' => esc_html__('Term link format', 'simpletags'),
                                                             'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-related-posts/">in the online documentation.</a>',
                                                                 'simpletags'),
