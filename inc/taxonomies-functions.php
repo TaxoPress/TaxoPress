@@ -674,7 +674,11 @@ function taxopress_process_taxonomy()
         }
 
         if ($result && is_callable("taxopress_{$result}_admin_notice")) {
-            add_action('admin_notices', "taxopress_{$result}_admin_notice");
+            if($result === 'add_success'){
+                taxopress_add_success_admin_notice();
+            }else{
+                add_action('admin_notices', "taxopress_{$result}_admin_notice");
+            }
         }
 
         if (isset($_POST['cpt_delete'])) {
@@ -684,6 +688,7 @@ function taxopress_process_taxonomy()
                     taxopress_admin_url('admin.php?page=st_taxonomies')
                 )
             );
+            exit();
         }
     } elseif (isset($_POST['action']) || isset($_POST['action2'])) {
 
@@ -1043,6 +1048,7 @@ function taxopress_add_success_admin_notice()
             taxopress_admin_url('admin.php')
         )
     );
+    exit();
 }
 
 /**
@@ -1629,12 +1635,6 @@ function taxopress_get_preserved_labels()
 function get_all_taxopress_taxonomies_request()
 {
 
-    $category              = get_taxonomies(
-        ['name' => 'category'],
-        'objects');
-    $post_tag              = get_taxonomies(
-        ['name' => 'post_tag'],
-        'objects');
     $public                = get_taxonomies([
         '_builtin' => false,
         'public'   => true,
@@ -1647,11 +1647,11 @@ function get_all_taxopress_taxonomies_request()
         'objects');
         
     if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
-        $registered_taxonomies = array_merge($category, $post_tag, $public, $private);
+        $registered_taxonomies = array_merge($public, $private);
     }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
-        $registered_taxonomies = array_merge($category, $post_tag, $private);
+        $registered_taxonomies = $private;
     }else{
-        $registered_taxonomies = array_merge($category, $post_tag, $public);
+        $registered_taxonomies = $public;
     }
 
     return $registered_taxonomies;

@@ -25,6 +25,23 @@
       // Store our original slug on page load for edit checking.
       var original_slug = $('#name').val()
     }
+
+    //taxonomy var visibility toggle
+    if ($('input[name="cpt_custom_tax[query_var]"]').length > 0) {
+      if( $('input[name="cpt_custom_tax[query_var]"]').is(":checked") ) {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').show();
+      }else {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').hide();
+      }
+    }
+    $('input[name="cpt_custom_tax[query_var]"]').on('change', function (e) {
+      if( $(this).is(":checked") ) {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').show();
+      }else {
+        $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').hide();
+      }
+    })
+
     // Confirm our deletions
     $('.taxopress-delete-top, .taxopress-delete-bottom').on('click', function(e) {
       e.preventDefault()
@@ -257,8 +274,6 @@
       $('#menu_icon_preview').html(composePreviewContent(value))
     })
 
-
-
     $('.taxopress-taxonomy-submit').on('click', function (e) {
       $('.taxonomy-required-field').html('');
 
@@ -267,12 +282,12 @@
         field_label,
         field_object
         field_error_count = 0,
-        field_error_message = '';
+        field_error_message = '<ul>';
       
 
       if (!$('#st-tags-slug-error-input').hasClass('hidemessage')) {
         field_error_count = 1;
-        field_error_message += '<p> - '+$('#st-tags-slug-error-input').html() + '</p>';
+        field_error_message += '<li>'+$('#st-tags-slug-error-input').html() + ' <span class="required">*</span></li>';
       }
 
 
@@ -282,34 +297,28 @@
           if (!field.value) {
             field_label = field_object.closest('tr').find('label').html();
             field_error_count = 1;
-            field_error_message += '<p> -' + field_label + ' is required </p>';
+            field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
           } else if (isEmptyOrSpaces(field.value)) {
             field_label = field_object.closest('tr').find('label').html();
             field_error_count = 1;
-            field_error_message += '<p> -' + field_label + ' is required </p>';
+            field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
           }
         }
      });
 
      if ($('.taxonomy_posttypes :checkbox:checked').length == 0) {
        field_error_count = 1;
-       field_error_message += '<p> - ' +taxopress_tax_data.no_associated_type + '</p>';
+       field_error_message += '<li>' +taxopress_tax_data.no_associated_type + ' <span class="required">*</span></li>';
      }
+     field_error_message += '</ul>';
 
       
 
-     if ( field_error_count > 0 ) {
-      e.preventDefault()
-      var no_associated_type_warning = $('<div class="taxopress-taxonomy-empty-types-dialog">' + field_error_message + '</div>').appendTo('#poststuff').dialog({
-        'dialogClass': 'wp-dialog',
-        'modal': true,
-        'autoOpen': true,
-        'buttons': {
-          "OK": function() {
-            $(this).dialog('close')
-          }
-        }
-      })
+      if (field_error_count > 0) {
+        e.preventDefault();
+        // Display the alert
+        $('#taxopress-modal-alert-content').html(field_error_message);
+        $('[data-remodal-id=taxopress-modal-alert]').remodal().open();
      }
       
       

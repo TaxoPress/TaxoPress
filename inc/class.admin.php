@@ -29,8 +29,6 @@ class SimpleTags_Admin {
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
-
-
         //tag clouds
         require STAGS_DIR . '/inc/tag-clouds-table.php';
         require STAGS_DIR . '/inc/tag-clouds.php';
@@ -40,6 +38,11 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/post-tags-table.php';
         require STAGS_DIR . '/inc/post-tags.php';
         SimpleTags_Post_Tags::get_instance();
+
+        //Related Posts
+        require STAGS_DIR . '/inc/related-posts-table.php';
+        require STAGS_DIR . '/inc/related-posts.php';
+        SimpleTags_Related_Post::get_instance();
 
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
@@ -366,6 +369,11 @@ class SimpleTags_Admin {
 		wp_register_script( 'st-admin-js', STAGS_URL . '/assets/js/admin.js', array( 'jquery' ), STAGS_VERSION );
 		wp_enqueue_script( 'st-admin-js' );
 
+        //Register remodal assets 
+		wp_register_script( 'st-remodal-js', STAGS_URL . '/assets/js/remodal.min.js', array( 'jquery' ), STAGS_VERSION );
+		wp_register_style( 'st-remodal-css', STAGS_URL . '/assets/css/remodal.css', array(), STAGS_VERSION, 'all' );
+		wp_register_style( 'st-remodal-default-theme-css', STAGS_URL . '/assets/css/remodal-default-theme.css', array(), STAGS_VERSION, 'all' );
+
 		// Register location
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
@@ -382,8 +390,12 @@ class SimpleTags_Admin {
 					'st_taxonomies',
 					'st_terms_display',
 					'st_post_tags',
+					'st_related_posts',
 				) ) )
 		) {
+			wp_enqueue_script( 'st-remodal-js' );
+			wp_enqueue_style( 'st-remodal-css' );
+			wp_enqueue_style( 'st-remodal-default-theme-css' );
 			wp_enqueue_style( 'st-admin' );
 		}
 
@@ -539,7 +551,7 @@ class SimpleTags_Admin {
 			$desc_html_tag = 'div';
 
             if($section === 'legacy'){
-                $table_sub_tab = '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span></div>' . PHP_EOL;
+                $table_sub_tab = '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span> | <span data-content=".legacy-related-posts-content">Related Posts</span></div>' . PHP_EOL;
             }else{
                 $table_sub_tab = '';
             }
