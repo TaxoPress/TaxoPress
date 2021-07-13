@@ -400,6 +400,7 @@ class SimpleTags_Post_Tags
                                                             'labeltext' => esc_html__('Maximum terms to display',
                                                                 'simpletags'),
                                                             'helptext'  => 'You must set zero (0) to display all post tags.',
+                                                            'min'       => '0',
                                                             'required'  => true,
                                                         ]);
 
