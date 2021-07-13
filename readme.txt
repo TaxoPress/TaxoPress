@@ -116,6 +116,7 @@ v3.1.1- [===UNRELEASED==]
 * Fixed: TaxoPress related posts block block compatibility with WordPress 5.8 #644
 * Fixed: Related posts shortcode not working in Gutenberg #646
 * Fixed: Undefined array key notice when 'Automatically fill colors between maximum and minimum' is unchecked in Terms Display edit #642
+* Fixed: Taxopress number input accepting negative value #658
 
 v3.1.0- 2021-07-12
 * Added: Add Related Posts screen #491
