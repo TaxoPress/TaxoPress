@@ -529,12 +529,17 @@ class SimpleTags_Tag_Clouds
                                                     [
                                                         'attr' => '1',
                                                         'text' => esc_attr__('True', 'simpletags'),
-                                                        'default' => 'true',
+                                                        //'default' => 'true', removed when default value is checked as this mean box is always checked even when user uncheck it since it's defau;t
                                                     ],
                                                 ],
                                             ];
-                                            $selected           = isset($current) ? taxopress_disp_boolean($current['color']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['color'] : '';
+                                            $selected           = ( isset($current) && isset($current['color']) ) ? taxopress_disp_boolean($current['color']) : '';
+
+                                            if($tag_cloud_edit){
+                                                $select['selected'] = !empty($selected) ? $current['color'] : '';
+                                            }else{
+                                                $select['selected'] = 1; //makeup for default when creating new term display
+                                            }
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'taxopress_tag_cloud',
                                                 'name'       => 'color',
