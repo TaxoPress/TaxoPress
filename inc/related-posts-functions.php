@@ -319,8 +319,7 @@ function taxopress_relatedposts_shortcode($atts)
     } else {
         echo __('Related Posts not found.', 'simpletags');
     }
-
-    return;
+    
     $html = ob_get_clean();
 
     return $html;
