@@ -1,4 +1,5 @@
-var el = wp.element.createElement,
+(function (wp) {
+  var el = wp.element.createElement,
   registerBlockType = wp.blocks.registerBlockType,
   ServerSideRender = wp.components.ServerSideRender,
   TextControl = wp.components.TextControl,
@@ -41,3 +42,7 @@ registerBlockType('taxopress/related-posts', {
     return null
   },
 })
+
+} )(
+	window.wp
+);

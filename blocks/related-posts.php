@@ -5,8 +5,13 @@
  */
 function st_related_posts_block_init()
 {
+    global $post, $pagenow;
 
     if (!function_exists('register_block_type')) {
+        return;
+    }
+
+    if($pagenow === 'widgets.php'){
         return;
     }
 
