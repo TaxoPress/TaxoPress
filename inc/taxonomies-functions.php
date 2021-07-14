@@ -335,7 +335,13 @@ function taxopress_update_taxonomy($data = [])
         $meta_box_cb = $maybe_false;
     }
 
-    if (!isset($data['taxonomy_external_edit'])) {
+    $internal_taxonomy_edit = true;
+
+    if ( isset($data['taxonomy_external_edit']) || $name === 'media_tag' ) {
+        $internal_taxonomy_edit = false;
+    }
+
+    if ($internal_taxonomy_edit) {
 
         $taxonomies[$data['cpt_custom_tax']['name']] = [
             'name'                  => $name,
