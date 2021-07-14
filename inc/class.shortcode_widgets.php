@@ -65,7 +65,7 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
 
 		// Set values and clean it
 		foreach ( (array) self::get_fields() as $field => $field_value ) {
-			${$field} = trim( $instance[ $field ] );
+            ${$field} = isset($instance[$field]) ? trim($instance[$field]) : '';
 		}//$tagcloud_id;
 
 		echo $before_widget;
