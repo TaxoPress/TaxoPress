@@ -368,6 +368,13 @@ class SimpleTags_Admin {
 		//Register and enqueue admin js
 		wp_register_script( 'st-admin-js', STAGS_URL . '/assets/js/admin.js', array( 'jquery' ), STAGS_VERSION );
 		wp_enqueue_script( 'st-admin-js' );
+        //localize script
+        wp_localize_script( 'st-admin-js', 'st_admin_localize', [
+            'ajaxurl'     => admin_url('admin-ajax.php'),
+            'select_valid'=> __( 'Please select a valid', 'simpletags' ),
+            'check_nonce' => wp_create_nonce('st-admin-js'),
+        ]);
+
 
         //Register remodal assets 
 		wp_register_script( 'st-remodal-js', STAGS_URL . '/assets/js/remodal.min.js', array( 'jquery' ), STAGS_VERSION );

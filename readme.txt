@@ -115,6 +115,9 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.2.1- [===UNRELEASED===]
+* Fixed: Term display font color empty value notification #628
+
 v3.1.1- 2021-07-14
 * Fixed: TaxoPress related posts block compatibility with WordPress 5.8 #644
 * Fixed: Related posts shortcode not working in Gutenberg #646

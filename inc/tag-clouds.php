@@ -503,7 +503,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'mincolor',
-                                                    'class'     => 'text-color',
+                                                    'class'     => 'text-color tag-cloud-min',
                                                     'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#CCCCCC',
                                                     'labeltext' => esc_html__('Font color minimum', 'simpletags'),
                                                     'required'  => true,
@@ -512,7 +512,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'maxcolor',
-                                                    'class'     => 'text-color',
+                                                    'class'     => 'text-color tag-cloud-max',
                                                     'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
                                                     'labeltext' => esc_html__('Font color maximum', 'simpletags'),
                                                     'required'  => true,
@@ -608,11 +608,11 @@ class SimpleTags_Tag_Clouds
                             wp_nonce_field('taxopress_addedit_tagcloud_nonce_action',
                                 'taxopress_addedit_tagcloud_nonce_field');
                             if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
+                                <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-tag-cloud-submit" name="tagcloud_submit"
                                        value="<?php echo esc_attr(esc_attr__('Save Terms Display', 'simpletags')); ?>"/>
                                 <?php
                             } else { ?>
-                            <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
+                            <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-tag-cloud-submit" name="tagcloud_submit"
                                    value="<?php echo esc_attr(esc_attr__('Add Terms Display', 'simpletags')); ?>"/>
                     <?php } ?>
 
@@ -645,6 +645,27 @@ class SimpleTags_Tag_Clouds
         </div><!-- End .wrap -->
 
         <div class="clear"></div>
+
+
+
+        <?php # Modal Windows; ?>
+<div class="remodal" data-remodal-id="taxopress-modal-alert"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simpletags'); ?></div>
+    <div id="taxopress-modal-alert-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simpletags'); ?></button>
+</div>
+
+<div class="remodal" data-remodal-id="taxopress-modal-confirm"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+    <div id="taxopress-modal-confirm-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simpletags'); ?></button>
+    <button data-remodal-action="confirm"
+            class="remodal-confirm"><?php echo __('Yes', 'simpletags'); ?></button>
+</div>
+
         <?php
     }
 
