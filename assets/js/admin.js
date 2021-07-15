@@ -132,6 +132,38 @@
       $('#screen-options-apply')[0].click();
     });
     
+
+
+    // -------------------------------------------------------------
+    //   Terms display submit validation
+    // -------------------------------------------------------------
+    $('.taxopress-tag-cloud-submit').on('click', function (e) {
+
+      var  field_error_count = 0,
+        field_error_message = '<ul>';
+      
+
+      if (!$('.tag-cloud-min').val()) {
+        field_error_count = 1;
+        field_error_message += '<li>'+st_admin_localize.select_valid + ' '+$('.tag-cloud-min').closest('tr').find('th label').text()+'<span class="required">*</span></li>';
+      }
+      if (!$('.tag-cloud-max').val()) {
+        field_error_count = 1;
+        field_error_message += '<li>'+st_admin_localize.select_valid + ' '+$('.tag-cloud-max').closest('tr').find('th label').text()+'<span class="required">*</span></li>';
+      }
+
+     field_error_message += '</ul>';
+
+      if (field_error_count > 0) {
+        e.preventDefault();
+        // Display the alert
+        $('#taxopress-modal-alert-content').html(field_error_message);
+        $('[data-remodal-id=taxopress-modal-alert]').remodal().open();
+     }
+      
+      
+    })
+
   
   });
 
