@@ -131,8 +131,6 @@
       $('#termcloud_per_page').val($('#termcloud_per_page_dummy').val());
       $('#screen-options-apply')[0].click();
     });
-    
-
 
     // -------------------------------------------------------------
     //   Terms display submit validation
@@ -162,6 +160,13 @@
      }
       
       
+    })
+
+    // -------------------------------------------------------------
+    //   Clear previous notification message on submit button
+    // -------------------------------------------------------------
+    $('.taxopress-right-sidebar input[type="submit"], .taxonomiesui input[type="submit"]').on('click', function (e) {
+      $('.taxopress-edit #message.updated').remove();
     })
 
   
