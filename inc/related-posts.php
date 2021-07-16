@@ -257,11 +257,11 @@ class SimpleTags_Related_Post
                                             <div class="st-taxonomy-content">
 
                                                 <?php if ($related_post_limit) {
-                                                    echo '<div class="taxopress-warning" style="color:red">
+                                                    echo '<div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h4 style="margin-bottom: 5px;">' . __('To create more Related Posts, please upgrade to TaxoPress Pro.',
-                                                            'simpletags') . '</h4>
+                                            <h2 style="margin-bottom: 5px;">' . __('To create more Related Posts, please upgrade to TaxoPress Pro.',
+                                                            'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Related Posts. You can create Related Posts for any taxonomy and then display those Related Posts anywhere on your site.',
                                                             'simpletags') . '
                                             
