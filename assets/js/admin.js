@@ -43,6 +43,15 @@
     });
 
     // -------------------------------------------------------------
+    //   Prevent non number from number type input
+    // -------------------------------------------------------------
+    $(document).on('change paste keyup keydown', 'input[type="number"]', function (e) {
+      if (e.which === 69) {
+        e.preventDefault();
+      }
+    });
+
+    // -------------------------------------------------------------
     //   Show taxonomy option based on selected CPT for other screen
     // -------------------------------------------------------------
     $(document).on('change paste keyup', '.st-post-type-select', function (e) {
