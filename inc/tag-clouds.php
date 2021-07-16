@@ -258,10 +258,10 @@ class SimpleTags_Tag_Clouds
                                         <div class="st-taxonomy-content">
 
                                         <?php if($tag_cloud_limit){
-                                            echo '<div class="taxopress-warning" style="color:red">
+                                            echo '<div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h4 style="margin-bottom: 5px;">' . __('To create more Terms Display, please upgrade to TaxoPress Pro.','simpletags').'</h4>
+                                            <h2 style="margin-bottom: 5px;">' . __('To create more Terms Display, please upgrade to TaxoPress Pro.','simpletags').'</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Terms Display. You can create Terms Display for any taxonomy and then display those Terms Display anywhere on your site.','simpletags').'
                                             
                                             </p>

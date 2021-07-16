@@ -307,6 +307,20 @@ font-weight: bold;
 select#stb-related-post-select {
     height: 40px;
 }
+
+.taxopress-warning.upgrade-pro {
+    color: #1F48AC;
+}
+.taxopress-warning.upgrade-pro h2 {
+    color: #1F48AC;
+    font-size: 1.3em !important;
+    font-weight: 600 !important;
+    padding-left: 0 !important;
+}
+.pp-version-notice-bold-purple .pp-version-notice-bold-purple-button a {
+    color: #1F48AC !important;
+}
+
 @media only screen and (max-width: 1270px) {
     .tagcloudui,
     .taxopress-right-sidebar {
