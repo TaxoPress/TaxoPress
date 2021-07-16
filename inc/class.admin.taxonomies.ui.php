@@ -171,7 +171,10 @@ class taxopress_admin_ui
     public function get_select_checkbox_input_main($args = [])
     {
         $defaults = $this->get_default_input_parameters(
-            ['selections' => []]
+            [
+                'class'    => '',
+                'selections' => []
+            ]
         );
 
         $args = wp_parse_args($args, $defaults);
@@ -194,11 +197,12 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $value .= '<select id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']">';
+        $value .= '<select class="' . $args['class'] . '" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']">';
         if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
             foreach ($args['selections']['options'] as $val) {
                 $result = '';
                 $bool   = taxopress_disp_boolean($val['attr']);
+                $post_type_attr = isset($val['post_type']) ? 'data-post_type="'.$val['post_type'].'"' : '';
 
                 if (is_numeric($args['selections']['selected'])) {
                     $selected = taxopress_disp_boolean($args['selections']['selected']);
@@ -220,7 +224,7 @@ class taxopress_admin_ui
                     $result = ' selected="selected"';
                 }
 
-                $value .= '<option value="' . $val['attr'] . '"' . $result . '>' . $val['text'] . '</option>';
+                $value .= '<option '.$post_type_attr.' value="' . $val['attr'] . '"' . $result . '>' . $val['text'] . '</option>';
             }
         }
         $value .= '</select>';
