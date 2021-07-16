@@ -317,8 +317,8 @@ function taxopress_termsdisplay_shortcode($atts)
 
         ob_start();
         if (array_key_exists($tagcloud_id, $tagclouds)) {
+            $tagclouds[$tagcloud_id]['number'] = $tagclouds[$tagcloud_id]['max'];
             $tagcloud_arg = build_query($tagclouds[$tagcloud_id]);
-
             echo SimpleTags_Client_TagCloud::extendedTagCloud( $tagcloud_arg );
 
         } else {
