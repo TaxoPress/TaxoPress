@@ -43,6 +43,36 @@
     });
 
     // -------------------------------------------------------------
+    //   Show taxonomy option based on selected CPT for other screen
+    // -------------------------------------------------------------
+    $(document).on('change paste keyup', '.st-post-type-select', function (e) {
+      var val = $(this).val(),
+        data_post,
+        new_val = null,
+        options = document.getElementsByClassName('st-post-taxonomy-select')[0].options;
+      
+      for (var i = 0; i < options.length; i++) {
+         data_post = options[i].attributes["data-post_type"].value;
+        data_post = data_post.split(',');
+        
+        if ( data_post.includes(val) || val === 'st_all_posttype' || val === 'st_current_posttype' || val === '' ) {
+          if (!new_val) {
+            new_val = options[i].value;
+          }
+          options[i].classList.remove("st-hide-content");
+        } else {
+          options[i].classList.add("st-hide-content");
+        }
+      }
+      if ($('.st-post-taxonomy-select').children(':selected').hasClass('st-hide-content')) {
+        document.getElementsByClassName('st-post-taxonomy-select')[0].value = new_val;
+      }
+    });
+    if ($('.st-post-type-select').length > 0) {
+      $('.st-post-type-select').trigger('change');
+    }
+
+    // -------------------------------------------------------------
     //   Add auto tags suggestion tag
     // -------------------------------------------------------------
     $(document).on('click', '.st-add-suggestion-input', function (e) {

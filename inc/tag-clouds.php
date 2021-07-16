@@ -323,6 +323,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'post_type',
+                                                        'class'      => 'st-post-type-select',
 								                        'labeltext'  => esc_html__( 'Post Type', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
@@ -335,9 +336,9 @@ class SimpleTags_Tag_Clouds
                                                         continue;
                                                     }
                                                     if($tax->name === 'post_tag'){
-                                                        $options[] = [ 'attr' => $tax->name, 'text' => $tax->labels->name, 'default' => 'true' ];
+                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name, 'default' => 'true' ];
                                                     }else{
-                                                        $options[] = [ 'attr' => $tax->name, 'text' => $tax->labels->name ];
+                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name ];
                                                     }
                                                 }
 
@@ -349,6 +350,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'taxonomy',
+                                                        'class'      => 'st-post-taxonomy-select',
 								                        'labeltext'  => esc_html__( 'Taxonomy', 'simpletags' ),
                                                         'required'   => true,
 								                        'selections' => $select,
