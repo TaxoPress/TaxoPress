@@ -120,7 +120,8 @@ v3.2.1- [===UNRELEASED===]
 * Fixed: Improve settings success/error notification display #629
 * Fixed: Free version promo banner color #647
 * Fixed: Updated 'Mass edit terms', 'Manage Terms' and 'Auto Terms' dropdown filter taxonomy selection change #661
-* Fixed: Limit terms display and related posts taxonomy options to the selected post type taxonomies #661
+* Fixed: Limit terms display and related posts taxonomy options to the selected post type taxonomies #681
+* Fixed: Terms display showing more than shortcode maximum value #653
 
 v3.1.1- 2021-07-14
 * Fixed: TaxoPress related posts block compatibility with WordPress 5.8 #644
