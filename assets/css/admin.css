@@ -321,10 +321,6 @@ select#stb-related-post-select {
     background: #1F48AC !important;
 }
 
-.pp-version-notice-bold-purple .pp-version-notice-bold-purple-button a {
-    color: #1F48AC !important;
-}
-
 @media only screen and (max-width: 1270px) {
     .tagcloudui,
     .taxopress-right-sidebar {

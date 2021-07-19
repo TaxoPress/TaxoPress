@@ -1641,6 +1641,13 @@ function taxopress_get_preserved_labels()
 function get_all_taxopress_taxonomies_request()
 {
 
+    $category              = get_taxonomies(
+        ['name' => 'category'],
+        'objects');
+    $post_tag              = get_taxonomies(
+        ['name' => 'post_tag'],
+        'objects');
+
     $public                = get_taxonomies([
         '_builtin' => false,
         'public'   => true,
@@ -1652,6 +1659,13 @@ function get_all_taxopress_taxonomies_request()
     ],
         'objects');
         
+    if( !array_key_exists('category', $public) && !array_key_exists('category', $public) ){
+        $public = array_merge($category, $public);
+    } 
+    if( !array_key_exists('post_tag', $public) && !array_key_exists('post_tag', $public) ){
+        $public = array_merge($post_tag, $public);
+    }
+
     if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
         $registered_taxonomies = array_merge($public, $private);
     }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
