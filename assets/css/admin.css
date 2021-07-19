@@ -317,6 +317,10 @@ select#stb-related-post-select {
     font-weight: 600 !important;
     padding-left: 0 !important;
 }
+.pp-version-notice-bold-purple {
+    background: #1F48AC !important;
+}
+
 .pp-version-notice-bold-purple .pp-version-notice-bold-purple-button a {
     color: #1F48AC !important;
 }
