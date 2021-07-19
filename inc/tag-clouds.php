@@ -258,10 +258,10 @@ class SimpleTags_Tag_Clouds
                                         <div class="st-taxonomy-content">
 
                                         <?php if($tag_cloud_limit){
-                                            echo '<div class="taxopress-warning" style="color:red">
+                                            echo '<div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h4 style="margin-bottom: 5px;">' . __('To create more Terms Display, please upgrade to TaxoPress Pro.','simpletags').'</h4>
+                                            <h2 style="margin-bottom: 5px;">' . __('To create more Terms Display, please upgrade to TaxoPress Pro.','simpletags').'</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Terms Display. You can create Terms Display for any taxonomy and then display those Terms Display anywhere on your site.','simpletags').'
                                             
                                             </p>
@@ -323,6 +323,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'post_type',
+                                                        'class'      => 'st-post-type-select',
 								                        'labeltext'  => esc_html__( 'Post Type', 'simpletags' ),
 								                        'selections' => $select,
 							                    ] );
@@ -335,9 +336,9 @@ class SimpleTags_Tag_Clouds
                                                         continue;
                                                     }
                                                     if($tax->name === 'post_tag'){
-                                                        $options[] = [ 'attr' => $tax->name, 'text' => $tax->labels->name, 'default' => 'true' ];
+                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name, 'default' => 'true' ];
                                                     }else{
-                                                        $options[] = [ 'attr' => $tax->name, 'text' => $tax->labels->name ];
+                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name ];
                                                     }
                                                 }
 
@@ -349,6 +350,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'taxonomy',
+                                                        'class'      => 'st-post-taxonomy-select',
 								                        'labeltext'  => esc_html__( 'Taxonomy', 'simpletags' ),
                                                         'required'   => true,
 								                        'selections' => $select,
@@ -503,7 +505,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'mincolor',
-                                                    'class'     => 'text-color',
+                                                    'class'     => 'text-color tag-cloud-min',
                                                     'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#CCCCCC',
                                                     'labeltext' => esc_html__('Font color minimum', 'simpletags'),
                                                     'required'  => true,
@@ -512,7 +514,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'maxcolor',
-                                                    'class'     => 'text-color',
+                                                    'class'     => 'text-color tag-cloud-max',
                                                     'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
                                                     'labeltext' => esc_html__('Font color maximum', 'simpletags'),
                                                     'required'  => true,
@@ -608,11 +610,11 @@ class SimpleTags_Tag_Clouds
                             wp_nonce_field('taxopress_addedit_tagcloud_nonce_action',
                                 'taxopress_addedit_tagcloud_nonce_field');
                             if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
+                                <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-tag-cloud-submit" name="tagcloud_submit"
                                        value="<?php echo esc_attr(esc_attr__('Save Terms Display', 'simpletags')); ?>"/>
                                 <?php
                             } else { ?>
-                            <input type="submit" class="button-primary taxopress-taxonomy-submit" name="tagcloud_submit"
+                            <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-tag-cloud-submit" name="tagcloud_submit"
                                    value="<?php echo esc_attr(esc_attr__('Add Terms Display', 'simpletags')); ?>"/>
                     <?php } ?>
 
@@ -645,6 +647,27 @@ class SimpleTags_Tag_Clouds
         </div><!-- End .wrap -->
 
         <div class="clear"></div>
+
+
+
+        <?php # Modal Windows; ?>
+<div class="remodal" data-remodal-id="taxopress-modal-alert"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simpletags'); ?></div>
+    <div id="taxopress-modal-alert-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simpletags'); ?></button>
+</div>
+
+<div class="remodal" data-remodal-id="taxopress-modal-confirm"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+    <div id="taxopress-modal-confirm-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simpletags'); ?></button>
+    <button data-remodal-action="confirm"
+            class="remodal-confirm"><?php echo __('Yes', 'simpletags'); ?></button>
+</div>
+
         <?php
     }
 

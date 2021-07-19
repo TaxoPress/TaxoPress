@@ -15,7 +15,7 @@
 			}
 
 			// Deactive tabs if feature not actived
-			if ( isset( $options['auto_link_tags'] ) && (int) $options['auto_link_tags'] == 0 && $key == 'auto-links' ) {
+			if ( isset( $options['auto_link_tags'] ) && ( (int) $options['auto_link_tags'] == 0 || (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 0 )&& $key == 'auto-links' ) {
 				$style = 'style="display:none;"';
 			}
 

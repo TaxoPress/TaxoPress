@@ -43,6 +43,45 @@
     });
 
     // -------------------------------------------------------------
+    //   Prevent non number from number type input
+    // -------------------------------------------------------------
+    $(document).on('change paste keyup keydown', 'input[type="number"]', function (e) {
+      if (e.which === 69) {
+        e.preventDefault();
+      }
+    });
+
+    // -------------------------------------------------------------
+    //   Show taxonomy option based on selected CPT for other screen
+    // -------------------------------------------------------------
+    $(document).on('change paste keyup', '.st-post-type-select', function (e) {
+      var val = $(this).val(),
+        data_post,
+        new_val = null,
+        options = document.getElementsByClassName('st-post-taxonomy-select')[0].options;
+      
+      for (var i = 0; i < options.length; i++) {
+         data_post = options[i].attributes["data-post_type"].value;
+        data_post = data_post.split(',');
+        
+        if ( data_post.includes(val) || val === 'st_all_posttype' || val === 'st_current_posttype' || val === '' ) {
+          if (!new_val) {
+            new_val = options[i].value;
+          }
+          options[i].classList.remove("st-hide-content");
+        } else {
+          options[i].classList.add("st-hide-content");
+        }
+      }
+      if ($('.st-post-taxonomy-select').children(':selected').hasClass('st-hide-content')) {
+        document.getElementsByClassName('st-post-taxonomy-select')[0].value = new_val;
+      }
+    });
+    if ($('.st-post-type-select').length > 0) {
+      $('.st-post-type-select').trigger('change');
+    }
+
+    // -------------------------------------------------------------
     //   Add auto tags suggestion tag
     // -------------------------------------------------------------
     $(document).on('click', '.st-add-suggestion-input', function (e) {
@@ -131,7 +170,44 @@
       $('#termcloud_per_page').val($('#termcloud_per_page_dummy').val());
       $('#screen-options-apply')[0].click();
     });
-    
+
+    // -------------------------------------------------------------
+    //   Terms display submit validation
+    // -------------------------------------------------------------
+    $('.taxopress-tag-cloud-submit').on('click', function (e) {
+
+      var  field_error_count = 0,
+        field_error_message = '<ul>';
+      
+
+      if (!$('.tag-cloud-min').val()) {
+        field_error_count = 1;
+        field_error_message += '<li>'+st_admin_localize.select_valid + ' '+$('.tag-cloud-min').closest('tr').find('th label').text()+'<span class="required">*</span></li>';
+      }
+      if (!$('.tag-cloud-max').val()) {
+        field_error_count = 1;
+        field_error_message += '<li>'+st_admin_localize.select_valid + ' '+$('.tag-cloud-max').closest('tr').find('th label').text()+'<span class="required">*</span></li>';
+      }
+
+     field_error_message += '</ul>';
+
+      if (field_error_count > 0) {
+        e.preventDefault();
+        // Display the alert
+        $('#taxopress-modal-alert-content').html(field_error_message);
+        $('[data-remodal-id=taxopress-modal-alert]').remodal().open();
+     }
+      
+      
+    })
+
+    // -------------------------------------------------------------
+    //   Clear previous notification message on submit button
+    // -------------------------------------------------------------
+    $('.taxopress-right-sidebar input[type="submit"], .taxonomiesui input[type="submit"]').on('click', function (e) {
+      $('.taxopress-edit #message.updated').remove();
+    })
+
   
   });
 

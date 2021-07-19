@@ -257,11 +257,11 @@ class SimpleTags_Related_Post
                                             <div class="st-taxonomy-content">
 
                                                 <?php if ($related_post_limit) {
-                                                    echo '<div class="taxopress-warning" style="color:red">
+                                                    echo '<div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h4 style="margin-bottom: 5px;">' . __('To create more Related Posts, please upgrade to TaxoPress Pro.',
-                                                            'simpletags') . '</h4>
+                                            <h2 style="margin-bottom: 5px;">' . __('To create more Related Posts, please upgrade to TaxoPress Pro.',
+                                                            'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Related Posts. You can create Related Posts for any taxonomy and then display those Related Posts anywhere on your site.',
                                                             'simpletags') . '
                                             
@@ -382,6 +382,7 @@ class SimpleTags_Related_Post
                                                         echo $ui->get_select_checkbox_input_main([
                                                             'namearray'  => 'taxopress_related_post',
                                                             'name'       => 'post_type',
+                                                            'class'      => 'st-post-type-select',
                                                             'labeltext'  => esc_html__('Post Type', 'simpletags'),
                                                             'selections' => $select,
                                                         ]);
@@ -397,12 +398,14 @@ class SimpleTags_Related_Post
                                                                 $options[] = [
                                                                     'attr'    => $tax->name,
                                                                     'text'    => $tax->labels->name,
-                                                                    'default' => 'true'
+                                                                    'default' => 'true',
+                                                                    'post_type' => join(',', $tax->object_type),
                                                                 ];
                                                             } else {
                                                                 $options[] = [
                                                                     'attr' => $tax->name,
-                                                                    'text' => $tax->labels->name
+                                                                    'text' => $tax->labels->name,
+                                                                    'post_type' => join(',', $tax->object_type),
                                                                 ];
                                                             }
                                                         }
@@ -415,6 +418,7 @@ class SimpleTags_Related_Post
                                                         echo $ui->get_select_checkbox_input_main([
                                                             'namearray'  => 'taxopress_related_post',
                                                             'name'       => 'taxonomy',
+                                                            'class'      => 'st-post-taxonomy-select',
                                                             'labeltext'  => esc_html__('Taxonomy', 'simpletags'),
                                                             'required'   => true,
                                                             'selections' => $select,

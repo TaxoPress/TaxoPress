@@ -257,11 +257,11 @@ class SimpleTags_Post_Tags
                                             <div class="st-taxonomy-content">
 
                                                 <?php if ($post_tags_limit) {
-                                                    echo '<div class="taxopress-warning" style="color:red">
+                                                    echo '<div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h4 style="margin-bottom: 5px;">' . __('To create more Terms for Current Post, please upgrade to TaxoPress Pro.',
-                                                            'simpletags') . '</h4>
+                                            <h2 style="margin-bottom: 5px;">' . __('To create more Terms for Current Post, please upgrade to TaxoPress Pro.',
+                                                            'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Terms for Current Post. You can create Terms for Current Post for any taxonomy and then display those Terms for Current Post anywhere on your site.',
                                                             'simpletags') . '
                                             

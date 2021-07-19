@@ -250,55 +250,9 @@ class SimpleTags_Admin {
 	 * @param string $page_value
 	 *
 	 * @return void
-	 * @author WebFactory Ltd
-	 */
-	public static function boxSelectorTaxonomy( $page_value = '' ) {
-		echo '<div class="box-selector-taxonomy">' . PHP_EOL;
-		echo '<p class="current-taxonomy">' . sprintf( __( 'You currently use the custom post type "<span>%s</span>" and the taxonomy "<span>%s</span>"', 'simpletags' ), self::$post_type_name, self::$taxo_name ) . '</p>' . PHP_EOL;
-
-		echo '<div class="change-taxo">' . PHP_EOL;
-		echo '<form action="" method="get">' . PHP_EOL;
-		if ( ! empty( $page_value ) ) {
-			echo '<input type="hidden" name="page" value="' . $page_value . '" />' . PHP_EOL;
-		}
-
-		echo '<select name="cpt" id="cpt-select">' . PHP_EOL;
-		foreach ( get_post_types( array( 'show_ui' => true ), 'objects' ) as $post_type ) {
-			$taxonomies = get_object_taxonomies( $post_type->name );
-			if ( empty( $taxonomies ) ) {
-				continue;
-			}
-
-			echo '<option ' . selected( $post_type->name, self::$post_type, false ) . ' value="' . esc_attr( $post_type->name ) . '">' . esc_html( $post_type->labels->name ) . '</option>' . PHP_EOL;
-		}
-		echo '</select>' . PHP_EOL;
-
-		echo '<select name="taxo" id="taxonomy-select">' . PHP_EOL;
-		foreach ( get_object_taxonomies( self::$post_type ) as $tax_name ) {
-			$taxonomy = get_taxonomy( $tax_name );
-			if ( false === (bool) $taxonomy->show_ui ) {
-				continue;
-			}
-
-			echo '<option ' . selected( $tax_name, self::$taxonomy, false ) . ' value="' . esc_attr( $tax_name ) . '">' . esc_html( $taxonomy->labels->name ) . '</option>' . PHP_EOL;
-		}
-		echo '</select>' . PHP_EOL;
-
-		echo '<input type="submit" class="button" id="submit-change-taxo" value="' . __( 'Change selection', 'simpletags' ) . '" />' . PHP_EOL;
-		echo '</form>' . PHP_EOL;
-		echo '</div>' . PHP_EOL;
-		echo '</div>' . PHP_EOL;
-	}
-
-	/**
-	 * Build HTML form for allow user to change taxonomy for the current page.
-	 *
-	 * @param string $page_value
-	 *
-	 * @return void
 	 * @author Olatechpro
 	 */
-	public static function boxSelectorAutoTerms( $page_value = '' ) {
+	public static function boxSelectorTaxonomy( $page_value = '' ) {
 		echo '<div class="box-selector-taxonomy">' . PHP_EOL;
 
 		echo '<div class="change-taxo">' . PHP_EOL;
@@ -368,6 +322,13 @@ class SimpleTags_Admin {
 		//Register and enqueue admin js
 		wp_register_script( 'st-admin-js', STAGS_URL . '/assets/js/admin.js', array( 'jquery' ), STAGS_VERSION );
 		wp_enqueue_script( 'st-admin-js' );
+        //localize script
+        wp_localize_script( 'st-admin-js', 'st_admin_localize', [
+            'ajaxurl'     => admin_url('admin-ajax.php'),
+            'select_valid'=> __( 'Please select a valid', 'simpletags' ),
+            'check_nonce' => wp_create_nonce('st-admin-js'),
+        ]);
+
 
         //Register remodal assets 
 		wp_register_script( 'st-remodal-js', STAGS_URL . '/assets/js/remodal.min.js', array( 'jquery' ), STAGS_VERSION );

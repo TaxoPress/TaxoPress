@@ -122,7 +122,7 @@ class SimpleTags_Admin_AutoTags
 ?>
         <div class="wrap st_wrap">
             <h2><?php _e('Overview', 'simpletags'); ?>
-                <?php SimpleTags_Admin::boxSelectorAutoTerms('st_auto'); ?>
+                <?php SimpleTags_Admin::boxSelectorTaxonomy('st_auto'); ?>
                 <div class="clear"></div>
         </div>
 

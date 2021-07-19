@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.7
-Stable tag: 3.1.1
+Stable tag: 3.1.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -114,6 +114,14 @@ TaxoPress can be installed in 3 easy steps:
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.1.2- 2021-07-19
+* Fixed: Term display font color empty value error notification #628
+* Fixed: Improve settings success/error notification display #629
+* Fixed: Free version promo banner color #647
+* Fixed: Updated 'Mass edit terms', 'Manage Terms' and 'Auto Terms' dropdown filter taxonomy selection change #661
+* Fixed: Limit terms display and related posts taxonomy options to the selected post type taxonomies #681
+* Fixed: Terms display showing more than shortcode maximum value #653
 
 v3.1.1- 2021-07-14
 * Fixed: TaxoPress related posts block compatibility with WordPress 5.8 #644

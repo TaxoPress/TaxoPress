@@ -365,7 +365,7 @@
 
 
     // Change taxonomy type position
-    if ($('.taxopress-taxonomy-type-wrap').length > 0) {
+    if ($('.taxopress-taxonomy-type-wrap').length > 0 && $('.tablenav .bulkactions').length > 0 ) {
       $('.tablenav .bulkactions').html($('.taxopress-taxonomy-type-wrap').html());
       $('.taxopress-taxonomy-type-wrap').remove();
     }

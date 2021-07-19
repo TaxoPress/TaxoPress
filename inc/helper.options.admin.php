@@ -449,7 +449,7 @@ return array(
         array(
             'rp_limit_qty',
             __('Maximum number of related posts to display: (default: 5)', 'simpletags'),
-            'text',
+            'number',
             'regular-text',
             '',
             'legacy-tab-content legacy-related-posts-content st-hide-content'
