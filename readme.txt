@@ -115,7 +115,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.1.2- [===UNRELEASED===]
+v3.1.2- 2021-07-19
 * Fixed: Term display font color empty value error notification #628
 * Fixed: Improve settings success/error notification display #629
 * Fixed: Free version promo banner color #647
