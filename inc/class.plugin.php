@@ -151,20 +151,20 @@ class SimpleTags_Plugin {
 			self::load_option();
 		}
 
-		// In case fields value < 0 override the value of fields.
-		if (isset(self::$options['auto_link_min']) && self::$options['auto_link_min'] < 0) {
+		// In case fields value < 0 or null override the value of fields.
+		if (self::$options['auto_link_min'] < 0 || self::$options['auto_link_min'] === '') {
 			self::$options['auto_link_min'] = 1;
 		}
 
-		if (isset(self::$options['auto_link_max_by_post']) && self::$options['auto_link_max_by_post'] < 0) {
+		if (self::$options['auto_link_max_by_post'] < 0 || self::$options['auto_link_max_by_post'] === '') {
 			self::$options['auto_link_max_by_post'] = 10;
 		}
 
-		if (isset(self::$options['auto_link_max_by_tag']) && self::$options['auto_link_max_by_tag'] < 0) {
+		if (self::$options['auto_link_max_by_tag'] < 0 || self::$options['auto_link_max_by_tag'] === '') {
 			self::$options['auto_link_max_by_tag'] = 1;
 		}
 
-		if (isset(self::$options['auto_link_priority']) && self::$options['auto_link_priority'] < 0) {
+		if (self::$options['auto_link_priority'] < 0 || self::$options['auto_link_priority'] === '') {
 			self::$options['auto_link_priority'] = 12;
 		}
 
