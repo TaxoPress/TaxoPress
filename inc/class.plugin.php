@@ -164,6 +164,10 @@ class SimpleTags_Plugin {
 			self::$options['auto_link_max_by_tag'] = 1;
 		}
 
+		if (isset(self::$options['auto_link_priority']) && self::$options['auto_link_priority'] < 0) {
+			self::$options['auto_link_priority'] = 12;
+		}
+
 		return update_option( STAGS_OPTIONS_NAME, self::$options );
 	}
 }
