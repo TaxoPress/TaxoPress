@@ -160,6 +160,13 @@ return array(
             'text',
             'regular-text'
         ),
+	    array(
+		    'auto_link_title_excl',
+		    __('Add links for post title', 'simpletags'),
+		    'checkbox',
+		    '1',
+		    __('By default, TaxoPress will exclude Auto Links for terms that are attached to the post title.', 'simpletags')
+	    ),
     ),
     'legacy'       => array(
 
