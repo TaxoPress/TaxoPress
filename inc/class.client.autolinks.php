@@ -299,7 +299,7 @@ class SimpleTags_Client_Autolinks {
 		$j        = 0;
 		$filtered = ''; // will filter text token by token
 
-		$match      = '/(\PL|\A)(' . preg_quote( $search, '/' ) . ')(\PL|\Z)/u' . $case;
+		$match      = '/(\PL|\A)(' . preg_quote( $search, '/' ) . ')(\PL|\Z)\b/u' . $case;
 		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( SimpleTags_Plugin::get_option_value( 'auto_link_title' ), $search ) ) . "\">$2</a>$3";
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
