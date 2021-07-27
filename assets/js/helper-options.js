@@ -51,3 +51,22 @@ jQuery(document).ready(function($) {
       $('.simple-tags-review-box').hide();
     }
 });
+
+// -------------------------------------------------------------
+//   Prevent negative number of input type number
+// -------------------------------------------------------------
+jQuery(document).on('change paste keyup keydown', 'input[type="number"]', function (e) {
+    if (e.which === 69
+      || e.which === 189) {
+        e.preventDefault();
+    }
+});
+
+// -------------------------------------------------------------
+//   Prevent null of input type number
+// -------------------------------------------------------------
+jQuery(document).on('change paste', 'input[type="number"]', function (e) {
+    if (jQuery(this).val() === '') {
+        jQuery(this).val(0);
+    }
+});
