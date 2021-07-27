@@ -85,6 +85,8 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/taxonomies.php';
         SimpleTags_Admin_Taxonomies::get_instance();
 
+		do_action('taxopress_admin_class_after_includes');
+
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
 
@@ -309,6 +311,9 @@ class SimpleTags_Admin {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
+
+		do_action('taxopress_admin_class_before_assets_register');
+
 		//color picker style
   		wp_enqueue_style( 'wp-color-picker' );
 
@@ -339,25 +344,30 @@ class SimpleTags_Admin {
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
 
+		$taxopress_pages = [
+			'st_mass_terms',
+			'st_auto',
+			'st_options',
+			'st_manage',
+			'st_taxonomies',
+			'st_terms_display',
+			'st_post_tags',
+			'st_related_posts',
+		];
+		$taxopress_pages = apply_filters('taxopress_admin_pages', $taxopress_pages);
+
 		// Common Helper for Post, Page and Plugin Page
 		if (
 			in_array( $pagenow, $wp_post_pages ) ||
 			( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ||
-			( isset( $_GET['page'] ) && in_array( $_GET['page'], array(
-					'st_mass_terms',
-					'st_auto',
-					'st_options',
-					'st_manage',
-					'st_taxonomies',
-					'st_terms_display',
-					'st_post_tags',
-					'st_related_posts',
-				) ) )
+			( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages ) )
 		) {
 			wp_enqueue_script( 'st-remodal-js' );
 			wp_enqueue_style( 'st-remodal-css' );
 			wp_enqueue_style( 'st-remodal-default-theme-css' );
 			wp_enqueue_style( 'st-admin' );
+			
+			do_action('taxopress_admin_class_after_styles_enqueue');
 		}
 
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
@@ -366,6 +376,7 @@ class SimpleTags_Admin {
 			wp_enqueue_script( 'st-helper-options' );
 		}
 
+		do_action('taxopress_admin_class_after_assets_enqueue');
 	}
 
 	/**

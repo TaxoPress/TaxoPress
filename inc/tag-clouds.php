@@ -215,7 +215,7 @@ class SimpleTags_Tag_Clouds
         }
 
 
-        if(!isset($current['title']) && count($tagclouds) > 0){
+        if(!isset($current['title']) && count($tagclouds) > 0 && apply_filters('taxopress_tag_clouds_create_limit', true)){
             $tag_cloud_limit = true;
         }
 

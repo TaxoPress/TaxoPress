@@ -88,11 +88,6 @@ function init_simple_tags()
         require STAGS_DIR . '/inc/class.admin.php';
         new SimpleTags_Admin();
     }
-    
-	if (is_admin() && !defined('TAXOPRESS_PRO_VERSION')) {
-		require_once(TAXOPRESS_ABSPATH . '/includes-core/TaxopressCoreAdmin.php');
-		new \PublishPress\Taxopress\TaxopressCoreAdmin();
-	}
 
     add_action('widgets_init', 'st_register_widget');
 }
