@@ -214,8 +214,8 @@ class SimpleTags_Post_Tags
 
             }
 
-
-            if (!isset($current['title']) && count($posttags) > 0) {
+            
+            if (!isset($current['title']) && count($posttags) > 0 && apply_filters('taxopress_post_tags_create_limit', true) ) {
                 $post_tags_limit = true;
             }
 
