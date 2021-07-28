@@ -108,13 +108,13 @@ return array(
             'small-text',
             __('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags')
         ),
-        array(
-            'auto_link_all',
-            __('Auto link all tags ?', 'simpletags'),
-            'checkbox',
-            '1',
-            __('If checked, tags found in post will be auto linked even if not included in post tags.', 'simpletags')
-        ),
+	    array(
+		    'auto_link_all',
+		    __('Add links for unattached terms', 'simpletags'),
+		    'checkbox',
+		    '1',
+		    __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms', 'simpletags')
+	    ),
         array(
             'auto_link_case',
             __('Ignore case for auto link feature ?', 'simpletags'),
