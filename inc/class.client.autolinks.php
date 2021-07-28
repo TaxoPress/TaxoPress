@@ -22,6 +22,7 @@ class SimpleTags_Client_Autolinks {
 
 		if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' ) ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
+			add_filter( 'the_title', array( __CLASS__, 'the_title' ) );
 		}
 	}
 
@@ -344,6 +345,95 @@ class SimpleTags_Client_Autolinks {
 			}
 			$content = $filtered; // filtering completed for this link
 		}
+	}
+
+	/**
+	 * Replace text of title by link to tag
+	 *
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function the_title( $title = '' ) {
+		global $post;
+
+		if ( 0 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_title_excl' ) ) {
+			return $title;
+		}
+
+		// Show only on singular view ? Check context
+		if ( 'singular' === SimpleTags_Plugin::get_option_value( 'auto_link_views' ) && ! is_singular() ) {
+			return $title;
+		}
+
+		// Show only on single view ? Check context
+		if ( 'single' === SimpleTags_Plugin::get_option_value( 'auto_link_views' ) && ! is_single() ) {
+			return $title;
+		}
+
+		// user preference for this post ?
+		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
+		if ( ! empty( $meta_value ) ) {
+			return $title;
+		}
+
+		// Get currents tags if no exists
+		self::prepare_auto_link_tags();
+
+		// Shuffle array
+		SimpleTags_Client::random_array( self::$link_tags );
+
+		// HTML Rel (tag/no-follow)
+		$rel = SimpleTags_Client::get_rel_attribut();
+
+		// only continue if the database actually returned any links
+		if ( ! isset( self::$link_tags ) || ! is_array( self::$link_tags ) || empty( self::$link_tags ) ) {
+			return $title;
+		}
+
+		// Case option ?
+		$case       = ( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_case' ) ) ? 'i' : '';
+		$strpos_fnc = ( 'i' === $case ) ? 'stripos' : 'strpos';
+
+		// Prepare exclude terms array
+		$excludes_terms = explode( ',', SimpleTags_Plugin::get_option_value( 'auto_link_exclude' ) );
+		if ( empty( $excludes_terms ) ) {
+			$excludes_terms = array();
+		} else {
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
+			$excludes_terms = array_unique( $excludes_terms );
+		}
+
+
+		$z = 0;
+		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
+			// Force string for tags "number"
+			$term_name = (string) $term_name;
+
+			// Exclude terms ? next...
+			if ( in_array( $term_name, (array) $excludes_terms, true ) ) {
+				continue;
+			}
+
+			// Make a first test with PHP function, economize CPU with regexp
+			if ( false === $strpos_fnc( $title, $term_name ) ) {
+				continue;
+			}
+
+			if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_dom' ) && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel );
+			} else {
+				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel );
+			}
+
+			$z ++;
+
+			if ( $z > (int) SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' ) ) {
+				break;
+			}
+		}
+
+		return $title;
 	}
 
 }
