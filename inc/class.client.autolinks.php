@@ -20,10 +20,15 @@ class SimpleTags_Client_Autolinks {
 		// Auto link tags
 		add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
 
+        //legacy
 		if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' ) ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
 			add_filter( 'the_title', array( __CLASS__, 'the_title' ) );
 		}
+
+        //new UI
+        add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
+
 	}
 
 	/**
@@ -51,7 +56,8 @@ class SimpleTags_Client_Autolinks {
 	 *
 	 * @return array
 	 */
-	public static function get_tags_from_current_posts() {
+	public static function get_tags_from_current_posts($options = false) {
+       
 		if ( is_array( self::$posts ) && count( self::$posts ) > 0 ) {
 			// Generate SQL from post id
 			$postlist = implode( "', '", self::$posts );
@@ -61,14 +67,21 @@ class SimpleTags_Client_Autolinks {
 
 			$results = array();
 
+            if($options){
+                $term_taxonomy = $options['taxonomy'];
+            }else{
+                $term_taxonomy = 'post_tag';
+            }
+
 			// Get cache if exist
 			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
-			if ( false === $cache ) {
+			if ( $options || false === $cache ) 
+            {
 				foreach ( self::$posts as $object_id ) {
 					// Get terms
-					$terms = get_object_term_cache( $object_id, 'post_tag' );
+					$terms = get_object_term_cache( $object_id, $term_taxonomy );
 					if ( false === $terms || is_wp_error( $terms ) ) {
-						$terms = wp_get_object_terms( $object_id, 'post_tag' );
+						$terms = wp_get_object_terms( $object_id, $term_taxonomy );
 					}
 
 					if ( false !== $terms && ! is_wp_error( $terms ) ) {
@@ -95,7 +108,7 @@ class SimpleTags_Client_Autolinks {
 	 *
 	 * @return array
 	 */
-	public static function get_all_post_tags() {
+	public static function get_all_post_tags($options = false) {
 		if ( is_array( self::$posts ) && count( self::$posts ) > 0 ) {
 			// Generate SQL from post id
 			$postlist = implode( "', '", self::$posts );
@@ -103,16 +116,20 @@ class SimpleTags_Client_Autolinks {
 			// Generate key cache
 			$key = md5( maybe_serialize( $postlist ) );
 
-			$results = get_tags();
-
+            if($options){
+                $term_taxonomy = $options['taxonomy'];
+            }else{
+                $term_taxonomy = 'post_tag';
+            }
+            $results = get_tags(['taxonomy' => $term_taxonomy]);
 			// Get cache if exist
 			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
-			if ( false === $cache ) {
+			if ( $options || false === $cache ) {
 				foreach ( self::$posts as $object_id ) {
 					// Get terms
-					$terms = get_object_term_cache( $object_id, 'post_tag' );
+					$terms = get_object_term_cache( $object_id, $term_taxonomy );
 					if ( false === $terms || is_wp_error( $terms ) ) {
-						$terms = wp_get_object_terms( $object_id, 'post_tag' );
+						$terms = wp_get_object_terms( $object_id, $term_taxonomy );
 					}
 
 					if ( false !== $terms && ! is_wp_error( $terms ) ) {
@@ -138,18 +155,43 @@ class SimpleTags_Client_Autolinks {
 	 * Get links for each tag for auto link feature
 	 *
 	 */
-	public static function prepare_auto_link_tags() {
-		$auto_link_min = (int) SimpleTags_Plugin::get_option_value( 'auto_link_min' );
+	public static function prepare_auto_link_tags($options = false) {
+
+        if($options){
+		    $auto_link_min = (int) $options['autolink_usage_min'];
+            $unattached_terms = (int) $options['unattached_terms'];
+            $autolink_min_char = (int) $options['autolink_min_char'];
+            $autolink_max_char = (int) $options['autolink_max_char'];
+        }else{
+		    $auto_link_min = (int) SimpleTags_Plugin::get_option_value( 'auto_link_min' );
+		    $unattached_terms = (int) SimpleTags_Plugin::get_option_value( 'auto_link_all' );
+            $autolink_min_char = 0;
+            $autolink_max_char = 0;
+        }
+
 		if ( 0 === $auto_link_min ) {
 			$auto_link_min = 1;
 		}
-		if( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_all' ) ){
-			$terms = self::get_all_post_tags();
+		if( 1 === $unattached_terms ){
+			$terms = self::get_all_post_tags($options);
 		}else{
-			$terms = self::get_tags_from_current_posts();
+			$terms = self::get_tags_from_current_posts($options);
 		}
+
 		foreach ( (array) $terms as $term ) {
-			if ( $term->count >= $auto_link_min ) {
+
+                //min character check 
+                $min_char_pass = true;
+                if($autolink_min_char > 0){
+                    $min_char_pass = strlen($term->name) >= $autolink_min_char ? true : false;
+                }
+                //max character check 
+                $max_char_pass = true;
+                if($autolink_max_char > 0){
+                    $max_char_pass = strlen($term->name) <= $autolink_max_char ? true : false;
+                }
+                
+			if ( $term->count >= $auto_link_min  && $min_char_pass && $max_char_pass ) {
 				self::$link_tags[ $term->name ] = esc_url( get_term_link( $term, $term->taxonomy ) );
 			}
 		}
@@ -434,6 +476,112 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		return $title;
+	}
+
+
+	/**
+	 * Replace text by link to tag
+	 *
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public static function taxopress_autolinks_the_content( $content = '' ) {
+		global $post;
+
+
+        $post_tags = taxopress_get_autolink_data();
+
+
+		// user preference for this post ?
+		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
+		if ( ! empty( $meta_value ) ) {
+			return $content;
+		}
+
+        if (count($post_tags) > 0) {
+
+        foreach ($post_tags as $post_tag) {
+
+            // Get option
+            $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
+
+            if (!$embedded) {
+                continue;
+            }
+
+            if (!in_array($post->post_type, $embedded )) {
+                continue;
+            }
+
+            if ($post_tag['autolink_display'] === 'post_title') {
+                continue;
+            }
+		// Get currents tags if no exists
+		self::prepare_auto_link_tags($post_tag);
+
+		// Shuffle array
+		SimpleTags_Client::random_array( self::$link_tags );
+
+		// HTML Rel (tag/no-follow)
+		$rel = SimpleTags_Client::get_rel_attribut();
+
+		// only continue if the database actually returned any links
+		if ( ! isset( self::$link_tags ) || ! is_array( self::$link_tags ) || empty( self::$link_tags ) ) {
+			$can_continue = false;
+		}else{
+			$can_continue = true;
+        }
+
+        if( $can_continue ){
+
+		// Case option ?
+		$case       = ( 1 === (int) $post_tag['ignore_case'] ) ? 'i' : '';
+		$strpos_fnc = ( 'i' === $case ) ? 'stripos' : 'strpos';
+
+		// Prepare exclude terms array
+		$excludes_terms = explode( ',', $post_tag['auto_link_exclude'] );
+		if ( empty( $excludes_terms ) ) {
+			$excludes_terms = array();
+		} else {
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
+			$excludes_terms = array_unique( $excludes_terms );
+		}
+
+		$z = 0;
+		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
+			// Force string for tags "number"
+			$term_name = (string) $term_name;
+
+			// Exclude terms ? next...
+			if ( in_array( $term_name, (array) $excludes_terms, true ) ) {
+				continue;
+			}
+
+			// Make a first test with PHP function, economize CPU with regexp
+			if ( false === $strpos_fnc( $content, $term_name ) ) {
+				continue;
+			}
+
+			if ( 1 === (int) $post_tag['autolink_dom'] && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel );
+			} else {
+				self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel );
+			}
+
+			$z ++;
+
+			if ( $z > (int) SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' ) ) {
+				break;
+			}
+		}
+    }
+    }
+
+    }
+
+
+		return $content;
 	}
 
 }

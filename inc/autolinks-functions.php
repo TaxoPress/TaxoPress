@@ -145,6 +145,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['autolink_display']         = 'post_content';
     $default['taxopress_autolink']['autolink_title_attribute'] = __('Posts tagged with %s', 'simpletags');
     $default['taxopress_autolink']['autolink_usage_min']       = '1';
+    $default['taxopress_autolink']['auto_link_exclude']        = '';
     $default['taxopress_autolink']['autolink_usage_max']       = '10';
     $default['taxopress_autolink']['autolink_same_usage_max']  = '1';
     $default['taxopress_autolink']['autolink_min_char']        = '';
@@ -321,50 +322,4 @@ function taxopress_action_delete_autolink($autolink_id)
         exit();
     }
 }
-
-/**
- * Auto add autolink to post content
- *
- * @param string $content
- *
- * @return string
- */
-function taxopress_autolinks_the_content($content = '')
-{
-
-    $post_tags = taxopress_get_autolink_data();
-
-    if (count($post_tags) > 0) {
-        foreach ($post_tags as $post_tag) {
-
-            // Get option
-            $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
-
-            if (!$embedded) {
-                continue;
-            }
-
-            $marker = false;
-            if (is_feed() && in_array('feed', $embedded)) {
-                $marker = true;
-            } elseif (is_home() && in_array('homeonly', $embedded)) {
-                $marker = true;
-            } elseif (is_feed() && in_array('blogonly', $embedded)) {
-                $marker = true;
-            } elseif (is_singular() && in_array('singleonly', $embedded)) {
-                $marker = true;
-            } elseif (is_singular() && in_array(get_post_type(), $embedded)) {
-                $marker = true;
-            }
-            if (true === $marker) {
-                $autolink_arg = build_query($post_tag);
-                $content      .= SimpleTags_Client_Autolinks::get_autolinks($autolink_arg);
-            }
-        }
-    }
-
-    return $content;
-}
-
-//add_filter('the_content', 'taxopress_autolinks_the_content', 999992);
 ?>

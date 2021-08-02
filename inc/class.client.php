@@ -15,11 +15,8 @@ class SimpleTags_Client {
 
         add_action( 'parse_query', array( __CLASS__, 'cpt_taxonomy_parse_query' ) );
 
-		// Call autolinks ?
-		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) == 1 ) {
-			require( STAGS_DIR . '/inc/class.client.autolinks.php' );
-			new SimpleTags_Client_Autolinks();
-		}
+        require( STAGS_DIR . '/inc/class.client.autolinks.php' );
+        new SimpleTags_Client_Autolinks();
 
 		// Call related posts ?
 		if ( (int) SimpleTags_Plugin::get_option_value( 'active_related_posts' ) == 1 ) {

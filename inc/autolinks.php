@@ -549,7 +549,7 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_min_char',
                                                         'textvalue' => isset($current['autolink_min_char']) ? esc_attr($current['autolink_min_char']) : '',
-                                                        'labeltext' => esc_html__('Minumum character length for an autolink',
+                                                        'labeltext' => esc_html__('Minimum character length for an autolink',
                                                             'simpletags'),
                                                         'helptext'  => __('For example, \'4\' would only link tags that are of 4 characters or more in length',
                                                             'simpletags'),
@@ -579,6 +579,18 @@ class SimpleTags_Autolink
                                                 <table class="form-table taxopress-table autolink_exceptions"
                                                        style="display:none;">
                                                     <?php
+
+
+                                                    echo $ui->get_text_input([
+                                                        'namearray' => 'taxopress_autolink',
+                                                        'name'      => 'auto_link_exclude',
+                                                        'textvalue' => isset($current['auto_link_exclude']) ? esc_attr($current['auto_link_exclude']) : '',
+                                                        'labeltext' => esc_html__('Exclude some terms from tag link.',
+                                                            'simpletags'),
+                                                        'helptext'  => esc_html__('Example: If you enter the term "Paris", "City", the auto link tags feature will never replace these terms',
+                                                            'simpletags'),
+                                                        'required'  => false,
+                                                    ]);
 
 
                                                     echo $ui->get_text_input([

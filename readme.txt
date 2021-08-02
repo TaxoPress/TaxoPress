@@ -120,7 +120,7 @@ v3.2.1- [===UNRELEASED===]
 * Autolink: New autolink UI #501
 * Autolink: Option to set autolink terms to lowercase, uppercase or retain content case #161
 * Autolink: Option to exlude autolink if the tag is already applied to the article #147
-* Autolink: Option to set minumum and maximum character length for autolink condition #132
+* Autolink: Option to set minimum and maximum character length for autolink condition #132
 * Autolink: Support for more all taxonomies #268
 * Autolink: Option to restrict Autolink instance to a post type.
 * Autolink: Option to exclude autolinks in certain classes/HTML Tags like headers, div class/id etc #160
