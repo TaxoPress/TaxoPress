@@ -24,9 +24,10 @@ class TaxopressCoreAdmin {
                                     ['base' => 'taxopress_page_st_manage',     'id'   => 'taxopress_page_st_manage'],
                                     ['base' => 'taxopress_page_st_auto',       'id'   => 'taxopress_page_st_auto'],
                                     ['base' => 'toplevel_page_st_options',     'id'   => 'toplevel_page_st_options'],
-                                    ['base' => 'taxopress_page_st_terms_display', 'id'=> 'taxopress_page_st_terms_display'],
+                                    ['base' => 'taxopress_page_st_terms_display','id' => 'taxopress_page_st_terms_display'],
                                     ['base' => 'taxopress_page_st_post_tags',   'id'  => 'taxopress_page_st_post_tags'],
-                                    ['base' => 'taxopress_page_st_related_posts', 'id'=> 'taxopress_page_st_related_posts'],
+                                    ['base' => 'taxopress_page_st_related_posts','id' => 'taxopress_page_st_related_posts'],
+                                    ['base' => 'taxopress_page_st_autolinks',   'id'  => 'taxopress_page_st_autolinks'],
                                 ]
                             ];
 

@@ -4,6 +4,7 @@ require STAGS_DIR . '/inc/taxonomies-functions.php'; // Taxonomy functions
 require STAGS_DIR . '/inc/tag-clouds-functions.php'; // Tag cloud functions
 require STAGS_DIR . '/inc/post-tags-functions.php'; // Post tags functions
 require STAGS_DIR . '/inc/related-posts-functions.php'; // Related posts functions
+require STAGS_DIR . '/inc/autolinks-functions.php'; // Auto links functions
 require STAGS_DIR . '/inc/functions.deprecated.php'; // Deprecated functions
 require STAGS_DIR . '/inc/functions.tpl.php';  // Templates functions
 

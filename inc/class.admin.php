@@ -26,6 +26,9 @@ class SimpleTags_Admin {
 		// Admin menu
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 
+        //Admin footer credit
+        add_action( 'in_admin_footer', array( __CLASS__, 'taxopress_admin_footer') );
+
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
@@ -43,6 +46,11 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/related-posts-table.php';
         require STAGS_DIR . '/inc/related-posts.php';
         SimpleTags_Related_Post::get_instance();
+
+        //Auto Links
+        require STAGS_DIR . '/inc/autolinks-table.php';
+        require STAGS_DIR . '/inc/autolinks.php';
+        SimpleTags_Autolink::get_instance();
 
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
@@ -344,17 +352,7 @@ class SimpleTags_Admin {
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
 
-		$taxopress_pages = [
-			'st_mass_terms',
-			'st_auto',
-			'st_options',
-			'st_manage',
-			'st_taxonomies',
-			'st_terms_display',
-			'st_post_tags',
-			'st_related_posts',
-		];
-		$taxopress_pages = apply_filters('taxopress_admin_pages', $taxopress_pages);
+		$taxopress_pages = taxopress_admin_pages();
 
 		// Common Helper for Post, Page and Plugin Page
 		if (
@@ -499,9 +497,26 @@ class SimpleTags_Admin {
 	 * @author WebFactory Ltd
 	 */
 	public static function printAdminFooter() {
+		/* ?>
+		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<?php */
+	}
+
+	/**
+	 * A short public static function for display the same copyright on all taxopress admin pages
+	 *
+	 * @return void
+	 * @author Olatechpro
+	 */
+	public static function taxopress_admin_footer() {
+
+        $taxopress_pages = taxopress_admin_pages();
+
+		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages )) {
 		?>
 		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
+        }
 	}
 
 	/**
@@ -523,7 +538,12 @@ class SimpleTags_Admin {
 			$desc_html_tag = 'div';
 
             if($section === 'legacy'){
-                $table_sub_tab = '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span> | <span data-content=".legacy-related-posts-content">Related Posts</span></div>' . PHP_EOL;
+                $table_sub_tab = '<div class="st-legacy-subtab">
+                <span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | 
+                <span data-content=".legacy-post-tags-content">Tags for Current Post</span> | 
+                <span data-content=".legacy-related-posts-content">Related Posts</span> | 
+                <span data-content=".legacy-auto-link-content">Auto link</span>
+                </div>' . PHP_EOL;
             }else{
                 $table_sub_tab = '';
             }

@@ -206,7 +206,30 @@
     // -------------------------------------------------------------
     $('.taxopress-right-sidebar input[type="submit"], .taxonomiesui input[type="submit"]').on('click', function (e) {
       $('.taxopress-edit #message.updated').remove();
-    })
+    });
+
+
+    // -------------------------------------------------------------
+    //   Taxopress tab
+    // -------------------------------------------------------------
+    $('ul.taxopress-tab li').on('click', function (e) {
+      e.preventDefault();
+      var tab_content = $(this).attr('data-content');
+      
+      $('.taxopress-tab li').removeClass('active');
+      $(this).addClass('active');
+
+      $('.taxopress-tab-content table').hide();
+      $('.taxopress-tab-content table.' + tab_content).show();
+
+      $('.visbile-table').css('display', '');
+
+      $('.taxopress-tab').css('height', $('.taxopress-tab-content').height());
+    });
+
+    if ($('.taxopress-tab-content').length > 0) {
+      $('.taxopress-tab').css('height', $('.taxopress-tab-content').height());
+    }
 
   
   });

@@ -115,6 +115,17 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.2.1- [===UNRELEASED===]
+* Added: Autolink screen with improved features such as:
+* Autolink: New autolink UI #501
+* Autolink: Option to set autolink terms to lowercase, uppercase or retain content case #161
+* Autolink: Option to exlude autolink if the tag is already applied to the article #147
+* Autolink: Option to set minumum and maximum character length for autolink condition #132
+* Autolink: Support for more all taxonomies #268
+* Autolink: Option to restrict Autolink instance to a post type.
+* Autolink: Option to exclude autolinks in certain classes/HTML Tags like headers, div class/id etc #160
+* Deprecated: Move old Autolink settings to legacy #491
+
 v3.1.2- 2021-07-19
 * Fixed: Term display font color empty value error notification #628
 * Fixed: Improve settings success/error notification display #629

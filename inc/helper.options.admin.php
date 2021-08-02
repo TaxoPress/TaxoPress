@@ -2,13 +2,6 @@
 return array(
     'features'       => array(
         array(
-            'auto_link_tags',
-            __('Auto links tags', 'simpletags'),
-            'checkbox',
-            '1',
-            __('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags')
-        ),
-        array(
             'active_mass_edit',
             __('Mass edit terms', 'simpletags'),
             'checkbox',
@@ -86,88 +79,8 @@ return array(
             __('Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate.', 'simpletags')
         ),
     ),
-    'auto-links'     => array(
-        array(
-            'auto_link_min',
-            __('Min usage for auto link tags:', 'simpletags'),
-            'number',
-            'small-text',
-            __('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags')
-        ),
-        array(
-            'auto_link_max_by_post',
-            __('Maximum number of links per article:', 'simpletags'),
-            'number',
-            'small-text',
-            __('This setting determines the maximum number of links created by article. Default: 10.', 'simpletags')
-        ),
-        array(
-            'auto_link_max_by_tag',
-            __('Maximum number of links for the same tag:', 'simpletags'),
-            'number',
-            'small-text',
-            __('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags')
-        ),
-	    array(
-		    'auto_link_all',
-		    __('Add links for unattached terms', 'simpletags'),
-		    'checkbox',
-		    '1',
-		    __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms', 'simpletags')
-	    ),
-        array(
-            'auto_link_case',
-            __('Ignore case for auto link feature ?', 'simpletags'),
-            'checkbox',
-            '1',
-            __('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags')
-        ),
-        array(
-            'auto_link_exclude',
-            __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'),
-            'text',
-            'regular-text',
-            __('Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags')
-        ),
-        array(
-            'auto_link_priority',
-            __('Priority on hook the_content', 'simpletags'),
-            'number',
-            'small-text',
-            __('For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin. Default: 12.', 'simpletags')
-        ),
-        array(
-            'auto_link_views',
-            __('Enable autolinks into post content for theses views:', 'simpletags'),
-            'radio',
-            array(
-                'no'       => __('<code>no</code> &ndash; Nowhere', 'simpletags'),
-                'all'      => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
-                'single'   => __('<code>single</code> &ndash; Only on your single post view.', 'simpletags'),
-                'singular' => __('<code>singular</code> &ndash; Only on your singular view (single post & page) (default).', 'simpletags'),
-            ),
-        ),
-        array(
-            'auto_link_dom',
-            __('Try new engine replacement ?', 'simpletags'),
-            'checkbox',
-            '1',
-            __('An engine replacement alternative uses DOMDocument PHP class and theoretically offers better performance. If your server does not offer the functionality, the plugin will use the usual engine.', 'simpletags')
-        ),
-        array(
-            'auto_link_title',
-            __('Text to display into title attribute for links:', 'simpletags'),
-            'text',
-            'regular-text'
-        ),
-	    array(
-		    'auto_link_title_excl',
-		    __('Add links for post title', 'simpletags'),
-		    'checkbox',
-		    '1',
-		    __('By default, TaxoPress will exclude Auto Links for terms that are attached to the post title.', 'simpletags')
-	    ),
-    ),
+
+
     'legacy'       => array(
 
 
@@ -492,7 +405,111 @@ return array(
             '1',
             __('This feature allows you to display related posts based on terms relation.', 'simpletags'),
             'legacy-tab-content legacy-related-posts-content st-hide-content'
-        )
+        ),
+
+        
+        //auto link legacy
+        array(
+            'auto_link_tags',
+            __('Auto links tags', 'simpletags'),
+            'checkbox',
+            '1',
+            __('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_min',
+            __('Min usage for auto link tags:', 'simpletags'),
+            'number',
+            'small-text',
+            __('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_max_by_post',
+            __('Maximum number of links per article:', 'simpletags'),
+            'number',
+            'small-text',
+            __('This setting determines the maximum number of links created by article. Default: 10.', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_max_by_tag',
+            __('Maximum number of links for the same tag:', 'simpletags'),
+            'number',
+            'small-text',
+            __('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+	    array(
+		    'auto_link_all',
+		    __('Add links for unattached terms', 'simpletags'),
+		    'checkbox',
+		    '1',
+		    __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+	    ),
+        array(
+            'auto_link_case',
+            __('Ignore case for auto link feature ?', 'simpletags'),
+            'checkbox',
+            '1',
+            __('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_exclude',
+            __('Exclude some terms from tag link. For Ads Link subtition, etc.', 'simpletags'),
+            'text',
+            'regular-text',
+            __('Example: If you enter the term "Paris", the auto link tags feature will never replace this term by this link.', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_priority',
+            __('Priority on hook the_content', 'simpletags'),
+            'number',
+            'small-text',
+            __('For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin. Default: 12.', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_views',
+            __('Enable autolinks into post content for theses views:', 'simpletags'),
+            'radio',
+            array(
+                'no'       => __('<code>no</code> &ndash; Nowhere', 'simpletags'),
+                'all'      => __('<code>all</code> &ndash; On your blog and feeds.', 'simpletags'),
+                'single'   => __('<code>single</code> &ndash; Only on your single post view.', 'simpletags'),
+                'singular' => __('<code>singular</code> &ndash; Only on your singular view (single post & page) (default).', 'simpletags'),
+            ),
+            '',
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_dom',
+            __('Try new engine replacement ?', 'simpletags'),
+            'checkbox',
+            '1',
+            __('An engine replacement alternative uses DOMDocument PHP class and theoretically offers better performance. If your server does not offer the functionality, the plugin will use the usual engine.', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
+            'auto_link_title',
+            __('Text to display into title attribute for links:', 'simpletags'),
+            'text',
+            'regular-text',
+            '',
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+	    array(
+		    'auto_link_title_excl',
+		    __('Add links for post title', 'simpletags'),
+		    'checkbox',
+		    '1',
+		    __('By default, TaxoPress will exclude Auto Links for terms that are attached to the post title.', 'simpletags'),
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+	    ),
 
 
     ),
