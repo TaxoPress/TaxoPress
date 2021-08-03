@@ -155,7 +155,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['embedded']                 = [];
     $default['taxopress_autolink']['html_exclusion']           = [];
     $default['taxopress_autolink']['unattached_terms']         = '0';
-    $default['taxopress_autolink']['ignore_case']              = '0';
+    $default['taxopress_autolink']['ignore_case']              = '1';
     $default['taxopress_autolink']['ignore_attached']          = '0';
     $default['taxopress_autolink']['autolink_dom']             = '0';
     $default['autolink_submit']                                = 'Add Autolinks';
@@ -203,8 +203,8 @@ function taxopress_update_autolink($data = [])
     if (!isset($data['taxopress_autolink']['unattached_terms'])) {
         $data['taxopress_autolink']['unattached_terms'] = 0;
     }
-    if (!isset($data['taxopress_autolink']['ignore_case'])) {
-        $data['taxopress_autolink']['ignore_case'] = 0;
+    if (!isset($data['taxopress_autolink']['ignore_case'])) {//auto set ignore case to true
+        $data['taxopress_autolink']['ignore_case'] = 1;
     }
     if (!isset($data['taxopress_autolink']['ignore_attached'])) {
         $data['taxopress_autolink']['ignore_attached'] = 0;

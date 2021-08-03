@@ -371,6 +371,10 @@ class SimpleTags_Autolink
                                                                 'default' => 'true'
                                                             ],
                                                             [
+                                                                'attr' => 'termcase',
+                                                                'text' => esc_attr__('Term case', 'simpletags')
+                                                            ],
+                                                            [
                                                                 'attr' => 'uppercase',
                                                                 'text' => esc_attr__('Uppercase', 'simpletags')
                                                             ],
@@ -708,32 +712,6 @@ class SimpleTags_Autolink
                                                             ],
                                                         ],
                                                     ];
-                                                    $selected           = (isset($current) && isset($current['ignore_case'])) ? taxopress_disp_boolean($current['ignore_case']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['ignore_case'] : '';
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autolink',
-                                                        'name'       => 'ignore_case',
-                                                        'labeltext'  => esc_html__('Ignore case for auto link ?',
-                                                            'simpletags'),
-                                                        'aftertext'  => __('Example: If you ignore case, auto link feature will replace the word "wordpress" by the tag link "WordPress".',
-                                                            'simpletags'),
-                                                        'selections' => $select,
-                                                    ]);
-
-
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simpletags'),
-                                                                'default' => 'true',
-                                                            ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simpletags'),
-                                                            ],
-                                                        ],
-                                                    ];
                                                     $selected           = (isset($current) && isset($current['ignore_attached'])) ? taxopress_disp_boolean($current['ignore_attached']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['ignore_attached'] : '';
                                                     echo $ui->get_select_checkbox_input([
@@ -741,7 +719,7 @@ class SimpleTags_Autolink
                                                         'name'       => 'ignore_attached',
                                                         'labeltext'  => esc_html__('Ignore attached term autolink',
                                                             'simpletags'),
-                                                        'aftertext'  => __('Don\'t add autolink if the term is already applied to the article.',
+                                                        'aftertext'  => __('Don\'t add autolink if the term is already assigned to the article.',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);

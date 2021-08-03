@@ -108,3 +108,14 @@ function taxopress_admin_pages(){
     
    return apply_filters('taxopress_admin_pages', $taxopress_pages);
 }
+
+
+function taxopress_starts_with( $haystack, $needle ) {
+     $length = strlen( $needle );
+     return substr( $haystack, 0, $length ) === $needle;
+}
+
+function taxopress_is_html($string)
+{
+  return preg_match("/<[^<]+>/",$string,$m) != 0;
+}

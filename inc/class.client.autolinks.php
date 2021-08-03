@@ -28,6 +28,7 @@ class SimpleTags_Client_Autolinks {
 
         //new UI
         add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
+        add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 12);
 
 	}
 
@@ -156,17 +157,21 @@ class SimpleTags_Client_Autolinks {
 	 *
 	 */
 	public static function prepare_auto_link_tags($options = false) {
-
+        global $post;
         if($options){
 		    $auto_link_min = (int) $options['autolink_usage_min'];
             $unattached_terms = (int) $options['unattached_terms'];
             $autolink_min_char = (int) $options['autolink_min_char'];
             $autolink_max_char = (int) $options['autolink_max_char'];
+            $ignore_attached = (int) $options['ignore_attached'];
+            $term_taxonomy = $options['taxonomy'];
         }else{
 		    $auto_link_min = (int) SimpleTags_Plugin::get_option_value( 'auto_link_min' );
-		    $unattached_terms = (int) SimpleTags_Plugin::get_option_value( 'auto_link_all' );
+		    $unattached_terms  = (int) SimpleTags_Plugin::get_option_value( 'auto_link_all' );
             $autolink_min_char = 0;
             $autolink_max_char = 0;
+            $ignore_attached   = 0;
+            $term_taxonomy = 'post_tag';
         }
 
 		if ( 0 === $auto_link_min ) {
@@ -179,6 +184,11 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		foreach ( (array) $terms as $term ) {
+            if($ignore_attached > 0){
+                if(has_term( $term->term_id, $term_taxonomy, $post )){
+                    continue;
+                }
+            }
 
                 //min character check 
                 $min_char_pass = true;
@@ -288,7 +298,6 @@ class SimpleTags_Client_Autolinks {
 
 	/**
 	 * Replace text by link, except HTML tag, and already text into link, use DOMdocument.
-	 * Code take from : http://stackoverflow.com/questions/4044812/regex-domdocument-match-and-replace-text-not-in-a-link
 	 *
 	 * @param string $content
 	 * @param string $search
@@ -298,28 +307,93 @@ class SimpleTags_Client_Autolinks {
 	 *
 	 * @return void
 	 */
-	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '' ) {
+	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
 		$dom = new DOMDocument();
 
+        libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
 		$result = $dom->loadHtml( mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" ) );
 		if ( false === $result ) {
 			return;
 		}
 
+
+        if($options){
+            $autolink_case = $options['autolink_case'];
+            $html_exclusion = $options['html_exclusion'];
+            $exclude_class = $options['autolink_exclude_class'];
+            $title_attribute = $options['autolink_title_attribute'];
+            $same_usage_max = $options['autolink_same_usage_max'];
+        }else{
+            $autolink_case = 'lowercase';
+            $html_exclusion = [];
+            $exclude_class = '';
+            $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
+            $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
+        }
+
+        //auto link exclusion
+        $exclusion = '[not(ancestor::a)]';
+        if(count($html_exclusion) > 0){
+            foreach($html_exclusion as $exclude_ancestor){
+                $exclusion .= '[not(ancestor::'.strtolower($exclude_ancestor).')]';
+            }
+        }
+
+		// Prepare exclude terms array
+		$excludes_class = explode( ',', $exclude_class );
+		if ( !empty( $excludes_class ) ) {
+			$excludes_class = array_filter( $excludes_class );
+			$excludes_class = array_unique( $excludes_class );
+            if(count($excludes_class) > 0){
+                foreach($excludes_class as $idclass ){
+                    if(substr( trim($idclass), 0, 1 ) === "#"){
+                        $div_id = ltrim(trim($idclass), "#");
+                        $exclusion .= "[not(ancestor::div/@id='$div_id')]";
+                    }else{
+                        $div_class = ltrim(trim($idclass), ".");        
+                        $exclusion .= "[not(ancestor::div/@class='$div_class')]";
+                    }
+                }
+            }
+		}
+
+
 		$xpath = new DOMXPath( $dom );
-		foreach ( $xpath->query( '//text()[not(ancestor::a)]' ) as $node ) {
-			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( SimpleTags_Plugin::get_option_value( 'auto_link_title' ), $search ) ) . "\">$search</a>";
+		$j        = 0;
+        $replaced_count = 0;
+		foreach ( $xpath->query( '//text()'.$exclusion.'' ) as $node ) {
+			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
+			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
+            $link_closing = '</a>';
+            $upperterm = strtoupper($search);
+            $lowerterm = strtolower($search);
 
 			if ( 'i' === $case ) {
-				$replaced = str_ireplace( $search, $substitute, $node->wholeText );
+                if($autolink_case === 'none'){//retain case
+                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                }elseif($autolink_case === 'uppercase'){//uppercase
+                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                }elseif($autolink_case === 'termcase'){//termcase
+                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                }else {//lowercase
+                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                }
 			} else {
 				$replaced = str_replace( $search, $substitute, $node->wholeText );
 			}
-
+            if($replaced && !empty(trim($replaced))){
+                $j ++;
+               if($rep_count > 0){
+                 $replaced_count = $replaced_count+$rep_count;
+               }
+            }
 			$newNode = $dom->createDocumentFragment();
 			$newNode->appendXML( $replaced );
 			$node->parentNode->replaceChild( $newNode, $node );
+            if ( $replaced_count >= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
+                break;
+            }
 		}
 
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
@@ -335,7 +409,22 @@ class SimpleTags_Client_Autolinks {
 	 * @param string $case
 	 * @param string $rel
 	 */
-	private static function replace_by_links_regexp( &$content, $search = '', $replace = '', $case = '', $rel = '' ) {
+	private static function replace_by_links_regexp( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
+
+        if($options){
+            $autolink_case = $options['autolink_case'];
+            $html_exclusion = $options['html_exclusion'];
+            $exclude_class = $options['autolink_exclude_class'];
+            $title_attribute = $options['autolink_title_attribute'];
+            $same_usage_max = $options['autolink_same_usage_max'];
+        }else{
+            $autolink_case = 'lowercase';
+            $html_exclusion = [];
+            $exclude_class = '';
+            $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
+            $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
+        }
+
 		$must_tokenize = true; // will perform basic tokenization
 		$tokens        = null; // two kinds of tokens: markup and text
 
@@ -343,7 +432,7 @@ class SimpleTags_Client_Autolinks {
 		$filtered = ''; // will filter text token by token
 
 		$match      = '/(\PL|\A)(' . preg_quote( $search, '/' ) . ')(\PL|\Z)\b/u' . $case;
-		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( SimpleTags_Plugin::get_option_value( 'auto_link_title' ), $search ) ) . "\">$2</a>$3";
+		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$2</a>$3";
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
 		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simpletags'), $search ) )."\">$0</a>";
@@ -358,30 +447,82 @@ class SimpleTags_Client_Autolinks {
 			$flags         = PREG_SPLIT_DELIM_CAPTURE;
 			$tokens        = preg_split( "{($markup)}", $content, - 1, $flags );
 			$must_tokenize = false;
+
 		}
 
 		// there should always be at least one token, but check just in case
 		$anchor_level = 0;
+        
 		if ( isset( $tokens ) && is_array( $tokens ) && count( $tokens ) > 0 ) {
 			$i = 0;
+            $ancestor = '';
 			foreach ( $tokens as $token ) {
-				if ( ++ $i % 2 && $token !== '' ) { // this token is (non-markup) text
-					if ( $anchor_level === 0 ) { // linkify if not inside anchor tags
+                if ( ++ $i % 2 && $token !== '' ) 
+                { // this token is (non-markup) text
+
+
+                    $pass_check = true;
+                    
+                    if(!empty(trim($ancestor))){
+
+                    //auto link exclusion
+                    if(count($html_exclusion) > 0){
+                        foreach($html_exclusion as $exclude_ancestor){
+                            if(taxopress_starts_with( $ancestor, '<'.strtolower($exclude_ancestor).'' )){
+                                $pass_check = false;
+                                break;
+                            }
+                        }
+                    }
+
+
+		            // Prepare exclude terms array
+		            $excludes_class = explode( ',', $exclude_class );
+		            if ( !empty( $excludes_class ) ) {
+			            $excludes_class = array_filter( $excludes_class );
+			            $excludes_class = array_unique( $excludes_class );
+                        if(count($excludes_class) > 0){
+                            foreach($excludes_class as $idclass ){
+                                if(substr( trim($idclass), 0, 1 ) === "#"){
+                                    $div_id = ltrim(trim($idclass), "#");
+                                    if ( preg_match_all('/<[a-z \'"]*id="'.$div_id.'"/i', $ancestor, $matches) || preg_match_all('/<[a-z \'"]*id=\''.$div_id.'\'/i', $ancestor, $matches)) {
+                                        $pass_check = false;
+                                        break;
+                                    }
+                                }else{
+                                    $div_class = ltrim(trim($idclass), "."); 
+                                    if ( preg_match_all('/<[a-z ]*class="'.$div_class.'"/i', $ancestor, $matches) || preg_match_all('/<[a-z ]*class=\''.$div_class.'\'/i', $ancestor, $matches)) {
+                                        $pass_check = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+		            }
+
+
+                    }
+					if ( $anchor_level === 0 && $pass_check ) { // linkify if not inside anchor tags
 						if ( preg_match( $match, $token ) ) { // use preg_match for compatibility with PHP 4
 							$j ++;
 
-							if ( $j <= SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' ) || 0 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' ) ) {// Limit replacement at 1 by default, or options value !
-								$token = preg_replace( $match, $substitute, $token, SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' ) ); // only PHP 5 supports calling preg_replace with 5 arguments
+							if ( $j <= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
+								$token = preg_replace( $match, $substitute, $token, $same_usage_max ); // only PHP 5 supports calling preg_replace with 5 arguments
 							}
 							$must_tokenize = true; // re-tokenize next time around
 						}
-					}
+                }
 				} else { // this token is markup
 					if ( preg_match( "#<\s*a\s+[^>]*>#i", $token ) ) { // found <a ...>
+                        $ancestor = $token;
 						$anchor_level ++;
 					} elseif ( preg_match( "#<\s*/\s*a\s*>#i", $token ) ) { // found </a>
 						$anchor_level --;
-					}
+					}elseif(taxopress_starts_with( $token, "</" )){
+                        $ancestor = '';
+                    }else{
+                        $ancestor = $token;
+                    }
 				}
 				$filtered .= $token; // this token has now been filtered
 			}
@@ -517,6 +658,9 @@ class SimpleTags_Client_Autolinks {
             if ($post_tag['autolink_display'] === 'post_title') {
                 continue;
             }
+
+        //reset tags just in case
+        self::$link_tags = [];
 		// Get currents tags if no exists
 		self::prepare_auto_link_tags($post_tag);
 
@@ -564,14 +708,128 @@ class SimpleTags_Client_Autolinks {
 			}
 
 			if ( 1 === (int) $post_tag['autolink_dom'] && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel );
+				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel, $post_tag );
+			}else if ( class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {//force php dom if class exist for optimization purpose
+				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel, $post_tag );
 			} else {
-				self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel );
+				self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel, $post_tag );
 			}
 
 			$z ++;
 
-			if ( $z > (int) SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' ) ) {
+			if ( $z > (int) $post_tag['autolink_usage_max'] ) {
+				break;
+			}
+		}
+    }
+    }
+
+    }
+
+		return $content;
+	}
+
+
+
+
+	/**
+	 * Replace text by link to tag
+	 *
+	 * @param string $title
+	 *
+	 * @return string
+	 */
+	public static function taxopress_autolinks_the_title( $title = '' ) {
+		global $post;
+
+
+        $post_tags = taxopress_get_autolink_data();
+
+
+		// user preference for this post ?
+		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
+		if ( ! empty( $meta_value ) ) {
+			return $title;
+		}
+
+        if (count($post_tags) > 0) {
+
+        foreach ($post_tags as $post_tag) {
+
+            // Get option
+            $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
+
+            if (!$embedded) {
+                continue;
+            }
+
+            if (!in_array($post->post_type, $embedded )) {
+                continue;
+            }
+
+            if ($post_tag['autolink_display'] === 'post_content') {
+                continue;
+            }
+        //reset tags just in case
+        self::$link_tags = [];
+        
+		// Get currents tags if no exists
+		self::prepare_auto_link_tags($post_tag);
+
+		// Shuffle array
+		SimpleTags_Client::random_array( self::$link_tags );
+
+		// HTML Rel (tag/no-follow)
+		$rel = SimpleTags_Client::get_rel_attribut();
+
+		// only continue if the database actually returned any links
+		if ( ! isset( self::$link_tags ) || ! is_array( self::$link_tags ) || empty( self::$link_tags ) ) {
+			$can_continue = false;
+		}else{
+			$can_continue = true;
+        }
+
+        if( $can_continue ){
+
+		// Case option ?
+		$case       = ( 1 === (int) $post_tag['ignore_case'] ) ? 'i' : '';
+		$strpos_fnc = ( 'i' === $case ) ? 'stripos' : 'strpos';
+
+		// Prepare exclude terms array
+		$excludes_terms = explode( ',', $post_tag['auto_link_exclude'] );
+		if ( empty( $excludes_terms ) ) {
+			$excludes_terms = array();
+		} else {
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
+			$excludes_terms = array_unique( $excludes_terms );
+		}
+
+		$z = 0;
+		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
+			// Force string for tags "number"
+			$term_name = (string) $term_name;
+
+			// Exclude terms ? next...
+			if ( in_array( $term_name, (array) $excludes_terms, true ) ) {
+				continue;
+			}
+
+			// Make a first test with PHP function, economize CPU with regexp
+			if ( false === $strpos_fnc( $title, $term_name ) ) {
+				continue;
+			}
+
+			if ( 1 === (int) $post_tag['autolink_dom'] && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag );
+			}else if ( class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {//force php dom if class exist for optimization purpose
+				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag );
+			} else {
+				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel, $post_tag );
+			}
+
+			$z ++;
+
+			if ( $z > (int) $post_tag['autolink_usage_max'] ) {
 				break;
 			}
 		}
@@ -581,7 +839,7 @@ class SimpleTags_Client_Autolinks {
     }
 
 
-		return $content;
+		return $title;
 	}
 
 }
