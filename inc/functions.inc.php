@@ -91,3 +91,31 @@ function init_simple_tags()
 
     add_action('widgets_init', 'st_register_widget');
 }
+
+function taxopress_admin_pages(){
+
+    $taxopress_pages = [
+        'st_mass_terms',
+        'st_auto',
+        'st_options',
+        'st_manage',
+        'st_taxonomies',
+        'st_terms_display',
+        'st_post_tags',
+        'st_related_posts',
+        'st_autolinks',
+    ];
+    
+   return apply_filters('taxopress_admin_pages', $taxopress_pages);
+}
+
+
+function taxopress_starts_with( $haystack, $needle ) {
+     $length = strlen( $needle );
+     return substr( $haystack, 0, $length ) === $needle;
+}
+
+function taxopress_is_html($string)
+{
+  return preg_match("/<[^<]+>/",$string,$m) != 0;
+}

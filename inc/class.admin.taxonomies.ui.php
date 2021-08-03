@@ -388,7 +388,7 @@ class taxopress_admin_ui
      */
     public function get_help($help_text = '')
     {
-        return '<a href="#" class="taxopress-help dashicons-before dashicons-editor-help" title="' . esc_attr($help_text) . '"></a>';
+        return '<span class="taxopress-help-tooltip dashicons-before dashicons-editor-help"><span class="tooltip-text">' . esc_html($help_text) . '</span></span>';
     }
 
     /**
