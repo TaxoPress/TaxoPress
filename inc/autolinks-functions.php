@@ -157,7 +157,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['unattached_terms']         = '0';
     $default['taxopress_autolink']['ignore_case']              = '1';
     $default['taxopress_autolink']['ignore_attached']          = '0';
-    $default['taxopress_autolink']['autolink_dom']             = '0';
+    $default['taxopress_autolink']['autolink_dom']             = '1';
     $default['autolink_submit']                                = 'Add Auto Links';
     $default['cpt_tax_status']                                 = 'new';
     $result                                                    = taxopress_update_autolink($default);

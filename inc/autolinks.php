@@ -728,11 +728,11 @@ class SimpleTags_Autolink
                                                             [
                                                                 'attr'    => '0',
                                                                 'text'    => esc_attr__('False', 'simpletags'),
-                                                                'default' => 'true',
                                                             ],
                                                             [
                                                                 'attr' => '1',
                                                                 'text' => esc_attr__('True', 'simpletags'),
+                                                                'default' => 'true',
                                                             ],
                                                         ],
                                                     ];
@@ -741,9 +741,9 @@ class SimpleTags_Autolink
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_dom',
-                                                        'labeltext'  => esc_html__('Try new engine replacement ?',
+                                                        'labeltext'  => esc_html__('Use new Auto Links engine',
                                                             'simpletags'),
-                                                        'aftertext'  => __('An engine replacement alternative uses DOMDocument PHP class and theoretically offers better performance. If your server does not offer the functionality, the plugin will use the usual engine.',
+                                                        'aftertext'  => __('The new Auto Links engine uses the DOMDocument PHP class and may offer better performance. If your server does not support this functionality, TaxoPress will use the usual engine.',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);
