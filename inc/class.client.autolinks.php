@@ -4,6 +4,7 @@ class SimpleTags_Client_Autolinks {
 
 	public static $posts = array();
 	public static $link_tags = array();
+	public static $tagged_link_count = 0;
 
 	/**
 	 * Constructor
@@ -324,12 +325,14 @@ class SimpleTags_Client_Autolinks {
             $exclude_class = $options['autolink_exclude_class'];
             $title_attribute = $options['autolink_title_attribute'];
             $same_usage_max = $options['autolink_same_usage_max'];
+            $max_by_post = $options['autolink_usage_max'];
         }else{
             $autolink_case = 'lowercase';
             $html_exclusion = [];
             $exclude_class = '';
             $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
             $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
+            $max_by_post = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' );
         }
 
         //auto link exclusion
@@ -368,7 +371,13 @@ class SimpleTags_Client_Autolinks {
             $link_closing = '</a>';
             $upperterm = strtoupper($search);
             $lowerterm = strtolower($search);
+            
+            $remaining_usage = $max_by_post-self::$tagged_link_count;
+            if( $same_usage_max > $remaining_usage){
+                $same_usage_max = $remaining_usage;
+            }
 
+            if($same_usage_max > 0 ){
 			if ( 'i' === $case ) {
                 if($autolink_case === 'none'){//retain case
                     $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
@@ -382,16 +391,21 @@ class SimpleTags_Client_Autolinks {
 			} else {
 				$replaced = str_replace( $search, $substitute, $node->wholeText );
 			}
+            
             if($replaced && !empty(trim($replaced))){
                 $j ++;
                if($rep_count > 0){
                  $replaced_count = $replaced_count+$rep_count;
+                 self::$tagged_link_count = self::$tagged_link_count+$rep_count;
                }
             }
 			$newNode = $dom->createDocumentFragment();
 			$newNode->appendXML( $replaced );
 			$node->parentNode->replaceChild( $newNode, $node );
             if ( $replaced_count >= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
+               break;
+            }
+            }else{
                 break;
             }
 		}
@@ -417,12 +431,14 @@ class SimpleTags_Client_Autolinks {
             $exclude_class = $options['autolink_exclude_class'];
             $title_attribute = $options['autolink_title_attribute'];
             $same_usage_max = $options['autolink_same_usage_max'];
+            $max_by_post = $options['autolink_usage_max'];
         }else{
             $autolink_case = 'lowercase';
             $html_exclusion = [];
             $exclude_class = '';
             $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
             $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
+            $max_by_post = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' );
         }
 
 		$must_tokenize = true; // will perform basic tokenization
@@ -506,8 +522,16 @@ class SimpleTags_Client_Autolinks {
 						if ( preg_match( $match, $token ) ) { // use preg_match for compatibility with PHP 4
 							$j ++;
 
-							if ( $j <= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
-								$token = preg_replace( $match, $substitute, $token, $same_usage_max ); // only PHP 5 supports calling preg_replace with 5 arguments
+
+                            $remaining_usage = $max_by_post-self::$tagged_link_count;
+                            if( $same_usage_max > $remaining_usage){
+                                $same_usage_max = $remaining_usage;
+                            }
+
+                            
+							if ( $same_usage_max > 0 ) {// Limit replacement at 1 by default, or options value !
+								$token = preg_replace( $match, $substitute, $token, $same_usage_max, $rep_count ); // only PHP 5 supports calling preg_replace with 5 arguments
+                                self::$tagged_link_count = self::$tagged_link_count+$rep_count;
 							}
 							$must_tokenize = true; // re-tokenize next time around
 						}
@@ -659,6 +683,8 @@ class SimpleTags_Client_Autolinks {
                 continue;
             }
 
+        //reset added article link count
+        self::$tagged_link_count = 0;
         //reset tags just in case
         self::$link_tags = [];
 		// Get currents tags if no exists
@@ -694,6 +720,7 @@ class SimpleTags_Client_Autolinks {
 
 		$z = 0;
 		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
+			$z ++;
 			// Force string for tags "number"
 			$term_name = (string) $term_name;
 
@@ -714,10 +741,7 @@ class SimpleTags_Client_Autolinks {
 			} else {
 				self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel, $post_tag );
 			}
-
-			$z ++;
-
-			if ( $z > (int) $post_tag['autolink_usage_max'] ) {
+			if ( self::$tagged_link_count >= (int) $post_tag['autolink_usage_max'] ) {
 				break;
 			}
 		}
@@ -770,9 +794,10 @@ class SimpleTags_Client_Autolinks {
             if ($post_tag['autolink_display'] === 'post_content') {
                 continue;
             }
+        //reset added article link count
+        self::$tagged_link_count = 0;
         //reset tags just in case
         self::$link_tags = [];
-        
 		// Get currents tags if no exists
 		self::prepare_auto_link_tags($post_tag);
 
@@ -806,6 +831,7 @@ class SimpleTags_Client_Autolinks {
 
 		$z = 0;
 		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
+			$z ++;
 			// Force string for tags "number"
 			$term_name = (string) $term_name;
 
@@ -827,9 +853,7 @@ class SimpleTags_Client_Autolinks {
 				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel, $post_tag );
 			}
 
-			$z ++;
-
-			if ( $z > (int) $post_tag['autolink_usage_max'] ) {
+			if ( self::$tagged_link_count >= (int) $post_tag['autolink_usage_max'] ) {
 				break;
 			}
 		}
