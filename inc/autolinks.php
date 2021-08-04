@@ -431,6 +431,60 @@ class SimpleTags_Autolink
                                                         'required'  => false,
                                                     ]);
 
+
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simpletags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simpletags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['unattached_terms'])) ? taxopress_disp_boolean($current['unattached_terms']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['unattached_terms'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_autolink',
+                                                        'name'       => 'unattached_terms',
+                                                        'labeltext'  => esc_html__('Add links for unattached terms',
+                                                            'simpletags'),
+                                                        'aftertext'  => __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms.',
+                                                            'simpletags'),
+                                                        'selections' => $select,
+                                                    ]);
+
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simpletags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simpletags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['ignore_attached'])) ? taxopress_disp_boolean($current['ignore_attached']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['ignore_attached'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_autolink',
+                                                        'name'       => 'ignore_attached',
+                                                        'labeltext'  => esc_html__('Don\'t add links for attached terms',
+                                                            'simpletags'),
+                                                        'aftertext'  => __('Don\'t add Auto Links if the term is already assigned to the article.',
+                                                            'simpletags'),
+                                                        'selections' => $select,
+                                                    ]);
+
+
                                                     echo $ui->get_td_end() . $ui->get_tr_end();
                                                     ?>
                                                 </table>
@@ -664,64 +718,11 @@ class SimpleTags_Autolink
                                                         'textvalue' => isset($current['hook_priority']) ? esc_attr($current['hook_priority']) : '12',
                                                         'labeltext' => esc_html__('Priority on the_content and the_title hook',
                                                             'simpletags'),
-                                                        'helptext'  => __('For expert, possibility to change the priority of Auto Links functions on the_content hook. Useful for fix a conflict with an another plugin.',
+                                                        'helptext'  => __('Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins."',
                                                             'simpletags'),
                                                         'min'       => '1',
                                                         'required'  => false,
                                                     ]);
-
-
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simpletags'),
-                                                                'default' => 'true',
-                                                            ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simpletags'),
-                                                            ],
-                                                        ],
-                                                    ];
-                                                    $selected           = (isset($current) && isset($current['unattached_terms'])) ? taxopress_disp_boolean($current['unattached_terms']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['unattached_terms'] : '';
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autolink',
-                                                        'name'       => 'unattached_terms',
-                                                        'labeltext'  => esc_html__('Add links for unattached terms',
-                                                            'simpletags'),
-                                                        'aftertext'  => __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms',
-                                                            'simpletags'),
-                                                        'selections' => $select,
-                                                    ]);
-
-
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simpletags'),
-                                                                'default' => 'true',
-                                                            ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simpletags'),
-                                                            ],
-                                                        ],
-                                                    ];
-                                                    $selected           = (isset($current) && isset($current['ignore_attached'])) ? taxopress_disp_boolean($current['ignore_attached']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['ignore_attached'] : '';
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autolink',
-                                                        'name'       => 'ignore_attached',
-                                                        'labeltext'  => esc_html__('Ignore attached term Auto Links',
-                                                            'simpletags'),
-                                                        'aftertext'  => __('Don\'t add Auto Links if the term is already assigned to the article.',
-                                                            'simpletags'),
-                                                        'selections' => $select,
-                                                    ]);
-
 
                                                     $select             = [
                                                         'options' => [
