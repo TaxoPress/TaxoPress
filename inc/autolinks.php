@@ -364,21 +364,21 @@ class SimpleTags_Autolink
                                                         'options' => [
                                                             [
                                                                 'attr'    => 'none',
-                                                                'text'    => esc_attr__('Retain content case',
+                                                                'text'    => esc_attr__('Use case of text in content',
                                                                     'simpletags'),
                                                                 'default' => 'true'
                                                             ],
                                                             [
                                                                 'attr' => 'termcase',
-                                                                'text' => esc_attr__('Term case', 'simpletags')
+                                                                'text' => esc_attr__('Use case of term', 'simpletags')
                                                             ],
                                                             [
                                                                 'attr' => 'uppercase',
-                                                                'text' => esc_attr__('Uppercase', 'simpletags')
+                                                                'text' => esc_attr__('All uppercase', 'simpletags')
                                                             ],
                                                             [
                                                                 'attr' => 'lowercase',
-                                                                'text' => esc_attr__('Lowercase', 'simpletags')
+                                                                'text' => esc_attr__('All lowercase', 'simpletags')
                                                             ],
                                                         ],
                                                     ];
@@ -387,7 +387,7 @@ class SimpleTags_Autolink
                                                     echo $ui->get_select_number_select([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_case',
-                                                        'labeltext'  => esc_html__('Auto Links case',
+                                                        'labeltext'  => esc_html__('Auto Link case',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);
@@ -415,7 +415,7 @@ class SimpleTags_Autolink
                                                     echo $ui->get_select_number_select([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_display',
-                                                        'labeltext'  => esc_html__('Auto Links in:',
+                                                        'labeltext'  => esc_html__('Auto Link areas',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);
@@ -425,7 +425,7 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_title_attribute',
                                                         'textvalue' => isset($current['autolink_title_attribute']) ? esc_attr($current['autolink_title_attribute']) : 'Posts tagged with %s',
-                                                        'labeltext' => esc_html__('Auto Links title attribute:',
+                                                        'labeltext' => esc_html__('Auto Link title attribute',
                                                             'simpletags'),
                                                         'helptext'  => '',
                                                         'required'  => false,
