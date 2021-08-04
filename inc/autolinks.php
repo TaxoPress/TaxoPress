@@ -587,9 +587,9 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'auto_link_exclude',
                                                         'textvalue' => isset($current['auto_link_exclude']) ? esc_attr($current['auto_link_exclude']) : '',
-                                                        'labeltext' => esc_html__('Exclude some terms from tag link.',
+                                                        'labeltext' => esc_html__('Exclude terms from Auto Links',
                                                             'simpletags'),
-                                                        'helptext'  => esc_html__('Example: If you enter the term "Paris", "City", the auto link tags feature will never replace these terms',
+                                                        'helptext'  => esc_html__('If you enter the terms "WordPress", "Website" the Auto Links feature will never replace these terms. Separate multiple entries with a comma.',
                                                             'simpletags'),
                                                         'required'  => false,
                                                     ]);
@@ -599,9 +599,9 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_exclude_class',
                                                         'textvalue' => isset($current['autolink_exclude_class']) ? esc_attr($current['autolink_exclude_class']) : '',
-                                                        'labeltext' => esc_html__('Exclude tags wrapped in div class/id',
+                                                        'labeltext' => esc_html__('Prevent Auto Links inside classes or IDs',
                                                             'simpletags'),
-                                                        'helptext'  => esc_html__('Seperate multiple entry by comma. E.g, .notag, #main-header etc',
+                                                        'helptext'  => esc_html__('Separate multiple entries with a comma. For example: .notag, #main-header',
                                                             'simpletags'),
                                                         'required'  => false,
                                                     ]);
@@ -618,8 +618,8 @@ class SimpleTags_Autolink
                                                         'h6'     => esc_attr__('H6', 'simpletags'),
                                                     ];
 
-                                                    echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Exclude Auto Links inside these elements:',
-                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('Selecting any of these option will exlude Auto Links of terms found in-between the element tags',
+                                                    echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Prevent Auto Links inside elements',
+                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('Selecting any of these options will prevent Auto Links from being added to terms inside these elements.',
                                                             'simpletags') . '</small></th><td>
                                                     <table class="visbile-table">';
                                                     foreach ($html_exclusions as $key => $value) {
