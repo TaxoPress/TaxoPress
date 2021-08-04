@@ -158,7 +158,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['ignore_case']              = '1';
     $default['taxopress_autolink']['ignore_attached']          = '0';
     $default['taxopress_autolink']['autolink_dom']             = '0';
-    $default['autolink_submit']                                = 'Add Autolinks';
+    $default['autolink_submit']                                = 'Add Auto Links';
     $default['cpt_tax_status']                                 = 'new';
     $result                                                    = taxopress_update_autolink($default);
     update_option('taxopress_default_autolinks', $result);
@@ -245,7 +245,7 @@ function taxopress_autolinks_update_success_admin_notice()
  */
 function taxopress_autolinks_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Autolinks successfully deleted.', 'simpletags'), false);
+    echo taxopress_admin_notices_helper(__('Auto Links successfully deleted.', 'simpletags'), false);
 }
 
 /**

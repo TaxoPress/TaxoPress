@@ -69,8 +69,8 @@ class SimpleTags_Autolink
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Autolinks', 'simpletags'),
-            __('Autolinks', 'simpletags'),
+            __('Auto Links', 'simpletags'),
+            __('Auto Links', 'simpletags'),
             'simple_tags',
             'st_autolinks',
             [
@@ -121,7 +121,7 @@ class SimpleTags_Autolink
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php _e('Autolinks', 'simpletags'); ?></h1>
+                <h1 class="wp-heading-inline"><?php _e('Auto Links', 'simpletags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autolinks&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
@@ -147,7 +147,7 @@ class SimpleTags_Autolink
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(__('Search Autolinks', 'simpletags'), 'term'); ?>
+                    <?php $this->terms_table->search_box(__('Search Auto Links', 'simpletags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>
 
@@ -228,7 +228,7 @@ class SimpleTags_Autolink
 
 
         <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo __('Manage Autolinks', 'simpletags'); ?></h1>
+            <h1><?php echo __('Manage Auto Links', 'simpletags'); ?></h1>
             <div class="wp-clearfix"></div>
 
             <form method="post" action="">
@@ -244,11 +244,11 @@ class SimpleTags_Autolink
                                     <h2 class="hndle ui-sortable-handle">
                                         <?php
                                         if ($autolink_edit) {
-                                            echo esc_html__('Edit Autolinks', 'simpletags');
+                                            echo esc_html__('Edit Auto Links', 'simpletags');
                                             echo '<input type="hidden" name="edited_autolink" value="' . $current['ID'] . '" />';
                                             echo '<input type="hidden" name="taxopress_autolink[ID]" value="' . $current['ID'] . '" />';
                                         } else {
-                                            echo esc_html__('Add new Autolinks', 'simpletags');
+                                            echo esc_html__('Add new Auto Links', 'simpletags');
                                         }
                                         ?>
                                     </h2>
@@ -261,9 +261,9 @@ class SimpleTags_Autolink
                                             echo '<div class="st-taxonomy-content"><div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h2 style="margin-bottom: 5px;">' . __('To create more Autolinks, please upgrade to TaxoPress Pro.',
+                                            <h2 style="margin-bottom: 5px;">' . __('To create more Auto Links, please upgrade to TaxoPress Pro.',
                                                     'simpletags') . '</h2>
-                                            ' . __('With TaxoPress Pro, you can create unlimited Autolinks. You can create Autolinks for any taxonomy.',
+                                            ' . __('With TaxoPress Pro, you can create unlimited Auto Links. You can create Auto Links for any taxonomy.',
                                                     'simpletags') . '
                                             
                                             </p>
@@ -389,7 +389,7 @@ class SimpleTags_Autolink
                                                     echo $ui->get_select_number_select([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_case',
-                                                        'labeltext'  => esc_html__('Autolink case',
+                                                        'labeltext'  => esc_html__('Auto Links case',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);
@@ -417,7 +417,7 @@ class SimpleTags_Autolink
                                                     echo $ui->get_select_number_select([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_display',
-                                                        'labeltext'  => esc_html__('Autolink in:',
+                                                        'labeltext'  => esc_html__('Auto Links in:',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);
@@ -427,7 +427,7 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_title_attribute',
                                                         'textvalue' => isset($current['autolink_title_attribute']) ? esc_attr($current['autolink_title_attribute']) : 'Posts tagged with %s',
-                                                        'labeltext' => esc_html__('Auto link title attribute:',
+                                                        'labeltext' => esc_html__('Auto Links title attribute:',
                                                             'simpletags'),
                                                         'helptext'  => '',
                                                         'required'  => false,
@@ -473,8 +473,8 @@ class SimpleTags_Autolink
                                                         $term_auto_locations[$post_type->name] = $post_type->label;
                                                     }
 
-                                                    echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Enable this autolinks instance for:',
-                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically autolinks in this content. It may not be successful for all post types and layouts.',
+                                                    echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Enable this Auto Links instance for:',
+                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically Auto Links in this content. It may not be successful for all post types and layouts.',
                                                             'simpletags') . '</small></th><td>
                                                     <table class="visbile-table">';
                                                     foreach ($term_auto_locations as $key => $value) {
@@ -529,7 +529,7 @@ class SimpleTags_Autolink
                                                         'textvalue' => isset($current['autolink_usage_max']) ? esc_attr($current['autolink_usage_max']) : '10',
                                                         'labeltext' => esc_html__('Maximum number of links per article',
                                                             'simpletags'),
-                                                        'helptext'  => __('This setting determines the maximum number of autolinks for article.',
+                                                        'helptext'  => __('This setting determines the maximum number of Auto Links for article.',
                                                             'simpletags'),
                                                         'min'       => '1',
                                                         'required'  => true,
@@ -542,7 +542,7 @@ class SimpleTags_Autolink
                                                         'textvalue' => isset($current['autolink_same_usage_max']) ? esc_attr($current['autolink_same_usage_max']) : '1',
                                                         'labeltext' => esc_html__('Maximum number of links for the same tag',
                                                             'simpletags'),
-                                                        'helptext'  => __('This setting determines the maximum number of autolink of same terms.',
+                                                        'helptext'  => __('This setting determines the maximum number of Auto Links of same terms.',
                                                             'simpletags'),
                                                         'min'       => '1',
                                                         'required'  => true,
@@ -553,7 +553,7 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_min_char',
                                                         'textvalue' => isset($current['autolink_min_char']) ? esc_attr($current['autolink_min_char']) : '',
-                                                        'labeltext' => esc_html__('Minimum character length for an autolink',
+                                                        'labeltext' => esc_html__('Minimum character length for an Auto Links',
                                                             'simpletags'),
                                                         'helptext'  => __('For example, \'4\' would only link tags that are of 4 characters or more in length',
                                                             'simpletags'),
@@ -566,7 +566,7 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_max_char',
                                                         'textvalue' => isset($current['autolink_max_char']) ? esc_attr($current['autolink_max_char']) : '',
-                                                        'labeltext' => esc_html__('Maximum character length for an autolink',
+                                                        'labeltext' => esc_html__('Maximum character length for an Auto Links',
                                                             'simpletags'),
                                                         'helptext'  => __('For example, \'4\' would only link tags that are of 4 characters or less in length',
                                                             'simpletags'),
@@ -620,8 +620,8 @@ class SimpleTags_Autolink
                                                         'h6'     => esc_attr__('H6', 'simpletags'),
                                                     ];
 
-                                                    echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Exclude autolinks inside these elements:',
-                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('Selecting any of these option will exlude autolink of terms found in-between the element tags',
+                                                    echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Exclude Auto Links inside these elements:',
+                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('Selecting any of these option will exlude Auto Links of terms found in-between the element tags',
                                                             'simpletags') . '</small></th><td>
                                                     <table class="visbile-table">';
                                                     foreach ($html_exclusions as $key => $value) {
@@ -666,7 +666,7 @@ class SimpleTags_Autolink
                                                         'textvalue' => isset($current['hook_priority']) ? esc_attr($current['hook_priority']) : '12',
                                                         'labeltext' => esc_html__('Priority on the_content and the_title hook',
                                                             'simpletags'),
-                                                        'helptext'  => __('For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin.',
+                                                        'helptext'  => __('For expert, possibility to change the priority of Auto Links functions on the_content hook. Useful for fix a conflict with an another plugin.',
                                                             'simpletags'),
                                                         'min'       => '1',
                                                         'required'  => false,
@@ -717,9 +717,9 @@ class SimpleTags_Autolink
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'ignore_attached',
-                                                        'labeltext'  => esc_html__('Ignore attached term autolink',
+                                                        'labeltext'  => esc_html__('Ignore attached term Auto Links',
                                                             'simpletags'),
-                                                        'aftertext'  => __('Don\'t add autolink if the term is already assigned to the article.',
+                                                        'aftertext'  => __('Don\'t add Auto Links if the term is already assigned to the article.',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);
@@ -810,13 +810,13 @@ class SimpleTags_Autolink
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                     <input type="submit" class="button-primary taxopress-taxonomy-submit"
                                            name="autolink_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Save Autolinks',
+                                           value="<?php echo esc_attr(esc_attr__('Save Auto Links',
                                                'simpletags')); ?>"/>
                                     <?php
                                 } else { ?>
                                     <input type="submit" class="button-primary taxopress-taxonomy-submit"
                                            name="autolink_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Add Autolinks',
+                                           value="<?php echo esc_attr(esc_attr__('Add Auto Links',
                                                'simpletags')); ?>"/>
                                 <?php } ?>
 

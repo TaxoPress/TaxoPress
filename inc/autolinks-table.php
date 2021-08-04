@@ -11,8 +11,8 @@ class Autolinks_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Autolink', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Autolinks', 'simpletags'), //plural name of the listed records
+            'singular' => __('Auto Link', 'simpletags'), //singular name of the listed records
+            'plural'   => __('Auto Links', 'simpletags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -65,8 +65,8 @@ class Autolinks_List extends WP_List_Table
         $columns = [
             'title'     => __('Title', 'simpletags'),
             'taxonomy'  => __('Taxonomy', 'simpletags'),
-            'embedded'  => __('Autolink Post type', 'simpletags'),
-            'autolink_display'  => __('Autolink', 'simpletags')
+            'embedded'  => __('Auto Links Post type', 'simpletags'),
+            'autolink_display'  => __('Auto Links', 'simpletags')
         ];
 
         return $columns;
