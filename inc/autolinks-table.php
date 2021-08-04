@@ -65,8 +65,8 @@ class Autolinks_List extends WP_List_Table
         $columns = [
             'title'     => __('Title', 'simpletags'),
             'taxonomy'  => __('Taxonomy', 'simpletags'),
-            'embedded'  => __('Auto Links Post type', 'simpletags'),
-            'autolink_display'  => __('Auto Links', 'simpletags')
+            'embedded'  => __('Auto Link Post type', 'simpletags'),
+            'autolink_display'  => __('Auto Link areas', 'simpletags')
         ];
 
         return $columns;
