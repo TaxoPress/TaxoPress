@@ -608,6 +608,10 @@ class SimpleTags_Admin {
 						break;
 				}
 
+				if( is_array($option[2]) ){
+					$input_type = '<input type="'.$option[2]["type"].'" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="' . $option[3] . '" '.$option[2]["attr"].' />' . PHP_EOL;
+				}
+
 				// Additional Information
 				$extra = '';
 				if ( ! empty( $option[4] ) ) {

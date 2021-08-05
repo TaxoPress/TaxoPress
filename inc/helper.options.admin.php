@@ -53,7 +53,7 @@ return array(
         array(
             'click_tags_limit',
             __('Click tags limit', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="0" max=""'],
             'regular-text',
             __('Click tags limit on post screen', 'simpletags')
         ),
@@ -166,7 +166,7 @@ return array(
         array(
             'cloud_limit_qty',
             __('Maximum number of tags to display: (default: 45)', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="0" max=""'],
             'small-text',
             '',
             'legacy-tab-content legacy-tag-cloud-content'
@@ -201,12 +201,12 @@ return array(
         array(
             'cloud_max_size',
             __('Most popular font size:', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="0" max=""'],
             'small-text',
             __("The two font sizes are the size of the largest and smallest tags.", 'simpletags'),
             'legacy-tab-content legacy-tag-cloud-content'
         ),
-        array('cloud_min_size', __('Least popular font size:', 'simpletags'), 'number', 'small-text',
+        array('cloud_min_size', __('Least popular font size:', 'simpletags'), ['type' => 'number', 'attr' => 'min="0" max=""'], 'small-text',
             '',
             'legacy-tab-content legacy-tag-cloud-content'),
         array(
@@ -276,7 +276,7 @@ return array(
         array(
             'tt_number',
             __('Max tags display:', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="0" max=""'],
             'small-text',
             __('You must set zero (0) for display all tags.', 'simpletags'),
             'legacy-tab-content legacy-post-tags-content st-hide-content'
@@ -369,7 +369,7 @@ return array(
         array(
             'rp_limit_qty',
             __('Maximum number of related posts to display: (default: 5)', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="0" max=""'],
             'regular-text',
             '',
             'legacy-tab-content legacy-related-posts-content st-hide-content'
@@ -420,7 +420,7 @@ return array(
         array(
             'auto_link_min',
             __('Min usage for auto link tags:', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="1" max="" required'],
             'small-text',
             __('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
@@ -428,7 +428,7 @@ return array(
         array(
             'auto_link_max_by_post',
             __('Maximum number of links per article:', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="1" max="" required'],
             'small-text',
             __('This setting determines the maximum number of links created by article. Default: 10.', 'simpletags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
@@ -436,7 +436,7 @@ return array(
         array(
             'auto_link_max_by_tag',
             __('Maximum number of links for the same tag:', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="1" max="" required'],
             'small-text',
             __('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simpletags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
@@ -468,7 +468,7 @@ return array(
         array(
             'auto_link_priority',
             __('Priority on hook the_content', 'simpletags'),
-            'number',
+            ['type' => 'number', 'attr' => 'min="1" max="" required'],
             'small-text',
             __('For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin. Default: 12.', 'simpletags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
