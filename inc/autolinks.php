@@ -661,8 +661,6 @@ class SimpleTags_Autolink
                                                     ]);
 
                                                     $html_exclusions = [
-                                                        //tags
-                                                        'script' => esc_attr__('script', 'simpletags'),
                                                         //headers
                                                         'h1'     => esc_attr__('H1', 'simpletags'),
                                                         'h2'     => esc_attr__('H2', 'simpletags'),
@@ -670,12 +668,16 @@ class SimpleTags_Autolink
                                                         'h4'     => esc_attr__('H4', 'simpletags'),
                                                         'h5'     => esc_attr__('H5', 'simpletags'),
                                                         'h6'     => esc_attr__('H6', 'simpletags'),
+                                                        //html elements
+                                                        'script' => esc_attr__('script', 'simpletags'),
+                                                        'pre'    => esc_attr__('pre', 'simpletags'),
+                                                        'code'   => esc_attr__('code', 'simpletags'),
                                                     ];
 
                                                     echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Prevent Auto Links inside elements',
-                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('Selecting any of these options will prevent Auto Links from being added to terms inside these elements.',
+                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('Terms inside these html tags will not be auto link.',
                                                             'simpletags') . '</small></th><td>
-                                                    <table class="visbile-table">';
+                                                    <table class="visbile-table st-html-exclusion-table">';
                                                     foreach ($html_exclusions as $key => $value) {
 
                                                         echo '<tr valign="top"><th scope="row"><label for="' . $key . '">' . $value . '</label></th><td>';
@@ -688,13 +690,14 @@ class SimpleTags_Autolink
                                                             'name'       => $key,
                                                             'namearray'  => 'html_exclusion',
                                                             'textvalue'  => $key,
-                                                            'labeltext'  => "",
+                                                            'labeltext'  => $key,
+                                                            'labeldescription' => true,
                                                             'wrap'       => false,
                                                         ]);
 
                                                         echo '</td></tr>';
 
-                                                        if ($key === 'script') {
+                                                        if ($key === 'h6') {
                                                             echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
                                                         }
 
