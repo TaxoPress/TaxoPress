@@ -242,10 +242,14 @@ class SimpleTags_Autolink
                                     <h2 class="hndle ui-sortable-handle">
                                         <?php
                                         if ($autolink_edit) {
+                                            $active_tab = ( isset($current['active_tab']) && !empty(trim($current['active_tab'])) ) ? $current['active_tab'] : 'autolink_general';
                                             echo esc_html__('Edit Auto Links', 'simpletags');
                                             echo '<input type="hidden" name="edited_autolink" value="' . $current['ID'] . '" />';
                                             echo '<input type="hidden" name="taxopress_autolink[ID]" value="' . $current['ID'] . '" />';
+                                            echo '<input type="hidden" name="taxopress_autolink[active_tab]" class="taxopress-active-subtab" value="'.$active_tab.'" />';
                                         } else {
+                                            $active_tab = 'autolink_general';
+                                            echo '<input type="hidden" name="taxopress_autolink[active_tab]" class="taxopress-active-subtab" value="" />';
                                             echo esc_html__('Add new Auto Links', 'simpletags');
                                         }
                                         ?>
@@ -272,27 +276,27 @@ class SimpleTags_Autolink
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="autolink_general_tab active" data-content="autolink_general">
+                                                <li class="autolink_general_tab <?php echo $active_tab === 'autolink_general' ? 'active' : ''; ?>" data-content="autolink_general">
                                                     <a href="#autolink_general"><span><?php esc_html_e('General',
                                                                 'simpletags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_display_tab" data-content="autolink_display">
+                                                <li class="autolink_display_tab <?php echo $active_tab === 'autolink_display' ? 'active' : ''; ?>" data-content="autolink_display">
                                                     <a href="#autolink_display"><span><?php esc_html_e('Post Types',
                                                                 'simpletags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_control_tab" data-content="autolink_control">
+                                                <li class="autolink_control_tab <?php echo $active_tab === 'autolink_control' ? 'active' : ''; ?>" data-content="autolink_control">
                                                     <a href="#autolink_control"><span><?php esc_html_e('Control',
                                                                 'simpletags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_exceptions_tab" data-content="autolink_exceptions">
+                                                <li class="autolink_exceptions_tab <?php echo $active_tab === 'autolink_exceptions' ? 'active' : ''; ?>" data-content="autolink_exceptions">
                                                     <a href="#autolink_exceptions"><span><?php esc_html_e('Exceptions',
                                                                 'simpletags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_advanced_tab" data-content="autolink_advanced">
+                                                <li class="autolink_advanced_tab <?php echo $active_tab === 'autolink_advanced' ? 'active' : ''; ?>" data-content="autolink_advanced">
                                                     <a href="#autolink_advanced"><span><?php esc_html_e('Advanced',
                                                                 'simpletags'); ?></span></a>
                                                 </li>
@@ -302,7 +306,8 @@ class SimpleTags_Autolink
                                             <div class="st-taxonomy-content taxopress-tab-content">
 
 
-                                                <table class="form-table taxopress-table autolink_general">
+                                                <table class="form-table taxopress-table autolink_general"
+                                                       style="<?php echo $active_tab === 'autolink_general' ? '' : 'display:none;'; ?>">
                                                     <?php
                                                     echo $ui->get_tr_start();
 
@@ -491,7 +496,7 @@ class SimpleTags_Autolink
 
 
                                                 <table class="form-table taxopress-table autolink_display"
-                                                       style="display:none;">
+                                                       style="<?php echo $active_tab === 'autolink_display' ? '' : 'display:none;'; ?>">
                                                     <?php
 
 
@@ -558,7 +563,7 @@ class SimpleTags_Autolink
 
 
                                                 <table class="form-table taxopress-table autolink_control"
-                                                       style="display:none;">
+                                                       style="<?php echo $active_tab === 'autolink_control' ? '' : 'display:none;'; ?>">
                                                     <?php
 
 
@@ -633,7 +638,7 @@ class SimpleTags_Autolink
 
 
                                                 <table class="form-table taxopress-table autolink_exceptions"
-                                                       style="display:none;">
+                                                       style="<?php echo $active_tab === 'autolink_exceptions' ? '' : 'display:none;'; ?>">
                                                     <?php
 
 
@@ -711,7 +716,7 @@ class SimpleTags_Autolink
 
 
                                                 <table class="form-table taxopress-table autolink_advanced"
-                                                       style="display:none;">
+                                                       style="<?php echo $active_tab === 'autolink_advanced' ? '' : 'display:none;'; ?>">
                                                     <?php
 
 

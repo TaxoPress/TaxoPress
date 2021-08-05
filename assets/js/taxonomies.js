@@ -1,20 +1,26 @@
-(function($) {
+(function ($) {
 
 
-  jQuery(document).ready(function($) {
+  jQuery(document).ready(function ($) {
 
 
     // Taxonomy tab
-    $('ul.st-taxonomy-tab li').on('click', function(e) {
+    $('ul.st-taxonomy-tab li').on('click', function (e) {
       e.preventDefault()
       var tab_content = $(this).attr('data-content');
-      
+
       $('.st-taxonomy-tab li').removeClass('active');
       $(this).addClass('active');
 
       $('.st-taxonomy-content table').hide();
       $('.st-taxonomy-content table.' + tab_content).show();
+      //set tab height
+      $('.st-taxonomy-tab').css('height', $('.st-taxonomy-content').height());
     })
+    if ($('.st-taxonomy-content').length > 0) {
+      //set tab height
+      $('.st-taxonomy-tab').css('height', $('.st-taxonomy-content').height());
+    }
 
 
     if ($('.taxonomy_external_edit').length > 0) {
@@ -28,22 +34,22 @@
 
     //taxonomy var visibility toggle
     if ($('input[name="cpt_custom_tax[query_var]"]').length > 0) {
-      if( $('input[name="cpt_custom_tax[query_var]"]').is(":checked") ) {
+      if ($('input[name="cpt_custom_tax[query_var]"]').is(":checked")) {
         $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').show();
-      }else {
+      } else {
         $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').hide();
       }
     }
     $('input[name="cpt_custom_tax[query_var]"]').on('change', function (e) {
-      if( $(this).is(":checked") ) {
+      if ($(this).is(":checked")) {
         $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').show();
-      }else {
+      } else {
         $('input[name="cpt_custom_tax[query_var_slug]"]').closest('tr').hide();
       }
     })
 
     // Confirm our deletions
-    $('.taxopress-delete-top, .taxopress-delete-bottom').on('click', function(e) {
+    $('.taxopress-delete-top, .taxopress-delete-bottom').on('click', function (e) {
       e.preventDefault()
       var msg = ''
       if (typeof taxopress_type_data !== 'undefined') {
@@ -56,11 +62,11 @@
         'modal': true,
         'autoOpen': true,
         'buttons': {
-          "OK": function() {
+          "OK": function () {
             var form = $(e.target).closest('form')
             $(e.target).unbind('click').click()
           },
-          "Cancel": function() {
+          "Cancel": function () {
             $(this).dialog('close')
           }
         }
@@ -131,7 +137,7 @@
       var chars = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u', 'N', 'n', 'C', 'c']
 
       for (var i = 0; i < diacritics.length; i++) {
-        s = s.replace(diacritics[ i ], chars[ i ])
+        s = s.replace(diacritics[i], chars[i])
       }
 
       return s
@@ -157,7 +163,7 @@
       }
     }
 
-    function isEmptyOrSpaces(str){
+    function isEmptyOrSpaces(str) {
       return str === null || str.match(/^ *$/) !== null;
     }
 
@@ -231,8 +237,8 @@
     }
 
     function transliterate(word) {
-      return word.split('').map(function(char) {
-        return cyrillic[ char ] || char
+      return word.split('').map(function (char) {
+        return cyrillic[char] || char
       }).join("")
     }
 
@@ -247,17 +253,17 @@
       var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url)
       if (!results) return null
-      if (!results[ 2 ]) return ''
-      return decodeURIComponent(results[ 2 ].replace(/\+/g, " "))
+      if (!results[2]) return ''
+      return decodeURIComponent(results[2].replace(/\+/g, " "))
     }
 
-    $('#taxopress_choose_icon').on('click', function(e) {
+    $('#taxopress_choose_icon').on('click', function (e) {
       e.preventDefault()
 
       var button = $(this)
       var id = jQuery('#menu_icon').attr('id')
       _custom_media = true
-      wp.media.editor.send.attachment = function(props, attachment) {
+      wp.media.editor.send.attachment = function (props, attachment) {
         if (_custom_media) {
           $("#" + id).val(attachment.url).change()
         } else {
@@ -269,7 +275,7 @@
       return false
     })
 
-    $('#menu_icon').on('change', function() {
+    $('#menu_icon').on('change', function () {
       var value = $(this).val().trim()
       $('#menu_icon_preview').html(composePreviewContent(value))
     })
@@ -281,13 +287,13 @@
       var fields = $(".taxopress-section").find("select, textarea, input").serializeArray(),
         field_label,
         field_object
-        field_error_count = 0,
+      field_error_count = 0,
         field_error_message = '<ul>';
-      
+
 
       if (!$('#st-tags-slug-error-input').hasClass('hidemessage')) {
         field_error_count = 1;
-        field_error_message += '<li>'+$('#st-tags-slug-error-input').html() + ' <span class="required">*</span></li>';
+        field_error_message += '<li>' + $('#st-tags-slug-error-input').html() + ' <span class="required">*</span></li>';
       }
 
 
@@ -304,28 +310,28 @@
             field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
           }
         }
-     });
+      });
 
-     if ($('.taxonomy_posttypes :checkbox:checked').length == 0) {
-       field_error_count = 1;
-       field_error_message += '<li>' +taxopress_tax_data.no_associated_type + ' <span class="required">*</span></li>';
-     }
-     field_error_message += '</ul>';
+      if ($('.taxonomy_posttypes :checkbox:checked').length == 0) {
+        field_error_count = 1;
+        field_error_message += '<li>' + taxopress_tax_data.no_associated_type + ' <span class="required">*</span></li>';
+      }
+      field_error_message += '</ul>';
 
-      
+
 
       if (field_error_count > 0) {
         e.preventDefault();
         // Display the alert
         $('#taxopress-modal-alert-content').html(field_error_message);
         $('[data-remodal-id=taxopress-modal-alert]').remodal().open();
-     }
-      
-      
+      }
+
+
     })
 
 
-    $('#name, #label, #singular_label').on('change paste', function(e) {
+    $('#name, #label, #singular_label').on('change paste', function (e) {
       if ('edit' === getParameterByName('action')) {
         return
       }
@@ -361,11 +367,11 @@
           }
         }
       })
-       })
+    })
 
 
     // Change taxonomy type position
-    if ($('.taxopress-taxonomy-type-wrap').length > 0 && $('.tablenav .bulkactions').length > 0 ) {
+    if ($('.taxopress-taxonomy-type-wrap').length > 0 && $('.tablenav .bulkactions').length > 0) {
       $('.tablenav .bulkactions').html($('.taxopress-taxonomy-type-wrap').html());
       $('.taxopress-taxonomy-type-wrap').remove();
     }
@@ -379,33 +385,32 @@
     function insert_param_to_url(key, value) {
       key = encodeURIComponent(key);
       value = encodeURIComponent(value);
-  
+
       // kvp looks like ['key1=value1', 'key2=value2', ...]
       var kvp = document.location.search.substr(1).split('&');
-      let i=0;
-  
-      for(; i<kvp.length; i++){
-          if (kvp[i].startsWith(key + '=')) {
-              let pair = kvp[i].split('=');
-              pair[1] = value;
-              kvp[i] = pair.join('=');
-              break;
-          }
+      let i = 0;
+
+      for (; i < kvp.length; i++) {
+        if (kvp[i].startsWith(key + '=')) {
+          let pair = kvp[i].split('=');
+          pair[1] = value;
+          kvp[i] = pair.join('=');
+          break;
+        }
       }
-  
-      if(i >= kvp.length){
-          kvp[kvp.length] = [key,value].join('=');
+
+      if (i >= kvp.length) {
+        kvp[kvp.length] = [key, value].join('=');
       }
-  
+
       // can return this or...
       let params = kvp.join('&');
-  
+
       // reload page with new params
       document.location.search = params;
-  }
+    }
 
 
   })
 
 })(jQuery)
- 
