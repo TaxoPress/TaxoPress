@@ -22,7 +22,7 @@ class SimpleTags_Client_Autolinks {
 		add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
 
         //legacy
-		if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' ) ) {
+		if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' )  && (int)SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) > 0 ) {
 			add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
 			add_filter( 'the_title', array( __CLASS__, 'the_title' ) );
 		}
