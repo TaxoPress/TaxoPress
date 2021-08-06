@@ -313,7 +313,7 @@ class SimpleTags_Autolink
 
 
                                                     echo $ui->get_th_start();
-                                                    echo $ui->get_label('name', esc_html__('Title',
+                                                    echo $ui->get_label('title', esc_html__('Title',
                                                             'simpletags')) . $ui->get_required_span();
                                                     echo $ui->get_th_end() . $ui->get_td_start();
 
@@ -584,7 +584,7 @@ class SimpleTags_Autolink
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_usage_max',
                                                         'textvalue' => isset($current['autolink_usage_max']) ? esc_attr($current['autolink_usage_max']) : '10',
-                                                        'labeltext' => esc_html__('Maximum number of links per article',
+                                                        'labeltext' => esc_html__('Maximum number of links per post',
                                                             'simpletags'),
                                                         'helptext'  => __('This setting determines the maximum number of Auto Links in one post.',
                                                             'simpletags'),
@@ -815,17 +815,18 @@ class SimpleTags_Autolink
                                 wp_nonce_field('taxopress_addedit_autolink_nonce_action',
                                     'taxopress_addedit_autolink_nonce_field');
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit"
+                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-autolink-submit"
                                            name="autolink_submit"
                                            value="<?php echo esc_attr(esc_attr__('Save Auto Links',
                                                'simpletags')); ?>"/>
                                     <?php
                                 } else { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit"
+                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-autolink-submit"
                                            name="autolink_submit"
                                            value="<?php echo esc_attr(esc_attr__('Add Auto Links',
                                                'simpletags')); ?>"/>
                                 <?php } ?>
+
 
                                 <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
                                        value="<?php echo esc_attr($tab); ?>"/>
@@ -847,6 +848,25 @@ class SimpleTags_Autolink
         </div><!-- End .wrap -->
 
         <div class="clear"></div>
+
+        <?php # Modal Windows; ?>
+<div class="remodal" data-remodal-id="taxopress-modal-alert"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simpletags'); ?></div>
+    <div id="taxopress-modal-alert-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simpletags'); ?></button>
+</div>
+
+<div class="remodal" data-remodal-id="taxopress-modal-confirm"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+    <div id="taxopress-modal-confirm-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simpletags'); ?></button>
+    <button data-remodal-action="confirm"
+            class="remodal-confirm"><?php echo __('Yes', 'simpletags'); ?></button>
+</div>
+
         <?php
     }
 
