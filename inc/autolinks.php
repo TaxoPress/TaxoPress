@@ -484,7 +484,7 @@ class SimpleTags_Autolink
                                                         'name'       => 'ignore_attached',
                                                         'labeltext'  => esc_html__('Don\'t add links for attached terms',
                                                             'simpletags'),
-                                                        'aftertext'  => __('Don\'t add Auto Links if the term is already assigned to the article.',
+                                                        'aftertext'  => __('Don\'t add Auto Links if the term is already attached to the post.',
                                                             'simpletags'),
                                                         'selections' => $select,
                                                     ]);

@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.7
-Stable tag: 3.2.1
+Stable tag: 3.2.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,7 +115,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.2.1- [===UNRELEASED===]
+v3.2.0- [===UNRELEASED===]
 * Added: Autolink screen with improved features such as:
 * Autolink: New autolink UI #501
 * Autolink: Option to set autolink terms to lowercase, uppercase or retain content case #161
