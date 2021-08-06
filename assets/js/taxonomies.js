@@ -15,11 +15,15 @@
       $('.st-taxonomy-content table').hide();
       $('.st-taxonomy-content table.' + tab_content).show();
       //set tab height
-      $('.st-taxonomy-tab').css('height', $('.st-taxonomy-content').height());
+      if ($('.st-taxonomy-content').height() > $('.st-taxonomy-tab').height()) {
+        $('.st-taxonomy-tab').css('height', $('.st-taxonomy-content').height());
+      }
     })
     if ($('.st-taxonomy-content').length > 0) {
       //set tab height
-      $('.st-taxonomy-tab').css('height', $('.st-taxonomy-content').height());
+      if ($('.st-taxonomy-content').height() > $('.st-taxonomy-tab').height()) {
+        $('.st-taxonomy-tab').css('height', $('.st-taxonomy-content').height());
+      }
     }
 
 
@@ -286,8 +290,8 @@
 
       var fields = $(".taxopress-section").find("select, textarea, input").serializeArray(),
         field_label,
-        field_object
-      field_error_count = 0,
+        field_object,
+        field_error_count = 0,
         field_error_message = '<ul>';
 
 
