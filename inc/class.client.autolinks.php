@@ -771,7 +771,7 @@ class SimpleTags_Client_Autolinks {
 		global $post;
 
 		if(!is_object($post)){
-			return $content;
+			return $title;
 		}
 
         $post_tags = taxopress_get_autolink_data();

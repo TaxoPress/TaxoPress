@@ -115,7 +115,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.2.0- [===UNRELEASED===]
+v3.2.0- 2021-08-09
 * Added: Autolink screen with improved features such as:
 * Autolink: New autolink UI #501
 * Autolink: Option to set autolink terms to lowercase, uppercase or retain content case #161
