@@ -215,7 +215,7 @@ class SimpleTags_Related_Post
             }
 
 
-            if (!isset($current['title']) && count($relatedposts) > 0) {
+            if (!isset($current['title']) && count($relatedposts) > 0 && apply_filters('taxopress_related_posts_create_limit', true)) {
                 $related_post_limit = true;
             }
 

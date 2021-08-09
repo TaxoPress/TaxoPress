@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.7
-Stable tag: 3.1.2
+Stable tag: 3.2.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -114,6 +114,17 @@ TaxoPress can be installed in 3 easy steps:
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.2.0- 2021-08-09
+* Added: Autolink screen with improved features such as:
+* Autolink: New autolink UI #501
+* Autolink: Option to set autolink terms to lowercase, uppercase or retain content case #161
+* Autolink: Option to exlude autolink if the tag is already applied to the article #147
+* Autolink: Option to set minimum and maximum character length for autolink condition #132
+* Autolink: Support for more all taxonomies #268
+* Autolink: Option to restrict Autolink instance to a post type.
+* Autolink: Option to exclude autolinks in certain classes/HTML Tags like headers, div class/id etc #160
+* Deprecated: Move old Autolink settings to legacy #491
 
 v3.1.2- 2021-07-19
 * Fixed: Term display font color empty value error notification #628

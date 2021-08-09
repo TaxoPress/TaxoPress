@@ -20,6 +20,7 @@ return array(
     'auto_link_views'        => 'singular',
     'auto_link_dom'          => 0,
     'auto_link_title'        => __('Posts tagged with %s', 'simpletags'),
+    'auto_link_title_excl'   => 0,
     // Administration
     'order_click_tags'       => 'name-asc',
     'click_tags_limit'       => '100',

@@ -365,9 +365,13 @@ class taxopress_admin_ui
      * @param string $label_text Text to display in the `<label>` tag.
      * @return string $value `<label>` tag with filled out parts.
      */
-    public function get_label($label_for = '', $label_text = '')
+    public function get_label($label_for = '', $label_text = '', $labeldescription = false)
     {
-        return '<label for="' . esc_attr($label_for) . '">' . wp_strip_all_tags($label_text) . '</label>';
+        if($labeldescription){
+            return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities('<'.$label_text.'> </'.$label_text.'>').'</code></label>';
+        }else{
+            return '<label for="' . esc_attr($label_for) . '">' . wp_strip_all_tags($label_text) . '</label>';
+        }
     }
 
     /**
@@ -388,7 +392,7 @@ class taxopress_admin_ui
      */
     public function get_help($help_text = '')
     {
-        return '<a href="#" class="taxopress-help dashicons-before dashicons-editor-help" title="' . esc_attr($help_text) . '"></a>';
+        return '<span class="taxopress-help-tooltip dashicons-before dashicons-editor-help"><span class="tooltip-text">' . esc_html($help_text) . '</span></span>';
     }
 
     /**
@@ -721,6 +725,7 @@ class taxopress_admin_ui
                 'checkvalue'    => '',
                 'checked'       => 'true',
                 'checklisttext' => '',
+                'labeldescription' => false,
                 'default'       => false,
             ]
         );
@@ -743,7 +748,7 @@ class taxopress_admin_ui
         } else {
             $value .= '<input type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[]" value="' . $args['checkvalue'] . '" checked="checked" />';
         }
-        $value .= $this->get_label($args['name'], $args['labeltext']);
+        $value .= $this->get_label($args['name'], $args['labeltext'], $args['labeldescription']);
         $value .= '<br/>';
 
         if ($args['wrap']) {

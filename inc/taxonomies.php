@@ -371,8 +371,8 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                             <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
                                    value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_add',
                                        esc_attr__('Add Taxonomy', 'simpletags'))); ?>"/>
-                        <div class="taxonomy-required-field"></div>
                     <?php } ?>
+                        <div class="taxonomy-required-field"></div>
 
                         <?php if (!empty($current)) { ?>
                             <input type="hidden" name="tax_original" id="tax_original"

@@ -26,6 +26,9 @@ class SimpleTags_Admin {
 		// Admin menu
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 
+        //Admin footer credit
+        add_action( 'in_admin_footer', array( __CLASS__, 'taxopress_admin_footer') );
+
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
@@ -43,6 +46,11 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/related-posts-table.php';
         require STAGS_DIR . '/inc/related-posts.php';
         SimpleTags_Related_Post::get_instance();
+
+        //Auto Links
+        require STAGS_DIR . '/inc/autolinks-table.php';
+        require STAGS_DIR . '/inc/autolinks.php';
+        SimpleTags_Autolink::get_instance();
 
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
@@ -84,6 +92,8 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/class-taxonomies-table.php';
         require STAGS_DIR . '/inc/taxonomies.php';
         SimpleTags_Admin_Taxonomies::get_instance();
+
+		do_action('taxopress_admin_class_after_includes');
 
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
@@ -309,6 +319,9 @@ class SimpleTags_Admin {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
+
+		do_action('taxopress_admin_class_before_assets_register');
+
 		//color picker style
   		wp_enqueue_style( 'wp-color-picker' );
 
@@ -339,25 +352,20 @@ class SimpleTags_Admin {
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
 
+		$taxopress_pages = taxopress_admin_pages();
+
 		// Common Helper for Post, Page and Plugin Page
 		if (
 			in_array( $pagenow, $wp_post_pages ) ||
 			( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ||
-			( isset( $_GET['page'] ) && in_array( $_GET['page'], array(
-					'st_mass_terms',
-					'st_auto',
-					'st_options',
-					'st_manage',
-					'st_taxonomies',
-					'st_terms_display',
-					'st_post_tags',
-					'st_related_posts',
-				) ) )
+			( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages ) )
 		) {
 			wp_enqueue_script( 'st-remodal-js' );
 			wp_enqueue_style( 'st-remodal-css' );
 			wp_enqueue_style( 'st-remodal-default-theme-css' );
 			wp_enqueue_style( 'st-admin' );
+			
+			do_action('taxopress_admin_class_after_styles_enqueue');
 		}
 
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
@@ -366,6 +374,7 @@ class SimpleTags_Admin {
 			wp_enqueue_script( 'st-helper-options' );
 		}
 
+		do_action('taxopress_admin_class_after_assets_enqueue');
 	}
 
 	/**
@@ -488,9 +497,26 @@ class SimpleTags_Admin {
 	 * @author WebFactory Ltd
 	 */
 	public static function printAdminFooter() {
+		/* ?>
+		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
+		<?php */
+	}
+
+	/**
+	 * A short public static function for display the same copyright on all taxopress admin pages
+	 *
+	 * @return void
+	 * @author Olatechpro
+	 */
+	public static function taxopress_admin_footer() {
+
+        $taxopress_pages = taxopress_admin_pages();
+
+		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages )) {
 		?>
 		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simpletags' ), STAGS_VERSION ); ?></p>
 		<?php
+        }
 	}
 
 	/**
@@ -512,7 +538,12 @@ class SimpleTags_Admin {
 			$desc_html_tag = 'div';
 
             if($section === 'legacy'){
-                $table_sub_tab = '<div class="st-legacy-subtab"><span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | <span data-content=".legacy-post-tags-content">Tags for Current Post</span> | <span data-content=".legacy-related-posts-content">Related Posts</span></div>' . PHP_EOL;
+                $table_sub_tab = '<div class="st-legacy-subtab">
+                <span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | 
+                <span data-content=".legacy-post-tags-content">Tags for Current Post</span> | 
+                <span data-content=".legacy-related-posts-content">Related Posts</span> | 
+                <span data-content=".legacy-auto-link-content">Auto link</span>
+                </div>' . PHP_EOL;
             }else{
                 $table_sub_tab = '';
             }
@@ -575,6 +606,10 @@ class SimpleTags_Admin {
 					case 'number':
 						$input_type = '<input type="number" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="' . $option[3] . '" />' . PHP_EOL;
 						break;
+				}
+
+				if( is_array($option[2]) ){
+					$input_type = '<input type="'.$option[2]["type"].'" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr( $option_actual[ $option[0] ] ) . '" class="' . $option[3] . '" '.$option[2]["attr"].' />' . PHP_EOL;
 				}
 
 				// Additional Information
