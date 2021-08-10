@@ -68,6 +68,9 @@ class SimpleTags_Client {
         if ( $query->is_category == true || $query->is_tag == true || $query->is_tax == true ) {
             $get_queried_object = @get_queried_object();
             if(is_object($get_queried_object)){
+				if(!isset($get_queried_object->taxonomy)){
+                    return $query;
+				}
                 if(!taxopress_show_all_cpt_in_archive_result($get_queried_object->taxonomy)){
                     return $query;
                 }
