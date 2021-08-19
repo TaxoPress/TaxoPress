@@ -79,7 +79,9 @@ class SimpleTags_Autolink
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if(taxopress_is_screen_main_page()){
+          add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
@@ -267,7 +269,7 @@ class SimpleTags_Autolink
                                                     'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Auto Links. You can create Auto Links for any taxonomy.',
                                                     'simpletags') . '
-                                            
+
                                             </p>
                                             </div></div>';
 

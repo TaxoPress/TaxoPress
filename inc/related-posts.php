@@ -79,7 +79,9 @@ class SimpleTags_Related_Post
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if(taxopress_is_screen_main_page()){
+          add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
