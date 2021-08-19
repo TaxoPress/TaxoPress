@@ -533,7 +533,7 @@ class SimpleTags_Autolink
                                                     }
 
                                                     echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Enable this Auto Links instance for:',
-                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically Auto Links in this content. It may not be successful for all post types and layouts.',
+                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically insert Auto Links in this content. It may not be successful for all post types and layouts.',
                                                             'simpletags') . '</small></th><td>
                                                     <table class="visbile-table">';
                                                     foreach ($term_auto_locations as $key => $value) {
