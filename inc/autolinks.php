@@ -729,7 +729,7 @@ class SimpleTags_Autolink
                                                         'textvalue' => isset($current['hook_priority']) ? esc_attr($current['hook_priority']) : '12',
                                                         'labeltext' => esc_html__('Priority on the_content and the_title hook',
                                                             'simpletags'),
-                                                        'helptext'  => __('Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins."',
+                                                        'helptext'  => __('Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins. Higher number means autolink will be executed only after hooks with lower number has been executed.',
                                                             'simpletags'),
                                                         'min'       => '1',
                                                         'required'  => false,
