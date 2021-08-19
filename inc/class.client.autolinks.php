@@ -59,7 +59,7 @@ class SimpleTags_Client_Autolinks {
 	 * @return array
 	 */
 	public static function get_tags_from_current_posts($options = false) {
-       
+
 		if ( is_array( self::$posts ) && count( self::$posts ) > 0 ) {
 			// Generate SQL from post id
 			$postlist = implode( "', '", self::$posts );
@@ -77,7 +77,7 @@ class SimpleTags_Client_Autolinks {
 
 			// Get cache if exist
 			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
-			if ( $options || false === $cache ) 
+			if ( $options || false === $cache )
             {
 				foreach ( self::$posts as $object_id ) {
 					// Get terms
@@ -191,17 +191,17 @@ class SimpleTags_Client_Autolinks {
                 }
             }
 
-                //min character check 
+                //min character check
                 $min_char_pass = true;
                 if($autolink_min_char > 0){
                     $min_char_pass = strlen($term->name) >= $autolink_min_char ? true : false;
                 }
-                //max character check 
+                //max character check
                 $max_char_pass = true;
                 if($autolink_max_char > 0){
                     $max_char_pass = strlen($term->name) <= $autolink_max_char ? true : false;
                 }
-                
+
 			if ( $term->count >= $auto_link_min  && $min_char_pass && $max_char_pass ) {
 				self::$link_tags[ $term->name ] = esc_url( get_term_link( $term, $term->taxonomy ) );
 			}
@@ -232,7 +232,7 @@ class SimpleTags_Client_Autolinks {
 
 		// user preference for this post ?
 		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
-		if ( ! empty( $meta_value ) ) {
+		if ( ! empty( $meta_value )  || is_admin() ) {
 			return $content;
 		}
 
@@ -354,7 +354,7 @@ class SimpleTags_Client_Autolinks {
                         $div_id = ltrim(trim($idclass), "#");
                         $exclusion .= "[not(ancestor::div/@id='$div_id')]";
                     }else{
-                        $div_class = ltrim(trim($idclass), ".");        
+                        $div_class = ltrim(trim($idclass), ".");
                         $exclusion .= "[not(ancestor::div/@class='$div_class')]";
                     }
                 }
@@ -371,7 +371,7 @@ class SimpleTags_Client_Autolinks {
             $link_closing = '</a>';
             $upperterm = strtoupper($search);
             $lowerterm = strtolower($search);
-            
+
             $remaining_usage = $max_by_post-self::$tagged_link_count;
             if( $same_usage_max > $remaining_usage){
                 $same_usage_max = $remaining_usage;
@@ -391,7 +391,7 @@ class SimpleTags_Client_Autolinks {
 			} else {
 				$replaced = str_replace( $search, $substitute, $node->wholeText );
 			}
-            
+
             if($replaced && !empty(trim($replaced))){
                 $j ++;
                if($rep_count > 0){
@@ -468,17 +468,17 @@ class SimpleTags_Client_Autolinks {
 
 		// there should always be at least one token, but check just in case
 		$anchor_level = 0;
-        
+
 		if ( isset( $tokens ) && is_array( $tokens ) && count( $tokens ) > 0 ) {
 			$i = 0;
             $ancestor = '';
 			foreach ( $tokens as $token ) {
-                if ( ++ $i % 2 && $token !== '' ) 
+                if ( ++ $i % 2 && $token !== '' )
                 { // this token is (non-markup) text
 
 
                     $pass_check = true;
-                    
+
                     if(!empty(trim($ancestor))){
 
                     //auto link exclusion
@@ -506,7 +506,7 @@ class SimpleTags_Client_Autolinks {
                                         break;
                                     }
                                 }else{
-                                    $div_class = ltrim(trim($idclass), "."); 
+                                    $div_class = ltrim(trim($idclass), ".");
                                     if ( preg_match_all('/<[a-z ]*class="'.$div_class.'"/i', $ancestor, $matches) || preg_match_all('/<[a-z ]*class=\''.$div_class.'\'/i', $ancestor, $matches)) {
                                         $pass_check = false;
                                         break;
@@ -528,7 +528,7 @@ class SimpleTags_Client_Autolinks {
                                 $same_usage_max = $remaining_usage;
                             }
 
-                            
+
 							if ( $same_usage_max > 0 ) {// Limit replacement at 1 by default, or options value !
 								$token = preg_replace( $match, $substitute, $token, $same_usage_max, $rep_count ); // only PHP 5 supports calling preg_replace with 5 arguments
                                 self::$tagged_link_count = self::$tagged_link_count+$rep_count;
@@ -580,7 +580,7 @@ class SimpleTags_Client_Autolinks {
 
 		// user preference for this post ?
 		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
-		if ( ! empty( $meta_value ) ) {
+		if ( ! empty( $meta_value ) || is_admin() ) {
 			return $title;
 		}
 
@@ -655,7 +655,7 @@ class SimpleTags_Client_Autolinks {
 		global $post;
 
 
-		if(!is_object($post)){
+		if(!is_object($post) || is_admin() ){
 			return $content;
 		}
 
@@ -770,7 +770,7 @@ class SimpleTags_Client_Autolinks {
 	public static function taxopress_autolinks_the_title( $title = '' ) {
 		global $post;
 
-		if(!is_object($post)){
+		if(!is_object($post) || is_admin() ){
 			return $title;
 		}
 
