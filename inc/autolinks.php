@@ -127,7 +127,7 @@ class SimpleTags_Autolink
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autolinks&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
-                <div class="taxopress-description">This feature can automatically add links to your content. For example, if you have a term called "WordPress", this feature will find "WordPress" in your content and add links to the archive page for that term.</div>
+                <div class="taxopress-description"><?php esc_html_e('This feature can automatically create links to your terms.', 'simpletags'); ?></div>
 
 
                 <?php
