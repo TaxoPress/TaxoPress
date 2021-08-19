@@ -677,6 +677,7 @@ class SimpleTags_Autolink
                                                         'h6'     => esc_attr__('H6', 'simpletags'),
                                                         //html elements
                                                         'script' => esc_attr__('script', 'simpletags'),
+                                                        'style'  => esc_attr__('style', 'simpletags'),
                                                         'pre'    => esc_attr__('pre', 'simpletags'),
                                                         'code'   => esc_attr__('code', 'simpletags'),
                                                     ];
