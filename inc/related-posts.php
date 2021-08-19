@@ -264,7 +264,7 @@ class SimpleTags_Related_Post
                                                             'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Related Posts. You can create Related Posts for any taxonomy and then display those Related Posts anywhere on your site.',
                                                             'simpletags') . '
-                                            
+
                                             </p>
                                             </div>';
 
@@ -325,7 +325,11 @@ class SimpleTags_Related_Post
                                                             ],
                                                         ];
                                                         $selected           = isset($current) ? taxopress_disp_boolean($current['title_header']) : '';
+
                                                         $select['selected'] = !empty($selected) ? $current['title_header'] : '';
+                                                        if(isset($current['title_header']) && empty($current['title_header'])){
+                                                          $select['selected'] = 'none';
+                                                        }
                                                         echo $ui->get_select_checkbox_input_main([
                                                             'namearray'  => 'taxopress_related_post',
                                                             'name'       => 'title_header',
