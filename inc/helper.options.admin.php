@@ -407,7 +407,7 @@ return array(
             'legacy-tab-content legacy-related-posts-content st-hide-content'
         ),
 
-        
+
         //auto link legacy
         array(
             'auto_link_tags',
@@ -419,10 +419,10 @@ return array(
         ),
         array(
             'auto_link_min',
-            __('Min usage for auto link tags:', 'simpletags'),
+            __('Minimum usage for terms', 'simpletags'),
             ['type' => 'number', 'attr' => 'min="1" max="" required'],
             'small-text',
-            __('This parameter allows to fix a minimal value of use of tags. Default: 1.', 'simpletags'),
+            __('This setting helps prevent rarely used terms from being used by Auto Links. Default: 1.', 'simpletags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
         ),
         array(
