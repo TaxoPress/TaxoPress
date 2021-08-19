@@ -41,11 +41,11 @@ function st_register_widget() {
 /**
  * Change menu item order
  */
-add_action('custom_menu_order', 'taxopress_re_order_menu');	
-function taxopress_re_order_menu()	{	    
-    global $submenu;	    
-    $newSubmenu = [];	    
-    foreach ($submenu as $menuName => $menuItems) {	        
+add_action('custom_menu_order', 'taxopress_re_order_menu');
+function taxopress_re_order_menu()	{
+    global $submenu;
+    $newSubmenu = [];
+    foreach ($submenu as $menuName => $menuItems) {
         if ('st_options' === $menuName) {
             $taxopress_settings = $taxopress_taxonomies = false;
 
@@ -71,10 +71,10 @@ function taxopress_re_order_menu()	{
             //resort array
             ksort($taxopress_submenus);
 
-            $submenu['st_options'] = $taxopress_submenus;	            
-           break;	        
-        }	    
-    }	
+            $submenu['st_options'] = $taxopress_submenus;
+           break;
+        }
+    }
 }
 
 // Init TaxoPress
@@ -105,7 +105,7 @@ function taxopress_admin_pages(){
         'st_related_posts',
         'st_autolinks',
     ];
-    
+
    return apply_filters('taxopress_admin_pages', $taxopress_pages);
 }
 
@@ -118,4 +118,23 @@ function taxopress_starts_with( $haystack, $needle ) {
 function taxopress_is_html($string)
 {
   return preg_match("/<[^<]+>/",$string,$m) != 0;
+}
+
+
+
+function taxopress_is_screen_main_page(){
+
+	if(isset($_GET['action']) && $_GET['action'] === 'edit'){
+		return false;
+	}
+
+	if(isset($_GET['add']) && $_GET['add'] === 'new_item'){
+			return false;
+		}
+
+		if(isset($_GET['add']) && $_GET['add'] === 'taxonomy'){
+				return false;
+		}
+
+   return true;
 }

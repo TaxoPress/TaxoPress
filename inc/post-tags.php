@@ -79,7 +79,9 @@ class SimpleTags_Post_Tags
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if(taxopress_is_screen_main_page()){
+          add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
@@ -214,7 +216,7 @@ class SimpleTags_Post_Tags
 
             }
 
-            
+
             if (!isset($current['title']) && count($posttags) > 0 && apply_filters('taxopress_post_tags_create_limit', true) ) {
                 $post_tags_limit = true;
             }
@@ -264,7 +266,7 @@ class SimpleTags_Post_Tags
                                                             'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Terms for Current Post. You can create Terms for Current Post for any taxonomy and then display those Terms for Current Post anywhere on your site.',
                                                             'simpletags') . '
-                                            
+
                                             </p>
                                             </div>';
 
@@ -327,8 +329,8 @@ class SimpleTags_Post_Tags
                                                             'selections' => $select,
                                                         ]);
 
-                                                
-                                                
+
+
 
                                                 /**
                                                  * Filters the arguments for post types to list for taxonomy association.
@@ -369,7 +371,7 @@ class SimpleTags_Post_Tags
 
 
                                                 echo '<tr valign="top"><th scope="row"><label for="'.$key.'">'.$value.'</label></th><td>';
-                                                
+
                                                     echo $ui->get_check_input([
                                                         'checkvalue' => $key,
                                                         'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
@@ -380,7 +382,7 @@ class SimpleTags_Post_Tags
                                                         'labeltext'  => "",
                                                         'wrap'       => false,
                                                     ]);
-                                                
+
                                                 echo '</td></tr>';
 
                                                 if($key === 'blogonly'){
@@ -388,7 +390,7 @@ class SimpleTags_Post_Tags
                                                 }
 
 
-                                            
+
                                                 }
                                                 echo '</table></td></tr>';
 
