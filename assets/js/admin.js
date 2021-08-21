@@ -45,7 +45,7 @@
     // -------------------------------------------------------------
     //   Prevent non number from number type input
     // -------------------------------------------------------------
-    $(document).on('change paste keyup keydown', 'input[type="number"]', function (e) {
+    $(document).on('change paste keyup keydown', '.taxopress-section input[type="number"]', function (e) {
       if (e.which === 69) {
         e.preventDefault();
       }

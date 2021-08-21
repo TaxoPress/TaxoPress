@@ -299,6 +299,7 @@ class SimpleTags_Client_Autolinks {
 
 	/**
 	 * Replace text by link, except HTML tag, and already text into link, use DOMdocument.
+	 * https://stackoverflow.com/questions/4044812/regex-domdocument-match-and-replace-text-not-in-a-link
 	 *
 	 * @param string $content
 	 * @param string $search
@@ -311,6 +312,8 @@ class SimpleTags_Client_Autolinks {
 	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
 		$dom = new DOMDocument();
 
+		$content = str_replace('&','&#38;',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
+
         libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
 		$result = $dom->loadHtml( mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" ) );
@@ -318,8 +321,7 @@ class SimpleTags_Client_Autolinks {
 			return;
 		}
 
-
-        if($options){
+				if($options){
             $autolink_case = $options['autolink_case'];
             $html_exclusion = $options['html_exclusion'];
             $exclude_class = $options['autolink_exclude_class'];
@@ -405,13 +407,14 @@ class SimpleTags_Client_Autolinks {
             if ( $replaced_count >= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
                break;
             }
-            }else{
+            }else{$replaced = str_replace('&','&#38;',$replaced);
                 break;
             }
 		}
 
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
+		$content = str_replace('&#38;','&',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
 	}
 
 	/**
