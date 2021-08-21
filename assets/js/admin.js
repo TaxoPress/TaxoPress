@@ -279,7 +279,46 @@
       }
 
 
-    })
+    });
+
+
+    // -------------------------------------------------------------
+    //   Related posts submit error
+    // -------------------------------------------------------------
+    $('.taxopress-relatedposts-submit').on('click', function (e) {
+
+
+      var fields = $(".taxopress-section").find("select, textarea, input").serializeArray(),
+        field_label,
+        field_object,
+        field_error_count = 0,
+        field_error_message = '<ul>';
+
+      $.each(fields, function (i, field) {
+        field_object = $('input[name="' + field.name + '"]');
+        if (field_object.attr('required')) {
+          if (!field.value) {
+            field_label = field_object.closest('tr').find('label').html();
+            field_error_count = 1;
+            field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
+          } else if (isEmptyOrSpaces(field.value)) {
+            field_label = field_object.closest('tr').find('label').html();
+            field_error_count = 1;
+            field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
+          }
+        }
+      });
+
+      field_error_message += '</ul>';
+
+      if (field_error_count > 0) {
+        e.preventDefault();
+        // Display the alert
+        $('#taxopress-modal-alert-content').html(field_error_message);
+        $('[data-remodal-id=taxopress-modal-alert]').remodal().open();
+      }
+
+    });
 
 
 
