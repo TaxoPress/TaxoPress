@@ -458,7 +458,7 @@ class taxopress_admin_ui
             [
                 'maxlength' => '',
                 'onblur'    => '',
-                'class'    => '',
+                'class'     => '',
             ]
         );
         $args     = wp_parse_args($args, $defaults);

@@ -456,7 +456,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                             'simpletags'); ?></span></a>
                                             </li>
 
-                                            <?php if($taxonomy_edit){ ?>
+                                            <?php if( $taxonomy_edit && !$external_edit ){ ?>
                                             <li class="taxonomy_slug_tab" data-content="taxonomy_slug">
                                                 <a href="#taxonomy_slug"><span><?php esc_html_e('Slug',
                                                             'simpletags'); ?></span></a>
