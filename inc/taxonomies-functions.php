@@ -1658,10 +1658,10 @@ function get_all_taxopress_taxonomies_request()
         'public'   => false,
     ],
         'objects');
-        
+
     if( !array_key_exists('category', $public) && !array_key_exists('category', $public) ){
         $public = array_merge($category, $public);
-    } 
+    }
     if( !array_key_exists('post_tag', $public) && !array_key_exists('post_tag', $public) ){
         $public = array_merge($post_tag, $public);
     }
@@ -2250,12 +2250,12 @@ function taxopress_re_register_single_taxonomy($taxonomy)
 }
 
 function taxopress_show_all_cpt_in_archive_result($request_tax){
-            
+
             $taxonomies = taxopress_get_taxonomy_data();
 
             $current = false;
             if ($request_tax && array_key_exists($request_tax, $taxonomies)) {
-                $current       = $taxonomies[$selected_taxonomy];
+                $current       = $taxonomies[$request_tax];
             } elseif (taxonomy_exists($request_tax)) {
                 //not out taxonomy
                 $external_taxonomy = get_taxonomies(['name' => $request_tax], 'objects');

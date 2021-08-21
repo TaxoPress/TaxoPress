@@ -674,13 +674,13 @@ class SimpleTags_Related_Post
                                 wp_nonce_field('taxopress_addedit_relatedpost_nonce_action',
                                     'taxopress_addedit_relatedpost_nonce_field');
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit"
+                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-relatedposts-submit"
                                            name="relatedpost_submit"
                                            value="<?php echo esc_attr(esc_attr__('Save Related Posts',
                                                'simpletags')); ?>"/>
                                     <?php
                                 } else { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit"
+                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-relatedposts-submit"
                                            name="relatedpost_submit"
                                            value="<?php echo esc_attr(esc_attr__('Add Related Posts',
                                                'simpletags')); ?>"/>
@@ -717,6 +717,24 @@ class SimpleTags_Related_Post
         </div><!-- End .wrap -->
 
         <div class="clear"></div>
+
+<?php # Modal Windows; ?>
+<div class="remodal" data-remodal-id="taxopress-modal-alert"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simpletags'); ?></div>
+    <div id="taxopress-modal-alert-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simpletags'); ?></button>
+</div>
+
+<div class="remodal" data-remodal-id="taxopress-modal-confirm"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+    <div id="taxopress-modal-confirm-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simpletags'); ?></button>
+    <button data-remodal-action="confirm"
+            class="remodal-confirm"><?php echo __('Yes', 'simpletags'); ?></button>
+</div>
         <?php
     }
 
