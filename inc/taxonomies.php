@@ -545,6 +545,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'textvalue' => isset($current['label']) ? esc_attr($current['label']) : '',
                                                     'aftertext' => esc_html__('(e.g. Jobs)', 'simpletags'),
                                                     'labeltext' => esc_html__('Plural Label', 'simpletags'),
+                                                    'maxlength' => '100',
                                                     'helptext'  => '',
                                                     'required'  => true,
                                                 ]);
@@ -555,6 +556,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'textvalue' => isset($current['singular_label']) ? esc_attr($current['singular_label']) : '',
                                                     'aftertext' => esc_html__('(e.g. Job)', 'simpletags'),
                                                     'labeltext' => esc_html__('Singular Label', 'simpletags'),
+                                                    'maxlength' => '100',
                                                     'helptext'  => '',
                                                     'required'  => true,
                                                 ]);
@@ -1023,6 +1025,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'labeltext' => esc_html__('Menu Name', 'simpletags'),
                                                     'helptext'  => esc_html__('Custom admin menu name for your taxonomy.',
                                                         'simpletags'),
+                                                    'maxlength' => '100',
                                                     'data'      => [
                                                         'label'     => 'item', // Not localizing because it's isolated.
                                                         'plurality' => 'plural',
