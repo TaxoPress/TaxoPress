@@ -103,6 +103,7 @@ class SimpleTags_Client_RelatedPosts {
 			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simpletags' ),
 			'ID'            => 0,
 			'hide_title'    => 0,
+			'hide_output'   => 0,
 			'title_header'  => '',
 		);
 
@@ -130,7 +131,6 @@ class SimpleTags_Client_RelatedPosts {
 		if ( ! is_array( $user_args ) ) {
 			$user_args = strtr( $user_args, $markers );
 		}
-
 		$args = wp_parse_args( $user_args, $defaults );
 		extract( $args );
 
@@ -186,7 +186,11 @@ class SimpleTags_Client_RelatedPosts {
 			$current_terms = get_the_terms( (int) $object_id, $taxonomy );
 
 			if ( $current_terms == false || is_wp_error( $current_terms ) ) {
-				return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+                if((int)$hide_output === 0){
+				    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+                }else{
+                    return '';
+                }
 			}
 
 			// Number - Limit
@@ -317,7 +321,11 @@ class SimpleTags_Client_RelatedPosts {
 
 			// If empty return no posts text
 			if ( empty( $include_terms_sql ) ) {
-				return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+                if((int)$hide_output === 0){
+				    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+                }else {
+                    return '';
+                }
 			}
 
 			// Posts: title, comments_count, date, permalink, post_id, counter
@@ -344,7 +352,11 @@ class SimpleTags_Client_RelatedPosts {
 		if ( $format == 'object' || $format == 'array' ) {
 			return $results;
 		} elseif ( $results === false || empty( $results ) ) {
-			return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+            if((int)$hide_output === 0){
+			    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+            } else {
+                return '';
+            }
 		}
 
 		if ( empty( $dateformat ) ) {

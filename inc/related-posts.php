@@ -607,6 +607,30 @@ class SimpleTags_Related_Post
                                                         ]);
 
 
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simpletags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simpletags'),
+                                                                ],
+                                                            ],
+                                                        ];
+                                                        $selected           = (isset($current) && isset($current['hide_output'])) ? taxopress_disp_boolean($current['hide_output']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['hide_output'] : '';
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'hide_output',
+                                                            'labeltext'  => esc_html__('Hide output if no related post is found ?',
+                                                                'simpletags'),
+                                                            'selections' => $select,
+                                                        ]);
+
+
                                                         echo $ui->get_text_input([
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'xformat',

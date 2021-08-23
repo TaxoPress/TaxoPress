@@ -81,6 +81,7 @@ class SimpleTags_Client_TagCloud {
 			'category'    => 0,
 			'ID'          => 0,
 			'hide_title'  => 0,
+			'hide_output' => 0,
 			'post_type'   => '',
 		);
 
@@ -154,7 +155,11 @@ class SimpleTags_Client_TagCloud {
         }
 
 		if ( empty( $terms ) ) {
-			return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
+            if((int)$hide_output === 0){
+			    return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
+            }else{
+                return '';
+            }
 		}
 
 		$counts = $terms_data = array();

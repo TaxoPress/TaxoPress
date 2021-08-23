@@ -116,6 +116,7 @@ class SimpleTags_Client_PostTags {
 			'taxonomy'  => false,
 			'embedded'  => false,
 			'feed'      => false,
+			'hide_output' => 0,
 		);
 
 		// Get values in DB
@@ -192,7 +193,11 @@ class SimpleTags_Client_PostTags {
 
 		// If no terms, return text nothing.
 		if ( empty( $terms ) ) {
-			return $notagtext;
+            if((int)$hide_output === 0){
+			    return $notagtext;
+            }else{
+                return '';
+            }
 		}
 
 		// HTML Rel
