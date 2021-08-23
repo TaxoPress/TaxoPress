@@ -316,6 +316,11 @@
         }
       });
 
+      if( $('input[name="cpt_custom_tax[name]"]').val() && !isNaN($('input[name="cpt_custom_tax[name]"]').val()) ){
+        field_error_count = 1;
+        field_error_message += '<li>' + taxopress_tax_data.integer_error + ' <span class="required">*</span></li>';
+      }
+
       if ($('.taxonomy_posttypes :checkbox:checked').length == 0) {
         field_error_count = 1;
         field_error_message += '<li>' + taxopress_tax_data.no_associated_type + ' <span class="required">*</span></li>';

@@ -1,18 +1,18 @@
-=== TaxoPress - Create and Manage Taxonomies, Tags, Categories ===
+=== TaxoPress is the Tag, Category, and Taxonomy Manager ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
-Tags: tag, tags, taxonomy, term, cpt, tagging, navigation, tag manager, tags manager, term manager, terms manager
+Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
-Tested up to: 5.7
-Stable tag: 3.2.0
+Tested up to: 5.8
+Stable tag: 3.2.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-TaxoPress allows you to create and manage Tags, Categories and all your WordPress taxonomy terms.
+TaxoPress enables you to manage Tags, Categories and all your WordPress taxonomy terms.
 
 == Description ==
 
-TaxoPress allows you to create and manage Tags, Categories and all your WordPress taxonomy terms. With the TaxoPress plugin, you can build new taxonomies, and any taxonomy to different post types. 
+TaxoPress allows you to create and manage Tags, Categories and all your WordPress taxonomy terms. With the TaxoPress plugin, you can build new taxonomies, and add them to any post type. 
 
 In TaxoPress, you can manage taxonomies, and also terms. There are tools for you to add, rename, remove, delete and even merge terms. TaxoPress also enables to use your terms for advanced features such as Related Posts and Tag Clouds.
 
@@ -24,7 +24,7 @@ In TaxoPress, you can manage taxonomies, and also terms. There are tools for you
 4. **Manage terms**: Quickly add, rename, remove, delete and even merge terms.
 5. **Automatically create terms from posts**: TaxoPress can analyze your posts and automatically create relevant Tags and Categories.
 6. **Automatically suggest terms from posts**: TaxoPress can use the Dandelion API and OpenCalais API to analyze your WordPress content and suggest Tags that you can add to your post.
-7. **Link words to Tags**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add link to the archive page for that tag.
+7. **Automatically link words to terms**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add link to the archive page for that tag.
 
 = Feature #1. Create and Manage Taxonomies =
 
@@ -76,11 +76,11 @@ The Suggested Tags feature in TaxoPress will analyze your WordPress content and 
 
 [Click here to read about suggesting terms](https://taxopress.com/docs/introduction-to-suggested-tags/).
 
-= Feature #7. How to Link Words to Tags =
+= Feature #7. How to Link Words to Terms =
 
 The Auto Links feature in TaxoPress will automatically add links to your content. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag. So any instances of “WordPress” will link to /tag/wordpress.
 
-[Click here to read about linking words](https://taxopress.com/docs/introduction-to-auto-links/).
+[Click here to read about Auto Links](https://taxopress.com/docs/introduction-to-auto-links/).
 
 == Installation ==
 
@@ -114,6 +114,22 @@ TaxoPress can be installed in 3 easy steps:
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.2.1- 2021-08-23
+* Fixed: Notice: Undefined property: WP_Post_Type::$taxonomy on plugin activation #756
+* Fixed: Couldn't save the related posts 'Title header' with 'None' #697
+* Fixed: Auto link showing in WordPress admin #772
+* Fixed: Remove unused option in TaxoPress screen edit pages. #709
+* Fixed: Added exclusion for <style> elements in auto link #774
+* Fixed: Imporove taxonomy page on small screen sizes #749
+* Fixed: Add limit to all taxopress number input. #727
+* Fixed: Limit taxonomy screen plural label input to 100 characters. #745
+* Fixed: Remove slug edit tab for external taxonomies #755
+* Fixed: Issue with 'e' character being typed in editor #770
+* Fixed: Issue with '&' in auto link #770
+* Fixed: Prevent usage of integers(number) only as taxonomy slug #744
+* Fixed: Add an option to hide the display if result is empty in "Related Posts", "Terms Display" and "Terms for Current Post" #662
+* Fixed: Many other screen improvement to taxopress pages
 
 v3.2.0- 2021-08-09
 * Added: Autolink screen with improved features such as:

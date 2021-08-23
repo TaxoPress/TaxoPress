@@ -79,7 +79,9 @@ class SimpleTags_Post_Tags
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if (taxopress_is_screen_main_page()) {
+            add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
@@ -125,7 +127,9 @@ class SimpleTags_Post_Tags
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_post_tags&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
-                   <div class="taxopress-description">This feature allows you show all the terms assigned to the current post.</div>
+                <div class="taxopress-description">This feature allows you show all the terms assigned to the current
+                    post.
+                </div>
 
 
                 <?php
@@ -214,8 +218,9 @@ class SimpleTags_Post_Tags
 
             }
 
-            
-            if (!isset($current['title']) && count($posttags) > 0 && apply_filters('taxopress_post_tags_create_limit', true) ) {
+
+            if (!isset($current['title']) && count($posttags) > 0 && apply_filters('taxopress_post_tags_create_limit',
+                    true)) {
                 $post_tags_limit = true;
             }
 
@@ -264,7 +269,7 @@ class SimpleTags_Post_Tags
                                                             'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Terms for Current Post. You can create Terms for Current Post for any taxonomy and then display those Terms for Current Post anywhere on your site.',
                                                             'simpletags') . '
-                                            
+
                                             </p>
                                             </div>';
 
@@ -290,8 +295,8 @@ class SimpleTags_Post_Tags
                                                             'wrap'        => false,
                                                         ]);
 
-                                                        $options = [];
-                                                        $main_option = [];
+                                                        $options      = [];
+                                                        $main_option  = [];
                                                         $other_option = [];
                                                         foreach (get_all_taxopress_taxonomies() as $_taxonomy) {
                                                             $_taxonomy = $_taxonomy->name;
@@ -327,70 +332,69 @@ class SimpleTags_Post_Tags
                                                             'selections' => $select,
                                                         ]);
 
-                                                
-                                                
 
-                                                /**
-                                                 * Filters the arguments for post types to list for taxonomy association.
-                                                 *
-                                                 *
-                                                 * @param array $value Array of default arguments.
-                                                 */
-                                                $args = apply_filters('taxopress_attach_post_types_to_taxonomy',
-                                                    ['public' => true]);
+                                                        /**
+                                                         * Filters the arguments for post types to list for taxonomy association.
+                                                         *
+                                                         *
+                                                         * @param array $value Array of default arguments.
+                                                         */
+                                                        $args = apply_filters('taxopress_attach_post_types_to_taxonomy',
+                                                            ['public' => true]);
 
-                                                // If they don't return an array, fall back to the original default. Don't need to check for empty, because empty array is default for $args param in get_post_types anyway.
-                                                if (!is_array($args)) {
-                                                    $args = ['public' => true];
-                                                }
-                                                $output = 'objects'; // Or objects.
+                                                        // If they don't return an array, fall back to the original default. Don't need to check for empty, because empty array is default for $args param in get_post_types anyway.
+                                                        if (!is_array($args)) {
+                                                            $args = ['public' => true];
+                                                        }
+                                                        $output = 'objects'; // Or objects.
 
-                                                /**
-                                                 * Filters the results returned to display for available post types for taxonomy.
-                                                 *
-                                                 * @param array $value Array of post type objects.
-                                                 * @param array $args Array of arguments for the post type query.
-                                                 * @param string $output The output type we want for the results.
-                                                 */
-                                                $post_types = apply_filters('taxopress_get_post_types_for_taxonomies',
-                                                    get_post_types($args, $output), $args, $output);
+                                                        /**
+                                                         * Filters the results returned to display for available post types for taxonomy.
+                                                         *
+                                                         * @param array $value Array of post type objects.
+                                                         * @param array $args Array of arguments for the post type query.
+                                                         * @param string $output The output type we want for the results.
+                                                         */
+                                                        $post_types = apply_filters('taxopress_get_post_types_for_taxonomies',
+                                                            get_post_types($args, $output), $args, $output);
 
-                                                $term_auto_locations = [
-                                                    'homeonly' => esc_attr__('Homepage', 'simpletags'),
-                                                    'blogonly' => esc_attr__('Blog display', 'simpletags'),
-                                                ];
-                                                foreach ($post_types as $post_type) {
-                                                     $term_auto_locations[$post_type->name] = $post_type->label;
-                                                }
+                                                        $term_auto_locations = [
+                                                            'homeonly' => esc_attr__('Homepage', 'simpletags'),
+                                                            'blogonly' => esc_attr__('Blog display', 'simpletags'),
+                                                        ];
+                                                        foreach ($post_types as $post_type) {
+                                                            $term_auto_locations[$post_type->name] = $post_type->label;
+                                                        }
 
-                                                   echo '<tr valign="top"><th scope="row"><label>'.esc_html__('Attempt to automatically display terms', 'simpletags').'</label><br /><small style=" color: #646970;">'.esc_html__('TaxoPress will attempt to automatically display terms in this content. It may not be successful for all post types and layouts.', 'simpletags').'</small></th><td>
+                                                        echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display terms',
+                                                                'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display terms in this content. It may not be successful for all post types and layouts.',
+                                                                'simpletags') . '</small></th><td>
                                                     <table>';
-                                                foreach ($term_auto_locations as $key => $value ) {
+                                                        foreach ($term_auto_locations as $key => $value) {
 
 
-                                                echo '<tr valign="top"><th scope="row"><label for="'.$key.'">'.$value.'</label></th><td>';
-                                                
-                                                    echo $ui->get_check_input([
-                                                        'checkvalue' => $key,
-                                                        'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
-                                                                $current['embedded'], true)) ? 'true' : 'false',
-                                                        'name'       => $key,
-                                                        'namearray'  => 'embedded',
-                                                        'textvalue'  => $key,
-                                                        'labeltext'  => "",
-                                                        'wrap'       => false,
-                                                    ]);
-                                                
-                                                echo '</td></tr>';
+                                                            echo '<tr valign="top"><th scope="row"><label for="' . $key . '">' . $value . '</label></th><td>';
 
-                                                if($key === 'blogonly'){
-                                                    echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
-                                                }
+                                                            echo $ui->get_check_input([
+                                                                'checkvalue' => $key,
+                                                                'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
+                                                                        $current['embedded'], true)) ? 'true' : 'false',
+                                                                'name'       => $key,
+                                                                'namearray'  => 'embedded',
+                                                                'textvalue'  => $key,
+                                                                'labeltext'  => "",
+                                                                'wrap'       => false,
+                                                            ]);
+
+                                                            echo '</td></tr>';
+
+                                                            if ($key === 'blogonly') {
+                                                                echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
+                                                            }
 
 
-                                            
-                                                }
-                                                echo '</table></td></tr>';
+                                                        }
+                                                        echo '</table></td></tr>';
 
 
                                                         echo $ui->get_number_input([
@@ -442,6 +446,29 @@ class SimpleTags_Post_Tags
                                                                 'simpletags'),
                                                             'helptext'  => '',
                                                             'required'  => false,
+                                                        ]);
+
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simpletags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simpletags'),
+                                                                ],
+                                                            ],
+                                                        ];
+                                                        $selected           = (isset($current) && isset($current['hide_output'])) ? taxopress_disp_boolean($current['hide_output']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['hide_output'] : '';
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_post_tags',
+                                                            'name'       => 'hide_output',
+                                                            'labeltext'  => esc_html__('Hide display output if no terms ?',
+                                                                'simpletags'),
+                                                            'selections' => $select,
                                                         ]);
 
                                                         echo $ui->get_text_input([

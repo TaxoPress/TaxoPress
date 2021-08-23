@@ -321,8 +321,6 @@ function taxopress_termsdisplay_shortcode($atts)
             $tagcloud_arg = build_query($tagclouds[$tagcloud_id]);
             echo SimpleTags_Client_TagCloud::extendedTagCloud( $tagcloud_arg );
 
-        } else {
-            echo __('Terms Display not found.', 'simpletags');
         }
 
         $html = ob_get_clean();

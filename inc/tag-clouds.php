@@ -79,7 +79,9 @@ class SimpleTags_Tag_Clouds
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if(taxopress_is_screen_main_page()){
+          add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
@@ -263,7 +265,7 @@ class SimpleTags_Tag_Clouds
 
                                             <h2 style="margin-bottom: 5px;">' . __('To create more Terms Display, please upgrade to TaxoPress Pro.','simpletags').'</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Terms Display. You can create Terms Display for any taxonomy and then display those Terms Display anywhere on your site.','simpletags').'
-                                            
+
                                             </p>
                                             </div>';
 
@@ -307,6 +309,28 @@ class SimpleTags_Tag_Clouds
                                                 'namearray'  => 'taxopress_tag_cloud',
                                                 'name'       => 'hide_title',
                                                 'labeltext'  => esc_html__('Hide title in output ?', 'simpletags'),
+                                                'selections' => $select,
+                                            ]);
+
+                                                $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = ( isset($current) && isset($current['hide_output']) ) ? taxopress_disp_boolean($current['hide_output']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['hide_output'] : '';
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'taxopress_tag_cloud',
+                                                'name'       => 'hide_output',
+                                                'labeltext'  => esc_html__('Hide display output if no terms ?', 'simpletags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -364,7 +388,7 @@ class SimpleTags_Tag_Clouds
                                                     'helptext'    => '',
                                                     'required'  => true,
                                                 ]);
-                                                
+
                                                 $select = [
 								                    'options' => [
 									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simpletags' ), 'default' => 'true' ],
@@ -484,7 +508,7 @@ class SimpleTags_Tag_Clouds
                                                     'helptext'    => '',
                                                     'required'  => true,
                                                 ]);
-                                                
+
                                                 $select = [
 								                    'options' => [
 									                    [ 'attr' => 'pt', 'text' => esc_attr__( 'Point', 'simpletags' ), 'default' => 'true' ],
@@ -579,7 +603,7 @@ class SimpleTags_Tag_Clouds
 
 
                         <?php if($tag_cloud_limit){ ?>
-                                
+
                                 <div class="pp-version-notice-bold-purple" style="margin-left:0px;"><div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free. The Pro version has more features and support. </div><div class="pp-version-notice-bold-purple-button"><a href="https://taxopress.com/pro" target="_blank">Upgrade to Pro</a></div></div>
 
                         <?php } ?>
@@ -594,15 +618,15 @@ class SimpleTags_Tag_Clouds
 
                     </div>
                 </div>
-                
+
 
                 </div>
 
                 <div class="taxopress-right-sidebar">
                     <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;">
 
-                        
-                <?php 
+
+                <?php
                     if(!$tag_cloud_limit){ ?>
                         <p class="submit">
 
@@ -622,7 +646,7 @@ class SimpleTags_Tag_Clouds
                                value="<?php echo esc_attr($tab); ?>"/>
                         </p>
 
-                        <?php if (!empty($current)) { 
+                        <?php if (!empty($current)) {
                             ?>
                         <p>
                             <?php echo '<div class="taxopress-warning" style="">' . __('Shortcode: ','simpletags'); ?> &nbsp;
@@ -631,7 +655,7 @@ class SimpleTags_Tag_Clouds
                         </p>
                         <?php } ?>
 
-                   <?php 
+                   <?php
                     }
                 ?>
 
@@ -643,7 +667,7 @@ class SimpleTags_Tag_Clouds
 
 
             </form>
-            
+
         </div><!-- End .wrap -->
 
         <div class="clear"></div>

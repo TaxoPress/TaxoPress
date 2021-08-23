@@ -522,6 +522,18 @@ ul.st-taxonomy-tab li.active a {
     background-color: rgb(254, 255, 224);
 }
 
+
+@media only screen and (max-width: 1270px) {
+    .taxonomiesui,
+    .taxopress-right-sidebar {
+      float: none;
+      margin: initial;
+      width: -webkit-fill-available;
+      width: -moz-available;
+      display: block;
+    }
+}
+
 @media only screen and (max-width: 1024px) {
     .taxopress-right-sidebar {
         float: none;

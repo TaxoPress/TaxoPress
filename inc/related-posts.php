@@ -79,7 +79,9 @@ class SimpleTags_Related_Post
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if(taxopress_is_screen_main_page()){
+          add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
@@ -264,7 +266,7 @@ class SimpleTags_Related_Post
                                                             'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Related Posts. You can create Related Posts for any taxonomy and then display those Related Posts anywhere on your site.',
                                                             'simpletags') . '
-                                            
+
                                             </p>
                                             </div>';
 
@@ -325,7 +327,11 @@ class SimpleTags_Related_Post
                                                             ],
                                                         ];
                                                         $selected           = isset($current) ? taxopress_disp_boolean($current['title_header']) : '';
+
                                                         $select['selected'] = !empty($selected) ? $current['title_header'] : '';
+                                                        if(isset($current['title_header']) && empty($current['title_header'])){
+                                                          $select['selected'] = 'none';
+                                                        }
                                                         echo $ui->get_select_checkbox_input_main([
                                                             'namearray'  => 'taxopress_related_post',
                                                             'name'       => 'title_header',
@@ -601,6 +607,30 @@ class SimpleTags_Related_Post
                                                         ]);
 
 
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simpletags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simpletags'),
+                                                                ],
+                                                            ],
+                                                        ];
+                                                        $selected           = (isset($current) && isset($current['hide_output'])) ? taxopress_disp_boolean($current['hide_output']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['hide_output'] : '';
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'hide_output',
+                                                            'labeltext'  => esc_html__('Hide output if no related post is found ?',
+                                                                'simpletags'),
+                                                            'selections' => $select,
+                                                        ]);
+
+
                                                         echo $ui->get_text_input([
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'xformat',
@@ -668,13 +698,13 @@ class SimpleTags_Related_Post
                                 wp_nonce_field('taxopress_addedit_relatedpost_nonce_action',
                                     'taxopress_addedit_relatedpost_nonce_field');
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit"
+                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-relatedposts-submit"
                                            name="relatedpost_submit"
                                            value="<?php echo esc_attr(esc_attr__('Save Related Posts',
                                                'simpletags')); ?>"/>
                                     <?php
                                 } else { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit"
+                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-relatedposts-submit"
                                            name="relatedpost_submit"
                                            value="<?php echo esc_attr(esc_attr__('Add Related Posts',
                                                'simpletags')); ?>"/>
@@ -711,6 +741,24 @@ class SimpleTags_Related_Post
         </div><!-- End .wrap -->
 
         <div class="clear"></div>
+
+<?php # Modal Windows; ?>
+<div class="remodal" data-remodal-id="taxopress-modal-alert"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simpletags'); ?></div>
+    <div id="taxopress-modal-alert-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simpletags'); ?></button>
+</div>
+
+<div class="remodal" data-remodal-id="taxopress-modal-confirm"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+    <div id="taxopress-modal-confirm-content"></div>
+    <br>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simpletags'); ?></button>
+    <button data-remodal-action="confirm"
+            class="remodal-confirm"><?php echo __('Yes', 'simpletags'); ?></button>
+</div>
         <?php
     }
 

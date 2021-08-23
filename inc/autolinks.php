@@ -79,7 +79,9 @@ class SimpleTags_Autolink
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if(taxopress_is_screen_main_page()){
+          add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
@@ -125,7 +127,7 @@ class SimpleTags_Autolink
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autolinks&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
 
-                <div class="taxopress-description">This feature can automatically add links to your content. For example, if you have a term called "WordPress", this feature will find "WordPress" in your content and add links to the archive page for that term.</div>
+                <div class="taxopress-description"><?php esc_html_e('This feature can automatically create links to your terms.', 'simpletags'); ?></div>
 
 
                 <?php
@@ -267,7 +269,7 @@ class SimpleTags_Autolink
                                                     'simpletags') . '</h2>
                                             ' . __('With TaxoPress Pro, you can create unlimited Auto Links. You can create Auto Links for any taxonomy.',
                                                     'simpletags') . '
-                                            
+
                                             </p>
                                             </div></div>';
 
@@ -531,7 +533,7 @@ class SimpleTags_Autolink
                                                     }
 
                                                     echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Enable this Auto Links instance for:',
-                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically Auto Links in this content. It may not be successful for all post types and layouts.',
+                                                            'simpletags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically insert Auto Links in this content. It may not be successful for all post types and layouts.',
                                                             'simpletags') . '</small></th><td>
                                                     <table class="visbile-table">';
                                                     foreach ($term_auto_locations as $key => $value) {
@@ -675,6 +677,7 @@ class SimpleTags_Autolink
                                                         'h6'     => esc_attr__('H6', 'simpletags'),
                                                         //html elements
                                                         'script' => esc_attr__('script', 'simpletags'),
+                                                        'style'  => esc_attr__('style', 'simpletags'),
                                                         'pre'    => esc_attr__('pre', 'simpletags'),
                                                         'code'   => esc_attr__('code', 'simpletags'),
                                                     ];
@@ -726,7 +729,7 @@ class SimpleTags_Autolink
                                                         'textvalue' => isset($current['hook_priority']) ? esc_attr($current['hook_priority']) : '12',
                                                         'labeltext' => esc_html__('Priority on the_content and the_title hook',
                                                             'simpletags'),
-                                                        'helptext'  => __('Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins."',
+                                                        'helptext'  => __('Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins. Higher number means autolink will be executed only after hooks with lower number has been executed.',
                                                             'simpletags'),
                                                         'min'       => '1',
                                                         'required'  => false,

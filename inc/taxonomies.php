@@ -64,6 +64,7 @@ class SimpleTags_Admin_Taxonomies
                         'simpletags'),
                     'no_associated_type'  => esc_html__('Please select at least one post type.', 'simpletags'),
                     'existing_taxonomies' => $registered_taxonomies,
+                    'integer_error'  => esc_html__('Taxonomy slug cannot be numbers only.', 'simpletags'),
                 ]
             );
 
@@ -105,7 +106,9 @@ class SimpleTags_Admin_Taxonomies
             ]
         );
 
-        add_action("load-$hook", [$this, 'screen_option']);
+        if(taxopress_is_screen_main_page()){
+          add_action("load-$hook", [$this, 'screen_option']);
+        }
     }
 
     /**
@@ -178,7 +181,7 @@ class SimpleTags_Admin_Taxonomies
                 <div id="col-container" class="wp-clearfix">
 
                     <div class="col-wrap">
-<?php 
+<?php
 $selected_option = 'public';
 if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
     $selected_option = 'all';
@@ -317,7 +320,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 <br /><br />
                                                 ' . __('Registration key',
                                     'simpletags') . ': <font color="green">' . $current["name"] . '</font>
-                                                
+
                                                 </div>';
                         }elseif ($external_edit) {
                             echo '<div class="taxopress-warning">' . __('This is an external taxonomy and not created with TaxoPress.',
@@ -326,7 +329,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 <br /><br />
                                                 ' . __('Registration key',
                                     'simpletags') . ': <font color="green">' . $current["name"] . '</font>
-                                                
+
                                                 </div>';
                         }else{
                             echo '<div class="taxopress-warning">' . __('This taxonomy was created by TaxoPress.',
@@ -335,7 +338,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 <br /><br />
                                                 ' . __('Registration key',
                                     'simpletags') . ': <font color="green">' . $current["name"] . '</font>
-                                                
+
                                                 </div>';
                         }
                     }
@@ -454,7 +457,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                             'simpletags'); ?></span></a>
                                             </li>
 
-                                            <?php if($taxonomy_edit){ ?>
+                                            <?php if( $taxonomy_edit && !$external_edit ){ ?>
                                             <li class="taxonomy_slug_tab" data-content="taxonomy_slug">
                                                 <a href="#taxonomy_slug"><span><?php esc_html_e('Slug',
                                                             'simpletags'); ?></span></a>
@@ -467,7 +470,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                             'simpletags'); ?></span></a>
                                             </li>
                                             <?php } ?>
-                                            
+
                                             <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                             <li class="taxonomy_delete_tab" data-content="taxonomy_delete">
                                                 <a href="#taxonomy_delete"><span><?php esc_html_e('Deactivate or Delete',
@@ -505,7 +508,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'        => 'name',
                                                     'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
                                                     'maxlength'   => '32',
-                                                    'helptext'    => 'Slugs can only contain alphanumeric, latin characters and underscores.',
+                                                    'helptext'    => 'The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.',
                                                     'class'     => 'tax-slug-input',
                                                     'required'    => true,
                                                     'placeholder' => false,
@@ -543,6 +546,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'textvalue' => isset($current['label']) ? esc_attr($current['label']) : '',
                                                     'aftertext' => esc_html__('(e.g. Jobs)', 'simpletags'),
                                                     'labeltext' => esc_html__('Plural Label', 'simpletags'),
+                                                    'maxlength' => '100',
                                                     'helptext'  => '',
                                                     'required'  => true,
                                                 ]);
@@ -553,6 +557,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'textvalue' => isset($current['singular_label']) ? esc_attr($current['singular_label']) : '',
                                                     'aftertext' => esc_html__('(e.g. Job)', 'simpletags'),
                                                     'labeltext' => esc_html__('Singular Label', 'simpletags'),
+                                                    'maxlength' => '100',
                                                     'helptext'  => '',
                                                     'required'  => true,
                                                 ]);
@@ -598,7 +603,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'helptext'  => esc_attr__('Describe what your taxonomy is used for.',
                                                         'simpletags'),
                                                 ]);
-                                        
+
 
 
                                                 echo $ui->get_td_end() . $ui->get_tr_end();
@@ -644,7 +649,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
 
                                                 echo '<tr valign="top"><th scope="row"><label for="'.$post_type->name.'">'.$post_type->label.'</label></th><td>';
-                                                
+
                                                     echo $ui->get_check_input([
                                                         'checkvalue' => $post_type->name,
                                                         'checked'    => (!empty($current['object_types']) && is_array($current['object_types']) && in_array($post_type->name,
@@ -655,10 +660,10 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                         'labeltext'  => "",
                                                         'wrap'       => false,
                                                     ]);
-                                                
+
                                                 echo '</td></tr>';
 
-                                            
+
                                                 }
 
 
@@ -701,7 +706,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
 
                                                 if($taxonomy_edit){
-                                                    
+
                                                     echo $ui->get_th_start();
                                                 echo $ui->get_label('name',
                                                         esc_html__('Taxonomy Slug',
@@ -713,7 +718,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 }
                                                 echo '<p id="slugexists" class="hidemessage">' . esc_html__('Slug already exists',
                                                         'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
-                                                        
+
                                                 echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
 
                                                 echo $ui->get_th_end() . $ui->get_td_start();
@@ -723,7 +728,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'        => 'name',
                                                     'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
                                                     'maxlength'   => '32',
-                                                    'helptext'    => 'Slugs can only contain alphanumeric, latin characters and underscores.',
+                                                    'helptext'    => 'The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.',
                                                     'class'     => 'tax-slug-input',
                                                     'required'    => true,
                                                     'placeholder' => false,
@@ -781,7 +786,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
         echo $template_hierarchy;
         echo '</td>';
          }
-                                               
+
                                                 echo $ui->get_tr_end();
 
 
@@ -1021,6 +1026,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'labeltext' => esc_html__('Menu Name', 'simpletags'),
                                                     'helptext'  => esc_html__('Custom admin menu name for your taxonomy.',
                                                         'simpletags'),
+                                                    'maxlength' => '100',
                                                     'data'      => [
                                                         'label'     => 'item', // Not localizing because it's isolated.
                                                         'plurality' => 'plural',
@@ -1568,7 +1574,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                             ?>
 
                                                 <?php
-                                               
+
                                                 echo $ui->get_th_end(). $ui->get_tr_end();
 
 

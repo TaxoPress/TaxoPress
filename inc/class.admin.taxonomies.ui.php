@@ -107,7 +107,7 @@ class taxopress_admin_ui
         }
 
         $checkbox_html = '<input type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" />';
-        
+
         if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
             foreach ($args['selections']['options'] as $val) {
                 $result = '';
@@ -458,7 +458,7 @@ class taxopress_admin_ui
             [
                 'maxlength' => '',
                 'onblur'    => '',
-                'class'    => '',
+                'class'     => '',
             ]
         );
         $args     = wp_parse_args($args, $defaults);
@@ -532,6 +532,7 @@ class taxopress_admin_ui
                 'maxlength' => '',
                 'onblur'    => '',
                 'min'       => '1',
+                'max'       => '1000000000',
             ]
         );
         $args     = wp_parse_args($args, $defaults);
@@ -548,7 +549,7 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $value .= '<input min="' . $args['min'] . '" type="number" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
+        $value .= '<input min="' . $args['min'] . '" max="' . $args['max'] . '" type="number" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
 
         if ($args['maxlength']) {
             $value .= ' ' . $this->get_maxlength($args['maxlength']);
