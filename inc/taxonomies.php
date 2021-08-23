@@ -64,6 +64,7 @@ class SimpleTags_Admin_Taxonomies
                         'simpletags'),
                     'no_associated_type'  => esc_html__('Please select at least one post type.', 'simpletags'),
                     'existing_taxonomies' => $registered_taxonomies,
+                    'integer_error'  => esc_html__('Taxonomy slug cannot be numbers only.', 'simpletags'),
                 ]
             );
 
