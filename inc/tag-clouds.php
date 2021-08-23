@@ -312,6 +312,28 @@ class SimpleTags_Tag_Clouds
                                                 'selections' => $select,
                                             ]);
 
+                                                $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = ( isset($current) && isset($current['hide_output']) ) ? taxopress_disp_boolean($current['hide_output']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['hide_output'] : '';
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'taxopress_tag_cloud',
+                                                'name'       => 'hide_output',
+                                                'labeltext'  => esc_html__('Hide display output if no terms ?', 'simpletags'),
+                                                'selections' => $select,
+                                            ]);
+
                                                 $options[] = [ 'attr' => '', 'text' => __('All post types', 'simpletags'), 'default' => 'true' ];
                                                 foreach ( get_post_types(['public' => true], 'objects') as $post_type ) {
                                                     $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
