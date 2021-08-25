@@ -115,6 +115,9 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.2.2- [===Unreleased===]
+* Able to save mandatory field 'Title' as empty field in Terms for current post. #812
+
 v3.2.1- 2021-08-23
 * Fixed: Notice: Undefined property: WP_Post_Type::$taxonomy on plugin activation #756
 * Fixed: Couldn't save the related posts 'Title header' with 'None' #697
