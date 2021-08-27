@@ -9,9 +9,9 @@ Requires at least: 3.3
 Tested up to: 5.6
 Author: TaxoPress
 Author URI: https://taxopress.com
-Text Domain: simpletags
+Text Domain: simple-tags
 
-Copyright 2013-2021  TaxoPress 
+Copyright 2013-2021  TaxoPress
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ if ($pro_active) {
         function($links, $file)
         {
             if ($file == plugin_basename(__FILE__)) {
-                $links[]= __('<strong>This plugin can be deleted.</strong>', 'press-permit-core');
+                $links[]= __('<strong>This plugin can be deleted.</strong>', 'simple-tags');
             }
 
             return $links;
@@ -105,7 +105,7 @@ if (version_compare(PHP_VERSION, STAGS_MIN_PHP_VERSION, '<')) {
 }
 
 require STAGS_DIR . '/inc/loads.php';
-    
+
 // Init TaxoPress
 function init_free_simple_tags()
 {

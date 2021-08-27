@@ -76,7 +76,7 @@ class SimpleTags_Client_Autolinks {
             }
 
 			// Get cache if exist
-			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
+			$cache = wp_cache_get( 'generate_keywords', 'simple-tags' );
 			if ( $options || false === $cache )
             {
 				foreach ( self::$posts as $object_id ) {
@@ -92,7 +92,7 @@ class SimpleTags_Client_Autolinks {
 				}
 
 				$cache[ $key ] = $results;
-				wp_cache_set( 'generate_keywords', $cache, 'simpletags' );
+				wp_cache_set( 'generate_keywords', $cache, 'simple-tags' );
 			} else {
 				if ( isset( $cache[ $key ] ) ) {
 					return $cache[ $key ];
@@ -125,7 +125,7 @@ class SimpleTags_Client_Autolinks {
             }
             $results = get_tags(['taxonomy' => $term_taxonomy]);
 			// Get cache if exist
-			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
+			$cache = wp_cache_get( 'generate_keywords', 'simple-tags' );
 			if ( $options || false === $cache ) {
 				foreach ( self::$posts as $object_id ) {
 					// Get terms
@@ -140,7 +140,7 @@ class SimpleTags_Client_Autolinks {
 				}
 
 				$cache[ $key ] = $results;
-				wp_cache_set( 'generate_keywords', $cache, 'simpletags' );
+				wp_cache_set( 'generate_keywords', $cache, 'simple-tags' );
 			} else {
 				if ( isset( $cache[ $key ] ) ) {
 					return $cache[ $key ];
@@ -454,7 +454,7 @@ class SimpleTags_Client_Autolinks {
 		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$2</a>$3";
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
-		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simpletags'), $search ) )."\">$0</a>";
+		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simple-tags'), $search ) )."\">$0</a>";
 		// for efficiency only tokenize if forced to do so
 		if ( $must_tokenize ) {
 			// this regexp is taken from PHP Markdown by Michel Fortin: http://www.michelf.com/projects/php-markdown/

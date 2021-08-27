@@ -41,11 +41,11 @@ class SimpleTags_Admin_ClickTags {
 			'st-helper-click-tags',
 			'stHelperClickTagsL10n',
 			array(
-				'show_txt'    => __( 'Click to display tags', 'simpletags' ),
-				'hide_txt'    => __( 'Click Tags to add them to this post', 'simpletags' ),
+				'show_txt'    => __( 'Click to display tags', 'simple-tags' ),
+				'hide_txt'    => __( 'Click Tags to add them to this post', 'simple-tags' ),
 				'state'       => 'show',
 				'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
-				'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simpletags').'" size="26" autocomplete="off">',
+				'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simple-tags').'" size="26" autocomplete="off">',
 			)
 		);
 
@@ -68,7 +68,7 @@ class SimpleTags_Admin_ClickTags {
 	public static function admin_menu() {
 		add_meta_box(
 			'st-clicks-tags',
-			__( 'Show all local tags', 'simpletags' ),
+			__( 'Show all local tags', 'simple-tags' ),
 			array(
 				__CLASS__,
 				'metabox',
@@ -81,7 +81,7 @@ class SimpleTags_Admin_ClickTags {
 		if ( is_page_have_tags() ) {
 			add_meta_box(
 				'st-clicks-tags',
-				__( 'Show all local tags', 'simpletags' ),
+				__( 'Show all local tags', 'simple-tags' ),
 				array(
 					__CLASS__,
 					'metabox',
@@ -126,7 +126,7 @@ class SimpleTags_Admin_ClickTags {
 		header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 
 		if ( 0 === (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) ) { // No tags to suggest
-			echo '<p>' . esc_html__( 'No terms in your WordPress database.', 'simpletags' ) . '</p>';
+			echo '<p>' . esc_html__( 'No terms in your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -168,7 +168,7 @@ class SimpleTags_Admin_ClickTags {
         // Get all terms, or filter with search
 		$terms = SimpleTags_Admin::getTermsForAjax( 'post_tag', $search, $order_by, $order,  $limit );
 		if ( empty( $terms ) ) {
-			echo '<p>' . esc_html__( 'No results from your WordPress database.', 'simpletags' ) . '</p>';
+			echo '<p>' . esc_html__( 'No results from your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 

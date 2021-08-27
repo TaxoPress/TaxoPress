@@ -143,7 +143,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['taxonomy']                 = 'post_tag';
     $default['taxopress_autolink']['autolink_case']            = 'none';
     $default['taxopress_autolink']['autolink_display']         = 'post_content';
-    $default['taxopress_autolink']['autolink_title_attribute'] = __('Posts tagged with %s', 'simpletags');
+    $default['taxopress_autolink']['autolink_title_attribute'] = __('Posts tagged with %s', 'simple-tags');
     $default['taxopress_autolink']['autolink_usage_min']       = '1';
     $default['taxopress_autolink']['auto_link_exclude']        = '';
     $default['taxopress_autolink']['autolink_usage_max']       = '10';
@@ -237,7 +237,7 @@ function taxopress_update_autolink($data = [])
  */
 function taxopress_autolinks_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simpletags'));
+    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -245,7 +245,7 @@ function taxopress_autolinks_update_success_admin_notice()
  */
 function taxopress_autolinks_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Auto Links successfully deleted.', 'simpletags'), false);
+    echo taxopress_admin_notices_helper(__('Auto Links successfully deleted.', 'simple-tags'), false);
 }
 
 /**

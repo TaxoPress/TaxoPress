@@ -9,8 +9,8 @@ class Termcloud_List extends WP_List_Table {
 	public function __construct() {
 
 		parent::__construct( [
-			'singular' => __( 'Tag Cloud', 'simpletags' ), //singular name of the listed records
-			'plural'   => __( 'Tags Cloud', 'simpletags' ), //plural name of the listed records
+			'singular' => __( 'Tag Cloud', 'simple-tags' ), //singular name of the listed records
+			'plural'   => __( 'Tags Cloud', 'simple-tags' ), //plural name of the listed records
 			'ajax'     => false //does this table support ajax?
 		] );
 
@@ -38,9 +38,9 @@ class Termcloud_List extends WP_List_Table {
 	function get_columns() {
 		$columns = [
 			'cb'      => '<input type="checkbox" />',
-			'name'    => __( 'Name', 'simpletags' ),
-			'slug'    => __( 'Slug', 'simpletags' ),
-			'count'    => __( 'Count', 'simpletags' )
+			'name'    => __( 'Name', 'simple-tags' ),
+			'slug'    => __( 'Slug', 'simple-tags' ),
+			'count'    => __( 'Count', 'simple-tags' )
 		];
 
 		return $columns;
@@ -122,7 +122,7 @@ class Termcloud_List extends WP_List_Table {
 
 	/** Text displayed when no stterm data is available */
 	public function no_items() {
-		_e( 'No term avaliable.', 'simpletags' );
+		_e( 'No term avaliable.', 'simple-tags' );
 	}
 
 	/**
@@ -192,7 +192,7 @@ class Termcloud_List extends WP_List_Table {
 	 */
 	public function get_bulk_actions() {
 		$actions = [
-			'st-bulk-delete-term' => __('Delete', 'simpletags')
+			'st-bulk-delete-term' => __('Delete', 'simple-tags')
 		];
 
 		return $actions;

@@ -1,6 +1,6 @@
 <div class="wrap st_wrap">
 	<div id="icon-themes" class="icon32"><br></div>
-	<h2><?php _e( 'TaxoPress: Options', 'simpletags' ); ?></h2>
+	<h2><?php _e( 'TaxoPress: Options', 'simple-tags' ); ?></h2>
 
 	<h2 class="nav-tab-wrapper">
 		<?php
@@ -30,10 +30,10 @@
 		<p>
 			<?php wp_nonce_field( 'updateresetoptions-simpletags' ); ?>
 			<input class="button-primary" type="submit" name="updateoptions"
-			       value="<?php _e( 'Update options &raquo;', 'simpletags' ); ?>"/>
+			       value="<?php _e( 'Update options &raquo;', 'simple-tags' ); ?>"/>
 			<input class="button" type="submit" name="reset_options"
-			       onclick="return confirm('<?php _e( 'Do you really want to restore the default options?', 'simpletags' ); ?>');"
-			       value="<?php _e( 'Reset Options', 'simpletags' ); ?>"/>
+			       onclick="return confirm('<?php _e( 'Do you really want to restore the default options?', 'simple-tags' ); ?>');"
+			       value="<?php _e( 'Reset Options', 'simple-tags' ); ?>"/>
 		</p>
 	</form>
 

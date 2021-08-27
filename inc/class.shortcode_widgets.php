@@ -12,10 +12,10 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
 	 * @author Olatechpro
 	 */
 	public function __construct() {
-		parent::__construct( 'simpletags-shortcode', __( 'Terms Display (TaxoPress Shortcode)', 'simpletags' ),
+		parent::__construct( 'simpletags-shortcode', __( 'Terms Display (TaxoPress Shortcode)', 'simple-tags' ),
 			array(
 				'classname'   => 'widget-simpletags-shortcode',
-				'description' => __( 'Taxopress Terms Display Shortcode', 'simpletags' )
+				'description' => __( 'Taxopress Terms Display Shortcode', 'simple-tags' )
 			)
 		);
 	}
@@ -114,17 +114,17 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
                     ],
                     admin_url('admin.php')
                 ),
-                __('this page.', 'simpletags')
+                __('this page.', 'simple-tags')
             );
 
-            echo '<p>'.__( 'Terms Display are added on ', 'simpletags' );
+            echo '<p>'.__( 'Terms Display are added on ', 'simple-tags' );
             echo $shortcode_page;
             echo '</p>'
 
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'tagcloud_id' ); ?>">
-            <?php _e( 'Select widget terms display.', 'simpletags' ); ?>
+            <?php _e( 'Select widget terms display.', 'simple-tags' ); ?>
 				<select id="<?php echo $this->get_field_id( 'tagcloud_id' ); ?>"
 				        name="<?php echo $this->get_field_name( 'tagcloud_id' ); ?>">
                         <?php foreach($tagcloud_data as $key => $value ){   ?>
@@ -145,10 +145,10 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
                     ],
                     admin_url('admin.php')
                 ),
-                __('Here', 'simpletags')
+                __('Here', 'simple-tags')
             );
 
-            echo '<br />'.__( 'No terms display shortcode available. Add new shortcode ', 'simpletags' );
+            echo '<br />'.__( 'No terms display shortcode available. Add new shortcode ', 'simple-tags' );
             echo $shortcode_page;
             echo '<br /><br />';
         }

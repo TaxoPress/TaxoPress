@@ -11,8 +11,8 @@ class PostTags_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Terms for Current Post', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Terms for Current Post', 'simpletags'), //plural name of the listed records
+            'singular' => __('Terms for Current Post', 'simple-tags'), //singular name of the listed records
+            'plural'   => __('Terms for Current Post', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -63,10 +63,10 @@ class PostTags_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'title'     => __('Title', 'simpletags'),
-            'taxonomy'  => __('Taxonomy', 'simpletags'),
-            'embedded'  => __('Automatic display', 'simpletags'),
-            'shortcode' => __('Shortcode', 'simpletags')
+            'title'     => __('Title', 'simple-tags'),
+            'taxonomy'  => __('Taxonomy', 'simple-tags'),
+            'embedded'  => __('Automatic display', 'simple-tags'),
+            'shortcode' => __('Shortcode', 'simple-tags')
         ];
 
         return $columns;
@@ -88,7 +88,7 @@ class PostTags_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        _e('No item avaliable.', 'simpletags');
+        _e('No item avaliable.', 'simple-tags');
     }
 
     /**
@@ -261,7 +261,7 @@ class PostTags_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                __('Edit', 'simpletags')
+                __('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-posttags">%s</a>',
@@ -272,7 +272,7 @@ class PostTags_List extends WP_List_Table
                     '_wpnonce'           => wp_create_nonce('posttags-action-request-nonce')
                 ],
                     admin_url('admin.php')),
-                __('Delete', 'simpletags')
+                __('Delete', 'simple-tags')
             ),
         ];
 
@@ -339,10 +339,10 @@ class PostTags_List extends WP_List_Table
 
             $result_array = [];
             $embedded_options = [
-                'homeonly'     => esc_attr__('Homepage', 'simpletags'),
-                'blogonly'     => esc_attr__('Blog display', 'simpletags'),
-                'singleonly'   => esc_attr__('Single post display', 'simpletags'),
-                'feed'         => esc_attr__('RSS feed', 'simpletags'),
+                'homeonly'     => esc_attr__('Homepage', 'simple-tags'),
+                'blogonly'     => esc_attr__('Blog display', 'simple-tags'),
+                'singleonly'   => esc_attr__('Single post display', 'simple-tags'),
+                'feed'         => esc_attr__('RSS feed', 'simple-tags'),
             ];
             foreach ($post_types as $post_type) {
                 $embedded_options[$post_type->name] = $post_type->label;
@@ -352,7 +352,7 @@ class PostTags_List extends WP_List_Table
             }
             $result = join(', ', $result_array);
         }else{
-            $result = esc_attr__('No', 'simpletags');
+            $result = esc_attr__('No', 'simple-tags');
         }
         return $result;
     }

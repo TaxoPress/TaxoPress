@@ -11,8 +11,8 @@ class TagClouds_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Terms Display', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Terms Display', 'simpletags'), //plural name of the listed records
+            'singular' => __('Terms Display', 'simple-tags'), //singular name of the listed records
+            'plural'   => __('Terms Display', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -63,11 +63,11 @@ class TagClouds_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'title'        => __('Title', 'simpletags'),
-            'taxonomy'     => __('Taxonomy', 'simpletags'),
-            'post_type'    => __('Post Type', 'simpletags'),
-            'format'   => __('Display format', 'simpletags'),
-            'shortcode'    => __('Shortcode', 'simpletags')
+            'title'        => __('Title', 'simple-tags'),
+            'taxonomy'     => __('Taxonomy', 'simple-tags'),
+            'post_type'    => __('Post Type', 'simple-tags'),
+            'format'   => __('Display format', 'simple-tags'),
+            'shortcode'    => __('Shortcode', 'simple-tags')
         ];
 
         return $columns;
@@ -89,7 +89,7 @@ class TagClouds_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        _e('No item avaliable.', 'simpletags');
+        _e('No item avaliable.', 'simple-tags');
     }
 
     /**
@@ -262,7 +262,7 @@ class TagClouds_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                __('Edit', 'simpletags')
+                __('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                     '<a href="%s" class="delete-tagcloud">%s</a>',
@@ -273,7 +273,7 @@ class TagClouds_List extends WP_List_Table
                         '_wpnonce' => wp_create_nonce('tagcloud-action-request-nonce')
                     ],
                         admin_url('admin.php')),
-                    __('Delete', 'simpletags')
+                    __('Delete', 'simple-tags')
                 ),
         ];
 
@@ -342,7 +342,7 @@ class TagClouds_List extends WP_List_Table
             esc_html($post_type->label)
         );
     }else{
-        $title = __( 'All', 'simpletags' );
+        $title = __( 'All', 'simple-tags' );
     }
 
         return $title;
@@ -359,8 +359,8 @@ class TagClouds_List extends WP_List_Table
     {
 
         $days_options = [
-            'flat' => esc_attr__( 'Cloud', 'simpletags' ),
-            'list' => esc_attr__( 'List (UL/LI)', 'simpletags' ),
+            'flat' => esc_attr__( 'Cloud', 'simple-tags' ),
+            'list' => esc_attr__( 'List (UL/LI)', 'simple-tags' ),
         ];
         
         return $days_options[$item['format']];
