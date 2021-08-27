@@ -103,13 +103,13 @@ class SimpleTags_Client_PostTags {
 
 		// Default values
 		$defaults = array(
-			'before'    => __( 'Tags: ', 'simpletags' ),
+			'before'    => __( 'Tags: ', 'simple-tags' ),
 			'separator' => ', ',
 			'after'     => '<br />',
 			'post_id'   => 0,
 			'inc_cats'  => 0,
-			'xformat'   => __( '<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags' ),
-			'notagtext' => __( 'No tag for this post.', 'simpletags' ),
+			'xformat'   => __( '<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simple-tags' ),
+			'notagtext' => __( 'No tag for this post.', 'simple-tags' ),
 			'number'    => 0,
 			'format'    => '',
 			'ID'        => false,

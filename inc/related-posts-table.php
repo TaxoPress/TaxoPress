@@ -11,8 +11,8 @@ class RelatedPosts_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Related Post', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Related Posts', 'simpletags'), //plural name of the listed records
+            'singular' => __('Related Post', 'simple-tags'), //singular name of the listed records
+            'plural'   => __('Related Posts', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -63,11 +63,11 @@ class RelatedPosts_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'title'     => __('Title', 'simpletags'),
-            'taxonomy'  => __('Taxonomy', 'simpletags'),
-            'post_type' => __('Post Type', 'simpletags'),
-            'embedded'  => __('Automatic display', 'simpletags'),
-            'shortcode' => __('Shortcode', 'simpletags')
+            'title'     => __('Title', 'simple-tags'),
+            'taxonomy'  => __('Taxonomy', 'simple-tags'),
+            'post_type' => __('Post Type', 'simple-tags'),
+            'embedded'  => __('Automatic display', 'simple-tags'),
+            'shortcode' => __('Shortcode', 'simple-tags')
         ];
 
         return $columns;
@@ -89,7 +89,7 @@ class RelatedPosts_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        _e('No item avaliable.', 'simpletags');
+        _e('No item avaliable.', 'simple-tags');
     }
 
     /**
@@ -262,7 +262,7 @@ class RelatedPosts_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                __('Edit', 'simpletags')
+                __('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-relatedpost">%s</a>',
@@ -273,7 +273,7 @@ class RelatedPosts_List extends WP_List_Table
                     '_wpnonce'               => wp_create_nonce('relatedpost-action-request-nonce')
                 ],
                     admin_url('admin.php')),
-                __('Delete', 'simpletags')
+                __('Delete', 'simple-tags')
             ),
         ];
 
@@ -333,9 +333,9 @@ class RelatedPosts_List extends WP_List_Table
         if (isset($item['post_type']) && !empty(trim($item['post_type']))) {
 
             if ($item['post_type'] === 'st_current_posttype') {
-                $title = __('Current post type', 'simpletags');
+                $title = __('Current post type', 'simple-tags');
             } elseif ($item['post_type'] === 'st_all_posttype') {
-                $title = __('All', 'simpletags');
+                $title = __('All', 'simple-tags');
             } else {
                 $post_type = get_post_type_object($item['post_type']);
                 if (is_object($post_type)) {
@@ -352,7 +352,7 @@ class RelatedPosts_List extends WP_List_Table
                 }
             }
         } else {
-            $title = __('All', 'simpletags');
+            $title = __('All', 'simple-tags');
         }
 
         return $title;
@@ -379,10 +379,10 @@ class RelatedPosts_List extends WP_List_Table
 
             $result_array     = [];
             $embedded_options = [
-                'homeonly'   => esc_attr__('Homepage', 'simpletags'),
-                'blogonly'   => esc_attr__('Blog display', 'simpletags'),
-                'singleonly' => esc_attr__('Single post display', 'simpletags'),
-                'feed'       => esc_attr__('RSS feed', 'simpletags'),
+                'homeonly'   => esc_attr__('Homepage', 'simple-tags'),
+                'blogonly'   => esc_attr__('Blog display', 'simple-tags'),
+                'singleonly' => esc_attr__('Single post display', 'simple-tags'),
+                'feed'       => esc_attr__('RSS feed', 'simple-tags'),
             ];
             foreach ($post_types as $post_type) {
                 $embedded_options[$post_type->name] = $post_type->label;
@@ -392,7 +392,7 @@ class RelatedPosts_List extends WP_List_Table
             }
             $result = join(', ', $result_array);
         } else {
-            $result = esc_attr__('No', 'simpletags');
+            $result = esc_attr__('No', 'simple-tags');
         }
 
         return $result;

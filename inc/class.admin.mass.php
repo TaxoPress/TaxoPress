@@ -27,8 +27,8 @@ class SimpleTags_Admin_Mass {
 	public static function admin_menu() {
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'TaxoPress: Mass Edit Terms', 'simpletags' ),
-			__( 'Mass Edit Terms', 'simpletags' ),
+			__( 'TaxoPress: Mass Edit Terms', 'simple-tags' ),
+			__( 'Mass Edit Terms', 'simple-tags' ),
 			'simple_tags',
 			'st_mass_terms',
 			array(
@@ -55,7 +55,7 @@ class SimpleTags_Admin_Mass {
 		if ( isset( $_POST['update_mass'] ) ) {
 			// origination and intention
 			if ( ! ( wp_verify_nonce( $_POST['secure_mass'], 'st_mass_terms' ) ) ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simpletags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simple-tags' ), 'error' );
 
 				return false;
 			}
@@ -80,7 +80,7 @@ class SimpleTags_Admin_Mass {
 					clean_post_cache( $object_id );
 				}
 
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( '%1$s %2$s(s) terms updated with success !', 'simpletags' ), (int) $counter, strtolower( SimpleTags_Admin::$post_type_name ) ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( __( '%1$s %2$s(s) terms updated with success !', 'simple-tags' ), (int) $counter, strtolower( SimpleTags_Admin::$post_type_name ) ), 'updated' );
 
 				return true;
 			}
@@ -112,7 +112,7 @@ class SimpleTags_Admin_Mass {
 				<input type="hidden" name="taxo" value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
 				<input type="hidden" name="cpt" value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-        <h2><?php _e( 'Mass edit terms', 'simpletags' ); ?></h2>
+        <h2><?php _e( 'Mass edit terms', 'simple-tags' ); ?></h2>
       <br>
 
 				<ul class="subsubsub">
@@ -120,7 +120,7 @@ class SimpleTags_Admin_Mass {
 					$status_links   = array();
 					$num_posts      = wp_count_posts( SimpleTags_Admin::$post_type, 'readable' );
 					$class          = ( empty( $_GET['post_status'] ) && empty( $_GET['post_type'] ) ) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . __( 'All', 'simpletags' ) . '</a>';
+					$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . __( 'All', 'simple-tags' ) . '</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 
@@ -150,7 +150,7 @@ class SimpleTags_Admin_Mass {
 
 				<p class="search-box">
 					<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>"/>
-					<input type="submit" value="<?php _e( 'Search', 'simpletags' ); ?>" class="button"/>
+					<input type="submit" value="<?php _e( 'Search', 'simple-tags' ); ?>" class="button"/>
 				</p>
 
 				<div class="tablenav">
@@ -187,7 +187,7 @@ class SimpleTags_Admin_Mass {
 								?>
 								<select name='m'>
 									<option<?php selected( @$_GET['m'], 0 ); ?>
-										value='0'><?php _e( 'Show all dates', 'simpletags' ); ?></option>
+										value='0'><?php _e( 'Show all dates', 'simple-tags' ); ?></option>
 									<?php
 									foreach ( $arc_result as $arc_row ) {
 										if ( $arc_row->yyear == 0 ) {
@@ -214,7 +214,7 @@ class SimpleTags_Admin_Mass {
 							<select name="posts_per_page" id="posts_per_page">
 								<option <?php if ( ! isset( $_GET['posts_per_page'] ) ) {
 									echo 'selected="selected"';
-								} ?> value=""><?php _e( 'Quantity&hellip;', 'simpletags' ); ?></option>
+								} ?> value=""><?php _e( 'Quantity&hellip;', 'simple-tags' ); ?></option>
 								<option <?php selected( $posts_per_page, 10 ); ?> value="10">10</option>
 								<option <?php selected( $posts_per_page, 20 ); ?> value="20">20</option>
 								<option <?php selected( $posts_per_page, 30 ); ?> value="30">30</option>
@@ -224,7 +224,7 @@ class SimpleTags_Admin_Mass {
 								<option <?php selected( $posts_per_page, 200 ); ?> value="200">200</option>
 							</select>
 
-							<input type="submit" id="post-query-submit" value="<?php _e( 'Filter', 'simpletags' ); ?>"
+							<input type="submit" id="post-query-submit" value="<?php _e( 'Filter', 'simple-tags' ); ?>"
 							       class="button-secondary"/>
 						<?php } ?>
 					</div>
@@ -242,8 +242,8 @@ class SimpleTags_Admin_Mass {
 					<table class="widefat post fixed">
 						<thead>
 						<tr>
-							<th class="manage-column"><?php _e( 'Post title', 'simpletags' ); ?></th>
-							<th class="manage-column"><?php printf( __( 'Terms : %s', 'simpletags' ), esc_html( SimpleTags_Admin::$taxo_name ) ); ?></th>
+							<th class="manage-column"><?php _e( 'Post title', 'simple-tags' ); ?></th>
+							<th class="manage-column"><?php printf( __( 'Terms : %s', 'simple-tags' ), esc_html( SimpleTags_Admin::$taxo_name ) ); ?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -256,7 +256,7 @@ class SimpleTags_Admin_Mass {
 							<tr valign="top" class="<?php echo $class; ?>">
 								<th scope="row"><a
 										href="<?php echo admin_url( 'post.php?action=edit&amp;post=' . get_the_ID() ); ?>"
-										title="<?php _e( 'Edit', 'simpletags' ); ?>"><?php echo ( get_the_title() == '' ) ? the_ID() : the_title(); ?></a>
+										title="<?php _e( 'Edit', 'simple-tags' ); ?>"><?php echo ( get_the_title() == '' ) ? the_ID() : the_title(); ?></a>
 								</th>
 								<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input"
 								           type="text" size="100" name="tags[<?php the_ID(); ?>]"
@@ -273,13 +273,13 @@ class SimpleTags_Admin_Mass {
 						<input type="hidden" name="secure_mass"
 						       value="<?php echo wp_create_nonce( 'st_mass_terms' ); ?>"/>
 						<input class="button-primary" type="submit" name="update_mass"
-						       value="<?php _e( 'Update all &raquo;', 'simpletags' ); ?>"/>
+						       value="<?php _e( 'Update all &raquo;', 'simple-tags' ); ?>"/>
 					</p>
 				</form>
 
 			<?php else: ?>
 
-			<p><?php _e( 'No content to edit.', 'simpletags' ); ?>
+			<p><?php _e( 'No content to edit.', 'simple-tags' ); ?>
 
 				<?php endif; ?>
 

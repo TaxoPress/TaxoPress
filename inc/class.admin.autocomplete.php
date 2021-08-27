@@ -121,7 +121,7 @@ class SimpleTags_Admin_Autocomplete {
 				<input type="text" class="widefat" name="adv-tags-input" id="adv-tags-input"
 					   value="<?php echo esc_attr( SimpleTags_Admin::getTermsToEdit( 'post_tag', $post->ID ) ); ?>"/>
 
-			<?php esc_html_e( 'Separate tags with commas', 'simpletags' ); ?>
+			<?php esc_html_e( 'Separate tags with commas', 'simple-tags' ); ?>
 		</p>
 		<script type="text/javascript">
           <!--

@@ -11,8 +11,8 @@ class Taxonomy_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Taxonomy', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Taxonomies', 'simpletags'), //plural name of the listed records
+            'singular' => __('Taxonomy', 'simple-tags'), //singular name of the listed records
+            'plural'   => __('Taxonomies', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -63,12 +63,12 @@ class Taxonomy_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'name'        => __('Name', 'simpletags'),
-            'registration_key' => __('Registration key', 'simpletags'),
-            'description' => __('Description', 'simpletags'),
-            'active'      => __('Active', 'simpletags'),
-            'posttypes'   => __('Post Types', 'simpletags'),
-            'count'   => __('Count', 'simpletags'),
+            'name'        => __('Name', 'simple-tags'),
+            'registration_key' => __('Registration key', 'simple-tags'),
+            'description' => __('Description', 'simple-tags'),
+            'active'      => __('Active', 'simple-tags'),
+            'posttypes'   => __('Post Types', 'simple-tags'),
+            'count'   => __('Count', 'simple-tags'),
         ];
 
         return $columns;
@@ -90,7 +90,7 @@ class Taxonomy_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        _e('No term avaliable.', 'simpletags');
+        _e('No term avaliable.', 'simple-tags');
     }
 
     /**
@@ -268,7 +268,7 @@ class Taxonomy_List extends WP_List_Table
                     ],
                     taxopress_admin_url('admin.php')
                 ),
-                __('Edit', 'simpletags')
+                __('Edit', 'simple-tags')
             ),
         ];
 
@@ -337,10 +337,10 @@ class Taxonomy_List extends WP_List_Table
     protected function column_description($item)
     {
         if (in_array($item->name, ['category', 'post_tag'])) {
-            return __('WordPress core', 'simpletags');
+            return __('WordPress core', 'simple-tags');
         } else {
             if( $item->name === 'media_tag' || array_key_exists($item->name, taxopress_get_taxonomy_data())){
-                $alt_description = __('TaxoPress', 'simpletags');
+                $alt_description = __('TaxoPress', 'simple-tags');
             }else{
                 $alt_description = '&mdash;';
             }
@@ -359,9 +359,9 @@ class Taxonomy_List extends WP_List_Table
     {
 
         if (in_array($item->name, taxopress_get_deactivated_taxonomy())) {
-            return __('No', 'simpletags');
+            return __('No', 'simple-tags');
         } else {
-            return __('Yes', 'simpletags');
+            return __('Yes', 'simple-tags');
         }
     }
 

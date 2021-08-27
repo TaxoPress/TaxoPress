@@ -31,8 +31,8 @@ class SimpleTags_Admin_AutoTags
     {
         add_submenu_page(
             self::MENU_SLUG,
-            __('TaxoPress: Auto Terms', 'simpletags'),
-            __('Auto Terms', 'simpletags'),
+            __('TaxoPress: Auto Terms', 'simple-tags'),
+            __('Auto Terms', 'simple-tags'),
             'simple_tags',
             'st_auto',
             array(
@@ -103,7 +103,7 @@ class SimpleTags_Admin_AutoTags
             $options[SimpleTags_Admin::$post_type][SimpleTags_Admin::$taxonomy] = $taxo_options;
             update_option(STAGS_OPTIONS_NAME_AUTO, $options);
 
-            add_settings_error(__CLASS__, __CLASS__, __('Auto terms options updated !', 'simpletags'), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, __('Auto terms options updated !', 'simple-tags'), 'updated');
         } elseif (isset($_GET['action']) && $_GET['action'] == 'auto_tag') {
             $action = true;
             $n      = (isset($_GET['n'])) ? intval($_GET['n']) : 0;
@@ -121,47 +121,47 @@ class SimpleTags_Admin_AutoTags
         settings_errors(__CLASS__);
 ?>
         <div class="wrap st_wrap">
-            <h2><?php _e('Overview', 'simpletags'); ?>
+            <h2><?php _e('Overview', 'simple-tags'); ?>
                 <?php SimpleTags_Admin::boxSelectorTaxonomy('st_auto'); ?>
                 <div class="clear"></div>
         </div>
 
         <div class="wrap st_wrap">
-            <h2><?php printf(__('Auto Terms for %s and %s', 'simpletags'), '<strong>' . SimpleTags_Admin::$post_type_name . '</strong>', '<strong>' . SimpleTags_Admin::$taxo_name . '</strong>'); ?></h2>
+            <h2><?php printf(__('Auto Terms for %s and %s', 'simple-tags'), '<strong>' . SimpleTags_Admin::$post_type_name . '</strong>', '<strong>' . SimpleTags_Admin::$taxo_name . '</strong>'); ?></h2>
 
             <?php if ($action === false) : ?>
 
-                <h3><?php _e('Auto terms list', 'simpletags'); ?></h3>
+                <h3><?php _e('Auto terms list', 'simple-tags'); ?></h3>
 
                 <form action="<?php echo self::$admin_base_url . 'st_auto&taxo=' . SimpleTags_Admin::$taxonomy . '&cpt=' . SimpleTags_Admin::$post_type; ?>" method="post">
 
-                    <p><?php printf(__('This feature allows Wordpress to look into %s content and title for specified terms when saving %s. If your %s content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will add automatically "wordpress" as term for this %s.', 'simpletags'), SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name); ?></p>
+                    <p><?php printf(__('This feature allows Wordpress to look into %s content and title for specified terms when saving %s. If your %s content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will add automatically "wordpress" as term for this %s.', 'simple-tags'), SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name); ?></p>
 
                     <table class="form-table">
 
                         <tr valign="top">
-                            <th scope="row"><?php _e('Activation', 'simpletags'); ?></th>
+                            <th scope="row"><?php _e('Activation', 'simple-tags'); ?></th>
                             <td>
                                 <input type="checkbox" id="use_auto_terms" name="use_auto_terms" value="1" <?php echo (isset($taxo_options['use_auto_terms']) && $taxo_options['use_auto_terms'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="use_auto_terms"><?php printf(__('Activate Auto Tags for the %s taxonomy', 'simpletags'), SimpleTags_Admin::$taxo_name); ?>
+                                <label for="use_auto_terms"><?php printf(__('Activate Auto Tags for the %s taxonomy', 'simple-tags'), SimpleTags_Admin::$taxo_name); ?>
                                 </label>
                             </td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row"><?php _e('Terms to use', 'simpletags'); ?></th>
+                            <th scope="row"><?php _e('Terms to use', 'simple-tags'); ?></th>
                             <td>
                                 <input type="checkbox" id="at_all" name="at_all" value="1" <?php echo (isset($taxo_options['at_all']) && $taxo_options['at_all'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="at_all"><?php printf(__('Use all the terms in the %s taxonomy. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
+                                <label for="at_all"><?php printf(__('Use all the terms in the %s taxonomy. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simple-tags'), SimpleTags_Admin::$taxo_name); ?></label>
 
                                 <br /><br />
                                 <input type="checkbox" id="at_all_no" name="at_all_no" value="1" <?php echo (isset($taxo_options['at_all_no']) && $taxo_options['at_all_no'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="at_all_no"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific terms to use.', 'simpletags'), SimpleTags_Admin::$taxo_name); ?></label>
+                                <label for="at_all_no"><?php printf(__('Use this option if you don\'t want to use all the terms in your %s taxonomy. You can select specific terms to use.', 'simple-tags'), SimpleTags_Admin::$taxo_name); ?></label>
 
-                    <div class="auto-terms-error-red"> <?php echo __('Please choose an option for "Terms to use"', 'simpletags'); ?> </div>
+                    <div class="auto-terms-error-red"> <?php echo __('Please choose an option for "Terms to use"', 'simple-tags'); ?> </div>
 
                                 <br /><br />
                                  <div class="auto-terms-keyword-list-wrapper">
-                                <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simpletags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list">
+                                <h3 class="auto-terms-keyword-title"><?php _e('Keywords list', 'simple-tags'); ?> </h3> <input class="st-add-suggestion-input" type="button" value="Add +" /> <label for="auto_list">
                                 </label>
                     
                     <div class="auto-terms-keyword-list">
@@ -190,45 +190,45 @@ class SimpleTags_Admin_AutoTags
                     </table>
 
 
-                    <h3><?php _e('Options', 'simpletags'); ?></h3>
+                    <h3><?php _e('Options', 'simple-tags'); ?></h3>
 
                     <table class="form-table">
 
                         <tr valign="top">
-                            <th scope="row"><?php _e('Target', 'simpletags'); ?></th>
+                            <th scope="row"><?php _e('Target', 'simple-tags'); ?></th>
                             <td>
                                 <input type="checkbox" id="at_empty" name="at_empty" value="1" <?php echo (isset($taxo_options['at_empty']) && $taxo_options['at_empty'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="at_empty"><?php printf(__('Autotag only %s without terms.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label>
+                                <label for="at_empty"><?php printf(__('Autotag only %s without terms.', 'simple-tags'), SimpleTags_Admin::$post_type_name); ?></label>
                             </td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row"><?php _e('Whole Word ?', 'simpletags'); ?></th>
+                            <th scope="row"><?php _e('Whole Word ?', 'simple-tags'); ?></th>
                             <td>
                                 <input type="checkbox" id="only_full_word" name="only_full_word" value="1" <?php echo (isset($taxo_options['only_full_word']) && $taxo_options['only_full_word'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="only_full_word"><?php printf(__('Autotag %s only when terms found in the content are the same word.', 'simpletags'), SimpleTags_Admin::$post_type_name); ?></label>
+                                <label for="only_full_word"><?php printf(__('Autotag %s only when terms found in the content are the same word.', 'simple-tags'), SimpleTags_Admin::$post_type_name); ?></label>
                             </td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row"><?php _e('Support Hashtag format ?', 'simpletags'); ?></th>
+                            <th scope="row"><?php _e('Support Hashtag format ?', 'simple-tags'); ?></th>
                             <td>
                                 <input type="checkbox" id="allow_hashtag_format" name="allow_hashtag_format" value="1" <?php echo (isset($taxo_options['allow_hashtag_format']) && $taxo_options['allow_hashtag_format'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="allow_hashtag_format"><?php _e('When the whole word option is enabled, hashtag will not be autotag because of # prefix. This option allow to fixed this issue!', 'simpletags'); ?></label>
+                                <label for="allow_hashtag_format"><?php _e('When the whole word option is enabled, hashtag will not be autotag because of # prefix. This option allow to fixed this issue!', 'simple-tags'); ?></label>
                             </td>
                         </tr>
                     </table>
 
                     <p class="submit">
                         <?php wp_nonce_field('update_auto_list-simpletags'); ?>
-                        <input class="button-primary update_auto_list" type="submit" name="update_auto_list" value="<?php _e('Update options &raquo;', 'simpletags'); ?>" />
+                        <input class="button-primary update_auto_list" type="submit" name="update_auto_list" value="<?php _e('Update options &raquo;', 'simple-tags'); ?>" />
                     </p>
                 </form>
 
-                <h3><?php _e('Auto terms old content', 'simpletags'); ?></h3>
+                <h3><?php _e('Auto terms old content', 'simple-tags'); ?></h3>
                 <p>
-                    <?php _e('TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned.', 'simpletags'); ?>
+                    <?php _e('TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned.', 'simple-tags'); ?>
                 </p>
                 <p class="submit">
-                    <a class="button-primary" href="<?php echo self::$admin_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag'; ?>"><?php _e('Auto terms all content &raquo;', 'simpletags'); ?></a>
+                    <a class="button-primary" href="<?php echo self::$admin_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag'; ?>"><?php _e('Auto terms all content &raquo;', 'simple-tags'); ?></a>
                 </p>
 
                 <?php else :
@@ -251,8 +251,8 @@ class SimpleTags_Admin_AutoTags
                         }
                         echo '</ul>';
                 ?>
-                        <p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simpletags'); ?>
-                            <a href="<?php echo self::$admin_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag&amp;n=' . ($n + 20); ?>"><?php _e('Next content', 'simpletags'); ?></a>
+                        <p><?php _e("If your browser doesn't start loading the next page automatically click this link:", 'simple-tags'); ?>
+                            <a href="<?php echo self::$admin_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag&amp;n=' . ($n + 20); ?>"><?php _e('Next content', 'simple-tags'); ?></a>
                         </p>
                         <script type="text/javascript">
                             // <![CDATA[
@@ -266,7 +266,7 @@ class SimpleTags_Admin_AutoTags
                     } else {
                         $counter = get_option('tmp_auto_terms_st');
                         delete_option('tmp_auto_terms_st');
-                        echo '<p><strong>' . sprintf(__('All done! %s terms added.', 'simpletags'), $counter) . '</strong></p>';
+                        echo '<p><strong>' . sprintf(__('All done! %s terms added.', 'simple-tags'), $counter) . '</strong></p>';
                     }
                 }
 

@@ -9,7 +9,7 @@ Requires at least: 3.3
 Tested up to: 5.6
 Author: TaxoPress
 Author URI: https://taxopress.com
-Text Domain: simpletags
+Text Domain: simple-tags
 
 Copyright 2013-2021  TaxoPress 
 

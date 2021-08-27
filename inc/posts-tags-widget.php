@@ -12,10 +12,10 @@ class SimpleTags_PostTags_Widget extends WP_Widget {
 	 * @author Olatechpro
 	 */
 	public function __construct() {
-		parent::__construct( 'simpletags-posttags', __( 'Terms for Current Post (TaxoPress)', 'simpletags' ),
+		parent::__construct( 'simpletags-posttags', __( 'Terms for Current Post (TaxoPress)', 'simple-tags' ),
 			array(
 				'classname'   => 'widget-simpletags-posttags',
-				'description' => __( 'Taxopress Terms for Current Post Shortcode', 'simpletags' )
+				'description' => __( 'Taxopress Terms for Current Post Shortcode', 'simple-tags' )
 			)
 		);
 	}
@@ -95,17 +95,17 @@ class SimpleTags_PostTags_Widget extends WP_Widget {
                     ],
                     admin_url('admin.php')
                 ),
-                __('this page.', 'simpletags')
+                __('this page.', 'simple-tags')
             );
 
-            echo '<p>'.__( 'Terms for Current Post are added on ', 'simpletags' );
+            echo '<p>'.__( 'Terms for Current Post are added on ', 'simple-tags' );
             echo $shortcode_page;
             echo '</p>'
 
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'posttags_id' ); ?>">
-            <?php _e( 'Select widget terms for current post.', 'simpletags' ); ?>
+            <?php _e( 'Select widget terms for current post.', 'simple-tags' ); ?>
 				<select id="<?php echo $this->get_field_id( 'posttags_id' ); ?>"
 				        name="<?php echo $this->get_field_name( 'posttags_id' ); ?>">
                         <?php foreach($posttags_data as $key => $value ){   ?>
@@ -126,10 +126,10 @@ class SimpleTags_PostTags_Widget extends WP_Widget {
                     ],
                     admin_url('admin.php')
                 ),
-                __('Here', 'simpletags')
+                __('Here', 'simple-tags')
             );
 
-            echo '<br />'.__( 'No terms for current post shortcode available. Add new shortcode ', 'simpletags' );
+            echo '<br />'.__( 'No terms for current post shortcode available. Add new shortcode ', 'simple-tags' );
             echo $shortcode_page;
             echo '<br /><br />';
         }

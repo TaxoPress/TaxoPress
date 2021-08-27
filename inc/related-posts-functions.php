@@ -146,7 +146,7 @@ function taxopress_create_default_related_post()
     $default['taxopress_related_post']['number']       = 5;
     $default['taxopress_related_post']['limit_days']   = 0;
     $default['taxopress_related_post']['order']        = 'count-desc';
-    $default['taxopress_related_post']['nopoststext']  = __('No related posts.', 'simpletags');
+    $default['taxopress_related_post']['nopoststext']  = __('No related posts.', 'simple-tags');
     $default['taxopress_related_post']['xformat']      = '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>';
     $default['relatedpost_submit']                     = 'Add Related Posts';
     $default['cpt_tax_status']                         = 'new';
@@ -213,7 +213,7 @@ function taxopress_update_relatedpost($data = [])
  */
 function taxopress_relatedposts_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simpletags'));
+    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -221,7 +221,7 @@ function taxopress_relatedposts_update_success_admin_notice()
  */
 function taxopress_relatedposts_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Related Posts successfully deleted.', 'simpletags'), false);
+    echo taxopress_admin_notices_helper(__('Related Posts successfully deleted.', 'simple-tags'), false);
 }
 
 /**
@@ -317,7 +317,7 @@ function taxopress_relatedposts_shortcode($atts)
         echo SimpleTags_Client_RelatedPosts::get_related_posts($relatedpost_arg);
 
     } else {
-        echo __('Related Posts not found.', 'simpletags');
+        echo __('Related Posts not found.', 'simple-tags');
     }
     
     $html = ob_get_clean();

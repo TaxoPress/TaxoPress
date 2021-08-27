@@ -61,10 +61,10 @@ class SimpleTags_Admin_Taxonomies
             wp_localize_script('st-taxonomies', 'taxopress_tax_data',
                 [
                     'confirm'             => esc_html__('Are you sure you want to delete this? Deleting will NOT remove created content.',
-                        'simpletags'),
-                    'no_associated_type'  => esc_html__('Please select at least one post type.', 'simpletags'),
+                        'simple-tags'),
+                    'no_associated_type'  => esc_html__('Please select at least one post type.', 'simple-tags'),
                     'existing_taxonomies' => $registered_taxonomies,
-                    'integer_error'  => esc_html__('Taxonomy slug cannot be numbers only.', 'simpletags'),
+                    'integer_error'  => esc_html__('Taxonomy slug cannot be numbers only.', 'simple-tags'),
                 ]
             );
 
@@ -96,8 +96,8 @@ class SimpleTags_Admin_Taxonomies
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Taxonomies', 'simpletags'),
-            __('Taxonomies', 'simpletags'),
+            __('Taxonomies', 'simple-tags'),
+            __('Taxonomies', 'simple-tags'),
             'simple_tags',
             'st_taxonomies',
             [
@@ -119,7 +119,7 @@ class SimpleTags_Admin_Taxonomies
 
         $option = 'per_page';
         $args   = [
-            'label'   => __('Number of items per page', 'simpletags'),
+            'label'   => __('Number of items per page', 'simple-tags'),
             'default' => 20,
             'option'  => 'st_taxonomies_per_page'
         ];
@@ -150,9 +150,9 @@ class SimpleTags_Admin_Taxonomies
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php _e('Taxonomies', 'simpletags'); ?></h1>
+                <h1 class="wp-heading-inline"><?php _e('Taxonomies', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_taxonomies&add=taxonomy')); ?>"
-                   class="page-title-action"><?php esc_html_e('Add New', 'simpletags'); ?></a>
+                   class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
                    <div class="taxopress-description">This feature allows you to create new taxonomies and edit all the settings for each taxonomy.</div>
 
@@ -161,7 +161,7 @@ class SimpleTags_Admin_Taxonomies
                 if (isset($_REQUEST['s']) && $search = esc_attr(wp_unslash($_REQUEST['s']))) {
                     /* translators: %s: search keywords */
                     printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;',
-                            'simpletags') . '</span>', $search);
+                            'simple-tags') . '</span>', $search);
                 }
                 ?>
                 <?php
@@ -174,7 +174,7 @@ class SimpleTags_Admin_Taxonomies
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(__('Search Taxonomies', 'simpletags'), 'term'); ?>
+                    <?php $this->terms_table->search_box(__('Search Taxonomies', 'simple-tags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>
 
@@ -191,16 +191,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 ?>
 <div class="taxopress-taxonomy-type-wrap">
 <select name="taxopress-taxonomy-type" class="taxopress-taxonomy-type">
-    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo __('All Taxonomies', 'simpletags'); ?></option>
-    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo __('Public Taxonomies', 'simpletags'); ?></option>
-    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo __('Private Taxonomies', 'simpletags'); ?></option>
+    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo __('All Taxonomies', 'simple-tags'); ?></option>
+    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo __('Public Taxonomies', 'simple-tags'); ?></option>
+    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo __('Private Taxonomies', 'simple-tags'); ?></option>
 </select>
 </div>
                         <form action="<?php echo add_query_arg('', '') ?>" method="post">
                             <?php $this->terms_table->display(); //Display the table ?>
                         </form>
                         <div class="form-wrap edit-term-notes">
-                            <p><?php __('Description here.', 'simpletags') ?></p>
+                            <p><?php __('Description here.', 'simple-tags') ?></p>
                         </div>
                     </div>
 
@@ -303,7 +303,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
 
         <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo __('Manage Taxonomy', 'simpletags'); ?></h1>
+            <h1><?php echo __('Manage Taxonomy', 'simple-tags'); ?></h1>
             <div class="wp-clearfix"></div>
 
             <form method="post" action="<?php echo esc_url(taxopress_get_post_form_action($ui)); ?>">
@@ -315,29 +315,29 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                         if($taxonomy_edit){
                         if ($core_edit) {
                             echo '<div class="taxopress-warning">' . __('This taxonomy is part of the WordPress core.',
-                                    'simpletags') . '
+                                    'simple-tags') . '
 
                                                 <br /><br />
                                                 ' . __('Registration key',
-                                    'simpletags') . ': <font color="green">' . $current["name"] . '</font>
+                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
 
                                                 </div>';
                         }elseif ($external_edit) {
                             echo '<div class="taxopress-warning">' . __('This is an external taxonomy and not created with TaxoPress.',
-                                    'simpletags') . '
+                                    'simple-tags') . '
 
                                                 <br /><br />
                                                 ' . __('Registration key',
-                                    'simpletags') . ': <font color="green">' . $current["name"] . '</font>
+                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
 
                                                 </div>';
                         }else{
                             echo '<div class="taxopress-warning">' . __('This taxonomy was created by TaxoPress.',
-                                    'simpletags') . '
+                                    'simple-tags') . '
 
                                                 <br /><br />
                                                 ' . __('Registration key',
-                                    'simpletags') . ': <font color="green">' . $current["name"] . '</font>
+                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
 
                                                 </div>';
                         }
@@ -360,7 +360,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                 ?>
                                 <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
                                        value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_edit',
-                                           esc_attr__('Save Taxonomy', 'simpletags'))); ?>"/>
+                                           esc_attr__('Save Taxonomy', 'simple-tags'))); ?>"/>
                                 <?php
                             } else { ?>
                             <?php
@@ -373,7 +373,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                             ?>
                             <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
                                    value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_add',
-                                       esc_attr__('Add Taxonomy', 'simpletags'))); ?>"/>
+                                       esc_attr__('Add Taxonomy', 'simple-tags'))); ?>"/>
                     <?php } ?>
                         <div class="taxonomy-required-field"></div>
 
@@ -411,9 +411,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                     <h2 class="hndle ui-sortable-handle">
                                         <?php
                                         if ($taxonomy_edit) {
-                                            echo esc_html__('Edit Taxonomy', 'simpletags');
+                                            echo esc_html__('Edit Taxonomy', 'simple-tags');
                                         } else {
-                                            echo esc_html__('Add new Taxonomy', 'simpletags');
+                                            echo esc_html__('Add new Taxonomy', 'simple-tags');
                                         }
                                         ?>
                                     </h2>
@@ -424,57 +424,57 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                         <ul class="st-taxonomy-tab">
                                             <li class="taxonomy_general_tab active" data-content="taxonomy_general">
                                                 <a href="#taxonomy_general"><span><?php esc_html_e('General',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
 
                                             <li class="taxonomy_posttypes_tab" data-content="taxonomy_posttypes">
                                                 <a href="#taxonomy_posttypes"><span><?php esc_html_e('Post Types',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
 
                                             <li class="taxonomy_permalinks_tab" data-content="taxonomy_permalinks">
                                                 <a href="#taxonomy_permalinks"><span><?php esc_html_e('Permalinks',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
 
                                             <li class="taxonomy_menus_tab" data-content="taxonomy_menus">
                                                 <a href="#taxonomy_menus"><span><?php esc_html_e('Admin Area',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
 
                                             <li class="taxonomy_labels_tab" data-content="taxonomy_labels">
                                                 <a href="#taxonomy_labels"><span><?php esc_html_e('Other Labels',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
 
                                             <li class="taxonomy_restapi_tab" data-content="taxonomy_restapi">
                                                 <a href="#taxonomy_restapi"><span><?php esc_html_e('REST API',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
 
                                             <li class="taxonomy_advanced_tab" data-content="taxonomy_advanced">
                                                 <a href="#taxonomy_advanced"><span><?php esc_html_e('Advanced',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
 
                                             <?php if( $taxonomy_edit && !$external_edit ){ ?>
                                             <li class="taxonomy_slug_tab" data-content="taxonomy_slug">
                                                 <a href="#taxonomy_slug"><span><?php esc_html_e('Slug',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
                                             <?php } ?>
 
                                             <?php if($taxonomy_edit){ ?>
                                             <li class="taxonomy_templates_tab" data-content="taxonomy_templates">
                                                 <a href="#taxonomy_templates"><span><?php esc_html_e('Templates',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
                                             <?php } ?>
 
                                             <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                             <li class="taxonomy_delete_tab" data-content="taxonomy_delete">
                                                 <a href="#taxonomy_delete"><span><?php esc_html_e('Deactivate or Delete',
-                                                            'simpletags'); ?></span></a>
+                                                            'simple-tags'); ?></span></a>
                                             </li>
                                             <?php } ?>
                                         </ul>
@@ -491,15 +491,15 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     echo $ui->get_th_start();
                                                 echo $ui->get_label('name',
                                                         esc_html__('Taxonomy Slug',
-                                                            'simpletags')) . $ui->get_required_span();
+                                                            'simple-tags')) . $ui->get_required_span();
 
                                                 if ('edit' === $tab) {
                                                     echo '<p id="slugchanged" class="hidemessage">' . esc_html__('Slug has changed',
-                                                            'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                            'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
                                                 }
                                                 echo '<p id="slugexists" class="hidemessage">' . esc_html__('Slug already exists',
-                                                        'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
-                                                echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                        'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
 
                                                 echo $ui->get_th_end() . $ui->get_td_start();
 
@@ -518,7 +518,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 if ('edit' === $tab) {
                                                     echo '<p>';
                                                     esc_html_e('DO NOT EDIT the taxonomy slug unless also planning to migrate terms. Changing the slug registers a new taxonomy entry.',
-                                                        'simpletags');
+                                                        'simple-tags');
                                                     echo '</p>';
 
                                                     echo '<div class="taxopress-spacer">';
@@ -528,7 +528,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                         'name'       => 'update_taxonomy',
                                                         'namearray'  => 'update_taxonomy',
                                                         'labeltext'  => esc_html__('Migrate terms to newly renamed taxonomy?',
-                                                            'simpletags'),
+                                                            'simple-tags'),
                                                         'helptext'   => '',
                                                         'default'    => false,
                                                         'wrap'       => false,
@@ -544,8 +544,8 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'label',
                                                     'textvalue' => isset($current['label']) ? esc_attr($current['label']) : '',
-                                                    'aftertext' => esc_html__('(e.g. Jobs)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Plural Label', 'simpletags'),
+                                                    'aftertext' => esc_html__('(e.g. Jobs)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Plural Label', 'simple-tags'),
                                                     'maxlength' => '100',
                                                     'helptext'  => '',
                                                     'required'  => true,
@@ -555,8 +555,8 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'singular_label',
                                                     'textvalue' => isset($current['singular_label']) ? esc_attr($current['singular_label']) : '',
-                                                    'aftertext' => esc_html__('(e.g. Job)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Singular Label', 'simpletags'),
+                                                    'aftertext' => esc_html__('(e.g. Job)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Singular Label', 'simple-tags'),
                                                     'maxlength' => '100',
                                                     'helptext'  => '',
                                                     'required'  => true,
@@ -568,12 +568,12 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
                                                         'default' => 'true',
                                                     ],
                                                     [
                                                         'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                        'text' => esc_attr__('True', 'simple-tags'),
                                                     ],
                                                 ],
                                             ];
@@ -582,9 +582,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'hierarchical',
-                                                'labeltext'  => esc_html__('Parent-Child Relationships', 'simpletags'),
+                                                'labeltext'  => esc_html__('Parent-Child Relationships', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Can terms in this taxonomy be organized into hierarchical relationships?',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -599,9 +599,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'rows'      => '4',
                                                     'cols'      => '40',
                                                     'textvalue' => isset($current['description']) ? esc_textarea($current['description']) : '',
-                                                    'labeltext' => esc_html__('Description', 'simpletags'),
+                                                    'labeltext' => esc_html__('Description', 'simple-tags'),
                                                     'helptext'  => esc_attr__('Describe what your taxonomy is used for.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                 ]);
 
 
@@ -671,12 +671,12 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
                                                         'default' => 'true',
                                                     ],
                                                     [
                                                         'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                        'text' => esc_attr__('True', 'simple-tags'),
                                                     ],
                                                 ],
                                             ];
@@ -688,9 +688,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'include_in_result',
-                                                'labeltext'  => esc_html__('Archive page result', 'simpletags'),
+                                                'labeltext'  => esc_html__('Archive page result', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Show content from all post types on archive page',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -710,16 +710,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     echo $ui->get_th_start();
                                                 echo $ui->get_label('name',
                                                         esc_html__('Taxonomy Slug',
-                                                            'simpletags')) . $ui->get_required_span();
+                                                            'simple-tags')) . $ui->get_required_span();
 
                                                 if ('edit' === $tab) {
                                                     echo '<p id="slugchanged" class="hidemessage">' . esc_html__('Slug has changed',
-                                                            'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                            'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
                                                 }
                                                 echo '<p id="slugexists" class="hidemessage">' . esc_html__('Slug already exists',
-                                                        'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                        'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
 
-                                                echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simpletags') . '<span class="dashicons dashicons-warning"></span></p>';
+                                                echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
 
                                                 echo $ui->get_th_end() . $ui->get_td_start();
 
@@ -738,7 +738,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 if ('edit' === $tab) {
                                                     echo '<p>';
                                                     esc_html_e('DO NOT EDIT the taxonomy slug unless also planning to migrate terms. Changing the slug registers a new taxonomy entry.',
-                                                        'simpletags');
+                                                        'simple-tags');
                                                     echo '</p>';
 
                                                     echo '<div class="taxopress-spacer">';
@@ -748,7 +748,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                         'name'       => 'update_taxonomy',
                                                         'namearray'  => 'update_taxonomy',
                                                         'labeltext'  => esc_html__('Migrate terms to newly renamed taxonomy?',
-                                                            'simpletags'),
+                                                            'simple-tags'),
                                                         'helptext'   => '',
                                                         'default'    => false,
                                                         'wrap'       => false,
@@ -780,7 +780,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
         <li style="list-style: decimal;">archive.php</li>
         <li style="list-style: decimal;">index.php</li>
         </ul>
-        <p style="font-weight:bolder;">'.esc_html__( '*Replace "term_slug" with the slug of the actual taxonomy term.', 'simpletags' ).'</p>';
+        <p style="font-weight:bolder;">'.esc_html__( '*Replace "term_slug" with the slug of the actual taxonomy term.', 'simple-tags' ).'</p>';
 
         echo '<td>';
         echo $template_hierarchy;
@@ -803,11 +803,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr' => '0',
-                                                        'text' => esc_attr__('False', 'simpletags'),
+                                                        'text' => esc_attr__('False', 'simple-tags'),
                                                     ],
                                                     [
                                                         'attr'    => '1',
-                                                        'text'    => esc_attr__('True', 'simpletags'),
+                                                        'text'    => esc_attr__('True', 'simple-tags'),
                                                         'default' => 'true',
                                                     ],
                                                 ],
@@ -817,9 +817,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite',
-                                                'labeltext'  => esc_html__('Rewrite', 'simpletags'),
+                                                'labeltext'  => esc_html__('Rewrite', 'simple-tags'),
                                                 'aftertext'  => esc_html__('WordPress can use a custom permalink for this taxonomy. It does not have to match the slug.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -827,21 +827,21 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'rewrite_slug',
                                                 'textvalue' => isset($current['rewrite_slug']) ? esc_attr($current['rewrite_slug']) : '',
-                                                'aftertext' => esc_attr__('(default: taxonomy name)', 'simpletags'),
-                                                'labeltext' => esc_html__('Custom Rewrite Slug', 'simpletags'),
+                                                'aftertext' => esc_attr__('(default: taxonomy name)', 'simple-tags'),
+                                                'labeltext' => esc_html__('Custom Rewrite Slug', 'simple-tags'),
                                                 'helptext'  => esc_html__('Custom taxonomy rewrite slug.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                             ]);
 
                                             $select             = [
                                                 'options' => [
                                                     [
                                                         'attr' => '0',
-                                                        'text' => esc_attr__('False', 'simpletags'),
+                                                        'text' => esc_attr__('False', 'simple-tags'),
                                                     ],
                                                     [
                                                         'attr'    => '1',
-                                                        'text'    => esc_attr__('True', 'simpletags'),
+                                                        'text'    => esc_attr__('True', 'simple-tags'),
                                                         'default' => 'true',
                                                     ],
                                                 ],
@@ -851,9 +851,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_withfront',
-                                                'labeltext'  => esc_html__('Rewrite With Front', 'simpletags'),
+                                                'labeltext'  => esc_html__('Rewrite With Front', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Should the permastruct be prepended with the front base.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -861,12 +861,12 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
                                                         'default' => 'false',
                                                     ],
                                                     [
                                                         'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                        'text' => esc_attr__('True', 'simple-tags'),
                                                     ],
                                                 ],
                                             ];
@@ -875,9 +875,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_hierarchical',
-                                                'labeltext'  => esc_html__('Rewrite Hierarchical', 'simpletags'),
+                                                'labeltext'  => esc_html__('Rewrite Hierarchical', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Should the permastruct allow hierarchical urls.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -895,11 +895,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'options' => [
                                                         [
                                                             'attr' => '0',
-                                                            'text' => esc_attr__('False', 'simpletags'),
+                                                            'text' => esc_attr__('False', 'simple-tags'),
                                                         ],
                                                         [
                                                             'attr'    => '1',
-                                                            'text'    => esc_attr__('True', 'simpletags'),
+                                                            'text'    => esc_attr__('True', 'simple-tags'),
                                                             'default' => 'true',
                                                         ],
                                                     ],
@@ -909,7 +909,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_ui',
-                                                    'labeltext'  => esc_html__('Show user interface', 'simpletags'),
+                                                    'labeltext'  => esc_html__('Show user interface', 'simple-tags'),
                                                     'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
@@ -918,11 +918,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'options' => [
                                                         [
                                                             'attr' => '0',
-                                                            'text' => esc_attr__('False', 'simpletags'),
+                                                            'text' => esc_attr__('False', 'simple-tags'),
                                                         ],
                                                         [
                                                             'attr'    => '1',
-                                                            'text'    => esc_attr__('True', 'simpletags'),
+                                                            'text'    => esc_attr__('True', 'simple-tags'),
                                                             'default' => 'true',
                                                         ],
                                                     ],
@@ -932,7 +932,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_menu',
-                                                    'labeltext'  => esc_html__('Show in admin menus', 'simpletags'),
+                                                    'labeltext'  => esc_html__('Show in admin menus', 'simple-tags'),
                                                     'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
@@ -941,11 +941,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'options' => [
                                                         [
                                                             'attr' => '0',
-                                                            'text' => esc_attr__('False', 'simpletags'),
+                                                            'text' => esc_attr__('False', 'simple-tags'),
                                                         ],
                                                         [
                                                             'attr'    => '1',
-                                                            'text'    => esc_attr__('True', 'simpletags'),
+                                                            'text'    => esc_attr__('True', 'simple-tags'),
                                                             'default' => 'true',
                                                         ],
                                                     ],
@@ -955,7 +955,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_nav_menus',
-                                                    'labeltext'  => esc_html__('Show in frontend menus', 'simpletags'),
+                                                    'labeltext'  => esc_html__('Show in frontend menus', 'simple-tags'),
                                                     'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
@@ -965,12 +965,12 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'options' => [
                                                         [
                                                             'attr'    => '0',
-                                                            'text'    => esc_attr__('False', 'simpletags'),
+                                                            'text'    => esc_attr__('False', 'simple-tags'),
                                                             'default' => 'true',
                                                         ],
                                                         [
                                                             'attr' => '1',
-                                                            'text' => esc_attr__('True', 'simpletags'),
+                                                            'text' => esc_attr__('True', 'simple-tags'),
                                                         ],
                                                     ],
                                                 ];
@@ -979,7 +979,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_admin_column',
-                                                    'labeltext'  => esc_html__('Show admin column', 'simpletags'),
+                                                    'labeltext'  => esc_html__('Show admin column', 'simple-tags'),
                                                     'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
@@ -988,12 +988,12 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simpletags'),
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
                                                         'default' => 'false',
                                                     ],
                                                     [
                                                         'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simpletags'),
+                                                        'text' => esc_attr__('True', 'simple-tags'),
                                                     ],
                                                 ],
                                             ];
@@ -1003,7 +1003,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'show_in_quick_edit',
                                                 'labeltext'  => esc_html__('Show in "Quick Edit" and "Bulk Edit"',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'aftertext'  => '',
                                                 'selections' => $select,
                                             ]);
@@ -1022,10 +1022,10 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'menu_name',
                                                     'textvalue' => isset($current['labels']['menu_name']) ? esc_attr($current['labels']['menu_name']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. Jobs)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Menu Name', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Jobs)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Menu Name', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom admin menu name for your taxonomy.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'maxlength' => '100',
                                                     'data'      => [
                                                         'label'     => 'item', // Not localizing because it's isolated.
@@ -1037,13 +1037,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'all_items',
                                                     'textvalue' => isset($current['labels']['all_items']) ? esc_attr($current['labels']['all_items']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. All Jobs)', 'simpletags'),
-                                                    'labeltext' => esc_html__('All Items', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. All Jobs)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('All Items', 'simple-tags'),
                                                     'helptext'  => esc_html__('Used as tab text when showing all terms for hierarchical taxonomy while editing post.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('All %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('All %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1053,13 +1053,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'edit_item',
                                                     'textvalue' => isset($current['labels']['edit_item']) ? esc_attr($current['labels']['edit_item']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. Edit Job)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Edit Item', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Edit Job)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Edit Item', 'simple-tags'),
                                                     'helptext'  => esc_html__('Used at the top of the term editor screen for an existing taxonomy term.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('Edit %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('Edit %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'singular',
                                                     ],
@@ -1069,13 +1069,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'view_item',
                                                     'textvalue' => isset($current['labels']['view_item']) ? esc_attr($current['labels']['view_item']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. View Job)', 'simpletags'),
-                                                    'labeltext' => esc_html__('View Item', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. View Job)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('View Item', 'simple-tags'),
                                                     'helptext'  => esc_html__('Used in the admin bar when viewing editor screen for an existing taxonomy term.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('View %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('View %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'singular',
                                                     ],
@@ -1085,14 +1085,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'update_item',
                                                     'textvalue' => isset($current['labels']['update_item']) ? esc_attr($current['labels']['update_item']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. Update Job Name)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Update Item Name', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Update Job Name)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Update Item Name', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
                                                         'label'     => sprintf(esc_attr__('Update %s name',
-                                                            'simpletags'),
+                                                            'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'singular',
                                                     ],
@@ -1102,13 +1102,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'add_new_item',
                                                     'textvalue' => isset($current['labels']['add_new_item']) ? esc_attr($current['labels']['add_new_item']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. Add New Job)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Add New Item', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Add New Job)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Add New Item', 'simple-tags'),
                                                     'helptext'  => esc_html__('Used at the top of the term editor screen and button text for a new taxonomy term.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('Add new %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('Add new %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'singular',
                                                     ],
@@ -1118,13 +1118,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'new_item_name',
                                                     'textvalue' => isset($current['labels']['new_item_name']) ? esc_attr($current['labels']['new_item_name']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. New Job Name)', 'simpletags'),
-                                                    'labeltext' => esc_html__('New Item Name', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. New Job Name)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('New Item Name', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('New %s name', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('New %s name', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'singular',
                                                     ],
@@ -1134,13 +1134,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'parent_item',
                                                     'textvalue' => isset($current['labels']['parent_item']) ? esc_attr($current['labels']['parent_item']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. Parent Job)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Parent Item', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Parent Job)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Parent Item', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('Parent %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('Parent %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'singular',
                                                     ],
@@ -1150,13 +1150,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'parent_item_colon',
                                                     'textvalue' => isset($current['labels']['parent_item_colon']) ? esc_attr($current['labels']['parent_item_colon']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. Parent Job:)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Parent Item Colon', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Parent Job:)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Parent Item Colon', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('Parent %s:', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('Parent %s:', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'singular',
                                                     ],
@@ -1166,13 +1166,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'search_items',
                                                     'textvalue' => isset($current['labels']['search_items']) ? esc_attr($current['labels']['search_items']) : '',
-                                                    'aftertext' => esc_attr__('(e.g. Search Jobs)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Search Items', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Search Jobs)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Search Items', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('Search %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('Search %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1182,13 +1182,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'popular_items',
                                                     'textvalue' => isset($current['labels']['popular_items']) ? esc_attr($current['labels']['popular_items']) : null,
-                                                    'aftertext' => esc_attr__('(e.g. Popular Jobs)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Popular Items', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. Popular Jobs)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Popular Items', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('Popular %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('Popular %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1199,15 +1199,15 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'      => 'separate_items_with_commas',
                                                     'textvalue' => isset($current['labels']['separate_items_with_commas']) ? esc_attr($current['labels']['separate_items_with_commas']) : null,
                                                     'aftertext' => esc_attr__('(e.g. Separate Jobs with commas)',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'labeltext' => esc_html__('Separate Items with Commas',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
                                                         'label'     => sprintf(esc_attr__('Separate %s with commas',
-                                                            'simpletags'), 'item'),
+                                                            'simple-tags'), 'item'),
                                                         'plurality' => 'plural',
                                                     ],
                                                 ]);
@@ -1217,14 +1217,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'      => 'add_or_remove_items',
                                                     'textvalue' => isset($current['labels']['add_or_remove_items']) ? esc_attr($current['labels']['add_or_remove_items']) : null,
                                                     'aftertext' => esc_attr__('(e.g. Add or remove Jobs)',
-                                                        'simpletags'),
-                                                    'labeltext' => esc_html__('Add or Remove Items', 'simpletags'),
+                                                        'simple-tags'),
+                                                    'labeltext' => esc_html__('Add or Remove Items', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
                                                         'label'     => sprintf(esc_attr__('Add or remove %s',
-                                                            'simpletags'),
+                                                            'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1235,14 +1235,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'      => 'choose_from_most_used',
                                                     'textvalue' => isset($current['labels']['choose_from_most_used']) ? esc_attr($current['labels']['choose_from_most_used']) : null,
                                                     'aftertext' => esc_attr__('(e.g. Choose from the most used Jobs)',
-                                                        'simpletags'),
-                                                    'labeltext' => esc_html__('Choose From Most Used', 'simpletags'),
+                                                        'simple-tags'),
+                                                    'labeltext' => esc_html__('Choose From Most Used', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
                                                         'label'     => sprintf(esc_attr__('Choose from the most used %s',
-                                                            'simpletags'), 'item'),
+                                                            'simple-tags'), 'item'),
                                                         'plurality' => 'plural',
                                                     ],
                                                 ]);
@@ -1251,13 +1251,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'not_found',
                                                     'textvalue' => isset($current['labels']['not_found']) ? esc_attr($current['labels']['not_found']) : null,
-                                                    'aftertext' => esc_attr__('(e.g. No Jobs found)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Not found', 'simpletags'),
+                                                    'aftertext' => esc_attr__('(e.g. No Jobs found)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Not found', 'simple-tags'),
                                                     'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('No %s found', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('No %s found', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1267,13 +1267,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'no_terms',
                                                     'textvalue' => isset($current['labels']['no_terms']) ? esc_attr($current['labels']['no_terms']) : null,
-                                                    'aftertext' => esc_html__('(e.g. No jobs)', 'simpletags'),
-                                                    'labeltext' => esc_html__('No terms', 'simpletags'),
+                                                    'aftertext' => esc_html__('(e.g. No jobs)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('No terms', 'simple-tags'),
                                                     'helptext'  => esc_attr__('Used when indicating that there are no terms in the given taxonomy associated with an object.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('No %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('No %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1284,14 +1284,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'      => 'items_list_navigation',
                                                     'textvalue' => isset($current['labels']['items_list_navigation']) ? esc_attr($current['labels']['items_list_navigation']) : null,
                                                     'aftertext' => esc_html__('(e.g. Jobs list navigation)',
-                                                        'simpletags'),
-                                                    'labeltext' => esc_html__('Items List Navigation', 'simpletags'),
+                                                        'simple-tags'),
+                                                    'labeltext' => esc_html__('Items List Navigation', 'simple-tags'),
                                                     'helptext'  => esc_attr__('Screen reader text for the pagination heading on the term listing screen.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
                                                         'label'     => sprintf(esc_attr__('%s list navigation',
-                                                            'simpletags'),
+                                                            'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1301,13 +1301,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'items_list',
                                                     'textvalue' => isset($current['labels']['items_list']) ? esc_attr($current['labels']['items_list']) : null,
-                                                    'aftertext' => esc_html__('(e.g. Jobs list)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Items List', 'simpletags'),
+                                                    'aftertext' => esc_html__('(e.g. Jobs list)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Items List', 'simple-tags'),
                                                     'helptext'  => esc_attr__('Screen reader text for the items list heading on the term listing screen.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('%s list', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('%s list', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1317,13 +1317,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'not_found',
                                                     'textvalue' => isset($current['labels']['not_found']) ? esc_attr($current['labels']['not_found']) : null,
-                                                    'aftertext' => esc_html__('(e.g. No jobs found)', 'simpletags'),
-                                                    'labeltext' => esc_html__('Not Found', 'simpletags'),
+                                                    'aftertext' => esc_html__('(e.g. No jobs found)', 'simple-tags'),
+                                                    'labeltext' => esc_html__('Not Found', 'simple-tags'),
                                                     'helptext'  => esc_attr__('The text displayed via clicking ‘Choose from the most used items’ in the taxonomy meta box when no items are available.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('No %s found', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('No %s found', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1334,13 +1334,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'      => 'back_to_items',
                                                     'textvalue' => isset($current['labels']['back_to_items']) ? esc_attr($current['labels']['back_to_items']) : null,
                                                     'aftertext' => esc_html__('(e.g. &larr; Back to jobs',
-                                                        'simpletags'),
-                                                    'labeltext' => esc_html__('Back to Items', 'simpletags'),
+                                                        'simple-tags'),
+                                                    'labeltext' => esc_html__('Back to Items', 'simple-tags'),
                                                     'helptext'  => esc_attr__('The text displayed after a term has been updated for a link back to main index.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'data'      => [
                                                         /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('Back to %s', 'simpletags'),
+                                                        'label'     => sprintf(esc_attr__('Back to %s', 'simple-tags'),
                                                             'item'),
                                                         'plurality' => 'plural',
                                                     ],
@@ -1356,11 +1356,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'options' => [
                                                         [
                                                             'attr' => '0',
-                                                            'text' => esc_attr__('False', 'simpletags'),
+                                                            'text' => esc_attr__('False', 'simple-tags'),
                                                         ],
                                                         [
                                                             'attr'    => '1',
-                                                            'text'    => esc_attr__('True', 'simpletags'),
+                                                            'text'    => esc_attr__('True', 'simple-tags'),
                                                             'default' => 'true',
                                                         ],
                                                     ],
@@ -1370,7 +1370,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_rest',
-                                                    'labeltext'  => esc_html__('Show in REST API', 'simpletags'),
+                                                    'labeltext'  => esc_html__('Show in REST API', 'simple-tags'),
                                                     'aftertext'  => '',
                                                     'selections' => $select,
                                                 ]);
@@ -1378,9 +1378,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'rest_base',
-                                                    'labeltext' => esc_html__('REST API base slug', 'simpletags'),
+                                                    'labeltext' => esc_html__('REST API base slug', 'simple-tags'),
                                                     'helptext'  => esc_attr__('Slug to use in REST API URLs.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'textvalue' => isset($current['rest_base']) ? esc_attr($current['rest_base']) : '',
                                                 ]);
 
@@ -1388,9 +1388,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'rest_controller_class',
                                                     'labeltext' => esc_html__('REST API controller class',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'aftertext' => esc_attr__('Custom controller to use instead of WP_REST_Terms_Controller.',
-                                                        'simpletags'),
+                                                        'simple-tags'),
                                                     'textvalue' => isset($current['rest_controller_class']) ? esc_attr($current['rest_controller_class']) : '',
                                                 ]);
 
@@ -1408,11 +1408,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr' => '0',
-                                                        'text' => esc_attr__('False', 'simpletags'),
+                                                        'text' => esc_attr__('False', 'simple-tags'),
                                                     ],
                                                     [
                                                         'attr'    => '1',
-                                                        'text'    => esc_attr__('True', 'simpletags'),
+                                                        'text'    => esc_attr__('True', 'simple-tags'),
                                                         'default' => 'true',
                                                     ],
                                                 ],
@@ -1422,9 +1422,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'public',
-                                                'labeltext'  => esc_html__('Public', 'simpletags'),
+                                                'labeltext'  => esc_html__('Public', 'simple-tags'),
                                                 'aftertext'  => esc_html__('The taxonomy is for public use. It can be seen by frontend users.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -1432,11 +1432,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr' => '0',
-                                                        'text' => esc_attr__('False', 'simpletags'),
+                                                        'text' => esc_attr__('False', 'simple-tags'),
                                                     ],
                                                     [
                                                         'attr'    => '1',
-                                                        'text'    => esc_attr__('True', 'simpletags'),
+                                                        'text'    => esc_attr__('True', 'simple-tags'),
                                                         'default' => 'true',
                                                     ],
                                                 ],
@@ -1446,9 +1446,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'publicly_queryable',
-                                                'labeltext'  => esc_html__('Public Queryable', 'simpletags'),
+                                                'labeltext'  => esc_html__('Public Queryable', 'simple-tags'),
                                                 'aftertext'  => esc_html__('The taxonomy is publicly queryable.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -1456,11 +1456,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'options' => [
                                                     [
                                                         'attr' => '0',
-                                                        'text' => esc_attr__('False', 'simpletags'),
+                                                        'text' => esc_attr__('False', 'simple-tags'),
                                                     ],
                                                     [
                                                         'attr'    => '1',
-                                                        'text'    => esc_attr__('True', 'simpletags'),
+                                                        'text'    => esc_attr__('True', 'simple-tags'),
                                                         'default' => 'true',
                                                     ],
                                                 ],
@@ -1470,9 +1470,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'query_var',
-                                                'labeltext'  => esc_html__('Query Var', 'simpletags'),
+                                                'labeltext'  => esc_html__('Query Var', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Enable a custom query_var key for this taxonomy.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                                 'selections' => $select,
                                             ]);
 
@@ -1481,27 +1481,27 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'name'      => 'query_var_slug',
                                                 'textvalue' => isset($current['query_var_slug']) ? esc_attr($current['query_var_slug']) : '',
                                                 'aftertext' => '',
-                                                'labeltext' => esc_html__('Custom Query Var String', 'simpletags'),
+                                                'labeltext' => esc_html__('Custom Query Var String', 'simple-tags'),
                                                 'helptext'  => esc_html__('Sets a custom query_var slug for this taxonomy.',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                             ]);
 
                                             echo $ui->get_text_input([
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'meta_box_cb',
                                                 'textvalue' => isset($current['meta_box_cb']) ? esc_attr($current['meta_box_cb']) : '',
-                                                'labeltext' => esc_html__('Metabox callback', 'simpletags'),
+                                                'labeltext' => esc_html__('Metabox callback', 'simple-tags'),
                                                 'helptext'  => esc_html__('Sets a callback function name for the meta box display. Hierarchical default: post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To remove the metabox completely, use "false".',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                             ]);
 
                                             echo $ui->get_text_input([
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'default_term',
                                                 'textvalue' => isset($current['default_term']) ? esc_attr($current['default_term']) : '',
-                                                'labeltext' => esc_html__('Default Term', 'simpletags'),
+                                                'labeltext' => esc_html__('Default Term', 'simple-tags'),
                                                 'helptext'  => esc_html__('Set a default term for the taxonomy. Able to set a name, slug, and description. Only a name is required if setting a default, others are optional. Set values in the following order, separated by comma. Example: name, slug, description',
-                                                    'simpletags'),
+                                                    'simple-tags'),
                                             ]);
                                             ?>
                                         </table>
@@ -1548,11 +1548,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                     ?>
                                     <span class="action-button reactivate"><a class="button-primary"
                                             href="<?php echo $activate_action_link; ?>"><?php echo __('Re-activate Taxonomy',
-                                                'simpletags'); ?></a></span>
+                                                'simple-tags'); ?></a></span>
                                 <?php } else { ?>
                                     <span class="action-button deactivate"><a class="button-primary"
                                             href="<?php echo $deactivate_action_link; ?>"><?php echo __('Deactivate Taxonomy',
-                                                'simpletags'); ?></a></span>
+                                                'simple-tags'); ?></a></span>
                                 <?php }
                                 /**
                                  * Filters the text value to use on the button when deleting.
@@ -1565,10 +1565,10 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                            name="cpt_delete"
                                            id="cpt_submit_delete"
                                            value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
-                                               __('Delete Taxonomy', 'simpletags'))); ?>"/>
+                                               __('Delete Taxonomy', 'simple-tags'))); ?>"/>
                                 <?php }else{
                                      echo '<div class="taxopress-warning" style="color:red;">' . __('You can only delete taxonomies created with TaxoPress.',
-                                    'simpletags') . '</div>';
+                                    'simple-tags') . '</div>';
                                 }
                             }
                             ?>
@@ -1611,19 +1611,19 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 <?php # Modal Windows; ?>
 <div class="remodal" data-remodal-id="taxopress-modal-alert"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simpletags'); ?></div>
+     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
     <div id="taxopress-modal-alert-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simpletags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simple-tags'); ?></button>
 </div>
 
 <div class="remodal" data-remodal-id="taxopress-modal-confirm"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <div id="taxopress-modal-confirm-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simpletags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
     <button data-remodal-action="confirm"
-            class="remodal-confirm"><?php echo __('Yes', 'simpletags'); ?></button>
+            class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
 </div>
 
         <?php

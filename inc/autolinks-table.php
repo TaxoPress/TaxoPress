@@ -11,8 +11,8 @@ class Autolinks_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Auto Link', 'simpletags'), //singular name of the listed records
-            'plural'   => __('Auto Links', 'simpletags'), //plural name of the listed records
+            'singular' => __('Auto Link', 'simple-tags'), //singular name of the listed records
+            'plural'   => __('Auto Links', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -63,10 +63,10 @@ class Autolinks_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'title'     => __('Title', 'simpletags'),
-            'taxonomy'  => __('Taxonomy', 'simpletags'),
-            'embedded'  => __('Auto Link Post type', 'simpletags'),
-            'autolink_display'  => __('Auto Link areas', 'simpletags')
+            'title'     => __('Title', 'simple-tags'),
+            'taxonomy'  => __('Taxonomy', 'simple-tags'),
+            'embedded'  => __('Auto Link Post type', 'simple-tags'),
+            'autolink_display'  => __('Auto Link areas', 'simple-tags')
         ];
 
         return $columns;
@@ -88,7 +88,7 @@ class Autolinks_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        _e('No item avaliable.', 'simpletags');
+        _e('No item avaliable.', 'simple-tags');
     }
 
     /**
@@ -261,7 +261,7 @@ class Autolinks_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                __('Edit', 'simpletags')
+                __('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-autolink">%s</a>',
@@ -272,7 +272,7 @@ class Autolinks_List extends WP_List_Table
                     '_wpnonce'               => wp_create_nonce('autolink-action-request-nonce')
                 ],
                     admin_url('admin.php')),
-                __('Delete', 'simpletags')
+                __('Delete', 'simple-tags')
             ),
         ];
 
@@ -340,10 +340,10 @@ class Autolinks_List extends WP_List_Table
 
             $result_array     = [];
             $embedded_options = [
-                'homeonly'   => esc_attr__('Homepage', 'simpletags'),
-                'blogonly'   => esc_attr__('Blog display', 'simpletags'),
-                'singleonly' => esc_attr__('Single post display', 'simpletags'),
-                'feed'       => esc_attr__('RSS feed', 'simpletags'),
+                'homeonly'   => esc_attr__('Homepage', 'simple-tags'),
+                'blogonly'   => esc_attr__('Blog display', 'simple-tags'),
+                'singleonly' => esc_attr__('Single post display', 'simple-tags'),
+                'feed'       => esc_attr__('RSS feed', 'simple-tags'),
             ];
             foreach ($post_types as $post_type) {
                 $embedded_options[$post_type->name] = $post_type->label;
@@ -353,7 +353,7 @@ class Autolinks_List extends WP_List_Table
             }
             $result = join(', ', $result_array);
         } else {
-            $result = esc_attr__('None', 'simpletags');
+            $result = esc_attr__('None', 'simple-tags');
         }
 
         return $result;
@@ -369,9 +369,9 @@ class Autolinks_List extends WP_List_Table
     protected function column_autolink_display($item)
     {
             $autolink_display_options = [
-                'post_content'   => esc_attr__('Post Content', 'simpletags'),
-                'post_title'   => esc_attr__('Post Title', 'simpletags'),
-                'posts' => esc_attr__('Post Content and Title', 'simpletags'),
+                'post_content'   => esc_attr__('Post Content', 'simple-tags'),
+                'post_title'   => esc_attr__('Post Title', 'simple-tags'),
+                'posts' => esc_attr__('Post Content and Title', 'simple-tags'),
             ];
 
         return $autolink_display_options[$item['autolink_display']];
