@@ -174,7 +174,7 @@ class SimpleTags_Admin_Manage {
 				<h3><?php _e( 'Click terms list:', 'simple-tags' ); ?></h3>
 
 
-        <?php 
+        <?php
         if (isset($_REQUEST['s']) && $search = esc_attr(wp_unslash($_REQUEST['s']))) {
             /* translators: %s: search keywords */
             printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;', 'simple-tags') . '</span>', $search);
@@ -186,7 +186,7 @@ class SimpleTags_Admin_Manage {
         $this->terms_table->prepare_items();
         ?>
 
-        
+
         <hr class="wp-header-end">
         <div id="ajax-response"></div>
         <form class="search-form wp-clearfix st-tag-cloud-search-form" method="get">
@@ -211,7 +211,7 @@ class SimpleTags_Admin_Manage {
                         <?php $this->terms_table->display(); //Display the table ?>
                     </form>
                     <div class="form-wrap edit-term-notes">
-                        <p><?php __('Description here.', 'capsman-enhanced') ?></p>
+                        <p><?php __('Description here.', 'simple-tags') ?></p>
                     </div>
                 </div>
 
@@ -236,7 +236,7 @@ class SimpleTags_Admin_Manage {
                         <div class="clear"></div>
 
 
-                        
+
                 <table class="form-table">
 
 
@@ -471,7 +471,7 @@ class SimpleTags_Admin_Manage {
 					<th scope="row"><strong><?php _e('Edit Term Slug', 'simple-tags'); ?></strong></th>
 					<td>
 						<p><?php _e('Enter the term name to edit and its new slug. <a href="http://codex.wordpress.org/Glossary#Slug">Slug definition</a>', 'simple-tags'); ?></p>
-						
+
 						<fieldset>
 							<form action="" method="post">
 								<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
@@ -506,15 +506,15 @@ class SimpleTags_Admin_Manage {
 
                     </div>
                 </div>
-                
-                
+
+
             </div>
 
 
 
 
     <div class="clear"></div>
-    
+
         </div>
 
 
@@ -651,7 +651,7 @@ class SimpleTags_Admin_Manage {
 
 			return false;
 		}
-		
+
         $counter = 0;
         if ( count($new_terms) > 0 ) {
 			foreach ( (array) $new_terms as $term ) {
@@ -681,7 +681,7 @@ class SimpleTags_Admin_Manage {
 				    clean_term_cache( $term, $taxonomy );
                     $counter ++;
                 }
-            }       
+            }
         }
 
 			if ( $counter == 0 ) {
