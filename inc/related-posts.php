@@ -630,6 +630,26 @@ class SimpleTags_Related_Post
                                                             'selections' => $select,
                                                         ]);
 
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'wrap_class',
+                                                            'class'     => '',
+                                                            'textvalue' => isset($current['wrap_class']) ? esc_attr($current['wrap_class']) : '',
+                                                            'labeltext' => esc_html__('Related Posts div class', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'link_class',
+                                                            'class'     => '',
+                                                            'textvalue' => isset($current['link_class']) ? esc_attr($current['link_class']) : '',
+                                                            'labeltext' => esc_html__('Term link class', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
 
                                                         echo $ui->get_text_input([
                                                             'namearray' => 'taxopress_related_post',

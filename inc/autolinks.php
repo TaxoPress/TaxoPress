@@ -722,6 +722,16 @@ class SimpleTags_Autolink
                                                        style="<?php echo $active_tab === 'autolink_advanced' ? '' : 'display:none;'; ?>">
                                                     <?php
 
+                                                    echo $ui->get_text_input([
+                                                        'namearray' => 'taxopress_autolink',
+                                                        'name'      => 'link_class',
+                                                        'class'     => '',
+                                                        'textvalue' => isset($current['link_class']) ? esc_attr($current['link_class']) : '',
+                                                        'labeltext' => esc_html__('Term link class', 'simple-tags'),
+                                                        'helptext'  => '',
+                                                        'required'  => false,
+                                                    ]);
+
 
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autolink',

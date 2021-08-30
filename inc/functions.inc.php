@@ -138,3 +138,34 @@ function taxopress_is_screen_main_page(){
 
    return true;
 }
+
+
+
+function taxopress_format_class($class)
+{
+  return esc_attr(ltrim($class, '.'));
+}
+
+function taxopress_add_class_to_format($xformat, $class) {
+    $classes = $class;
+    $html    = $xformat;
+
+    $patterns = array();
+    $replacements = array();
+
+     // matches where anchor has existing classes contained in single quotes
+    $patterns[0] = '/<a([^>]*)class=\'([^\']*)\'([^>]*)>/';
+    $replacements[0] = '<a\1class="' . $classes . ' \2"\3>';
+
+    // matches where anchor has existing classes contained in double quotes
+    $patterns[1] = '/<a([^>]*)class="([^"]*)"([^>]*)>/';
+    $replacements[1] = '<a\1class="' . $classes . ' \2"\3>';
+
+    // matches where anchor tag has no existing classes
+    $patterns[2] = '/<a(?![^>]*class)([^>]*)>/';
+    $replacements[2] = '<a\1 class="' . $classes . '">';
+
+    $html = preg_replace($patterns, $replacements, $html);
+
+    return $html;
+}

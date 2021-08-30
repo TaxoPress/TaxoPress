@@ -105,6 +105,8 @@ class SimpleTags_Client_RelatedPosts {
 			'hide_title'    => 0,
 			'hide_output'   => 0,
 			'title_header'  => '',
+			'wrap_class'  => '',
+			'link_class'  => '',
 		);
 
 		// Get values in DB
@@ -187,7 +189,7 @@ class SimpleTags_Client_RelatedPosts {
 
 			if ( $current_terms == false || is_wp_error( $current_terms ) ) {
                 if((int)$hide_output === 0){
-				    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+				    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright, '', $wrap_class, $link_class );
                 }else{
                     return '';
                 }
@@ -322,7 +324,7 @@ class SimpleTags_Client_RelatedPosts {
 			// If empty return no posts text
 			if ( empty( $include_terms_sql ) ) {
                 if((int)$hide_output === 0){
-				    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+				    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright, '', $wrap_class, $link_class );
                 }else {
                     return '';
                 }
@@ -353,7 +355,7 @@ class SimpleTags_Client_RelatedPosts {
 			return $results;
 		} elseif ( $results === false || empty( $results ) ) {
             if((int)$hide_output === 0){
-			    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright );
+			    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright, '', $wrap_class, $link_class );
             } else {
                 return '';
             }
@@ -364,6 +366,14 @@ class SimpleTags_Client_RelatedPosts {
 		}
 
 		$output = array();
+
+		//update xformat with class link class
+		if(!empty(trim($link_class))){
+			$link_class = taxopress_format_class($link_class);
+			$xformat = taxopress_add_class_to_format($xformat, $link_class);
+		}
+		
+
 		// Replace placeholders
 		foreach ( (array) $results as $result ) {
 			if ( ( $min_shared > 1 && ( count( explode( ',', $result->terms_id ) ) < $min_shared ) ) || ! is_object( $result ) ) {
@@ -381,7 +391,7 @@ class SimpleTags_Client_RelatedPosts {
 			$element_loop = str_replace( '%post_id%', $result->ID, $element_loop );
 
 			if ( isset( $result->terms_id ) ) {
-				$element_loop = str_replace( '%post_relatedtags%', self::get_tags_from_id( $result->terms_id, $taxonomy ), $element_loop );
+				$element_loop = str_replace( '%post_relatedtags%', self::get_tags_from_id( $result->terms_id, $taxonomy ), $element_loop, $link_class );
 			}
 
 			if ( isset( $result->post_excerpt ) || isset( $result->post_content ) ) {
@@ -390,8 +400,7 @@ class SimpleTags_Client_RelatedPosts {
 
 			$output[] = $element_loop;
 		}
-
-		return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $output, $copyright, $separator );
+		return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $output, $copyright, $separator, $wrap_class, $link_class );
 	}
 
 	/**

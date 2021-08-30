@@ -473,6 +473,26 @@ class SimpleTags_Post_Tags
 
                                                         echo $ui->get_text_input([
                                                             'namearray' => 'taxopress_post_tags',
+                                                            'name'      => 'wrap_class',
+                                                            'class'     => '',
+                                                            'textvalue' => isset($current['wrap_class']) ? esc_attr($current['wrap_class']) : '',
+                                                            'labeltext' => esc_html__('Terms for Current Post div class', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_post_tags',
+                                                            'name'      => 'link_class',
+                                                            'class'     => '',
+                                                            'textvalue' => isset($current['link_class']) ? esc_attr($current['link_class']) : '',
+                                                            'labeltext' => esc_html__('Term link class', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_post_tags',
                                                             'name'      => 'xformat',
                                                             'class'     => 'st-full-width',
                                                             'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>'),
