@@ -321,13 +321,14 @@ class SimpleTags_Client_Autolinks {
 			return;
 		}
 
-				if($options){
+		if($options){
             $autolink_case = $options['autolink_case'];
             $html_exclusion = $options['html_exclusion'];
             $exclude_class = $options['autolink_exclude_class'];
             $title_attribute = $options['autolink_title_attribute'];
             $same_usage_max = $options['autolink_same_usage_max'];
             $max_by_post = $options['autolink_usage_max'];
+            $link_class = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
         }else{
             $autolink_case = 'lowercase';
             $html_exclusion = [];
@@ -335,6 +336,7 @@ class SimpleTags_Client_Autolinks {
             $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
             $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
             $max_by_post = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' );
+            $link_class = '';
         }
 
         //auto link exclusion
@@ -368,8 +370,8 @@ class SimpleTags_Client_Autolinks {
 		$j        = 0;
         $replaced_count = 0;
 		foreach ( $xpath->query( '//text()'.$exclusion.'' ) as $node ) {
-			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
-			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
+			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
+			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
             $link_closing = '</a>';
             $upperterm = strtoupper($search);
             $lowerterm = strtolower($search);
@@ -436,6 +438,7 @@ class SimpleTags_Client_Autolinks {
             $title_attribute = $options['autolink_title_attribute'];
             $same_usage_max = $options['autolink_same_usage_max'];
             $max_by_post = $options['autolink_usage_max'];
+            $link_class = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
         }else{
             $autolink_case = 'lowercase';
             $html_exclusion = [];
@@ -443,6 +446,7 @@ class SimpleTags_Client_Autolinks {
             $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
             $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
             $max_by_post = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' );
+            $link_class = '';
         }
 
 		$must_tokenize = true; // will perform basic tokenization
@@ -452,10 +456,10 @@ class SimpleTags_Client_Autolinks {
 		$filtered = ''; // will filter text token by token
 
 		$match      = '/(\PL|\A)(' . preg_quote( $search, '/' ) . ')(\PL|\Z)\b/u' . $case;
-		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$2</a>$3";
+		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$2</a>$3";
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
-		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simple-tags'), $search ) )."\">$0</a>";
+		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag '.$link_class.'" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simple-tags'), $search ) )."\">$0</a>";
 		// for efficiency only tokenize if forced to do so
 		if ( $must_tokenize ) {
 			// this regexp is taken from PHP Markdown by Michel Fortin: http://www.michelf.com/projects/php-markdown/

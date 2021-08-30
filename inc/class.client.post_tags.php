@@ -117,6 +117,8 @@ class SimpleTags_Client_PostTags {
 			'embedded'  => false,
 			'feed'      => false,
 			'hide_output' => 0,
+			'wrap_class'  => '',
+			'link_class'  => '',
 		);
 
 		// Get values in DB
@@ -203,6 +205,12 @@ class SimpleTags_Client_PostTags {
 		// HTML Rel
 		$rel = SimpleTags_Client::get_rel_attribut();
 
+		//update xformat with class link class
+		if(!empty(trim($link_class))){
+			$link_class = taxopress_format_class($link_class);
+			$xformat = taxopress_add_class_to_format($xformat, $link_class);
+		}
+
 		// Prepare output
 		foreach ( (array) $terms as $term ) {
 			if ( ! is_object( $term ) ) {
@@ -222,6 +230,6 @@ class SimpleTags_Client_PostTags {
 		// Add container
 		$output = $before . $output . $after;
 
-		return SimpleTags_Client::output_content( 'st-post-tags', 'div', '', $output, $copyright );
+		return SimpleTags_Client::output_content( 'st-post-tags '.$wrap_class.'', 'div', '', $output, $copyright );
 	}
 }
