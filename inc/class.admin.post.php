@@ -29,7 +29,7 @@ class SimpleTags_Admin_Post_Settings {
 		$taxonomies = get_object_taxonomies( $post_type );
 		// Auto terms for this CPT ?
 		if ( (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) === 1 && isset( $auto_options[ $post_type ] ) && ! empty( $auto_options[ $post_type ] ) ||  (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 1 && in_array( 'post_tag', $taxonomies, true ) ) {
-		add_meta_box( 'simpletags-settings', __( 'TaxoPress - Settings', 'simpletags' ), array(
+		add_meta_box( 'simpletags-settings', __( 'TaxoPress - Settings', 'simple-tags' ), array(
 			__CLASS__,
 			'metabox'
 		), $post_type, 'side', 'low' );
@@ -56,7 +56,7 @@ class SimpleTags_Admin_Post_Settings {
 		if ( (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) === 1 && isset( $auto_options[ $post->post_type ] ) && ! empty( $auto_options[ $post->post_type ] ) ) {
 			$meta_value = get_post_meta( $post->ID, '_exclude_autotags', true );
 			echo '<p>' . "\n";
-			echo '<label><input type="checkbox" name="exclude_autotags" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable auto tags ?', 'simpletags' ) . '</label><br />' . "\n";
+			echo '<label><input type="checkbox" name="exclude_autotags" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable auto tags ?', 'simple-tags' ) . '</label><br />' . "\n";
 			echo '</p>' . "\n";
 			echo '<input type="hidden" name="_meta_autotags" value="true" />';
 		}
@@ -65,7 +65,7 @@ class SimpleTags_Admin_Post_Settings {
 		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 1 && in_array( 'post_tag', $taxonomies, true ) ) {
 			$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
 			echo '<p>' . "\n";
-			echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable auto links ?', 'simpletags' ) . '</label><br />' . "\n";
+			echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable auto links ?', 'simple-tags' ) . '</label><br />' . "\n";
 			echo '</p>' . "\n";
 			echo '<input type="hidden" name="_meta_autolink" value="true" />';
 		}

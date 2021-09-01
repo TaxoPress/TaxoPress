@@ -76,7 +76,7 @@ class SimpleTags_Client_Autolinks {
             }
 
 			// Get cache if exist
-			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
+			$cache = wp_cache_get( 'generate_keywords', 'simple-tags' );
 			if ( $options || false === $cache )
             {
 				foreach ( self::$posts as $object_id ) {
@@ -92,7 +92,7 @@ class SimpleTags_Client_Autolinks {
 				}
 
 				$cache[ $key ] = $results;
-				wp_cache_set( 'generate_keywords', $cache, 'simpletags' );
+				wp_cache_set( 'generate_keywords', $cache, 'simple-tags' );
 			} else {
 				if ( isset( $cache[ $key ] ) ) {
 					return $cache[ $key ];
@@ -125,7 +125,7 @@ class SimpleTags_Client_Autolinks {
             }
             $results = get_tags(['taxonomy' => $term_taxonomy]);
 			// Get cache if exist
-			$cache = wp_cache_get( 'generate_keywords', 'simpletags' );
+			$cache = wp_cache_get( 'generate_keywords', 'simple-tags' );
 			if ( $options || false === $cache ) {
 				foreach ( self::$posts as $object_id ) {
 					// Get terms
@@ -140,7 +140,7 @@ class SimpleTags_Client_Autolinks {
 				}
 
 				$cache[ $key ] = $results;
-				wp_cache_set( 'generate_keywords', $cache, 'simpletags' );
+				wp_cache_set( 'generate_keywords', $cache, 'simple-tags' );
 			} else {
 				if ( isset( $cache[ $key ] ) ) {
 					return $cache[ $key ];
@@ -312,7 +312,7 @@ class SimpleTags_Client_Autolinks {
 	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
 		$dom = new DOMDocument();
 
-		$content = str_replace('&','&#38;',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
+        $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
 
         libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
@@ -321,13 +321,14 @@ class SimpleTags_Client_Autolinks {
 			return;
 		}
 
-				if($options){
+		if($options){
             $autolink_case = $options['autolink_case'];
             $html_exclusion = $options['html_exclusion'];
             $exclude_class = $options['autolink_exclude_class'];
             $title_attribute = $options['autolink_title_attribute'];
             $same_usage_max = $options['autolink_same_usage_max'];
             $max_by_post = $options['autolink_usage_max'];
+            $link_class = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
         }else{
             $autolink_case = 'lowercase';
             $html_exclusion = [];
@@ -335,6 +336,7 @@ class SimpleTags_Client_Autolinks {
             $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
             $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
             $max_by_post = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' );
+            $link_class = '';
         }
 
         //auto link exclusion
@@ -368,8 +370,8 @@ class SimpleTags_Client_Autolinks {
 		$j        = 0;
         $replaced_count = 0;
 		foreach ( $xpath->query( '//text()'.$exclusion.'' ) as $node ) {
-			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
-			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
+			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
+			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
             $link_closing = '</a>';
             $upperterm = strtoupper($search);
             $lowerterm = strtolower($search);
@@ -407,14 +409,16 @@ class SimpleTags_Client_Autolinks {
             if ( $replaced_count >= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
                break;
             }
-            }else{$replaced = str_replace('&','&#38;',$replaced);
+            }else{
                 break;
             }
 		}
 
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
-		$content = str_replace('&#38;','&',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
+
+        $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
+        $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
 	}
 
 	/**
@@ -435,6 +439,7 @@ class SimpleTags_Client_Autolinks {
             $title_attribute = $options['autolink_title_attribute'];
             $same_usage_max = $options['autolink_same_usage_max'];
             $max_by_post = $options['autolink_usage_max'];
+            $link_class = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
         }else{
             $autolink_case = 'lowercase';
             $html_exclusion = [];
@@ -442,6 +447,7 @@ class SimpleTags_Client_Autolinks {
             $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
             $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
             $max_by_post = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' );
+            $link_class = '';
         }
 
 		$must_tokenize = true; // will perform basic tokenization
@@ -451,10 +457,10 @@ class SimpleTags_Client_Autolinks {
 		$filtered = ''; // will filter text token by token
 
 		$match      = '/(\PL|\A)(' . preg_quote( $search, '/' ) . ')(\PL|\Z)\b/u' . $case;
-		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$2</a>$3";
+		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$2</a>$3";
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
-		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simpletags'), $search ) )."\">$0</a>";
+		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag '.$link_class.'" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simple-tags'), $search ) )."\">$0</a>";
 		// for efficiency only tokenize if forced to do so
 		if ( $must_tokenize ) {
 			// this regexp is taken from PHP Markdown by Michel Fortin: http://www.michelf.com/projects/php-markdown/

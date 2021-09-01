@@ -143,11 +143,11 @@ function taxopress_create_default_post_tags()
 
     // Default values
     $defaults = [
-        'before'    => __('Tags: ', 'simpletags'),
+        'before'    => __('Tags: ', 'simple-tags'),
         'separator' => ', ',
         'after'     => '<br />',
-        'xformat'   => __('<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simpletags'),
-        'notagtext' => __('No tag for this post.', 'simpletags'),
+        'xformat'   => __('<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simple-tags'),
+        'notagtext' => __('No tag for this post.', 'simple-tags'),
         'number'    => 0,
         'format'    => '',
     ];
@@ -180,7 +180,7 @@ add_action('init', 'taxopress_create_default_post_tags', 8);
  */
 function taxopress_posttags_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simpletags'));
+    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -188,7 +188,7 @@ function taxopress_posttags_update_success_admin_notice()
  */
 function taxopress_posttags_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Shortcode entry successfully deleted.', 'simpletags'), false);
+    echo taxopress_admin_notices_helper(__('Shortcode entry successfully deleted.', 'simple-tags'), false);
 }
 
 /**
@@ -334,7 +334,7 @@ function taxopress_posttags_shortcode($atts)
         echo SimpleTags_Client_PostTags::extendedPostTags($posttags_arg);
 
     } else {
-        echo __('Invalid post terms ID.', 'simpletags');
+        echo __('Invalid post terms ID.', 'simple-tags');
     }
 
     $html = ob_get_clean();

@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.8
-Stable tag: 3.2.1
+Stable tag: 3.2.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -114,6 +114,14 @@ TaxoPress can be installed in 3 easy steps:
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.2.2- 2021-09-01
+* Fixed: Able to save mandatory field 'Title' as empty field in Terms for current post. #812
+* Fixed: Problem with ' signs in auto links #810
+* Feature: Added div class and link class option to Term for Current Post settings #810
+* Feature: Added div class and link class option to Term Display settings #810
+* Feature: Added div class and link class option to Related Post settings #810
+* Feature: Added term link class option to Auto Links settings #810
 
 v3.2.1- 2021-08-23
 * Fixed: Notice: Undefined property: WP_Post_Type::$taxonomy on plugin activation #756

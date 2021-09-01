@@ -1,0 +1,3213 @@
+# Copyright (C) 2010 TaxoPress
+# This file is distributed under the same license as the TaxoPress package.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TaxoPress 2.3\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
+"POT-Creation-Date: 2021-09-01 12:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;"
+
+#: inc/class.admin.mass.php:83
+#, php-format
+msgid "%1$s %2$s(s) terms updated with success !"
+msgstr ""
+
+#: inc/class.admin.manage.php:820 inc/class.admin.manage.php:931
+#, php-format
+msgid "%1s term(s) deleted."
+msgstr ""
+
+#: inc/class.client.related_posts.php:476
+#, php-format
+msgid "%d topic"
+msgid_plural "%d topics"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/taxonomies-functions.php:1067 inc/taxonomies-functions.php:1465
+#, php-format
+msgid "%s has been successfully added"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1121 inc/taxonomies-functions.php:1477
+#, php-format
+msgid "%s has been successfully deleted"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1483
+#, php-format
+msgid "%s has been successfully imported"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1094 inc/taxonomies-functions.php:1471
+#, php-format
+msgid "%s has been successfully updated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1080 inc/taxonomies-functions.php:1467
+#, php-format
+msgid "%s has failed to be added"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1134 inc/taxonomies-functions.php:1479
+#, php-format
+msgid "%s has failed to be deleted"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1485
+#, php-format
+msgid "%s has failed to be imported"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1107 inc/taxonomies-functions.php:1473
+#, php-format
+msgid "%s has failed to be updated"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1310
+#, php-format
+msgid "%s list"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1293
+#, php-format
+msgid "%s list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:830
+msgid "(default: taxonomy name)"
+msgstr ""
+
+#: inc/taxonomies.php:1336
+msgid "(e.g. &larr; Back to jobs"
+msgstr ""
+
+#: inc/taxonomies.php:1105
+msgid "(e.g. Add New Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1219
+msgid "(e.g. Add or remove Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1040
+msgid "(e.g. All Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1237
+msgid "(e.g. Choose from the most used Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1056
+msgid "(e.g. Edit Job)"
+msgstr ""
+
+#: inc/taxonomies.php:558
+msgid "(e.g. Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1286
+msgid "(e.g. Jobs list navigation)"
+msgstr ""
+
+#: inc/taxonomies.php:1304
+msgid "(e.g. Jobs list)"
+msgstr ""
+
+#: inc/taxonomies.php:547 inc/taxonomies.php:1025
+msgid "(e.g. Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1121
+msgid "(e.g. New Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:1254
+msgid "(e.g. No Jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1320
+msgid "(e.g. No jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1270
+msgid "(e.g. No jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1137
+msgid "(e.g. Parent Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1153
+msgid "(e.g. Parent Job:)"
+msgstr ""
+
+#: inc/taxonomies.php:1185
+msgid "(e.g. Popular Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1169
+msgid "(e.g. Search Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1201
+msgid "(e.g. Separate Jobs with commas)"
+msgstr ""
+
+#: inc/taxonomies.php:1088
+msgid "(e.g. Update Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:1072
+msgid "(e.g. View Job)"
+msgstr ""
+
+#: inc/taxonomies.php:783
+msgid "*Replace \"term_slug\" with the slug of the actual taxonomy term."
+msgstr ""
+
+#: inc/tag-clouds.php:412 inc/related-posts.php:524
+msgid "1 month"
+msgstr ""
+
+#: inc/tag-clouds.php:414 inc/related-posts.php:532
+msgid "1 year"
+msgstr ""
+
+#: inc/tag-clouds.php:411 inc/related-posts.php:520
+msgid "2 weeks"
+msgstr ""
+
+#: inc/tag-clouds.php:409 inc/related-posts.php:512
+msgid "24 hours"
+msgstr ""
+
+#: inc/tag-clouds.php:413 inc/related-posts.php:528
+msgid "6 months"
+msgstr ""
+
+#: inc/tag-clouds.php:410 inc/related-posts.php:516
+msgid "7 days"
+msgstr ""
+
+#: inc/helper.options.default.php:50 inc/class.client.related_posts.php:103
+msgid ""
+"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
+"%post_title%</a> (%post_comment%)"
+msgstr ""
+
+#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:269
+#: inc/helper.options.default.php:62
+msgid ""
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
+"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
+"%tag_color%\">%tag_name%</a>"
+msgstr ""
+
+#: inc/helper.options.default.php:40
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr ""
+
+#: inc/post-tags-functions.php:149 inc/class.client.post_tags.php:111
+msgid ""
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
+"%tag_name%</a>"
+msgstr ""
+
+#: inc/helper.options.admin.php:257 inc/helper.options.admin.php:336
+#: inc/helper.options.admin.php:482
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr ""
+
+#: inc/helper.options.admin.php:118 inc/helper.options.admin.php:141
+msgid "<code>asc</code> &ndash; Ascending."
+msgstr ""
+
+#: inc/helper.options.admin.php:258 inc/helper.options.admin.php:337
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr ""
+
+#: inc/helper.options.admin.php:353
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr ""
+
+#: inc/helper.options.admin.php:46
+msgid "<code>count-asc</code> &ndash; Least used."
+msgstr ""
+
+#: inc/helper.options.admin.php:354
+msgid ""
+"<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:47
+msgid "<code>count-desc</code> &ndash; Most popular."
+msgstr ""
+
+#: inc/helper.options.admin.php:129
+msgid "<code>count</code> &ndash; Counter."
+msgstr ""
+
+#: inc/helper.options.admin.php:106
+msgid "<code>count</code> &ndash; Counter. (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:351
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr ""
+
+#: inc/helper.options.admin.php:352
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr ""
+
+#: inc/helper.options.admin.php:119 inc/helper.options.admin.php:142
+msgid "<code>desc</code> &ndash; Descending."
+msgstr ""
+
+#: inc/helper.options.admin.php:153
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr ""
+
+#: inc/helper.options.admin.php:259 inc/helper.options.admin.php:338
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr ""
+
+#: inc/helper.options.admin.php:152
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr ""
+
+#: inc/helper.options.admin.php:355
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr ""
+
+#: inc/helper.options.admin.php:48
+msgid "<code>name-asc</code> &ndash; Alphabetical. (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:49 inc/helper.options.admin.php:356
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr ""
+
+#: inc/helper.options.admin.php:107 inc/helper.options.admin.php:130
+msgid "<code>name</code> &ndash; Name."
+msgstr ""
+
+#: inc/helper.options.admin.php:481
+msgid "<code>no</code> &ndash; Nowhere"
+msgstr ""
+
+#: inc/helper.options.admin.php:256 inc/helper.options.admin.php:335
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:262 inc/helper.options.admin.php:341
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr ""
+
+#: inc/helper.options.admin.php:50 inc/helper.options.admin.php:108
+#: inc/helper.options.admin.php:357
+msgid "<code>random</code> &ndash; Random."
+msgstr ""
+
+#: inc/helper.options.admin.php:131
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr ""
+
+#: inc/helper.options.admin.php:483
+msgid "<code>single</code> &ndash; Only on your single post view."
+msgstr ""
+
+#: inc/helper.options.admin.php:261 inc/helper.options.admin.php:340
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr ""
+
+#: inc/helper.options.admin.php:484
+msgid ""
+"<code>singular</code> &ndash; Only on your singular view (single post & page)"
+" (default)."
+msgstr ""
+
+#: inc/helper.options.admin.php:260 inc/helper.options.admin.php:339
+msgid ""
+"<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr ""
+
+#: inc/helper.options.default.php:49 inc/class.client.related_posts.php:100
+msgid "<h4>Related posts</h4>"
+msgstr ""
+
+#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:272
+#: inc/helper.options.default.php:60
+msgid "<h4>Tag Cloud</h4>"
+msgstr ""
+
+#: inc/helper.options.admin.php:95
+msgid ""
+"<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags "
+"choosen, you can reorder them before display."
+msgstr ""
+
+#: inc/helper.options.admin.php:94
+msgid ""
+"<strong>&#8216;Order tags selection&#8217;</strong> is the first step during "
+"tag's cloud generation, corresponding to collect tags."
+msgstr ""
+
+#: inc/helper.options.admin.php:222 inc/helper.options.admin.php:300
+#: inc/helper.options.admin.php:395
+msgid "<strong>Advanced usage</strong>:"
+msgstr ""
+
+#: inc/helper.options.admin.php:97
+msgid ""
+"<strong>Example:</strong> You want display randomly the 100 tags most "
+"popular.<br />"
+msgstr ""
+
+#: simple-tags.php:71
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr ""
+
+#: inc/class.widgets.php:18
+msgid ""
+"[DEPRECATED] - Your most used tags in cloud format with dynamic color and "
+"many options"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:146
+#, php-format
+msgid "Activate Auto Tags for the %s taxonomy"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:143
+msgid "Activation"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:69
+msgid "Active"
+msgstr ""
+
+#: inc/class.admin.manage.php:284
+msgid "Add"
+msgstr ""
+
+#: inc/autolinks.php:839
+msgid "Add Auto Links"
+msgstr ""
+
+#: inc/helper.options.admin.php:507
+msgid "Add links for post title"
+msgstr ""
+
+#: inc/autolinks.php:461 inc/helper.options.admin.php:446
+msgid "Add links for unattached terms"
+msgstr ""
+
+#: inc/tag-clouds.php:128 inc/autolinks.php:128 inc/related-posts.php:128
+#: inc/post-tags.php:128 inc/taxonomies.php:155
+msgid "Add New"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1565 inc/taxonomies-functions.php:1583
+#: inc/taxonomies-functions.php:1606 inc/taxonomies-functions.php:1625
+#: inc/taxonomies.php:1111
+#, php-format
+msgid "Add new %s"
+msgstr ""
+
+#: inc/autolinks.php:255
+msgid "Add new Auto Links"
+msgstr ""
+
+#: inc/taxonomies.php:1106
+msgid "Add New Item"
+msgstr ""
+
+#: inc/class.client.php:118
+msgid "Add new Media Tag"
+msgstr ""
+
+#: inc/related-posts.php:250
+msgid "Add new Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:416
+msgid "Add new Taxonomy"
+msgstr ""
+
+#: inc/tag-clouds.php:251
+msgid "Add new Terms Display"
+msgstr ""
+
+#: inc/post-tags.php:253
+msgid "Add new Terms for Current Post"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1586 inc/taxonomies-functions.php:1633
+#: inc/taxonomies.php:1226
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#: inc/taxonomies.php:1221
+msgid "Add or Remove Items"
+msgstr ""
+
+#: inc/class.client.php:125
+msgid "Add or remove Media Tags"
+msgstr ""
+
+#: inc/related-posts.php:729
+msgid "Add Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:376
+msgid "Add Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:246
+msgid "Add Terms"
+msgstr ""
+
+#: inc/tag-clouds.php:662
+msgid "Add Terms Display"
+msgstr ""
+
+#: inc/post-tags.php:569
+msgid "Add Terms for Current Post"
+msgstr ""
+
+#: inc/class.admin.manage.php:265
+msgid "Add terms only to posts with specific terms attached."
+msgstr ""
+
+#: inc/class.admin.manage.php:263
+#, php-format
+msgid "Add terms to all %s."
+msgstr ""
+
+#: inc/taxonomies.php:441
+msgid "Admin Area"
+msgstr ""
+
+#: inc/class.admin.php:642
+msgid "Administration"
+msgstr ""
+
+#: inc/autolinks.php:302 inc/taxonomies.php:456
+msgid "Advanced"
+msgstr ""
+
+#: inc/helper.options.admin.php:27
+msgid "Advanced Manage Terms"
+msgstr ""
+
+#: inc/class.widgets.php:376
+msgid "Advanced usage:"
+msgstr ""
+
+#: inc/class.admin.suggest.php:54
+msgid "Ajax loading"
+msgstr ""
+
+#: inc/related-posts-table.php:338 inc/related-posts-table.php:355
+#: inc/class.admin.mass.php:123 inc/tag-clouds-table.php:345
+msgid "All"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1570 inc/taxonomies-functions.php:1578
+#: inc/taxonomies-functions.php:1613 inc/taxonomies-functions.php:1631
+#: inc/taxonomies.php:1046
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:269
+#, php-format
+msgid "All done! %s terms added."
+msgstr ""
+
+#: inc/taxonomies.php:1041
+msgid "All Items"
+msgstr ""
+
+#: inc/autolinks.php:388
+msgid "All lowercase"
+msgstr ""
+
+#: inc/class.client.php:114
+msgid "All Media Tags"
+msgstr ""
+
+#: inc/tag-clouds.php:337 inc/related-posts.php:368
+msgid "All post types"
+msgstr ""
+
+#: inc/taxonomies.php:194
+msgid "All Taxonomies"
+msgstr ""
+
+#: inc/autolinks.php:384
+msgid "All uppercase"
+msgstr ""
+
+#: inc/related-posts.php:575
+msgid "Alphabetical"
+msgstr ""
+
+#: inc/helper.options.admin.php:494
+msgid ""
+"An engine replacement alternative uses DOMDocument PHP class and "
+"theoretically offers better performance. If your server does not offer the "
+"functionality, the plugin will use the usual engine."
+msgstr ""
+
+#: inc/taxonomies.php:691
+msgid "Archive page result"
+msgstr ""
+
+#: inc/taxonomies.php:63
+msgid ""
+"Are you sure you want to delete this? Deleting will NOT remove created "
+"content."
+msgstr ""
+
+#: inc/class.widgets.php:254 inc/class.widgets.php:282
+msgid "ASC"
+msgstr ""
+
+#: inc/tag-clouds.php:448 inc/tag-clouds.php:481
+msgid "Ascending"
+msgstr ""
+
+#: inc/related-posts.php:467
+msgid "Attempt to automatically display related posts"
+msgstr ""
+
+#: inc/post-tags.php:369
+msgid "Attempt to automatically display terms"
+msgstr ""
+
+#: inc/autolinks-table.php:14
+msgid "Auto Link"
+msgstr ""
+
+#: inc/class.admin.php:644
+msgid "Auto link"
+msgstr ""
+
+#: inc/autolinks.php:425 inc/autolinks-table.php:69
+msgid "Auto Link areas"
+msgstr ""
+
+#: inc/autolinks.php:397
+msgid "Auto Link case"
+msgstr ""
+
+#: inc/autolinks-table.php:68
+msgid "Auto Link Post type"
+msgstr ""
+
+#: inc/autolinks.php:435
+msgid "Auto Link title attribute"
+msgstr ""
+
+#: inc/autolinks.php:72 inc/autolinks.php:73 inc/autolinks.php:126
+#: inc/autolinks-table.php:15
+msgid "Auto Links"
+msgstr ""
+
+#: inc/autolinks-functions.php:248
+msgid "Auto Links successfully deleted."
+msgstr ""
+
+#: inc/helper.options.admin.php:414
+msgid "Auto links tags"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:35
+msgid "Auto Terms"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:231
+msgid "Auto terms all content &raquo;"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:130
+#, php-format
+msgid "Auto Terms for %s and %s"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:134
+msgid "Auto terms list"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:226
+msgid "Auto terms old content"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:106
+msgid "Auto terms options updated !"
+msgstr ""
+
+#: inc/helper.options.admin.php:34
+msgid "Auto terms posts"
+msgstr ""
+
+#: inc/post-tags-table.php:68 inc/related-posts-table.php:69
+msgid "Automatic display"
+msgstr ""
+
+#: inc/class.admin.suggest.php:55
+msgid "Automatic tag suggestions:"
+msgstr ""
+
+#: inc/helper.options.admin.php:327
+msgid "Automatically display related posts into feeds"
+msgstr ""
+
+#: inc/helper.options.admin.php:331
+msgid "Automatically display related posts into post content"
+msgstr ""
+
+#: inc/helper.options.admin.php:248
+msgid "Automatically display tags list into feeds"
+msgstr ""
+
+#: inc/helper.options.admin.php:253
+msgid "Automatically display tags list into post content:"
+msgstr ""
+
+#: inc/tag-clouds.php:572
+msgid "Automatically fill colors between maximum and minimum"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:208
+#, php-format
+msgid "Autotag %s only when terms found in the content are the same word."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:201
+#, php-format
+msgid "Autotag only %s without terms."
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1343
+#, php-format
+msgid "Back to %s"
+msgstr ""
+
+#: inc/taxonomies.php:1338
+msgid "Back to Items"
+msgstr ""
+
+#: inc/class.client.php:131
+msgid "Back to Media Tags"
+msgstr ""
+
+#: inc/related-posts.php:461 inc/post-tags.php:363 inc/post-tags-table.php:343
+#: inc/related-posts-table.php:383 inc/autolinks-table.php:344
+msgid "Blog display"
+msgstr ""
+
+#: inc/helper.options.admin.php:324
+msgid ""
+"By default, related posts work with post tags, but you can use a custom "
+"taxonomy. Default value : post_tag"
+msgstr ""
+
+#: inc/helper.options.admin.php:510
+msgid ""
+"By default, TaxoPress will exclude Auto Links for terms that are attached to "
+"the post title."
+msgstr ""
+
+#: inc/helper.options.admin.php:449
+msgid ""
+"By default, TaxoPress will only add Auto Links for terms that are attached "
+"to the post. If this box is checked, TaxoPress will add links for all terms"
+msgstr ""
+
+#: inc/autolinks.php:463
+msgid ""
+"By default, TaxoPress will only add Auto Links for terms that are attached "
+"to the post. If this box is checked, TaxoPress will add links for all terms."
+msgstr ""
+
+#: inc/taxonomies.php:586
+msgid ""
+"Can terms in this taxonomy be organized into hierarchical relationships?"
+msgstr ""
+
+#: inc/class.admin.php:306
+msgid "Change selection"
+msgstr ""
+
+#: inc/autolinks.php:742
+msgid ""
+"Change the priority of the Auto Links functions on the_content hook. This is "
+"useful for fixing conflicts with other plugins. Higher number means autolink "
+"will be executed only after hooks with lower number has been executed."
+msgstr ""
+
+#: inc/helper.options.admin.php:79
+msgid ""
+"Choose a value between 0 and 1. A high value such as 0.8 will provide a few, "
+"accurate suggestions. A low value such as 0.2 will produce more suggestions, "
+"but they may be less accurate."
+msgstr ""
+
+#: inc/taxonomies.php:1239
+msgid "Choose From Most Used"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1587 inc/taxonomies-functions.php:1634
+#: inc/taxonomies.php:1244
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: inc/class.client.php:126
+msgid "Choose from the most used Media Tags"
+msgstr ""
+
+#: inc/class.admin.suggest.php:36
+msgid "Click a provider name."
+msgstr ""
+
+#: inc/helper.options.admin.php:13
+msgid "Click tags feature"
+msgstr ""
+
+#: inc/helper.options.admin.php:55
+msgid "Click tags limit"
+msgstr ""
+
+#: inc/helper.options.admin.php:58
+msgid "Click tags limit on post screen"
+msgstr ""
+
+#: inc/helper.options.admin.php:43
+msgid "Click tags order"
+msgstr ""
+
+#: inc/class.admin.clickterms.php:45
+msgid "Click Tags to add them to this post"
+msgstr ""
+
+#: inc/class.admin.manage.php:174
+msgid "Click terms list:"
+msgstr ""
+
+#: inc/class.admin.clickterms.php:44
+msgid "Click to display tags"
+msgstr ""
+
+#: inc/tag-clouds.php:394 inc/tag-clouds-table.php:362
+msgid "Cloud"
+msgstr ""
+
+#: inc/autolinks.php:682
+msgid "code"
+msgstr ""
+
+#: inc/autolinks.php:292
+msgid "Control"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:71 inc/class-tag-table.php:43
+msgid "Count"
+msgstr ""
+
+#: inc/tag-clouds.php:432 inc/tag-clouds.php:465 inc/class.widgets.php:269
+msgid "Counter"
+msgstr ""
+
+#: inc/class.widgets.php:241
+msgid "Counter (default)"
+msgstr ""
+
+#: inc/related-posts.php:372 inc/related-posts-table.php:336
+msgid "Current post type"
+msgstr ""
+
+#: inc/taxonomies.php:1027
+msgid "Custom admin menu name for your taxonomy."
+msgstr ""
+
+#: inc/taxonomies.php:1392
+msgid "Custom controller to use instead of WP_REST_Terms_Controller."
+msgstr ""
+
+#: inc/taxonomies.php:1484
+msgid "Custom Query Var String"
+msgstr ""
+
+#: inc/taxonomies.php:831
+msgid "Custom Rewrite Slug"
+msgstr ""
+
+#: inc/taxonomies.php:1090 inc/taxonomies.php:1123 inc/taxonomies.php:1139
+#: inc/taxonomies.php:1155 inc/taxonomies.php:1171 inc/taxonomies.php:1187
+#: inc/taxonomies.php:1205 inc/taxonomies.php:1222 inc/taxonomies.php:1240
+#: inc/taxonomies.php:1256
+msgid ""
+"Custom taxonomy label. Used in the admin menu for displaying taxonomies."
+msgstr ""
+
+#: inc/taxonomies.php:832
+msgid "Custom taxonomy rewrite slug."
+msgstr ""
+
+#: inc/helper.options.admin.php:76
+msgid "Dandelion API confidence value"
+msgstr ""
+
+#: inc/helper.options.admin.php:69
+msgid "Dandelion API token"
+msgstr ""
+
+#: inc/class.admin.suggest.php:60
+msgid "dataTXT by Dandelion"
+msgstr ""
+
+#: inc/taxonomies.php:476
+msgid "Deactivate or Delete"
+msgstr ""
+
+#: inc/taxonomies.php:1554
+msgid "Deactivate Taxonomy"
+msgstr ""
+
+#: inc/taxonomies.php:1502
+msgid "Default Term"
+msgstr ""
+
+#: inc/post-tags-table.php:275 inc/related-posts-table.php:276
+#: inc/class.admin.manage.php:428 inc/class-tag-table.php:195
+#: inc/tag-clouds-table.php:276 inc/autolinks-table.php:275
+msgid "Delete"
+msgstr ""
+
+#: inc/class.admin.manage.php:463
+msgid "Delete rarely used"
+msgstr ""
+
+#: inc/taxonomies.php:1568
+msgid "Delete Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:404
+msgid "Delete Terms"
+msgstr ""
+
+#: inc/class.widgets.php:256 inc/class.widgets.php:284
+msgid "DESC (default)"
+msgstr ""
+
+#: inc/tag-clouds.php:449 inc/tag-clouds.php:482
+msgid "Descending"
+msgstr ""
+
+#: inc/taxonomies.php:603
+msgid "Describe what your taxonomy is used for."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:68 inc/taxonomies.php:602
+msgid "Description"
+msgstr ""
+
+#: inc/tag-clouds.php:161 inc/autolinks.php:161 inc/related-posts.php:161
+#: inc/post-tags.php:163 inc/class.admin.manage.php:214 inc/taxonomies.php:203
+msgid "Description here."
+msgstr ""
+
+#: inc/class.admin.post.php:68
+msgid "Disable auto links ?"
+msgstr ""
+
+#: inc/class.admin.post.php:59
+msgid "Disable auto tags ?"
+msgstr ""
+
+#: inc/tag-clouds.php:403 inc/tag-clouds-table.php:69
+msgid "Display format"
+msgstr ""
+
+#: inc/taxonomies.php:520 inc/taxonomies.php:740
+msgid ""
+"DO NOT EDIT the taxonomy slug unless also planning to migrate terms. "
+"Changing the slug registers a new taxonomy entry."
+msgstr ""
+
+#: views/admin/page-settings.php:35
+msgid "Do you really want to restore the default options?"
+msgstr ""
+
+#: inc/autolinks.php:489
+msgid "Don't add Auto Links if the term is already attached to the post."
+msgstr ""
+
+#: inc/autolinks.php:487
+msgid "Don't add links for attached terms"
+msgstr ""
+
+#: inc/post-tags-table.php:264 inc/related-posts-table.php:265
+#: inc/class-taxonomies-table.php:271 inc/class.admin.mass.php:259
+#: inc/tag-clouds-table.php:265 inc/autolinks-table.php:264
+msgid "Edit"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1566 inc/taxonomies-functions.php:1581
+#: inc/taxonomies-functions.php:1607 inc/taxonomies-functions.php:1623
+#: inc/taxonomies.php:1062
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: inc/autolinks.php:248
+msgid "Edit Auto Links"
+msgstr ""
+
+#: inc/taxonomies.php:1057
+msgid "Edit Item"
+msgstr ""
+
+#: inc/class.client.php:115
+msgid "Edit Media Tag"
+msgstr ""
+
+#: inc/related-posts.php:246
+msgid "Edit Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:414
+msgid "Edit Taxonomy"
+msgstr ""
+
+#: inc/tag-clouds.php:247
+msgid "Edit Terms Display"
+msgstr ""
+
+#: inc/post-tags.php:249
+msgid "Edit Terms for Current Post"
+msgstr ""
+
+#: inc/tag-clouds.php:516 inc/class.widgets.php:317
+msgid "Em"
+msgstr ""
+
+#: inc/class.admin.php:648
+msgid "Embedded Tags"
+msgstr ""
+
+#: inc/taxonomies.php:1474
+msgid "Enable a custom query_var key for this taxonomy."
+msgstr ""
+
+#: inc/helper.options.admin.php:478
+msgid "Enable autolinks into post content for theses views:"
+msgstr ""
+
+#: inc/autolinks.php:535
+msgid "Enable this Auto Links instance for:"
+msgstr ""
+
+#: inc/helper.options.admin.php:233
+msgid ""
+"Enabling this will allow Wordpress to look for tag cloud shortcode <code>"
+"[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. "
+"WordPress replace this shortcode by a tag cloud."
+msgstr ""
+
+#: inc/class.admin.manage.php:405
+msgid "Enter the name of terms to delete."
+msgstr ""
+
+#: inc/helper.options.admin.php:184 inc/helper.options.admin.php:387
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr ""
+
+#: inc/class.admin.manage.php:332
+#, php-format
+msgid ""
+"Enter the term to merge and its new value. Click \"Merge\" and all %s which "
+"use this term will be updated."
+msgstr ""
+
+#: inc/class.admin.manage.php:372
+#, php-format
+msgid "Enter the terms to remove from all %s "
+msgstr ""
+
+#: inc/class.admin.manage.php:293
+msgid "Enter the terms to rename and their new names."
+msgstr ""
+
+#: inc/helper.options.admin.php:379
+msgid "Enter the text to show when there is no related post:"
+msgstr ""
+
+#: inc/helper.options.admin.php:176
+msgid "Enter the text to show when there is no tag:"
+msgstr ""
+
+#: inc/class.admin.manage.php:778
+msgid "Error. No enough terms for rename."
+msgstr ""
+
+#: inc/class.admin.manage.php:693
+msgid "Error. No enough terms specified."
+msgstr ""
+
+#: inc/class.admin.manage.php:619
+msgid "Error. You need to enter a single term to merge to in new term name !"
+msgstr ""
+
+#: inc/helper.options.admin.php:465
+msgid ""
+"Example: If you enter the term \"Paris\", the auto link tags feature will "
+"never replace this term by this link."
+msgstr ""
+
+#: inc/helper.options.admin.php:457
+msgid ""
+"Example: If you ignore case, auto link feature will replace the word "
+"\"wordpress\" by the tag link \"WordPress\"."
+msgstr ""
+
+#: inc/helper.options.admin.php:417
+msgid ""
+"Example: You have a tag called \"WordPress\" and your post content contains "
+"\"wordpress\", this feature will replace \"wordpress\" by a link to "
+"\"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr ""
+
+#: inc/autolinks.php:297
+msgid "Exceptions"
+msgstr ""
+
+#: inc/helper.options.admin.php:462
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgstr ""
+
+#: inc/autolinks.php:651
+msgid "Exclude terms from Auto Links"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, "
+"Ajax Autocompletion, Click Terms, Advanced manage terms, etc."
+msgstr ""
+
+#: inc/tag-clouds.php:297 inc/tag-clouds.php:319 inc/tag-clouds.php:553
+#: inc/autolinks.php:447 inc/autolinks.php:473 inc/autolinks.php:752
+#: inc/related-posts.php:347 inc/related-posts.php:614 inc/post-tags.php:455
+#: inc/taxonomies.php:571 inc/taxonomies.php:674 inc/taxonomies.php:806
+#: inc/taxonomies.php:840 inc/taxonomies.php:864 inc/taxonomies.php:898
+#: inc/taxonomies.php:921 inc/taxonomies.php:944 inc/taxonomies.php:968
+#: inc/taxonomies.php:991 inc/taxonomies.php:1359 inc/taxonomies.php:1411
+#: inc/taxonomies.php:1435 inc/taxonomies.php:1459
+msgid "False"
+msgstr ""
+
+#: inc/class.admin.php:646
+msgid "Features"
+msgstr ""
+
+#: inc/class.admin.mass.php:227
+msgid "Filter"
+msgstr ""
+
+#: inc/class.widgets.php:330
+msgid "Flat (default)"
+msgstr ""
+
+#: inc/class.widgets.php:357
+msgid "Font color max: (default: #000000)"
+msgstr ""
+
+#: inc/tag-clouds.php:543
+msgid "Font color maximum"
+msgstr ""
+
+#: inc/class.widgets.php:348
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr ""
+
+#: inc/tag-clouds.php:534
+msgid "Font color minimum"
+msgstr ""
+
+#: inc/class.widgets.php:300
+msgid "Font size max: (default: 22)"
+msgstr ""
+
+#: inc/tag-clouds.php:507
+msgid "Font size maximum"
+msgstr ""
+
+#: inc/class.widgets.php:291
+msgid "Font size mini: (default: 8)"
+msgstr ""
+
+#: inc/tag-clouds.php:498
+msgid "Font size minimum"
+msgstr ""
+
+#: inc/autolinks.php:630
+msgid ""
+"For example, '4' would only link terms that are of 4 characters or less in "
+"length."
+msgstr ""
+
+#: inc/autolinks.php:617
+msgid ""
+"For example, '4' would only link terms that are of 4 characters or more in "
+"length."
+msgstr ""
+
+#: inc/helper.options.admin.php:473
+msgid ""
+"For expert, possibility to change the priority of autolinks functions on "
+"the_content hook. Useful for fix a conflict with an another plugin. Default: "
+"12."
+msgstr ""
+
+#: inc/class.widgets.php:326
+msgid "Format:"
+msgstr ""
+
+#: inc/autolinks.php:282 inc/taxonomies.php:426
+msgid "General"
+msgstr ""
+
+#: inc/autolinks.php:672 inc/related-posts.php:304
+msgid "H1"
+msgstr ""
+
+#: inc/autolinks.php:673 inc/related-posts.php:308
+msgid "H2"
+msgstr ""
+
+#: inc/autolinks.php:674 inc/related-posts.php:312
+msgid "H3"
+msgstr ""
+
+#: inc/autolinks.php:675 inc/related-posts.php:316
+msgid "H4"
+msgstr ""
+
+#: inc/autolinks.php:676 inc/related-posts.php:321
+msgid "H5"
+msgstr ""
+
+#: inc/autolinks.php:677 inc/related-posts.php:325
+msgid "H6"
+msgstr ""
+
+#: inc/class.shortcode_widgets.php:148 inc/posts-tags-widgets.php:129
+#: inc/posts-tags-widget.php:129 inc/related-posts-widget.php:135
+msgid "Here"
+msgstr ""
+
+#: inc/tag-clouds.php:333 inc/post-tags.php:469
+msgid "Hide display output if no terms ?"
+msgstr ""
+
+#: inc/related-posts.php:628
+msgid "Hide output if no related post is found ?"
+msgstr ""
+
+#: inc/tag-clouds.php:311 inc/related-posts.php:361
+msgid "Hide title in output ?"
+msgstr ""
+
+#: inc/related-posts.php:460 inc/post-tags.php:362 inc/post-tags-table.php:342
+#: inc/related-posts-table.php:382 inc/autolinks-table.php:343
+msgid "Homepage"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://taxopress.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/simple-tags/"
+msgstr ""
+
+#: inc/class.admin.manage.php:439
+#, php-format
+msgid ""
+"If you choose 5, Taxopress will delete all terms attached to less than 5 %s."
+msgstr ""
+
+#: inc/autolinks.php:653
+msgid ""
+"If you enter the terms \"WordPress\", \"Website\" the Auto Links feature "
+"will never replace these terms. Separate multiple entries with a comma."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:254
+msgid ""
+"If your browser doesn't start loading the next page automatically click this "
+"link:"
+msgstr ""
+
+#: inc/helper.options.admin.php:454
+msgid "Ignore case for auto link feature ?"
+msgstr ""
+
+#: inc/helper.options.admin.php:284
+msgid "Include categories in result ?"
+msgstr ""
+
+#: inc/class.admin.suggest.php:225
+msgid "Invalid access token !"
+msgstr ""
+
+#: inc/post-tags-functions.php:337
+msgid "Invalid post terms ID."
+msgstr ""
+
+#: inc/related-posts.php:579
+msgid "Inverse Alphabetical"
+msgstr ""
+
+#: inc/taxonomies.php:1305
+msgid "Items List"
+msgstr ""
+
+#: inc/taxonomies.php:1288
+msgid "Items List Navigation"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:164
+msgid "Keywords list"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1745
+msgid "Kindly select an action in bulk action dropdown!"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1754
+msgid "Kindly select atleast one taxonomy to proceed"
+msgstr ""
+
+#: inc/related-posts.php:556
+msgid "Least common tags between posts"
+msgstr ""
+
+#: inc/helper.options.admin.php:198
+msgid "Least popular color:"
+msgstr ""
+
+#: inc/helper.options.admin.php:209
+msgid "Least popular font size:"
+msgstr ""
+
+#: inc/class.admin.php:654
+msgid "Legacy"
+msgstr ""
+
+#: inc/related-posts.php:546
+msgid "Limit related posts based on timeframe"
+msgstr ""
+
+#: inc/tag-clouds.php:423
+msgid "Limit terms based on timeframe"
+msgstr ""
+
+#: inc/tag-clouds.php:395 inc/tag-clouds-table.php:363
+#: inc/class.widgets.php:332
+msgid "List (UL/LI)"
+msgstr ""
+
+#: inc/class.admin.suggest.php:57
+msgid "Local tags"
+msgstr ""
+
+#: inc/autolinks.php:231
+msgid "Manage Auto Links"
+msgstr ""
+
+#: inc/related-posts.php:230
+msgid "Manage Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:306
+msgid "Manage Taxonomy"
+msgstr ""
+
+#: inc/class.admin.manage.php:61
+msgid "Manage Terms"
+msgstr ""
+
+#: inc/tag-clouds.php:230
+msgid "Manage Terms Display"
+msgstr ""
+
+#: inc/post-tags.php:233
+msgid "Manage Terms for Current Post"
+msgstr ""
+
+#: inc/class.admin.mass.php:31
+msgid "Mass Edit Terms"
+msgstr ""
+
+#: inc/class.admin.mass.php:115 inc/helper.options.admin.php:6
+msgid "Mass edit terms"
+msgstr ""
+
+#: inc/helper.options.admin.php:278
+msgid "Max tags display:"
+msgstr ""
+
+#: inc/class.widgets.php:222
+msgid "Max tags to display: (default: 45)"
+msgstr ""
+
+#: inc/autolinks.php:628
+msgid "Maximum character length for an Auto Link"
+msgstr ""
+
+#: inc/helper.options.admin.php:438
+msgid "Maximum number of links for the same tag:"
+msgstr ""
+
+#: inc/autolinks.php:602
+msgid "Maximum number of links for the same term"
+msgstr ""
+
+#: inc/helper.options.admin.php:430
+msgid "Maximum number of links per article:"
+msgstr ""
+
+#: inc/autolinks.php:589
+msgid "Maximum number of links per post"
+msgstr ""
+
+#: inc/helper.options.admin.php:371
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr ""
+
+#: inc/helper.options.admin.php:168
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr ""
+
+#: inc/related-posts.php:502
+msgid "Maximum related posts to display"
+msgstr ""
+
+#: inc/tag-clouds.php:387 inc/post-tags.php:404
+msgid "Maximum terms to display"
+msgstr ""
+
+#: inc/class.client.php:112
+msgid "Media Tag"
+msgstr ""
+
+#: inc/class.client.php:111 inc/class.client.php:113 inc/class.client.php:135
+msgid "Media Tags"
+msgstr ""
+
+#: inc/class.client.php:130
+msgid "Media Tags list"
+msgstr ""
+
+#: inc/class.client.php:129
+msgid "Media Tags list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:1026
+msgid "Menu Name"
+msgstr ""
+
+#: inc/class.admin.manage.php:363
+msgid "Merge"
+msgstr ""
+
+#: inc/class.admin.manage.php:616
+#, php-format
+msgid ""
+"Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
+msgstr ""
+
+#: inc/class.admin.manage.php:331
+msgid "Merge Terms"
+msgstr ""
+
+#: inc/taxonomies.php:1493
+msgid "Metabox callback"
+msgstr ""
+
+#: inc/tag-clouds.php:474
+msgid "Method for choosing terms for display"
+msgstr ""
+
+#: inc/tag-clouds.php:441
+msgid "Method for choosing terms from the database"
+msgstr ""
+
+#: inc/taxonomies.php:530 inc/taxonomies.php:750
+msgid "Migrate terms to newly renamed taxonomy?"
+msgstr ""
+
+#: inc/autolinks.php:615
+msgid "Minimum character length for an Auto Link"
+msgstr ""
+
+#: inc/class.admin.manage.php:453
+msgid "Minimum number of uses for each term:"
+msgstr ""
+
+#: inc/autolinks.php:576
+msgid "Minimum term usage for Auto Links"
+msgstr ""
+
+#: inc/helper.options.admin.php:422
+msgid "Minimum usage for terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:106
+msgid ""
+"Missing valid taxonomy for work... Try again. If this problem persist, "
+"contact <a href=\"https://wordpress.org/support/plugin/simple-tags/#new-"
+"topic-0\">plugin author</a>."
+msgstr ""
+
+#: inc/related-posts.php:561
+msgid "Most common tags between posts"
+msgstr ""
+
+#: inc/helper.options.admin.php:192
+msgid "Most popular color:"
+msgstr ""
+
+#: inc/helper.options.admin.php:203
+msgid "Most popular font size:"
+msgstr ""
+
+#: inc/tag-clouds.php:430 inc/tag-clouds.php:464
+#: inc/class-taxonomies-table.php:66 inc/class-tag-table.php:41
+#: inc/class.widgets.php:235 inc/class.widgets.php:267
+msgid "Name"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1567 inc/taxonomies-functions.php:1608
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1584 inc/taxonomies-functions.php:1626
+#: inc/taxonomies.php:1127
+#, php-format
+msgid "New %s name"
+msgstr ""
+
+#: inc/taxonomies.php:1122
+msgid "New Item Name"
+msgstr ""
+
+#: inc/class.client.php:119
+msgid "New Media Tag name"
+msgstr ""
+
+#: inc/class.admin.manage.php:316
+msgid "New term name(s):"
+msgstr ""
+
+#: inc/class.admin.manage.php:356
+msgid "New term name:"
+msgstr ""
+
+#: inc/related-posts.php:571
+msgid "Newer Entries"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:255
+msgid "Next content"
+msgstr ""
+
+#: inc/tag-clouds.php:710 inc/autolinks.php:878 inc/related-posts.php:778
+#: inc/post-tags.php:618 inc/post-tags-table.php:355
+#: inc/related-posts-table.php:395 inc/class-taxonomies-table.php:362
+#: inc/taxonomies.php:1624
+msgid "No"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1276
+#, php-format
+msgid "No %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1260 inc/taxonomies.php:1326
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1573 inc/taxonomies-functions.php:1616
+#, php-format
+msgid "No %s found in trash."
+msgstr ""
+
+#: inc/taxonomies-functions.php:1572 inc/taxonomies-functions.php:1615
+#, php-format
+msgid "No %s found."
+msgstr ""
+
+#: inc/class.admin.mass.php:282
+msgid "No content to edit."
+msgstr ""
+
+#: inc/class.admin.suggest.php:287
+msgid ""
+"No correspondence between your content and terms from the WordPress database."
+msgstr ""
+
+#: inc/post-tags-table.php:91 inc/related-posts-table.php:92
+#: inc/tag-clouds-table.php:92 inc/autolinks-table.php:91
+msgid "No item avaliable."
+msgstr ""
+
+#: inc/tag-clouds.php:415 inc/related-posts.php:536
+msgid "No limit"
+msgstr ""
+
+#: inc/class.client.php:128
+msgid "No Media Tags"
+msgstr ""
+
+#: inc/class.client.php:127
+msgid "No Media Tags found"
+msgstr ""
+
+#: inc/class.admin.manage.php:543 inc/class.admin.manage.php:711
+msgid "No new term specified!"
+msgstr ""
+
+#: inc/class.admin.manage.php:838
+msgid "No new term(s) specified!"
+msgstr ""
+
+#: inc/class.admin.manage.php:558 inc/class.admin.manage.php:726
+msgid "No new/old valid term specified!"
+msgstr ""
+
+#: inc/class.admin.manage.php:585
+msgid "No objects found for specified old terms."
+msgstr ""
+
+#: inc/related-posts-widget.php:138
+msgid "No Related Posts shortcode available. Add new shortcode "
+msgstr ""
+
+#: inc/helper.options.default.php:48 inc/class.client.related_posts.php:101
+#: inc/related-posts-functions.php:149
+msgid "No related posts."
+msgstr ""
+
+#: inc/class.admin.suggest.php:237
+msgid "No results from dataTXT API."
+msgstr ""
+
+#: inc/class.admin.suggest.php:171
+msgid "No results from OpenCalais service."
+msgstr ""
+
+#: inc/class.admin.suggest.php:273 inc/class.admin.clickterms.php:171
+msgid "No results from your WordPress database."
+msgstr ""
+
+#: inc/post-tags-functions.php:150 inc/class.client.post_tags.php:112
+msgid "No tag for this post."
+msgstr ""
+
+#: inc/helper.options.default.php:37
+msgid "No tags for this post."
+msgstr ""
+
+#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:271
+#: inc/helper.options.default.php:59
+msgid "No tags."
+msgstr ""
+
+#: inc/class.admin.manage.php:891
+msgid "No term added."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:93 inc/class-tag-table.php:125
+msgid "No term avaliable."
+msgstr ""
+
+#: inc/class.admin.manage.php:818 inc/class.admin.manage.php:929
+msgid "No term deleted."
+msgstr ""
+
+#: inc/class.admin.manage.php:614
+msgid "No term merged."
+msgstr ""
+
+#: inc/class.admin.manage.php:773
+msgid "No term renamed."
+msgstr ""
+
+#: inc/class.admin.manage.php:637 inc/class.admin.manage.php:795
+msgid "No term specified!"
+msgstr ""
+
+#: inc/taxonomies.php:1271
+msgid "No terms"
+msgstr ""
+
+#: inc/class.shortcode_widgets.php:151
+msgid "No terms display shortcode available. Add new shortcode "
+msgstr ""
+
+#: inc/posts-tags-widgets.php:132 inc/posts-tags-widget.php:132
+msgid "No terms for current post shortcode available. Add new shortcode "
+msgstr ""
+
+#: inc/class.admin.suggest.php:257 inc/class.admin.clickterms.php:129
+msgid "No terms in your WordPress database."
+msgstr ""
+
+#: inc/class.admin.suggest.php:141 inc/class.admin.suggest.php:200
+#: inc/class.admin.suggest.php:266
+msgid "No text was sent."
+msgstr ""
+
+#: inc/class.admin.manage.php:568
+msgid "No valid new term."
+msgstr ""
+
+#: inc/class.admin.manage.php:650
+msgid "No valid term specified!"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1145
+msgid "Nonce failed verification"
+msgstr ""
+
+#: inc/related-posts.php:300 inc/autolinks-table.php:356
+msgid "None"
+msgstr ""
+
+#: inc/taxonomies.php:1321
+msgid "Not Found"
+msgstr ""
+
+#: inc/taxonomies.php:1255
+msgid "Not found"
+msgstr ""
+
+#: inc/tag-clouds.php:95 inc/autolinks.php:95 inc/related-posts.php:95
+#: inc/post-tags.php:95 inc/class.admin.manage.php:80 inc/taxonomies.php:122
+msgid "Number of items per page"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1036
+msgid "Object"
+msgstr ""
+
+#: inc/tag-clouds.php:703 inc/autolinks.php:871 inc/related-posts.php:771
+#: inc/post-tags.php:611 inc/taxonomies.php:1617
+msgid "Okay"
+msgstr ""
+
+#: inc/related-posts.php:567
+msgid "Older Entries"
+msgstr ""
+
+#: inc/class.admin.suggest.php:64
+msgid "OpenCalais"
+msgstr ""
+
+#: inc/helper.options.admin.php:62
+msgid "OpenCalais API Key"
+msgstr ""
+
+#: inc/class.admin.suggest.php:133
+msgid ""
+"OpenCalais need an API key to work. You can register on service website to "
+"obtain a key and set it on TaxoPress options."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:193
+msgid "Options"
+msgstr ""
+
+#: inc/class.admin.php:438
+msgid "Options saved"
+msgstr ""
+
+#: inc/class.widgets.php:231
+msgid "Order by for DB selection tags:"
+msgstr ""
+
+#: inc/class.widgets.php:263
+msgid "Order by for display tags:"
+msgstr ""
+
+#: inc/helper.options.admin.php:126
+msgid "Order by for tags display:"
+msgstr ""
+
+#: inc/helper.options.admin.php:103
+msgid "Order by for tags selection:"
+msgstr ""
+
+#: inc/class.widgets.php:250
+msgid "Order for DB selection tags:"
+msgstr ""
+
+#: inc/class.widgets.php:278
+msgid "Order for display tags:"
+msgstr ""
+
+#: inc/helper.options.admin.php:138
+msgid "Order tags display:"
+msgstr ""
+
+#: inc/helper.options.admin.php:115
+msgid "Order tags selection:"
+msgstr ""
+
+#: inc/tag-clouds.php:457
+msgid "Ordering for choosing term from the database"
+msgstr ""
+
+#: inc/tag-clouds.php:490
+msgid "Ordering for choosing terms for display"
+msgstr ""
+
+#: inc/taxonomies.php:446
+msgid "Other Labels"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:124
+msgid "Overview"
+msgstr ""
+
+#: inc/class.admin.manage.php:197
+msgid "Pagination "
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1579 inc/taxonomies-functions.php:1621
+#: inc/taxonomies.php:1143
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1580 inc/taxonomies-functions.php:1622
+#: inc/taxonomies.php:1159
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: inc/taxonomies.php:1138
+msgid "Parent Item"
+msgstr ""
+
+#: inc/taxonomies.php:1154
+msgid "Parent Item Colon"
+msgstr ""
+
+#: inc/class.client.php:120
+msgid "Parent Media Tag"
+msgstr ""
+
+#: inc/class.client.php:121
+msgid "Parent Media Tag:"
+msgstr ""
+
+#: inc/taxonomies.php:585
+msgid "Parent-Child Relationships"
+msgstr ""
+
+#: inc/tag-clouds.php:517
+msgid "Percent"
+msgstr ""
+
+#: inc/taxonomies.php:436
+msgid "Permalinks"
+msgstr ""
+
+#: inc/tag-clouds.php:515 inc/class.widgets.php:315
+msgid "Pixel"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1194
+#, php-format
+msgid ""
+"Please choose a different post type name. %s matches an existing page slug, "
+"which can cause conflicts."
+msgstr ""
+
+#: inc/taxonomies-functions.php:1158
+#, php-format
+msgid "Please choose a different taxonomy name. %s is already registered."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:160
+msgid "Please choose an option for \"Terms to use\""
+msgstr ""
+
+#: inc/tag-clouds.php:700 inc/autolinks.php:868 inc/related-posts.php:768
+#: inc/post-tags.php:608 inc/taxonomies.php:1614
+msgid "Please complete the following required fields to save your changes:"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1208
+msgid "Please do not use quotes in post type/taxonomy names or rewrite slugs"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1171
+msgid "Please provide a post type to attach to."
+msgstr ""
+
+#: inc/taxonomies-functions.php:239
+msgid "Please provide a taxonomy name"
+msgstr ""
+
+#: inc/taxonomies-functions.php:119 inc/taxonomies-functions.php:1887
+msgid "Please provide a taxonomy to delete"
+msgstr ""
+
+#: inc/class.admin.php:341
+msgid "Please select a valid"
+msgstr ""
+
+#: inc/taxonomies.php:65
+msgid "Please select at least one post type."
+msgstr ""
+
+#: inc/taxonomies.php:548
+msgid "Plural Label"
+msgstr ""
+
+#: inc/tag-clouds.php:514
+msgid "Point"
+msgstr ""
+
+#: inc/class.widgets.php:313
+msgid "Point (default)"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1577 inc/taxonomies-functions.php:1630
+#: inc/taxonomies.php:1191
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: inc/taxonomies.php:1186
+msgid "Popular Items"
+msgstr ""
+
+#: inc/class.client.php:123
+msgid "Popular Media Tags"
+msgstr ""
+
+#: inc/autolinks.php:406 inc/autolinks-table.php:372
+msgid "Post Content"
+msgstr ""
+
+#: inc/autolinks.php:415 inc/autolinks-table.php:374
+msgid "Post Content and Title"
+msgstr ""
+
+#: inc/helper.options.admin.php:363
+msgid "Post link format:"
+msgstr ""
+
+#: inc/helper.options.admin.php:267
+msgid "Post tag separator string:"
+msgstr ""
+
+#: inc/class.admin.php:210
+msgid "Post tags"
+msgstr ""
+
+#: inc/post-tags.php:415
+msgid "Post term separator string:\t"
+msgstr ""
+
+#: inc/autolinks.php:411 inc/autolinks-table.php:373
+msgid "Post Title"
+msgstr ""
+
+#: inc/class.admin.mass.php:245
+msgid "Post title"
+msgstr ""
+
+#: inc/tag-clouds.php:351 inc/related-posts.php:392
+#: inc/related-posts-table.php:68 inc/tag-clouds-table.php:68
+msgid "Post Type"
+msgstr ""
+
+#: inc/autolinks.php:287 inc/class-taxonomies-table.php:70
+#: inc/taxonomies.php:431
+msgid "Post Types"
+msgstr ""
+
+#: inc/class.admin.php:211
+msgid "Posts"
+msgstr ""
+
+#: inc/autolinks-functions.php:146 inc/helper.options.default.php:22
+#, php-format
+msgid "Posts tagged with %s"
+msgstr ""
+
+#: inc/class.widgets.php:319
+msgid "Pourcent"
+msgstr ""
+
+#: inc/autolinks.php:681
+msgid "pre"
+msgstr ""
+
+#: inc/autolinks.php:663
+msgid "Prevent Auto Links inside classes or IDs"
+msgstr ""
+
+#: inc/autolinks.php:685
+msgid "Prevent Auto Links inside elements"
+msgstr ""
+
+#: inc/helper.options.admin.php:470
+msgid "Priority on hook the_content"
+msgstr ""
+
+#: inc/autolinks.php:740
+msgid "Priority on the_content and the_title hook"
+msgstr ""
+
+#: inc/taxonomies.php:196
+msgid "Private Taxonomies"
+msgstr ""
+
+#: inc/taxonomies.php:1425
+msgid "Public"
+msgstr ""
+
+#: inc/taxonomies.php:1449
+msgid "Public Queryable"
+msgstr ""
+
+#: inc/taxonomies.php:195
+msgid "Public Taxonomies"
+msgstr ""
+
+#: inc/class.admin.mass.php:217
+msgid "Quantity&hellip;"
+msgstr ""
+
+#: inc/taxonomies.php:1473
+msgid "Query Var"
+msgstr ""
+
+#: inc/tag-clouds.php:433 inc/tag-clouds.php:466 inc/related-posts.php:584
+#: inc/class.widgets.php:243
+msgid "Random"
+msgstr ""
+
+#: inc/class.widgets.php:271
+msgid "Random (default)"
+msgstr ""
+
+#: inc/taxonomies.php:1550
+msgid "Re-activate Taxonomy"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:67 inc/taxonomies.php:321
+#: inc/taxonomies.php:330 inc/taxonomies.php:339
+msgid "Registration key"
+msgstr ""
+
+#: inc/related-posts-table.php:14
+msgid "Related Post"
+msgstr ""
+
+#: inc/related-posts.php:72 inc/related-posts.php:73 inc/related-posts.php:126
+#: inc/class.admin.php:652 inc/related-posts-table.php:15
+msgid "Related Posts"
+msgstr ""
+
+#: blocks/related-posts.php:67 inc/related-posts-widget.php:17
+msgid "Related Posts (TaxoPress)"
+msgstr ""
+
+#: inc/related-posts-widget.php:107
+msgid "Related Posts are added on "
+msgstr ""
+
+#: inc/helper.options.admin.php:403
+msgid "Related posts by terms"
+msgstr ""
+
+#: inc/related-posts.php:638
+msgid "Related Posts div class"
+msgstr ""
+
+#: inc/related-posts-functions.php:320
+msgid "Related Posts not found."
+msgstr ""
+
+#: inc/related-posts.php:593
+msgid "Related Posts Order"
+msgstr ""
+
+#: inc/helper.options.admin.php:347
+msgid "Related Posts Order:"
+msgstr ""
+
+#: blocks/related-posts.php:65
+msgid "Related Posts shortcode are added on Related Post screen"
+msgstr ""
+
+#: inc/related-posts-functions.php:224
+msgid "Related Posts successfully deleted."
+msgstr ""
+
+#: inc/class.admin.manage.php:396
+msgid "Remove"
+msgstr ""
+
+#: inc/class.admin.manage.php:436
+msgid "Remove rarely used terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:371
+#, php-format
+msgid "Remove Terms from %s "
+msgstr ""
+
+#: inc/class.admin.manage.php:690
+#, php-format
+msgid "Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s"
+msgstr ""
+
+#: inc/class.admin.manage.php:323
+msgid "Rename"
+msgstr ""
+
+#: inc/class.admin.manage.php:292
+msgid "Rename Terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:775
+#, php-format
+msgid "Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
+msgstr ""
+
+#: views/admin/page-settings.php:36
+msgid "Reset Options"
+msgstr ""
+
+#: inc/taxonomies.php:451
+msgid "REST API"
+msgstr ""
+
+#: inc/taxonomies.php:1381
+msgid "REST API base slug"
+msgstr ""
+
+#: inc/taxonomies.php:1390
+msgid "REST API controller class"
+msgstr ""
+
+#: inc/taxonomies.php:820
+msgid "Rewrite"
+msgstr ""
+
+#: inc/taxonomies.php:878
+msgid "Rewrite Hierarchical"
+msgstr ""
+
+#: inc/taxonomies.php:854
+msgid "Rewrite With Front"
+msgstr ""
+
+#: inc/post-tags-table.php:345 inc/related-posts-table.php:385
+#: inc/autolinks-table.php:346
+msgid "RSS feed"
+msgstr ""
+
+#: inc/autolinks.php:833
+msgid "Save Auto Links"
+msgstr ""
+
+#: inc/related-posts.php:723
+msgid "Save Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:363
+msgid "Save Taxonomy"
+msgstr ""
+
+#: inc/tag-clouds.php:658
+msgid "Save Terms Display"
+msgstr ""
+
+#: inc/post-tags.php:563
+msgid "Save Terms for Current Post"
+msgstr ""
+
+#: inc/taxonomies.php:1306
+msgid ""
+"Screen reader text for the items list heading on the term listing screen."
+msgstr ""
+
+#: inc/taxonomies.php:1289
+msgid ""
+"Screen reader text for the pagination heading on the term listing screen."
+msgstr ""
+
+#: inc/autolinks.php:679
+msgid "script"
+msgstr ""
+
+#: inc/class.admin.mass.php:153
+msgid "Search"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1571 inc/taxonomies-functions.php:1576
+#: inc/taxonomies-functions.php:1614 inc/taxonomies-functions.php:1629
+#: inc/taxonomies.php:1175
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: inc/class.admin.manage.php:193
+#, php-format
+msgid "Search %s "
+msgstr ""
+
+#: inc/autolinks.php:150
+msgid "Search Auto Links"
+msgstr ""
+
+#: inc/taxonomies.php:1170
+msgid "Search Items"
+msgstr ""
+
+#: inc/class.client.php:122
+msgid "Search Media Tags"
+msgstr ""
+
+#: inc/related-posts.php:150
+msgid "Search Related Posts"
+msgstr ""
+
+#. %s: search keywords
+#: inc/tag-clouds.php:136 inc/autolinks.php:136 inc/related-posts.php:136
+#: inc/post-tags.php:138 inc/class.admin.manage.php:180 inc/taxonomies.php:163
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: inc/taxonomies.php:177
+msgid "Search Taxonomies"
+msgstr ""
+
+#: inc/tag-clouds.php:150
+msgid "Search Terms Display"
+msgstr ""
+
+#: inc/post-tags.php:152
+msgid "Search Terms for Current Post"
+msgstr ""
+
+#: inc/class.admin.manage.php:102 inc/class.admin.mass.php:58
+msgid ""
+"Security problem. Try again. If this problem persist, contact <a "
+"href=\"https://wordpress.org/support/plugin/simple-tags/#new-topic-0\">"
+"plugin author</a>."
+msgstr ""
+
+#: blocks/related-posts.php:66
+msgid "Select related post shortcode"
+msgstr ""
+
+#: inc/related-posts-widget.php:114
+msgid "Select widget Related Posts."
+msgstr ""
+
+#: inc/class.shortcode_widgets.php:127
+msgid "Select widget terms display."
+msgstr ""
+
+#: inc/posts-tags-widgets.php:108 inc/posts-tags-widget.php:108
+msgid "Select widget terms for current post."
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1585 inc/taxonomies-functions.php:1632
+#: inc/taxonomies.php:1209
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: inc/taxonomies.php:1203
+msgid "Separate Items with Commas"
+msgstr ""
+
+#: inc/class.client.php:124
+msgid "Separate Media Tags with commas"
+msgstr ""
+
+#: inc/autolinks.php:665
+msgid ""
+"Separate multiple entries with a comma. For example: .notag, #main-header"
+msgstr ""
+
+#: inc/class.admin.autocomplete.php:124
+msgid "Separate tags with commas"
+msgstr ""
+
+#: inc/taxonomies.php:1503
+msgid ""
+"Set a default term for the taxonomy. Able to set a name, slug, and "
+"description. Only a name is required if setting a default, others are "
+"optional. Set values in the following order, separated by comma. Example: "
+"name, slug, description"
+msgstr ""
+
+#: inc/taxonomies.php:1494
+msgid ""
+"Sets a callback function name for the meta box display. Hierarchical default:"
+" post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To "
+"remove the metabox completely, use \"false\"."
+msgstr ""
+
+#: inc/taxonomies.php:1485
+msgid "Sets a custom query_var slug for this taxonomy."
+msgstr ""
+
+#: inc/class.admin.php:404
+msgid "Settings"
+msgstr ""
+
+#: inc/autolinks-functions.php:240 inc/post-tags-functions.php:183
+#: inc/tag-clouds-functions.php:222 inc/related-posts-functions.php:216
+msgid "Settings updated successfully."
+msgstr ""
+
+#: inc/post-tags-table.php:69 inc/related-posts-table.php:70
+#: inc/tag-clouds-table.php:70
+msgid "Shortcode"
+msgstr ""
+
+#: inc/post-tags-functions.php:191
+msgid "Shortcode entry successfully deleted."
+msgstr ""
+
+#: inc/tag-clouds.php:672 inc/related-posts.php:740 inc/post-tags.php:580
+msgid "Shortcode: "
+msgstr ""
+
+#: inc/taxonomies.php:879
+msgid "Should the permastruct allow hierarchical urls."
+msgstr ""
+
+#: inc/taxonomies.php:855
+msgid "Should the permastruct be prepended with the front base."
+msgstr ""
+
+#: inc/taxonomies.php:982
+msgid "Show admin column"
+msgstr ""
+
+#: inc/class.admin.mass.php:190
+msgid "Show all dates"
+msgstr ""
+
+#: inc/class.admin.clickterms.php:71 inc/class.admin.clickterms.php:84
+msgid "Show all local tags"
+msgstr ""
+
+#: inc/taxonomies.php:692
+msgid "Show content from all post types on archive page"
+msgstr ""
+
+#: inc/taxonomies.php:1005
+msgid "Show in \"Quick Edit\" and \"Bulk Edit\""
+msgstr ""
+
+#: inc/taxonomies.php:935
+msgid "Show in admin menus"
+msgstr ""
+
+#: inc/taxonomies.php:958
+msgid "Show in frontend menus"
+msgstr ""
+
+#: inc/taxonomies.php:1373
+msgid "Show in REST API"
+msgstr ""
+
+#: inc/taxonomies.php:912
+msgid "Show user interface"
+msgstr ""
+
+#: inc/post-tags-table.php:344 inc/related-posts-table.php:384
+#: inc/autolinks-table.php:345
+msgid "Single post display"
+msgstr ""
+
+#: inc/taxonomies.php:559
+msgid "Singular Label"
+msgstr ""
+
+#: inc/tag-clouds.php:431 inc/class-tag-table.php:42 inc/class.widgets.php:237
+#: inc/taxonomies.php:462
+msgid "Slug"
+msgstr ""
+
+#: inc/taxonomies.php:500 inc/taxonomies.php:719
+msgid "Slug already exists"
+msgstr ""
+
+#: inc/taxonomies.php:497 inc/taxonomies.php:716
+msgid "Slug has changed"
+msgstr ""
+
+#: inc/taxonomies.php:1382
+msgid "Slug to use in REST API URLs."
+msgstr ""
+
+#: inc/taxonomies.php:502 inc/taxonomies.php:722
+msgid "Special character not allowed in slug."
+msgstr ""
+
+#: inc/class.admin.clickterms.php:48
+msgid "Start typing to search"
+msgstr ""
+
+#: inc/autolinks.php:680
+msgid "style"
+msgstr ""
+
+#: inc/class.admin.suggest.php:78 inc/class.admin.suggest.php:83
+msgid "Suggested tags"
+msgstr ""
+
+#: inc/helper.options.admin.php:20
+msgid "Suggested tags feature"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:212
+msgid "Support Hashtag format ?"
+msgstr ""
+
+#: inc/class-tag-table.php:12
+msgid "Tag Cloud"
+msgstr ""
+
+#: inc/class.widgets.php:48
+msgid "Tag cloud"
+msgstr ""
+
+#: inc/class.widgets.php:15
+msgid "Tag Cloud (TaxoPress Legacy)"
+msgstr ""
+
+#: inc/helper.options.admin.php:230
+msgid "Tag cloud Shortcode"
+msgstr ""
+
+#: inc/class.widgets.php:366 inc/helper.options.admin.php:160
+#: inc/helper.options.admin.php:289
+msgid "Tag link format:"
+msgstr ""
+
+#: inc/class.widgets.php:85
+msgid "Tags"
+msgstr ""
+
+#: inc/class-tag-table.php:13
+msgid "Tags Cloud"
+msgstr ""
+
+#: inc/helper.options.admin.php:149
+msgid "Tags cloud type format:"
+msgstr ""
+
+#: inc/class.admin.php:650
+msgid "Tags for Current Post"
+msgstr ""
+
+#: inc/helper.options.default.php:35 inc/post-tags-functions.php:146
+#: inc/class.client.post_tags.php:106
+msgid "Tags: "
+msgstr ""
+
+#: inc/class.admin.autoterms.php:198
+msgid "Target"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:15 inc/taxonomies.php:99
+#: inc/taxonomies.php:100 inc/taxonomies.php:153
+msgid "Taxonomies"
+msgstr ""
+
+#: inc/tag-clouds.php:378 inc/autolinks.php:364 inc/related-posts.php:428
+#: inc/post-tags.php:330 inc/post-tags-table.php:67
+#: inc/related-posts-table.php:67 inc/class-taxonomies-table.php:14
+#: inc/tag-clouds-table.php:67 inc/autolinks-table.php:67
+msgid "Taxonomy"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1771
+msgid "Taxonomy has been successfully activated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1763
+msgid "Taxonomy has been successfully deactivated"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1779
+msgid "Taxonomy has been successfully deleted"
+msgstr ""
+
+#: inc/taxonomies.php:493 inc/taxonomies.php:712
+msgid "Taxonomy Slug"
+msgstr ""
+
+#: inc/taxonomies.php:67
+msgid "Taxonomy slug cannot be numbers only."
+msgstr ""
+
+#: inc/helper.options.admin.php:321
+msgid "Taxonomy:"
+msgstr ""
+
+#. Name of the plugin
+#. Author of the plugin
+#: inc/class.admin.php:391 inc/class-taxonomies-table.php:343
+msgid "TaxoPress"
+msgstr ""
+
+#: inc/class.admin.post.php:32
+msgid "TaxoPress - Settings"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:228
+msgid ""
+"TaxoPress can also tag all existing contents of your blog. This feature use "
+"auto terms list above-mentioned."
+msgstr ""
+
+#: inc/class.admin.php:444
+msgid "TaxoPress options resetted to default options!"
+msgstr ""
+
+#: inc/related-posts-widget.php:20
+msgid "Taxopress Related Posts Shortcode"
+msgstr ""
+
+#: inc/class.shortcode_widgets.php:18
+msgid "Taxopress Terms Display Shortcode"
+msgstr ""
+
+#: inc/posts-tags-widgets.php:18 inc/posts-tags-widget.php:18
+msgid "Taxopress Terms for Current Post Shortcode"
+msgstr ""
+
+#: inc/related-posts.php:468
+msgid ""
+"TaxoPress will attempt to automatically display related posts in this "
+"content. It may not be successful for all post types and layouts."
+msgstr ""
+
+#: inc/post-tags.php:370
+msgid ""
+"TaxoPress will attempt to automatically display terms in this content. It "
+"may not be successful for all post types and layouts."
+msgstr ""
+
+#: inc/autolinks.php:536
+msgid ""
+"TaxoPress will attempt to automatically insert Auto Links in this content. "
+"It may not be successful for all post types and layouts."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:34
+msgid "TaxoPress: Auto Terms"
+msgstr ""
+
+#: inc/class.admin.manage.php:60 inc/class.admin.manage.php:170
+msgid "TaxoPress: Manage Terms"
+msgstr ""
+
+#: inc/class.admin.mass.php:30
+msgid "TaxoPress: Mass Edit Terms"
+msgstr ""
+
+#: inc/class.admin.php:390 inc/class.admin.php:403
+#: views/admin/page-settings.php:3
+msgid "TaxoPress: Options"
+msgstr ""
+
+#: inc/taxonomies.php:469
+msgid "Templates"
+msgstr ""
+
+#: inc/tag-clouds.php:581
+msgid "Term display div class"
+msgstr ""
+
+#: inc/class.widgets.php:239
+msgid "Term group"
+msgstr ""
+
+#: inc/tag-clouds.php:591 inc/autolinks.php:730 inc/related-posts.php:648
+#: inc/post-tags.php:489
+msgid "Term link class"
+msgstr ""
+
+#: inc/tag-clouds.php:601 inc/related-posts.php:659 inc/post-tags.php:499
+msgid "Term link format"
+msgstr ""
+
+#: inc/class.admin.manage.php:688
+#, php-format
+msgid "Term not associated to with any %1$s."
+msgstr ""
+
+#: inc/class.admin.manage.php:893
+#, php-format
+msgid "Term(s) added to %1s %2s."
+msgstr ""
+
+#: inc/class.admin.manage.php:277
+msgid "Term(s) to add:"
+msgstr ""
+
+#: inc/class.admin.manage.php:421
+msgid "Term(s) to delete:"
+msgstr ""
+
+#: inc/class.admin.manage.php:269
+msgid "Term(s) to match:"
+msgstr ""
+
+#: inc/class.admin.manage.php:348
+msgid "Term(s) to merge:"
+msgstr ""
+
+#: inc/class.admin.manage.php:388
+msgid "Term(s) to remove:"
+msgstr ""
+
+#: inc/class.admin.manage.php:308
+msgid "Term(s) to rename:"
+msgstr ""
+
+#: inc/class.admin.mass.php:246
+#, php-format
+msgid "Terms : %s"
+msgstr ""
+
+#: inc/tag-clouds.php:72 inc/tag-clouds.php:73 inc/tag-clouds.php:126
+#: inc/tag-clouds-table.php:14 inc/tag-clouds-table.php:15
+msgid "Terms Display"
+msgstr ""
+
+#: inc/class.shortcode_widgets.php:15
+msgid "Terms Display (TaxoPress Shortcode)"
+msgstr ""
+
+#: inc/class.shortcode_widgets.php:120
+msgid "Terms Display are added on "
+msgstr ""
+
+#: inc/tag-clouds-functions.php:230
+msgid "Terms Display successfully deleted."
+msgstr ""
+
+#: inc/post-tags.php:72 inc/post-tags.php:73 inc/post-tags.php:126
+#: inc/post-tags-table.php:14 inc/post-tags-table.php:15
+msgid "Terms for Current Post"
+msgstr ""
+
+#: inc/posts-tags-widgets.php:15 inc/posts-tags-widget.php:15
+msgid "Terms for Current Post (TaxoPress)"
+msgstr ""
+
+#: inc/posts-tags-widgets.php:101 inc/posts-tags-widget.php:101
+msgid "Terms for Current Post are added on "
+msgstr ""
+
+#: inc/post-tags.php:479
+msgid "Terms for Current Post div class"
+msgstr ""
+
+#: inc/autolinks.php:686
+msgid "Terms inside these html tags will not be auto link."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:151
+msgid "Terms to use"
+msgstr ""
+
+#: inc/class.admin.manage.php:249
+#, php-format
+msgid "Terms will be added to all %s If no \"Term(s) to match\" is specified."
+msgstr ""
+
+#: inc/post-tags.php:425
+msgid "Text to display after tags list"
+msgstr ""
+
+#: inc/helper.options.admin.php:273
+msgid "Text to display after tags list:"
+msgstr ""
+
+#: inc/post-tags.php:435
+msgid "Text to display before tags list"
+msgstr ""
+
+#: inc/helper.options.admin.php:270
+msgid "Text to display before tags list:"
+msgstr ""
+
+#: inc/post-tags.php:445
+msgid "Text to display if no tags found"
+msgstr ""
+
+#: inc/helper.options.admin.php:295
+msgid "Text to display if no tags found:"
+msgstr ""
+
+#: inc/helper.options.admin.php:499
+msgid "Text to display into title attribute for links:"
+msgstr ""
+
+#: inc/related-posts.php:603
+msgid "Text to show when there is no related post"
+msgstr ""
+
+#: inc/class.admin.php:517
+#, php-format
+msgid ""
+"Thanks for using TaxoPress | <a href=\"https://taxopress.com/\">TaxoPress."
+"com</a> | Version %s"
+msgstr ""
+
+#: inc/helper.options.admin.php:195
+msgid ""
+"The colours are hexadecimal colours,  and need to have the full six digits "
+"(#eee is the shorthand version of #eeeeee)."
+msgstr ""
+
+#: inc/helper.options.admin.php:217
+msgid ""
+"The font size units option determines the units that the two font sizes use."
+msgstr ""
+
+#: inc/autolinks.php:768
+msgid ""
+"The new Auto Links engine uses the DOMDocument PHP class and may offer "
+"better performance. If your server does not support this functionality, "
+"TaxoPress will use the usual engine."
+msgstr ""
+
+#: inc/taxonomies.php:1426
+msgid "The taxonomy is for public use. It can be seen by frontend users."
+msgstr ""
+
+#: inc/taxonomies.php:1450
+msgid "The taxonomy is publicly queryable."
+msgstr ""
+
+#: inc/taxonomies.php:1339
+msgid ""
+"The text displayed after a term has been updated for a link back to main "
+"index."
+msgstr ""
+
+#: inc/taxonomies.php:1322
+msgid ""
+"The text displayed via clicking ‘Choose from the most used items’ in the "
+"taxonomy meta box when no items are available."
+msgstr ""
+
+#: inc/helper.options.admin.php:206
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr ""
+
+#: inc/helper.options.admin.php:214
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr ""
+
+#: inc/class.client.related_posts.php:420
+msgid "There is no excerpt because this is a protected post."
+msgstr ""
+
+#: inc/helper.options.admin.php:316
+msgid ""
+"These settings are no longer being updated. Please use the \"Related Posts\" "
+"screen instead."
+msgstr ""
+
+#: inc/helper.options.admin.php:93
+msgid ""
+"These settings are no longer being updated. Please use the \"Terms Display\" "
+"screen instead."
+msgstr ""
+
+#: inc/helper.options.admin.php:245
+msgid ""
+"These settings are no longer being updated. Please use the \"Terms for "
+"Current Post\" screen instead."
+msgstr ""
+
+#: inc/class.admin.php:250
+msgid "This custom post type not have taxonomies."
+msgstr ""
+
+#: inc/helper.options.admin.php:23
+msgid ""
+"This feature adds a meta box in the editor which will display suggested tags "
+"obtained by comparing your post content with various sources of tags. (Yahoo!"
+" Term Extraction API, OpenCalais, Tag The Net, Local DB)"
+msgstr ""
+
+#: inc/helper.options.admin.php:37
+msgid ""
+"This feature allow automatically add terms on a post by proceding to a "
+"search into content."
+msgstr ""
+
+#: inc/class.admin.autoterms.php:138
+#, php-format
+msgid ""
+"This feature allows Wordpress to look into %s content and title for "
+"specified terms when saving %s. If your %s content or title contains the "
+"word \"WordPress\" and you have \"wordpress\" in auto terms list, TaxoPress "
+"will add automatically \"wordpress\" as term for this %s."
+msgstr ""
+
+#: inc/helper.options.admin.php:406
+msgid ""
+"This feature allows you to display related posts based on terms relation."
+msgstr ""
+
+#: inc/helper.options.admin.php:9
+msgid ""
+"This feature allows you to edit the terms of any taxonomy for multiple posts "
+"at the same time."
+msgstr ""
+
+#: inc/helper.options.admin.php:30
+msgid ""
+"This feature allows you to edit, merge, delete and add terms for any "
+"taxonomy."
+msgstr ""
+
+#: inc/class.admin.manage.php:437
+msgid "This feature allows you to remove rarely used terms."
+msgstr ""
+
+#: inc/autolinks.php:130
+msgid "This feature can automatically create links to your terms."
+msgstr ""
+
+#: inc/class.admin.manage.php:247
+#, php-format
+msgid ""
+"This feature lets you add one or more new terms to all %s which match any of "
+"the terms given."
+msgstr ""
+
+#: inc/class.admin.php:487
+msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
+msgstr ""
+
+#: inc/helper.options.admin.php:16
+msgid ""
+"This feature will allow you to load all the local tags in your database "
+"inside the Suggested Tags meta box inside the editor. Once displayed, you "
+"can click to add tags to your post."
+msgstr ""
+
+#: inc/class.admin.php:489
+msgid ""
+"This feature works only with activated JavaScript. Activate it in your Web "
+"browser so you can!"
+msgstr ""
+
+#: inc/taxonomies.php:326
+msgid "This is an external taxonomy and not created with TaxoPress."
+msgstr ""
+
+#: blocks/related-posts.php:62 inc/class.shortcode_widgets.php:117
+#: inc/posts-tags-widgets.php:98 inc/posts-tags-widget.php:98
+#: inc/related-posts-widget.php:104
+msgid "this page."
+msgstr ""
+
+#: inc/autolinks.php:604
+msgid ""
+"This setting determines the maximum number of Auto Links for each term in "
+"one post."
+msgstr ""
+
+#: inc/autolinks.php:591
+msgid "This setting determines the maximum number of Auto Links in one post."
+msgstr ""
+
+#: inc/helper.options.admin.php:441
+msgid ""
+"This setting determines the maximum number of links created by article for "
+"the same tag. Default: 1."
+msgstr ""
+
+#: inc/helper.options.admin.php:433
+msgid ""
+"This setting determines the maximum number of links created by article. "
+"Default: 10."
+msgstr ""
+
+#: inc/helper.options.admin.php:425
+msgid ""
+"This setting helps prevent rarely used terms from being used by Auto Links. "
+"Default: 1."
+msgstr ""
+
+#: inc/taxonomies.php:317
+msgid "This taxonomy is part of the WordPress core."
+msgstr ""
+
+#: inc/taxonomies.php:335
+msgid "This taxonomy was created by TaxoPress."
+msgstr ""
+
+#: inc/class.widgets.php:209
+msgid ""
+"This widget is no longer being updated. Please use the \"Tag Cloud "
+"(TaxoPress Shortcode)\" widget instead."
+msgstr ""
+
+#: inc/tag-clouds.php:279 inc/autolinks.php:318 inc/related-posts.php:280
+#: inc/post-tags.php:283 inc/post-tags-table.php:66
+#: inc/related-posts-table.php:66 inc/tag-clouds-table.php:66
+#: inc/autolinks-table.php:66
+msgid "Title"
+msgstr ""
+
+#: inc/related-posts.php:338
+msgid "Title header"
+msgstr ""
+
+#: inc/class.widgets.php:213
+msgid "Title:"
+msgstr ""
+
+#: inc/autolinks.php:578
+msgid ""
+"To be included in Auto Links, a term must be used at least this many times."
+msgstr ""
+
+#: inc/autolinks.php:268
+msgid "To create more Auto Links, please upgrade to TaxoPress Pro."
+msgstr ""
+
+#: inc/related-posts.php:265
+msgid "To create more Related Posts, please upgrade to TaxoPress Pro."
+msgstr ""
+
+#: inc/tag-clouds.php:266
+msgid "To create more Terms Display, please upgrade to TaxoPress Pro."
+msgstr ""
+
+#: inc/post-tags.php:268
+msgid "To create more Terms for Current Post, please upgrade to TaxoPress Pro."
+msgstr ""
+
+#: inc/tag-clouds.php:302 inc/tag-clouds.php:324 inc/tag-clouds.php:557
+#: inc/autolinks.php:452 inc/autolinks.php:478 inc/autolinks.php:756
+#: inc/related-posts.php:352 inc/related-posts.php:619 inc/post-tags.php:460
+#: inc/taxonomies.php:576 inc/taxonomies.php:679 inc/taxonomies.php:810
+#: inc/taxonomies.php:844 inc/taxonomies.php:869 inc/taxonomies.php:902
+#: inc/taxonomies.php:925 inc/taxonomies.php:948 inc/taxonomies.php:973
+#: inc/taxonomies.php:996 inc/taxonomies.php:1363 inc/taxonomies.php:1415
+#: inc/taxonomies.php:1439 inc/taxonomies.php:1463
+msgid "True"
+msgstr ""
+
+#: inc/helper.options.admin.php:491
+msgid "Try new engine replacement ?"
+msgstr ""
+
+#: inc/tag-clouds.php:525
+msgid "Unit font size"
+msgstr ""
+
+#: inc/class.widgets.php:309
+msgid "Unit font size:"
+msgstr ""
+
+#: inc/taxonomies-functions.php:1582 inc/taxonomies-functions.php:1624
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1094
+#, php-format
+msgid "Update %s name"
+msgstr ""
+
+#: inc/class.admin.mass.php:276
+msgid "Update all &raquo;"
+msgstr ""
+
+#: inc/taxonomies.php:1089
+msgid "Update Item Name"
+msgstr ""
+
+#: inc/class.client.php:117
+msgid "Update Media Tag name"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:222 views/admin/page-settings.php:33
+msgid "Update options &raquo;"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:154
+#, php-format
+msgid ""
+"Use all the terms in the %s taxonomy. (Warning, this option can increases "
+"the CPU consumption a lot if you have many terms)"
+msgstr ""
+
+#: inc/class.widgets.php:342
+msgid "Use auto color cloud:"
+msgstr ""
+
+#: inc/autolinks.php:380
+msgid "Use case of term"
+msgstr ""
+
+#: inc/autolinks.php:374
+msgid "Use case of text in content"
+msgstr ""
+
+#: inc/autolinks.php:766
+msgid "Use new Auto Links engine"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:158
+#, php-format
+msgid ""
+"Use this option if you don't want to use all the terms in your %s taxonomy. "
+"You can select specific terms to use."
+msgstr ""
+
+#: inc/taxonomies.php:1042
+msgid ""
+"Used as tab text when showing all terms for hierarchical taxonomy while "
+"editing post."
+msgstr ""
+
+#: inc/taxonomies.php:1107
+msgid ""
+"Used at the top of the term editor screen and button text for a new taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:1058
+msgid ""
+"Used at the top of the term editor screen for an existing taxonomy term."
+msgstr ""
+
+#: inc/taxonomies.php:1074
+msgid ""
+"Used in the admin bar when viewing editor screen for an existing taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:1272
+msgid ""
+"Used when indicating that there are no terms in the given taxonomy "
+"associated with an object."
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies-functions.php:1568 inc/taxonomies-functions.php:1569
+#: inc/taxonomies-functions.php:1609 inc/taxonomies-functions.php:1612
+#: inc/taxonomies.php:1078
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: inc/taxonomies.php:1073
+msgid "View Item"
+msgstr ""
+
+#: inc/class.client.php:116
+msgid "View Media Tag"
+msgstr ""
+
+#: inc/class.widgets.php:386
+msgid "What to show"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:215
+msgid ""
+"When the whole word option is enabled, hashtag will not be autotag because "
+"of # prefix. This option allow to fixed this issue!"
+msgstr ""
+
+#: inc/class.admin.autoterms.php:205
+msgid "Whole Word ?"
+msgstr ""
+
+#: inc/autolinks.php:270
+msgid ""
+"With TaxoPress Pro, you can create unlimited Auto Links. You can create Auto "
+"Links for any taxonomy."
+msgstr ""
+
+#: inc/related-posts.php:267
+msgid ""
+"With TaxoPress Pro, you can create unlimited Related Posts. You can create "
+"Related Posts for any taxonomy and then display those Related Posts anywhere "
+"on your site."
+msgstr ""
+
+#: inc/tag-clouds.php:267
+msgid ""
+"With TaxoPress Pro, you can create unlimited Terms Display. You can create "
+"Terms Display for any taxonomy and then display those Terms Display anywhere "
+"on your site."
+msgstr ""
+
+#: inc/post-tags.php:270
+msgid ""
+"With TaxoPress Pro, you can create unlimited Terms for Current Post. You can "
+"create Terms for Current Post for any taxonomy and then display those Terms "
+"for Current Post anywhere on your site."
+msgstr ""
+
+#: inc/taxonomies.php:821
+msgid ""
+"WordPress can use a custom permalink for this taxonomy. It does not have to "
+"match the slug."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:340
+msgid "WordPress core"
+msgstr ""
+
+#: inc/tag-clouds.php:712 inc/autolinks.php:880 inc/related-posts.php:780
+#: inc/post-tags.php:620 inc/class-taxonomies-table.php:364
+#: inc/taxonomies.php:1626
+msgid "Yes"
+msgstr ""
+
+#: inc/helper.options.admin.php:72
+msgid ""
+"You can create an API key from <a href=\"https://dandelion.eu/\">service "
+"website</a>"
+msgstr ""
+
+#: inc/helper.options.admin.php:65
+msgid ""
+"You can create an API key from <a href=\"https://developers.refinitiv."
+"com/en/api-catalog/open-perm-id/intelligent-tagging-restful-"
+"api/documentation\">service website</a>"
+msgstr ""
+
+#: inc/helper.options.admin.php:163 inc/helper.options.admin.php:292
+#: inc/helper.options.admin.php:366
+msgid ""
+"You can find markers and explanations <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
+msgstr ""
+
+#: inc/related-posts.php:660
+msgid ""
+"You can find markers and explanations <a target=\"blank\" href=\"https:"
+"//taxopress.com/docs/format-related-posts/\">in the online documentation.</a>"
+msgstr ""
+
+#: inc/tag-clouds.php:602
+msgid ""
+"You can find markers and explanations <a target=\"blank\" href=\"https:"
+"//taxopress.com/docs/format-tag-clouds/\">in the online documentation.</a>"
+msgstr ""
+
+#: inc/post-tags.php:500
+msgid ""
+"You can find markers and explanations <a target=\"blank\" href=\"https:"
+"//taxopress.com/docs/format-terms-current-post/\">in the online "
+"documentation.</a>"
+msgstr ""
+
+#: inc/taxonomies.php:1570
+msgid "You can only delete taxonomies created with TaxoPress."
+msgstr ""
+
+#: inc/helper.options.admin.php:398
+msgid ""
+"You can use the same syntax as <code>st_related_posts()</code>public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+
+#: inc/helper.options.admin.php:225
+msgid ""
+"You can use the same syntax as <code>st_tag_cloud()</code> public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+
+#: inc/helper.options.admin.php:303
+msgid ""
+"You can use the same syntax as <code>st_the_tags()</code> public static "
+"function to customize display. See <a href=\"https://github."
+"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr ""
+
+#: inc/helper.options.admin.php:98
+msgid ""
+"You must set &#8216;Order tags selection&#8217; to <strong>count-"
+"desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags "
+"display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr ""
+
+#: inc/helper.options.admin.php:281
+msgid "You must set zero (0) for display all tags."
+msgstr ""

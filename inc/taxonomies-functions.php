@@ -116,7 +116,7 @@ function taxopress_delete_taxonomy($data = [])
     // Check if they selected one to delete.
     if (empty($data['cpt_custom_tax']['name'])) {
         return taxopress_admin_notices('error', '', false,
-            esc_html__('Please provide a taxonomy to delete', 'simpletags'));
+            esc_html__('Please provide a taxonomy to delete', 'simple-tags'));
     }
 
     /**
@@ -236,7 +236,7 @@ function taxopress_update_taxonomy($data = [])
 
     // They need to provide a name.
     if (empty($data['cpt_custom_tax']['name'])) {
-        return taxopress_admin_notices('error', '', false, esc_html__('Please provide a taxonomy name', 'simpletags'));
+        return taxopress_admin_notices('error', '', false, esc_html__('Please provide a taxonomy name', 'simple-tags'));
     }
 
     if (!isset($data['taxonomy_external_edit'])) {
@@ -1033,7 +1033,7 @@ function taxopress_get_object_from_post_global()
         return sanitize_text_field($_POST['cpt_custom_tax']['name']);
     }
 
-    return esc_html__('Object', 'simpletags');
+    return esc_html__('Object', 'simple-tags');
 }
 
 /**
@@ -1064,7 +1064,7 @@ function taxopress_add_success_message_admin_notice()
 {
     echo taxopress_admin_notices_helper(
         sprintf(
-            esc_html__('%s has been successfully added', 'simpletags'),
+            esc_html__('%s has been successfully added', 'simple-tags'),
             $_GET['taxopress_taxonomy']
         )
     );
@@ -1077,7 +1077,7 @@ function taxopress_add_fail_admin_notice()
 {
     echo taxopress_admin_notices_helper(
         sprintf(
-            esc_html__('%s has failed to be added', 'simpletags'),
+            esc_html__('%s has failed to be added', 'simple-tags'),
             taxopress_get_object_from_post_global()
         ),
         false
@@ -1091,7 +1091,7 @@ function taxopress_update_success_admin_notice()
 {
     echo taxopress_admin_notices_helper(
         sprintf(
-            esc_html__('%s has been successfully updated', 'simpletags'),
+            esc_html__('%s has been successfully updated', 'simple-tags'),
             taxopress_get_object_from_post_global()
         )
     );
@@ -1104,7 +1104,7 @@ function taxopress_update_fail_admin_notice()
 {
     echo taxopress_admin_notices_helper(
         sprintf(
-            esc_html__('%s has failed to be updated', 'simpletags'),
+            esc_html__('%s has failed to be updated', 'simple-tags'),
             taxopress_get_object_from_post_global()
         ),
         false
@@ -1118,7 +1118,7 @@ function taxopress_delete_success_admin_notice()
 {
     echo taxopress_admin_notices_helper(
         sprintf(
-            esc_html__('%s has been successfully deleted', 'simpletags'),
+            esc_html__('%s has been successfully deleted', 'simple-tags'),
             taxopress_get_object_from_post_global()
         )
     );
@@ -1131,7 +1131,7 @@ function taxopress_delete_fail_admin_notice()
 {
     echo taxopress_admin_notices_helper(
         sprintf(
-            esc_html__('%s has failed to be deleted', 'simpletags'),
+            esc_html__('%s has failed to be deleted', 'simple-tags'),
             taxopress_get_object_from_post_global()
         ),
         false
@@ -1142,7 +1142,7 @@ function taxopress_delete_fail_admin_notice()
 function taxopress_nonce_fail_admin_notice()
 {
     echo taxopress_admin_notices_helper(
-        esc_html__('Nonce failed verification', 'simpletags'),
+        esc_html__('Nonce failed verification', 'simple-tags'),
         false
     );
 }
@@ -1155,7 +1155,7 @@ function taxopress_nonce_fail_admin_notice()
 function taxopress_slug_matches_taxonomy()
 {
     return sprintf(
-        esc_html__('Please choose a different taxonomy name. %s is already registered.', 'simpletags'),
+        esc_html__('Please choose a different taxonomy name. %s is already registered.', 'simple-tags'),
         taxopress_get_object_from_post_global()
     );
 }
@@ -1168,7 +1168,7 @@ function taxopress_slug_matches_taxonomy()
  */
 function taxopress_empty_cpt_on_taxonomy()
 {
-    return esc_html__('Please provide a post type to attach to.', 'simpletags');
+    return esc_html__('Please provide a post type to attach to.', 'simple-tags');
 }
 
 /**
@@ -1192,7 +1192,7 @@ function taxopress_slug_matches_page()
 
     return sprintf(
         esc_html__('Please choose a different post type name. %s matches an existing page slug, which can cause conflicts.',
-            'simpletags'),
+            'simple-tags'),
         $slug
     );
 }
@@ -1205,7 +1205,7 @@ function taxopress_slug_matches_page()
 function taxopress_slug_has_quotes()
 {
     return sprintf(
-        esc_html__('Please do not use quotes in post type/taxonomy names or rewrite slugs', 'simpletags'),
+        esc_html__('Please do not use quotes in post type/taxonomy names or rewrite slugs', 'simple-tags'),
         taxopress_get_object_from_post_global()
     );
 }
@@ -1462,27 +1462,27 @@ function taxopress_admin_notices($action = '', $object_type = '', $success = tru
 
     if ('add' === $action) {
         if ($success) {
-            $message .= sprintf(__('%s has been successfully added', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has been successfully added', 'simple-tags'), $object_type);
         } else {
-            $message .= sprintf(__('%s has failed to be added', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has failed to be added', 'simple-tags'), $object_type);
         }
     } elseif ('update' === $action) {
         if ($success) {
-            $message .= sprintf(__('%s has been successfully updated', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has been successfully updated', 'simple-tags'), $object_type);
         } else {
-            $message .= sprintf(__('%s has failed to be updated', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has failed to be updated', 'simple-tags'), $object_type);
         }
     } elseif ('delete' === $action) {
         if ($success) {
-            $message .= sprintf(__('%s has been successfully deleted', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has been successfully deleted', 'simple-tags'), $object_type);
         } else {
-            $message .= sprintf(__('%s has failed to be deleted', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has failed to be deleted', 'simple-tags'), $object_type);
         }
     } elseif ('import' === $action) {
         if ($success) {
-            $message .= sprintf(__('%s has been successfully imported', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has been successfully imported', 'simple-tags'), $object_type);
         } else {
-            $message .= sprintf(__('%s has failed to be imported', 'simpletags'), $object_type);
+            $message .= sprintf(__('%s has failed to be imported', 'simple-tags'), $object_type);
         }
     } elseif ('error' === $action) {
         if (!empty($custom)) {
@@ -1562,29 +1562,29 @@ function taxopress_get_preserved_label($type = '', $key = '', $plural = '', $sin
 {
     $preserved_labels = [
         'post_types' => [
-            'add_new_item'       => sprintf(__('Add new %s', 'simpletags'), $singular),
-            'edit_item'          => sprintf(__('Edit %s', 'simpletags'), $singular),
-            'new_item'           => sprintf(__('New %s', 'simpletags'), $singular),
-            'view_item'          => sprintf(__('View %s', 'simpletags'), $singular),
-            'view_items'         => sprintf(__('View %s', 'simpletags'), $plural),
-            'all_items'          => sprintf(__('All %s', 'simpletags'), $plural),
-            'search_items'       => sprintf(__('Search %s', 'simpletags'), $plural),
-            'not_found'          => sprintf(__('No %s found.', 'simpletags'), $plural),
-            'not_found_in_trash' => sprintf(__('No %s found in trash.', 'simpletags'), $plural),
+            'add_new_item'       => sprintf(__('Add new %s', 'simple-tags'), $singular),
+            'edit_item'          => sprintf(__('Edit %s', 'simple-tags'), $singular),
+            'new_item'           => sprintf(__('New %s', 'simple-tags'), $singular),
+            'view_item'          => sprintf(__('View %s', 'simple-tags'), $singular),
+            'view_items'         => sprintf(__('View %s', 'simple-tags'), $plural),
+            'all_items'          => sprintf(__('All %s', 'simple-tags'), $plural),
+            'search_items'       => sprintf(__('Search %s', 'simple-tags'), $plural),
+            'not_found'          => sprintf(__('No %s found.', 'simple-tags'), $plural),
+            'not_found_in_trash' => sprintf(__('No %s found in trash.', 'simple-tags'), $plural),
         ],
         'taxonomies' => [
-            'search_items'               => sprintf(__('Search %s', 'simpletags'), $plural),
-            'popular_items'              => sprintf(__('Popular %s', 'simpletags'), $plural),
-            'all_items'                  => sprintf(__('All %s', 'simpletags'), $plural),
-            'parent_item'                => sprintf(__('Parent %s', 'simpletags'), $singular),
-            'parent_item_colon'          => sprintf(__('Parent %s:', 'simpletags'), $singular),
-            'edit_item'                  => sprintf(__('Edit %s', 'simpletags'), $singular),
-            'update_item'                => sprintf(__('Update %s', 'simpletags'), $singular),
-            'add_new_item'               => sprintf(__('Add new %s', 'simpletags'), $singular),
-            'new_item_name'              => sprintf(__('New %s name', 'simpletags'), $singular),
-            'separate_items_with_commas' => sprintf(__('Separate %s with commas', 'simpletags'), $plural),
-            'add_or_remove_items'        => sprintf(__('Add or remove %s', 'simpletags'), $plural),
-            'choose_from_most_used'      => sprintf(__('Choose from the most used %s', 'simpletags'), $plural),
+            'search_items'               => sprintf(__('Search %s', 'simple-tags'), $plural),
+            'popular_items'              => sprintf(__('Popular %s', 'simple-tags'), $plural),
+            'all_items'                  => sprintf(__('All %s', 'simple-tags'), $plural),
+            'parent_item'                => sprintf(__('Parent %s', 'simple-tags'), $singular),
+            'parent_item_colon'          => sprintf(__('Parent %s:', 'simple-tags'), $singular),
+            'edit_item'                  => sprintf(__('Edit %s', 'simple-tags'), $singular),
+            'update_item'                => sprintf(__('Update %s', 'simple-tags'), $singular),
+            'add_new_item'               => sprintf(__('Add new %s', 'simple-tags'), $singular),
+            'new_item_name'              => sprintf(__('New %s name', 'simple-tags'), $singular),
+            'separate_items_with_commas' => sprintf(__('Separate %s with commas', 'simple-tags'), $plural),
+            'add_or_remove_items'        => sprintf(__('Add or remove %s', 'simple-tags'), $plural),
+            'choose_from_most_used'      => sprintf(__('Choose from the most used %s', 'simple-tags'), $plural),
         ],
     ];
 
@@ -1603,35 +1603,35 @@ function taxopress_get_preserved_labels()
     return [
         'post_types' => [
             'singular' => [
-                'add_new_item' => __('Add new %s', 'simpletags'),
-                'edit_item'    => __('Edit %s', 'simpletags'),
-                'new_item'     => __('New %s', 'simpletags'),
-                'view_item'    => __('View %s', 'simpletags'),
+                'add_new_item' => __('Add new %s', 'simple-tags'),
+                'edit_item'    => __('Edit %s', 'simple-tags'),
+                'new_item'     => __('New %s', 'simple-tags'),
+                'view_item'    => __('View %s', 'simple-tags'),
             ],
             'plural'   => [
-                'view_items'         => __('View %s', 'simpletags'),
-                'all_items'          => __('All %s', 'simpletags'),
-                'search_items'       => __('Search %s', 'simpletags'),
-                'not_found'          => __('No %s found.', 'simpletags'),
-                'not_found_in_trash' => __('No %s found in trash.', 'simpletags'),
+                'view_items'         => __('View %s', 'simple-tags'),
+                'all_items'          => __('All %s', 'simple-tags'),
+                'search_items'       => __('Search %s', 'simple-tags'),
+                'not_found'          => __('No %s found.', 'simple-tags'),
+                'not_found_in_trash' => __('No %s found in trash.', 'simple-tags'),
             ],
         ],
         'taxonomies' => [
             'singular' => [
-                'parent_item'       => __('Parent %s', 'simpletags'),
-                'parent_item_colon' => __('Parent %s:', 'simpletags'),
-                'edit_item'         => __('Edit %s', 'simpletags'),
-                'update_item'       => __('Update %s', 'simpletags'),
-                'add_new_item'      => __('Add new %s', 'simpletags'),
-                'new_item_name'     => __('New %s name', 'simpletags'),
+                'parent_item'       => __('Parent %s', 'simple-tags'),
+                'parent_item_colon' => __('Parent %s:', 'simple-tags'),
+                'edit_item'         => __('Edit %s', 'simple-tags'),
+                'update_item'       => __('Update %s', 'simple-tags'),
+                'add_new_item'      => __('Add new %s', 'simple-tags'),
+                'new_item_name'     => __('New %s name', 'simple-tags'),
             ],
             'plural'   => [
-                'search_items'               => __('Search %s', 'simpletags'),
-                'popular_items'              => __('Popular %s', 'simpletags'),
-                'all_items'                  => __('All %s', 'simpletags'),
-                'separate_items_with_commas' => __('Separate %s with commas', 'simpletags'),
-                'add_or_remove_items'        => __('Add or remove %s', 'simpletags'),
-                'choose_from_most_used'      => __('Choose from the most used %s', 'simpletags'),
+                'search_items'               => __('Search %s', 'simple-tags'),
+                'popular_items'              => __('Popular %s', 'simple-tags'),
+                'all_items'                  => __('All %s', 'simple-tags'),
+                'separate_items_with_commas' => __('Separate %s with commas', 'simple-tags'),
+                'add_or_remove_items'        => __('Add or remove %s', 'simple-tags'),
+                'choose_from_most_used'      => __('Choose from the most used %s', 'simple-tags'),
             ],
         ],
     ];
@@ -1742,7 +1742,7 @@ function taxopress_get_deactivated_taxonomy()
  */
 function taxopress_noaction_admin_notice()
 {
-    echo taxopress_admin_notices_helper(esc_html__('Kindly select an action in bulk action dropdown!', 'simpletags'),
+    echo taxopress_admin_notices_helper(esc_html__('Kindly select an action in bulk action dropdown!', 'simple-tags'),
         false);
 }
 
@@ -1751,7 +1751,7 @@ function taxopress_noaction_admin_notice()
  */
 function taxopress_none_admin_notice()
 {
-    echo taxopress_admin_notices_helper(esc_html__('Kindly select atleast one taxonomy to proceed', 'simpletags'),
+    echo taxopress_admin_notices_helper(esc_html__('Kindly select atleast one taxonomy to proceed', 'simple-tags'),
         false);
 }
 
@@ -1760,7 +1760,7 @@ function taxopress_none_admin_notice()
  */
 function taxopress_deactivated_admin_notice()
 {
-    echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully deactivated', 'simpletags'));
+    echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully deactivated', 'simple-tags'));
 }
 
 /**
@@ -1768,7 +1768,7 @@ function taxopress_deactivated_admin_notice()
  */
 function taxopress_activated_admin_notice()
 {
-    echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully activated', 'simpletags'));
+    echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully activated', 'simple-tags'));
 }
 
 /**
@@ -1776,7 +1776,7 @@ function taxopress_activated_admin_notice()
  */
 function taxopress_taxdeleted_admin_notice()
 {
-    echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully deleted', 'simpletags'));
+    echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully deleted', 'simple-tags'));
 }
 
 /**
@@ -1884,7 +1884,7 @@ function taxopress_action_delete_taxonomy($term_object)
     // Check if they selected one to delete.
     if (empty($data['cpt_custom_tax']['name'])) {
         return taxopress_admin_notices('error', '', false,
-            esc_html__('Please provide a taxonomy to delete', 'simpletags'));
+            esc_html__('Please provide a taxonomy to delete', 'simple-tags'));
     }
 
     /**

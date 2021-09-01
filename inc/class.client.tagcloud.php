@@ -61,10 +61,10 @@ class SimpleTags_Client_TagCloud {
 			'orderby'     => 'random',
 			'order'       => 'asc',
 			'format'      => 'flat',
-			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags' ),
+			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simple-tags' ),
 			'number'      => 45,
-			'notagstext'  => __( 'No tags.', 'simpletags' ),
-			'title'       => __( '<h4>Tag Cloud</h4>', 'simpletags' ),
+			'notagstext'  => __( 'No tags.', 'simple-tags' ),
+			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
 			'mincolor'    => '#CCCCCC',
 			'largest'     => 22,
@@ -83,6 +83,8 @@ class SimpleTags_Client_TagCloud {
 			'hide_title'  => 0,
 			'hide_output' => 0,
 			'post_type'   => '',
+			'wrap_class'  => '',
+			'link_class'  => '',
 		);
 
 		// Get options
@@ -156,7 +158,7 @@ class SimpleTags_Client_TagCloud {
 
 		if ( empty( $terms ) ) {
             if((int)$hide_output === 0){
-			    return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright );
+			    return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright, '', $wrap_class, $link_class );
             }else{
                 return '';
             }
@@ -228,6 +230,13 @@ class SimpleTags_Client_TagCloud {
 		}
 
 		$output = array();
+
+		//update xformat with class link class
+		if(!empty(trim($link_class))){
+			$link_class = taxopress_format_class($link_class);
+			$xformat = taxopress_add_class_to_format($xformat, $link_class);
+		}
+		
 		foreach ( (array) $counts as $term_name => $count ) {
 			if ( ! is_object( $terms_data[ $term_name ] ) ) {
 				continue;
@@ -238,7 +247,7 @@ class SimpleTags_Client_TagCloud {
 			$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
 		}
 
-		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright );
+		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright, '', $wrap_class, $link_class );
 	}
 
 
@@ -257,10 +266,10 @@ class SimpleTags_Client_TagCloud {
 			'orderby'     => 'random',
 			'order'       => 'asc',
 			'format'      => 'flat',
-			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simpletags' ),
+			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simple-tags' ),
 			'number'      => 45,
-			'notagstext'  => __( 'No tags.', 'simpletags' ),
-			'title'       => __( '<h4>Tag Cloud</h4>', 'simpletags' ),
+			'notagstext'  => __( 'No tags.', 'simple-tags' ),
+			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
 			'mincolor'    => '#CCCCCC',
 			'largest'     => 22,
@@ -461,7 +470,7 @@ class SimpleTags_Client_TagCloud {
 		$key = md5( maybe_serialize( $args ) . $taxonomy );
 
 		// Get cache if exist
-		if ( $cache = wp_cache_get( 'st_get_tags', 'simpletags' ) ) {
+		if ( $cache = wp_cache_get( 'st_get_tags', 'simple-tags' ) ) {
 			if ( isset( $cache[ $key ] ) ) {
 				return apply_filters( 'get_tags', $cache[ $key ], $args );
 			}
@@ -474,7 +483,7 @@ class SimpleTags_Client_TagCloud {
 		}
 
 		$cache[ $key ] = $terms;
-		wp_cache_set( 'st_get_tags', $cache, 'simpletags' );
+		wp_cache_set( 'st_get_tags', $cache, 'simple-tags' );
 
 		$terms = apply_filters( 'st_get_tags', $terms, $args );
 

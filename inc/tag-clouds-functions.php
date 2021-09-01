@@ -219,7 +219,7 @@ function taxopress_update_tagcloud($data = [])
  */
 function taxopress_termsdisplay_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simpletags'));
+    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -227,7 +227,7 @@ function taxopress_termsdisplay_update_success_admin_notice()
  */
 function taxopress_termsdisplay_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Terms Display successfully deleted.', 'simpletags'), false);
+    echo taxopress_admin_notices_helper(__('Terms Display successfully deleted.', 'simple-tags'), false);
 }
 
 /**

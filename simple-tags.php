@@ -3,15 +3,15 @@
 Plugin Name: TaxoPress
 Plugin URI: https://wordpress.org/plugins/simple-tags/
 Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 3.2.1
+Version: 3.2.2
 Requires PHP: 5.6
 Requires at least: 3.3
 Tested up to: 5.6
 Author: TaxoPress
 Author URI: https://taxopress.com
-Text Domain: simpletags
+Text Domain: simple-tags
 
-Copyright 2013-2021  TaxoPress 
+Copyright 2013-2021  TaxoPress
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('STAGS_VERSION')) {
-define('STAGS_VERSION', '3.2.1');
+define('STAGS_VERSION', '3.2.2');
 }
 
 
@@ -68,7 +68,7 @@ if ($pro_active) {
         function($links, $file)
         {
             if ($file == plugin_basename(__FILE__)) {
-                $links[]= __('<strong>This plugin can be deleted.</strong>', 'press-permit-core');
+                $links[]= __('<strong>This plugin can be deleted.</strong>', 'simple-tags');
             }
 
             return $links;
@@ -105,7 +105,7 @@ if (version_compare(PHP_VERSION, STAGS_MIN_PHP_VERSION, '<')) {
 }
 
 require STAGS_DIR . '/inc/loads.php';
-    
+
 // Init TaxoPress
 function init_free_simple_tags()
 {

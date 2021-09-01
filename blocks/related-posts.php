@@ -59,12 +59,12 @@ function st_related_posts_block_init()
             ],
             admin_url('admin.php')
         ),
-        __('this page.', 'simpletags')
+        __('this page.', 'simple-tags')
     );
 
-    $select_desc  = __('Related Posts shortcode are added on Related Post screen', 'simpletags');
-    $select_label = __('Select related post shortcode', 'simpletags');
-    $panel_title  = __('Related Posts (TaxoPress)', 'simpletags');
+    $select_desc  = __('Related Posts shortcode are added on Related Post screen', 'simple-tags');
+    $select_label = __('Select related post shortcode', 'simple-tags');
+    $panel_title  = __('Related Posts (TaxoPress)', 'simple-tags');
 
     wp_localize_script('st-block-related-posts', 'ST_RELATED_POST', [
         'options'      => $options,

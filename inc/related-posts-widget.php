@@ -14,10 +14,10 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
      */
     public function __construct()
     {
-        parent::__construct('simpletags-relatedposts', __('Related Posts (TaxoPress)', 'simpletags'),
+        parent::__construct('simpletags-relatedposts', __('Related Posts (TaxoPress)', 'simple-tags'),
             [
                 'classname'   => 'widget-simpletags-relatedposts',
-                'description' => __('Taxopress Related Posts Shortcode', 'simpletags')
+                'description' => __('Taxopress Related Posts Shortcode', 'simple-tags')
             ]
         );
     }
@@ -101,17 +101,17 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
                     ],
                     admin_url('admin.php')
                 ),
-                __('this page.', 'simpletags')
+                __('this page.', 'simple-tags')
             );
 
-            echo '<p>' . __('Related Posts are added on ', 'simpletags');
+            echo '<p>' . __('Related Posts are added on ', 'simple-tags');
             echo $shortcode_page;
             echo '</p>'
 
             ?>
             <p>
                 <label for="<?php echo $this->get_field_id('relatedposts_id'); ?>">
-                    <?php _e('Select widget Related Posts.', 'simpletags'); ?>
+                    <?php _e('Select widget Related Posts.', 'simple-tags'); ?>
                     <select id="<?php echo $this->get_field_id('relatedposts_id'); ?>"
                             name="<?php echo $this->get_field_name('relatedposts_id'); ?>">
                         <?php foreach ($relatedposts_data as $key => $value) { ?>
@@ -132,10 +132,10 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
                     ],
                     admin_url('admin.php')
                 ),
-                __('Here', 'simpletags')
+                __('Here', 'simple-tags')
             );
 
-            echo '<br />' . __('No Related Posts shortcode available. Add new shortcode ', 'simpletags');
+            echo '<br />' . __('No Related Posts shortcode available. Add new shortcode ', 'simple-tags');
             echo $shortcode_page;
             echo '<br /><br />';
         }
