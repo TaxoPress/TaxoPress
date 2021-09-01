@@ -135,7 +135,7 @@ class SimpleTags_Admin_AutoTags
 
                 <form action="<?php echo self::$admin_base_url . 'st_auto&taxo=' . SimpleTags_Admin::$taxonomy . '&cpt=' . SimpleTags_Admin::$post_type; ?>" method="post">
 
-                    <p><?php printf(__('This feature allows Wordpress to look into %s content and title for specified terms when saving %s. If your %s content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will add automatically "wordpress" as term for this %s.', 'simple-tags'), SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name); ?></p>
+                    <p><?php printf(__('This feature allows Wordpress to look into %s content and title for specified terms when saving %s. If your %s content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will automatically add "wordpress" as term for this %s.', 'simple-tags'), SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name, SimpleTags_Admin::$post_type_name); ?></p>
 
                     <table class="form-table">
 
@@ -212,7 +212,7 @@ class SimpleTags_Admin_AutoTags
                             <th scope="row"><?php _e('Support Hashtag format ?', 'simple-tags'); ?></th>
                             <td>
                                 <input type="checkbox" id="allow_hashtag_format" name="allow_hashtag_format" value="1" <?php echo (isset($taxo_options['allow_hashtag_format']) && $taxo_options['allow_hashtag_format'] == 1) ? 'checked="checked"' : ''; ?> />
-                                <label for="allow_hashtag_format"><?php _e('When the whole word option is enabled, hashtag will not be autotag because of # prefix. This option allow to fixed this issue!', 'simple-tags'); ?></label>
+                                <label for="allow_hashtag_format"><?php _e('When the whole word option is enabled, hashtag will not be autotaged because of # prefix. Selecting this option fixes the issue!', 'simple-tags'); ?></label>
                             </td>
                         </tr>
                     </table>
@@ -225,7 +225,7 @@ class SimpleTags_Admin_AutoTags
 
                 <h3><?php _e('Auto terms old content', 'simple-tags'); ?></h3>
                 <p>
-                    <?php _e('TaxoPress can also tag all existing contents of your blog. This feature use auto terms list above-mentioned.', 'simple-tags'); ?>
+                    <?php _e('TaxoPress can also tag all existing contents of your blog. This feature uses auto terms list above-mentioned.', 'simple-tags'); ?>
                 </p>
                 <p class="submit">
                     <a class="button-primary" href="<?php echo self::$admin_base_url . 'st_auto&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;action=auto_tag'; ?>"><?php _e('Auto terms all content &raquo;', 'simple-tags'); ?></a>
