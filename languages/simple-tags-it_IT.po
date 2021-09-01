@@ -6,7 +6,7 @@ msgstr ""
 "Manager - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2021-08-24 15:19+0000\n"
-"PO-Revision-Date: 2021-08-27 10:30+0000\n"
+"PO-Revision-Date: 2021-09-01 12:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -26,7 +26,7 @@ msgstr "I termini %1$s %2$s(s) sono stati aggiornati con successo!"
 msgid "%1s term(s) deleted."
 msgstr "%1s termine/i eliminato/i."
 
-#: inc/class.client.related_posts.php:467
+#: inc/class.client.related_posts.php:476
 #, php-format
 msgid "%d topic"
 msgid_plural "%d topics"
@@ -209,7 +209,7 @@ msgstr ""
 "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
 "%post_title%</a> (%post_comment%)"
 
-#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:260
+#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:269
 #: inc/helper.options.default.php:62
 msgid ""
 "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
@@ -362,7 +362,7 @@ msgstr ""
 msgid "<h4>Related posts</h4>"
 msgstr "<h4>Articoli correlati</h4>"
 
-#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:263
+#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:272
 #: inc/helper.options.default.php:60
 msgid "<h4>Tag Cloud</h4>"
 msgstr "<h4>Nuvola di tag</h4>"
@@ -427,7 +427,7 @@ msgstr "Attivo"
 msgid "Add"
 msgstr "Aggiungi"
 
-#: inc/autolinks.php:829
+#: inc/autolinks.php:839
 msgid "Add Auto Links"
 msgstr "Aggiungi auto link"
 
@@ -495,7 +495,7 @@ msgstr ""
 msgid "Add or remove Media Tags"
 msgstr "Aggiungi o rimuovi tag media"
 
-#: inc/related-posts.php:709
+#: inc/related-posts.php:729
 msgid "Add Related Posts"
 msgstr "Aggiungi articoli correlati"
 
@@ -507,11 +507,11 @@ msgstr ""
 msgid "Add Terms"
 msgstr "Aggiungi termini"
 
-#: inc/tag-clouds.php:642
+#: inc/tag-clouds.php:662
 msgid "Add Terms Display"
 msgstr "Aggiungi visualizzazione termini"
 
-#: inc/post-tags.php:549
+#: inc/post-tags.php:569
 msgid "Add Terms for Current Post"
 msgstr "Aggiungi termini all'articolo corrente"
 
@@ -800,7 +800,7 @@ msgstr ""
 msgid "Change selection"
 msgstr "Cambia la selezione"
 
-#: inc/autolinks.php:732
+#: inc/autolinks.php:742
 msgid ""
 "Change the priority of the Auto Links functions on the_content hook. This is "
 "useful for fixing conflicts with other plugins. Higher number means autolink "
@@ -1191,7 +1191,7 @@ msgstr ""
 "selezionabili, gestione avanzata dei termini, ecc."
 
 #: inc/tag-clouds.php:297 inc/tag-clouds.php:319 inc/tag-clouds.php:553
-#: inc/autolinks.php:447 inc/autolinks.php:473 inc/autolinks.php:742
+#: inc/autolinks.php:447 inc/autolinks.php:473 inc/autolinks.php:752
 #: inc/related-posts.php:347 inc/related-posts.php:614 inc/post-tags.php:455
 #: inc/taxonomies.php:571 inc/taxonomies.php:674 inc/taxonomies.php:806
 #: inc/taxonomies.php:840 inc/taxonomies.php:864 inc/taxonomies.php:898
@@ -1637,8 +1637,8 @@ msgstr "Voci più recenti"
 msgid "Next content"
 msgstr "Contenuto successivo"
 
-#: inc/tag-clouds.php:690 inc/autolinks.php:868 inc/related-posts.php:758
-#: inc/post-tags.php:598 inc/post-tags-table.php:355
+#: inc/tag-clouds.php:710 inc/autolinks.php:878 inc/related-posts.php:778
+#: inc/post-tags.php:618 inc/post-tags-table.php:355
 #: inc/related-posts-table.php:395 inc/class-taxonomies-table.php:362
 #: inc/taxonomies.php:1624
 msgid "No"
@@ -1741,7 +1741,7 @@ msgstr "Nessun tag per questo articolo."
 msgid "No tags for this post."
 msgstr "Nessun tag per questo articolo."
 
-#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:262
+#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:271
 #: inc/helper.options.default.php:59
 msgid "No tags."
 msgstr "Nessun tag."
@@ -1827,8 +1827,8 @@ msgstr "Numero di elementi per pagina"
 msgid "Object"
 msgstr "Oggetto"
 
-#: inc/tag-clouds.php:683 inc/autolinks.php:861 inc/related-posts.php:751
-#: inc/post-tags.php:591 inc/taxonomies.php:1617
+#: inc/tag-clouds.php:703 inc/autolinks.php:871 inc/related-posts.php:771
+#: inc/post-tags.php:611 inc/taxonomies.php:1617
 msgid "Okay"
 msgstr "Okay"
 
@@ -1977,8 +1977,8 @@ msgstr "Scegli un nome di tassonomia diverso. %s è già stato registrato."
 msgid "Please choose an option for \"Terms to use\""
 msgstr "Scegli un'opzione per \"Termini da utilizzare\""
 
-#: inc/tag-clouds.php:680 inc/autolinks.php:858 inc/related-posts.php:748
-#: inc/post-tags.php:588 inc/taxonomies.php:1614
+#: inc/tag-clouds.php:700 inc/autolinks.php:868 inc/related-posts.php:768
+#: inc/post-tags.php:608 inc/taxonomies.php:1614
 msgid "Please complete the following required fields to save your changes:"
 msgstr ""
 "Completa i seguenti campi richiesti per poter salvare le tue modifiche:"
@@ -2107,7 +2107,7 @@ msgstr "Impedisci gli auto link all'interno degli elementi"
 msgid "Priority on hook the_content"
 msgstr "Priorità nell'hook the_content"
 
-#: inc/autolinks.php:730
+#: inc/autolinks.php:740
 msgid "Priority on the_content and the_title hook"
 msgstr "Priorità negli hook the_content e the_title"
 
@@ -2173,6 +2173,10 @@ msgstr "Gli articoli correlati vengono aggiunti su "
 #: inc/helper.options.admin.php:403
 msgid "Related posts by terms"
 msgstr "Articoli correlati per termini"
+
+#: inc/related-posts.php:638
+msgid "Related Posts div class"
+msgstr ""
 
 #: inc/related-posts-functions.php:320
 msgid "Related Posts not found."
@@ -2261,11 +2265,11 @@ msgstr ""
 msgid "RSS feed"
 msgstr "RSS feed"
 
-#: inc/autolinks.php:823
+#: inc/autolinks.php:833
 msgid "Save Auto Links"
 msgstr "Salva auto link"
 
-#: inc/related-posts.php:703
+#: inc/related-posts.php:723
 msgid "Save Related Posts"
 msgstr "Salva articoli correlati"
 
@@ -2273,11 +2277,11 @@ msgstr "Salva articoli correlati"
 msgid "Save Taxonomy"
 msgstr ""
 
-#: inc/tag-clouds.php:638
+#: inc/tag-clouds.php:658
 msgid "Save Terms Display"
 msgstr "Salva visualizzazione termini"
 
-#: inc/post-tags.php:543
+#: inc/post-tags.php:563
 msgid "Save Terms for Current Post"
 msgstr "Salva i termini per l'articolo corrente"
 
@@ -2435,7 +2439,7 @@ msgstr "Shortcode"
 msgid "Shortcode entry successfully deleted."
 msgstr "La voce dello shortcode è stata eliminata con successo."
 
-#: inc/tag-clouds.php:652 inc/related-posts.php:720 inc/post-tags.php:560
+#: inc/tag-clouds.php:672 inc/related-posts.php:740 inc/post-tags.php:580
 #| msgid "Tag cloud Shortcode"
 msgid "Shortcode: "
 msgstr "Shortcode: "
@@ -2697,11 +2701,20 @@ msgstr "TaxoPress: Opzioni"
 msgid "Templates"
 msgstr ""
 
+#: inc/tag-clouds.php:581
+msgid "Term display div class"
+msgstr ""
+
 #: inc/class.widgets.php:239
 msgid "Term group"
 msgstr "Gruppo di termini"
 
-#: inc/tag-clouds.php:581 inc/related-posts.php:639 inc/post-tags.php:479
+#: inc/tag-clouds.php:591 inc/autolinks.php:730 inc/related-posts.php:648
+#: inc/post-tags.php:489
+msgid "Term link class"
+msgstr ""
+
+#: inc/tag-clouds.php:601 inc/related-posts.php:659 inc/post-tags.php:499
 msgid "Term link format"
 msgstr "Formato dei link ai termini"
 
@@ -2773,6 +2786,10 @@ msgstr "Termini per l'articolo corrente (TaxoPress)"
 #: inc/posts-tags-widgets.php:101 inc/posts-tags-widget.php:101
 msgid "Terms for Current Post are added on "
 msgstr "Termini per l'articolo corrente sono stati aggiunti in "
+
+#: inc/post-tags.php:479
+msgid "Terms for Current Post div class"
+msgstr ""
 
 #: inc/autolinks.php:686
 msgid "Terms inside these html tags will not be auto link."
@@ -2846,7 +2863,7 @@ msgstr ""
 "L'opzione unità di misura del font determina l'unità di misura che i due "
 "font utilizzano."
 
-#: inc/autolinks.php:758
+#: inc/autolinks.php:768
 msgid ""
 "The new Auto Links engine uses the DOMDocument PHP class and may offer "
 "better performance. If your server does not support this functionality, "
@@ -2886,7 +2903,7 @@ msgstr ""
 msgid "The units to display the font sizes with, on tag clouds:"
 msgstr "L'unità di misura per visualizzare i font nelle nuvole di tag:"
 
-#: inc/class.client.related_posts.php:411
+#: inc/class.client.related_posts.php:420
 msgid "There is no excerpt because this is a protected post."
 msgstr "Non c'è alcun riassunto perché l'articolo è protetto."
 
@@ -3123,7 +3140,7 @@ msgstr ""
 "Pro."
 
 #: inc/tag-clouds.php:302 inc/tag-clouds.php:324 inc/tag-clouds.php:557
-#: inc/autolinks.php:452 inc/autolinks.php:478 inc/autolinks.php:746
+#: inc/autolinks.php:452 inc/autolinks.php:478 inc/autolinks.php:756
 #: inc/related-posts.php:352 inc/related-posts.php:619 inc/post-tags.php:460
 #: inc/taxonomies.php:576 inc/taxonomies.php:679 inc/taxonomies.php:810
 #: inc/taxonomies.php:844 inc/taxonomies.php:869 inc/taxonomies.php:902
@@ -3193,7 +3210,7 @@ msgstr "Usa il formato del termine"
 msgid "Use case of text in content"
 msgstr "Usa il formato del testo nel contenuto"
 
-#: inc/autolinks.php:756
+#: inc/autolinks.php:766
 msgid "Use new Auto Links engine"
 msgstr "Usa il nuovo motore di auto link"
 
@@ -3316,8 +3333,8 @@ msgstr ""
 msgid "WordPress core"
 msgstr "WordPress core"
 
-#: inc/tag-clouds.php:692 inc/autolinks.php:870 inc/related-posts.php:760
-#: inc/post-tags.php:600 inc/class-taxonomies-table.php:364
+#: inc/tag-clouds.php:712 inc/autolinks.php:880 inc/related-posts.php:780
+#: inc/post-tags.php:620 inc/class-taxonomies-table.php:364
 #: inc/taxonomies.php:1626
 msgid "Yes"
 msgstr "Sì"
@@ -3349,7 +3366,7 @@ msgstr ""
 "Puoi trovare marcatori e spiegazioni nella <a href=\"https://github."
 "com/WebFactoryLtd/simple-tags/wiki\">documentazione online.</a>"
 
-#: inc/related-posts.php:640
+#: inc/related-posts.php:660
 msgid ""
 "You can find markers and explanations <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-related-posts/\">in the online documentation.</a>"
@@ -3357,7 +3374,7 @@ msgstr ""
 "Puoi trovare marcatori e spiegazioni nella <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-related-posts/\">documentazione online.</a>"
 
-#: inc/tag-clouds.php:582
+#: inc/tag-clouds.php:602
 msgid ""
 "You can find markers and explanations <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-tag-clouds/\">in the online documentation.</a>"
@@ -3365,7 +3382,7 @@ msgstr ""
 "Puoi trovare marcatori e spiegazioni nella <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-tag-clouds/\">documentazione online.</a>"
 
-#: inc/post-tags.php:480
+#: inc/post-tags.php:500
 msgid ""
 "You can find markers and explanations <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-terms-current-post/\">in the online "
