@@ -311,8 +311,8 @@ class SimpleTags_Client_Autolinks {
 	 */
 	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
 		$dom = new DOMDocument();
-		$content = str_replace('&amp;','||zzz||',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
-		$content = str_replace('&','||zz||',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
+
+        $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
 
         libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
@@ -409,15 +409,16 @@ class SimpleTags_Client_Autolinks {
             if ( $replaced_count >= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
                break;
             }
-            }else{$replaced = str_replace('&','&#38;',$replaced);
+            }else{
                 break;
             }
 		}
 
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
-		$content = str_replace('||zzz||','&amp;',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
-		$content = str_replace('||zz||','&',$content);//https://github.com/TaxoPress/TaxoPress/issues/770
+
+        $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
+        $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
 	}
 
 	/**

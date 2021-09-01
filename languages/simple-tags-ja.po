@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TaxoPress 2.0\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-08-24 15:20+0000\n"
+"PO-Revision-Date: 2021-09-01 12:43+0000\n"
 "Last-Translator: kazuhisa <kvex@c-atwork.com>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "%1$s %2$s(s) タグをアップデートしました！"
 msgid "%1s term(s) deleted."
 msgstr ""
 
-#: inc/class.client.related_posts.php:467
+#: inc/class.client.related_posts.php:476
 #, php-format
 msgid "%d topic"
 msgid_plural "%d topics"
@@ -71,6 +71,110 @@ msgstr ""
 msgid "%s has failed to be updated"
 msgstr ""
 
+#. Used for autofill
+#: inc/taxonomies.php:1310
+#, php-format
+msgid "%s list"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1293
+#, php-format
+msgid "%s list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:830
+msgid "(default: taxonomy name)"
+msgstr ""
+
+#: inc/taxonomies.php:1336
+msgid "(e.g. &larr; Back to jobs"
+msgstr ""
+
+#: inc/taxonomies.php:1105
+msgid "(e.g. Add New Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1219
+msgid "(e.g. Add or remove Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1040
+msgid "(e.g. All Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1237
+msgid "(e.g. Choose from the most used Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1056
+msgid "(e.g. Edit Job)"
+msgstr ""
+
+#: inc/taxonomies.php:558
+msgid "(e.g. Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1286
+msgid "(e.g. Jobs list navigation)"
+msgstr ""
+
+#: inc/taxonomies.php:1304
+msgid "(e.g. Jobs list)"
+msgstr ""
+
+#: inc/taxonomies.php:547 inc/taxonomies.php:1025
+msgid "(e.g. Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1121
+msgid "(e.g. New Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:1254
+msgid "(e.g. No Jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1320
+msgid "(e.g. No jobs found)"
+msgstr ""
+
+#: inc/taxonomies.php:1270
+msgid "(e.g. No jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1137
+msgid "(e.g. Parent Job)"
+msgstr ""
+
+#: inc/taxonomies.php:1153
+msgid "(e.g. Parent Job:)"
+msgstr ""
+
+#: inc/taxonomies.php:1185
+msgid "(e.g. Popular Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1169
+msgid "(e.g. Search Jobs)"
+msgstr ""
+
+#: inc/taxonomies.php:1201
+msgid "(e.g. Separate Jobs with commas)"
+msgstr ""
+
+#: inc/taxonomies.php:1088
+msgid "(e.g. Update Job Name)"
+msgstr ""
+
+#: inc/taxonomies.php:1072
+msgid "(e.g. View Job)"
+msgstr ""
+
+#: inc/taxonomies.php:783
+msgid "*Replace \"term_slug\" with the slug of the actual taxonomy term."
+msgstr ""
+
 #: inc/tag-clouds.php:412 inc/related-posts.php:524
 msgid "1 month"
 msgstr ""
@@ -101,7 +205,7 @@ msgid ""
 "%post_title%</a> (%post_comment%)"
 msgstr ""
 
-#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:260
+#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:269
 #: inc/helper.options.default.php:62
 msgid ""
 "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
@@ -246,7 +350,7 @@ msgstr "<code>singularonly</code> &ndash; シングルページのみ表示 (投
 msgid "<h4>Related posts</h4>"
 msgstr ""
 
-#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:263
+#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:272
 #: inc/helper.options.default.php:60
 msgid "<h4>Tag Cloud</h4>"
 msgstr "<h4>タグクラウド</h4>"
@@ -275,6 +379,10 @@ msgid ""
 "popular.<br />"
 msgstr "<strong>例:</strong> 最もよく使用されている 100 個のタグをランダムに表示するとします。<br />"
 
+#: simple-tags.php:71
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr ""
+
 #: inc/class.widgets.php:18
 #, fuzzy
 #| msgid ""
@@ -301,7 +409,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: inc/autolinks.php:829
+#: inc/autolinks.php:839
 msgid "Add Auto Links"
 msgstr ""
 
@@ -314,18 +422,24 @@ msgid "Add links for unattached terms"
 msgstr ""
 
 #: inc/tag-clouds.php:128 inc/autolinks.php:128 inc/related-posts.php:128
-#: inc/post-tags.php:128
+#: inc/post-tags.php:128 inc/taxonomies.php:155
 msgid "Add New"
 msgstr ""
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1565 inc/taxonomies-functions.php:1583
 #: inc/taxonomies-functions.php:1606 inc/taxonomies-functions.php:1625
+#: inc/taxonomies.php:1111
 #, php-format
 msgid "Add new %s"
 msgstr ""
 
 #: inc/autolinks.php:255
 msgid "Add new Auto Links"
+msgstr ""
+
+#: inc/taxonomies.php:1106
+msgid "Add New Item"
 msgstr ""
 
 #: inc/class.client.php:118
@@ -336,6 +450,10 @@ msgstr ""
 msgid "Add new Related Posts"
 msgstr ""
 
+#: inc/taxonomies.php:416
+msgid "Add new Taxonomy"
+msgstr ""
+
 #: inc/tag-clouds.php:251
 msgid "Add new Terms Display"
 msgstr ""
@@ -344,28 +462,38 @@ msgstr ""
 msgid "Add new Terms for Current Post"
 msgstr ""
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1586 inc/taxonomies-functions.php:1633
+#: inc/taxonomies.php:1226
 #, php-format
 msgid "Add or remove %s"
+msgstr ""
+
+#: inc/taxonomies.php:1221
+msgid "Add or Remove Items"
 msgstr ""
 
 #: inc/class.client.php:125
 msgid "Add or remove Media Tags"
 msgstr ""
 
-#: inc/related-posts.php:709
+#: inc/related-posts.php:729
 msgid "Add Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:376
+msgid "Add Taxonomy"
 msgstr ""
 
 #: inc/class.admin.manage.php:246
 msgid "Add Terms"
 msgstr ""
 
-#: inc/tag-clouds.php:642
+#: inc/tag-clouds.php:662
 msgid "Add Terms Display"
 msgstr ""
 
-#: inc/post-tags.php:549
+#: inc/post-tags.php:569
 msgid "Add Terms for Current Post"
 msgstr ""
 
@@ -378,11 +506,15 @@ msgstr ""
 msgid "Add terms to all %s."
 msgstr ""
 
+#: inc/taxonomies.php:441
+msgid "Admin Area"
+msgstr ""
+
 #: inc/class.admin.php:642
 msgid "Administration"
 msgstr "管理"
 
-#: inc/autolinks.php:302
+#: inc/autolinks.php:302 inc/taxonomies.php:456
 msgid "Advanced"
 msgstr ""
 
@@ -403,8 +535,10 @@ msgstr "Ajax loading"
 msgid "All"
 msgstr "全て"
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1570 inc/taxonomies-functions.php:1578
 #: inc/taxonomies-functions.php:1613 inc/taxonomies-functions.php:1631
+#: inc/taxonomies.php:1046
 #, php-format
 msgid "All %s"
 msgstr ""
@@ -412,6 +546,10 @@ msgstr ""
 #: inc/class.admin.autoterms.php:269
 msgid "All done! %s terms added."
 msgstr "完了 ! %s のタグを追加しました。"
+
+#: inc/taxonomies.php:1041
+msgid "All Items"
+msgstr ""
 
 #: inc/autolinks.php:388
 msgid "All lowercase"
@@ -423,6 +561,10 @@ msgstr ""
 
 #: inc/tag-clouds.php:337 inc/related-posts.php:368
 msgid "All post types"
+msgstr ""
+
+#: inc/taxonomies.php:194
+msgid "All Taxonomies"
 msgstr ""
 
 #: inc/autolinks.php:384
@@ -438,6 +580,16 @@ msgid ""
 "An engine replacement alternative uses DOMDocument PHP class and "
 "theoretically offers better performance. If your server does not offer the "
 "functionality, the plugin will use the usual engine."
+msgstr ""
+
+#: inc/taxonomies.php:691
+msgid "Archive page result"
+msgstr ""
+
+#: inc/taxonomies.php:63
+msgid ""
+"Are you sure you want to delete this? Deleting will NOT remove created "
+"content."
 msgstr ""
 
 #: inc/class.widgets.php:254 inc/class.widgets.php:282
@@ -560,6 +712,16 @@ msgstr ""
 msgid "Autotag only %s without terms."
 msgstr "タグの無い投稿だけに自動タグを適用する。"
 
+#. Used for autofill
+#: inc/taxonomies.php:1343
+#, php-format
+msgid "Back to %s"
+msgstr ""
+
+#: inc/taxonomies.php:1338
+msgid "Back to Items"
+msgstr ""
+
 #: inc/class.client.php:131
 msgid "Back to Media Tags"
 msgstr ""
@@ -593,11 +755,16 @@ msgid ""
 "to the post. If this box is checked, TaxoPress will add links for all terms."
 msgstr ""
 
+#: inc/taxonomies.php:586
+msgid ""
+"Can terms in this taxonomy be organized into hierarchical relationships?"
+msgstr ""
+
 #: inc/class.admin.php:306
 msgid "Change selection"
 msgstr "選択を変更"
 
-#: inc/autolinks.php:732
+#: inc/autolinks.php:742
 msgid ""
 "Change the priority of the Auto Links functions on the_content hook. This is "
 "useful for fixing conflicts with other plugins. Higher number means autolink "
@@ -611,7 +778,13 @@ msgid ""
 "but they may be less accurate."
 msgstr ""
 
+#: inc/taxonomies.php:1239
+msgid "Choose From Most Used"
+msgstr ""
+
+#. Used for autofill
 #: inc/taxonomies-functions.php:1587 inc/taxonomies-functions.php:1634
+#: inc/taxonomies.php:1244
 #, php-format
 msgid "Choose from the most used %s"
 msgstr ""
@@ -680,6 +853,34 @@ msgstr ""
 msgid "Current post type"
 msgstr ""
 
+#: inc/taxonomies.php:1027
+msgid "Custom admin menu name for your taxonomy."
+msgstr ""
+
+#: inc/taxonomies.php:1392
+msgid "Custom controller to use instead of WP_REST_Terms_Controller."
+msgstr ""
+
+#: inc/taxonomies.php:1484
+msgid "Custom Query Var String"
+msgstr ""
+
+#: inc/taxonomies.php:831
+msgid "Custom Rewrite Slug"
+msgstr ""
+
+#: inc/taxonomies.php:1090 inc/taxonomies.php:1123 inc/taxonomies.php:1139
+#: inc/taxonomies.php:1155 inc/taxonomies.php:1171 inc/taxonomies.php:1187
+#: inc/taxonomies.php:1205 inc/taxonomies.php:1222 inc/taxonomies.php:1240
+#: inc/taxonomies.php:1256
+msgid ""
+"Custom taxonomy label. Used in the admin menu for displaying taxonomies."
+msgstr ""
+
+#: inc/taxonomies.php:832
+msgid "Custom taxonomy rewrite slug."
+msgstr ""
+
 #: inc/helper.options.admin.php:76
 msgid "Dandelion API confidence value"
 msgstr ""
@@ -692,6 +893,18 @@ msgstr ""
 msgid "dataTXT by Dandelion"
 msgstr ""
 
+#: inc/taxonomies.php:476
+msgid "Deactivate or Delete"
+msgstr ""
+
+#: inc/taxonomies.php:1554
+msgid "Deactivate Taxonomy"
+msgstr ""
+
+#: inc/taxonomies.php:1502
+msgid "Default Term"
+msgstr ""
+
 #: inc/post-tags-table.php:275 inc/related-posts-table.php:276
 #: inc/class.admin.manage.php:428 inc/class-tag-table.php:195
 #: inc/tag-clouds-table.php:276 inc/autolinks-table.php:275
@@ -700,6 +913,10 @@ msgstr ""
 
 #: inc/class.admin.manage.php:463
 msgid "Delete rarely used"
+msgstr ""
+
+#: inc/taxonomies.php:1568
+msgid "Delete Taxonomy"
 msgstr ""
 
 #: inc/class.admin.manage.php:404
@@ -714,12 +931,16 @@ msgstr "降順 (デフォルト)"
 msgid "Descending"
 msgstr ""
 
-#: inc/class-taxonomies-table.php:68
+#: inc/taxonomies.php:603
+msgid "Describe what your taxonomy is used for."
+msgstr ""
+
+#: inc/class-taxonomies-table.php:68 inc/taxonomies.php:602
 msgid "Description"
 msgstr ""
 
 #: inc/tag-clouds.php:161 inc/autolinks.php:161 inc/related-posts.php:161
-#: inc/post-tags.php:163
+#: inc/post-tags.php:163 inc/class.admin.manage.php:214 inc/taxonomies.php:203
 msgid "Description here."
 msgstr ""
 
@@ -733,6 +954,12 @@ msgstr ""
 
 #: inc/tag-clouds.php:403 inc/tag-clouds-table.php:69
 msgid "Display format"
+msgstr ""
+
+#: inc/taxonomies.php:520 inc/taxonomies.php:740
+msgid ""
+"DO NOT EDIT the taxonomy slug unless also planning to migrate terms. "
+"Changing the slug registers a new taxonomy entry."
 msgstr ""
 
 #: views/admin/page-settings.php:35
@@ -753,8 +980,10 @@ msgstr ""
 msgid "Edit"
 msgstr "編集"
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1566 inc/taxonomies-functions.php:1581
 #: inc/taxonomies-functions.php:1607 inc/taxonomies-functions.php:1623
+#: inc/taxonomies.php:1062
 #, php-format
 msgid "Edit %s"
 msgstr ""
@@ -763,12 +992,20 @@ msgstr ""
 msgid "Edit Auto Links"
 msgstr ""
 
+#: inc/taxonomies.php:1057
+msgid "Edit Item"
+msgstr ""
+
 #: inc/class.client.php:115
 msgid "Edit Media Tag"
 msgstr ""
 
 #: inc/related-posts.php:246
 msgid "Edit Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:414
+msgid "Edit Taxonomy"
 msgstr ""
 
 #: inc/tag-clouds.php:247
@@ -786,6 +1023,10 @@ msgstr "em"
 #: inc/class.admin.php:648
 msgid "Embedded Tags"
 msgstr "埋め込みタグ"
+
+#: inc/taxonomies.php:1474
+msgid "Enable a custom query_var key for this taxonomy."
+msgstr ""
 
 #: inc/helper.options.admin.php:478
 msgid "Enable autolinks into post content for theses views:"
@@ -893,8 +1134,13 @@ msgid ""
 msgstr ""
 
 #: inc/tag-clouds.php:297 inc/tag-clouds.php:319 inc/tag-clouds.php:553
-#: inc/autolinks.php:447 inc/autolinks.php:473 inc/autolinks.php:742
+#: inc/autolinks.php:447 inc/autolinks.php:473 inc/autolinks.php:752
 #: inc/related-posts.php:347 inc/related-posts.php:614 inc/post-tags.php:455
+#: inc/taxonomies.php:571 inc/taxonomies.php:674 inc/taxonomies.php:806
+#: inc/taxonomies.php:840 inc/taxonomies.php:864 inc/taxonomies.php:898
+#: inc/taxonomies.php:921 inc/taxonomies.php:944 inc/taxonomies.php:968
+#: inc/taxonomies.php:991 inc/taxonomies.php:1359 inc/taxonomies.php:1411
+#: inc/taxonomies.php:1435 inc/taxonomies.php:1459
 msgid "False"
 msgstr ""
 
@@ -965,7 +1211,7 @@ msgstr ""
 msgid "Format:"
 msgstr "フォーマット:"
 
-#: inc/autolinks.php:282
+#: inc/autolinks.php:282 inc/taxonomies.php:426
 msgid "General"
 msgstr "一般設定"
 
@@ -1063,6 +1309,14 @@ msgstr ""
 msgid "Inverse Alphabetical"
 msgstr ""
 
+#: inc/taxonomies.php:1305
+msgid "Items List"
+msgstr ""
+
+#: inc/taxonomies.php:1288
+msgid "Items List Navigation"
+msgstr ""
+
 #: inc/class.admin.autoterms.php:164
 msgid "Keywords list"
 msgstr "キーワードリスト"
@@ -1114,6 +1368,10 @@ msgstr ""
 
 #: inc/related-posts.php:230
 msgid "Manage Related Posts"
+msgstr ""
+
+#: inc/taxonomies.php:306
+msgid "Manage Taxonomy"
 msgstr ""
 
 #: inc/class.admin.manage.php:61
@@ -1198,6 +1456,10 @@ msgstr ""
 msgid "Media Tags list navigation"
 msgstr ""
 
+#: inc/taxonomies.php:1026
+msgid "Menu Name"
+msgstr ""
+
 #: inc/class.admin.manage.php:363
 msgid "Merge"
 msgstr ""
@@ -1212,12 +1474,20 @@ msgstr ""
 msgid "Merge Terms"
 msgstr ""
 
+#: inc/taxonomies.php:1493
+msgid "Metabox callback"
+msgstr ""
+
 #: inc/tag-clouds.php:474
 msgid "Method for choosing terms for display"
 msgstr ""
 
 #: inc/tag-clouds.php:441
 msgid "Method for choosing terms from the database"
+msgstr ""
+
+#: inc/taxonomies.php:530 inc/taxonomies.php:750
+msgid "Migrate terms to newly renamed taxonomy?"
 msgstr ""
 
 #: inc/autolinks.php:615
@@ -1266,9 +1536,15 @@ msgstr "名前"
 msgid "New %s"
 msgstr ""
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1584 inc/taxonomies-functions.php:1626
+#: inc/taxonomies.php:1127
 #, php-format
 msgid "New %s name"
+msgstr ""
+
+#: inc/taxonomies.php:1122
+msgid "New Item Name"
 msgstr ""
 
 #: inc/class.client.php:119
@@ -1291,10 +1567,23 @@ msgstr ""
 msgid "Next content"
 msgstr "次のコンテンツ"
 
-#: inc/tag-clouds.php:690 inc/autolinks.php:868 inc/related-posts.php:758
-#: inc/post-tags-table.php:355 inc/related-posts-table.php:395
-#: inc/class-taxonomies-table.php:362
+#: inc/tag-clouds.php:710 inc/autolinks.php:878 inc/related-posts.php:778
+#: inc/post-tags.php:618 inc/post-tags-table.php:355
+#: inc/related-posts-table.php:395 inc/class-taxonomies-table.php:362
+#: inc/taxonomies.php:1624
 msgid "No"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1276
+#, php-format
+msgid "No %s"
+msgstr ""
+
+#. Used for autofill
+#: inc/taxonomies.php:1260 inc/taxonomies.php:1326
+#, php-format
+msgid "No %s found"
 msgstr ""
 
 #: inc/taxonomies-functions.php:1573 inc/taxonomies-functions.php:1616
@@ -1384,7 +1673,7 @@ msgstr ""
 msgid "No tags for this post."
 msgstr ""
 
-#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:262
+#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:271
 #: inc/helper.options.default.php:59
 msgid "No tags."
 msgstr "タグはありません。"
@@ -1411,6 +1700,10 @@ msgstr ""
 
 #: inc/class.admin.manage.php:637 inc/class.admin.manage.php:795
 msgid "No term specified!"
+msgstr ""
+
+#: inc/taxonomies.php:1271
+msgid "No terms"
 msgstr ""
 
 #: inc/class.shortcode_widgets.php:151
@@ -1446,8 +1739,16 @@ msgstr ""
 msgid "None"
 msgstr ""
 
+#: inc/taxonomies.php:1321
+msgid "Not Found"
+msgstr ""
+
+#: inc/taxonomies.php:1255
+msgid "Not found"
+msgstr ""
+
 #: inc/tag-clouds.php:95 inc/autolinks.php:95 inc/related-posts.php:95
-#: inc/post-tags.php:95 inc/class.admin.manage.php:80
+#: inc/post-tags.php:95 inc/class.admin.manage.php:80 inc/taxonomies.php:122
 msgid "Number of items per page"
 msgstr ""
 
@@ -1455,7 +1756,8 @@ msgstr ""
 msgid "Object"
 msgstr ""
 
-#: inc/tag-clouds.php:683 inc/autolinks.php:861 inc/related-posts.php:751
+#: inc/tag-clouds.php:703 inc/autolinks.php:871 inc/related-posts.php:771
+#: inc/post-tags.php:611 inc/taxonomies.php:1617
 msgid "Okay"
 msgstr ""
 
@@ -1527,6 +1829,10 @@ msgstr ""
 msgid "Ordering for choosing terms for display"
 msgstr ""
 
+#: inc/taxonomies.php:446
+msgid "Other Labels"
+msgstr ""
+
 #: inc/class.admin.autoterms.php:124
 msgid "Overview"
 msgstr "概要"
@@ -1535,14 +1841,26 @@ msgstr "概要"
 msgid "Pagination "
 msgstr ""
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1579 inc/taxonomies-functions.php:1621
+#: inc/taxonomies.php:1143
 #, php-format
 msgid "Parent %s"
 msgstr ""
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1580 inc/taxonomies-functions.php:1622
+#: inc/taxonomies.php:1159
 #, php-format
 msgid "Parent %s:"
+msgstr ""
+
+#: inc/taxonomies.php:1138
+msgid "Parent Item"
+msgstr ""
+
+#: inc/taxonomies.php:1154
+msgid "Parent Item Colon"
 msgstr ""
 
 #: inc/class.client.php:120
@@ -1553,8 +1871,16 @@ msgstr ""
 msgid "Parent Media Tag:"
 msgstr ""
 
+#: inc/taxonomies.php:585
+msgid "Parent-Child Relationships"
+msgstr ""
+
 #: inc/tag-clouds.php:517
 msgid "Percent"
+msgstr ""
+
+#: inc/taxonomies.php:436
+msgid "Permalinks"
 msgstr ""
 
 #: inc/tag-clouds.php:515 inc/class.widgets.php:315
@@ -1577,7 +1903,8 @@ msgstr ""
 msgid "Please choose an option for \"Terms to use\""
 msgstr ""
 
-#: inc/tag-clouds.php:680 inc/autolinks.php:858 inc/related-posts.php:748
+#: inc/tag-clouds.php:700 inc/autolinks.php:868 inc/related-posts.php:768
+#: inc/post-tags.php:608 inc/taxonomies.php:1614
 msgid "Please complete the following required fields to save your changes:"
 msgstr ""
 
@@ -1601,6 +1928,14 @@ msgstr ""
 msgid "Please select a valid"
 msgstr ""
 
+#: inc/taxonomies.php:65
+msgid "Please select at least one post type."
+msgstr ""
+
+#: inc/taxonomies.php:548
+msgid "Plural Label"
+msgstr ""
+
 #: inc/tag-clouds.php:514
 msgid "Point"
 msgstr ""
@@ -1609,9 +1944,15 @@ msgstr ""
 msgid "Point (default)"
 msgstr "ポイント (デフォルト)"
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1577 inc/taxonomies-functions.php:1630
+#: inc/taxonomies.php:1191
 #, php-format
 msgid "Popular %s"
+msgstr ""
+
+#: inc/taxonomies.php:1186
+msgid "Popular Items"
 msgstr ""
 
 #: inc/class.client.php:123
@@ -1656,6 +1997,7 @@ msgid "Post Type"
 msgstr ""
 
 #: inc/autolinks.php:287 inc/class-taxonomies-table.php:70
+#: inc/taxonomies.php:431
 msgid "Post Types"
 msgstr ""
 
@@ -1687,13 +2029,33 @@ msgstr ""
 msgid "Priority on hook the_content"
 msgstr ""
 
-#: inc/autolinks.php:730
+#: inc/autolinks.php:740
 msgid "Priority on the_content and the_title hook"
+msgstr ""
+
+#: inc/taxonomies.php:196
+msgid "Private Taxonomies"
+msgstr ""
+
+#: inc/taxonomies.php:1425
+msgid "Public"
+msgstr ""
+
+#: inc/taxonomies.php:1449
+msgid "Public Queryable"
+msgstr ""
+
+#: inc/taxonomies.php:195
+msgid "Public Taxonomies"
 msgstr ""
 
 #: inc/class.admin.mass.php:217
 msgid "Quantity&hellip;"
 msgstr "表示数&hellip;"
+
+#: inc/taxonomies.php:1473
+msgid "Query Var"
+msgstr ""
 
 #: inc/tag-clouds.php:433 inc/tag-clouds.php:466 inc/related-posts.php:584
 #: inc/class.widgets.php:243
@@ -1704,7 +2066,12 @@ msgstr ""
 msgid "Random (default)"
 msgstr "ランダム (初期値)"
 
-#: inc/class-taxonomies-table.php:67
+#: inc/taxonomies.php:1550
+msgid "Re-activate Taxonomy"
+msgstr ""
+
+#: inc/class-taxonomies-table.php:67 inc/taxonomies.php:321
+#: inc/taxonomies.php:330 inc/taxonomies.php:339
 msgid "Registration key"
 msgstr ""
 
@@ -1727,6 +2094,10 @@ msgstr ""
 
 #: inc/helper.options.admin.php:403
 msgid "Related posts by terms"
+msgstr ""
+
+#: inc/related-posts.php:638
+msgid "Related Posts div class"
 msgstr ""
 
 #: inc/related-posts-functions.php:320
@@ -1784,25 +2155,63 @@ msgstr ""
 msgid "Reset Options"
 msgstr "設定のリセット"
 
+#: inc/taxonomies.php:451
+msgid "REST API"
+msgstr ""
+
+#: inc/taxonomies.php:1381
+msgid "REST API base slug"
+msgstr ""
+
+#: inc/taxonomies.php:1390
+msgid "REST API controller class"
+msgstr ""
+
+#: inc/taxonomies.php:820
+msgid "Rewrite"
+msgstr ""
+
+#: inc/taxonomies.php:878
+msgid "Rewrite Hierarchical"
+msgstr ""
+
+#: inc/taxonomies.php:854
+msgid "Rewrite With Front"
+msgstr ""
+
 #: inc/post-tags-table.php:345 inc/related-posts-table.php:385
 #: inc/autolinks-table.php:346
 msgid "RSS feed"
 msgstr ""
 
-#: inc/autolinks.php:823
+#: inc/autolinks.php:833
 msgid "Save Auto Links"
 msgstr ""
 
-#: inc/related-posts.php:703
+#: inc/related-posts.php:723
 msgid "Save Related Posts"
 msgstr ""
 
-#: inc/tag-clouds.php:638
+#: inc/taxonomies.php:363
+msgid "Save Taxonomy"
+msgstr ""
+
+#: inc/tag-clouds.php:658
 msgid "Save Terms Display"
 msgstr ""
 
-#: inc/post-tags.php:543
+#: inc/post-tags.php:563
 msgid "Save Terms for Current Post"
+msgstr ""
+
+#: inc/taxonomies.php:1306
+msgid ""
+"Screen reader text for the items list heading on the term listing screen."
+msgstr ""
+
+#: inc/taxonomies.php:1289
+msgid ""
+"Screen reader text for the pagination heading on the term listing screen."
 msgstr ""
 
 #: inc/autolinks.php:679
@@ -1813,8 +2222,10 @@ msgstr ""
 msgid "Search"
 msgstr "検索"
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1571 inc/taxonomies-functions.php:1576
 #: inc/taxonomies-functions.php:1614 inc/taxonomies-functions.php:1629
+#: inc/taxonomies.php:1175
 #, php-format
 msgid "Search %s"
 msgstr ""
@@ -1828,6 +2239,10 @@ msgstr ""
 msgid "Search Auto Links"
 msgstr ""
 
+#: inc/taxonomies.php:1170
+msgid "Search Items"
+msgstr ""
+
 #: inc/class.client.php:122
 msgid "Search Media Tags"
 msgstr ""
@@ -1838,9 +2253,13 @@ msgstr ""
 
 #. %s: search keywords
 #: inc/tag-clouds.php:136 inc/autolinks.php:136 inc/related-posts.php:136
-#: inc/post-tags.php:138 inc/class.admin.manage.php:180
+#: inc/post-tags.php:138 inc/class.admin.manage.php:180 inc/taxonomies.php:163
 #, php-format
 msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: inc/taxonomies.php:177
+msgid "Search Taxonomies"
 msgstr ""
 
 #: inc/tag-clouds.php:150
@@ -1876,9 +2295,15 @@ msgstr ""
 msgid "Select widget terms for current post."
 msgstr ""
 
+#. Used for autofill
 #: inc/taxonomies-functions.php:1585 inc/taxonomies-functions.php:1632
+#: inc/taxonomies.php:1209
 #, php-format
 msgid "Separate %s with commas"
+msgstr ""
+
+#: inc/taxonomies.php:1203
+msgid "Separate Items with Commas"
 msgstr ""
 
 #: inc/class.client.php:124
@@ -1893,6 +2318,25 @@ msgstr ""
 #: inc/class.admin.autocomplete.php:124
 msgid "Separate tags with commas"
 msgstr "カンマで区切ってください"
+
+#: inc/taxonomies.php:1503
+msgid ""
+"Set a default term for the taxonomy. Able to set a name, slug, and "
+"description. Only a name is required if setting a default, others are "
+"optional. Set values in the following order, separated by comma. Example: "
+"name, slug, description"
+msgstr ""
+
+#: inc/taxonomies.php:1494
+msgid ""
+"Sets a callback function name for the meta box display. Hierarchical default:"
+" post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To "
+"remove the metabox completely, use \"false\"."
+msgstr ""
+
+#: inc/taxonomies.php:1485
+msgid "Sets a custom query_var slug for this taxonomy."
+msgstr ""
 
 #: inc/class.admin.php:404
 msgid "Settings"
@@ -1912,8 +2356,20 @@ msgstr ""
 msgid "Shortcode entry successfully deleted."
 msgstr ""
 
-#: inc/tag-clouds.php:652 inc/related-posts.php:720 inc/post-tags.php:560
+#: inc/tag-clouds.php:672 inc/related-posts.php:740 inc/post-tags.php:580
 msgid "Shortcode: "
+msgstr ""
+
+#: inc/taxonomies.php:879
+msgid "Should the permastruct allow hierarchical urls."
+msgstr ""
+
+#: inc/taxonomies.php:855
+msgid "Should the permastruct be prepended with the front base."
+msgstr ""
+
+#: inc/taxonomies.php:982
+msgid "Show admin column"
 msgstr ""
 
 #: inc/class.admin.mass.php:190
@@ -1924,14 +2380,59 @@ msgstr "全ての日付を表示"
 msgid "Show all local tags"
 msgstr ""
 
+#: inc/taxonomies.php:692
+msgid "Show content from all post types on archive page"
+msgstr ""
+
+#: inc/taxonomies.php:1005
+msgid "Show in \"Quick Edit\" and \"Bulk Edit\""
+msgstr ""
+
+#: inc/taxonomies.php:935
+msgid "Show in admin menus"
+msgstr ""
+
+#: inc/taxonomies.php:958
+msgid "Show in frontend menus"
+msgstr ""
+
+#: inc/taxonomies.php:1373
+msgid "Show in REST API"
+msgstr ""
+
+#: inc/taxonomies.php:912
+msgid "Show user interface"
+msgstr ""
+
 #: inc/post-tags-table.php:344 inc/related-posts-table.php:384
 #: inc/autolinks-table.php:345
 msgid "Single post display"
 msgstr ""
 
+#: inc/taxonomies.php:559
+msgid "Singular Label"
+msgstr ""
+
 #: inc/tag-clouds.php:431 inc/class-tag-table.php:42 inc/class.widgets.php:237
+#: inc/taxonomies.php:462
 msgid "Slug"
 msgstr "スラグ"
+
+#: inc/taxonomies.php:500 inc/taxonomies.php:719
+msgid "Slug already exists"
+msgstr ""
+
+#: inc/taxonomies.php:497 inc/taxonomies.php:716
+msgid "Slug has changed"
+msgstr ""
+
+#: inc/taxonomies.php:1382
+msgid "Slug to use in REST API URLs."
+msgstr ""
+
+#: inc/taxonomies.php:502 inc/taxonomies.php:722
+msgid "Special character not allowed in slug."
+msgstr ""
 
 #: inc/class.admin.clickterms.php:48
 msgid "Start typing to search"
@@ -1999,7 +2500,8 @@ msgstr ""
 msgid "Target"
 msgstr "ターゲット"
 
-#: inc/class-taxonomies-table.php:15
+#: inc/class-taxonomies-table.php:15 inc/taxonomies.php:99
+#: inc/taxonomies.php:100 inc/taxonomies.php:153
 msgid "Taxonomies"
 msgstr ""
 
@@ -2020,6 +2522,14 @@ msgstr ""
 
 #: inc/taxonomies-functions.php:1779
 msgid "Taxonomy has been successfully deleted"
+msgstr ""
+
+#: inc/taxonomies.php:493 inc/taxonomies.php:712
+msgid "Taxonomy Slug"
+msgstr ""
+
+#: inc/taxonomies.php:67
+msgid "Taxonomy slug cannot be numbers only."
 msgstr ""
 
 #: inc/helper.options.admin.php:321
@@ -2093,11 +2603,24 @@ msgstr ""
 msgid "TaxoPress: Options"
 msgstr "TaxoPress: 設定"
 
+#: inc/taxonomies.php:469
+msgid "Templates"
+msgstr ""
+
+#: inc/tag-clouds.php:581
+msgid "Term display div class"
+msgstr ""
+
 #: inc/class.widgets.php:239
 msgid "Term group"
 msgstr "カテゴリ名"
 
-#: inc/tag-clouds.php:581 inc/related-posts.php:639 inc/post-tags.php:479
+#: inc/tag-clouds.php:591 inc/autolinks.php:730 inc/related-posts.php:648
+#: inc/post-tags.php:489
+msgid "Term link class"
+msgstr ""
+
+#: inc/tag-clouds.php:601 inc/related-posts.php:659 inc/post-tags.php:499
 msgid "Term link format"
 msgstr ""
 
@@ -2169,6 +2692,10 @@ msgstr ""
 msgid "Terms for Current Post are added on "
 msgstr ""
 
+#: inc/post-tags.php:479
+msgid "Terms for Current Post div class"
+msgstr ""
+
 #: inc/autolinks.php:686
 msgid "Terms inside these html tags will not be auto link."
 msgstr ""
@@ -2232,11 +2759,31 @@ msgid ""
 "The font size units option determines the units that the two font sizes use."
 msgstr "この 2 つのフォントサイズで使用するフォントの単位です。"
 
-#: inc/autolinks.php:758
+#: inc/autolinks.php:768
 msgid ""
 "The new Auto Links engine uses the DOMDocument PHP class and may offer "
 "better performance. If your server does not support this functionality, "
 "TaxoPress will use the usual engine."
+msgstr ""
+
+#: inc/taxonomies.php:1426
+msgid "The taxonomy is for public use. It can be seen by frontend users."
+msgstr ""
+
+#: inc/taxonomies.php:1450
+msgid "The taxonomy is publicly queryable."
+msgstr ""
+
+#: inc/taxonomies.php:1339
+msgid ""
+"The text displayed after a term has been updated for a link back to main "
+"index."
+msgstr ""
+
+#: inc/taxonomies.php:1322
+msgid ""
+"The text displayed via clicking ‘Choose from the most used items’ in the "
+"taxonomy meta box when no items are available."
 msgstr ""
 
 #: inc/helper.options.admin.php:206
@@ -2247,7 +2794,7 @@ msgstr "この 2 つのフォントサイズはそれぞれ最も使用されて
 msgid "The units to display the font sizes with, on tag clouds:"
 msgstr "タグクラウドのフォントサイズで使用する単位:"
 
-#: inc/class.client.related_posts.php:411
+#: inc/class.client.related_posts.php:420
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
@@ -2352,6 +2899,10 @@ msgid ""
 "browser so you can!"
 msgstr "これらは JavaScript で働いています。 動作させるには、ウェブブラウザで JavaScript をアクティブにしてください！"
 
+#: inc/taxonomies.php:326
+msgid "This is an external taxonomy and not created with TaxoPress."
+msgstr ""
+
 #: blocks/related-posts.php:62 inc/class.shortcode_widgets.php:117
 #: inc/posts-tags-widgets.php:98 inc/posts-tags-widget.php:98
 #: inc/related-posts-widget.php:104
@@ -2384,6 +2935,14 @@ msgstr "記事内のリンクの最大数を調べます。 デフォルト: 10�
 msgid ""
 "This setting helps prevent rarely used terms from being used by Auto Links. "
 "Default: 1."
+msgstr ""
+
+#: inc/taxonomies.php:317
+msgid "This taxonomy is part of the WordPress core."
+msgstr ""
+
+#: inc/taxonomies.php:335
+msgid "This taxonomy was created by TaxoPress."
 msgstr ""
 
 #: inc/class.widgets.php:209
@@ -2429,8 +2988,13 @@ msgid "To create more Terms for Current Post, please upgrade to TaxoPress Pro."
 msgstr ""
 
 #: inc/tag-clouds.php:302 inc/tag-clouds.php:324 inc/tag-clouds.php:557
-#: inc/autolinks.php:452 inc/autolinks.php:478 inc/autolinks.php:746
+#: inc/autolinks.php:452 inc/autolinks.php:478 inc/autolinks.php:756
 #: inc/related-posts.php:352 inc/related-posts.php:619 inc/post-tags.php:460
+#: inc/taxonomies.php:576 inc/taxonomies.php:679 inc/taxonomies.php:810
+#: inc/taxonomies.php:844 inc/taxonomies.php:869 inc/taxonomies.php:902
+#: inc/taxonomies.php:925 inc/taxonomies.php:948 inc/taxonomies.php:973
+#: inc/taxonomies.php:996 inc/taxonomies.php:1363 inc/taxonomies.php:1415
+#: inc/taxonomies.php:1439 inc/taxonomies.php:1463
 msgid "True"
 msgstr ""
 
@@ -2451,9 +3015,19 @@ msgstr "フォントサイズの単位:"
 msgid "Update %s"
 msgstr ""
 
+#. Used for autofill
+#: inc/taxonomies.php:1094
+#, php-format
+msgid "Update %s name"
+msgstr ""
+
 #: inc/class.admin.mass.php:276
 msgid "Update all &raquo;"
 msgstr "全て更新 &raquo;"
+
+#: inc/taxonomies.php:1089
+msgid "Update Item Name"
+msgstr ""
 
 #: inc/class.client.php:117
 msgid "Update Media Tag name"
@@ -2482,7 +3056,7 @@ msgstr ""
 msgid "Use case of text in content"
 msgstr ""
 
-#: inc/autolinks.php:756
+#: inc/autolinks.php:766
 msgid "Use new Auto Links engine"
 msgstr ""
 
@@ -2493,10 +3067,45 @@ msgid ""
 "You can select specific terms to use."
 msgstr ""
 
+#: inc/taxonomies.php:1042
+msgid ""
+"Used as tab text when showing all terms for hierarchical taxonomy while "
+"editing post."
+msgstr ""
+
+#: inc/taxonomies.php:1107
+msgid ""
+"Used at the top of the term editor screen and button text for a new taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:1058
+msgid ""
+"Used at the top of the term editor screen for an existing taxonomy term."
+msgstr ""
+
+#: inc/taxonomies.php:1074
+msgid ""
+"Used in the admin bar when viewing editor screen for an existing taxonomy "
+"term."
+msgstr ""
+
+#: inc/taxonomies.php:1272
+msgid ""
+"Used when indicating that there are no terms in the given taxonomy "
+"associated with an object."
+msgstr ""
+
+#. Used for autofill
 #: inc/taxonomies-functions.php:1568 inc/taxonomies-functions.php:1569
 #: inc/taxonomies-functions.php:1609 inc/taxonomies-functions.php:1612
+#: inc/taxonomies.php:1078
 #, php-format
 msgid "View %s"
+msgstr ""
+
+#: inc/taxonomies.php:1073
+msgid "View Item"
 msgstr ""
 
 #: inc/class.client.php:116
@@ -2544,12 +3153,19 @@ msgid ""
 "for Current Post anywhere on your site."
 msgstr ""
 
+#: inc/taxonomies.php:821
+msgid ""
+"WordPress can use a custom permalink for this taxonomy. It does not have to "
+"match the slug."
+msgstr ""
+
 #: inc/class-taxonomies-table.php:340
 msgid "WordPress core"
 msgstr ""
 
-#: inc/tag-clouds.php:692 inc/autolinks.php:870 inc/related-posts.php:760
-#: inc/class-taxonomies-table.php:364
+#: inc/tag-clouds.php:712 inc/autolinks.php:880 inc/related-posts.php:780
+#: inc/post-tags.php:620 inc/class-taxonomies-table.php:364
+#: inc/taxonomies.php:1626
 msgid "Yes"
 msgstr ""
 
@@ -2580,23 +3196,27 @@ msgstr ""
 "マーカーや解説については <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">"
 "オンラインドキュメント</a>を参照してください"
 
-#: inc/related-posts.php:640
+#: inc/related-posts.php:660
 msgid ""
 "You can find markers and explanations <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-related-posts/\">in the online documentation.</a>"
 msgstr ""
 
-#: inc/tag-clouds.php:582
+#: inc/tag-clouds.php:602
 msgid ""
 "You can find markers and explanations <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-tag-clouds/\">in the online documentation.</a>"
 msgstr ""
 
-#: inc/post-tags.php:480
+#: inc/post-tags.php:500
 msgid ""
 "You can find markers and explanations <a target=\"blank\" href=\"https:"
 "//taxopress.com/docs/format-terms-current-post/\">in the online "
 "documentation.</a>"
+msgstr ""
+
+#: inc/taxonomies.php:1570
+msgid "You can only delete taxonomies created with TaxoPress."
 msgstr ""
 
 #: inc/helper.options.admin.php:398
