@@ -312,7 +312,11 @@ class SimpleTags_Client_Autolinks {
 	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
 		$dom = new DOMDocument();
 
+		$content = str_replace('&lt;','&#60;',$content);
+		$content = str_replace('&gt;','&#62;',$content);
+		$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
         $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
+		//$content = utf8_decode($content);
 
         libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
@@ -416,9 +420,12 @@ class SimpleTags_Client_Autolinks {
 
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
-
+		$content = str_replace('|--|','&#',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
+		$content = str_replace('&#60;','<',$content);
+		$content = str_replace('&#62;','>',$content);
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
+		
 	}
 
 	/**

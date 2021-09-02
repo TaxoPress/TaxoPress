@@ -115,6 +115,9 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.3.0- [===unreleased===]
+* Fixed: Auto Links problem with " #824
+
 v3.2.2- 2021-09-01
 * Fixed: Able to save mandatory field 'Title' as empty field in Terms for current post. #812
 * Fixed: Problem with ' signs in auto links #810
