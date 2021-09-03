@@ -117,7 +117,8 @@ TaxoPress can be installed in 3 easy steps:
 
 v3.3.0- [===unreleased===]
 * Fixed: Auto Links problem with " #824
-* Fixed:Posts are auto tagged even when the content does not match the exact term. #602
+* Fixed: Posts are auto tagged even when the content does not match the exact term. #602
+* Fixed: CSS not working for "Terms for Current Post" div #823
 
 v3.2.2- 2021-09-01
 * Fixed: Able to save mandatory field 'Title' as empty field in Terms for current post. #812
