@@ -46,7 +46,6 @@ class SimpleTags_Client_Autoterms {
 			if ( ! isset( $local_options['use_auto_terms'] ) || (int) $local_options['use_auto_terms'] != 1 ) {
 				continue;
 			}
-
 			self::auto_terms_post( $object, $taxo_name, $local_options );
 			$flag = true;
 		}
@@ -109,8 +108,8 @@ class SimpleTags_Client_Autoterms {
 
 				// Whole word ?
 				if ( isset( $options['only_full_word'] ) && (int) $options['only_full_word'] == 1 ) {
-					$preg_term = preg_quote( $term, "/" );
-					if ( preg_match( "/\b" . $preg_term . "\b/i", $content ) ) {
+					if(strpos($content, ' '.$term.' ') !== FALSE)
+					{
 						$terms_to_add[] = $term;
 					}
 
@@ -156,8 +155,8 @@ class SimpleTags_Client_Autoterms {
 
 				// Whole word ?
 				if ( isset( $options['only_full_word'] ) && (int) $options['only_full_word'] == 1 ) {
-					$preg_term = preg_quote( $term, "/" );
-					if ( preg_match( "/\b" . $preg_term . "\b/i", $content ) ) {
+					if(strpos($content, ' '.$term.' ') !== FALSE)
+					{
 						$terms_to_add[] = $term;
 					}
 
