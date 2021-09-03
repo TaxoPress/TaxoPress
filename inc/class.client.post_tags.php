@@ -230,6 +230,6 @@ class SimpleTags_Client_PostTags {
 		// Add container
 		$output = $before . $output . $after;
 
-		return SimpleTags_Client::output_content( 'st-post-tags '.$wrap_class.'', 'div', '', $output, $copyright );
+		return SimpleTags_Client::output_content( 'st-post-tags '.taxopress_format_class($wrap_class).'', 'div', '', $output, $copyright );
 	}
 }
