@@ -88,8 +88,15 @@ class SimpleTags_Client_Autoterms {
 
 		$terms_to_add = array();
 
-		// Merge title + content + excerpt to compare with terms
-		$content = $object->post_content . ' ' . $object->post_title;
+        
+        if( isset($options['autoterm_from']) && $options['autoterm_from'] === 'post_title' ){
+            $content = $object->post_title;
+        }elseif( isset($options['autoterm_from']) && $options['autoterm_from'] === 'post_content' ){
+            $content = $object->post_content;
+        }else{
+		    $content = $object->post_content . ' ' . $object->post_title;
+        }
+
 		if ( isset( $object->post_excerpt ) ) {
 			$content .= ' ' . $object->post_excerpt;
 		}

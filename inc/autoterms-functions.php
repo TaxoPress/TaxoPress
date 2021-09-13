@@ -149,6 +149,7 @@ function taxopress_create_default_autoterm()
                 foreach($options_taxdata as $options_taxonomy => $options_taxonomy_data){
                     $taxonomy = get_taxonomy($options_taxonomy);
                     $default                                                   = [];
+                    $default['taxopress_autoterm']['autoterm_from']            = 'posts';
                     $default['taxopress_autoterm']['title']                    = ''. (is_object($taxonomy) ? $taxonomy->labels->name : $options_taxonomy ) .' '. ucwords($options_post_type) .' Auto term';
                     $default['taxopress_autoterm']['taxonomy']                 = $options_taxonomy;
                     $default['post_types']               = [$options_post_type];
@@ -171,6 +172,7 @@ function taxopress_create_default_autoterm()
         $default['taxopress_autoterm']['title']                    = 'Auto term';
         $default['taxopress_autoterm']['taxonomy']                 = 'post_tag';
         $default['post_types']                                     = ['post'];
+        $default['taxopress_autoterm']['autoterm_from']            = 'posts';
         $default['taxopress_autoterm']['autoterm_useall']          = '0';
         $default['taxopress_autoterm']['autoterm_useall']          = '0';
         $default['taxopress_autoterm']['autoterm_useonly']         = '0';
