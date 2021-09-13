@@ -388,6 +388,36 @@ class SimpleTags_Autoterms
                                                         'selections' => $select,
                                                     ]);
 
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => 'post_content',
+                                                                'text'    => esc_attr__('Post Content', 'simple-tags')
+                                                            ],
+                                                            [
+                                                                'attr' => 'post_title',
+                                                                'text' => esc_attr__('Post Title', 'simple-tags')
+                                                            ],
+                                                            [
+                                                                'attr' => 'posts',
+                                                                'text' => esc_attr__('Post Content and Title',
+                                                                    'simple-tags'),
+                                                                'default' => 'true'
+                                                            ]
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['autoterm_from'])) ? taxopress_disp_boolean($current['autoterm_from']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['autoterm_from'] : '';
+                                                    echo $ui->get_select_checkbox_input_main([
+                                                        'namearray'  => 'taxopress_autoterm',
+                                                        'name'       => 'autoterm_from',
+                                                        'labeltext'  => esc_html__('Find term in:',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
+
+
                                                     /**
                                                      * Filters the arguments for post types to list for taxonomy association.
                                                      *
@@ -508,7 +538,7 @@ class SimpleTags_Autoterms
                                                     $specific_terms = ( isset($current) && isset($current['specific_terms']) && is_array($current['specific_terms']) ) ? (array)$current['specific_terms'] : [];
 
                                                     echo '<tr valign="top"><th scope="row"><label for=""></label></th><td>';
-                                                    echo '<div class="auto-terms-to-use-error"> '.__('Please choose an option for "Terms to use"', 'simple-tags').' </div>';
+                                                    echo '<div class="auto-terms-to-use-error" style="display:none;"> '.__('Please choose an option for "Terms to use"', 'simple-tags').' </div>';
 
                                                     if(count($specific_terms) > 0){
                                                         foreach($specific_terms as $specific_term){
