@@ -86,9 +86,13 @@ class taxopress_admin_ui
     public function get_select_checkbox_input($args = [])
     {
         $defaults = $this->get_default_input_parameters(
-            ['selections' => []]
+            [
+                'class'    => '',
+                'selections' => []
+                ]
         );
 
+        
         $args = wp_parse_args($args, $defaults);
 
         $value = '';
@@ -106,7 +110,7 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $checkbox_html = '<input type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" />';
+        $checkbox_html = '<input class="' . $args['class'] . '" type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" />';
 
         if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
             foreach ($args['selections']['options'] as $val) {
@@ -143,7 +147,7 @@ class taxopress_admin_ui
                 }
 
                 if($selected_result && (int)$val['attr'] === 1){
-                    $checkbox_html = '<input type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" checked="checked" />';
+                    $checkbox_html = '<input class="' . $args['class'] . '" type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" checked="checked" />';
                 }
 
             }

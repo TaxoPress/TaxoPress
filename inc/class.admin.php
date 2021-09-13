@@ -52,6 +52,11 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/autolinks.php';
         SimpleTags_Autolink::get_instance();
 
+        //Auto Terms
+        require STAGS_DIR . '/inc/autoterms-table.php';
+        require STAGS_DIR . '/inc/autoterms.php';
+        SimpleTags_Autoterms::get_instance();
+
 		// Load custom part of plugin depending option
 		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
 			require STAGS_DIR . '/inc/class.admin.suggest.php';
@@ -77,15 +82,8 @@ class SimpleTags_Admin {
 			SimpleTags_Admin_Manage::get_instance();
 		}
 
-		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) ) {
-			require STAGS_DIR . '/inc/class.admin.autoterms.php';
-			new SimpleTags_Admin_AutoTags();
-		}
-
-		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) || 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) ) {
-			require STAGS_DIR . '/inc/class.admin.post.php';
-			new SimpleTags_Admin_Post_Settings();
-		}
+		require STAGS_DIR . '/inc/class.admin.post.php';
+		new SimpleTags_Admin_Post_Settings();
 
         //taxonomies
         require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
@@ -116,7 +114,7 @@ class SimpleTags_Admin {
 	 */
 	public static function maybe_create_tag( $tag_name = '' ) {
 		$term_id     = 0;
-		//restore & in tag post 
+		//restore & in tag post
 		$tag_name = str_replace("simpletagand", "&", $tag_name);
 		$result_term = term_exists( $tag_name, 'post_tag', 0 );
 		if ( empty( $result_term ) ) {
@@ -343,7 +341,7 @@ class SimpleTags_Admin {
         ]);
 
 
-        //Register remodal assets 
+        //Register remodal assets
 		wp_register_script( 'st-remodal-js', STAGS_URL . '/assets/js/remodal.min.js', array( 'jquery' ), STAGS_VERSION );
 		wp_register_style( 'st-remodal-css', STAGS_URL . '/assets/css/remodal.css', array(), STAGS_VERSION, 'all' );
 		wp_register_style( 'st-remodal-default-theme-css', STAGS_URL . '/assets/css/remodal-default-theme.css', array(), STAGS_VERSION, 'all' );
@@ -364,7 +362,7 @@ class SimpleTags_Admin {
 			wp_enqueue_style( 'st-remodal-css' );
 			wp_enqueue_style( 'st-remodal-default-theme-css' );
 			wp_enqueue_style( 'st-admin' );
-			
+
 			do_action('taxopress_admin_class_after_styles_enqueue');
 		}
 
@@ -539,9 +537,9 @@ class SimpleTags_Admin {
 
             if($section === 'legacy'){
                 $table_sub_tab = '<div class="st-legacy-subtab">
-                <span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> | 
-                <span data-content=".legacy-post-tags-content">Tags for Current Post</span> | 
-                <span data-content=".legacy-related-posts-content">Related Posts</span> | 
+                <span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> |
+                <span data-content=".legacy-post-tags-content">Tags for Current Post</span> |
+                <span data-content=".legacy-related-posts-content">Related Posts</span> |
                 <span data-content=".legacy-auto-link-content">Auto link</span>
                 </div>' . PHP_EOL;
             }else{
@@ -554,7 +552,7 @@ class SimpleTags_Admin {
 			$output .= '<legend>' . self::getNiceTitleOptions( $section ) . '</legend>' . PHP_EOL;
 			$output .= '<table class="form-table">' . PHP_EOL;
 			foreach ( (array) $options as $option ) {
-            
+
                 $class = '';
                 if($section === 'legacy'){
                     $class = $option[5];

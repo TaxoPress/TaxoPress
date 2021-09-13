@@ -28,13 +28,6 @@ return array(
             'checkbox',
             '1',
             __('This feature allows you to edit, merge, delete and add terms for any taxonomy.', 'simple-tags')
-        ),
-        array(
-            'active_autotags',
-            __('Auto terms posts', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature allow automatically add terms on a post by proceding to a search into content.', 'simple-tags')
         )
     ),
     'administration' => array(

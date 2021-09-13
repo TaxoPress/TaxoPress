@@ -448,11 +448,53 @@ ul.taxopress-tab li.autolink_control_tab a::before {
     content: "\f169";
 }
 
+ul.taxopress-tab li.autoterm_terms_tab a::before {
+    content: "\f323";
+}
+ul.taxopress-tab li.autoterm_options_tab a::before {
+    content: "\f111";
+}
+ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
+    content: "\f186";
+}
+
 .st-html-exclusion-table th {
     padding: unset;
 }
 .st-html-exclusion-table td {
     padding: 5px 5px;
+}
+
+.st-autoterms-single-specific-term {
+    margin: 15px 0;
+}
+
+.st-autoterms-single-specific-term.new {
+    margin: 25px 0;
+}
+.auto-term-content-result {
+    margin-top: 10px;
+    max-height: 200px;
+    overflow: scroll;
+}
+.taxopress-spinner {
+    float: none;
+}
+
+.auto-term-content-result-title{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.taxopress-loader-border {
+    border: 1px solid #ccc!important;
+}
+
+.taxopress-loader-green,
+.taxopress-loader-green:hover {
+    height: 25px;
+    color: #fff;
+    background-color: #4CAF50;
+    text-align: center;
 }
 
 @media only screen and (max-width: 1270px) {
