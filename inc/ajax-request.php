@@ -49,17 +49,18 @@ function taxopress_autoterms_content_by_ajax()
             }
             $response['status'] = 'progress';
             $response['content'] = $response_content;
-            $response['done'] = ($start_from + 20);
+            $response['done'] = ($start_from + count($objects));
+            $percentage = round((($start_from + count($objects))/$total)*100);
               
         } else {
 
             $counter = (int)get_option('tmp_auto_terms_st');
             delete_option('tmp_auto_terms_st');
             $response['status'] = 'sucess';
-            $response['done'] = ($start_from + 20);
+            $response['done'] = $total;
             $response['message'] = sprintf(__('All done! %s terms added.', 'simple-tags'), $counter);
+            $percentage = 100;
         }
-            $percentage = round((($start_from + 20)/$total)*100);
             $response['percentage'] = '<div class="taxopress-loader-border"><div class="taxopress-loader-green" style="width:'.$percentage.'%;">'.$percentage.'%</div></div>';
         
             wp_send_json($response);
