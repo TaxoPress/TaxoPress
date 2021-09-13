@@ -122,6 +122,7 @@ v3.3.0- [===unreleased===]
 * Feature: Update the menu link for "Auto Terms" #775
 * Fixed: Improve the UI for Auto Terms "Keywords list" #822
 * Added: Include Spanish translation files #829
+* Added: Add Review requests #505
 
 v3.2.2- 2021-09-01
 * Fixed: Able to save mandatory field 'Title' as empty field in Terms for current post. #812

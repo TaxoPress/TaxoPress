@@ -22,4 +22,8 @@ require STAGS_DIR . '/blocks/related-posts.php';
 
 //include ajax
 require STAGS_DIR . '/inc/ajax-request.php';
+
+//review request
+require STAGS_DIR . '/review-request/server-side-review-tracking-api.php';
+require STAGS_DIR . '/review-request/class-plugin-theme-review-request.php';
 ?>
