@@ -104,6 +104,7 @@ function taxopress_admin_pages(){
         'st_post_tags',
         'st_related_posts',
         'st_autolinks',
+        'st_autoterms',
     ];
 
    return apply_filters('taxopress_admin_pages', $taxopress_pages);

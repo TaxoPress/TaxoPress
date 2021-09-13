@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.8
-Stable tag: 3.2.2
+Stable tag: 3.3.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -119,6 +119,8 @@ v3.3.0- [===unreleased===]
 * Fixed: Auto Links problem with " #824
 * Fixed: Posts are auto tagged even when the content does not match the exact term. #602
 * Fixed: CSS not working for "Terms for Current Post" div #823
+* Fearture: Update the menu link for "Auto Terms" #775
+* Fixed: Improve the UI for Auto Terms "Keywords list" #822
 
 v3.2.2- 2021-09-01
 * Fixed: Able to save mandatory field 'Title' as empty field in Terms for current post. #812

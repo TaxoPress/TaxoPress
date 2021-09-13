@@ -28,6 +28,7 @@ class TaxopressCoreAdmin {
                                     ['base' => 'taxopress_page_st_post_tags',   'id'  => 'taxopress_page_st_post_tags'],
                                     ['base' => 'taxopress_page_st_related_posts','id' => 'taxopress_page_st_related_posts'],
                                     ['base' => 'taxopress_page_st_autolinks',   'id'  => 'taxopress_page_st_autolinks'],
+                                    ['base' => 'taxopress_page_st_autoterms',   'id'  => 'taxopress_page_st_autoterms']
                                 ]
                             ];
 
