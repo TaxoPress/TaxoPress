@@ -119,8 +119,9 @@ v3.3.0- [===unreleased===]
 * Fixed: Auto Links problem with " #824
 * Fixed: Posts are auto tagged even when the content does not match the exact term. #602
 * Fixed: CSS not working for "Terms for Current Post" div #823
-* Fearture: Update the menu link for "Auto Terms" #775
+* Feature: Update the menu link for "Auto Terms" #775
 * Fixed: Improve the UI for Auto Terms "Keywords list" #822
+* Added: Include Spanish translation files #829
 
 v3.2.2- 2021-09-01
 * Fixed: Able to save mandatory field 'Title' as empty field in Terms for current post. #812
