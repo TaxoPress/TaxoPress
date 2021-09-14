@@ -310,31 +310,6 @@ class SimpleTags_Autoterms
                                                     <?php
                                                     echo $ui->get_tr_start();
 
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simple-tags'),
-                                                                'default' => 'true',
-                                                            ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simple-tags'),
-                                                            ],
-                                                        ],
-                                                    ];
-
-                                                    $selected           = (isset($current) && isset($current['use_auto_terms'])) ? taxopress_disp_boolean($current['use_auto_terms']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['use_auto_terms'] : '1';
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'use_auto_terms',
-                                                        'class'      => 'use_auto_terms',
-                                                        'labeltext'  => esc_html__('Enable this auto term', 'simple-tags'),
-                                                        'aftertext'  => '',
-                                                        'selections' => $select,
-                                                    ]);
-
 
                                                     echo $ui->get_th_start();
                                                     echo $ui->get_label('title', esc_html__('Title',
