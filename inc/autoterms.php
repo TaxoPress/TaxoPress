@@ -518,12 +518,12 @@ class SimpleTags_Autoterms
                                                     if(count($specific_terms) > 0){
                                                         foreach($specific_terms as $specific_term){
                                                             echo '<div class="st-autoterms-single-specific-term">
-                                                            <input type="text" class="specific_terms_input" name="specific_terms[]" maxlength="32" placeholder="'. esc_attr(__('Term name', 'simple-tags')) .'" value="'. esc_attr($specific_term) .'"> &nbsp; &nbsp; <input type="submit" class="button remove-specific-term" value="'. esc_attr(__('Remove', 'simple-tags')) .'">
+                                                            <input type="text" class="specific_terms_input" name="specific_terms[]" maxlength="32" placeholder="'. esc_attr(__('Term name', 'simple-tags')) .'" value="'. esc_attr($specific_term) .'"> &nbsp; <span class="remove-specific-term" title="'. esc_attr(__('Remove', 'simple-tags')) .'">X</span>
                                                         </div>';
                                                         }
                                                     }else{
                                                         echo '<div class="st-autoterms-single-specific-term">
-                                                            <input type="text" class="specific_terms_input" name="specific_terms[]" maxlength="32" placeholder="'. esc_attr(__('Term name', 'simple-tags')) .'"> &nbsp; &nbsp; <input type="submit" class="button remove-specific-term" value="'. esc_attr(__('Remove', 'simple-tags')) .'">
+                                                            <input type="text" class="specific_terms_input" name="specific_terms[]" maxlength="32" placeholder="'. esc_attr(__('Term name', 'simple-tags')) .'"> &nbsp; <span class="remove-specific-term" title="'. esc_attr(__('Remove', 'simple-tags')) .'">X</span>
                                                         </div>';
                                                     }
                                                     
@@ -624,15 +624,15 @@ class SimpleTags_Autoterms
                                                 <table class="form-table taxopress-table autoterm_oldcontent"
                                                        style="<?php echo $active_tab === 'autoterm_oldcontent' ? '' : 'display:none;'; ?>">
 
-                                                       <tr valign="top"><th scope="row"><label><?php echo __('Auto terms old content', 'simple-tags'); ?></label></th>
+                                                       <tr valign="top"><th scope="row"><label><?php echo __('Previous content', 'simple-tags'); ?></label></th>
                                                        <td>
-                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Auto terms all content »', 'simple-tags')); ?>">
+                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add auto terms to all existing content', 'simple-tags')); ?>">
                                                            <span class="spinner taxopress-spinner"></span>
 
                                                            <p class="taxopress-field-description description">
-                                                               <?php echo __('TaxoPress can also tag all existing contents of your blog.', 'simple-tags'); ?>
+                                                               <?php echo __('TaxoPress can add auto terms to existing contents of your site.', 'simple-tags'); ?>
                                                                
-                                                               <br /> <strong style="color:red;"><?php echo __('Update or Save other tabs changes before running this function!!!', 'simple-tags'); ?></strong>
+                                                               <br /> <strong style="color:red;"><?php echo __('Please save all changes to your Auto Terms before using this feature.', 'simple-tags'); ?></strong>
                                                             </p>
                                             
                                                             <div class="auto-term-content-result-title"></div>
