@@ -479,8 +479,8 @@ class SimpleTags_Autoterms
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_useall',
                                                         'class'      => 'autoterm_useall',
-                                                        'labeltext'  => esc_html__('All terms', 'simple-tags'),
-                                                        'aftertext'  => __('Use all the terms in the selected taxonomy. (Warning, this option can increases the CPU consumption a lot if you have many terms)', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Which terms to use?', 'simple-tags'),
+                                                        'aftertext'  => __('Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
@@ -504,8 +504,8 @@ class SimpleTags_Autoterms
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_useonly',
                                                         'class'      => 'autoterm_useonly',
-                                                        'labeltext'  => esc_html__('Specific terms', 'simple-tags'),
-                                                        'aftertext'  => __('Use this option if you don\'t want to use all the terms in the selected taxonomy. You can enter terms to use.', 'simple-tags'),
+                                                        'labeltext'  => ' ',
+                                                        'aftertext'  => __('Use only some terms in the selected taxonomy. Use the boxes below to choose the terms to use.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
