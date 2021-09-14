@@ -65,8 +65,7 @@ class Autoterms_List extends WP_List_Table
         $columns = [
             'title'     => __('Title', 'simple-tags'),
             'taxonomy'  => __('Taxonomy', 'simple-tags'),
-            'post_types'  => __('Auto term Post type', 'simple-tags'),
-            'use_auto_terms' => __('Status', 'simple-tags')
+            'post_types'  => __('Auto term Post type', 'simple-tags')
         ];
 
         return $columns;
@@ -351,20 +350,6 @@ class Autoterms_List extends WP_List_Table
         }
 
         return $result;
-    }
-
-    /**
-     * Method for use_auto_terms column
-     *
-     * @param array $item
-     *
-     * @return string
-     */
-    protected function column_use_auto_terms($item)
-    {
-        $status = ( isset($item['use_auto_terms']) && (int)($item['use_auto_terms']) > 0 ) ? '<font color="green">'.__('Enabled', 'simple-tags').'</font>' : '<font color="red">'.__('Disabled', 'simple-tags').'</font>';
-
-        return $status;
     }
 
 
