@@ -44,11 +44,12 @@ class SimpleTags_Client_Autoterms {
         $autoterms = taxopress_get_autoterm_data();
         $flag = false;
         foreach($autoterms as $autoterm_key => $autoterm_data){
-            $eligible_post_types = $autoterm_data['post_types'];
+            $eligible_post_types = isset($autoterm_data['post_types']) && is_array($autoterm_data['post_types']) ? $autoterm_data['post_types'] : [];
+            $eligible_post_types = array_filter($eligible_post_types);
 
-            if ( !isset($autoterm_data['use_auto_terms']) || (int)$autoterm_data['use_auto_terms'] === 0 ) {
-				continue;
-			}
+            if(count($eligible_post_types) === 0){
+                break;
+            }
             if(!in_array($current_post_type, $eligible_post_types)){
                 continue;
             }
