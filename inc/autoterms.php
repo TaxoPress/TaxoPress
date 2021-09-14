@@ -129,7 +129,7 @@ class SimpleTags_Autoterms
                 <div class="taxopress-description">
                     <?php esc_html_e('This feature allows Wordpress to look into post content and title for specified terms when saving post.', 'simple-tags'); ?>
                     <br />
-                    <?php esc_html_e('If your post content or title contains the word "WordPress" and you have "wordpress" in auto terms list, TaxoPress will automatically add "wordpress" as term for this post.', 'simple-tags'); ?>
+                    <?php esc_html_e('If you have created the term "WordPress", Auto Terms can scan your posts and automatically add "WordPress" as term.', 'simple-tags'); ?>
                 </div>
 
 
