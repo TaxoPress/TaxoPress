@@ -329,7 +329,7 @@ class SimpleTags_Autoterms
 
 
                                                     $options = [];
-                                                    foreach (get_all_taxopress_taxonomies() as $_taxonomy) {
+                                                    foreach (get_all_taxopress_public_taxonomies() as $_taxonomy) {
                                                         $_taxonomy = $_taxonomy->name;
                                                         $tax       = get_taxonomy($_taxonomy);
                                                         if (empty($tax->labels->name)) {
@@ -562,8 +562,8 @@ class SimpleTags_Autoterms
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_target',
                                                         'class'      => '',
-                                                        'labeltext'  => esc_html__('Target', 'simple-tags'),
-                                                        'aftertext'  => __('Autotag only Posts without terms.', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Posts with terms already added', 'simple-tags'),
+                                                        'aftertext'  => __('Only use Auto Terms on posts with no added terms.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
