@@ -57,14 +57,11 @@ class SimpleTags_Admin_Post_Settings {
 			echo '</p>' . "\n";
 			echo '<input type="hidden" name="_meta_autotags" value="true" />';
 
-		$taxonomies = get_object_taxonomies( $post->post_type );
-		if ( (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 1 && in_array( 'post_tag', $taxonomies, true ) ) {
 			$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
 			echo '<p>' . "\n";
 			echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable auto links ?', 'simple-tags' ) . '</label><br />' . "\n";
 			echo '</p>' . "\n";
 			echo '<input type="hidden" name="_meta_autolink" value="true" />';
-		}
 	}
 
 	/**
