@@ -562,7 +562,7 @@ class SimpleTags_Autoterms
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_target',
                                                         'class'      => '',
-                                                        'labeltext'  => esc_html__('Posts with terms already added', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Target content', 'simple-tags'),
                                                         'aftertext'  => __('Only use Auto Terms on posts with no added terms.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
@@ -586,8 +586,8 @@ class SimpleTags_Autoterms
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_word',
                                                         'class'      => '',
-                                                        'labeltext'  => esc_html__('Whole Word ?', 'simple-tags'),
-                                                        'aftertext'  => __('Autotag Posts only when terms found in the content are the same word.', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Whole words', 'simple-tags'),
+                                                        'aftertext'  => __('Only add terms when the word is an exact match. Do not make matches for partial words.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
@@ -610,8 +610,8 @@ class SimpleTags_Autoterms
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_hash',
                                                         'class'      => '',
-                                                        'labeltext'  => esc_html__('Support Hashtag format ?', 'simple-tags'),
-                                                        'aftertext'  => __('When the whole word option is enabled, hashtag will not be autotaged because of # prefix. Selecting this option fixes the issue!', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Hashtags', 'simple-tags'),
+                                                        'aftertext'  => __('Support hashtags symbols # in Auto Terms', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
