@@ -497,6 +497,13 @@ ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
     text-align: center;
 }
 
+.remove-specific-term {
+    color: red;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 20px;
+}
+
 @media only screen and (max-width: 1270px) {
 
     .tagcloudui,

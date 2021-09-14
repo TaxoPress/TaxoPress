@@ -408,8 +408,8 @@
 
           new_row +='<div class="st-autoterms-single-specific-term">';
           new_row +='<input type="text" class="specific_terms_input" name="specific_terms[]" value="" maxlength="32" placeholder="'+ $(this).attr('data-placeholder') +'">';
-          new_row +=' &nbsp; &nbsp; ';
-          new_row +='<input type="submit" class="button remove-specific-term" value="'+ $(this).attr('data-text') +'">';
+          new_row +=' &nbsp; ';
+          new_row +='<span class="remove-specific-term" title="'+ $(this).attr('data-text') +'">X</span>';
           new_row +='</div>';
 
           $(this).closest('.st-autoterms-single-specific-term').before(new_row);
