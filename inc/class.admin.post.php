@@ -53,13 +53,13 @@ class SimpleTags_Admin_Post_Settings {
 		// Auto terms for this CPT ?
 			$meta_value = get_post_meta( $post->ID, '_exclude_autotags', true );
 			echo '<p>' . "\n";
-			echo '<label><input type="checkbox" name="exclude_autotags" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable Auto Terms ?', 'simple-tags' ) . '</label><br />' . "\n";
+			echo '<label><input type="checkbox" name="exclude_autotags" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable Auto Terms', 'simple-tags' ) . '</label><br />' . "\n";
 			echo '</p>' . "\n";
 			echo '<input type="hidden" name="_meta_autotags" value="true" />';
 
 			$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
 			echo '<p>' . "\n";
-			echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable Auto Links ?', 'simple-tags' ) . '</label><br />' . "\n";
+			echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable Auto Links', 'simple-tags' ) . '</label><br />' . "\n";
 			echo '</p>' . "\n";
 			echo '<input type="hidden" name="_meta_autolink" value="true" />';
 	}
