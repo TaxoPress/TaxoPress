@@ -170,3 +170,17 @@ function taxopress_add_class_to_format($xformat, $class) {
 
     return $html;
 }
+
+function taxopress_change_to_strings($join){
+    if(is_array($join)){
+        $join = join(", ", $join);
+    }
+    return $join;
+}
+
+function taxopress_change_to_array($array){
+    if(!is_array($array)){
+        $array = preg_split("/\s*,\s*/",$array);
+    }
+    return $array;
+}

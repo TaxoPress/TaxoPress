@@ -217,7 +217,7 @@ function taxopress_update_autoterm($data = [])
 
 
     //update other post post
-    $data['taxopress_autoterm']['specific_terms']       = isset($data['specific_terms']) ? $data['specific_terms'] : [];
+    $data['taxopress_autoterm']['specific_terms']       = isset($data['specific_terms']) ? $data['specific_terms'] : '';
     $data['taxopress_autoterm']['post_types']          = isset($data['post_types']) ? $data['post_types'] : [];
     
     //update our custom checkbox value if not checked

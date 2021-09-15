@@ -383,9 +383,11 @@
     // -------------------------------------------------------------
     $(document).on('click', '.autoterm_useall', function (e) {
       $('.autoterm_useonly').prop("checked", false);
+      $('.autoterm_useonly_options').addClass('st-hide-content');
     });
     $(document).on('click', '.autoterm_useonly', function (e) {
       $('.autoterm_useall').prop("checked", false);
+      $('.autoterm_useonly_options').removeClass('st-hide-content');
     });
 
 

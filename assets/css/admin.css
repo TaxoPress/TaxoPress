@@ -87,7 +87,7 @@ a#close_clicktags{display:none;}
 }
 
 .st-hide-content {
-  display: none;
+  display: none !important;
 }
 
 #suggestedtags .postbox-header .hndle {
