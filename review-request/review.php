@@ -29,7 +29,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!class_exists('PPB_Ask_For_Review')) {
+if (!class_exists('Taxopress_Modules_Reviews')) {
     /**
      * Class Taxopress_Modules_Reviews
      *
