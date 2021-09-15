@@ -315,7 +315,13 @@ class Autoterms_List extends WP_List_Table
     {
         $taxonomy = get_taxonomy($item['taxonomy']);
 
-        return $taxonomy->labels->name;
+        if($taxonomy){
+            $return = $taxonomy->labels->name;
+        }else{
+            $return = '&mdash;';
+        }
+
+        return $return;
     }
 
     /**
