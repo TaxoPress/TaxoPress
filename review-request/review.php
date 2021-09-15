@@ -468,7 +468,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                        data-reason="am_now">
                         <strong><?php _e('Click here to add your rating for TaxoPress', 'simple-tags'); ?></strong>
                     </a> <a href="#" class="button taxopress-dismiss" data-reason="maybe_later">
-                        <?php _e('Nope, maybe later', 'simple-tags'); ?>
+                        <?php _e('Maybe later', 'simple-tags'); ?>
                     </a> <a href="#" class="button taxopress-dismiss" data-reason="already_did">
                         <?php _e('I already did', 'simple-tags'); ?>
                     </a>
