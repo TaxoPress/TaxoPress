@@ -450,6 +450,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             .taxopress-notice .button-primary:hover,
             .taxopress-notice .button-primary:active,
             .taxopress-notice .button-primary:focus {
+                border-color: #1F48AC !important;
                 background: #1F48AC !important;
             }
             </style>
