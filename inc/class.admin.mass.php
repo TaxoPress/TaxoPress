@@ -70,7 +70,7 @@ class SimpleTags_Admin_Mass {
 					$tags = explode( ',', $tag_list );
 
 					// Remove empty and trim tag
-					$tags = array_filter( $tags, '_delete_empty_element' );
+					$tags = array_filter( $tags );
 
 					// Add new tag (no append ! replace !)
 					wp_set_object_terms( $object_id, $tags, SimpleTags_Admin::$taxonomy );

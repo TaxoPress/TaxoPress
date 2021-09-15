@@ -550,8 +550,8 @@ class SimpleTags_Admin_Manage {
 		$new_terms = explode( ',', $new );
 
 		// Remove empty element and trim
-		$old_terms = array_filter( $old_terms, '_delete_empty_element' );
-		$new_terms = array_filter( $new_terms, '_delete_empty_element' );
+		$old_terms = array_filter( $old_terms );
+		$new_terms = array_filter( $new_terms );
 
 		// If old/new tag are empty => exit !
 		if ( empty( $old_terms ) || empty( $new_terms ) ) {
@@ -643,7 +643,7 @@ class SimpleTags_Admin_Manage {
 		$new_terms = explode( ',', $new );
 
 		// Remove empty element and trim
-		$new_terms = array_filter( $new_terms, '_delete_empty_element' );
+		$new_terms = array_filter( $new_terms );
 
 		// If new tag are empty => exit !
 		if ( empty( $new_terms ) ) {
@@ -718,8 +718,8 @@ class SimpleTags_Admin_Manage {
 		$new_terms = explode( ',', $new );
 
 		// Remove empty element and trim
-		$old_terms = array_filter( $old_terms, '_delete_empty_element' );
-		$new_terms = array_filter( $new_terms, '_delete_empty_element' );
+		$old_terms = array_filter( $old_terms );
+		$new_terms = array_filter( $new_terms );
 
 		// If old/new tag are empty => exit !
 		if ( empty( $old_terms ) || empty( $new_terms ) ) {
@@ -799,7 +799,7 @@ class SimpleTags_Admin_Manage {
 
 		// In array + filter
 		$delete_terms = explode( ',', $delete );
-		$delete_terms = array_filter( $delete_terms, '_delete_empty_element' );
+		$delete_terms = array_filter( $delete_terms );
 
 		// Delete tags
 		$counter = 0;
@@ -843,8 +843,8 @@ class SimpleTags_Admin_Manage {
 		$match_terms = explode( ',', $match );
 		$new_terms   = explode( ',', $new );
 
-		$match_terms = array_filter( $match_terms, '_delete_empty_element' );
-		$new_terms   = array_filter( $new_terms, '_delete_empty_element' );
+		$match_terms = array_filter( $match_terms );
+		$new_terms   = array_filter( $new_terms );
 
 		$counter = 0;
 		if ( ! empty( $match_terms ) ) { // Match and add
@@ -954,8 +954,8 @@ class SimpleTags_Admin_Manage {
 		$match_names = explode(',', $names);
 		$new_slugs = explode(',', $slugs);
 
-		$match_names = array_filter($match_names, '_delete_empty_element');
-		$new_slugs = array_filter($new_slugs, '_delete_empty_element');
+		$match_names = array_filter($match_names);
+		$new_slugs = array_filter($new_slugs);
 
 		if ( count($match_names) != count($new_slugs) ) {
 			add_settings_error( __CLASS__, __CLASS__, __('Terms number and slugs number isn\'t the same!', 'simple-tags'), 'error' );
