@@ -38,7 +38,7 @@ class SimpleTags_Admin_Autocomplete {
 		// Declare locations
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
-		$st_pages      = array( 'st_auto', 'st_mass_terms', 'st_manage' );
+		$st_pages      = array( 'st_autoterms', 'st_mass_terms', 'st_manage' );
 
 		// Helper for posts/pages and for Auto Tags, Mass Edit Tags and Manage tags !
 		if ( ( in_array( $pagenow, $wp_post_pages, true ) || ( in_array( $pagenow, $wp_page_pages, true ) && is_page_have_tags() ) ) || ( isset( $_GET['page'] ) && in_array( $_GET['page'], $st_pages, true ) ) ) {

@@ -109,7 +109,9 @@ class SimpleTags_Client_Autoterms {
 
 		// Auto term with specific auto terms list
 		if ( isset( $options['specific_terms'] ) && isset( $options['autoterm_useonly'] ) && (int)$options['autoterm_useonly'] === 1 ) {
-			$terms = (array) maybe_unserialize( $options['specific_terms'] );
+			$terms = maybe_unserialize( $options['specific_terms'] );
+            $terms = taxopress_change_to_array($terms);
+            $autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
 			foreach ( $terms as $term ) {
 				if ( ! is_string( $term ) ) {
 					continue;
@@ -119,6 +121,11 @@ class SimpleTags_Client_Autoterms {
 				if ( empty( $term ) ) {
 					continue;
 				}
+
+                //exclude if name found in exclude terms
+                if(in_array($term, $autoterm_exclude)){
+					continue;
+                }
 
 				// Whole word ?
 				if ( isset( $options['autoterm_word'] ) && (int)$options['autoterm_word'] === 1 ) {
@@ -155,6 +162,7 @@ class SimpleTags_Client_Autoterms {
 
 			$terms = array_unique( $terms );
 
+            $autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
 			foreach ( $terms as $term ) {
 				$term = stripslashes( $term );
 
@@ -166,6 +174,11 @@ class SimpleTags_Client_Autoterms {
 				if ( empty( $term ) ) {
 					continue;
 				}
+
+                //exclude if name found in exclude terms
+                if(in_array($term, $autoterm_exclude)){
+					continue;
+                }
 
 				// Whole word ?
 				if ( isset( $options['autoterm_word'] ) && (int) $options['autoterm_word'] == 1 ) {
