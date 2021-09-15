@@ -294,7 +294,7 @@ class SimpleTags_Autoterms
                                                 </li>
 
                                                 <li class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
-                                                    <a href="#autoterm_oldcontent"><span><?php esc_html_e('Old Content',
+                                                    <a href="#autoterm_oldcontent"><span><?php esc_html_e('Existing Content',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
@@ -630,11 +630,11 @@ class SimpleTags_Autoterms
 
                                                        <tr valign="top"><th scope="row"><label><?php echo __('Previous content', 'simple-tags'); ?></label></th>
                                                        <td>
-                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add auto terms to all existing content', 'simple-tags')); ?>">
+                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to all existing content', 'simple-tags')); ?>">
                                                            <span class="spinner taxopress-spinner"></span>
 
                                                            <p class="taxopress-field-description description">
-                                                               <?php echo __('TaxoPress can add auto terms to existing contents of your site.', 'simple-tags'); ?>
+                                                               <?php echo __('TaxoPress can add Auto Terms to existing content.', 'simple-tags'); ?>
                                                                
                                                                <br /> <strong style="color:red;"><?php echo __('Please save all changes to your Auto Terms before using this feature.', 'simple-tags'); ?></strong>
                                                             </p>
@@ -708,13 +708,13 @@ class SimpleTags_Autoterms
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                     <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-autoterm-submit"
                                            name="autoterm_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Save Auto terms',
+                                           value="<?php echo esc_attr(esc_attr__('Save Auto Terms',
                                                'simple-tags')); ?>"/>
                                     <?php
                                 } else { ?>
                                     <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-autoterm-submit"
                                            name="autoterm_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Add Auto terms',
+                                           value="<?php echo esc_attr(esc_attr__('Add Auto Terms',
                                                'simple-tags')); ?>"/>
                                 <?php } ?>
 
