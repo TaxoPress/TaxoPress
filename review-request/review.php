@@ -271,23 +271,21 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             static $triggers;
 
             if (!isset($triggers)) {
-
-                $open_message = __('Hey, I noticed you recently hit %d popup views on your site – that’s awesome!. I would very much appreciate if you could quickly give it a 5-star rating on WordPress, just to help us spread the word.',
-                    'simple-tags');
+                
                 $time_message = __("Hey, you've been using TaxoPress for %s on your site - I hope that its been helpful. I would very much appreciate if you could quickly give it a 5-star rating on WordPress, just to help us spread the word.",
                     'simple-tags');
 
                 $triggers = apply_filters('taxopress_reviews_triggers', [
                     'time_installed' => [
                         'triggers' => [
-                            'first_timer'  => [
+                            'testing_trigger'  => [//TODO - Remove this trigger before deployment. It's for testing purpose
                                 'message'    => sprintf($time_message, __('1 week', 'simple-tags')),
                                 'conditions' => [
                                     true,
                                 ],
                                 'link'       => 'https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response',
                                 'pri'        => 10,
-                            ],
+                            ],//TODO - Remove this trigger before deployment. It's for testing purpose
                             'one_week'     => [
                                 'message'    => sprintf($time_message, __('1 week', 'simple-tags')),
                                 'conditions' => [
@@ -315,38 +313,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
 
                         ],
                         'pri'      => 10,
-                    ],
-                    'open_count'     => [
-                        'triggers' => [
-                            '50_opens'  => [
-                                'message'    => sprintf($open_message, 50),
-                                'conditions' => [
-                                    get_option('taxopress_total_open_count', 0) > 50,
-                                ],
-                                'link'       => 'https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response',
-                                'pri'        => 10,
-                            ],
-                            '100_opens' => [
-                                'message'    => sprintf($open_message, 100),
-                                'conditions' => [
-                                    get_option('taxopress_total_open_count', 0) > 100,
-
-                                ],
-                                'link'       => 'https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response',
-                                'pri'        => 20,
-                            ],
-                            '500_opens' => [
-                                'message'    => sprintf($open_message, 500),
-                                'conditions' => [
-                                    get_option('taxopress_total_open_count', 0) > 500,
-                                ],
-                                'link'       => 'https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response',
-                                'pri'        => 30,
-                            ],
-
-                        ],
-                        'pri'      => 50,
-                    ],
+                    ]
                 ]);
 
                 // Sort Groups
