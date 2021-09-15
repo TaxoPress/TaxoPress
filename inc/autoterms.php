@@ -505,35 +505,41 @@ class SimpleTags_Autoterms
                                                         'name'       => 'autoterm_useonly',
                                                         'class'      => 'autoterm_useonly',
                                                         'labeltext'  => ' ',
-                                                        'aftertext'  => __('Use only some terms in the selected taxonomy. Use the boxes below to choose the terms to use.', 'simple-tags'),
+                                                        'aftertext'  => __('Use only some terms in the selected taxonomy.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
-
-                                                    $specific_terms = ( isset($current) && isset($current['specific_terms']) && is_array($current['specific_terms']) ) ? (array)$current['specific_terms'] : [];
-
-                                                    echo '<tr valign="top"><th scope="row"><label for=""></label></th><td>';
+                                                    $specific_terms = ( isset($current) && isset($current['specific_terms'])) ? taxopress_change_to_strings($current['specific_terms']) : '';
+                                                    echo '<tr class="autoterm_useonly_options '. ($selected === 'false' ? 'st-hide-content' : '') .'" valign="top"><th scope="row"><label for=""></label></th><td>';
                                                     echo '<div class="auto-terms-to-use-error" style="display:none;"> '.__('Please choose an option for "Terms to use"', 'simple-tags').' </div>';
 
-                                                    if(count($specific_terms) > 0){
-                                                        foreach($specific_terms as $specific_term){
                                                             echo '<div class="st-autoterms-single-specific-term">
-                                                            <input type="text" class="specific_terms_input" name="specific_terms[]" maxlength="32" placeholder="'. esc_attr(__('Term name', 'simple-tags')) .'" value="'. esc_attr($specific_term) .'"> &nbsp; <span class="remove-specific-term" title="'. esc_attr(__('Remove', 'simple-tags')) .'">X</span>
-                                                        </div>';
-                                                        }
-                                                    }else{
-                                                        echo '<div class="st-autoterms-single-specific-term">
-                                                            <input type="text" class="specific_terms_input" name="specific_terms[]" maxlength="32" placeholder="'. esc_attr(__('Term name', 'simple-tags')) .'"> &nbsp; <span class="remove-specific-term" title="'. esc_attr(__('Remove', 'simple-tags')) .'">X</span>
-                                                        </div>';
-                                                    }
-                                                    
-                                                    echo '<div class="st-autoterms-single-specific-term new">
-                                                            <input style="visibility: hidden;" type="text" class=""> &nbsp; &nbsp; <input type="submit" class="button add-specific-term" value="'. esc_attr(__('Add new', 'simple-tags')) .'"
-                                                             data-placeholder="' .esc_attr(__('Term name', 'simple-tags')) .'"
-                                                             data-text="'. esc_attr(__('Remove', 'simple-tags')) .'">
+                                                            <input autocomplete="off" type="text" class="st-full-width specific_terms_input" name="specific_terms" maxlength="32" placeholder="'. esc_attr(__('Choose the terms to use.', 'simple-tags')) .'" value="'. esc_attr($specific_terms) .'">
                                                         </div>';
                                                     
                                                     echo '</td></tr>';
+                                                    
+                                                    echo $ui->get_tr_start();
+
+
+                                                    echo $ui->get_th_start();
+                                                    echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags')) . $ui->get_required_span();
+                                                    echo $ui->get_th_end() . $ui->get_td_start();
+                                                    
+                                                    echo $ui->get_text_input([
+                                                        'labeltext'   => esc_html__('Stop words', 'simple-tags'),
+                                                        'namearray'   => 'taxopress_autoterm',
+                                                        'name'        => 'autoterm_exclude',
+                                                        'textvalue'   => isset($current['autoterm_exclude']) ? esc_attr($current['autoterm_exclude']) : '',
+                                                        'maxlength'   => '',
+                                                        'helptext'    => __('Choose terms to be excluded from auto terms', 'simple-tags'),
+                                                        'class'       => 'st-full-width auto-terms-stopwords',
+                                                        'aftertext'   => '',
+                                                        'required'    => false,
+                                                        'placeholder' => false,
+                                                        'wrap'        => false,
+                                                    ]);
+
 
                                                     ?>
                                                 </table>

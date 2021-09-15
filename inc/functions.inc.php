@@ -110,6 +110,17 @@ function taxopress_admin_pages(){
    return apply_filters('taxopress_admin_pages', $taxopress_pages);
 }
 
+function is_taxopress_admin_page(){
+    
+    $taxopress_pages = taxopress_admin_pages();
+
+    $is_taxopress_page = false;
+	if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages )) {
+        $is_taxopress_page = true;
+    }
+
+    return apply_filters('is_taxopress_admin_page', $is_taxopress_page);
+}
 
 function taxopress_starts_with( $haystack, $needle ) {
      $length = strlen( $needle );
