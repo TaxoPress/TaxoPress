@@ -271,8 +271,8 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             static $triggers;
 
             if (!isset($triggers)) {
-                
-                $time_message = __("Hey, you've been using TaxoPress for %s on your site - I hope that its been helpful. I would very much appreciate if you could quickly give it a 5-star rating on WordPress, just to help us spread the word.",
+
+                $time_message = __("Hey, you've been using TaxoPress for %s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep TaxoPress growing.",
                     'simple-tags');
 
                 $triggers = apply_filters('taxopress_reviews_triggers', [
@@ -404,10 +404,10 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                     }
 
                     $(document)
-                        .on('click', '.prefix-notice .prefix-dismiss', function(event) {
+                        .on('click', '.taxopress-notice .taxopress-dismiss', function(event) {
                             var $this = $(this),
                                 reason = $this.data('reason'),
-                                notice = $this.parents('.prefix-notice')
+                                notice = $this.parents('.taxopress-notice')
 
                             notice.fadeTo(100, 0, function() {
                                 notice.slideUp(100, function() {
@@ -419,7 +419,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                         })
                         .ready(function() {
                             setTimeout(function() {
-                                $('.prefix-notice button.notice-dismiss').click(function(event) {
+                                $('.taxopress-notice button.notice-dismiss').click(function(event) {
                                     dismiss('maybe_later')
                                 })
                             }, 1000)
@@ -427,46 +427,52 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                 }(jQuery))
             </script>
             <style>
-                .prefix-notice p {
-                    margin-bottom: 0;
-                }
-
-                .prefix-notice img.logo {
-                    float: right;
-                    margin-left: 10px;
-                    width: 75px;
-                    padding: 0.25em;
-                    border: 1px solid #ccc;
-                }
+            .taxopress-notice {
+                min-height: 100px;
+            }
+            .taxopress-notice img.logo {
+                float: right;
+                width: 75px;
+                padding: 10px 0 10px 20px;
+            }
+            .taxopress-notice p,
+            .taxopress-notice .button {
+                font-size: 15px;
+            }
+            .taxopress-notice .button:not(.button-primary),
+            .taxopress-notice .button:not(.button-primary):hover,
+            .taxopress-notice .button:not(.button-primary):active,
+            .taxopress-notice .button:not(.button-primary):focus {
+                border-color: #1F48AC !important;
+                color: #1F48AC !important;
+            }
+            .taxopress-notice .button-primary,
+            .taxopress-notice .button-primary:hover,
+            .taxopress-notice .button-primary:active,
+            .taxopress-notice .button-primary:focus {
+                border-color: #1F48AC !important;
+                background: #1F48AC !important;
+            }
             </style>
 
 
-            <div class="notice notice-success is-dismissible prefix-notice">
+            <div class="notice notice-success is-dismissible taxopress-notice">
 
+                <img src="<?php echo STAGS_URL ?>/assets/images/logo-notice.png" class="logo" alt=""/>
                 <p>
-                    <strong>
-                        <?php echo $tigger['message']; ?>
-                    </strong>
+                    <?php echo $tigger['message']; ?>
                 </p>
-                <ul>
-                    <li>
-                        <a class="prefix-dismiss" target="_blank"
-                           href="https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response"
-                           data-reason="am_now">
-                            <strong><?php _e('Ok, you deserve it', 'simple-tags'); ?></strong>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="prefix-dismiss" data-reason="maybe_later">
-                            <?php _e('Nope, maybe later', 'simple-tags'); ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="prefix-dismiss" data-reason="already_did">
-                            <?php _e('I already did', 'simple-tags'); ?>
-                        </a>
-                    </li>
-                </ul>
+                <p>
+                    <a class="button button-primary taxopress-dismiss" target="_blank"
+                       href="https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response"
+                       data-reason="am_now">
+                        <strong><?php _e('Click here to add your rating for TaxoPress', 'simple-tags'); ?></strong>
+                    </a> <a href="#" class="button taxopress-dismiss" data-reason="maybe_later">
+                        <?php _e('Maybe later', 'simple-tags'); ?>
+                    </a> <a href="#" class="button taxopress-dismiss" data-reason="already_did">
+                        <?php _e('I already did', 'simple-tags'); ?>
+                    </a>
+                </p>
 
             </div>
 
