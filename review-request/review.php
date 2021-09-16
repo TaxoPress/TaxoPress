@@ -65,6 +65,8 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                     add_action('admin_notices', [__CLASS__, 'admin_notices']);
                     add_action('network_admin_notices', [__CLASS__, 'admin_notices']);
                     add_action('user_admin_notices', [__CLASS__, 'admin_notices']);
+                    //moved assets to footer due to a plugin stripping out assets in admin notice (https://wordpress.org/plugins/disable-admin-notices/)
+                    add_action('admin_footer', [__CLASS__, 'admin_footer']);
                 }
             }
         }
@@ -354,6 +356,42 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             if (self::hide_notices()) {
                 return;
             }
+            $tigger = self::get_current_trigger();
+
+            ?>
+
+            <div class="notice notice-success is-dismissible taxopress-notice">
+
+                <img src="<?php echo STAGS_URL ?>/assets/images/logo-notice.png" class="logo" alt=""/>
+                <p>
+                    <?php echo $tigger['message']; ?>
+                </p>
+                <p>
+                    <a class="button button-primary taxopress-dismiss" target="_blank"
+                       href="https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response"
+                       data-reason="am_now">
+                        <strong><?php _e('Click here to add your rating for TaxoPress', 'simple-tags'); ?></strong>
+                    </a> <a href="#" class="button taxopress-dismiss" data-reason="maybe_later">
+                        <?php _e('Maybe later', 'simple-tags'); ?>
+                    </a> <a href="#" class="button taxopress-dismiss" data-reason="already_did">
+                        <?php _e('I already did', 'simple-tags'); ?>
+                    </a>
+                </p>
+
+            </div>
+
+            <?php
+        }
+
+        /**
+         * Render admin notice assets if available.
+         */
+        public static function admin_footer()
+        {
+
+            if (self::hide_notices()) {
+                return;
+            }
 
             $group  = self::get_trigger_group();
             $code   = self::get_trigger_code();
@@ -454,28 +492,6 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                 background: #1F48AC !important;
             }
             </style>
-
-
-            <div class="notice notice-success is-dismissible taxopress-notice">
-
-                <img src="<?php echo STAGS_URL ?>/assets/images/logo-notice.png" class="logo" alt=""/>
-                <p>
-                    <?php echo $tigger['message']; ?>
-                </p>
-                <p>
-                    <a class="button button-primary taxopress-dismiss" target="_blank"
-                       href="https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response"
-                       data-reason="am_now">
-                        <strong><?php _e('Click here to add your rating for TaxoPress', 'simple-tags'); ?></strong>
-                    </a> <a href="#" class="button taxopress-dismiss" data-reason="maybe_later">
-                        <?php _e('Maybe later', 'simple-tags'); ?>
-                    </a> <a href="#" class="button taxopress-dismiss" data-reason="already_did">
-                        <?php _e('I already did', 'simple-tags'); ?>
-                    </a>
-                </p>
-
-            </div>
-
             <?php
         }
 
