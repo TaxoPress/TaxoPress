@@ -32,15 +32,17 @@ class SimpleTags_Client {
 		require( STAGS_DIR . '/inc/class.client.post_tags.php' );
 		new SimpleTags_Client_PostTags();
 
-         $saved_option = get_option( STAGS_OPTIONS_NAME );
-        if ((array_key_exists('use_tag_pages', $saved_option))) {
-			if((int)$saved_option['use_tag_pages'] === 1){
-                if ( !array_key_exists('post_tag', taxopress_get_extername_taxonomy_data()) ) {
-			        add_action( 'init', array( __CLASS__, 'init' ), 11 );
-			        add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
-                }
-		    }
-        }
+		if (defined('STAGS_OPTIONS_NAME')) {
+         	$saved_option = (array)get_option( STAGS_OPTIONS_NAME );
+        	if ((array_key_exists('use_tag_pages', $saved_option))) {
+				if((int)$saved_option['use_tag_pages'] === 1){
+                	if ( !array_key_exists('post_tag', taxopress_get_extername_taxonomy_data()) ) {
+			        	add_action( 'init', array( __CLASS__, 'init' ), 11 );
+			        	add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
+                	}
+		    	}
+        	}
+		}
 
 		return true;
 	}
