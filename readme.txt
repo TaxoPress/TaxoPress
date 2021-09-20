@@ -1,4 +1,4 @@
-=== TaxoPress is the Tag, Category, and Taxonomy Manager ===
+=== TaxoPress is the WordPress Tag, Category, and Taxonomy Manager ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
@@ -18,7 +18,7 @@ In TaxoPress, you can manage taxonomies, and also terms. There are tools for you
 
 = Key Features in TaxoPress =
 
-1. **Manage taxomomies**: You can create new taxonomies and edit all the settings for each taxonomy.
+1. **Manage taxonomies**: You can create new taxonomies and edit all the settings for each taxonomy.
 2. **Related Posts**: Shows lists of posts with similar tags and categories
 3. **Tag Clouds**: Create dynamic tag clouds with many configuration options.
 4. **Manage terms**: Quickly add, rename, remove, delete and even merge terms.
@@ -26,9 +26,12 @@ In TaxoPress, you can manage taxonomies, and also terms. There are tools for you
 6. **Automatically suggest terms from posts**: TaxoPress can use the Dandelion API and OpenCalais API to analyze your WordPress content and suggest Tags that you can add to your post.
 7. **Automatically link words to terms**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add link to the archive page for that tag.
 
+> <strong>TaxoPress Pro</strong><br />
+> This plugin is the free version of the TaxoPress Pro plugin that comes with all the features you need to manage taxonomy terms on your WordPress site. <a href="https://taxopress.com/pro"  title="TaxoPress Pro">Click here to purchase the best premium WordPress taxonomies plugin now!</a>
+
 = Feature #1. Create and Manage Taxonomies =
 
-TaxoPress can all the taxonomies created by WordPress and your plugins and themes. You can change the settings for each taxonomy. For example, you can change the visual labels, and control whether the taxonomy is organized in parent-child relationships. You can also assign your taxonomies to different post types.
+TaxoPress can manage all the taxonomies created by WordPress and your plugins and themes. You can change the settings for each taxonomy. For example, you can change the visual labels, and control whether the taxonomy is organized in parent-child relationships. You can also assign your taxonomies to different post types.
 
 [Click here to read about managing taxonomies](https://taxopress.com/docs/introduction-taxonomies-screen/).
 
@@ -115,7 +118,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.3.0- [===unreleased===]
+v3.3.0- 2021-09-20
 * Fixed: Auto Links problem with " #824
 * Fixed: Posts are auto tagged even when the content does not match the exact term. #602
 * Fixed: CSS not working for "Terms for Current Post" div #823

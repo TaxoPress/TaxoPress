@@ -280,14 +280,6 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                 $triggers = apply_filters('taxopress_reviews_triggers', [
                     'time_installed' => [
                         'triggers' => [
-                            'testing_trigger'  => [//TODO - Remove this trigger before deployment. It's for testing purpose
-                                'message'    => sprintf($time_message, __('1 week', 'simple-tags')),
-                                'conditions' => [
-                                    true,
-                                ],
-                                'link'       => 'https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response',
-                                'pri'        => 10,
-                            ],//TODO - Remove this trigger before deployment. It's for testing purpose
                             'one_week'     => [
                                 'message'    => sprintf($time_message, __('1 week', 'simple-tags')),
                                 'conditions' => [
