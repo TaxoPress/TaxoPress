@@ -115,7 +115,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.3.0- [===unreleased===]
+v3.3.0- 2021-09-20
 * Fixed: Auto Links problem with " #824
 * Fixed: Posts are auto tagged even when the content does not match the exact term. #602
 * Fixed: CSS not working for "Terms for Current Post" div #823
