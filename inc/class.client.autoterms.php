@@ -22,34 +22,40 @@ class SimpleTags_Client_Autoterms {
 	 */
 	public static function save_post( $post_id = null, $object = null ) {
 
-		//return if general auto terms settings is disabled
-		if ( 0 === (int) SimpleTags_Plugin::get_option_value( 'active_autotags' ) ) {
-			return false;
-		}
-
 		// Get options
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
-
-		// Auto terms for this CPT ?
-		if ( ! isset( $options[ $object->post_type ] ) || empty( $options[ $object->post_type ] ) ) {
-			return false;
-		}
 
 		// user preference for this post ?
 		$meta_value = isset($_POST['exclude_autotags']) ? $_POST['exclude_autotags'] : false;
 		if ( $meta_value ) {
 			return false;
 		}
-		// Loop option for find if autoterms is actived on any taxo
-		$flag = false;
-		foreach ( $options[ $object->post_type ] as $taxo_name => $local_options ) {
-			if ( ! isset( $local_options['use_auto_terms'] ) || (int) $local_options['use_auto_terms'] != 1 ) {
-				continue;
-			}
 
-			self::auto_terms_post( $object, $taxo_name, $local_options );
+        if(!is_object($object)){
+            return;
+        }
+
+        if(!isset($object->post_type)){
+            return;
+        }
+
+		// Loop option for find if autoterms is actived on any taxonomy and post type
+        $current_post_type = $object->post_type;
+        $autoterms = taxopress_get_autoterm_data();
+        $flag = false;
+        foreach($autoterms as $autoterm_key => $autoterm_data){
+            $eligible_post_types = isset($autoterm_data['post_types']) && is_array($autoterm_data['post_types']) ? $autoterm_data['post_types'] : [];
+            $eligible_post_types = array_filter($eligible_post_types);
+
+            if(count($eligible_post_types) === 0){
+                break;
+            }
+            if(!in_array($current_post_type, $eligible_post_types)){
+                continue;
+            }
+            self::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data );
 			$flag = true;
-		}
+        }
 
 		if ( $flag == true ) { // Clean cache ?
 			clean_post_cache( $post_id );
@@ -77,14 +83,21 @@ class SimpleTags_Client_Autoterms {
 			return false;
 		}
 
-		if ( get_the_terms( $object->ID, $taxonomy ) != false && $options['at_empty'] == 1 ) {
+		if ( get_the_terms( $object->ID, $taxonomy ) != false && (int)$options['autoterm_target'] === 1 ) {
 			return false; // Skip post with terms, if term only empty post option is checked
 		}
 
 		$terms_to_add = array();
 
-		// Merge title + content + excerpt to compare with terms
-		$content = $object->post_content . ' ' . $object->post_title;
+        
+        if( isset($options['autoterm_from']) && $options['autoterm_from'] === 'post_title' ){
+            $content = $object->post_title;
+        }elseif( isset($options['autoterm_from']) && $options['autoterm_from'] === 'post_content' ){
+            $content = $object->post_content;
+        }else{
+		    $content = $object->post_content . ' ' . $object->post_title;
+        }
+
 		if ( isset( $object->post_excerpt ) ) {
 			$content .= ' ' . $object->post_excerpt;
 		}
@@ -95,8 +108,10 @@ class SimpleTags_Client_Autoterms {
 		}
 
 		// Auto term with specific auto terms list
-		if ( isset( $options['auto_list'] ) && isset( $options['at_all_no'] ) && $options['at_all_no'] == 1 ) {
-			$terms = (array) maybe_unserialize( $options['auto_list'] );
+		if ( isset( $options['specific_terms'] ) && isset( $options['autoterm_useonly'] ) && (int)$options['autoterm_useonly'] === 1 ) {
+			$terms = maybe_unserialize( $options['specific_terms'] );
+            $terms = taxopress_change_to_array($terms);
+            $autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
 			foreach ( $terms as $term ) {
 				if ( ! is_string( $term ) ) {
 					continue;
@@ -107,10 +122,15 @@ class SimpleTags_Client_Autoterms {
 					continue;
 				}
 
+                //exclude if name found in exclude terms
+                if(in_array($term, $autoterm_exclude)){
+					continue;
+                }
+
 				// Whole word ?
-				if ( isset( $options['only_full_word'] ) && (int) $options['only_full_word'] == 1 ) {
-					$preg_term = preg_quote( $term, "/" );
-					if ( preg_match( "/\b" . $preg_term . "\b/i", $content ) ) {
+				if ( isset( $options['autoterm_word'] ) && (int)$options['autoterm_word'] === 1 ) {
+					if(strpos($content, ' '.$term.' ') !== FALSE)
+					{
 						$terms_to_add[] = $term;
 					}
 
@@ -122,7 +142,7 @@ class SimpleTags_Client_Autoterms {
 					    }
                     }
 
-					if ( isset( $options['allow_hashtag_format'] ) && (int) $options['allow_hashtag_format'] == 1 && stristr( $content, '#' . $term ) ) {
+					if ( isset( $options['autoterm_hash'] ) && (int)$options['autoterm_hash'] === 1 && stristr( $content, '#' . $term ) ) {
 						$terms_to_add[] = $term;
 					}
 				} elseif ( stristr( $content, $term ) ) {
@@ -133,7 +153,7 @@ class SimpleTags_Client_Autoterms {
 		}
 
 		// Auto terms with all terms
-		if ( isset( $options['at_all'] ) && $options['at_all'] == 1 ) {
+		if ( isset( $options['autoterm_useall'] ) && (int)$options['autoterm_useall'] === 1 ) {
 			// Get all terms
 			$terms = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT name
 				FROM {$wpdb->terms} AS t
@@ -142,6 +162,7 @@ class SimpleTags_Client_Autoterms {
 
 			$terms = array_unique( $terms );
 
+            $autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
 			foreach ( $terms as $term ) {
 				$term = stripslashes( $term );
 
@@ -154,10 +175,15 @@ class SimpleTags_Client_Autoterms {
 					continue;
 				}
 
+                //exclude if name found in exclude terms
+                if(in_array($term, $autoterm_exclude)){
+					continue;
+                }
+
 				// Whole word ?
-				if ( isset( $options['only_full_word'] ) && (int) $options['only_full_word'] == 1 ) {
-					$preg_term = preg_quote( $term, "/" );
-					if ( preg_match( "/\b" . $preg_term . "\b/i", $content ) ) {
+				if ( isset( $options['autoterm_word'] ) && (int) $options['autoterm_word'] == 1 ) {
+					if(strpos($content, ' '.$term.' ') !== FALSE)
+					{
 						$terms_to_add[] = $term;
 					}
 
@@ -169,7 +195,7 @@ class SimpleTags_Client_Autoterms {
 					    }
                     }
 
-					if ( isset( $options['allow_hashtag_format'] ) && (int) $options['allow_hashtag_format'] == 1 && stristr( $content, '#' . $term ) ) {
+					if ( isset( $options['autoterm_hash'] ) && (int) $options['autoterm_hash'] == 1 && stristr( $content, '#' . $term ) ) {
 						$terms_to_add[] = $term;
 					}
 				} elseif ( stristr( $content, $term ) ) {
@@ -181,7 +207,7 @@ class SimpleTags_Client_Autoterms {
 		// Append terms if terms to add
 		if ( ! empty( $terms_to_add ) ) {
 			// Remove empty and duplicate elements
-			$terms_to_add = array_filter( $terms_to_add, '_delete_empty_element' );
+			$terms_to_add = array_filter( $terms_to_add );
 			$terms_to_add = array_unique( $terms_to_add );
 
 			if ( $counter == true ) {

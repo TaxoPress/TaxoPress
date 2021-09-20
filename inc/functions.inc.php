@@ -104,11 +104,23 @@ function taxopress_admin_pages(){
         'st_post_tags',
         'st_related_posts',
         'st_autolinks',
+        'st_autoterms',
     ];
 
    return apply_filters('taxopress_admin_pages', $taxopress_pages);
 }
 
+function is_taxopress_admin_page(){
+    
+    $taxopress_pages = taxopress_admin_pages();
+
+    $is_taxopress_page = false;
+	if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages )) {
+        $is_taxopress_page = true;
+    }
+
+    return apply_filters('is_taxopress_admin_page', $is_taxopress_page);
+}
 
 function taxopress_starts_with( $haystack, $needle ) {
      $length = strlen( $needle );
@@ -168,4 +180,18 @@ function taxopress_add_class_to_format($xformat, $class) {
     $html = preg_replace($patterns, $replacements, $html);
 
     return $html;
+}
+
+function taxopress_change_to_strings($join){
+    if(is_array($join)){
+        $join = join(", ", $join);
+    }
+    return $join;
+}
+
+function taxopress_change_to_array($array){
+    if(!is_array($array)){
+        $array = preg_split("/\s*,\s*/",$array);
+    }
+    return $array;
 }

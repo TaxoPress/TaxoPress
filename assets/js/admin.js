@@ -378,6 +378,132 @@
     });
 
 
+    // -------------------------------------------------------------
+    //   Restrict terms to use to only one checkbox
+    // -------------------------------------------------------------
+    $(document).on('click', '.autoterm_useall', function (e) {
+      $('.autoterm_useonly').prop("checked", false);
+      $('.autoterm_useonly_options').addClass('st-hide-content');
+    });
+    $(document).on('click', '.autoterm_useonly', function (e) {
+      $('.autoterm_useall').prop("checked", false);
+      $('.autoterm_useonly_options').removeClass('st-hide-content');
+    });
+
+
+    // -------------------------------------------------------------
+    //   Remove specific term row
+    // -------------------------------------------------------------
+    $(document).on('click', '.remove-specific-term', function (e) {
+      e.preventDefault();
+      $(this).closest('.st-autoterms-single-specific-term').remove();
+    });
+
+
+
+        // -------------------------------------------------------------
+        //   Add specific term row
+        // -------------------------------------------------------------
+        $(document).on('click', '.add-specific-term', function (e) {
+          e.preventDefault();
+          var new_row = '';
+
+          new_row +='<div class="st-autoterms-single-specific-term">';
+          new_row +='<input type="text" class="specific_terms_input" name="specific_terms[]" value="" maxlength="32" placeholder="'+ $(this).attr('data-placeholder') +'">';
+          new_row +=' &nbsp; ';
+          new_row +='<span class="remove-specific-term" title="'+ $(this).attr('data-text') +'">X</span>';
+          new_row +='</div>';
+
+          $(this).closest('.st-autoterms-single-specific-term').before(new_row);
+
+        });
+
+
+    // -------------------------------------------------------------
+    //   Auto terms submit error
+    // -------------------------------------------------------------
+    $('.taxopress-autoterm-submit').on('click', function (e) {
+
+
+      var fields = $(".taxopress-section").find("select, textarea, input").serializeArray(),
+        field_label,
+        field_object,
+        field_error_count = 0,
+        field_error_message = '<ul>';
+
+      //required field check
+      $.each(fields, function (i, field) {
+        field_object = $('input[name="' + field.name + '"]');
+        if (field_object.attr('required')) {
+          if (!field.value) {
+            field_label = field_object.closest('tr').find('label').html();
+            field_error_count = 1;
+            field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
+          } else if (isEmptyOrSpaces(field.value)) {
+            field_label = field_object.closest('tr').find('label').html();
+            field_error_count = 1;
+            field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
+          }
+        }
+      });
+      //terms to user check
+      if (!$('.autoterm_useall').prop("checked") && !$('.autoterm_useonly').prop("checked")) {
+        field_error_count = 1;
+        field_error_message += '<li>' + $('.auto-terms-to-use-error').html() + ' <span class="required">*</span></li>';
+      }
+
+      field_error_message += '</ul>';
+
+      if (field_error_count > 0) {
+        e.preventDefault();
+        // Display the alert
+        $('#taxopress-modal-alert-content').html(field_error_message);
+        $('[data-remodal-id=taxopress-modal-alert]').remodal().open();
+      }
+
+    });
+
+
+    // -------------------------------------------------------------
+    //   Auto term all content
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-autoterm-all-content', function (e) {
+        e.preventDefault();
+        $('.auto-term-content-result').html('');
+        $('.auto-term-content-result-title').html('');
+        var auto_term_id = Number($('input[name="edited_autoterm"]').val());
+        var button = $(this);
+        auto_terms_all_content(0, auto_term_id, button);
+      });
+
+      function auto_terms_all_content(start_from, auto_term, button){
+
+          $(".taxopress-spinner").addClass("is-active");
+          button.attr('disabled', true);
+          var data = {
+            'action': 'taxopress_autoterms_content_by_ajax',
+            'auto_term_id': auto_term,
+            'start_from': start_from,
+            'security': st_admin_localize.check_nonce,
+          };
+          $.post(st_admin_localize.ajaxurl, data, function (response) {
+              if(response.status === 'error') {
+                  $('.auto-term-content-result').append('<li><font color="red">'+response.message+'</font></li>');
+                $(".taxopress-spinner").removeClass("is-active");
+                button.attr('disabled', false);
+              }else if(response.status === 'progress') {
+                $('.auto-term-content-result-title').html(''+response.percentage+'');
+                $('.auto-term-content-result').prepend(response.content);
+                //send next batch
+                auto_terms_all_content(response.done, auto_term, button);
+              }else if(response.status === 'sucess') {
+                $('.auto-term-content-result').prepend('<li><font color="green">'+response.message+'</font></li>');
+                $(".taxopress-spinner").removeClass("is-active");
+                button.attr('disabled', false);
+              }
+            });
+        }
+
 
 
     function isEmptyOrSpaces(str) {
