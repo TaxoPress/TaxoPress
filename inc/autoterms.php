@@ -547,6 +547,18 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_options' ? '' : 'display:none;'; ?>">
                                                     <?php
 
+                                                    echo $ui->get_number_input([
+                                                        'namearray' => 'taxopress_autoterm',
+                                                        'name'      => 'terms_limit',
+                                                        'textvalue' => isset($current['terms_limit']) ? esc_attr($current['terms_limit']) : '',
+                                                        'labeltext' => esc_html__('Auto Terms Limit',
+                                                            'simple-tags'),
+                                                        'helptext'  => __('Limit the number of generated Auto Terms. \'0\' for unlimited terms', 'simple-tags'),
+                                                        'min'       => '0',
+                                                        'required'  => false,
+                                                    ]);
+
+
                                                     $select             = [
                                                         'options' => [
                                                             [
