@@ -46,7 +46,7 @@ return array(
         array(
             'click_tags_limit',
             __('Click tags limit', 'simple-tags'),
-            ['type' => 'number', 'attr' => 'min="0" max=""'],
+            ['type' => 'number', 'attr' => 'min="0" max="1000"'],
             'regular-text',
             __('Click tags limit on post screen', 'simple-tags')
         ),

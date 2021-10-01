@@ -118,6 +118,9 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
+v3.4.0- [===unreleased===]
+* Fixed: 'Show all local tags' does not display any tags, While saving the tags limit with very large number. #792
+
 v3.3.1- 2021-09-20
 * Fixed: Fatal error when deleting plugin #889
 
