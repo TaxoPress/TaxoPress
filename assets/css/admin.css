@@ -504,6 +504,27 @@ ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
     font-size: 20px;
 }
 
+.clicktags-search-wrapper {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.clicktags-search-wrapper .option {
+    display: inline;
+    margin-right: 15px;
+}
+
+.clicktags-search-wrapper .option select,
+.clicktags-search-wrapper .option input {
+    width: 100% !important;
+}
+
+.clicktags-search-wrapper .option label {
+    font-weight: bold !important;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 @media only screen and (max-width: 1270px) {
 
     .tagcloudui,
@@ -516,6 +537,7 @@ ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
 }
 
 @media only screen and (max-width: 1024px) {
+
     .st-add-suggestion-input {
         margin-left: 0px;
     }
@@ -531,5 +553,11 @@ ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
         width: 100%;
         float: none;
         margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .clicktags-search-wrapper {
+        display: block;
     }
 }
