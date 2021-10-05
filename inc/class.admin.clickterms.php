@@ -37,6 +37,60 @@ class SimpleTags_Admin_ClickTags {
 			STAGS_VERSION,
 			true
 		);
+
+        //add taxonomy
+        $click_tags_taxonomy = '
+        <div class="option">
+        <label>Taxonomy</label><br />
+        <select class="st-post-taxonomy-select click_tags_taxonomy" name="click_tags_taxonomy">';
+        foreach ( get_all_taxopress_taxonomies() as $_taxonomy ) {
+            if($_taxonomy->name === 'post_tag'){
+                $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
+            }else{
+                $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'">'.$_taxonomy->labels->name.'</option>';
+            }
+        }
+        $click_tags_taxonomy .= '</select>
+        </div>';
+
+        //add method
+        $click_tags_method = '
+        <div class="option">
+        <label>Method for choosing terms</label><br />
+        <select class="click_tags_method" name="click_tags_method">
+        <option value="name">Name</option>
+        <option value="count">Counter</option>
+        <option value="random" selected="selected">Random</option>
+        </select>
+        </div>';
+
+        //add order
+        $click_tags_order = '
+        <div class="option">
+        <label>Ordering for choosing terms</label><br />
+        <select class="click_tags_order" name="click_tags_order">
+        <option value="asc">Ascending</option>
+        <option value="desc" selected="selected">Descending</option>
+        </select>
+        </div>';
+
+        //add limit
+        $click_tags_limit= '
+        <div class="option">
+        <label for="click_tags_limit">Maximum terms</label><br />
+        <input min="1" max="1000000000" type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="45">
+        </div>';
+
+        //add searchbox
+        $click_tags_search= '
+        <div class="option">
+        <label for="click_tags_search">Search</label><br />
+        <input name="click_tags_search" id="click_tags_search" type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simple-tags').'" size="26" autocomplete="off">
+        </div>';
+
+        //create tags search data
+        $click_tags_options= '<div class="clicktags-search-wrapper">'. $click_tags_search.' '.$click_tags_taxonomy.' '.$click_tags_method.' '.$click_tags_order.' '.$click_tags_limit.'</div>';
+
 		wp_localize_script(
 			'st-helper-click-tags',
 			'stHelperClickTagsL10n',
@@ -46,6 +100,7 @@ class SimpleTags_Admin_ClickTags {
 				'state'       => 'show',
 				'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
 				'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simple-tags').'" size="26" autocomplete="off">',
+				'click_tags_options'  => $click_tags_options,
 			)
 		);
 
@@ -125,7 +180,9 @@ class SimpleTags_Admin_ClickTags {
 		status_header( 200 ); // Send good header HTTP
 		header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 
-		if ( 0 === (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) ) { // No tags to suggest
+        $taxonomy =  isset($_GET['click_tags_taxonomy']) ? $_GET['click_tags_taxonomy'] : 'post_tag';
+
+		if ( 0 === (int) wp_count_terms( $taxonomy, array( 'hide_empty' => false ) ) ) { // No tags to suggest
 			echo '<p>' . esc_html__( 'No terms in your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
 		}
@@ -134,8 +191,12 @@ class SimpleTags_Admin_ClickTags {
 		$search  = ( isset( $_GET['q'] ) ) ? trim( stripslashes( $_GET['q'] ) ) : '';
 		$post_id = ( isset( $_GET['post_id'] ) ) ? intval( $_GET['post_id'] ) : 0;
 
-		// Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
-		$order_click_tags = strtolower( SimpleTags_Plugin::get_option_value( 'order_click_tags' ) );
+        if(isset($_GET['click_tags_method']) && !empty($_GET['click_tags_method'])){
+            $order_click_tags = ($_GET['click_tags_method'] === 'random') ? $_GET['click_tags_method'] : $_GET['click_tags_method'].'-'.$_GET['click_tags_order'];
+        }else{
+		    // Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
+		    $order_click_tags = strtolower( SimpleTags_Plugin::get_option_value( 'order_click_tags' ) );
+        }
 		switch ( $order_click_tags ) {
 			case 'count-asc':
 				$order_by = 'tt.count';
@@ -159,14 +220,12 @@ class SimpleTags_Admin_ClickTags {
 				break;
 		}
         
-        if(empty(trim($search))){
-            $limit = 'LIMIT 0, '.SimpleTags_Plugin::get_option_value( 'click_tags_limit');
-        }else{
-            $limit = '';
-        }
+        $term_limit =  isset($_GET['click_tags_limit']) ? $_GET['click_tags_limit'] : SimpleTags_Plugin::get_option_value( 'click_tags_limit');
+
+        $limit = 'LIMIT 0, '.$term_limit;
 		
         // Get all terms, or filter with search
-		$terms = SimpleTags_Admin::getTermsForAjax( 'post_tag', $search, $order_by, $order,  $limit );
+		$terms = SimpleTags_Admin::getTermsForAjax( $taxonomy, $search, $order_by, $order,  $limit );
 		if ( empty( $terms ) ) {
 			echo '<p>' . esc_html__( 'No results from your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
@@ -175,12 +234,12 @@ class SimpleTags_Admin_ClickTags {
 		// Get terms for current post
 		$post_terms = array();
 		if ( $post_id > 0 ) {
-			$post_terms = wp_get_post_terms( $post_id, 'post_tag', array( 'fields' => 'ids' ) );
+			$post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'ids' ) );
 		}
 
 		foreach ( (array) $terms as $term ) {
 			$class_current = in_array( $term->term_id, $post_terms, true ) ? 'used_term' : '';
-			echo '<span class="local ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
+			echo '<span data-taxonomy="'.$taxonomy.'" class="local '.$taxonomy.' ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 

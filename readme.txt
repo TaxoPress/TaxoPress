@@ -121,6 +121,7 @@ TaxoPress can be installed in 3 easy steps:
 v3.4.0- [===unreleased===]
 * Fixed: 'Show all local tags' does not display any tags, While saving the tags limit with very large number. #792
 * Added: Auto Terms limit in settings #450
+* Added: Allow users to choose any taxonomy, ordering and number of items in "Click Tags" #497
 
 
 v3.3.1- 2021-09-20
