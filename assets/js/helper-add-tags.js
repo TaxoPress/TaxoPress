@@ -31,7 +31,7 @@ function addTag(tag, custom_taxonomy = false) {
     }
     //jQuery('.tagadd').WithSelect()
 
-  } else if (document.getElementById('newseries')) { // Temporary support for series using custom input
+  } else if ( custom_taxonomy === 'series' && document.getElementById('newseries')) { // Temporary support for series using custom input
 
     tag.replace(/\s+,+\s*/g, ',').replace(/,+/g, ',').replace(/,+\s+,+/g, ',').replace(/,+\s*$/g, '').replace(/^\s*,+/g, '');
     if (jQuery('#newseries').val() === '') {
