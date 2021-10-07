@@ -123,7 +123,7 @@ v3.4.0- [===unreleased===]
 * Added: Auto Terms limit in settings #450
 * Added: Allow users to choose any taxonomy, ordering and number of items in "Click Tags" #497
 * Fixed: Autolink tags excludes paragraphs with html space-code #894
-
+* Fixed: Another HTML tag issue with Auto Links #930
 
 v3.3.1- 2021-09-20
 * Fixed: Fatal error when deleting plugin #889

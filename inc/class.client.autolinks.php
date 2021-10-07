@@ -311,9 +311,11 @@ class SimpleTags_Client_Autolinks {
 	 */
 	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
 		$dom = new DOMDocument();
-		$content = str_replace('&lt;','&#60;',$content);
-		$content = str_replace('&gt;','&#62;',$content);
-		$content = str_replace('&nbsp;','&#160;',$content);//https://github.com/TaxoPress/TaxoPress/issues/930
+        
+        //replace html entity with their entity code
+        foreach(taxopress_html_character_and_entity() as $enity => $code){
+           $content = str_replace($enity, $code,$content);
+        }
 		$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
         $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
 		//$content = utf8_decode($content);
@@ -424,7 +426,9 @@ class SimpleTags_Client_Autolinks {
 		$content = str_replace('|--|','&#',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
 		$content = str_replace('&#60;','<',$content);
 		$content = str_replace('&#62;','>',$content);
-		$content = str_replace('&#160;','&nbsp;',$content);//https://github.com/TaxoPress/TaxoPress/issues/930
+        foreach(taxopress_html_character_and_entity(true) as $enity => $code){
+          $content = str_replace($enity, $code,$content);
+        }
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
 		
