@@ -195,3 +195,84 @@ function taxopress_change_to_array($array){
     }
     return $array;
 }
+
+function taxopress_html_character_and_entity($enity_code_as_key = false){
+    #Source https://dev.w3.org/html5/html-author/charref
+    $character_set = [
+        //'&amp;' => '&#38;',
+        '&lt;' => '&#60;',
+        '&gt;' => '&#62;',
+        '&nbsp;' => '&#160;',
+       '&excl;' => '&#33;',
+        '&quot;' => '&#34;',
+        '&num;'  => '&#35;',
+        '&dollar;'=> '&#36;',
+        '&percnt;' => '&#37;',
+        '&apos;' => '&#39;',
+        '&lpar;' => '&#40;',
+        '&rpar;' => '&#41;',
+        '&ast; ' => '&#42;',
+        '&plus;' => '&#43;',
+        '&comma;' => '&#44;',
+        '&period;' => '&#46;',
+        '&sol;' => '&#47;',
+        '&colon;' => '&#58',
+        '&semi;' => '&#59;',
+        '&equals;' => '&#61;',
+        '&quest;' => '&#63;',
+        '&commat;' => '&#64;',
+        '&lsqb;' => '&#91;',
+        '&bsol;' => '&#92;',
+        '&rsqb;' => '&#93;',
+        '&Hat;' => '&#94;',
+        '&lowbar;' => '&#95;',
+        '&grave;' => '&#96;',
+        '&lcub;' => '&#123;',
+        '&verbar;' => '&#124;',
+        '&rcub;' => '&#125;',
+        '&iexcl;' => '&#161;',
+        '&cent;' => '&#162;',
+        '&pound;' => '&#163;',
+        '&copy;' => '&#169;',
+        '&ordf;' => '&#170;',
+        '&laquo;' => '&#171;',
+        '&reg;' => '&#174;',
+        '&deg;' => '&#176;',
+        '&plusmn;' => '&#177;',
+        '&sup2;' => '&#178;',
+        '&sup3;' => '&#179;',
+        '&acute;' => '&#180;',
+        '&sup1;' => '&#185;',
+        '&ordm;' => '&#186;',
+        '&raquo;' => '&#187;',
+        '&frac14;' => '&#188;',
+        '&frac12;' => '&#189;',
+        '&frac34;' => '&#190;'
+    ];
+
+    if($enity_code_as_key){
+        $character_set = array_flip($character_set);
+    }
+
+    return $character_set;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
