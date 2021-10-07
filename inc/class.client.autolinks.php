@@ -377,6 +377,7 @@ class SimpleTags_Client_Autolinks {
 		$j        = 0;
         $replaced_count = 0;
 		foreach ( $xpath->query( '//text()'.$exclusion.'' ) as $node ) {
+
 			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
 			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
             $link_closing = '</a>';
@@ -391,13 +392,13 @@ class SimpleTags_Client_Autolinks {
             if($same_usage_max > 0 ){
 			if ( 'i' === $case ) {
                 if($autolink_case === 'none'){//retain case
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }elseif($autolink_case === 'uppercase'){//uppercase
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }elseif($autolink_case === 'termcase'){//termcase
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }else {//lowercase
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }
 			} else {
 				$replaced = str_replace( $search, $substitute, $node->wholeText );
