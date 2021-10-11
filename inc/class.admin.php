@@ -57,16 +57,18 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/autoterms.php';
         SimpleTags_Autoterms::get_instance();
 
-		// Load custom part of plugin depending option
-		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_suggested_tags' ) ) {
-			require STAGS_DIR . '/inc/class.admin.suggest.php';
-			new SimpleTags_Admin_Suggest();
-		}
+        //Suggest Terms
+        require STAGS_DIR . '/inc/suggestterms-table.php';
+        require STAGS_DIR . '/inc/suggestterms.php';
+        SimpleTags_SuggestTerms::get_instance();
 
-		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'use_click_tags' ) ) {
-			require STAGS_DIR . '/inc/class.admin.clickterms.php';
-			new SimpleTags_Admin_ClickTags();
-		}
+		//suggest terms option
+		require STAGS_DIR . '/inc/class.admin.suggest.php';
+		new SimpleTags_Admin_Suggest();
+
+        //click terms option
+		require STAGS_DIR . '/inc/class.admin.clickterms.php';
+		new SimpleTags_Admin_ClickTags();
 
         require STAGS_DIR . '/inc/class.admin.autocomplete.php';
         new SimpleTags_Admin_Autocomplete();

@@ -105,6 +105,7 @@ function taxopress_admin_pages(){
         'st_related_posts',
         'st_autolinks',
         'st_autoterms',
+        'st_suggestterms'
     ];
 
    return apply_filters('taxopress_admin_pages', $taxopress_pages);
@@ -256,23 +257,3 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
 
     return $character_set;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

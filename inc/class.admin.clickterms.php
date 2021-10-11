@@ -12,7 +12,7 @@ class SimpleTags_Admin_ClickTags {
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
 
 		// Box for post/page
-		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ), 1 );
+		add_action( 'admin_head', array( __CLASS__, 'admin_head' ), 1 );
 
 		// Javascript
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
@@ -26,6 +26,12 @@ class SimpleTags_Admin_ClickTags {
 	 */
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
+
+        $click_terms = taxopress_current_post_suggest_terms();
+
+        if(!is_array($click_terms)){
+            return;
+        }
 
 		wp_register_script(
 			'st-helper-click-tags',
@@ -44,7 +50,7 @@ class SimpleTags_Admin_ClickTags {
         <label>Taxonomy</label><br />
         <select class="st-post-taxonomy-select click_tags_taxonomy" name="click_tags_taxonomy">';
         foreach ( get_all_taxopress_taxonomies() as $_taxonomy ) {
-            if($_taxonomy->name === 'post_tag'){
+            if($_taxonomy->name === $click_terms['taxonomy']){
                 $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
             }else{
                 $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'">'.$_taxonomy->labels->name.'</option>';
@@ -54,31 +60,36 @@ class SimpleTags_Admin_ClickTags {
         </div>';
 
         //add method
+        $click_tags_methods = ['name' => 'Name', 'count' => 'Counter', 'random' => 'Random'];
         $click_tags_method = '
         <div class="option">
         <label>Method for choosing terms</label><br />
-        <select class="click_tags_method" name="click_tags_method">
-        <option value="name">Name</option>
-        <option value="count">Counter</option>
-        <option value="random" selected="selected">Random</option>
-        </select>
+        <select class="click_tags_method" name="click_tags_method">';
+        foreach($click_tags_methods as $option => $label){
+            $selected = ($option === $click_terms['orderby']) ? 'selected="selected"' : '';
+            $click_tags_method .= '<option value="'.$option.'" '.$selected.'>'.$label.'</option>';
+        }
+        $click_tags_method .= '</select>
         </div>';
 
         //add order
+        $click_tags_orders = ['asc' => 'Ascending', 'desc' => 'Descending'];
         $click_tags_order = '
         <div class="option">
         <label>Ordering for choosing terms</label><br />
-        <select class="click_tags_order" name="click_tags_order">
-        <option value="asc">Ascending</option>
-        <option value="desc" selected="selected">Descending</option>
-        </select>
+        <select class="click_tags_order" name="click_tags_order">';
+        foreach($click_tags_orders as $option => $label){
+            $selected = ($option === $click_terms['order']) ? 'selected="selected"' : '';
+            $click_tags_order .= '<option value="'.$option.'" '.$selected.'>'.$label.'</option>';
+        }
+        $click_tags_order .= '</select>
         </div>';
 
         //add limit
         $click_tags_limit= '
         <div class="option">
         <label for="click_tags_limit">Maximum terms</label><br />
-        <input min="1" max="1000000000" type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="45">
+        <input min="1" max="1000000000" type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="'.$click_terms['number'].'">
         </div>';
 
         //add searchbox
@@ -104,14 +115,8 @@ class SimpleTags_Admin_ClickTags {
 			)
 		);
 
-		// Register location
-		$wp_post_pages = array( 'post.php', 'post-new.php' );
-		$wp_page_pages = array( 'page.php', 'page-new.php' );
-
-		// Helper for posts/pages
-		if ( in_array( $pagenow, $wp_post_pages, true ) || ( in_array( $pagenow, $wp_page_pages, true ) && is_page_have_tags() ) ) {
-			wp_enqueue_script( 'st-helper-click-tags' );
-		}
+		// Helper for post type
+        wp_enqueue_script( 'st-helper-click-tags' );
 	}
 
 	/**
@@ -120,7 +125,13 @@ class SimpleTags_Admin_ClickTags {
 	 * @return void
 	 * @author WebFactory Ltd
 	 */
-	public static function admin_menu() {
+	public static function admin_head() {
+
+        $click_terms = taxopress_current_post_suggest_terms();
+
+        if(!is_array($click_terms)){
+            return;
+        }
 		add_meta_box(
 			'st-clicks-tags',
 			__( 'Show all local tags', 'simple-tags' ),
@@ -128,24 +139,10 @@ class SimpleTags_Admin_ClickTags {
 				__CLASS__,
 				'metabox',
 			),
-			'post',
+			get_post_type(),
 			'advanced',
 			'core'
 		);
-
-		if ( is_page_have_tags() ) {
-			add_meta_box(
-				'st-clicks-tags',
-				__( 'Show all local tags', 'simple-tags' ),
-				array(
-					__CLASS__,
-					'metabox',
-				),
-				'page',
-				'advanced',
-				'core'
-			);
-		}
 	}
 
 	/**
@@ -195,7 +192,7 @@ class SimpleTags_Admin_ClickTags {
             $order_click_tags = ($_GET['click_tags_method'] === 'random') ? $_GET['click_tags_method'] : $_GET['click_tags_method'].'-'.$_GET['click_tags_order'];
         }else{
 		    // Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
-		    $order_click_tags = strtolower( SimpleTags_Plugin::get_option_value( 'order_click_tags' ) );
+		    $order_click_tags = 'random';
         }
 		switch ( $order_click_tags ) {
 			case 'count-asc':
@@ -220,7 +217,7 @@ class SimpleTags_Admin_ClickTags {
 				break;
 		}
         
-        $term_limit =  isset($_GET['click_tags_limit']) ? $_GET['click_tags_limit'] : SimpleTags_Plugin::get_option_value( 'click_tags_limit');
+        $term_limit =  isset($_GET['click_tags_limit']) ? $_GET['click_tags_limit'] : 100;
 
         $limit = 'LIMIT 0, '.$term_limit;
 		

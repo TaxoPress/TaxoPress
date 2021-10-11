@@ -457,6 +457,12 @@ ul.taxopress-tab li.autoterm_options_tab a::before {
 ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
     content: "\f186";
 }
+ul.taxopress-tab li.suggestterm_local_tab a::before {
+    content: "\f323";
+}
+ul.taxopress-tab li.suggestterm_external_tab a::before {
+    content: "\f504";
+}
 
 .st-html-exclusion-table th {
     padding: unset;

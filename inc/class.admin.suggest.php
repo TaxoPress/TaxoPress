@@ -12,7 +12,7 @@ class SimpleTags_Admin_Suggest {
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
 
 		// Box for post/page
-		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ), 1 );
+		add_action( 'admin_head', array( __CLASS__, 'admin_head' ), 1 );
 
 		// Javascript
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
@@ -27,6 +27,12 @@ class SimpleTags_Admin_Suggest {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
+        $click_terms = taxopress_current_post_suggest_terms();
+
+        if(!is_array($click_terms)){
+            return;
+        }
+
 		wp_register_script( 'st-helper-suggested-tags', STAGS_URL . '/assets/js/helper-suggested-tags.js', array(
 			'jquery',
 			'st-helper-add-tags'
@@ -36,14 +42,8 @@ class SimpleTags_Admin_Suggest {
 			'content_bloc' => __( 'Click a provider name.', 'simple-tags' )
 		) );
 
-		// Register location
-		$wp_post_pages = array( 'post.php', 'post-new.php' );
-		$wp_page_pages = array( 'page.php', 'page-new.php' );
-
-		// Helper for posts/pages
-		if ( in_array( $pagenow, $wp_post_pages ) || ( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ) {
-			wp_enqueue_script( 'st-helper-suggested-tags' );
-		}
+        // Helper for post type
+        wp_enqueue_script( 'st-helper-suggested-tags' );
 	}
 
 	/**
@@ -51,17 +51,20 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function get_suggest_tags_title() {
+
+        $click_terms = taxopress_current_post_suggest_terms();
+
 		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simple-tags' ) . '" />';
 		$title .= __( 'Automatic tag suggestions:', 'simple-tags' ) . '';
 		
-		$title .= '&nbsp; <a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simple-tags' ) . '</a>';
+		$title .= '&nbsp; <a data-suggestterms="'.$click_terms['ID'].'" data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simple-tags' ) . '</a>';
 
-		if ( SimpleTags_Plugin::get_option_value( 'datatxt_access_token' ) !== '' ) {
-		$title .= '&nbsp; - &nbsp;<a data-ajaxaction="tags_from_datatxt" class="suggest-action-link" href="#suggestedtags">' . __( 'dataTXT by Dandelion', 'simple-tags' ) . '</a>';
+		if ( $click_terms['terms_datatxt_access_token'] !== '' ) {
+		$title .= '&nbsp; - &nbsp;<a data-suggestterms="'.$click_terms['ID'].'" data-ajaxaction="tags_from_datatxt" class="suggest-action-link" href="#suggestedtags">' . __( 'dataTXT by Dandelion', 'simple-tags' ) . '</a>';
 		}
 
-		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) !== '' ) {
-		$title .= '&nbsp; - &nbsp;<a data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simple-tags' ) . '</a>';
+		if ( $click_terms['terms_opencalais_key'] !== '' ) {
+		$title .= '&nbsp; - &nbsp;<a data-suggestterms="'.$click_terms['ID'].'" data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simple-tags' ) . '</a>';
 		}
 
 
@@ -74,17 +77,18 @@ class SimpleTags_Admin_Suggest {
 	 * @return void
 	 * @author WebFactory Ltd
 	 */
-	public static function admin_menu() {
+	public static function admin_head() {
+
+        $click_terms = taxopress_current_post_suggest_terms();
+
+        if(!is_array($click_terms)){
+            return;
+        }
+
 		add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simple-tags' ), array(
 			__CLASS__,
 			'metabox'
-		), 'post', 'advanced', 'core' );
-		if ( is_page_have_tags() ) {
-			add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simple-tags' ), array(
-				__CLASS__,
-				'metabox'
-			), 'page', 'advanced', 'core' );
-		}
+		), get_post_type(), 'advanced', 'core' );
 	}
 
 	/**
@@ -128,8 +132,21 @@ class SimpleTags_Admin_Suggest {
 		status_header( 200 );
 		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
 
+
+        $suggestterms = taxopress_get_suggestterm_data();
+        $selected_suggestterm = (int)$_GET['suggestterms'];
+        $click_terms = false;
+        if (array_key_exists($selected_suggestterm, $suggestterms)) {
+            $click_terms       = $suggestterms[$selected_suggestterm];
+        }
+
+        if(!$click_terms){
+			echo '<p>' . __( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
+			exit();
+        }
+
 		// API Key ?
-		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) == '' ) {
+		if ( $click_terms['terms_opencalais_key'] == '' ) {
 			echo '<p>' . __( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simple-tags' ) . '</p>';
 			exit();
 		}
@@ -145,7 +162,7 @@ class SimpleTags_Admin_Suggest {
 		$response = wp_remote_post( 'https://api-eit.refinitiv.com/permid/calais', array(
 			'timeout' => 30,
 			'headers' => array(
-				'X-AG-Access-Token' => SimpleTags_Plugin::get_option_value( 'opencalais_key' ),
+				'X-AG-Access-Token' => $click_terms['terms_opencalais_key'],
 				'Content-Type'      => 'text/html',
 				'outputFormat'      => 'application/json'
 			),
@@ -193,6 +210,18 @@ class SimpleTags_Admin_Suggest {
 
 		$request_ws_args = array();
 
+        $suggestterms = taxopress_get_suggestterm_data();
+        $selected_suggestterm = (int)$_GET['suggestterms'];
+        $click_terms = false;
+        if (array_key_exists($selected_suggestterm, $suggestterms)) {
+            $click_terms       = $suggestterms[$selected_suggestterm];
+        }
+
+        if(!$click_terms){
+			echo '<p>' . __( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
+			exit();
+        }
+
 		// Get data
 		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
 		$content = trim( $content );
@@ -205,11 +234,11 @@ class SimpleTags_Admin_Suggest {
 
 		// Custom confidence ?
 		$request_ws_args['min_confidence'] = 0.6;
-		if ( SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' ) != "" ) {
-			$request_ws_args['min_confidence'] = SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' );
+		if ( $click_terms['terms_datatxt_min_confidence'] != "" ) {
+			$request_ws_args['min_confidence'] = $click_terms['terms_datatxt_min_confidence'];
 		}
 
-		$request_ws_args['token'] = SimpleTags_Plugin::get_option_value( 'datatxt_access_token' );
+		$request_ws_args['token'] = $click_terms['terms_datatxt_access_token'];
 
 		// Build params
 		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array(
