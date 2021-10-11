@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
 
     jQuery('#st_ajax_loading').show();
 
-    jQuery('#suggestedtags .container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + jQuery(this).data('ajaxaction'), {
+    jQuery('#suggestedtags .container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + jQuery(this).data('ajaxaction') + '&suggestterms=' + jQuery(this).data('suggestterms') + '', {
       content: getContentFromEditor(),
       title: getTitleFromEditor()
     }, function () {
