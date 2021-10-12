@@ -41,18 +41,17 @@ a#close_clicktags{display:none;}
 
 /* Click Tags   */
 .container_clicktags{display:block;}
-.container_clicktags span{display:block;float:left;background:#f0f0ee;border:solid 1px;color:#333;cursor:pointer;border-color:#ccc #999 #999 #ccc;margin:3px;padding:3px 4px 3px 22px;}
+.container_clicktags span{display:block;float:left;background:#ddd;border:unset;color:#1e1e1e;cursor:pointer;margin:3px;padding:3px 4px 3px 4px;}
 .container_clicktags span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
-.container_clicktags span.ttn_topic{background:#f0f0ee url(../images/tag_blue.png) 3px 50% no-repeat;}
-.container_clicktags span.ttn_location{background:#f0f0ee url(../images/map.png) 3px 50% no-repeat;}
-.container_clicktags span.ttn_person{background:#f0f0ee url(../images/user.png) 3px 50% no-repeat;}
-.container_clicktags span.yahoo{background:#f0f0ee url(../images/yahoo_logo.gif) 3px 50% no-repeat;}
-.container_clicktags span.local{background:#f0f0ee url(../images/tag_purple.png) 3px 50% no-repeat;}
+.container_clicktags span.ttn_topic{background:#ddd url(../images/tag_blue.png) 3px 50% no-repeat;}
+.container_clicktags span.ttn_location{background:#ddd url(../images/map.png) 3px 50% no-repeat;}
+.container_clicktags span.ttn_person{background:#ddd url(../images/user.png) 3px 50% no-repeat;}
+.container_clicktags span.yahoo{background:#ddd url(../images/yahoo_logo.gif) 3px 50% no-repeat;}
+.container_clicktags span.local{background:#ddd;}
 .container_clicktags span.ttn_topic:hover{background:#b6bdd2 url(../images/tag_blue.png) 3px 50% no-repeat;}
 .container_clicktags span.ttn_location:hover{background:#b6bdd2 url(../images/map.png) 3px 50% no-repeat;}
 .container_clicktags span.ttn_person:hover{background:#b6bdd2 url(../images/user.png) 3px 50% no-repeat;}
 .container_clicktags span.yahoo:hover{background:#b6bdd2 url(../images/yahoo_logo.gif) 3px 50% no-repeat;}
-.container_clicktags span.local:hover{background:#b6bdd2 url(../images/tag_purple.png) 3px 50% no-repeat;}
 
 /* Advanced tags input   */
 #adv-tags-input{padding:3px 5px;}
