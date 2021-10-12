@@ -46,12 +46,19 @@ class SimpleTags_Admin_ClickTags {
 
         $post_type_data = get_post_type_object(get_post_type());
         $post_type_name = is_object($post_type_data) && isset($post_type_data->labels->singular_name) ? strtolower($post_type_data->labels->singular_name) : 'post';
+        $post_taxonomies = get_object_taxonomies(get_post_type());
+
         //add taxonomy
         $click_tags_taxonomy = '
         <div class="option">
         <label>Taxonomy</label><br />
         <select class="st-post-taxonomy-select click_tags_taxonomy" name="click_tags_taxonomy">';
-        foreach ( get_all_taxopress_taxonomies() as $_taxonomy ) {
+        foreach ( $post_taxonomies as $_taxonomy ) {
+            if($_taxonomy === 'author'){
+                continue;
+            }
+            $_taxonomy = get_taxonomy($_taxonomy);
+
             if($_taxonomy->name === $click_terms['taxonomy']){
                 $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
             }else{
