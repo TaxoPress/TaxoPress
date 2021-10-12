@@ -442,8 +442,8 @@ class SimpleTags_SuggestTerms
 							                    $select = [
 								                    'options' => [
 									                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
-									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
+									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags'), 'default' => 'true' ],
+									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ) ],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
