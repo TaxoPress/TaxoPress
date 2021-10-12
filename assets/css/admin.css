@@ -525,6 +525,10 @@ ul.taxopress-tab li.suggestterm_external_tab a::before {
     margin-bottom: 5px;
 }
 
+#side-sortables .clicktags-search-wrapper {
+    display: block;
+}
+
 .clicktags-search-wrapper .option {
     display: inline;
     margin-right: 15px;
@@ -532,7 +536,13 @@ ul.taxopress-tab li.suggestterm_external_tab a::before {
 
 .clicktags-search-wrapper .option select,
 .clicktags-search-wrapper .option input {
-    width: 100% !important;
+    width: 100%;
+}
+
+body.block-editor-page .clicktags-search-wrapper .option select,
+body.block-editor-page .clicktags-search-wrapper .option input {
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
 }
 
 .clicktags-search-wrapper .option label {
