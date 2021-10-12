@@ -388,6 +388,16 @@ ul.taxopress-tab {
     box-sizing: border-box;
     padding-left: 10px;
 }
+
+
+body.taxopress_page_st_suggestterms ul.taxopress-tab {
+    width: 21%;
+}
+
+body.taxopress_page_st_suggestterms .taxopress-tab-content {
+    width: 79%;
+}
+
 ul.taxopress-tab li {
     margin: 0;
     padding: 0;
