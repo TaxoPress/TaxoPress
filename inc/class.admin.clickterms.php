@@ -134,7 +134,7 @@ class SimpleTags_Admin_ClickTags {
         }
 		add_meta_box(
 			'st-clicks-tags',
-			__( 'Show all local tags', 'simple-tags' ),
+			__( 'Show existing terms', 'simple-tags' ),
 			array(
 				__CLASS__,
 				'metabox',

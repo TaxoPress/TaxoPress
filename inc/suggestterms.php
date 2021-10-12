@@ -284,7 +284,7 @@ class SimpleTags_SuggestTerms
                                                 </li>
 
                                                 <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>" data-content="suggestterm_local">
-                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Existing Terms', 'simple-tags'); ?></span></a>
+                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms', 'simple-tags'); ?></span></a>
                                                 </li>
 
                                                 <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>" data-content="suggestterm_external">
