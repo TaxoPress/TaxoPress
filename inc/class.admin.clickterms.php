@@ -44,6 +44,8 @@ class SimpleTags_Admin_ClickTags {
 			true
 		);
 
+        $post_type_data = get_post_type_object(get_post_type());
+        $post_type_name = is_object($post_type_data) && isset($post_type_data->labels->singular_name) ? strtolower($post_type_data->labels->singular_name) : 'post';
         //add taxonomy
         $click_tags_taxonomy = '
         <div class="option">
@@ -101,13 +103,13 @@ class SimpleTags_Admin_ClickTags {
 
         //create tags search data
         $click_tags_options= '<div class="clicktags-search-wrapper">'. $click_tags_search.' '.$click_tags_taxonomy.' '.$click_tags_method.' '.$click_tags_order.' '.$click_tags_limit.'</div>';
-
+   
 		wp_localize_script(
 			'st-helper-click-tags',
 			'stHelperClickTagsL10n',
 			array(
 				'show_txt'    => __( 'Click to display tags', 'simple-tags' ),
-				'hide_txt'    => __( 'Click Tags to add them to this post', 'simple-tags' ),
+				'hide_txt'    => sprintf( __( 'Click terms to add them to this %s', 'simple-tags' ), $post_type_name ),
 				'state'       => 'show',
 				'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
 				'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simple-tags').'" size="26" autocomplete="off">',
