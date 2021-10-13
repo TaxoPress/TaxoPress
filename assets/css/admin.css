@@ -41,7 +41,7 @@ a#close_clicktags{display:none;}
 
 /* Click Tags   */
 .container_clicktags{display:block;}
-.container_clicktags span{display:block;float:left;background:#ddd;border:unset;color:#1e1e1e;cursor:pointer;margin:3px;padding:3px 4px 3px 4px;}
+.container_clicktags span{display:block;float:left;background:#ddd;border:unset;color:#1e1e1e;cursor:pointer;margin:3px;padding:5px;}
 .container_clicktags span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
 .container_clicktags span.ttn_topic{background:#ddd url(../images/tag_blue.png) 3px 50% no-repeat;}
 .container_clicktags span.ttn_location{background:#ddd url(../images/map.png) 3px 50% no-repeat;}
