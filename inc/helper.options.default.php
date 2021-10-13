@@ -1,6 +1,13 @@
 <?php
 return array(
     // Features
+    'active_taxonomies'      => 1,
+    'active_terms_display'   => 1,
+    'active_post_tags'       => 1,
+    'active_related_posts_new'=> 1,
+    'active_auto_links'      => 1,
+    'active_auto_terms'      => 1,
+    'active_suggest_terms'   => 1,
     'active_mass_edit'       => 1,
     'active_manage'          => 1,
     'active_related_posts'   => 1,

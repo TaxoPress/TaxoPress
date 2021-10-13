@@ -8,8 +8,10 @@ class SimpleTags_Client_Autoterms {
 	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
-		add_action( 'save_post', array( __CLASS__, 'save_post' ), 12, 2 );
-		add_action( 'post_syndicated_item', array( __CLASS__, 'save_post' ), 12, 2 );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_terms' ) ) {
+		    add_action( 'save_post', array( __CLASS__, 'save_post' ), 12, 2 );
+		    add_action( 'post_syndicated_item', array( __CLASS__, 'save_post' ), 12, 2 );
+        }
 	}
 
 	/**

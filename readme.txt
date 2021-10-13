@@ -126,6 +126,7 @@ v3.4.0- [===unreleased===]
 * Fixed: Another HTML tag issue with Auto Links #930
 * Fixed: Cannot create autolink when using special characters(@#&^%) at the start or the end of the tag #885
 * Added: New menu link for "Suggested Terms" #776
+* Added: Enable/disable control for all features added to settings #946
 
 v3.3.1- 2021-09-20
 * Fixed: Fatal error when deleting plugin #889

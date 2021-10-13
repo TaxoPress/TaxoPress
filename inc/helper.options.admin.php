@@ -2,6 +2,55 @@
 return array(
     'features'       => array(
         array(
+            'active_taxonomies',
+            __('Taxonomies', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you to create new taxonomies and edit all the settings for each taxonomy.', 'simple-tags')
+        ),
+        array(
+            'active_terms_display',
+            __('Terms display', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you show all the terms in one taxonomy.', 'simple-tags')
+        ),
+        array(
+            'active_post_tags',
+            __('Terms for Current Post', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you show all the terms assigned to the current post.', 'simple-tags')
+        ),
+        array(
+            'active_related_posts_new',
+            __('Related posts', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you show related posts.', 'simple-tags')
+        ),
+        array(
+            'active_auto_links',
+            __('Auto Links', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature can automatically create links to your terms.', 'simple-tags')
+        ),
+        array(
+            'active_auto_terms',
+            __('Auto Terms', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Auto Terms can scan your content and automatically assign terms. For example, you have a term called "WordPress". Auto Terms can analyze your posts and when it finds the word "WordPress", it can add that term to your post.', 'simple-tags')
+        ),
+        array(
+            'active_suggest_terms',
+            __('Suggest Terms', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature adds a meta box in the editor which will display suggested terms both from your website term database and also terms obtained by comparing your post content with various sources of tags based on configuration.', 'simple-tags')
+        ),
+        array(
             'active_mass_edit',
             __('Mass edit terms', 'simple-tags'),
             'checkbox',

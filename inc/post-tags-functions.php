@@ -317,7 +317,6 @@ function taxopress_action_delete_posttags($posttags_id)
     }
 }
 
-add_shortcode('taxopress_postterms', 'taxopress_posttags_shortcode');
 function taxopress_posttags_shortcode($atts)
 {
     extract(shortcode_atts([
@@ -387,4 +386,3 @@ function taxopress_posttags_the_content($content = '')
 
     return $content;
 }
-add_filter('the_content', 'taxopress_posttags_the_content', 999992);

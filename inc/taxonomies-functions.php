@@ -784,8 +784,6 @@ function taxopress_do_convert_taxonomy_terms()
     }
 }
 
-add_action('init', 'taxopress_do_convert_taxonomy_terms');
-
 /**
  * Handles slug_exist checks for cases of editing an existing taxonomy.
  *
@@ -866,8 +864,6 @@ function taxopress_flush_rewrite_rules()
         delete_transient('taxopress_flush_rewrite_rules');
     }
 }
-
-add_action('admin_init', 'taxopress_flush_rewrite_rules');
 
 /**
  * Return the current action being done within TAXOPRESS context.
@@ -1294,8 +1290,6 @@ function taxopress_create_custom_taxonomies()
      */
     do_action('taxopress_post_register_taxonomies', $taxes);
 }
-
-add_action('init', 'taxopress_create_custom_taxonomies', 9);  // Leave on standard init for legacy purposes.
 
 /**
  * Helper function to register the actual taxonomy.
@@ -1955,8 +1949,6 @@ function unregister_tags()
     }
 }
 
-add_action('init', 'unregister_tags', 999);
-
 // Remove menu
 function taxopress_remove_taxonomy_from_menus()
 {
@@ -2104,8 +2096,6 @@ function taxopress_recreate_custom_taxonomies()
      */
     do_action('taxopress_post_register_taxonomies', $taxes);
 }
-
-add_action('init', 'taxopress_recreate_custom_taxonomies', 999);  // Leave on standard init for legacy purposes.
 
 /**
  * Helper function to register the actual taxonomy.
