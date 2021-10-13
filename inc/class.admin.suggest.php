@@ -39,7 +39,7 @@ class SimpleTags_Admin_Suggest {
 		), STAGS_VERSION );
 		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
 			'title_bloc'   => self::get_suggest_tags_title(),
-			'content_bloc' => __( 'Click a provider name.', 'simple-tags' )
+			'content_bloc' => __( 'Select an option above to load suggested terms.', 'simple-tags' )
 		) );
 
         // Helper for post type
@@ -54,18 +54,33 @@ class SimpleTags_Admin_Suggest {
 
         $click_terms = taxopress_current_post_suggest_terms();
 
+
+        
 		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simple-tags' ) . '" />';
-		$title .= __( 'Automatic tag suggestions:', 'simple-tags' ) . '';
-		
-		$title .= '&nbsp; <a data-suggestterms="'.$click_terms['ID'].'" data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simple-tags' ) . '</a>';
+		$title .= __( 'Automatic term suggestions', 'simple-tags' ) . '';
 
-		if ( $click_terms['terms_datatxt_access_token'] !== '' ) {
-		$title .= '&nbsp; - &nbsp;<a data-suggestterms="'.$click_terms['ID'].'" data-ajaxaction="tags_from_datatxt" class="suggest-action-link" href="#suggestedtags">' . __( 'dataTXT by Dandelion', 'simple-tags' ) . '</a>';
-		}
+        $suggest_term_use_local      = isset($click_terms['suggest_term_use_local']) ? (int)$click_terms['suggest_term_use_local'] : 0;
+        $suggest_term_use_dandelion  = isset($click_terms['suggest_term_use_dandelion']) ? (int)$click_terms['suggest_term_use_dandelion'] : 0;
+        $suggest_term_use_opencalais = isset($click_terms['suggest_term_use_opencalais']) ? (int)$click_terms['suggest_term_use_opencalais'] : 0;
 
-		if ( $click_terms['terms_opencalais_key'] !== '' ) {
-		$title .= '&nbsp; - &nbsp;<a data-suggestterms="'.$click_terms['ID'].'" data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simple-tags' ) . '</a>';
-		}
+        if($suggest_term_use_local > 0){
+            $title_options['tags_from_local_db']    = __( 'Local tags', 'simple-tags' );
+        }
+
+        if ( $click_terms['terms_datatxt_access_token'] !== '' && $suggest_term_use_dandelion > 0 ) {
+            $title_options['tags_from_datatxt']     = __( 'dataTXT by Dandelion', 'simple-tags' );
+        }
+		if ( $click_terms['terms_opencalais_key'] !== '' && $suggest_term_use_opencalais > 0 ) {
+            $title_options['tags_from_opencalais']  = __( 'OpenCalais', 'simple-tags' );
+        }
+
+        $title .= '&nbsp; 
+        <select class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="'.$click_terms['ID'].'">
+        <option value="" selected="selected">==='.__( 'Select source to load suggested terms', 'simple-tags' ).'===</option>';
+        foreach($title_options as $option => $label){
+            $title .= '<option value="'.$option.'">'.$label.'</option>';
+        }
+        $title .= '</select>';
 
 
 		return $title;
@@ -259,8 +274,7 @@ class SimpleTags_Admin_Suggest {
 		$data = json_decode( $data );
 
 		// echo $data;
-
-		$data = $data->annotations;
+		$data = is_object($data) ? $data->annotations : '';
 
 		if ( empty( $data ) ) {
 			echo '<p>' . __( 'No results from dataTXT API.', 'simple-tags' ) . '</p>';
