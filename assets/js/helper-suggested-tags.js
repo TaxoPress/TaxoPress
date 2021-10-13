@@ -16,6 +16,33 @@ jQuery(document).ready(function () {
     });
     return false;
   });
+
+  jQuery('select.term_suggestion_select').click(function (e) {
+    e.stopPropagation();
+    jQuery('#suggestedtags').removeClass('close');
+  });
+  
+  jQuery('select.term_suggestion_select').change(function () {
+    jQuery('#suggestedtags').removeClass('close');
+    var suggestterms = Number(jQuery('select.term_suggestion_select').attr('data-suggestterms'));
+    var data_action = jQuery('select.term_suggestion_select :selected').val();
+    
+    if (data_action == '') {
+      jQuery('#suggestedtags .inside .container_clicktags').html(stHelperSuggestedTagsL10n.content_bloc);
+      return;
+    }
+    
+    jQuery('#st_ajax_loading').show();
+
+    jQuery('#suggestedtags .container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + data_action + '&suggestterms=' + suggestterms + '', {
+      content: getContentFromEditor(),
+      title: getTitleFromEditor()
+    }, function () {
+      registerClickTags();
+    });
+    return false;
+  });
+
 });
 
 function getTitleFromEditor() {

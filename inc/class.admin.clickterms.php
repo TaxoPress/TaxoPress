@@ -51,7 +51,7 @@ class SimpleTags_Admin_ClickTags {
         //add taxonomy
         $click_tags_taxonomy = '
         <div class="option">
-        <label>Taxonomy</label><br />
+        <label>'.__( 'Taxonomy', 'simple-tags' ).'</label><br />
         <select class="st-post-taxonomy-select click_tags_taxonomy" name="click_tags_taxonomy">';
         foreach ( $post_taxonomies as $_taxonomy ) {
             if($_taxonomy === 'author'){
@@ -69,10 +69,10 @@ class SimpleTags_Admin_ClickTags {
         </div>';
 
         //add method
-        $click_tags_methods = ['name' => 'Name', 'count' => 'Counter', 'random' => 'Random'];
+        $click_tags_methods = ['name' => __( 'Name', 'simple-tags' ), 'count' => __( 'Counter', 'simple-tags' ), 'random' => __( 'Random', 'simple-tags' )];
         $click_tags_method = '
         <div class="option">
-        <label>Method for choosing terms</label><br />
+        <label>'.__( 'Method for choosing terms', 'simple-tags' ).'</label><br />
         <select class="click_tags_method" name="click_tags_method">';
         foreach($click_tags_methods as $option => $label){
             $selected = ($option === $click_terms['orderby']) ? 'selected="selected"' : '';
@@ -82,10 +82,10 @@ class SimpleTags_Admin_ClickTags {
         </div>';
 
         //add order
-        $click_tags_orders = ['asc' => 'Ascending', 'desc' => 'Descending'];
+        $click_tags_orders = ['asc' =>  __( 'Ascending', 'simple-tags' ), 'desc' => __( 'Descending', 'simple-tags' )];
         $click_tags_order = '
         <div class="option">
-        <label>Ordering for choosing terms</label><br />
+        <label>'.__( 'Ordering for choosing terms', 'simple-tags' ).'</label><br />
         <select class="click_tags_order" name="click_tags_order">';
         foreach($click_tags_orders as $option => $label){
             $selected = ($option === $click_terms['order']) ? 'selected="selected"' : '';
@@ -97,7 +97,7 @@ class SimpleTags_Admin_ClickTags {
         //add limit
         $click_tags_limit= '
         <div class="option">
-        <label for="click_tags_limit">Maximum terms</label><br />
+        <label for="click_tags_limit">'.__( 'Maximum terms', 'simple-tags' ).'</label><br />
         <input min="1" max="1000000000" type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="'.$click_terms['number'].'">
         </div>';
 
