@@ -33,9 +33,15 @@ function is_page_have_tags() {
  */
 function st_register_widget() {
 	register_widget( 'SimpleTags_Widget' );
-	register_widget( 'SimpleTags_Shortcode_Widget' );
-	register_widget( 'SimpleTags_PostTags_Widget' );
-	register_widget( 'SimpleTags_RelatedPosts_Widget' );
+    if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_terms_display' )){
+	    register_widget( 'SimpleTags_Shortcode_Widget' );
+    }
+    if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_post_tags' )){
+	    register_widget( 'SimpleTags_PostTags_Widget' );
+    }
+    if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' )){
+	    register_widget( 'SimpleTags_RelatedPosts_Widget' );
+    }
 }
 
 /**

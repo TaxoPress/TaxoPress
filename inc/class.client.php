@@ -13,13 +13,24 @@ class SimpleTags_Client {
 		// Register media tags taxonomy
 		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
 
-        add_action( 'parse_query', array( __CLASS__, 'cpt_taxonomy_parse_query' ) );
-
         require( STAGS_DIR . '/inc/class.client.autolinks.php' );
         new SimpleTags_Client_Autolinks();
 
+		// Call tag clouds ?
+        if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_terms_display' ) ) {
+            require_once STAGS_DIR . '/inc/tag-clouds-action.php';
+        }
+
+		// Call post tags ?
+        if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_post_tags' ) ) {
+            require_once STAGS_DIR . '/inc/post-tags-action.php';
+        }
+
 		// Call related posts ?
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_related_posts' ) == 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' ) === 1 ) {
+            require_once STAGS_DIR . '/inc/related-posts-action.php';
+        }
+		if ( (int) SimpleTags_Plugin::get_option_value( 'active_related_posts' ) === 1 || (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' ) === 1 ) {
 			require( STAGS_DIR . '/inc/class.client.related_posts.php' );
 			new SimpleTags_Client_RelatedPosts();
 		}
@@ -32,17 +43,22 @@ class SimpleTags_Client {
 		require( STAGS_DIR . '/inc/class.client.post_tags.php' );
 		new SimpleTags_Client_PostTags();
 
-		if (defined('STAGS_OPTIONS_NAME')) {
-         	$saved_option = (array)get_option( STAGS_OPTIONS_NAME );
-        	if ((array_key_exists('use_tag_pages', $saved_option))) {
-				if((int)$saved_option['use_tag_pages'] === 1){
-                	if ( !array_key_exists('post_tag', taxopress_get_extername_taxonomy_data()) ) {
-			        	add_action( 'init', array( __CLASS__, 'init' ), 11 );
-			        	add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
-                	}
-		    	}
-        	}
-		}
+
+		if ( (int)SimpleTags_Plugin::get_option_value( 'active_taxonomies' ) === 1 ) {
+            require_once STAGS_DIR . '/inc/taxonomies-action.php';
+            add_action( 'parse_query', array( __CLASS__, 'cpt_taxonomy_parse_query' ) );
+		    if (defined('STAGS_OPTIONS_NAME')) {
+         	    $saved_option = (array)get_option( STAGS_OPTIONS_NAME );
+        	    if ((array_key_exists('use_tag_pages', $saved_option))) {
+				    if((int)$saved_option['use_tag_pages'] === 1){
+                	    if ( !array_key_exists('post_tag', taxopress_get_extername_taxonomy_data()) ) {
+			        	    add_action( 'init', array( __CLASS__, 'init' ), 11 );
+			        	    add_action( 'parse_query', array( __CLASS__, 'parse_query' ) );
+                	    }
+		    	    }
+        	    }
+		    }
+        }
 
 		return true;
 	}

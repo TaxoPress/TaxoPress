@@ -305,7 +305,6 @@ function taxopress_action_delete_tagcloud($tagcloud_id)
     }
 }
 
-add_shortcode('taxopress_termsdisplay', 'taxopress_termsdisplay_shortcode');
 function taxopress_termsdisplay_shortcode($atts)
     {
         extract(shortcode_atts(array(

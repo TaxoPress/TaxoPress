@@ -13,23 +13,27 @@ class SimpleTags_Client_Autolinks {
 	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
-		$auto_link_priority = SimpleTags_Plugin::get_option_value( 'auto_link_priority' );
-		if ( 0 === (int) $auto_link_priority ) {
-			$auto_link_priority = 12;
-		}
 
-		// Auto link tags
-		add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_links' ) ) {
 
-        //legacy
-		if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' )  && (int)SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) > 0 ) {
-			add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
-			add_filter( 'the_title', array( __CLASS__, 'the_title' ) );
-		}
+    		$auto_link_priority = SimpleTags_Plugin::get_option_value( 'auto_link_priority' );
+	    	if ( 0 === (int) $auto_link_priority ) {
+		    	$auto_link_priority = 12;
+		    }
+            
+		    // Auto link tags
+		    add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
 
-        //new UI
-        add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
-        add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 12);
+            //legacy
+	    	if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' )  && (int)SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) > 0 ) {
+		    	add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
+			    add_filter( 'the_title', array( __CLASS__, 'the_title' ) );
+		    }
+
+            //new UI
+            add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
+            add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 12);
+    }
 
 	}
 
