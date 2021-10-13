@@ -422,6 +422,28 @@ class SimpleTags_SuggestTerms
                                                        style="<?php echo $active_tab === 'suggestterm_local' ? '' : 'display:none;'; ?>">
                                                     <?php
 
+                                                $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = ( isset($current) && isset($current['disable_local']) ) ? taxopress_disp_boolean($current['disable_local']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['disable_local'] : '';
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'taxopress_suggestterm',
+                                                'name'       => 'disable_local',
+                                                'labeltext'  => esc_html__('Disable Existing Terms', 'simple-tags'),
+                                                'selections' => $select,
+                                            ]);
+
                                                     if(!isset($current)){
                                                         $maximum_terms = 100;
                                                     }else{
