@@ -146,6 +146,7 @@ function taxopress_create_default_suggestterm()
     $default['taxopress_suggestterm']['number']                         = '100';
     $default['taxopress_suggestterm']['orderby']                        = 'random';
     $default['taxopress_suggestterm']['order']                          = 'desc';
+    $default['taxopress_suggestterm']['disable_local']                  = '0';
     $default['taxopress_suggestterm']['terms_opencalais_key']           = SimpleTags_Plugin::get_option_value( 'opencalais_key' );
     $default['taxopress_suggestterm']['terms_datatxt_access_token']     = SimpleTags_Plugin::get_option_value( 'datatxt_access_token' );
     $default['taxopress_suggestterm']['terms_datatxt_min_confidence']    = SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' );
@@ -188,6 +189,11 @@ function taxopress_update_suggestterm($data = [])
 
     //update other post post
     $data['taxopress_suggestterm']['post_types']          = isset($data['post_types']) ? $data['post_types'] : [];
+
+    //update our custom checkbox value if not checked
+    if (!isset($data['taxopress_suggestterm']['disable_local'])) {
+        $data['taxopress_suggestterm']['disable_local'] = 0;
+    }
     
     if (isset($data['edited_suggestterm'])) {
         $suggestterm_id             = $data['edited_suggestterm'];
@@ -303,7 +309,7 @@ function taxopress_action_delete_suggestterm($suggestterm_id)
  *
  * @return mixed
  */
-function taxopress_current_post_suggest_terms()
+function taxopress_current_post_suggest_terms($local_check = false)
 {
     global $pagenow;
 
@@ -323,6 +329,11 @@ function taxopress_current_post_suggest_terms()
             if (!$post_types) {
                 continue;
             }
+
+            if($local_check && isset($suggested_term['disable_local']) && (int)$suggested_term['disable_local'] > 0){
+                continue;
+            }
+            
             if (in_array(get_post_type(), $post_types)) {
                 return $suggested_term;
             }

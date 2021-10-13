@@ -27,7 +27,7 @@ class SimpleTags_Admin_ClickTags {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
-        $click_terms = taxopress_current_post_suggest_terms();
+        $click_terms = taxopress_current_post_suggest_terms(true);
 
         if(!is_array($click_terms)){
             return;
@@ -136,7 +136,7 @@ class SimpleTags_Admin_ClickTags {
 	 */
 	public static function admin_head() {
 
-        $click_terms = taxopress_current_post_suggest_terms();
+        $click_terms = taxopress_current_post_suggest_terms(true);
 
         if(!is_array($click_terms)){
             return;
