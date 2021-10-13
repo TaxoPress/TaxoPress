@@ -545,6 +545,42 @@
             });
 
 
+    // -------------------------------------------------------------
+    //   Suggest term use Dandelion check
+    // -------------------------------------------------------------
+    $(document).on('click', '.suggest_term_use_dandelion', function (e) {
+      suggest_term_use_dandelion_action();
+    });
+    suggest_term_use_dandelion_action();
+    function suggest_term_use_dandelion_action() {
+      if ($('.suggest_term_use_dandelion').length > 0) {
+        if ($('.suggest_term_use_dandelion').prop("checked")) {
+          $('.terms_datatxt_access_token').closest('tr').removeClass('st-hide-content');
+          $('.terms_datatxt_min_confidence').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.terms_datatxt_access_token').closest('tr').addClass('st-hide-content');
+          $('.terms_datatxt_min_confidence').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
+    //   Suggest term use OpenCalais check
+    // -------------------------------------------------------------
+    $(document).on('click', '.suggest_term_use_opencalais', function (e) {
+      suggest_term_use_opencalais_action();
+    });
+    suggest_term_use_opencalais_action();
+    function suggest_term_use_opencalais_action() {
+      if ($('.suggest_term_use_opencalais').length > 0) {
+        if ($('.suggest_term_use_opencalais').prop("checked")) {
+          $('.terms_opencalais_key').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.terms_opencalais_key').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
+
 
     function isEmptyOrSpaces(str) {
       return str === null || str.match(/^ *$/) !== null;

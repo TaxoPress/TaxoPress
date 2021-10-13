@@ -147,6 +147,9 @@ function taxopress_create_default_suggestterm()
     $default['taxopress_suggestterm']['orderby']                        = 'random';
     $default['taxopress_suggestterm']['order']                          = 'desc';
     $default['taxopress_suggestterm']['disable_local']                  = '0';
+    $default['taxopress_suggestterm']['suggest_term_use_local']         = '0';
+    $default['taxopress_suggestterm']['suggest_term_use_dandelion']     = '0';
+    $default['taxopress_suggestterm']['suggest_term_use_opencalais']    = '0';
     $default['taxopress_suggestterm']['terms_opencalais_key']           = SimpleTags_Plugin::get_option_value( 'opencalais_key' );
     $default['taxopress_suggestterm']['terms_datatxt_access_token']     = SimpleTags_Plugin::get_option_value( 'datatxt_access_token' );
     $default['taxopress_suggestterm']['terms_datatxt_min_confidence']    = SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' );
@@ -193,6 +196,15 @@ function taxopress_update_suggestterm($data = [])
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_suggestterm']['disable_local'])) {
         $data['taxopress_suggestterm']['disable_local'] = 0;
+    }
+    if (!isset($data['taxopress_suggestterm']['suggest_term_use_local'])) {
+        $data['taxopress_suggestterm']['suggest_term_use_local'] = 0;
+    }
+    if (!isset($data['taxopress_suggestterm']['suggest_term_use_dandelion'])) {
+        $data['taxopress_suggestterm']['suggest_term_use_dandelion'] = 0;
+    }
+    if (!isset($data['taxopress_suggestterm']['suggest_term_use_opencalais'])) {
+        $data['taxopress_suggestterm']['suggest_term_use_opencalais'] = 0;
     }
     
     if (isset($data['edited_suggestterm'])) {
@@ -333,7 +345,14 @@ function taxopress_current_post_suggest_terms($local_check = false)
             if($local_check && isset($suggested_term['disable_local']) && (int)$suggested_term['disable_local'] > 0){
                 continue;
             }
-            
+
+            $suggest_term_use_local      = isset($suggested_term['suggest_term_use_local']) ? (int)$suggested_term['suggest_term_use_local'] : 0;
+            $suggest_term_use_dandelion  = isset($suggested_term['suggest_term_use_dandelion']) ? (int)$suggested_term['suggest_term_use_dandelion'] : 0;
+            $suggest_term_use_opencalais = isset($suggested_term['suggest_term_use_opencalais']) ? (int)$suggested_term['suggest_term_use_opencalais'] : 0;
+            if(!$local_check && $suggest_term_use_local === 0 && $suggest_term_use_dandelion === 0 && $suggest_term_use_opencalais === 0){
+                continue;
+            }
+
             if (in_array(get_post_type(), $post_types)) {
                 return $suggested_term;
             }

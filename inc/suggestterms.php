@@ -78,8 +78,8 @@ class SimpleTags_SuggestTerms
             ]
         );
 
-        if(taxopress_is_screen_main_page()){
-          add_action("load-$hook", [$this, 'screen_option']);
+        if (taxopress_is_screen_main_page()) {
+            add_action("load-$hook", [$this, 'screen_option']);
         }
     }
 
@@ -127,7 +127,8 @@ class SimpleTags_SuggestTerms
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
                 <div class="taxopress-description">
-                    <?php esc_html_e('This feature adds a meta box in the editor which will display suggested terms both from your website term database and also terms obtained by comparing your post content with various sources of tags based on configuration.', 'simple-tags'); ?>
+                    <?php esc_html_e('This feature adds a meta box in the editor which will display suggested terms both from your website term database and also terms obtained by comparing your post content with various sources of tags based on configuration.',
+                        'simple-tags'); ?>
                 </div>
 
 
@@ -211,14 +212,15 @@ class SimpleTags_SuggestTerms
             $selected_suggestterm = taxopress_get_current_suggestterm();
 
             if ($selected_suggestterm && array_key_exists($selected_suggestterm, $suggestterms)) {
-                $current       = $suggestterms[$selected_suggestterm];
+                $current          = $suggestterms[$selected_suggestterm];
                 $suggestterm_edit = true;
             }
 
         }
 
 
-        if (!isset($current['title']) && count($suggestterms) > 0 && apply_filters('taxopress_suggestterms_create_limit', true)) {
+        if (!isset($current['title']) && count($suggestterms) > 0 && apply_filters('taxopress_suggestterms_create_limit',
+                true)) {
             $suggestterm_limit = true;
         }
 
@@ -244,11 +246,11 @@ class SimpleTags_SuggestTerms
                                     <h2 class="hndle ui-sortable-handle">
                                         <?php
                                         if ($suggestterm_edit) {
-                                            $active_tab = ( isset($current['active_tab']) && !empty(trim($current['active_tab'])) ) ? $current['active_tab'] : 'suggestterm_general';
+                                            $active_tab = (isset($current['active_tab']) && !empty(trim($current['active_tab']))) ? $current['active_tab'] : 'suggestterm_general';
                                             echo esc_html__('Edit Suggest Terms', 'simple-tags');
                                             echo '<input type="hidden" name="edited_suggestterm" value="' . $current['ID'] . '" />';
                                             echo '<input type="hidden" name="taxopress_suggestterm[ID]" value="' . $current['ID'] . '" />';
-                                            echo '<input type="hidden" name="taxopress_suggestterm[active_tab]" class="taxopress-active-subtab" value="'.$active_tab.'" />';
+                                            echo '<input type="hidden" name="taxopress_suggestterm[active_tab]" class="taxopress-active-subtab" value="' . $active_tab . '" />';
                                         } else {
                                             $active_tab = 'suggestterm_general';
                                             echo '<input type="hidden" name="taxopress_suggestterm[active_tab]" class="taxopress-active-subtab" value="" />';
@@ -278,17 +280,22 @@ class SimpleTags_SuggestTerms
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="suggestterm_general_tab <?php echo $active_tab === 'suggestterm_general' ? 'active' : ''; ?>" data-content="suggestterm_general">
+                                                <li class="suggestterm_general_tab <?php echo $active_tab === 'suggestterm_general' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_general">
                                                     <a href="#suggestterm_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>" data-content="suggestterm_local">
-                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms', 'simple-tags'); ?></span></a>
+                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_local">
+                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms',
+                                                                'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>" data-content="suggestterm_external">
-                                                    <a href="#suggestterm_external"><span><?php esc_html_e('Suggest Terms', 'simple-tags'); ?></span></a>
+                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_external">
+                                                    <a href="#suggestterm_external"><span><?php esc_html_e('Suggest Terms',
+                                                                'simple-tags'); ?></span></a>
                                                 </li>
 
                                             </ul>
@@ -416,40 +423,39 @@ class SimpleTags_SuggestTerms
                                                 </table>
 
 
-
-
                                                 <table class="form-table taxopress-table suggestterm_local"
                                                        style="<?php echo $active_tab === 'suggestterm_local' ? '' : 'display:none;'; ?>">
                                                     <?php
 
-                                                $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                        'default' => 'true',
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = ( isset($current) && isset($current['disable_local']) ) ? taxopress_disp_boolean($current['disable_local']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['disable_local'] : '';
-                                            echo $ui->get_select_checkbox_input([
-                                                'namearray'  => 'taxopress_suggestterm',
-                                                'name'       => 'disable_local',
-                                                'labeltext'  => esc_html__('Disable Existing Terms', 'simple-tags'),
-                                                'selections' => $select,
-                                            ]);
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['disable_local'])) ? taxopress_disp_boolean($current['disable_local']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['disable_local'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'disable_local',
+                                                        'labeltext'  => esc_html__('Disable Existing Terms',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
 
-                                                    if(!isset($current)){
+                                                    if (!isset($current)) {
                                                         $maximum_terms = 100;
-                                                    }else{
+                                                    } else {
                                                         $maximum_terms = isset($current['number']) ? esc_attr($current['number']) : '0';
                                                     }
-                                                    
+
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_suggestterm',
                                                         'name'      => 'number',
@@ -458,40 +464,59 @@ class SimpleTags_SuggestTerms
                                                         'helptext'  => 'Set (0) for no limit.',
                                                         'min'       => '0',
                                                         'required'  => true,
-                                                        ]);
+                                                    ]);
 
 
-							                    $select = [
-								                    'options' => [
-									                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags'), 'default' => 'true' ],
-									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ) ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_suggestterm',
-								                        'name'       => 'orderby',
-								                        'labeltext'  => esc_html__( 'Method for choosing terms', 'simple-tags' ),
-								                        'selections' => $select,
-							                    ] );
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr' => 'name',
+                                                                'text' => esc_attr__('Name', 'simple-tags')
+                                                            ],
+                                                            [
+                                                                'attr'    => 'count',
+                                                                'text'    => esc_attr__('Counter', 'simple-tags'),
+                                                                'default' => 'true'
+                                                            ],
+                                                            [
+                                                                'attr' => 'random',
+                                                                'text' => esc_attr__('Random', 'simple-tags')
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = isset($current) ? taxopress_disp_boolean($current['orderby']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['orderby'] : '';
+                                                    echo $ui->get_select_checkbox_input_main([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'orderby',
+                                                        'labeltext'  => esc_html__('Method for choosing terms',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
 
 
-							                    $select = [
-								                    'options' => [
-									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
-									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['order'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['order'] : '';
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_suggestterm',
-								                        'name'       => 'order',
-								                        'labeltext'  => esc_html__( 'Ordering for choosing terms', 'simple-tags' ),
-								                        'selections' => $select,
-							                    ] );
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr' => 'asc',
+                                                                'text' => esc_attr__('Ascending', 'simple-tags')
+                                                            ],
+                                                            [
+                                                                'attr'    => 'desc',
+                                                                'text'    => esc_attr__('Descending', 'simple-tags'),
+                                                                'default' => 'true'
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = isset($current) ? taxopress_disp_boolean($current['order']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['order'] : '';
+                                                    echo $ui->get_select_checkbox_input_main([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'order',
+                                                        'labeltext'  => esc_html__('Ordering for choosing terms',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
 
 
                                                     ?>
@@ -502,39 +527,121 @@ class SimpleTags_SuggestTerms
                                                        style="<?php echo $active_tab === 'suggestterm_external' ? '' : 'display:none;'; ?>">
                                                     <?php
 
-                                                    echo $ui->get_text_input([
-                                                        'namearray' => 'taxopress_suggestterm',
-                                                        'name'      => 'terms_opencalais_key',
-                                                        'textvalue' => isset($current['terms_opencalais_key']) ? esc_attr($current['terms_opencalais_key']) : '',
-                                                        'labeltext' => esc_html__('OpenCalais API Key', 'simple-tags'),
-                                                        'helptext'  => __('You can create an API key from <a href="https://developers.refinitiv.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation">service website</a>', 'simple-tags'),
-                                                        'required'  => false,
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['suggest_term_use_local'])) ? taxopress_disp_boolean($current['suggest_term_use_local']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['suggest_term_use_local'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'suggest_term_use_local',
+                                                        'class'      => 'suggest_term_use_local',
+                                                        'labeltext'  => esc_html__('Existing terms on your site',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
+
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['suggest_term_use_dandelion'])) ? taxopress_disp_boolean($current['suggest_term_use_dandelion']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['suggest_term_use_dandelion'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'suggest_term_use_dandelion',
+                                                        'class'      => 'suggest_term_use_dandelion',
+                                                        'labeltext'  => esc_html__('New terms from Dandelion',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
                                                     ]);
 
                                                     echo $ui->get_text_input([
                                                         'namearray' => 'taxopress_suggestterm',
                                                         'name'      => 'terms_datatxt_access_token',
+                                                        'class'     => 'terms_datatxt_access_token',
                                                         'textvalue' => isset($current['terms_datatxt_access_token']) ? esc_attr($current['terms_datatxt_access_token']) : '',
                                                         'labeltext' => esc_html__('Dandelion API token', 'simple-tags'),
-                                                        'helptext'  => __('You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simple-tags'),
+                                                        'helptext'  => __('You can create an API key from <a href="https://dandelion.eu/">service website</a>',
+                                                            'simple-tags'),
                                                         'required'  => false,
                                                     ]);
 
-                                                    if(!isset($current)){
+                                                    if (!isset($current)) {
                                                         $terms_datatxt_min_confidence = '0.6';
-                                                    }else{
+                                                    } else {
                                                         $terms_datatxt_min_confidence = isset($current['terms_datatxt_min_confidence']) ? esc_attr($current['terms_datatxt_min_confidence']) : '0';
                                                     }
 
                                                     echo $ui->get_number_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'terms_datatxt_min_confidence',
+                                                        'class'      => 'terms_datatxt_min_confidence',
+                                                        'textvalue'  => $terms_datatxt_min_confidence,
+                                                        'labeltext'  => esc_html__('Dandelion API confidence value',
+                                                            'simple-tags'),
+                                                        'helptext'   => __('Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate.',
+                                                            'simple-tags'),
+                                                        'min'        => '0',
+                                                        'max'        => '1',
+                                                        'other_attr' => 'step=".1"',
+                                                        'required'   => false,
+                                                    ]);
+
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['suggest_term_use_opencalais'])) ? taxopress_disp_boolean($current['suggest_term_use_opencalais']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['suggest_term_use_opencalais'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'suggest_term_use_opencalais',
+                                                        'class'      => 'suggest_term_use_opencalais',
+                                                        'labeltext'  => esc_html__('New terms from Open Calais',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
+
+                                                    echo $ui->get_text_input([
                                                         'namearray' => 'taxopress_suggestterm',
-                                                        'name'      => 'terms_datatxt_min_confidence',
-                                                        'textvalue' => $terms_datatxt_min_confidence,
-                                                        'labeltext' => esc_html__('Dandelion API confidence value', 'simple-tags'),
-                                                        'helptext'  => __('Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate.', 'simple-tags'),
-                                                        'min'       => '0',
-                                                        'max'       => '1',
-                                                        'other_attr'=> 'step=".1"',
+                                                        'name'      => 'terms_opencalais_key',
+                                                        'class'     => 'terms_opencalais_key',
+                                                        'textvalue' => isset($current['terms_opencalais_key']) ? esc_attr($current['terms_opencalais_key']) : '',
+                                                        'labeltext' => esc_html__('OpenCalais API Key', 'simple-tags'),
+                                                        'helptext'  => __('You can create an API key from <a href="https://developers.refinitiv.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation">service website</a>',
+                                                            'simple-tags'),
                                                         'required'  => false,
                                                     ]);
 
@@ -598,13 +705,15 @@ class SimpleTags_SuggestTerms
                                 wp_nonce_field('taxopress_addedit_suggestterm_nonce_action',
                                     'taxopress_addedit_suggestterm_nonce_field');
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-suggestterm-submit"
+                                    <input type="submit"
+                                           class="button-primary taxopress-taxonomy-submit taxopress-suggestterm-submit"
                                            name="suggestterm_submit"
                                            value="<?php echo esc_attr(esc_attr__('Save Suggest Terms',
                                                'simple-tags')); ?>"/>
                                     <?php
                                 } else { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-suggestterm-submit"
+                                    <input type="submit"
+                                           class="button-primary taxopress-taxonomy-submit taxopress-suggestterm-submit"
                                            name="suggestterm_submit"
                                            value="<?php echo esc_attr(esc_attr__('Add Suggest Terms',
                                                'simple-tags')); ?>"/>
@@ -632,23 +741,27 @@ class SimpleTags_SuggestTerms
 
         <div class="clear"></div>
 
-        <?php # Modal Windows; ?>
-<div class="remodal" data-remodal-id="taxopress-modal-alert"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
-    <div id="taxopress-modal-alert-content"></div>
-    <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simple-tags'); ?></button>
-</div>
+        <?php # Modal Windows;
+        ?>
+        <div class="remodal" data-remodal-id="taxopress-modal-alert"
+             data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+            <div class=""
+                 style="color:red;"><?php echo __('Please complete the following required fields to save your changes:',
+                    'simple-tags'); ?></div>
+            <div id="taxopress-modal-alert-content"></div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay',
+                    'simple-tags'); ?></button>
+        </div>
 
-<div class="remodal" data-remodal-id="taxopress-modal-confirm"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-    <div id="taxopress-modal-confirm-content"></div>
-    <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
-    <button data-remodal-action="confirm"
-            class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
-</div>
+        <div class="remodal" data-remodal-id="taxopress-modal-confirm"
+             data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+            <div id="taxopress-modal-confirm-content"></div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
+            <button data-remodal-action="confirm"
+                    class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
+        </div>
 
         <?php
     }
