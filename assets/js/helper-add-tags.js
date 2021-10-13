@@ -1,4 +1,4 @@
-function addTag(tag, custom_taxonomy = false) {
+function addTag(tag, custom_taxonomy = false, term_id = false) {
   // Trim tag
   tag = tag.replace(/^\s+/, '').replace(/\s+$/, '');
 
@@ -31,27 +31,43 @@ function addTag(tag, custom_taxonomy = false) {
     }
     //jQuery('.tagadd').WithSelect()
 
-  } else if ( custom_taxonomy === 'series' && document.getElementById('newseries')) { // Temporary support for series using custom input
-
-    tag.replace(/\s+,+\s*/g, ',').replace(/,+/g, ',').replace(/,+\s+,+/g, ',').replace(/,+\s*$/g, '').replace(/^\s*,+/g, '');
-    if (jQuery('#newseries').val() === '') {
-      jQuery('#newseries').val(tag);
-    } else {
-      jQuery('#newseries').val(jQuery('#newseries').val() + ', ' + tag);
-    }
-    //jQuery('.tagadd').WithSelect()
-
+  } else if (term_id && document.getElementById('' + custom_taxonomy + '-' + term_id)) { // Maybe is hierarchical taxonomy type
+    jQuery('#' + custom_taxonomy + '-' + term_id).find('input').attr('checked', true);
   } else if (typeof wp.data != 'undefined' && typeof wp.data.select('core') != 'undefined' && typeof wp.data.select('core/edit-post') != 'undefined' && typeof wp.data.select('core/editor') != 'undefined') { // Gutenberg
-
+    
     // Get current taxonomy
     var tags_taxonomy = wp.data.select('core').getTaxonomy(''+custom_taxonomy+'');
     var tag_rest_base = tags_taxonomy && tags_taxonomy.rest_base;
+    var hierarchical = tags_taxonomy && tags_taxonomy.hierarchical ? tags_taxonomy.hierarchical : false;
     var tags = tag_rest_base && wp.data.select('core/editor').getEditedPostAttribute(tag_rest_base);
+    
+    //console.log(tags);
 
     //clean tag of & to enable sending in ajax parameter
     tag = tag.replace('&amp;', 'simpletagand');
 
     var newTags = JSON.parse(JSON.stringify(tags));
+
+
+    if (hierarchical === true) {
+
+        newTags.push(Number(term_id));
+        newTags = newTags.filter(onlyUnique);
+
+        var new_tag = {};
+        new_tag[tag_rest_base] = newTags;
+        wp.data.dispatch('core/editor').editPost(new_tag);
+      
+        // open the tags panel
+        if (wp.data.select('core/edit-post').isEditorPanelOpened('taxonomy-panel-'+custom_taxonomy) === false) {
+          wp.data.dispatch('core/edit-post').toggleEditorPanelOpened('taxonomy-panel-'+custom_taxonomy);
+        } else {
+          wp.data.dispatch('core/edit-post').toggleEditorPanelOpened('taxonomy-panel-'+custom_taxonomy);
+          wp.data.dispatch('core/edit-post').toggleEditorPanelOpened('taxonomy-panel-'+custom_taxonomy);
+        }
+
+      return;
+    }
     
     jQuery.ajax({
       url: ajaxurl + '?action=simpletags&stags_action=maybe_create_tag&tag=' + "" + tag + "",
