@@ -95,12 +95,12 @@ function getContentFromEditor() {
 
   return data;
 }
-
 function registerClickTags() {
   jQuery('#suggestedtags .container_clicktags span').click(function (event) {
     event.preventDefault();
 
     addTag(this.innerHTML);
+    jQuery(this).addClass('used_term');
   });
 
   jQuery('#st_ajax_loading').hide();

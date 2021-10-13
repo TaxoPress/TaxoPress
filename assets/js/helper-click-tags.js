@@ -36,7 +36,8 @@ function load_click_tags(search = '') {
       jQuery('#st-clicks-tags .container_clicktags span').click(function (event) {
         event.preventDefault();
         var taxonomy = jQuery(this).attr('data-taxonomy');
-        addTag(this.innerHTML, taxonomy);
+        var term_id = jQuery(this).attr('data-term_id');
+        addTag(this.innerHTML, taxonomy, term_id);
         jQuery(this).addClass('used_term');
       });
 
