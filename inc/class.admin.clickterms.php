@@ -246,7 +246,7 @@ class SimpleTags_Admin_ClickTags {
 
 		foreach ( (array) $terms as $term ) {
 			$class_current = in_array( $term->term_id, $post_terms, true ) ? 'used_term' : '';
-			echo '<span data-taxonomy="'.$taxonomy.'" class="local '.$taxonomy.' ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
+			echo '<span data-term_id="'.$term->term_id.'" data-taxonomy="'.$taxonomy.'" class="local '.$taxonomy.' ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 

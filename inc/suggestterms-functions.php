@@ -144,7 +144,7 @@ function taxopress_create_default_suggestterm()
     $default['taxopress_suggestterm']['taxonomy']                       = 'post_tag';
     $default['post_types']                                              = ['post'];
     $default['taxopress_suggestterm']['number']                         = '100';
-    $default['taxopress_suggestterm']['orderby']                        = 'random';
+    $default['taxopress_suggestterm']['orderby']                        = 'count';
     $default['taxopress_suggestterm']['order']                          = 'desc';
     $default['taxopress_suggestterm']['disable_local']                  = '0';
     $default['taxopress_suggestterm']['suggest_term_use_local']         = '0';

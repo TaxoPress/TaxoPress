@@ -127,6 +127,7 @@ v3.4.0- [===unreleased===]
 * Fixed: Cannot create autolink when using special characters(@#&^%) at the start or the end of the tag #885
 * Added: New menu link for "Suggested Terms" #776
 * Added: Enable/disable control for all features added to settings #946
+* Fixed: Class ‘SimpleTags_Client_RelatedPosts’ not found #982
 
 v3.3.1- 2021-09-20
 * Fixed: Fatal error when deleting plugin #889
