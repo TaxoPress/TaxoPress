@@ -582,16 +582,15 @@ class SimpleTags_Admin_Manage {
 
 			// No objects ? exit !
 			if ( ! $objects_id ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'No objects found for specified old terms.', 'simple-tags' ), 'error' );
 
-				return false;
+			    // Delete old terms
+			    foreach ( (array) $terms_id as $term_id ) {
+				    wp_delete_term( $term_id, $taxonomy );
+			    }
+
+                add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags' ), $old, $new, $counter ), 'updated' );
+				return true;
 			}
-
-			// Delete old terms
-			foreach ( (array) $terms_id as $term_id ) {
-				wp_delete_term( $term_id, $taxonomy );
-			}
-
 			// Set objects to new term ! (Append no replace)
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_tag, $taxonomy, true );
@@ -717,13 +716,9 @@ class SimpleTags_Admin_Manage {
 		$old_terms = explode( ',', $old );
 		$new_terms = explode( ',', $new );
 
-        write_log($old_terms);
-        write_log($new_terms);
 		// Remove empty element and trim
 		$old_terms = array_filter($old_terms, '_delete_empty_element');
 		$new_terms = array_filter($new_terms, '_delete_empty_element');
-        write_log($old_terms);
-        write_log($new_terms);
 
 		// If old/new tag are empty => exit !
 		if ( empty( $old_terms ) || empty( $new_terms ) ) {
