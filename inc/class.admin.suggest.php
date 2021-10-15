@@ -206,7 +206,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Remove empty terms
-		$data = array_filter( $data );
+		$data = array_filter( $data, '_delete_empty_element' );
 		$data = array_unique( $data );
 
 		foreach ( (array) $data as $term ) {

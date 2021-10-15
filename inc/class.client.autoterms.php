@@ -209,7 +209,7 @@ class SimpleTags_Client_Autoterms {
 		// Append terms if terms to add
 		if ( ! empty( $terms_to_add ) ) {
 			// Remove empty and duplicate elements
-			$terms_to_add = array_filter( $terms_to_add );
+			$terms_to_add = array_filter( $terms_to_add, '_delete_empty_element' );
 			$terms_to_add = array_unique( $terms_to_add );
 
 			//auto terms limit

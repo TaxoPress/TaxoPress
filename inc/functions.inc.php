@@ -6,7 +6,7 @@
  *
  * @return string
  */
-function _delete_empty_element( &$element ) {
+function _delete_empty_element( $element ) {
 	$element = stripslashes( $element );
 	$element = trim( $element );
 	if ( ! empty( $element ) ) {

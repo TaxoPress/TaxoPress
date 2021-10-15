@@ -128,6 +128,8 @@ v3.4.0- [===unreleased===]
 * Added: New menu link for "Suggested Terms" #776
 * Added: Enable/disable control for all features added to settings #946
 * Fixed: Class ‘SimpleTags_Client_RelatedPosts’ not found #982
+* Fixed: Manage Terms produces "Error. No enough terms for rename." #978
+
 
 v3.3.1- 2021-09-20
 * Fixed: Fatal error when deleting plugin #889

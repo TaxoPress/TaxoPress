@@ -263,7 +263,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
@@ -634,7 +634,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
@@ -745,7 +745,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
@@ -859,7 +859,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
