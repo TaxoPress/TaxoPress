@@ -20,7 +20,7 @@ return array(
             __('Terms for Current Post', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature allows you show all the terms assigned to the current post.', 'simple-tags')
+            __('This feature allows you create a customizable display of all the terms assigned to the current post.', 'simple-tags')
         ),
         array(
             'active_related_posts_new',
