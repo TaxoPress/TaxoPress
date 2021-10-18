@@ -34,7 +34,7 @@ return array(
             __('Auto Links', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature can automatically create links to your terms.', 'simple-tags')
+            __('Auto Links can automatically create links to your defined terms. For example, if you have a term called “WordPress”, the Auto Links feature can find the word “WordPress” in your content and add links to the archive page for that term.', 'simple-tags')
         ),
         array(
             'active_auto_terms',
