@@ -27,7 +27,7 @@ return array(
             __('Related posts', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature allows you show related posts.', 'simple-tags')
+            __('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags')
         ),
         array(
             'active_auto_links',
