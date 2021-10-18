@@ -77,7 +77,7 @@ class SimpleTags_Admin_Suggest {
 
         $title .= '&nbsp; 
         <select class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="'.$click_terms['ID'].'">
-        <option value="" selected="selected">==='.__( 'Select source to load suggested terms', 'simple-tags' ).'===</option>';
+        <option value="" selected="selected">'.__( 'Select source to load suggested terms', 'simple-tags' ).'</option>';
         foreach($title_options as $option => $label){
             $title .= '<option value="'.$option.'">'.$label.'</option>';
         }

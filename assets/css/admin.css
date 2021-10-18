@@ -551,6 +551,10 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     overflow: hidden;
 }
 
+.form-table.taxopress-table.suggestterm_external .suggestterm_external_description+tr th {
+    width: 250px;
+} 
+
 @media only screen and (max-width: 1270px) {
 
     .tagcloudui,
@@ -582,7 +586,8 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1367px) {
+    
     .clicktags-search-wrapper {
         display: block;
     }

@@ -127,7 +127,7 @@ class SimpleTags_SuggestTerms
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
                 <div class="taxopress-description">
-                    <?php esc_html_e('This feature adds a meta box in the editor which will display suggested terms both from your website term database and also terms obtained by comparing your post content with various sources of tags based on configuration.',
+                    <?php esc_html_e('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.',
                         'simple-tags'); ?>
                 </div>
 
@@ -356,7 +356,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'taxonomy',
                                                         'class'      => 'st-post-taxonomy-select',
-                                                        'labeltext'  => esc_html__('Taxonomy', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Default Taxonomy', 'simple-tags'),
                                                         'required'   => true,
                                                         'selections' => $select,
                                                     ]);
@@ -425,6 +425,9 @@ class SimpleTags_SuggestTerms
 
                                                 <table class="form-table taxopress-table suggestterm_local"
                                                        style="<?php echo $active_tab === 'suggestterm_local' ? '' : 'display:none;'; ?>">
+
+                                                   <tr valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature shows a metabox where you can browse all your existing terms.', 'simple-tags'); ?></td></tr>
+
                                                     <?php
 
                                                     $select             = [
@@ -445,7 +448,7 @@ class SimpleTags_SuggestTerms
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'disable_local',
-                                                        'labeltext'  => esc_html__('Disable Existing Terms',
+                                                        'labeltext'  => esc_html__('Disable "Show existing terms" feature',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
@@ -525,6 +528,10 @@ class SimpleTags_SuggestTerms
 
                                                 <table class="form-table taxopress-table suggestterm_external"
                                                        style="<?php echo $active_tab === 'suggestterm_external' ? '' : 'display:none;'; ?>">
+
+
+                                                   <tr class="suggestterm_external_description" valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature can analyze your content and find new ideas for terms.', 'simple-tags'); ?></td></tr>
+
                                                     <?php
 
 
@@ -547,7 +554,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'suggest_term_use_local',
                                                         'class'      => 'suggest_term_use_local',
-                                                        'labeltext'  => esc_html__('Existing terms on your site',
+                                                        'labeltext'  => esc_html__('Suggest existing terms on your site',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
@@ -572,7 +579,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'suggest_term_use_dandelion',
                                                         'class'      => 'suggest_term_use_dandelion',
-                                                        'labeltext'  => esc_html__('New terms from Dandelion',
+                                                        'labeltext'  => esc_html__('Suggest new terms from the Dandelion service',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
@@ -583,7 +590,7 @@ class SimpleTags_SuggestTerms
                                                         'class'     => 'terms_datatxt_access_token',
                                                         'textvalue' => isset($current['terms_datatxt_access_token']) ? esc_attr($current['terms_datatxt_access_token']) : '',
                                                         'labeltext' => esc_html__('Dandelion API token', 'simple-tags'),
-                                                        'helptext'  => __('You can create an API key from <a href="https://dandelion.eu/">service website</a>',
+                                                        'helptext'  => __('You need an API key to use Dandelion to suggest terms. <br /> <a href="https://taxopress.com/docs/dandelion-api/">Click here for documentation.</a>',
                                                             'simple-tags'),
                                                         'required'  => false,
                                                     ]);
@@ -629,7 +636,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'suggest_term_use_opencalais',
                                                         'class'      => 'suggest_term_use_opencalais',
-                                                        'labeltext'  => esc_html__('New terms from Open Calais',
+                                                        'labeltext'  => esc_html__('Suggest new terms from the Open Calais service',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
@@ -640,7 +647,7 @@ class SimpleTags_SuggestTerms
                                                         'class'     => 'terms_opencalais_key',
                                                         'textvalue' => isset($current['terms_opencalais_key']) ? esc_attr($current['terms_opencalais_key']) : '',
                                                         'labeltext' => esc_html__('OpenCalais API Key', 'simple-tags'),
-                                                        'helptext'  => __('You can create an API key from <a href="https://developers.refinitiv.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation">service website</a>',
+                                                        'helptext'  => __('You need an API key to use OpenCalais to suggest terms. <br /> <a href="https://taxopress.com/docs/opencalais/">Click here for documentation.</a>',
                                                             'simple-tags'),
                                                         'required'  => false,
                                                     ]);

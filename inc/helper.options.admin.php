@@ -10,31 +10,31 @@ return array(
         ),
         array(
             'active_terms_display',
-            __('Terms display', 'simple-tags'),
+            __('Terms Display', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature allows you show all the terms in one taxonomy.', 'simple-tags')
+            __('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags')
         ),
         array(
             'active_post_tags',
             __('Terms for Current Post', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature allows you show all the terms assigned to the current post.', 'simple-tags')
+            __('This feature allows you create a customizable display of all the terms assigned to the current post.', 'simple-tags')
         ),
         array(
             'active_related_posts_new',
-            __('Related posts', 'simple-tags'),
+            __('Related Posts', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature allows you show related posts.', 'simple-tags')
+            __('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags')
         ),
         array(
             'active_auto_links',
             __('Auto Links', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature can automatically create links to your terms.', 'simple-tags')
+            __('Auto Links can automatically create links to your defined terms. For example, if you have a term called “WordPress”, the Auto Links feature can find the word “WordPress” in your content and add links to the archive page for that term.', 'simple-tags')
         ),
         array(
             'active_auto_terms',
@@ -48,11 +48,11 @@ return array(
             __('Suggest Terms', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature adds a meta box in the editor which will display suggested terms both from your website term database and also terms obtained by comparing your post content with various sources of tags based on configuration.', 'simple-tags')
+            __('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.', 'simple-tags')
         ),
         array(
             'active_mass_edit',
-            __('Mass edit terms', 'simple-tags'),
+            __('Mass Edit terms', 'simple-tags'),
             'checkbox',
             '1',
             __('This feature allows you to edit the terms of any taxonomy for multiple posts at the same time.', 'simple-tags')

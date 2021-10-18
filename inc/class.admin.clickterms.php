@@ -55,10 +55,13 @@ class SimpleTags_Admin_ClickTags {
         <label>'.__( 'Taxonomy', 'simple-tags' ).'</label><br />
         <select class="st-post-taxonomy-select click_tags_taxonomy" name="click_tags_taxonomy">';
         foreach ( $post_taxonomies as $_taxonomy ) {
-            if($_taxonomy === 'author'){
+            $_taxonomy = get_taxonomy($_taxonomy);
+            if($_taxonomy->name === 'author'){
                 continue;
             }
-            $_taxonomy = get_taxonomy($_taxonomy);
+            if(!isset($_taxonomy->public) || (isset($_taxonomy->public) && (int)$_taxonomy->public === 0)){
+                continue;
+            }
 
             if($_taxonomy->name === $click_terms['taxonomy']){
                 $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
