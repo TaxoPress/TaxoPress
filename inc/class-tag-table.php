@@ -261,10 +261,6 @@ class Termcloud_List extends WP_List_Table {
      */
     public function search_box($text, $input_id)
     {
-        if (empty($_REQUEST['s']) && !$this->has_items()) {
-            return;
-        }
-
         $input_id = $input_id . '-search-input';
 
         if (!empty($_REQUEST['orderby'])) {
@@ -282,8 +278,9 @@ class Termcloud_List extends WP_List_Table {
         if (!empty($_REQUEST['taxo'])) {
             echo '<input type="hidden" name="taxo" value="' . esc_attr($_REQUEST['taxo']) . '" />';
         }
+        $searchbox_search =  (empty($_REQUEST['s']) && !$this->has_items()) ? 'visibility:hidden;' : '';
         ?>
-        <p class="search-box">
+        <p class="search-box" style="<?php echo $searchbox_search; ?>">
             <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
