@@ -445,7 +445,7 @@ class SimpleTags_SuggestTerms
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'disable_local',
-                                                        'labeltext'  => esc_html__('Disable Existing Terms',
+                                                        'labeltext'  => esc_html__('Disable "Show existing terms" feature',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
