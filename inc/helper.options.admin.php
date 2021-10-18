@@ -10,7 +10,7 @@ return array(
         ),
         array(
             'active_terms_display',
-            __('Terms display', 'simple-tags'),
+            __('Terms Display', 'simple-tags'),
             'checkbox',
             '1',
             __('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags')
@@ -24,7 +24,7 @@ return array(
         ),
         array(
             'active_related_posts_new',
-            __('Related posts', 'simple-tags'),
+            __('Related Posts', 'simple-tags'),
             'checkbox',
             '1',
             __('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags')
@@ -52,7 +52,7 @@ return array(
         ),
         array(
             'active_mass_edit',
-            __('Mass edit terms', 'simple-tags'),
+            __('Mass Edit terms', 'simple-tags'),
             'checkbox',
             '1',
             __('This feature allows you to edit the terms of any taxonomy for multiple posts at the same time.', 'simple-tags')
