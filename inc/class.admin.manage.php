@@ -591,6 +591,12 @@ class SimpleTags_Admin_Manage {
                 add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags' ), $old, $new, $counter ), 'updated' );
 				return true;
 			}
+
+			// Delete old terms
+			foreach ( (array) $terms_id as $term_id ) {
+				wp_delete_term( $term_id, $taxonomy );
+			}
+            
 			// Set objects to new term ! (Append no replace)
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_tag, $taxonomy, true );
