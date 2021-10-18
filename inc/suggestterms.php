@@ -127,7 +127,7 @@ class SimpleTags_SuggestTerms
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
                 <div class="taxopress-description">
-                    <?php esc_html_e('This feature adds a meta box in the editor which will display suggested terms both from your website term database and also terms obtained by comparing your post content with various sources of tags based on configuration.',
+                    <?php esc_html_e('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.',
                         'simple-tags'); ?>
                 </div>
 

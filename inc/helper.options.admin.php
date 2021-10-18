@@ -48,7 +48,7 @@ return array(
             __('Suggest Terms', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature adds a meta box in the editor which will display suggested terms both from your website term database and also terms obtained by comparing your post content with various sources of tags based on configuration.', 'simple-tags')
+            __('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.', 'simple-tags')
         ),
         array(
             'active_mass_edit',
