@@ -356,7 +356,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'taxonomy',
                                                         'class'      => 'st-post-taxonomy-select',
-                                                        'labeltext'  => esc_html__('Taxonomy', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Default Taxonomy', 'simple-tags'),
                                                         'required'   => true,
                                                         'selections' => $select,
                                                     ]);
