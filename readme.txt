@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.8
-Stable tag: 3.3.1
+Stable tag: 3.4.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -118,7 +118,7 @@ TaxoPress can be installed in 3 easy steps:
 
 == Changelog ==
 
-v3.4.0- [===unreleased===]
+v3.4.0- 2021-10-18
 * Fixed: 'Show all local tags' does not display any tags, While saving the tags limit with very large number. #792
 * Added: Auto Terms limit in settings #450
 * Added: Allow users to choose any taxonomy, ordering and number of items in "Click Tags" #497
