@@ -586,7 +586,8 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1367px) {
+    
     .clicktags-search-wrapper {
         display: block;
     }
