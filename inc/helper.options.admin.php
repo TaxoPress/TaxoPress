@@ -13,7 +13,7 @@ return array(
             __('Terms display', 'simple-tags'),
             'checkbox',
             '1',
-            __('This feature allows you show all the terms in one taxonomy.', 'simple-tags')
+            __('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags')
         ),
         array(
             'active_post_tags',
