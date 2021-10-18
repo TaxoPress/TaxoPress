@@ -425,6 +425,9 @@ class SimpleTags_SuggestTerms
 
                                                 <table class="form-table taxopress-table suggestterm_local"
                                                        style="<?php echo $active_tab === 'suggestterm_local' ? '' : 'display:none;'; ?>">
+
+                                                   <tr valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature shows a metabox where you can browse all your existing terms.', 'simple-tags'); ?></td></tr>
+
                                                     <?php
 
                                                     $select             = [
