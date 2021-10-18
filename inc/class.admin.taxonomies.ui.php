@@ -537,6 +537,8 @@ class taxopress_admin_ui
                 'onblur'    => '',
                 'min'       => '1',
                 'max'       => '1000000000',
+                'other_attr'=> '',
+                'class'     => '',
             ]
         );
         $args     = wp_parse_args($args, $defaults);
@@ -553,7 +555,7 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $value .= '<input min="' . $args['min'] . '" max="' . $args['max'] . '" type="number" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
+        $value .= '<input min="' . $args['min'] . '" max="' . $args['max'] . '" type="number" id="' . $args['name'] . '"  class="' . $args['class'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '" ' . $args['other_attr'] . '';
 
         if ($args['maxlength']) {
             $value .= ' ' . $this->get_maxlength($args['maxlength']);

@@ -2,25 +2,60 @@
 return array(
     'features'       => array(
         array(
+            'active_taxonomies',
+            __('Taxonomies', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you to create new taxonomies and edit all the settings for each taxonomy.', 'simple-tags')
+        ),
+        array(
+            'active_terms_display',
+            __('Terms Display', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags')
+        ),
+        array(
+            'active_post_tags',
+            __('Terms for Current Post', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you create a customizable display of all the terms assigned to the current post.', 'simple-tags')
+        ),
+        array(
+            'active_related_posts_new',
+            __('Related Posts', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags')
+        ),
+        array(
+            'active_auto_links',
+            __('Auto Links', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Auto Links can automatically create links to your defined terms. For example, if you have a term called “WordPress”, the Auto Links feature can find the word “WordPress” in your content and add links to the archive page for that term.', 'simple-tags')
+        ),
+        array(
+            'active_auto_terms',
+            __('Auto Terms', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Auto Terms can scan your content and automatically assign terms. For example, you have a term called "WordPress". Auto Terms can analyze your posts and when it finds the word "WordPress", it can add that term to your post.', 'simple-tags')
+        ),
+        array(
+            'active_suggest_terms',
+            __('Suggest Terms', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.', 'simple-tags')
+        ),
+        array(
             'active_mass_edit',
-            __('Mass edit terms', 'simple-tags'),
+            __('Mass Edit terms', 'simple-tags'),
             'checkbox',
             '1',
             __('This feature allows you to edit the terms of any taxonomy for multiple posts at the same time.', 'simple-tags')
-        ),
-        array(
-            'use_click_tags',
-            __('Click tags feature', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature will allow you to load all the local tags in your database inside the Suggested Tags meta box inside the editor. Once displayed, you can click to add tags to your post.', 'simple-tags')
-        ),
-        array(
-            'use_suggested_tags',
-            __('Suggested tags feature', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature adds a meta box in the editor which will display suggested tags obtained by comparing your post content with various sources of tags. (Yahoo! Term Extraction API, OpenCalais, Tag The Net, Local DB)', 'simple-tags')
         ),
         array(
             'active_manage',
@@ -30,49 +65,6 @@ return array(
             __('This feature allows you to edit, merge, delete and add terms for any taxonomy.', 'simple-tags')
         )
     ),
-    'administration' => array(
-        array(
-            'order_click_tags',
-            __('Click tags order', 'simple-tags'),
-            'radio',
-            array(
-                'count-asc'  => __('<code>count-asc</code> &ndash; Least used.', 'simple-tags'),
-                'count-desc' => __('<code>count-desc</code> &ndash; Most popular.', 'simple-tags'),
-                'name-asc'   => __('<code>name-asc</code> &ndash; Alphabetical. (default)', 'simple-tags'),
-                'name-desc'  => __('<code>name-desc</code> &ndash; Inverse Alphabetical.', 'simple-tags'),
-                'random'     => __('<code>random</code> &ndash; Random.', 'simple-tags'),
-            )
-        ),
-        array(
-            'click_tags_limit',
-            __('Click tags limit', 'simple-tags'),
-            ['type' => 'number', 'attr' => 'min="0" max=""'],
-            'regular-text',
-            __('Click tags limit on post screen', 'simple-tags')
-        ),
-        array(
-            'opencalais_key',
-            __('OpenCalais API Key', 'simple-tags'),
-            'text',
-            'regular-text',
-            __('You can create an API key from <a href="https://developers.refinitiv.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation">service website</a>', 'simple-tags')
-        ),
-        array(
-            'datatxt_access_token',
-            __('Dandelion API token', 'simple-tags'),
-            'text',
-            'regular-text',
-            __('You can create an API key from <a href="https://dandelion.eu/">service website</a>', 'simple-tags')
-        ),
-        array(
-            'datatxt_min_confidence',
-            __('Dandelion API confidence value', 'simple-tags'),
-            'text',
-            'regular-text',
-            __('Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate.', 'simple-tags')
-        ),
-    ),
-
 
     'legacy'       => array(
 

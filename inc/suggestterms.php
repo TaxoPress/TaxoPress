@@ -1,6 +1,6 @@
 <?php
 
-class SimpleTags_Autoterms
+class SimpleTags_SuggestTerms
 {
 
     const MENU_SLUG = 'st_options';
@@ -38,7 +38,7 @@ class SimpleTags_Autoterms
     {
 
         // add JS for manage click tags
-        if (isset($_GET['page']) && $_GET['page'] == 'st_autoterms') {
+        if (isset($_GET['page']) && $_GET['page'] == 'st_suggestterms') {
             wp_enqueue_style('st-taxonomies-css');
         }
     }
@@ -68,18 +68,18 @@ class SimpleTags_Autoterms
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Auto Terms', 'simple-tags'),
-            __('Auto Terms', 'simple-tags'),
+            __('Suggest Terms', 'simple-tags'),
+            __('Suggest Terms', 'simple-tags'),
             'simple_tags',
-            'st_autoterms',
+            'st_suggestterms',
             [
                 $this,
-                'page_manage_autoterms',
+                'page_manage_suggestterms',
             ]
         );
 
-        if(taxopress_is_screen_main_page()){
-          add_action("load-$hook", [$this, 'screen_option']);
+        if (taxopress_is_screen_main_page()) {
+            add_action("load-$hook", [$this, 'screen_option']);
         }
     }
 
@@ -93,12 +93,12 @@ class SimpleTags_Autoterms
         $args   = [
             'label'   => __('Number of items per page', 'simple-tags'),
             'default' => 20,
-            'option'  => 'st_autoterms_per_page'
+            'option'  => 'st_suggestterms_per_page'
         ];
 
         add_screen_option($option, $args);
 
-        $this->terms_table = new Autoterms_List();
+        $this->terms_table = new SuggestTerms_List();
     }
 
     /**
@@ -107,7 +107,7 @@ class SimpleTags_Autoterms
      * @return void
      * @author Olatechpro
      */
-    public function page_manage_autoterms()
+    public function page_manage_suggestterms()
     {
         // Default order
         if (!isset($_GET['order'])) {
@@ -122,12 +122,13 @@ class SimpleTags_Autoterms
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php _e('Auto Terms', 'simple-tags'); ?></h1>
-                <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
+                <h1 class="wp-heading-inline"><?php _e('Suggest Terms', 'simple-tags'); ?></h1>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=st_suggestterms&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
                 <div class="taxopress-description">
-                    <?php esc_html_e('Auto Terms can scan your content and automatically assign terms. For example, you have a term called "WordPress". Auto Terms can analyze your posts and when it finds the word "WordPress", it can add that term to your post.', 'simple-tags'); ?>
+                    <?php esc_html_e('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.',
+                        'simple-tags'); ?>
                 </div>
 
 
@@ -148,7 +149,7 @@ class SimpleTags_Autoterms
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(__('Search Auto Terms', 'simple-tags'), 'term'); ?>
+                    <?php $this->terms_table->search_box(__('Search Suggest Terms', 'simple-tags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>
 
@@ -171,7 +172,7 @@ class SimpleTags_Autoterms
         <?php } else {
             if ($_GET['add'] == 'new_item') {
                 //add/edit taxonomy
-                $this->taxopress_manage_autoterms();
+                $this->taxopress_manage_suggestterms();
                 echo '<div>';
             }
         } ?>
@@ -188,7 +189,7 @@ class SimpleTags_Autoterms
      *
      * @internal
      */
-    public function taxopress_manage_autoterms()
+    public function taxopress_manage_suggestterms()
     {
 
         $tab       = (!empty($_GET) && !empty($_GET['action']) && 'edit' == $_GET['action']) ? 'edit' : 'new';
@@ -201,25 +202,26 @@ class SimpleTags_Autoterms
 
         <?php
 
-        $autoterms      = taxopress_get_autoterm_data();
-        $autoterm_edit  = false;
-        $autoterm_limit = false;
+        $suggestterms      = taxopress_get_suggestterm_data();
+        $suggestterm_edit  = false;
+        $suggestterm_limit = false;
 
         if ('edit' === $tab) {
 
 
-            $selected_autoterm = taxopress_get_current_autoterm();
+            $selected_suggestterm = taxopress_get_current_suggestterm();
 
-            if ($selected_autoterm && array_key_exists($selected_autoterm, $autoterms)) {
-                $current       = $autoterms[$selected_autoterm];
-                $autoterm_edit = true;
+            if ($selected_suggestterm && array_key_exists($selected_suggestterm, $suggestterms)) {
+                $current          = $suggestterms[$selected_suggestterm];
+                $suggestterm_edit = true;
             }
 
         }
 
 
-        if (!isset($current['title']) && count($autoterms) > 0 && apply_filters('taxopress_autoterms_create_limit', true)) {
-            $autoterm_limit = true;
+        if (!isset($current['title']) && count($suggestterms) > 0 && apply_filters('taxopress_suggestterms_create_limit',
+                true)) {
+            $suggestterm_limit = true;
         }
 
 
@@ -228,7 +230,7 @@ class SimpleTags_Autoterms
 
 
         <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo __('Manage Auto Terms', 'simple-tags'); ?></h1>
+            <h1><?php echo __('Manage Suggest Terms', 'simple-tags'); ?></h1>
             <div class="wp-clearfix"></div>
 
             <form method="post" action="">
@@ -237,22 +239,22 @@ class SimpleTags_Autoterms
                 <div class="tagcloudui st-tabbed">
 
 
-                    <div class="autoterms-postbox-container">
+                    <div class="suggestterms-postbox-container">
                         <div id="poststuff">
                             <div class="taxopress-section postbox">
                                 <div class="postbox-header">
                                     <h2 class="hndle ui-sortable-handle">
                                         <?php
-                                        if ($autoterm_edit) {
-                                            $active_tab = ( isset($current['active_tab']) && !empty(trim($current['active_tab'])) ) ? $current['active_tab'] : 'autoterm_general';
-                                            echo esc_html__('Edit Auto Terms', 'simple-tags');
-                                            echo '<input type="hidden" name="edited_autoterm" value="' . $current['ID'] . '" />';
-                                            echo '<input type="hidden" name="taxopress_autoterm[ID]" value="' . $current['ID'] . '" />';
-                                            echo '<input type="hidden" name="taxopress_autoterm[active_tab]" class="taxopress-active-subtab" value="'.$active_tab.'" />';
+                                        if ($suggestterm_edit) {
+                                            $active_tab = (isset($current['active_tab']) && !empty(trim($current['active_tab']))) ? $current['active_tab'] : 'suggestterm_general';
+                                            echo esc_html__('Edit Suggest Terms', 'simple-tags');
+                                            echo '<input type="hidden" name="edited_suggestterm" value="' . $current['ID'] . '" />';
+                                            echo '<input type="hidden" name="taxopress_suggestterm[ID]" value="' . $current['ID'] . '" />';
+                                            echo '<input type="hidden" name="taxopress_suggestterm[active_tab]" class="taxopress-active-subtab" value="' . $active_tab . '" />';
                                         } else {
-                                            $active_tab = 'autoterm_general';
-                                            echo '<input type="hidden" name="taxopress_autoterm[active_tab]" class="taxopress-active-subtab" value="" />';
-                                            echo esc_html__('Add new Auto Terms', 'simple-tags');
+                                            $active_tab = 'suggestterm_general';
+                                            echo '<input type="hidden" name="taxopress_suggestterm[active_tab]" class="taxopress-active-subtab" value="" />';
+                                            echo esc_html__('Add new Suggest Terms', 'simple-tags');
                                         }
                                         ?>
                                     </h2>
@@ -261,13 +263,13 @@ class SimpleTags_Autoterms
                                     <div class="main">
 
 
-                                        <?php if ($autoterm_limit) {
+                                        <?php if ($suggestterm_limit) {
                                             echo '<div class="st-taxonomy-content"><div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h2 style="margin-bottom: 5px;">' . __('To create more Auto Terms, please upgrade to TaxoPress Pro.',
+                                            <h2 style="margin-bottom: 5px;">' . __('To create more Suggest Terms, please upgrade to TaxoPress Pro.',
                                                     'simple-tags') . '</h2>
-                                            ' . __('With TaxoPress Pro, you can create unlimited Auto Terms. You can create Auto Terms for any taxonomy.',
+                                            ' . __('With TaxoPress Pro, you can create unlimited Suggest Terms. You can create Suggest Terms for any taxonomy.',
                                                     'simple-tags') . '
 
                                             </p>
@@ -278,23 +280,21 @@ class SimpleTags_Autoterms
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="autoterm_general_tab <?php echo $active_tab === 'autoterm_general' ? 'active' : ''; ?>" data-content="autoterm_general">
-                                                    <a href="#autoterm_general"><span><?php esc_html_e('General',
+                                                <li class="suggestterm_general_tab <?php echo $active_tab === 'suggestterm_general' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_general">
+                                                    <a href="#suggestterm_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autoterm_terms_tab <?php echo $active_tab === 'autoterm_terms' ? 'active' : ''; ?>" data-content="autoterm_terms">
-                                                    <a href="#autoterm_terms"><span><?php esc_html_e('Terms to Use',
+                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_local">
+                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autoterm_options_tab <?php echo $active_tab === 'autoterm_options' ? 'active' : ''; ?>" data-content="autoterm_options">
-                                                    <a href="#autoterm_options"><span><?php esc_html_e('Options',
-                                                                'simple-tags'); ?></span></a>
-                                                </li>
-
-                                                <li class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
-                                                    <a href="#autoterm_oldcontent"><span><?php esc_html_e('Existing Content',
+                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_external">
+                                                    <a href="#suggestterm_external"><span><?php esc_html_e('Suggest Terms',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
@@ -303,8 +303,8 @@ class SimpleTags_Autoterms
                                             <div class="st-taxonomy-content taxopress-tab-content">
 
 
-                                                <table class="form-table taxopress-table autoterm_general"
-                                                       style="<?php echo $active_tab === 'autoterm_general' ? '' : 'display:none;'; ?>">
+                                                <table class="form-table taxopress-table suggestterm_general"
+                                                       style="<?php echo $active_tab === 'suggestterm_general' ? '' : 'display:none;'; ?>">
                                                     <?php
                                                     echo $ui->get_tr_start();
 
@@ -315,7 +315,7 @@ class SimpleTags_Autoterms
                                                     echo $ui->get_th_end() . $ui->get_td_start();
 
                                                     echo $ui->get_text_input([
-                                                        'namearray'   => 'taxopress_autoterm',
+                                                        'namearray'   => 'taxopress_suggestterm',
                                                         'name'        => 'title',
                                                         'textvalue'   => isset($current['title']) ? esc_attr($current['title']) : '',
                                                         'maxlength'   => '32',
@@ -353,40 +353,11 @@ class SimpleTags_Autoterms
                                                     $selected           = isset($current) ? taxopress_disp_boolean($current['taxonomy']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['taxonomy'] : '';
                                                     echo $ui->get_select_checkbox_input_main([
-                                                        'namearray'  => 'taxopress_autoterm',
+                                                        'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'taxonomy',
                                                         'class'      => 'st-post-taxonomy-select',
-                                                        'labeltext'  => esc_html__('Taxonomy', 'simple-tags'),
+                                                        'labeltext'  => esc_html__('Default Taxonomy', 'simple-tags'),
                                                         'required'   => true,
-                                                        'selections' => $select,
-                                                    ]);
-
-
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => 'post_content',
-                                                                'text'    => esc_attr__('Post Content', 'simple-tags')
-                                                            ],
-                                                            [
-                                                                'attr' => 'post_title',
-                                                                'text' => esc_attr__('Post Title', 'simple-tags')
-                                                            ],
-                                                            [
-                                                                'attr' => 'posts',
-                                                                'text' => esc_attr__('Post Content and Title',
-                                                                    'simple-tags'),
-                                                                'default' => 'true'
-                                                            ]
-                                                        ],
-                                                    ];
-                                                    $selected           = (isset($current) && isset($current['autoterm_from'])) ? taxopress_disp_boolean($current['autoterm_from']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['autoterm_from'] : '';
-                                                    echo $ui->get_select_checkbox_input_main([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_from',
-                                                        'labeltext'  => esc_html__('Find term in:',
-                                                            'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
@@ -452,10 +423,11 @@ class SimpleTags_Autoterms
                                                 </table>
 
 
+                                                <table class="form-table taxopress-table suggestterm_local"
+                                                       style="<?php echo $active_tab === 'suggestterm_local' ? '' : 'display:none;'; ?>">
 
+                                                   <tr valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature shows a metabox where you can browse all your existing terms.', 'simple-tags'); ?></td></tr>
 
-                                                <table class="form-table taxopress-table autoterm_terms"
-                                                       style="<?php echo $active_tab === 'autoterm_terms' ? '' : 'display:none;'; ?>">
                                                     <?php
 
                                                     $select             = [
@@ -471,14 +443,57 @@ class SimpleTags_Autoterms
                                                             ],
                                                         ],
                                                     ];
-                                                    $selected           = (isset($current) && isset($current['autoterm_useall'])) ? taxopress_disp_boolean($current['autoterm_useall']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['autoterm_useall'] : '';
+                                                    $selected           = (isset($current) && isset($current['disable_local'])) ? taxopress_disp_boolean($current['disable_local']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['disable_local'] : '';
                                                     echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_useall',
-                                                        'class'      => 'autoterm_useall',
-                                                        'labeltext'  => esc_html__('Which terms to use?', 'simple-tags'),
-                                                        'aftertext'  => __('Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms.', 'simple-tags'),
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'disable_local',
+                                                        'labeltext'  => esc_html__('Disable "Show existing terms" feature',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
+
+                                                    if (!isset($current)) {
+                                                        $maximum_terms = 100;
+                                                    } else {
+                                                        $maximum_terms = isset($current['number']) ? esc_attr($current['number']) : '0';
+                                                    }
+
+                                                    echo $ui->get_number_input([
+                                                        'namearray' => 'taxopress_suggestterm',
+                                                        'name'      => 'number',
+                                                        'textvalue' => $maximum_terms,
+                                                        'labeltext' => esc_html__('Maximum terms', 'simple-tags'),
+                                                        'helptext'  => 'Set (0) for no limit.',
+                                                        'min'       => '0',
+                                                        'required'  => true,
+                                                    ]);
+
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr' => 'name',
+                                                                'text' => esc_attr__('Name', 'simple-tags')
+                                                            ],
+                                                            [
+                                                                'attr'    => 'count',
+                                                                'text'    => esc_attr__('Counter', 'simple-tags'),
+                                                                'default' => 'true'
+                                                            ],
+                                                            [
+                                                                'attr' => 'random',
+                                                                'text' => esc_attr__('Random', 'simple-tags')
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = isset($current) ? taxopress_disp_boolean($current['orderby']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['orderby'] : '';
+                                                    echo $ui->get_select_checkbox_input_main([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'orderby',
+                                                        'labeltext'  => esc_html__('Method for choosing terms',
+                                                            'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
@@ -486,56 +501,24 @@ class SimpleTags_Autoterms
                                                     $select             = [
                                                         'options' => [
                                                             [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simple-tags'),
-                                                                'default' => 'true',
+                                                                'attr' => 'asc',
+                                                                'text' => esc_attr__('Ascending', 'simple-tags')
                                                             ],
                                                             [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                                'attr'    => 'desc',
+                                                                'text'    => esc_attr__('Descending', 'simple-tags'),
+                                                                'default' => 'true'
                                                             ],
                                                         ],
                                                     ];
-                                                    $selected           = (isset($current) && isset($current['autoterm_useonly'])) ? taxopress_disp_boolean($current['autoterm_useonly']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['autoterm_useonly'] : '';
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_useonly',
-                                                        'class'      => 'autoterm_useonly',
-                                                        'labeltext'  => ' ',
-                                                        'aftertext'  => __('Use only some terms in the selected taxonomy.', 'simple-tags'),
+                                                    $selected           = isset($current) ? taxopress_disp_boolean($current['order']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['order'] : '';
+                                                    echo $ui->get_select_checkbox_input_main([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'order',
+                                                        'labeltext'  => esc_html__('Ordering for choosing terms',
+                                                            'simple-tags'),
                                                         'selections' => $select,
-                                                    ]);
-
-                                                    $specific_terms = ( isset($current) && isset($current['specific_terms'])) ? taxopress_change_to_strings($current['specific_terms']) : '';
-                                                    echo '<tr class="autoterm_useonly_options '. ($selected === 'false' ? 'st-hide-content' : '') .'" valign="top"><th scope="row"><label for=""></label></th><td>';
-                                                    echo '<div class="auto-terms-to-use-error" style="display:none;"> '.__('Please choose an option for "Terms to use"', 'simple-tags').' </div>';
-
-                                                            echo '<div class="st-autoterms-single-specific-term">
-                                                            <input autocomplete="off" type="text" class="st-full-width specific_terms_input" name="specific_terms" maxlength="32" placeholder="'. esc_attr(__('Choose the terms to use.', 'simple-tags')) .'" value="'. esc_attr($specific_terms) .'">
-                                                        </div>';
-                                                    
-                                                    echo '</td></tr>';
-                                                    
-                                                    echo $ui->get_tr_start();
-
-
-                                                    echo $ui->get_th_start();
-                                                    echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags')) . $ui->get_required_span();
-                                                    echo $ui->get_th_end() . $ui->get_td_start();
-                                                    
-                                                    echo $ui->get_text_input([
-                                                        'labeltext'   => esc_html__('Stop words', 'simple-tags'),
-                                                        'namearray'   => 'taxopress_autoterm',
-                                                        'name'        => 'autoterm_exclude',
-                                                        'textvalue'   => isset($current['autoterm_exclude']) ? esc_attr($current['autoterm_exclude']) : '',
-                                                        'maxlength'   => '',
-                                                        'helptext'    => __('Choose terms to be excluded from auto terms', 'simple-tags'),
-                                                        'class'       => 'st-full-width auto-terms-stopwords',
-                                                        'aftertext'   => '',
-                                                        'required'    => false,
-                                                        'placeholder' => false,
-                                                        'wrap'        => false,
                                                     ]);
 
 
@@ -543,21 +526,96 @@ class SimpleTags_Autoterms
                                                 </table>
 
 
-                                                <table class="form-table taxopress-table autoterm_options"
-                                                       style="<?php echo $active_tab === 'autoterm_options' ? '' : 'display:none;'; ?>">
+                                                <table class="form-table taxopress-table suggestterm_external"
+                                                       style="<?php echo $active_tab === 'suggestterm_external' ? '' : 'display:none;'; ?>">
+
+
+                                                   <tr class="suggestterm_external_description" valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature can analyze your content and find new ideas for terms.', 'simple-tags'); ?></td></tr>
+
                                                     <?php
 
-                                                    echo $ui->get_number_input([
-                                                        'namearray' => 'taxopress_autoterm',
-                                                        'name'      => 'terms_limit',
-                                                        'textvalue' => isset($current['terms_limit']) ? esc_attr($current['terms_limit']) : '',
-                                                        'labeltext' => esc_html__('Auto Terms Limit',
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['suggest_term_use_local'])) ? taxopress_disp_boolean($current['suggest_term_use_local']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['suggest_term_use_local'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'suggest_term_use_local',
+                                                        'class'      => 'suggest_term_use_local',
+                                                        'labeltext'  => esc_html__('Suggest existing terms on your site',
                                                             'simple-tags'),
-                                                        'helptext'  => __('Limit the number of generated Auto Terms. \'0\' for unlimited terms', 'simple-tags'),
-                                                        'min'       => '0',
+                                                        'selections' => $select,
+                                                    ]);
+
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
+                                                    $selected           = (isset($current) && isset($current['suggest_term_use_dandelion'])) ? taxopress_disp_boolean($current['suggest_term_use_dandelion']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['suggest_term_use_dandelion'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'suggest_term_use_dandelion',
+                                                        'class'      => 'suggest_term_use_dandelion',
+                                                        'labeltext'  => esc_html__('Suggest new terms from the Dandelion service',
+                                                            'simple-tags'),
+                                                        'selections' => $select,
+                                                    ]);
+
+                                                    echo $ui->get_text_input([
+                                                        'namearray' => 'taxopress_suggestterm',
+                                                        'name'      => 'terms_datatxt_access_token',
+                                                        'class'     => 'terms_datatxt_access_token',
+                                                        'textvalue' => isset($current['terms_datatxt_access_token']) ? esc_attr($current['terms_datatxt_access_token']) : '',
+                                                        'labeltext' => esc_html__('Dandelion API token', 'simple-tags'),
+                                                        'helptext'  => __('You need an API key to use Dandelion to suggest terms. <br /> <a href="https://taxopress.com/docs/dandelion-api/">Click here for documentation.</a>',
+                                                            'simple-tags'),
                                                         'required'  => false,
                                                     ]);
 
+                                                    if (!isset($current)) {
+                                                        $terms_datatxt_min_confidence = '0.6';
+                                                    } else {
+                                                        $terms_datatxt_min_confidence = isset($current['terms_datatxt_min_confidence']) ? esc_attr($current['terms_datatxt_min_confidence']) : '0';
+                                                    }
+
+                                                    echo $ui->get_number_input([
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'terms_datatxt_min_confidence',
+                                                        'class'      => 'terms_datatxt_min_confidence',
+                                                        'textvalue'  => $terms_datatxt_min_confidence,
+                                                        'labeltext'  => esc_html__('Dandelion API confidence value',
+                                                            'simple-tags'),
+                                                        'helptext'   => __('Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate.',
+                                                            'simple-tags'),
+                                                        'min'        => '0',
+                                                        'max'        => '1',
+                                                        'other_attr' => 'step=".1"',
+                                                        'required'   => false,
+                                                    ]);
+
 
                                                     $select             = [
                                                         'options' => [
@@ -572,92 +630,28 @@ class SimpleTags_Autoterms
                                                             ],
                                                         ],
                                                     ];
-                                                    $selected           = (isset($current) && isset($current['autoterm_target'])) ? taxopress_disp_boolean($current['autoterm_target']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['autoterm_target'] : '';
+                                                    $selected           = (isset($current) && isset($current['suggest_term_use_opencalais'])) ? taxopress_disp_boolean($current['suggest_term_use_opencalais']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['suggest_term_use_opencalais'] : '';
                                                     echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_target',
-                                                        'class'      => '',
-                                                        'labeltext'  => esc_html__('Target content', 'simple-tags'),
-                                                        'aftertext'  => __('Only use Auto Terms on posts with no added terms.', 'simple-tags'),
+                                                        'namearray'  => 'taxopress_suggestterm',
+                                                        'name'       => 'suggest_term_use_opencalais',
+                                                        'class'      => 'suggest_term_use_opencalais',
+                                                        'labeltext'  => esc_html__('Suggest new terms from the Open Calais service',
+                                                            'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simple-tags'),
-                                                                'default' => 'true',
-                                                            ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simple-tags'),
-                                                            ],
-                                                        ],
-                                                    ];
-                                                    $selected           = (isset($current) && isset($current['autoterm_word'])) ? taxopress_disp_boolean($current['autoterm_word']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['autoterm_word'] : '';
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_word',
-                                                        'class'      => '',
-                                                        'labeltext'  => esc_html__('Whole words', 'simple-tags'),
-                                                        'aftertext'  => __('Only add terms when the word is an exact match. Do not make matches for partial words.', 'simple-tags'),
-                                                        'selections' => $select,
+                                                    echo $ui->get_text_input([
+                                                        'namearray' => 'taxopress_suggestterm',
+                                                        'name'      => 'terms_opencalais_key',
+                                                        'class'     => 'terms_opencalais_key',
+                                                        'textvalue' => isset($current['terms_opencalais_key']) ? esc_attr($current['terms_opencalais_key']) : '',
+                                                        'labeltext' => esc_html__('OpenCalais API Key', 'simple-tags'),
+                                                        'helptext'  => __('You need an API key to use OpenCalais to suggest terms. <br /> <a href="https://taxopress.com/docs/opencalais/">Click here for documentation.</a>',
+                                                            'simple-tags'),
+                                                        'required'  => false,
                                                     ]);
 
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simple-tags'),
-                                                                'default' => 'true',
-                                                            ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simple-tags'),
-                                                            ],
-                                                        ],
-                                                    ];
-                                                    $selected           = (isset($current) && isset($current['autoterm_hash'])) ? taxopress_disp_boolean($current['autoterm_hash']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['autoterm_hash'] : '';
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_hash',
-                                                        'class'      => '',
-                                                        'labeltext'  => esc_html__('Hashtags', 'simple-tags'),
-                                                        'aftertext'  => __('Support hashtags symbols # in Auto Terms', 'simple-tags'),
-                                                        'selections' => $select,
-                                                    ]);
-
-
-                                                    ?>
-
-                                                </table>
-
-
-                                                <table class="form-table taxopress-table autoterm_oldcontent"
-                                                       style="<?php echo $active_tab === 'autoterm_oldcontent' ? '' : 'display:none;'; ?>">
-
-                                                       <tr valign="top"><th scope="row"><label><?php echo __('Previous content', 'simple-tags'); ?></label></th>
-                                                       <td>
-                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to all existing content', 'simple-tags')); ?>">
-                                                           <span class="spinner taxopress-spinner"></span>
-
-                                                           <p class="taxopress-field-description description">
-                                                               <?php echo __('TaxoPress can add Auto Terms to existing content.', 'simple-tags'); ?>
-                                                               
-                                                               <br /> <strong style="color:red;"><?php echo __('Please save all changes to your Auto Terms before using this feature.', 'simple-tags'); ?></strong>
-                                                            </p>
-                                            
-                                                            <div class="auto-term-content-result-title"></div>
-
-                                                            </div>
-
-                                                            <ul class="auto-term-content-result"></ul>
-                                                        </td></tr>
-                                                    <?php
 
                                                     ?>
 
@@ -679,7 +673,7 @@ class SimpleTags_Autoterms
                             </div>
 
 
-                            <?php if ($autoterm_limit) { ?>
+                            <?php if ($suggestterm_limit) { ?>
 
                                 <div class="pp-version-notice-bold-purple" style="margin-left:0px;">
                                     <div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free.
@@ -711,22 +705,24 @@ class SimpleTags_Autoterms
 
 
                         <?php
-                        if (!$autoterm_limit) { ?>
+                        if (!$suggestterm_limit) { ?>
                             <p class="submit">
 
                                 <?php
-                                wp_nonce_field('taxopress_addedit_autoterm_nonce_action',
-                                    'taxopress_addedit_autoterm_nonce_field');
+                                wp_nonce_field('taxopress_addedit_suggestterm_nonce_action',
+                                    'taxopress_addedit_suggestterm_nonce_field');
                                 if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-autoterm-submit"
-                                           name="autoterm_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Save Auto Terms',
+                                    <input type="submit"
+                                           class="button-primary taxopress-taxonomy-submit taxopress-suggestterm-submit"
+                                           name="suggestterm_submit"
+                                           value="<?php echo esc_attr(esc_attr__('Save Suggest Terms',
                                                'simple-tags')); ?>"/>
                                     <?php
                                 } else { ?>
-                                    <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-autoterm-submit"
-                                           name="autoterm_submit"
-                                           value="<?php echo esc_attr(esc_attr__('Add Auto Terms',
+                                    <input type="submit"
+                                           class="button-primary taxopress-taxonomy-submit taxopress-suggestterm-submit"
+                                           name="suggestterm_submit"
+                                           value="<?php echo esc_attr(esc_attr__('Add Suggest Terms',
                                                'simple-tags')); ?>"/>
                                 <?php } ?>
 
@@ -752,23 +748,27 @@ class SimpleTags_Autoterms
 
         <div class="clear"></div>
 
-        <?php # Modal Windows; ?>
-<div class="remodal" data-remodal-id="taxopress-modal-alert"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
-    <div id="taxopress-modal-alert-content"></div>
-    <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simple-tags'); ?></button>
-</div>
+        <?php # Modal Windows;
+        ?>
+        <div class="remodal" data-remodal-id="taxopress-modal-alert"
+             data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+            <div class=""
+                 style="color:red;"><?php echo __('Please complete the following required fields to save your changes:',
+                    'simple-tags'); ?></div>
+            <div id="taxopress-modal-alert-content"></div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay',
+                    'simple-tags'); ?></button>
+        </div>
 
-<div class="remodal" data-remodal-id="taxopress-modal-confirm"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-    <div id="taxopress-modal-confirm-content"></div>
-    <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
-    <button data-remodal-action="confirm"
-            class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
-</div>
+        <div class="remodal" data-remodal-id="taxopress-modal-confirm"
+             data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+            <div id="taxopress-modal-confirm-content"></div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
+            <button data-remodal-action="confirm"
+                    class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
+        </div>
 
         <?php
     }

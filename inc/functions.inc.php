@@ -6,7 +6,7 @@
  *
  * @return string
  */
-function _delete_empty_element( &$element ) {
+function _delete_empty_element( $element ) {
 	$element = stripslashes( $element );
 	$element = trim( $element );
 	if ( ! empty( $element ) ) {
@@ -33,9 +33,15 @@ function is_page_have_tags() {
  */
 function st_register_widget() {
 	register_widget( 'SimpleTags_Widget' );
-	register_widget( 'SimpleTags_Shortcode_Widget' );
-	register_widget( 'SimpleTags_PostTags_Widget' );
-	register_widget( 'SimpleTags_RelatedPosts_Widget' );
+    if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_terms_display' )){
+	    register_widget( 'SimpleTags_Shortcode_Widget' );
+    }
+    if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_post_tags' )){
+	    register_widget( 'SimpleTags_PostTags_Widget' );
+    }
+    if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' )){
+	    register_widget( 'SimpleTags_RelatedPosts_Widget' );
+    }
 }
 
 /**
@@ -105,6 +111,7 @@ function taxopress_admin_pages(){
         'st_related_posts',
         'st_autolinks',
         'st_autoterms',
+        'st_suggestterms'
     ];
 
    return apply_filters('taxopress_admin_pages', $taxopress_pages);
@@ -194,4 +201,65 @@ function taxopress_change_to_array($array){
         $array = preg_split("/\s*,\s*/",$array);
     }
     return $array;
+}
+
+function taxopress_html_character_and_entity($enity_code_as_key = false){
+    #Source https://dev.w3.org/html5/html-author/charref
+    $character_set = [
+        //'&amp;' => '&#38;',
+        '&lt;' => '&#60;',
+        '&gt;' => '&#62;',
+        '&nbsp;' => '&#160;',
+       '&excl;' => '&#33;',
+        '&quot;' => '&#34;',
+        '&num;'  => '&#35;',
+        '&dollar;'=> '&#36;',
+        '&percnt;' => '&#37;',
+        '&apos;' => '&#39;',
+        '&lpar;' => '&#40;',
+        '&rpar;' => '&#41;',
+        '&ast; ' => '&#42;',
+        '&plus;' => '&#43;',
+        '&comma;' => '&#44;',
+        '&period;' => '&#46;',
+        '&sol;' => '&#47;',
+        '&colon;' => '&#58',
+        '&semi;' => '&#59;',
+        '&equals;' => '&#61;',
+        '&quest;' => '&#63;',
+        '&commat;' => '&#64;',
+        '&lsqb;' => '&#91;',
+        '&bsol;' => '&#92;',
+        '&rsqb;' => '&#93;',
+        '&Hat;' => '&#94;',
+        '&lowbar;' => '&#95;',
+        '&grave;' => '&#96;',
+        '&lcub;' => '&#123;',
+        '&verbar;' => '&#124;',
+        '&rcub;' => '&#125;',
+        '&iexcl;' => '&#161;',
+        '&cent;' => '&#162;',
+        '&pound;' => '&#163;',
+        '&copy;' => '&#169;',
+        '&ordf;' => '&#170;',
+        '&laquo;' => '&#171;',
+        '&reg;' => '&#174;',
+        '&deg;' => '&#176;',
+        '&plusmn;' => '&#177;',
+        '&sup2;' => '&#178;',
+        '&sup3;' => '&#179;',
+        '&acute;' => '&#180;',
+        '&sup1;' => '&#185;',
+        '&ordm;' => '&#186;',
+        '&raquo;' => '&#187;',
+        '&frac14;' => '&#188;',
+        '&frac12;' => '&#189;',
+        '&frac34;' => '&#190;'
+    ];
+
+    if($enity_code_as_key){
+        $character_set = array_flip($character_set);
+    }
+
+    return $character_set;
 }

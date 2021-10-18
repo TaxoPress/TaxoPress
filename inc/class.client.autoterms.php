@@ -8,8 +8,10 @@ class SimpleTags_Client_Autoterms {
 	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
-		add_action( 'save_post', array( __CLASS__, 'save_post' ), 12, 2 );
-		add_action( 'post_syndicated_item', array( __CLASS__, 'save_post' ), 12, 2 );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_terms' ) ) {
+		    add_action( 'save_post', array( __CLASS__, 'save_post' ), 12, 2 );
+		    add_action( 'post_syndicated_item', array( __CLASS__, 'save_post' ), 12, 2 );
+        }
 	}
 
 	/**
@@ -207,8 +209,14 @@ class SimpleTags_Client_Autoterms {
 		// Append terms if terms to add
 		if ( ! empty( $terms_to_add ) ) {
 			// Remove empty and duplicate elements
-			$terms_to_add = array_filter( $terms_to_add );
+			$terms_to_add = array_filter( $terms_to_add, '_delete_empty_element' );
 			$terms_to_add = array_unique( $terms_to_add );
+
+			//auto terms limit
+			$terms_limit = isset($options['terms_limit']) ? (int)$options['terms_limit'] : 0;
+			if($terms_limit > 0 && count($terms_to_add) > $terms_limit){
+				$terms_to_add = array_slice($terms_to_add, 0, $terms_limit);
+			}
 
 			if ( $counter == true ) {
 				// Increment counter

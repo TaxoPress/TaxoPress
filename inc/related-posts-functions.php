@@ -299,7 +299,6 @@ function taxopress_action_delete_relatedpost($relatedpost_id)
     }
 }
 
-add_shortcode('taxopress_relatedposts', 'taxopress_relatedposts_shortcode');
 function taxopress_relatedposts_shortcode($atts)
 {
     extract(shortcode_atts([
@@ -370,6 +369,4 @@ function taxopress_relatedposts_the_content($content = '')
 
     return $content;
 }
-
-add_filter('the_content', 'taxopress_relatedposts_the_content', 999992);
 ?>

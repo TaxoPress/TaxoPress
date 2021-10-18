@@ -1,13 +1,18 @@
 <?php
 return array(
     // Features
+    'active_taxonomies'      => 1,
+    'active_terms_display'   => 1,
+    'active_post_tags'       => 1,
+    'active_related_posts_new'=> 1,
+    'active_auto_links'      => 1,
+    'active_auto_terms'      => 1,
+    'active_suggest_terms'   => 1,
     'active_mass_edit'       => 1,
     'active_manage'          => 1,
     'active_related_posts'   => 1,
     'active_autotags'        => 1,
     'allow_embed_tcloud'     => 1,
-    'use_click_tags'         => 0,
-    'use_suggested_tags'     => 0,
     // Auto link
     'auto_link_tags'         => 0,
     'auto_link_min'          => 1,
@@ -21,13 +26,6 @@ return array(
     'auto_link_dom'          => 0,
     'auto_link_title'        => __('Posts tagged with %s', 'simple-tags'),
     'auto_link_title_excl'   => 0,
-    // Administration
-    'order_click_tags'       => 'name-asc',
-    'click_tags_limit'       => '100',
-    'opencalais_key'         => '',
-    'datatxt_access_token'   => '',
-    'datatxt_min_confidence'  => '0.6',
-    'autocomplete_mode'      => '',
     // The tags
     'tt_feed'                => 0,
     'tt_embedded'            => 'no',

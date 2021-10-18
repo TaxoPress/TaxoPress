@@ -11,11 +11,12 @@ class SimpleTags_Admin_Suggest {
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
 
-		// Box for post/page
-		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ), 1 );
-
-		// Javascript
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
+        if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_suggest_terms' )){
+    		// Box for post/page
+	    	add_action( 'admin_head', array( __CLASS__, 'admin_head' ), 1 );
+    		// Javascript
+	    	add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
+        }
 	}
 
 	/**
@@ -27,23 +28,23 @@ class SimpleTags_Admin_Suggest {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
+        $click_terms = taxopress_current_post_suggest_terms();
+
+        if(!is_array($click_terms)){
+            return;
+        }
+
 		wp_register_script( 'st-helper-suggested-tags', STAGS_URL . '/assets/js/helper-suggested-tags.js', array(
 			'jquery',
 			'st-helper-add-tags'
 		), STAGS_VERSION );
 		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
 			'title_bloc'   => self::get_suggest_tags_title(),
-			'content_bloc' => __( 'Click a provider name.', 'simple-tags' )
+			'content_bloc' => __( 'Select an option above to load suggested terms.', 'simple-tags' )
 		) );
 
-		// Register location
-		$wp_post_pages = array( 'post.php', 'post-new.php' );
-		$wp_page_pages = array( 'page.php', 'page-new.php' );
-
-		// Helper for posts/pages
-		if ( in_array( $pagenow, $wp_post_pages ) || ( in_array( $pagenow, $wp_page_pages ) && is_page_have_tags() ) ) {
-			wp_enqueue_script( 'st-helper-suggested-tags' );
-		}
+        // Helper for post type
+        wp_enqueue_script( 'st-helper-suggested-tags' );
 	}
 
 	/**
@@ -51,18 +52,36 @@ class SimpleTags_Admin_Suggest {
 	 *
 	 */
 	public static function get_suggest_tags_title() {
+
+        $click_terms = taxopress_current_post_suggest_terms();
+
+
+        
 		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simple-tags' ) . '" />';
-		$title .= __( 'Automatic tag suggestions:', 'simple-tags' ) . '';
-		
-		$title .= '&nbsp; <a data-ajaxaction="tags_from_local_db" class="suggest-action-link" href="#suggestedtags">' . __( 'Local tags', 'simple-tags' ) . '</a>';
+		$title .= __( 'Automatic term suggestions', 'simple-tags' ) . '';
 
-		if ( SimpleTags_Plugin::get_option_value( 'datatxt_access_token' ) !== '' ) {
-		$title .= '&nbsp; - &nbsp;<a data-ajaxaction="tags_from_datatxt" class="suggest-action-link" href="#suggestedtags">' . __( 'dataTXT by Dandelion', 'simple-tags' ) . '</a>';
-		}
+        $suggest_term_use_local      = isset($click_terms['suggest_term_use_local']) ? (int)$click_terms['suggest_term_use_local'] : 0;
+        $suggest_term_use_dandelion  = isset($click_terms['suggest_term_use_dandelion']) ? (int)$click_terms['suggest_term_use_dandelion'] : 0;
+        $suggest_term_use_opencalais = isset($click_terms['suggest_term_use_opencalais']) ? (int)$click_terms['suggest_term_use_opencalais'] : 0;
 
-		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) !== '' ) {
-		$title .= '&nbsp; - &nbsp;<a data-ajaxaction="tags_from_opencalais" class="suggest-action-link" href="#suggestedtags">' . __( 'OpenCalais', 'simple-tags' ) . '</a>';
-		}
+        if($suggest_term_use_local > 0){
+            $title_options['tags_from_local_db']    = __( 'Local tags', 'simple-tags' );
+        }
+
+        if ( $click_terms['terms_datatxt_access_token'] !== '' && $suggest_term_use_dandelion > 0 ) {
+            $title_options['tags_from_datatxt']     = __( 'dataTXT by Dandelion', 'simple-tags' );
+        }
+		if ( $click_terms['terms_opencalais_key'] !== '' && $suggest_term_use_opencalais > 0 ) {
+            $title_options['tags_from_opencalais']  = __( 'OpenCalais', 'simple-tags' );
+        }
+
+        $title .= '&nbsp; 
+        <select class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="'.$click_terms['ID'].'">
+        <option value="" selected="selected">'.__( 'Select source to load suggested terms', 'simple-tags' ).'</option>';
+        foreach($title_options as $option => $label){
+            $title .= '<option value="'.$option.'">'.$label.'</option>';
+        }
+        $title .= '</select>';
 
 
 		return $title;
@@ -74,17 +93,18 @@ class SimpleTags_Admin_Suggest {
 	 * @return void
 	 * @author WebFactory Ltd
 	 */
-	public static function admin_menu() {
+	public static function admin_head() {
+
+        $click_terms = taxopress_current_post_suggest_terms();
+
+        if(!is_array($click_terms)){
+            return;
+        }
+
 		add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simple-tags' ), array(
 			__CLASS__,
 			'metabox'
-		), 'post', 'advanced', 'core' );
-		if ( is_page_have_tags() ) {
-			add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simple-tags' ), array(
-				__CLASS__,
-				'metabox'
-			), 'page', 'advanced', 'core' );
-		}
+		), get_post_type(), 'advanced', 'core' );
 	}
 
 	/**
@@ -128,8 +148,21 @@ class SimpleTags_Admin_Suggest {
 		status_header( 200 );
 		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
 
+
+        $suggestterms = taxopress_get_suggestterm_data();
+        $selected_suggestterm = (int)$_GET['suggestterms'];
+        $click_terms = false;
+        if (array_key_exists($selected_suggestterm, $suggestterms)) {
+            $click_terms       = $suggestterms[$selected_suggestterm];
+        }
+
+        if(!$click_terms){
+			echo '<p>' . __( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
+			exit();
+        }
+
 		// API Key ?
-		if ( SimpleTags_Plugin::get_option_value( 'opencalais_key' ) == '' ) {
+		if ( $click_terms['terms_opencalais_key'] == '' ) {
 			echo '<p>' . __( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simple-tags' ) . '</p>';
 			exit();
 		}
@@ -145,7 +178,7 @@ class SimpleTags_Admin_Suggest {
 		$response = wp_remote_post( 'https://api-eit.refinitiv.com/permid/calais', array(
 			'timeout' => 30,
 			'headers' => array(
-				'X-AG-Access-Token' => SimpleTags_Plugin::get_option_value( 'opencalais_key' ),
+				'X-AG-Access-Token' => $click_terms['terms_opencalais_key'],
 				'Content-Type'      => 'text/html',
 				'outputFormat'      => 'application/json'
 			),
@@ -173,7 +206,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Remove empty terms
-		$data = array_filter( $data );
+		$data = array_filter( $data, '_delete_empty_element' );
 		$data = array_unique( $data );
 
 		foreach ( (array) $data as $term ) {
@@ -193,6 +226,18 @@ class SimpleTags_Admin_Suggest {
 
 		$request_ws_args = array();
 
+        $suggestterms = taxopress_get_suggestterm_data();
+        $selected_suggestterm = (int)$_GET['suggestterms'];
+        $click_terms = false;
+        if (array_key_exists($selected_suggestterm, $suggestterms)) {
+            $click_terms       = $suggestterms[$selected_suggestterm];
+        }
+
+        if(!$click_terms){
+			echo '<p>' . __( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
+			exit();
+        }
+
 		// Get data
 		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
 		$content = trim( $content );
@@ -205,11 +250,11 @@ class SimpleTags_Admin_Suggest {
 
 		// Custom confidence ?
 		$request_ws_args['min_confidence'] = 0.6;
-		if ( SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' ) != "" ) {
-			$request_ws_args['min_confidence'] = SimpleTags_Plugin::get_option_value( 'datatxt_min_confidence' );
+		if ( $click_terms['terms_datatxt_min_confidence'] != "" ) {
+			$request_ws_args['min_confidence'] = $click_terms['terms_datatxt_min_confidence'];
 		}
 
-		$request_ws_args['token'] = SimpleTags_Plugin::get_option_value( 'datatxt_access_token' );
+		$request_ws_args['token'] = $click_terms['terms_datatxt_access_token'];
 
 		// Build params
 		$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array(
@@ -230,8 +275,7 @@ class SimpleTags_Admin_Suggest {
 		$data = json_decode( $data );
 
 		// echo $data;
-
-		$data = $data->annotations;
+		$data = is_object($data) ? $data->annotations : '';
 
 		if ( empty( $data ) ) {
 			echo '<p>' . __( 'No results from dataTXT API.', 'simple-tags' ) . '</p>';

@@ -505,6 +505,82 @@
         }
 
 
+        // -------------------------------------------------------------
+        //   Suggest terms submit error
+        // -------------------------------------------------------------
+            $('.taxopress-suggestterm-submit').on('click', function (e) {
+
+
+              var fields = $(".taxopress-section").find("select, textarea, input").serializeArray(),
+                field_label,
+                field_object,
+                field_error_count = 0,
+                field_error_message = '<ul>';
+
+              //required field check
+              $.each(fields, function (i, field) {
+                field_object = $('input[name="' + field.name + '"]');
+                if (field_object.attr('required')) {
+                  if (!field.value) {
+                    field_label = field_object.closest('tr').find('label').html();
+                    field_error_count = 1;
+                    field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
+                  } else if (isEmptyOrSpaces(field.value)) {
+                    field_label = field_object.closest('tr').find('label').html();
+                    field_error_count = 1;
+                    field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
+                  }
+                }
+              });
+
+              field_error_message += '</ul>';
+
+              if (field_error_count > 0) {
+                e.preventDefault();
+                // Display the alert
+                $('#taxopress-modal-alert-content').html(field_error_message);
+                $('[data-remodal-id=taxopress-modal-alert]').remodal().open();
+              }
+
+            });
+
+
+    // -------------------------------------------------------------
+    //   Suggest term use Dandelion check
+    // -------------------------------------------------------------
+    $(document).on('click', '.suggest_term_use_dandelion', function (e) {
+      suggest_term_use_dandelion_action();
+    });
+    suggest_term_use_dandelion_action();
+    function suggest_term_use_dandelion_action() {
+      if ($('.suggest_term_use_dandelion').length > 0) {
+        if ($('.suggest_term_use_dandelion').prop("checked")) {
+          $('.terms_datatxt_access_token').closest('tr').removeClass('st-hide-content');
+          $('.terms_datatxt_min_confidence').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.terms_datatxt_access_token').closest('tr').addClass('st-hide-content');
+          $('.terms_datatxt_min_confidence').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
+    //   Suggest term use OpenCalais check
+    // -------------------------------------------------------------
+    $(document).on('click', '.suggest_term_use_opencalais', function (e) {
+      suggest_term_use_opencalais_action();
+    });
+    suggest_term_use_opencalais_action();
+    function suggest_term_use_opencalais_action() {
+      if ($('.suggest_term_use_opencalais').length > 0) {
+        if ($('.suggest_term_use_opencalais').prop("checked")) {
+          $('.terms_opencalais_key').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.terms_opencalais_key').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
+
 
     function isEmptyOrSpaces(str) {
       return str === null || str.match(/^ *$/) !== null;

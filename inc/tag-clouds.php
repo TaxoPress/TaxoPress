@@ -127,7 +127,7 @@ class SimpleTags_Tag_Clouds
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_terms_display&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
-                   <div class="taxopress-description">This feature allows you show all the terms in one taxonomy.</div>
+                   <div class="taxopress-description">This feature allows you to create a customizable display of all the terms in one taxonomy.</div>
 
 
                 <?php

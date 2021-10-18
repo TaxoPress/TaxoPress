@@ -13,23 +13,27 @@ class SimpleTags_Client_Autolinks {
 	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
-		$auto_link_priority = SimpleTags_Plugin::get_option_value( 'auto_link_priority' );
-		if ( 0 === (int) $auto_link_priority ) {
-			$auto_link_priority = 12;
-		}
 
-		// Auto link tags
-		add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
+		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_links' ) ) {
 
-        //legacy
-		if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' )  && (int)SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) > 0 ) {
-			add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
-			add_filter( 'the_title', array( __CLASS__, 'the_title' ) );
-		}
+    		$auto_link_priority = SimpleTags_Plugin::get_option_value( 'auto_link_priority' );
+	    	if ( 0 === (int) $auto_link_priority ) {
+		    	$auto_link_priority = 12;
+		    }
+            
+		    // Auto link tags
+		    add_filter( 'the_posts', array( __CLASS__, 'the_posts' ), 10 );
 
-        //new UI
-        add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
-        add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 12);
+            //legacy
+	    	if ( 'no' !== SimpleTags_Plugin::get_option_value( 'auto_link_views' )  && (int)SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) > 0 ) {
+		    	add_filter( 'the_content', array( __CLASS__, 'the_content' ), $auto_link_priority );
+			    add_filter( 'the_title', array( __CLASS__, 'the_title' ) );
+		    }
+
+            //new UI
+            add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
+            add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 12);
+    }
 
 	}
 
@@ -259,7 +263,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
@@ -300,7 +304,7 @@ class SimpleTags_Client_Autolinks {
 	/**
 	 * Replace text by link, except HTML tag, and already text into link, use DOMdocument.
 	 * https://stackoverflow.com/questions/4044812/regex-domdocument-match-and-replace-text-not-in-a-link
-	 *
+	 *  
 	 * @param string $content
 	 * @param string $search
 	 * @param string $replace
@@ -311,16 +315,19 @@ class SimpleTags_Client_Autolinks {
 	 */
 	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
 		$dom = new DOMDocument();
-
-		$content = str_replace('&lt;','&#60;',$content);
-		$content = str_replace('&gt;','&#62;',$content);
+        
+        //replace html entity with their entity code
+        foreach(taxopress_html_character_and_entity() as $enity => $code){
+           $content = str_replace($enity, $code,$content);
+        }
 		$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
-        $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
+        $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
 		//$content = utf8_decode($content);
 
         libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
 		$result = $dom->loadHtml( mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" ) );
+
 		if ( false === $result ) {
 			return;
 		}
@@ -374,6 +381,7 @@ class SimpleTags_Client_Autolinks {
 		$j        = 0;
         $replaced_count = 0;
 		foreach ( $xpath->query( '//text()'.$exclusion.'' ) as $node ) {
+
 			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
 			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
             $link_closing = '</a>';
@@ -388,13 +396,13 @@ class SimpleTags_Client_Autolinks {
             if($same_usage_max > 0 ){
 			if ( 'i' === $case ) {
                 if($autolink_case === 'none'){//retain case
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }elseif($autolink_case === 'uppercase'){//uppercase
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }elseif($autolink_case === 'termcase'){//termcase
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }else {//lowercase
-                    $replaced = preg_replace('/\b' . preg_quote($search, "/") . '\b/ui', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                 }
 			} else {
 				$replaced = str_replace( $search, $substitute, $node->wholeText );
@@ -423,6 +431,9 @@ class SimpleTags_Client_Autolinks {
 		$content = str_replace('|--|','&#',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
 		$content = str_replace('&#60;','<',$content);
 		$content = str_replace('&#62;','>',$content);
+        foreach(taxopress_html_character_and_entity(true) as $enity => $code){
+          $content = str_replace($enity, $code,$content);
+        }
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
 		
@@ -623,7 +634,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
@@ -734,7 +745,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
@@ -848,7 +859,7 @@ class SimpleTags_Client_Autolinks {
 		if ( empty( $excludes_terms ) ) {
 			$excludes_terms = array();
 		} else {
-			$excludes_terms = array_filter( $excludes_terms );
+			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
 			$excludes_terms = array_unique( $excludes_terms );
 		}
 
