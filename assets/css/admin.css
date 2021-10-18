@@ -551,6 +551,10 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     overflow: hidden;
 }
 
+.form-table.taxopress-table.suggestterm_external .suggestterm_external_description+tr th {
+    width: 250px;
+} 
+
 @media only screen and (max-width: 1270px) {
 
     .tagcloudui,

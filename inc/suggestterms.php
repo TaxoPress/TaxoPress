@@ -530,7 +530,7 @@ class SimpleTags_SuggestTerms
                                                        style="<?php echo $active_tab === 'suggestterm_external' ? '' : 'display:none;'; ?>">
 
 
-                                                   <tr valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature can analyze your content and find new ideas for terms.', 'simple-tags'); ?></td></tr>
+                                                   <tr class="suggestterm_external_description" valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature can analyze your content and find new ideas for terms.', 'simple-tags'); ?></td></tr>
 
                                                     <?php
 
@@ -554,7 +554,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'suggest_term_use_local',
                                                         'class'      => 'suggest_term_use_local',
-                                                        'labeltext'  => esc_html__('Existing terms on your site',
+                                                        'labeltext'  => esc_html__('Suggest existing terms on your site',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
@@ -579,7 +579,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'suggest_term_use_dandelion',
                                                         'class'      => 'suggest_term_use_dandelion',
-                                                        'labeltext'  => esc_html__('New terms from Dandelion',
+                                                        'labeltext'  => esc_html__('Suggest new terms from the Dandelion service',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
@@ -636,7 +636,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'suggest_term_use_opencalais',
                                                         'class'      => 'suggest_term_use_opencalais',
-                                                        'labeltext'  => esc_html__('New terms from Open Calais',
+                                                        'labeltext'  => esc_html__('Suggest new terms from the Open Calais service',
                                                             'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
