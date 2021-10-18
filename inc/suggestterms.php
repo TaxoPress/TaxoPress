@@ -583,7 +583,7 @@ class SimpleTags_SuggestTerms
                                                         'class'     => 'terms_datatxt_access_token',
                                                         'textvalue' => isset($current['terms_datatxt_access_token']) ? esc_attr($current['terms_datatxt_access_token']) : '',
                                                         'labeltext' => esc_html__('Dandelion API token', 'simple-tags'),
-                                                        'helptext'  => __('You can create an API key from <a href="https://dandelion.eu/">service website</a>',
+                                                        'helptext'  => __('You need an API key to use Dandelion to suggest terms. <br /> <a href="https://taxopress.com/docs/dandelion-api/">Click here for documentation.</a>',
                                                             'simple-tags'),
                                                         'required'  => false,
                                                     ]);
@@ -640,7 +640,7 @@ class SimpleTags_SuggestTerms
                                                         'class'     => 'terms_opencalais_key',
                                                         'textvalue' => isset($current['terms_opencalais_key']) ? esc_attr($current['terms_opencalais_key']) : '',
                                                         'labeltext' => esc_html__('OpenCalais API Key', 'simple-tags'),
-                                                        'helptext'  => __('You can create an API key from <a href="https://developers.refinitiv.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation">service website</a>',
+                                                        'helptext'  => __('You need an API key to use OpenCalais to suggest terms. <br /> <a href="https://taxopress.com/docs/opencalais/">Click here for documentation.</a>',
                                                             'simple-tags'),
                                                         'required'  => false,
                                                     ]);
