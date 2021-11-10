@@ -596,7 +596,7 @@ class SimpleTags_Admin_Manage {
 			foreach ( (array) $terms_id as $term_id ) {
 				wp_delete_term( $term_id, $taxonomy );
 			}
-            
+
 			// Set objects to new term ! (Append no replace)
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_tag, $taxonomy, true );
@@ -690,7 +690,7 @@ class SimpleTags_Admin_Manage {
         }
 
 			if ( $counter == 0 ) {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term not associated to with any %1$s.', 'simple-tags' ), SimpleTags_Admin::$post_type_name ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'This term is not associated with any %1$s.', 'simple-tags' ), SimpleTags_Admin::$post_type_name ), 'error' );
 			} else {
 				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s', 'simple-tags' ), $new, $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 			}
