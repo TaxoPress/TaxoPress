@@ -147,7 +147,7 @@ function taxopress_create_default_suggestterm()
     $default['taxopress_suggestterm']['orderby']                        = 'count';
     $default['taxopress_suggestterm']['order']                          = 'desc';
     $default['taxopress_suggestterm']['disable_local']                  = '0';
-    $default['taxopress_suggestterm']['suggest_term_use_local']         = '0';
+    $default['taxopress_suggestterm']['suggest_term_use_local']         = '1';
     $default['taxopress_suggestterm']['suggest_term_use_dandelion']     = '0';
     $default['taxopress_suggestterm']['suggest_term_use_opencalais']    = '0';
     $default['taxopress_suggestterm']['terms_opencalais_key']           = SimpleTags_Plugin::get_option_value( 'opencalais_key' );
