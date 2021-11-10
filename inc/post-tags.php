@@ -305,13 +305,13 @@ class SimpleTags_Post_Tags
                                                             if ($tax->name === 'post_tag') {
                                                                 $main_option[] = [
                                                                     'attr'    => $tax->name,
-                                                                    'text'    => $tax->labels->name,
+                                                                    'text'    => $tax->labels->name. ' ('.$tax->name.')',
                                                                     'default' => 'true'
                                                                 ];
                                                             } else {
                                                                 $other_option[] = [
                                                                     'attr' => $tax->name,
-                                                                    'text' => $tax->labels->name
+                                                                    'text' => $tax->labels->name. ' ('.$tax->name.')'
                                                                 ];
                                                             }
                                                         }

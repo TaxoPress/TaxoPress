@@ -341,13 +341,13 @@ class SimpleTags_Autolink
                                                         if ($tax->name === 'post_tag') {
                                                             $options[] = [
                                                                 'attr'    => $tax->name,
-                                                                'text'    => $tax->labels->name,
+                                                                'text'    => $tax->labels->name. ' ('.$tax->name.')',
                                                                 'default' => 'true',
                                                             ];
                                                         } else {
                                                             $options[] = [
                                                                 'attr' => $tax->name,
-                                                                'text' => $tax->labels->name,
+                                                                'text' => $tax->labels->name. ' ('.$tax->name.')',
                                                             ];
                                                         }
                                                     }

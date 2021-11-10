@@ -596,7 +596,7 @@ class SimpleTags_Admin_Manage {
 			foreach ( (array) $terms_id as $term_id ) {
 				wp_delete_term( $term_id, $taxonomy );
 			}
-            
+
 			// Set objects to new term ! (Append no replace)
 			foreach ( (array) $objects_id as $object_id ) {
 				wp_set_object_terms( $object_id, $new_tag, $taxonomy, true );

@@ -403,14 +403,14 @@ class SimpleTags_Related_Post
                                                             if ($tax->name === 'post_tag') {
                                                                 $options[] = [
                                                                     'attr'    => $tax->name,
-                                                                    'text'    => $tax->labels->name,
+                                                                    'text'    => $tax->labels->name. ' ('.$tax->name.')',
                                                                     'default' => 'true',
                                                                     'post_type' => join(',', $tax->object_type),
                                                                 ];
                                                             } else {
                                                                 $options[] = [
                                                                     'attr' => $tax->name,
-                                                                    'text' => $tax->labels->name,
+                                                                    'text' => $tax->labels->name. ' ('.$tax->name.')',
                                                                     'post_type' => join(',', $tax->object_type),
                                                                 ];
                                                             }
