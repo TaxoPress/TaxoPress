@@ -97,7 +97,7 @@ class SimpleTags_Client {
                     $post_types = $get_taxonomy->object_type;
                         if ( isset( $query->query_vars['post_type'] )){
                             if(is_array( $query->query_vars['post_type'] )){
-                                $post_types = array_filter(array_merge($$query->query_vars['post_type'],$post_types));
+                                $post_types = array_filter(array_merge($query->query_vars['post_type'],$post_types));
                             }elseif(is_string( $query->query_vars['post_type'] )){
                                 $original_post_type = $query->query_vars['post_type'];
                                 $get_post_type_object = get_post_type_object( $original_post_type );
