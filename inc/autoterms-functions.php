@@ -152,7 +152,8 @@ function taxopress_create_default_autoterm()
                     $default['taxopress_autoterm']['autoterm_from']            = 'posts';
                     $default['taxopress_autoterm']['title']                    = ''. (is_object($taxonomy) ? $taxonomy->labels->name : $options_taxonomy ) .' '. ucwords($options_post_type) .' Auto term';
                     $default['taxopress_autoterm']['taxonomy']                 = $options_taxonomy;
-                    $default['post_types']               = [$options_post_type];
+                    $default['post_types']                                     = [$options_post_type];
+                    $default['post_status']                                    = ['publish'];
                     $default['taxopress_autoterm']['autoterm_useall']          = isset($options_taxonomy_data['at_all']) ? $options_taxonomy_data['at_all'] : 0;
                     $default['taxopress_autoterm']['autoterm_useonly']         = isset($options_taxonomy_data['at_all_no']) ? $options_taxonomy_data['at_all_no'] : 0;
                     $default['taxopress_autoterm']['autoterm_target']          = isset($options_taxonomy_data['at_empty']) ? $options_taxonomy_data['at_empty'] : 0;
@@ -172,6 +173,7 @@ function taxopress_create_default_autoterm()
         $default['taxopress_autoterm']['title']                    = 'Auto term';
         $default['taxopress_autoterm']['taxonomy']                 = 'post_tag';
         $default['post_types']                                     = ['post'];
+        $default['post_status']                                    = ['publish'];
         $default['taxopress_autoterm']['autoterm_from']            = 'posts';
         $default['taxopress_autoterm']['autoterm_useall']          = '0';
         $default['taxopress_autoterm']['autoterm_useall']          = '0';
@@ -219,8 +221,9 @@ function taxopress_update_autoterm($data = [])
 
 
     //update other post post
-    $data['taxopress_autoterm']['specific_terms']       = isset($data['specific_terms']) ? $data['specific_terms'] : '';
+    $data['taxopress_autoterm']['specific_terms']      = isset($data['specific_terms']) ? $data['specific_terms'] : '';
     $data['taxopress_autoterm']['post_types']          = isset($data['post_types']) ? $data['post_types'] : [];
+    $data['taxopress_autoterm']['post_status']         = isset($data['post_status']) ? $data['post_status'] : [];
     
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autoterm']['autoterm_useall'])) {
