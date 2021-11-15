@@ -43,9 +43,11 @@ class SimpleTags_Client_Autoterms {
 
 		// Loop option for find if autoterms is actived on any taxonomy and post type
         $current_post_type = $object->post_type;
+        $current_post_status = $object->post_status;
         $autoterms = taxopress_get_autoterm_data();
         $flag = false;
         foreach($autoterms as $autoterm_key => $autoterm_data){
+            $eligible_post_status = isset($autoterm_data['post_status']) && is_array($autoterm_data['post_status']) ? $autoterm_data['post_status'] : ['publish'];
             $eligible_post_types = isset($autoterm_data['post_types']) && is_array($autoterm_data['post_types']) ? $autoterm_data['post_types'] : [];
             $eligible_post_types = array_filter($eligible_post_types);
 
@@ -55,6 +57,10 @@ class SimpleTags_Client_Autoterms {
             if(!in_array($current_post_type, $eligible_post_types)){
                 continue;
             }
+            if(!in_array($current_post_status, $eligible_post_status)){
+                continue;
+            }
+
             self::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data );
 			$flag = true;
         }
