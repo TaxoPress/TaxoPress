@@ -360,9 +360,9 @@ class SimpleTags_Tag_Clouds
                                                         continue;
                                                     }
                                                     if($tax->name === 'post_tag'){
-                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name, 'default' => 'true' ];
+                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name. ' ('.$tax->name.')', 'default' => 'true' ];
                                                     }else{
-                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name ];
+                                                        $options[] = [ 'post_type' => join(',', $tax->object_type), 'attr' => $tax->name, 'text' => $tax->labels->name. ' ('.$tax->name.')' ];
                                                     }
                                                 }
 
