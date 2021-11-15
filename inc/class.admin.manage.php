@@ -690,7 +690,7 @@ class SimpleTags_Admin_Manage {
         }
 
 			if ( $counter == 0 ) {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term not associated to with any %1$s.', 'simple-tags' ), SimpleTags_Admin::$post_type_name ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'This term is not associated with any %1$s.', 'simple-tags' ), SimpleTags_Admin::$post_type_name ), 'error' );
 			} else {
 				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s', 'simple-tags' ), $new, $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 			}
