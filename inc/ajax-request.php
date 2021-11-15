@@ -34,11 +34,13 @@ function taxopress_autoterms_content_by_ajax()
         }
 
         $post_types = $autoterm_data['post_types'];
+        $post_status = isset($autoterm_data['post_status']) && is_array($autoterm_data['post_status']) ? $autoterm_data['post_status'] : ['publish'];
+           
         
 
-        $total = isset($_POST['total']) ? (int)$_POST['total'] : $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status = 'publish'" );
+        $total = isset($_POST['total']) ? (int)$_POST['total'] : $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status IN ('" . implode( "', '", $post_status ) . "')" );
         $response['total'] = $total;
-        $objects = (array) $wpdb->get_results("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status = 'publish' ORDER BY ID DESC LIMIT {$start_from}, 20");
+        $objects = (array) $wpdb->get_results("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status IN ('" . implode( "', '", $post_status ) . "') ORDER BY ID DESC LIMIT {$start_from}, 20");
 
         $response_content = '';
         if (!empty($objects)) {
