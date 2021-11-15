@@ -286,15 +286,15 @@ class SimpleTags_SuggestTerms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
-                                                    data-content="suggestterm_local">
-                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms',
+                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_external">
+                                                    <a href="#suggestterm_external"><span><?php esc_html_e('Automatic Term Suggestions',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
-                                                    data-content="suggestterm_external">
-                                                    <a href="#suggestterm_external"><span><?php esc_html_e('Suggest Terms',
+                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_local">
+                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
