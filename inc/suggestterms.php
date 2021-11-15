@@ -535,19 +535,38 @@ class SimpleTags_SuggestTerms
                                                     <?php
 
 
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simple-tags'),
-                                                                'default' => 'true',
+
+                                                    if(!isset($current)){
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
                                                             ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                        ];
+                                                    }else{
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                ],
                                                             ],
-                                                        ],
-                                                    ];
+                                                        ];
+
+                                                    }
+                                                    
                                                     $selected           = (isset($current) && isset($current['suggest_term_use_local'])) ? taxopress_disp_boolean($current['suggest_term_use_local']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['suggest_term_use_local'] : '';
                                                     echo $ui->get_select_checkbox_input([
