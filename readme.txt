@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.8
-Stable tag: 3.4.0
+Stable tag: 3.4.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -117,6 +117,14 @@ TaxoPress can be installed in 3 easy steps:
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.4.1- 2021-11-17
+* Fixed: Fatal Error with "If Menu" plugin installed
+* Fixed: Enable "Suggest existing terms on your site" by default
+* Fixed: Add the registration key to taxonomy dropdowns
+* Fixed: Two changes inside "Suggest Terms"
+* Fixed: Small typo on "Remove Terms"
+* Fixed: Add the option to run "Auto Terms" for different statuses
 
 v3.4.0- 2021-10-18
 * Fixed: 'Show all local tags' does not display any tags, While saving the tags limit with very large number. #792

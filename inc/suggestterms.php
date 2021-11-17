@@ -286,15 +286,15 @@ class SimpleTags_SuggestTerms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
-                                                    data-content="suggestterm_local">
-                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms',
+                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_external">
+                                                    <a href="#suggestterm_external"><span><?php esc_html_e('Automatic Term Suggestions',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
-                                                    data-content="suggestterm_external">
-                                                    <a href="#suggestterm_external"><span><?php esc_html_e('Suggest Terms',
+                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
+                                                    data-content="suggestterm_local">
+                                                    <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
@@ -336,13 +336,13 @@ class SimpleTags_SuggestTerms
                                                         if ($tax->name === 'post_tag') {
                                                             $options[] = [
                                                                 'attr'    => $tax->name,
-                                                                'text'    => $tax->labels->name,
+                                                                'text'    => $tax->labels->name. ' ('.$tax->name.')',
                                                                 'default' => 'true',
                                                             ];
                                                         } else {
                                                             $options[] = [
                                                                 'attr' => $tax->name,
-                                                                'text' => $tax->labels->name,
+                                                                'text' => $tax->labels->name. ' ('.$tax->name.')',
                                                             ];
                                                         }
                                                     }
@@ -535,19 +535,38 @@ class SimpleTags_SuggestTerms
                                                     <?php
 
 
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simple-tags'),
-                                                                'default' => 'true',
+
+                                                    if(!isset($current)){
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
                                                             ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                        ];
+                                                    }else{
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                ],
                                                             ],
-                                                        ],
-                                                    ];
+                                                        ];
+
+                                                    }
+                                                    
                                                     $selected           = (isset($current) && isset($current['suggest_term_use_local'])) ? taxopress_disp_boolean($current['suggest_term_use_local']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['suggest_term_use_local'] : '';
                                                     echo $ui->get_select_checkbox_input([

@@ -336,13 +336,13 @@ class SimpleTags_Autoterms
                                                         if ($tax->name === 'post_tag') {
                                                             $options[] = [
                                                                 'attr'    => $tax->name,
-                                                                'text'    => $tax->labels->name,
+                                                                'text'    => $tax->labels->name. ' ('.$tax->name.')',
                                                                 'default' => 'true',
                                                             ];
                                                         } else {
                                                             $options[] = [
                                                                 'attr' => $tax->name,
-                                                                'text' => $tax->labels->name,
+                                                                'text' => $tax->labels->name. ' ('.$tax->name.')',
                                                             ];
                                                         }
                                                     }
@@ -630,12 +630,26 @@ class SimpleTags_Autoterms
                                                         'aftertext'  => __('Support hashtags symbols # in Auto Terms', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
+                                                    
 
+                                                    $post_status_options = ['publish' => __('Add terms for published content.', 'simple-tags'), 'draft' => __('Add terms for unpublished content', 'simple-tags')];
+                                                    
+                                                    echo '<tr valign="top"><th scope="row"><label for="">' . esc_html__('Content statuses', 'simple-tags') . '</label>  <span class="required">*</span></th><td>';
+
+                                                    echo '<div class="auto-terms-post-status-error" style="display:none;"> '.__('Please choose an option for "Content statuses"', 'simple-tags').' </div>';
+
+                                                    $autoterms_post_status = (!empty($current['post_status'])) ? (array)$current['post_status'] : ['publish'];
+                                                    foreach ($post_status_options as $key => $value) {
+                                                        $checked_status = (in_array($key, $autoterms_post_status)) ? 'checked' : '';
+                                                        echo '<input class="autoterm_post_status_'.$key.'" type="checkbox" name="post_status[]" value="'.$key.'" '.$checked_status.'> ' . $value . ' <br /><br />';
+
+                                                    }
+                                                   echo '</td></tr>';
 
                                                     ?>
 
                                                 </table>
-
+                                                
 
                                                 <table class="form-table taxopress-table autoterm_oldcontent"
                                                        style="<?php echo $active_tab === 'autoterm_oldcontent' ? '' : 'display:none;'; ?>">
