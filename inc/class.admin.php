@@ -32,6 +32,8 @@ class SimpleTags_Admin {
 		// Load JavaScript and CSS
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 
+		//ui class is used accross many pages. So, it should be here
+		require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
 
         //tag clouds/ terms display
         $active_terms_display = isset($_POST['updateoptions']) && 
@@ -158,7 +160,6 @@ class SimpleTags_Admin {
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_taxonomies' ) || (isset($_POST['active_taxonomies']) && (int)$_POST['active_taxonomies'] === 1)) && $active_taxonomies === 1 ) {
             require_once STAGS_DIR . '/inc/taxonomies-action.php';
-            require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
             require STAGS_DIR . '/inc/class-taxonomies-table.php';
             require STAGS_DIR . '/inc/taxonomies.php';
             SimpleTags_Admin_Taxonomies::get_instance();
