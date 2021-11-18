@@ -1,7 +1,3 @@
-TaxoPress enables you to manage Tags, Categories and all your WordPress taxonomy terms.
-
-== Description ==
-
 TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms. TaxoPress can help with all your WordPress content, from adding Tags and Categories to Pages, to managing WooCommerce Product Categories and bbPress Topic Tags. 
 
 With TaxoPress, you can organize, optimize, and showcase all your WordPress content:
@@ -9,11 +5,6 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 * **Organize**: In TaxoPress, you can manage taxonomies, and also terms. There are tools for you to add, rename, remove, delete and even merge terms. You can add any term or taxonomy to any post type.
 * **Optimize**: TaxoPress can improve your SEO with automatic term management. TaxoPress can automatically suggest relevant terms for your content and link those terms to the correct archive pages.
 * **Showcase**: TaxoPress allows you to use your terms for advanced features such as Related Posts and Tag Clouds.
-
-## TaxoPress Pro ##
-
-> <strong>Upgrade to TaxoPress Pro</strong><br />
-> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/pro" title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
 
 ## Key Features in TaxoPress ##
 
