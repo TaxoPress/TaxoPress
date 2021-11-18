@@ -1,41 +1,30 @@
-# TaxoPress (formerly known as Simple Tags) #
+TaxoPress enables you to manage Tags, Categories and all your WordPress taxonomy terms.
 
-* **Contributors:** momo360modena, rahe, beapi
-* **Donate link:** http://beapi.fr/donate/  
-* **Tags:** tag, posts, tags, admin, administration, tagging, navigation, terms, taxonomy  
-* **Requires at least:** 3.3
-* **Tested up to:** 5.2
-* **Stable tag:** 3.0.1
-* **Requires PHP:** 5.6
-* **License:** GPLv2 or later
-* **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+== Description ==
 
-**Add some tools for taxonomies :** Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Auto terms, Advanced manage terms, Advanced Post Terms, Related Posts by Terms, etc.  
+TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms. TaxoPress can help with all your WordPress content, from adding Tags and Categories to Pages, to managing WooCommerce Product Categories and bbPress Topic Tags. 
 
-## Description ##
+With TaxoPress, you can organize, optimize, and showcase all your WordPress content:
 
-Extended Tagging for WordPress : Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+* **Organize**: In TaxoPress, you can manage taxonomies, and also terms. There are tools for you to add, rename, remove, delete and even merge terms. You can add any term or taxonomy to any post type.
+* **Optimize**: TaxoPress can improve your SEO with automatic term management. TaxoPress can automatically suggest relevant terms for your content and link those terms to the correct archive pages.
+* **Showcase**: TaxoPress allows you to use your terms for advanced features such as Related Posts and Tag Clouds.
 
-**This is THE perfect tool to manage perfectly your WP terms for any taxonomy**
+## TaxoPress Pro ##
 
-It was written with this philosophy : best performances, more secured and brings a lot of new functions
+> <strong>Upgrade to TaxoPress Pro</strong><br />
+> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/pro" title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
 
-This plugin is developped on latest WordPress version, with the constant WP_DEBUG to TRUE.
+## Key Features in TaxoPress ##
 
-* Administration
-	* Tags suggestion from Yahoo! Content Analysis, OpenCalais, Alchemy, Zemanta, Tag The Net, Tag4Site, dataTXT and local terms with AJAX request 
-		* Compatible with TinyMCE, FCKeditor, WYMeditor and QuickTags
-	* tags management (rename, delete, merge, search and add tags, edit tags ID)
-	* **Edit mass tags (more than 50 posts once)**
-	* Auto link tags in post content
-	* Auto tags !
-	* Type-ahead input tags / Autocompletion Ajax
-	* Click tags
-	* Possibility to tag pages (not only posts) and include them inside the tags results
-	* **Easy configuration ! (in WP admin)**
+1. **Manage Terms and Taxonomies**: You can create new taxonomies and edit all the settings for each taxonomy.
+2. **Terms Display**: This feature allows you to create a customizable display of all the terms in one taxonomy.
+3. **Terms for Current Post**: This enables you to create a customizable display of all the terms assigned to the current post.
+4. **Related Posts**: Shows lists of posts with similar tags and categories.
+5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
+6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
+7. **Suggest Terms**: This feature can show a metabox where you can browse all your existing terms. A second metabox can analyze your content and find new ideas for terms. 
+8. **Mass Edit Terms**: Quickly add or remove taxonomy terms from any content in WordPress.
+9. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
 
-* Public
-	* Technorati, Flickr and Delicious tags
-	* Dynamic Tag Clouds with colors with Widgets (random order, etc)
 
-And more...
