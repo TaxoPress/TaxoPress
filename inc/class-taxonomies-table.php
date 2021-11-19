@@ -378,9 +378,12 @@ class Taxonomy_List extends WP_List_Table
         $sn       = 0;
         foreach ($item->object_type as $objecttype) {
             $sn++;
-            $posttype .= get_post_type_object($objecttype)->label;
-            if ($sn < count($item->object_type)) {
-                $posttype .= ', ';
+            $post_type_object = get_post_type_object($objecttype);
+            if(is_object($post_type_object)){
+                $posttype .= $post_type_object->label;
+                if ($sn < count($item->object_type)) {
+                    $posttype .= ', ';
+                }
             }
         }
 
