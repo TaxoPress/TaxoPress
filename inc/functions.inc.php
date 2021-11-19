@@ -51,34 +51,43 @@ add_action('custom_menu_order', 'taxopress_re_order_menu');
 function taxopress_re_order_menu()	{
     global $submenu;
     $newSubmenu = [];
-    foreach ($submenu as $menuName => $menuItems) {
-        if ('st_options' === $menuName) {
-            $taxopress_settings = $taxopress_taxonomies = false;
 
-            $taxopress_submenus = $submenu['st_options'];
-            foreach($taxopress_submenus  as $key => $taxopress_submenu){
-                if($taxopress_submenu[2] === 'st_options'){//settings
-                    $taxopress_settings = $taxopress_submenu;
-                    $taxopress_settings_key= $key;
-                    unset($taxopress_submenus[$key]);
+    //we only want to do this if taxonomy is active
+    $active_taxonomies = isset($_POST['updateoptions']) && 
+    (
+        !isset($_POST['active_taxonomies']) || 
+        (isset($_POST['active_taxonomies']) && (int)$_POST['active_taxonomies'] === 0)
+     ) ? 0 : 1;
+    if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_taxonomies' ) || (isset($_POST['active_taxonomies']) && (int)$_POST['active_taxonomies'] === 1)) && $active_taxonomies === 1 ) {
+        foreach ($submenu as $menuName => $menuItems) {
+            if ('st_options' === $menuName) {
+                $taxopress_settings = $taxopress_taxonomies = false;
+
+                $taxopress_submenus = $submenu['st_options'];
+                foreach($taxopress_submenus  as $key => $taxopress_submenu){
+                    if($taxopress_submenu[2] === 'st_options'){//settings
+                        $taxopress_settings = $taxopress_submenu;
+                        $taxopress_settings_key= $key;
+                        unset($taxopress_submenus[$key]);
+                    }
+                    if($taxopress_submenu[2] === 'st_taxonomies'){//taxonomies
+                        $taxopress_taxonomies = $taxopress_submenu;
+                        $taxopress_taxonomies_key= $key;
+                        unset($taxopress_submenus[$key]);
+                    }
                 }
-                if($taxopress_submenu[2] === 'st_taxonomies'){//taxonomies
-                    $taxopress_taxonomies = $taxopress_submenu;
-                    $taxopress_taxonomies_key= $key;
-                    unset($taxopress_submenus[$key]);
+                if($taxopress_settings && $taxopress_taxonomies ){
+                //swicth position
+                $taxopress_submenus[$taxopress_settings_key] = $taxopress_taxonomies;
+                $taxopress_submenus[$taxopress_taxonomies_key] = $taxopress_settings;
                 }
-            }
-            if($taxopress_settings && $taxopress_taxonomies ){
-            //swicth position
-            $taxopress_submenus[$taxopress_settings_key] = $taxopress_taxonomies;
-            $taxopress_submenus[$taxopress_taxonomies_key] = $taxopress_settings;
-            }
 
-            //resort array
-            ksort($taxopress_submenus);
+                //resort array
+                ksort($taxopress_submenus);
 
-            $submenu['st_options'] = $taxopress_submenus;
-           break;
+                $submenu['st_options'] = $taxopress_submenus;
+            break;
+            }
         }
     }
 }
