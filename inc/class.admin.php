@@ -34,6 +34,7 @@ class SimpleTags_Admin {
 
 		//ui class is used accross many pages. So, it should be here
 		require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
+		require STAGS_DIR . '/inc/class-taxonomies-table.php';
 
         //tag clouds/ terms display
         $active_terms_display = isset($_POST['updateoptions']) && 
