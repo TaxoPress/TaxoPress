@@ -130,6 +130,11 @@ class SimpleTags_Client_Autoterms {
 					continue;
 				}
 
+				//check if term belong to the post already
+				if(has_term( $term, $taxonomy, $object )){
+					continue;
+				}
+
                 //exclude if name found in exclude terms
                 if(in_array($term, $autoterm_exclude)){
 					continue;
@@ -180,6 +185,11 @@ class SimpleTags_Client_Autoterms {
 
 				$term = trim( $term );
 				if ( empty( $term ) ) {
+					continue;
+				}
+				
+				//check if term belong to the post already
+				if(has_term( $term, $taxonomy, $object )){
 					continue;
 				}
 
