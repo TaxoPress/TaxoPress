@@ -566,7 +566,7 @@ class SimpleTags_SuggestTerms
                                                         ];
 
                                                     }
-                                                    
+
                                                     $selected           = (isset($current) && isset($current['suggest_term_use_local'])) ? taxopress_disp_boolean($current['suggest_term_use_local']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['suggest_term_use_local'] : '';
                                                     echo $ui->get_select_checkbox_input([
@@ -756,9 +756,11 @@ class SimpleTags_SuggestTerms
 
                     </div>
 
+                                                    <?php do_action('taxopress_admin_after_sidebar'); ?>
                 </div>
 
                 <div class="clear"></div>
+
 
 
             </form>
