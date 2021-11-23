@@ -541,4 +541,8 @@ ul.st-taxonomy-tab li.active a {
         width: -webkit-fill-available;
         width: -moz-available;
     }
+    
+    .posttypesui .postbox-container, .taxonomiesui .postbox-container {
+        float: none !important;
+    }
 }

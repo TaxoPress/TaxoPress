@@ -751,9 +751,11 @@ class SimpleTags_Related_Post
 
                     </div>
 
+                                                <?php do_action('taxopress_admin_after_sidebar'); ?>
             </div>
 
             <div class="clear"></div>
+
 
 
             </form>
