@@ -485,6 +485,7 @@ class SimpleTags_Autoterms
                                                         'labeltext'  => esc_html__('Which terms to use?', 'simple-tags'),
                                                         'aftertext'  => __('Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms.', 'simple-tags'),
                                                         'selections' => $select,
+                                                        'required'    => true,
                                                     ]);
 
 
@@ -526,7 +527,7 @@ class SimpleTags_Autoterms
 
 
                                                     echo $ui->get_th_start();
-                                                    echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags')) . $ui->get_required_span();
+                                                    echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags'));
                                                     echo $ui->get_th_end() . $ui->get_td_start();
 
                                                     echo $ui->get_text_input([
