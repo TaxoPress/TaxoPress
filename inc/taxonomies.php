@@ -1524,6 +1524,51 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                 <div class="taxopress-right-sidebar">
                     <div class="taxopress-right-sidebar-wrapper">
 
+
+                    <p class="submit">
+
+<?php
+wp_nonce_field('taxopress_addedit_taxonomy_nonce_action',
+    'taxopress_addedit_taxonomy_nonce_field');
+if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
+    <?php
+
+    /**
+     * Filters the text value to use on the button when editing.
+     *
+     * @param string $value Text to use for the button.
+     */
+    ?>
+    <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
+           value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_edit',
+               esc_attr__('Save Taxonomy', 'simple-tags'))); ?>"/>
+    <?php
+} else { ?>
+<?php
+
+/**
+ * Filters the text value to use on the button when adding.
+ *
+ * @param string $value Text to use for the button.
+ */
+?>
+<input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
+       value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_add',
+           esc_attr__('Add Taxonomy', 'simple-tags'))); ?>"/>
+<?php } ?>
+<div class="taxonomy-required-field"></div>
+
+<?php if (!empty($current)) { ?>
+<input type="hidden" name="tax_original" id="tax_original"
+       value="<?php echo esc_attr($current['name']); ?>"/>
+<?php
+}
+
+// Used to check and see if we should prevent duplicate slugs.
+?>
+<input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
+   value="<?php echo esc_attr($tab); ?>"/>
+</p>
                         <?php
                         if($taxonomy_edit){
                         if ($core_edit) {
@@ -1556,51 +1601,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                         }
                     }
                         ?>
-
-                        <p class="submit">
-
-                            <?php
-                            wp_nonce_field('taxopress_addedit_taxonomy_nonce_action',
-                                'taxopress_addedit_taxonomy_nonce_field');
-                            if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                <?php
-
-                                /**
-                                 * Filters the text value to use on the button when editing.
-                                 *
-                                 * @param string $value Text to use for the button.
-                                 */
-                                ?>
-                                <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
-                                       value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_edit',
-                                           esc_attr__('Save Taxonomy', 'simple-tags'))); ?>"/>
-                                <?php
-                            } else { ?>
-                            <?php
-
-                            /**
-                             * Filters the text value to use on the button when adding.
-                             *
-                             * @param string $value Text to use for the button.
-                             */
-                            ?>
-                            <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
-                                   value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_add',
-                                       esc_attr__('Add Taxonomy', 'simple-tags'))); ?>"/>
-                    <?php } ?>
-                        <div class="taxonomy-required-field"></div>
-
-                        <?php if (!empty($current)) { ?>
-                            <input type="hidden" name="tax_original" id="tax_original"
-                                   value="<?php echo esc_attr($current['name']); ?>"/>
-                            <?php
-                        }
-
-                        // Used to check and see if we should prevent duplicate slugs.
-                        ?>
-                        <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
-                               value="<?php echo esc_attr($tab); ?>"/>
-                        </p>
 
 
                     </div>

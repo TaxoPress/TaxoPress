@@ -671,6 +671,8 @@ class SimpleTags_Autoterms
 
                                                             <ul class="auto-term-content-result"></ul>
                                                         </td></tr>
+
+                                                        <?php do_action('taxopress_autoterms_after_autoterm_oldcontent', $current); ?>
                                                     <?php
 
                                                     ?>
