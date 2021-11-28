@@ -246,6 +246,11 @@ a#close_clicktags{display:none;}
     background: #fff;
     margin-bottom: 10px;
     padding: 20px;
+    min-height: auto !important;
+}
+.taxopress-right-sidebar-wrapper p.submit {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 .manage-term-screen-options {
     margin-top: -20px;
