@@ -298,6 +298,11 @@ class SimpleTags_Autoterms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
+                                                    <a href="#autoterm_schedule"><span><?php esc_html_e('Schedule',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                             </ul>
 
                                             <div class="st-taxonomy-content taxopress-tab-content">
@@ -672,10 +677,13 @@ class SimpleTags_Autoterms
                                                             <ul class="auto-term-content-result"></ul>
                                                         </td></tr>
 
-                                                        <?php do_action('taxopress_autoterms_after_autoterm_oldcontent', $current); ?>
-                                                    <?php
+                                                </table>
 
-                                                    ?>
+
+                                                <table class="form-table taxopress-table autoterm_schedule"
+                                                       style="<?php echo $active_tab === 'autoterm_schedule' ? '' : 'display:none;'; ?>">
+
+                                                        <?php do_action('taxopress_autoterms_after_autoterm_schedule', $current); ?>
 
                                                 </table>
 

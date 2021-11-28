@@ -82,7 +82,6 @@ class TaxopressCoreAdmin {
         
                     <div class="inside">
                         <p><?php echo __('Enhance the power of TaxoPress with the Pro version:', 'simple-tags'); ?>
-                            <a target="_blank" href="https://taxopress.com/pro">Learn more</a>
                         </p>
                         <ul>
                             <li><?php echo __('Unlimited “Term Display”', 'simple-tags'); ?></li>
@@ -94,7 +93,9 @@ class TaxopressCoreAdmin {
                             <li><?php echo __('Fast, professional support', 'simple-tags'); ?></li>
                             <li><?php echo __('No ads inside the plugin', 'simple-tags'); ?></li>
                         </ul>
-                        <a href="https://taxopress.com/pro" target="__blank" class="button-primary"><?php echo __('Get TaxoPress Pro', 'simple-tags'); ?> →</a>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/pro" target="__blank"><?php echo __('Upgrade to Pro', 'simple-tags'); ?></a>
+                        </div>
                     </div>
                 </div>
                 <div class="postbox">
