@@ -101,12 +101,12 @@ class TaxopressCoreAdmin {
                 <div class="postbox">
                     <div class="postbox-header">
                         <h3 class="hndle is-non-sortable">
-                            <span><?php echo __('Need TaxoPress Support', 'simple-tags'); ?></span>
+                            <span><?php echo __('Need TaxoPress Support?', 'simple-tags'); ?></span>
                         </h3>
                     </div>
         
                     <div class="inside">
-                        <p><?php echo __('Whether you need help or have a new feature request, let us know.', 'simple-tags'); ?>
+                        <p><?php echo __('If you need help or have a new feature request, let us know.', 'simple-tags'); ?>
                             <a class="advert-link" href="https://wordpress.org/support/plugin/simple-tags/" target="_blank">
                             <?php echo __('Request Support', 'simple-tags'); ?> 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="linkIcon">
