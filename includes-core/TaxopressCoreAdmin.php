@@ -57,6 +57,7 @@ class TaxopressCoreAdmin {
         add_action('taxopress_admin_class_before_assets_register', [$this, 'taxopress_load_admin_core_assets']);
         add_action('taxopress_admin_class_after_styles_enqueue', [$this, 'taxopress_load_admin_core_styles']);
         add_action('taxopress_admin_after_sidebar', [$this, 'taxopress_admin_advertising_sidebar_banner']);
+        add_action('taxopress_autoterms_after_autoterm_schedule', [$this, 'taxopress_pro_autoterm_schedule_field']);
     }
 
     function taxopress_load_admin_core_assets(){
@@ -134,6 +135,19 @@ class TaxopressCoreAdmin {
     </div>
 
         <?php
+    }
+
+    function taxopress_pro_autoterm_schedule_field($current){
+        ?>
+        <tr>
+            <td>
+            <div class="upgrade-pro">
+            <h3 class="hndle is-non-sortable" style="padding-left: 0;"><span><?php echo __('Schedule Auto Terms for your content', 'simple-tags'); ?></span></h3>
+                <p style="line-height: 23px;"><?php echo __('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add term to your imported content.', 'simple-tags'); ?></p>
+            </div>
+            </td>
+        </tr>
+        <?php 
     }
 
 }
