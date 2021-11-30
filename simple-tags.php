@@ -3,7 +3,7 @@
 Plugin Name: TaxoPress
 Plugin URI: https://wordpress.org/plugins/simple-tags/
 Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 3.4.1
+Version: 3.4.2
 Requires PHP: 5.6
 Requires at least: 3.3
 Tested up to: 5.6
@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('STAGS_VERSION')) {
-define('STAGS_VERSION', '3.4.1');
+define('STAGS_VERSION', '3.4.2');
 }
 
 
