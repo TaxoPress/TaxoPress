@@ -246,6 +246,11 @@ a#close_clicktags{display:none;}
     background: #fff;
     margin-bottom: 10px;
     padding: 20px;
+    min-height: auto !important;
+}
+.taxopress-right-sidebar-wrapper p.submit {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 .manage-term-screen-options {
     margin-top: -20px;
@@ -473,6 +478,9 @@ ul.taxopress-tab li.suggestterm_local_tab a::before {
 ul.taxopress-tab li.suggestterm_external_tab a::before {
     content: "\f504";
 }
+ul.taxopress-tab li.autoterm_schedule_tab a::before {
+    content: "\f469";
+}
 
 .st-html-exclusion-table th {
     padding: unset;
@@ -554,6 +562,52 @@ body.block-editor-page .clicktags-search-wrapper .option input {
 .form-table.taxopress-table.suggestterm_external .suggestterm_external_description+tr th {
     width: 250px;
 } 
+
+.taxopress-advertisement-right-sidebar .upgrade-btn a {
+    background: #FCB223;
+    color: #000 !important;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 9px 12px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid #fca871;
+    break-inside: avoid;
+    white-space: nowrap;
+}
+
+.taxopress-advertisement-right-sidebar .upgrade-btn a:hover {
+    background: #fcca46;
+    color: #000 !important;
+}
+
+@media only screen and (min-width: 1075px) {
+    .taxopress-advertisement-right-sidebar-message,
+    .upgrade-btn {
+        display: inline-block;
+    }
+
+    .taxopress-advertisement-right-sidebar-message {
+        margin-right: 25px;
+    }
+}
+
+@media only screen and (max-width: 1074px) {
+    .taxopress-advertisement-right-sidebar-message,
+    .upgrade-btn {
+        display: block;
+    }
+
+    .upgrade-btn {
+        margin-top: 20px;
+    }
+
+    .upgrade-btn a {
+        max-width: 170px;
+    }
+}
 
 @media only screen and (max-width: 1270px) {
 

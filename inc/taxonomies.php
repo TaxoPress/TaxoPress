@@ -308,92 +308,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
             <form method="post" action="<?php echo esc_url(taxopress_get_post_form_action($ui)); ?>">
 
-                <div class="taxopress-right-sidebar">
-                    <div class="taxopress-right-sidebar-wrapper">
-
-                        <?php
-                        if($taxonomy_edit){
-                        if ($core_edit) {
-                            echo '<div class="taxopress-warning">' . __('This taxonomy is part of the WordPress core.',
-                                    'simple-tags') . '
-
-                                                <br /><br />
-                                                ' . __('Registration key',
-                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
-
-                                                </div>';
-                        }elseif ($external_edit) {
-                            echo '<div class="taxopress-warning">' . __('This is an external taxonomy and not created with TaxoPress.',
-                                    'simple-tags') . '
-
-                                                <br /><br />
-                                                ' . __('Registration key',
-                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
-
-                                                </div>';
-                        }else{
-                            echo '<div class="taxopress-warning">' . __('This taxonomy was created by TaxoPress.',
-                                    'simple-tags') . '
-
-                                                <br /><br />
-                                                ' . __('Registration key',
-                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
-
-                                                </div>';
-                        }
-                    }
-                        ?>
-
-                        <p class="submit">
-
-                            <?php
-                            wp_nonce_field('taxopress_addedit_taxonomy_nonce_action',
-                                'taxopress_addedit_taxonomy_nonce_field');
-                            if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                <?php
-
-                                /**
-                                 * Filters the text value to use on the button when editing.
-                                 *
-                                 * @param string $value Text to use for the button.
-                                 */
-                                ?>
-                                <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
-                                       value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_edit',
-                                           esc_attr__('Save Taxonomy', 'simple-tags'))); ?>"/>
-                                <?php
-                            } else { ?>
-                            <?php
-
-                            /**
-                             * Filters the text value to use on the button when adding.
-                             *
-                             * @param string $value Text to use for the button.
-                             */
-                            ?>
-                            <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
-                                   value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_add',
-                                       esc_attr__('Add Taxonomy', 'simple-tags'))); ?>"/>
-                    <?php } ?>
-                        <div class="taxonomy-required-field"></div>
-
-                        <?php if (!empty($current)) { ?>
-                            <input type="hidden" name="tax_original" id="tax_original"
-                                   value="<?php echo esc_attr($current['name']); ?>"/>
-                            <?php
-                        }
-
-                        // Used to check and see if we should prevent duplicate slugs.
-                        ?>
-                        <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
-                               value="<?php echo esc_attr($tab); ?>"/>
-                        </p>
-
-
-                    </div>
-
-                </div>
-
                 <?php
                 if ($external_edit) {
                     echo '<input type="hidden" name="taxonomy_external_edit" class="taxonomy_external_edit" value="1" />';
@@ -1602,7 +1516,99 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                         ?>
 
                     </div>
+                    </div>
+                    </div>
+
+
+
+                <div class="taxopress-right-sidebar">
+                    <div class="taxopress-right-sidebar-wrapper">
+
+
+                    <p class="submit">
+
+<?php
+wp_nonce_field('taxopress_addedit_taxonomy_nonce_action',
+    'taxopress_addedit_taxonomy_nonce_field');
+if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
+    <?php
+
+    /**
+     * Filters the text value to use on the button when editing.
+     *
+     * @param string $value Text to use for the button.
+     */
+    ?>
+    <input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
+           value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_edit',
+               esc_attr__('Save Taxonomy', 'simple-tags'))); ?>"/>
+    <?php
+} else { ?>
+<?php
+
+/**
+ * Filters the text value to use on the button when adding.
+ *
+ * @param string $value Text to use for the button.
+ */
+?>
+<input type="submit" class="button-primary taxopress-taxonomy-submit" name="cpt_submit"
+       value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_add',
+           esc_attr__('Add Taxonomy', 'simple-tags'))); ?>"/>
+<?php } ?>
+<div class="taxonomy-required-field"></div>
+
+<?php if (!empty($current)) { ?>
+<input type="hidden" name="tax_original" id="tax_original"
+       value="<?php echo esc_attr($current['name']); ?>"/>
+<?php
+}
+
+// Used to check and see if we should prevent duplicate slugs.
+?>
+<input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
+   value="<?php echo esc_attr($tab); ?>"/>
+</p>
+                        <?php
+                        if($taxonomy_edit){
+                        if ($core_edit) {
+                            echo '<div class="taxopress-warning">' . __('This taxonomy is part of the WordPress core.',
+                                    'simple-tags') . '
+
+                                                <br /><br />
+                                                ' . __('Registration key',
+                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
+
+                                                </div>';
+                        }elseif ($external_edit) {
+                            echo '<div class="taxopress-warning">' . __('This is an external taxonomy and not created with TaxoPress.',
+                                    'simple-tags') . '
+
+                                                <br /><br />
+                                                ' . __('Registration key',
+                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
+
+                                                </div>';
+                        }else{
+                            echo '<div class="taxopress-warning">' . __('This taxonomy was created by TaxoPress.',
+                                    'simple-tags') . '
+
+                                                <br /><br />
+                                                ' . __('Registration key',
+                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
+
+                                                </div>';
+                        }
+                    }
+                        ?>
+
+
+                    </div>
+
+                                    <?php do_action('taxopress_admin_after_sidebar'); ?>
                 </div>
+
+
             </form>
         </div><!-- End .wrap -->
 

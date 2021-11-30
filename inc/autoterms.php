@@ -298,6 +298,11 @@ class SimpleTags_Autoterms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
+                                                    <a href="#autoterm_schedule"><span><?php esc_html_e('Schedule',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                             </ul>
 
                                             <div class="st-taxonomy-content taxopress-tab-content">
@@ -480,6 +485,7 @@ class SimpleTags_Autoterms
                                                         'labeltext'  => esc_html__('Which terms to use?', 'simple-tags'),
                                                         'aftertext'  => __('Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms.', 'simple-tags'),
                                                         'selections' => $select,
+                                                        'required'    => true,
                                                     ]);
 
 
@@ -514,16 +520,16 @@ class SimpleTags_Autoterms
                                                             echo '<div class="st-autoterms-single-specific-term">
                                                             <input autocomplete="off" type="text" class="st-full-width specific_terms_input" name="specific_terms" maxlength="32" placeholder="'. esc_attr(__('Choose the terms to use.', 'simple-tags')) .'" value="'. esc_attr($specific_terms) .'">
                                                         </div>';
-                                                    
+
                                                     echo '</td></tr>';
-                                                    
+
                                                     echo $ui->get_tr_start();
 
 
                                                     echo $ui->get_th_start();
-                                                    echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags')) . $ui->get_required_span();
+                                                    echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags'));
                                                     echo $ui->get_th_end() . $ui->get_td_start();
-                                                    
+
                                                     echo $ui->get_text_input([
                                                         'labeltext'   => esc_html__('Stop words', 'simple-tags'),
                                                         'namearray'   => 'taxopress_autoterm',
@@ -630,10 +636,10 @@ class SimpleTags_Autoterms
                                                         'aftertext'  => __('Support hashtags symbols # in Auto Terms', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
-                                                    
+
 
                                                     $post_status_options = ['publish' => __('Add terms for published content.', 'simple-tags'), 'draft' => __('Add terms for unpublished content', 'simple-tags')];
-                                                    
+
                                                     echo '<tr valign="top"><th scope="row"><label for="">' . esc_html__('Content statuses', 'simple-tags') . '</label>  <span class="required">*</span></th><td>';
 
                                                     echo '<div class="auto-terms-post-status-error" style="display:none;"> '.__('Please choose an option for "Content statuses"', 'simple-tags').' </div>';
@@ -649,7 +655,7 @@ class SimpleTags_Autoterms
                                                     ?>
 
                                                 </table>
-                                                
+
 
                                                 <table class="form-table taxopress-table autoterm_oldcontent"
                                                        style="<?php echo $active_tab === 'autoterm_oldcontent' ? '' : 'display:none;'; ?>">
@@ -661,19 +667,24 @@ class SimpleTags_Autoterms
 
                                                            <p class="taxopress-field-description description">
                                                                <?php echo __('TaxoPress can add Auto Terms to existing content.', 'simple-tags'); ?>
-                                                               
+
                                                                <br /> <strong style="color:red;"><?php echo __('Please save all changes to your Auto Terms before using this feature.', 'simple-tags'); ?></strong>
                                                             </p>
-                                            
+
                                                             <div class="auto-term-content-result-title"></div>
 
                                                             </div>
 
                                                             <ul class="auto-term-content-result"></ul>
                                                         </td></tr>
-                                                    <?php
 
-                                                    ?>
+                                                </table>
+
+
+                                                <table class="form-table taxopress-table autoterm_schedule"
+                                                       style="<?php echo $active_tab === 'autoterm_schedule' ? '' : 'display:none;'; ?>">
+
+                                                        <?php do_action('taxopress_autoterms_after_autoterm_schedule', $current); ?>
 
                                                 </table>
 
@@ -755,9 +766,11 @@ class SimpleTags_Autoterms
 
                     </div>
 
+                                                    <?php do_action('taxopress_admin_after_sidebar'); ?>
                 </div>
 
                 <div class="clear"></div>
+
 
 
             </form>

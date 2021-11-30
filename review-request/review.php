@@ -61,13 +61,11 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
         {
             if (is_admin() && current_user_can('edit_posts')) {
                 self::installed_on();
-                if(is_taxopress_admin_page()){
-                    add_action('admin_notices', [__CLASS__, 'admin_notices']);
-                    add_action('network_admin_notices', [__CLASS__, 'admin_notices']);
-                    add_action('user_admin_notices', [__CLASS__, 'admin_notices']);
-                    //moved assets to footer due to a plugin stripping out assets in admin notice (https://wordpress.org/plugins/disable-admin-notices/)
-                    add_action('admin_footer', [__CLASS__, 'admin_footer']);
-                }
+                add_action('admin_notices', [__CLASS__, 'admin_notices']);
+                add_action('network_admin_notices', [__CLASS__, 'admin_notices']);
+                add_action('user_admin_notices', [__CLASS__, 'admin_notices']);
+                //moved assets to footer due to a plugin stripping out assets in admin notice (https://wordpress.org/plugins/disable-admin-notices/)
+                add_action('admin_footer', [__CLASS__, 'admin_footer']);
             }
         }
 
