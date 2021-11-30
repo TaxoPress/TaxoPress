@@ -143,7 +143,7 @@ class TaxopressCoreAdmin {
             <td>
             <div class="upgrade-pro">
             <h3 class="hndle is-non-sortable" style="padding-left: 0;"><span><?php echo __('Schedule Auto Terms for your content', 'simple-tags'); ?></span></h3>
-                <p style="line-height: 23px;"><?php echo __('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add term to your imported content.', 'simple-tags'); ?></p>
+                <p style="line-height: 23px;"><?php echo __('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add terms to your imported content.', 'simple-tags'); ?></p>
             </div>
             </td>
         </tr>
