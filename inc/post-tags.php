@@ -127,7 +127,7 @@ class SimpleTags_Post_Tags
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_post_tags&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
-                <div class="taxopress-description">This feature allows you create a customizable display of all the terms assigned to the current post.</div>
+                <div class="taxopress-description">This feature allows you to create a customizable display of all the terms assigned to the current post.</div>
 
 
                 <?php
