@@ -536,7 +536,7 @@ class SimpleTags_Autoterms
                                                         'name'        => 'autoterm_exclude',
                                                         'textvalue'   => isset($current['autoterm_exclude']) ? esc_attr($current['autoterm_exclude']) : '',
                                                         'maxlength'   => '',
-                                                        'helptext'    => __('Choose terms to be excluded from auto terms', 'simple-tags'),
+                                                        'helptext'    => __('Choose terms to be excluded from auto terms.', 'simple-tags'),
                                                         'class'       => 'st-full-width auto-terms-stopwords',
                                                         'aftertext'   => '',
                                                         'required'    => false,
@@ -633,12 +633,12 @@ class SimpleTags_Autoterms
                                                         'name'       => 'autoterm_hash',
                                                         'class'      => '',
                                                         'labeltext'  => esc_html__('Hashtags', 'simple-tags'),
-                                                        'aftertext'  => __('Support hashtags symbols # in Auto Terms', 'simple-tags'),
+                                                        'aftertext'  => __('Support hashtags symbols # in Auto Terms.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
 
-                                                    $post_status_options = ['publish' => __('Add terms for published content.', 'simple-tags'), 'draft' => __('Add terms for unpublished content', 'simple-tags')];
+                                                    $post_status_options = ['publish' => __('Add terms for published content.', 'simple-tags'), 'draft' => __('Add terms for unpublished content.', 'simple-tags')];
 
                                                     echo '<tr valign="top"><th scope="row"><label for="">' . esc_html__('Content statuses', 'simple-tags') . '</label>  <span class="required">*</span></th><td>';
 
