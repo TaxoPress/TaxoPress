@@ -95,6 +95,8 @@ class SimpleTags_Client_Autoterms {
 			return false; // Skip post with terms, if term only empty post option is checked
 		}
 
+		$autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
+
 		$terms_to_add = array();
 
         
@@ -115,11 +117,167 @@ class SimpleTags_Client_Autoterms {
 			return false;
 		}
 
+        $autoterm_use_dandelion  = isset($options['autoterm_use_dandelion']) ? (int)$options['autoterm_use_dandelion'] : 0;
+        $autoterm_use_opencalais = isset($options['autoterm_use_opencalais']) ? (int)$options['autoterm_use_opencalais'] : 0;
+
+		//Autoterm with Dandelion
+        if ( $autoterm_use_dandelion > 0 && $options['terms_datatxt_access_token'] !== '' ) {
+			$request_ws_args = array();
+            $request_ws_args['text'] = $content;
+			// Custom confidence ?
+			$request_ws_args['min_confidence'] = 0.6;
+			if ( $options['terms_datatxt_min_confidence'] != "" ) {
+				$request_ws_args['min_confidence'] = $options['terms_datatxt_min_confidence'];
+			}
+			$request_ws_args['token'] = $options['terms_datatxt_access_token'];
+			// Build params
+			$response = wp_remote_post( 'https://api.dandelion.eu/datatxt/nex/v1', array(
+				'user-agent' => 'WordPress simple-tags',
+				'body'       => $request_ws_args
+			) );
+			$data = false;
+			if ( ! is_wp_error( $response ) && $response != null ) {
+				if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
+					$data = wp_remote_retrieve_body( $response );
+				}
+			}
+			if($data){
+				$data = json_decode( $data );
+				$data = is_object($data) ? $data->annotations : '';
+				if ( !empty( $data ) ) {
+					foreach ( (array) $data as $term ) {
+						$term = $term->title;
+						$term = stripslashes( $term );
+
+						if ( ! is_string( $term ) ) {
+							continue;
+						}
+		
+						$term = trim( $term );
+						if ( empty( $term ) ) {
+							continue;
+						}
+						
+						//check if term belong to the post already
+						if(has_term( $term, $taxonomy, $object )){
+							continue;
+						}
+		
+						//exclude if name found in exclude terms
+						if(in_array($term, $autoterm_exclude)){
+							continue;
+						}
+
+						// Whole word ?
+						if ( isset( $options['autoterm_word'] ) && (int) $options['autoterm_word'] == 1 ) {
+							if(strpos($content, ' '.$term.' ') !== FALSE)
+							{
+								$terms_to_add[] = $term;
+							}
+		
+							//make exception for hashtag special character
+							if (substr($term, 0, strlen('#')) === '#') {
+								$trim_term = ltrim($term, '#');
+								if ( preg_match( "/\B(\#+$trim_term\b)(?!;)/i", $content ) ) {
+									$terms_to_add[] = $term;
+								}
+							}
+		
+							if ( isset( $options['autoterm_hash'] ) && (int) $options['autoterm_hash'] == 1 && stristr( $content, '#' . $term ) ) {
+								$terms_to_add[] = $term;
+							}
+						} elseif ( stristr( $content, $term ) ) {
+							$terms_to_add[] = $term;
+						}
+					}
+				}
+			}
+        }
+
+		//Autoterm with OpenCalais
+		if ( $autoterm_use_opencalais > 0 && $options['terms_opencalais_key'] !== '' ) {
+			$response = wp_remote_post( 'https://api-eit.refinitiv.com/permid/calais', array(
+				'timeout' => 30,
+				'headers' => array(
+					'X-AG-Access-Token' => $options['terms_opencalais_key'],
+					'Content-Type'      => 'text/html',
+					'outputFormat'      => 'application/json'
+				),
+				'body'    => $content
+			) );
+			$data = false;
+			if ( ! is_wp_error( $response ) && $response != null ) {
+				if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
+					$data_raw = json_decode( wp_remote_retrieve_body( $response ), true );
+					$data = array();
+					if ( isset( $data_raw ) && is_array( $data_raw ) ) {
+						foreach ( $data_raw as $_data_raw ) {
+							if ( isset( $_data_raw['_typeGroup'] ) && $_data_raw['_typeGroup'] == 'socialTag' ) {
+								$data[] = $_data_raw['name'];
+							}
+						}
+					}
+				}
+			}
+			if($data){
+				if (!empty( $data )){
+					// Remove empty terms
+					$data = array_filter( $data, '_delete_empty_element' );
+					$data = array_unique( $data );
+			
+					foreach ( (array) $data as $term ) {
+						$term = stripslashes( $term );
+
+						if ( ! is_string( $term ) ) {
+							continue;
+						}
+		
+						$term = trim( $term );
+						if ( empty( $term ) ) {
+							continue;
+						}
+						
+						//check if term belong to the post already
+						if(has_term( $term, $taxonomy, $object )){
+							continue;
+						}
+		
+						//exclude if name found in exclude terms
+						if(in_array($term, $autoterm_exclude)){
+							continue;
+						}
+
+						// Whole word ?
+						if ( isset( $options['autoterm_word'] ) && (int) $options['autoterm_word'] == 1 ) {
+							if(strpos($content, ' '.$term.' ') !== FALSE)
+							{
+								$terms_to_add[] = $term;
+							}
+		
+							//make exception for hashtag special character
+							if (substr($term, 0, strlen('#')) === '#') {
+								$trim_term = ltrim($term, '#');
+								if ( preg_match( "/\B(\#+$trim_term\b)(?!;)/i", $content ) ) {
+									$terms_to_add[] = $term;
+								}
+							}
+		
+							if ( isset( $options['autoterm_hash'] ) && (int) $options['autoterm_hash'] == 1 && stristr( $content, '#' . $term ) ) {
+								$terms_to_add[] = $term;
+							}
+						} elseif ( stristr( $content, $term ) ) {
+							$terms_to_add[] = $term;
+						}
+					}
+				}
+			}
+
+        }
+
 		// Auto term with specific auto terms list
 		if ( isset( $options['specific_terms'] ) && isset( $options['autoterm_useonly'] ) && (int)$options['autoterm_useonly'] === 1 ) {
 			$terms = maybe_unserialize( $options['specific_terms'] );
             $terms = taxopress_change_to_array($terms);
-            $autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
 			foreach ( $terms as $term ) {
 				if ( ! is_string( $term ) ) {
 					continue;
@@ -175,7 +333,6 @@ class SimpleTags_Client_Autoterms {
 
 			$terms = array_unique( $terms );
 
-            $autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
 			foreach ( $terms as $term ) {
 				$term = stripslashes( $term );
 

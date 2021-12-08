@@ -447,7 +447,14 @@
         }
       });
       //terms to user check
-      if (!$('.autoterm_useall').prop("checked") && !$('.autoterm_useonly').prop("checked")) {
+      var term_to_use_error = true;
+      $.each($(".autoterm-terms-to-use-field"), function (i, field) {
+        field_object = $('input[name="' + field.name + '"]');
+        if(field_object.prop("checked")){
+          term_to_use_error = false;
+        }
+      });
+      if (term_to_use_error) {
         field_error_count = 1;
         field_error_message += '<li>' + $('.auto-terms-to-use-error').html() + ' <span class="required">*</span></li>';
       }

@@ -481,7 +481,7 @@ class SimpleTags_Autoterms
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_useall',
-                                                        'class'      => 'autoterm_useall',
+                                                        'class'      => 'autoterm_useall autoterm-terms-to-use-field',
                                                         'labeltext'  => esc_html__('Which terms to use?', 'simple-tags'),
                                                         'aftertext'  => __('Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms.', 'simple-tags'),
                                                         'selections' => $select,
@@ -507,7 +507,7 @@ class SimpleTags_Autoterms
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_useonly',
-                                                        'class'      => 'autoterm_useonly',
+                                                        'class'      => 'autoterm_useonly autoterm-terms-to-use-field',
                                                         'labeltext'  => ' ',
                                                         'aftertext'  => __('Use only some terms in the selected taxonomy.', 'simple-tags'),
                                                         'selections' => $select,
@@ -523,27 +523,7 @@ class SimpleTags_Autoterms
 
                                                     echo '</td></tr>';
 
-                                                    echo $ui->get_tr_start();
-
-
-                                                    echo $ui->get_th_start();
-                                                    echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags'));
-                                                    echo $ui->get_th_end() . $ui->get_td_start();
-
-                                                    echo $ui->get_text_input([
-                                                        'labeltext'   => esc_html__('Stop words', 'simple-tags'),
-                                                        'namearray'   => 'taxopress_autoterm',
-                                                        'name'        => 'autoterm_exclude',
-                                                        'textvalue'   => isset($current['autoterm_exclude']) ? esc_attr($current['autoterm_exclude']) : '',
-                                                        'maxlength'   => '',
-                                                        'helptext'    => __('Choose terms to be excluded from auto terms.', 'simple-tags'),
-                                                        'class'       => 'st-full-width auto-terms-stopwords',
-                                                        'aftertext'   => '',
-                                                        'required'    => false,
-                                                        'placeholder' => false,
-                                                        'wrap'        => false,
-                                                    ]);
-
+                                                    do_action('taxopress_autoterms_after_autoterm_terms_to_use', $current);
 
                                                     ?>
                                                 </table>
@@ -651,6 +631,28 @@ class SimpleTags_Autoterms
 
                                                     }
                                                    echo '</td></tr>';
+
+
+                                                   echo $ui->get_tr_start();
+
+
+                                                   echo $ui->get_th_start();
+                                                   echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags'));
+                                                   echo $ui->get_th_end() . $ui->get_td_start();
+
+                                                   echo $ui->get_text_input([
+                                                       'labeltext'   => esc_html__('Stop words', 'simple-tags'),
+                                                       'namearray'   => 'taxopress_autoterm',
+                                                       'name'        => 'autoterm_exclude',
+                                                       'textvalue'   => isset($current['autoterm_exclude']) ? esc_attr($current['autoterm_exclude']) : '',
+                                                       'maxlength'   => '',
+                                                       'helptext'    => __('Choose terms to be excluded from auto terms.', 'simple-tags'),
+                                                       'class'       => 'st-full-width auto-terms-stopwords',
+                                                       'aftertext'   => '',
+                                                       'required'    => false,
+                                                       'placeholder' => false,
+                                                       'wrap'        => false,
+                                                   ]);
 
                                                     ?>
 
