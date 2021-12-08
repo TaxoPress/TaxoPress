@@ -284,7 +284,7 @@ class SimpleTags_Autoterms
                                                 </li>
 
                                                 <li class="autoterm_terms_tab <?php echo $active_tab === 'autoterm_terms' ? 'active' : ''; ?>" data-content="autoterm_terms">
-                                                    <a href="#autoterm_terms"><span><?php esc_html_e('Terms to Use',
+                                                    <a href="#autoterm_terms"><span><?php esc_html_e('Sources',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
@@ -476,16 +476,43 @@ class SimpleTags_Autoterms
                                                             ],
                                                         ],
                                                     ];
+                                                    $selected           = (isset($current) && isset($current['autoterm_use_taxonomy'])) ? taxopress_disp_boolean($current['autoterm_use_taxonomy']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['autoterm_use_taxonomy'] : '';
+                                                    echo $ui->get_select_checkbox_input([
+                                                        'namearray'  => 'taxopress_autoterm',
+                                                        'name'       => 'autoterm_use_taxonomy',
+                                                        'class'      => 'autoterm_use_taxonomy',
+                                                        'labeltext'  => esc_html__('Existing taxonomy terms', 'simple-tags'),
+                                                        'aftertext'  => __('This will add existing terms from the taxonomy selected in the "General" tab.', 'simple-tags'),
+                                                        'selections' => $select,
+                                                        'required'    => false,
+                                                    ]);
+
+
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
                                                     $selected           = (isset($current) && isset($current['autoterm_useall'])) ? taxopress_disp_boolean($current['autoterm_useall']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['autoterm_useall'] : '';
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_useall',
                                                         'class'      => 'autoterm_useall autoterm-terms-to-use-field',
-                                                        'labeltext'  => esc_html__('Which terms to use?', 'simple-tags'),
+                                                        'labeltext'  => '',
                                                         'aftertext'  => __('Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms.', 'simple-tags'),
                                                         'selections' => $select,
-                                                        'required'    => true,
+                                                        'required'    => false,
                                                     ]);
 
 
@@ -515,7 +542,7 @@ class SimpleTags_Autoterms
 
                                                     $specific_terms = ( isset($current) && isset($current['specific_terms'])) ? taxopress_change_to_strings($current['specific_terms']) : '';
                                                     echo '<tr class="autoterm_useonly_options '. ($selected === 'false' ? 'st-hide-content' : '') .'" valign="top"><th scope="row"><label for=""></label></th><td>';
-                                                    echo '<div class="auto-terms-to-use-error" style="display:none;"> '.__('Please choose an option for "Terms to use"', 'simple-tags').' </div>';
+                                                    echo '<div class="auto-terms-to-use-error" style="display:none;"> '.__('Please choose an option for "Sources"', 'simple-tags').' </div>';
 
                                                             echo '<div class="st-autoterms-single-specific-term">
                                                             <input autocomplete="off" type="text" class="st-full-width specific_terms_input" name="specific_terms" maxlength="32" placeholder="'. esc_attr(__('Choose the terms to use.', 'simple-tags')) .'" value="'. esc_attr($specific_terms) .'">

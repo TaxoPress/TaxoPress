@@ -594,6 +594,33 @@
     }
 
 
+    // -------------------------------------------------------------
+    //   Auto term Existing taxonomy terms check
+    // -------------------------------------------------------------
+    $(document).on('click', '.autoterm_use_taxonomy', function (e) {
+      autoterm_use_taxonomy_action();
+    });
+    autoterm_use_taxonomy_action();
+    function autoterm_use_taxonomy_action() {
+      if ($('.autoterm_use_taxonomy').length > 0) {
+        if ($('.autoterm_use_taxonomy').prop("checked")) {
+          $('.autoterm_useall').closest('tr').removeClass('st-hide-content');
+          $('.autoterm_useonly').closest('tr').removeClass('st-hide-content');
+          if(!$('.autoterm_useonly').prop('checked')){
+            $('.autoterm_useall').prop('checked', true);
+            $('.autoterm_useonly_options').addClass('st-hide-content');
+          }
+        } else {
+          $('.autoterm_useall').closest('tr').addClass('st-hide-content');
+          $('.autoterm_useonly').closest('tr').addClass('st-hide-content');
+          $('.autoterm_useonly_options').addClass('st-hide-content');
+          $('.autoterm_useall').prop('checked', false);
+          $('.autoterm_useonly').prop('checked', false);
+        }
+      }
+    }
+
+
     function isEmptyOrSpaces(str) {
       return str === null || str.match(/^ *$/) !== null;
     }
