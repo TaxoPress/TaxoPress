@@ -21,6 +21,11 @@ function taxopress_autoterms_content_by_ajax()
         $start_from = isset($_POST['start_from']) ? (int)$_POST['start_from'] : 0;
 
 
+        if(!current_user_can('simple_tags')){
+            $response['message'] = __('Permission denied.', 'simple-tags');
+            wp_send_json($response);
+        }
+
         if($auto_term_id === 0 ){
             $response['message'] = __('Kindly save your auto terms settings before running this function', 'simple-tags');
             wp_send_json($response);

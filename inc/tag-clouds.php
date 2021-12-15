@@ -127,7 +127,7 @@ class SimpleTags_Tag_Clouds
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_terms_display&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
-                   <div class="taxopress-description">This feature allows you to create a customizable display of all the terms in one taxonomy.</div>
+                   <div class="taxopress-description"><?php esc_html_e('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags'); ?></div>
 
 
                 <?php
@@ -624,7 +624,7 @@ class SimpleTags_Tag_Clouds
 
                         <?php if($tag_cloud_limit){ ?>
 
-                                <div class="pp-version-notice-bold-purple" style="margin-left:0px;"><div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free. The Pro version has more features and support. </div><div class="pp-version-notice-bold-purple-button"><a href="https://taxopress.com/pro" target="_blank">Upgrade to Pro</a></div></div>
+                                <div class="pp-version-notice-bold-purple" style="margin-left:0px;"><div class="pp-version-notice-bold-purple-message"><?php echo esc_html__('You\'re using TaxoPress Free. The Pro version has more features and support.', 'simple-tags'); ?></div><div class="pp-version-notice-bold-purple-button"><a href="https://taxopress.com/pro" target="_blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a></div></div>
 
                         <?php } ?>
                         <?php

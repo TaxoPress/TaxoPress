@@ -127,7 +127,7 @@ class SimpleTags_Post_Tags
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_post_tags&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
-                <div class="taxopress-description">This feature allows you create a customizable display of all the terms assigned to the current post.</div>
+                <div class="taxopress-description"><?php _e('This feature allows you to create a customizable display of all the terms assigned to the current post.', 'simple-tags'); ?></div>
 
 
                 <?php
@@ -520,11 +520,11 @@ class SimpleTags_Post_Tags
                                 <?php if ($post_tags_limit) { ?>
 
                                     <div class="pp-version-notice-bold-purple" style="margin-left:0px;">
-                                        <div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free.
-                                            The Pro version has more features and support.
+                                        <div class="pp-version-notice-bold-purple-message"><?php echo esc_html__('You\'re using TaxoPress Free.
+                                            The Pro version has more features and support.', 'simple-tags'); ?>
                                         </div>
                                         <div class="pp-version-notice-bold-purple-button"><a
-                                                href="https://taxopress.com/pro" target="_blank">Upgrade to Pro</a>
+                                                href="https://taxopress.com/pro" target="_blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                                         </div>
                                     </div>
 

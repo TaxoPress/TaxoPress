@@ -479,6 +479,10 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
+        if (isset($args['toplabel'])) {
+            $value .= $this->get_label($args['name'], $args['toplabel']).'<br />';
+        }
+
         $value .= '<input type="text" id="' . $args['name'] . '" class="' . $args['class'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
 
         if ($args['maxlength']) {
@@ -553,6 +557,10 @@ class taxopress_admin_ui
             }
             $value .= $this->get_th_end();
             $value .= $this->get_td_start();
+        }
+
+        if (isset($args['toplabel'])) {
+            $value .= $this->get_label($args['name'], $args['toplabel']).'<br />';
         }
 
         $value .= '<input min="' . $args['min'] . '" max="' . $args['max'] . '" type="number" id="' . $args['name'] . '"  class="' . $args['class'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '" ' . $args['other_attr'] . '';

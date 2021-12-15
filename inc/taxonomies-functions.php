@@ -661,6 +661,10 @@ function taxopress_process_taxonomy()
         return;
     }
 
+    if(!current_user_can('simple_tags')){
+        return;
+    }
+
     if (isset($_GET['new_taxonomy'])) {
         if ((int)$_GET['new_taxonomy'] === 1) {
             add_action('admin_notices', "taxopress_add_success_message_admin_notice");
@@ -695,34 +699,6 @@ function taxopress_process_taxonomy()
                 )
             );
             exit();
-        }
-    } elseif (isset($_POST['action']) || isset($_POST['action2'])) {
-
-        if ((isset($_POST['action']) && $_POST['action'] == 'st-bulk-deactivate-term') || (isset($_POST['action2']) && $_POST['action2'] == 'st-bulk-deactivate-term')) {
-            //deactivate term
-            $term_objects = isset($_POST['taxonomy-bulk-checked']) ? $_POST['taxonomy-bulk-checked'] : [];
-            if (count($term_objects) > 0) {
-                foreach ($term_objects as $term_object) {
-                    taxopress_deactivate_taxonomy($term_object);
-                }
-                add_action('admin_notices', "taxopress_deactivated_admin_notice");
-            } else {
-                add_action('admin_notices', "taxopress_none_admin_notice");
-            }
-        } elseif ((isset($_POST['action']) && $_POST['action'] == 'st-bulk-activate-term') || (isset($_POST['action2']) && $_POST['action2'] == 'st-bulk-activate-term')) {
-            //activate term
-            $term_objects = isset($_POST['taxonomy-bulk-checked']) ? $_POST['taxonomy-bulk-checked'] : [];
-            if (count($term_objects) > 0) {
-                $term_objects = $_POST['taxonomy-bulk-checked'];
-                foreach ($term_objects as $term_object) {
-                    taxopress_activate_taxonomy($term_object);
-                }
-                add_action('admin_notices', "taxopress_activated_admin_notice");
-            } else {
-                add_action('admin_notices', "taxopress_none_admin_notice");
-            }
-        } else {
-            add_action('admin_notices', "taxopress_noaction_admin_notice");
         }
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-deactivate-taxonomy') {
         $nonce = esc_attr($_REQUEST['_wpnonce']);
@@ -761,7 +737,6 @@ function taxopress_process_taxonomy()
     }
 }
 
-add_action('init', 'taxopress_process_taxonomy', 8);
 
 /**
  * Handle the conversion of taxonomy terms.

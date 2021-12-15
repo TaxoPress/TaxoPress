@@ -695,11 +695,13 @@ class SimpleTags_SuggestTerms
                             <?php if ($suggestterm_limit) { ?>
 
                                 <div class="pp-version-notice-bold-purple" style="margin-left:0px;">
-                                    <div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free.
-                                        The Pro version has more features and support.
+                                    <div class="pp-version-notice-bold-purple-message"><?php echo esc_html__('You\'re using TaxoPress Free.
+                                        The Pro version has more features and support.',
+                                                            'simple-tags'); ?>
                                     </div>
                                     <div class="pp-version-notice-bold-purple-button"><a
-                                            href="https://taxopress.com/pro" target="_blank">Upgrade to Pro</a>
+                                            href="https://taxopress.com/pro" target="_blank"><?php echo esc_html__('Upgrade to Pro',
+                                                            'simple-tags'); ?></a>
                                     </div>
                                 </div>
 

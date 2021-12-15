@@ -64,6 +64,10 @@ function taxopress_process_tagcloud()
         return;
     }
 
+    if(!current_user_can('simple_tags')){
+        return;
+    }
+
     if (isset($_GET['new_tagcloud'])) {
         if ((int)$_GET['new_tagcloud'] === 1) {
             add_action('admin_notices', "taxopress_termsdisplay_update_success_admin_notice");
@@ -110,7 +114,6 @@ function taxopress_process_tagcloud()
         add_filter('removable_query_args', 'taxopress_delete_tagcloud_filter_removable_query_args');
     }
 }
-add_action('init', 'taxopress_process_tagcloud', 8);
 
 
 
@@ -133,6 +136,10 @@ function taxopress_create_default_tag_cloud()
     }
 
     if (count(taxopress_get_tagcloud_data()) > 0 ) {
+        return;
+    }
+
+    if(!current_user_can('simple_tags')){
         return;
     }
 
@@ -159,7 +166,6 @@ function taxopress_create_default_tag_cloud()
     $result = taxopress_update_tagcloud($default);
     update_option('taxopress_default_tagclouds', $result);
 }
-add_action('init', 'taxopress_create_default_tag_cloud', 8);
 
 
 /**

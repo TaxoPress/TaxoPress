@@ -792,11 +792,11 @@ class SimpleTags_Autolink
                             <?php if ($autolink_limit) { ?>
 
                                 <div class="pp-version-notice-bold-purple" style="margin-left:0px;">
-                                    <div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free.
-                                        The Pro version has more features and support.
+                                    <div class="pp-version-notice-bold-purple-message"><?php esc_html_e('You\'re using TaxoPress Free.
+                                        The Pro version has more features and support.', 'simple-tags'); ?>
                                     </div>
                                     <div class="pp-version-notice-bold-purple-button"><a
-                                            href="https://taxopress.com/pro" target="_blank">Upgrade to Pro</a>
+                                            href="https://taxopress.com/pro" target="_blank"><?php esc_html_e('Upgrade to Pro', 'simple-tags'); ?></a>
                                     </div>
                                 </div>
 

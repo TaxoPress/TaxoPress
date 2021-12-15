@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.8
-Stable tag: 3.4.2
+Stable tag: 3.4.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,11 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.4.3- 2021-12-15
+* Fixed: Changes "Terms to Use" to Sources in Auto Terms
+* Fixed: Improvement to Auto Terms Screen
+* Feature: Add Dandelion and Open Calais to "Auto Terms"
 
 v3.4.2- 2021-11-30
 * Fixed: Auto Terms required error

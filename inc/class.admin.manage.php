@@ -97,7 +97,9 @@ class SimpleTags_Admin_Manage {
         $default_tab = '';
 		// Control Post data
 		if ( isset( $_POST['term_action'] ) ) {
-			if ( ! wp_verify_nonce( $_POST['term_nonce'], 'simpletags_admin' ) ) { // Origination and intention
+            if(!current_user_can('simple_tags')){
+                add_settings_error( __CLASS__, __CLASS__, __( 'Permission denied!', 'simple-tags' ), 'error' );
+            }else if ( ! wp_verify_nonce( $_POST['term_nonce'], 'simpletags_admin' ) ) { // Origination and intention
 
 				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simple-tags' ), 'error' );
 
@@ -226,12 +228,12 @@ class SimpleTags_Admin_Manage {
                 <div class="col-wrap">
                     <div class="form-wrap">
                         <ul class="simple-tags-nav-tab-wrapper">
-                            <li class="nav-tab nav-tab-active" data-page=".st-add-terms">Add terms</li>
-                            <li class="nav-tab" data-page=".st-rename-terms">Rename terms</li>
-                            <li class="nav-tab" data-page=".st-merge-terms">Merge terms</li>
-                            <li class="nav-tab" data-page=".st-remove-terms">Remove terms</li>
-                            <li class="nav-tab" data-page=".st-delete-terms">Delete terms</li>
-                            <li class="nav-tab" data-page=".st-delete-unuused-terms">Delete unused terms</li>
+                            <li class="nav-tab nav-tab-active" data-page=".st-add-terms"><?php echo esc_html__( 'Add terms', 'simple-tags' ); ?></li>
+                            <li class="nav-tab" data-page=".st-rename-terms"><?php echo esc_html__( 'Rename terms', 'simple-tags' ); ?></li>
+                            <li class="nav-tab" data-page=".st-merge-terms"><?php echo esc_html__( 'Merge terms', 'simple-tags' ); ?></li>
+                            <li class="nav-tab" data-page=".st-remove-terms"><?php echo esc_html__( 'Remove terms', 'simple-tags' ); ?></li>
+                            <li class="nav-tab" data-page=".st-delete-terms"><?php echo esc_html__( 'Delete terms', 'simple-tags' ); ?></li>
+                            <li class="nav-tab" data-page=".st-delete-unuused-terms"><?php echo esc_html__( 'Delete unused terms', 'simple-tags' ); ?></li>
                         </ul>
                         <div class="clear"></div>
 
@@ -563,7 +565,7 @@ class SimpleTags_Admin_Manage {
 		$counter = 0;
         if ( count( $new_terms ) == 1 ) { // Merge
 			// Set new tag
-			$new_tag = $new_terms[0];
+			$new_tag = sanitize_text_field($new_terms[0]);
 			if ( empty( $new_tag ) ) {
 				add_settings_error( __CLASS__, __CLASS__, __( 'No valid new term.', 'simple-tags' ), 'error' );
 
@@ -573,7 +575,7 @@ class SimpleTags_Admin_Manage {
 			// Get terms ID from old terms names
 			$terms_id = array();
 			foreach ( (array) $old_terms as $old_tag ) {
-				$term       = get_term_by( 'name', addslashes( $old_tag ), $taxonomy );
+				$term       = get_term_by( 'name', addslashes( sanitize_text_field($old_tag) ), $taxonomy );
 				$terms_id[] = (int) $term->term_id;
 			}
 
@@ -660,7 +662,7 @@ class SimpleTags_Admin_Manage {
         $counter = 0;
         if ( count($new_terms) > 0 ) {
 			foreach ( (array) $new_terms as $term ) {
-                $term = get_term_by('name', $term, $taxonomy);
+                $term = get_term_by('name', sanitize_text_field($term), $taxonomy);
                 if( empty($term) || !is_object($term) ){
                     continue;
                 }
@@ -736,10 +738,10 @@ class SimpleTags_Admin_Manage {
 		$counter = 0;
 		if ( count($old_terms) === count( $new_terms ) ) { // Rename only
 			foreach ( (array) $old_terms as $i => $old_tag ) {
-				$new_name = $new_terms[ $i ];
+				$new_name = sanitize_text_field($new_terms[ $i ]);
 
 				// Get term by name
-				$term = get_term_by( 'name', $old_tag, $taxonomy );
+				$term = get_term_by( 'name', sanitize_text_field($old_tag), $taxonomy );
 				if ( ! $term ) {
 					continue;
 				}
@@ -809,7 +811,7 @@ class SimpleTags_Admin_Manage {
 		// Delete tags
 		$counter = 0;
 		foreach ( (array) $delete_terms as $term ) {
-			$term    = get_term_by( 'name', $term, $taxonomy );
+			$term    = get_term_by( 'name', sanitize_text_field($term), $taxonomy );
 			$term_id = (int) $term->term_id;
 
 			if ( $term_id != 0 ) {
@@ -856,7 +858,7 @@ class SimpleTags_Admin_Manage {
 			// Get terms ID from old match names
 			$terms_id = array();
 			foreach ( (array) $match_terms as $match_term ) {
-				$term       = get_term_by( 'name', $match_term, $taxonomy );
+				$term       = get_term_by( 'name', sanitize_text_field($match_term), $taxonomy );
 				$terms_id[] = (int) $term->term_id;
 			}
 
@@ -918,7 +920,7 @@ class SimpleTags_Admin_Manage {
 		}
 
 		// Get terms with counter inferior to...
-		$terms_id = $wpdb->get_col( $wpdb->prepare( "SELECT term_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s AND count < %d", $taxonomy, $number ) );
+		$terms_id = $wpdb->get_col( $wpdb->prepare( "SELECT term_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s AND count < %d", $taxonomy, (int) $number ) );
 
 		// Delete terms
 		$counter = 0;
