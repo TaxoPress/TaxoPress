@@ -54,6 +54,10 @@ function taxopress_process_suggestterm()
         return;
     }
 
+    if(!current_user_can('simple_tags')){
+        return;
+    }
+
     if (empty($_GET)) {
         return;
     }
@@ -113,7 +117,7 @@ function taxopress_process_suggestterm()
     }
 }
 
-add_action('init', 'taxopress_process_suggestterm', 8);
+add_action('admin_init', 'taxopress_process_suggestterm', 8);
 
 
 /**
@@ -127,6 +131,10 @@ function taxopress_create_default_suggestterm()
     }
 
     if (!is_admin()) {
+        return;
+    }
+
+    if(!current_user_can('simple_tags')){
         return;
     }
 
@@ -158,7 +166,7 @@ function taxopress_create_default_suggestterm()
     update_option('taxopress_default_suggestterms', $result);
 }
 
-add_action('init', 'taxopress_create_default_suggestterm', 8);
+add_action('admin_init', 'taxopress_create_default_suggestterm', 8);
 
 
 /**

@@ -189,7 +189,7 @@ class SimpleTags_Admin {
 	public static function maybe_create_tag( $tag_name = '' ) {
 		$term_id     = 0;
 		//restore & in tag post
-		$tag_name = str_replace("simpletagand", "&", $tag_name);
+		$tag_name = sanitize_text_field(str_replace("simpletagand", "&", $tag_name));
 		$result_term = term_exists( $tag_name, 'post_tag', 0 );
 		if ( empty( $result_term ) ) {
 			$result_term = wp_insert_term(
@@ -493,28 +493,31 @@ class SimpleTags_Admin {
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
 
-		// Update or reset options
-		if ( isset( $_POST['updateoptions'] ) ) {
-			check_admin_referer( 'updateresetoptions-simpletags' );
+        if(current_user_can('admin_simple_tags')){
+            // Update or reset options
+            if ( isset( $_POST['updateoptions'] ) ) {
+                check_admin_referer( 'updateresetoptions-simpletags' );
 
-			foreach ( (array) $options as $key => $value ) {
-				$newval = ( isset( $_POST[ $key ] ) ) ? stripslashes( $_POST[ $key ] ) : '0';
-				if ( $newval != $value ) {
-					$options[ $key ] = $newval;
-				}
-			}
-			SimpleTags_Plugin::set_option( $options );
+                foreach ( (array) $options as $key => $value ) {
+                    $newval = ( isset( $_POST[ $key ] ) ) ? stripslashes( $_POST[ $key ] ) : '0';
+                    if ( $newval != $value ) {
+                        $options[ $key ] = $newval;
+                    }
+                }
+                SimpleTags_Plugin::set_option( $options );
 
-			do_action( 'simpletags_settings_save_general_end' );
+                do_action( 'simpletags_settings_save_general_end' );
 
-			add_settings_error( __CLASS__, __CLASS__, __( 'Options saved', 'simple-tags' ), 'updated' );
-		} elseif ( isset( $_POST['reset_options'] ) ) {
-			check_admin_referer( 'updateresetoptions-simpletags' );
+                add_settings_error( __CLASS__, __CLASS__, __( 'Options saved', 'simple-tags' ), 'updated' );
+            } elseif ( isset( $_POST['reset_options'] ) ) {
+                check_admin_referer( 'updateresetoptions-simpletags' );
 
-			SimpleTags_Plugin::set_default_option();
+                SimpleTags_Plugin::set_default_option();
 
-			add_settings_error( __CLASS__, __CLASS__, __( 'TaxoPress options resetted to default options!', 'simple-tags' ), 'updated' );
-		}
+                add_settings_error( __CLASS__, __CLASS__, __( 'TaxoPress options resetted to default options!', 'simple-tags' ), 'updated' );
+            }
+
+        }
 
 		settings_errors( __CLASS__ );
 		include STAGS_DIR . '/views/admin/page-settings.php';
@@ -786,7 +789,7 @@ class SimpleTags_Admin {
 				WHERE tt.taxonomy = %s
 				AND t.name LIKE %s
 				ORDER BY $order_by $order $limit
-			", $taxonomy, '%' . $search . '%' ) );
+			", $taxonomy, '%' . $wpdb->esc_like($search) . '%' ) );
 		} else {
 			return $wpdb->get_results( $wpdb->prepare( "
 				SELECT DISTINCT t.name, t.term_id
