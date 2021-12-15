@@ -66,6 +66,10 @@ function taxopress_process_posttags()
         return;
     }
 
+    if(!current_user_can('simple_tags')){
+        return;
+    }
+
     if (isset($_GET['new_posttags'])) {
         if ((int)$_GET['new_posttags'] === 1) {
             add_action('admin_notices', "taxopress_posttags_update_success_admin_notice");
@@ -113,8 +117,6 @@ function taxopress_process_posttags()
     }
 }
 
-add_action('init', 'taxopress_process_posttags', 8);
-
 
 /**
  * Create default post tags.
@@ -135,6 +137,10 @@ function taxopress_create_default_post_tags()
     }
 
     if (count(taxopress_get_posttags_data()) > 0) {
+        return;
+    }
+
+    if(!current_user_can('simple_tags')){
         return;
     }
 
@@ -173,7 +179,6 @@ function taxopress_create_default_post_tags()
     update_option('taxopress_default_posttagss', $result);
 }
 
-add_action('init', 'taxopress_create_default_post_tags', 8);
 
 /**
  * Successful update callback.

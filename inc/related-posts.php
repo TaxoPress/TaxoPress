@@ -127,7 +127,7 @@ class SimpleTags_Related_Post
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_related_posts&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
-                <div class="taxopress-description">The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.</div>
+                <div class="taxopress-description"><?php esc_html_e('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags'); ?></div>
 
 
                 <?php
@@ -682,11 +682,11 @@ class SimpleTags_Related_Post
                                 <?php if ($related_post_limit) { ?>
 
                                     <div class="pp-version-notice-bold-purple" style="margin-left:0px;">
-                                        <div class="pp-version-notice-bold-purple-message">You're using TaxoPress Free.
-                                            The Pro version has more features and support.
+                                        <div class="pp-version-notice-bold-purple-message"><?php echo esc_html__('You\'re using TaxoPress Free.
+                                            The Pro version has more features and support.', 'simple-tags'); ?>
                                         </div>
                                         <div class="pp-version-notice-bold-purple-button"><a
-                                                href="https://taxopress.com/pro" target="_blank">Upgrade to Pro</a>
+                                                href="https://taxopress.com/pro" target="_blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                                         </div>
                                     </div>
 
