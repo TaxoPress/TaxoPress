@@ -28,7 +28,7 @@ class SimpleTags_Client_Autoterms {
 		$options = get_option( STAGS_OPTIONS_NAME_AUTO );
 
 		// user preference for this post ?
-		$meta_value = isset($_POST['exclude_autotags']) ? $_POST['exclude_autotags'] : false;
+		$meta_value = isset($_POST['exclude_autotags']) ? sanitize_text_field($_POST['exclude_autotags']) : false;
 		if ( $meta_value ) {
 			return false;
 		}

@@ -99,7 +99,7 @@ class SimpleTags_Admin_Manage {
 		if ( isset( $_POST['term_action'] ) ) {
             if(!current_user_can('simple_tags')){
                 add_settings_error( __CLASS__, __CLASS__, __( 'Permission denied!', 'simple-tags' ), 'error' );
-            }else if ( ! wp_verify_nonce( $_POST['term_nonce'], 'simpletags_admin' ) ) { // Origination and intention
+            }else if ( ! wp_verify_nonce( sanitize_text_field($_POST['term_nonce']), 'simpletags_admin' ) ) { // Origination and intention
 
 				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simple-tags' ), 'error' );
 
@@ -109,34 +109,34 @@ class SimpleTags_Admin_Manage {
 
 			} elseif ( $_POST['term_action'] == 'renameterm' ) {
 
-				$oldtag = ( isset( $_POST['renameterm_old'] ) ) ? $_POST['renameterm_old'] : '';
-				$newtag = ( isset( $_POST['renameterm_new'] ) ) ? $_POST['renameterm_new'] : '';
+				$oldtag = ( isset( $_POST['renameterm_old'] ) ) ? sanitize_text_field($_POST['renameterm_old']) : '';
+				$newtag = ( isset( $_POST['renameterm_new'] ) ) ? sanitize_text_field($_POST['renameterm_new']) : '';
 				self::renameTerms( SimpleTags_Admin::$taxonomy, $oldtag, $newtag );
                 $default_tab = '.st-rename-terms';
 
 			} elseif ( $_POST['term_action'] == 'mergeterm' ) {
 
-				$oldtag = ( isset( $_POST['renameterm_old'] ) ) ? $_POST['renameterm_old'] : '';
-				$newtag = ( isset( $_POST['renameterm_new'] ) ) ? $_POST['renameterm_new'] : '';
+				$oldtag = ( isset( $_POST['renameterm_old'] ) ) ? sanitize_text_field($_POST['renameterm_old']) : '';
+				$newtag = ( isset( $_POST['renameterm_new'] ) ) ? sanitize_text_field($_POST['renameterm_new']) : '';
 				self::mergeTerms( SimpleTags_Admin::$taxonomy, $oldtag, $newtag );
                 $default_tab = '.st-merge-terms';
 
 			} elseif ( $_POST['term_action'] == 'removeterms' ) {
 
-				$tag = ( isset( $_POST['remove_term_input'] ) ) ? $_POST['remove_term_input'] : '';
+				$tag = ( isset( $_POST['remove_term_input'] ) ) ? sanitize_text_field($_POST['remove_term_input']) : '';
 				self::removeTerms( SimpleTags_Admin::$taxonomy, SimpleTags_Admin::$post_type, $tag );
                 $default_tab = '.st-remove-terms';
 
 			} elseif ( $_POST['term_action'] == 'deleteterm' ) {
 
-				$todelete = ( isset( $_POST['deleteterm_name'] ) ) ? $_POST['deleteterm_name'] : '';
+				$todelete = ( isset( $_POST['deleteterm_name'] ) ) ? sanitize_text_field($_POST['deleteterm_name']) : '';
 				self::deleteTermsByTermList( SimpleTags_Admin::$taxonomy, $todelete );
                 $default_tab = '.st-delete-terms';
 
 			} elseif ( $_POST['term_action'] == 'addterm' ) {
 
-				$matchtag = ( isset( $_POST['addterm_match'] ) ) ? $_POST['addterm_match'] : '';
-				$newtag   = ( isset( $_POST['addterm_new'] ) ) ? $_POST['addterm_new'] : '';
+				$matchtag = ( isset( $_POST['addterm_match'] ) ) ? sanitize_text_field($_POST['addterm_match']) : '';
+				$newtag   = ( isset( $_POST['addterm_new'] ) ) ? sanitize_text_field($_POST['addterm_new']) : '';
 				self::addMatchTerms( SimpleTags_Admin::$taxonomy, $matchtag, $newtag );
                 $default_tab = '.st-add-terms';
 
@@ -177,7 +177,7 @@ class SimpleTags_Admin_Manage {
 
 
         <?php
-        if (isset($_REQUEST['s']) && $search = esc_attr(wp_unslash($_REQUEST['s']))) {
+        if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
             /* translators: %s: search keywords */
             printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;', 'simple-tags') . '</span>', $search);
         }

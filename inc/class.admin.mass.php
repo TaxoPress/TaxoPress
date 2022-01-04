@@ -49,12 +49,12 @@ class SimpleTags_Admin_Mass {
 
 		// Get GET data
 		if ( isset( $_GET['post_type'] ) ) {
-			$type = stripslashes( $_GET['post_type'] );
+			$type = stripslashes( sanitize_text_field($_GET['post_type']) );
 		}
 
 		if ( isset( $_POST['update_mass'] ) ) {
 			// origination and intention
-			if ( ! ( wp_verify_nonce( $_POST['secure_mass'], 'st_mass_terms' ) ) ) {
+			if ( ! ( wp_verify_nonce( sanitize_text_field($_POST['secure_mass']), 'st_mass_terms' ) ) ) {
 				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simple-tags' ), 'error' );
 
 				return false;
@@ -62,7 +62,7 @@ class SimpleTags_Admin_Mass {
 
 			if ( isset( $_POST['tags'] ) ) {
 				$counter = 0;
-				foreach ( (array) $_POST['tags'] as $object_id => $tag_list ) {
+				foreach ( (array) array_map('sanitize_text_field', $_POST['tags']) as $object_id => $tag_list ) {
 					// Trim data
 					$tag_list = trim( stripslashes( $tag_list ) );
 
@@ -145,7 +145,7 @@ class SimpleTags_Admin_Mass {
 				</ul>
 
 				<?php if ( isset( $_GET['post_status'] ) ) : ?>
-					<input type="hidden" name="post_status" value="<?php echo esc_attr( $_GET['post_status'] ) ?>"/>
+					<input type="hidden" name="post_status" value="<?php echo esc_attr( sanitize_text_field($_GET['post_status']) ) ?>"/>
 				<?php endif; ?>
 
 				<p class="search-box">
@@ -186,7 +186,7 @@ class SimpleTags_Admin_Mass {
 							if ( $month_count && ! ( 1 == $month_count && 0 == $arc_result[0]->mmonth ) ) {
 								?>
 								<select name='m'>
-									<option<?php selected( @$_GET['m'], 0 ); ?>
+									<option <?php selected( @sanitize_text_field($_GET['m']), 0 ); ?>
 										value='0'><?php _e( 'Show all dates', 'simple-tags' ); ?></option>
 									<?php
 									foreach ( $arc_result as $arc_row ) {

@@ -67,8 +67,8 @@ class SimpleTags_Admin_Autocomplete {
 		header( 'Content-Type: application/json; charset=' . get_bloginfo( 'charset' ) );
 
 		$taxonomy = 'post_tag';
-		if ( isset( $_REQUEST['taxonomy'] ) && taxonomy_exists( $_REQUEST['taxonomy'] ) ) {
-			$taxonomy = $_REQUEST['taxonomy'];
+		if ( isset( $_REQUEST['taxonomy'] ) && taxonomy_exists( sanitize_text_field($_REQUEST['taxonomy']) ) ) {
+			$taxonomy = sanitize_text_field($_REQUEST['taxonomy']);
 		}
 
 		if ( (int) wp_count_terms( $taxonomy, array( 'hide_empty' => false ) ) === 0 ) { // No tags to suggest
@@ -77,7 +77,7 @@ class SimpleTags_Admin_Autocomplete {
 		}
 
 		// Prepare search
-		$search = ( isset( $_GET['term'] ) ) ? trim( stripslashes( $_GET['term'] ) ) : '';
+		$search = ( isset( $_GET['term'] ) ) ? trim( stripslashes( sanitize_text_field($_GET['term']) )) : '';
 
 		// Get all terms, or filter with search
 		$terms = SimpleTags_Admin::getTermsForAjax( $taxonomy, $search );

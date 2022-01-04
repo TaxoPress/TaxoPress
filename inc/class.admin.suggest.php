@@ -168,7 +168,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Get data
-		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
+		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
 			echo '<p>' . __( 'No text was sent.', 'simple-tags' ) . '</p>';
@@ -239,7 +239,7 @@ class SimpleTags_Admin_Suggest {
         }
 
 		// Get data
-		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
+		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
 			echo '<p>' . __( 'No text was sent.', 'simple-tags' ) . '</p>';
@@ -303,7 +303,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Get data
-		$content = stripslashes( $_POST['content'] ) . ' ' . stripslashes( $_POST['title'] );
+		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 
 		if ( empty( $content ) ) {
