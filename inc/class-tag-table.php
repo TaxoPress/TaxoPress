@@ -204,7 +204,7 @@ class Termcloud_List extends WP_List_Table {
 		if ( 'delete' === $this->current_action() ) {
 
 			// In our file that handles the request, verify the nonce.
-			$nonce = esc_attr( $_REQUEST['_wpnonce'] );
+			$nonce = sanitize_text_field( $_REQUEST['_wpnonce'] );
 
 			if ( ! wp_verify_nonce( $nonce, 'sp_delete_stterm' ) ) {
 				die( 'Go get a life script kiddies' );
@@ -220,7 +220,7 @@ class Termcloud_List extends WP_List_Table {
 		     || ( isset( $_POST['action2'] ) && $_POST['action2'] == 'st-bulk-delete-term' )
 		) {
 
-			$delete_ids = esc_sql( $_POST['st-bulk-delete-term'] );
+			$delete_ids = esc_sql( sanitize_text_field($_POST['st-bulk-delete-term']) );
 
 			// loop over the array of record IDs and delete them
 			foreach ( $delete_ids as $id ) {
@@ -264,19 +264,19 @@ class Termcloud_List extends WP_List_Table {
         $input_id = $input_id . '-search-input';
 
         if (!empty($_REQUEST['orderby'])) {
-            echo '<input type="hidden" name="orderby" value="' . esc_attr($_REQUEST['orderby']) . '" />';
+            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
         }
         if (!empty($_REQUEST['order'])) {
-            echo '<input type="hidden" name="order" value="' . esc_attr($_REQUEST['order']) . '" />';
+            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
         }
         if (!empty($_REQUEST['page'])) {
-            echo '<input type="hidden" name="page" value="' . esc_attr($_REQUEST['page']) . '" />';
+            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
         }
         if (!empty($_REQUEST['cpt'])) {
-            echo '<input type="hidden" name="cpt" value="' . esc_attr($_REQUEST['cpt']) . '" />';
+            echo '<input type="hidden" name="cpt" value="' . esc_attr(sanitize_text_field($_REQUEST['cpt'])) . '" />';
         }
         if (!empty($_REQUEST['taxo'])) {
-            echo '<input type="hidden" name="taxo" value="' . esc_attr($_REQUEST['taxo']) . '" />';
+            echo '<input type="hidden" name="taxo" value="' . esc_attr(sanitize_text_field($_REQUEST['taxo'])) . '" />';
         }
         $searchbox_search =  (empty($_REQUEST['s']) && !$this->has_items()) ? 'visibility:hidden;' : '';
         ?>
@@ -316,7 +316,7 @@ class Termcloud_List extends WP_List_Table {
         /**
          * Handle search
          */
-        if ((!empty($_REQUEST['s'])) && $search = $_REQUEST['s']) {
+        if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
                 if ($this->str_contains($item->slug, $search, false) || $this->str_contains($item->name, $search, false)) {

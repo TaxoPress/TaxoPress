@@ -109,9 +109,9 @@ function taxopress_process_suggestterm()
             exit();
         }
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-suggestterm') {
-        $nonce = esc_attr($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'suggestterm-action-request-nonce')) {
-            taxopress_action_delete_suggestterm($_REQUEST['taxopress_suggestterms']);
+            taxopress_action_delete_suggestterm(sanitize_text_field($_REQUEST['taxopress_suggestterms']));
         }
         add_filter('removable_query_args', 'taxopress_delete_suggestterm_filter_removable_query_args');
     }

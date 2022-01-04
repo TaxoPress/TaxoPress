@@ -202,7 +202,7 @@ class SimpleTags_Client_RelatedPosts {
 			} elseif ( $number > 50 ) {
 				$number = 50;
 			}
-			$limit_sql = 'LIMIT 0, ' . $number;
+            $limit_number = $number;
 			unset( $number );
 
 			// Order tags before output (count-asc/count-desc/date-asc/date-desc/name-asc/name-desc/random)
@@ -331,7 +331,8 @@ class SimpleTags_Client_RelatedPosts {
 			}
 
 			// Posts: title, comments_count, date, permalink, post_id, counter
-			$results = $wpdb->get_results( "
+			$results = $wpdb->get_results( 
+                $wpdb->prepare( "
 				SELECT p.*, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
 				FROM {$wpdb->posts} AS p
 				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
@@ -345,7 +346,9 @@ class SimpleTags_Client_RelatedPosts {
 				{$restrict_sql}
 				GROUP BY tr.object_id
 				ORDER BY {$order_by}
-				{$limit_sql}" );
+                LIMIT 0, %d",
+                $limit_number
+                ) );
 
 			$cache[ $key ] = $results;
 			wp_cache_set( 'related_posts' . $taxonomy, $cache, 'simple-tags' );
@@ -416,6 +419,7 @@ class SimpleTags_Client_RelatedPosts {
 	 */
 	public static function get_excerpt_post( $excerpt = '', $content = '', $password = '', $excerpt_length = 55 ) {
 		if ( ! empty( $password ) ) { // if there's a password
+            // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE
 			if ( $_COOKIE[ 'wp-postpass_' . COOKIEHASH ] != $password ) { // and it doesn't match the cookie
 				return __( 'There is no excerpt because this is a protected post.', 'simple-tags' );
 			}

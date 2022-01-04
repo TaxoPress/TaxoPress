@@ -701,36 +701,36 @@ function taxopress_process_taxonomy()
             exit();
         }
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-deactivate-taxonomy') {
-        $nonce = esc_attr($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'taxonomy-action-request-nonce')) {
-            taxopress_deactivate_taxonomy($_REQUEST['taxonomy']);
+            taxopress_deactivate_taxonomy(sanitize_text_field($_REQUEST['taxonomy']));
             add_action('admin_notices', "taxopress_deactivated_admin_notice");
         }
         add_filter('removable_query_args', 'taxopress_filter_removable_query_args');
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-reactivate-taxonomy') {
-        $nonce = esc_attr($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'taxonomy-action-request-nonce')) {
-            taxopress_activate_taxonomy($_REQUEST['taxonomy']);
+            taxopress_activate_taxonomy(sanitize_text_field($_REQUEST['taxonomy']));
             add_action('admin_notices', "taxopress_activated_admin_notice");
         }
         add_filter('removable_query_args', 'taxopress_filter_removable_query_args');
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-taxonomy') {
-        $nonce = esc_attr($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'taxonomy-action-request-nonce')) {
-            taxopress_action_delete_taxonomy($_REQUEST['taxonomy']);
+            taxopress_action_delete_taxonomy(sanitize_text_field($_REQUEST['taxonomy']));
         }
         add_filter('removable_query_args', 'taxopress_filter_removable_query_args');
     } elseif (isset($_REQUEST['action2']) && $_REQUEST['action2'] === 'taxopress-reactivate-taxonomy') {
-        $nonce = esc_attr($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'taxonomy-action-request-nonce')) {
-            taxopress_activate_taxonomy($_REQUEST['taxonomy']);
+            taxopress_activate_taxonomy(sanitize_text_field($_REQUEST['taxonomy']));
             add_action('admin_notices', "taxopress_activated_admin_notice");
         }
         add_filter('removable_query_args', 'taxopress_filter_removable_query_args_2');
     } elseif (isset($_REQUEST['action2']) && $_REQUEST['action2'] === 'taxopress-deactivate-taxonomy') {
-        $nonce = esc_attr($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'taxonomy-action-request-nonce')) {
-            taxopress_deactivate_taxonomy($_REQUEST['taxonomy']);
+            taxopress_deactivate_taxonomy(sanitize_text_field($_REQUEST['taxonomy']));
             add_action('admin_notices', "taxopress_deactivated_admin_notice");
         }
         add_filter('removable_query_args', 'taxopress_filter_removable_query_args_2');
@@ -849,7 +849,7 @@ function taxopress_get_current_action()
 {
     $current_action = '';
     if (!empty($_GET) && isset($_GET['action'])) {
-        $current_action .= esc_textarea($_GET['action']);
+        $current_action .= esc_textarea(sanitize_text_field($_GET['action']));
     }
 
     return $current_action;
@@ -1036,7 +1036,7 @@ function taxopress_add_success_message_admin_notice()
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has been successfully added', 'simple-tags'),
-            $_GET['taxopress_taxonomy']
+            sanitize_text_field($_GET['taxopress_taxonomy'])
         )
     );
 }

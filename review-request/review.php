@@ -98,7 +98,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                 'reason' => 'maybe_later',
             ]);
 
-            if (!wp_verify_nonce($_REQUEST['nonce'], 'taxopress_review_action')) {
+            if (!wp_verify_nonce(sanitize_text_field($_REQUEST['nonce']), 'taxopress_review_action')) {
                 wp_send_json_error();
             }
 
