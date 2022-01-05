@@ -158,7 +158,7 @@ class SimpleTags_Admin_Taxonomies
 
 
                 <?php
-                if (isset($_REQUEST['s']) && $search = esc_attr(wp_unslash($_REQUEST['s']))) {
+                if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
                     /* translators: %s: search keywords */
                     printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;',
                             'simple-tags') . '</span>', $search);

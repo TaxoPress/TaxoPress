@@ -808,16 +808,6 @@ class SimpleTags_Client_TagCloud {
 		}
         }
 
-		// don't limit the query results when we have to descend the family tree
-		if ( ! empty( $number ) && ! $hierarchical && empty( $child_of ) && '' == $parent ) {
-			if ( $offset ) {
-				$limit = 'LIMIT ' . $offset . ',' . $number;
-			} else {
-				$limit = 'LIMIT ' . $number;
-			}
-		} else {
-			$limit = '';
-		}
 
 		if ( ! empty( $search ) ) {
 			$search = like_escape( $search );
@@ -846,15 +836,45 @@ class SimpleTags_Client_TagCloud {
 		// Add inner to relation table ?
 		$join_relation = $join_relation == false ? '' : "INNER JOIN $wpdb->term_relationships AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id";
     // Query parts are individually escaped above, $taxonomies are individually checked if they exists
-		$query = $wpdb->prepare("SELECT $select_this
+
+    
+		// don't limit the query results when we have to descend the family tree
+		if ( ! empty( $number ) && ! $hierarchical && empty( $child_of ) && '' == $parent ) {
+			if ( $offset ) {
+                $query = $wpdb->prepare("SELECT $select_this
 			FROM $wpdb->terms AS t
 			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
 			$join_relation
 			WHERE 1 = %d AND tt.taxonomy IN ($in_taxonomies)
 			$where
 			$orderby $order
-      $limit",
-      1);
+            LIMIT %d, %d",
+            1,
+            $offset,
+            $number );
+			} else {
+                $query = $wpdb->prepare("SELECT $select_this
+			FROM $wpdb->terms AS t
+			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
+			$join_relation
+			WHERE 1 = %d AND tt.taxonomy IN ($in_taxonomies)
+			$where
+			$orderby $order
+            LIMIT %d",
+            1,
+            $number );
+			}
+		} else {
+            $query = $wpdb->prepare("SELECT $select_this
+			FROM $wpdb->terms AS t
+			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
+			$join_relation
+			WHERE 1 = %d AND tt.taxonomy IN ($in_taxonomies)
+			$where
+			$orderby $order",
+            1 );
+		}
+
 		// GROUP BY t.term_id
 
 		if ( 'count' == $fields ) {

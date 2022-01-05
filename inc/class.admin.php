@@ -177,7 +177,7 @@ class SimpleTags_Admin {
 	 */
 	public static function ajax_check() {
 		if ( isset( $_GET['stags_action'] ) && 'maybe_create_tag' === $_GET['stags_action'] && isset( $_GET['tag'] ) ) {
-			self::maybe_create_tag( wp_unslash( $_GET['tag'] ) );
+			self::maybe_create_tag( wp_unslash( sanitize_text_field($_GET['tag']) ) );
 		}
 	}
 
@@ -283,8 +283,8 @@ class SimpleTags_Admin {
 		self::$post_type_name = __( 'Posts', 'simple-tags' );
 
 		// Custom CPT ?
-		if ( isset( $_GET['cpt'] ) && ! empty( $_GET['cpt'] ) && post_type_exists( $_GET['cpt'] ) ) {
-			$cpt                  = get_post_type_object( $_GET['cpt'] );
+		if ( isset( $_GET['cpt'] ) && ! empty( $_GET['cpt'] ) && post_type_exists( sanitize_text_field($_GET['cpt']) ) ) {
+			$cpt                  = get_post_type_object( sanitize_text_field($_GET['cpt']) );
 			self::$post_type      = $cpt->name;
 			self::$post_type_name = $cpt->labels->name;
 		}
@@ -293,8 +293,8 @@ class SimpleTags_Admin {
 		$compatible_taxonomies = get_object_taxonomies( self::$post_type );
 
 		// Custom taxo ?
-		if ( isset( $_GET['taxo'] ) && ! empty( $_GET['taxo'] ) && taxonomy_exists( $_GET['taxo'] ) ) {
-			$taxo = get_taxonomy( $_GET['taxo'] );
+		if ( isset( $_GET['taxo'] ) && ! empty( $_GET['taxo'] ) && taxonomy_exists( sanitize_text_field($_GET['taxo']) ) ) {
+			$taxo = get_taxonomy( sanitize_text_field($_GET['taxo']) );
 
 			// Taxo is compatible ?
 			if ( in_array( $taxo->name, $compatible_taxonomies ) ) {
@@ -499,7 +499,7 @@ class SimpleTags_Admin {
                 check_admin_referer( 'updateresetoptions-simpletags' );
 
                 foreach ( (array) $options as $key => $value ) {
-                    $newval = ( isset( $_POST[ $key ] ) ) ? stripslashes( $_POST[ $key ] ) : '0';
+                    $newval = ( isset( $_POST[ $key ] ) ) ? stripslashes( sanitize_text_field($_POST[ $key ]) ) : '0';
                     if ( $newval != $value ) {
                         $options[ $key ] = $newval;
                     }

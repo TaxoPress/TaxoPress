@@ -190,7 +190,7 @@ class SimpleTags_Admin_ClickTags {
 		status_header( 200 ); // Send good header HTTP
 		header( 'Content-Type: text/html; charset=' . get_bloginfo( 'charset' ) );
 
-        $taxonomy =  isset($_GET['click_tags_taxonomy']) ? $_GET['click_tags_taxonomy'] : 'post_tag';
+        $taxonomy =  isset($_GET['click_tags_taxonomy']) ? sanitize_text_field($_GET['click_tags_taxonomy']) : 'post_tag';
 
 		if ( 0 === (int) wp_count_terms( $taxonomy, array( 'hide_empty' => false ) ) ) { // No tags to suggest
 			echo '<p>' . esc_html__( 'No terms in your WordPress database.', 'simple-tags' ) . '</p>';
@@ -198,11 +198,11 @@ class SimpleTags_Admin_ClickTags {
 		}
 
 		// Prepare search
-		$search  = ( isset( $_GET['q'] ) ) ? trim( stripslashes( $_GET['q'] ) ) : '';
+		$search  = ( isset( $_GET['q'] ) ) ? trim( stripslashes( sanitize_text_field($_GET['q']) ) ) : '';
 		$post_id = ( isset( $_GET['post_id'] ) ) ? intval( $_GET['post_id'] ) : 0;
 
         if(isset($_GET['click_tags_method']) && !empty($_GET['click_tags_method'])){
-            $order_click_tags = ($_GET['click_tags_method'] === 'random') ? $_GET['click_tags_method'] : $_GET['click_tags_method'].'-'.$_GET['click_tags_order'];
+            $order_click_tags = ($_GET['click_tags_method'] === 'random') ? sanitize_text_field($_GET['click_tags_method']) : sanitize_text_field($_GET['click_tags_method']).'-'.sanitize_text_field($_GET['click_tags_order']);
         }else{
 		    // Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
 		    $order_click_tags = 'random';
@@ -230,7 +230,7 @@ class SimpleTags_Admin_ClickTags {
 				break;
 		}
         
-        $term_limit =  isset($_GET['click_tags_limit']) ? $_GET['click_tags_limit'] : 100;
+        $term_limit =  isset($_GET['click_tags_limit']) ? (int)$_GET['click_tags_limit'] : 100;
 
         $limit = 'LIMIT 0, '.$term_limit;
 		

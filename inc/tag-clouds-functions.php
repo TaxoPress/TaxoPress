@@ -107,9 +107,9 @@ function taxopress_process_tagcloud()
             exit();
         }
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-tagcloud') {
-        $nonce = esc_attr($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'tagcloud-action-request-nonce')) {
-            taxopress_action_delete_tagcloud($_REQUEST['taxopress_termsdisplay']);
+            taxopress_action_delete_tagcloud(sanitize_text_field($_REQUEST['taxopress_termsdisplay']));
         }
         add_filter('removable_query_args', 'taxopress_delete_tagcloud_filter_removable_query_args');
     }
