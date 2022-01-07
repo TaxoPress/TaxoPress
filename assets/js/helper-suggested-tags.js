@@ -1,6 +1,7 @@
 jQuery(document).ready(function () {
   jQuery('#suggestedtags .hndle').html(html_entity_decode(stHelperSuggestedTagsL10n.title_bloc));
   jQuery('#suggestedtags .inside .container_clicktags').html(stHelperSuggestedTagsL10n.content_bloc);
+  jQuery('#suggestedtags .handle-actions').prepend(html_entity_decode(stHelperSuggestedTagsL10n.edit_metabox_link));
 
   // Generi call for autocomplete API
   jQuery('a.suggest-action-link').click(function (event) {
