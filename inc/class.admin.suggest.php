@@ -34,12 +34,31 @@ class SimpleTags_Admin_Suggest {
             return;
         }
 
+		//metabox edit line
+		$click_term_edit = '<span class="edit-suggest-term-metabox">
+		'. sprintf(
+			'<a href="%s">%s</a>',
+			add_query_arg(
+				[
+					'page'                   => 'st_suggestterms',
+					'add'                    => 'new_item',
+					'action'                 => 'edit',
+					'taxopress_suggestterms' => $click_terms['ID'],
+				],
+				admin_url('admin.php')
+			),
+			__('Edit this metabox', 'simple-tags')
+		)
+		.'
+		</span>';
+
 		wp_register_script( 'st-helper-suggested-tags', STAGS_URL . '/assets/js/helper-suggested-tags.js', array(
 			'jquery',
 			'st-helper-add-tags'
 		), STAGS_VERSION );
 		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
 			'title_bloc'   => self::get_suggest_tags_title(),
+			'edit_metabox_link'   => $click_term_edit,
 			'content_bloc' => __( 'Select an option above to load suggested terms.', 'simple-tags' )
 		) );
 
@@ -82,7 +101,6 @@ class SimpleTags_Admin_Suggest {
             $title .= '<option value="'.$option.'">'.$label.'</option>';
         }
         $title .= '</select>';
-
 
 		return $title;
 	}

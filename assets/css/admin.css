@@ -537,6 +537,13 @@ ul.taxopress-tab li.autoterm_schedule_tab a::before {
     display: block;
 }
 
+#side-sortables .edit-suggest-term-metabox {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
 .clicktags-search-wrapper .option {
     display: inline;
     margin-right: 15px;
@@ -545,6 +552,15 @@ ul.taxopress-tab li.autoterm_schedule_tab a::before {
 .clicktags-search-wrapper .option select,
 .clicktags-search-wrapper .option input {
     width: 100%;
+}
+
+#side-sortables .term_suggestion_select {
+    width: 100%;
+}
+
+.edit-suggest-term-metabox {
+    font-size: 14px;
+    padding: 8px;
 }
 
 body.block-editor-page .clicktags-search-wrapper .option select,
