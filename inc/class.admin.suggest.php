@@ -65,7 +65,7 @@ class SimpleTags_Admin_Suggest {
         $suggest_term_use_opencalais = isset($click_terms['suggest_term_use_opencalais']) ? (int)$click_terms['suggest_term_use_opencalais'] : 0;
 
         if($suggest_term_use_local > 0){
-            $title_options['tags_from_local_db']    = __( 'Local tags', 'simple-tags' );
+            $title_options['tags_from_local_db']    = __( 'Existing terms on your site', 'simple-tags' );
         }
 
         if ( $click_terms['terms_datatxt_access_token'] !== '' && $suggest_term_use_dandelion > 0 ) {
