@@ -58,6 +58,7 @@ class TaxopressCoreAdmin {
         add_action('taxopress_admin_class_after_styles_enqueue', [$this, 'taxopress_load_admin_core_styles']);
         add_action('taxopress_admin_after_sidebar', [$this, 'taxopress_admin_advertising_sidebar_banner']);
         add_action('taxopress_autoterms_after_autoterm_schedule', [$this, 'taxopress_pro_autoterm_schedule_field']);
+        add_action('taxopress_autoterms_after_autoterm_terms_to_use', [$this, 'taxopress_pro_autoterm_terms_to_use_field']);
     }
 
     function taxopress_load_admin_core_assets(){
@@ -141,9 +142,22 @@ class TaxopressCoreAdmin {
         ?>
         <tr>
             <td>
-            <div class="upgrade-pro">
+            <div class="taxopress-content-promo-box upgrade-pro">
             <h3 class="hndle is-non-sortable" style="padding-left: 0;"><span><?php echo __('Schedule Auto Terms for your content', 'simple-tags'); ?></span></h3>
                 <p style="line-height: 23px;"><?php echo __('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add terms to your imported content.', 'simple-tags'); ?></p>
+            </div>
+            </td>
+        </tr>
+        <?php 
+    }
+
+    function taxopress_pro_autoterm_terms_to_use_field($current){
+        ?>
+        <tr>
+            <td colspan="2">
+            <div class="taxopress-content-promo-box upgrade-pro">
+            <h3 class="hndle is-non-sortable" style="padding-left: 0;"><span><?php echo __('Automatically add new terms to your content', 'simple-tags'); ?></span></h3>
+                <p style="line-height: 23px;"><?php echo __('TaxoPress Pro allows you to generate new terms for your content using the Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
             </div>
             </td>
         </tr>
