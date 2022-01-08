@@ -183,8 +183,8 @@ function taxopress_create_default_autoterm()
         $default['post_types']                                     = ['post'];
         $default['post_status']                                    = ['publish'];
         $default['taxopress_autoterm']['autoterm_from']            = 'posts';
-        $default['taxopress_autoterm']['autoterm_useall']          = '0';
-        $default['taxopress_autoterm']['autoterm_useall']          = '0';
+        $default['taxopress_autoterm']['autoterm_use_taxonomy']    = '1';
+        $default['taxopress_autoterm']['autoterm_useall']          = '1';
         $default['taxopress_autoterm']['autoterm_useonly']         = '0';
         $default['taxopress_autoterm']['autoterm_target']          = '0';
         $default['taxopress_autoterm']['autoterm_word']            = '0';

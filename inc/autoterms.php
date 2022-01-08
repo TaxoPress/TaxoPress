@@ -463,6 +463,7 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_terms' ? '' : 'display:none;'; ?>">
                                                     <?php
 
+                                                    if($autoterm_edit){
                                                     $select             = [
                                                         'options' => [
                                                             [
@@ -476,6 +477,22 @@ class SimpleTags_Autoterms
                                                             ],
                                                         ],
                                                     ];
+                                                }else{
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                        ],
+                                                    ];
+
+                                                }
                                                     $selected           = (isset($current) && isset($current['autoterm_use_taxonomy'])) ? taxopress_disp_boolean($current['autoterm_use_taxonomy']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['autoterm_use_taxonomy'] : '';
                                                     echo $ui->get_select_checkbox_input([
@@ -485,24 +502,42 @@ class SimpleTags_Autoterms
                                                         'labeltext'  => esc_html__('Existing taxonomy terms', 'simple-tags'),
                                                         'aftertext'  => __('This will add existing terms from the taxonomy selected in the "General" tab.', 'simple-tags'),
                                                         'selections' => $select,
-                                                        'required'    => false,
+                                                        'required'    => true,
                                                     ]);
 
 
 
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => '0',
-                                                                'text'    => esc_attr__('False', 'simple-tags'),
-                                                                'default' => 'true',
+                                                    if($autoterm_edit){
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                ],
                                                             ],
-                                                            [
-                                                                'attr' => '1',
-                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                        ];
+                                                    }else{
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
                                                             ],
-                                                        ],
-                                                    ];
+                                                        ];
+    
+                                                    }
+
                                                     $selected           = (isset($current) && isset($current['autoterm_useall'])) ? taxopress_disp_boolean($current['autoterm_useall']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['autoterm_useall'] : '';
                                                     echo $ui->get_select_checkbox_input([
