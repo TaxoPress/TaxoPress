@@ -263,7 +263,11 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
         '&raquo;' => '&#187;',
         '&frac14;' => '&#188;',
         '&frac12;' => '&#189;',
-        '&frac34;' => '&#190;'
+        '&frac34;' => '&#190;',
+        '&rarr;'   => '&#8594;',
+        '&larr;'   => '&#8592;',
+        '&uarr;'   => '&#8593;',
+        '&darr;'   => '&#8595;',
     ];
 
     if($enity_code_as_key){
