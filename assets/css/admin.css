@@ -482,6 +482,17 @@ ul.taxopress-tab li.autoterm_schedule_tab a::before {
     content: "\f469";
 }
 
+
+ul.taxopress-tab li.tagcloud_terms_tab a::before {
+    content: "\f323";
+}
+ul.taxopress-tab li.tagcloud_design_tab a::before {
+    content: "\f309";
+}
+ul.taxopress-tab li.tagcloud_advanced_tab a::before {
+    content: "\f111";
+}
+
 .st-html-exclusion-table th {
     padding: unset;
 }
