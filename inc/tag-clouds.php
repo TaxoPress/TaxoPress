@@ -758,6 +758,36 @@ class SimpleTags_Tag_Clouds
 
                     </div>
 
+                    <div class="taxopress-token-right-sidebar">
+            <div id="postbox-container-1" class="postbox-container">
+            <div class="meta-box-sortables">
+                <div class="postbox">
+                    <div class="postbox-header">
+                        <h3 class="hndle is-non-sortable">
+                            <span>Terms Display format</span>
+                        </h3>
+                    </div>
+        
+                    <div class="inside">
+                        <p>Here are the tokens you can use for Term link format:</p>
+                        <ul>
+                            <li><code>%<code>tag_link%</code></code> – The URL of the term</li>
+                            <li><code>%tag_id%</code> – The ID of the term</li>
+                            <li><code>t%tag_scale%</code> – The weighted size of the term in the display</li>
+                            <li><code>%tag_count%</code> – The number of times the term is used</li>
+                            <li><code>%tag_rel%</code> – This provides rel tag markup (it creates <code>rel="tag"</code>)</li>
+                            <li><code>%tag_size%</code> – The font size for the term</li>
+                            <li><code>%tag_color%</code> – The font color for the term</li>
+                            <li><code>%tag_name%</code> – The name of the term</li>
+                            <li><code>%tag_name_attribute%</code> – The name of the term with any HTML stripped out</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+
                                                     <?php do_action('taxopress_admin_after_sidebar'); ?>
                 </div>
 
