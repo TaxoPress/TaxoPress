@@ -610,6 +610,20 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     color: #000 !important;
 }
 
+.taxopress-advertisement-right-sidebar h3.hndle {
+    font-size: 14px;
+    padding: 8px 12px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.taxopress-token-right-sidebar h3.hndle {
+    font-size: 14px;
+    padding: 8px 12px;
+    margin: 0;
+    line-height: 1.4;
+}
+
 @media only screen and (min-width: 1075px) {
     .taxopress-advertisement-right-sidebar-message,
     .upgrade-btn {
