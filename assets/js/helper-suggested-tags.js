@@ -44,6 +44,15 @@ jQuery(document).ready(function () {
     return false;
   });
 
+
+  //set local tags as default
+  if (jQuery('.term_suggestion_select').length > 0) {
+    setTimeout(taxopress_set_default_suggested_term, 2000);
+  }
+  function taxopress_set_default_suggested_term(){
+      jQuery('.term_suggestion_select').val('tags_from_local_db').trigger('change');
+  }
+
 });
 
 function getTitleFromEditor() {
