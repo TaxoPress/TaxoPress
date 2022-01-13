@@ -22,11 +22,6 @@ jQuery(document).ready(function () {
     return false;
   });
 
-  //set local tags as default
-  if (jQuery('.term_suggestion_select').length > 0) {
-    jQuery('.term_suggestion_select').val('tags_from_local_db').trigger('change');
-  }
-
 });
 
 function load_click_tags(search = '') {
