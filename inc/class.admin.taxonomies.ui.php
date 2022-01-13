@@ -692,6 +692,7 @@ class taxopress_admin_ui
             [
                 'rows' => '',
                 'cols' => '',
+                'class'     => '',
             ]
         );
         $args     = wp_parse_args($args, $defaults);
@@ -709,7 +710,7 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $value .= '<textarea id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" rows="' . $args['rows'] . '" cols="' . $args['cols'] . '">' . $args['textvalue'] . '</textarea>';
+        $value .= '<textarea id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" class="' . $args['class'] . '" rows="' . $args['rows'] . '" cols="' . $args['cols'] . '">' . $args['textvalue'] . '</textarea>';
 
         if (!empty($args['aftertext'])) {
             $value .= $args['aftertext'];

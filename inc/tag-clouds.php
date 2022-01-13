@@ -293,7 +293,7 @@ class SimpleTags_Tag_Clouds
                                                 </li>
 
                                                 <li class="tagcloud_advanced_tab <?php echo $active_tab === 'tagcloud_advanced' ? 'active' : ''; ?>" data-content="tagcloud_advanced">
-                                                    <a href="#tagcloud_advanced"><span><?php esc_html_e('Advanced',
+                                                    <a href="#tagcloud_advanced"><span><?php esc_html_e('Display Format',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
@@ -662,13 +662,15 @@ class SimpleTags_Tag_Clouds
                                                                     'required'  => false,
                                                                 ]);
 
-                                                            echo $ui->get_text_input([
+                                                            echo $ui->get_textarea_input([
                                                                     'namearray' => 'taxopress_tag_cloud',
                                                                     'name'      => 'xformat',
                                                                     'class'     => 'st-full-width',
+                                                                    'rows'      => '4',
+                                                                    'cols'      => '40',
                                                                     'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>'),
                                                                     'labeltext' => esc_html__('Term link format', 'simple-tags'),
-                                                                    'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the online documentation.</a>', 'simple-tags'),
+                                                                    'helptext'  => __('You can find more details on using this format <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the documentation.', 'simple-tags'),
                                                                     'required'  => false,
                                                                 ]);
 
