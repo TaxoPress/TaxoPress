@@ -244,12 +244,6 @@ function taxopress_update_taxonomy($data = [])
         delete_option("default_term_{$data['cpt_custom_tax']['name']}");
     }
 
-    if (empty($data['cpt_post_types'])) {
-        add_filter('taxopress_custom_error_message', 'taxopress_empty_cpt_on_taxonomy');
-
-        return 'error';
-    }
-
     if (!isset($data['taxonomy_external_edit'])) {
         if (!empty($data['tax_original']) && $data['tax_original'] !== $data['cpt_custom_tax']['name']) {
             if (!empty($data['update_taxonomy'])) {
@@ -422,7 +416,7 @@ function taxopress_update_taxonomy($data = [])
             'default_term'          => $default_term,
         ];
 
-        $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = $data['cpt_post_types'];
+        $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : [];
         $success                                                              = update_option('taxopress_external_taxonomies',
             $external_taxonomies);
     }

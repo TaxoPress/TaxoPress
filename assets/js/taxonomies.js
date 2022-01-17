@@ -321,10 +321,6 @@
         field_error_message += '<li>' + taxopress_tax_data.integer_error + ' <span class="required">*</span></li>';
       }
 
-      if ($('.taxonomy_posttypes :checkbox:checked').length == 0) {
-        field_error_count = 1;
-        field_error_message += '<li>' + taxopress_tax_data.no_associated_type + ' <span class="required">*</span></li>';
-      }
       field_error_message += '</ul>';
 
 
