@@ -443,13 +443,13 @@ class SimpleTags_SuggestTerms
                                                             ],
                                                         ],
                                                     ];
-                                                    $selected           = (isset($current) && isset($current['disable_local'])) ? taxopress_disp_boolean($current['disable_local']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['disable_local'] : '';
+                                                    $selected           = (isset($current) && isset($current['enable_existing_terms'])) ? taxopress_disp_boolean($current['enable_existing_terms']) : '';
+                                                    $select['selected'] = !empty($selected) ? $current['enable_existing_terms'] : '';
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_suggestterm',
-                                                        'name'       => 'disable_local',
-                                                        'labeltext'  => esc_html__('Disable "Show existing terms" feature',
-                                                            'simple-tags'),
+                                                        'name'       => 'enable_existing_terms',
+                                                        'labeltext'  => esc_html__('Show existing terms', 'simple-tags'),
+                                                        'aftertext'  => esc_html__('Uncheck this box to disable the "Show existing terms" metabox.', 'simple-tags'),
                                                         'selections' => $select,
                                                     ]);
 
