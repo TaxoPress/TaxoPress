@@ -530,7 +530,7 @@ class SimpleTags_SuggestTerms
                                                        style="<?php echo $active_tab === 'suggestterm_external' ? '' : 'display:none;'; ?>">
 
 
-                                                   <tr class="suggestterm_external_description" valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature can analyze your content and find new ideas for terms.', 'simple-tags'); ?></td></tr>
+                                                   <tr class="suggestterm_external_description" valign="top"><td style="padding-left: 0;" colspan="2"><?php echo esc_html__('This feature shows a metabox that can analyze your content and find ideas for terms.', 'simple-tags'); ?></td></tr>
 
                                                     <?php
 
