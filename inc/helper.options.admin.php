@@ -41,7 +41,7 @@ return array(
             __('Auto Terms', 'simple-tags'),
             'checkbox',
             '1',
-            __('Auto Terms can scan your content and automatically assign terms. For example, you have a term called "WordPress". Auto Terms can analyze your posts and when it finds the word "WordPress", it can add that term to your post.', 'simple-tags')
+            __('Auto Terms can scan your content and automatically assign new and existing terms.', 'simple-tags')
         ),
         array(
             'active_suggest_terms',
