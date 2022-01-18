@@ -329,7 +329,7 @@ function taxopress_action_delete_suggestterm($suggestterm_id)
  *
  * @return mixed
  */
-function taxopress_current_post_suggest_terms($local_check = false)
+function taxopress_current_post_suggest_terms($source = false, $local_check = false)
 {
     global $pagenow;
 
@@ -350,14 +350,15 @@ function taxopress_current_post_suggest_terms($local_check = false)
                 continue;
             }
 
-            if($local_check && isset($suggested_term['disable_local']) && (int)$suggested_term['disable_local'] > 0){
-                continue;
-            }
-
             $suggest_term_use_local      = isset($suggested_term['suggest_term_use_local']) ? (int)$suggested_term['suggest_term_use_local'] : 0;
             $suggest_term_use_dandelion  = isset($suggested_term['suggest_term_use_dandelion']) ? (int)$suggested_term['suggest_term_use_dandelion'] : 0;
             $suggest_term_use_opencalais = isset($suggested_term['suggest_term_use_opencalais']) ? (int)$suggested_term['suggest_term_use_opencalais'] : 0;
-            if(!$local_check && $suggest_term_use_local === 0 && $suggest_term_use_dandelion === 0 && $suggest_term_use_opencalais === 0){
+
+            if($suggest_term_use_local === 0 && $suggest_term_use_dandelion === 0 && $suggest_term_use_opencalais === 0){
+                continue;
+            }
+
+            if($source && $source === 'existing_terms' && isset($suggested_term['disable_local']) && (int)$suggested_term['disable_local'] > 0){
                 continue;
             }
 
