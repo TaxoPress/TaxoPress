@@ -220,7 +220,7 @@ class Termcloud_List extends WP_List_Table {
 		     || ( isset( $_POST['action2'] ) && $_POST['action2'] == 'st-bulk-delete-term' )
 		) {
 
-			$delete_ids = esc_sql( sanitize_text_field($_POST['st-bulk-delete-term']) );
+			$delete_ids = array_map('sanitize_text_field', $_POST['st-bulk-delete-term']);
 
 			// loop over the array of record IDs and delete them
 			foreach ( $delete_ids as $id ) {
