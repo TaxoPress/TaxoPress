@@ -104,7 +104,7 @@ class SimpleTags_Admin_Mass {
 		// Display message
 		settings_errors( __CLASS__ );
 		?>
-		<div class="wrap">
+		<div class="wrap st_wrap tagcloudui admin-settings">
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_mass_terms' ); ?>
 
 			<form id="posts-filter" action="" method="get">
@@ -285,6 +285,11 @@ class SimpleTags_Admin_Mass {
 
 			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
+
+		<div class="taxopress-right-sidebar admin-settings-sidebar">
+			<?php do_action('taxopress_admin_after_sidebar'); ?>
+		</div>
+
 		<?php
 		do_action( 'simpletags-mass_terms', SimpleTags_Admin::$taxonomy );
 	}
