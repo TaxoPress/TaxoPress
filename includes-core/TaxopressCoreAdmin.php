@@ -92,6 +92,8 @@ class TaxopressCoreAdmin {
                             <li><?php echo __('Unlimited “Auto Links”', 'simple-tags'); ?></li>
                             <li><?php echo __('Unlimited “Auto Terms”', 'simple-tags'); ?></li>
                             <li><?php echo __('Unlimited “Suggest Terms”', 'simple-tags'); ?></li>
+                            <li><?php echo __('Automatically create new terms', 'simple-tags'); ?></li>
+                            <li><?php echo __('Automatically add terms to imported content', 'simple-tags'); ?></li>
                             <li><?php echo __('Fast, professional support', 'simple-tags'); ?></li>
                             <li><?php echo __('No ads inside the plugin', 'simple-tags'); ?></li>
                         </ul>
