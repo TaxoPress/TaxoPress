@@ -257,7 +257,7 @@ fieldset .taxopress-help {
     margin-top: 25px;
 }
 
-.taxopress-right-sidebar-wrapper {
+.taxopress_page_st_taxonomies .taxopress-right-sidebar-wrapper {
     background: #fff;
     margin-bottom: 10px;
     padding: 20px;

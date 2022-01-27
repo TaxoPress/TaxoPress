@@ -75,9 +75,9 @@ class TaxopressCoreAdmin {
         <div class="taxopress-advertisement-right-sidebar">
             <div id="postbox-container-1" class="postbox-container">
             <div class="meta-box-sortables">
-                <div class="postbox">
+                <div class="advertisement-box-content postbox">
                     <div class="postbox-header">
-                        <h3 class="hndle is-non-sortable">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo __('Upgrade to TaxoPress Pro', 'simple-tags'); ?></span>
                         </h3>
                     </div>
@@ -102,9 +102,9 @@ class TaxopressCoreAdmin {
                         </div>
                     </div>
                 </div>
-                <div class="postbox">
+                <div class="advertisement-box-content postbox">
                     <div class="postbox-header">
-                        <h3 class="hndle is-non-sortable">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo __('Need TaxoPress Support?', 'simple-tags'); ?></span>
                         </h3>
                     </div>
@@ -144,10 +144,20 @@ class TaxopressCoreAdmin {
         ?>
         <tr>
             <td>
-            <div class="taxopress-content-promo-box upgrade-pro">
-            <h3 class="hndle is-non-sortable" style="padding-left: 0;"><span><?php echo __('Schedule Auto Terms for your content', 'simple-tags'); ?></span></h3>
-                <p style="line-height: 23px;"><?php echo __('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add terms to your imported content.', 'simple-tags'); ?></p>
-            </div>
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                    <div class="postbox-header">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                            <span><?php echo __('Schedule Auto Terms for your content', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+        
+                    <div class="inside-content">
+                        <p><?php echo __('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add terms to your imported content.', 'simple-tags'); ?></p>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/pro" target="__blank"><?php echo __('Upgrade to Pro', 'simple-tags'); ?></a>
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
         <?php 
@@ -157,10 +167,20 @@ class TaxopressCoreAdmin {
         ?>
         <tr>
             <td colspan="2">
-            <div class="taxopress-content-promo-box upgrade-pro">
-            <h3 class="hndle is-non-sortable" style="padding-left: 0;"><span><?php echo __('Automatically add new terms to your content', 'simple-tags'); ?></span></h3>
-                <p style="line-height: 23px;"><?php echo __('TaxoPress Pro allows you to generate new terms for your content using the Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
-            </div>
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                    <div class="postbox-header">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                            <span><?php echo __('Automatically add new terms to your content', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+        
+                    <div class="inside-content">
+                        <p><?php echo __('TaxoPress Pro allows you to generate new terms for your content using the Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/pro" target="__blank"><?php echo __('Upgrade to Pro', 'simple-tags'); ?></a>
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
         <?php 
