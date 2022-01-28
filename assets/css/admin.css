@@ -153,6 +153,7 @@ a#close_clicktags{display:none;}
 
 .auto-terms-content input[type=text] {
     min-height: 40px;
+    max-width: 90%;
 }
 
 .click-tag-search-box {
@@ -175,9 +176,9 @@ a#close_clicktags{display:none;}
 .terms-type-options {
     margin-bottom: 15px !important;
 }
-.tagcloudui input[type=text],
-.tagcloudui input[type=number],
-.tagcloudui select {
+.tagcloudui:not(.st-manage-terms-page) input[type=text],
+.tagcloudui:not(.st-manage-terms-page) input[type=number],
+.tagcloudui:not(.st-manage-terms-page) select {
     width: 300px;
 }
 .taxopress-warning {
