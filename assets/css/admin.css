@@ -176,9 +176,9 @@ a#close_clicktags{display:none;}
 .terms-type-options {
     margin-bottom: 15px !important;
 }
-.tagcloudui:not(.st-manage-terms-page) input[type=text],
-.tagcloudui:not(.st-manage-terms-page) input[type=number],
-.tagcloudui:not(.st-manage-terms-page) select {
+.tagcloudui:not(.st-manage-terms-page):not(.st_mass_terms-page) input[type=text],
+.tagcloudui:not(.st-manage-terms-page):not(.st_mass_terms-page) input[type=number],
+.tagcloudui:not(.st-manage-terms-page):not(.st_mass_terms-page) select {
     width: 300px;
 }
 .taxopress-warning {

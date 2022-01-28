@@ -104,7 +104,7 @@ class SimpleTags_Admin_Mass {
 		// Display message
 		settings_errors( __CLASS__ );
 		?>
-		<div class="wrap st_wrap tagcloudui admin-settings">
+		<div class="wrap st_wrap tagcloudui st_mass_terms-page admin-settings">
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_mass_terms' ); ?>
 
 			<form id="posts-filter" action="" method="get">
@@ -147,11 +147,6 @@ class SimpleTags_Admin_Mass {
 				<?php if ( isset( $_GET['post_status'] ) ) : ?>
 					<input type="hidden" name="post_status" value="<?php echo esc_attr( sanitize_text_field($_GET['post_status']) ) ?>"/>
 				<?php endif; ?>
-
-				<p class="search-box">
-					<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>"/>
-					<input type="submit" value="<?php _e( 'Search', 'simple-tags' ); ?>" class="button"/>
-				</p>
 
 				<div class="tablenav">
 					<?php
@@ -228,6 +223,12 @@ class SimpleTags_Admin_Mass {
 							       class="button-secondary"/>
 						<?php } ?>
 					</div>
+
+
+					<p class="search-box">
+						<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>"/>
+						<input type="submit" value="<?php _e( 'Search', 'simple-tags' ); ?>" class="button"/>
+					</p>
 
 					<br style="clear:both;"/>
 				</div>
