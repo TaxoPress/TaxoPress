@@ -75,7 +75,7 @@ class SimpleTags_Admin_Suggest {
         $click_terms = taxopress_current_post_suggest_terms('term_suggestion');
 
 
-        
+
 		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simple-tags' ) . '" />';
 		$title .= __( 'Automatic term suggestions', 'simple-tags' ) . '';
 
@@ -94,7 +94,7 @@ class SimpleTags_Admin_Suggest {
             $title_options['tags_from_opencalais']  = __( 'OpenCalais', 'simple-tags' );
         }
 
-        $title .= '&nbsp; 
+        $title .= '&nbsp;
         <select class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="'.$click_terms['ID'].'">
         <option value="" selected="selected">'.__( 'Select source to load suggested terms', 'simple-tags' ).'</option>';
         foreach($title_options as $option => $label){
@@ -189,7 +189,7 @@ class SimpleTags_Admin_Suggest {
 		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
-			echo '<p>' . __( 'No text was sent.', 'simple-tags' ) . '</p>';
+			echo '<p>' . __( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -260,7 +260,7 @@ class SimpleTags_Admin_Suggest {
 		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
-			echo '<p>' . __( 'No text was sent.', 'simple-tags' ) . '</p>';
+			echo '<p>' . __( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -325,7 +325,7 @@ class SimpleTags_Admin_Suggest {
 		$content = trim( $content );
 
 		if ( empty( $content ) ) {
-			echo '<p>' . __( 'No text was sent.', 'simple-tags' ) . '</p>';
+			echo '<p>' . __( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -346,7 +346,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		if ( $flag == false ) {
-			echo '<p>' . __( 'No correspondence between your content and terms from the WordPress database.', 'simple-tags' ) . '</p>';
+			echo '<p>' . __( 'There are no terms that are relevant to your content.', 'simple-tags' ) . '</p>';
 		} else {
 			echo '<div class="clear"></div>';
 		}
