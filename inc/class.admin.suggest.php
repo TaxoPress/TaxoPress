@@ -315,7 +315,19 @@ class SimpleTags_Admin_Suggest {
 		status_header( 200 );
 		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
 
-		if ( ( (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) ) == 0 ) { // No tags to suggest
+
+		$taxonomy =  'post_tag';
+
+		if(isset($_GET['suggestterms'])){
+			$suggestterms = taxopress_get_suggestterm_data();
+			$selected_suggestterm = (int)$_GET['suggestterms'];
+
+			if (array_key_exists($selected_suggestterm, $suggestterms)) {
+				$taxonomy       = $suggestterms[$selected_suggestterm]['taxonomy'];
+			}
+		}
+
+		if ( ( (int) wp_count_terms( $taxonomy, array( 'hide_empty' => false ) ) ) == 0 ) { // No tags to suggest
 			echo '<p>' . __( 'No terms in your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
 		}
@@ -330,7 +342,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Get all terms
-		$terms = SimpleTags_Admin::getTermsForAjax( 'post_tag', '' );
+		$terms = SimpleTags_Admin::getTermsForAjax( $taxonomy, '' );
 		if ( empty( $terms ) || $terms == false ) {
 			echo '<p>' . __( 'No results from your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
