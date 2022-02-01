@@ -35,22 +35,27 @@ class SimpleTags_Admin_Suggest {
         }
 
 		//metabox edit line
-		$click_term_edit = '<span class="edit-suggest-term-metabox">
-		'. sprintf(
-			'<a href="%s">%s</a>',
-			add_query_arg(
-				[
-					'page'                   => 'st_suggestterms',
-					'add'                    => 'new_item',
-					'action'                 => 'edit',
-					'taxopress_suggestterms' => $click_terms['ID'],
-				],
-				admin_url('admin.php')
-			),
-			__('Edit this metabox', 'simple-tags')
-		)
-		.'
-		</span>';
+		if(current_user_can('admin_simple_tags')){
+			$click_term_edit = '<span class="edit-suggest-term-metabox">
+			'. sprintf(
+				'<a href="%s">%s</a>',
+				add_query_arg(
+					[
+						'page'                   => 'st_suggestterms',
+						'add'                    => 'new_item',
+						'action'                 => 'edit',
+						'taxopress_suggestterms' => $click_terms['ID'],
+					],
+					admin_url('admin.php')
+				),
+				__('Edit this metabox', 'simple-tags')
+			)
+			.'
+			</span>';
+		}else {
+			$click_term_edit = '';
+		}
+
 
 		wp_register_script( 'st-helper-suggested-tags', STAGS_URL . '/assets/js/helper-suggested-tags.js', array(
 			'jquery',

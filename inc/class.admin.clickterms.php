@@ -116,23 +116,26 @@ class SimpleTags_Admin_ClickTags {
         $click_tags_options= '<div class="clicktags-search-wrapper">'. $click_tags_search.' '.$click_tags_taxonomy.' '.$click_tags_method.' '.$click_tags_order.' '.$click_tags_limit.'</div>';
    
 		//metabox edit line
-		$click_term_edit = '<span class="edit-suggest-term-metabox">
-		'. sprintf(
-			'<a href="%s">%s</a>',
-			add_query_arg(
-				[
-					'page'                   => 'st_suggestterms',
-					'add'                    => 'new_item',
-					'action'                 => 'edit',
-					'taxopress_suggestterms' => $click_terms['ID'],
-				],
-				admin_url('admin.php')
-			),
-			__('Edit this metabox', 'simple-tags')
-		)
-		.'
-		</span>';
-
+		if(current_user_can('admin_simple_tags')){
+			$click_term_edit = '<span class="edit-suggest-term-metabox">
+			'. sprintf(
+				'<a href="%s">%s</a>',
+				add_query_arg(
+					[
+						'page'                   => 'st_suggestterms',
+						'add'                    => 'new_item',
+						'action'                 => 'edit',
+						'taxopress_suggestterms' => $click_terms['ID'],
+					],
+					admin_url('admin.php')
+				),
+				__('Edit this metabox', 'simple-tags')
+			)
+			.'
+			</span>';
+		}else {
+			$click_term_edit = '';
+		}
 		wp_localize_script(
 			'st-helper-click-tags',
 			'stHelperClickTagsL10n',
