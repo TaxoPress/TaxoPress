@@ -22,6 +22,12 @@ jQuery(document).ready(function () {
     e.stopPropagation();
     jQuery('#suggestedtags').removeClass('close');
   });
+
+  jQuery('button.term_suggestion_refresh').click(function (e) {
+    e.stopPropagation();
+    jQuery('#suggestedtags').removeClass('close');
+    jQuery('select.term_suggestion_select').trigger('change');
+  });
   
   jQuery('select.term_suggestion_select').change(function () {
     jQuery('#suggestedtags').removeClass('close');
