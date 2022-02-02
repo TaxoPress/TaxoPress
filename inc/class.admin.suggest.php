@@ -105,7 +105,7 @@ class SimpleTags_Admin_Suggest {
         foreach($title_options as $option => $label){
             $title .= '<option value="'.$option.'">'.$label.'</option>';
         }
-        $title .= '</select>';
+        $title .= '</select> <button class="term_suggestion_refresh">'.__( 'Refresh', 'simple-tags' ).'</button>';
 
 		return $title;
 	}
