@@ -25,6 +25,7 @@ jQuery(document).ready(function () {
 
   jQuery('button.term_suggestion_refresh').click(function (e) {
     e.stopPropagation();
+    e.preventDefault();
     jQuery('#suggestedtags').removeClass('close');
     jQuery('select.term_suggestion_select').trigger('change');
   });
@@ -115,7 +116,14 @@ function registerClickTags() {
   jQuery('#suggestedtags .container_clicktags span').click(function (event) {
     event.preventDefault();
 
-    addTag(this.innerHTML);
+    var taxonomy = jQuery(this).attr('data-taxonomy');
+    var term_id = jQuery(this).attr('data-term_id');
+    if (term_id > 0) {
+      addTag(this.innerHTML, taxonomy, term_id);
+    } else {
+      addTag(this.innerHTML);
+    }
+
     jQuery(this).addClass('used_term');
   });
 

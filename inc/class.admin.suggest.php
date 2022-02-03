@@ -177,8 +177,10 @@ class SimpleTags_Admin_Suggest {
         $suggestterms = taxopress_get_suggestterm_data();
         $selected_suggestterm = (int)$_GET['suggestterms'];
         $click_terms = false;
+        $taxonomy =  'post_tag';
         if (array_key_exists($selected_suggestterm, $suggestterms)) {
             $click_terms       = $suggestterms[$selected_suggestterm];
+            $taxonomy          = $click_terms['taxonomy'];
         }
 
         if(!$click_terms){
@@ -235,7 +237,7 @@ class SimpleTags_Admin_Suggest {
 		$data = array_unique( $data );
 
 		foreach ( (array) $data as $term ) {
-			echo '<span class="local">' . esc_html( strip_tags( $term ) ) . '</span>' . "\n";
+			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local">' . esc_html( strip_tags( $term ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
@@ -254,8 +256,10 @@ class SimpleTags_Admin_Suggest {
         $suggestterms = taxopress_get_suggestterm_data();
         $selected_suggestterm = (int)$_GET['suggestterms'];
         $click_terms = false;
+        $taxonomy =  'post_tag';
         if (array_key_exists($selected_suggestterm, $suggestterms)) {
             $click_terms       = $suggestterms[$selected_suggestterm];
+            $taxonomy          = $click_terms['taxonomy'];
         }
 
         if(!$click_terms){
@@ -308,7 +312,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		foreach ( (array) $data as $term ) {
-			echo '<span class="local">' . esc_html( $term->title ) . '</span>' . "\n";
+			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local">' . esc_html( $term->title ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
@@ -357,10 +361,11 @@ class SimpleTags_Admin_Suggest {
 
 		$flag = false;
 		foreach ( (array) $terms as $term ) {
+            $term_id = $term->term_id;
 			$term = stripslashes( $term->name );
 			if ( is_string( $term ) && ! empty( $term ) && stristr( $content, $term ) ) {
 				$flag = true;
-				echo '<span class="local">' . esc_html( $term ) . '</span>' . "\n";
+				echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local">' . esc_html( $term ) . '</span>' . "\n";
 			}
 		}
 
