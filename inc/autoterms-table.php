@@ -50,7 +50,7 @@ class Autoterms_List extends WP_List_Table
     {
         $class = ['st-autoterm-tr'];
         $id    = 'st-autoterm-' . md5($item['ID']);
-        echo sprintf('<tr id="%s" class="%s">', $id, implode(' ', $class));
+        echo sprintf('<tr id="%s" class="%s">', esc_attr($id), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
     }
@@ -117,7 +117,7 @@ class Autoterms_List extends WP_List_Table
         }
         ?>
         <p class="search-box">
-            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
+            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
             <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>

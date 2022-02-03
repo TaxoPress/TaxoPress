@@ -19,13 +19,17 @@
 				$style = 'style="display:none;"';
 			}
 
-			echo '<a id="' . sanitize_title( $key ) . '-tab" class="nav-tab" ' . $style . ' href="#' . sanitize_title( $key ) . '">' . self::getNiceTitleOptions( $key ) . '</a>';
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<a id="' . esc_attr(sanitize_title( $key )) . '-tab" class="nav-tab" ' . $style . ' href="#' . esc_attr(sanitize_title( $key )) . '">' . self::getNiceTitleOptions( $key ) . '</a>';
 		}
 		?>
 	</h2>
 
-	<form action="<?php echo self::$admin_url; ?>" method="post">
-		<?php echo self::print_options( $option_data ); ?>
+	<form action="<?php echo esc_url(self::$admin_url); ?>" method="post">
+		<?php 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo self::print_options( $option_data ); 
+        ?>
 
 		<p>
 			<?php wp_nonce_field( 'updateresetoptions-simpletags' ); ?>

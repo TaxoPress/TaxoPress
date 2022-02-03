@@ -69,8 +69,8 @@ class SimpleTags_Autolink
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Auto Links', 'simple-tags'),
-            __('Auto Links', 'simple-tags'),
+            esc_html__('Auto Links', 'simple-tags'),
+            esc_html__('Auto Links', 'simple-tags'),
             'simple_tags',
             'st_autolinks',
             [
@@ -92,7 +92,7 @@ class SimpleTags_Autolink
 
         $option = 'per_page';
         $args   = [
-            'label'   => __('Number of items per page', 'simple-tags'),
+            'label'   => esc_html__('Number of items per page', 'simple-tags'),
             'default' => 20,
             'option'  => 'st_autolinks_per_page'
         ];
@@ -123,7 +123,7 @@ class SimpleTags_Autolink
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php _e('Auto Links', 'simple-tags'); ?></h1>
+                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Links', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autolinks&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
@@ -133,8 +133,8 @@ class SimpleTags_Autolink
                 <?php
                 if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
                     /* translators: %s: search keywords */
-                    printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;',
-                            'simple-tags') . '</span>', $search);
+                    printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;',
+                            'simple-tags') . '</span>', esc_html($search));
                 }
                 ?>
                 <?php
@@ -147,18 +147,18 @@ class SimpleTags_Autolink
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(__('Search Auto Links', 'simple-tags'), 'term'); ?>
+                    <?php $this->terms_table->search_box(esc_html__('Search Auto Links', 'simple-tags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>
 
                 <div id="col-container" class="wp-clearfix">
 
                     <div class="col-wrap">
-                        <form action="<?php echo add_query_arg('', '') ?>" method="post">
+                        <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                             <?php $this->terms_table->display(); //Display the table ?>
                         </form>
                         <div class="form-wrap edit-term-notes">
-                            <p><?php __('Description here.', 'simple-tags') ?></p>
+                            <p><?php esc_html__('Description here.', 'simple-tags') ?></p>
                         </div>
                     </div>
 
@@ -228,7 +228,7 @@ class SimpleTags_Autolink
 
 
         <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo __('Manage Auto Links', 'simple-tags'); ?></h1>
+            <h1><?php echo esc_html__('Manage Auto Links', 'simple-tags'); ?></h1>
             <div class="wp-clearfix"></div>
 
             <form method="post" action="">
@@ -246,9 +246,9 @@ class SimpleTags_Autolink
                                         if ($autolink_edit) {
                                             $active_tab = ( isset($current['active_tab']) && !empty(trim($current['active_tab'])) ) ? $current['active_tab'] : 'autolink_general';
                                             echo esc_html__('Edit Auto Links', 'simple-tags');
-                                            echo '<input type="hidden" name="edited_autolink" value="' . $current['ID'] . '" />';
-                                            echo '<input type="hidden" name="taxopress_autolink[ID]" value="' . $current['ID'] . '" />';
-                                            echo '<input type="hidden" name="taxopress_autolink[active_tab]" class="taxopress-active-subtab" value="'.$active_tab.'" />';
+                                            echo '<input type="hidden" name="edited_autolink" value="' . esc_attr($current['ID']) . '" />';
+                                            echo '<input type="hidden" name="taxopress_autolink[ID]" value="' . esc_attr($current['ID']) . '" />';
+                                            echo '<input type="hidden" name="taxopress_autolink[active_tab]" class="taxopress-active-subtab" value="'.esc_attr($active_tab).'" />';
                                         } else {
                                             $active_tab = 'autolink_general';
                                             echo '<input type="hidden" name="taxopress_autolink[active_tab]" class="taxopress-active-subtab" value="" />';
@@ -265,9 +265,9 @@ class SimpleTags_Autolink
                                             echo '<div class="st-taxonomy-content"><div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h2 style="margin-bottom: 5px;">' . __('To create more Auto Links, please upgrade to TaxoPress Pro.',
+                                            <h2 style="margin-bottom: 5px;">' . esc_html__('To create more Auto Links, please upgrade to TaxoPress Pro.',
                                                     'simple-tags') . '</h2>
-                                            ' . __('With TaxoPress Pro, you can create unlimited Auto Links. You can create Auto Links for any taxonomy.',
+                                            ' . esc_html__('With TaxoPress Pro, you can create unlimited Auto Links. You can create Auto Links for any taxonomy.',
                                                     'simple-tags') . '
 
                                             </p>
@@ -311,14 +311,16 @@ class SimpleTags_Autolink
                                                 <table class="form-table taxopress-table autolink_general"
                                                        style="<?php echo $active_tab === 'autolink_general' ? '' : 'display:none;'; ?>">
                                                     <?php
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_tr_start();
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_th_start();
-                                                    echo $ui->get_label('title', esc_html__('Title',
-                                                            'simple-tags')) . $ui->get_required_span();
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_label('title', esc_html__('Title', 'simple-tags')) . $ui->get_required_span();
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_th_end() . $ui->get_td_start();
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_text_input([
                                                         'namearray'   => 'taxopress_autolink',
                                                         'name'        => 'title',
@@ -357,13 +359,14 @@ class SimpleTags_Autolink
                                                     ];
                                                     $selected           = isset($current) ? taxopress_disp_boolean($current['taxonomy']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['taxonomy'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_select_checkbox_input_main([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'taxonomy',
                                                         'class'      => 'st-post-taxonomy-select',
                                                         'labeltext'  => esc_html__('Taxonomy', 'simple-tags'),
                                                         'required'   => true,
-                                                        'selections' => $select,
+                                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
 
@@ -391,12 +394,13 @@ class SimpleTags_Autolink
                                                     ];
                                                     $selected           = isset($current) ? taxopress_disp_boolean($current['autolink_case']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['autolink_case'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_select_number_select([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_case',
                                                         'labeltext'  => esc_html__('Auto Link case',
                                                             'simple-tags'),
-                                                        'selections' => $select,
+                                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
                                                     $select             = [
@@ -419,15 +423,16 @@ class SimpleTags_Autolink
                                                     ];
                                                     $selected           = isset($current) ? taxopress_disp_boolean($current['autolink_display']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['autolink_display'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_select_number_select([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_display',
                                                         'labeltext'  => esc_html__('Auto Link areas',
                                                             'simple-tags'),
-                                                        'selections' => $select,
+                                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_text_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_title_attribute',
@@ -455,14 +460,15 @@ class SimpleTags_Autolink
                                                     ];
                                                     $selected           = (isset($current) && isset($current['unattached_terms'])) ? taxopress_disp_boolean($current['unattached_terms']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['unattached_terms'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'unattached_terms',
                                                         'labeltext'  => esc_html__('Add links for unattached terms',
                                                             'simple-tags'),
-                                                        'aftertext'  => __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms.',
+                                                        'aftertext'  => esc_html__('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms.',
                                                             'simple-tags'),
-                                                        'selections' => $select,
+                                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
 
@@ -481,17 +487,18 @@ class SimpleTags_Autolink
                                                     ];
                                                     $selected           = (isset($current) && isset($current['ignore_attached'])) ? taxopress_disp_boolean($current['ignore_attached']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['ignore_attached'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'ignore_attached',
                                                         'labeltext'  => esc_html__('Don\'t add links for attached terms',
                                                             'simple-tags'),
-                                                        'aftertext'  => __('Don\'t add Auto Links if the term is already attached to the post.',
+                                                        'aftertext'  => esc_html__('Don\'t add Auto Links if the term is already attached to the post.',
                                                             'simple-tags'),
-                                                        'selections' => $select,
+                                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_td_end() . $ui->get_tr_end();
                                                     ?>
                                                 </table>
@@ -539,15 +546,15 @@ class SimpleTags_Autolink
                                                     foreach ($term_auto_locations as $key => $value) {
 
 
-                                                        echo '<tr valign="top"><th scope="row"><label for="' . $key . '">' . $value . '</label></th><td>';
-
+                                                        echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' . esc_html($value) . '</label></th><td>';
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         echo $ui->get_check_input([
                                                             'checkvalue' => $key,
                                                             'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
                                                                     $current['embedded'], true)) ? 'true' : 'false',
-                                                            'name'       => $key,
+                                                            'name'       => esc_attr($key),
                                                             'namearray'  => 'embedded',
-                                                            'textvalue'  => $key,
+                                                            'textvalue'  => esc_attr($key),
                                                             'labeltext'  => "",
                                                             'wrap'       => false,
                                                         ]);
@@ -567,67 +574,66 @@ class SimpleTags_Autolink
                                                 <table class="form-table taxopress-table autolink_control"
                                                        style="<?php echo $active_tab === 'autolink_control' ? '' : 'display:none;'; ?>">
                                                     <?php
-
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_usage_min',
                                                         'textvalue' => isset($current['autolink_usage_min']) ? esc_attr($current['autolink_usage_min']) : '1',
                                                         'labeltext' => esc_html__('Minimum term usage for Auto Links',
                                                             'simple-tags'),
-                                                        'helptext'  => __('To be included in Auto Links, a term must be used at least this many times.',
+                                                        'helptext'  => esc_html__('To be included in Auto Links, a term must be used at least this many times.',
                                                             'simple-tags'),
                                                         'min'       => '1',
                                                         'required'  => true,
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_usage_max',
                                                         'textvalue' => isset($current['autolink_usage_max']) ? esc_attr($current['autolink_usage_max']) : '10',
                                                         'labeltext' => esc_html__('Maximum number of links per post',
                                                             'simple-tags'),
-                                                        'helptext'  => __('This setting determines the maximum number of Auto Links in one post.',
+                                                        'helptext'  => esc_html__('This setting determines the maximum number of Auto Links in one post.',
                                                             'simple-tags'),
                                                         'min'       => '1',
                                                         'required'  => true,
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_same_usage_max',
                                                         'textvalue' => isset($current['autolink_same_usage_max']) ? esc_attr($current['autolink_same_usage_max']) : '1',
                                                         'labeltext' => esc_html__('Maximum number of links for the same term',
                                                             'simple-tags'),
-                                                        'helptext'  => __('This setting determines the maximum number of Auto Links for each term in one post.',
+                                                        'helptext'  => esc_html__('This setting determines the maximum number of Auto Links for each term in one post.',
                                                             'simple-tags'),
                                                         'min'       => '1',
                                                         'required'  => true,
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_min_char',
                                                         'textvalue' => isset($current['autolink_min_char']) ? esc_attr($current['autolink_min_char']) : '',
                                                         'labeltext' => esc_html__('Minimum character length for an Auto Link',
                                                             'simple-tags'),
-                                                        'helptext'  => __('For example, \'4\' would only link terms that are of 4 characters or more in length.',
+                                                        'helptext'  => esc_html__('For example, \'4\' would only link terms that are of 4 characters or more in length.',
                                                             'simple-tags'),
                                                         'min'       => '0',
                                                         'required'  => false,
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_max_char',
                                                         'textvalue' => isset($current['autolink_max_char']) ? esc_attr($current['autolink_max_char']) : '',
                                                         'labeltext' => esc_html__('Maximum character length for an Auto Link',
                                                             'simple-tags'),
-                                                        'helptext'  => __('For example, \'4\' would only link terms that are of 4 characters or less in length.',
+                                                        'helptext'  => esc_html__('For example, \'4\' would only link terms that are of 4 characters or less in length.',
                                                             'simple-tags'),
                                                         'min'       => '0',
                                                         'required'  => false,
@@ -642,8 +648,7 @@ class SimpleTags_Autolink
                                                 <table class="form-table taxopress-table autolink_exceptions"
                                                        style="<?php echo $active_tab === 'autolink_exceptions' ? '' : 'display:none;'; ?>">
                                                     <?php
-
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_text_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'auto_link_exclude',
@@ -655,7 +660,7 @@ class SimpleTags_Autolink
                                                         'required'  => false,
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_text_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'autolink_exclude_class',
@@ -688,17 +693,18 @@ class SimpleTags_Autolink
                                                     <table class="visbile-table st-html-exclusion-table">';
                                                     foreach ($html_exclusions as $key => $value) {
 
-                                                        echo '<tr valign="top"><th scope="row"><label for="' . $key . '">' . $value . '</label></th><td>';
+                                                        echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' . esc_html($value) . '</label></th><td>';
 
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         echo $ui->get_check_input([
                                                             'checkvalue' => $key,
                                                             'checked'    => (!empty($current['html_exclusion']) && is_array($current['html_exclusion']) && in_array($key,
                                                                     $current['html_exclusion'],
                                                                     true)) ? 'true' : 'false',
-                                                            'name'       => $key,
+                                                            'name'       => esc_attr($key),
                                                             'namearray'  => 'html_exclusion',
-                                                            'textvalue'  => $key,
-                                                            'labeltext'  => $key,
+                                                            'textvalue'  => esc_attr($key),
+                                                            'labeltext'  => esc_html($key),
                                                             'labeldescription' => true,
                                                             'wrap'       => false,
                                                         ]);
@@ -721,7 +727,7 @@ class SimpleTags_Autolink
                                                 <table class="form-table taxopress-table autolink_advanced"
                                                        style="<?php echo $active_tab === 'autolink_advanced' ? '' : 'display:none;'; ?>">
                                                     <?php
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_text_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'link_class',
@@ -732,14 +738,14 @@ class SimpleTags_Autolink
                                                         'required'  => false,
                                                     ]);
 
-
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autolink',
                                                         'name'      => 'hook_priority',
                                                         'textvalue' => isset($current['hook_priority']) ? esc_attr($current['hook_priority']) : '12',
                                                         'labeltext' => esc_html__('Priority on the_content and the_title hook',
                                                             'simple-tags'),
-                                                        'helptext'  => __('Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins. Higher number means autolink will be executed only after hooks with lower number has been executed.',
+                                                        'helptext'  => esc_html__('Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins. Higher number means autolink will be executed only after hooks with lower number has been executed.',
                                                             'simple-tags'),
                                                         'min'       => '1',
                                                         'required'  => false,
@@ -760,14 +766,16 @@ class SimpleTags_Autolink
                                                     ];
                                                     $selected           = (isset($current) && isset($current['autolink_dom'])) ? taxopress_disp_boolean($current['autolink_dom']) : '';
                                                     $select['selected'] = !empty($selected) ? $current['autolink_dom'] : '';
+                                                    
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autolink',
                                                         'name'       => 'autolink_dom',
                                                         'labeltext'  => esc_html__('Use new Auto Links engine',
                                                             'simple-tags'),
-                                                        'aftertext'  => __('The new Auto Links engine uses the DOMDocument PHP class and may offer better performance. If your server does not support this functionality, TaxoPress will use the usual engine.',
+                                                        'aftertext'  => esc_html__('The new Auto Links engine uses the DOMDocument PHP class and may offer better performance. If your server does not support this functionality, TaxoPress will use the usual engine.',
                                                             'simple-tags'),
-                                                        'selections' => $select,
+                                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
                                                     ?>
@@ -867,19 +875,19 @@ class SimpleTags_Autolink
         <?php # Modal Windows; ?>
 <div class="remodal" data-remodal-id="taxopress-modal-alert"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
+     <div class="" style="color:red;"><?php echo esc_html__('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
     <div id="taxopress-modal-alert-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simple-tags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo esc_html__('Okay', 'simple-tags'); ?></button>
 </div>
 
 <div class="remodal" data-remodal-id="taxopress-modal-confirm"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <div id="taxopress-modal-confirm-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo esc_html__('No', 'simple-tags'); ?></button>
     <button data-remodal-action="confirm"
-            class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
+            class="remodal-confirm"><?php echo esc_html__('Yes', 'simple-tags'); ?></button>
 </div>
 
         <?php

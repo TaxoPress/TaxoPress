@@ -185,7 +185,8 @@ function taxopress_create_default_post_tags()
  */
 function taxopress_posttags_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -193,7 +194,8 @@ function taxopress_posttags_update_success_admin_notice()
  */
 function taxopress_posttags_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Shortcode entry successfully deleted.', 'simple-tags'), false);
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Shortcode entry successfully deleted.', 'simple-tags'), false);
 }
 
 /**
@@ -335,10 +337,12 @@ function taxopress_posttags_shortcode($atts)
     if (array_key_exists($posttags_id, $posttagss)) {
         $posttags_arg = build_query($posttagss[$posttags_id]);
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo SimpleTags_Client_PostTags::extendedPostTags($posttags_arg);
 
     } else {
-        echo __('Invalid post terms ID.', 'simple-tags');
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo esc_html__('Invalid post terms ID.', 'simple-tags');
     }
 
     $html = ob_get_clean();

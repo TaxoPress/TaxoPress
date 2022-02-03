@@ -217,7 +217,8 @@ function taxopress_update_relatedpost($data = [])
  */
 function taxopress_relatedposts_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -225,7 +226,8 @@ function taxopress_relatedposts_update_success_admin_notice()
  */
 function taxopress_relatedposts_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Related Posts successfully deleted.', 'simple-tags'), false);
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Related Posts successfully deleted.', 'simple-tags'), false);
 }
 
 /**
@@ -317,10 +319,11 @@ function taxopress_relatedposts_shortcode($atts)
         $related_post_array = $relatedposts[$relatedpost_id];
         $relatedpost_arg    = build_query($related_post_array);
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo SimpleTags_Client_RelatedPosts::get_related_posts($relatedpost_arg);
 
     } else {
-        echo __('Related Posts not found.', 'simple-tags');
+        echo esc_html__('Related Posts not found.', 'simple-tags');
     }
     
     $html = ob_get_clean();

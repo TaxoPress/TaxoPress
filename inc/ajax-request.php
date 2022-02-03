@@ -22,19 +22,19 @@ function taxopress_autoterms_content_by_ajax()
 
 
         if(!current_user_can('simple_tags')){
-            $response['message'] = __('Permission denied.', 'simple-tags');
+            $response['message'] = esc_html__('Permission denied.', 'simple-tags');
             wp_send_json($response);
         }
 
         if($auto_term_id === 0 ){
-            $response['message'] = __('Kindly save your auto terms settings before running this function', 'simple-tags');
+            $response['message'] = esc_html__('Kindly save your auto terms settings before running this function', 'simple-tags');
             wp_send_json($response);
         }
 
         if ($auto_term_id && array_key_exists($auto_term_id, $autoterms)) {
                 $autoterm_data       = $autoterms[$auto_term_id];
         }else{
-            $response['message'] = __('Auto term settings not found', 'simple-tags');
+            $response['message'] = esc_html__('Auto term settings not found', 'simple-tags');
             wp_send_json($response);
         }
 
@@ -63,7 +63,7 @@ function taxopress_autoterms_content_by_ajax()
             delete_option('tmp_auto_terms_st');
             $response['status'] = 'sucess';
             $response['done'] = $total;
-            $response['message'] = sprintf(__('All done! %s terms added.', 'simple-tags'), $counter);
+            $response['message'] = sprintf(esc_html__('All done! %s terms added.', 'simple-tags'), $counter);
             $percentage = 100;
         }
             $response['percentage'] = '<div class="taxopress-loader-border"><div class="taxopress-loader-green" style="width:'.$percentage.'%;">'.$percentage.'%</div></div>';
@@ -71,5 +71,3 @@ function taxopress_autoterms_content_by_ajax()
             wp_send_json($response);
 
 }
-
-?>

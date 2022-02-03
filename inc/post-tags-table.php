@@ -11,8 +11,8 @@ class PostTags_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Terms for Current Post', 'simple-tags'), //singular name of the listed records
-            'plural'   => __('Terms for Current Post', 'simple-tags'), //plural name of the listed records
+            'singular' => esc_html__('Terms for Current Post', 'simple-tags'), //singular name of the listed records
+            'plural'   => esc_html__('Terms for Current Post', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -50,7 +50,7 @@ class PostTags_List extends WP_List_Table
     {
         $class = ['st-posttags-tr'];
         $id    = 'st-posttags-' . md5($item['ID']);
-        echo sprintf('<tr id="%s" class="%s">', $id, implode(' ', $class));
+        echo sprintf('<tr id="%s" class="%s">', esc_attr($id), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
     }
@@ -63,10 +63,10 @@ class PostTags_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'title'     => __('Title', 'simple-tags'),
-            'taxonomy'  => __('Taxonomy', 'simple-tags'),
-            'embedded'  => __('Automatic display', 'simple-tags'),
-            'shortcode' => __('Shortcode', 'simple-tags')
+            'title'     => esc_html__('Title', 'simple-tags'),
+            'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
+            'embedded'  => esc_html__('Automatic display', 'simple-tags'),
+            'shortcode' => esc_html__('Shortcode', 'simple-tags')
         ];
 
         return $columns;
@@ -118,7 +118,7 @@ class PostTags_List extends WP_List_Table
         }
         ?>
         <p class="search-box">
-            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
+            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
             <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>
@@ -261,7 +261,7 @@ class PostTags_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                __('Edit', 'simple-tags')
+                esc_html__('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-posttags">%s</a>',
@@ -272,7 +272,7 @@ class PostTags_List extends WP_List_Table
                     '_wpnonce'           => wp_create_nonce('posttags-action-request-nonce')
                 ],
                     admin_url('admin.php')),
-                __('Delete', 'simple-tags')
+                esc_html__('Delete', 'simple-tags')
             ),
         ];
 
