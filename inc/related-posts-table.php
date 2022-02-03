@@ -379,10 +379,10 @@ class RelatedPosts_List extends WP_List_Table
 
             $result_array     = [];
             $embedded_options = [
-                'homeonly'   => esc_attr esc_html__('Homepage', 'simple-tags'),
-                'blogonly'   => esc_attr esc_html__('Blog display', 'simple-tags'),
-                'singleonly' => esc_attr esc_html__('Single post display', 'simple-tags'),
-                'feed'       => esc_attr esc_html__('RSS feed', 'simple-tags'),
+                'homeonly'   => esc_html__('Homepage', 'simple-tags'),
+                'blogonly'   => esc_html__('Blog display', 'simple-tags'),
+                'singleonly' => esc_html__('Single post display', 'simple-tags'),
+                'feed'       => esc_html__('RSS feed', 'simple-tags'),
             ];
             foreach ($post_types as $post_type) {
                 $embedded_options[$post_type->name] = $post_type->label;
@@ -392,7 +392,7 @@ class RelatedPosts_List extends WP_List_Table
             }
             $result = join(', ', $result_array);
         } else {
-            $result = esc_attr esc_html__('No', 'simple-tags');
+            $result = esc_html__('No', 'simple-tags');
         }
 
         return $result;
