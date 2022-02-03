@@ -164,7 +164,8 @@ class SimpleTags_Admin_Mass {
 					) );
 
 					if ( $page_links ) {
-						echo "<div class='tablenav-pages'>". esc_html($page_links) ."</div>";
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo "<div class='tablenav-pages'>". $page_links ."</div>";
 					}
 					?>
 

@@ -694,7 +694,7 @@ class SimpleTags_Tag_Clouds
                                                                     'cols'      => '40',
                                                                     'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>'),
                                                                     'labeltext' => esc_html__('Term link format', 'simple-tags'),
-                                                                    'helptext'  => esc_html__('This option allows you to change the format of your terms. You can use any of the tokens in the "Terms Display format" sidebar". Find more details <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the documentation.', 'simple-tags'),
+                                                                    'helptext'  => sprintf(esc_html__('This option allows you to change the format of your terms. You can use any of the tokens in the "Terms Display format" sidebar". Find more details %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">', '</a>'),
                                                                     'required'  => false,
                                                                 ]);
 
