@@ -56,7 +56,7 @@ class SimpleTags_Admin_Post_Settings {
             if(1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_terms' )){
 			    $meta_value = get_post_meta( $post->ID, '_exclude_autotags', true );
 			    echo '<p>' . "\n";
-			    echo '<label><input type="checkbox" name="exclude_autotags" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable Auto Terms', 'simple-tags' ) . '</label><br />' . "\n";
+			    echo '<label><input type="checkbox" name="exclude_autotags" value="true" ' . checked( esc_attr($meta_value), true, false ) . ' /> ' . esc_html__( 'Disable Auto Terms', 'simple-tags' ) . '</label><br />' . "\n";
 			    echo '</p>' . "\n";
 			    echo '<input type="hidden" name="_meta_autotags" value="true" />';
             }
@@ -64,7 +64,7 @@ class SimpleTags_Admin_Post_Settings {
             if(1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_links' )){
     			$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
 	    		echo '<p>' . "\n";
-		    	echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( $meta_value, true, false ) . ' /> ' . __( 'Disable Auto Links', 'simple-tags' ) . '</label><br />' . "\n";
+		    	echo '<label><input type="checkbox" name="exclude_autolinks" value="true" ' . checked( esc_attr($meta_value), true, false ) . ' /> ' . esc_html__( 'Disable Auto Links', 'simple-tags' ) . '</label><br />' . "\n";
 			    echo '</p>' . "\n";
 			    echo '<input type="hidden" name="_meta_autolink" value="true" />';
             }

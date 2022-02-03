@@ -352,9 +352,9 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
 
             <div class="notice notice-success is-dismissible taxopress-notice">
 
-                <img src="<?php echo STAGS_URL ?>/assets/images/logo-notice.png" class="logo" alt=""/>
+                <img src="<?php echo esc_url(STAGS_URL.'/assets/images/logo-notice.png'); ?>" class="logo" alt=""/>
                 <p>
-                    <?php echo $tigger['message']; ?>
+                    <?php echo esc_html($tigger['message']); ?>
                 </p>
                 <p>
                     <a class="button button-primary taxopress-dismiss" target="_blank"
@@ -396,9 +396,9 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             <script type="text/javascript">
                 (function($) {
                     var trigger = {
-                        group: '<?php echo $group; ?>',
-                        code: '<?php echo $code; ?>',
-                        pri: '<?php echo $pri; ?>'
+                        group: '<?php echo esc_js($group); ?>',
+                        code: '<?php echo esc_js($code); ?>',
+                        pri: '<?php echo esc_js($pri); ?>'
                     }
 
                     function dismiss(reason) {
@@ -408,7 +408,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                             url: ajaxurl,
                             data: {
                                 action: 'taxopress_review_action',
-                                nonce: '<?php echo wp_create_nonce('taxopress_review_action'); ?>',
+                                nonce: '<?php echo esc_js(wp_create_nonce('taxopress_review_action')); ?>',
                                 group: trigger.group,
                                 code: trigger.code,
                                 pri: trigger.pri,
@@ -420,12 +420,12 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                         $.ajax({
                             method: "POST",
                             dataType: "json",
-                            url: '<?php echo self::$api_url; ?>',
+                            url: '<?php echo esc_js(self::$api_url); ?>',
                             data: {
                                 trigger_group: trigger.group,
                                 trigger_code: trigger.code,
                                 reason: reason,
-                                uuid: '<?php echo $uuid; ?>'
+                                uuid: '<?php echo esc_js($uuid); ?>'
                             }
                         })
                         <?php endif; ?>

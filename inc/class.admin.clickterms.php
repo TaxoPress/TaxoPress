@@ -52,7 +52,7 @@ class SimpleTags_Admin_ClickTags {
         //add taxonomy
         $click_tags_taxonomy = '
         <div class="option">
-        <label>'.__( 'Taxonomy', 'simple-tags' ).'</label><br />
+        <label>'.esc_html__( 'Taxonomy', 'simple-tags' ).'</label><br />
         <select class="st-post-taxonomy-select click_tags_taxonomy" name="click_tags_taxonomy">';
         foreach ( $post_taxonomies as $_taxonomy ) {
             $_taxonomy = get_taxonomy($_taxonomy);
@@ -73,7 +73,7 @@ class SimpleTags_Admin_ClickTags {
         </div>';
 
         //add method
-        $click_tags_methods = ['name' => __( 'Name', 'simple-tags' ), 'count' => __( 'Counter', 'simple-tags' ), 'random' => __( 'Random', 'simple-tags' )];
+        $click_tags_methods = ['name' => esc_html__( 'Name', 'simple-tags' ), 'count' => esc_html__( 'Counter', 'simple-tags' ), 'random' => esc_html__( 'Random', 'simple-tags' )];
         $click_tags_method = '
         <div class="option">
         <label>'.__( 'Method for choosing terms', 'simple-tags' ).'</label><br />
@@ -86,7 +86,7 @@ class SimpleTags_Admin_ClickTags {
         </div>';
 
         //add order
-        $click_tags_orders = ['asc' =>  __( 'Ascending', 'simple-tags' ), 'desc' => __( 'Descending', 'simple-tags' )];
+        $click_tags_orders = ['asc' =>  esc_html__( 'Ascending', 'simple-tags' ), 'desc' => esc_html__( 'Descending', 'simple-tags' )];
         $click_tags_order = '
         <div class="option">
         <label>'.__( 'Ordering for choosing terms', 'simple-tags' ).'</label><br />
@@ -140,8 +140,8 @@ class SimpleTags_Admin_ClickTags {
 			'st-helper-click-tags',
 			'stHelperClickTagsL10n',
 			array(
-				'show_txt'    => __( 'Click to display tags', 'simple-tags' ),
-				'hide_txt'    => sprintf( __( 'Click terms to add them to this %s', 'simple-tags' ), $post_type_name ),
+				'show_txt'    => esc_html__( 'Click to display tags', 'simple-tags' ),
+				'hide_txt'    => sprintf( esc_html__( 'Click terms to add them to this %s', 'simple-tags' ), $post_type_name ),
 				'state'       => 'show',
 				'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
 				'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simple-tags').'" size="26" autocomplete="off">',
@@ -187,6 +187,7 @@ class SimpleTags_Admin_ClickTags {
 	 * @author WebFactory Ltd
 	 */
 	public static function metabox() {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo SimpleTags_Admin::getDefaultContentBox();
 	}
 
@@ -271,7 +272,7 @@ class SimpleTags_Admin_ClickTags {
 
 		foreach ( (array) $terms as $term ) {
 			$class_current = in_array( $term->term_id, $post_terms, true ) ? 'used_term' : '';
-			echo '<span data-term_id="'.$term->term_id.'" data-taxonomy="'.$taxonomy.'" class="local '.$taxonomy.' ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
+			echo '<span data-term_id="'.esc_attr($term->term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local '.esc_attr($taxonomy).' ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 

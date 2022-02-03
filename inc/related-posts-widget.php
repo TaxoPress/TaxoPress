@@ -14,10 +14,10 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
      */
     public function __construct()
     {
-        parent::__construct('simpletags-relatedposts', __('Related Posts (TaxoPress)', 'simple-tags'),
+        parent::__construct('simpletags-relatedposts', esc_html__('Related Posts (TaxoPress)', 'simple-tags'),
             [
                 'classname'   => 'widget-simpletags-relatedposts',
-                'description' => __('Taxopress Related Posts Shortcode', 'simple-tags')
+                'description' => esc_html__('Taxopress Related Posts Shortcode', 'simple-tags')
             ]
         );
     }
@@ -53,8 +53,11 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
             ${$field} = isset($instance[$field]) ? trim($instance[$field]) : '';
         }//$relatedposts_id;
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $before_widget;
-        echo do_shortcode('[taxopress_relatedposts id="' . $relatedposts_id . '"]');
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo do_shortcode('[taxopress_relatedposts id="' . (int)$relatedposts_id . '"]');
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $after_widget;
     }
 
@@ -101,22 +104,23 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
                     ],
                     admin_url('admin.php')
                 ),
-                __('this page.', 'simple-tags')
+                esc_html__('this page.', 'simple-tags')
             );
 
-            echo '<p>' . __('Related Posts are added on ', 'simple-tags');
+            echo '<p>' . esc_html__('Related Posts are added on ', 'simple-tags');
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $shortcode_page;
             echo '</p>'
 
             ?>
             <p>
-                <label for="<?php echo $this->get_field_id('relatedposts_id'); ?>">
-                    <?php _e('Select widget Related Posts.', 'simple-tags'); ?>
-                    <select id="<?php echo $this->get_field_id('relatedposts_id'); ?>"
-                            name="<?php echo $this->get_field_name('relatedposts_id'); ?>">
+                <label for="<?php echo esc_attr($this->get_field_id('relatedposts_id')); ?>">
+                    <?php esc_html_e('Select widget Related Posts.', 'simple-tags'); ?>
+                    <select id="<?php echo esc_attr($this->get_field_id('relatedposts_id')); ?>"
+                            name="<?php echo esc_attr($this->get_field_name('relatedposts_id')); ?>">
                         <?php foreach ($relatedposts_data as $key => $value) { ?>
-                            <option <?php selected($instance['relatedposts_id'], $key); ?>
-                                value="<?php echo $key; ?>"><?php echo $value['title']; ?></option>
+                            <option <?php selected(esc_attr($instance['relatedposts_id']), esc_attr($key)); ?>
+                                value="<?php echo esc_attr($key); ?>"><?php echo esc_html_e($value['title']); ?></option>
                         <?php } ?>
                     </select>
                 </label>
@@ -132,10 +136,11 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
                     ],
                     admin_url('admin.php')
                 ),
-                __('Here', 'simple-tags')
+                esc_html__('Here', 'simple-tags')
             );
 
-            echo '<br />' . __('No Related Posts shortcode available. Add new shortcode ', 'simple-tags');
+            echo '<br />' . esc_html__('No Related Posts shortcode available. Add new shortcode ', 'simple-tags');
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $shortcode_page;
             echo '<br /><br />';
         }

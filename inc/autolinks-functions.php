@@ -226,14 +226,12 @@ function taxopress_update_autolink($data = [])
         $autolink_id             = $data['edited_autolink'];
         $autolinks[$autolink_id] = $data['taxopress_autolink'];
         $success                 = update_option('taxopress_autolinks', $autolinks);
-        //return 'update_success';
     } else {
         $autolink_id                      = (int)get_option('taxopress_autolink_ids_increament') + 1;
         $data['taxopress_autolink']['ID'] = $autolink_id;
         $autolinks[$autolink_id]          = $data['taxopress_autolink'];
         $success                          = update_option('taxopress_autolinks', $autolinks);
         $update_id                        = update_option('taxopress_autolink_ids_increament', $autolink_id);
-        //return 'add_success';
     }
 
     return $autolink_id;
@@ -245,7 +243,8 @@ function taxopress_update_autolink($data = [])
  */
 function taxopress_autolinks_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -253,7 +252,8 @@ function taxopress_autolinks_update_success_admin_notice()
  */
 function taxopress_autolinks_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Auto Links successfully deleted.', 'simple-tags'), false);
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto Links successfully deleted.', 'simple-tags'), false);
 }
 
 /**
@@ -330,4 +330,3 @@ function taxopress_action_delete_autolink($autolink_id)
         exit();
     }
 }
-?>

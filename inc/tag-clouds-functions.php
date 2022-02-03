@@ -225,7 +225,8 @@ function taxopress_update_tagcloud($data = [])
  */
 function taxopress_termsdisplay_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -233,7 +234,8 @@ function taxopress_termsdisplay_update_success_admin_notice()
  */
 function taxopress_termsdisplay_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Terms Display successfully deleted.', 'simple-tags'), false);
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Terms Display successfully deleted.', 'simple-tags'), false);
 }
 
 /**
@@ -324,6 +326,7 @@ function taxopress_termsdisplay_shortcode($atts)
         if (array_key_exists($tagcloud_id, $tagclouds)) {
             $tagclouds[$tagcloud_id]['number'] = $tagclouds[$tagcloud_id]['max'];
             $tagcloud_arg = build_query($tagclouds[$tagcloud_id]);
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo SimpleTags_Client_TagCloud::extendedTagCloud( $tagcloud_arg );
 
         }

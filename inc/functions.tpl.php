@@ -20,6 +20,7 @@ function st_get_tag_cloud( $args = '' ) {
  * @author WebFactory Ltd
  */
 function st_tag_cloud( $args = '' ) {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo st_get_tag_cloud( $args );
 }
 
@@ -48,6 +49,7 @@ function st_get_the_tags( $args = '' ) {
  * @author WebFactory Ltd
  */
 function st_the_tags( $args = '' ) {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo st_get_the_tags( $args );
 }
 
@@ -76,5 +78,6 @@ function st_get_related_posts( $args = '' ) {
  * @author WebFactory Ltd
  */
 function st_related_posts( $args = '' ) {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo st_get_related_posts( $args );
 }

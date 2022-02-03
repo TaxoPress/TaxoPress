@@ -125,7 +125,7 @@ class SimpleTags_Admin_Autocomplete {
 		</p>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('#adv-tags-input', '<?php echo admin_url( "admin-ajax.php?action=simpletags&stags_action=helper_js_collection" ); ?>', <?php echo $autocomplete_min; ?>)
+          st_init_autocomplete('#adv-tags-input', '<?php echo esc_url(admin_url( "admin-ajax.php?action=simpletags&stags_action=helper_js_collection" )); ?>', <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
@@ -145,7 +145,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('#auto_list', "<?php echo admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy ); ?>", <?php echo $autocomplete_min; ?>)
+          st_init_autocomplete('#auto_list', "<?php echo esc_url(admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy )); ?>", <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
@@ -165,7 +165,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('.autocomplete-input', "<?php echo admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy ); ?>", <?php echo $autocomplete_min; ?>)
+          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url(admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy )); ?>", <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
@@ -185,7 +185,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('.autocomplete-input', "<?php echo admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . $taxonomy ); ?>", <?php echo $autocomplete_min; ?>)
+          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url(admin_url( 'admin-ajax.php?action=simpletags&stags_action=helper_js_collection&taxonomy=' . esc_attr($taxonomy) )); ?>", <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php

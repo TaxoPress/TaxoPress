@@ -12,10 +12,10 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
 	 * @author Olatechpro
 	 */
 	public function __construct() {
-		parent::__construct( 'simpletags-shortcode', __( 'Terms Display (TaxoPress Shortcode)', 'simple-tags' ),
+		parent::__construct( 'simpletags-shortcode', esc_html__( 'Terms Display (TaxoPress Shortcode)', 'simple-tags' ),
 			array(
 				'classname'   => 'widget-simpletags-shortcode',
-				'description' => __( 'Taxopress Terms Display Shortcode', 'simple-tags' )
+				'description' => esc_html__( 'Taxopress Terms Display Shortcode', 'simple-tags' )
 			)
 		);
 	}
@@ -68,8 +68,11 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
             ${$field} = isset($instance[$field]) ? trim($instance[$field]) : '';
 		}//$tagcloud_id;
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $before_widget;
-		echo do_shortcode('[taxopress_termsdisplay id="'.$tagcloud_id.'"]');
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo do_shortcode('[taxopress_termsdisplay id="'. esc_attr($tagcloud_id).'"]');
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $after_widget;
 	}
 
@@ -114,22 +117,23 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
                     ],
                     admin_url('admin.php')
                 ),
-                __('this page.', 'simple-tags')
+                esc_html__('this page.', 'simple-tags')
             );
 
-            echo '<p>'.__( 'Terms Display are added on ', 'simple-tags' );
+            echo '<p>'.esc_html__( 'Terms Display are added on ', 'simple-tags' );
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $shortcode_page;
             echo '</p>'
 
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'tagcloud_id' ); ?>">
+			<label for="<?php echo esc_attr($this->get_field_id( 'tagcloud_id' )); ?>">
             <?php _e( 'Select widget terms display.', 'simple-tags' ); ?>
-				<select id="<?php echo $this->get_field_id( 'tagcloud_id' ); ?>"
-				        name="<?php echo $this->get_field_name( 'tagcloud_id' ); ?>">
+				<select id="<?php echo esc_attr($this->get_field_id( 'tagcloud_id' )); ?>"
+				        name="<?php echo esc_attr($this->get_field_name( 'tagcloud_id' )); ?>">
                         <?php foreach($tagcloud_data as $key => $value ){   ?>
-					            <option <?php selected( $instance['tagcloud_id'], $key ); ?>
-                                value="<?php echo $key; ?>"><?php echo $value['title']; ?></option>
+					            <option <?php selected( esc_attr($instance['tagcloud_id']), esc_attr($key) ); ?>
+                                value="<?php echo esc_attr($key); ?>"><?php echo esc_html($value['title']); ?></option>
                         <?php } ?>
 				</select>
 			</label>
@@ -145,10 +149,11 @@ class SimpleTags_Shortcode_Widget extends WP_Widget {
                     ],
                     admin_url('admin.php')
                 ),
-                __('Here', 'simple-tags')
+                esc_html__('Here', 'simple-tags')
             );
 
-            echo '<br />'.__( 'No terms display shortcode available. Add new shortcode ', 'simple-tags' );
+            echo '<br />'.esc_html__( 'No terms display shortcode available. Add new shortcode ', 'simple-tags' );
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $shortcode_page;
             echo '<br /><br />';
         }

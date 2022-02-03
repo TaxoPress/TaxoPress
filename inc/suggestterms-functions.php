@@ -237,7 +237,8 @@ function taxopress_update_suggestterm($data = [])
  */
 function taxopress_suggestterms_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -245,7 +246,8 @@ function taxopress_suggestterms_update_success_admin_notice()
  */
 function taxopress_suggestterms_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Suggest Terms successfully deleted.', 'simple-tags'), false);
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Suggest Terms successfully deleted.', 'simple-tags'), false);
 }
 
 /**

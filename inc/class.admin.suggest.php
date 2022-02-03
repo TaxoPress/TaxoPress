@@ -64,7 +64,7 @@ class SimpleTags_Admin_Suggest {
 		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
 			'title_bloc'   => self::get_suggest_tags_title(),
 			'edit_metabox_link'   => $click_term_edit,
-			'content_bloc' => __( 'Select an option above to load suggested terms.', 'simple-tags' )
+			'content_bloc' => esc_html__( 'Select an option above to load suggested terms.', 'simple-tags' )
 		) );
 
         // Helper for post type
@@ -81,22 +81,22 @@ class SimpleTags_Admin_Suggest {
 
 
 
-		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . __( 'Ajax loading', 'simple-tags' ) . '" />';
-		$title .= __( 'Automatic term suggestions', 'simple-tags' ) . '';
+		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . esc_attr__( 'Ajax loading', 'simple-tags' ) . '" />';
+		$title .= esc_html__( 'Automatic term suggestions', 'simple-tags' ) . '';
 
         $suggest_term_use_local      = isset($click_terms['suggest_term_use_local']) ? (int)$click_terms['suggest_term_use_local'] : 0;
         $suggest_term_use_dandelion  = isset($click_terms['suggest_term_use_dandelion']) ? (int)$click_terms['suggest_term_use_dandelion'] : 0;
         $suggest_term_use_opencalais = isset($click_terms['suggest_term_use_opencalais']) ? (int)$click_terms['suggest_term_use_opencalais'] : 0;
 
         if($suggest_term_use_local > 0){
-            $title_options['tags_from_local_db']    = __( 'Existing terms on your site', 'simple-tags' );
+            $title_options['tags_from_local_db']    = esc_html__( 'Existing terms on your site', 'simple-tags' );
         }
 
         if ( $click_terms['terms_datatxt_access_token'] !== '' && $suggest_term_use_dandelion > 0 ) {
-            $title_options['tags_from_datatxt']     = __( 'dataTXT by Dandelion', 'simple-tags' );
+            $title_options['tags_from_datatxt']     = esc_html__( 'dataTXT by Dandelion', 'simple-tags' );
         }
 		if ( $click_terms['terms_opencalais_key'] !== '' && $suggest_term_use_opencalais > 0 ) {
-            $title_options['tags_from_opencalais']  = __( 'OpenCalais', 'simple-tags' );
+            $title_options['tags_from_opencalais']  = esc_html__( 'OpenCalais', 'simple-tags' );
         }
 
         $title .= '&nbsp;
@@ -124,7 +124,7 @@ class SimpleTags_Admin_Suggest {
             return;
         }
 
-		add_meta_box( 'suggestedtags', __( 'Suggested tags', 'simple-tags' ), array(
+		add_meta_box( 'suggestedtags', esc_html__( 'Suggested tags', 'simple-tags' ), array(
 			__CLASS__,
 			'metabox'
 		), get_post_type(), 'advanced', 'core' );
@@ -137,7 +137,9 @@ class SimpleTags_Admin_Suggest {
 	public static function metabox() {
 		?>
         <span class="container_clicktags">
-			<?php echo SimpleTags_Admin::getDefaultContentBox(); ?>
+			<?php 
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo SimpleTags_Admin::getDefaultContentBox(); ?>
             <div class="clear"></div>
 		</span>
 		<?php
@@ -180,13 +182,13 @@ class SimpleTags_Admin_Suggest {
         }
 
         if(!$click_terms){
-			echo '<p>' . __( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
 			exit();
         }
 
 		// API Key ?
 		if ( $click_terms['terms_opencalais_key'] == '' ) {
-			echo '<p>' . __( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -194,7 +196,7 @@ class SimpleTags_Admin_Suggest {
 		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
-			echo '<p>' . __( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -224,7 +226,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		if ( empty( $data ) || is_wp_error( $response ) ) {
-			echo '<p>' . __( 'No results from OpenCalais service.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'No results from OpenCalais service.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -257,7 +259,7 @@ class SimpleTags_Admin_Suggest {
         }
 
         if(!$click_terms){
-			echo '<p>' . __( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'Suggest terms settings not found', 'simple-tags' ) . '</p>';
 			exit();
         }
 
@@ -265,7 +267,7 @@ class SimpleTags_Admin_Suggest {
 		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
-			echo '<p>' . __( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -290,7 +292,7 @@ class SimpleTags_Admin_Suggest {
 			if ( wp_remote_retrieve_response_code( $response ) == 200 ) {
 				$data = wp_remote_retrieve_body( $response );
 			} else {
-				echo '<p>' . __( 'Invalid access token !', 'simple-tags' ) . '</p>';
+				echo '<p>' . esc_html__( 'Invalid access token !', 'simple-tags' ) . '</p>';
 				exit();
 			}
 		}
@@ -301,7 +303,7 @@ class SimpleTags_Admin_Suggest {
 		$data = is_object($data) ? $data->annotations : '';
 
 		if ( empty( $data ) ) {
-			echo '<p>' . __( 'No results from dataTXT API.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'No results from dataTXT API.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -333,7 +335,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		if ( ( (int) wp_count_terms( $taxonomy, array( 'hide_empty' => false ) ) ) == 0 ) { // No tags to suggest
-			echo '<p>' . __( 'No terms in your WordPress database.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'No terms in your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -342,14 +344,14 @@ class SimpleTags_Admin_Suggest {
 		$content = trim( $content );
 
 		if ( empty( $content ) ) {
-			echo '<p>' . __( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'There\'s no content to scan.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
 		// Get all terms
 		$terms = SimpleTags_Admin::getTermsForAjax( $taxonomy, '' );
 		if ( empty( $terms ) || $terms == false ) {
-			echo '<p>' . __( 'No results from your WordPress database.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'No results from your WordPress database.', 'simple-tags' ) . '</p>';
 			exit();
 		}
 
@@ -363,7 +365,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		if ( $flag == false ) {
-			echo '<p>' . __( 'There are no terms that are relevant to your content.', 'simple-tags' ) . '</p>';
+			echo '<p>' . esc_html__( 'There are no terms that are relevant to your content.', 'simple-tags' ) . '</p>';
 		} else {
 			echo '<div class="clear"></div>';
 		}
