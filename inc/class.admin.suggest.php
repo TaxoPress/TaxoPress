@@ -99,8 +99,13 @@ class SimpleTags_Admin_Suggest {
             $title_options['tags_from_opencalais']  = esc_html__( 'OpenCalais', 'simple-tags' );
         }
 
+		if(count($title_options) === 1){
+			$style = 'display: none';
+		}else{
+			$style = '';
+		}
         $title .= '&nbsp;
-        <select class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="'.$click_terms['ID'].'">
+        <select style="'.$style.'" class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="'.$click_terms['ID'].'">
         <option value="" selected="selected">'.__( 'Select source to load suggested terms', 'simple-tags' ).'</option>';
         foreach($title_options as $option => $label){
             $title .= '<option value="'.$option.'">'.$label.'</option>';
