@@ -277,7 +277,7 @@ class SimpleTags_Admin_Mass {
 						<input type="hidden" name="secure_mass"
 						       value="<?php echo esc_attr(wp_create_nonce( 'st_mass_terms' )); ?>"/>
 						<input class="button-primary" type="submit" name="update_mass"
-						       value="<?php esc_attr( 'Update all &raquo;', 'simple-tags' ); ?>"/>
+						       value="<?php esc_attr_e( 'Update all &raquo;', 'simple-tags' ); ?>"/>
 					</p>
 				</form>
 
