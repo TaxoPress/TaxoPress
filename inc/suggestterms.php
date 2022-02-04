@@ -585,8 +585,8 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'suggest_term_use_local',
                                                         'class'      => 'suggest_term_use_local',
-                                                        'labeltext'  => esc_html__('Suggest existing terms on your site',
-                                                            'simple-tags'),
+                                                        'labeltext'  => esc_html__('Suggest existing terms on your site', 'simple-tags'),
+                                                        'aftertext'  => esc_html__('Uncheck this box to disable the "Automatic term suggestions" metabox."', 'simple-tags'),
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
