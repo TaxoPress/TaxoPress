@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.8
-Stable tag: 3.4.4
+Stable tag: 3.4.5
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,26 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.4.5- 2021-02-07
+* Fixed: Can't delete terms in "Manage Terms" #1194
+* Fixed: Correct spelling - Terms for Current Post #1134
+* Fixed: Enable “Show content from all post types on archive page” by default #1138
+* Fixed: Change name "Local tags" to "Existing terms on your site" #1139
+* Fixed: Add "Edit this metabox" link #1140
+* Fixed: Check "Existing taxonomy terms" by default #1155
+* Fixed: Auto Links change “&rarr;” to &amp;rarr; #1158
+* Fixed: Update "Terms Display" admin screen to use vertical tabs #1116
+* Fixed: AShow the Display tags inside the plugin #1121
+* Fixed: Small changes to "Terms Display" #1171
+* Fixed: Stop making "Post Types" required in Taxonomy #1181
+* Fixed: Disabling "Suggest existing terms on your site" causes trouble with other metabox #1174
+* Fixed: Disable "Post" option in Auto Terms by default #1178
+* Fixed: Suggest terms "show existing terms" changes #1176
+* Fixed: Hide dropdown if there is only only option for post suggest terms #1228
+* Fixed: Add a refresh button to Automatic term suggestions #1215
+* Fixed: Show "Edit this metabox" only to users with "admin simple tags" #1214
+* Fixed: Automatic terms suggestions not working with categories #1207
 
 v3.4.4- 2021-01-05
 * Fixed: Add capability check for saving all screen form data
