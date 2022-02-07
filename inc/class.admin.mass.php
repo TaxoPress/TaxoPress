@@ -27,8 +27,8 @@ class SimpleTags_Admin_Mass {
 	public static function admin_menu() {
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'TaxoPress: Mass Edit Terms', 'simple-tags' ),
-			__( 'Mass Edit Terms', 'simple-tags' ),
+			esc_html__( 'TaxoPress: Mass Edit Terms', 'simple-tags' ),
+			esc_html__( 'Mass Edit Terms', 'simple-tags' ),
 			'simple_tags',
 			'st_mass_terms',
 			array(
@@ -55,7 +55,7 @@ class SimpleTags_Admin_Mass {
 		if ( isset( $_POST['update_mass'] ) ) {
 			// origination and intention
 			if ( ! ( wp_verify_nonce( sanitize_text_field($_POST['secure_mass']), 'st_mass_terms' ) ) ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simple-tags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'Security problem. Try again.', 'simple-tags' ), 'error' );
 
 				return false;
 			}
@@ -80,7 +80,7 @@ class SimpleTags_Admin_Mass {
 					clean_post_cache( $object_id );
 				}
 
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( '%1$s %2$s(s) terms updated with success !', 'simple-tags' ), (int) $counter, strtolower( SimpleTags_Admin::$post_type_name ) ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( '%1$s %2$s(s) terms updated with success !', 'simple-tags' ), (int) $counter, strtolower( SimpleTags_Admin::$post_type_name ) ), 'updated' );
 
 				return true;
 			}
@@ -104,7 +104,7 @@ class SimpleTags_Admin_Mass {
 		// Display message
 		settings_errors( __CLASS__ );
 		?>
-		<div class="wrap">
+		<div class="wrap st_wrap tagcloudui st_mass_terms-page admin-settings">
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_mass_terms' ); ?>
 
 			<form id="posts-filter" action="" method="get">
@@ -120,7 +120,7 @@ class SimpleTags_Admin_Mass {
 					$status_links   = array();
 					$num_posts      = wp_count_posts( SimpleTags_Admin::$post_type, 'readable' );
 					$class          = ( empty( $_GET['post_status'] ) && empty( $_GET['post_type'] ) ) ? ' class="current"' : '';
-					$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . __( 'All', 'simple-tags' ) . '</a>';
+					$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . esc_html__( 'All', 'simple-tags' ) . '</a>';
 					foreach ( $post_stati as $status => $label ) {
 						$class = '';
 
@@ -137,6 +137,7 @@ class SimpleTags_Admin_Mass {
 
 						$status_links[] = '<li><a href="' . admin_url( 'admin.php' ) . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;post_status=' . $status . '"' . $class . '>' . sprintf( _n( $label[2][0], $label[2][1], (int) $num_posts->$status ), number_format_i18n( $num_posts->$status ) ) . '</a>';
 					}
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo implode( ' |</li>', $status_links ) . '</li>';
 					unset( $status_links );
 
@@ -147,11 +148,6 @@ class SimpleTags_Admin_Mass {
 				<?php if ( isset( $_GET['post_status'] ) ) : ?>
 					<input type="hidden" name="post_status" value="<?php echo esc_attr( sanitize_text_field($_GET['post_status']) ) ?>"/>
 				<?php endif; ?>
-
-				<p class="search-box">
-					<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>"/>
-					<input type="submit" value="<?php _e( 'Search', 'simple-tags' ); ?>" class="button"/>
-				</p>
 
 				<div class="tablenav">
 					<?php
@@ -168,7 +164,8 @@ class SimpleTags_Admin_Mass {
 					) );
 
 					if ( $page_links ) {
-						echo "<div class='tablenav-pages'>$page_links</div>";
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo "<div class='tablenav-pages'>". $page_links ."</div>";
 					}
 					?>
 
@@ -200,9 +197,10 @@ class SimpleTags_Admin_Mass {
 										} else {
 											$default = '';
 										}
-
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										echo "<option$default value='$arc_row->yyear$arc_row->mmonth'>";
-										echo $wp_locale->get_month( $arc_row->mmonth ) . " $arc_row->yyear";
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										echo esc_html($wp_locale->get_month( $arc_row->mmonth )) . " ".esc_html($arc_row->yyear)."";
 										echo "</option>\n";
 									}
 									?>
@@ -229,6 +227,12 @@ class SimpleTags_Admin_Mass {
 						<?php } ?>
 					</div>
 
+
+					<p class="search-box">
+						<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>"/>
+						<input type="submit" value="<?php _e( 'Search', 'simple-tags' ); ?>" class="button"/>
+					</p>
+
 					<br style="clear:both;"/>
 				</div>
 			</form>
@@ -242,8 +246,8 @@ class SimpleTags_Admin_Mass {
 					<table class="widefat post fixed">
 						<thead>
 						<tr>
-							<th class="manage-column"><?php _e( 'Post title', 'simple-tags' ); ?></th>
-							<th class="manage-column"><?php printf( __( 'Terms : %s', 'simple-tags' ), esc_html( SimpleTags_Admin::$taxo_name ) ); ?></th>
+							<th class="manage-column"><?php esc_html_e( 'Post title', 'simple-tags' ); ?></th>
+							<th class="manage-column"><?php printf( esc_html__( 'Terms : %s', 'simple-tags' ), esc_html( SimpleTags_Admin::$taxo_name ) ); ?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -253,14 +257,14 @@ class SimpleTags_Admin_Mass {
 							the_post();
 							$class = ( $class == 'alternate' ) ? '' : 'alternate';
 							?>
-							<tr valign="top" class="<?php echo $class; ?>">
+							<tr valign="top" class="<?php echo esc_attr($class); ?>">
 								<th scope="row"><a
-										href="<?php echo admin_url( 'post.php?action=edit&amp;post=' . get_the_ID() ); ?>"
-										title="<?php _e( 'Edit', 'simple-tags' ); ?>"><?php echo ( get_the_title() == '' ) ? the_ID() : the_title(); ?></a>
+										href="<?php echo esc_url(admin_url( 'post.php?action=edit&amp;post=' . get_the_ID() )); ?>"
+										title="<?php esc_attr_e( 'Edit', 'simple-tags' ); ?>"><?php echo ( esc_html(get_the_title()) == '' ) ? (int)get_the_ID() : esc_html(get_the_title()); ?></a>
 								</th>
 								<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input"
-								           type="text" size="100" name="tags[<?php the_ID(); ?>]"
-								           value="<?php echo SimpleTags_Admin::getTermsToEdit( SimpleTags_Admin::$taxonomy, get_the_ID() ); ?>"/>
+								           type="text" size="100" name="tags[<?php (int)get_the_ID(); ?>]"
+								           value="<?php echo esc_attr(SimpleTags_Admin::getTermsToEdit( SimpleTags_Admin::$taxonomy, get_the_ID() )); ?>"/>
 								</td>
 							</tr>
 							<?php
@@ -271,9 +275,9 @@ class SimpleTags_Admin_Mass {
 
 					<p class="submit">
 						<input type="hidden" name="secure_mass"
-						       value="<?php echo wp_create_nonce( 'st_mass_terms' ); ?>"/>
+						       value="<?php echo esc_attr(wp_create_nonce( 'st_mass_terms' )); ?>"/>
 						<input class="button-primary" type="submit" name="update_mass"
-						       value="<?php _e( 'Update all &raquo;', 'simple-tags' ); ?>"/>
+						       value="<?php esc_attr_e( 'Update all &raquo;', 'simple-tags' ); ?>"/>
 					</p>
 				</form>
 
@@ -285,6 +289,11 @@ class SimpleTags_Admin_Mass {
 
 			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
+
+		<div class="taxopress-right-sidebar admin-settings-sidebar">
+			<?php do_action('taxopress_admin_after_sidebar'); ?>
+		</div>
+
 		<?php
 		do_action( 'simpletags-mass_terms', SimpleTags_Admin::$taxonomy );
 	}

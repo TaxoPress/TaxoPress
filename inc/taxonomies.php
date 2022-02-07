@@ -96,8 +96,8 @@ class SimpleTags_Admin_Taxonomies
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Taxonomies', 'simple-tags'),
-            __('Taxonomies', 'simple-tags'),
+            esc_html__('Taxonomies', 'simple-tags'),
+            esc_html__('Taxonomies', 'simple-tags'),
             'simple_tags',
             'st_taxonomies',
             [
@@ -119,7 +119,7 @@ class SimpleTags_Admin_Taxonomies
 
         $option = 'per_page';
         $args   = [
-            'label'   => __('Number of items per page', 'simple-tags'),
+            'label'   => esc_html__('Number of items per page', 'simple-tags'),
             'default' => 20,
             'option'  => 'st_taxonomies_per_page'
         ];
@@ -154,14 +154,14 @@ class SimpleTags_Admin_Taxonomies
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_taxonomies&add=taxonomy')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
-                   <div class="taxopress-description">This feature allows you to create new taxonomies and edit all the settings for each taxonomy.</div>
+                   <div class="taxopress-description"><?php esc_html_e('This feature allows you to create new taxonomies and edit all the settings for each taxonomy.', 'simple-tags'); ?></div>
 
 
                 <?php
                 if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
                     /* translators: %s: search keywords */
-                    printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;',
-                            'simple-tags') . '</span>', $search);
+                    printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;',
+                            'simple-tags') . '</span>', esc_html($search));
                 }
                 ?>
                 <?php
@@ -191,16 +191,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 ?>
 <div class="taxopress-taxonomy-type-wrap">
 <select name="taxopress-taxonomy-type" class="taxopress-taxonomy-type">
-    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo __('All Taxonomies', 'simple-tags'); ?></option>
-    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo __('Public Taxonomies', 'simple-tags'); ?></option>
-    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo __('Private Taxonomies', 'simple-tags'); ?></option>
+    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('All Taxonomies', 'simple-tags'); ?></option>
+    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
+    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
 </select>
 </div>
-                        <form action="<?php echo add_query_arg('', '') ?>" method="post">
+                        <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                             <?php $this->terms_table->display(); //Display the table ?>
                         </form>
                         <div class="form-wrap edit-term-notes">
-                            <p><?php __('Description here.', 'simple-tags') ?></p>
+                            <p><?php esc_html__('Description here.', 'simple-tags') ?></p>
                         </div>
                     </div>
 
@@ -303,7 +303,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
 
         <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo __('Manage Taxonomy', 'simple-tags'); ?></h1>
+            <h1><?php echo esc_html__('Manage Taxonomy', 'simple-tags'); ?></h1>
             <div class="wp-clearfix"></div>
 
             <form method="post" action="<?php echo esc_url(taxopress_get_post_form_action($ui)); ?>">
@@ -399,13 +399,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
                                             <table class="form-table taxopress-table taxonomy_general">
                                                 <?php
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_tr_start();
 
                                                 if(!$taxonomy_edit){
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_th_start();
-                                                echo $ui->get_label('name',
-                                                        esc_html__('Taxonomy Slug',
-                                                            'simple-tags')) . $ui->get_required_span();
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_label('name', esc_html__('Taxonomy Slug', 'simple-tags')) . $ui->get_required_span();
 
                                                 if ('edit' === $tab) {
                                                     echo '<p id="slugchanged" class="hidemessage">' . esc_html__('Slug has changed',
@@ -415,14 +416,17 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                         'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
                                                 echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_th_end() . $ui->get_td_start();
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray'   => 'cpt_custom_tax',
                                                     'name'        => 'name',
                                                     'textvalue'   => isset($current['name']) ? esc_attr($current['name']) : '',
                                                     'maxlength'   => '32',
-                                                    'helptext'    => 'The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.',
+                                                    'helptext'    => esc_html__('The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.',
+                                                    'simple-tags'),
                                                     'class'     => 'tax-slug-input',
                                                     'required'    => true,
                                                     'placeholder' => false,
@@ -436,6 +440,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     echo '</p>';
 
                                                     echo '<div class="taxopress-spacer">';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_check_input([
                                                         'checkvalue' => 'update_taxonomy',
                                                         'checked'    => 'false',
@@ -454,6 +459,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
 
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'label',
@@ -465,6 +471,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'required'  => true,
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'singular_label',
@@ -493,13 +500,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['hierarchical']) : '';
                                             $select['selected'] = !empty($selected) ? $current['hierarchical'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'hierarchical',
                                                 'labeltext'  => esc_html__('Parent-Child Relationships', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Can terms in this taxonomy be organized into hierarchical relationships?',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
 
@@ -507,6 +515,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 if (isset($current['description'])) {
                                                     $current['description'] = stripslashes_deep($current['description']);
                                                 }
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_textarea_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'description',
@@ -520,6 +529,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
 
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_td_end() . $ui->get_tr_end();
                                                 ?>
                                             </table>
@@ -562,15 +572,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ], true) ? '' : '';
 
 
-                                                echo '<tr valign="top"><th scope="row"><label for="'.$post_type->name.'">'.$post_type->label.'</label></th><td>';
+                                                echo '<tr valign="top"><th scope="row"><label for="'. esc_attr($post_type->name) .'">'. esc_html($post_type->label) .'</label></th><td>';
 
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_check_input([
-                                                        'checkvalue' => $post_type->name,
+                                                        'checkvalue' => esc_attr($post_type->name),
                                                         'checked'    => (!empty($current['object_types']) && is_array($current['object_types']) && in_array($post_type->name,
                                                                 $current['object_types'], true)) ? 'true' : 'false',
-                                                        'name'       => $post_type->name,
+                                                        'name'       => esc_attr($post_type->name),
                                                         'namearray'  => 'cpt_post_types',
-                                                        'textvalue'  => $post_type->name,
+                                                        'textvalue'  => esc_attr($post_type->name),
                                                         'labeltext'  => "",
                                                         'wrap'       => false,
                                                     ]);
@@ -581,31 +592,50 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 }
 
 
-                                            $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                        'default' => 'true',
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                    ],
-                                                ],
-                                            ];
+                                                if($taxonomy_edit){
+
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                            ],
+                                                        ],
+                                                    ];
+
+                                                }else{
+                                                    $select             = [
+                                                        'options' => [
+                                                            [
+                                                                'attr'    => '0',
+                                                                'text'    => esc_attr__('False', 'simple-tags'),
+                                                            ],
+                                                            [
+                                                                'attr' => '1',
+                                                                'text' => esc_attr__('True', 'simple-tags'),
+                                                                'default' => 'true',
+                                                            ],
+                                                        ],
+                                                    ];
+                                                }
                                             $selected           = isset($current) && isset($current['include_in_result']) ? taxopress_disp_boolean($current['include_in_result']) : '';
                                             $select['selected'] = !empty($selected) ? $current['include_in_result'] : '';
 
                                             echo '<td><hr /></td>';
 
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'include_in_result',
                                                 'labeltext'  => esc_html__('Archive page result', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Show content from all post types on archive page',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
 
@@ -621,10 +651,10 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
                                                 if($taxonomy_edit){
 
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_th_start();
-                                                echo $ui->get_label('name',
-                                                        esc_html__('Taxonomy Slug',
-                                                            'simple-tags')) . $ui->get_required_span();
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_label('name', esc_html__('Taxonomy Slug', 'simple-tags')) . $ui->get_required_span();
 
                                                 if ('edit' === $tab) {
                                                     echo '<p id="slugchanged" class="hidemessage">' . esc_html__('Slug has changed',
@@ -635,8 +665,10 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
                                                 echo '<p id="st-tags-slug-error-input" class="hidemessage">' . esc_html__('Special character not allowed in slug.', 'simple-tags') . '<span class="dashicons dashicons-warning"></span></p>';
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_th_end() . $ui->get_td_start();
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray'   => 'cpt_custom_tax',
                                                     'name'        => 'name',
@@ -656,6 +688,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     echo '</p>';
 
                                                     echo '<div class="taxopress-spacer">';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_check_input([
                                                         'checkvalue' => 'update_taxonomy',
                                                         'checked'    => 'false',
@@ -681,8 +714,10 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                    style="display:none;">
                                                    <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                                 <?php
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_tr_start() . $ui->get_th_start();
                                                 echo 'Template Hierarchy';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_th_end();
 
                                                 $template_hierarchy_slug = isset($current['name']) ? esc_attr($current['name']) : '';
@@ -697,10 +732,12 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
         <p style="font-weight:bolder;">'.esc_html__( '*Replace "term_slug" with the slug of the actual taxonomy term.', 'simple-tags' ).'</p>';
 
         echo '<td>';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $template_hierarchy;
         echo '</td>';
          }
 
+                                               // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_tr_end();
 
 
@@ -728,15 +765,17 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite']) : '';
                                             $select['selected'] = !empty($selected) ? $current['rewrite'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite',
                                                 'labeltext'  => esc_html__('Rewrite', 'simple-tags'),
                                                 'aftertext'  => esc_html__('WordPress can use a custom permalink for this taxonomy. It does not have to match the slug.',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_text_input([
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'rewrite_slug',
@@ -762,13 +801,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_withfront']) : '';
                                             $select['selected'] = !empty($selected) ? $current['rewrite_withfront'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_withfront',
                                                 'labeltext'  => esc_html__('Rewrite With Front', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Should the permastruct be prepended with the front base.',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
                                             $select             = [
@@ -786,13 +826,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['rewrite_hierarchical']) : '';
                                             $select['selected'] = !empty($selected) ? $current['rewrite_hierarchical'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'rewrite_hierarchical',
                                                 'labeltext'  => esc_html__('Rewrite Hierarchical', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Should the permastruct allow hierarchical urls.',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
                                                 ?>
@@ -820,12 +861,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 ];
                                                 $selected           = isset($current) ? taxopress_disp_boolean($current['show_ui']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_ui'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_ui',
                                                     'labeltext'  => esc_html__('Show user interface', 'simple-tags'),
                                                     'aftertext'  => '',
-                                                    'selections' => $select,
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
                                                 $select             = [
@@ -843,12 +885,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 ];
                                                 $selected           = isset($current) ? taxopress_disp_boolean($current['show_in_menu']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_in_menu'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_menu',
                                                     'labeltext'  => esc_html__('Show in admin menus', 'simple-tags'),
                                                     'aftertext'  => '',
-                                                    'selections' => $select,
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
                                                 $select             = [
@@ -866,12 +909,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 ];
                                                 $selected           = (isset($current) && !empty($current['show_in_nav_menus'])) ? taxopress_disp_boolean($current['show_in_nav_menus']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_in_nav_menus'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_nav_menus',
                                                     'labeltext'  => esc_html__('Show in frontend menus', 'simple-tags'),
                                                     'aftertext'  => '',
-                                                    'selections' => $select,
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
 
@@ -890,12 +934,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 ];
                                                 $selected           = isset($current) ? taxopress_disp_boolean($current['show_admin_column']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_admin_column'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_admin_column',
                                                     'labeltext'  => esc_html__('Show admin column', 'simple-tags'),
                                                     'aftertext'  => '',
-                                                    'selections' => $select,
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
                                             $select             = [
@@ -913,13 +958,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = (isset($current) && !empty($current['show_in_quick_edit'])) ? taxopress_disp_boolean($current['show_in_quick_edit']) : '';
                                             $select['selected'] = !empty($selected) ? $current['show_in_quick_edit'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'show_in_quick_edit',
                                                 'labeltext'  => esc_html__('Show in "Quick Edit" and "Bulk Edit"',
                                                     'simple-tags'),
                                                 'aftertext'  => '',
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
                                                 ?>
@@ -931,7 +977,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                    style="display:none;">
 
                                                 <?php
-
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'menu_name',
@@ -947,6 +993,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'all_items',
@@ -963,6 +1010,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'edit_item',
@@ -979,6 +1027,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'view_item',
@@ -995,6 +1044,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'update_item',
@@ -1012,6 +1062,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'add_new_item',
@@ -1028,6 +1079,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'new_item_name',
@@ -1044,6 +1096,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'parent_item',
@@ -1060,6 +1113,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'parent_item_colon',
@@ -1076,6 +1130,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'search_items',
@@ -1092,6 +1147,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'popular_items',
@@ -1108,6 +1164,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'separate_items_with_commas',
@@ -1126,6 +1183,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'add_or_remove_items',
@@ -1144,6 +1202,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'choose_from_most_used',
@@ -1161,6 +1220,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'not_found',
@@ -1177,6 +1237,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'no_terms',
@@ -1193,6 +1254,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'items_list_navigation',
@@ -1211,6 +1273,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'items_list',
@@ -1227,6 +1290,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'not_found',
@@ -1243,6 +1307,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     ],
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'back_to_items',
@@ -1281,14 +1346,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 ];
                                                 $selected           = isset($current) ? taxopress_disp_boolean($current['show_in_rest']) : '';
                                                 $select['selected'] = !empty($selected) ? $current['show_in_rest'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input([
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_rest',
                                                     'labeltext'  => esc_html__('Show in REST API', 'simple-tags'),
                                                     'aftertext'  => '',
-                                                    'selections' => $select,
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'rest_base',
@@ -1298,6 +1365,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'textvalue' => isset($current['rest_base']) ? esc_attr($current['rest_base']) : '',
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'rest_controller_class',
@@ -1333,13 +1401,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['public']) : '';
                                             $select['selected'] = !empty($selected) ? $current['public'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'public',
                                                 'labeltext'  => esc_html__('Public', 'simple-tags'),
                                                 'aftertext'  => esc_html__('The taxonomy is for public use. It can be seen by frontend users.',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
                                             $select             = [
@@ -1357,13 +1426,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['publicly_queryable']) : '';
                                             $select['selected'] = !empty($selected) ? $current['publicly_queryable'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'publicly_queryable',
                                                 'labeltext'  => esc_html__('Public Queryable', 'simple-tags'),
                                                 'aftertext'  => esc_html__('The taxonomy is publicly queryable.',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
                                             $select             = [
@@ -1381,15 +1451,17 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ];
                                             $selected           = isset($current) ? taxopress_disp_boolean($current['query_var']) : '';
                                             $select['selected'] = !empty($selected) ? $current['query_var'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'query_var',
                                                 'labeltext'  => esc_html__('Query Var', 'simple-tags'),
                                                 'aftertext'  => esc_html__('Enable a custom query_var key for this taxonomy.',
                                                     'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_text_input([
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'query_var_slug',
@@ -1400,6 +1472,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'simple-tags'),
                                             ]);
 
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_text_input([
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'meta_box_cb',
@@ -1409,6 +1482,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'simple-tags'),
                                             ]);
 
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_text_input([
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'default_term',
@@ -1424,6 +1498,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             <table class="form-table taxopress-table taxonomy_delete"
                                                    style="display:none;">
                                                 <?php
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_tr_start() . $ui->get_th_start();
 
                                                 ?>
@@ -1441,7 +1516,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                         'action2'            => 'taxopress-reactivate-taxonomy',
                                         'taxonomy'           => esc_attr($request_tax),
                                         '_wpnonce'           => wp_create_nonce('taxonomy-action-request-nonce'),
-                                        'taxopress_taxonomy' => $request_tax,
+                                        'taxopress_taxonomy' => esc_attr($request_tax),
                                     ],
                                     taxopress_admin_url('admin.php')
                                 );
@@ -1453,7 +1528,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                         'action2'            => 'taxopress-deactivate-taxonomy',
                                         'taxonomy'           => esc_attr($request_tax),
                                         '_wpnonce'           => wp_create_nonce('taxonomy-action-request-nonce'),
-                                        'taxopress_taxonomy' => $request_tax,
+                                        'taxopress_taxonomy' => esc_attr($request_tax),
                                     ],
                                     taxopress_admin_url('admin.php')
                                 );
@@ -1461,11 +1536,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                 if (in_array($request_tax, taxopress_get_deactivated_taxonomy())) {
                                     ?>
                                     <span class="action-button reactivate"><a class="button-primary"
-                                            href="<?php echo $activate_action_link; ?>"><?php echo __('Re-activate Taxonomy',
+                                            href="<?php echo esc_url($activate_action_link); ?>"><?php echo esc_html__('Re-activate Taxonomy',
                                                 'simple-tags'); ?></a></span>
                                 <?php } else { ?>
                                     <span class="action-button deactivate"><a class="button-primary"
-                                            href="<?php echo $deactivate_action_link; ?>"><?php echo __('Deactivate Taxonomy',
+                                            href="<?php echo esc_url($deactivate_action_link); ?>"><?php echo esc_html__('Deactivate Taxonomy',
                                                 'simple-tags'); ?></a></span>
                                 <?php }
                                 /**
@@ -1479,9 +1554,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                            name="cpt_delete"
                                            id="cpt_submit_delete"
                                            value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
-                                               __('Delete Taxonomy', 'simple-tags'))); ?>"/>
+                                               esc_html__('Delete Taxonomy', 'simple-tags'))); ?>"/>
                                 <?php }else{
-                                     echo '<div class="taxopress-warning" style="color:red;">' . __('You can only delete taxonomies created with TaxoPress.',
+                                     echo '<div class="taxopress-warning" style="color:red;">' . esc_html__('You can only delete taxonomies created with TaxoPress.',
                                     'simple-tags') . '</div>';
                                 }
                             }
@@ -1489,6 +1564,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
                                                 <?php
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_th_end(). $ui->get_tr_end();
 
 
@@ -1572,30 +1648,30 @@ if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                         <?php
                         if($taxonomy_edit){
                         if ($core_edit) {
-                            echo '<div class="taxopress-warning">' . __('This taxonomy is part of the WordPress core.',
+                            echo '<div class="taxopress-warning">' . esc_html__('This taxonomy is part of the WordPress core.',
                                     'simple-tags') . '
 
                                                 <br /><br />
-                                                ' . __('Registration key',
-                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
+                                                ' . esc_html__('Registration key',
+                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
 
                                                 </div>';
                         }elseif ($external_edit) {
-                            echo '<div class="taxopress-warning">' . __('This is an external taxonomy and not created with TaxoPress.',
+                            echo '<div class="taxopress-warning">' . esc_html__('This is an external taxonomy and not created with TaxoPress.',
                                     'simple-tags') . '
 
                                                 <br /><br />
-                                                ' . __('Registration key',
-                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
+                                                ' . esc_html__('Registration key',
+                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
 
                                                 </div>';
                         }else{
-                            echo '<div class="taxopress-warning">' . __('This taxonomy was created by TaxoPress.',
+                            echo '<div class="taxopress-warning">' . esc_html__('This taxonomy was created by TaxoPress.',
                                     'simple-tags') . '
 
                                                 <br /><br />
-                                                ' . __('Registration key',
-                                    'simple-tags') . ': <font color="green">' . $current["name"] . '</font>
+                                                ' . esc_html__('Registration key',
+                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
 
                                                 </div>';
                         }
@@ -1617,19 +1693,19 @@ if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
 <?php # Modal Windows; ?>
 <div class="remodal" data-remodal-id="taxopress-modal-alert"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
+     <div class="" style="color:red;"><?php echo esc_html__('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
     <div id="taxopress-modal-alert-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simple-tags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo esc_html__('Okay', 'simple-tags'); ?></button>
 </div>
 
 <div class="remodal" data-remodal-id="taxopress-modal-confirm"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <div id="taxopress-modal-confirm-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo esc_html__('No', 'simple-tags'); ?></button>
     <button data-remodal-action="confirm"
-            class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
+            class="remodal-confirm"><?php echo esc_html__('Yes', 'simple-tags'); ?></button>
 </div>
 
         <?php

@@ -1,6 +1,7 @@
 jQuery(document).ready(function () {
   jQuery('#suggestedtags .hndle').html(html_entity_decode(stHelperSuggestedTagsL10n.title_bloc));
   jQuery('#suggestedtags .inside .container_clicktags').html(stHelperSuggestedTagsL10n.content_bloc);
+  jQuery('#suggestedtags .handle-actions').prepend(html_entity_decode(stHelperSuggestedTagsL10n.edit_metabox_link));
 
   // Generi call for autocomplete API
   jQuery('a.suggest-action-link').click(function (event) {
@@ -20,6 +21,13 @@ jQuery(document).ready(function () {
   jQuery('select.term_suggestion_select').click(function (e) {
     e.stopPropagation();
     jQuery('#suggestedtags').removeClass('close');
+  });
+
+  jQuery('button.term_suggestion_refresh').click(function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    jQuery('#suggestedtags').removeClass('close');
+    jQuery('select.term_suggestion_select').trigger('change');
   });
   
   jQuery('select.term_suggestion_select').change(function () {
@@ -42,6 +50,15 @@ jQuery(document).ready(function () {
     });
     return false;
   });
+
+
+  //set local tags as default
+  if (jQuery('.term_suggestion_select').length > 0) {
+    setTimeout(taxopress_set_default_suggested_term, 2000);
+  }
+  function taxopress_set_default_suggested_term(){
+      jQuery('.term_suggestion_select').val('tags_from_local_db').trigger('change');
+  }
 
 });
 
@@ -99,7 +116,14 @@ function registerClickTags() {
   jQuery('#suggestedtags .container_clicktags span').click(function (event) {
     event.preventDefault();
 
-    addTag(this.innerHTML);
+    var taxonomy = jQuery(this).attr('data-taxonomy');
+    var term_id = jQuery(this).attr('data-term_id');
+    if (term_id > 0) {
+      addTag(this.innerHTML, taxonomy, term_id);
+    } else {
+      addTag(this.innerHTML);
+    }
+
     jQuery(this).addClass('used_term');
   });
 

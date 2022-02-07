@@ -69,8 +69,8 @@ class SimpleTags_Tag_Clouds
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            __('Terms Display', 'simple-tags'),
-            __('Terms Display', 'simple-tags'),
+            esc_html__('Terms Display', 'simple-tags'),
+            esc_html__('Terms Display', 'simple-tags'),
             'simple_tags',
             'st_terms_display',
             [
@@ -92,7 +92,7 @@ class SimpleTags_Tag_Clouds
 
         $option = 'per_page';
         $args   = [
-            'label'   => __('Number of items per page', 'simple-tags'),
+            'label'   => esc_html__('Number of items per page', 'simple-tags'),
             'default' => 20,
             'option'  => 'st_terms_display_per_page'
         ];
@@ -133,8 +133,8 @@ class SimpleTags_Tag_Clouds
                 <?php
                 if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
                     /* translators: %s: search keywords */
-                    printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;',
-                            'simple-tags') . '</span>', $search);
+                    printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;',
+                            'simple-tags') . '</span>', esc_html($search));
                 }
                 ?>
                 <?php
@@ -147,18 +147,18 @@ class SimpleTags_Tag_Clouds
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(__('Search Terms Display', 'simple-tags'), 'term'); ?>
+                    <?php $this->terms_table->search_box(esc_html__('Search Terms Display', 'simple-tags'), 'term'); ?>
                 </form>
                 <div class="clear"></div>
 
                 <div id="col-container" class="wp-clearfix">
 
                     <div class="col-wrap">
-                        <form action="<?php echo add_query_arg('', '') ?>" method="post">
+                        <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                             <?php $this->terms_table->display(); //Display the table ?>
                         </form>
                         <div class="form-wrap edit-term-notes">
-                            <p><?php __('Description here.', 'simple-tags') ?></p>
+                            <p><?php esc_html__('Description here.', 'simple-tags') ?></p>
                         </div>
                     </div>
 
@@ -226,15 +226,16 @@ class SimpleTags_Tag_Clouds
         ?>
 
 
-        <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo __('Manage Terms Display', 'simple-tags'); ?></h1>
+
+
+<div class="wrap <?php echo esc_attr($tab_class); ?>">
+            <h1><?php echo esc_html__('Manage Terms Display', 'simple-tags'); ?></h1>
             <div class="wp-clearfix"></div>
 
             <form method="post" action="">
 
 
-
-                <div class="tagcloudui">
+                <div class="tagcloudui st-tabbed">
 
 
                     <div class="tagclouds-postbox-container">
@@ -244,10 +245,14 @@ class SimpleTags_Tag_Clouds
                                     <h2 class="hndle ui-sortable-handle">
                                         <?php
                                         if ($tag_cloud_edit) {
+                                            $active_tab = ( isset($current['active_tab']) && !empty(trim($current['active_tab'])) ) ? $current['active_tab'] : 'tagcloud_general';
                                             echo esc_html__('Edit Terms Display', 'simple-tags');
-                                            echo '<input type="hidden" name="edited_tagcloud" value="'.$current['ID'].'" />';
-                                            echo '<input type="hidden" name="taxopress_tag_cloud[ID]" value="'.$current['ID'].'" />';
+                                            echo '<input type="hidden" name="edited_tagcloud" value="' . esc_attr($current['ID']) . '" />';
+                                            echo '<input type="hidden" name="taxopress_tag_cloud[ID]" value="' . esc_attr($current['ID']) . '" />';
+                                            echo '<input type="hidden" name="taxopress_tag_cloud[active_tab]" class="taxopress-active-subtab" value="'.esc_attr($active_tab).'" />';
                                         } else {
+                                            $active_tab = 'tagcloud_general';
+                                            echo '<input type="hidden" name="taxopress_tag_cloud[active_tab]" class="taxopress-active-subtab" value="" />';
                                             echo esc_html__('Add new Terms Display', 'simple-tags');
                                         }
                                         ?>
@@ -257,84 +262,76 @@ class SimpleTags_Tag_Clouds
                                     <div class="main">
 
 
-                                        <div class="st-taxonomy-content">
-
-                                        <?php if($tag_cloud_limit){
-                                            echo '<div class="taxopress-warning upgrade-pro">
+                                        <?php if ($tag_cloud_limit) {
+                                            echo '<div class="st-taxonomy-content"><div class="taxopress-warning upgrade-pro">
                                             <p>
 
-                                            <h2 style="margin-bottom: 5px;">' . __('To create more Terms Display, please upgrade to TaxoPress Pro.','simple-tags').'</h2>
-                                            ' . __('With TaxoPress Pro, you can create unlimited Terms Display. You can create Terms Display for any taxonomy and then display those Terms Display anywhere on your site.','simple-tags').'
+                                            <h2 style="margin-bottom: 5px;">' . esc_html__('To create more Terms Display, please upgrade to TaxoPress Pro.','simple-tags').'</h2>
+                                            ' . esc_html__('With TaxoPress Pro, you can create unlimited Terms Display. You can create Terms Display for any taxonomy and then display those Terms Display anywhere on your site.','simple-tags').'
 
                                             </p>
-                                            </div>';
+                                            </div></div>';
 
-                                        }else{
-                                        ?>
-                                            <table class="form-table taxopress-table">
-                                                <?php
-                                                echo $ui->get_tr_start();
+                                        } else {
+                                            ?>
 
-                                                echo $ui->get_th_start();
-                                                echo $ui->get_label('name', esc_html__('Title', 'simple-tags')) . $ui->get_required_span();
-                                                echo $ui->get_th_end() . $ui->get_td_start();
 
-                                                echo $ui->get_text_input([
-                                                    'namearray'   => 'taxopress_tag_cloud',
-                                                    'name'        => 'title',
-                                                    'textvalue'   => isset($current['title']) ? esc_attr($current['title']) : '',
-                                                    'maxlength'   => '32',
-                                                    'helptext'  => '',
-                                                    'required'    => true,
-                                                    'placeholder' => false,
-                                                    'wrap'        => false,
-                                                ]);
+                                            <ul class="taxopress-tab">
+                                                <li class="tagcloud_general_tab <?php echo $active_tab === 'tagcloud_general' ? 'active' : ''; ?>" data-content="tagcloud_general">
+                                                    <a href="#tagcloud_general"><span><?php esc_html_e('General',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
 
-                                                $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                        'default' => 'true',
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = ( isset($current) && isset($current['hide_title']) ) ? taxopress_disp_boolean($current['hide_title']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['hide_title'] : '';
-                                            echo $ui->get_select_checkbox_input([
-                                                'namearray'  => 'taxopress_tag_cloud',
-                                                'name'       => 'hide_title',
-                                                'labeltext'  => esc_html__('Hide title in output ?', 'simple-tags'),
-                                                'selections' => $select,
-                                            ]);
+                                                <li class="tagcloud_terms_tab <?php echo $active_tab === 'tagcloud_terms' ? 'active' : ''; ?>" data-content="tagcloud_terms">
+                                                    <a href="#tagcloud_terms"><span><?php esc_html_e('Choose Terms',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
 
-                                                $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                        'default' => 'true',
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = ( isset($current) && isset($current['hide_output']) ) ? taxopress_disp_boolean($current['hide_output']) : '';
-                                            $select['selected'] = !empty($selected) ? $current['hide_output'] : '';
-                                            echo $ui->get_select_checkbox_input([
-                                                'namearray'  => 'taxopress_tag_cloud',
-                                                'name'       => 'hide_output',
-                                                'labeltext'  => esc_html__('Hide display output if no terms ?', 'simple-tags'),
-                                                'selections' => $select,
-                                            ]);
+                                                <li class="tagcloud_design_tab <?php echo $active_tab === 'tagcloud_design' ? 'active' : ''; ?>" data-content="tagcloud_design">
+                                                    <a href="#tagcloud_design"><span><?php esc_html_e('Design',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
 
-                                                $options[] = [ 'attr' => '', 'text' => __('All post types', 'simple-tags'), 'default' => 'true' ];
+                                                <li class="tagcloud_advanced_tab <?php echo $active_tab === 'tagcloud_advanced' ? 'active' : ''; ?>" data-content="tagcloud_advanced">
+                                                    <a href="#tagcloud_advanced"><span><?php esc_html_e('Display Format',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
+                                            </ul>
+
+                                            <div class="st-taxonomy-content taxopress-tab-content">
+
+
+                                                <table class="form-table taxopress-table tagcloud_general"
+                                                       style="<?php echo $active_tab === 'tagcloud_general' ? '' : 'display:none;'; ?>">
+                                                    <?php
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_tr_start();
+
+
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_th_start();
+
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_label('name', esc_html__('Title', 'simple-tags')) . $ui->get_required_span();
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_th_end() . $ui->get_td_start();
+    
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_text_input([
+                                                        'namearray'   => 'taxopress_tag_cloud',
+                                                        'name'        => 'title',
+                                                        'textvalue'   => isset($current['title']) ? esc_attr($current['title']) : '',
+                                                        'maxlength'   => '32',
+                                                        'helptext'  => '',
+                                                        'required'    => true,
+                                                        'placeholder' => false,
+                                                        'wrap'        => false,
+                                                    ]);
+
+
+
+                                                $options[] = [ 'attr' => '', 'text' => esc_html__('All post types', 'simple-tags'), 'default' => 'true' ];
                                                 foreach ( get_post_types(['public' => true], 'objects') as $post_type ) {
                                                     $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
                                                 }
@@ -344,12 +341,13 @@ class SimpleTags_Tag_Clouds
 							                    ];
 							                    $selected = ( isset( $current ) && isset($current['post_type']) ) ? taxopress_disp_boolean( $current['post_type'] ) : '';
 							                    $select['selected'] = ! empty( $selected ) ? $current['post_type'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'post_type',
                                                         'class'      => 'st-post-type-select',
 								                        'labeltext'  => esc_html__( 'Post Type', 'simple-tags' ),
-								                        'selections' => $select,
+								                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							                    ] );
 
                                                 $options = [];
@@ -371,23 +369,15 @@ class SimpleTags_Tag_Clouds
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['taxonomy'] ) : '';
 							                    $select['selected'] = ! empty( $selected ) ? $current['taxonomy'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'taxonomy',
                                                         'class'      => 'st-post-taxonomy-select',
 								                        'labeltext'  => esc_html__( 'Taxonomy', 'simple-tags' ),
                                                         'required'   => true,
-								                        'selections' => $select,
+								                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							                    ] );
-
-                                                echo $ui->get_number_input([
-                                                    'namearray' => 'taxopress_tag_cloud',
-                                                    'name'      => 'max',
-                                                    'textvalue' => isset($current['max']) ? esc_attr($current['max']) : '45',
-                                                    'labeltext' => esc_html__('Maximum terms to display', 'simple-tags'),
-                                                    'helptext'    => '',
-                                                    'required'  => true,
-                                                ]);
 
                                                 $select = [
 								                    'options' => [
@@ -397,100 +387,185 @@ class SimpleTags_Tag_Clouds
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';
 							                    $select['selected'] = ! empty( $selected ) ? $current['format'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'format',
 								                        'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
-								                        'selections' => $select,
+								                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							                    ] );
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_td_end() . $ui->get_tr_end();
+                                                    ?>
+                                                </table>
+
+
+
+
+                                                <table class="form-table taxopress-table tagcloud_terms"
+                                                       style="<?php echo $active_tab === 'tagcloud_terms' ? '' : 'display:none;'; ?>">
+                                                    <?php
+
 
                                             $select = [
-								                    'options' => [
-									                    [ 'attr' => '1', 'text' => esc_attr__( '24 hours', 'simple-tags' ) ],
-									                    [ 'attr' => '7', 'text' => esc_attr__( '7 days', 'simple-tags' ) ],
-									                    [ 'attr' => '14', 'text' => esc_attr__( '2 weeks', 'simple-tags' ) ],
-									                    [ 'attr' => '30', 'text' => esc_attr__( '1 month', 'simple-tags' ) ],
-									                    [ 'attr' => '180', 'text' => esc_attr__( '6 months', 'simple-tags' ) ],
-									                    [ 'attr' => '365', 'text' => esc_attr__( '1 year', 'simple-tags' ) ],
-									                    [ 'attr' => '0', 'text' => esc_attr__( 'No limit', 'simple-tags'), 'default' => 'true' ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['limit_days'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['limit_days'] : '';
-                                                echo $ui->get_select_number_select( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'limit_days',
-								                        'labeltext'  => esc_html__( 'Limit terms based on timeframe', 'simple-tags' ),
-								                        'selections' => $select,
-							                    ] );
+                                                'options' => [
+                                                    [ 'attr' => '1', 'text' => esc_attr__( '24 hours', 'simple-tags' ) ],
+                                                    [ 'attr' => '7', 'text' => esc_attr__( '7 days', 'simple-tags' ) ],
+                                                    [ 'attr' => '14', 'text' => esc_attr__( '2 weeks', 'simple-tags' ) ],
+                                                    [ 'attr' => '30', 'text' => esc_attr__( '1 month', 'simple-tags' ) ],
+                                                    [ 'attr' => '180', 'text' => esc_attr__( '6 months', 'simple-tags' ) ],
+                                                    [ 'attr' => '365', 'text' => esc_attr__( '1 year', 'simple-tags' ) ],
+                                                    [ 'attr' => '0', 'text' => esc_attr__( 'No limit', 'simple-tags'), 'default' => 'true' ],
+                                                ],
+                                            ];
+                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['limit_days'] ) : '';
+                                            $select['selected'] = ! empty( $selected ) ? $current['limit_days'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_number_select( [
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'limit_days',
+                                                    'labeltext'  => esc_html__( 'Limit terms based on timeframe', 'simple-tags' ),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ] );
 
 
-							                    $select = [
-								                    'options' => [
-									                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-									                    [ 'attr' => 'slug', 'text' => esc_attr__( 'Slug', 'simple-tags' ) ],
-									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags'), 'default' => 'true' ],
-									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ) ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['selectionby'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['selectionby'] : '';
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'selectionby',
-								                        'labeltext'  => esc_html__( 'Method for choosing terms from the database', 'simple-tags' ),
-								                        'selections' => $select,
-							                    ] );
+                                            $select = [
+                                                'options' => [
+                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
+                                                    [ 'attr' => 'slug', 'text' => esc_attr__( 'Slug', 'simple-tags' ) ],
+                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags'), 'default' => 'true' ],
+                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ) ],
+                                                ],
+                                            ];
+                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['selectionby'] ) : '';
+                                            $select['selected'] = ! empty( $selected ) ? $current['selectionby'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input_main( [
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'selectionby',
+                                                    'labeltext'  => esc_html__( 'Method for choosing terms from the database', 'simple-tags' ),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ] );
 
 
-							                    $select = [
-								                    'options' => [
-									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
-									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['selection'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['selection'] : '';
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'selection',
-								                        'labeltext'  => esc_html__( 'Ordering for choosing term from the database', 'simple-tags' ),
-								                        'selections' => $select,
-							                    ] );
+                                            $select = [
+                                                'options' => [
+                                                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
+                                                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
+                                                ],
+                                            ];
+                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['selection'] ) : '';
+                                            $select['selected'] = ! empty( $selected ) ? $current['selection'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input_main( [
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'selection',
+                                                    'labeltext'  => esc_html__( 'Ordering for choosing term from the database', 'simple-tags' ),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ] );
 
 
-							                    $select = [
-								                    'options' => [
-									                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-									                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
-									                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'orderby',
-								                        'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simple-tags' ),
-								                        'selections' => $select,
-							                    ] );
+                                            $select = [
+                                                'options' => [
+                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
+                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
+                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
+                                                ],
+                                            ];
+                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
+                                            $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input_main( [
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'orderby',
+                                                    'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simple-tags' ),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ] );
 
 
-							                    $select = [
-								                    'options' => [
-									                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
-									                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['order'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['order'] : '';
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'order',
-								                        'labeltext'  => esc_html__( 'Ordering for choosing terms for display', 'simple-tags' ),
-								                        'selections' => $select,
-							                    ] );
+                                            $select = [
+                                                'options' => [
+                                                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
+                                                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
+                                                ],
+                                            ];
+                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['order'] ) : '';
+                                            $select['selected'] = ! empty( $selected ) ? $current['order'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input_main( [
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'order',
+                                                    'labeltext'  => esc_html__( 'Ordering for choosing terms for display', 'simple-tags' ),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ] );
 
+
+
+                                                    ?>
+                                                </table>
+
+
+                                                <table class="form-table taxopress-table tagcloud_design"
+                                                       style="<?php echo $active_tab === 'tagcloud_design' ? '' : 'display:none;'; ?>">
+                                                    <?php
+
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = ( isset($current) && isset($current['hide_title']) ) ? taxopress_disp_boolean($current['hide_title']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['hide_title'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'taxopress_tag_cloud',
+                                                'name'       => 'hide_title',
+                                                'labeltext'  => esc_html__('Hide title in output ?', 'simple-tags'),
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ]);
+
+                                                $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = ( isset($current) && isset($current['hide_output']) ) ? taxopress_disp_boolean($current['hide_output']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['hide_output'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'taxopress_tag_cloud',
+                                                'name'       => 'hide_output',
+                                                'labeltext'  => esc_html__('Hide display output if no terms ?', 'simple-tags'),
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ]);
+                                            
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_number_input([
+                                                'namearray' => 'taxopress_tag_cloud',
+                                                'name'      => 'max',
+                                                'textvalue' => isset($current['max']) ? esc_attr($current['max']) : '45',
+                                                'labeltext' => esc_html__('Maximum terms to display', 'simple-tags'),
+                                                'helptext'    => '',
+                                                'required'  => true,
+                                            ]);
+                                            
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_number_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'smallest',
@@ -500,6 +575,7 @@ class SimpleTags_Tag_Clouds
                                                     'required'  => true,
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_number_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'largest',
@@ -519,13 +595,15 @@ class SimpleTags_Tag_Clouds
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['unit'] ) : '';
 							                    $select['selected'] = ! empty( $selected ) ? $current['unit'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_select_checkbox_input_main( [
 								                        'namearray'  => 'taxopress_tag_cloud',
 								                        'name'       => 'unit',
 								                        'labeltext'  => esc_html__( 'Unit font size', 'simple-tags' ),
-								                        'selections' => $select,
+								                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							                    ] );
 
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'mincolor',
@@ -535,6 +613,7 @@ class SimpleTags_Tag_Clouds
                                                     'required'  => true,
                                                 ]);
 
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'maxcolor',
@@ -566,78 +645,102 @@ class SimpleTags_Tag_Clouds
                                             }else{
                                                 $select['selected'] = 1; //makeup for default when creating new term display
                                             }
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'taxopress_tag_cloud',
                                                 'name'       => 'color',
                                                 'labeltext'  => esc_html__('Automatically fill colors between maximum and minimum', 'simple-tags'),
-                                                'selections' => $select,
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
-                                            echo $ui->get_text_input([
-                                                    'namearray' => 'taxopress_tag_cloud',
-                                                    'name'      => 'wrap_class',
-                                                    'class'     => '',
-                                                    'textvalue' => isset($current['wrap_class']) ? esc_attr($current['wrap_class']) : '',
-                                                    'labeltext' => esc_html__('Term display div class', 'simple-tags'),
-                                                    'helptext'  => '',
-                                                    'required'  => false,
-                                                ]);
 
-                                            echo $ui->get_text_input([
-                                                    'namearray' => 'taxopress_tag_cloud',
-                                                    'name'      => 'link_class',
-                                                    'class'     => '',
-                                                    'textvalue' => isset($current['link_class']) ? esc_attr($current['link_class']) : '',
-                                                    'labeltext' => esc_html__('Term link class', 'simple-tags'),
-                                                    'helptext'  => '',
-                                                    'required'  => false,
-                                                ]);
+                                                    ?>
 
-                                            echo $ui->get_text_input([
-                                                    'namearray' => 'taxopress_tag_cloud',
-                                                    'name'      => 'xformat',
-                                                    'class'     => 'st-full-width',
-                                                    'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>'),
-                                                    'labeltext' => esc_html__('Term link format', 'simple-tags'),
-                                                    'helptext'  => __('You can find markers and explanations <a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">in the online documentation.</a>', 'simple-tags'),
-                                                    'required'  => false,
-                                                ]);
+                                                </table>
 
-                                                echo $ui->get_td_end() . $ui->get_tr_end();
-                                                ?>
-                                            </table>
 
-                        <?php }//end new fields ?>
+                                                <table class="form-table taxopress-table tagcloud_advanced"
+                                                       style="<?php echo $active_tab === 'tagcloud_advanced' ? '' : 'display:none;'; ?>">
+                                                       <?php 
+                                                       
+                                                       // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                       echo $ui->get_text_input([
+                                                                    'namearray' => 'taxopress_tag_cloud',
+                                                                    'name'      => 'wrap_class',
+                                                                    'class'     => '',
+                                                                    'textvalue' => isset($current['wrap_class']) ? esc_attr($current['wrap_class']) : '',
+                                                                    'labeltext' => esc_html__('Term display div class', 'simple-tags'),
+                                                                    'helptext'  => '',
+                                                                    'required'  => false,
+                                                                ]);
 
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_text_input([
+                                                                    'namearray' => 'taxopress_tag_cloud',
+                                                                    'name'      => 'link_class',
+                                                                    'class'     => '',
+                                                                    'textvalue' => isset($current['link_class']) ? esc_attr($current['link_class']) : '',
+                                                                    'labeltext' => esc_html__('Term link class', 'simple-tags'),
+                                                                    'helptext'  => '',
+                                                                    'required'  => false,
+                                                                ]);
+
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_textarea_input([
+                                                                    'namearray' => 'taxopress_tag_cloud',
+                                                                    'name'      => 'xformat',
+                                                                    'class'     => 'st-full-width',
+                                                                    'rows'      => '4',
+                                                                    'cols'      => '40',
+                                                                    'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>'),
+                                                                    'labeltext' => esc_html__('Term link format', 'simple-tags'),
+                                                                    'helptext'  => sprintf(esc_html__('This option allows you to change the format of your terms. You can use any of the tokens in the "Terms Display format" sidebar". Find more details %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-tag-clouds/">', '</a>'),
+                                                                    'required'  => false,
+                                                                ]);
+
+
+                                                        ?>
+                                                </table>
+
+
+                                            </div>
+
+
+                                        <?php }//end new fields
+                                        ?>
+
+
+                                        <div class="clear"></div>
 
 
                                     </div>
-                                    <div class="clear"></div>
-
-
                                 </div>
                             </div>
+
+
+                            <?php if ($tag_cloud_limit) { ?>
+
+                                <div class="pp-version-notice-bold-purple" style="margin-left:0px;">
+                                    <div class="pp-version-notice-bold-purple-message"><?php echo esc_html__('You\'re using TaxoPress Free.
+                                        The Pro version has more features and support.', 'simple-tags'); ?>
+                                    </div>
+                                    <div class="pp-version-notice-bold-purple-button"><a
+                                            href="https://taxopress.com/pro" target="_blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+                            <?php
+                            /**
+                             * Fires after the default fieldsets on the taxonomy screen.
+                             *
+                             * @param taxopress_admin_ui $ui Admin UI instance.
+                             */
+                            do_action('taxopress_taxonomy_after_fieldsets', $ui);
+                            ?>
+
                         </div>
-
-
-
-
-                        <?php if($tag_cloud_limit){ ?>
-
-                                <div class="pp-version-notice-bold-purple" style="margin-left:0px;"><div class="pp-version-notice-bold-purple-message"><?php echo esc_html__('You\'re using TaxoPress Free. The Pro version has more features and support.', 'simple-tags'); ?></div><div class="pp-version-notice-bold-purple-button"><a href="https://taxopress.com/pro" target="_blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a></div></div>
-
-                        <?php } ?>
-                        <?php
-                        /**
-                         * Fires after the default fieldsets on the taxonomy screen.
-                         *
-                         * @param taxopress_admin_ui $ui Admin UI instance.
-                         */
-                        do_action('taxopress_taxonomy_after_fieldsets', $ui);
-                        ?>
-
                     </div>
-                </div>
 
 
                 </div>
@@ -646,7 +749,7 @@ class SimpleTags_Tag_Clouds
                     <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;">
 
 
-                <?php
+                    <?php
                     if(!$tag_cloud_limit){ ?>
                         <p class="submit">
 
@@ -669,8 +772,8 @@ class SimpleTags_Tag_Clouds
                         <?php if (!empty($current)) {
                             ?>
                         <p>
-                            <?php echo '<div class="taxopress-warning" style="">' . __('Shortcode: ','simple-tags'); ?> &nbsp;
-                            <textarea style="resize: none;padding: 5px;">[taxopress_termsdisplay id="<?php echo $current['ID']; ?>"]</textarea>
+                            <?php echo '<div class="taxopress-warning" style="">' . esc_html__('Shortcode: ','simple-tags'); ?> &nbsp;
+                            <textarea style="resize: none;padding: 5px;">[taxopress_termsdisplay id="<?php echo (int)$current['ID']; ?>"]</textarea>
                             </div>
                         </p>
                         <?php } ?>
@@ -680,6 +783,36 @@ class SimpleTags_Tag_Clouds
                 ?>
 
                     </div>
+
+                    <div class="taxopress-token-right-sidebar">
+            <div id="postbox-container-1" class="postbox-container">
+            <div class="meta-box-sortables">
+                <div class="postbox">
+                    <div class="postbox-header">
+                        <h3 class="hndle is-non-sortable">
+                            <span><?php echo esc_html__('Terms Display format', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+        
+                    <div class="inside">
+                        <p><?php echo esc_html__('Here are the tokens you can use for Term link format', 'simple-tags'); ?>:</p>
+                        <ul>
+                            <li><code>%<code>tag_link%</code></code> – <?php echo esc_html__('The URL of the term', 'simple-tags'); ?></li>
+                            <li><code>%tag_id%</code> – <?php echo esc_html__('The ID of the term', 'simple-tags'); ?></li>
+                            <li><code>t%tag_scale%</code> – <?php echo esc_html__('The weighted size of the term in the display', 'simple-tags'); ?></li>
+                            <li><code>%tag_count%</code> – <?php echo esc_html__('The number of times the term is used', 'simple-tags'); ?></li>
+                            <li><code>%tag_rel%</code> – <?php echo esc_html__('This provides rel tag markup', 'simple-tags'); ?> (<?php echo esc_html__('it creates', 'simple-tags'); ?> <code>rel="tag"</code>)</li>
+                            <li><code>%tag_size%</code> – <?php echo esc_html__('The font size for the term', 'simple-tags'); ?></li>
+                            <li><code>%tag_color%</code> – <?php echo esc_html__('The font color for the term', 'simple-tags'); ?></li>
+                            <li><code>%tag_name%</code> – <?php echo esc_html__('The name of the term', 'simple-tags'); ?></li>
+                            <li><code>%tag_name_attribute%</code> – <?php echo esc_html__('The name of the term with any HTML stripped out', 'simple-tags'); ?></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
 
                                                     <?php do_action('taxopress_admin_after_sidebar'); ?>
                 </div>
@@ -699,19 +832,19 @@ class SimpleTags_Tag_Clouds
         <?php # Modal Windows; ?>
 <div class="remodal" data-remodal-id="taxopress-modal-alert"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
-     <div class="" style="color:red;"><?php echo __('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
+     <div class="" style="color:red;"><?php echo esc_html__('Please complete the following required fields to save your changes:', 'simple-tags'); ?></div>
     <div id="taxopress-modal-alert-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('Okay', 'simple-tags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo esc_html__('Okay', 'simple-tags'); ?></button>
 </div>
 
 <div class="remodal" data-remodal-id="taxopress-modal-confirm"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <div id="taxopress-modal-confirm-content"></div>
     <br>
-    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo __('No', 'simple-tags'); ?></button>
+    <button data-remodal-action="cancel" class="remodal-cancel"><?php echo esc_html__('No', 'simple-tags'); ?></button>
     <button data-remodal-action="confirm"
-            class="remodal-confirm"><?php echo __('Yes', 'simple-tags'); ?></button>
+            class="remodal-confirm"><?php echo esc_html__('Yes', 'simple-tags'); ?></button>
 </div>
 
         <?php

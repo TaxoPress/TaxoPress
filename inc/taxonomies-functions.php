@@ -34,10 +34,11 @@ function taxopress_taxonomies_dropdown($taxonomies = [])
          */
         $select = apply_filters('taxopress_taxonomies_dropdown_options', $select, $taxonomies);
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $ui->get_select_input([
             'namearray'  => 'taxopress_selected_taxonomy',
             'name'       => 'taxonomy',
-            'selections' => $select,
+            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             'wrap'       => false,
         ]);
     }
@@ -244,12 +245,6 @@ function taxopress_update_taxonomy($data = [])
         delete_option("default_term_{$data['cpt_custom_tax']['name']}");
     }
 
-    if (empty($data['cpt_post_types'])) {
-        add_filter('taxopress_custom_error_message', 'taxopress_empty_cpt_on_taxonomy');
-
-        return 'error';
-    }
-
     if (!isset($data['taxonomy_external_edit'])) {
         if (!empty($data['tax_original']) && $data['tax_original'] !== $data['cpt_custom_tax']['name']) {
             if (!empty($data['update_taxonomy'])) {
@@ -422,7 +417,7 @@ function taxopress_update_taxonomy($data = [])
             'default_term'          => $default_term,
         ];
 
-        $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = $data['cpt_post_types'];
+        $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : [];
         $success                                                              = update_option('taxopress_external_taxonomies',
             $external_taxonomies);
     }
@@ -967,7 +962,7 @@ function taxopress_admin_notices_helper($message = '', $success = true)
     $class[] = $success ? 'updated' : 'error';
     $class[] = 'notice is-dismissible';
 
-    $messagewrapstart = '<div id="message" class="' . implode(' ', $class) . '"><p>';
+    $messagewrapstart = '<div id="message" class="' . esc_attr(implode(' ', $class)) . '"><p>';
 
     $messagewrapend = '</p></div>';
 
@@ -1033,6 +1028,7 @@ function taxopress_add_success_admin_notice()
  */
 function taxopress_add_success_message_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has been successfully added', 'simple-tags'),
@@ -1046,6 +1042,7 @@ function taxopress_add_success_message_admin_notice()
  */
 function taxopress_add_fail_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has failed to be added', 'simple-tags'),
@@ -1060,6 +1057,7 @@ function taxopress_add_fail_admin_notice()
  */
 function taxopress_update_success_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has been successfully updated', 'simple-tags'),
@@ -1073,6 +1071,7 @@ function taxopress_update_success_admin_notice()
  */
 function taxopress_update_fail_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has failed to be updated', 'simple-tags'),
@@ -1087,6 +1086,7 @@ function taxopress_update_fail_admin_notice()
  */
 function taxopress_delete_success_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has been successfully deleted', 'simple-tags'),
@@ -1100,6 +1100,7 @@ function taxopress_delete_success_admin_notice()
  */
 function taxopress_delete_fail_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         sprintf(
             esc_html__('%s has failed to be deleted', 'simple-tags'),
@@ -1112,6 +1113,7 @@ function taxopress_delete_fail_admin_notice()
 
 function taxopress_nonce_fail_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         esc_html__('Nonce failed verification', 'simple-tags'),
         false
@@ -1125,6 +1127,7 @@ function taxopress_nonce_fail_admin_notice()
  */
 function taxopress_slug_matches_taxonomy()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     return sprintf(
         esc_html__('Please choose a different taxonomy name. %s is already registered.', 'simple-tags'),
         taxopress_get_object_from_post_global()
@@ -1186,6 +1189,7 @@ function taxopress_slug_has_quotes()
  */
 function taxopress_error_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(
         apply_filters('taxopress_custom_error_message', ''),
         false
@@ -1572,35 +1576,35 @@ function taxopress_get_preserved_labels()
     return [
         'post_types' => [
             'singular' => [
-                'add_new_item' => __('Add new %s', 'simple-tags'),
-                'edit_item'    => __('Edit %s', 'simple-tags'),
-                'new_item'     => __('New %s', 'simple-tags'),
-                'view_item'    => __('View %s', 'simple-tags'),
+                'add_new_item' => esc_html__('Add new %s', 'simple-tags'),
+                'edit_item'    => esc_html__('Edit %s', 'simple-tags'),
+                'new_item'     => esc_html__('New %s', 'simple-tags'),
+                'view_item'    => esc_html__('View %s', 'simple-tags'),
             ],
             'plural'   => [
-                'view_items'         => __('View %s', 'simple-tags'),
-                'all_items'          => __('All %s', 'simple-tags'),
-                'search_items'       => __('Search %s', 'simple-tags'),
-                'not_found'          => __('No %s found.', 'simple-tags'),
-                'not_found_in_trash' => __('No %s found in trash.', 'simple-tags'),
+                'view_items'         => esc_html__('View %s', 'simple-tags'),
+                'all_items'          => esc_html__('All %s', 'simple-tags'),
+                'search_items'       => esc_html__('Search %s', 'simple-tags'),
+                'not_found'          => esc_html__('No %s found.', 'simple-tags'),
+                'not_found_in_trash' => esc_html__('No %s found in trash.', 'simple-tags'),
             ],
         ],
         'taxonomies' => [
             'singular' => [
-                'parent_item'       => __('Parent %s', 'simple-tags'),
-                'parent_item_colon' => __('Parent %s:', 'simple-tags'),
-                'edit_item'         => __('Edit %s', 'simple-tags'),
-                'update_item'       => __('Update %s', 'simple-tags'),
-                'add_new_item'      => __('Add new %s', 'simple-tags'),
-                'new_item_name'     => __('New %s name', 'simple-tags'),
+                'parent_item'       => esc_html__('Parent %s', 'simple-tags'),
+                'parent_item_colon' => esc_html__('Parent %s:', 'simple-tags'),
+                'edit_item'         => esc_html__('Edit %s', 'simple-tags'),
+                'update_item'       => esc_html__('Update %s', 'simple-tags'),
+                'add_new_item'      => esc_html__('Add new %s', 'simple-tags'),
+                'new_item_name'     => esc_html__('New %s name', 'simple-tags'),
             ],
             'plural'   => [
-                'search_items'               => __('Search %s', 'simple-tags'),
-                'popular_items'              => __('Popular %s', 'simple-tags'),
-                'all_items'                  => __('All %s', 'simple-tags'),
-                'separate_items_with_commas' => __('Separate %s with commas', 'simple-tags'),
-                'add_or_remove_items'        => __('Add or remove %s', 'simple-tags'),
-                'choose_from_most_used'      => __('Choose from the most used %s', 'simple-tags'),
+                'search_items'               => esc_html__('Search %s', 'simple-tags'),
+                'popular_items'              => esc_html__('Popular %s', 'simple-tags'),
+                'all_items'                  => esc_html__('All %s', 'simple-tags'),
+                'separate_items_with_commas' => esc_html__('Separate %s with commas', 'simple-tags'),
+                'add_or_remove_items'        => esc_html__('Add or remove %s', 'simple-tags'),
+                'choose_from_most_used'      => esc_html__('Choose from the most used %s', 'simple-tags'),
             ],
         ],
     ];
@@ -1711,6 +1715,7 @@ function taxopress_get_deactivated_taxonomy()
  */
 function taxopress_noaction_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Kindly select an action in bulk action dropdown!', 'simple-tags'),
         false);
 }
@@ -1720,6 +1725,7 @@ function taxopress_noaction_admin_notice()
  */
 function taxopress_none_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Kindly select atleast one taxonomy to proceed', 'simple-tags'),
         false);
 }
@@ -1729,6 +1735,7 @@ function taxopress_none_admin_notice()
  */
 function taxopress_deactivated_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully deactivated', 'simple-tags'));
 }
 
@@ -1737,6 +1744,7 @@ function taxopress_deactivated_admin_notice()
  */
 function taxopress_activated_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully activated', 'simple-tags'));
 }
 
@@ -1745,6 +1753,7 @@ function taxopress_activated_admin_notice()
  */
 function taxopress_taxdeleted_admin_notice()
 {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Taxonomy has been successfully deleted', 'simple-tags'));
 }
 
@@ -1935,14 +1944,14 @@ function taxopress_remove_taxonomy_from_menus()
 function taxopress_unregister_taxonomy($taxonomy)
 {
     if (!taxonomy_exists($taxonomy)) {
-        return new WP_Error('invalid_taxonomy', __('Invalid taxonomy.'));
+        return new WP_Error('invalid_taxonomy', esc_html__('Invalid taxonomy.'));
     }
 
     $taxonomy_object = get_taxonomy($taxonomy);
 
     // Do not allow unregistering internal taxonomies.
     /*if ( $taxonomy_object->_builtin ) {
-        return new WP_Error( 'invalid_taxonomy', __( 'Unregistering a built-in taxonomy is not allowed.' ) );
+        return new WP_Error( 'invalid_taxonomy', esc_html__( 'Unregistering a built-in taxonomy is not allowed.' ) );
     }*/
 
     global $wp_taxonomies;

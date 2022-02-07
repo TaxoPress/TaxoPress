@@ -154,7 +154,7 @@ function taxopress_create_default_suggestterm()
     $default['taxopress_suggestterm']['number']                         = '100';
     $default['taxopress_suggestterm']['orderby']                        = 'count';
     $default['taxopress_suggestterm']['order']                          = 'desc';
-    $default['taxopress_suggestterm']['disable_local']                  = '0';
+    $default['taxopress_suggestterm']['enable_existing_terms']          = '1';
     $default['taxopress_suggestterm']['suggest_term_use_local']         = '1';
     $default['taxopress_suggestterm']['suggest_term_use_dandelion']     = '0';
     $default['taxopress_suggestterm']['suggest_term_use_opencalais']    = '0';
@@ -202,8 +202,8 @@ function taxopress_update_suggestterm($data = [])
     $data['taxopress_suggestterm']['post_types']          = isset($data['post_types']) ? $data['post_types'] : [];
 
     //update our custom checkbox value if not checked
-    if (!isset($data['taxopress_suggestterm']['disable_local'])) {
-        $data['taxopress_suggestterm']['disable_local'] = 0;
+    if (!isset($data['taxopress_suggestterm']['enable_existing_terms'])) {
+        $data['taxopress_suggestterm']['enable_existing_terms'] = 0;
     }
     if (!isset($data['taxopress_suggestterm']['suggest_term_use_local'])) {
         $data['taxopress_suggestterm']['suggest_term_use_local'] = 0;
@@ -237,7 +237,8 @@ function taxopress_update_suggestterm($data = [])
  */
 function taxopress_suggestterms_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -245,7 +246,8 @@ function taxopress_suggestterms_update_success_admin_notice()
  */
 function taxopress_suggestterms_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Suggest Terms successfully deleted.', 'simple-tags'), false);
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Suggest Terms successfully deleted.', 'simple-tags'), false);
 }
 
 /**
@@ -329,7 +331,7 @@ function taxopress_action_delete_suggestterm($suggestterm_id)
  *
  * @return mixed
  */
-function taxopress_current_post_suggest_terms($local_check = false)
+function taxopress_current_post_suggest_terms($source = false, $local_check = false)
 {
     global $pagenow;
 
@@ -350,14 +352,16 @@ function taxopress_current_post_suggest_terms($local_check = false)
                 continue;
             }
 
-            if($local_check && isset($suggested_term['disable_local']) && (int)$suggested_term['disable_local'] > 0){
-                continue;
-            }
-
+            $enable_existing_terms      = isset($suggested_term['enable_existing_terms']) ? (int)$suggested_term['enable_existing_terms'] : 0;
             $suggest_term_use_local      = isset($suggested_term['suggest_term_use_local']) ? (int)$suggested_term['suggest_term_use_local'] : 0;
             $suggest_term_use_dandelion  = isset($suggested_term['suggest_term_use_dandelion']) ? (int)$suggested_term['suggest_term_use_dandelion'] : 0;
             $suggest_term_use_opencalais = isset($suggested_term['suggest_term_use_opencalais']) ? (int)$suggested_term['suggest_term_use_opencalais'] : 0;
-            if(!$local_check && $suggest_term_use_local === 0 && $suggest_term_use_dandelion === 0 && $suggest_term_use_opencalais === 0){
+
+            if($suggest_term_use_local === 0 && $suggest_term_use_dandelion === 0 && $suggest_term_use_opencalais === 0){
+                continue;
+            }
+
+            if($source && $source === 'existing_terms' && $enable_existing_terms === 0){
                 continue;
             }
 

@@ -11,8 +11,8 @@ class TagClouds_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Terms Display', 'simple-tags'), //singular name of the listed records
-            'plural'   => __('Terms Display', 'simple-tags'), //plural name of the listed records
+            'singular' => esc_html__('Terms Display', 'simple-tags'), //singular name of the listed records
+            'plural'   => esc_html__('Terms Display', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -50,7 +50,7 @@ class TagClouds_List extends WP_List_Table
     {
         $class = ['st-cloudtag-tr'];
         $id    = 'st-cloudtag-' . md5($item['ID']);
-        echo sprintf('<tr id="%s" class="%s">', $id, implode(' ', $class));
+        echo sprintf('<tr id="%s" class="%s">', esc_attr($id), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
     }
@@ -63,11 +63,11 @@ class TagClouds_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'title'        => __('Title', 'simple-tags'),
-            'taxonomy'     => __('Taxonomy', 'simple-tags'),
-            'post_type'    => __('Post Type', 'simple-tags'),
-            'format'   => __('Display format', 'simple-tags'),
-            'shortcode'    => __('Shortcode', 'simple-tags')
+            'title'        => esc_html__('Title', 'simple-tags'),
+            'taxonomy'     => esc_html__('Taxonomy', 'simple-tags'),
+            'post_type'    => esc_html__('Post Type', 'simple-tags'),
+            'format'   => esc_html__('Display format', 'simple-tags'),
+            'shortcode'    => esc_html__('Shortcode', 'simple-tags')
         ];
 
         return $columns;
@@ -119,7 +119,7 @@ class TagClouds_List extends WP_List_Table
         }
         ?>
         <p class="search-box">
-            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
+            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
             <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>
@@ -262,7 +262,7 @@ class TagClouds_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                __('Edit', 'simple-tags')
+                esc_html__('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                     '<a href="%s" class="delete-tagcloud">%s</a>',
@@ -273,7 +273,7 @@ class TagClouds_List extends WP_List_Table
                         '_wpnonce' => wp_create_nonce('tagcloud-action-request-nonce')
                     ],
                         admin_url('admin.php')),
-                    __('Delete', 'simple-tags')
+                    esc_html__('Delete', 'simple-tags')
                 ),
         ];
 
@@ -342,7 +342,7 @@ class TagClouds_List extends WP_List_Table
             esc_html($post_type->label)
         );
     }else{
-        $title = __( 'All', 'simple-tags' );
+        $title = esc_html__( 'All', 'simple-tags' );
     }
 
         return $title;

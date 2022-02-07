@@ -35,8 +35,53 @@
     -webkit-mask-position: left;
 }
 
-.taxopress-advertisement-right-sidebar a.advert-link {
+.taxopress-advertisement-right-sidebar a.advert-link,
+.taxopress-content-promo-box a.advert-link {
     display: block;
     margin-top: 10px;
     font-size: 1em;
+}
+
+.taxopress-advertisement-right-sidebar .advertisement-box-header,
+.taxopress-content-promo-box .advertisement-box-header {
+    background: #1F48AC;
+    color: #ffffff;
+}
+
+.taxopress-advertisement-right-sidebar .advertisement-box-content,
+.taxopress-content-promo-box.advertisement-box-content {
+    border: 1px solid #1F48AC;
+}
+
+
+.taxopress-content-promo-box .upgrade-btn {
+    margin-top: 20px;
+}
+
+.taxopress-content-promo-box .upgrade-btn a {
+    background: #FCB223;
+    color: #000 !important;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 9px 12px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid #fca871;
+    break-inside: avoid;
+    white-space: nowrap;
+}
+
+.taxopress-content-promo-box .upgrade-btn a:hover {
+    background: #fcca46;
+    color: #000 !important;
+}
+
+.taxopress-content-promo-box.postbox.upgrade-pro .inside-content {
+    position: relative;
+    margin: 11px 0;
+    padding: 0 12px 12px;
+    line-height: 1.4;
+    font-size: 13px;
 }

@@ -1,18 +1,34 @@
 <?php
-/*
-Plugin Name: TaxoPress
-Plugin URI: https://wordpress.org/plugins/simple-tags/
-Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
-Version: 3.4.4
-Requires PHP: 5.6
-Requires at least: 3.3
-Tested up to: 5.6
-Author: TaxoPress
-Author URI: https://taxopress.com
-Text Domain: simple-tags
+/**
+ * Plugin Name: TaxoPress
+ * Plugin URI: https://wordpress.org/plugins/simple-tags/
+ * Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+ * Version: 3.4.5
+ * Author: TaxoPress
+ * Author URI: https://taxopress.com
+ * Text Domain: simple-tags
+ * Domain Path: /languages
+ * Min WP Version: 4.9.7
+ * Requires PHP: 5.6
+ * License: GPLv3
+ *
+ * Copyright (c) 2022 Taxopress
+ *
+ * ------------------------------------------------------------------------------
+ * Based on Organize Series
+ * Author: Darren Ethier
+ * Copyright (c) 2007, 2011 Darren Ethier
+ * ------------------------------------------------------------------------------
+ *
+ * @package 	simple-tags
+ * @author		TaxoPress
+ * @copyright   Copyright (C) 2007, 2011 Darren Ethier; modifications Copyright (C) 2022 TaxoPress
+ * @license		GNU General Public License version 2
+ * @link		https://taxoPress.com/
+ */
 
-Copyright 2013-2021  TaxoPress
-
+######################################
+/* 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -32,6 +48,7 @@ Sections of the TaxoPress code are based on Custom Post Type UI by WebDevStudios
 
 Credits Icons :
     - famfamfam - http://www.famfamfam.com/lab/icons/silk/
+
 */
 
 // don't load directly
@@ -40,7 +57,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('STAGS_VERSION')) {
-define('STAGS_VERSION', '3.4.4');
+define('STAGS_VERSION', '3.4.5');
 }
 
 

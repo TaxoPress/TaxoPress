@@ -279,8 +279,8 @@ class SimpleTags_Admin {
 	 * @author WebFactory Ltd
 	 */
 	public static function init() {
-		self::$taxo_name      = __( 'Post tags', 'simple-tags' );
-		self::$post_type_name = __( 'Posts', 'simple-tags' );
+		self::$taxo_name      = esc_html__( 'Post tags', 'simple-tags' );
+		self::$post_type_name = esc_html__( 'Posts', 'simple-tags' );
 
 		// Custom CPT ?
 		if ( isset( $_GET['cpt'] ) && ! empty( $_GET['cpt'] ) && post_type_exists( sanitize_text_field($_GET['cpt']) ) ) {
@@ -319,7 +319,7 @@ class SimpleTags_Admin {
 
 			// TODO: Redirect for help user that see the URL...
 		} elseif ( ! isset( $taxo ) ) {
-			wp_die( __( 'This custom post type not have taxonomies.', 'simple-tags' ) );
+			wp_die( esc_html__( 'This custom post type not have taxonomies.', 'simple-tags' ) );
 		}
 
 		// Free memory
@@ -340,7 +340,7 @@ class SimpleTags_Admin {
 		echo '<div class="change-taxo">' . PHP_EOL;
 		echo '<form action="" method="get">' . PHP_EOL;
 		if ( ! empty( $page_value ) ) {
-			echo '<input type="hidden" name="page" value="' . $page_value . '" />' . PHP_EOL;
+			echo '<input type="hidden" name="page" value="' . esc_attr($page_value) . '" />' . PHP_EOL;
 		}
 		$taxonomies = [];
 		echo '<select name="cpt" id="cpt-select" class="st-cpt-select">' . PHP_EOL;
@@ -369,13 +369,13 @@ class SimpleTags_Admin {
 				$class="st-hide-content";
 			}
 
-			echo '<option ' . selected( $tax_name, self::$taxonomy, false ) . ' value="' . esc_attr( $tax_name ) . '" data-post="'.$parent_post.'" class="'.$class.'">' . esc_html( $taxonomy->labels->name ) . '</option>' . PHP_EOL;
+			echo '<option ' . selected( $tax_name, self::$taxonomy, false ) . ' value="' . esc_attr( $tax_name ) . '" data-post="'. esc_attr($parent_post) .'" class="'. esc_attr($class) .'">' . esc_html( $taxonomy->labels->name ) . '</option>' . PHP_EOL;
 			}
 		}
 		}
 		echo '</select>' . PHP_EOL;
 
-		echo '<input type="submit" class="button" id="submit-change-taxo" value="' . __( 'Change selection', 'simple-tags' ) . '" />' . PHP_EOL;
+		echo '<input type="submit" class="button" id="submit-change-taxo" value="' . esc_attr__( 'Change selection', 'simple-tags' ) . '" />' . PHP_EOL;
 		echo '</form>' . PHP_EOL;
 		echo '</div>' . PHP_EOL;
 		echo '</div>' . PHP_EOL;
@@ -410,7 +410,7 @@ class SimpleTags_Admin {
         //localize script
         wp_localize_script( 'st-admin-js', 'st_admin_localize', [
             'ajaxurl'     => admin_url('admin-ajax.php'),
-            'select_valid'=> __( 'Please select a valid', 'simple-tags' ),
+            'select_valid'=> esc_html__( 'Please select a valid', 'simple-tags' ),
             'check_nonce' => wp_create_nonce('st-admin-js'),
         ]);
 
@@ -508,13 +508,13 @@ class SimpleTags_Admin {
 
                 do_action( 'simpletags_settings_save_general_end' );
 
-                add_settings_error( __CLASS__, __CLASS__, __( 'Options saved', 'simple-tags' ), 'updated' );
+                add_settings_error( __CLASS__, __CLASS__, esc_html__( 'Options saved', 'simple-tags' ), 'updated' );
             } elseif ( isset( $_POST['reset_options'] ) ) {
                 check_admin_referer( 'updateresetoptions-simpletags' );
 
                 SimpleTags_Plugin::set_default_option();
 
-                add_settings_error( __CLASS__, __CLASS__, __( 'TaxoPress options resetted to default options!', 'simple-tags' ), 'updated' );
+                add_settings_error( __CLASS__, __CLASS__, esc_html__( 'TaxoPress options resetted to default options!', 'simple-tags' ), 'updated' );
             }
 
         }
@@ -559,9 +559,9 @@ class SimpleTags_Admin {
 	 */
 	public static function getDefaultContentBox() {
 		if ( (int) wp_count_terms( 'post_tag', array( 'hide_empty' => false ) ) == 0 ) { // TODO: Custom taxonomy
-			return __( 'This feature requires at least 1 tag to work. Begin by adding tags!', 'simple-tags' );
+			return esc_html__( 'This feature requires at least 1 tag to work. Begin by adding tags!', 'simple-tags' );
 		} else {
-			return __( 'This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simple-tags' );
+			return esc_html__( 'This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simple-tags' );
 		}
 	}
 
@@ -589,7 +589,11 @@ class SimpleTags_Admin {
 
 		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages )) {
 		?>
-		<p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simple-tags' ), STAGS_VERSION ); ?></p>
+		<p class="footer_st">
+            <?php 
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            printf( __( 'Thanks for using TaxoPress | %1sTaxoPress.com%2s | Version %3s', 'simple-tags' ), '<a href="https://taxopress.com/">', '</a>', esc_html(STAGS_VERSION) ); ?>
+        </p>
 		<?php
         }
 	}
@@ -714,19 +718,19 @@ class SimpleTags_Admin {
 	public static function getNiceTitleOptions( $id = '' ) {
 		switch ( $id ) {
 			case 'administration':
-				return __( 'Administration', 'simple-tags' );
+				return esc_html__( 'Administration', 'simple-tags' );
 			case 'auto-links':
-				return __( 'Auto link', 'simple-tags' );
+				return esc_html__( 'Auto link', 'simple-tags' );
 			case 'features':
-				return __( 'Features', 'simple-tags' );
+				return esc_html__( 'Features', 'simple-tags' );
 			case 'embeddedtags':
-				return __( 'Embedded Tags', 'simple-tags' );
+				return esc_html__( 'Embedded Tags', 'simple-tags' );
 			case 'tagspost':
-				return __( 'Tags for Current Post', 'simple-tags' );
+				return esc_html__( 'Tags for Current Post', 'simple-tags' );
 			case 'relatedposts':
-				return __( 'Related Posts', 'simple-tags' );
+				return esc_html__( 'Related Posts', 'simple-tags' );
 			case 'legacy':
-				return __( 'Legacy', 'simple-tags' );
+				return esc_html__( 'Legacy', 'simple-tags' );
 		}
 
 		return '';

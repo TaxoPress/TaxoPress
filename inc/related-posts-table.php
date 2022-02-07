@@ -11,8 +11,8 @@ class RelatedPosts_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => __('Related Post', 'simple-tags'), //singular name of the listed records
-            'plural'   => __('Related Posts', 'simple-tags'), //plural name of the listed records
+            'singular' =>  esc_html__('Related Post', 'simple-tags'), //singular name of the listed records
+            'plural'   =>  esc_html__('Related Posts', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
 
@@ -50,7 +50,7 @@ class RelatedPosts_List extends WP_List_Table
     {
         $class = ['st-relatedpost-tr'];
         $id    = 'st-relatedpost-' . md5($item['ID']);
-        echo sprintf('<tr id="%s" class="%s">', $id, implode(' ', $class));
+        echo sprintf('<tr id="%s" class="%s">', esc_attr($id), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
     }
@@ -63,11 +63,11 @@ class RelatedPosts_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
-            'title'     => __('Title', 'simple-tags'),
-            'taxonomy'  => __('Taxonomy', 'simple-tags'),
-            'post_type' => __('Post Type', 'simple-tags'),
-            'embedded'  => __('Automatic display', 'simple-tags'),
-            'shortcode' => __('Shortcode', 'simple-tags')
+            'title'     =>  esc_html__('Title', 'simple-tags'),
+            'taxonomy'  =>  esc_html__('Taxonomy', 'simple-tags'),
+            'post_type' =>  esc_html__('Post Type', 'simple-tags'),
+            'embedded'  =>  esc_html__('Automatic display', 'simple-tags'),
+            'shortcode' =>  esc_html__('Shortcode', 'simple-tags')
         ];
 
         return $columns;
@@ -119,7 +119,7 @@ class RelatedPosts_List extends WP_List_Table
         }
         ?>
         <p class="search-box">
-            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
+            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
             <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>
@@ -262,7 +262,7 @@ class RelatedPosts_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                __('Edit', 'simple-tags')
+                 esc_html__('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-relatedpost">%s</a>',
@@ -273,7 +273,7 @@ class RelatedPosts_List extends WP_List_Table
                     '_wpnonce'               => wp_create_nonce('relatedpost-action-request-nonce')
                 ],
                     admin_url('admin.php')),
-                __('Delete', 'simple-tags')
+                 esc_html__('Delete', 'simple-tags')
             ),
         ];
 
@@ -333,9 +333,9 @@ class RelatedPosts_List extends WP_List_Table
         if (isset($item['post_type']) && !empty(trim($item['post_type']))) {
 
             if ($item['post_type'] === 'st_current_posttype') {
-                $title = __('Current post type', 'simple-tags');
+                $title =  esc_html__('Current post type', 'simple-tags');
             } elseif ($item['post_type'] === 'st_all_posttype') {
-                $title = __('All', 'simple-tags');
+                $title =  esc_html__('All', 'simple-tags');
             } else {
                 $post_type = get_post_type_object($item['post_type']);
                 if (is_object($post_type)) {
@@ -352,7 +352,7 @@ class RelatedPosts_List extends WP_List_Table
                 }
             }
         } else {
-            $title = __('All', 'simple-tags');
+            $title =  esc_html__('All', 'simple-tags');
         }
 
         return $title;
@@ -379,10 +379,10 @@ class RelatedPosts_List extends WP_List_Table
 
             $result_array     = [];
             $embedded_options = [
-                'homeonly'   => esc_attr__('Homepage', 'simple-tags'),
-                'blogonly'   => esc_attr__('Blog display', 'simple-tags'),
-                'singleonly' => esc_attr__('Single post display', 'simple-tags'),
-                'feed'       => esc_attr__('RSS feed', 'simple-tags'),
+                'homeonly'   => esc_html__('Homepage', 'simple-tags'),
+                'blogonly'   => esc_html__('Blog display', 'simple-tags'),
+                'singleonly' => esc_html__('Single post display', 'simple-tags'),
+                'feed'       => esc_html__('RSS feed', 'simple-tags'),
             ];
             foreach ($post_types as $post_type) {
                 $embedded_options[$post_type->name] = $post_type->label;
@@ -392,7 +392,7 @@ class RelatedPosts_List extends WP_List_Table
             }
             $result = join(', ', $result_array);
         } else {
-            $result = esc_attr__('No', 'simple-tags');
+            $result = esc_html__('No', 'simple-tags');
         }
 
         return $result;

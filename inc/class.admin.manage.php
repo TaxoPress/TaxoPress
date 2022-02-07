@@ -77,7 +77,7 @@ class SimpleTags_Admin_Manage {
 
 		$option = 'per_page';
 		$args   = [
-			'label'   => __( 'Number of items per page', 'simple-tags' ),
+			'label'   => esc_html__( 'Number of items per page', 'simple-tags' ),
 			'default' => 10,
 			'option'  => 'termcloud_per_page'
 		];
@@ -98,14 +98,14 @@ class SimpleTags_Admin_Manage {
 		// Control Post data
 		if ( isset( $_POST['term_action'] ) ) {
             if(!current_user_can('simple_tags')){
-                add_settings_error( __CLASS__, __CLASS__, __( 'Permission denied!', 'simple-tags' ), 'error' );
+                add_settings_error( __CLASS__, __CLASS__, esc_html__( 'Permission denied!', 'simple-tags' ), 'error' );
             }else if ( ! wp_verify_nonce( sanitize_text_field($_POST['term_nonce']), 'simpletags_admin' ) ) { // Origination and intention
 
-				add_settings_error( __CLASS__, __CLASS__, __( 'Security problem. Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simple-tags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'Security problem. Try again.', 'simple-tags' ), 'error' );
 
 			} elseif ( ! isset( SimpleTags_Admin::$taxonomy ) || ! taxonomy_exists( SimpleTags_Admin::$taxonomy ) ) { // Valid taxo ?
 
-				add_settings_error( __CLASS__, __CLASS__, __( 'Missing valid taxonomy for work... Try again. If this problem persist, contact <a href="https://wordpress.org/support/plugin/simple-tags/#new-topic-0">plugin author</a>.', 'simple-tags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'Missing valid taxonomy for work. Try again.', 'simple-tags' ), 'error' );
 
 			} elseif ( $_POST['term_action'] == 'renameterm' ) {
 
@@ -156,7 +156,7 @@ class SimpleTags_Admin_Manage {
 
         if($default_tab && !empty($default_tab)){
             //trigger default tab click on load
-            echo '<div class="load-st-default-tab" data-page="'.$default_tab.'"></div>';
+            echo '<div class="load-st-default-tab" data-page="'.esc_attr($default_tab).'"></div>';
         }
 
 		// Default order
@@ -166,6 +166,7 @@ class SimpleTags_Admin_Manage {
 
 		settings_errors( __CLASS__ );
 		?>
+		<div class="clear"></div>
 		<div class="wrap st_wrap st-manage-terms-page">
 			<?php SimpleTags_Admin::boxSelectorTaxonomy( 'st_manage' ); ?>
 
@@ -179,7 +180,7 @@ class SimpleTags_Admin_Manage {
         <?php
         if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
             /* translators: %s: search keywords */
-            printf(' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;', 'simple-tags') . '</span>', $search);
+            printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;', 'simple-tags') . '</span>', esc_html($search));
         }
         ?>
                 <?php
@@ -192,11 +193,11 @@ class SimpleTags_Admin_Manage {
         <hr class="wp-header-end">
         <div id="ajax-response"></div>
         <form class="search-form wp-clearfix st-tag-cloud-search-form" method="get">
-            <?php $this->terms_table->search_box(sprintf(__('Search %s ', 'simple-tags'), SimpleTags_Admin::$taxo_name), 'term'); ?>
+            <?php $this->terms_table->search_box(sprintf(esc_html__('Search %s ', 'simple-tags'), SimpleTags_Admin::$taxo_name), 'term'); ?>
         </form>
 
         <fieldset class="manage-term-screen-options">
-		<label for="termcloud_per_page_dummy"><?php echo __('Pagination ', 'simple-tags'); ?></label><br />
+		<label for="termcloud_per_page_dummy"><?php echo esc_html__('Pagination ', 'simple-tags'); ?></label><br />
         <input type="number" step="1" min="1" max="999" class="screen-per-page" id="termcloud_per_page_dummy" maxlength="3" value="<?php echo (int) get_user_option( 'termcloud_per_page' ); ?>">
         <input type="submit" id="termcloud_per_page_dummy_apply" class="button button-primary" value="Apply">
 		</fieldset>
@@ -209,11 +210,11 @@ class SimpleTags_Admin_Manage {
             <div id="col-left">
 
                 <div class="col-wrap">
-                    <form action="<?php echo add_query_arg('', '') ?>" method="post">
+                    <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                         <?php $this->terms_table->display(); //Display the table ?>
                     </form>
                     <div class="form-wrap edit-term-notes">
-                        <p><?php __('Description here.', 'simple-tags') ?></p>
+                        <p><?php esc_html__('Description here.', 'simple-tags') ?></p>
                     </div>
                 </div>
 
@@ -246,9 +247,9 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" class="auto-terms-content st-add-terms">
 					<td>
                         <h2><?php _e( 'Add Terms', 'simple-tags' ); ?></h2>
-						<p><?php printf(__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simple-tags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(esc_html__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
 
-						<p><?php printf(__('Terms will be added to all %s If no "Term(s) to match" is specified.', 'simple-tags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(esc_html__('Terms will be added to all %s If no "Term(s) to match" is specified.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -259,10 +260,10 @@ class SimpleTags_Admin_Manage {
 
 								<input type="hidden" name="term_action" value="addterm"/>
 								<input type="hidden" name="term_nonce"
-								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+								       value="<?php echo esc_attr(wp_create_nonce( 'simpletags_admin' )); ?>"/>
 
 								<p class="terms-type-options">
-                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts" checked="checked"><?php printf(__('Add terms to all %s.', 'simple-tags'), SimpleTags_Admin::$post_type_name); ?></label><br>
+                                    <label><input type="radio" id="addterm_type" class="addterm_type_all_posts" name="addterm_type" value="all_posts" checked="checked"><?php printf(esc_html__('Add terms to all %s.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></label><br>
 
                                     <label><input type="radio" id="addterm_type" class="addterm_type_matched_only" name="addterm_type" value="matched_only"><?php _e( 'Add terms only to posts with specific terms attached.', 'simple-tags' ); ?></label>
 								</p>
@@ -303,7 +304,7 @@ class SimpleTags_Admin_Manage {
 
 								<input type="hidden" name="term_action" value="renameterm"/>
 								<input type="hidden" name="term_nonce"
-								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+								       value="<?php echo esc_attr(wp_create_nonce( 'simpletags_admin' )); ?>"/>
 
 								<p>
 									<label
@@ -331,7 +332,7 @@ class SimpleTags_Admin_Manage {
 				<tr valign="top" style="display:none;" class="auto-terms-content st-merge-terms">
 					<td>
                         <h2><?php _e( 'Merge Terms', 'simple-tags' ); ?> </h2>
-						<p><?php printf(__('Enter the term to merge and its new value. Click "Merge" and all %s which use this term will be updated.', 'simple-tags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(esc_html__('Enter the term to merge and its new value. Click "Merge" and all %s which use this term will be updated.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
 
 
 						<fieldset>
@@ -343,7 +344,7 @@ class SimpleTags_Admin_Manage {
 
 								<input type="hidden" name="term_action" value="mergeterm"/>
 								<input type="hidden" name="term_nonce"
-								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+								       value="<?php echo esc_attr(wp_create_nonce( 'simpletags_admin' )); ?>"/>
 
 								<p>
 									<label
@@ -370,8 +371,8 @@ class SimpleTags_Admin_Manage {
 
 				<tr valign="top" style="display:none;" class="auto-terms-content st-remove-terms">
 					<td>
-                        <h2><?php echo sprintf(__('Remove Terms from %s ', 'simple-tags'), SimpleTags_Admin::$post_type_name) ?></h2>
-						<p><?php echo sprintf(__('Enter the terms to remove from all %s ', 'simple-tags'), SimpleTags_Admin::$post_type_name) ?></p>
+                        <h2><?php echo sprintf(esc_html__('Remove Terms from %s ', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)) ?></h2>
+						<p><?php echo sprintf(esc_html__('Enter the terms to remove from all %s ', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)) ?></p>
 
 
 						<fieldset>
@@ -383,7 +384,7 @@ class SimpleTags_Admin_Manage {
 
 								<input type="hidden" name="term_action" value="removeterms"/>
 								<input type="hidden" name="term_nonce"
-								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+								       value="<?php echo esc_attr(wp_create_nonce( 'simpletags_admin' )); ?>"/>
 
 								<p>
 									<label
@@ -416,7 +417,7 @@ class SimpleTags_Admin_Manage {
 
 								<input type="hidden" name="term_action" value="deleteterm"/>
 								<input type="hidden" name="term_nonce"
-								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+								       value="<?php echo esc_attr(wp_create_nonce( 'simpletags_admin' )); ?>"/>
 
 								<p>
 									<label
@@ -435,10 +436,10 @@ class SimpleTags_Admin_Manage {
 
 				<tr valign="top" style="display:none;" class="auto-terms-content st-delete-unuused-terms">
 					<td>
-                        <h2><?php _e( 'Remove rarely used terms', 'simple-tags' ); ?></h2>
-						<p><?php _e( 'This feature allows you to remove rarely used terms.', 'simple-tags' ); ?></p>
+                        <h2><?php esc_html_e( 'Remove rarely used terms', 'simple-tags' ); ?></h2>
+						<p><?php esc_html_e( 'This feature allows you to remove rarely used terms.', 'simple-tags' ); ?></p>
 
-						<p><?php printf(__('If you choose 5, Taxopress will delete all terms attached to less than 5 %s.', 'simple-tags'), SimpleTags_Admin::$post_type_name); ?></p>
+						<p><?php printf(esc_html__('If you choose 5, Taxopress will delete all terms attached to less than 5 %s.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
 
 						<fieldset>
 							<form action="" method="post">
@@ -449,20 +450,20 @@ class SimpleTags_Admin_Manage {
 
 								<input type="hidden" name="term_action" value="remove-rarelyterms"/>
 								<input type="hidden" name="term_nonce"
-								       value="<?php echo wp_create_nonce( 'simpletags_admin' ); ?>"/>
+								       value="<?php echo esc_attr(wp_create_nonce( 'simpletags_admin' )); ?>"/>
 
 								<p>
 									<label for="number-delete"><?php _e( 'Minimum number of uses for each term:', 'simple-tags' ); ?></label>
 									<br/>
 									<select name="number-rarely" id="number-delete">
 										<?php for ( $i = 1; $i <= 100; $i ++ ) : ?>
-											<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+											<option value="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></option>
 										<?php endfor; ?>
 									</select>
 								</p>
 
 								<input class="button-primary" type="submit" name="Delete"
-								       value="<?php _e( 'Delete rarely used', 'simple-tags' ); ?>"/>
+								       value="<?php esc_attr_e( 'Delete rarely used', 'simple-tags' ); ?>"/>
 							</form>
 						</fieldset>
 					</td>
@@ -526,6 +527,9 @@ class SimpleTags_Admin_Manage {
 
 			<?php SimpleTags_Admin::printAdminFooter(); ?>
 		</div>
+
+
+
 		<?php
 		do_action( 'simpletags-manage_terms', SimpleTags_Admin::$taxonomy );
 	}
@@ -542,7 +546,7 @@ class SimpleTags_Admin_Manage {
 	 */
 	public static function mergeTerms( $taxonomy = 'post_tag', $old = '', $new = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $new ) ) ) == '' ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No new term specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No new term specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -557,7 +561,7 @@ class SimpleTags_Admin_Manage {
 
 		// If old/new tag are empty => exit !
 		if ( empty( $old_terms ) || empty( $new_terms ) ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No new/old valid term specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No new/old valid term specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -567,7 +571,7 @@ class SimpleTags_Admin_Manage {
 			// Set new tag
 			$new_tag = sanitize_text_field($new_terms[0]);
 			if ( empty( $new_tag ) ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'No valid new term.', 'simple-tags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No valid new term.', 'simple-tags' ), 'error' );
 
 				return false;
 			}
@@ -590,7 +594,7 @@ class SimpleTags_Admin_Manage {
 				    wp_delete_term( $term_id, $taxonomy );
 			    }
 
-                add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags' ), $old, $new, $counter ), 'updated' );
+                add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags' ), $old, $new, $counter ), 'updated' );
 				return true;
 			}
 
@@ -618,12 +622,12 @@ class SimpleTags_Admin_Manage {
 			clean_term_cache( $terms_id, $taxonomy );
 
 			if ( $counter == 0 ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'No term merged.', 'simple-tags' ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No term merged.', 'simple-tags' ), 'updated' );
 			} else {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags' ), $old, $new, $counter ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags' ), $old, $new, $counter ), 'updated' );
 			}
 		} else { // Error
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Error. You need to enter a single term to merge to in new term name !', 'simple-tags' ), $old ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Error. You need to enter a single term to merge to in new term name !', 'simple-tags' ), $old ), 'error' );
 		}
 
 		return true;
@@ -641,7 +645,7 @@ class SimpleTags_Admin_Manage {
 	 */
 	public static function removeTerms( $taxonomy = 'post_tag', $post_type = 'posts', $new = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $new ) ) ) == '' ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No term specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No term specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -654,7 +658,7 @@ class SimpleTags_Admin_Manage {
 
 		// If new tag are empty => exit !
 		if ( empty( $new_terms ) ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No valid term specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No valid term specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -692,12 +696,12 @@ class SimpleTags_Admin_Manage {
         }
 
 			if ( $counter == 0 ) {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'This term is not associated with any %1$s.', 'simple-tags' ), SimpleTags_Admin::$post_type_name ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'This term is not associated with any %1$s.', 'simple-tags' ), SimpleTags_Admin::$post_type_name ), 'error' );
 			} else {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s', 'simple-tags' ), $new, $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s', 'simple-tags' ), $new, $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 			}
 		} else { // Error
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Error. No enough terms specified.', 'simple-tags' ), $old ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Error. No enough terms specified.', 'simple-tags' ), $old ), 'error' );
 		}
 
 		return true;
@@ -715,7 +719,7 @@ class SimpleTags_Admin_Manage {
 	 */
 	public static function renameTerms( $taxonomy = 'post_tag', $old = '', $new = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $new ) ) ) == '' ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No new term specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No new term specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -730,7 +734,7 @@ class SimpleTags_Admin_Manage {
 
 		// If old/new tag are empty => exit !
 		if ( empty( $old_terms ) || empty( $new_terms ) ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No new/old valid term specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No new/old valid term specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -777,12 +781,12 @@ class SimpleTags_Admin_Manage {
 			}
 
 			if ( $counter == 0 ) {
-				add_settings_error( __CLASS__, __CLASS__, __( 'No term renamed.', 'simple-tags' ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No term renamed.', 'simple-tags' ), 'updated' );
 			} else {
-				add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simple-tags' ), $old, $new ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simple-tags' ), $old, $new ), 'updated' );
 			}
 		} else { // Error
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Error. No enough terms for rename.', 'simple-tags' ), $old ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Error. No enough terms for rename.', 'simple-tags' ), $old ), 'error' );
 		}
 
 		return true;
@@ -799,7 +803,7 @@ class SimpleTags_Admin_Manage {
 	 */
 	public static function deleteTermsByTermList( $taxonomy = 'post_tag', $delete = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $delete ) ) ) == '' ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No term specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No term specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -822,9 +826,9 @@ class SimpleTags_Admin_Manage {
 		}
 
 		if ( $counter == 0 ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No term deleted.', 'simple-tags' ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No term deleted.', 'simple-tags' ), 'updated' );
 		} else {
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( '%1s term(s) deleted.', 'simple-tags' ), $counter ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( '%1s term(s) deleted.', 'simple-tags' ), $counter ), 'updated' );
 		}
 
 		return true;
@@ -842,7 +846,7 @@ class SimpleTags_Admin_Manage {
 	 */
 	public static function addMatchTerms( $taxonomy = 'post_tag', $match = '', $new = '' ) {
 		if ( trim( str_replace( ',', '', stripslashes( $new ) ) ) == '' ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No new term(s) specified!', 'simple-tags' ), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No new term(s) specified!', 'simple-tags' ), 'error' );
 
 			return false;
 		}
@@ -895,9 +899,9 @@ class SimpleTags_Admin_Manage {
 		}
 
 		if ( $counter == 0 ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No term added.', 'simple-tags' ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No term added.', 'simple-tags' ), 'updated' );
 		} else {
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( 'Term(s) added to %1s %2s.', 'simple-tags' ), $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( 'Term(s) added to %1s %2s.', 'simple-tags' ), $counter, SimpleTags_Admin::$post_type_name ), 'updated' );
 		}
 
 		return true;
@@ -933,9 +937,9 @@ class SimpleTags_Admin_Manage {
 		}
 
 		if ( $counter == 0 ) {
-			add_settings_error( __CLASS__, __CLASS__, __( 'No term deleted.', 'simple-tags' ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__( 'No term deleted.', 'simple-tags' ), 'updated' );
 		} else {
-			add_settings_error( __CLASS__, __CLASS__, sprintf( __( '%1s term(s) deleted.', 'simple-tags' ), $counter ), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( '%1s term(s) deleted.', 'simple-tags' ), $counter ), 'updated' );
 		}
 
 		return true;
@@ -954,7 +958,7 @@ class SimpleTags_Admin_Manage {
 	/*
 	public static function editTermSlug( $taxonomy = 'post_tag', $names = '', $slugs = '') {
 		if ( trim( str_replace(',', '', stripslashes($slugs)) ) == '' ) {
-			add_settings_error( __CLASS__, __CLASS__, __('No new slug(s) specified!', 'simple-tags'), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__('No new slug(s) specified!', 'simple-tags'), 'error' );
 			return false;
 		}
 
@@ -965,7 +969,7 @@ class SimpleTags_Admin_Manage {
 		$new_slugs = array_filter($new_slugs, '_delete_empty_element');
 
 		if ( count($match_names) != count($new_slugs) ) {
-			add_settings_error( __CLASS__, __CLASS__, __('Terms number and slugs number isn\'t the same!', 'simple-tags'), 'error' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__('Terms number and slugs number isn\'t the same!', 'simple-tags'), 'error' );
 			return false;
 		} else {
 			$counter = 0;
@@ -991,9 +995,9 @@ class SimpleTags_Admin_Manage {
 		}
 
 		if ( $counter == 0  ) {
-			add_settings_error( __CLASS__, __CLASS__, __('No slug edited.', 'simple-tags'), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, esc_html__('No slug edited.', 'simple-tags'), 'updated' );
 		} else {
-			add_settings_error( __CLASS__, __CLASS__, sprintf(__('%s slug(s) edited.', 'simple-tags'), $counter), 'updated' );
+			add_settings_error( __CLASS__, __CLASS__, sprintf(esc_html__('%s slug(s) edited.', 'simple-tags'), $counter), 'updated' );
 		}
 
 		return true;

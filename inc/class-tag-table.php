@@ -25,7 +25,7 @@ class Termcloud_List extends WP_List_Table {
     {
         $class = ['st-tax-tr'];
         $id = 'st-tax-' . md5($item->slug);
-        echo sprintf('<tr id="%s" class="%s">', $id, implode(' ', $class));
+        echo sprintf('<tr id="%s" class="%s">', esc_attr($id), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
     }
@@ -220,7 +220,7 @@ class Termcloud_List extends WP_List_Table {
 		     || ( isset( $_POST['action2'] ) && $_POST['action2'] == 'st-bulk-delete-term' )
 		) {
 
-			$delete_ids = esc_sql( sanitize_text_field($_POST['st-bulk-delete-term']) );
+			$delete_ids = array_map('sanitize_text_field', $_POST['st-bulk-delete-term']);
 
 			// loop over the array of record IDs and delete them
 			foreach ( $delete_ids as $id ) {
@@ -280,8 +280,8 @@ class Termcloud_List extends WP_List_Table {
         }
         $searchbox_search =  (empty($_REQUEST['s']) && !$this->has_items()) ? 'visibility:hidden;' : '';
         ?>
-        <p class="search-box" style="<?php echo $searchbox_search; ?>">
-            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo $text; ?>:</label>
+        <p class="search-box" style="<?php echo esc_attr($searchbox_search); ?>">
+            <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
             <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>

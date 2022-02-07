@@ -90,5 +90,3 @@ function st_related_posts_render($attributes)
 
     return ob_get_clean();
 }
-
-?>

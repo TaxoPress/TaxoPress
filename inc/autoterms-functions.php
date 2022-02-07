@@ -160,7 +160,7 @@ function taxopress_create_default_autoterm()
                     $default['taxopress_autoterm']['autoterm_from']            = 'posts';
                     $default['taxopress_autoterm']['title']                    = ''. (is_object($taxonomy) ? $taxonomy->labels->name : $options_taxonomy ) .' '. ucwords($options_post_type) .' Auto term';
                     $default['taxopress_autoterm']['taxonomy']                 = $options_taxonomy;
-                    $default['post_types']                                     = [$options_post_type];
+                    $default['post_types']                                     = [];
                     $default['post_status']                                    = ['publish'];
                     $default['taxopress_autoterm']['autoterm_useall']          = isset($options_taxonomy_data['at_all']) ? $options_taxonomy_data['at_all'] : 0;
                     $default['taxopress_autoterm']['autoterm_useonly']         = isset($options_taxonomy_data['at_all_no']) ? $options_taxonomy_data['at_all_no'] : 0;
@@ -180,11 +180,11 @@ function taxopress_create_default_autoterm()
         $default                                                   = [];
         $default['taxopress_autoterm']['title']                    = 'Auto term';
         $default['taxopress_autoterm']['taxonomy']                 = 'post_tag';
-        $default['post_types']                                     = ['post'];
+        $default['post_types']                                     = [];
         $default['post_status']                                    = ['publish'];
         $default['taxopress_autoterm']['autoterm_from']            = 'posts';
-        $default['taxopress_autoterm']['autoterm_useall']          = '0';
-        $default['taxopress_autoterm']['autoterm_useall']          = '0';
+        $default['taxopress_autoterm']['autoterm_use_taxonomy']    = '1';
+        $default['taxopress_autoterm']['autoterm_useall']          = '1';
         $default['taxopress_autoterm']['autoterm_useonly']         = '0';
         $default['taxopress_autoterm']['autoterm_target']          = '0';
         $default['taxopress_autoterm']['autoterm_word']            = '0';
@@ -272,7 +272,8 @@ function taxopress_update_autoterm($data = [])
  */
 function taxopress_autoterms_update_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Settings updated successfully.', 'simple-tags'));
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
 }
 
 /**
@@ -280,7 +281,8 @@ function taxopress_autoterms_update_success_admin_notice()
  */
 function taxopress_autoterms_delete_success_admin_notice()
 {
-    echo taxopress_admin_notices_helper(__('Auto terms successfully deleted.', 'simple-tags'), false);
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto terms successfully deleted.', 'simple-tags'), false);
 }
 
 /**
