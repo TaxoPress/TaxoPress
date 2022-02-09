@@ -506,6 +506,17 @@ ul.taxopress-tab li.tagcloud_advanced_tab a::before {
     content: "\f111";
 }
 
+
+ul.taxopress-tab li.relatedpost_advanced_tab a::before {
+    content: "\f111";
+}
+ul.taxopress-tab li.relatedpost_option_tab a::before {
+    content: "\f111";
+}
+ul.taxopress-tab li.relatedpost_display_tab a::before {
+    content: "\f186";
+}
+
 .st-html-exclusion-table th {
     padding: unset;
 }
