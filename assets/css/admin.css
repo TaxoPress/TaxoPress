@@ -480,7 +480,7 @@ ul.taxopress-tab li.autoterm_terms_tab a::before {
     content: "\f323";
 }
 ul.taxopress-tab li.autoterm_options_tab a::before {
-    content: "\f111";
+    content: "\f180";
 }
 ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
     content: "\f186";
@@ -511,9 +511,20 @@ ul.taxopress-tab li.relatedpost_advanced_tab a::before {
     content: "\f111";
 }
 ul.taxopress-tab li.relatedpost_option_tab a::before {
-    content: "\f111";
+    content: "\f180";
 }
 ul.taxopress-tab li.relatedpost_display_tab a::before {
+    content: "\f186";
+}
+
+
+ul.taxopress-tab li.posttags_advanced_tab a::before {
+    content: "\f111";
+}
+ul.taxopress-tab li.posttags_options_tab a::before {
+    content: "\f180";
+}
+ul.taxopress-tab li.posttags_display_tab a::before {
     content: "\f186";
 }
 
