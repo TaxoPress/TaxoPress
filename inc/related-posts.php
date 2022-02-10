@@ -511,7 +511,7 @@ class SimpleTags_Related_Post
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display related posts',
                                                                 'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display related posts in this content. It may not be successful for all post types and layouts.',
                                                                 'simple-tags') . '</small></th><td>
-                                                    <table>';
+                                                                <table class="visbile-table">';
                                                         foreach ($term_auto_locations as $key => $value) {
 
 
