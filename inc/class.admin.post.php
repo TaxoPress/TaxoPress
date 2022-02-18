@@ -30,7 +30,7 @@ class SimpleTags_Admin_Post_Settings {
 		$auto_options = get_option( STAGS_OPTIONS_NAME_AUTO );
 		$taxonomies = get_object_taxonomies( $post_type );
 		// Auto terms for this CPT ?
-		add_meta_box( 'simpletags-settings', __( 'TaxoPress - Settings', 'simple-tags' ), array(
+		add_meta_box( 'simpletags-settings', __( 'TaxoPress', 'simple-tags' ), array(
 			__CLASS__,
 			'metabox'
 		), $post_type, 'side', 'low' );
