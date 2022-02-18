@@ -255,7 +255,11 @@ class SimpleTags_Admin_ClickTags {
         
         $term_limit =  isset($_GET['click_tags_limit']) ? (int)$_GET['click_tags_limit'] : 100;
 
-        $limit = 'LIMIT 0, '.$term_limit;
+        if ($term_limit > 0) {
+            $limit = 'LIMIT 0, '.$term_limit;
+        }else{
+            $limit = '';
+        }
 		
         // Get all terms, or filter with search
 		$terms = SimpleTags_Admin::getTermsForAjax( $taxonomy, $search, $order_by, $order,  $limit );
