@@ -2,7 +2,7 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: 3.4.5
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -224,6 +224,18 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.5.0- [pending release]
+* Added: Add a Log for Auto Terms #1243
+* Fixed: Safeguards auto terms for large sites #1249
+* Fixed: Bug with on Suggested Terms #1250
+* Fixed: Change "TaxoPress - Settings" to just "TaxoPress" in metabox #1246
+* Fixed: Apply Auto terms batches and wait time to scheduled auto terms cron #1241
+* Fixed: Ways to process large numbers of posts in Auto Terms #1200
+* Fixed: Check compatability of all 3 widgets with WordPress 5.9 #1119
+* Fixed: Disable Free version when people install Pro #1234
+* Fixed: Tabbed Design for Terms for Current Post screen #1167
+* Fixed: Tabbed design for Related Posts screen #1166
 
 v3.4.5- 2021-02-07
 * Fixed: Can't delete terms in "Manage Terms" #1194

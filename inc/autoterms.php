@@ -245,6 +245,9 @@ class SimpleTags_Autoterms
                                         <?php
                                         if ($autoterm_edit) {
                                             $active_tab = ( isset($current['active_tab']) && !empty(trim($current['active_tab'])) ) ? $current['active_tab'] : 'autoterm_general';
+                                            if(isset($_GET['log_page']) && (int)$_GET['log_page'] > 0){
+                                                $active_tab = 'autoterm_logs';
+                                            }
                                             echo esc_html__('Edit Auto Terms', 'simple-tags');
                                             echo '<input type="hidden" name="edited_autoterm" value="' . esc_attr($current['ID']) . '" />';
                                             echo '<input type="hidden" name="taxopress_autoterm[ID]" value="' . esc_attr($current['ID']) . '" />';
@@ -300,6 +303,11 @@ class SimpleTags_Autoterms
 
                                                 <li class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
                                                     <a href="#autoterm_schedule"><span><?php esc_html_e('Schedule',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
+                                                <li class="autoterm_logs_tab <?php echo $active_tab === 'autoterm_logs' ? 'active' : ''; ?>" data-content="autoterm_logs">
+                                                    <a href="#autoterm_logs"><span><?php esc_html_e('Autoterm Logs',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
@@ -833,6 +841,14 @@ class SimpleTags_Autoterms
 
                                                         <?php do_action('taxopress_autoterms_after_autoterm_schedule', $current); ?>
 
+                                                </table>
+
+
+                                                <table class="form-table taxopress-table autoterm_logs"
+                                                       style="<?php echo $active_tab === 'autoterm_logs' ? '' : 'display:none;'; ?>">
+
+                                                        <?php do_action('taxopress_autoterms_after_autoterm_logs', $current); ?>
+                                                    
                                                 </table>
 
 

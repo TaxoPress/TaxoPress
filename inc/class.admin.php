@@ -25,6 +25,8 @@ class SimpleTags_Admin {
 
 		// Admin menu
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
+		// Log cpt
+		add_action( 'init', array( __CLASS__, 'taxopress_log_post_type' ) );
 
         //Admin footer credit
         add_action( 'in_admin_footer', array( __CLASS__, 'taxopress_admin_footer') );
@@ -93,6 +95,7 @@ class SimpleTags_Admin {
                 (isset($_POST['active_auto_terms']) && (int)$_POST['active_auto_terms'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_terms' ) || (isset($_POST['active_auto_terms']) && (int)$_POST['active_auto_terms'] === 1)) && $active_auto_terms === 1 ) {
+            require STAGS_DIR . '/inc/autoterms-action.php';
             require STAGS_DIR . '/inc/autoterms-table.php';
             require STAGS_DIR . '/inc/autoterms.php';
             SimpleTags_Autoterms::get_instance();
@@ -448,6 +451,44 @@ class SimpleTags_Admin {
 
 		do_action('taxopress_admin_class_after_assets_enqueue');
 	}
+
+	/**
+	 * Register log post type.
+	 *
+	 * @return void
+	 * @author olatechpro
+	 */
+	public static function taxopress_log_post_type() {
+
+        // set up labels
+        $labels = array(
+            'name' => __('TaxoPress Logs', 'simple-tags'),
+            'singular_name' => __('TaxoPress Logs', 'simple-tags'),
+            'search_items' => __('Search TaxoPress Logs', 'simple-tags'),
+            'all_items' => __('TaxoPress Logs', 'simple-tags'),
+            'edit_item' => __('Edit TaxoPress Logs', 'simple-tags'),
+            'update_item' => __('Update TaxoPress Logs', 'simple-tags'),
+            'add_new_item' => __('Add New TaxoPress Logs', 'simple-tags'),
+            'new_item_name' => __('New TaxoPress Logs', 'simple-tags'),
+            'menu_name' => __('TaxoPress Logs', 'simple-tags')
+        );
+
+        register_post_type('taxopress_logs', array(
+            'labels' => $labels,
+            'public' => false,
+            'show_ui' => false,
+            'capability_type' => 'post',
+            'hierarchical' => false,
+            'rewrite' => array('slug' => 'taxopress_logs'),
+            'query_var' => false,
+            'show_in_nav_menus' => false,
+            'menu_icon' => 'dashicons-editor-justify',
+            'supports' => array(
+                'title',
+                'author',
+            ),
+        ));
+    }
 
 	/**
 	 * Add settings page on WordPress admin menu
