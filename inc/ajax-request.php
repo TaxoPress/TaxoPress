@@ -64,7 +64,7 @@ function taxopress_autoterms_content_by_ajax()
         $response_content = '';
         if (!empty($objects)) {
             foreach ($objects as $object) {
-                SimpleTags_Client_Autoterms::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, true );
+                SimpleTags_Client_Autoterms::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, true, 'existing_content', 'st_autoterms' );
                 $response_content .= '<li>#' . $object->ID . ' ' . $object->post_title . '</li>';
                 unset($object);
             }
