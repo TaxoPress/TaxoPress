@@ -288,25 +288,12 @@ class Autoterms_Logs extends WP_List_Table
             'hourly_cron_schedule' => esc_html__( 'Scheduled hourly cron', 'simple-tags' )
         ];
 
-        $log_action_color = [
-            'save_posts' => 'blueviolet',
-            'existing_content' => 'brown',
-            'daily_cron_schedule' => 'chocolate',
-            'hourly_cron_schedule' => 'crimson'
-        ];
-
-        $log_color = array_key_exists($taxopress_log_action, $log_action_color) ? $log_action_color[$taxopress_log_action] : 'green';
-
-        $return = '';
-        $return .= '<font color="'.esc_attr($log_color).'">';
         if(array_key_exists($taxopress_log_action, $log_action_texts)){
-            $return .= esc_html($log_action_texts[$taxopress_log_action]);
+            return esc_html($log_action_texts[$taxopress_log_action]);
         }else{
-            $return .= esc_html($taxopress_log_action);
+            return esc_html($taxopress_log_action);
         }
-        $return .= '</font>';
 
-        return $return;
     }
 
     /**
