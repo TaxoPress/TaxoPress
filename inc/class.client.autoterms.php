@@ -447,12 +447,10 @@ class SimpleTags_Client_Autoterms {
 	 */
 	public static function update_taxopress_logs( $object, $taxonomy = 'post_tag', $options = array(), $counter = false, $action = 'save_posts', $component = 'st_autoterms', $terms_to_add = [], $status = 'failed', $status_message = 'not_provided' ) {
 
-        $log_context = sprintf(esc_html__('#%1s %2s log', 'simple-tags'), $object->ID, $taxonomy);
-
         $insert_post_args = array(
             'post_author' => get_current_user_id(),
-            'post_content' => $log_context,
-            'post_title' => $log_context,
+            'post_title' => $object->post_title,
+            'post_content' => $object->post_content,
             'post_status' => 'publish',
             'post_type' => 'taxopress_logs',
         );

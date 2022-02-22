@@ -38,9 +38,9 @@ class SimpleTags_Admin {
 		require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
 
         //tag clouds/ terms display
-        $active_terms_display = isset($_POST['updateoptions']) && 
+        $active_terms_display = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_terms_display']) || 
+                !isset($_POST['active_terms_display']) ||
                 (isset($_POST['active_terms_display']) && (int)$_POST['active_terms_display'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_terms_display' ) || (isset($_POST['active_terms_display']) && (int)$_POST['active_terms_display'] === 1)) && $active_terms_display === 1 ) {
@@ -51,9 +51,9 @@ class SimpleTags_Admin {
         }
 
         //post tags
-        $active_post_tags = isset($_POST['updateoptions']) && 
+        $active_post_tags = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_post_tags']) || 
+                !isset($_POST['active_post_tags']) ||
                 (isset($_POST['active_post_tags']) && (int)$_POST['active_post_tags'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_post_tags' ) || (isset($_POST['active_post_tags']) && (int)$_POST['active_post_tags'] === 1)) && $active_post_tags === 1 ) {
@@ -64,9 +64,9 @@ class SimpleTags_Admin {
         }
 
         //Related Posts
-        $active_related_posts_new = isset($_POST['updateoptions']) && 
+        $active_related_posts_new = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_related_posts_new']) || 
+                !isset($_POST['active_related_posts_new']) ||
                 (isset($_POST['active_related_posts_new']) && (int)$_POST['active_related_posts_new'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' ) || (isset($_POST['active_related_posts_new']) && (int)$_POST['active_related_posts_new'] === 1)) && $active_related_posts_new === 1 ) {
@@ -77,9 +77,9 @@ class SimpleTags_Admin {
         }
 
         //Auto Links
-        $active_auto_links = isset($_POST['updateoptions']) && 
+        $active_auto_links = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_auto_links']) || 
+                !isset($_POST['active_auto_links']) ||
                 (isset($_POST['active_auto_links']) && (int)$_POST['active_auto_links'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_links' ) || (isset($_POST['active_auto_links']) && (int)$_POST['active_auto_links'] === 1)) && $active_auto_links === 1 ) {
@@ -89,22 +89,22 @@ class SimpleTags_Admin {
         }
 
         //Auto Terms
-        $active_auto_terms = isset($_POST['updateoptions']) && 
+        $active_auto_terms = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_auto_terms']) || 
+                !isset($_POST['active_auto_terms']) ||
                 (isset($_POST['active_auto_terms']) && (int)$_POST['active_auto_terms'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_terms' ) || (isset($_POST['active_auto_terms']) && (int)$_POST['active_auto_terms'] === 1)) && $active_auto_terms === 1 ) {
-            require STAGS_DIR . '/inc/autoterms-action.php';
             require STAGS_DIR . '/inc/autoterms-table.php';
+            require STAGS_DIR . '/inc/autoterms-logs-table.php';
             require STAGS_DIR . '/inc/autoterms.php';
             SimpleTags_Autoterms::get_instance();
         }
 
         //Suggest Terms
-        $active_suggest_terms = isset($_POST['updateoptions']) && 
+        $active_suggest_terms = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_suggest_terms']) || 
+                !isset($_POST['active_suggest_terms']) ||
                 (isset($_POST['active_suggest_terms']) && (int)$_POST['active_suggest_terms'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_suggest_terms' ) || (isset($_POST['active_suggest_terms']) && (int)$_POST['active_suggest_terms'] === 1)) && $active_suggest_terms === 1 ) {
@@ -114,9 +114,9 @@ class SimpleTags_Admin {
         }
 
 		//suggest terms option
-        $active_mass_edit = isset($_POST['updateoptions']) && 
+        $active_mass_edit = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_mass_edit']) || 
+                !isset($_POST['active_mass_edit']) ||
                 (isset($_POST['active_mass_edit']) && (int)$_POST['active_mass_edit'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_mass_edit' ) || (isset($_POST['active_mass_edit']) && (int)$_POST['active_mass_edit'] === 1)) && $active_mass_edit === 1 ) {
@@ -131,9 +131,9 @@ class SimpleTags_Admin {
         require STAGS_DIR . '/inc/class.admin.autocomplete.php';
         new SimpleTags_Admin_Autocomplete();
 
-        $active_mass_edit = isset($_POST['updateoptions']) && 
+        $active_mass_edit = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_mass_edit']) || 
+                !isset($_POST['active_mass_edit']) ||
                 (isset($_POST['active_mass_edit']) && (int)$_POST['active_mass_edit'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_mass_edit' ) || (isset($_POST['active_mass_edit']) && (int)$_POST['active_mass_edit'] === 1)) && $active_mass_edit === 1 ) {
@@ -141,9 +141,9 @@ class SimpleTags_Admin {
 			new SimpleTags_Admin_Mass();
 		}
 
-        $active_manage = isset($_POST['updateoptions']) && 
+        $active_manage = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_manage']) || 
+                !isset($_POST['active_manage']) ||
                 (isset($_POST['active_manage']) && (int)$_POST['active_manage'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_manage' ) || (isset($_POST['active_manage']) && (int)$_POST['active_manage'] === 1)) && $active_manage === 1 ) {
@@ -156,9 +156,9 @@ class SimpleTags_Admin {
 		new SimpleTags_Admin_Post_Settings();
 
         //taxonomies
-        $active_taxonomies = isset($_POST['updateoptions']) && 
+        $active_taxonomies = isset($_POST['updateoptions']) &&
             (
-                !isset($_POST['active_taxonomies']) || 
+                !isset($_POST['active_taxonomies']) ||
                 (isset($_POST['active_taxonomies']) && (int)$_POST['active_taxonomies'] === 0)
              ) ? 0 : 1;
 		if ( (1 === (int) SimpleTags_Plugin::get_option_value( 'active_taxonomies' ) || (isset($_POST['active_taxonomies']) && (int)$_POST['active_taxonomies'] === 1)) && $active_taxonomies === 1 ) {
@@ -485,6 +485,7 @@ class SimpleTags_Admin {
             'menu_icon' => 'dashicons-editor-justify',
             'supports' => array(
                 'title',
+								'editor',
                 'author',
             ),
         ));
@@ -631,7 +632,7 @@ class SimpleTags_Admin {
 		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $taxopress_pages )) {
 		?>
 		<p class="footer_st">
-            <?php 
+            <?php
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             printf( __( 'Thanks for using TaxoPress | %1sTaxoPress.com%2s | Version %3s', 'simple-tags' ), '<a href="https://taxopress.com/">', '</a>', esc_html(STAGS_VERSION) ); ?>
         </p>
