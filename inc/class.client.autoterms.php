@@ -455,7 +455,6 @@ class SimpleTags_Client_Autoterms {
             'post_type' => 'taxopress_logs',
         );
         $post_id = wp_insert_post($insert_post_args);
-
         update_post_meta($post_id, '_taxopress_log_post_id', $object->ID);
         update_post_meta($post_id, '_taxopress_log_taxonomy', $taxonomy);
         update_post_meta($post_id, '_taxopress_log_action', $action);
@@ -463,6 +462,7 @@ class SimpleTags_Client_Autoterms {
         update_post_meta($post_id, '_taxopress_log_terms', implode (", ", $terms_to_add));
         update_post_meta($post_id, '_taxopress_log_status', $status);
         update_post_meta($post_id, '_taxopress_log_status_message', $status_message);
+        update_post_meta($post_id, '_taxopress_log_options', $options);
 
     }
 

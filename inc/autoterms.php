@@ -89,7 +89,7 @@ class SimpleTags_Autoterms
     public function autoterms_logs_count(){
 
         $count = taxopress_autoterms_logs_data(1)['counts'];
-        return '<span class="update-plugins count-'. (int)$count .'"><span class="plugin-count">('. (int)$count .')</span></span>';
+        return '<span class="update-plugins count-'. (int)$count .'"><span class="plugin-count">('. number_format_i18n($count) .')</span></span>';
     }
 
     /**
