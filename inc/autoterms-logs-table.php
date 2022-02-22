@@ -356,11 +356,11 @@ class Autoterms_Logs extends WP_List_Table
         $taxopress_log_status_message = get_post_meta($item->ID, '_taxopress_log_status_message', true);
 
         $status_message_text = [
-            'invalid_option' => esc_html__( 'Auto terms settings does not exist.', 'simple-tags' ),
-            'term_only_option' => esc_html__( 'Auto terms settings configured to skip post with terms.', 'simple-tags' ),
+            'invalid_option' => esc_html__( 'Auto Terms settings do not exist.', 'simple-tags' ),
+            'term_only_option' => esc_html__( 'Auto Terms settings are configured to skip posts with terms.', 'simple-tags' ),
             'empty_post_content' => esc_html__( 'Post content is empty.', 'simple-tags' ),
             'terms_added' => esc_html__( 'Terms added successfully', 'simple-tags' ),
-            'empty_terms' => esc_html__( 'No matching terms for auto terms settings options and the post content', 'simple-tags' )
+            'empty_terms' => esc_html__( 'No matching terms for Auto Terms settings and the post content.', 'simple-tags' )
         ];
 
         if(array_key_exists($taxopress_log_status_message, $status_message_text)){
