@@ -75,9 +75,9 @@ class Autoterms_Logs extends WP_List_Table
             'taxonomy'     => esc_html__( 'Taxonomy', 'simple-tags' ),
             'source'     => esc_html__( 'Source', 'simple-tags' ),
             'terms'     => esc_html__( 'Terms added', 'simple-tags' ),
-            'status'     => esc_html__( 'Status', 'simple-tags' ),
             'status_message'     => esc_html__( 'Status message', 'simple-tags' ),
-            'date'     => esc_html__( 'Date', 'simple-tags' )
+            'date'     => esc_html__( 'Date', 'simple-tags' ),
+            'settings'     => esc_html__( 'Settings', 'simple-tags' )
         ];
 
         return $columns;
@@ -315,19 +315,31 @@ class Autoterms_Logs extends WP_List_Table
     }
 
     /**
-     * Method for status column
+     * Method for settings column
      *
      * @param array $item
      *
      * @return string
      */
-    protected function column_status($item)
+    protected function column_settings($item)
     {
-        $taxopress_log_status = get_post_meta($item->ID, '_taxopress_log_status', true);
-        if($taxopress_log_status === 'failed'){
-            return '<font color="red"> '.esc_html(ucwords($taxopress_log_status)).' </font>';
+        $taxopress_log_settings = get_post_meta($item->ID, '_taxopress_log_options', true);
+        if(!empty($taxopress_log_settings) && is_array($taxopress_log_settings)){
+            return sprintf(
+                '<a href="%s">%s</a>',
+                add_query_arg(
+                    [
+                        'page'                   => 'st_autoterms',
+                        'add'                    => 'new_item',
+                        'action'                 => 'edit',
+                        'taxopress_autoterms' => $taxopress_log_settings['ID'],
+                    ],
+                    admin_url('admin.php')
+                ),
+                $taxopress_log_settings['title']
+            );
         }else{
-            return '<font color="green"> '.esc_html(ucwords($taxopress_log_status)).' </font>';
+            return '&mdash;';
         }
     }
 
