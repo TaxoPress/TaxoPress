@@ -753,7 +753,7 @@ class SimpleTags_Autoterms
                                                                 'textvalue' => isset($current['existing_terms_batches']) ? esc_attr($current['existing_terms_batches']) : '20',
                                                                 'labeltext' => esc_html__('Limit per batches',
                                                                     'simple-tags'),
-                                                                'helptext'  => esc_html__('This enable you to run existing content auto terms in batches.', 'simple-tags'),
+                                                                'helptext'  => esc_html__('This enables you to add Auto Terms to existing content in batches. If you have a lot of existing content, set this to a lower number to avoid timeouts.', 'simple-tags'),
                                                                 'min'       => '1',
                                                                 'required'  => true,
                                                             ]);
@@ -763,8 +763,8 @@ class SimpleTags_Autoterms
                                                                 'namearray' => 'taxopress_autoterm',
                                                                 'name'      => 'existing_terms_sleep',
                                                                 'textvalue' => isset($current['existing_terms_sleep']) ? esc_attr($current['existing_terms_sleep']) : '1',
-                                                                'labeltext' => esc_html__('Batches wait time(sec)', 'simple-tags'),
-                                                                'helptext'  => esc_html__('This work with Limit per batches to determine wait time (in seconds) before executing next batches of Auto terms', 'simple-tags'),
+                                                                'labeltext' => esc_html__('Batches wait time', 'simple-tags'),
+                                                                'helptext'  => esc_html__('This is the wait time (in seconds) between processing batches of Auto Terms. If you have a lot of existing content, set this to a higher number to avoid timeouts.', 'simple-tags'),
                                                                 'min'       => '0',
                                                                 'required'  => true,
                                                             ]);
@@ -808,22 +808,21 @@ class SimpleTags_Autoterms
                                                             echo $ui->get_select_number_select([
                                                                 'namearray'  => 'taxopress_autoterm',
                                                                 'name'       => 'limit_days',
-                                                                'labeltext'  => esc_html__('Limit auto terms post based on published date',
+                                                                'labeltext'  => esc_html__('Limit Auto Terms, based on published date',
                                                                     'simple-tags'),
+                                                                    'aftertext'  => esc_html__('This setting allows you to add Auto Terms only to recent content.', 'simple-tags'),
                                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             ]);
                                                         ?>
 
-                                                       <tr valign="top"><th scope="row"><label><?php echo esc_html__('Previous content', 'simple-tags'); ?></label></th>
+                                                       <tr valign="top"><th scope="row"><label><?php echo esc_html__('Existing Content', 'simple-tags'); ?></label></th>
 
                                                        <td>
                                                            <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to all existing content', 'simple-tags')); ?>">
                                                            <span class="spinner taxopress-spinner"></span>
 
                                                            <p class="taxopress-field-description description">
-                                                               <?php echo esc_html__('TaxoPress can add Auto Terms to existing content.', 'simple-tags'); ?>
-
-                                                               <br /> <strong style="color:red;"><?php echo esc_html__('Please save all changes to your Auto Terms before using this feature.', 'simple-tags'); ?></strong>
+                                                               <?php echo esc_html__('Click the button to add Auto Terms to existing content.', 'simple-tags'); ?>
                                                             </p>
 
                                                             <div class="auto-term-content-result-title"></div>
