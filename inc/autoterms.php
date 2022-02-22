@@ -106,19 +106,17 @@ class SimpleTags_Autoterms
             'default' => 20,
             'option'  => 'st_autoterms_logs_per_page'
             ];
+            $this->logs_table = new Autoterms_Logs();
         }else{
             $args   = [
             'label'   => esc_html__('Number of items per page', 'simple-tags'),
             'default' => 20,
             'option'  => 'st_autoterms_per_page'
             ];
+            $this->terms_table = new Autoterms_List();
         }
 
         add_screen_option($option, $args);
-
-        $this->terms_table = new Autoterms_List();
-
-        $this->logs_table = new Autoterms_Logs();
     }
 
     /**
