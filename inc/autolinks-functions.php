@@ -330,3 +330,40 @@ function taxopress_action_delete_autolink($autolink_id)
         exit();
     }
 }
+
+/**
+ * Get auto link for current post
+ *
+ *
+ * @return mixed
+ */
+function taxopress_post_type_autolink_autolink()
+{
+    global $pagenow;
+
+    $allowed_pages = ['post-new.php', 'post.php', 'page.php', 'page-new.php'];
+    if(!in_array($pagenow, $allowed_pages)){
+        return false;
+    }
+
+    $autolinks = taxopress_get_autolink_data();
+
+    if (count($autolinks) > 0) {
+        foreach ($autolinks as $autolink) {
+
+            // Get option
+            $post_types = (isset($autolink['embedded']) && is_array($autolink['embedded']) && count($autolink['embedded']) > 0) ? $autolink['embedded'] : false;
+
+            if (!$post_types) {
+                continue;
+            }
+
+            if (in_array(get_post_type(), $post_types)) {
+                return $autolink;
+            }
+
+        }
+    }
+
+    return false;
+}
