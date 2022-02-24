@@ -26,9 +26,14 @@ class SimpleTags_Admin_Post_Settings {
 	 * @author WebFactory Ltd
 	 */
 	public static function add_meta_boxes( $post_type ) {
-		// Get auto options
-		$auto_options = get_option( STAGS_OPTIONS_NAME_AUTO );
-		$taxonomies = get_object_taxonomies( $post_type );
+
+        $click_terms = taxopress_current_post_suggest_terms();
+        $autolink = taxopress_post_type_autolink_autolink();
+
+        if(!is_array($click_terms) && !is_array($autolink)){
+            return;
+        }
+
 		// Auto terms for this CPT ?
 		add_meta_box( 'simpletags-settings', __( 'TaxoPress', 'simple-tags' ), array(
 			__CLASS__,
@@ -48,9 +53,6 @@ class SimpleTags_Admin_Post_Settings {
 		if ( ! isset( $post->post_type ) ) {
 			return;
 		}
-
-		// Get auto options
-		$auto_options = get_option( STAGS_OPTIONS_NAME_AUTO );
 
 		// Auto terms for this CPT ?
             if(1 === (int) SimpleTags_Plugin::get_option_value( 'active_auto_terms' )){
