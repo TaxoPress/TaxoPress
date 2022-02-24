@@ -61,6 +61,39 @@ class Autoterms_Logs extends WP_List_Table
         echo '</tr>';
     }
 
+	/**
+     * Add custom filter to tablenav
+	 *
+	 * @param string $which
+	 */
+	protected function extra_tablenav( $which ) {
+
+		if ( 'top' === $which ) {
+            $log_actions = [
+                'save_posts' => esc_html__( 'Manual post update', 'simple-tags' ),
+                'existing_content' => esc_html__( 'Existing content', 'simple-tags' ),
+                'daily_cron_schedule' => esc_html__( 'Scheduled daily cron', 'simple-tags' ),
+                'hourly_cron_schedule' => esc_html__( 'Scheduled hourly cron', 'simple-tags' )
+            ];
+            
+            $selected_source = (!empty($_REQUEST['log_source_filter'])) ? sanitize_text_field($_REQUEST['log_source_filter']) : '';
+             ?>
+            <div class="alignleft actions">
+                <select name="log_source_filter_select" id="log_source_filter_select">
+                    <option value=""><?php esc_html_e('Source filter', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $log_actions as $key => $label ) {
+                        echo '<option value="'. esc_attr($key) .'" '.selected($selected_source, $key, false).'>'. esc_html($label) .'</option>';
+                    }
+                    ?>
+                </select>
+                
+                <a href="javascript:void(0)" class="taxopress-logs-tablenav-filter button">Filter</a>
+                    </div>
+        <?php
+		}
+	}
+
     /**
      *  Associative array of columns
      *
@@ -393,7 +426,7 @@ class Autoterms_Logs extends WP_List_Table
      */
     public function search_box($text, $input_id)
     {
-        if (empty($_REQUEST['s']) && !$this->has_items()) {
+        if (!isset($_REQUEST['s']) && !$this->has_items()) {
             return;
         }
 
@@ -411,12 +444,18 @@ class Autoterms_Logs extends WP_List_Table
         if (!empty($_REQUEST['tab'])) {
             echo '<input type="hidden" name="tab" value="' . esc_attr(sanitize_text_field($_REQUEST['tab'])) . '" />';
         }
+        if (!empty($_REQUEST['log_source_filter'])) {
+            echo '<input type="hidden" name="log_source_filter" value="' . esc_attr(sanitize_text_field($_REQUEST['log_source_filter'])) . '" />';
+        }else{
+            echo '<input type="hidden" name="log_source_filter" value="" />';
+        }
+        
         ?>
         <p class="search-box">
             <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
-            <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>
+            <?php submit_button($text, '', '', false, ['id' => 'taxopress-log-search-submit']); ?>
         </p>
         <?php
     }

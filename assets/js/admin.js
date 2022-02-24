@@ -557,6 +557,16 @@
             });
 
 
+
+    // -------------------------------------------------------------
+    //   Log filter
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-logs-tablenav-filter', function (e) {
+      e.preventDefault();
+      $('input[name="log_source_filter"]').val($('#log_source_filter_select :selected').val());
+      $('#taxopress-log-search-submit').trigger('click');
+    });
+
     // -------------------------------------------------------------
     //   Suggest term use Dandelion check
     // -------------------------------------------------------------
