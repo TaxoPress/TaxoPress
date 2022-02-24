@@ -395,6 +395,16 @@ function taxopress_autoterms_logs_data($per_page = 20, $current_page = 1, $order
         'key' => '_taxopress_log_component',
         'value' => 'st_autoterms',
     );
+
+    /**
+     * Handle source filter
+     */
+    if ((!empty($_REQUEST['log_source_filter'])) && $source = sanitize_text_field($_REQUEST['log_source_filter'])) {
+        $meta_query[] = array(
+            'key' => '_taxopress_log_action',
+            'value' => $source,
+        );
+    }
     $logs_arg = array(
         'post_type' => 'taxopress_logs',
         'post_status' => 'publish',
