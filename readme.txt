@@ -225,7 +225,7 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
-v3.5.0- [pending release]
+v3.5.0- 2022-02-28
 * Added: Add a Log for Auto Terms #1243
 * Fixed: Safeguards auto terms for large sites #1249
 * Fixed: Bug with on Suggested Terms #1250
@@ -237,7 +237,7 @@ v3.5.0- [pending release]
 * Fixed: Tabbed Design for Terms for Current Post screen #1167
 * Fixed: Tabbed design for Related Posts screen #1166
 
-v3.4.5- 2021-02-07
+v3.4.5- 2022-02-07
 * Fixed: Can't delete terms in "Manage Terms" #1194
 * Fixed: Correct spelling - Terms for Current Post #1134
 * Fixed: Enable “Show content from all post types on archive page” by default #1138
@@ -257,7 +257,7 @@ v3.4.5- 2021-02-07
 * Fixed: Show "Edit this metabox" only to users with "admin simple tags" #1214
 * Fixed: Automatic terms suggestions not working with categories #1207
 
-v3.4.4- 2021-01-05
+v3.4.4- 2022-01-05
 * Fixed: Add capability check for saving all screen form data
 * Fixed: Santize all form entries
 * Fixed: Add and validate all form nonce
