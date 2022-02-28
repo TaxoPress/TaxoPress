@@ -114,6 +114,12 @@ function taxopress_process_autoterm()
             taxopress_action_delete_autoterm(sanitize_text_field($_REQUEST['taxopress_autoterms']));
         }
         add_filter('removable_query_args', 'taxopress_delete_autoterm_filter_removable_query_args');
+    } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-autoterm-log') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
+            wp_delete_post((int)($_REQUEST['taxopress_autoterms_log']), true);
+        }
+        add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
     }
 }
 
@@ -333,6 +339,23 @@ function taxopress_delete_autoterm_filter_removable_query_args(array $args)
 }
 
 /**
+ * Filters the list of query arguments which get removed from admin area URLs in WordPress.
+ *
+ * @link https://core.trac.wordpress.org/ticket/23367
+ *
+ * @param string[] $args Array of removable query arguments.
+ * @return string[] Updated array of removable query arguments.
+ */
+function taxopress_delete_autoterm_log_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'action',
+        'taxopress_autoterms_log',
+        '_wpnonce',
+    ]);
+}
+
+/**
  * Delete our custom autoterm from the array of autoterms.
  * @return bool|string False on failure, string on success.
  */
@@ -358,5 +381,49 @@ function taxopress_action_delete_autoterm($autoterm_id)
         );
         exit();
     }
+}
+
+/**
+ * Get auto terms logs data
+ * 
+ */
+function taxopress_autoterms_logs_data($per_page = 20, $current_page = 1, $orderby = 'ID', $order = 'desc')
+{
+
+    $meta_query[] = array('relation' => 'AND');
+    $meta_query[] = array(
+        'key' => '_taxopress_log_component',
+        'value' => 'st_autoterms',
+    );
+
+    /**
+     * Handle source filter
+     */
+    if ((!empty($_REQUEST['log_source_filter'])) && $source = sanitize_text_field($_REQUEST['log_source_filter'])) {
+        $meta_query[] = array(
+            'key' => '_taxopress_log_action',
+            'value' => $source,
+        );
+    }
+    $logs_arg = array(
+        'post_type' => 'taxopress_logs',
+        'post_status' => 'publish',
+        'paged' => $current_page,
+        'posts_per_page' => $per_page,
+        'meta_query' => $meta_query,
+        'orderby'   => $orderby,
+        'order' => $order,
+    );
+
+    /**
+     * Handle search
+     */
+    if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
+        $logs_arg['s'] = $search;
+    }
+
+    $logs = new WP_Query($logs_arg);
+    
+    return ['posts'=> $logs->posts, 'counts'=> $logs->found_posts];
 }
 ?>

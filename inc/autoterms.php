@@ -11,6 +11,9 @@ class SimpleTags_Autoterms
     // WP_List_Table object
     public $terms_table;
 
+    // WP_List_Table object
+    public $logs_table;
+
     /**
      * Constructor
      *
@@ -83,6 +86,12 @@ class SimpleTags_Autoterms
         }
     }
 
+    public function autoterms_logs_count(){
+
+        $count = taxopress_autoterms_logs_data(1)['counts'];
+        return '<span class="update-plugins count-'. (int)$count .'"><span class="plugin-count">('. number_format_i18n($count) .')</span></span>';
+    }
+
     /**
      * Screen options
      */
@@ -90,15 +99,24 @@ class SimpleTags_Autoterms
     {
 
         $option = 'per_page';
-        $args   = [
+
+        if (isset($_GET['tab']) && $_GET['tab'] === 'logs') {
+            $args   = [
+            'label'   => esc_html__('Number of items per page', 'simple-tags'),
+            'default' => 20,
+            'option'  => 'st_autoterms_logs_per_page'
+            ];
+            $this->logs_table = new Autoterms_Logs();
+        }else{
+            $args   = [
             'label'   => esc_html__('Number of items per page', 'simple-tags'),
             'default' => 20,
             'option'  => 'st_autoterms_per_page'
-        ];
+            ];
+            $this->terms_table = new Autoterms_List();
+        }
 
         add_screen_option($option, $args);
-
-        $this->terms_table = new Autoterms_List();
     }
 
     /**
@@ -116,15 +134,73 @@ class SimpleTags_Autoterms
 
         settings_errors(__CLASS__);
 
-        if (!isset($_GET['add'])) {
+        if (isset($_GET['tab']) && $_GET['tab'] === 'logs') {
+            //autoterms logs
+            ?>
+            <div class="wrap st_wrap st-manage-taxonomies-page">
+
+            <div id="">
+                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms Logs', 'simple-tags'); ?></h1>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms')); ?>"
+                   class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
+
+                <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
+                   class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
+
+                <div class="taxopress-description">
+                    <?php esc_html_e('Auto Terms logs history.', 'simple-tags'); ?>
+                </div>
+
+
+                <?php
+                if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
+                    /* translators: %s: search keywords */
+                    printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;',
+                            'simple-tags') . '</span>', esc_html($search));
+                }
+                ?>
+                <?php
+
+                //the terms table instance
+                $this->logs_table->prepare_items();
+                ?>
+
+
+                <hr class="wp-header-end">
+                <div id="ajax-response"></div>
+                <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
+                    <?php $this->logs_table->search_box(esc_html__('Search Auto Terms Logs', 'simple-tags'), 'term'); ?>
+                </form>
+                <div class="clear"></div>
+
+                <div id="col-container" class="wp-clearfix">
+
+                    <div class="col-wrap">
+                        <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
+                            <?php $this->logs_table->display(); //Display the table ?>
+                        </form>
+                        <div class="form-wrap edit-term-notes">
+                            <p><?php esc_html__('Description here.', 'simple-tags') ?></p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        <?php }elseif (!isset($_GET['add'])) {
             //all tax
             ?>
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></h1>
+                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
-                   class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
+                   class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
+
+                <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
+                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo $this->autoterms_logs_count(); ?></a>
 
                 <div class="taxopress-description">
                     <?php esc_html_e('Auto Terms can scan your content and automatically assign new and existing terms.', 'simple-tags'); ?>
@@ -228,7 +304,16 @@ class SimpleTags_Autoterms
 
 
         <div class="wrap <?php echo esc_attr($tab_class); ?>">
-            <h1><?php echo esc_html__('Manage Auto Terms', 'simple-tags'); ?></h1>
+            <h1><?php echo esc_html__('Manage Auto Terms', 'simple-tags'); ?>
+
+            <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms')); ?>"
+                   class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
+
+                <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
+                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo $this->autoterms_logs_count(); ?></a>
+
+                   </h1>
+
             <div class="wp-clearfix"></div>
 
             <form method="post" action="">
@@ -737,15 +822,84 @@ class SimpleTags_Autoterms
                                                 <table class="form-table taxopress-table autoterm_oldcontent"
                                                        style="<?php echo $active_tab === 'autoterm_oldcontent' ? '' : 'display:none;'; ?>">
 
-                                                       <tr valign="top"><th scope="row"><label><?php echo esc_html__('Previous content', 'simple-tags'); ?></label></th>
+                                                       <?php
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_number_input([
+                                                                'namearray' => 'taxopress_autoterm',
+                                                                'name'      => 'existing_terms_batches',
+                                                                'textvalue' => isset($current['existing_terms_batches']) ? esc_attr($current['existing_terms_batches']) : '20',
+                                                                'labeltext' => esc_html__('Limit per batches',
+                                                                    'simple-tags'),
+                                                                'helptext'  => esc_html__('This enables you to add Auto Terms to existing content in batches. If you have a lot of existing content, set this to a lower number to avoid timeouts.', 'simple-tags'),
+                                                                'min'       => '1',
+                                                                'required'  => true,
+                                                            ]);
+
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_number_input([
+                                                                'namearray' => 'taxopress_autoterm',
+                                                                'name'      => 'existing_terms_sleep',
+                                                                'textvalue' => isset($current['existing_terms_sleep']) ? esc_attr($current['existing_terms_sleep']) : '1',
+                                                                'labeltext' => esc_html__('Batches wait time', 'simple-tags'),
+                                                                'helptext'  => esc_html__('This is the wait time (in seconds) between processing batches of Auto Terms. If you have a lot of existing content, set this to a higher number to avoid timeouts.', 'simple-tags'),
+                                                                'min'       => '0',
+                                                                'required'  => true,
+                                                            ]);
+
+                                                            $select             = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr' => '1',
+                                                                        'text' => esc_attr__('24 hours ago', 'simple-tags')
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '7',
+                                                                        'text' => esc_attr__('7 days ago', 'simple-tags')
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '14',
+                                                                        'text' => esc_attr__('2 weeks ago', 'simple-tags')
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '30',
+                                                                        'text' => esc_attr__('1 month ago', 'simple-tags')
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '180',
+                                                                        'text' => esc_attr__('6 months ago', 'simple-tags')
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '365',
+                                                                        'text' => esc_attr__('1 year ago', 'simple-tags')
+                                                                    ],
+                                                                    [
+                                                                        'attr'    => '0',
+                                                                        'text'    => esc_attr__('No limit', 'simple-tags'),
+                                                                        'default' => 'true'
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected           = (isset($current) && isset($current['limit_days'])) ? taxopress_disp_boolean($current['limit_days']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['limit_days'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_number_select([
+                                                                'namearray'  => 'taxopress_autoterm',
+                                                                'name'       => 'limit_days',
+                                                                'labeltext'  => esc_html__('Limit Auto Terms, based on published date',
+                                                                    'simple-tags'),
+                                                                    'aftertext'  => esc_html__('This setting allows you to add Auto Terms only to recent content.', 'simple-tags'),
+                                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ]);
+                                                        ?>
+
+                                                       <tr valign="top"><th scope="row"><label><?php echo esc_html__('Existing Content', 'simple-tags'); ?></label></th>
+
                                                        <td>
                                                            <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to all existing content', 'simple-tags')); ?>">
                                                            <span class="spinner taxopress-spinner"></span>
 
                                                            <p class="taxopress-field-description description">
-                                                               <?php echo esc_html__('TaxoPress can add Auto Terms to existing content.', 'simple-tags'); ?>
-
-                                                               <br /> <strong style="color:red;"><?php echo esc_html__('Please save all changes to your Auto Terms before using this feature.', 'simple-tags'); ?></strong>
+                                                               <?php echo esc_html__('Click the button to add Auto Terms to existing content.', 'simple-tags'); ?>
                                                             </p>
 
                                                             <div class="auto-term-content-result-title"></div>

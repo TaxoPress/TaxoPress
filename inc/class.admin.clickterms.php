@@ -102,7 +102,7 @@ class SimpleTags_Admin_ClickTags {
         $click_tags_limit= '
         <div class="option">
         <label for="click_tags_limit">'.__( 'Maximum terms', 'simple-tags' ).'</label><br />
-        <input min="1" max="1000000000" type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="'.$click_terms['number'].'">
+        <input type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="'.$click_terms['number'].'">
         </div>';
 
         //add searchbox
@@ -114,7 +114,7 @@ class SimpleTags_Admin_ClickTags {
 
         //create tags search data
         $click_tags_options= '<div class="clicktags-search-wrapper">'. $click_tags_search.' '.$click_tags_taxonomy.' '.$click_tags_method.' '.$click_tags_order.' '.$click_tags_limit.'</div>';
-   
+
 		//metabox edit line
 		if(current_user_can('admin_simple_tags')){
 			$click_term_edit = '<span class="edit-suggest-term-metabox">
@@ -252,11 +252,15 @@ class SimpleTags_Admin_ClickTags {
 				$order    = 'ASC';
 				break;
 		}
-        
+
         $term_limit =  isset($_GET['click_tags_limit']) ? (int)$_GET['click_tags_limit'] : 100;
 
-        $limit = 'LIMIT 0, '.$term_limit;
-		
+        if ($term_limit > 0) {
+            $limit = 'LIMIT 0, '.$term_limit;
+        }else{
+            $limit = '';
+        }
+
         // Get all terms, or filter with search
 		$terms = SimpleTags_Admin::getTermsForAjax( $taxonomy, $search, $order_by, $order,  $limit );
 		if ( empty( $terms ) ) {

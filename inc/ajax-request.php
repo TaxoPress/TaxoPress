@@ -38,17 +38,33 @@ function taxopress_autoterms_content_by_ajax()
             wp_send_json($response);
         }
 
+        $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 20;
+
+        $sleep = (isset($autoterm_data['existing_terms_sleep']) && (int)$autoterm_data['existing_terms_sleep'] > 0) ? (int)$autoterm_data['existing_terms_sleep'] : 0;
+        
+        if($sleep > 0 && $start_from > 0){
+            sleep($sleep);
+        }
+
+        $limit_days     = (int) $autoterm_data['limit_days'];
+		$limit_days_sql = '';
+		if ( $limit_days > 0 ) {
+			$limit_days_sql = 'AND post_date > "' . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . '"';
+		}
+
         $post_types = $autoterm_data['post_types'];
         $post_status = isset($autoterm_data['post_status']) && is_array($autoterm_data['post_status']) ? $autoterm_data['post_status'] : ['publish'];
 
-        $total = isset($_POST['total']) ? (int)$_POST['total'] : $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type IN ('%s') AND post_status IN ('%s')", implode( "', '", $post_types ), implode( "', '", $post_status ) ));
+        $total = isset($_POST['total']) ? (int)$_POST['total'] : $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status IN ('" . implode( "', '", $post_status ) . "') {$limit_days_sql}" );
+        
         $response['total'] = $total;
-        $objects = (array) $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type IN ('%s') AND post_status IN ('%s') ORDER BY ID DESC LIMIT %d, 20", implode( "', '", $post_types ), implode( "', '", $post_status), $start_from ));
+
+        $objects = (array) $wpdb->get_results("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type IN ('" . implode( "', '", $post_types ) . "') AND post_status IN ('" . implode( "', '", $post_status ) . "') {$limit_days_sql} ORDER BY ID DESC LIMIT {$start_from}, {$limit}");
 
         $response_content = '';
         if (!empty($objects)) {
             foreach ($objects as $object) {
-                SimpleTags_Client_Autoterms::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, true );
+                SimpleTags_Client_Autoterms::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, true, 'existing_content', 'st_autoterms' );
                 $response_content .= '<li>#' . $object->ID . ' ' . $object->post_title . '</li>';
                 unset($object);
             }

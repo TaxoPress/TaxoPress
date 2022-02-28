@@ -480,7 +480,7 @@ ul.taxopress-tab li.autoterm_terms_tab a::before {
     content: "\f323";
 }
 ul.taxopress-tab li.autoterm_options_tab a::before {
-    content: "\f111";
+    content: "\f180";
 }
 ul.taxopress-tab li.autoterm_oldcontent_tab a::before {
     content: "\f186";
@@ -494,6 +494,9 @@ ul.taxopress-tab li.suggestterm_external_tab a::before {
 ul.taxopress-tab li.autoterm_schedule_tab a::before {
     content: "\f469";
 }
+ul.taxopress-tab li.autoterm_logs_tab a::before {
+    content: "\f321";
+}
 
 
 ul.taxopress-tab li.tagcloud_terms_tab a::before {
@@ -504,6 +507,28 @@ ul.taxopress-tab li.tagcloud_design_tab a::before {
 }
 ul.taxopress-tab li.tagcloud_advanced_tab a::before {
     content: "\f111";
+}
+
+
+ul.taxopress-tab li.relatedpost_advanced_tab a::before {
+    content: "\f111";
+}
+ul.taxopress-tab li.relatedpost_option_tab a::before {
+    content: "\f180";
+}
+ul.taxopress-tab li.relatedpost_display_tab a::before {
+    content: "\f186";
+}
+
+
+ul.taxopress-tab li.posttags_advanced_tab a::before {
+    content: "\f111";
+}
+ul.taxopress-tab li.posttags_options_tab a::before {
+    content: "\f180";
+}
+ul.taxopress-tab li.posttags_display_tab a::before {
+    content: "\f186";
 }
 
 .st-html-exclusion-table th {
@@ -693,6 +718,89 @@ body.block-editor-page .clicktags-search-wrapper .option input {
         margin-left: 0;
     }
 }
+
+.taxopress-log-table table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+.taxopress-log-table table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+.taxopress-log-table table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+.taxopress-log-table table th,
+.taxopress-log-table table td {
+    padding: .625em;
+    text-align: center;
+    padding: 8px 10px !important;
+  }
+  
+.taxopress-log-table table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  /* Responsive table
+  @media screen and (max-width: 600px) {
+*/
+  .taxopress-log-table table {
+      border: 0;
+    }
+  
+  .taxopress-log-table table caption {
+      font-size: 1.3em;
+    }
+    
+  .taxopress-log-table table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+  .taxopress-log-table table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+  .taxopress-log-table table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+  .taxopress-log-table table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+  .taxopress-log-table table td:last-child {
+      border-bottom: 0;
+    }
+  /* end responsive table } */
 
 @media screen and (max-width: 1367px) {
     

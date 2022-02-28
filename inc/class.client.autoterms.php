@@ -61,7 +61,7 @@ class SimpleTags_Client_Autoterms {
                 continue;
             }
 
-            self::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data );
+            self::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, false, 'save_posts', 'st_autoterms' );
 			$flag = true;
         }
 
@@ -83,23 +83,28 @@ class SimpleTags_Client_Autoterms {
 	 * @return boolean
 	 * @author WebFactory Ltd
 	 */
-	public static function auto_terms_post( $object, $taxonomy = 'post_tag', $options = array(), $counter = false ) {
+	public static function auto_terms_post( $object, $taxonomy = 'post_tag', $options = array(), $counter = false, $action = 'save_posts', $component = 'st_autoterms' ) {
 		global $wpdb;
 
+		$terms_to_add = array();
+        
 		// Option exists ?
 		if ( $options == false || empty( $options ) ) {
+            //update log
+            self::update_taxopress_logs( $object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'invalid_option');
 			return false;
 		}
 
 		if ( get_the_terms( $object->ID, $taxonomy ) != false && (int)$options['autoterm_target'] === 1 ) {
+            //update log
+            self::update_taxopress_logs( $object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'term_only_option');
 			return false; // Skip post with terms, if term only empty post option is checked
 		}
 
 		$autoterm_exclude =  isset($options['autoterm_exclude']) ? taxopress_change_to_array($options['autoterm_exclude']) : [];
 
-		$terms_to_add = array();
 
-        
+
         if( isset($options['autoterm_from']) && $options['autoterm_from'] === 'post_title' ){
             $content = $object->post_title;
         }elseif( isset($options['autoterm_from']) && $options['autoterm_from'] === 'post_content' ){
@@ -114,6 +119,8 @@ class SimpleTags_Client_Autoterms {
 
 		$content = trim( strip_tags( $content ) );
 		if ( empty( $content ) ) {
+            //update log
+            self::update_taxopress_logs( $object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_post_content');
 			return false;
 		}
 
@@ -152,17 +159,17 @@ class SimpleTags_Client_Autoterms {
 						if ( ! is_string( $term ) ) {
 							continue;
 						}
-		
+
 						$term = trim( $term );
 						if ( empty( $term ) ) {
 							continue;
 						}
-						
+
 						//check if term belong to the post already
 						if(has_term( $term, $taxonomy, $object )){
 							continue;
 						}
-		
+
 						//exclude if name found in exclude terms
 						if(in_array($term, $autoterm_exclude)){
 							continue;
@@ -174,7 +181,7 @@ class SimpleTags_Client_Autoterms {
 							{
 								$terms_to_add[] = $term;
 							}
-		
+
 							//make exception for hashtag special character
 							if (substr($term, 0, strlen('#')) === '#') {
 								$trim_term = ltrim($term, '#');
@@ -182,7 +189,7 @@ class SimpleTags_Client_Autoterms {
 									$terms_to_add[] = $term;
 								}
 							}
-		
+
 							if ( isset( $options['autoterm_hash'] ) && (int) $options['autoterm_hash'] == 1 && stristr( $content, '#' . $term ) ) {
 								$terms_to_add[] = $term;
 							}
@@ -224,24 +231,24 @@ class SimpleTags_Client_Autoterms {
 					// Remove empty terms
 					$data = array_filter( $data, '_delete_empty_element' );
 					$data = array_unique( $data );
-			
+
 					foreach ( (array) $data as $term ) {
 						$term = stripslashes( $term );
 
 						if ( ! is_string( $term ) ) {
 							continue;
 						}
-		
+
 						$term = trim( $term );
 						if ( empty( $term ) ) {
 							continue;
 						}
-						
+
 						//check if term belong to the post already
 						if(has_term( $term, $taxonomy, $object )){
 							continue;
 						}
-		
+
 						//exclude if name found in exclude terms
 						if(in_array($term, $autoterm_exclude)){
 							continue;
@@ -253,7 +260,7 @@ class SimpleTags_Client_Autoterms {
 							{
 								$terms_to_add[] = $term;
 							}
-		
+
 							//make exception for hashtag special character
 							if (substr($term, 0, strlen('#')) === '#') {
 								$trim_term = ltrim($term, '#');
@@ -261,7 +268,7 @@ class SimpleTags_Client_Autoterms {
 									$terms_to_add[] = $term;
 								}
 							}
-		
+
 							if ( isset( $options['autoterm_hash'] ) && (int) $options['autoterm_hash'] == 1 && stristr( $content, '#' . $term ) ) {
 								$terms_to_add[] = $term;
 							}
@@ -344,7 +351,7 @@ class SimpleTags_Client_Autoterms {
 				if ( empty( $term ) ) {
 					continue;
 				}
-				
+
 				//check if term belong to the post already
 				if(has_term( $term, $taxonomy, $object )){
 					continue;
@@ -403,10 +410,60 @@ class SimpleTags_Client_Autoterms {
 			// Clean cache
 			clean_post_cache( $object->ID );
 
+            //update log
+            self::update_taxopress_logs( $object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'success', 'terms_added');
+
 			return true;
-		}
+		}else{
+            //update log
+            self::update_taxopress_logs( $object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms');
+        }
 
 		return false;
 	}
+
+	/**
+	 * Update taxopress logs
+	 *
+     * Known possible values
+     * 
+     * COMPONENT: (st_autoterms)
+     * ACTION: (existing_content, save_posts, daily_cron_schedule, hourly_cron_schedule)
+     * STATUS: (failed, success)
+     * STATUS MESSAGE: (invalid_option, term_only_option, empty_post_content, terms_added, empty_terms)
+     * 
+	 * @param object $object
+	 * @param string $taxonomy
+	 * @param array $options
+	 * @param boolean $counter
+	 * @param string $action
+	 * @param string $component
+	 * @param array $terms_to_add
+	 * @param string $status
+	 * @param string $status_message
+	 *
+	 * @return boolean
+	 * @author olatechpro
+	 */
+	public static function update_taxopress_logs( $object, $taxonomy = 'post_tag', $options = array(), $counter = false, $action = 'save_posts', $component = 'st_autoterms', $terms_to_add = [], $status = 'failed', $status_message = 'not_provided' ) {
+
+        $insert_post_args = array(
+            'post_author' => get_current_user_id(),
+            'post_title' => $object->post_title,
+            'post_content' => $object->post_content,
+            'post_status' => 'publish',
+            'post_type' => 'taxopress_logs',
+        );
+        $post_id = wp_insert_post($insert_post_args);
+        update_post_meta($post_id, '_taxopress_log_post_id', $object->ID);
+        update_post_meta($post_id, '_taxopress_log_taxonomy', $taxonomy);
+        update_post_meta($post_id, '_taxopress_log_action', $action);
+        update_post_meta($post_id, '_taxopress_log_component', $component);
+        update_post_meta($post_id, '_taxopress_log_terms', implode (", ", $terms_to_add));
+        update_post_meta($post_id, '_taxopress_log_status', $status);
+        update_post_meta($post_id, '_taxopress_log_status_message', $status_message);
+        update_post_meta($post_id, '_taxopress_log_options', $options);
+
+    }
 
 }
