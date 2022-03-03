@@ -120,6 +120,23 @@ function taxopress_process_autoterm()
             wp_delete_post((int)($_REQUEST['taxopress_autoterms_log']), true);
         }
         add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
+    } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-autoterm-logs') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
+            global $wpdb;
+            $result = $wpdb->query( 
+                $wpdb->prepare("
+                    DELETE posts, pt, pm
+                    FROM {$wpdb->prefix}posts posts
+                    LEFT JOIN {$wpdb->prefix}term_relationships pt ON pt.object_id = posts.ID
+                    LEFT JOIN {$wpdb->prefix}postmeta pm ON pm.post_id = posts.ID
+                    WHERE posts.post_type = %s
+                    ", 
+                    'taxopress_logs'
+                )
+            );
+        }
+        add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
     }
 }
 

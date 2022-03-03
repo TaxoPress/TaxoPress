@@ -75,6 +75,15 @@ class Autoterms_Logs extends WP_List_Table
                 'daily_cron_schedule' => esc_html__( 'Scheduled daily cron', 'simple-tags' ),
                 'hourly_cron_schedule' => esc_html__( 'Scheduled hourly cron', 'simple-tags' )
             ];
+            $delete_all_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-delete-autoterm-logs',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
+
             
             $selected_source = (!empty($_REQUEST['log_source_filter'])) ? sanitize_text_field($_REQUEST['log_source_filter']) : '';
              ?>
@@ -88,8 +97,10 @@ class Autoterms_Logs extends WP_List_Table
                     ?>
                 </select>
                 
-                <a href="javascript:void(0)" class="taxopress-logs-tablenav-filter button">Filter</a>
-                    </div>
+                <a href="javascript:void(0)" class="taxopress-logs-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
+
+                <a href="<?php echo esc_url($delete_all_link); ?>" class="taxopress-logs-tablenav-purge-logs button"  onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete all logs?', 'simple-tags'); ?>')"><?php esc_html_e('Delete All Logs', 'simple-tags'); ?></a>
+            </div>
         <?php
 		}
 	}

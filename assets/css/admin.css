@@ -662,6 +662,10 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     line-height: 1.4;
 }
 
+.taxopress-logs-tablenav-purge-logs {
+    color: red !important;
+}
+
 @media only screen and (min-width: 1075px) {
     .taxopress-advertisement-right-sidebar-message,
     .upgrade-btn {
