@@ -87,7 +87,12 @@ class SimpleTags_Client_Autoterms {
 		global $wpdb;
 
 		$terms_to_add = array();
-        
+
+        $exclude_autotags = get_post_meta( $object->ID, '_exclude_autotags', true );
+		if ( $exclude_autotags ) {
+			return false;
+		}
+
 		// Option exists ?
 		if ( $options == false || empty( $options ) ) {
             //update log
