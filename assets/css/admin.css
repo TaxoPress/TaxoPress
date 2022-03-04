@@ -666,6 +666,33 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     color: red !important;
 }
 
+.autoterms-log-table-filter select {
+    float: none !important;
+}
+
+.autoterms-log-table-filter {
+    margin-bottom: 5px;
+}
+
+.autoterms-log-table-filter label,
+.autoterms-log-table-limit-settings label,
+.taxopress-props-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.taxopress-props-label {
+    visibility: hidden;
+}
+
+#taxopress_auto_terms_logs_limit {
+    max-width: 155px;
+}
+
+.autoterms-log-table-limit-settings {
+    margin-left: 8px; 
+}
+
 @media only screen and (min-width: 1075px) {
     .taxopress-advertisement-right-sidebar-message,
     .upgrade-btn {
