@@ -62,6 +62,61 @@ class Autoterms_Logs extends WP_List_Table
     }
 
 	/**
+     * Add custom pagination side item
+	 *
+	 * @param string $which
+	 */
+	protected function pagination( $which ) {
+
+		parent::pagination($which);
+
+        if ('top' === $which) {
+            $delete_all_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-delete-autoterm-logs',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
+
+            $enable_log_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-enable-autoterm-logs',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
+
+            $disable_log_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-disable-autoterm-logs',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
+           ?>
+            <div class="alignright actions autoterms-log-table-settings">
+
+                <label class="taxopress-props-label">&nbsp;</label>
+
+                <?php if(get_option('taxopress_autoterms_logs_disabled')){ ?>
+                    <a href="<?php echo esc_url($enable_log_link); ?>" class="taxopress-logs-tablenav-enable-logs button"><?php esc_html_e('Enable Logs', 'simple-tags'); ?></a>
+                <?php } else { ?>
+                    <a href="<?php echo esc_url($disable_log_link); ?>" class="taxopress-logs-tablenav-disable-logs button" onclick="return confirm('<?php esc_attr_e('Are you sure you want to disable logs?', 'simple-tags'); ?>')"><?php esc_html_e('Disable Logs', 'simple-tags'); ?></a>
+                <?php } ?>
+
+                <a href="<?php echo esc_url($delete_all_link); ?>" class="taxopress-logs-tablenav-purge-logs button"  onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete all logs?', 'simple-tags'); ?>')"><?php esc_html_e('Delete All Logs', 'simple-tags'); ?></a>
+
+            </div>
+            <?php
+        }
+
+    }
+
+	/**
      * Add custom filter to tablenav
 	 *
 	 * @param string $which
@@ -75,10 +130,11 @@ class Autoterms_Logs extends WP_List_Table
                 'daily_cron_schedule' => esc_html__( 'Scheduled daily cron', 'simple-tags' ),
                 'hourly_cron_schedule' => esc_html__( 'Scheduled hourly cron', 'simple-tags' )
             ];
-            $delete_all_link = add_query_arg([
+
+            $log_limit_link = add_query_arg([
                 'page'                   => 'st_autoterms',
                 'tab'                    => 'logs',
-                'action'                 => 'taxopress-delete-autoterm-logs',
+                'action'                 => 'taxopress-update-autoterm-limit',
                 '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
                 ],
                 admin_url('admin.php')
@@ -87,7 +143,9 @@ class Autoterms_Logs extends WP_List_Table
             
             $selected_source = (!empty($_REQUEST['log_source_filter'])) ? sanitize_text_field($_REQUEST['log_source_filter']) : '';
              ?>
-            <div class="alignleft actions">
+            <div class="alignleft actions autoterms-log-table-filter">
+
+            <label class="taxopress-props-label">&nbsp;</label>
                 <select name="log_source_filter_select" id="log_source_filter_select">
                     <option value=""><?php esc_html_e('Source filter', 'simple-tags'); ?></option>
                     <?php
@@ -98,8 +156,13 @@ class Autoterms_Logs extends WP_List_Table
                 </select>
                 
                 <a href="javascript:void(0)" class="taxopress-logs-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
+                
+            </div>
 
-                <a href="<?php echo esc_url($delete_all_link); ?>" class="taxopress-logs-tablenav-purge-logs button"  onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete all logs?', 'simple-tags'); ?>')"><?php esc_html_e('Delete All Logs', 'simple-tags'); ?></a>
+            <div class="alignleft actions autoterms-log-table-limit-settings">
+                <label for="taxopress_auto_terms_logs_limit"><?php esc_html_e( 'Limit the number of logs', 'simple-tags' ); ?></label>
+                <input data-link="<?php echo esc_attr($log_limit_link); ?>" type="number" step="1" min="1" name="taxopress_auto_terms_logs_limit" id="taxopress_auto_terms_logs_limit" value="<?php echo (int)get_option('taxopress_auto_terms_logs_limit', 1000); ?>" />
+                <a href="javascript:void(0)" class="taxopress-logs-limit-update button"><?php esc_html_e('Update', 'simple-tags'); ?></a>
             </div>
         <?php
 		}

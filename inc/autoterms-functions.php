@@ -112,12 +112,14 @@ function taxopress_process_autoterm()
         $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
             taxopress_action_delete_autoterm(sanitize_text_field($_REQUEST['taxopress_autoterms']));
+            add_action('admin_notices', "taxopress_autoterms_delete_autoterm_admin_notice");
         }
         add_filter('removable_query_args', 'taxopress_delete_autoterm_filter_removable_query_args');
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-autoterm-log') {
         $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
             wp_delete_post((int)($_REQUEST['taxopress_autoterms_log']), true);
+            add_action('admin_notices', "taxopress_autoterms_delete_autoterm_log_admin_notice");
         }
         add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-autoterm-logs') {
@@ -135,6 +137,33 @@ function taxopress_process_autoterm()
                     'taxopress_logs'
                 )
             );
+            add_action('admin_notices', "taxopress_autoterms_delete_autoterm_logs_admin_notice");
+        }
+        add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
+    } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-enable-autoterm-logs') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
+            delete_option('taxopress_autoterms_logs_disabled');
+            add_action('admin_notices', "taxopress_autoterms_enable_log_admin_notice");
+        }
+        add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
+    } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-disable-autoterm-logs') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
+            update_option('taxopress_autoterms_logs_disabled', 1);
+            add_action('admin_notices', "taxopress_autoterms_disable_log_admin_notice");
+        }
+        add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
+    } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-update-autoterm-limit') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
+            $limit = (int)$_REQUEST['limit'];
+            if($limit > 0){
+                update_option('taxopress_auto_terms_logs_limit', $limit);
+                add_action('admin_notices', "taxopress_autoterms_limit_updated_admin_notice");
+            }else{
+                add_action('admin_notices', "taxopress_autoterms_limit_invalid_admin_notice");
+            }
         }
         add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
     }
@@ -306,6 +335,48 @@ function taxopress_autoterms_delete_success_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Auto terms successfully deleted.', 'simple-tags'), false);
+}
+
+function taxopress_autoterms_enable_log_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto terms logs enabled successfully.', 'simple-tags'));
+}
+
+function taxopress_autoterms_disable_log_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto terms logs disabled successfully. No entry will be made for Auto terms logs till it\'s enabled again.', 'simple-tags'));
+}
+
+function taxopress_autoterms_delete_autoterm_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto term deleted successfully.', 'simple-tags'));
+}
+
+function taxopress_autoterms_delete_autoterm_log_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto terms log deleted successfully.', 'simple-tags'));
+}
+
+function taxopress_autoterms_delete_autoterm_logs_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto terms logs deleted successfully.', 'simple-tags'));
+}
+
+function taxopress_autoterms_limit_updated_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto terms limit updated successfully.', 'simple-tags'));
+}
+
+function taxopress_autoterms_limit_invalid_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto terms limit must be greater than 0.', 'simple-tags'), false);
 }
 
 /**

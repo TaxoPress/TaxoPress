@@ -452,6 +452,10 @@ class SimpleTags_Client_Autoterms {
 	 */
 	public static function update_taxopress_logs( $object, $taxonomy = 'post_tag', $options = array(), $counter = false, $action = 'save_posts', $component = 'st_autoterms', $terms_to_add = [], $status = 'failed', $status_message = 'not_provided' ) {
 
+        if (get_option('taxopress_autoterms_logs_disabled')) {
+            return;
+        }
+
         $insert_post_args = array(
             'post_author' => get_current_user_id(),
             'post_title' => $object->post_title,
@@ -468,6 +472,27 @@ class SimpleTags_Client_Autoterms {
         update_post_meta($post_id, '_taxopress_log_status', $status);
         update_post_meta($post_id, '_taxopress_log_status_message', $status_message);
         update_post_meta($post_id, '_taxopress_log_options', $options);
+        update_post_meta($post_id, '_taxopress_log_option_id', $options['ID']);
+
+        //for performance reason, delete only 1 posts if more than limit instead of querying all posts
+        $auto_terms_logs_limit = (int)get_option('taxopress_auto_terms_logs_limit', 1000);
+        $current_logs_count = wp_count_posts('taxopress_logs')->publish;
+
+        if((int)$current_logs_count > $auto_terms_logs_limit){
+            $posts = get_posts(array(
+                'post_type' => 'taxopress_logs',
+                'post_status' => 'publish',
+                'posts_per_page' => 1,
+                'orderby'   => 'ID',
+                'order' => 'ASC',
+                'fields' => 'ids'
+            ));
+            if(count($posts) > 0){
+				foreach($posts as $post){
+                    wp_delete_post($post, true);
+				}
+			}
+        }
 
     }
 

@@ -557,6 +557,11 @@
             });
 
 
+    if ($('.autoterms-log-table-settings').length > 0) {
+      var props_label = '<label class="taxopress-props-label">&nbsp;</label>';
+      $('.tablenav.top .alignleft.actions.bulkactions').prepend(props_label);
+      $('.tablenav.top .tablenav-pages').prepend(props_label);
+    }
 
     // -------------------------------------------------------------
     //   Log filter
@@ -565,6 +570,17 @@
       e.preventDefault();
       $('input[name="log_source_filter"]').val($('#log_source_filter_select :selected').val());
       $('#taxopress-log-search-submit').trigger('click');
+    });
+
+    // -------------------------------------------------------------
+    //   Auto term limit update filter
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-logs-limit-update', function (e) {
+      e.preventDefault();
+      var limit = $('#taxopress_auto_terms_logs_limit').val();
+      var link = $('#taxopress_auto_terms_logs_limit').attr('data-link');
+      var url = link + '&limit=' + limit;
+      window.location.href = url;
     });
 
     // -------------------------------------------------------------
