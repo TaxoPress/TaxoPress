@@ -200,6 +200,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Get data
+		$post_id = ( isset( $_POST['post_id'] ) ) ? intval( $_POST['post_id'] ) : 0;
 		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
@@ -241,8 +242,15 @@ class SimpleTags_Admin_Suggest {
 		$data = array_filter( $data, '_delete_empty_element' );
 		$data = array_unique( $data );
 
+		// Get terms for current post
+		$post_terms = array();
+		if ( $post_id > 0 ) {
+			$post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
+		}
+
 		foreach ( (array) $data as $term ) {
-			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local">' . esc_html( strip_tags( $term ) ) . '</span>' . "\n";
+			$class_current = in_array(strip_tags( $term ), $post_terms) ? 'used_term' : '';
+			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '">' . esc_html( strip_tags( $term ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
@@ -273,6 +281,7 @@ class SimpleTags_Admin_Suggest {
         }
 
 		// Get data
+		$post_id = ( isset( $_POST['post_id'] ) ) ? intval( $_POST['post_id'] ) : 0;
 		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 		if ( empty( $content ) ) {
@@ -316,8 +325,15 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 
+		// Get terms for current post
+		$post_terms = array();
+		if ( $post_id > 0 ) {
+			$post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
+		}
+
 		foreach ( (array) $data as $term ) {
-			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local">' . esc_html( $term->title ) . '</span>' . "\n";
+			$class_current = in_array(strip_tags( $term ), $post_terms) ? 'used_term' : '';
+			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '">' . esc_html( $term->title ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
@@ -349,6 +365,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		// Get data
+		$post_id = ( isset( $_POST['post_id'] ) ) ? intval( $_POST['post_id'] ) : 0;
 		$content = stripslashes( sanitize_textarea_field($_POST['content'])) . ' ' . stripslashes( sanitize_text_field($_POST['title']));
 		$content = trim( $content );
 
@@ -364,13 +381,20 @@ class SimpleTags_Admin_Suggest {
 			exit();
 		}
 
+		// Get terms for current post
+		$post_terms = array();
+		if ( $post_id > 0 ) {
+			$post_terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'ids' ) );
+		}
+
 		$flag = false;
 		foreach ( (array) $terms as $term ) {
+			$class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
             $term_id = $term->term_id;
 			$term = stripslashes( $term->name );
 			if ( is_string( $term ) && ! empty( $term ) && stristr( $content, $term ) ) {
 				$flag = true;
-				echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local">' . esc_html( $term ) . '</span>' . "\n";
+				echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '">' . esc_html( $term ) . '</span>' . "\n";
 			}
 		}
 

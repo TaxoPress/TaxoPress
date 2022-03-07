@@ -275,7 +275,7 @@ class SimpleTags_Admin_ClickTags {
 		}
 
 		foreach ( (array) $terms as $term ) {
-			$class_current = in_array( $term->term_id, $post_terms, true ) ? 'used_term' : '';
+			$class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
 			echo '<span data-term_id="'.esc_attr($term->term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local '.esc_attr($taxonomy).' ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
