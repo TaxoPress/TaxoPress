@@ -95,6 +95,11 @@ if ($pro_active) {
 }
 
 if (defined('TAXOPRESS_FILE') || $pro_active) {
+    if(!function_exists('deactivate_plugins')){
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }    
+    //deactivate current plugin if pro is active
+    deactivate_plugins( plugin_basename( __FILE__ ) );
 	return;
 }
 

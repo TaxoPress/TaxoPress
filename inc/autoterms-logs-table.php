@@ -97,11 +97,103 @@ class Autoterms_Logs extends WP_List_Table
                 ],
                 admin_url('admin.php')
             );
+            
+            $log_limit_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-update-autoterm-limit',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
+
+
+            $log_actions = [
+                'save_posts' => esc_html__( 'Manual post update', 'simple-tags' ),
+                'existing_content' => esc_html__( 'Existing content', 'simple-tags' ),
+                'daily_cron_schedule' => esc_html__( 'Scheduled daily cron', 'simple-tags' ),
+                'hourly_cron_schedule' => esc_html__( 'Scheduled hourly cron', 'simple-tags' )
+            ];
+
+            $post_types = get_post_types(['public' => true], 'objects');
+
+            $taxonomies = get_all_taxopress_public_taxonomies();
+
+            $status_messages = [
+                'terms_added' => esc_html__( 'Terms added successfully', 'simple-tags' ),
+                'invalid_option' => esc_html__( 'Auto Terms settings do not exist.', 'simple-tags' ),
+                'term_only_option' => esc_html__( 'Auto Terms settings are configured to skip posts with terms.', 'simple-tags' ),
+                'empty_post_content' => esc_html__( 'Post content is empty.', 'simple-tags' ),
+                'empty_terms' => esc_html__( 'No new matching terms for Auto Terms settings and the post content.', 'simple-tags' )
+            ];
+
+            $autoterm_settings = taxopress_get_autoterm_data();
+
+            $selected_source = (!empty($_REQUEST['log_source_filter'])) ? sanitize_text_field($_REQUEST['log_source_filter']) : '';
+            $selected_post_type = (!empty($_REQUEST['log_filter_post_type'])) ? sanitize_text_field($_REQUEST['log_filter_post_type']) : '';
+            $selected_taxonomy = (!empty($_REQUEST['log_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['log_filter_taxonomy']) : '';
+            $selected_status_message = (!empty($_REQUEST['log_filter_status_message'])) ? sanitize_text_field($_REQUEST['log_filter_status_message']) : '';
+            $selected_settings = (!empty($_REQUEST['log_filter_settings'])) ? (int)$_REQUEST['log_filter_settings'] : 0;
            ?>
-            <div class="alignright actions autoterms-log-table-settings">
+           <div class="alignright actions autoterms-log-table-limit-settings">
 
-                <label class="taxopress-props-label">&nbsp;</label>
+                <label for="taxopress_auto_terms_logs_limit"><?php esc_html_e( 'Limit the number of logs', 'simple-tags' ); ?></label>
+                <input data-link="<?php echo esc_attr($log_limit_link); ?>" type="number" step="1" min="1" name="taxopress_auto_terms_logs_limit" id="taxopress_auto_terms_logs_limit" value="<?php echo (int)get_option('taxopress_auto_terms_logs_limit', 1000); ?>" />
+                <a href="javascript:void(0)" class="taxopress-logs-limit-update button"><?php esc_html_e('Update', 'simple-tags'); ?></a>
+           </div>
 
+           <br class="clear">
+            <div class="alignleft actions autoterms-log-table-filter">
+            <select class="auto-terms-log-filter-select" name="log_source_filter_select" id="log_source_filter_select">
+                    <option value=""><?php esc_html_e('Source filter', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $log_actions as $key => $label ) {
+                        echo '<option value="'. esc_attr($key) .'" '.selected($selected_source, $key, false).'>'. esc_html($label) .'</option>';
+                    }
+                    ?>
+                </select>
+
+                <select class="auto-terms-log-filter-select"  name="log_filter_select_post_type" id="log_filter_select_post_type">
+                    <option value=""><?php esc_html_e('Post type filter', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $post_types as $post_type ) {
+                        echo '<option value="'. esc_attr($post_type->name) .'" '.selected($selected_post_type, $post_type->name, false).'>'. esc_html($post_type->label) .'</option>';
+                    }
+                    ?>
+                </select>
+
+                <select class="auto-terms-log-filter-select"  name="log_filter_select_taxonomy" id="log_filter_select_taxonomy">
+                    <option value=""><?php esc_html_e('Taxonomy filter', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $taxonomies as $taxonomy ) {
+                        echo '<option value="'. esc_attr($taxonomy->name) .'" '.selected($selected_taxonomy, $taxonomy->name, false).'>'. esc_html($taxonomy->labels->name) .'</option>';
+                    }
+                    ?>
+                </select>
+
+                <select class="auto-terms-log-filter-select"  name="log_filter_select_status_message" id="log_filter_select_status_message">
+                    <option value=""><?php esc_html_e('Status message filter', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $status_messages as $key => $label ) {
+                        echo '<option value="'. esc_attr($key) .'" '.selected($selected_status_message, $key, false).'>'. esc_html($label) .'</option>';
+                    }
+                    ?>
+                </select>
+
+                <select class="auto-terms-log-filter-select"  name="log_filter_select_settings" id="log_filter_select_settings">
+                    <option value=""><?php esc_html_e('Settings filter', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $autoterm_settings as $autoterm_setting ) {
+                        echo '<option value="'. esc_attr($autoterm_setting['ID']) .'" '.selected($selected_settings, $autoterm_setting['ID'], false).'>'. esc_html($autoterm_setting['title']) .'</option>';
+                    }
+                    ?>
+                </select>
+                
+                <a href="javascript:void(0)" class="taxopress-logs-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
+                
+            </div>
+
+            <div class="alignright actions autoterms-log-table-buttons">
                 <?php if(get_option('taxopress_autoterms_logs_disabled')){ ?>
                     <a href="<?php echo esc_url($enable_log_link); ?>" class="taxopress-logs-tablenav-enable-logs button"><?php esc_html_e('Enable Logs', 'simple-tags'); ?></a>
                 <?php } else { ?>
@@ -109,7 +201,6 @@ class Autoterms_Logs extends WP_List_Table
                 <?php } ?>
 
                 <a href="<?php echo esc_url($delete_all_link); ?>" class="taxopress-logs-tablenav-purge-logs button"  onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete all logs?', 'simple-tags'); ?>')"><?php esc_html_e('Delete All Logs', 'simple-tags'); ?></a>
-
             </div>
             <?php
         }
@@ -124,46 +215,9 @@ class Autoterms_Logs extends WP_List_Table
 	protected function extra_tablenav( $which ) {
 
 		if ( 'top' === $which ) {
-            $log_actions = [
-                'save_posts' => esc_html__( 'Manual post update', 'simple-tags' ),
-                'existing_content' => esc_html__( 'Existing content', 'simple-tags' ),
-                'daily_cron_schedule' => esc_html__( 'Scheduled daily cron', 'simple-tags' ),
-                'hourly_cron_schedule' => esc_html__( 'Scheduled hourly cron', 'simple-tags' )
-            ];
 
-            $log_limit_link = add_query_arg([
-                'page'                   => 'st_autoterms',
-                'tab'                    => 'logs',
-                'action'                 => 'taxopress-update-autoterm-limit',
-                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
-                ],
-                admin_url('admin.php')
-            );
-
-            
-            $selected_source = (!empty($_REQUEST['log_source_filter'])) ? sanitize_text_field($_REQUEST['log_source_filter']) : '';
              ?>
-            <div class="alignleft actions autoterms-log-table-filter">
-
-            <label class="taxopress-props-label">&nbsp;</label>
-                <select name="log_source_filter_select" id="log_source_filter_select">
-                    <option value=""><?php esc_html_e('Source filter', 'simple-tags'); ?></option>
-                    <?php
-                    foreach ( $log_actions as $key => $label ) {
-                        echo '<option value="'. esc_attr($key) .'" '.selected($selected_source, $key, false).'>'. esc_html($label) .'</option>';
-                    }
-                    ?>
-                </select>
-                
-                <a href="javascript:void(0)" class="taxopress-logs-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
-                
-            </div>
-
-            <div class="alignleft actions autoterms-log-table-limit-settings">
-                <label for="taxopress_auto_terms_logs_limit"><?php esc_html_e( 'Limit the number of logs', 'simple-tags' ); ?></label>
-                <input data-link="<?php echo esc_attr($log_limit_link); ?>" type="number" step="1" min="1" name="taxopress_auto_terms_logs_limit" id="taxopress_auto_terms_logs_limit" value="<?php echo (int)get_option('taxopress_auto_terms_logs_limit', 1000); ?>" />
-                <a href="javascript:void(0)" class="taxopress-logs-limit-update button"><?php esc_html_e('Update', 'simple-tags'); ?></a>
-            </div>
+            <div class="alignleft actions autoterms-log-table-settings"></div>
         <?php
 		}
 	}
@@ -466,7 +520,7 @@ class Autoterms_Logs extends WP_List_Table
             'term_only_option' => esc_html__( 'Auto Terms settings are configured to skip posts with terms.', 'simple-tags' ),
             'empty_post_content' => esc_html__( 'Post content is empty.', 'simple-tags' ),
             'terms_added' => esc_html__( 'Terms added successfully', 'simple-tags' ),
-            'empty_terms' => esc_html__( 'No matching terms for Auto Terms settings and the post content.', 'simple-tags' )
+            'empty_terms' => esc_html__( 'No new matching terms for Auto Terms settings and the post content.', 'simple-tags' )
         ];
 
         if(array_key_exists($taxopress_log_status_message, $status_message_text)){
@@ -518,10 +572,12 @@ class Autoterms_Logs extends WP_List_Table
         if (!empty($_REQUEST['tab'])) {
             echo '<input type="hidden" name="tab" value="' . esc_attr(sanitize_text_field($_REQUEST['tab'])) . '" />';
         }
-        if (!empty($_REQUEST['log_source_filter'])) {
-            echo '<input type="hidden" name="log_source_filter" value="' . esc_attr(sanitize_text_field($_REQUEST['log_source_filter'])) . '" />';
-        }else{
-            echo '<input type="hidden" name="log_source_filter" value="" />';
+
+        $custom_filters = ['log_source_filter', 'log_filter_post_type', 'log_filter_taxonomy', 'log_filter_status_message', 'log_filter_settings'];
+
+        foreach ($custom_filters as  $custom_filter) {
+            $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field($_REQUEST[$custom_filter]) : '';
+            echo '<input type="hidden" name="' . esc_attr($custom_filter) . '" value="' . esc_attr($filter_value) . '" />';
         }
         
         ?>

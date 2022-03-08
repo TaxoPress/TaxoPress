@@ -569,7 +569,15 @@
     $(document).on('click', '.taxopress-logs-tablenav-filter', function (e) {
       e.preventDefault();
       $('input[name="log_source_filter"]').val($('#log_source_filter_select :selected').val());
+      $('input[name="log_filter_post_type"]').val($('#log_filter_select_post_type :selected').val());
+      $('input[name="log_filter_taxonomy"]').val($('#log_filter_select_taxonomy :selected').val());
+      $('input[name="log_filter_status_message"]').val($('#log_filter_select_status_message :selected').val());
+      $('input[name="log_filter_settings"]').val($('#log_filter_select_settings :selected').val());
       $('#taxopress-log-search-submit').trigger('click');
+    });
+
+    $(document).on('change', '.auto-terms-log-filter-select', function (e) {
+      $('.taxopress-logs-tablenav-filter').trigger('click');
     });
 
     // -------------------------------------------------------------
