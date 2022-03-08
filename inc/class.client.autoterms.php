@@ -466,6 +466,7 @@ class SimpleTags_Client_Autoterms {
         $post_id = wp_insert_post($insert_post_args);
         update_post_meta($post_id, '_taxopress_log_post_id', $object->ID);
         update_post_meta($post_id, '_taxopress_log_taxonomy', $taxonomy);
+        update_post_meta($post_id, '_taxopress_log_post_type', get_post_type($object->ID));
         update_post_meta($post_id, '_taxopress_log_action', $action);
         update_post_meta($post_id, '_taxopress_log_component', $component);
         update_post_meta($post_id, '_taxopress_log_terms', implode (", ", $terms_to_add));

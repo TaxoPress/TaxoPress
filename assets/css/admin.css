@@ -689,8 +689,8 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     max-width: 155px;
 }
 
-.autoterms-log-table-limit-settings {
-    margin-left: 8px; 
+.autoterms-log-table-filter h2 {
+    display: inline;
 }
 
 @media only screen and (min-width: 1075px) {

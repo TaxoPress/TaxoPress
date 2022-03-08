@@ -485,14 +485,24 @@ function taxopress_autoterms_logs_data($per_page = 20, $current_page = 1, $order
     );
 
     /**
-     * Handle source filter
+     * Custom filter handler
      */
-    if ((!empty($_REQUEST['log_source_filter'])) && $source = sanitize_text_field($_REQUEST['log_source_filter'])) {
-        $meta_query[] = array(
-            'key' => '_taxopress_log_action',
-            'value' => $source,
-        );
+    $custom_filters = [
+        'log_source_filter'         => '_taxopress_log_action', 
+        'log_filter_post_type'      => '_taxopress_log_post_type', 
+        'log_filter_taxonomy'       => '_taxopress_log_taxonomy', 
+        'log_filter_status_message' => '_taxopress_log_status_message', 
+        'log_filter_settings'       => '_taxopress_log_option_id'
+    ];
+    foreach ($custom_filters as $filter => $option) {
+        if (!empty($_REQUEST[$filter])) {
+            $meta_query[] = array(
+                'key' => sanitize_key($option),
+                'value' => sanitize_text_field($_REQUEST[$filter]),
+            );
+        }
     }
+
     $logs_arg = array(
         'post_type' => 'taxopress_logs',
         'post_status' => 'publish',
