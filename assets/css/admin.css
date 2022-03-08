@@ -685,12 +685,13 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     visibility: hidden;
 }
 
-#taxopress_auto_terms_logs_limit {
-    max-width: 155px;
+.autoterms-log-table-limit-settings {
+    margin-bottom: 5px;
+    display: block;
 }
 
-.autoterms-log-table-filter h2 {
-    display: inline;
+.tablenav .actions.autoterms-log-table-filter select {
+    max-width: 140px;
 }
 
 @media only screen and (min-width: 1075px) {

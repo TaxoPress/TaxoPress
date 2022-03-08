@@ -136,6 +136,33 @@ class SimpleTags_Autoterms
 
         if (isset($_GET['tab']) && $_GET['tab'] === 'logs') {
             //autoterms logs
+
+            $delete_all_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-delete-autoterm-logs',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
+
+            $enable_log_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-enable-autoterm-logs',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
+
+            $disable_log_link = add_query_arg([
+                'page'                   => 'st_autoterms',
+                'tab'                    => 'logs',
+                'action'                 => 'taxopress-disable-autoterm-logs',
+                '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            );
             ?>
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
@@ -146,6 +173,14 @@ class SimpleTags_Autoterms
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
+
+                   <?php if(get_option('taxopress_autoterms_logs_disabled')){ ?>
+                    <a href="<?php echo esc_url($enable_log_link); ?>" class="page-title-action taxopress-logs-tablenav-enable-logs"><?php esc_html_e('Enable Logs', 'simple-tags'); ?></a>
+                <?php } else { ?>
+                    <a href="<?php echo esc_url($disable_log_link); ?>" class="page-title-action taxopress-logs-tablenav-disable-logs" onclick="return confirm('<?php esc_attr_e('Are you sure you want to disable logs?', 'simple-tags'); ?>')"><?php esc_html_e('Disable Logs', 'simple-tags'); ?></a>
+                <?php } ?>
+
+                <a href="<?php echo esc_url($delete_all_link); ?>" class="page-title-action taxopress-logs-tablenav-purge-logs"  onclick="return confirm('<?php esc_attr_e('Are you sure you want to delete all logs?', 'simple-tags'); ?>')"><?php esc_html_e('Delete All Logs', 'simple-tags'); ?></a>
 
                 <div class="taxopress-description">
                     <?php esc_html_e('Auto Terms logs history.', 'simple-tags'); ?>
