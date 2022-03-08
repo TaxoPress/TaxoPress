@@ -334,49 +334,49 @@ function taxopress_autoterms_update_success_admin_notice()
 function taxopress_autoterms_delete_success_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto terms successfully deleted.', 'simple-tags'), false);
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms successfully deleted.', 'simple-tags'), false);
 }
 
 function taxopress_autoterms_enable_log_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto terms logs enabled successfully.', 'simple-tags'));
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms logs enabled successfully.', 'simple-tags'));
 }
 
 function taxopress_autoterms_disable_log_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto terms logs disabled successfully. No entry will be made for Auto terms logs till it\'s enabled again.', 'simple-tags'));
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms logs disabled successfully.', 'simple-tags'));
 }
 
 function taxopress_autoterms_delete_autoterm_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto term deleted successfully.', 'simple-tags'));
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms deleted successfully.', 'simple-tags'));
 }
 
 function taxopress_autoterms_delete_autoterm_log_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto terms log deleted successfully.', 'simple-tags'));
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms log deleted successfully.', 'simple-tags'));
 }
 
 function taxopress_autoterms_delete_autoterm_logs_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto terms logs deleted successfully.', 'simple-tags'));
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms logs deleted successfully.', 'simple-tags'));
 }
 
 function taxopress_autoterms_limit_updated_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto terms limit updated successfully.', 'simple-tags'));
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms limit updated successfully.', 'simple-tags'));
 }
 
 function taxopress_autoterms_limit_invalid_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo taxopress_admin_notices_helper(esc_html__('Auto terms limit must be greater than 0.', 'simple-tags'), false);
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms limit must be greater than 0.', 'simple-tags'), false);
 }
 
 /**
