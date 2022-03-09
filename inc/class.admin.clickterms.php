@@ -198,6 +198,7 @@ class SimpleTags_Admin_ClickTags {
 	 * @author WebFactory Ltd
 	 */
 	public static function ajax_check() {
+
 		if ( isset( $_GET['stags_action'] ) && 'click_tags' === $_GET['stags_action'] ) {
 			self::ajax_click_tags();
 		}
