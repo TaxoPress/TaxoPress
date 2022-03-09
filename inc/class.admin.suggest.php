@@ -167,8 +167,21 @@ class SimpleTags_Admin_Suggest {
 					self::ajax_suggest_local();
 					break;
 			}
-		}
+		}else{
+            self::invalid_ajax_request();
+        }
 	}
+
+	/**
+	 * Suggest tags from OpenCalais Service
+	 *
+	 */
+	public static function invalid_ajax_request() {
+        status_header( 200 );
+		header( "Content-Type: text/html; charset=" . get_bloginfo( 'charset' ) );
+        echo '<p>' . esc_html__( 'Invalid request.', 'simple-tags' ) . '</p>';
+		exit();
+    }
 
 	/**
 	 * Suggest tags from OpenCalais Service
