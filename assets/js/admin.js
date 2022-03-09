@@ -557,6 +557,11 @@
             });
 
 
+    if ($('.autoterms-log-table-settings').length > 0) {
+      var props_label = '<label class="taxopress-props-label">&nbsp;</label>';
+      $('.tablenav.top .alignleft.actions.bulkactions').prepend(props_label);
+      $('.tablenav.top .tablenav-pages').prepend(props_label);
+    }
 
     // -------------------------------------------------------------
     //   Log filter
@@ -564,7 +569,26 @@
     $(document).on('click', '.taxopress-logs-tablenav-filter', function (e) {
       e.preventDefault();
       $('input[name="log_source_filter"]').val($('#log_source_filter_select :selected').val());
+      $('input[name="log_filter_post_type"]').val($('#log_filter_select_post_type :selected').val());
+      $('input[name="log_filter_taxonomy"]').val($('#log_filter_select_taxonomy :selected').val());
+      $('input[name="log_filter_status_message"]').val($('#log_filter_select_status_message :selected').val());
+      $('input[name="log_filter_settings"]').val($('#log_filter_select_settings :selected').val());
       $('#taxopress-log-search-submit').trigger('click');
+    });
+
+    $(document).on('change', '.auto-terms-log-filter-select', function (e) {
+      $('.taxopress-logs-tablenav-filter').trigger('click');
+    });
+
+    // -------------------------------------------------------------
+    //   Auto term limit update filter
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-logs-limit-update', function (e) {
+      e.preventDefault();
+      var limit = $('#taxopress_auto_terms_logs_limit').val();
+      var link = $('#taxopress_auto_terms_logs_limit').attr('data-link');
+      var url = link + '&limit=' + limit;
+      window.location.href = url;
     });
 
     // -------------------------------------------------------------

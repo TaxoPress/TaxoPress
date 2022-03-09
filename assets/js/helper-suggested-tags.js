@@ -34,6 +34,7 @@ jQuery(document).ready(function () {
     jQuery('#suggestedtags').removeClass('close');
     var suggestterms = Number(jQuery('select.term_suggestion_select').attr('data-suggestterms'));
     var data_action = jQuery('select.term_suggestion_select :selected').val();
+    var current_post_id = jQuery('#post_ID').val();
     
     if (data_action == '') {
       jQuery('#suggestedtags .inside .container_clicktags').html(stHelperSuggestedTagsL10n.content_bloc);
@@ -44,6 +45,7 @@ jQuery(document).ready(function () {
 
     jQuery('#suggestedtags .container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + data_action + '&suggestterms=' + suggestterms + '', {
       content: getContentFromEditor(),
+      post_id: current_post_id,
       title: getTitleFromEditor()
     }, function () {
       registerClickTags();

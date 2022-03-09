@@ -478,9 +478,9 @@ class SimpleTags_Post_Tags
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         echo $ui->get_text_input([
                                                             'namearray' => 'taxopress_post_tags',
-                                                            'name'      => 'after',
-                                                            'textvalue' => isset($current['after']) ? esc_attr($current['after']) : '<br />',
-                                                            'labeltext' => esc_html__('Text to display after tags list',
+                                                            'name'      => 'before',
+                                                            'textvalue' => isset($current['before']) ? esc_attr($current['before']) : 'Tags: ',
+                                                            'labeltext' => esc_html__('Text to display before terms list',
                                                                 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => false,
@@ -489,9 +489,9 @@ class SimpleTags_Post_Tags
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         echo $ui->get_text_input([
                                                             'namearray' => 'taxopress_post_tags',
-                                                            'name'      => 'before',
-                                                            'textvalue' => isset($current['before']) ? esc_attr($current['before']) : 'Tags: ',
-                                                            'labeltext' => esc_html__('Text to display before tags list',
+                                                            'name'      => 'after',
+                                                            'textvalue' => isset($current['after']) ? esc_attr($current['after']) : '<br />',
+                                                            'labeltext' => esc_html__('Text to display after terms list',
                                                                 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => false,
@@ -502,7 +502,7 @@ class SimpleTags_Post_Tags
                                                             'namearray' => 'taxopress_post_tags',
                                                             'name'      => 'notagtext',
                                                             'textvalue' => isset($current['notagtext']) ? esc_attr($current['notagtext']) : 'No tags for this post.',
-                                                            'labeltext' => esc_html__('Text to display if no tags found',
+                                                            'labeltext' => esc_html__('Text to display if no terms found',
                                                                 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => false,
