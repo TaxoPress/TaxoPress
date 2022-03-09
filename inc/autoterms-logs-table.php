@@ -123,14 +123,6 @@ class Autoterms_Logs extends WP_List_Table
 
 
             <div class="alignleft actions autoterms-log-table-filter">
-            <select class="auto-terms-log-filter-select" name="log_source_filter_select" id="log_source_filter_select">
-                    <option value=""><?php esc_html_e('Source', 'simple-tags'); ?></option>
-                    <?php
-                    foreach ( $log_actions as $key => $label ) {
-                        echo '<option value="'. esc_attr($key) .'" '.selected($selected_source, $key, false).'>'. esc_html($label) .'</option>';
-                    }
-                    ?>
-                </select>
 
                 <select class="auto-terms-log-filter-select"  name="log_filter_select_post_type" id="log_filter_select_post_type">
                     <option value=""><?php esc_html_e('Post type', 'simple-tags'); ?></option>
@@ -146,6 +138,15 @@ class Autoterms_Logs extends WP_List_Table
                     <?php
                     foreach ( $taxonomies as $taxonomy ) {
                         echo '<option value="'. esc_attr($taxonomy->name) .'" '.selected($selected_taxonomy, $taxonomy->name, false).'>'. esc_html($taxonomy->labels->name) .'</option>';
+                    }
+                    ?>
+                </select>
+                
+                <select class="auto-terms-log-filter-select" name="log_source_filter_select" id="log_source_filter_select">
+                    <option value=""><?php esc_html_e('Source', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $log_actions as $key => $label ) {
+                        echo '<option value="'. esc_attr($key) .'" '.selected($selected_source, $key, false).'>'. esc_html($label) .'</option>';
                     }
                     ?>
                 </select>
