@@ -457,7 +457,7 @@ class SimpleTags_SuggestTerms
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'enable_existing_terms',
                                                         'labeltext'  => esc_html__('Show existing terms', 'simple-tags'),
-                                                        'aftertext'  => esc_html__('Uncheck this box to disable the "Show existing terms" metabox.', 'simple-tags'),
+                                                        'aftertext'  => '',
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
@@ -586,7 +586,7 @@ class SimpleTags_SuggestTerms
                                                         'name'       => 'suggest_term_use_local',
                                                         'class'      => 'suggest_term_use_local',
                                                         'labeltext'  => esc_html__('Suggest existing terms on your site', 'simple-tags'),
-                                                        'aftertext'  => esc_html__('Uncheck this box to disable the "Automatic term suggestions" metabox.', 'simple-tags'),
+                                                        'aftertext'  => '',
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
