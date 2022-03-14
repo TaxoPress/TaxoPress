@@ -874,7 +874,7 @@ class SimpleTags_Autoterms
                                                             echo $ui->get_number_input([
                                                                 'namearray' => 'taxopress_autoterm',
                                                                 'name'      => 'existing_terms_sleep',
-                                                                'textvalue' => isset($current['existing_terms_sleep']) ? esc_attr($current['existing_terms_sleep']) : '1',
+                                                                'textvalue' => isset($current['existing_terms_sleep']) ? esc_attr($current['existing_terms_sleep']) : '10',
                                                                 'labeltext' => esc_html__('Batches wait time', 'simple-tags'),
                                                                 'helptext'  => esc_html__('This is the wait time (in seconds) between processing batches of Auto Terms. If you have a lot of existing content, set this to a higher number to avoid timeouts.', 'simple-tags'),
                                                                 'min'       => '0',
@@ -897,7 +897,8 @@ class SimpleTags_Autoterms
                                                                     ],
                                                                     [
                                                                         'attr' => '30',
-                                                                        'text' => esc_attr__('1 month ago', 'simple-tags')
+                                                                        'text' => esc_attr__('1 month ago', 'simple-tags'),
+                                                                        'default' => 'true'
                                                                     ],
                                                                     [
                                                                         'attr' => '180',
@@ -909,8 +910,7 @@ class SimpleTags_Autoterms
                                                                     ],
                                                                     [
                                                                         'attr'    => '0',
-                                                                        'text'    => esc_attr__('No limit', 'simple-tags'),
-                                                                        'default' => 'true'
+                                                                        'text'    => esc_attr__('No limit', 'simple-tags')
                                                                     ],
                                                                 ],
                                                             ];
