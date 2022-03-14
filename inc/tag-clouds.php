@@ -528,7 +528,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'taxopress_tag_cloud',
                                                 'name'       => 'hide_title',
-                                                'labeltext'  => esc_html__('Hide title in output ?', 'simple-tags'),
+                                                'labeltext'  => esc_html__('Hide title in output?', 'simple-tags'),
                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
@@ -551,7 +551,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_select_checkbox_input([
                                                 'namearray'  => 'taxopress_tag_cloud',
                                                 'name'       => 'hide_output',
-                                                'labeltext'  => esc_html__('Hide display output if no terms ?', 'simple-tags'),
+                                                'labeltext'  => esc_html__('Hide display output if no terms?', 'simple-tags'),
                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
                                             
