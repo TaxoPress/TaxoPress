@@ -350,6 +350,10 @@ class SimpleTags_Client_Autolinks {
             $link_class = '';
         }
 
+        $html_exclusion[] = 'meta';
+        $html_exclusion[] = 'link';
+        $html_exclusion[] = 'head';
+
         //auto link exclusion
         $exclusion = '[not(ancestor::a)]';
         if(count($html_exclusion) > 0){
