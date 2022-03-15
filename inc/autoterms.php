@@ -858,6 +858,32 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_oldcontent' ? '' : 'display:none;'; ?>">
 
                                                        <?php
+
+                                                            $select             = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '0',
+                                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '1',
+                                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected           = (isset($current) && isset($current['autoterm_existing_content_exclude'])) ? taxopress_disp_boolean($current['autoterm_existing_content_exclude']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['autoterm_existing_content_exclude'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input([
+                                                                'namearray'  => 'taxopress_autoterm',
+                                                                'name'       => 'autoterm_existing_content_exclude',
+                                                                'class'      => '',
+                                                                'labeltext'  => esc_html__('Exclude previously Auto Term content', 'simple-tags'),
+                                                                'aftertext'  => esc_html__('This enable you to limit existing content Auto Term action to once per post.', 'simple-tags'),
+                                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ]);
+
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_number_input([
                                                                 'namearray' => 'taxopress_autoterm',
