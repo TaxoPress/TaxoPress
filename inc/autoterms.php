@@ -940,6 +940,43 @@ class SimpleTags_Autoterms
                                                                     ],
                                                                 ],
                                                             ];
+
+                                                            if(isset($current) && is_array($current)){
+                                                                $select             = [
+                                                                    'options' => [
+                                                                        [
+                                                                            'attr' => '1',
+                                                                            'text' => esc_attr__('24 hours ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '7',
+                                                                            'text' => esc_attr__('7 days ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '14',
+                                                                            'text' => esc_attr__('2 weeks ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '30',
+                                                                            'text' => esc_attr__('1 month ago', 'simple-tags'),
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '180',
+                                                                            'text' => esc_attr__('6 months ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '365',
+                                                                            'text' => esc_attr__('1 year ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr'    => '0',
+                                                                            'text'    => esc_attr__('No limit', 'simple-tags'),
+                                                                            'default' => 'true'
+                                                                        ],
+                                                                    ],
+                                                                ];
+                                                            }
+
                                                             $selected           = (isset($current) && isset($current['limit_days'])) ? taxopress_disp_boolean($current['limit_days']) : '';
                                                             $select['selected'] = !empty($selected) ? $current['limit_days'] : '';
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
