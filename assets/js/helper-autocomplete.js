@@ -63,11 +63,11 @@ jQuery(document).ready(function($) {
   // -------------------------------------------------------------
   //   Auto terms term auto complete
   // -------------------------------------------------------------
-  var p_url = ajaxurl+'?action=simpletags&stags_action=helper_js_collection&taxonomy='+ $('.st-post-taxonomy-select option:selected').val();
+  var p_url = ajaxurl+'?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy='+ $('.st-post-taxonomy-select option:selected').val();
   autoterms_init_autocomplete ('.specific_terms_input', p_url, 1);
   autoterms_init_autocomplete ('.auto-terms-stopwords', p_url, 1);
   $(document).on('click', '.autoterm_terms_tab', function (e) {
-    var p_url = ajaxurl+'?action=simpletags&stags_action=helper_js_collection&taxonomy='+ $('.st-post-taxonomy-select option:selected').val();
+    var p_url = ajaxurl+'?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy='+ $('.st-post-taxonomy-select option:selected').val();
     autoterms_init_autocomplete ('.specific_terms_input', p_url, 1);
     autoterms_init_autocomplete ('.auto-terms-stopwords', p_url, 1);
   });
