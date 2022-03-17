@@ -879,8 +879,8 @@ class SimpleTags_Autoterms
                                                                 'namearray'  => 'taxopress_autoterm',
                                                                 'name'       => 'autoterm_existing_content_exclude',
                                                                 'class'      => '',
-                                                                'labeltext'  => esc_html__('Exclude previously Auto Term content', 'simple-tags'),
-                                                                'aftertext'  => esc_html__('This enable you to limit existing content Auto Term action to once per post.', 'simple-tags'),
+                                                                'labeltext'  => esc_html__('Exclude previously analyzed content', 'simple-tags'),
+                                                                'aftertext'  => esc_html__('This enables you to skip posts that have already been analyzed by the Existing Content feature.', 'simple-tags'),
                                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             ]);
 
