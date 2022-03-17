@@ -879,8 +879,8 @@ class SimpleTags_Autoterms
                                                                 'namearray'  => 'taxopress_autoterm',
                                                                 'name'       => 'autoterm_existing_content_exclude',
                                                                 'class'      => '',
-                                                                'labeltext'  => esc_html__('Exclude previously Auto Term content', 'simple-tags'),
-                                                                'aftertext'  => esc_html__('This enable you to limit existing content Auto Term action to once per post.', 'simple-tags'),
+                                                                'labeltext'  => esc_html__('Exclude previously analyzed content', 'simple-tags'),
+                                                                'aftertext'  => esc_html__('This enables you to skip posts that have already been analyzed by the Existing Content feature.', 'simple-tags'),
                                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             ]);
 
@@ -940,6 +940,43 @@ class SimpleTags_Autoterms
                                                                     ],
                                                                 ],
                                                             ];
+
+                                                            if(isset($current) && is_array($current)){
+                                                                $select             = [
+                                                                    'options' => [
+                                                                        [
+                                                                            'attr' => '1',
+                                                                            'text' => esc_attr__('24 hours ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '7',
+                                                                            'text' => esc_attr__('7 days ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '14',
+                                                                            'text' => esc_attr__('2 weeks ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '30',
+                                                                            'text' => esc_attr__('1 month ago', 'simple-tags'),
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '180',
+                                                                            'text' => esc_attr__('6 months ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '365',
+                                                                            'text' => esc_attr__('1 year ago', 'simple-tags')
+                                                                        ],
+                                                                        [
+                                                                            'attr'    => '0',
+                                                                            'text'    => esc_attr__('No limit', 'simple-tags'),
+                                                                            'default' => 'true'
+                                                                        ],
+                                                                    ],
+                                                                ];
+                                                            }
+
                                                             $selected           = (isset($current) && isset($current['limit_days'])) ? taxopress_disp_boolean($current['limit_days']) : '';
                                                             $select['selected'] = !empty($selected) ? $current['limit_days'] : '';
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
