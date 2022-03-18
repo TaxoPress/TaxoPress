@@ -263,7 +263,7 @@ class SimpleTags_Admin_Mass {
 										title="<?php esc_attr_e( 'Edit', 'simple-tags' ); ?>"><?php echo ( esc_html(get_the_title()) == '' ) ? (int)get_the_ID() : esc_html(get_the_title()); ?></a>
 								</th>
 								<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input"
-								           type="text" size="100" name="tags[<?php (int)get_the_ID(); ?>]"
+								           type="text" size="100" name="tags[<?php echo (int)get_the_ID(); ?>]"
 								           value="<?php echo esc_attr(SimpleTags_Admin::getTermsToEdit( SimpleTags_Admin::$taxonomy, get_the_ID() )); ?>"/>
 								</td>
 							</tr>
