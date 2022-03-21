@@ -225,6 +225,29 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.5.2- 2022-03-22
+* Fixed: Mass edit terms is not saving #1331
+* Fixed: Change terms suggestion action handler #1329
+* Fixed: Not possible to save "No limit" #1326
+* Fixed: Extend Option to limit auto terms schedule action to once per posts to existing content #1323
+* Fixed: Option to limit auto terms schedule action to once per posts #1314
+* Fixed: TaxoPress Pro seems to require TaxoPress Free #1321
+* Fixed: One set of logs reports for a large, slow site #1322
+* Fixed: More cautious settings for "Schedule" #1312
+* Fixed: Auto Links are processing inside the head tag #1300
+* Fixed: Remove "Uncheck this box to disable the "Automatic term suggestions" metabox."" #1305
+
+v3.5.1- 2022-03-09
+* Fixed: Mass Edit Terms not working #1304
+* Fixed: Add the ability to disable logs #1281
+* Fixed: Add the ability to purge the logs #1282
+* Fixed: Layout changes for Logs #1297
+* Fixed: Translation updates #1289
+* Fixed: New filters for Logs #1291
+* Fixed: Add a light color for used tags #1287
+* Fixed: Small updates for "Edit Terms for Current Post" #1292
+* Fixed: "Disable Auto Terms" box not working for scheduling #1284
+
 v3.5.0- 2022-02-28
 * Added: Add a Log for Auto Terms #1243
 * Fixed: Safeguards auto terms for large sites #1249
