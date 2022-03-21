@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.9
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,18 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.5.2- 2022-03-22
+* Fixed: Mass edit terms is not saving #1331
+* Fixed: Change terms suggestion action handler #1329
+* Fixed: Not possible to save "No limit" #1326
+* Fixed: Extend Option to limit auto terms schedule action to once per posts to existing content #1323
+* Fixed: Option to limit auto terms schedule action to once per posts #1314
+* Fixed: TaxoPress Pro seems to require TaxoPress Free #1321
+* Fixed: One set of logs reports for a large, slow site #1322
+* Fixed: More cautious settings for "Schedule" #1312
+* Fixed: Auto Links are processing inside the head tag #1300
+* Fixed: Remove "Uncheck this box to disable the "Automatic term suggestions" metabox."" #1305
 
 v3.5.1- 2022-03-09
 * Fixed: Mass Edit Terms not working #1304

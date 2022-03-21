@@ -509,6 +509,7 @@
                 //send next batch
                 auto_terms_all_content(response.done, auto_term, button);
               }else if(response.status === 'sucess') {
+                $('.auto-term-content-result-title').html(''+response.percentage+'');
                 $('.auto-term-content-result').prepend('<li><font color="green">'+response.message+'</font></li>');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
