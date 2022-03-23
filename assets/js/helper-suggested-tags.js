@@ -59,7 +59,7 @@ jQuery(document).ready(function () {
     setTimeout(taxopress_set_default_suggested_term, 2000);
   }
   function taxopress_set_default_suggested_term(){
-      jQuery('.term_suggestion_select').val('tags_from_local_db').trigger('change');
+      jQuery('.term_suggestion_select').val(jQuery(".term_suggestion_select option:eq(1)").val()).trigger('change');
   }
 
 });

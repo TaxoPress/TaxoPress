@@ -28,7 +28,7 @@ class SimpleTags_Admin_Suggest {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
-        $click_terms = taxopress_current_post_suggest_terms('term_suggestion');
+        $click_terms = taxopress_current_post_suggest_terms();
 
         if(!is_array($click_terms)){
             return;
@@ -77,7 +77,7 @@ class SimpleTags_Admin_Suggest {
 	 */
 	public static function get_suggest_tags_title() {
 
-        $click_terms = taxopress_current_post_suggest_terms('term_suggestion');
+        $click_terms = taxopress_current_post_suggest_terms();
 
 
 
@@ -88,7 +88,9 @@ class SimpleTags_Admin_Suggest {
         $suggest_term_use_dandelion  = isset($click_terms['suggest_term_use_dandelion']) ? (int)$click_terms['suggest_term_use_dandelion'] : 0;
         $suggest_term_use_opencalais = isset($click_terms['suggest_term_use_opencalais']) ? (int)$click_terms['suggest_term_use_opencalais'] : 0;
 
-        if($suggest_term_use_local > 0){
+		$title_options = [];
+        if($suggest_term_use_local > 0)
+		{
             $title_options['tags_from_local_db']    = esc_html__( 'Existing terms on your site', 'simple-tags' );
         }
 

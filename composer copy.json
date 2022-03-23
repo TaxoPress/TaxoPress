@@ -1,0 +1,24 @@
+{
+    "name": "taxopress/taxopress",
+    "require": {
+        "publishpress/wordpress-version-notices": "^1.1",
+        "pimple/pimple": "3.2.3.*",
+        "symfony/polyfill-ctype": "1.19.*",
+        "sabre/vobject": "^3.4",
+        "psr/container": "1.0.0"
+    },
+    "require-dev": {
+        "automattic/vipwpcs": "^2.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "publishpress/publishpress-plugin-builder": "^1.3"
+    },
+    "scripts": {
+        "build": "vendor/bin/robo build --ansi",
+        "build-unpacked": "vendor/bin/robo build:unpacked --ansi"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

@@ -357,7 +357,7 @@ function taxopress_current_post_suggest_terms($source = false, $local_check = fa
             $suggest_term_use_dandelion  = isset($suggested_term['suggest_term_use_dandelion']) ? (int)$suggested_term['suggest_term_use_dandelion'] : 0;
             $suggest_term_use_opencalais = isset($suggested_term['suggest_term_use_opencalais']) ? (int)$suggested_term['suggest_term_use_opencalais'] : 0;
 
-            if($suggest_term_use_local === 0 && $suggest_term_use_dandelion === 0 && $suggest_term_use_opencalais === 0){
+            if($source && $source !== 'existing_terms' && $suggest_term_use_local === 0 && $suggest_term_use_dandelion === 0 && $suggest_term_use_opencalais === 0){
                 continue;
             }
 
