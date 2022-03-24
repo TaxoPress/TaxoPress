@@ -70,7 +70,7 @@ class SimpleTags_Post_Tags
         $hook = add_submenu_page(
             self::MENU_SLUG,
             esc_html__('Terms for Current Post', 'simple-tags'),
-            esc_html__('Terms for Current Post', 'simple-tags'),
+            esc_html__('Current Post', 'simple-tags'),
             'simple_tags',
             'st_post_tags',
             [
