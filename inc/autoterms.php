@@ -993,7 +993,7 @@ class SimpleTags_Autoterms
                                                        <tr valign="top"><th scope="row"><label><?php echo esc_html__('Existing Content', 'simple-tags'); ?></label></th>
 
                                                        <td>
-                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to all existing content', 'simple-tags')); ?>">
+                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to existing content', 'simple-tags')); ?>">
                                                            <span class="spinner taxopress-spinner"></span>
 
                                                            <p class="taxopress-field-description description">
