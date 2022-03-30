@@ -225,6 +225,14 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.6.0- 2022-03-30
+* Added: New "Terms" Screen #1260
+* Added: Add a Regex Option for Auto Terms #1338
+* Fixed: Auto Links feature is hiding the product description #1353
+* Fixed: Add "View" links for taxonomies #1334
+* Fixed: In the "Existing Content" tab, we can drop the word "all" #1344
+* Fixed: Replace "Terms for Current Post" with "Current Post" in menu #1345
+
 v3.5.3- 2022-03-23
 * Fixed: Show existing terms only works with Automatic suggestions #1340
 
