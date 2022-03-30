@@ -270,6 +270,16 @@ class Taxonomy_List extends WP_List_Table
                 ),
                 __('Edit', 'simple-tags')
             ),
+            'view' => sprintf(
+                '<a href="%s">%s</a>',
+                add_query_arg(
+                    [
+                        'taxonomy' => $item->name,
+                    ],
+                    taxopress_admin_url('edit-tags.php')
+                ),
+                __('View', 'simple-tags')
+            ),
         ];
 
         return $column_name === $primary ? $this->row_actions($actions, false) : '';

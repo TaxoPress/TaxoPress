@@ -423,6 +423,11 @@ class SimpleTags_Autoterms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li class="autoterm_advanced_tab <?php echo $active_tab === 'autoterm_advanced' ? 'active' : ''; ?>" data-content="autoterm_advanced">
+                                                    <a href="#autoterm_advanced"><span><?php esc_html_e('Advanced',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                             </ul>
 
                                             <div class="st-taxonomy-content taxopress-tab-content">
@@ -993,7 +998,7 @@ class SimpleTags_Autoterms
                                                        <tr valign="top"><th scope="row"><label><?php echo esc_html__('Existing Content', 'simple-tags'); ?></label></th>
 
                                                        <td>
-                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to all existing content', 'simple-tags')); ?>">
+                                                           <input type="submit" class="button taxopress-autoterm-all-content" value="<?php echo esc_attr(__('Add Auto Terms to existing content', 'simple-tags')); ?>">
                                                            <span class="spinner taxopress-spinner"></span>
 
                                                            <p class="taxopress-field-description description">
@@ -1014,6 +1019,14 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_schedule' ? '' : 'display:none;'; ?>">
 
                                                         <?php do_action('taxopress_autoterms_after_autoterm_schedule', $current); ?>
+
+                                                </table>
+
+
+                                                <table class="form-table taxopress-table autoterm_advanced"
+                                                       style="<?php echo $active_tab === 'autoterm_advanced' ? '' : 'display:none;'; ?>">
+
+                                                        <?php do_action('taxopress_autoterms_after_autoterm_advanced', $current); ?>
 
                                                 </table>
 
