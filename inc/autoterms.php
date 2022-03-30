@@ -423,6 +423,11 @@ class SimpleTags_Autoterms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li class="autoterm_advanced_tab <?php echo $active_tab === 'autoterm_advanced' ? 'active' : ''; ?>" data-content="autoterm_advanced">
+                                                    <a href="#autoterm_advanced"><span><?php esc_html_e('Advanced',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                             </ul>
 
                                             <div class="st-taxonomy-content taxopress-tab-content">
@@ -1014,6 +1019,14 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_schedule' ? '' : 'display:none;'; ?>">
 
                                                         <?php do_action('taxopress_autoterms_after_autoterm_schedule', $current); ?>
+
+                                                </table>
+
+
+                                                <table class="form-table taxopress-table autoterm_advanced"
+                                                       style="<?php echo $active_tab === 'autoterm_advanced' ? '' : 'display:none;'; ?>">
+
+                                                        <?php do_action('taxopress_autoterms_after_autoterm_advanced', $current); ?>
 
                                                 </table>
 
