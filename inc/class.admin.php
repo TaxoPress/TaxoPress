@@ -515,7 +515,7 @@ class SimpleTags_Admin {
 				'page_options',
 			),
 			'dashicons-tag',
-			69.999
+			69
 		);
 		add_submenu_page(
 			self::MENU_SLUG,
