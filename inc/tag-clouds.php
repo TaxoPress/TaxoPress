@@ -797,7 +797,7 @@ class SimpleTags_Tag_Clouds
                     <div class="inside">
                         <p><?php echo esc_html__('Here are the tokens you can use for Term link format', 'simple-tags'); ?>:</p>
                         <ul>
-                            <li><code>%<code>tag_link%</code></code> – <?php echo esc_html__('The URL of the term', 'simple-tags'); ?></li>
+                            <li><code>%tag_link%</code> – <?php echo esc_html__('The URL of the term', 'simple-tags'); ?></li>
                             <li><code>%tag_id%</code> – <?php echo esc_html__('The ID of the term', 'simple-tags'); ?></li>
                             <li><code>t%tag_scale%</code> – <?php echo esc_html__('The weighted size of the term in the display', 'simple-tags'); ?></li>
                             <li><code>%tag_count%</code> – <?php echo esc_html__('The number of times the term is used', 'simple-tags'); ?></li>
