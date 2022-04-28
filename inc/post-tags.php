@@ -689,9 +689,6 @@ class SimpleTags_Post_Tags
                             <li><code>%tag_feed%</code><?php echo esc_html__('Replaced by the RSS tag link', 'simple-tags'); ?></li>
                             <li><code>%tag_id%</code><?php echo esc_html__('Replaced by the tag ID', 'simple-tags'); ?></li>
                             <li><code>%tag_name_attribute%</code><?php echo esc_html__('Replaced by the tag’s name, formatted for attribute HTML', 'simple-tags'); ?></li>
-                            <li><code>%tag_technorati%</code><?php echo esc_html__('Replaced by Technorati tag link', 'simple-tags'); ?></li>
-                            <li><code>%tag_flickr%</code><?php echo esc_html__('Replaced by Flickr tag link', 'simple-tags'); ?></li>
-                            <li><code>%tag_delicious%</code><?php echo esc_html__('Replaced by Del.ici.ous tag link', 'simple-tags'); ?></li>
                         </ul>
                         <p><?php echo esc_html__('You can also add HTML elements to the formatting.', 'simple-tags'); ?></p>
                     </div>
