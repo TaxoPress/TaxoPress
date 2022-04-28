@@ -433,7 +433,19 @@ class Taxopress_Terms_List extends WP_List_Table
         $taxonomy = get_taxonomy($item->taxonomy);
 
         if($taxonomy){
-            $return = $taxonomy->labels->name;
+            $return = sprintf(
+                '<a href="%1$s">%2$s</a>',
+                add_query_arg(
+                    [
+                        'page'               => 'st_taxonomies',
+                        'add'                => 'taxonomy',
+                        'action'             => 'edit',
+                        'taxopress_taxonomy' => $taxonomy->name,
+                    ],
+                    taxopress_admin_url('admin.php')
+                ),
+                esc_html($taxonomy->labels->name)
+            );
         }else{
             $return = '&mdash;';
         }
