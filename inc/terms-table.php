@@ -318,6 +318,11 @@ class Taxopress_Terms_List extends WP_List_Table
                     admin_url('admin.php')),
                 esc_html__('Delete', 'simple-tags')
             ),
+            'view'   => sprintf(
+                '<a href="%s">%s</a>',
+                get_term_link($item->term_id),
+                esc_html__('View', 'simple-tags')
+            ),
         ];
 
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
