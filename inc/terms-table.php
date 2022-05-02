@@ -29,19 +29,29 @@ class Taxopress_Terms_List extends WP_List_Table
         $page           = $this->get_pagenum();
         $offset         = ($page - 1) * $items_per_page;
 
+        $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? [sanitize_text_field($_REQUEST['terms_filter_post_type'])] : '';
+        $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
+        if(!empty($selected_taxonomy)){
+            $taxonomies = [$selected_taxonomy];
+        }
 
         $terms_attr = array (
             'taxonomy' => $taxonomies,
+            'post_types' => $selected_post_type,
             'orderby' => $orderby,
             'order' => $order,
             'search' => $search,
-            'offset' => $offset,
             'hide_empty' => false,
             'include' => 'all',
-            'number' => $items_per_page,
             'pad_counts' => true,
             'update_term_meta_cache' => true,
         );
+        if($count){
+            $terms_attr['number'] = 0;
+        } else {
+            $terms_attr['offset'] = $offset;
+            $terms_attr['number'] = $items_per_page;
+        }
 
         $terms = get_terms($terms_attr);
 
@@ -70,12 +80,9 @@ class Taxopress_Terms_List extends WP_List_Table
      *
      * @return null|string
      */
-    public static function record_count()
+    public function record_count()
     {
-        $taxonomies = array_keys(get_all_taxopress_taxonomies());
-        $search = (!empty($_REQUEST['s'])) ? sanitize_text_field($_REQUEST['s']) : '';
-        
-        return wp_count_terms(['hide_empty' => false, 'taxonomy' => $taxonomies, 'search' => $search]);
+        return count($this->get_all_terms(true));
     }
 
     /**
@@ -153,6 +160,51 @@ class Taxopress_Terms_List extends WP_List_Table
         return $actions;
     }
 
+	/**
+     * Add custom filter to tablenav
+	 *
+	 * @param string $which
+	 */
+	protected function extra_tablenav( $which ) {
+
+		if ( 'top' === $which ) {
+
+            $post_types = get_post_types(['public' => true], 'objects');
+
+            $taxonomies = get_all_taxopress_public_taxonomies();
+
+            $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_text_field($_REQUEST['terms_filter_post_type']) : '';
+            $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
+             ?>
+
+
+            <div class="alignleft actions autoterms-terms-table-filter">
+
+                <select class="auto-terms-terms-filter-select"  name="terms_filter_select_post_type" id="terms_filter_select_post_type">
+                    <option value=""><?php esc_html_e('Post type', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $post_types as $post_type ) {
+                        echo '<option value="'. esc_attr($post_type->name) .'" '.selected($selected_post_type, $post_type->name, false).'>'. esc_html($post_type->label) .'</option>';
+                    }
+                    ?>
+                </select>
+
+                <select class="auto-terms-terms-filter-select"  name="terms_filter_select_taxonomy" id="terms_filter_select_taxonomy">
+                    <option value=""><?php esc_html_e('Taxonomy', 'simple-tags'); ?></option>
+                    <?php
+                    foreach ( $taxonomies as $taxonomy ) {
+                        echo '<option value="'. esc_attr($taxonomy->name) .'" '.selected($selected_taxonomy, $taxonomy->name, false).'>'. esc_html($taxonomy->labels->name) .'</option>';
+                    }
+                    ?>
+                </select>
+                
+                <a href="javascript:void(0)" class="taxopress-terms-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
+                
+            </div>
+        <?php
+		}
+	}
+
     /**
      * Process bulk actions
      */
@@ -216,7 +268,7 @@ class Taxopress_Terms_List extends WP_List_Table
     public function search_box($text, $input_id)
     {
         if (empty($_REQUEST['s']) && !$this->has_items()) {
-            return;
+            //return;
         }
 
         $input_id = $input_id . '-search-input';
@@ -230,12 +282,19 @@ class Taxopress_Terms_List extends WP_List_Table
         if (!empty($_REQUEST['page'])) {
             echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
         }
+
+        $custom_filters = ['terms_filter_post_type', 'terms_filter_taxonomy'];
+
+        foreach ($custom_filters as  $custom_filter) {
+            $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field($_REQUEST[$custom_filter]) : '';
+            echo '<input type="hidden" name="' . esc_attr($custom_filter) . '" value="' . esc_attr($filter_value) . '" />';
+        }
         ?>
         <p class="search-box">
             <label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($text); ?>:</label>
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s"
                    value="<?php _admin_search_query(); ?>"/>
-            <?php submit_button($text, '', '', false, ['id' => 'search-submit']); ?>
+            <?php submit_button($text, '', '', false, ['id' => 'taxopress-terms-search-submit']); ?>
         </p>
         <?php
     }
@@ -263,7 +322,7 @@ class Taxopress_Terms_List extends WP_List_Table
          * Pagination.
          */
         $current_page = $this->get_pagenum();
-        $total_items  = self::record_count();
+        $total_items  = $this->record_count();
 
         /**
          * Now we can add the data to the items property, where it can be used by the rest of the class.

@@ -25,7 +25,30 @@ class SimpleTags_Terms
         add_action('admin_menu', [$this, 'admin_menu']);
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
+        //support post type for terms query
+        add_filter('terms_clauses', [__CLASS__, 'taxopress_terms_clauses'], 10, 3);
 
+    }
+
+    // Handle the post_type parameter given in get_terms function
+    public static function taxopress_terms_clauses($clauses, $taxonomy, $args) {
+        if (isset($_REQUEST['page']) && $_REQUEST['page'] === 'st_terms' && !empty($args['post_types']) && is_array($args['post_types']))	{
+            global $wpdb;
+
+            $post_types = array();
+
+            foreach($args['post_types'] as $cpt)	{
+                $post_types[] = "'".$cpt."'";
+            }
+
+            if(!empty($post_types))	{
+                $clauses['fields'] = 'DISTINCT '.str_replace('tt.*', 'tt.term_taxonomy_id, tt.term_id, tt.taxonomy, tt.description, tt.parent', $clauses['fields']).', COUNT(t.term_id) AS count';
+                $clauses['join'] .= ' INNER JOIN '.$wpdb->term_relationships.' AS r ON r.term_taxonomy_id = tt.term_taxonomy_id INNER JOIN '.$wpdb->posts.' AS p ON p.ID = r.object_id';
+                $clauses['where'] .= ' AND p.post_type IN ('.implode(',', $post_types).')';
+                $clauses['orderby'] = 'GROUP BY t.term_id '.$clauses['orderby'];
+            }
+        }
+        return $clauses;
     }
 
     /**
