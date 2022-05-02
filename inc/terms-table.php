@@ -19,8 +19,9 @@ class Taxopress_Terms_List extends WP_List_Table
     }
 
     public function get_all_terms($count = false){
+
+        $taxonomies = array_keys(get_all_taxopress_taxonomies_request());
         
-        $taxonomies = array_keys(get_all_taxopress_taxonomies());
         $search = (!empty($_REQUEST['s'])) ? sanitize_text_field($_REQUEST['s']) : '';
 
         $orderby        = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID';
@@ -175,6 +176,13 @@ class Taxopress_Terms_List extends WP_List_Table
 
             $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_text_field($_REQUEST['terms_filter_post_type']) : '';
             $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
+
+                $selected_option = 'public';
+                if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
+                    $selected_option = 'all';
+                }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
+                    $selected_option = 'private';
+                }
              ?>
 
 
@@ -196,6 +204,12 @@ class Taxopress_Terms_List extends WP_List_Table
                         echo '<option value="'. esc_attr($taxonomy->name) .'" '.selected($selected_taxonomy, $taxonomy->name, false).'>'. esc_html($taxonomy->labels->name) .'</option>';
                     }
                     ?>
+                </select>
+
+                <select class="auto-terms-terms-filter-select" name="terms_filter_select_taxonomy_type" id="terms_filter_select_taxonomy_type">
+                    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('All Taxonomies', 'simple-tags'); ?></option>
+                    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
+                    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
                 </select>
                 
                 <a href="javascript:void(0)" class="taxopress-terms-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
@@ -283,7 +297,7 @@ class Taxopress_Terms_List extends WP_List_Table
             echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
         }
 
-        $custom_filters = ['terms_filter_post_type', 'terms_filter_taxonomy'];
+        $custom_filters = ['terms_filter_post_type', 'terms_filter_taxonomy', 'taxonomy_type'];
 
         foreach ($custom_filters as  $custom_filter) {
             $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field($_REQUEST[$custom_filter]) : '';

@@ -586,7 +586,7 @@
     // -------------------------------------------------------------
     $(document).on('click', '.taxopress-terms-tablenav-filter', function (e) {
       e.preventDefault();
-      $('input[name="terms_source_filter"]').val($('#terms_source_filter_select :selected').val());
+      $('input[name="taxonomy_type"]').val($('#terms_filter_select_taxonomy_type :selected').val());
       $('input[name="terms_filter_post_type"]').val($('#terms_filter_select_post_type :selected').val());
       $('input[name="terms_filter_taxonomy"]').val($('#terms_filter_select_taxonomy :selected').val());
       $('input[name="terms_filter_status_message"]').val($('#terms_filter_select_status_message :selected').val());
