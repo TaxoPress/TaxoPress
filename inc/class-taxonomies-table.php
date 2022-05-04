@@ -414,9 +414,10 @@ class Taxonomy_List extends WP_List_Table
             '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
             add_query_arg(
                 [
-                    'taxonomy' => $item->name,
+                    'page'     => 'st_terms',
+                    'terms_filter_taxonomy' => $item->name
                 ],
-                taxopress_admin_url('edit-tags.php')
+                taxopress_admin_url('admin.php')
             ),
             count($terms)
         );

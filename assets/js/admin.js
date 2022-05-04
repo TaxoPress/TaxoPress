@@ -8,6 +8,106 @@
 
   $(document).ready(function () {
 
+    
+    
+    // -------------------------------------------------------------
+    //   TaxoPress term quick edit save
+    // -------------------------------------------------------------
+    $('.taxopress-save', $('#inline-edit') ).on( 'click', function() {
+			return save_taxopress_qe_term(this);
+    });
+
+    function get_taxopress_term_id(o){
+      var id = o.tagName === 'TR' ? o.id : $(o).parents('tr').attr('id'), parts = id.split('-');
+  
+      return parts[parts.length - 1];
+    }
+    
+      function save_taxopress_qe_term(id) {
+        var params, fields, tax = $('input[name="taxonomy"]').val() || '';
+  
+        // Makes sure we can pass an HTMLElement as the ID.
+        if( typeof(id) === 'object' ) {
+          id = get_taxopress_term_id(id);
+        }
+    
+        $('table.widefat .spinner').addClass('is-active');
+        
+        var rowData = $('#inline_' + id);
+        var original_tax = $('.taxonomy', rowData).text();
+        
+        params = {
+          action: 'taxopress_terms_inline_save_term',
+          tax_ID: id,
+          taxonomy: tax
+        };
+    
+        fields = $('#edit-'+id).find(':input').serialize();
+        params = fields + '&original_tax=' + original_tax + '&' + $.param(params);
+    
+        // Do the Ajax request to save the data to the server.
+        $.post( ajaxurl, params,
+          /**
+           * Handles the response from the server
+           *
+           * Handles the response from the server, replaces the table row with the response
+           * from the server.
+           *
+           * @param {string} r The string with which to replace the table row.
+           */
+          function(r) {
+            var row, new_id, option_value,
+              $errorNotice = $( '#edit-' + id + ' .inline-edit-save .notice-error' ),
+              $error = $errorNotice.find( '.error' );
+    
+            $( 'table.widefat .spinner' ).removeClass( 'is-active' );
+    
+            if (r) {
+              if ( -1 !== r.indexOf( '<tr' ) ) {
+                $(inlineEditTax.what+id).siblings('tr.hidden').addBack().remove();
+                new_id = $(r).attr('id');
+    
+                $('#edit-'+id).before(r).remove();
+    
+                if ( new_id ) {
+                  option_value = new_id.replace( inlineEditTax.type + '-', '' );
+                  row = $( '#' + new_id );
+                } else {
+                  option_value = id;
+                  row = $( inlineEditTax.what + id );
+                }
+    
+                // Update the value in the Parent dropdown.
+                $( '#parent' ).find( 'option[value=' + option_value + ']' ).text( row.find( '.row-title' ).text() );
+    
+                row.hide().fadeIn( 400, function() {
+                  // Move focus back to the Quick Edit button.
+                  row.find( '.editinline' )
+                    .attr( 'aria-expanded', 'false' )
+                    .trigger( 'focus' );
+                  wp.a11y.speak( wp.i18n.__( 'Changes saved.' ) );
+                });
+    
+              } else {
+                $errorNotice.removeClass( 'hidden' );
+                $error.html( r );
+                /*
+                 * Some error strings may contain HTML entities (e.g. `&#8220`), let's use
+                 * the HTML element's text.
+                 */
+                wp.a11y.speak( $error.text() );
+              }
+            } else {
+              $errorNotice.removeClass( 'hidden' );
+              $error.text( wp.i18n.__( 'Error while saving the changes.' ) );
+              wp.a11y.speak( wp.i18n.__( 'Error while saving the changes.' ) );
+            }
+          }
+        );
+    
+        // Prevent submitting the form when pressing Enter on a focused field.
+        return false;
+      }
     // -------------------------------------------------------------
     //   Settings sub tab click
     // -------------------------------------------------------------
@@ -579,6 +679,23 @@
 
     $(document).on('change', '.auto-terms-log-filter-select', function (e) {
       $('.taxopress-logs-tablenav-filter').trigger('click');
+    });
+
+    // -------------------------------------------------------------
+    //   terms filter
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-terms-tablenav-filter', function (e) {
+      e.preventDefault();
+      $('input[name="taxonomy_type"]').val($('#terms_filter_select_taxonomy_type :selected').val());
+      $('input[name="terms_filter_post_type"]').val($('#terms_filter_select_post_type :selected').val());
+      $('input[name="terms_filter_taxonomy"]').val($('#terms_filter_select_taxonomy :selected').val());
+      $('input[name="terms_filter_status_message"]').val($('#terms_filter_select_status_message :selected').val());
+      $('input[name="terms_filter_settings"]').val($('#terms_filter_select_settings :selected').val());
+      $('#taxopress-terms-search-submit').trigger('click');
+    });
+
+    $(document).on('change', '.auto-terms-terms-filter-select', function (e) {
+      $('.taxopress-terms-tablenav-filter').trigger('click');
     });
 
     // -------------------------------------------------------------

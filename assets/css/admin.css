@@ -27,6 +27,19 @@
   width: -moz-available !important;
 }
 
+.taxopress_page_st_terms .inline-editor .inline-edit-col,
+.taxopress_page_st_terms .inline-editor .inline-edit-save {
+    width: 50%;
+}
+
+.taxopress_page_st_terms .inline-editor .inline-edit-col label select {
+    margin-left: 12px;
+}
+
+.taxopress_page_st_terms .inline-editor .inline-edit-col label {
+    margin-bottom: 10px;
+}
+
 /* Suggested Click Tags   */
 a#open_clicktags {
     color:red;
