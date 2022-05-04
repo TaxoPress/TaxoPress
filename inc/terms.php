@@ -20,6 +20,11 @@ class SimpleTags_Terms
     public function __construct()
     {
 
+        global $hook_suffix;    //avoid warning outputs
+        if (!isset($hook_suffix)) {
+            $hook_suffix = '';
+        }
+
         add_filter('set-screen-option', [__CLASS__, 'set_screen'], 10, 3);
         // Admin menu
         add_action('admin_menu', [$this, 'admin_menu']);
@@ -27,6 +32,8 @@ class SimpleTags_Terms
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
         //support post type for terms query
         add_filter('terms_clauses', [__CLASS__, 'taxopress_terms_clauses'], 10, 3);
+        //inline term edit
+        add_action( 'wp_ajax_taxopress_terms_inline_save_term', [$this, 'taxopress_terms_inline_save_term_callback']);
 
     }
 
@@ -63,8 +70,78 @@ class SimpleTags_Terms
         // add JS for manage click tags
         if (isset($_GET['page']) && $_GET['page'] == 'st_terms') {
             wp_enqueue_style('st-taxonomies-css');
+            wp_enqueue_script( 'admin-tags' );
+            wp_enqueue_script('inline-edit-tax');
         }
     }
+
+
+    public function taxopress_terms_inline_save_term_callback()
+    {
+        global $wpdb;
+
+        check_ajax_referer( 'taxinlineeditnonce', '_inline_edit' );
+    
+        $edit_taxonomy = sanitize_key( $_POST['edit_taxonomy'] );
+        $taxonomy = sanitize_key( $_POST['original_tax'] );
+        $tax      = get_taxonomy( $taxonomy );
+        $edit_tax = get_taxonomy( $edit_taxonomy );
+    
+        if ( ! $tax || !$edit_tax ) {
+            wp_die( 0 );
+        }
+    
+        if ( ! isset( $_POST['tax_ID'] ) || ! (int) $_POST['tax_ID'] ) {
+            wp_die( -1 );
+        }
+    
+        $id = (int) $_POST['tax_ID'];
+    
+        if ( ! current_user_can( 'edit_term', $id ) ) {
+            wp_die( -1 );
+        }
+        
+        $tag                  = get_term( $id, $taxonomy );
+        $_POST['description'] = $tag->description;
+    
+        $updated = wp_update_term( $id, $taxonomy, $_POST );
+    
+        if ( $updated && ! is_wp_error( $updated ) ) {
+            $tag = get_term( $updated['term_id'], $taxonomy );
+            if ( ! $tag || is_wp_error( $tag ) ) {
+                if ( is_wp_error( $tag ) && $tag->get_error_message() ) {
+                    wp_die( $tag->get_error_message() );
+                }
+                wp_die( __( 'Item not updated.' ) );
+            } else {
+                if($tax !== $edit_tax){
+                    $update_term = $wpdb->update(
+                        $wpdb->prefix . 'term_taxonomy',
+                        [ 'taxonomy' => $edit_taxonomy ],
+                        [ 'term_taxonomy_id' => $tag->term_id ],
+                        [ '%s' ],
+                        [ '%d' ]
+                    );
+                    if($update_term){
+                        clean_term_cache($tag->term_id);
+                        $tag = get_term( $tag->term_id );
+                    }
+                }
+            }
+        } else {
+            if ( is_wp_error( $updated ) && $updated->get_error_message() ) {
+                wp_die( $updated->get_error_message() );
+            }
+            wp_die( __( 'Item not updated.' ) );
+        }
+
+        $wp_list_table = new Taxopress_Terms_List();
+
+        $wp_list_table->single_row($tag);
+        wp_die();
+    }
+
+    
 
     public static function set_screen($status, $option, $value)
     {
@@ -186,7 +263,41 @@ class SimpleTags_Terms
 
 
             </div>
+<?php $this->terms_table->inline_edit(); ?>
 
+<script>
+
+(function ($) {
+  'use strict';
+
+  /**
+   * All of the code for admin-facing JavaScript source
+   * should reside in this file.
+   */
+
+  $( window ).load(function() {
+      // -------------------------------------------------------------
+      //   TaxoPress terms quick edit
+      // -------------------------------------------------------------
+    	$('.taxopress_page_st_terms #the-list').on( 'click', 'a.editinline, button.editinline', function() {
+            var id, taxonomy, editRow, rowData;
+            var r_id = get_taxopress_term_id(this);
+            rowData = $('#inline_' + r_id);
+            $('#inline-edit')
+            editRow = $('.inline-edit-row#edit-'+r_id);
+            taxonomy = $('.taxonomy', rowData).text();
+            $('select[name="edit_taxonomy"]', editRow).val( taxonomy );
+      });
+        function get_taxopress_term_id(o){
+        var id = o.tagName === 'TR' ? o.id : $(o).parents('tr').attr('id'), parts = id.split('-');
+    
+        return parts[parts.length - 1];
+        }
+});
+
+})(jQuery);
+
+</script>
         <?php SimpleTags_Admin::printAdminFooter(); ?>
         </div>
         <?php

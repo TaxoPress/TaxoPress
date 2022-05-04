@@ -13,7 +13,7 @@ class Taxopress_Terms_List extends WP_List_Table
         parent::__construct([
             'singular' => esc_html__('Term', 'simple-tags'), //singular name of the listed records
             'plural'   => esc_html__('Terms', 'simple-tags'), //plural name of the listed records
-            'ajax'     => false //does this table support ajax?
+            'ajax'     => true //does this table support ajax?
         ]);
 
     }
@@ -94,7 +94,7 @@ class Taxopress_Terms_List extends WP_List_Table
     public function single_row($item)
     {
         $class = ['st-terms-tr'];
-        $id    = 'st-terms-' . md5($item->term_id);
+        $id    = 'term-' . $item->term_id . '';
         echo sprintf('<tr id="%s" class="%s">', esc_attr($id), esc_attr(implode(' ', $class)));
         $this->single_row_columns($item);
         echo '</tr>';
@@ -178,9 +178,9 @@ class Taxopress_Terms_List extends WP_List_Table
             $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
 
                 $selected_option = 'public';
-                if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
+                if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all') {
                     $selected_option = 'all';
-                }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
+                }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private') {
                     $selected_option = 'private';
                 }
              ?>
@@ -367,8 +367,10 @@ class Taxopress_Terms_List extends WP_List_Table
         $taxonomy = get_taxonomy($item->taxonomy);
         
         //Build row actions
-        $actions = [
-            'edit'   => sprintf(
+        $actions = [];
+
+		if ( current_user_can( 'edit_term', $item->term_id ) ) {
+			$actions['edit'] = sprintf(
                 '<a href="%s">%s</a>',
                 add_query_arg(
                     [
@@ -379,8 +381,17 @@ class Taxopress_Terms_List extends WP_List_Table
                     admin_url('term.php')
                 ),
                 esc_html__('Edit', 'simple-tags')
-            ),
-            'delete' => sprintf(
+            );
+			$actions['inline hide-if-no-js'] = sprintf(
+				'<button type="button" class="button-link editinline" aria-label="%s" aria-expanded="false">%s</button>',
+				/* translators: %s: Taxonomy term name. */
+				esc_attr( sprintf( esc_html__( 'Quick edit &#8220;%s&#8221; inline', 'simple-tags'), $item->name ) ),
+				esc_html__('Quick&nbsp;Edit', 'simple-tags')
+			);
+		}
+
+		if ( current_user_can( 'delete_term', $item->term_id ) ) {
+			$actions['delete'] = sprintf(
                 '<a href="%s" class="delete-terms">%s</a>',
                 add_query_arg([
                     'page'                   => 'st_terms',
@@ -390,13 +401,16 @@ class Taxopress_Terms_List extends WP_List_Table
                 ],
                     admin_url('admin.php')),
                 esc_html__('Delete', 'simple-tags')
-            ),
-            'view'   => sprintf(
+            );
+		}
+
+        if (is_taxonomy_viewable($item->taxonomy)) {
+            $actions['view'] = sprintf(
                 '<a href="%s">%s</a>',
                 get_term_link($item->term_id),
                 esc_html__('View', 'simple-tags')
-            ),
-        ];
+            );
+        }
 
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
     }
@@ -424,6 +438,16 @@ class Taxopress_Terms_List extends WP_List_Table
             ),
             esc_html($item->name)
         );
+
+        //for inline edit
+		$qe_data = get_term( $item->term_id, $item->taxonomy, OBJECT, 'edit');
+
+		$title .= '<div class="hidden" id="inline_' . $qe_data->term_id . '">';
+		$title .= '<div class="taxonomy">'. $item->taxonomy .'</div>';
+		$title .= '<div class="name">' . $qe_data->name . '</div>';
+
+		$title .= '<div class="slug">' . apply_filters( 'editable_slug', $qe_data->slug, $qe_data ) . '</div>';
+		$title .= '<div class="parent">' . $qe_data->parent . '</div></div>';
 
         return $title;
     }
@@ -525,6 +549,69 @@ class Taxopress_Terms_List extends WP_List_Table
 
         return $return;
     }
+
+	/**
+	 * Outputs the hidden row displayed when inline editing
+	 *
+	 * @since 3.1.0
+	 */
+	public function inline_edit() {
+		?>
+
+		<form method="get">
+		<table style="display: none"><tbody id="inlineedit">
+
+			<tr id="inline-edit" class="inline-edit-row" style="display: none">
+			<td colspan="<?php echo $this->get_column_count(); ?>" class="colspanchange">
+
+			<fieldset>
+				<legend class="inline-edit-legend"><?php esc_html_e('Quick Edit', 'simple-tags'); ?></legend>
+				<div class="inline-edit-col">
+				<label>
+					<span class="title"><?php _ex( 'Name', 'term name', 'simple-tags'); ?></span>
+					<span class="input-text-wrap"><input type="text" name="name" class="ptitle" value="" /></span>
+				</label>
+
+				<?php if ( ! global_terms_enabled() ) : ?>
+					<label>
+						<span class="title"><?php esc_html_e('Slug', 'simple-tags'); ?></span>
+						<span class="input-text-wrap"><input type="text" name="slug" class="ptitle" value="" /></span>
+					</label>
+				<?php endif; ?>
+				<label>
+					<span class="taxonomy"><?php _ex( 'Taxonomy', 'term name', 'simple-tags'); ?></span>
+
+                    <?php $taxonomies = get_all_taxopress_taxonomies(); ?>
+                    <select class="input-text-wrap edit-tax edit_taxonomy"  name="edit_taxonomy">
+                        <?php
+                        foreach ( $taxonomies as $taxonomy ) {
+                            echo '<option value="'. esc_attr($taxonomy->name) .'">'. esc_html($taxonomy->labels->name) .'</option>';
+                        }
+                        ?>
+                    </select>
+				</label>
+				</div>
+			</fieldset>
+
+			<div class="inline-edit-save submit">
+				<button type="button" class="cancel button alignleft"><?php esc_html_e('Cancel', 'simple-tags'); ?></button>
+				<button type="button" class="taxopress-save button button-primary alignright"><?php esc_html_e('Update', 'simple-tags'); ?></button>
+				<span class="spinner"></span>
+
+				<?php wp_nonce_field( 'taxinlineeditnonce', '_inline_edit', false ); ?>
+				<br class="clear" />
+
+				<div class="notice notice-error notice-alt inline hidden">
+					<p class="error"></p>
+				</div>
+			</div>
+
+			</td></tr>
+
+		</tbody></table>
+		</form>
+		<?php
+	}
 
 
 }
