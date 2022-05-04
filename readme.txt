@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 5.9
-Stable tag: 3.6.0
+Stable tag: 3.6.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,17 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.6.1- 2022-05-04
+* Added: “Quick Edit” link to the Terms Screen #1359
+* Added: Allow users to choose the taxonomy for a term in quick edit #1360
+* Added: Filter for Public / Private Terms #1365
+* Fixed: Change Taxonomies “Count” link to go to “Terms” screen #1366
+* Added: “Post Type” and “Taxonomy” filters to the Terms screen #1358
+* Fixed: Remove “Current Post” - Flickr, Technorati and Delicious “dead” links #1374
+* Fixed: Extra space in Terms Display and %tag_link% #1375
+* Fixed: Link to the Taxonomy from the Terms screen #1364
+* Added: A “View” link to terms on the “Terms” screen #1357
 
 v3.6.0- 2022-03-30
 * Added: New "Terms" Screen #1260
