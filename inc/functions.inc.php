@@ -120,7 +120,8 @@ function taxopress_admin_pages(){
         'st_related_posts',
         'st_autolinks',
         'st_autoterms',
-        'st_suggestterms'
+        'st_suggestterms',
+        'st_terms'
     ];
 
    return apply_filters('taxopress_admin_pages', $taxopress_pages);
