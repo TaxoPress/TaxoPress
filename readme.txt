@@ -225,6 +225,17 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.6.1- 2022-05-04
+* Added: “Quick Edit” link to the Terms Screen #1359
+* Added: Allow users to choose the taxonomy for a term in quick edit #1360
+* Added: Filter for Public / Private Terms #1365
+* Fixed: Change Taxonomies “Count” link to go to “Terms” screen #1366
+* Added: “Post Type” and “Taxonomy” filters to the Terms screen #1358
+* Fixed: Remove “Current Post” - Flickr, Technorati and Delicious “dead” links #1374
+* Fixed: Extra space in Terms Display and %tag_link% #1375
+* Fixed: Link to the Taxonomy from the Terms screen #1364
+* Added: A “View” link to terms on the “Terms” screen #1357
+
 v3.6.0- 2022-03-30
 * Added: New "Terms" Screen #1260
 * Added: Add a Regex Option for Auto Terms #1338
