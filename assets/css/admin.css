@@ -710,6 +710,11 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     max-width: 140px;
 }
 
+.taxopress-warning textarea[readonly],
+.column-shortcode input[readonly] {
+    background-color: #fff !important;
+}
+
 @media only screen and (min-width: 1075px) {
     .taxopress-advertisement-right-sidebar-message,
     .upgrade-btn {
