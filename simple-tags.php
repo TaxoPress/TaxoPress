@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TaxoPress
  * Plugin URI: https://wordpress.org/plugins/simple-tags/
- * Description: Extended Tag Manager. Terms suggestion, Mass Edit Terms, Auto link Terms, Ajax Autocompletion, Click Terms, Advanced manage terms, etc.
+ * Description: TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms.
  * Version: 3.6.1
  * Author: TaxoPress
  * Author URI: https://taxopress.com
