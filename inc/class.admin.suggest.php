@@ -82,7 +82,7 @@ class SimpleTags_Admin_Suggest {
 
 
 		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . esc_attr__( 'Ajax loading', 'simple-tags' ) . '" />';
-		$title .= esc_html__( 'Automatic term suggestions', 'simple-tags' ) . '';
+		$title .= isset($click_terms['title']) ? esc_html($click_terms['title']) : esc_html__( 'Automatic term suggestions', 'simple-tags' ) . '';
 
         $suggest_term_use_local      = isset($click_terms['suggest_term_use_local']) ? (int)$click_terms['suggest_term_use_local'] : 0;
         $suggest_term_use_dandelion  = isset($click_terms['suggest_term_use_dandelion']) ? (int)$click_terms['suggest_term_use_dandelion'] : 0;
