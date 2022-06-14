@@ -362,7 +362,7 @@ class TagClouds_List extends WP_List_Table
             'flat' => esc_attr__( 'Cloud', 'simple-tags' ),
             'list' => esc_attr__( 'List (UL/LI)', 'simple-tags' ),
         ];
-        
+
         return $days_options[$item['format']];
     }
 
@@ -376,7 +376,7 @@ class TagClouds_List extends WP_List_Table
     protected function column_shortcode($item)
     {
 
-        return '<input type="text" value=\'[taxopress_termsdisplay id="'.$item['ID'].'"]\' />';
+        return '<input readonly type="text" value=\'[taxopress_termsdisplay id="'.$item['ID'].'"]\' />';
     }
 
 

@@ -538,7 +538,7 @@ class SimpleTags_Post_Tags
 
                             <table class="form-table taxopress-table posttags_advanced"
                                    style="<?php echo $active_tab === 'posttags_advanced' ? '' : 'display:none;'; ?>">
-                                   <?php 
+                                   <?php
 
 
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -659,7 +659,7 @@ class SimpleTags_Post_Tags
                                 <?php echo '<div class="taxopress-warning" style="">' . esc_html__('Shortcode: ',
                                         'simple-tags'); ?> &nbsp;
                                 <textarea
-                                    style="resize: none;padding: 5px;">[taxopress_postterms id="<?php echo (int)$current['ID']; ?>"]</textarea>
+                                    style="resize: none;padding: 5px;" readonly>[taxopress_postterms id="<?php echo (int)$current['ID']; ?>"]</textarea>
                         </div>
                         </p>
                         <?php } ?>
@@ -679,7 +679,7 @@ class SimpleTags_Post_Tags
                             <span><?php echo esc_html__('Terms for Current Post', 'simple-tags'); ?></span>
                         </h3>
                     </div>
-        
+
                     <div class="inside">
                         <p><?php echo esc_html__('Here are the tokens you can use for Terms for Current Post format', 'simple-tags'); ?>:</p>
                         <ul>
@@ -694,7 +694,7 @@ class SimpleTags_Post_Tags
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 
                                                 <?php do_action('taxopress_admin_after_sidebar'); ?>

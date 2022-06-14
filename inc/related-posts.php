@@ -814,7 +814,7 @@ class SimpleTags_Related_Post
                                 <?php echo '<div class="taxopress-warning" style="">' . esc_html__('Shortcode: ',
                                         'simple-tags'); ?> &nbsp;
                                 <textarea
-                                    style="resize: none;padding: 5px;">[taxopress_relatedposts id="<?php echo (int)$current['ID']; ?>"]</textarea>
+                                    style="resize: none;padding: 5px;" readonly>[taxopress_relatedposts id="<?php echo (int)$current['ID']; ?>"]</textarea>
                         </div>
                         </p>
                         <?php } ?>
