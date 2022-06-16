@@ -65,7 +65,12 @@ a#close_clicktags{display:none;}
 .container_clicktags span.ttn_location:hover{background:#b6bdd2 url(../images/map.png) 3px 50% no-repeat;}
 .container_clicktags span.ttn_person:hover{background:#b6bdd2 url(../images/user.png) 3px 50% no-repeat;}
 .container_clicktags span.yahoo:hover{background:#b6bdd2 url(../images/yahoo_logo.gif) 3px 50% no-repeat;}
-#suggestedtags .container_clicktags .used_term{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter: alpha(opacity=50); opacity: 0.5;}
+#suggestedtags .container_clicktags .used_term,
+div[id^="suggestedtags-"] .container_clicktags .used_term {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50); 
+    opacity: 0.5;
+}
 
 /* Advanced tags input   */
 #adv-tags-input{padding:3px 5px;}
@@ -103,6 +108,7 @@ a#close_clicktags{display:none;}
   display: none !important;
 }
 
+div[id^="suggestedtags-"] .postbox-header .hndle,
 #suggestedtags .postbox-header .hndle {
   flex-grow: unset !important;
   display: block !important;
@@ -708,6 +714,11 @@ body.block-editor-page .clicktags-search-wrapper .option input {
 
 .tablenav .actions.autoterms-log-table-filter select {
     max-width: 140px;
+}
+
+.taxopress-warning textarea[readonly],
+.column-shortcode input[readonly] {
+    background-color: #fff !important;
 }
 
 @media only screen and (min-width: 1075px) {

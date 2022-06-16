@@ -773,7 +773,7 @@ class SimpleTags_Tag_Clouds
                             ?>
                         <p>
                             <?php echo '<div class="taxopress-warning" style="">' . esc_html__('Shortcode: ','simple-tags'); ?> &nbsp;
-                            <textarea style="resize: none;padding: 5px;">[taxopress_termsdisplay id="<?php echo (int)$current['ID']; ?>"]</textarea>
+                            <textarea style="resize: none;padding: 5px;" readonly>[taxopress_termsdisplay id="<?php echo (int)$current['ID']; ?>"]</textarea>
                             </div>
                         </p>
                         <?php } ?>
