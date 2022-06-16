@@ -28,93 +28,41 @@ class SimpleTags_Admin_Suggest {
 	public static function admin_enqueue_scripts() {
 		global $pagenow;
 
-        $click_terms = taxopress_current_post_suggest_terms();
+        $click_terms = taxopress_current_post_suggest_terms('term_suggestion', false, false);
 
         if(!is_array($click_terms)){
             return;
         }
 
-		//metabox edit line
-		if(current_user_can('admin_simple_tags')){
-			$click_term_edit = '<span class="edit-suggest-term-metabox">
-			'. sprintf(
-				'<a href="%s">%s</a>',
-				add_query_arg(
-					[
-						'page'                   => 'st_suggestterms',
-						'add'                    => 'new_item',
-						'action'                 => 'edit',
-						'taxopress_suggestterms' => $click_terms['ID'],
-					],
-					admin_url('admin.php')
-				),
-				__('Edit this metabox', 'simple-tags')
-			)
-			.'
-			</span>';
-		}else {
-			$click_term_edit = '';
-		}
-
+		$manage_link = add_query_arg(
+			[
+				'page'                   => 'st_suggestterms',
+				'add'                    => 'new_item',
+				'action'                 => 'edit',
+			],
+			admin_url('admin.php')
+		);
 
 		wp_register_script( 'st-helper-suggested-tags', STAGS_URL . '/assets/js/helper-suggested-tags.js', array(
 			'jquery',
 			'st-helper-add-tags'
 		), STAGS_VERSION );
 		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
-			'title_bloc'   => self::get_suggest_tags_title(),
-			'edit_metabox_link'   => $click_term_edit,
-			'content_bloc' => esc_html__( 'Select an option above to load suggested terms.', 'simple-tags' )
+			'click_terms' 		=> $click_terms,
+			'manage_link' 		=> $manage_link,
+			'stag_url' 		    => STAGS_URL,
+			'manage_metabox'    => current_user_can('admin_simple_tags') ? 1 : 0,
+			'edit_metabox_text' => esc_html__('Edit this metabox', 'simple-tags'),
+			'local_term_text' 	=> esc_html__('Existing terms on your site', 'simple-tags'),
+			'dandelion_text' 	=> esc_html__('dataTXT by Dandelion', 'simple-tags'),
+			'opencalais_text' 	=> esc_html__('OpenCalais', 'simple-tags'),
+			'refresh_text' 	    => esc_html__('Refresh', 'simple-tags'),
+			'content_bloc'      => esc_html__('Select an option above to load suggested terms.', 'simple-tags'),
+			'source_text'       => esc_html__('Select source to load suggested terms', 'simple-tags') 
 		) );
 
         // Helper for post type
         wp_enqueue_script( 'st-helper-suggested-tags' );
-	}
-
-	/**
-	 * Get Suggested tags title
-	 *
-	 */
-	public static function get_suggest_tags_title() {
-
-        $click_terms = taxopress_current_post_suggest_terms();
-
-
-
-		$title = '<img style="display:none;" id="st_ajax_loading" src="' . STAGS_URL . '/assets/images/ajax-loader.gif" alt="' . esc_attr__( 'Ajax loading', 'simple-tags' ) . '" />';
-		$title .= isset($click_terms['title']) ? esc_html($click_terms['title']) : esc_html__( 'Automatic term suggestions', 'simple-tags' ) . '';
-
-        $suggest_term_use_local      = isset($click_terms['suggest_term_use_local']) ? (int)$click_terms['suggest_term_use_local'] : 0;
-        $suggest_term_use_dandelion  = isset($click_terms['suggest_term_use_dandelion']) ? (int)$click_terms['suggest_term_use_dandelion'] : 0;
-        $suggest_term_use_opencalais = isset($click_terms['suggest_term_use_opencalais']) ? (int)$click_terms['suggest_term_use_opencalais'] : 0;
-
-		$title_options = [];
-        if($suggest_term_use_local > 0)
-		{
-            $title_options['tags_from_local_db']    = esc_html__( 'Existing terms on your site', 'simple-tags' );
-        }
-
-        if ( $click_terms['terms_datatxt_access_token'] !== '' && $suggest_term_use_dandelion > 0 ) {
-            $title_options['tags_from_datatxt']     = esc_html__( 'dataTXT by Dandelion', 'simple-tags' );
-        }
-		if ( $click_terms['terms_opencalais_key'] !== '' && $suggest_term_use_opencalais > 0 ) {
-            $title_options['tags_from_opencalais']  = esc_html__( 'OpenCalais', 'simple-tags' );
-        }
-
-		if(count($title_options) === 1){
-			$style = 'display: none';
-		}else{
-			$style = '';
-		}
-        $title .= '&nbsp;
-        <select style="'.$style.'" class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="'.$click_terms['ID'].'">
-        <option value="" selected="selected">'.__( 'Select source to load suggested terms', 'simple-tags' ).'</option>';
-        foreach($title_options as $option => $label){
-            $title .= '<option value="'.$option.'">'.$label.'</option>';
-        }
-        $title .= '</select> <button class="term_suggestion_refresh">'.__( 'Refresh', 'simple-tags' ).'</button>';
-
-		return $title;
 	}
 
 	/**
@@ -125,25 +73,33 @@ class SimpleTags_Admin_Suggest {
 	 */
 	public static function admin_head() {
 
-        $click_terms = taxopress_current_post_suggest_terms('term_suggestion');
+        $click_terms = taxopress_current_post_suggest_terms('term_suggestion', false, false);
 
         if(!is_array($click_terms)){
             return;
         }
-
-		add_meta_box( 'suggestedtags', esc_html__( 'Suggested tags', 'simple-tags' ), array(
-			__CLASS__,
-			'metabox'
-		), get_post_type(), 'advanced', 'core' );
+		$key_index = 0;
+        foreach ($click_terms as $click_term) {
+            add_meta_box(
+				'suggestedtags-'.$key_index, 
+				esc_html__('Suggested tags', 'simple-tags'), 
+				array(__CLASS__, 'metabox'), 
+				get_post_type(), 
+				'advanced', 
+				'core',
+				['key_index' => $key_index]
+			);
+			$key_index++;
+        }
 	}
 
 	/**
 	 * Print HTML for suggest tags box
 	 *
 	 **/
-	public static function metabox() {
+	public static function metabox($post, $callback_args) {
 		?>
-        <span class="container_clicktags">
+        <span class="container_clicktags <?php esc_attr_e('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php esc_attr_e($callback_args['args']['key_index']); ?>">
 			<?php 
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo SimpleTags_Admin::getDefaultContentBox(); ?>

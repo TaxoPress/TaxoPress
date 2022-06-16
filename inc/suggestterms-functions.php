@@ -331,7 +331,7 @@ function taxopress_action_delete_suggestterm($suggestterm_id)
  *
  * @return mixed
  */
-function taxopress_current_post_suggest_terms($source = false, $local_check = false)
+function taxopress_current_post_suggest_terms($source = false, $local_check = false, $single_result = true)
 {
     global $pagenow;
 
@@ -341,7 +341,7 @@ function taxopress_current_post_suggest_terms($source = false, $local_check = fa
     }
 
     $suggested_terms = taxopress_get_suggestterm_data();
-
+    $all_result = [];
     if (count($suggested_terms) > 0) {
         foreach ($suggested_terms as $suggested_term) {
 
@@ -366,12 +366,16 @@ function taxopress_current_post_suggest_terms($source = false, $local_check = fa
             }
 
             if (in_array(get_post_type(), $post_types)) {
-                return $suggested_term;
+                if ($single_result) {
+                    return $suggested_term;
+                } else {
+                    $all_result[] = $suggested_term;
+                }
             }
 
         }
     }
 
-    return false;
+    return empty($all_result) ? false : $all_result;
 }
 ?>
