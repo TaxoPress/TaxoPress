@@ -225,6 +225,14 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.6.2- 2022-06-16
+* Added: Allow more than one "Suggest Terms" metabox on post screen #1408
+* Update: Shortcode input should be read only. #1420
+* Fixed: The title of the metabox is always "automatic term suggestions" #1409
+* Update: Small typo in Auto Terms #1410
+* Update: Update the plugin description #1405
+* Fixed: Plugin breaks on PHP 5.6 #1419
+
 v3.6.1- 2022-05-04
 * Added: “Quick Edit” link to the Terms Screen #1359
 * Added: Allow users to choose the taxonomy for a term in quick edit #1360
