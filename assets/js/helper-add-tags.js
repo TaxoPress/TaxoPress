@@ -27,7 +27,11 @@ function addTag(tag, custom_taxonomy = false, term_id = false) {
     if (jQuery('#new-tag-'+custom_taxonomy).val() === '') {
       jQuery('#new-tag-'+custom_taxonomy).val(tag);
     } else {
-      jQuery('#new-tag-'+custom_taxonomy).val(jQuery('#new-tag-'+custom_taxonomy).val() + ', ' + tag);
+      var current_tags = jQuery('#new-tag-' + custom_taxonomy).val();
+      var current_tags_array = current_tags.split(',');
+      if (!current_tags_array.includes(tag) && !current_tags_array.includes(' ' + tag)) {
+        jQuery('#new-tag-' + custom_taxonomy).val(jQuery('#new-tag-' + custom_taxonomy).val() + ', ' + tag);
+      }
     }
     //jQuery('.tagadd').WithSelect()
 
