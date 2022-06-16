@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 6.0
-Stable tag: 3.6.1
+Stable tag: 3.6.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,14 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.6.2- 2022-06-16
+* Added: Allow more than one "Suggest Terms" metabox on post screen #1408
+* Update: Shortcode input should be read only. #1420
+* Fixed: The title of the metabox is always "automatic term suggestions" #1409
+* Update: Small typo in Auto Terms #1410
+* Update: Update the plugin description #1405
+* Fixed: Plugin breaks on PHP 5.6 #1419
 
 v3.6.1- 2022-05-04
 * Added: “Quick Edit” link to the Terms Screen #1359
