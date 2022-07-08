@@ -122,6 +122,11 @@ function getTitleFromEditor() {
     data = jQuery('#title').val();
   }
 
+  //fix elementor issue
+  if (typeof data == "undefined") {
+    data = jQuery('#title').val();
+  }
+
   // Trim data
   data = data.replace(/^\s+/, '').replace(/\s+$/, '');
   if (data !== '') {
