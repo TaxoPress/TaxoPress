@@ -225,6 +225,9 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.6.3- 2022-07-12
+* Fixed: Error with Suggested Terms on post screen #1433
+
 v3.6.2- 2022-06-16
 * Added: Allow more than one "Suggest Terms" metabox on post screen #1408
 * Update: Shortcode input should be read only. #1420
