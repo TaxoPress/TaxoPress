@@ -562,7 +562,7 @@ class Taxopress_Terms_List extends WP_List_Table
 		<table style="display: none"><tbody id="inlineedit">
 
 			<tr id="inline-edit" class="inline-edit-row" style="display: none">
-			<td colspan="<?php echo $this->get_column_count(); ?>" class="colspanchange">
+			<td colspan="<?php echo esc_attr($this->get_column_count()); ?>" class="colspanchange">
 
 			<fieldset>
 				<legend class="inline-edit-legend"><?php esc_html_e('Quick Edit', 'simple-tags'); ?></legend>

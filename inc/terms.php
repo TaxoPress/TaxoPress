@@ -110,9 +110,9 @@ class SimpleTags_Terms
             $tag = get_term( $updated['term_id'], $taxonomy );
             if ( ! $tag || is_wp_error( $tag ) ) {
                 if ( is_wp_error( $tag ) && $tag->get_error_message() ) {
-                    wp_die( $tag->get_error_message() );
+                    wp_die( esc_html($tag->get_error_message()) );
                 }
-                wp_die( __( 'Item not updated.' ) );
+                wp_die( esc_html__( 'Item not updated.' ) );
             } else {
                 if($tax !== $edit_tax){
                     $update_term = $wpdb->update(
@@ -130,9 +130,9 @@ class SimpleTags_Terms
             }
         } else {
             if ( is_wp_error( $updated ) && $updated->get_error_message() ) {
-                wp_die( $updated->get_error_message() );
+                wp_die( esc_html($updated->get_error_message()) );
             }
-            wp_die( __( 'Item not updated.' ) );
+            wp_die( esc_html__( 'Item not updated.' ) );
         }
 
         $wp_list_table = new Taxopress_Terms_List();
