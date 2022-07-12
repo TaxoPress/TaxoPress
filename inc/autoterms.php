@@ -235,7 +235,7 @@ class SimpleTags_Autoterms
                    class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
-                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo $this->autoterms_logs_count(); ?></a>
+                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo esc_html($this->autoterms_logs_count()); ?></a>
 
                 <div class="taxopress-description">
                     <?php esc_html_e('Auto Terms can scan your content and automatically assign new and existing terms.', 'simple-tags'); ?>
@@ -345,7 +345,7 @@ class SimpleTags_Autoterms
                    class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
-                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo $this->autoterms_logs_count(); ?></a>
+                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo esc_html($this->autoterms_logs_count()); ?></a>
 
                    </h1>
 

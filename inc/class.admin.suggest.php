@@ -99,7 +99,7 @@ class SimpleTags_Admin_Suggest {
 	 **/
 	public static function metabox($post, $callback_args) {
 		?>
-        <span class="container_clicktags <?php esc_attr_e('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php esc_attr_e($callback_args['args']['key_index']); ?>">
+        <span class="container_clicktags <?php echo esc_attr('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php echo esc_attr($callback_args['args']['key_index']); ?>">
 			<?php 
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo SimpleTags_Admin::getDefaultContentBox(); ?>

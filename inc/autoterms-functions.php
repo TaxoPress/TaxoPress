@@ -118,7 +118,7 @@ function taxopress_process_autoterm()
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-autoterm-log') {
         $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
-            wp_delete_post((int)($_REQUEST['taxopress_autoterms_log']), true);
+            wp_delete_post((int)$_REQUEST['taxopress_autoterms_log'], true);
             add_action('admin_notices', "taxopress_autoterms_delete_autoterm_log_admin_notice");
         }
         add_filter('removable_query_args', 'taxopress_delete_autoterm_log_filter_removable_query_args');
