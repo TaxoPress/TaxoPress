@@ -921,8 +921,8 @@ function taxopress_get_taxonomy_data()
  */
 function taxopress_get_extername_taxonomy_data()
 {
-    return apply_filters('taxopress_get_extername_taxonomy_data', get_option('taxopress_external_taxonomies', []),
-        get_current_blog_id());
+    return array_filter((array)apply_filters('taxopress_get_extername_taxonomy_data', get_option('taxopress_external_taxonomies', []),
+        get_current_blog_id()));
 }
 
 
