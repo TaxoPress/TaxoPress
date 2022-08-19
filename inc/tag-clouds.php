@@ -730,6 +730,7 @@ class SimpleTags_Tag_Clouds
                                 </div>
 
                             <?php } ?>
+                            <input type="hidden" class="pp-terms-display-fontsize-warning" value="<?php echo esc_attr__('Font size minimum must not be greater than Font size maximum value.', 'simple-tags'); ?>" />
                             <?php
                             /**
                              * Fires after the default fieldsets on the taxonomy screen.
