@@ -440,6 +440,7 @@ class SimpleTags_Client_Autolinks {
         }
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
+        $content = str_replace('%7C--%7C038;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/1377
 		
 	}
 
