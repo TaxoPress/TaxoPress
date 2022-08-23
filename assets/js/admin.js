@@ -715,6 +715,25 @@
     });
 
     // -------------------------------------------------------------
+    //   Terms display enable color
+    // -------------------------------------------------------------
+    $(document).on('click', '.tag-cloud-color-option', function (e) {
+      tag_cloud_color_option_action();
+    });
+    tag_cloud_color_option_action();
+    function tag_cloud_color_option_action() {
+      if ($('.tag-cloud-color-option').length > 0) {
+        if ($('.tag-cloud-color-option').prop("checked")) {
+          $('.tag-cloud-min').closest('tr').removeClass('st-hide-content');
+          $('.tag-cloud-max').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.tag-cloud-min').closest('tr').addClass('st-hide-content');
+          $('.tag-cloud-max').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
     //   Suggest term use Dandelion check
     // -------------------------------------------------------------
     $(document).on('click', '.suggest_term_use_dandelion', function (e) {
