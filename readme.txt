@@ -225,6 +225,15 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.6.4- 2022-08-23
+* Fixed: Auto link problem with ‘&’ in link #1377
+* Fixed: Issues with apostrophes in Auto Links #1444
+* Fixed: Warning: array_key_exists expects parameter 2 to be array, bool given #1439
+* Update: Add Terms Display "Font size minimum" and "Font size maximum" validation #1354
+* Fixed: Span problem on Auto Terms screen #1441
+* Update: Update "Automatically fill colors between maximum and minimum" to reflect right label #1371
+* Update: FR translation updated #1442
+
 v3.6.3- 2022-07-12
 * Fixed: Error with Suggested Terms on post screen #1433
 
