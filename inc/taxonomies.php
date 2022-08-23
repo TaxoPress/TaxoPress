@@ -1675,14 +1675,15 @@ if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
 
                                                 </div>';
                         }
-                        $taxonomy_url =  add_query_arg(
+                        //Hiding the View Taxonomy button instead of deleting the code for future use
+                        /*$taxonomy_url =  add_query_arg(
                             [
                                 'taxonomy' => $current["name"],
                             ],
                             taxopress_admin_url('edit-tags.php')
                         );
                         echo '<br /><a href="'. esc_url($taxonomy_url).'" class="button"> ' . esc_html__('View Taxonomy',
-                        'simple-tags') . '</a>';
+                        'simple-tags') . '</a>';*/
                     }
                         ?>
 
