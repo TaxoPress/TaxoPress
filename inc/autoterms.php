@@ -89,7 +89,7 @@ class SimpleTags_Autoterms
     public function autoterms_logs_count(){
 
         $count = taxopress_autoterms_logs_data(1)['counts'];
-        return '<span class="update-plugins count-'. (int)$count .'"><span class="plugin-count">('. number_format_i18n($count) .')</span></span>';
+        return '('. number_format_i18n($count) .')';
     }
 
     /**
@@ -235,7 +235,7 @@ class SimpleTags_Autoterms
                    class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
-                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo esc_html($this->autoterms_logs_count()); ?></a>
+                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <span class="update-plugins"><span class="plugin-count"><?php echo esc_html($this->autoterms_logs_count()); ?></span></span></a>
 
                 <div class="taxopress-description">
                     <?php esc_html_e('Auto Terms can scan your content and automatically assign new and existing terms.', 'simple-tags'); ?>
@@ -345,7 +345,7 @@ class SimpleTags_Autoterms
                    class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
-                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <?php echo esc_html($this->autoterms_logs_count()); ?></a>
+                   class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <span class="update-plugins"><span class="plugin-count"><?php echo esc_html($this->autoterms_logs_count()); ?></span></span></a>
 
                    </h1>
 

@@ -603,6 +603,37 @@ class SimpleTags_Tag_Clouds
 								                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							                    ] );
 
+
+
+                                                $select             = [
+                                                    'options' => [
+                                                        [
+                                                            'attr'    => '0',
+                                                            'text'    => esc_attr__('False', 'simple-tags'),
+                                                        ],
+                                                        [
+                                                            'attr' => '1',
+                                                            'text' => esc_attr__('True', 'simple-tags'),
+                                                            //'default' => 'true', removed when default value is checked as this mean box is always checked even when user uncheck it since it's defau;t
+                                                        ],
+                                                    ],
+                                                ];
+                                                $selected           = ( isset($current) && isset($current['color']) ) ? taxopress_disp_boolean($current['color']) : '';
+    
+                                                if($tag_cloud_edit){
+                                                    $select['selected'] = !empty($selected) ? $current['color'] : '';
+                                                }else{
+                                                    $select['selected'] = 1; //makeup for default when creating new term display
+                                                }
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_select_checkbox_input([
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'color',
+                                                    'class'     => 'tag-cloud-color-option',
+                                                    'labeltext'  => esc_html__('Enable colors for terms', 'simple-tags'),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                ]);
+
                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             echo $ui->get_text_input([
                                                     'namearray' => 'taxopress_tag_cloud',
@@ -610,6 +641,7 @@ class SimpleTags_Tag_Clouds
                                                     'class'     => 'text-color tag-cloud-min',
                                                     'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#CCCCCC',
                                                     'labeltext' => esc_html__('Font color minimum', 'simple-tags'),
+                                                    'helptext' => esc_html__('This is the color of the least popular term', 'simple-tags'),
                                                     'required'  => true,
                                                 ]);
 
@@ -620,38 +652,9 @@ class SimpleTags_Tag_Clouds
                                                     'class'     => 'text-color tag-cloud-max',
                                                     'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
                                                     'labeltext' => esc_html__('Font color maximum', 'simple-tags'),
+                                                    'helptext' => esc_html__('This is the color of the most popular term', 'simple-tags'),
                                                     'required'  => true,
                                                 ]);
-
-
-
-                                            $select             = [
-                                                'options' => [
-                                                    [
-                                                        'attr'    => '0',
-                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                    ],
-                                                    [
-                                                        'attr' => '1',
-                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                        //'default' => 'true', removed when default value is checked as this mean box is always checked even when user uncheck it since it's defau;t
-                                                    ],
-                                                ],
-                                            ];
-                                            $selected           = ( isset($current) && isset($current['color']) ) ? taxopress_disp_boolean($current['color']) : '';
-
-                                            if($tag_cloud_edit){
-                                                $select['selected'] = !empty($selected) ? $current['color'] : '';
-                                            }else{
-                                                $select['selected'] = 1; //makeup for default when creating new term display
-                                            }
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            echo $ui->get_select_checkbox_input([
-                                                'namearray'  => 'taxopress_tag_cloud',
-                                                'name'       => 'color',
-                                                'labeltext'  => esc_html__('Automatically fill colors between maximum and minimum', 'simple-tags'),
-                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            ]);
 
 
                                                     ?>
@@ -730,6 +733,7 @@ class SimpleTags_Tag_Clouds
                                 </div>
 
                             <?php } ?>
+                            <input type="hidden" class="pp-terms-display-fontsize-warning" value="<?php echo esc_attr__('Font size minimum must not be greater than Font size maximum value.', 'simple-tags'); ?>" />
                             <?php
                             /**
                              * Fires after the default fieldsets on the taxonomy screen.

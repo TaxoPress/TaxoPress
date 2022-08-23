@@ -270,6 +270,10 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
         '&uarr;'   => '&#8593;',
         '&darr;'   => '&#8595;',
         '&trade;'   => '&#8482;',
+        '&rsquo;'   => '&#8217;',
+        '&rsquor;'   => '&#8217;',
+        '&lsquo;'   => '&#8216;',
+        '&lsquor;'   => '&#8218;',
     ];
 
     if($enity_code_as_key){

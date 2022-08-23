@@ -306,6 +306,11 @@
         field_error_count = 1;
         field_error_message += '<li>' + st_admin_localize.select_valid + ' ' + $('.tag-cloud-max').closest('tr').find('th label').text() + '<span class="required">*</span></li>';
       }
+      
+      if (Number($('input[name="taxopress_tag_cloud[smallest]"]').val()) > Number($('input[name="taxopress_tag_cloud[largest]"]').val())) {
+        field_error_count = 1;
+        field_error_message += '<li>' + $('.pp-terms-display-fontsize-warning').val() + '<span class="required">*</span></li>';
+      }
 
       field_error_message += '</ul>';
 
@@ -708,6 +713,25 @@
       var url = link + '&limit=' + limit;
       window.location.href = url;
     });
+
+    // -------------------------------------------------------------
+    //   Terms display enable color
+    // -------------------------------------------------------------
+    $(document).on('click', '.tag-cloud-color-option', function (e) {
+      tag_cloud_color_option_action();
+    });
+    tag_cloud_color_option_action();
+    function tag_cloud_color_option_action() {
+      if ($('.tag-cloud-color-option').length > 0) {
+        if ($('.tag-cloud-color-option').prop("checked")) {
+          $('.tag-cloud-min').closest('tr').removeClass('st-hide-content');
+          $('.tag-cloud-max').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.tag-cloud-min').closest('tr').addClass('st-hide-content');
+          $('.tag-cloud-max').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
 
     // -------------------------------------------------------------
     //   Suggest term use Dandelion check
