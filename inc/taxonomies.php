@@ -1646,7 +1646,8 @@ if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
    value="<?php echo esc_attr($tab); ?>"/>
 </p>
                         <?php
-                        if($taxonomy_edit){
+                        //Hiding the Registration Key warning message instead of deleting the code for future use
+                        /*if($taxonomy_edit){
                         if ($core_edit) {
                             echo '<div class="taxopress-warning">' . esc_html__('This taxonomy is part of the WordPress core.',
                                     'simple-tags') . '
@@ -1676,15 +1677,15 @@ if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                                 </div>';
                         }
                         //Hiding the View Taxonomy button instead of deleting the code for future use
-                        /*$taxonomy_url =  add_query_arg(
+                        $taxonomy_url =  add_query_arg(
                             [
                                 'taxonomy' => $current["name"],
                             ],
                             taxopress_admin_url('edit-tags.php')
                         );
                         echo '<br /><a href="'. esc_url($taxonomy_url).'" class="button"> ' . esc_html__('View Taxonomy',
-                        'simple-tags') . '</a>';*/
-                    }
+                        'simple-tags') . '</a>';
+                    }*/
                         ?>
 
 
