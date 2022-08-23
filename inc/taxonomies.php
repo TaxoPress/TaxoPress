@@ -1645,50 +1645,6 @@ if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
 <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
    value="<?php echo esc_attr($tab); ?>"/>
 </p>
-                        <?php
-                        //Hiding the Registration Key warning message instead of deleting the code for future use
-                        /*if($taxonomy_edit){
-                        if ($core_edit) {
-                            echo '<div class="taxopress-warning">' . esc_html__('This taxonomy is part of the WordPress core.',
-                                    'simple-tags') . '
-
-                                                <br /><br />
-                                                ' . esc_html__('Registration key',
-                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
-
-                                                </div>';
-                        }elseif ($external_edit) {
-                            echo '<div class="taxopress-warning">' . esc_html__('This is an external taxonomy and not created with TaxoPress.',
-                                    'simple-tags') . '
-
-                                                <br /><br />
-                                                ' . esc_html__('Registration key',
-                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
-
-                                                </div>';
-                        }else{
-                            echo '<div class="taxopress-warning">' . esc_html__('This taxonomy was created by TaxoPress.',
-                                    'simple-tags') . '
-
-                                                <br /><br />
-                                                ' . esc_html__('Registration key',
-                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
-
-                                                </div>';
-                        }
-                        //Hiding the View Taxonomy button instead of deleting the code for future use
-                        $taxonomy_url =  add_query_arg(
-                            [
-                                'taxonomy' => $current["name"],
-                            ],
-                            taxopress_admin_url('edit-tags.php')
-                        );
-                        echo '<br /><a href="'. esc_url($taxonomy_url).'" class="button"> ' . esc_html__('View Taxonomy',
-                        'simple-tags') . '</a>';
-                    }*/
-                        ?>
-
-
                     </div>
 
                                     <?php do_action('taxopress_admin_after_sidebar'); ?>
