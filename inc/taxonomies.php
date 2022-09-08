@@ -968,6 +968,35 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
+                                            $select             = array(
+                                                    'options' => array(
+                                                        array(
+                                                            'attr'    => '0',
+                                                            'text'    => esc_attr__( 'False', 'simple-tags' ),
+                                                            'default' => 'false',
+                                                        ),
+                                                        array(
+                                                            'attr' => '1',
+                                                            'text' => esc_attr__( 'True', 'simple-tags' ),
+                                                        ),
+                                                    ),
+                                                );
+                                                $selected           = ( isset( $current ) && ! empty( $current['show_in_filter'] ) ) ? taxopress_disp_boolean( $current['show_in_filter'] ) : '';
+                                                $select['selected'] = ! empty( $selected ) ? $current['show_in_filter'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_select_checkbox_input(
+                                                    array(
+                                                        'namearray' => 'cpt_custom_tax',
+                                                        'name' => 'show_in_filter',
+                                                        'labeltext' => esc_html__(
+                                                            'Show in Filter',
+                                                            'simple-tags'
+                                                        ),
+                                                        'aftertext' => '',
+                                                        'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    )
+                                                );
+
                                                 ?>
 
                                             </table>
