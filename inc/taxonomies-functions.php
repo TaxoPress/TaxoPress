@@ -208,12 +208,20 @@ function taxopress_update_taxonomy($data = [])
     if (!isset($data['cpt_custom_tax']['show_admin_column'])) {
         $data['cpt_custom_tax']['show_admin_column'] = 0;
     }
+
+    if (!isset($data['cpt_custom_tax']['show_filters'])) {
+        $data['cpt_custom_tax']['show_filters'] = 0;
+    }
+
     if (!isset($data['cpt_custom_tax']['show_in_rest'])) {
         $data['cpt_custom_tax']['show_in_rest'] = 0;
     }
     if (!isset($data['cpt_custom_tax']['show_in_quick_edit'])) {
         $data['cpt_custom_tax']['show_in_quick_edit'] = 0;
     }
+
+    
+    
     if (!isset($data['cpt_custom_tax']['public'])) {
         $data['cpt_custom_tax']['public'] = 0;
     }
@@ -357,6 +365,7 @@ function taxopress_update_taxonomy($data = [])
             'rewrite_withfront'     => $data['cpt_custom_tax']['rewrite_withfront'],
             'rewrite_hierarchical'  => $data['cpt_custom_tax']['rewrite_hierarchical'],
             'show_admin_column'     => taxopress_disp_boolean($data['cpt_custom_tax']['show_admin_column']),
+            'show_filters'          => taxopress_disp_boolean($data['cpt_custom_tax']['show_filters']),
             'show_in_rest'          => taxopress_disp_boolean($data['cpt_custom_tax']['show_in_rest']),
             'show_in_quick_edit'    => $show_quickpanel_bulk,
             'rest_base'             => $rest_base,
@@ -408,6 +417,7 @@ function taxopress_update_taxonomy($data = [])
             'rewrite_withfront'     => $data['cpt_custom_tax']['rewrite_withfront'],
             'rewrite_hierarchical'  => $data['cpt_custom_tax']['rewrite_hierarchical'],
             'show_admin_column'     => taxopress_disp_boolean($data['cpt_custom_tax']['show_admin_column']),
+            'show_filters'          => taxopress_disp_boolean($data['cpt_custom_tax']['show_filters']),
             'show_in_rest'          => taxopress_disp_boolean($data['cpt_custom_tax']['show_in_rest']),
             'show_in_quick_edit'    => $show_quickpanel_bulk,
             'rest_base'             => $rest_base,
@@ -1331,7 +1341,7 @@ function taxopress_register_single_taxonomy($taxonomy = [])
     }
 
     $show_admin_column = (!empty($taxonomy['show_admin_column']) && false !== get_taxopress_disp_boolean($taxonomy['show_admin_column'])) ? true : false;
-
+    $show_filters = (!empty($taxonomy['show_filters']) && false !== get_taxopress_disp_boolean($taxonomy['show_filters'])) ? true : false;
     $show_in_menu = (!empty($taxonomy['show_in_menu']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_menu'])) ? true : false;
 
     if (empty($taxonomy['show_in_menu'])) {
@@ -1388,6 +1398,7 @@ function taxopress_register_single_taxonomy($taxonomy = [])
         'query_var'             => $taxonomy['query_var'],
         'rewrite'               => $rewrite,
         'show_admin_column'     => $show_admin_column,
+        'show_filters'          => $show_filters,
         'show_in_rest'          => $show_in_rest,
         'rest_base'             => $rest_base,
         'rest_controller_class' => $rest_controller_class,
@@ -2143,6 +2154,7 @@ function taxopress_re_register_single_taxonomy($taxonomy)
     }
 
     $show_admin_column = (!empty($taxonomy['show_admin_column']) && false !== get_taxopress_disp_boolean($taxonomy['show_admin_column'])) ? true : false;
+    $show_filters = (!empty($taxonomy['show_filters']) && false !== get_taxopress_disp_boolean($taxonomy['show_filters'])) ? true : false;
 
     $show_in_menu = (!empty($taxonomy['show_in_menu']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_menu'])) ? true : false;
 
@@ -2200,6 +2212,7 @@ function taxopress_re_register_single_taxonomy($taxonomy)
         'query_var'             => $taxonomy['query_var'],
         'rewrite'               => $rewrite,
         'show_admin_column'     => $show_admin_column,
+        'show_filters'          => $show_filters,
         'show_in_rest'          => $show_in_rest,
         'rest_base'             => $rest_base,
         'rest_controller_class' => $rest_controller_class,

@@ -968,6 +968,31 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                        
+                                                    ],
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                        'default' => 'true',
+                                                    ],
+                                                ],
+                                            ];
+                                            $selected           = isset($current) ? taxopress_disp_boolean($current['show_filters']) : '';
+                                            $select['selected'] = !empty($selected) ? $current['show_filters'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input([
+                                                'namearray'  => 'cpt_custom_tax',
+                                                'name'       => 'show_filters',
+                                                'labeltext'  => esc_html__('Show Filters', 'simple-tags'),
+                                                'aftertext'  => '',
+                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ]);
+
                                                 ?>
 
                                             </table>
@@ -1645,6 +1670,48 @@ if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
 <input type="hidden" name="cpt_tax_status" id="cpt_tax_status"
    value="<?php echo esc_attr($tab); ?>"/>
 </p>
+                        <?php
+                        if($taxonomy_edit){
+                        if ($core_edit) {
+                            echo '<div class="taxopress-warning">' . esc_html__('This taxonomy is part of the WordPress core.',
+                                    'simple-tags') . '
+
+                                                <br /><br />
+                                                ' . esc_html__('Registration key',
+                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
+
+                                                </div>';
+                        }elseif ($external_edit) {
+                            echo '<div class="taxopress-warning">' . esc_html__('This is an external taxonomy and not created with TaxoPress.',
+                                    'simple-tags') . '
+
+                                                <br /><br />
+                                                ' . esc_html__('Registration key',
+                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
+
+                                                </div>';
+                        }else{
+                            echo '<div class="taxopress-warning">' . esc_html__('This taxonomy was created by TaxoPress.',
+                                    'simple-tags') . '
+
+                                                <br /><br />
+                                                ' . esc_html__('Registration key',
+                                    'simple-tags') . ': <font color="green">' . esc_html($current["name"]) . '</font>
+
+                                                </div>';
+                        }
+                        $taxonomy_url =  add_query_arg(
+                            [
+                                'taxonomy' => $current["name"],
+                            ],
+                            taxopress_admin_url('edit-tags.php')
+                        );
+                        echo '<br /><a href="'. esc_url($taxonomy_url).'" class="button"> ' . esc_html__('View Taxonomy',
+                        'simple-tags') . '</a>';
+                    }
+                        ?>
+
+
                     </div>
 
                                     <?php do_action('taxopress_admin_after_sidebar'); ?>

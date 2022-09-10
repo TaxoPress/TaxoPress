@@ -45,6 +45,73 @@ function st_register_widget() {
 }
 
 /**
+ * Add custom filter on edit posts page
+ * 
+ * Filter posts by year
+ */
+
+//var_dump(get_option('taxopress_external_taxonomies')['show_filters']);
+
+//if ( get_option('taxopress_external_taxonomies')['show_filters'] == true ) {
+    add_action('restrict_manage_posts', 'taxopress_add_posts_filter');
+    add_filter( 'parse_query', 'taxopress_filter_by_year');
+
+//} 
+
+
+
+function taxopress_add_posts_filter() {
+
+    global $wpdb, $table_prefix;
+    
+    $post_type = (isset($_GET['post_type'])) ? $_GET['post_type'] : 'post';
+
+    //only add filter to posts
+    if ($post_type == 'post'){
+        
+        //query database to get a list of years for the specific post type:
+        $values = array();
+        $query_years = $wpdb->get_results("SELECT year(post_date) as year from ".$table_prefix."posts
+                where post_type='".$post_type."'
+                group by year(post_date)
+                order by post_date");
+        foreach ($query_years as &$data){
+            $values[$data->year] = $data->year;
+        }
+
+        //give a unique name in the select field
+        ?><select name="tp_fiilter_year">
+<option value="">All years</option>
+
+            <?php 
+            $current_y = isset($_GET['tp_fiilter_year'])? $_GET['tp_fiilter_year'] : '';
+            foreach ($values as $label => $value) {
+                printf(
+                    '<option value="%s"%s>%s</option>',
+                    $value,
+                    $value == $current_y? ' selected="selected"':'',
+                    $label
+                );
+            }
+            ?>
+        </select>
+        <?php
+    }
+}
+
+function taxopress_filter_by_year() {
+    global $pagenow;
+    $post_type = (isset($_GET['post_type'])) ? $_GET['post_type'] : 'post';
+
+    if ($post_type == 'post' && $pagenow=='edit.php' && isset($_GET['tp_fiilter_year']) && !empty($_GET['tp_fiilter_year'])) {
+        
+        $current_year = isset($_GET['tp_fiilter_year'])? $_GET['tp_fiilter_year'] : '';
+        set_query_var('year', $current_year);
+    }
+}
+
+
+/**
  * Change menu item order
  */
 add_action('custom_menu_order', 'taxopress_re_order_menu');
