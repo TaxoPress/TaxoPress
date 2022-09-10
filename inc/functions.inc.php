@@ -44,19 +44,31 @@ function st_register_widget() {
     }
 }
 
+function tp_disp_boolean($bool_text)
+{
+    $bool_text = (string)$bool_text;
+    if (empty($bool_text) || '0' === $bool_text || 'false' === $bool_text) {
+        return 'false';
+    }
+
+    return 'true';
+}
+
 /**
  * Add custom filter on edit posts page
  * 
  * Filter posts by year
  */
 
-//var_dump(get_option('taxopress_external_taxonomies')['show_filters']);
+//var_dump(get_option('taxopress_external_taxonomies')['category']['show_filters']);
 
-//if ( get_option('taxopress_external_taxonomies')['show_filters'] == true ) {
+$show_filters = tp_disp_boolean(get_option('taxopress_external_taxonomies')['category']['show_filters']);
+//var_dump($show_filters);
+
+if ( $show_filters == 'true' ) {
     add_action('restrict_manage_posts', 'taxopress_add_posts_filter');
     add_filter( 'parse_query', 'taxopress_filter_by_year');
-
-//} 
+} 
 
 
 
