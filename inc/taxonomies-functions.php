@@ -2251,34 +2251,50 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
 
 /* Show taxonomy filter on post list */
 function taxopress_filter_dropdown( $taxonomy ) {
-	wp_dropdown_categories(
-		array(
-			'show_option_all' => sprintf( __( 'All %s', 'admin-taxonomy-filter' ), $taxonomy->label ),
-			'orderby'         => 'name',
-			'order'           => 'ASC',
-			'hide_empty'      => false,
-			'hide_if_empty'   => true,
-			'selected'        => filter_input( INPUT_GET, $taxonomy->query_var, FILTER_SANITIZE_STRING ),
-			'hierarchical'    => true,
-			'name'            => $taxonomy->query_var,
-			'taxonomy'        => $taxonomy->name,
-			'value_field'     => 'slug',
-		)
-	);
+    wp_dropdown_categories(
+        array(
+            'show_option_all' => sprintf( __( 'All %s', 'simple-tags' ), $taxonomy->label ),
+            'orderby'         => 'name',
+            'order'           => 'ASC',
+            'hide_empty'      => false,
+            'hide_if_empty'   => true,
+            'selected'        => filter_input( INPUT_GET, $taxonomy->query_var, FILTER_SANITIZE_STRING ),
+            'hierarchical'    => true,
+            'name'            => $taxonomy->query_var,
+            'taxonomy'        => $taxonomy->name,
+            'value_field'     => 'slug',
+        )
+    );
 }
+
 function taxopress_get_dropdown(){
-	if ( is_admin() ) {
-		$taxonomies        = taxopress_get_taxonomy_data();
-		$all_taxonomies    = get_all_taxopress_taxonomies();
-		foreach ( $all_taxonomies as $taxonomy ) {
-			$taxonomy_name = $taxonomy->name;
-			$current       = $taxonomies[ $taxonomy_name ];
-			$show_filter   = get_taxopress_disp_boolean( $current['show_in_filter'] );
-			if ( $show_filter == true ) {
-				taxopress_filter_dropdown( $taxonomy );
-			}
-		}
-	}
+
+    if ( is_admin() ) {
+
+        $taxonomies        = taxopress_get_taxonomy_data();
+
+        if( !empty($taxonomies) ) {
+
+            $all_taxonomies    = get_all_taxopress_taxonomies();
+
+            foreach ( $all_taxonomies as $taxonomy ) {
+
+                $taxonomy_name = $taxonomy->name;
+                if( array_key_exists( $taxonomy_name, $taxonomies ) ){
+                    $current = $taxonomies[ $taxonomy_name ];
+                    if( $current['show_in_filter'] ){
+                        $show_filter   = get_taxopress_disp_boolean( $current['show_in_filter'] );
+                        if ( $show_filter == true ) {
+                            taxopress_filter_dropdown( $taxonomy );
+                        }
+                    }
+                }    
+                  
+            }
+        }
+        
+    }
+
 }
 
 add_action( 'restrict_manage_posts' , 'taxopress_get_dropdown' );
