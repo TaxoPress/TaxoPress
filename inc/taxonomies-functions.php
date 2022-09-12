@@ -2282,11 +2282,16 @@ function taxopress_get_dropdown(){
                 $taxonomy_name = $taxonomy->name;
                 if( array_key_exists( $taxonomy_name, $taxonomies ) ){
                     $current = $taxonomies[ $taxonomy_name ];
-                    if( $current['show_in_filter'] ){
-                        $show_filter   = get_taxopress_disp_boolean( $current['show_in_filter'] );
-                        if ( $show_filter == true ) {
-                            taxopress_filter_dropdown( $taxonomy );
+                    
+                    if( array_key_exists( 'show_in_filter', $current ) ){
+
+                        if( $current['show_in_filter'] ){
+                            $show_filter   = get_taxopress_disp_boolean( $current['show_in_filter'] );
+                            if ( $show_filter == true ) {
+                                taxopress_filter_dropdown( $taxonomy );
+                            }
                         }
+
                     }
                 }    
                   
