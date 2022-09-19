@@ -2285,7 +2285,7 @@ function taxopress_get_dropdown(){
 
         if (isset($_GET['post_type'])) {
 
-            $type = $_GET['post_type'];
+            $type = sanitize_text_field($_GET['post_type']);
         }
 
         $taxonomies = taxopress_get_taxonomy_data();
