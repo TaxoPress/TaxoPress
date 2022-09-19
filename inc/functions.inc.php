@@ -55,70 +55,65 @@ function tp_disp_boolean($bool_text)
 }
 
 /**
- * Add custom filter on edit posts page
+ * Add filter for custom taxonomies on edit posts page
  * 
- * Filter posts by year
  */
 
-//var_dump(get_option('taxopress_external_taxonomies')['category']['show_filters']);
-
-$show_filters = tp_disp_boolean(get_option('taxopress_external_taxonomies')['category']['show_filters']);
-//var_dump($show_filters);
-
-if ( $show_filters == 'true' ) {
-    add_action('restrict_manage_posts', 'taxopress_add_posts_filter');
-    add_filter( 'parse_query', 'taxopress_filter_by_year');
-} 
-
-
+add_action('restrict_manage_posts', 'taxopress_add_posts_filter');
+add_filter( 'parse_query', 'taxopress_user_filters');
 
 function taxopress_add_posts_filter() {
 
-    global $wpdb, $table_prefix;
+    global $wpdb, $wp_query, $table_prefix;
     
     $post_type = (isset($_GET['post_type'])) ? $_GET['post_type'] : 'post';
-
-    //only add filter to posts
-    if ($post_type == 'post'){
+    
+    if ($post_type == 'post'){ //only add filter to posts
         
-        //query database to get a list of years for the specific post type:
-        $values = array();
-        $query_years = $wpdb->get_results("SELECT year(post_date) as year from ".$table_prefix."posts
-                where post_type='".$post_type."'
-                group by year(post_date)
-                order by post_date");
-        foreach ($query_years as &$data){
-            $values[$data->year] = $data->year;
+        $user_taxonomies =  get_option('taxopress_taxonomies');
+        
+        foreach ($user_taxonomies as $user_taxonomy) {
+            $tax_name = $user_taxonomy["name"];
+            $tax_label = $user_taxonomy["label"];
+            
+            $show_filters = tp_disp_boolean($user_taxonomy["show_filters"]);
+
+            if ( $show_filters == 'true' ) {
+                
+                $args = array (
+                    'taxonomy' => $tax_name,
+                    'name'     => 'cat-' . $tax_name,
+                    'show_option_none' => __( 'All ' . $tax_label, 'textdomain' ),
+                    'selected'        =>  $_GET['cat-'.$tax_name],
+                    'value_field' => 'slug'
+                );
+                    
+                wp_dropdown_categories($args);
+            }
+
         }
 
-        //give a unique name in the select field
-        ?><select name="tp_fiilter_year">
-<option value="">All years</option>
-
-            <?php 
-            $current_y = isset($_GET['tp_fiilter_year'])? $_GET['tp_fiilter_year'] : '';
-            foreach ($values as $label => $value) {
-                printf(
-                    '<option value="%s"%s>%s</option>',
-                    $value,
-                    $value == $current_y? ' selected="selected"':'',
-                    $label
-                );
-            }
-            ?>
-        </select>
-        <?php
     }
 }
 
-function taxopress_filter_by_year() {
+function taxopress_user_filters($query) {
     global $pagenow;
+    $q_vars    = &$query->query_vars;
     $post_type = (isset($_GET['post_type'])) ? $_GET['post_type'] : 'post';
-
-    if ($post_type == 'post' && $pagenow=='edit.php' && isset($_GET['tp_fiilter_year']) && !empty($_GET['tp_fiilter_year'])) {
+       
+    if ($post_type == 'post' && $pagenow=='edit.php') {
         
-        $current_year = isset($_GET['tp_fiilter_year'])? $_GET['tp_fiilter_year'] : '';
-        set_query_var('year', $current_year);
+        $user_taxonomies =  get_option('taxopress_taxonomies');
+
+        foreach ($user_taxonomies as $user_taxonomy) {
+            $tax_name = $user_taxonomy["name"];
+                     
+            if (isset($_GET['cat-'.$tax_name]) && $_GET['cat-'.$tax_name] != '-1') {
+                $current_term = isset($_GET['cat-'.$tax_name])? $_GET['cat-'.$tax_name] : '';
+                $q_vars[$tax_name] = $_GET['cat-'.$tax_name];
+            }
+
+        }
     }
 }
 
