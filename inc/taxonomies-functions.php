@@ -226,6 +226,9 @@ function taxopress_update_taxonomy($data = [])
     if (!isset($data['cpt_custom_tax']['include_in_result'])) {
         $data['cpt_custom_tax']['include_in_result'] = 0;
     }
+    if ( ! isset( $data['cpt_custom_tax']['show_in_filter'] ) ) {
+		$data['cpt_custom_tax']['show_in_filter'] = 0;
+	}
 
     /**
      * Fires before a taxonomy is updated to our saved options.
@@ -364,6 +367,7 @@ function taxopress_update_taxonomy($data = [])
             'labels'                => $data['cpt_tax_labels'],
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
+            'show_in_filter'        => taxopress_disp_boolean( $data['cpt_custom_tax']['show_in_filter'] ),
         ];
 
         $taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = $data['cpt_post_types'];
@@ -415,6 +419,7 @@ function taxopress_update_taxonomy($data = [])
             'labels'                => $data['cpt_tax_labels'],
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
+            'show_in_filter'        => taxopress_disp_boolean( $data['cpt_custom_tax']['show_in_filter'] ),
         ];
 
         $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : [];
@@ -2243,3 +2248,96 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
 
             return $status;
 }
+
+/* Show taxonomy filter on post list */
+function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
+
+    $show_filter   = get_taxopress_disp_boolean( $show_filter );
+                                        
+    if ( $show_filter == true ) {
+
+        wp_dropdown_categories(
+            array(
+                'show_option_all' => sprintf( __( 'All %s', 'simple-tags' ), $taxonomy->label ),
+                'orderby'         => 'name',
+                'order'           => 'ASC',
+                'hide_empty'      => false,
+                'hide_if_empty'   => true,
+                'selected'        => filter_input( INPUT_GET, $taxonomy->query_var, FILTER_SANITIZE_STRING ),
+                'hierarchical'    => true,
+                'name'            => $taxonomy->query_var,
+                'taxonomy'        => $taxonomy->name,
+                'value_field'     => 'slug',
+            )
+        );
+
+    }
+    
+}
+
+function taxopress_get_dropdown(){
+
+    global $pagenow;
+
+    if ( is_admin() ) {
+
+        $type = 'post';
+
+        if (isset($_GET['post_type'])) {
+
+            $type = sanitize_text_field($_GET['post_type']);
+        }
+
+        $taxonomies = taxopress_get_taxonomy_data();
+
+        if( !empty($taxonomies) ) {
+
+            $all_taxonomies    = get_all_taxopress_taxonomies();
+
+            foreach ( $all_taxonomies as $taxonomy ) {
+
+                $taxonomy_name = $taxonomy->name;
+
+                if( array_key_exists( $taxonomy_name, $taxonomies ) ){
+
+                    $current = $taxonomies[ $taxonomy_name ];
+                    
+                    if( array_key_exists( 'show_in_filter', $current ) ){
+
+                        foreach ($current['object_types'] as $object_type) {
+
+                            //Media Page
+                            if($pagenow === 'upload.php'){
+
+                                if( $object_type == "attachment" ){
+
+                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter']);
+
+                                }
+                                
+                            }else{
+
+                                if($object_type == $type){ 
+
+                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter'] );
+
+                                }
+
+                            }
+
+                        }
+
+                        
+                        
+
+                    }
+                }    
+                  
+            }
+        }
+        
+    }
+
+}
+
+add_action( 'restrict_manage_posts' , 'taxopress_get_dropdown' );
