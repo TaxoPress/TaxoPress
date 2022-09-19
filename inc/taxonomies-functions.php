@@ -2250,28 +2250,45 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
 }
 
 /* Show taxonomy filter on post list */
-function taxopress_filter_dropdown( $taxonomy ) {
-    wp_dropdown_categories(
-        array(
-            'show_option_all' => sprintf( __( 'All %s', 'simple-tags' ), $taxonomy->label ),
-            'orderby'         => 'name',
-            'order'           => 'ASC',
-            'hide_empty'      => false,
-            'hide_if_empty'   => true,
-            'selected'        => filter_input( INPUT_GET, $taxonomy->query_var, FILTER_SANITIZE_STRING ),
-            'hierarchical'    => true,
-            'name'            => $taxonomy->query_var,
-            'taxonomy'        => $taxonomy->name,
-            'value_field'     => 'slug',
-        )
-    );
+function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
+
+    $show_filter   = get_taxopress_disp_boolean( $show_filter );
+                                        
+    if ( $show_filter == true ) {
+
+        wp_dropdown_categories(
+            array(
+                'show_option_all' => sprintf( __( 'All %s', 'simple-tags' ), $taxonomy->label ),
+                'orderby'         => 'name',
+                'order'           => 'ASC',
+                'hide_empty'      => false,
+                'hide_if_empty'   => true,
+                'selected'        => filter_input( INPUT_GET, $taxonomy->query_var, FILTER_SANITIZE_STRING ),
+                'hierarchical'    => true,
+                'name'            => $taxonomy->query_var,
+                'taxonomy'        => $taxonomy->name,
+                'value_field'     => 'slug',
+            )
+        );
+
+    }
+    
 }
 
 function taxopress_get_dropdown(){
 
+    global $pagenow;
+
     if ( is_admin() ) {
 
-        $taxonomies        = taxopress_get_taxonomy_data();
+        $type = 'post';
+
+        if (isset($_GET['post_type'])) {
+
+            $type = $_GET['post_type'];
+        }
+
+        $taxonomies = taxopress_get_taxonomy_data();
 
         if( !empty($taxonomies) ) {
 
@@ -2280,17 +2297,38 @@ function taxopress_get_dropdown(){
             foreach ( $all_taxonomies as $taxonomy ) {
 
                 $taxonomy_name = $taxonomy->name;
+
                 if( array_key_exists( $taxonomy_name, $taxonomies ) ){
+
                     $current = $taxonomies[ $taxonomy_name ];
                     
                     if( array_key_exists( 'show_in_filter', $current ) ){
 
-                        if( $current['show_in_filter'] ){
-                            $show_filter   = get_taxopress_disp_boolean( $current['show_in_filter'] );
-                            if ( $show_filter == true ) {
-                                taxopress_filter_dropdown( $taxonomy );
+                        foreach ($current['object_types'] as $object_type) {
+
+                            //Media Page
+                            if($pagenow === 'upload.php'){
+
+                                if( $object_type == "attachment" ){
+
+                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter']);
+
+                                }
+                                
+                            }else{
+
+                                if($object_type == $type){ 
+
+                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter'] );
+
+                                }
+
                             }
+
                         }
+
+                        
+                        
 
                     }
                 }    
