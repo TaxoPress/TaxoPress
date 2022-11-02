@@ -2,7 +2,7 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
-Tested up to: 6.0
+Tested up to: 6.1
 Stable tag: 3.6.4
 Requires PHP: 5.6
 License: GPLv2 or later
