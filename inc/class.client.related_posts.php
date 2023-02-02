@@ -141,6 +141,8 @@ class SimpleTags_Client_RelatedPosts {
 			$xformat = $defaults['xformat'];
 		}
 
+		$xformat = taxopress_strip_out_unwanted_html($xformat);
+
 		// Choose post ID
 		$object_id = (int) $post_id;
 		if ( 0 === $object_id ) {

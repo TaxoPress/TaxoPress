@@ -179,14 +179,23 @@ function taxopress_create_default_tag_cloud()
  */
 function taxopress_update_tagcloud($data = [])
 {
+    $sanitized_data = [];
     foreach ($data as $key => $value) {
-
-        if (is_string($value)) {
-            $data[$key] = sanitize_text_field($value);
+        if (!is_array($value)) {
+            $sanitized_data[$key] = sanitize_text_field($value);
         } else {
-            array_map('sanitize_text_field', $data[$key]);
+            $new_value = [];
+            foreach ($data[$key] as $option_key => $option_value) {
+                if ($option_key === 'xformat') {
+                    $new_value[$option_key] = taxopress_strip_out_unwanted_html($option_value);
+                } else {
+                    $new_value[$option_key] = sanitize_text_field($option_value);
+                }
+            }
+            $sanitized_data[$key] = $new_value;
         }
     }
+    $data = $sanitized_data;
 
     $tagclouds          = taxopress_get_tagcloud_data();
 
