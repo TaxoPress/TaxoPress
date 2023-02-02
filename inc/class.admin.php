@@ -538,19 +538,27 @@ class SimpleTags_Admin {
 	 */
 	public static function page_options() {
 		// Get options
-		$options = SimpleTags_Plugin::get_option();
+		$options = (array) SimpleTags_Plugin::get_option();
 
         if(current_user_can('admin_simple_tags')){
             // Update or reset options
             if ( isset( $_POST['updateoptions'] ) ) {
                 check_admin_referer( 'updateresetoptions-simpletags' );
 
-                foreach ( (array) $options as $key => $value ) {
-                    $newval = ( isset( $_POST[ $key ] ) ) ? stripslashes( sanitize_text_field($_POST[ $key ]) ) : '0';
-                    if ( $newval != $value ) {
-                        $options[ $key ] = $newval;
-                    }
-                }
+				$sanitized_options = [];
+				foreach ($options as $key => $value) {
+					if (!is_array($value)) {
+						$sanitized_options[$key] = taxopress_strip_out_unwanted_html($value, '<a><h1><h2><h3><h4><h5><h6><span></div>');
+					} else {
+						$new_value = [];
+						foreach ($options[$key] as $option_key => $option_value) {
+							$new_value[$option_key] = taxopress_strip_out_unwanted_html($option_value, '<a><h1><h2><h3><h4><h5><h6><span></div>');
+						}
+						$sanitized_options[$key] = $new_value;
+					}
+				}
+				$options = $sanitized_options;
+
                 SimpleTags_Plugin::set_option( $options );
 
                 do_action( 'simpletags_settings_save_general_end' );

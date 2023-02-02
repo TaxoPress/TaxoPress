@@ -180,14 +180,19 @@ add_action('admin_init', 'taxopress_create_default_suggestterm', 8);
  */
 function taxopress_update_suggestterm($data = [])
 {
+    $sanitized_data = [];
     foreach ($data as $key => $value) {
-
-        if (is_string($value)) {
-            $data[$key] = sanitize_text_field($value);
+        if (!is_array($value)) {
+            $sanitized_data[$key] = sanitize_text_field($value);
         } else {
-            array_map('sanitize_text_field', $data[$key]);
+            $new_value = [];
+            foreach ($data[$key] as $option_key => $option_value) {
+                $new_value[$option_key] = sanitize_text_field($option_value);
+            }
+            $sanitized_data[$key] = $new_value;
         }
     }
+    $data = $sanitized_data;
 
     $suggestterms = taxopress_get_suggestterm_data();
 
