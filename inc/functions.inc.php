@@ -282,3 +282,22 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
 
     return $character_set;
 }
+
+/**
+ * Strip out unwanted html
+ *
+ * @param string $content
+ * @param string $allowed_tags (e.g: <span><i><a><div>)
+ * @return string
+ */
+function taxopress_strip_out_unwanted_html($content, $allowed_tags = '<a>') {
+
+    // Strip tags except allow tags
+    $content = strip_tags($content, $allowed_tags);
+    //Strip javascript
+    $content = str_ireplace('javascript', '', $content);
+    // Remove any attribute starting with "on" or xmlns
+    $content = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $content);
+
+    return $content;
+}

@@ -256,14 +256,23 @@ function taxopress_delete_posttags_filter_removable_query_args(array $args)
  */
 function taxopress_update_posttags($data = [])
 {
+    $sanitized_data = [];
     foreach ($data as $key => $value) {
-
-        if (is_string($value)) {
-            $data[$key] = sanitize_text_field($value);
+        if (!is_array($value)) {
+            $sanitized_data[$key] = sanitize_text_field(taxopress_strip_out_unwanted_html($value));
         } else {
-            array_map('sanitize_text_field', $data[$key]);
+            $new_value = [];
+            foreach ($data[$key] as $option_key => $option_value) {
+                if ($option_key === 'xformat') {
+                    $new_value[$option_key] = taxopress_strip_out_unwanted_html($option_value);
+                } else {
+                    $new_value[$option_key] = sanitize_text_field(taxopress_strip_out_unwanted_html($option_value));
+                }
+            }
+            $sanitized_data[$key] = $new_value;
         }
     }
+    $data = $sanitized_data;
 
     $posttagss = taxopress_get_posttags_data();
 

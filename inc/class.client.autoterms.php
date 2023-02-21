@@ -477,7 +477,9 @@ class SimpleTags_Client_Autoterms {
 
         //for performance reason, delete only 1 posts if more than limit instead of querying all posts
         $auto_terms_logs_limit = (int)get_option('taxopress_auto_terms_logs_limit', 1000);
-        $current_logs_count = wp_count_posts('taxopress_logs')->publish;
+
+		$current_logs_counts = wp_count_posts('taxopress_logs');
+        $current_logs_count = isset($current_logs_counts->publish) ? $current_logs_counts->publish : 0;
 
         if((int)$current_logs_count > $auto_terms_logs_limit){
             $posts = get_posts(array(

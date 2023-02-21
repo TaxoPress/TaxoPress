@@ -141,6 +141,8 @@ class SimpleTags_Client_RelatedPosts {
 			$xformat = $defaults['xformat'];
 		}
 
+		$xformat = taxopress_strip_out_unwanted_html($xformat);
+
 		// Choose post ID
 		$object_id = (int) $post_id;
 		if ( 0 === $object_id ) {
@@ -384,7 +386,7 @@ class SimpleTags_Client_RelatedPosts {
 			}
 
 			$element_loop = $xformat;
-			$post_title   = apply_filters( 'the_title', $result->post_title );
+			$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
 			$element_loop = str_replace( '%post_date%', mysql2date( $dateformat, $result->post_date ), $element_loop );
 			$element_loop = str_replace( '%post_permalink%', get_permalink( $result ), $element_loop );
 			$element_loop = str_replace( '%post_title%', $post_title, $element_loop );
