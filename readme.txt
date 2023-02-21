@@ -225,10 +225,12 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
-v3.6.5- 2023-01-06
+v3.6.5- 2023-02-21
 * Fixed: Related Posts fatal error with WooCommerce filter, #1484
+* Fixed: incorrectly applying the the_title filter by just passing a single parameter, #1545
 * Fixed: PHP 8.1 crashing from using taxopress, #1480
 * Update: Format option value cleanup, #1531
+* Update: Notice warning about languages for Auto Terms and Auto Links, #1546
 * Update: TaxoPress-ES-FR-IT-translationUpdate-August23, #1456
 
 v3.6.4- 2022-08-23
