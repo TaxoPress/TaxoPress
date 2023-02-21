@@ -119,6 +119,11 @@ The Manage Terms screen in TaxoPress provides you with several useful tools to m
 > <strong>Upgrade to TaxoPress Pro</strong><br />
 > This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/pro"  title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
 
+## TaxoPress and Tag Groups ##
+
+TaxoPress is developed by the same team that support the popular Tag Groups plugin. Together Tag Groups and TaxoPress are an excellent solution for organizing and displaying your site’s content.
+
+
 == Installation ==
 
 **Requires PHP 5.6 or ideally PHP 7.**
