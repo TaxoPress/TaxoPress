@@ -295,7 +295,7 @@ function taxopress_strip_out_unwanted_html($content, $allowed_tags = '<a>') {
     // Strip tags except allow tags
     $content = strip_tags($content, $allowed_tags);
     //Strip javascript
-    $content = str_replace('javascript', '', $content);
+    $content = str_ireplace('javascript', '', $content);
     // Remove any attribute starting with "on" or xmlns
     $content = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $content);
 

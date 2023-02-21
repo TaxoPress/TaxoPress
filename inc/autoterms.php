@@ -1109,6 +1109,25 @@ class SimpleTags_Autoterms
                     </div>
 
                                                     <?php do_action('taxopress_admin_after_sidebar'); ?>
+                <div class="taxopress-advertisement-right-sidebar">
+                    <div id="postbox-container-1" class="postbox-container">
+                        <div class="meta-box-sortables">
+                            <div class="advertisement-box-content postbox">
+                                <div class="postbox-header">
+                                    <h3 class="advertisement-box-header hndle is-non-sortable">
+                                        <span><?php echo esc_html__('TaxoPress and Languages', 'simple-tags'); ?></span>
+                                    </h3>
+                                </div>
+                                <div class="inside">
+                                    <p><?php echo sprintf(esc_html__('If your website language does not use the A-Z alphabet, %1s please read this documentation. %2s', 'simple-tags'), '<a href="https://taxopress.com/docs/characters/">', '</a>'); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 </div>
 
                 <div class="clear"></div>
