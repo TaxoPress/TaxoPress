@@ -438,6 +438,9 @@ class SimpleTags_Client_Autolinks {
         foreach(taxopress_html_character_and_entity(true) as $enity => $code){
           $content = str_replace($enity, $code,$content);
         }
+		$content = str_replace('&amp ;rsquo;','&rsquo;',$content);
+		$content = str_replace(['’', ' ’', '&rsquor;', ' &rsquor;', '&rsquo;', ' &rsquo;'],'\'', $content);
+
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
         $content = str_replace('%7C--%7C038;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/1377
