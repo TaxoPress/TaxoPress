@@ -32,7 +32,14 @@ class SimpleTags_Compatibility {
 	 */
 	public static function admin_notices() {
 		echo '<div class="notice error is-dismissible">';
-		echo '<p>' . esc_html( sprintf( esc_html__('TaxoPress require PHP version %s or greater to be activated. Your server is currently running PHP version %s.'), esc_html(STAGS_MIN_PHP_VERSION), esc_html(PHP_VERSION) ) ) . '</p>';
+		$data = get_plugin_data(TAXOPRESS_FILE);
+
+		echo '<p><strong>' . esc_html__('Warning:', 'simple-tags') . '</strong> '
+			. sprintf(esc_html__('The active plugin %s is not compatible with your PHP version.', 'simple-tags') .'</p><p>',
+				'&laquo;' . esc_html($data['Name']) . ' ' . esc_html($data['Version']) . '&raquo;')
+			. sprintf(esc_html__('%s is the minimum version required for this plugin.', 'simple-tags'), 'PHP 7.2.5 ')
+			. '</p>';
+
 		echo '</div>';
 	}
 }

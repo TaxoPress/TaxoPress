@@ -1,6 +1,7 @@
 {
     "name": "taxopress/taxopress",
     "require": {
+        "php": ">=7.2.5",
         "publishpress/wordpress-version-notices": "^1.1",
         "pimple/pimple": "3.2.3.*",
         "symfony/polyfill-ctype": "1.19.*",
