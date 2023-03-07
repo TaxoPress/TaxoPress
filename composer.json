@@ -1,11 +1,12 @@
 {
     "name": "taxopress/taxopress",
     "require": {
+        "php": ">=7.2.5",
         "publishpress/wordpress-version-notices": "^1.1",
-        "pimple/pimple": "3.2.3.*",
+        "pimple/pimple": "3.5.0.*",
         "symfony/polyfill-ctype": "1.19.*",
         "sabre/vobject": "^3.4",
-        "psr/container": "1.0.0"
+        "psr/container": "1.1.1"
     },
     "require-dev": {
         "automattic/vipwpcs": "^2.3",

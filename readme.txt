@@ -3,8 +3,8 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 6.1
-Stable tag: 3.6.5
-Requires PHP: 5.6
+Stable tag: 3.6.6
+Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -119,6 +119,11 @@ The Manage Terms screen in TaxoPress provides you with several useful tools to m
 > <strong>Upgrade to TaxoPress Pro</strong><br />
 > This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/pro"  title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
 
+## TaxoPress and Tag Groups ##
+
+TaxoPress is developed by the same team that support the popular Tag Groups plugin. Together Tag Groups and TaxoPress are an excellent solution for organizing and displaying your site’s content.
+
+
 == Installation ==
 
 **Requires PHP 5.6 or ideally PHP 7.**
@@ -224,6 +229,14 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.6.6- 2023-03-07
+* Update: Increased minimum PHP requirement to PHP 7.2.5, #1553
+* Update: PHP 8.1 compatability, #1555
+* Fixed: Small fixes to Auto Links, #1459
+* Update: Add Support for WP Cron in Auto Terms, #1540
+* Update: Improve taxonomy REST API description, #1465
+* Fixed: PHP issues with the Pimple version, #1476
 
 v3.6.5- 2023-02-21
 * Fixed: Related Posts fatal error with WooCommerce filter, #1484
