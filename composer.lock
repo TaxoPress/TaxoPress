@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e6cff773e24b96280ec4e9ae020b620",
+    "content-hash": "83c3c8d4d7f6cdf720b8031cbe673a1a",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -61,27 +61,22 @@
         },
         {
             "name": "psr/container",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "9fc7aab7a78057a124384358ebae8a1711b6f6fc"
+                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/9fc7aab7a78057a124384358ebae8a1711b6f6fc",
-                "reference": "9fc7aab7a78057a124384358ebae8a1711b6f6fc",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/8622567409010282b7aeebe4bb841fe98b58dcaf",
+                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -108,9 +103,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.0"
+                "source": "https://github.com/php-fig/container/tree/1.1.1"
             },
-            "time": "2021-03-05T15:48:30+00:00"
+            "time": "2021-03-05T17:36:06+00:00"
         },
         {
             "name": "publishpress/wordpress-version-notices",

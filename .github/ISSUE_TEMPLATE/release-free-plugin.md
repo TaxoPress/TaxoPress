@@ -1,7 +1,7 @@
 ---
 name: Release the Free version (team only)
 about: Describes default checklist for the plugin's release process.
-title: Release PublishPress Authors v[VERSION]
+title: Release TaxoPress v[VERSION]
 labels: release
 assignees: ''
 
