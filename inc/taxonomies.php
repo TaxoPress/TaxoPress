@@ -1380,7 +1380,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_rest',
                                                     'labeltext'  => esc_html__('Show in REST API', 'simple-tags'),
-                                                    'aftertext'  => '',
+                                                    'aftertext'  => esc_attr__('Add the taxonomy to the WordPress wp-json API.', 'simple-tags'),
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
@@ -1389,8 +1389,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'rest_base',
                                                     'labeltext' => esc_html__('REST API base slug', 'simple-tags'),
-                                                    'helptext'  => esc_attr__('Slug to use in REST API URLs.',
-                                                        'simple-tags'),
+                                                    'helptext'  => esc_attr__('The base slug that this taxonomy will use in the REST API.', 'simple-tags'),
                                                     'textvalue' => isset($current['rest_base']) ? esc_attr($current['rest_base']) : '',
                                                 ]);
 
@@ -1400,6 +1399,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'      => 'rest_controller_class',
                                                     'labeltext' => esc_html__('REST API controller class',
                                                         'simple-tags'),
+                                                    'helptext'  => esc_attr__('The name of a custom Rest Controller class instead of WP_REST_Terms_Controller.', 'simple-tags'),
                                                     'aftertext' => esc_attr__('Custom controller to use instead of WP_REST_Terms_Controller.',
                                                         'simple-tags'),
                                                     'textvalue' => isset($current['rest_controller_class']) ? esc_attr($current['rest_controller_class']) : '',
