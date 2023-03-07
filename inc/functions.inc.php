@@ -292,6 +292,10 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
  */
 function taxopress_strip_out_unwanted_html($content, $allowed_tags = '<a>') {
 
+    if (is_array($content)) {
+        return array_map('sanitize_text_field', $content);
+    }
+    
     // Strip tags except allow tags
     $content = strip_tags($content, $allowed_tags);
     //Strip javascript
