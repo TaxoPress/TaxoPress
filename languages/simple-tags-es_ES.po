@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Plugins - TaxoPress is the WordPress Tag, Category, and "
 "Taxonomy Manager - Stable (latest release)\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-02-03 14:04+0000\n"
+"PO-Revision-Date: 2023-03-07 15:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -60,6 +60,11 @@ msgstr "%s no se ha podido importar"
 #: inc/taxonomies-functions.php:1088 inc/taxonomies-functions.php:1457
 msgid "%s has failed to be updated"
 msgstr "%s no ha podido ser actualizado"
+
+#: inc/class.compatibility.php:40
+#, php-format
+msgid "%s is the minimum version required for this plugin."
+msgstr ""
 
 #. Used for autofill
 #: inc/taxonomies.php:1316
@@ -561,6 +566,10 @@ msgstr ""
 #: inc/class.admin.manage.php:266
 msgid "Add terms to all %s."
 msgstr "Añade términos a todas %s."
+
+#: inc/taxonomies.php:1383
+msgid "Add the taxonomy to the WordPress wp-json API."
+msgstr ""
 
 #: inc/taxonomies.php:355
 msgid "Admin Area"
@@ -1663,6 +1672,13 @@ msgstr ""
 "Si necesitas ayuda o tienes una petición de nueva característica, háznoslo "
 "saber."
 
+#: inc/autolinks.php:873 inc/autoterms.php:1122
+#, php-format
+msgid ""
+"If your website language does not use the A-Z alphabet, %1s please read this "
+"documentation. %2s"
+msgstr ""
+
 #: inc/helper.options.admin.php:439
 msgid "Ignore case for auto link feature ?"
 msgstr "¿Ignorar mayúsculas para la función de autoenlace?"
@@ -2001,10 +2017,10 @@ msgstr "Nombre del nuevo término:"
 msgid "Newer Entries"
 msgstr "Entradas siguientes"
 
-#: inc/suggestterms.php:805 inc/tag-clouds.php:849 inc/autolinks.php:888
+#: inc/suggestterms.php:805 inc/tag-clouds.php:849 inc/autolinks.php:907
 #: inc/related-posts.php:882 inc/post-tags.php:726 inc/post-tags-table.php:355
 #: inc/related-posts-table.php:395 inc/class-taxonomies-table.php:372
-#: inc/autoterms.php:1137 inc/taxonomies.php:1701
+#: inc/autoterms.php:1156 inc/taxonomies.php:1701
 msgid "No"
 msgstr "No"
 
@@ -2189,8 +2205,8 @@ msgstr "Número de elementos por página"
 msgid "Object"
 msgstr "Objeto"
 
-#: inc/suggestterms.php:797 inc/tag-clouds.php:842 inc/autolinks.php:881
-#: inc/related-posts.php:875 inc/post-tags.php:719 inc/autoterms.php:1130
+#: inc/suggestterms.php:797 inc/tag-clouds.php:842 inc/autolinks.php:900
+#: inc/related-posts.php:875 inc/post-tags.php:719 inc/autoterms.php:1149
 #: inc/taxonomies.php:1694
 msgid "Okay"
 msgstr "Vale"
@@ -2365,8 +2381,8 @@ msgstr "Por favor, elige una opción para «Estados de contenido»"
 msgid "Please choose an option for \"Sources\""
 msgstr "Por favor, elige una opción para «Fuentes»"
 
-#: inc/suggestterms.php:793 inc/tag-clouds.php:839 inc/autolinks.php:878
-#: inc/related-posts.php:872 inc/post-tags.php:716 inc/autoterms.php:1127
+#: inc/suggestterms.php:793 inc/tag-clouds.php:839 inc/autolinks.php:897
+#: inc/related-posts.php:872 inc/post-tags.php:716 inc/autoterms.php:1146
 #: inc/taxonomies.php:1691
 msgid "Please complete the following required fields to save your changes:"
 msgstr ""
@@ -2693,7 +2709,7 @@ msgstr "API REST"
 msgid "REST API base slug"
 msgstr "Slug base de la API REST"
 
-#: inc/taxonomies.php:1401
+#: inc/taxonomies.php:1400
 msgid "REST API controller class"
 msgstr "Clase del controlador de la API REST"
 
@@ -3030,10 +3046,6 @@ msgstr "Este slug ya existe"
 msgid "Slug has changed"
 msgstr "El slug ha cambiado"
 
-#: inc/taxonomies.php:1392
-msgid "Slug to use in REST API URLs."
-msgstr "Slug para usar en las URL de la API REST."
-
 #: inc/autoterms-table.php:69 inc/autoterms-logs-table.php:146
 #: inc/autoterms-logs-table.php:191
 msgid "Source"
@@ -3204,6 +3216,10 @@ msgid ""
 msgstr ""
 "TaxoPress te permite crear y gestionar etiquetas, categorías y todos los "
 "términos de la taxonomía de WordPress."
+
+#: inc/autolinks.php:869 inc/autoterms.php:1118
+msgid "TaxoPress and Languages"
+msgstr ""
 
 #: inc/class.admin.php:470 inc/class.admin.php:471 inc/class.admin.php:473
 #: inc/class.admin.php:478
@@ -3471,6 +3487,15 @@ msgstr "Texto a mostrar cuando no hay entradas relacionadas"
 msgid "Thanks for using TaxoPress | %1sTaxoPress.com%2s | Version %3s"
 msgstr "Gracias por utilizar TaxoPress | %1sTaxoPress.com%2s | Versión %3s"
 
+#: inc/class.compatibility.php:38
+#, php-format
+msgid "The active plugin %s is not compatible with your PHP version."
+msgstr ""
+
+#: inc/taxonomies.php:1392
+msgid "The base slug that this taxonomy will use in the REST API."
+msgstr ""
+
 #: inc/helper.options.admin.php:180
 msgid ""
 "The colours are hexadecimal colours,  and need to have the full six digits "
@@ -3505,6 +3530,12 @@ msgstr "ID de la entrada"
 #: inc/tag-clouds.php:805
 msgid "The ID of the term"
 msgstr "El ID del término"
+
+#: inc/taxonomies.php:1402
+msgid ""
+"The name of a custom Rest Controller class instead of "
+"WP_REST_Terms_Controller."
+msgstr ""
 
 #: inc/post-tags.php:687
 msgid "The name of the tag"
@@ -4128,6 +4159,10 @@ msgstr "Ver la base de conocimiento"
 msgid "View Media Tag"
 msgstr "Ver la etiqueta de medios"
 
+#: inc/class.compatibility.php:37
+msgid "Warning:"
+msgstr ""
+
 #: inc/class.widgets.php:389
 msgid "What to show"
 msgstr "Que mostrar"
@@ -4203,9 +4238,9 @@ msgstr ""
 msgid "WordPress core"
 msgstr "Núcleo de WordPress"
 
-#: inc/suggestterms.php:807 inc/tag-clouds.php:851 inc/autolinks.php:890
+#: inc/suggestterms.php:807 inc/tag-clouds.php:851 inc/autolinks.php:909
 #: inc/related-posts.php:884 inc/post-tags.php:728
-#: inc/class-taxonomies-table.php:374 inc/autoterms.php:1139
+#: inc/class-taxonomies-table.php:374 inc/autoterms.php:1158
 #: inc/taxonomies.php:1703
 msgid "Yes"
 msgstr "Sí"
