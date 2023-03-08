@@ -36,7 +36,7 @@ function addTag(tag, custom_taxonomy = false, term_id = false) {
     //jQuery('.tagadd').WithSelect()
 
   } else if (term_id && document.getElementById('' + custom_taxonomy + '-' + term_id)) { // Maybe is hierarchical taxonomy type
-    jQuery('#' + custom_taxonomy + '-' + term_id).find('input').attr('checked', true);
+    jQuery('#' + custom_taxonomy + '-' + term_id).find('input:first').attr('checked', true);
   } else if (typeof wp.data != 'undefined' && typeof wp.data.select('core') != 'undefined' && typeof wp.data.select('core/edit-post') != 'undefined' && typeof wp.data.select('core/editor') != 'undefined') { // Gutenberg
     
     // Get current taxonomy
