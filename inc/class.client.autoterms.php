@@ -182,7 +182,7 @@ class SimpleTags_Client_Autoterms {
 
 						// Whole word ?
 						if ( isset( $options['autoterm_word'] ) && (int) $options['autoterm_word'] == 1 ) {
-							if(strpos($content, ' '.$term.' ') !== FALSE)
+							if ( preg_match("/\b" . preg_quote($term) . "\b/i", $content ) )
 							{
 								$terms_to_add[] = $term;
 							}
@@ -261,7 +261,7 @@ class SimpleTags_Client_Autoterms {
 
 						// Whole word ?
 						if ( isset( $options['autoterm_word'] ) && (int) $options['autoterm_word'] == 1 ) {
-							if(strpos($content, ' '.$term.' ') !== FALSE)
+							if ( preg_match("/\b" . preg_quote($term) . "\b/i", $content ) )
 							{
 								$terms_to_add[] = $term;
 							}
@@ -312,7 +312,7 @@ class SimpleTags_Client_Autoterms {
 
 				// Whole word ?
 				if ( isset( $options['autoterm_word'] ) && (int)$options['autoterm_word'] === 1 ) {
-					if(strpos($content, ' '.$term.' ') !== FALSE)
+					if ( preg_match("/\b" . preg_quote($term) . "\b/i", $content ) )
 					{
 						$terms_to_add[] = $term;
 					}
@@ -369,7 +369,7 @@ class SimpleTags_Client_Autoterms {
 
 				// Whole word ?
 				if ( isset( $options['autoterm_word'] ) && (int) $options['autoterm_word'] == 1 ) {
-					if(strpos($content, ' '.$term.' ') !== FALSE)
+					if ( preg_match("/\b" . preg_quote($term) . "\b/i", $content ) )
 					{
 						$terms_to_add[] = $term;
 					}
