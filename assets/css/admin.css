@@ -50,7 +50,14 @@ a#close_clicktags{display:none;}
 
 /* Ajax Click Tags   */
 #st-clicks-tags .container_clicktags{border:3px dashed #D1E6EF;display:none;max-height:300px;overflow:auto;margin:3px 0 0;padding:6px;}
-#st-clicks-tags .container_clicktags .used_term{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter: alpha(opacity=50); opacity: 0.5;}
+#st-clicks-tags .container_clicktags .used_term{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50); 
+    opacity: 0.5;
+    color: #555;
+    background-color: #eee;
+    border: 1px dotted #1e1e1e;
+}
 
 /* Click Tags   */
 .container_clicktags{display:block;}
@@ -70,6 +77,11 @@ div[id^="suggestedtags-"] .container_clicktags .used_term {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
     filter: alpha(opacity=50); 
     opacity: 0.5;
+    filter: alpha(opacity=50); 
+    opacity: 0.5;
+    color: #555;
+    background-color: #eee;
+    border: 1px dotted #1e1e1e;
 }
 
 /* Advanced tags input   */
