@@ -42,6 +42,7 @@ function load_click_tags(search = '') {
         var term_id = jQuery(this).attr('data-term_id');
         addTag(this.innerHTML, taxonomy, term_id);
         jQuery(this).addClass('used_term');
+        jQuery(this).attr('aria-pressed', 'true');
       });
 
       jQuery('#open_clicktags').hide();
