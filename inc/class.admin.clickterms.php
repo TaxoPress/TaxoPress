@@ -141,6 +141,7 @@ class SimpleTags_Admin_ClickTags {
 			'stHelperClickTagsL10n',
 			array(
 				'show_txt'    => esc_html__( 'Click to display tags', 'simple-tags' ),
+				'arial_label' => esc_html__( 'suggested terms', 'simple-tags' ),
 				'hide_txt'    => sprintf( esc_html__( 'Click terms to add them to this %s', 'simple-tags' ), $post_type_name ),
 				'state'       => 'show',
 				'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
