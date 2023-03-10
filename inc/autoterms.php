@@ -460,7 +460,7 @@ class SimpleTags_Autoterms
 
 
                                                     $options = [];
-                                                    foreach (get_all_taxopress_public_taxonomies() as $_taxonomy) {
+                                                    foreach (get_all_taxopress_taxonomies() as $_taxonomy) {
                                                         $_taxonomy = $_taxonomy->name;
                                                         $tax       = get_taxonomy($_taxonomy);
                                                         if (empty($tax->labels->name)) {
