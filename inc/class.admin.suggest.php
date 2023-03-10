@@ -99,12 +99,12 @@ class SimpleTags_Admin_Suggest {
 	 **/
 	public static function metabox($post, $callback_args) {
 		?>
-        <span class="container_clicktags <?php echo esc_attr('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php echo esc_attr($callback_args['args']['key_index']); ?>">
+        <div class="container_clicktags <?php echo esc_attr('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php echo esc_attr($callback_args['args']['key_index']); ?>" role="group" aria-label="<?php echo esc_attr($callback_args['title']); ?>">
 			<?php 
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo SimpleTags_Admin::getDefaultContentBox(); ?>
             <div class="clear"></div>
-		</span>
+		</div>
 		<?php
 	}
 
