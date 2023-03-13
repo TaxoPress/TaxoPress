@@ -278,27 +278,27 @@ class SimpleTags_Autolink
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="autolink_general_tab <?php echo $active_tab === 'autolink_general' ? 'active' : ''; ?>" data-content="autolink_general">
+                                                <li aria-current="<?php echo $active_tab === 'autolink_general' ? 'true' : 'false'; ?>" class="autolink_general_tab <?php echo $active_tab === 'autolink_general' ? 'active' : ''; ?>" data-content="autolink_general">
                                                     <a href="#autolink_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_display_tab <?php echo $active_tab === 'autolink_display' ? 'active' : ''; ?>" data-content="autolink_display">
+                                                <li aria-current="<?php echo $active_tab === 'autolink_display' ? 'true' : 'false'; ?>" class="autolink_display_tab <?php echo $active_tab === 'autolink_display' ? 'active' : ''; ?>" data-content="autolink_display">
                                                     <a href="#autolink_display"><span><?php esc_html_e('Post Types',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_control_tab <?php echo $active_tab === 'autolink_control' ? 'active' : ''; ?>" data-content="autolink_control">
+                                                <li aria-current="<?php echo $active_tab === 'autolink_control' ? 'true' : 'false'; ?>" class="autolink_control_tab <?php echo $active_tab === 'autolink_control' ? 'active' : ''; ?>" data-content="autolink_control">
                                                     <a href="#autolink_control"><span><?php esc_html_e('Control',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_exceptions_tab <?php echo $active_tab === 'autolink_exceptions' ? 'active' : ''; ?>" data-content="autolink_exceptions">
+                                                <li aria-current="<?php echo $active_tab === 'autolink_exceptions' ? 'true' : 'false'; ?>" class="autolink_exceptions_tab <?php echo $active_tab === 'autolink_exceptions' ? 'active' : ''; ?>" data-content="autolink_exceptions">
                                                     <a href="#autolink_exceptions"><span><?php esc_html_e('Exceptions',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autolink_advanced_tab <?php echo $active_tab === 'autolink_advanced' ? 'active' : ''; ?>" data-content="autolink_advanced">
+                                                <li aria-current="<?php echo $active_tab === 'autolink_advanced' ? 'true' : 'false'; ?>" class="autolink_advanced_tab <?php echo $active_tab === 'autolink_advanced' ? 'active' : ''; ?>" data-content="autolink_advanced">
                                                     <a href="#autolink_advanced"><span><?php esc_html_e('Advanced',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>

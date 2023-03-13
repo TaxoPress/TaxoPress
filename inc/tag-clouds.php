@@ -277,22 +277,22 @@ class SimpleTags_Tag_Clouds
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="tagcloud_general_tab <?php echo $active_tab === 'tagcloud_general' ? 'active' : ''; ?>" data-content="tagcloud_general">
+                                                <li aria-current="<?php echo $active_tab === 'tagcloud_general' ? 'true' : 'false'; ?>" class="tagcloud_general_tab <?php echo $active_tab === 'tagcloud_general' ? 'active' : ''; ?>" data-content="tagcloud_general">
                                                     <a href="#tagcloud_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="tagcloud_terms_tab <?php echo $active_tab === 'tagcloud_terms' ? 'active' : ''; ?>" data-content="tagcloud_terms">
+                                                <li aria-current="<?php echo $active_tab === 'tagcloud_terms' ? 'true' : 'false'; ?>" class="tagcloud_terms_tab <?php echo $active_tab === 'tagcloud_terms' ? 'active' : ''; ?>" data-content="tagcloud_terms">
                                                     <a href="#tagcloud_terms"><span><?php esc_html_e('Choose Terms',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="tagcloud_design_tab <?php echo $active_tab === 'tagcloud_design' ? 'active' : ''; ?>" data-content="tagcloud_design">
+                                                <li aria-current="<?php echo $active_tab === 'tagcloud_design' ? 'true' : 'false'; ?>" class="tagcloud_design_tab <?php echo $active_tab === 'tagcloud_design' ? 'active' : ''; ?>" data-content="tagcloud_design">
                                                     <a href="#tagcloud_design"><span><?php esc_html_e('Design',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="tagcloud_advanced_tab <?php echo $active_tab === 'tagcloud_advanced' ? 'active' : ''; ?>" data-content="tagcloud_advanced">
+                                                <li aria-current="<?php echo $active_tab === 'tagcloud_advanced' ? 'true' : 'false'; ?>" class="tagcloud_advanced_tab <?php echo $active_tab === 'tagcloud_advanced' ? 'active' : ''; ?>" data-content="tagcloud_advanced">
                                                     <a href="#tagcloud_advanced"><span><?php esc_html_e('Display Format',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>

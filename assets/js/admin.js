@@ -340,7 +340,9 @@
       var tab_content = $(this).attr('data-content');
 
       $('.taxopress-tab li').removeClass('active');
+      $('.taxopress-tab li').attr('aria-current', 'false');
       $(this).addClass('active');
+      $(this).attr('aria-current', 'true');
 
       $('.taxopress-tab-content table').hide();
       $('.taxopress-tab-content table.' + tab_content).show();

@@ -280,19 +280,19 @@ class SimpleTags_SuggestTerms
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="suggestterm_general_tab <?php echo $active_tab === 'suggestterm_general' ? 'active' : ''; ?>"
+                                                <li aria-current="<?php echo $active_tab === 'suggestterm_general' ? 'true' : 'false'; ?>" class="suggestterm_general_tab <?php echo $active_tab === 'suggestterm_general' ? 'active' : ''; ?>"
                                                     data-content="suggestterm_general">
                                                     <a href="#suggestterm_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
+                                                <li aria-current="<?php echo $active_tab === 'suggestterm_external' ? 'true' : 'false'; ?>" class="suggestterm_external_tab <?php echo $active_tab === 'suggestterm_external' ? 'active' : ''; ?>"
                                                     data-content="suggestterm_external">
                                                     <a href="#suggestterm_external"><span><?php esc_html_e('Automatic Term Suggestions',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
+                                                <li aria-current="<?php echo $active_tab === 'suggestterm_local' ? 'true' : 'false'; ?>" class="suggestterm_local_tab <?php echo $active_tab === 'suggestterm_local' ? 'active' : ''; ?>"
                                                     data-content="suggestterm_local">
                                                     <a href="#suggestterm_local"><span><?php esc_html_e('Show Existing Terms',
                                                                 'simple-tags'); ?></span></a>
