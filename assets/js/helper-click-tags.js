@@ -2,9 +2,9 @@ jQuery(document).ready(function () {
 
   if (stHelperClickTagsL10n.state === 'hide') {
     // Display initial link
-    jQuery('#st-clicks-tags .inside').html('' + stHelperClickTagsL10n.click_tags_options + ' <a href="#st_click_tags" id="open_clicktags">' + stHelperClickTagsL10n.show_txt + '</a><span id="close_clicktags">' + stHelperClickTagsL10n.hide_txt + '</span><div class="container_clicktags"></div>');
+    jQuery('#st-clicks-tags .inside').html('' + stHelperClickTagsL10n.click_tags_options + ' <a href="#st_click_tags" id="open_clicktags">' + stHelperClickTagsL10n.show_txt + '</a><span id="close_clicktags">' + stHelperClickTagsL10n.hide_txt + '</span><div class="container_clicktags" role="group" aria-label="' + stHelperClickTagsL10n.arial_label + '"></div>');
   } else {
-    jQuery('#st-clicks-tags .inside').html('' + stHelperClickTagsL10n.click_tags_options + ' <a href="#st_click_tags" id="open_clicktags">' + stHelperClickTagsL10n.show_txt + '</a><span id="close_clicktags">' + stHelperClickTagsL10n.hide_txt + '</span><div class="container_clicktags"></div>');
+    jQuery('#st-clicks-tags .inside').html('' + stHelperClickTagsL10n.click_tags_options + ' <a href="#st_click_tags" id="open_clicktags">' + stHelperClickTagsL10n.show_txt + '</a><span id="close_clicktags">' + stHelperClickTagsL10n.hide_txt + '</span><div class="container_clicktags" role="group" aria-label="' + stHelperClickTagsL10n.arial_label + '"></div>');
   }
   jQuery('#st-clicks-tags .handle-actions').prepend(html_entity_decode(stHelperClickTagsL10n.edit_metabox_link));
 
@@ -42,6 +42,7 @@ function load_click_tags(search = '') {
         var term_id = jQuery(this).attr('data-term_id');
         addTag(this.innerHTML, taxonomy, term_id);
         jQuery(this).addClass('used_term');
+        jQuery(this).attr('aria-pressed', 'true');
       });
 
       jQuery('#open_clicktags').hide();

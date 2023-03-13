@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 6.1
-Stable tag: 3.6.6
+Stable tag: 3.6.7
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -23,7 +23,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 ## TaxoPress Pro ##
 
 > <strong>Upgrade to TaxoPress Pro</strong><br />
-> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/pro" title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
+> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/taxopress title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
 
 ## Key Features in TaxoPress ##
 
@@ -37,13 +37,13 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 8. **Mass Edit Terms**: Quickly add or remove taxonomy terms from any content in WordPress.
 9. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
 
-## 1. Create and Manage Taxonomies ##
+## Feature 1. Create and Manage Taxonomies ##
 
 TaxoPress can manage all the taxonomies created by WordPress and your plugins and themes. You can change the settings for each taxonomy. For example, you can change the visual labels, and control whether the taxonomy is organized in parent-child relationships. You can also assign your taxonomies to different post types. For example, you can use TaxoPress to add Categories to Pages, or WooCommerce Tags to Posts.
 
 [Click here to read about managing taxonomies](https://taxopress.com/docs/introduction-taxonomies-screen/).
 
-## 2. Terms Display ##
+## Feature 2. Terms Display ##
 
 The Terms Display feature in TaxoPress allows you to show a cloud or list of the terms used on your site. For example, you can create a "Tag Cloud" showing all your WooCommerce product categories, or you can create a list of all the tags on bbPress topics.
 
@@ -51,7 +51,7 @@ TaxoPress makes it easy to customize the format of your terms, and add custom CS
 
 [Click here to read about Terms Display](https://taxopress.com/docs/introduction-to-tag-clouds/).
 
-## 3. Terms for Current Post ##
+## Feature 3. Terms for Current Post ##
 
 The Terms for Current Post feature in TaxoPress allows you to customize the displays of terms for single posts. This display is separate from any default display of terms in your theme, so you can use this feature to easily show terms anywhere on your site.
 
@@ -59,7 +59,7 @@ TaxoPress makes it easy to customize the format of your terms, and add custom CS
 
 [Click here to read about Terms for Current Post](https://taxopress.com/docs/introduction-to-tags-for-current-post/).
 
-## 4. Related Posts ##
+## Feature 4. Related Posts ##
 
 TaxoPress can display posts that are related to the current post. This feature works by checking for shared taxonomy terms. If your post has the terms “Vegetables” and “Food”, then this feature will likely display other posts that also have the terms “Vegetables” and “Food”. The more terms that are shared, the more likely a post is to show.
 
@@ -67,13 +67,13 @@ The Related Posts can be shown in a shortcode, a widget, or TaxoPress can try an
 
 [Click here to read about Related Posts](https://taxopress.com/docs/introduction-to-related-posts/).
 
-## 5. Auto Links ##
+## Feature 5. Auto Links ##
 
 The Auto Links feature in TaxoPress will automatically add links to your content. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag. So any instances of “WordPress” will link to /tag/wordpress.
 
 [Click here to read about Auto Links](https://taxopress.com/docs/introduction-to-auto-links/).
 
-## 6. Auto Terms ##
+## Feature 6. Auto Terms ##
 
 This feature allows WordPress to examine your post content and title for specified terms and automatically add those terms as Tags. Here’s an example of how it works:
 
@@ -82,7 +82,7 @@ This feature allows WordPress to examine your post content and title for specifi
 
 [Click here to read about automatically adding terms](https://taxopress.com/docs/introduction-to-auto-terms/).
 
-## 7. Suggest Terms ##
+## Feature 7. Suggest Terms ##
 
 The Suggest Terms feature helps when you're writing content in WordPress. It becomes much easier for you to find the best taxonomy terms for your content.
 
@@ -93,7 +93,7 @@ Suggest Terms can show two metaboxes on your post editing screen:
 
 [Click here to read about suggesting terms](https://taxopress.com/docs/introduction-to-suggested-tags/).
 
-## 8. Mass Edit Terms ##
+## Feature 8. Mass Edit Terms ##
 
 The Mass Edit Terms screen allows you to quickly add or remove taxonomy terms from any content in WordPress.
 
@@ -101,7 +101,7 @@ The first step is to choose which taxonomy you want to modify. At the top of the
 
 [Click here to read about suggesting terms](https://taxopress.com/docs/mass-edit-terms/).
 
-## 9. Manage Terms ##
+## Feature 9. Manage Terms ##
 
 The Manage Terms screen in TaxoPress provides you with several useful tools to manage the terms on your site. These tools can be used with any taxonomy. Here are some of the tools on the Manage Terms screen:
 
@@ -114,14 +114,23 @@ The Manage Terms screen in TaxoPress provides you with several useful tools to m
 
 [Click here to read about managing terms](https://taxopress.com/docs/introduction-to-manage-terms/).
 
-## TaxoPress Pro ##
+## Get TaxoPress Pro ##
 
 > <strong>Upgrade to TaxoPress Pro</strong><br />
 > This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/pro"  title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
 
-## TaxoPress and Tag Groups ##
+## The TaxoPress and Tag Groups plugins ##
 
-TaxoPress is developed by the same team that support the popular Tag Groups plugin. Together Tag Groups and TaxoPress are an excellent solution for organizing and displaying your site’s content.
+TaxoPress is developed by the same team that support the popular [Tag Groups plugin](https://wordpress.org/plugins/tag-groups/). Together Tag Groups and TaxoPress are an excellent solution for organizing and displaying your site’s content.
+
+= Bug Reports =
+
+Bug reports for TaxoPress are welcomed in our [repository on GitHub](https://github.com/taxopress/taxopress). Please note that GitHub is not a support forum, but a place to report bugs in the plugn that can be replicated outside of a single site.
+
+= Follow the TaxoPress team =
+
+Follow TaxoPress on [Facebook](https://www.facebook.com/taxopress), [Twitter](https://www.twitter.com/taxopress) and [YouTube](https://www.youtube.com/taxopress).
+
 
 
 == Installation ==
@@ -229,6 +238,14 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.6.7- 2023-03-13
+* Fixed: Suggest Terms adds child terms with Classic Editor, #1485
+* Update: Allow Private Taxonomies in Auto Terms, #1471
+* Update: Suggested improvement for Auto Terms, #1431
+* Update: Accessibility improvements to Suggested Terms, #1470
+* Fixed: Terms suggestions are not accessible, #1468
+* Update: Accessibility improvements for all tabs, #1469
 
 v3.6.6- 2023-03-07
 * Update: Increased minimum PHP requirement to PHP 7.2.5, #1553

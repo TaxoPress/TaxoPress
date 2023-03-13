@@ -10,7 +10,9 @@
       var tab_content = $(this).attr('data-content');
 
       $('.st-taxonomy-tab li').removeClass('active');
+      $('.st-taxonomy-tab li').attr('aria-current', 'false');
       $(this).addClass('active');
+      $(this).attr('aria-current', 'true');
 
       $('.st-taxonomy-content table').hide();
       $('.st-taxonomy-content table.' + tab_content).show();

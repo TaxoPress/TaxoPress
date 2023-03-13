@@ -141,6 +141,7 @@ class SimpleTags_Admin_ClickTags {
 			'stHelperClickTagsL10n',
 			array(
 				'show_txt'    => esc_html__( 'Click to display tags', 'simple-tags' ),
+				'arial_label' => esc_html__( 'suggested terms', 'simple-tags' ),
 				'hide_txt'    => sprintf( esc_html__( 'Click terms to add them to this %s', 'simple-tags' ), $post_type_name ),
 				'state'       => 'show',
 				'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
@@ -277,7 +278,7 @@ class SimpleTags_Admin_ClickTags {
 
 		foreach ( (array) $terms as $term ) {
 			$class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
-			echo '<span data-term_id="'.esc_attr($term->term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local '.esc_attr($taxonomy).' ' . esc_attr( $class_current ) . '">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
+			echo '<span data-term_id="'.esc_attr($term->term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local '.esc_attr($taxonomy).' ' . esc_attr( $class_current ) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html( stripslashes( $term->name ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 

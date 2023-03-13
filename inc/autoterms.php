@@ -398,32 +398,32 @@ class SimpleTags_Autoterms
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="autoterm_general_tab <?php echo $active_tab === 'autoterm_general' ? 'active' : ''; ?>" data-content="autoterm_general">
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_general' ? 'true' : 'false'; ?>" class="autoterm_general_tab <?php echo $active_tab === 'autoterm_general' ? 'active' : ''; ?>" data-content="autoterm_general">
                                                     <a href="#autoterm_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autoterm_terms_tab <?php echo $active_tab === 'autoterm_terms' ? 'active' : ''; ?>" data-content="autoterm_terms">
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_terms' ? 'true' : 'false'; ?>" class="autoterm_terms_tab <?php echo $active_tab === 'autoterm_terms' ? 'active' : ''; ?>" data-content="autoterm_terms">
                                                     <a href="#autoterm_terms"><span><?php esc_html_e('Sources',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autoterm_options_tab <?php echo $active_tab === 'autoterm_options' ? 'active' : ''; ?>" data-content="autoterm_options">
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_options' ? 'true' : 'false'; ?>" class="autoterm_options_tab <?php echo $active_tab === 'autoterm_options' ? 'active' : ''; ?>" data-content="autoterm_options">
                                                     <a href="#autoterm_options"><span><?php esc_html_e('Options',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_oldcontent' ? 'true' : 'false'; ?>" class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
                                                     <a href="#autoterm_oldcontent"><span><?php esc_html_e('Existing Content',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_schedule' ? 'true' : 'false'; ?>" class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
                                                     <a href="#autoterm_schedule"><span><?php esc_html_e('Schedule',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="autoterm_advanced_tab <?php echo $active_tab === 'autoterm_advanced' ? 'active' : ''; ?>" data-content="autoterm_advanced">
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_advanced' ? 'true' : 'false'; ?>" class="autoterm_advanced_tab <?php echo $active_tab === 'autoterm_advanced' ? 'active' : ''; ?>" data-content="autoterm_advanced">
                                                     <a href="#autoterm_advanced"><span><?php esc_html_e('Advanced',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
@@ -460,7 +460,7 @@ class SimpleTags_Autoterms
 
 
                                                     $options = [];
-                                                    foreach (get_all_taxopress_public_taxonomies() as $_taxonomy) {
+                                                    foreach (get_all_taxopress_taxonomies() as $_taxonomy) {
                                                         $_taxonomy = $_taxonomy->name;
                                                         $tax       = get_taxonomy($_taxonomy);
                                                         if (empty($tax->labels->name)) {

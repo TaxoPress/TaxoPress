@@ -99,12 +99,12 @@ class SimpleTags_Admin_Suggest {
 	 **/
 	public static function metabox($post, $callback_args) {
 		?>
-        <span class="container_clicktags <?php echo esc_attr('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php echo esc_attr($callback_args['args']['key_index']); ?>">
+        <div class="container_clicktags <?php echo esc_attr('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php echo esc_attr($callback_args['args']['key_index']); ?>" role="group" aria-label="<?php echo esc_attr($callback_args['title']); ?>">
 			<?php 
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo SimpleTags_Admin::getDefaultContentBox(); ?>
             <div class="clear"></div>
-		</span>
+		</div>
 		<?php
 	}
 
@@ -221,7 +221,7 @@ class SimpleTags_Admin_Suggest {
 
 		foreach ( (array) $data as $term ) {
 			$class_current = in_array(strip_tags( $term ), $post_terms) ? 'used_term' : '';
-			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '">' . esc_html( strip_tags( $term ) ) . '</span>' . "\n";
+			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html( strip_tags( $term ) ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
@@ -304,7 +304,7 @@ class SimpleTags_Admin_Suggest {
 
 		foreach ( (array) $data as $term ) {
 			$class_current = in_array(strip_tags( $term ), $post_terms) ? 'used_term' : '';
-			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '">' . esc_html( $term->title ) . '</span>' . "\n";
+			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html( $term->title ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
 		exit();
@@ -365,7 +365,7 @@ class SimpleTags_Admin_Suggest {
 			$term = stripslashes( $term->name );
 			if ( is_string( $term ) && ! empty( $term ) && stristr( $content, $term ) ) {
 				$flag = true;
-				echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '">' . esc_html( $term ) . '</span>' . "\n";
+				echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html( $term ) . '</span>' . "\n";
 			}
 		}
 

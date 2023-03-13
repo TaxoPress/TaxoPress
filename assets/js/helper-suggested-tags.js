@@ -181,6 +181,7 @@ function registerClickTags() {
     }
 
     jQuery(this).addClass('used_term');
+    jQuery(this).attr('aria-pressed', 'true');
   });
 
   jQuery('#st_ajax_loading').hide();
