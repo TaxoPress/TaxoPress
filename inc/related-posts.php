@@ -276,22 +276,22 @@ class SimpleTags_Related_Post
 
 
                                             <ul class="taxopress-tab">
-                                                <li class="relatedpost_general_tab <?php echo $active_tab === 'relatedpost_general' ? 'active' : ''; ?>" data-content="relatedpost_general">
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_general' ? 'true' : 'false'; ?>" class="relatedpost_general_tab <?php echo $active_tab === 'relatedpost_general' ? 'active' : ''; ?>" data-content="relatedpost_general">
                                                     <a href="#relatedpost_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="relatedpost_display_tab <?php echo $active_tab === 'relatedpost_display' ? 'active' : ''; ?>" data-content="relatedpost_display">
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_display' ? 'true' : 'false'; ?>" class="relatedpost_display_tab <?php echo $active_tab === 'relatedpost_display' ? 'active' : ''; ?>" data-content="relatedpost_display">
                                                     <a href="#relatedpost_display"><span><?php esc_html_e('Display',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="relatedpost_option_tab <?php echo $active_tab === 'relatedpost_option' ? 'active' : ''; ?>" data-content="relatedpost_option">
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_option' ? 'true' : 'false'; ?>" class="relatedpost_option_tab <?php echo $active_tab === 'relatedpost_option' ? 'active' : ''; ?>" data-content="relatedpost_option">
                                                     <a href="#relatedpost_option"><span><?php esc_html_e('Options',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li class="relatedpost_advanced_tab <?php echo $active_tab === 'relatedpost_advanced' ? 'active' : ''; ?>" data-content="relatedpost_advanced">
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_advanced' ? 'true' : 'false'; ?>" class="relatedpost_advanced_tab <?php echo $active_tab === 'relatedpost_advanced' ? 'active' : ''; ?>" data-content="relatedpost_advanced">
                                                     <a href="#relatedpost_advanced"><span><?php esc_html_e('Advanced',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>

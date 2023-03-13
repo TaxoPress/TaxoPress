@@ -277,22 +277,22 @@ class SimpleTags_Post_Tags
 
 
                         <ul class="taxopress-tab">
-                            <li class="posttags_general_tab <?php echo $active_tab === 'posttags_general' ? 'active' : ''; ?>" data-content="posttags_general">
+                            <li aria-current="<?php echo $active_tab === 'posttags_general' ? 'true' : 'false'; ?>" class="posttags_general_tab <?php echo $active_tab === 'posttags_general' ? 'active' : ''; ?>" data-content="posttags_general">
                                 <a href="#posttags_general"><span><?php esc_html_e('General',
                                             'simple-tags'); ?></span></a>
                             </li>
 
-                            <li class="posttags_display_tab <?php echo $active_tab === 'posttags_display' ? 'active' : ''; ?>" data-content="posttags_display">
+                            <li aria-current="<?php echo $active_tab === 'posttags_display' ? 'true' : 'false'; ?>" class="posttags_display_tab <?php echo $active_tab === 'posttags_display' ? 'active' : ''; ?>" data-content="posttags_display">
                                 <a href="#posttags_display"><span><?php esc_html_e('Display',
                                             'simple-tags'); ?></span></a>
                             </li>
 
-                            <li class="posttags_options_tab <?php echo $active_tab === 'posttags_options' ? 'active' : ''; ?>" data-content="posttags_options">
+                            <li aria-current="<?php echo $active_tab === 'posttags_options' ? 'true' : 'false'; ?>" class="posttags_options_tab <?php echo $active_tab === 'posttags_options' ? 'active' : ''; ?>" data-content="posttags_options">
                                 <a href="#posttags_options"><span><?php esc_html_e('Options',
                                             'simple-tags'); ?></span></a>
                             </li>
 
-                            <li class="posttags_advanced_tab <?php echo $active_tab === 'posttags_advanced' ? 'active' : ''; ?>" data-content="posttags_advanced">
+                            <li aria-current="<?php echo $active_tab === 'posttags_advanced' ? 'true' : 'false'; ?>" class="posttags_advanced_tab <?php echo $active_tab === 'posttags_advanced' ? 'active' : ''; ?>" data-content="posttags_advanced">
                                 <a href="#posttags_advanced"><span><?php esc_html_e('Advanced',
                                             'simple-tags'); ?></span></a>
                             </li>
