@@ -388,6 +388,20 @@ class Taxopress_Terms_List extends WP_List_Table
 				esc_attr( sprintf( esc_html__( 'Quick edit &#8220;%s&#8221; inline', 'simple-tags'), $item->name ) ),
 				esc_html__('Quick&nbsp;Edit', 'simple-tags')
 			);
+
+			$actions['remove_posts'] = sprintf(
+                '<a href="%s">%s</a>',
+                add_query_arg(
+                    [
+                        'page'                   => 'st_terms',
+                        'action'                 => 'taxopress-remove-from-posts',
+                        'taxopress_terms'        => esc_attr($item->term_id),
+                        '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
+                    ],
+                    admin_url('admin.php')
+                ),
+                esc_html__('Remove From All Posts', 'simple-tags')
+            );
 		}
 
 		if ( current_user_can( 'delete_term', $item->term_id ) ) {

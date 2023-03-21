@@ -38,6 +38,37 @@ function taxopress_process_terms()
         add_action('admin_notices', "taxopress_term_delete_success_admin_notice");
         add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
     }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-remove-from-posts') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
+            $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
+            $args = array(
+                'post_type' => 'any',
+                'posts_per_page' => -1,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => $term->taxonomy,
+                        'field' => 'id',
+                        'terms' => $term->term_id
+                    )
+                )
+            );
+            $posts = get_posts($args);
+            $counter = 0;
+            foreach ( $posts as $post ){
+                $remove = wp_remove_object_terms( $post->ID, $term->term_id, $term->taxonomy );
+                if($remove){
+				    clean_object_term_cache( $post->ID, $term->taxonomy );
+				    clean_term_cache( $term->term_id, $term->taxonomy );
+                    $counter ++;
+                }
+            }
+
+        }
+        add_action('admin_notices', "taxopress_term_posts_remov_success_admin_notice");
+        add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
+    }
 }
 add_action('admin_init', 'taxopress_process_terms', 8);
 
@@ -48,6 +79,15 @@ function taxopress_term_delete_success_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Term deleted successfully.', 'simple-tags'), false);
+}
+
+/**
+ * Successful deleted callback.
+ */
+function taxopress_term_posts_remov_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Term removed from all posts successfully.', 'simple-tags'), true);
 }
 
 /**

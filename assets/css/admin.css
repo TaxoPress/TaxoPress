@@ -84,6 +84,10 @@ div[id^="suggestedtags-"] .container_clicktags .used_term {
     border: 1px dotted #1e1e1e;
 }
 
+.taxopress_page_st_terms table.terms .manage-column.column-primary {
+    width: 30%;
+}
+
 /* Advanced tags input   */
 #adv-tags-input{padding:3px 5px;}
 
@@ -876,6 +880,13 @@ body.block-editor-page .clicktags-search-wrapper .option input {
         float: none;
         margin-left: 0;
     }
+}
+
+
+@media screen and (max-width: 782px) {
+    .taxopress_page_st_terms table.terms .manage-column.column-primary {
+        width: 100%;
+    }    
 }
 
 .taxopress-log-table table {
