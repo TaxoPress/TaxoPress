@@ -127,12 +127,6 @@ class SimpleTags_Admin_Manage {
 				self::removeTerms( SimpleTags_Admin::$taxonomy, SimpleTags_Admin::$post_type, $tag );
                 $default_tab = '.st-remove-terms';
 
-			} elseif ( $_POST['term_action'] == 'deleteterm' ) {
-
-				$todelete = ( isset( $_POST['deleteterm_name'] ) ) ? sanitize_text_field($_POST['deleteterm_name']) : '';
-				self::deleteTermsByTermList( SimpleTags_Admin::$taxonomy, $todelete );
-                $default_tab = '.st-delete-terms';
-
 			} elseif ( $_POST['term_action'] == 'addterm' ) {
 
 				$matchtag = ( isset( $_POST['addterm_match'] ) ) ? sanitize_text_field($_POST['addterm_match']) : '';
@@ -233,7 +227,6 @@ class SimpleTags_Admin_Manage {
                             <li class="nav-tab" data-page=".st-rename-terms"><?php echo esc_html__( 'Rename terms', 'simple-tags' ); ?></li>
                             <li class="nav-tab" data-page=".st-merge-terms"><?php echo esc_html__( 'Merge terms', 'simple-tags' ); ?></li>
                             <li class="nav-tab" data-page=".st-remove-terms"><?php echo esc_html__( 'Remove terms', 'simple-tags' ); ?></li>
-                            <li class="nav-tab" data-page=".st-delete-terms"><?php echo esc_html__( 'Delete terms', 'simple-tags' ); ?></li>
                             <li class="nav-tab" data-page=".st-delete-unuused-terms"><?php echo esc_html__( 'Delete unused terms', 'simple-tags' ); ?></li>
                         </ul>
                         <div class="clear"></div>
@@ -397,38 +390,6 @@ class SimpleTags_Admin_Manage {
 
 								<input class="button-primary" type="submit" name="rename"
 								       value="<?php _e( 'Remove', 'simple-tags' ); ?>"/>
-							</form>
-						</fieldset>
-					</td>
-				</tr>
-
-				<tr valign="top" style="display:none;" class="auto-terms-content st-delete-terms">
-					<td>
-                        <h2><?php _e( 'Delete Terms', 'simple-tags' ); ?></h2>
-						<p><?php _e( 'Enter the name of terms to delete.', 'simple-tags' ); ?></p>
-
-
-						<fieldset>
-							<form action="" method="post">
-								<input type="hidden" name="taxo"
-								       value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
-								<input type="hidden" name="cpt"
-								       value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
-
-								<input type="hidden" name="term_action" value="deleteterm"/>
-								<input type="hidden" name="term_nonce"
-								       value="<?php echo esc_attr(wp_create_nonce( 'simpletags_admin' )); ?>"/>
-
-								<p>
-									<label
-										for="deleteterm_name"><?php _e( 'Term(s) to delete:', 'simple-tags' ); ?></label>
-									<br/>
-									<input type="text" class="autocomplete-input  tag-cloud-input" id="deleteterm_name"
-									       name="deleteterm_name" value="" size="80"/>
-								</p>
-
-								<input class="button-primary" type="submit" name="delete"
-								       value="<?php _e( 'Delete', 'simple-tags' ); ?>"/>
 							</form>
 						</fieldset>
 					</td>
