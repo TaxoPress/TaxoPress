@@ -129,10 +129,10 @@ class SimpleTags_Terms
                 }
             }
         } else {
-            if ( is_wp_error( $updated ) && $updated->get_error_message() ) {
+            /*if ( is_wp_error( $updated ) && $updated->get_error_message() ) {
                 wp_die( esc_html($updated->get_error_message()) );
-            }
-            wp_die( esc_html__( 'Item not updated.' ) );
+            }*/
+            wp_die( esc_html__( 'Error updating term.' ) );
         }
 
         $wp_list_table = new Taxopress_Terms_List();

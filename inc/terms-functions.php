@@ -82,7 +82,7 @@ function taxopress_term_delete_success_admin_notice()
 }
 
 /**
- * Successful deleted callback.
+ * Successful remove term from posts callback.
  */
 function taxopress_term_posts_remov_success_admin_notice()
 {

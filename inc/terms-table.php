@@ -172,7 +172,7 @@ class Taxopress_Terms_List extends WP_List_Table
 
             $post_types = get_post_types(['public' => true], 'objects');
 
-            $taxonomies = get_all_taxopress_public_taxonomies();
+            $taxonomies = get_all_taxopress_taxonomies_request();
 
             $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_text_field($_REQUEST['terms_filter_post_type']) : '';
             $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
