@@ -843,7 +843,7 @@ class SimpleTags_Client_TagCloud {
 		// don't limit the query results when we have to descend the family tree
 		if ( ! empty( $number ) && ! $hierarchical && empty( $child_of ) && '' == $parent ) {
 			if ( $offset ) {
-                $query = $wpdb->prepare("SELECT $select_this
+                $query = $wpdb->prepare("SELECT DISTINCT $select_this
 			FROM $wpdb->terms AS t
 			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
 			$join_relation
@@ -855,7 +855,7 @@ class SimpleTags_Client_TagCloud {
             $offset,
             $number );
 			} else {
-                $query = $wpdb->prepare("SELECT $select_this
+                $query = $wpdb->prepare("SELECT DISTINCT $select_this
 			FROM $wpdb->terms AS t
 			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
 			$join_relation
@@ -867,7 +867,7 @@ class SimpleTags_Client_TagCloud {
             $number );
 			}
 		} else {
-            $query = $wpdb->prepare("SELECT $select_this
+            $query = $wpdb->prepare("SELECT DISTINCT $select_this
 			FROM $wpdb->terms AS t
 			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
 			$join_relation
