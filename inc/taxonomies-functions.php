@@ -259,11 +259,11 @@ function taxopress_update_taxonomy($data = [])
     $sanitized_data = [];
     foreach ($data as $key => $value) {
         if (!is_array($value)) {
-            $sanitized_data[$key] = sanitize_text_field(taxopress_strip_out_unwanted_html($value));
+            $sanitized_data[$key] = taxopress_sanitize_text_field($value);
         } else {
             $new_value = [];
             foreach ($data[$key] as $option_key => $option_value) {
-                $new_value[$option_key] = sanitize_text_field(taxopress_strip_out_unwanted_html($option_value));
+                $new_value[$option_key] = taxopress_sanitize_text_field($option_value);
             }
             $sanitized_data[$key] = $new_value;
         }
@@ -2259,7 +2259,7 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
 function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
 
     $show_filter   = get_taxopress_disp_boolean( $show_filter );
-                                        
+
     if ( $show_filter == true ) {
 
         wp_dropdown_categories(
@@ -2278,7 +2278,7 @@ function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
         );
 
     }
-    
+
 }
 
 function taxopress_get_dropdown(){
@@ -2307,7 +2307,7 @@ function taxopress_get_dropdown(){
                 if( array_key_exists( $taxonomy_name, $taxonomies ) ){
 
                     $current = $taxonomies[ $taxonomy_name ];
-                    
+
                     if( array_key_exists( 'show_in_filter', $current ) ){
 
                         foreach ($current['object_types'] as $object_type) {
@@ -2320,10 +2320,10 @@ function taxopress_get_dropdown(){
                                     taxopress_filter_dropdown( $taxonomy, $current['show_in_filter']);
 
                                 }
-                                
+
                             }else{
 
-                                if($object_type == $type){ 
+                                if($object_type == $type){
 
                                     taxopress_filter_dropdown( $taxonomy, $current['show_in_filter'] );
 
@@ -2333,15 +2333,15 @@ function taxopress_get_dropdown(){
 
                         }
 
-                        
-                        
+
+
 
                     }
-                }    
-                  
+                }
+
             }
         }
-        
+
     }
 
 }

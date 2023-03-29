@@ -548,11 +548,11 @@ class SimpleTags_Admin {
 				$sanitized_options = [];
 				foreach ($options as $key => $value) {
 					if (!is_array($value)) {
-						$sanitized_options[$key] = taxopress_strip_out_unwanted_html($value, '<a><h1><h2><h3><h4><h5><h6><span></div>');
+						$sanitized_options[$key] = taxopress_sanitize_text_field($value);
 					} else {
 						$new_value = [];
 						foreach ($options[$key] as $option_key => $option_value) {
-							$new_value[$option_key] = taxopress_strip_out_unwanted_html($option_value, '<a><h1><h2><h3><h4><h5><h6><span></div>');
+							$new_value[$option_key] = taxopress_sanitize_text_field($option_value);
 						}
 						$sanitized_options[$key] = $new_value;
 					}

@@ -151,7 +151,7 @@ class SimpleTags_Client_TagCloud {
 			$xformat = $defaults['xformat'];
 		}
 
-		$xformat = taxopress_strip_out_unwanted_html($xformat);
+		$xformat = taxopress_sanitize_text_field($xformat);
 
         //remove title if in settings
         if((int)$hide_title > 0){
