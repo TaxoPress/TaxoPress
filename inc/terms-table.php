@@ -365,7 +365,7 @@ class Taxopress_Terms_List extends WP_List_Table
     protected function handle_row_actions($item, $column_name, $primary)
     {
         $taxonomy = get_taxonomy($item->taxonomy);
-        
+
         //Build row actions
         $actions = [];
 
@@ -383,7 +383,7 @@ class Taxopress_Terms_List extends WP_List_Table
                 esc_html__('Edit', 'simple-tags')
             );
 			$actions['inline hide-if-no-js'] = sprintf(
-				'<button type="button" class="button-link editinline" aria-label="%s" aria-expanded="false">%s</button>',
+				'<button type="button" class="button-link editinline" aria-label="%s" aria-expanded="false" data-taxonomy="'. $taxonomy->name .'" data-term-id="'. $item->term_id .'">%s</button>',
 				/* translators: %s: Taxonomy term name. */
 				esc_attr( sprintf( esc_html__( 'Quick edit &#8220;%s&#8221; inline', 'simple-tags'), $item->name ) ),
 				esc_html__('Quick&nbsp;Edit', 'simple-tags')
