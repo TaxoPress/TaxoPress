@@ -303,7 +303,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		foreach ( (array) $data as $term ) {
-			$class_current = in_array(strip_tags( $term ), $post_terms) ? 'used_term' : '';
+			$class_current = in_array(strip_tags($term->title), $post_terms) ? 'used_term' : '';
 			echo '<span data-term_id="0" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html( $term->title ) . '</span>' . "\n";
 		}
 		echo '<div class="clear"></div>';
