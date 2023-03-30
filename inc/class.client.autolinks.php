@@ -313,9 +313,25 @@ class SimpleTags_Client_Autolinks {
 	 *
 	 * @return void
 	 */
-	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false ) {
+	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false, $content_type = 'content' ) {
+		global $post, $autolinked_contents;
+
+		if (!is_object($post) || !isset($post->ID)) {
+			return $content;
+		}
+
+		$content_key = $content_type . '_' . $post->ID;
+
+		if (!is_array($autolinked_contents)) {
+			$autolinked_contents = [];
+		}
+
+		if (isset($autolinked_contents[$content_key])) {
+			return $autolinked_contents[$content_key];
+		}
+
 		$dom = new DOMDocument();
-        
+  
         //replace html entity with their entity code
         foreach(taxopress_html_character_and_entity() as $enity => $code){
            $content = str_replace($enity, $code,$content);
@@ -324,6 +340,7 @@ class SimpleTags_Client_Autolinks {
         $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
 		//$content = utf8_decode($content);
 
+   
         libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
 		$result = $dom->loadHtml( mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" ) );
@@ -429,7 +446,7 @@ class SimpleTags_Client_Autolinks {
                 break;
             }
 		}
-
+     
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
 		$content = str_replace('|--|','&#',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
@@ -438,13 +455,19 @@ class SimpleTags_Client_Autolinks {
         foreach(taxopress_html_character_and_entity(true) as $enity => $code){
           $content = str_replace($enity, $code,$content);
         }
+        
+
 		$content = str_replace('&amp ;rsquo;','&rsquo;',$content);
 		$content = str_replace(['’', ' ’', '&rsquor;', ' &rsquor;', '&rsquo;', ' &rsquo;'],'\'', $content);
 
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
         $content = str_replace('%7C--%7C038;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/1377
-		
+	
+
+		$autolinked_contents[$content_key] = $content;
+		$content = $content;
+
 	}
 
 	/**
@@ -663,7 +686,7 @@ class SimpleTags_Client_Autolinks {
 			}
 
 			if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_dom' ) && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel );
+				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, false, 'title' );
 			} else {
 				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel );
 			}
@@ -888,9 +911,9 @@ class SimpleTags_Client_Autolinks {
 			}
 
 			if ( 1 === (int) $post_tag['autolink_dom'] && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag );
+				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag, 'title' );
 			}else if ( class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {//force php dom if class exist for optimization purpose
-				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag );
+				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag, 'title' );
 			} else {
 				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel, $post_tag );
 			}
