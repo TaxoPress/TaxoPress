@@ -239,7 +239,7 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
-v3.7.0- 2023-03-32
+v3.7.0- 2023-04-03
 * Fixed: Fixed taxonomy default term not working,, #1216
 * Fixed: Fixed terms taxonomy not retaining term taxonomy in quick edit, #1395
 * Fixed: "<" Characters been stripped out when using Auto Links, #1580
