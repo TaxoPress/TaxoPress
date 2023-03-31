@@ -1516,8 +1516,8 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray' => 'cpt_custom_tax',
                                                 'name'      => 'default_term',
                                                 'textvalue' => isset($current['default_term']) ? esc_attr($current['default_term']) : '',
-                                                'labeltext' => esc_html__('Default Term', 'simple-tags'),
-                                                'helptext'  => esc_html__('Set a default term for the taxonomy. Able to set a name, slug, and description. Only a name is required if setting a default, others are optional. Set values in the following order, separated by comma. Example: name, slug, description',
+                                                'labeltext' => esc_html__('Default Terms', 'simple-tags'),
+                                                'helptext'  => esc_html__('Set a default term for the taxonomy. Enter default term name or slug with multiple terms separated by comma. Example: term-one, Main category, animal',
                                                     'simple-tags'),
                                             ]);
                                             ?>
