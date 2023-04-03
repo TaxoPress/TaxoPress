@@ -527,6 +527,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                         'simple-tags'),
                                                 ]);
 
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_text_input([
+                                                    'namearray' => 'cpt_custom_tax',
+                                                    'name'      => 'default_term',
+                                                    'textvalue' => isset($current['default_term']) ? esc_attr($current['default_term']) : '',
+                                                    'labeltext' => esc_html__('Default Terms', 'simple-tags'),
+                                                    'helptext'  => esc_html__('Set the default terms for this taxonomy. Enter the term names or slugs. Separate multiple terms with by comma.',
+                                                        'simple-tags'),
+                                                ]);
+
 
 
                                                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -1508,16 +1518,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'textvalue' => isset($current['meta_box_cb']) ? esc_attr($current['meta_box_cb']) : '',
                                                 'labeltext' => esc_html__('Metabox callback', 'simple-tags'),
                                                 'helptext'  => esc_html__('Sets a callback function name for the meta box display. Hierarchical default: post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To remove the metabox completely, use "false".',
-                                                    'simple-tags'),
-                                            ]);
-
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            echo $ui->get_text_input([
-                                                'namearray' => 'cpt_custom_tax',
-                                                'name'      => 'default_term',
-                                                'textvalue' => isset($current['default_term']) ? esc_attr($current['default_term']) : '',
-                                                'labeltext' => esc_html__('Default Terms', 'simple-tags'),
-                                                'helptext'  => esc_html__('Set a default term for the taxonomy. Enter default term name or slug with multiple terms separated by comma. Example: term-one, Main category, animal',
                                                     'simple-tags'),
                                             ]);
                                             ?>
