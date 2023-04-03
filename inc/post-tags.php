@@ -261,16 +261,16 @@ class SimpleTags_Post_Tags
 
 
                     <?php if ($post_tags_limit) {
-                        echo '<div class="taxopress-warning upgrade-pro">
-                        <p>
-
+                        echo '<div class="st-taxonomy-content promo-box-area"><div class="taxopress-warning upgrade-pro">
                         <h2 style="margin-bottom: 5px;">' . esc_html__('To create more Terms for Current Post, please upgrade to TaxoPress Pro.',
                                         'simple-tags') . '</h2>
+                                        <p>
+                
                         ' . esc_html__('With TaxoPress Pro, you can create unlimited Terms for Current Post. You can create Terms for Current Post for any taxonomy and then display those Terms for Current Post anywhere on your site.',
                                         'simple-tags') . '
 
                         </p>
-                        </div>';
+                        </div></div>';
 
                     } else {
                         ?>
@@ -626,7 +626,7 @@ class SimpleTags_Post_Tags
                     </div>
 
                     <div class="taxopress-right-sidebar">
-                        <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;">
+                        <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;<?php echo ($post_tags_limit) ? 'display: none;' : ''; ?>">
 
 
                             <?php

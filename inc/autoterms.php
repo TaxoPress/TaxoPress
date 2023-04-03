@@ -382,11 +382,11 @@ class SimpleTags_Autoterms
 
 
                                         <?php if ($autoterm_limit) {
-                                            echo '<div class="st-taxonomy-content"><div class="taxopress-warning upgrade-pro">
-                                            <p>
+                                            echo '<div class="st-taxonomy-content promo-box-area"><div class="taxopress-warning upgrade-pro">
 
                                             <h2 style="margin-bottom: 5px;">' . esc_html__('To create more Auto Terms, please upgrade to TaxoPress Pro.',
                                                     'simple-tags') . '</h2>
+                                                    <p>
                                             ' . esc_html__('With TaxoPress Pro, you can create unlimited Auto Terms. You can create Auto Terms for any taxonomy.',
                                                     'simple-tags') . '
 
@@ -1074,7 +1074,7 @@ class SimpleTags_Autoterms
                 </div>
 
                 <div class="taxopress-right-sidebar">
-                    <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;">
+                    <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;<?php echo ($autoterm_limit) ? 'display: none;' : ''; ?>">
 
 
                         <?php
