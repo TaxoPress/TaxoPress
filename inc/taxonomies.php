@@ -160,7 +160,7 @@ class SimpleTags_Admin_Taxonomies
                 <?php
                 if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
                     /* translators: %s: search keywords */
-                    printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;',
+                    printf(' <span class="subtitle-text">' . esc_html__('Search results for &#8220;%s&#8221;',
                             'simple-tags') . '</span>', esc_html($search));
                 }
                 ?>
