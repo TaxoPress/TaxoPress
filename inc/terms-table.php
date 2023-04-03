@@ -268,7 +268,7 @@ class Taxopress_Terms_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        esc_html_e('No item avaliable.', 'simple-tags');
+        esc_html_e('No terms found.', 'simple-tags');
     }
 
     /**
