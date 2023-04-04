@@ -264,11 +264,11 @@ class SimpleTags_SuggestTerms
 
 
                                         <?php if ($suggestterm_limit) {
-                                            echo '<div class="st-taxonomy-content"><div class="taxopress-warning upgrade-pro">
-                                            <p>
+                                            echo '<div class="st-taxonomy-content promo-box-area"><div class="taxopress-warning upgrade-pro">
 
                                             <h2 style="margin-bottom: 5px;">' . esc_html__('To create more Suggest Terms, please upgrade to TaxoPress Pro.',
                                                     'simple-tags') . '</h2>
+                                                    <p>
                                             ' . esc_html__('With TaxoPress Pro, you can create unlimited Suggest Terms. You can create Suggest Terms for any taxonomy.',
                                                     'simple-tags') . '
 
@@ -736,7 +736,7 @@ class SimpleTags_SuggestTerms
                 </div>
 
                 <div class="taxopress-right-sidebar">
-                    <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;">
+                    <div class="taxopress-right-sidebar-wrapper" style="min-height: 205px;<?php echo ($suggestterm_limit) ? 'display: none;' : ''; ?>">
 
 
                         <?php

@@ -381,6 +381,9 @@
     if ($('.taxopress-taxonomy-type-wrap').length > 0 && $('.tablenav .bulkactions').length > 0) {
       $('.tablenav .bulkactions').html($('.taxopress-taxonomy-type-wrap').html());
       $('.taxopress-taxonomy-type-wrap').remove();
+    } else if ($('.taxopress-taxonomy-type-wrap').length > 0 && $('.tablenav-pages.no-pages').length > 0) {
+      $('.tablenav').hide();
+      $('.taxopress-taxonomy-type-wrap').attr('style', 'margin-bottom: 10px;');
     }
 
     // Change taxonomy type

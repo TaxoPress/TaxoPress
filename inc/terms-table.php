@@ -172,7 +172,7 @@ class Taxopress_Terms_List extends WP_List_Table
 
             $post_types = get_post_types(['public' => true], 'objects');
 
-            $taxonomies = get_all_taxopress_public_taxonomies();
+            $taxonomies = get_all_taxopress_taxonomies_request();
 
             $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_text_field($_REQUEST['terms_filter_post_type']) : '';
             $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
@@ -268,7 +268,7 @@ class Taxopress_Terms_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        esc_html_e('No item avaliable.', 'simple-tags');
+        esc_html_e('No terms found.', 'simple-tags');
     }
 
     /**
@@ -365,7 +365,7 @@ class Taxopress_Terms_List extends WP_List_Table
     protected function handle_row_actions($item, $column_name, $primary)
     {
         $taxonomy = get_taxonomy($item->taxonomy);
-        
+
         //Build row actions
         $actions = [];
 
@@ -383,11 +383,25 @@ class Taxopress_Terms_List extends WP_List_Table
                 esc_html__('Edit', 'simple-tags')
             );
 			$actions['inline hide-if-no-js'] = sprintf(
-				'<button type="button" class="button-link editinline" aria-label="%s" aria-expanded="false">%s</button>',
+				'<button type="button" class="button-link editinline" aria-label="%s" aria-expanded="false" data-taxonomy="'. $taxonomy->name .'" data-term-id="'. $item->term_id .'">%s</button>',
 				/* translators: %s: Taxonomy term name. */
 				esc_attr( sprintf( esc_html__( 'Quick edit &#8220;%s&#8221; inline', 'simple-tags'), $item->name ) ),
 				esc_html__('Quick&nbsp;Edit', 'simple-tags')
 			);
+
+			$actions['remove_posts'] = sprintf(
+                '<a href="%s">%s</a>',
+                add_query_arg(
+                    [
+                        'page'                   => 'st_terms',
+                        'action'                 => 'taxopress-remove-from-posts',
+                        'taxopress_terms'        => esc_attr($item->term_id),
+                        '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
+                    ],
+                    admin_url('admin.php')
+                ),
+                esc_html__('Remove From All Posts', 'simple-tags')
+            );
 		}
 
 		if ( current_user_can( 'delete_term', $item->term_id ) ) {
@@ -572,12 +586,10 @@ class Taxopress_Terms_List extends WP_List_Table
 					<span class="input-text-wrap"><input type="text" name="name" class="ptitle" value="" /></span>
 				</label>
 
-				<?php if ( ! global_terms_enabled() ) : ?>
-					<label>
-						<span class="title"><?php esc_html_e('Slug', 'simple-tags'); ?></span>
-						<span class="input-text-wrap"><input type="text" name="slug" class="ptitle" value="" /></span>
-					</label>
-				<?php endif; ?>
+				<label>
+					<span class="title"><?php esc_html_e('Slug', 'simple-tags'); ?></span>
+					<span class="input-text-wrap"><input type="text" name="slug" class="ptitle" value="" /></span>
+				</label>
 				<label>
 					<span class="taxonomy"><?php _ex( 'Taxonomy', 'term name', 'simple-tags'); ?></span>
 

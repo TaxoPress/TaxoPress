@@ -1,3 +1,7 @@
+body.taxopress_page_st_terms tr.inline-edit-row td {
+    padding-left: 20px !important;
+}
+
 /* Footer admin   */
 .footer_st{text-align:center;font-size:14px !important;}
 
@@ -61,7 +65,7 @@ a#close_clicktags{display:none;}
 
 /* Click Tags   */
 .container_clicktags{display:block;}
-.container_clicktags span{display:block;float:left;background:#ddd;border:unset;color:#1e1e1e;cursor:pointer;margin:3px;padding:5px;}
+.container_clicktags span{display:block;float:left;background:#ddd;border: 1px dotted transparent;color:#1e1e1e;cursor:pointer;margin:3px;padding:5px;}
 .container_clicktags span:hover{color:#000;background:#b6bdd2;border-color:#0a246a;}
 .container_clicktags span.ttn_topic{background:#ddd url(../images/tag_blue.png) 3px 50% no-repeat;}
 .container_clicktags span.ttn_location{background:#ddd url(../images/map.png) 3px 50% no-repeat;}
@@ -82,6 +86,10 @@ div[id^="suggestedtags-"] .container_clicktags .used_term {
     color: #555;
     background-color: #eee;
     border: 1px dotted #1e1e1e;
+}
+
+.taxopress_page_st_terms table.terms .manage-column.column-primary {
+    width: 30%;
 }
 
 /* Advanced tags input   */
@@ -876,6 +884,13 @@ body.block-editor-page .clicktags-search-wrapper .option input {
         float: none;
         margin-left: 0;
     }
+}
+
+
+@media screen and (max-width: 782px) {
+    .taxopress_page_st_terms table.terms .manage-column.column-primary {
+        width: 100%;
+    }    
 }
 
 .taxopress-log-table table {

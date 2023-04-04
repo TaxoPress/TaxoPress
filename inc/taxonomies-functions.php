@@ -259,11 +259,11 @@ function taxopress_update_taxonomy($data = [])
     $sanitized_data = [];
     foreach ($data as $key => $value) {
         if (!is_array($value)) {
-            $sanitized_data[$key] = sanitize_text_field(taxopress_strip_out_unwanted_html($value));
+            $sanitized_data[$key] = taxopress_sanitize_text_field($value);
         } else {
             $new_value = [];
             foreach ($data[$key] as $option_key => $option_value) {
-                $new_value[$option_key] = sanitize_text_field(taxopress_strip_out_unwanted_html($option_value));
+                $new_value[$option_key] = taxopress_sanitize_text_field($option_value);
             }
             $sanitized_data[$key] = $new_value;
         }
@@ -1375,6 +1375,14 @@ function taxopress_register_single_taxonomy($taxonomy = [])
     $default_term = null;
     if (!empty($taxonomy['default_term'])) {
         $term_parts = explode(',', $taxonomy['default_term']);
+        $term_parts = array_filter($term_parts);
+        if (!empty($term_parts)) {
+            $default_term = [];
+            foreach ($term_parts as $term_part) {
+                $default_term[] = ['name' => $term_part, 'slug' => $term_part];
+            }
+        }
+        /*
         if (!empty($term_parts[0])) {
             $default_term['name'] = trim($term_parts[0]);
         }
@@ -1383,7 +1391,7 @@ function taxopress_register_single_taxonomy($taxonomy = [])
         }
         if (!empty($term_parts[2])) {
             $default_term['description'] = trim($term_parts[2]);
-        }
+        }*/
     }
 
     $args = [
@@ -2185,8 +2193,17 @@ function taxopress_re_register_single_taxonomy($taxonomy)
         $meta_box_cb = (false !== get_taxopress_disp_boolean($taxonomy['meta_box_cb'])) ? $taxonomy['meta_box_cb'] : false;
     }
     $default_term = null;
+    
     if (!empty($taxonomy['default_term'])) {
         $term_parts = explode(',', $taxonomy['default_term']);
+        $term_parts = array_filter($term_parts);
+        if (!empty($term_parts)) {
+            $default_term = [];
+            foreach ($term_parts as $term_part) {
+                $default_term[] = ['name' => $term_part, 'slug' => $term_part];
+            }
+        }
+        /*
         if (!empty($term_parts[0])) {
             $default_term['name'] = trim($term_parts[0]);
         }
@@ -2195,7 +2212,7 @@ function taxopress_re_register_single_taxonomy($taxonomy)
         }
         if (!empty($term_parts[2])) {
             $default_term['description'] = trim($term_parts[2]);
-        }
+        }*/
     }
 
     $args = [
@@ -2234,6 +2251,34 @@ function taxopress_re_register_single_taxonomy($taxonomy)
     return register_taxonomy($taxonomy['name'], $object_type, $args);
 }
 
+/**
+ * Set post taxonomy default term
+ *
+ * @param integer $post_id
+ * @param object $post
+ * @return void
+ */
+function taxopress_set_default_taxonomy_terms($post_id, $post) {
+    if ( 'auto-draft' === $post->post_status ) {
+        $taxonomies = get_object_taxonomies($post->post_type, 'object');
+        foreach ($taxonomies as $taxonomy => $tax_object ) {
+            if (!empty($tax_object->default_term)) {
+                if (is_array($tax_object->default_term)) {
+                    $new_terms = [];
+                    foreach ($tax_object->default_term as $term => $option) {
+                        if (is_array($option) && isset($option['name'])) {
+                            $new_terms[] = trim($option['name']);
+                        }
+                    }
+                    if (!empty($new_terms)) {
+                        wp_set_object_terms($post_id, $new_terms, $taxonomy);
+                    }
+                }
+            }
+        }
+    }
+}
+
 function taxopress_show_all_cpt_in_archive_result($request_tax){
 
             $taxonomies = taxopress_get_taxonomy_data();
@@ -2259,7 +2304,7 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
 function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
 
     $show_filter   = get_taxopress_disp_boolean( $show_filter );
-                                        
+
     if ( $show_filter == true ) {
 
         wp_dropdown_categories(
@@ -2278,7 +2323,7 @@ function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
         );
 
     }
-    
+
 }
 
 function taxopress_get_dropdown(){
@@ -2307,7 +2352,7 @@ function taxopress_get_dropdown(){
                 if( array_key_exists( $taxonomy_name, $taxonomies ) ){
 
                     $current = $taxonomies[ $taxonomy_name ];
-                    
+
                     if( array_key_exists( 'show_in_filter', $current ) ){
 
                         foreach ($current['object_types'] as $object_type) {
@@ -2320,10 +2365,10 @@ function taxopress_get_dropdown(){
                                     taxopress_filter_dropdown( $taxonomy, $current['show_in_filter']);
 
                                 }
-                                
+
                             }else{
 
-                                if($object_type == $type){ 
+                                if($object_type == $type){
 
                                     taxopress_filter_dropdown( $taxonomy, $current['show_in_filter'] );
 
@@ -2333,15 +2378,15 @@ function taxopress_get_dropdown(){
 
                         }
 
-                        
-                        
+
+
 
                     }
-                }    
-                  
+                }
+
             }
         }
-        
+
     }
 
 }

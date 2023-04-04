@@ -259,14 +259,14 @@ function taxopress_update_posttags($data = [])
     $sanitized_data = [];
     foreach ($data as $key => $value) {
         if (!is_array($value)) {
-            $sanitized_data[$key] = sanitize_text_field(taxopress_strip_out_unwanted_html($value));
+            $sanitized_data[$key] = taxopress_sanitize_text_field($value);
         } else {
             $new_value = [];
             foreach ($data[$key] as $option_key => $option_value) {
                 if ($option_key === 'xformat') {
-                    $new_value[$option_key] = taxopress_strip_out_unwanted_html($option_value);
+                    $new_value[$option_key] = taxopress_sanitize_text_field($option_value);
                 } else {
-                    $new_value[$option_key] = sanitize_text_field(taxopress_strip_out_unwanted_html($option_value));
+                    $new_value[$option_key] = taxopress_sanitize_text_field($option_value);
                 }
             }
             $sanitized_data[$key] = $new_value;

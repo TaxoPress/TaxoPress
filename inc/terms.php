@@ -129,10 +129,10 @@ class SimpleTags_Terms
                 }
             }
         } else {
-            if ( is_wp_error( $updated ) && $updated->get_error_message() ) {
+            /*if ( is_wp_error( $updated ) && $updated->get_error_message() ) {
                 wp_die( esc_html($updated->get_error_message()) );
-            }
-            wp_die( esc_html__( 'Item not updated.' ) );
+            }*/
+            wp_die( esc_html__( 'Error updating term.' ) );
         }
 
         $wp_list_table = new Taxopress_Terms_List();
@@ -275,25 +275,16 @@ class SimpleTags_Terms
    * should reside in this file.
    */
 
-  $( window ).load(function() {
+  $(document).ready(function () {
       // -------------------------------------------------------------
       //   TaxoPress terms quick edit
       // -------------------------------------------------------------
-    	$('.taxopress_page_st_terms #the-list').on( 'click', 'a.editinline, button.editinline', function() {
-            var id, taxonomy, editRow, rowData;
-            var r_id = get_taxopress_term_id(this);
-            rowData = $('#inline_' + r_id);
-            $('#inline-edit')
-            editRow = $('.inline-edit-row#edit-'+r_id);
-            taxonomy = $('.taxonomy', rowData).text();
-            $('select[name="edit_taxonomy"]', editRow).val( taxonomy );
+      $(document).on('click', 'a.editinline, button.editinline', function (e) {
+        var term_id = $(this).attr('data-term-id');
+        var taxonomy = $(this).attr('data-taxonomy');
+        $('.inline-edit-row#edit-'+term_id).find('select[name="edit_taxonomy"]').val(taxonomy);
       });
-        function get_taxopress_term_id(o){
-        var id = o.tagName === 'TR' ? o.id : $(o).parents('tr').attr('id'), parts = id.split('-');
-    
-        return parts[parts.length - 1];
-        }
-});
+   });
 
 })(jQuery);
 

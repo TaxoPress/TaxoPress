@@ -381,6 +381,13 @@ ul.st-taxonomy-tab {
     box-sizing: border-box;
     padding-left: 10px;
 }
+
+.st-taxonomy-content.promo-box-area {
+    width: 100%;
+    min-height: auto;
+    padding-top: 10px;
+}
+
 ul.st-taxonomy-tab li {
     margin: 0;
     padding: 0;

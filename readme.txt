@@ -2,8 +2,8 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
-Tested up to: 6.1
-Stable tag: 3.6.7
+Tested up to: 6.2
+Stable tag: 3.7.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -23,7 +23,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 ## TaxoPress Pro ##
 
 > <strong>Upgrade to TaxoPress Pro</strong><br />
-> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/taxopress title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
+> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. [Get the TaxoPress Pro plugin now!](https://taxopress.com/taxopress)
 
 ## Key Features in TaxoPress ##
 
@@ -114,16 +114,16 @@ The Manage Terms screen in TaxoPress provides you with several useful tools to m
 
 [Click here to read about managing terms](https://taxopress.com/docs/introduction-to-manage-terms/).
 
-## Get TaxoPress Pro ##
+## TaxoPress Pro ##
 
 > <strong>Upgrade to TaxoPress Pro</strong><br />
-> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. <a href="https://taxopress.com/pro"  title="TaxoPress Pro">Click here to organize, optimize and showcase your content with TaxoPress now!</a>
+> This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. [Get the TaxoPress Pro plugin now!](https://taxopress.com/taxopress)
 
 ## The TaxoPress and Tag Groups plugins ##
 
 TaxoPress is developed by the same team that support the popular [Tag Groups plugin](https://wordpress.org/plugins/tag-groups/). Together Tag Groups and TaxoPress are an excellent solution for organizing and displaying your site’s content.
 
-= Bug Reports =
+## TaxoPress Bug Reports =
 
 Bug reports for TaxoPress are welcomed in our [repository on GitHub](https://github.com/taxopress/taxopress). Please note that GitHub is not a support forum, but a place to report bugs in the plugn that can be replicated outside of a single site.
 
@@ -238,6 +238,19 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.7.0- 2023-04-04
+* Fixed: Fixed taxonomy default term not working,, #1216
+* Fixed: Fixed terms taxonomy not retaining term taxonomy in quick edit, #1395
+* Fixed: "<" Characters been stripped out when using Auto Links, #1580
+* Fixed: Suggest Terms showing blank space in suggest term metabox, #1583
+* Update: Introduced new way to sanitize fields, #1579
+* Fixed: Display Terms not listing all terms, #1390
+* Fixed: global_term_enabled deprecated error, #1396
+* Update: Show private taxonomies terms when using private taxonomy filter in taxonomy screen, #1397
+* Update: Move "Remove Terms" options to "Terms" screen from manage terms, #1368
+* Update: Remove "Delete Terms" from "Manage Terms", #1367
+* Update: Remove manage terms table, #1592
 
 v3.6.7- 2023-03-13
 * Fixed: Suggest Terms adds child terms with Classic Editor, #1485

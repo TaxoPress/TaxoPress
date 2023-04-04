@@ -142,7 +142,7 @@ class SimpleTags_Client_PostTags {
 			$xformat = $defaults['xformat'];
 		}
 
-		$xformat = taxopress_strip_out_unwanted_html($xformat);
+		$xformat = taxopress_sanitize_text_field($xformat);
 
 		// Choose post ID
 		$object_id = (int) $post_id;

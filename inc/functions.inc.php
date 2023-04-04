@@ -284,24 +284,18 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
 }
 
 /**
- * Strip out unwanted html
+ * Sanitize taxopress text field
  *
  * @param string $content
- * @param string $allowed_tags (e.g: <span><i><a><div>)
  * @return string
  */
-function taxopress_strip_out_unwanted_html($content, $allowed_tags = '<a>') {
+function taxopress_sanitize_text_field($content) {
 
     if (is_array($content)) {
-        return array_map('sanitize_text_field', $content);
+        return array_map('taxopress_sanitize_text_field', $content);
     }
-    
-    // Strip tags except allow tags
-    $content = strip_tags($content, $allowed_tags);
-    //Strip javascript
-    $content = str_ireplace('javascript', '', $content);
-    // Remove any attribute starting with "on" or xmlns
-    $content = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $content);
 
+    $content = wp_kses_post($content);
+    
     return $content;
 }
