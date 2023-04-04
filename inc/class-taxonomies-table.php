@@ -90,7 +90,7 @@ class Taxonomy_List extends WP_List_Table
     /** Text displayed when no stterm data is available */
     public function no_items()
     {
-        _e('No term avaliable.', 'simple-tags');
+        _e('No taxonomies found.', 'simple-tags');
     }
 
     /**

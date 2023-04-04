@@ -160,7 +160,7 @@ class SimpleTags_Admin_Taxonomies
                 <?php
                 if (isset($_REQUEST['s']) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
                     /* translators: %s: search keywords */
-                    printf(' <span class="subtitle">' . esc_html__('Search results for &#8220;%s&#8221;',
+                    printf(' <span class="subtitle-text">' . esc_html__('Search results for &#8220;%s&#8221;',
                             'simple-tags') . '</span>', esc_html($search));
                 }
                 ?>
@@ -524,6 +524,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'textvalue' => isset($current['description']) ? esc_textarea($current['description']) : '',
                                                     'labeltext' => esc_html__('Description', 'simple-tags'),
                                                     'helptext'  => esc_attr__('Describe what your taxonomy is used for.',
+                                                        'simple-tags'),
+                                                ]);
+
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_text_input([
+                                                    'namearray' => 'cpt_custom_tax',
+                                                    'name'      => 'default_term',
+                                                    'textvalue' => isset($current['default_term']) ? esc_attr($current['default_term']) : '',
+                                                    'labeltext' => esc_html__('Default Terms', 'simple-tags'),
+                                                    'helptext'  => esc_html__('Set the default terms for this taxonomy. Enter the term names or slugs. Separate multiple terms with by comma.',
                                                         'simple-tags'),
                                                 ]);
 
@@ -1508,16 +1518,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'textvalue' => isset($current['meta_box_cb']) ? esc_attr($current['meta_box_cb']) : '',
                                                 'labeltext' => esc_html__('Metabox callback', 'simple-tags'),
                                                 'helptext'  => esc_html__('Sets a callback function name for the meta box display. Hierarchical default: post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To remove the metabox completely, use "false".',
-                                                    'simple-tags'),
-                                            ]);
-
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            echo $ui->get_text_input([
-                                                'namearray' => 'cpt_custom_tax',
-                                                'name'      => 'default_term',
-                                                'textvalue' => isset($current['default_term']) ? esc_attr($current['default_term']) : '',
-                                                'labeltext' => esc_html__('Default Terms', 'simple-tags'),
-                                                'helptext'  => esc_html__('Set a default term for the taxonomy. Enter default term name or slug with multiple terms separated by comma. Example: term-one, Main category, animal',
                                                     'simple-tags'),
                                             ]);
                                             ?>
