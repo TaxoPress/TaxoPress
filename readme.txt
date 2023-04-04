@@ -239,7 +239,7 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
-v3.7.0- 2023-04-03
+v3.7.0- 2023-04-04
 * Fixed: Fixed taxonomy default term not working,, #1216
 * Fixed: Fixed terms taxonomy not retaining term taxonomy in quick edit, #1395
 * Fixed: "<" Characters been stripped out when using Auto Links, #1580
@@ -250,6 +250,7 @@ v3.7.0- 2023-04-03
 * Update: Show private taxonomies terms when using private taxonomy filter in taxonomy screen, #1397
 * Update: Move "Remove Terms" options to "Terms" screen from manage terms, #1368
 * Update: Remove "Delete Terms" from "Manage Terms", #1367
+* Update: Remove manage terms table, #1592
 
 v3.6.7- 2023-03-13
 * Fixed: Suggest Terms adds child terms with Classic Editor, #1485
