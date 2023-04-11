@@ -268,6 +268,7 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		$z = 0;
+		$auto_link_replace = [];
 		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
 			// Force string for tags "number"
 			$term_name = (string) $term_name;
@@ -282,12 +283,13 @@ class SimpleTags_Client_Autolinks {
 				continue;
 			}
 
-			if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_dom' ) && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel );
-			} else {
+			$auto_link_replace[] = [
+				'term_name' => $term_name,
+				'term_link' => $term_link,
+			];
+			
+			if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
 				self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel );
-
-
 			}
 
 			$z ++;
@@ -296,6 +298,10 @@ class SimpleTags_Client_Autolinks {
 				break;
 			}
 		}
+		if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+			self::replace_by_links_dom( $content, $auto_link_replace, $auto_link_replace, $case, $rel );
+		}
+		
 
 
 		return $content;
@@ -328,6 +334,16 @@ class SimpleTags_Client_Autolinks {
 
 		if (isset($autolinked_contents[$content_key])) {
 			return $autolinked_contents[$content_key];
+		}
+
+		if (!is_array($search)) {
+			$search_lists = [];
+			$search_lists[] = [
+				'term_name' => $search,
+				'term_link' => $replace,
+			];
+		} else {
+			$search_lists = $search;
 		}
 
 		$dom = new DOMDocument();
@@ -401,51 +417,58 @@ class SimpleTags_Client_Autolinks {
 		$xpath = new DOMXPath( $dom );
 		$j        = 0;
         $replaced_count = 0;
-		foreach ( $xpath->query( '//text()'.$exclusion.'' ) as $node ) {
+		$replaced_tags_counts = [];
+		$remaining_usage = $max_by_post;
+        foreach ($search_lists as $search_details) {
+			$search  = $search_details['term_name'];
+			$replace = $search_details['term_link'];
+            foreach ($xpath->query('//text()'.$exclusion.'') as $node) {
+                $substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">$search</a>";
+                $link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">";
+                $link_closing = '</a>';
+                $upperterm = strtoupper($search);
+                $lowerterm = strtolower($search);
 
-			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">$search</a>";
-			$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr( sprintf( $title_attribute, $search ) ) . "\">";
-            $link_closing = '</a>';
-            $upperterm = strtoupper($search);
-            $lowerterm = strtolower($search);
+				if ($max_by_post > 0 && $remaining_usage === 0) {
+					break;
+				}
 
-            $remaining_usage = $max_by_post-self::$tagged_link_count;
-            if( $same_usage_max > $remaining_usage){
-                $same_usage_max = $remaining_usage;
-            }
+				if ($same_usage_max > 0 && array_key_exists($search, $replaced_tags_counts) && $replaced_tags_counts[$search] >= $same_usage_max) {
+					continue;
+				}
 
-            if($same_usage_max > 0 ){
-			if ( 'i' === $case ) {
-                if($autolink_case === 'none'){//retain case
-                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
-                }elseif($autolink_case === 'uppercase'){//uppercase
-                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
-                }elseif($autolink_case === 'termcase'){//termcase
-                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
-                }else {//lowercase
-                    $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                if ('i' === $case) {
+                    if ($autolink_case === 'none') {//retain case
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    } elseif ($autolink_case === 'uppercase') {//uppercase
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    } elseif ($autolink_case === 'termcase') {//termcase
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    } else {//lowercase
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                    }
+                } else {
+                    $replaced = str_replace($search, $substitute, $node->wholeText);
                 }
-			} else {
-				$replaced = str_replace( $search, $substitute, $node->wholeText );
-			}
 
-            if($replaced && !empty(trim($replaced))){
-                $j ++;
-               if($rep_count > 0){
-                 $replaced_count = $replaced_count+$rep_count;
-                 self::$tagged_link_count = self::$tagged_link_count+$rep_count;
-               }
+                if ($replaced && !empty(trim($replaced))) {
+                    $j ++;
+                    if ($rep_count > 0) {
+						if (array_key_exists($search, $replaced_tags_counts)) {
+							$replaced_tags_counts[$search] = $replaced_tags_counts[$search] + $rep_count;
+						} else {
+							$replaced_tags_counts[$search] = $rep_count;
+						}
+                        $replaced_count = $replaced_count+$rep_count;
+                        self::$tagged_link_count = self::$tagged_link_count+$rep_count;
+                    }
+                }
+                $newNode = $dom->createDocumentFragment();
+                $newNode->appendXML($replaced);
+                $node->parentNode->replaceChild($newNode, $node);
+				$remaining_usage = $max_by_post-self::$tagged_link_count;
             }
-			$newNode = $dom->createDocumentFragment();
-			$newNode->appendXML( $replaced );
-			$node->parentNode->replaceChild( $newNode, $node );
-            if ( $replaced_count >= $same_usage_max || 0 === (int) $same_usage_max ) {// Limit replacement at 1 by default, or options value !
-               break;
-            }
-            }else{
-                break;
-            }
-		}
+        }
      
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
@@ -671,6 +694,7 @@ class SimpleTags_Client_Autolinks {
 
 
 		$z = 0;
+		$auto_link_replace = [];
 		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
 			// Force string for tags "number"
 			$term_name = (string) $term_name;
@@ -685,9 +709,12 @@ class SimpleTags_Client_Autolinks {
 				continue;
 			}
 
-			if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'auto_link_dom' ) && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, false, 'title' );
-			} else {
+			$auto_link_replace[] = [
+				'term_name' => $term_name,
+				'term_link' => $term_link,
+			];
+			
+			if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
 				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel );
 			}
 
@@ -696,6 +723,10 @@ class SimpleTags_Client_Autolinks {
 			if ( $z > (int) SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' ) ) {
 				break;
 			}
+		}
+
+		if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+			self::replace_by_links_dom( $title, $auto_link_replace, $auto_link_replace, $case, $rel, false, 'title' );
 		}
 
 		return $title;
@@ -727,91 +758,87 @@ class SimpleTags_Client_Autolinks {
 		}
 
         if (count($post_tags) > 0) {
+			$auto_link_replace = [];
+			foreach ($post_tags as $post_tag) {
 
-        foreach ($post_tags as $post_tag) {
+				// Get option
+				$embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
 
-            // Get option
-            $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
+				if (!$embedded) {
+					continue;
+				}
 
-            if (!$embedded) {
-                continue;
-            }
+				if (!in_array($post->post_type, $embedded )) {
+					continue;
+				}
 
-            if (!in_array($post->post_type, $embedded )) {
-                continue;
-            }
+				if ($post_tag['autolink_display'] === 'post_title') {
+					continue;
+				}
 
-            if ($post_tag['autolink_display'] === 'post_title') {
-                continue;
-            }
+				//reset tags just in case
+				self::$link_tags = [];
+				// Get currents tags if no exists
+				self::prepare_auto_link_tags($post_tag);
 
-        //reset added article link count
-        self::$tagged_link_count = 0;
-        //reset tags just in case
-        self::$link_tags = [];
-		// Get currents tags if no exists
-		self::prepare_auto_link_tags($post_tag);
+				// Shuffle array
+				SimpleTags_Client::random_array( self::$link_tags );
 
-		// Shuffle array
-		SimpleTags_Client::random_array( self::$link_tags );
+				// HTML Rel (tag/no-follow)
+				$rel = SimpleTags_Client::get_rel_attribut();
 
-		// HTML Rel (tag/no-follow)
-		$rel = SimpleTags_Client::get_rel_attribut();
+				// only continue if the database actually returned any links
+				if ( ! isset( self::$link_tags ) || ! is_array( self::$link_tags ) || empty( self::$link_tags ) ) {
+					$can_continue = false;
+				}else{
+					$can_continue = true;
+				}
 
-		// only continue if the database actually returned any links
-		if ( ! isset( self::$link_tags ) || ! is_array( self::$link_tags ) || empty( self::$link_tags ) ) {
-			$can_continue = false;
-		}else{
-			$can_continue = true;
-        }
+				if ($can_continue) {
+					// Case option ?
+					$case       = ( 1 === (int) $post_tag['ignore_case'] ) ? 'i' : '';
+					$strpos_fnc = ( 'i' === $case ) ? 'stripos' : 'strpos';
 
-        if( $can_continue ){
+					// Prepare exclude terms array
+					$excludes_terms = explode( ',', $post_tag['auto_link_exclude'] );
+					if ( empty( $excludes_terms ) ) {
+						$excludes_terms = array();
+					} else {
+						$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
+						$excludes_terms = array_unique( $excludes_terms );
+					}
 
-		// Case option ?
-		$case       = ( 1 === (int) $post_tag['ignore_case'] ) ? 'i' : '';
-		$strpos_fnc = ( 'i' === $case ) ? 'stripos' : 'strpos';
+					$z = 0;
+					foreach ( (array) self::$link_tags as $term_name => $term_link ) {
+						$z ++;
+						// Force string for tags "number"
+						$term_name = (string) $term_name;
 
-		// Prepare exclude terms array
-		$excludes_terms = explode( ',', $post_tag['auto_link_exclude'] );
-		if ( empty( $excludes_terms ) ) {
-			$excludes_terms = array();
-		} else {
-			$excludes_terms = array_filter( $excludes_terms, '_delete_empty_element' );
-			$excludes_terms = array_unique( $excludes_terms );
-		}
+						// Exclude terms ? next...
+						if ( in_array( $term_name, (array) $excludes_terms, true ) ) {
+							continue;
+						}
 
-		$z = 0;
-		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
-			$z ++;
-			// Force string for tags "number"
-			$term_name = (string) $term_name;
+						// Make a first test with PHP function, economize CPU with regexp
+						if ( false === $strpos_fnc( $content, $term_name ) ) {
+							continue;
+						}
 
-			// Exclude terms ? next...
-			if ( in_array( $term_name, (array) $excludes_terms, true ) ) {
-				continue;
+						$auto_link_replace[] = [
+							'term_name' => $term_name,
+							'term_link' => $term_link,
+						];
+						
+						if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
+							self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel, $post_tag );
+						}
+					}
+				}
 			}
-
-			// Make a first test with PHP function, economize CPU with regexp
-			if ( false === $strpos_fnc( $content, $term_name ) ) {
-				continue;
+			if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+				self::replace_by_links_dom( $content, $auto_link_replace, $auto_link_replace, $case, $rel, $post_tag );
 			}
-
-			if ( 1 === (int) $post_tag['autolink_dom'] && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel, $post_tag );
-			}else if ( class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {//force php dom if class exist for optimization purpose
-				self::replace_by_links_dom( $content, $term_name, $term_link, $case, $rel, $post_tag );
-			} else {
-				self::replace_by_links_regexp( $content, $term_name, $term_link, $case, $rel, $post_tag );
-			}
-			if ( self::$tagged_link_count >= (int) $post_tag['autolink_usage_max'] ) {
-				break;
-			}
-		}
-    }
-    }
-
-    }
-
+    	}
 		return $content;
 	}
 
@@ -859,8 +886,6 @@ class SimpleTags_Client_Autolinks {
             if ($post_tag['autolink_display'] === 'post_content') {
                 continue;
             }
-        //reset added article link count
-        self::$tagged_link_count = 0;
         //reset tags just in case
         self::$link_tags = [];
 		// Get currents tags if no exists
@@ -895,6 +920,7 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		$z = 0;
+		$auto_link_replace = [];
 		foreach ( (array) self::$link_tags as $term_name => $term_link ) {
 			$z ++;
 			// Force string for tags "number"
@@ -910,17 +936,17 @@ class SimpleTags_Client_Autolinks {
 				continue;
 			}
 
-			if ( 1 === (int) $post_tag['autolink_dom'] && class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag, 'title' );
-			}else if ( class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {//force php dom if class exist for optimization purpose
-				self::replace_by_links_dom( $title, $term_name, $term_link, $case, $rel, $post_tag, 'title' );
-			} else {
-				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel, $post_tag );
+			$auto_link_replace[] = [
+				'term_name' => $term_name,
+				'term_link' => $term_link,
+			];
+			
+			if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
+				self::replace_by_links_regexp( $title, $term_name, $term_link, $case, $rel, $post_tag);
 			}
-
-			if ( self::$tagged_link_count >= (int) $post_tag['autolink_usage_max'] ) {
-				break;
-			}
+		}
+		if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
+			self::replace_by_links_dom( $title, $auto_link_replace, $auto_link_replace, $case, $rel, $post_tag, 'title' );
 		}
     }
     }
