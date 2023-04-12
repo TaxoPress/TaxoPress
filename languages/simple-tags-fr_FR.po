@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Plugins - TaxoPress is the WordPress Tag, Category, and "
 "Taxonomy Manager - Stable (latest release)\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-03-07 14:59+0000\n"
+"PO-Revision-Date: 2023-04-12 13:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "%1$s %2$s(s) terms updated with success !"
 msgstr "Les termes de %1$s %2$s(s) ont été mis à jour avec succès !"
 
-#: inc/class.admin.manage.php:831 inc/class.admin.manage.php:942
+#: inc/class.admin.manage.php:702 inc/class.admin.manage.php:815
 msgid "%1s term(s) deleted."
 msgstr "%1s terme(s) effacé(s)."
 
@@ -29,35 +29,35 @@ msgid_plural "%d topics"
 msgstr[0] "%d sujet"
 msgstr[1] "%d sujets"
 
-#: inc/taxonomies-functions.php:1045 inc/taxonomies-functions.php:1449
+#: inc/taxonomies-functions.php:1045 inc/taxonomies-functions.php:1457
 msgid "%s has been successfully added"
 msgstr "%s a été ajouté avec succès"
 
-#: inc/taxonomies-functions.php:1103 inc/taxonomies-functions.php:1461
+#: inc/taxonomies-functions.php:1103 inc/taxonomies-functions.php:1469
 msgid "%s has been successfully deleted"
 msgstr "%s a été supprimé avec succès"
 
-#: inc/taxonomies-functions.php:1467
+#: inc/taxonomies-functions.php:1475
 msgid "%s has been successfully imported"
 msgstr "%s a été importé avec succès"
 
-#: inc/taxonomies-functions.php:1074 inc/taxonomies-functions.php:1455
+#: inc/taxonomies-functions.php:1074 inc/taxonomies-functions.php:1463
 msgid "%s has been successfully updated"
 msgstr "%s a été mis à jour avec succès"
 
-#: inc/taxonomies-functions.php:1059 inc/taxonomies-functions.php:1451
+#: inc/taxonomies-functions.php:1059 inc/taxonomies-functions.php:1459
 msgid "%s has failed to be added"
 msgstr "%s n’a pas pu être ajouté"
 
-#: inc/taxonomies-functions.php:1117 inc/taxonomies-functions.php:1463
+#: inc/taxonomies-functions.php:1117 inc/taxonomies-functions.php:1471
 msgid "%s has failed to be deleted"
 msgstr "%s n’a pas pu être supprimé"
 
-#: inc/taxonomies-functions.php:1469
+#: inc/taxonomies-functions.php:1477
 msgid "%s has failed to be imported"
 msgstr "L’importation de %s a échoué"
 
-#: inc/taxonomies-functions.php:1088 inc/taxonomies-functions.php:1457
+#: inc/taxonomies-functions.php:1088 inc/taxonomies-functions.php:1465
 msgid "%s has failed to be updated"
 msgstr "%s n’a pas pu être mis à jour"
 
@@ -67,40 +67,40 @@ msgid "%s is the minimum version required for this plugin."
 msgstr ""
 
 #. Used for autofill
-#: inc/taxonomies.php:1316
+#: inc/taxonomies.php:1326
 msgid "%s list"
 msgstr "Liste de %s"
 
 #. Used for autofill
-#: inc/taxonomies.php:1298
+#: inc/taxonomies.php:1308
 msgid "%s list navigation"
 msgstr "Navigation dans la liste %s"
 
-#: inc/taxonomies.php:783
+#: inc/taxonomies.php:793
 msgid "(default: taxonomy name)"
 msgstr "(par défaut : nom de la taxonomie)"
 
-#: inc/taxonomies.php:1344
+#: inc/taxonomies.php:1354
 msgid "(e.g. &larr; Back to jobs"
 msgstr "(par exemple &larr; Retour aux emplois"
 
-#: inc/taxonomies.php:1099
+#: inc/taxonomies.php:1109
 msgid "(e.g. Add New Job)"
 msgstr "(par exemple, ajouter un nouvel emploi)"
 
-#: inc/taxonomies.php:1220
+#: inc/taxonomies.php:1230
 msgid "(e.g. Add or remove Jobs)"
 msgstr "(par exemple, ajouter ou supprimer des emplois)"
 
-#: inc/taxonomies.php:1030
+#: inc/taxonomies.php:1040
 msgid "(e.g. All Jobs)"
 msgstr "(par exemple, tous les emploi)"
 
-#: inc/taxonomies.php:1239
+#: inc/taxonomies.php:1249
 msgid "(e.g. Choose from the most used Jobs)"
 msgstr "(par exemple, choisir parmi les emplois les plus utilisés)"
 
-#: inc/taxonomies.php:1047
+#: inc/taxonomies.php:1057
 msgid "(e.g. Edit Job)"
 msgstr "(par exemple, modifier l’emploi)"
 
@@ -108,63 +108,63 @@ msgstr "(par exemple, modifier l’emploi)"
 msgid "(e.g. Job)"
 msgstr "(par exemple, emploi)"
 
-#: inc/taxonomies.php:1291
+#: inc/taxonomies.php:1301
 msgid "(e.g. Jobs list navigation)"
 msgstr "(par exemple, la navigation dans la liste des emplois)"
 
-#: inc/taxonomies.php:1310
+#: inc/taxonomies.php:1320
 msgid "(e.g. Jobs list)"
 msgstr "(par exemple, la liste des emplois)"
 
-#: inc/taxonomies.php:467 inc/taxonomies.php:1014
+#: inc/taxonomies.php:467 inc/taxonomies.php:1024
 msgid "(e.g. Jobs)"
 msgstr "(par exemple, emplois)"
 
-#: inc/taxonomies.php:1116
+#: inc/taxonomies.php:1126
 msgid "(e.g. New Job Name)"
 msgstr "(par exemple, le nom du nouvel emploi)"
 
-#: inc/taxonomies.php:1257
+#: inc/taxonomies.php:1267
 msgid "(e.g. No Jobs found)"
 msgstr "(par exemple, aucun emploi trouvé)"
 
-#: inc/taxonomies.php:1327
+#: inc/taxonomies.php:1337
 msgid "(e.g. No jobs found)"
 msgstr "(par exemple, aucun emploi trouvé)"
 
-#: inc/taxonomies.php:1274
+#: inc/taxonomies.php:1284
 msgid "(e.g. No jobs)"
 msgstr "(par exemple, pas d’emplois)"
 
-#: inc/taxonomies.php:1133
+#: inc/taxonomies.php:1143
 msgid "(e.g. Parent Job)"
 msgstr "(par exemple, parent emploi)"
 
-#: inc/taxonomies.php:1150
+#: inc/taxonomies.php:1160
 msgid "(e.g. Parent Job:)"
 msgstr "(par exemple, emploi des parents :)"
 
-#: inc/taxonomies.php:1184
+#: inc/taxonomies.php:1194
 msgid "(e.g. Popular Jobs)"
 msgstr "(par exemple, les emplois populaires)"
 
-#: inc/taxonomies.php:1167
+#: inc/taxonomies.php:1177
 msgid "(e.g. Search Jobs)"
 msgstr "(par exemple, rechercher des emplois)"
 
-#: inc/taxonomies.php:1201
+#: inc/taxonomies.php:1211
 msgid "(e.g. Separate Jobs with commas)"
 msgstr "(par exemple, séparer les emplois par des virgules)"
 
-#: inc/taxonomies.php:1081
+#: inc/taxonomies.php:1091
 msgid "(e.g. Update Job Name)"
 msgstr "(par exemple, mettre à jour le nom de l’emploi)"
 
-#: inc/taxonomies.php:1064
+#: inc/taxonomies.php:1074
 msgid "(e.g. View Job)"
 msgstr "(par exemple, voir l’emploi)"
 
-#: inc/taxonomies.php:732
+#: inc/taxonomies.php:742
 msgid "*Replace \"term_slug\" with the slug of the actual taxonomy term."
 msgstr "*Remplacez « term_slug\" par le slug du terme taxonomique actuel."
 
@@ -434,7 +434,7 @@ msgstr ""
 msgid "Active"
 msgstr "Active"
 
-#: inc/class.admin.manage.php:287
+#: inc/class.admin.manage.php:213
 msgid "Add"
 msgstr "Ajouter"
 
@@ -464,9 +464,9 @@ msgid "Add New"
 msgstr "Add New"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1549 inc/taxonomies-functions.php:1567
-#: inc/taxonomies-functions.php:1590 inc/taxonomies-functions.php:1609
-#: inc/taxonomies.php:1105
+#: inc/taxonomies-functions.php:1557 inc/taxonomies-functions.php:1575
+#: inc/taxonomies-functions.php:1598 inc/taxonomies-functions.php:1617
+#: inc/taxonomies.php:1115
 msgid "Add new %s"
 msgstr "Ajouter nouveau %s"
 
@@ -482,7 +482,7 @@ msgstr "Ajouter des nouveaux termes automatiques"
 msgid "Add new Auto Terms"
 msgstr "Ajouter de nouveaux termes automatiques"
 
-#: inc/taxonomies.php:1100
+#: inc/taxonomies.php:1110
 msgid "Add New Item"
 msgstr "Ajouter un nouvel élément"
 
@@ -515,12 +515,12 @@ msgid "Add new Terms for Current Post"
 msgstr "Ajouter nouveaux termes pour la publication actuelle"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1570 inc/taxonomies-functions.php:1617
-#: inc/taxonomies.php:1227
+#: inc/taxonomies-functions.php:1578 inc/taxonomies-functions.php:1625
+#: inc/taxonomies.php:1237
 msgid "Add or remove %s"
 msgstr "Ajouter ou supprimer les %s"
 
-#: inc/taxonomies.php:1222
+#: inc/taxonomies.php:1232
 msgid "Add or Remove Items"
 msgstr "Ajouter ou retirer éléments"
 
@@ -540,11 +540,11 @@ msgstr "Ajouter des termes suggérés"
 msgid "Add Taxonomy"
 msgstr "Ajouter une taxonomie"
 
-#: inc/class.admin.manage.php:249
+#: inc/class.admin.manage.php:167
 msgid "Add Terms"
 msgstr "Ajouter des termes"
 
-#: inc/class.admin.manage.php:232
+#: inc/class.admin.manage.php:145
 msgid "Add terms"
 msgstr "Ajouter les termes"
 
@@ -564,17 +564,17 @@ msgstr "Ajouter des termes pour le contenu publié."
 msgid "Add terms for unpublished content."
 msgstr "Ajouter des termes pour le contenu non publié."
 
-#: inc/class.admin.manage.php:268
+#: inc/class.admin.manage.php:193
 msgid "Add terms only to posts with specific terms attached."
 msgstr ""
 "Ajoutez des termes uniquement aux publications auxquelles sont associés des "
 "termes spécifiques."
 
-#: inc/class.admin.manage.php:266
+#: inc/class.admin.manage.php:189
 msgid "Add terms to all %s."
 msgstr "Ajoutez des termes à tous les %s."
 
-#: inc/taxonomies.php:1383
+#: inc/taxonomies.php:1393
 msgid "Add the taxonomy to the WordPress wp-json API."
 msgstr ""
 
@@ -605,9 +605,9 @@ msgid "All"
 msgstr "Tous"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1554 inc/taxonomies-functions.php:1562
-#: inc/taxonomies-functions.php:1597 inc/taxonomies-functions.php:1615
-#: inc/taxonomies-functions.php:2267 inc/taxonomies.php:1036
+#: inc/taxonomies-functions.php:1562 inc/taxonomies-functions.php:1570
+#: inc/taxonomies-functions.php:1605 inc/taxonomies-functions.php:1623
+#: inc/taxonomies-functions.php:2312 inc/taxonomies.php:1046
 msgid "All %s"
 msgstr "Tous les %s"
 
@@ -615,7 +615,7 @@ msgstr "Tous les %s"
 msgid "All done! %s terms added."
 msgstr "Terminé ! %s terme(s) ajouté(s)."
 
-#: inc/taxonomies.php:1031
+#: inc/taxonomies.php:1041
 msgid "All Items"
 msgstr "Tous les éléments"
 
@@ -654,7 +654,7 @@ msgstr ""
 "supporte pas cette fonctionnalité, cette extension utilisera le moteur "
 "habituel."
 
-#: inc/taxonomies.php:635
+#: inc/taxonomies.php:645
 msgid "Archive page result"
 msgstr "Résultat de la page d’archive"
 
@@ -876,11 +876,11 @@ msgid "autotermslogs"
 msgstr "autotermslogs"
 
 #. Used for autofill
-#: inc/taxonomies.php:1351
+#: inc/taxonomies.php:1361
 msgid "Back to %s"
 msgstr "Retour à %s"
 
-#: inc/taxonomies.php:1346
+#: inc/taxonomies.php:1356
 msgid "Back to Items"
 msgstr "Retour aux éléments"
 
@@ -939,7 +939,7 @@ msgstr ""
 "Les termes de cette taxonomie peuvent-ils être organisés en relations "
 "hiérarchiques ?"
 
-#: inc/terms-table.php:597
+#: inc/terms-table.php:609
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -968,13 +968,13 @@ msgstr ""
 "quelques suggestions précises. Une valeur faible, telle que 0,2, produira "
 "plus de suggestions, mais elles seront peut-être moins précises."
 
-#: inc/taxonomies.php:1241
+#: inc/taxonomies.php:1251
 msgid "Choose From Most Used"
 msgstr "Choisissez parmi les plus utilisés"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1571 inc/taxonomies-functions.php:1618
-#: inc/taxonomies.php:1246
+#: inc/taxonomies-functions.php:1579 inc/taxonomies-functions.php:1626
+#: inc/taxonomies.php:1256
 msgid "Choose from the most used %s"
 msgstr "Choisissez parmi les %s les plus utilisés"
 
@@ -998,11 +998,7 @@ msgstr "Choisissez les termes à utiliser."
 msgid "Click here to add your rating for TaxoPress"
 msgstr "Cliquez ici pour ajouter votre évaluation de TaxoPress"
 
-#: inc/class.admin.manage.php:177
-msgid "Click terms list:"
-msgstr "Liste des termes clickables :"
-
-#: inc/class.admin.clickterms.php:144
+#: inc/class.admin.clickterms.php:145
 msgid "Click terms to add them to this %s"
 msgstr "Cliquez sur les termes pour les ajouter à ce %s"
 
@@ -1058,34 +1054,34 @@ msgstr "Publication actuelle"
 msgid "Current post type"
 msgstr "Type de publication actuel"
 
-#: inc/taxonomies.php:1016
+#: inc/taxonomies.php:1026
 msgid "Custom admin menu name for your taxonomy."
 msgstr "Nom du menu d’administration personnalisé pour votre taxonomie."
 
-#: inc/taxonomies.php:1403
+#: inc/taxonomies.php:1413
 msgid "Custom controller to use instead of WP_REST_Terms_Controller."
 msgstr ""
 "Contrôleur personnalisé à utiliser à la place de WP_REST_Terms_Controller."
 
-#: inc/taxonomies.php:1499
+#: inc/taxonomies.php:1509
 msgid "Custom Query Var String"
 msgstr "Chaine de Query Var personnalisée"
 
-#: inc/taxonomies.php:784
+#: inc/taxonomies.php:794
 msgid "Custom Rewrite Slug"
 msgstr "Slug de réécriture personnalisé"
 
-#: inc/taxonomies.php:1083 inc/taxonomies.php:1118 inc/taxonomies.php:1135
-#: inc/taxonomies.php:1152 inc/taxonomies.php:1169 inc/taxonomies.php:1186
-#: inc/taxonomies.php:1205 inc/taxonomies.php:1223 inc/taxonomies.php:1242
-#: inc/taxonomies.php:1259
+#: inc/taxonomies.php:1093 inc/taxonomies.php:1128 inc/taxonomies.php:1145
+#: inc/taxonomies.php:1162 inc/taxonomies.php:1179 inc/taxonomies.php:1196
+#: inc/taxonomies.php:1215 inc/taxonomies.php:1233 inc/taxonomies.php:1252
+#: inc/taxonomies.php:1269
 msgid ""
 "Custom taxonomy label. Used in the admin menu for displaying taxonomies."
 msgstr ""
 "Étiquette de taxonomie personnalisée. Utilisé dans le menu d’administration "
 "pour afficher les taxonomies."
 
-#: inc/taxonomies.php:785
+#: inc/taxonomies.php:795
 msgid "Custom taxonomy rewrite slug."
 msgstr "Slug de réécriture de taxonomie personnalisée."
 
@@ -1121,15 +1117,17 @@ msgstr "Désactiver la taxonomie"
 msgid "Default Taxonomy"
 msgstr "Taxonomie par défaut"
 
-#: inc/taxonomies.php:1519
-msgid "Default Term"
+#: inc/taxonomies.php:535
+#, fuzzy
+#| msgid "Default Term"
+msgid "Default Terms"
 msgstr "Terme par défaut"
 
-#: inc/autoterms-table.php:275 inc/terms-table.php:158 inc/terms-table.php:403
+#: inc/autoterms-table.php:275 inc/terms-table.php:158 inc/terms-table.php:417
 #: inc/post-tags-table.php:275 inc/related-posts-table.php:276
-#: inc/class.admin.manage.php:431 inc/autoterms-logs-table.php:240
-#: inc/class-tag-table.php:195 inc/tag-clouds-table.php:276
-#: inc/suggestterms-table.php:274 inc/autolinks-table.php:275
+#: inc/autoterms-logs-table.php:240 inc/class-tag-table.php:195
+#: inc/tag-clouds-table.php:276 inc/suggestterms-table.php:274
+#: inc/autolinks-table.php:275
 msgid "Delete"
 msgstr "Effacer"
 
@@ -1141,7 +1139,7 @@ msgstr "Supprimer tous les journaux"
 msgid "Delete Log"
 msgstr "Supprimer le journal"
 
-#: inc/class.admin.manage.php:466
+#: inc/class.admin.manage.php:338
 msgid "Delete rarely used"
 msgstr "Effacer les termes rarement utilisés"
 
@@ -1149,15 +1147,7 @@ msgstr "Effacer les termes rarement utilisés"
 msgid "Delete Taxonomy"
 msgstr "Supprimer la taxonomie"
 
-#: inc/class.admin.manage.php:407
-msgid "Delete Terms"
-msgstr "Effacer les termes"
-
-#: inc/class.admin.manage.php:236
-msgid "Delete terms"
-msgstr "Supprimer les termes"
-
-#: inc/class.admin.manage.php:237
+#: inc/class.admin.manage.php:154
 msgid "Delete unused terms"
 msgstr "Supprimer les termes inutilisés"
 
@@ -1180,8 +1170,7 @@ msgstr "Description"
 
 #: inc/suggestterms.php:163 inc/terms.php:257 inc/tag-clouds.php:161
 #: inc/autolinks.php:161 inc/related-posts.php:161 inc/post-tags.php:160
-#: inc/class.admin.manage.php:217 inc/autoterms.php:218 inc/autoterms.php:273
-#: inc/taxonomies.php:203
+#: inc/autoterms.php:218 inc/autoterms.php:273 inc/taxonomies.php:203
 msgid "Description here."
 msgstr "La description ici."
 
@@ -1219,7 +1208,7 @@ msgstr "Format d’affichage"
 msgid "Display format"
 msgstr "Format d’affichage"
 
-#: inc/taxonomies.php:438 inc/taxonomies.php:686
+#: inc/taxonomies.php:438 inc/taxonomies.php:696
 msgid ""
 "DO NOT EDIT the taxonomy slug unless also planning to migrate terms. "
 "Changing the slug registers a new taxonomy entry."
@@ -1251,9 +1240,9 @@ msgid "Edit"
 msgstr "Modifier"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1550 inc/taxonomies-functions.php:1565
-#: inc/taxonomies-functions.php:1591 inc/taxonomies-functions.php:1607
-#: inc/taxonomies.php:1053
+#: inc/taxonomies-functions.php:1558 inc/taxonomies-functions.php:1573
+#: inc/taxonomies-functions.php:1599 inc/taxonomies-functions.php:1615
+#: inc/taxonomies.php:1063
 msgid "Edit %s"
 msgstr "Modifier %s"
 
@@ -1265,7 +1254,7 @@ msgstr "Modifier les liens automatiques"
 msgid "Edit Auto Terms"
 msgstr "Modifier les termes automatiques"
 
-#: inc/taxonomies.php:1048
+#: inc/taxonomies.php:1058
 msgid "Edit Item"
 msgstr "Modifier l’élément"
 
@@ -1313,7 +1302,7 @@ msgstr "Em"
 msgid "Embedded Tags"
 msgstr "Étiquettes embarquées"
 
-#: inc/taxonomies.php:1488
+#: inc/taxonomies.php:1498
 msgid "Enable a custom query_var key for this taxonomy."
 msgstr "Activez une clé query_var personnalisée pour cette taxonomie."
 
@@ -1350,17 +1339,13 @@ msgstr ""
 msgid "Enhance the power of TaxoPress with the Pro version:"
 msgstr "Augmentez la puissance de TaxoPress avec la version Pro :"
 
-#: inc/class.admin.manage.php:408
-msgid "Enter the name of terms to delete."
-msgstr "Saisissez le nom des termes à supprimer."
-
 #: inc/helper.options.admin.php:169 inc/helper.options.admin.php:372
 msgid "Enter the positioned title before the list, leave blank for no title:"
 msgstr ""
 "Entrer le titre positionné avant la liste, laisser vide, pour ne rien "
 "afficher:"
 
-#: inc/class.admin.manage.php:335
+#: inc/class.admin.manage.php:264
 msgid ""
 "Enter the term to merge and its new value. Click \"Merge\" and all %s which "
 "use this term will be updated."
@@ -1368,11 +1353,7 @@ msgstr ""
 "Saisissez le terme à fusionner et sa nouvelle valeur. Cliquez sur "
 "« Fusionner » et tous les %s qui utilisent ce terme seront mis à jour."
 
-#: inc/class.admin.manage.php:375
-msgid "Enter the terms to remove from all %s "
-msgstr "Saisissez le nom des termes à supprimer de tous les %s "
-
-#: inc/class.admin.manage.php:296
+#: inc/class.admin.manage.php:223
 msgid "Enter the terms to rename and their new names."
 msgstr "Saisissez les termes à renommer et leurs nouveaux noms."
 
@@ -1385,15 +1366,15 @@ msgstr ""
 msgid "Enter the text to show when there is no tag:"
 msgstr "Entrer le texte à afficher lorsqu’il n’y a pas d’étiquette :"
 
-#: inc/class.admin.manage.php:789
+#: inc/class.admin.manage.php:659
 msgid "Error. No enough terms for rename."
 msgstr "Erreur. Pas assez de termes pour le renommer."
 
-#: inc/class.admin.manage.php:704
+#: inc/class.admin.manage.php:573
 msgid "Error. No enough terms specified."
 msgstr "Erreur. Pas suffisamment de termes spécifiés."
 
-#: inc/class.admin.manage.php:630
+#: inc/class.admin.manage.php:498
 msgid "Error. You need to enter a single term to merge to in new term name !"
 msgstr ""
 "Erreur. Vous devez saisir un seul terme à fusionner dans le nouveau nom du "
@@ -1469,11 +1450,11 @@ msgstr "Termes existants sur votre site"
 #: inc/autoterms.php:614 inc/autoterms.php:645 inc/autoterms.php:659
 #: inc/autoterms.php:689 inc/autoterms.php:746 inc/autoterms.php:771
 #: inc/autoterms.php:796 inc/autoterms.php:871 inc/taxonomies.php:492
-#: inc/taxonomies.php:601 inc/taxonomies.php:616 inc/taxonomies.php:757
-#: inc/taxonomies.php:793 inc/taxonomies.php:818 inc/taxonomies.php:853
-#: inc/taxonomies.php:877 inc/taxonomies.php:901 inc/taxonomies.php:926
-#: inc/taxonomies.php:950 inc/taxonomies.php:975 inc/taxonomies.php:1367
-#: inc/taxonomies.php:1422 inc/taxonomies.php:1447 inc/taxonomies.php:1472
+#: inc/taxonomies.php:611 inc/taxonomies.php:626 inc/taxonomies.php:767
+#: inc/taxonomies.php:803 inc/taxonomies.php:828 inc/taxonomies.php:863
+#: inc/taxonomies.php:887 inc/taxonomies.php:911 inc/taxonomies.php:936
+#: inc/taxonomies.php:960 inc/taxonomies.php:985 inc/taxonomies.php:1377
+#: inc/taxonomies.php:1432 inc/taxonomies.php:1457 inc/taxonomies.php:1482
 msgid "False"
 msgstr "Faux"
 
@@ -1670,7 +1651,7 @@ msgstr "https://wordpress.org/plugins/simple-tags/"
 msgid "I already did"
 msgstr "Je l’ai déjà fait"
 
-#: inc/class.admin.manage.php:442
+#: inc/class.admin.manage.php:309
 msgid ""
 "If you choose 5, Taxopress will delete all terms attached to less than 5 %s."
 msgstr ""
@@ -1727,11 +1708,11 @@ msgstr "Inverse de l’ordre alphabétique"
 msgid "it creates"
 msgstr "il crée"
 
-#: inc/taxonomies.php:1311
+#: inc/taxonomies.php:1321
 msgid "Items List"
 msgstr "Liste des éléments"
 
-#: inc/taxonomies.php:1293
+#: inc/taxonomies.php:1303
 msgid "Items List Navigation"
 msgstr "Navigation dans la liste des éléments"
 
@@ -1741,13 +1722,13 @@ msgstr ""
 "Veuillez enregistrer vos réglages de termes automatiques avant d’exécuter "
 "cette fonction"
 
-#: inc/taxonomies-functions.php:1730
+#: inc/taxonomies-functions.php:1738
 msgid "Kindly select an action in bulk action dropdown!"
 msgstr ""
 "Veuillez sélectionner une action dans la liste déroulante des actions "
 "groupées !"
 
-#: inc/taxonomies-functions.php:1740
+#: inc/taxonomies-functions.php:1748
 msgid "Kindly select atleast one taxonomy to proceed"
 msgstr "Veuillez sélectionner au moins une taxonomie pour continuer"
 
@@ -1823,7 +1804,7 @@ msgstr "Gérer les termes suggérés"
 msgid "Manage Taxonomy"
 msgstr "Gérer la taxonomie"
 
-#: inc/class.admin.manage.php:61
+#: inc/class.admin.manage.php:61 inc/class.admin.manage.php:132
 msgid "Manage Terms"
 msgstr "Gestion des termes"
 
@@ -1920,30 +1901,30 @@ msgstr "Liste des étiquettes de média"
 msgid "Media Tags list navigation"
 msgstr "Navigation de la liste des étiquettes de média"
 
-#: inc/taxonomies.php:1015
+#: inc/taxonomies.php:1025
 msgid "Menu Name"
 msgstr "Nom du menu"
 
-#: inc/class.admin.manage.php:366
+#: inc/class.admin.manage.php:296
 msgid "Merge"
 msgstr "Fusionner"
 
-#: inc/class.admin.manage.php:597 inc/class.admin.manage.php:627
+#: inc/class.admin.manage.php:465 inc/class.admin.manage.php:495
 msgid ""
 "Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited."
 msgstr ""
 "Fusionner le(s) terme(s) &laquo;%1$s&raquo; en &laquo;%2$s&raquo;. %3$s "
 "objet(s) édité(s)."
 
-#: inc/class.admin.manage.php:334
+#: inc/class.admin.manage.php:262
 msgid "Merge Terms"
 msgstr "Fusionner les termes"
 
-#: inc/class.admin.manage.php:234
+#: inc/class.admin.manage.php:151
 msgid "Merge terms"
 msgstr "Fusionner les termes"
 
-#: inc/taxonomies.php:1509
+#: inc/taxonomies.php:1519
 msgid "Metabox callback"
 msgstr "Rappel de la boîte méta"
 
@@ -1959,7 +1940,7 @@ msgstr "Méthode pour choisir les termes d’affichage"
 msgid "Method for choosing terms from the database"
 msgstr "Méthode pour choisir les termes dans la base de données"
 
-#: inc/taxonomies.php:449 inc/taxonomies.php:697
+#: inc/taxonomies.php:449 inc/taxonomies.php:707
 msgid "Migrate terms to newly renamed taxonomy?"
 msgstr "Migrer les termes vers une taxonomie nouvellement renommée ?"
 
@@ -1967,7 +1948,7 @@ msgstr "Migrer les termes vers une taxonomie nouvellement renommée ?"
 msgid "Minimum character length for an Auto Link"
 msgstr "Longueur minimale des caractères pour un lien automatique"
 
-#: inc/class.admin.manage.php:456
+#: inc/class.admin.manage.php:325
 msgid "Minimum number of uses for each term:"
 msgstr "Nombre minimum d’utilisations pour chaque terme :"
 
@@ -1979,7 +1960,7 @@ msgstr "Utilisation minimale pour les liens automatiques"
 msgid "Minimum usage for terms"
 msgstr "Utilisation minimale pour les termes"
 
-#: inc/class.admin.manage.php:108
+#: inc/class.admin.manage.php:89
 msgid "Missing valid taxonomy for work. Try again."
 msgstr "Il manque une taxonomie valide pour le travail. Réessayer."
 
@@ -2006,17 +1987,17 @@ msgstr "Nom"
 msgid "Need TaxoPress Support?"
 msgstr "Besoin d’aide pour TaxoPress ?"
 
-#: inc/taxonomies-functions.php:1551 inc/taxonomies-functions.php:1592
+#: inc/taxonomies-functions.php:1559 inc/taxonomies-functions.php:1600
 msgid "New %s"
 msgstr "Nouveau %s"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1568 inc/taxonomies-functions.php:1610
-#: inc/taxonomies.php:1122
+#: inc/taxonomies-functions.php:1576 inc/taxonomies-functions.php:1618
+#: inc/taxonomies.php:1132
 msgid "New %s name"
 msgstr "Nouveau nom de %s"
 
-#: inc/taxonomies.php:1117
+#: inc/taxonomies.php:1127
 msgid "New Item Name"
 msgstr "Nom du nouvel élément"
 
@@ -2028,11 +2009,11 @@ msgstr "Nouveau nom d’étiquette de média"
 msgid "New TaxoPress Logs"
 msgstr "Nouveaux journaux de TaxoPress"
 
-#: inc/class.admin.manage.php:319
+#: inc/class.admin.manage.php:247
 msgid "New term name(s):"
 msgstr "Nom des nouveaux termes :"
 
-#: inc/class.admin.manage.php:359
+#: inc/class.admin.manage.php:289
 msgid "New term name:"
 msgstr "Nouveau nome du terme :"
 
@@ -2048,20 +2029,20 @@ msgid "No"
 msgstr "Non"
 
 #. Used for autofill
-#: inc/taxonomies.php:1280
+#: inc/taxonomies.php:1290
 msgid "No %s"
 msgstr "Pas de %s"
 
 #. Used for autofill
-#: inc/taxonomies.php:1263 inc/taxonomies.php:1333
+#: inc/taxonomies.php:1273 inc/taxonomies.php:1343
 msgid "No %s found"
 msgstr "Aucun %s trouvé"
 
-#: inc/taxonomies-functions.php:1557 inc/taxonomies-functions.php:1600
+#: inc/taxonomies-functions.php:1565 inc/taxonomies-functions.php:1608
 msgid "No %s found in trash."
 msgstr "Aucun %s n’a été trouvé dans la corbeille."
 
-#: inc/taxonomies-functions.php:1556 inc/taxonomies-functions.php:1599
+#: inc/taxonomies-functions.php:1564 inc/taxonomies-functions.php:1607
 msgid "No %s found."
 msgstr "Aucun %s trouvé."
 
@@ -2073,10 +2054,10 @@ msgstr "Aucune publicité dans l’extension"
 msgid "No content to edit."
 msgstr "Pas de contenu à éditer."
 
-#: inc/autoterms-table.php:91 inc/terms-table.php:271
-#: inc/post-tags-table.php:91 inc/related-posts-table.php:92
-#: inc/autoterms-logs-table.php:217 inc/tag-clouds-table.php:92
-#: inc/suggestterms-table.php:90 inc/autolinks-table.php:91
+#: inc/autoterms-table.php:91 inc/post-tags-table.php:91
+#: inc/related-posts-table.php:92 inc/autoterms-logs-table.php:217
+#: inc/tag-clouds-table.php:92 inc/suggestterms-table.php:90
+#: inc/autolinks-table.php:91
 msgid "No item avaliable."
 msgstr "Aucun élément disponible."
 
@@ -2099,15 +2080,15 @@ msgstr ""
 "Aucun nouveau terme ne correspond aux réglages des termes automatiques et au "
 "contenu de la publication."
 
-#: inc/class.admin.manage.php:549 inc/class.admin.manage.php:722
+#: inc/class.admin.manage.php:417 inc/class.admin.manage.php:592
 msgid "No new term specified!"
 msgstr "Aucun nouveau terme spécifié !"
 
-#: inc/class.admin.manage.php:849
+#: inc/class.admin.manage.php:721
 msgid "No new term(s) specified!"
 msgstr "Pas de nouveau(x) terme(s) spécifié(s) !"
 
-#: inc/class.admin.manage.php:564 inc/class.admin.manage.php:737
+#: inc/class.admin.manage.php:432 inc/class.admin.manage.php:607
 msgid "No new/old valid term specified!"
 msgstr "Aucun terme valide nouveau/ancien n’est spécifié !"
 
@@ -2130,7 +2111,7 @@ msgstr "Pas de résultats de l’API dataTXT."
 msgid "No results from OpenCalais service."
 msgstr "Aucun résultat depuis le service OpenCalais."
 
-#: inc/class.admin.suggest.php:351 inc/class.admin.clickterms.php:268
+#: inc/class.admin.suggest.php:351 inc/class.admin.clickterms.php:269
 msgid "No results from your WordPress database."
 msgstr "Aucun résultat depuis la base de données de WordPress."
 
@@ -2147,31 +2128,35 @@ msgstr "Aucune étiquette pour cette publication."
 msgid "No tags."
 msgstr "Aucune étiquette."
 
-#: inc/class.admin.manage.php:902
+#: inc/class-taxonomies-table.php:93
+msgid "No taxonomies found."
+msgstr ""
+
+#: inc/class.admin.manage.php:774
 msgid "No term added."
 msgstr "Aucun terme ajouté."
 
-#: inc/class-taxonomies-table.php:93 inc/class-tag-table.php:125
+#: inc/class-tag-table.php:125
 msgid "No term avaliable."
 msgstr "Aucun terme n’est disponible."
 
-#: inc/class.admin.manage.php:829 inc/class.admin.manage.php:940
+#: inc/class.admin.manage.php:700 inc/class.admin.manage.php:813
 msgid "No term deleted."
 msgstr "Aucun terme effacé."
 
-#: inc/class.admin.manage.php:625
+#: inc/class.admin.manage.php:493
 msgid "No term merged."
 msgstr "Aucun terme fusionné."
 
-#: inc/class.admin.manage.php:784
+#: inc/class.admin.manage.php:654
 msgid "No term renamed."
 msgstr "Aucun terme renommé."
 
-#: inc/class.admin.manage.php:648 inc/class.admin.manage.php:806
+#: inc/class.admin.manage.php:517 inc/class.admin.manage.php:677
 msgid "No term specified!"
 msgstr "Aucun terme spécifié !"
 
-#: inc/taxonomies.php:1275
+#: inc/taxonomies.php:1285
 msgid "No terms"
 msgstr "Aucun termes"
 
@@ -2187,15 +2172,19 @@ msgstr ""
 "Aucun code court « termes pour la publication actuelle\" n’est disponible. "
 "Ajouter un nouveau code court "
 
-#: inc/class.admin.suggest.php:334 inc/class.admin.clickterms.php:220
+#: inc/terms-table.php:271
+msgid "No terms found."
+msgstr ""
+
+#: inc/class.admin.suggest.php:334 inc/class.admin.clickterms.php:221
 msgid "No terms in your WordPress database."
 msgstr "Aucun terme dans la base de données de WordPress."
 
-#: inc/class.admin.manage.php:574
+#: inc/class.admin.manage.php:442
 msgid "No valid new term."
 msgstr "Aucun nouveau terme valide."
 
-#: inc/class.admin.manage.php:661
+#: inc/class.admin.manage.php:530
 msgid "No valid term specified!"
 msgstr "Aucun terme valide spécifié !"
 
@@ -2209,18 +2198,17 @@ msgstr "Échec de la vérification de nonce"
 msgid "None"
 msgstr "Acun"
 
-#: inc/taxonomies.php:1328
+#: inc/taxonomies.php:1338
 msgid "Not Found"
 msgstr "Non trouvé"
 
-#: inc/taxonomies.php:1258
+#: inc/taxonomies.php:1268
 msgid "Not found"
 msgstr "Non trouvé"
 
 #: inc/suggestterms.php:94 inc/terms.php:194 inc/tag-clouds.php:95
 #: inc/autolinks.php:95 inc/related-posts.php:95 inc/post-tags.php:95
-#: inc/class.admin.manage.php:80 inc/autoterms.php:105 inc/autoterms.php:112
-#: inc/taxonomies.php:122
+#: inc/autoterms.php:105 inc/autoterms.php:112 inc/taxonomies.php:122
 msgid "Number of items per page"
 msgstr "Nombre d’éléments par page"
 
@@ -2329,27 +2317,23 @@ msgstr "Tri pour choisir les termes d’affichage"
 msgid "Other Labels"
 msgstr "Autres libellés"
 
-#: inc/class.admin.manage.php:200
-msgid "Pagination "
-msgstr "Pagination "
-
 #. Used for autofill
-#: inc/taxonomies-functions.php:1563 inc/taxonomies-functions.php:1605
-#: inc/taxonomies.php:1139
+#: inc/taxonomies-functions.php:1571 inc/taxonomies-functions.php:1613
+#: inc/taxonomies.php:1149
 msgid "Parent %s"
 msgstr "%s parent"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1564 inc/taxonomies-functions.php:1606
-#: inc/taxonomies.php:1156
+#: inc/taxonomies-functions.php:1572 inc/taxonomies-functions.php:1614
+#: inc/taxonomies.php:1166
 msgid "Parent %s:"
 msgstr "%s parent :"
 
-#: inc/taxonomies.php:1134
+#: inc/taxonomies.php:1144
 msgid "Parent Item"
 msgstr "Élément parent"
 
-#: inc/taxonomies.php:1151
+#: inc/taxonomies.php:1161
 msgid "Parent Item Colon"
 msgstr "Colon de l’élément parent"
 
@@ -2373,7 +2357,7 @@ msgstr "Pourcentage"
 msgid "Permalinks"
 msgstr "Permaliens"
 
-#: inc/class.admin.manage.php:101
+#: inc/class.admin.manage.php:83
 msgid "Permission denied!"
 msgstr "Droit refusé !"
 
@@ -2427,7 +2411,7 @@ msgstr "Veuillez fournir un type de publication à joindre."
 msgid "Please provide a taxonomy name"
 msgstr "Veuillez fournir un nom de taxonomie"
 
-#: inc/taxonomies-functions.php:120 inc/taxonomies-functions.php:1876
+#: inc/taxonomies-functions.php:120 inc/taxonomies-functions.php:1884
 msgid "Please provide a taxonomy to delete"
 msgstr "Veuillez fournir un nom de taxonomie à supprimer"
 
@@ -2452,12 +2436,12 @@ msgid "Point (default)"
 msgstr "Point (par défaut)"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1561 inc/taxonomies-functions.php:1614
-#: inc/taxonomies.php:1190
+#: inc/taxonomies-functions.php:1569 inc/taxonomies-functions.php:1622
+#: inc/taxonomies.php:1200
 msgid "Popular %s"
 msgstr "%s populaire"
 
-#: inc/taxonomies.php:1185
+#: inc/taxonomies.php:1195
 msgid "Popular Items"
 msgstr "Éléments populaires"
 
@@ -2561,11 +2545,11 @@ msgstr "Taxonomies privées"
 msgid "Progress report: %s posts checked."
 msgstr "Rapport d’avancement : %s publications vérifiées."
 
-#: inc/taxonomies.php:1437
+#: inc/taxonomies.php:1447
 msgid "Public"
 msgstr "Public"
 
-#: inc/taxonomies.php:1462
+#: inc/taxonomies.php:1472
 msgid "Public Queryable"
 msgstr "Publiquement interrogeable"
 
@@ -2577,11 +2561,11 @@ msgstr "Taxonomies publiques"
 msgid "Quantity&hellip;"
 msgstr "Quantité&hellip;"
 
-#: inc/taxonomies.php:1487
+#: inc/taxonomies.php:1497
 msgid "Query Var"
 msgstr "Query Var"
 
-#: inc/terms-table.php:568
+#: inc/terms-table.php:582
 msgid "Quick Edit"
 msgstr "Modification rapide"
 
@@ -2668,39 +2652,31 @@ msgstr ""
 msgid "Related Posts successfully deleted."
 msgstr "Les publications similaires ont été supprimées avec succès."
 
-#: inc/class.admin.manage.php:399
-msgid "Remove"
-msgstr "Supprimer"
+#: inc/terms-table.php:403
+msgid "Remove From All Posts"
+msgstr ""
 
-#: inc/class.admin.manage.php:439
+#: inc/class.admin.manage.php:304
 msgid "Remove rarely used terms"
 msgstr "Supprimer les termes rarement utilisés"
 
-#: inc/class.admin.manage.php:235
-msgid "Remove terms"
-msgstr "Retirer les termes"
-
-#: inc/class.admin.manage.php:374
-msgid "Remove Terms from %s "
-msgstr "Supprimer les termes de %s "
-
-#: inc/class.admin.manage.php:701
+#: inc/class.admin.manage.php:570
 msgid "Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s"
 msgstr "Terme(s) supprimé(s) &laquo;%1$s&raquo; de %2$s %3$s"
 
-#: inc/class.admin.manage.php:326
+#: inc/class.admin.manage.php:254
 msgid "Rename"
 msgstr "Renommer"
 
-#: inc/class.admin.manage.php:295
+#: inc/class.admin.manage.php:221
 msgid "Rename Terms"
 msgstr "Renommer les termes"
 
-#: inc/class.admin.manage.php:233
+#: inc/class.admin.manage.php:148
 msgid "Rename terms"
 msgstr "Renommer les termes"
 
-#: inc/class.admin.manage.php:786
+#: inc/class.admin.manage.php:656
 msgid "Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;"
 msgstr ""
 "Le(s) terme(s) &laquo;%1$s&raquo; a (ont) été renommé(s) en &laquo;"
@@ -2730,23 +2706,23 @@ msgstr "Restaurer les options par défaut"
 msgid "REST API"
 msgstr "API REST"
 
-#: inc/taxonomies.php:1391
+#: inc/taxonomies.php:1401
 msgid "REST API base slug"
 msgstr "Slug de base de l’API REST"
 
-#: inc/taxonomies.php:1400
+#: inc/taxonomies.php:1410
 msgid "REST API controller class"
 msgstr "Classe de contrôleur API REST"
 
-#: inc/taxonomies.php:772
+#: inc/taxonomies.php:782
 msgid "Rewrite"
 msgstr "Réécrire"
 
-#: inc/taxonomies.php:833
+#: inc/taxonomies.php:843
 msgid "Rewrite Hierarchical"
 msgstr "Réécrire la hiérarchie"
 
-#: inc/taxonomies.php:808
+#: inc/taxonomies.php:818
 msgid "Rewrite With Front"
 msgstr "Réécriture avec la base"
 
@@ -2799,14 +2775,14 @@ msgstr "Cron quotidien planifié"
 msgid "Scheduled hourly cron"
 msgstr "Cron horaire planifié"
 
-#: inc/taxonomies.php:1312
+#: inc/taxonomies.php:1322
 msgid ""
 "Screen reader text for the items list heading on the term listing screen."
 msgstr ""
 "Texte pour lecteur d’écran pour l’en-tête de la liste des éléments sur "
 "l’écran de listage des termes."
 
-#: inc/taxonomies.php:1294
+#: inc/taxonomies.php:1304
 msgid ""
 "Screen reader text for the pagination heading on the term listing screen."
 msgstr ""
@@ -2822,15 +2798,11 @@ msgid "Search"
 msgstr "Rechercher"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1555 inc/taxonomies-functions.php:1560
-#: inc/taxonomies-functions.php:1598 inc/taxonomies-functions.php:1613
-#: inc/taxonomies.php:1173
+#: inc/taxonomies-functions.php:1563 inc/taxonomies-functions.php:1568
+#: inc/taxonomies-functions.php:1606 inc/taxonomies-functions.php:1621
+#: inc/taxonomies.php:1183
 msgid "Search %s"
 msgstr "Rechercher %s"
-
-#: inc/class.admin.manage.php:196
-msgid "Search %s "
-msgstr "Rechercher %s "
 
 #: inc/autolinks.php:150
 msgid "Search Auto Links"
@@ -2844,7 +2816,7 @@ msgstr "Rechercher les termes automatiques"
 msgid "Search Auto Terms Logs"
 msgstr "Rechercher les journaux des termes automatiques"
 
-#: inc/taxonomies.php:1168
+#: inc/taxonomies.php:1178
 msgid "Search Items"
 msgstr "Rechercher les éléments"
 
@@ -2859,8 +2831,7 @@ msgstr "Rechercher les publications similaires"
 #. %s: search keywords
 #: inc/suggestterms.php:138 inc/terms.php:232 inc/tag-clouds.php:136
 #: inc/autolinks.php:136 inc/related-posts.php:136 inc/post-tags.php:136
-#: inc/class.admin.manage.php:183 inc/autoterms.php:193 inc/autoterms.php:248
-#: inc/taxonomies.php:163
+#: inc/autoterms.php:193 inc/autoterms.php:248 inc/taxonomies.php:163
 msgid "Search results for &#8220;%s&#8221;"
 msgstr "Résultats de recherche pour &#8220;%s&#8221;"
 
@@ -2888,7 +2859,7 @@ msgstr "Rechercher l’affichage de termes"
 msgid "Search Terms for Current Post"
 msgstr "Rechercher les termes pour la publication actuelle"
 
-#: inc/class.admin.manage.php:104 inc/class.admin.mass.php:58
+#: inc/class.admin.manage.php:86 inc/class.admin.mass.php:58
 msgid "Security problem. Try again."
 msgstr "Problème de sécurité. Réessayer."
 
@@ -2917,12 +2888,12 @@ msgid "Select widget terms for current post."
 msgstr "Sélectionnez le widget termes pour la publication actuelle."
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1569 inc/taxonomies-functions.php:1616
-#: inc/taxonomies.php:1209
+#: inc/taxonomies-functions.php:1577 inc/taxonomies-functions.php:1624
+#: inc/taxonomies.php:1219
 msgid "Separate %s with commas"
 msgstr "Séparer les %s par des virgules"
 
-#: inc/taxonomies.php:1203
+#: inc/taxonomies.php:1213
 msgid "Separate Items with Commas"
 msgstr "Séparez les éléments par des virgules"
 
@@ -2945,20 +2916,13 @@ msgstr "Séparez les étiquettes par des virgules"
 msgid "Set (0) for no limit."
 msgstr "Définissez (0) pour aucune limite."
 
-#: inc/taxonomies.php:1520
+#: inc/taxonomies.php:536
 msgid ""
-"Set a default term for the taxonomy. Able to set a name, slug, and "
-"description. Only a name is required if setting a default, others are "
-"optional. Set values in the following order, separated by comma. Example: "
-"name, slug, description"
+"Set the default terms for this taxonomy. Enter the term names or slugs. "
+"Separate multiple terms with by comma."
 msgstr ""
-"Définissez un terme par défaut pour la taxonomie. Possibilité de définir un "
-"nom, un slug et une description. Seul le nom est obligatoire si vous "
-"définissez un terme par défaut, les autres sont facultatifs. Définissez les "
-"valeurs dans l’ordre suivant, en les séparant par une virgule. Exemple : nom,"
-" slug, description"
 
-#: inc/taxonomies.php:1510
+#: inc/taxonomies.php:1520
 msgid ""
 "Sets a callback function name for the meta box display. Hierarchical default:"
 " post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To "
@@ -2969,7 +2933,7 @@ msgstr ""
 "défaut : post_tags_meta_box. Pour supprimer complètement la boîte méta, "
 "utilisez « false »."
 
-#: inc/taxonomies.php:1500
+#: inc/taxonomies.php:1510
 msgid "Sets a custom query_var slug for this taxonomy."
 msgstr "Définir un slug de query_var personnalisé pour cette taxonomie."
 
@@ -2997,15 +2961,15 @@ msgstr "L’entrée du code court a été supprimé avec succès."
 msgid "Shortcode: "
 msgstr "Code court : "
 
-#: inc/taxonomies.php:834
+#: inc/taxonomies.php:844
 msgid "Should the permastruct allow hierarchical urls."
 msgstr "La permastructure doit-elle autoriser les urls hiérarchiques."
 
-#: inc/taxonomies.php:809
+#: inc/taxonomies.php:819
 msgid "Should the permastruct be prepended with the front base."
 msgstr "La permastructure doit-elle être précédée de la base avant."
 
-#: inc/taxonomies.php:941
+#: inc/taxonomies.php:951
 msgid "Show admin column"
 msgstr "Afficher la colonne d’administration"
 
@@ -3013,7 +2977,7 @@ msgstr "Afficher la colonne d’administration"
 msgid "Show all dates"
 msgstr "Afficher toutes les dates"
 
-#: inc/taxonomies.php:636
+#: inc/taxonomies.php:646
 msgid "Show content from all post types on archive page"
 msgstr ""
 "Afficher le contenu de tous les types de publications sur la page des "
@@ -3023,31 +2987,31 @@ msgstr ""
 msgid "Show Existing Terms"
 msgstr "Afficher les termes existants"
 
-#: inc/suggestterms.php:459 inc/class.admin.clickterms.php:172
+#: inc/suggestterms.php:459 inc/class.admin.clickterms.php:173
 msgid "Show existing terms"
 msgstr "Afficher les termes exixtants"
 
-#: inc/taxonomies.php:965
+#: inc/taxonomies.php:975
 msgid "Show in \"Quick Edit\" and \"Bulk Edit\""
 msgstr "Afficher dans « Modification rapide\" et « Modification groupée\""
 
-#: inc/taxonomies.php:892
+#: inc/taxonomies.php:902
 msgid "Show in admin menus"
 msgstr "Afficher dans les menus de l’administration"
 
-#: inc/taxonomies.php:991
+#: inc/taxonomies.php:1001
 msgid "Show in Filter"
 msgstr ""
 
-#: inc/taxonomies.php:916
+#: inc/taxonomies.php:926
 msgid "Show in frontend menus"
 msgstr "Afficher dans les menus de l’interface publique"
 
-#: inc/taxonomies.php:1382
+#: inc/taxonomies.php:1392
 msgid "Show in REST API"
 msgstr "Afficher dans l’API REST"
 
-#: inc/taxonomies.php:868
+#: inc/taxonomies.php:878
 msgid "Show user interface"
 msgstr "Afficher l’interface de l’utilisateur ou utilisatrice"
 
@@ -3060,16 +3024,16 @@ msgstr "Affichage de la publication individuelle"
 msgid "Singular Label"
 msgstr "Libellé au singulier"
 
-#: inc/tag-clouds.php:435 inc/terms-table.php:113 inc/terms-table.php:577
+#: inc/tag-clouds.php:435 inc/terms-table.php:113 inc/terms-table.php:590
 #: inc/class-tag-table.php:42 inc/class.widgets.php:240 inc/taxonomies.php:376
 msgid "Slug"
 msgstr "Slug"
 
-#: inc/taxonomies.php:415 inc/taxonomies.php:663
+#: inc/taxonomies.php:415 inc/taxonomies.php:673
 msgid "Slug already exists"
 msgstr "Ce slug existe déjà"
 
-#: inc/taxonomies.php:412 inc/taxonomies.php:660
+#: inc/taxonomies.php:412 inc/taxonomies.php:670
 msgid "Slug has changed"
 msgstr "Le slug a changé"
 
@@ -3082,11 +3046,11 @@ msgstr "Source"
 msgid "Sources"
 msgstr "Sources"
 
-#: inc/taxonomies.php:417 inc/taxonomies.php:666
+#: inc/taxonomies.php:417 inc/taxonomies.php:676
 msgid "Special character not allowed in slug."
 msgstr "Les caractères spéciaux ne sont pas permis dans le slug."
 
-#: inc/class.admin.clickterms.php:112 inc/class.admin.clickterms.php:147
+#: inc/class.admin.clickterms.php:112 inc/class.admin.clickterms.php:148
 msgid "Start typing to search"
 msgstr "Commencez à taper pour rechercher"
 
@@ -3138,6 +3102,10 @@ msgstr "Termes suggérés supprimés avec succès."
 #: inc/class.admin.suggest.php:85
 msgid "Suggested tags"
 msgstr "Étiquettes suggérées"
+
+#: inc/class.admin.clickterms.php:144
+msgid "suggested terms"
+msgstr ""
 
 #: inc/autoterms.php:813
 msgid "Support hashtags symbols # in Auto Terms."
@@ -3206,19 +3174,19 @@ msgstr "Taxonomies"
 msgid "Taxonomy"
 msgstr "Taxonomie"
 
-#: inc/taxonomies-functions.php:1759
+#: inc/taxonomies-functions.php:1767
 msgid "Taxonomy has been successfully activated"
 msgstr "La taxonomie a été activée avec succès"
 
-#: inc/taxonomies-functions.php:1750
+#: inc/taxonomies-functions.php:1758
 msgid "Taxonomy has been successfully deactivated"
 msgstr "La taxonomie a été désactivée avec succès"
 
-#: inc/taxonomies-functions.php:1768
+#: inc/taxonomies-functions.php:1776
 msgid "Taxonomy has been successfully deleted"
 msgstr "La taxonomie a été supprimée avec succès"
 
-#: inc/taxonomies.php:409 inc/taxonomies.php:657
+#: inc/taxonomies.php:409 inc/taxonomies.php:667
 msgid "Taxonomy Slug"
 msgstr "Slug de la taxonomie"
 
@@ -3330,7 +3298,7 @@ msgstr ""
 "contenu. Cela peut ne pas réussir pour tous les types de publication et de "
 "mises en page."
 
-#: inc/class.admin.manage.php:60 inc/class.admin.manage.php:173
+#: inc/class.admin.manage.php:60
 msgid "TaxoPress: Manage Terms"
 msgstr "TaxoPress : Gérer les termes"
 
@@ -3351,7 +3319,7 @@ msgstr "Modèles"
 msgid "Term"
 msgstr "Terme"
 
-#: inc/terms-table.php:248 inc/terms-functions.php:50
+#: inc/terms-table.php:248 inc/terms-functions.php:81
 msgid "Term deleted successfully."
 msgstr "Le terme a bien été supprimé."
 
@@ -3372,41 +3340,37 @@ msgstr "Classe lien de terme"
 msgid "Term link format"
 msgstr "Format du lien du terme"
 
-#: inc/terms-table.php:571
+#: inc/terms-table.php:585
 msgctxt "term name"
 msgid "Name"
 msgstr "Nom"
 
-#: inc/terms-table.php:582
+#: inc/terms-table.php:594
 msgctxt "term name"
 msgid "Taxonomy"
 msgstr "Taxonomie"
 
-#: inc/class.admin.manage.php:904
+#: inc/terms-functions.php:90
+msgid "Term removed from all posts successfully."
+msgstr ""
+
+#: inc/class.admin.manage.php:776
 msgid "Term(s) added to %1s %2s."
 msgstr "Terme(s) ajouté(s) à %1s %2s."
 
-#: inc/class.admin.manage.php:280
+#: inc/class.admin.manage.php:206
 msgid "Term(s) to add:"
 msgstr "Terme(s) à ajouter :"
 
-#: inc/class.admin.manage.php:424
-msgid "Term(s) to delete:"
-msgstr "Terme(s) à effacer:"
-
-#: inc/class.admin.manage.php:272
+#: inc/class.admin.manage.php:198
 msgid "Term(s) to match:"
 msgstr "Terme(s) à faire correspondre :"
 
-#: inc/class.admin.manage.php:351
+#: inc/class.admin.manage.php:281
 msgid "Term(s) to merge:"
 msgstr "Terme(s) à fusionner :"
 
-#: inc/class.admin.manage.php:391
-msgid "Term(s) to remove:"
-msgstr "Terme(s) à supprimer :"
-
-#: inc/class.admin.manage.php:311
+#: inc/class.admin.manage.php:239
 msgid "Term(s) to rename:"
 msgstr "Terme(s) à renommer :"
 
@@ -3476,7 +3440,7 @@ msgstr ""
 "Les termes à l’intérieur de ces balises html ne seront pas liés "
 "automatiquement."
 
-#: inc/class.admin.manage.php:252
+#: inc/class.admin.manage.php:172
 msgid "Terms will be added to all %s If no \"Term(s) to match\" is specified."
 msgstr ""
 "Les termes seront ajoutés à tous les %s si aucun « Terme(s) à correspondre » "
@@ -3523,7 +3487,7 @@ msgstr "Merci d’utiliser TaxoPress | %1sTaxoPress.com%2s | Version %3s"
 msgid "The active plugin %s is not compatible with your PHP version."
 msgstr ""
 
-#: inc/taxonomies.php:1392
+#: inc/taxonomies.php:1402
 msgid "The base slug that this taxonomy will use in the REST API."
 msgstr ""
 
@@ -3562,7 +3526,7 @@ msgstr "L’ID de la publication"
 msgid "The ID of the term"
 msgstr "L’ID du terme"
 
-#: inc/taxonomies.php:1402
+#: inc/taxonomies.php:1412
 msgid ""
 "The name of a custom Rest Controller class instead of "
 "WP_REST_Terms_Controller."
@@ -3618,17 +3582,17 @@ msgstr ""
 "similaires » affichera d’autres publications qui contiennent également les "
 "termes « WordPress » et « Site »."
 
-#: inc/taxonomies.php:1438
+#: inc/taxonomies.php:1448
 msgid "The taxonomy is for public use. It can be seen by frontend users."
 msgstr ""
 "La taxonomie est à usage public. Elle peut être vue par les utilisateurs et "
 "utilisatrices de l’interface publique."
 
-#: inc/taxonomies.php:1463
+#: inc/taxonomies.php:1473
 msgid "The taxonomy is publicly queryable."
 msgstr "La taxonomie peut être interrogée publiquement."
 
-#: inc/taxonomies.php:1347
+#: inc/taxonomies.php:1357
 msgid ""
 "The text displayed after a term has been updated for a link back to main "
 "index."
@@ -3636,7 +3600,7 @@ msgstr ""
 "Le texte affiché après la mise à jour d’un terme pour un lien vers l’index "
 "principal."
 
-#: inc/taxonomies.php:1329
+#: inc/taxonomies.php:1339
 msgid ""
 "The text displayed via clicking ‘Choose from the most used items’ in the "
 "taxonomy meta box when no items are available."
@@ -3790,7 +3754,7 @@ msgstr ""
 "Cette fonctionnalité vous permet de modifier, supprimer et ajouter des "
 "termes pour n’importe quelle taxonomie."
 
-#: inc/class.admin.manage.php:440
+#: inc/class.admin.manage.php:306
 msgid "This feature allows you to remove rarely used terms."
 msgstr ""
 "Cette fonctionnalité vous permet de supprimer les termes rarement utilisés."
@@ -3806,7 +3770,7 @@ msgstr ""
 "termes existants. « Termes suggérés\" peut également analyser votre contenu "
 "et trouver de nouvelles idées de termes."
 
-#: inc/class.admin.manage.php:250
+#: inc/class.admin.manage.php:169
 msgid ""
 "This feature lets you add one or more new terms to all %s which match any of "
 "the terms given."
@@ -3931,7 +3895,7 @@ msgstr ""
 "Ce réglage permet d’éviter que des termes rarement utilisés soient utilisés "
 "par les liens automatiques. Valeur par défaut : 1."
 
-#: inc/class.admin.manage.php:699
+#: inc/class.admin.manage.php:568
 msgid "This term is not associated with any %1$s."
 msgstr "Ce terme n’est associé à aucune %1$s."
 
@@ -3975,31 +3939,31 @@ msgstr ""
 "Pour être inclus dans les liens automatiques, un terme doit être utilisé au "
 "moins autant de fois."
 
-#: inc/autolinks.php:268
+#: inc/autolinks.php:267
 msgid "To create more Auto Links, please upgrade to TaxoPress Pro."
 msgstr ""
 "Pour créer plus des liens automatiques, veuillez passer à TaxoPress Pro."
 
-#: inc/autoterms.php:388
+#: inc/autoterms.php:387
 msgid "To create more Auto Terms, please upgrade to TaxoPress Pro."
 msgstr ""
 "Pour créer plus de termes automatiques, veuillez passer à TaxoPress Pro."
 
-#: inc/related-posts.php:266
+#: inc/related-posts.php:264
 msgid "To create more Related Posts, please upgrade to TaxoPress Pro."
 msgstr ""
 "Pour créer plus de publications similaires, veuillez passer à TaxoPress Pro."
 
-#: inc/suggestterms.php:270
+#: inc/suggestterms.php:269
 msgid "To create more Suggest Terms, please upgrade to TaxoPress Pro."
 msgstr "Pour créer plus de termes suggérés, veuillez passer à TaxoPress Pro."
 
-#: inc/tag-clouds.php:269
+#: inc/tag-clouds.php:267
 msgid "To create more Terms Display, please upgrade to TaxoPress Pro."
 msgstr ""
 "Pour créer plus d’affichage de termes, veuillez passer à TaxoPress Pro."
 
-#: inc/post-tags.php:267
+#: inc/post-tags.php:265
 msgid "To create more Terms for Current Post, please upgrade to TaxoPress Pro."
 msgstr ""
 "Pour créer plus de termes pour la publication actuelle, veuillez passer à "
@@ -4013,11 +3977,11 @@ msgstr ""
 #: inc/autoterms.php:618 inc/autoterms.php:650 inc/autoterms.php:663
 #: inc/autoterms.php:694 inc/autoterms.php:751 inc/autoterms.php:776
 #: inc/autoterms.php:801 inc/autoterms.php:876 inc/taxonomies.php:497
-#: inc/taxonomies.php:606 inc/taxonomies.php:620 inc/taxonomies.php:761
-#: inc/taxonomies.php:797 inc/taxonomies.php:823 inc/taxonomies.php:857
-#: inc/taxonomies.php:881 inc/taxonomies.php:905 inc/taxonomies.php:931
-#: inc/taxonomies.php:955 inc/taxonomies.php:980 inc/taxonomies.php:1371
-#: inc/taxonomies.php:1426 inc/taxonomies.php:1451 inc/taxonomies.php:1476
+#: inc/taxonomies.php:616 inc/taxonomies.php:630 inc/taxonomies.php:771
+#: inc/taxonomies.php:807 inc/taxonomies.php:833 inc/taxonomies.php:867
+#: inc/taxonomies.php:891 inc/taxonomies.php:915 inc/taxonomies.php:941
+#: inc/taxonomies.php:965 inc/taxonomies.php:990 inc/taxonomies.php:1381
+#: inc/taxonomies.php:1436 inc/taxonomies.php:1461 inc/taxonomies.php:1486
 msgid "True"
 msgstr "Vrai"
 
@@ -4057,16 +4021,16 @@ msgstr "« Affichage de termes » illimités"
 msgid "Unlimited “Terms for Current Posts”"
 msgstr "« Termes pour la publication actuelle » illimités"
 
-#: inc/terms-table.php:598 inc/autoterms-logs-table.php:550
+#: inc/terms-table.php:610 inc/autoterms-logs-table.php:550
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: inc/taxonomies-functions.php:1566 inc/taxonomies-functions.php:1608
+#: inc/taxonomies-functions.php:1574 inc/taxonomies-functions.php:1616
 msgid "Update %s"
 msgstr "Mettre à jour %s"
 
 #. Used for autofill
-#: inc/taxonomies.php:1087
+#: inc/taxonomies.php:1097
 msgid "Update %s name"
 msgstr "Mettre à jour le nom de %s"
 
@@ -4074,7 +4038,7 @@ msgstr "Mettre à jour le nom de %s"
 msgid "Update all &raquo;"
 msgstr "Tout mettre à jour &raquo;"
 
-#: inc/taxonomies.php:1082
+#: inc/taxonomies.php:1092
 msgid "Update Item Name"
 msgstr "Mettre à jour le nom de l’élément"
 
@@ -4137,7 +4101,7 @@ msgid "Use Regular Expressions to modify Auto Terms"
 msgstr ""
 "Utilisez des expressions régulières pour modifier les termes automatiques"
 
-#: inc/taxonomies.php:1032
+#: inc/taxonomies.php:1042
 msgid ""
 "Used as tab text when showing all terms for hierarchical taxonomy while "
 "editing post."
@@ -4145,7 +4109,7 @@ msgstr ""
 "Utilisé comme texte d’onglet lors de l’affichage de tous les termes de la "
 "taxonomie hiérarchique lors de l’édition de la publication."
 
-#: inc/taxonomies.php:1101
+#: inc/taxonomies.php:1111
 msgid ""
 "Used at the top of the term editor screen and button text for a new taxonomy "
 "term."
@@ -4153,14 +4117,14 @@ msgstr ""
 "Utilisé en haut de l’écran de l’éditeur de termes et texte du bouton pour un "
 "nouveau terme de taxonomie."
 
-#: inc/taxonomies.php:1049
+#: inc/taxonomies.php:1059
 msgid ""
 "Used at the top of the term editor screen for an existing taxonomy term."
 msgstr ""
 "Utilisé en haut de l’écran de l’éditeur de termes pour un terme de taxonomie "
 "existant."
 
-#: inc/taxonomies.php:1066
+#: inc/taxonomies.php:1076
 msgid ""
 "Used in the admin bar when viewing editor screen for an existing taxonomy "
 "term."
@@ -4168,7 +4132,7 @@ msgstr ""
 "Utilisé dans la barre d’administration lors de l’affichage de l’écran "
 "d’édition d’un terme de taxonomie existant."
 
-#: inc/taxonomies.php:1276
+#: inc/taxonomies.php:1286
 msgid ""
 "Used when indicating that there are no terms in the given taxonomy "
 "associated with an object."
@@ -4176,18 +4140,18 @@ msgstr ""
 "Utilisé pour indiquer qu’il n’y a pas de termes dans la taxonomie donnée "
 "associés à un objet."
 
-#: inc/terms-table.php:411 inc/class-taxonomies-table.php:281
+#: inc/terms-table.php:425 inc/class-taxonomies-table.php:281
 msgid "View"
 msgstr "Voir"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1552 inc/taxonomies-functions.php:1553
-#: inc/taxonomies-functions.php:1593 inc/taxonomies-functions.php:1596
-#: inc/taxonomies.php:1070
+#: inc/taxonomies-functions.php:1560 inc/taxonomies-functions.php:1561
+#: inc/taxonomies-functions.php:1601 inc/taxonomies-functions.php:1604
+#: inc/taxonomies.php:1080
 msgid "View %s"
 msgstr "Voir %s"
 
-#: inc/taxonomies.php:1065
+#: inc/taxonomies.php:1075
 msgid "View Item"
 msgstr "Voir l’élément"
 
@@ -4269,7 +4233,7 @@ msgstr ""
 "actuelle pour n’importe quelle taxonomie et ensuite afficher ces termes pour "
 "la publication actuelle n’importe où sur votre site."
 
-#: inc/taxonomies.php:773
+#: inc/taxonomies.php:783
 msgid ""
 "WordPress can use a custom permalink for this taxonomy. It does not have to "
 "match the slug."
