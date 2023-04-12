@@ -292,8 +292,10 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
 function taxopress_sanitize_text_field($content) {
 
     if (is_array($content)) {
-        return array_map('taxopress_sanitize_text_field', $content);
+        return stripslashes_deep(array_map('taxopress_sanitize_text_field', $content));
     }
+
+    $content = stripslashes_deep($content);
 
     $content = wp_kses_post($content);
     
