@@ -127,7 +127,8 @@ class SimpleTags_Client_Autolinks {
             }else{
                 $term_taxonomy = 'post_tag';
             }
-            $results = get_tags(['taxonomy' => $term_taxonomy]);
+            $results = get_tags(['taxonomy' => $term_taxonomy, 'hide_empty' => false]);
+
 			// Get cache if exist
 			$cache = wp_cache_get( 'generate_keywords', 'simple-tags' );
 			if ( $options || false === $cache ) {
@@ -804,7 +805,6 @@ class SimpleTags_Client_Autolinks {
 		}
 
         $post_tags = taxopress_get_autolink_data();
-
 
 		// user preference for this post ?
 		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
