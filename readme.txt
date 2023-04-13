@@ -239,6 +239,10 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.7.2- 2023-04-13
+* Fixed: Fatal error on v3.7.1, #1610
+* Fixed: Autolink not working with custom taxonomy, #1611
+
 v3.7.1- 2023-04-12
 * Fixed: Auto Links not working since 3.7.0 update, #1602
 * Fixed: Backslash issues when saving Auto Terms fields, #1601
