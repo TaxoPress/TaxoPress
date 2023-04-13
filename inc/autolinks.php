@@ -583,7 +583,7 @@ class SimpleTags_Autolink
                                                             'simple-tags'),
                                                         'helptext'  => esc_html__('To be included in Auto Links, a term must be used at least this many times.',
                                                             'simple-tags'),
-                                                        'min'       => '1',
+                                                        'min'       => '0',
                                                         'required'  => true,
                                                     ]);
 
@@ -596,7 +596,7 @@ class SimpleTags_Autolink
                                                             'simple-tags'),
                                                         'helptext'  => esc_html__('This setting determines the maximum number of Auto Links in one post.',
                                                             'simple-tags'),
-                                                        'min'       => '1',
+                                                        'min'       => '0',
                                                         'required'  => true,
                                                     ]);
 
@@ -609,7 +609,7 @@ class SimpleTags_Autolink
                                                             'simple-tags'),
                                                         'helptext'  => esc_html__('This setting determines the maximum number of Auto Links for each term in one post.',
                                                             'simple-tags'),
-                                                        'min'       => '1',
+                                                        'min'       => '0',
                                                         'required'  => true,
                                                     ]);
 

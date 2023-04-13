@@ -127,7 +127,8 @@ class SimpleTags_Client_Autolinks {
             }else{
                 $term_taxonomy = 'post_tag';
             }
-            $results = get_tags(['taxonomy' => $term_taxonomy]);
+            $results = get_tags(['taxonomy' => $term_taxonomy, 'hide_empty' => false]);
+
 			// Get cache if exist
 			$cache = wp_cache_get( 'generate_keywords', 'simple-tags' );
 			if ( $options || false === $cache ) {
@@ -179,9 +180,6 @@ class SimpleTags_Client_Autolinks {
             $term_taxonomy = 'post_tag';
         }
 
-		if ( 0 === $auto_link_min ) {
-			$auto_link_min = 1;
-		}
 		if( 1 === $unattached_terms ){
 			$terms = self::get_all_post_tags($options);
 		}else{
@@ -206,7 +204,7 @@ class SimpleTags_Client_Autolinks {
                     $max_char_pass = strlen($term->name) <= $autolink_max_char ? true : false;
                 }
 
-			if ( $term->count >= $auto_link_min  && $min_char_pass && $max_char_pass ) {
+			if ( $auto_link_min === 0 || ($term->count >= $auto_link_min  && $min_char_pass && $max_char_pass) ) {
 				self::$link_tags[ $term->name ] = esc_url( get_term_link( $term, $term->taxonomy ) );
 			}
 		}
@@ -284,8 +282,15 @@ class SimpleTags_Client_Autolinks {
 			}
 
 			$auto_link_replace[] = [
-				'term_name' => $term_name,
-				'term_link' => $term_link,
+				'term_name'  => $term_name,
+				'term_link'  => $term_link,
+				'case'       => $case,
+				'rel'        => $rel,
+				'options'    => '',
+				'option_id'  => 0,
+				'post_limit' => SimpleTags_Plugin::get_option_value('auto_link_max_by_post'),
+				'term_limit' => SimpleTags_Plugin::get_option_value('auto_link_max_by_tag'),
+				'type'       => 'content',
 			];
 			
 			if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
@@ -299,7 +304,7 @@ class SimpleTags_Client_Autolinks {
 			}
 		}
 		if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-			self::replace_by_links_dom( $content, $auto_link_replace, $auto_link_replace, $case, $rel );
+			self::replace_by_links_dom( $content, $auto_link_replace);
 		}
 		
 
@@ -326,6 +331,30 @@ class SimpleTags_Client_Autolinks {
 			return $content;
 		}
 
+		if (!is_array($search)) {
+			$search_lists = [];
+			$search_lists[] = [
+				'term_name'  => $search,
+				'term_link'  => $replace,
+				'case'       => $case,
+				'rel'        => $rel,
+				'options'    => $options,
+				'option_id'  => 0,
+				'option_idxx'  => 0,
+				'post_limit' => SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' ),
+				'term_limit' => SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' ),
+				'type'       => $content_type,
+			];
+		} else {
+			$search_lists = $search;
+		}
+
+		if (empty($search_lists)) {
+			return $content;
+		}
+
+		$content_type = $search_lists[0]['type'];
+
 		$content_key = $content_type . '_' . $post->ID;
 
 		if (!is_array($autolinked_contents)) {
@@ -336,17 +365,8 @@ class SimpleTags_Client_Autolinks {
 			return $autolinked_contents[$content_key];
 		}
 
-		if (!is_array($search)) {
-			$search_lists = [];
-			$search_lists[] = [
-				'term_name' => $search,
-				'term_link' => $replace,
-			];
-		} else {
-			$search_lists = $search;
-		}
-
 		$dom = new DOMDocument();
+        libxml_use_internal_errors(true);
   
         //replace html entity with their entity code
         foreach(taxopress_html_character_and_entity() as $enity => $code){
@@ -356,122 +376,151 @@ class SimpleTags_Client_Autolinks {
         $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
 		//$content = utf8_decode($content);
 
-   
-        libxml_use_internal_errors(true);
-		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
-		$result = $dom->loadHtml( mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" ) );
-
-		if ( false === $result ) {
-			return;
-		}
-
-		if($options){
-            $autolink_case = $options['autolink_case'];
-            $html_exclusion = $options['html_exclusion'];
-            $exclude_class = $options['autolink_exclude_class'];
-            $title_attribute = $options['autolink_title_attribute'];
-            $same_usage_max = $options['autolink_same_usage_max'];
-            $max_by_post = $options['autolink_usage_max'];
-            $link_class = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
-        }else{
-            $autolink_case = 'lowercase';
-            $html_exclusion = [];
-            $exclude_class = '';
-            $title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
-            $same_usage_max = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_tag' );
-            $max_by_post = SimpleTags_Plugin::get_option_value( 'auto_link_max_by_post' );
-            $link_class = '';
-        }
-
-        $html_exclusion[] = 'meta';
-        $html_exclusion[] = 'link';
-        $html_exclusion[] = 'head';
-
-        //auto link exclusion
-        $exclusion = '[not(ancestor::a)]';
-        if(count($html_exclusion) > 0){
-            foreach($html_exclusion as $exclude_ancestor){
-                $exclusion .= '[not(ancestor::'.strtolower($exclude_ancestor).')]';
-            }
-        }
-
-		// Prepare exclude terms array
-		$excludes_class = explode( ',', $exclude_class );
-		if ( !empty( $excludes_class ) ) {
-			$excludes_class = array_filter( $excludes_class );
-			$excludes_class = array_unique( $excludes_class );
-            if(count($excludes_class) > 0){
-                foreach($excludes_class as $idclass ){
-                    if(substr( trim($idclass), 0, 1 ) === "#"){
-                        $div_id = ltrim(trim($idclass), "#");
-                        $exclusion .= "[not(ancestor::div/@id='$div_id')]";
-                    }else{
-                        $div_class = ltrim(trim($idclass), ".");
-                        $exclusion .= "[not(ancestor::div/@class='$div_class')]";
-                    }
-                }
-            }
-		}
-
-
-		$xpath = new DOMXPath( $dom );
-		$j        = 0;
-        $replaced_count = 0;
+		$html_content 	      = $content;
 		$replaced_tags_counts = [];
-		$remaining_usage = $max_by_post;
+        $option_limits    	  = [];
+        $term_limits    	  = [];
+        $option_remaining 	  = [];
+        $option_tagged_counts = [];
+		$node_text            = [];
         foreach ($search_lists as $search_details) {
+			if (empty($html_content)) {
+				continue;
+			}
 			$search  = $search_details['term_name'];
 			$replace = $search_details['term_link'];
+			$case 	 = $search_details['case'];
+			$rel 	 = $search_details['rel'];
+			$options = $search_details['options'];
+
+			if(is_array($options)) {
+				$autolink_case 	 = $options['autolink_case'];
+				$html_exclusion  = $options['html_exclusion'];
+				$exclude_class 	 = $options['autolink_exclude_class'];
+				$title_attribute = $options['autolink_title_attribute'];
+				$link_class 	 = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
+			}else{
+				$autolink_case = 'lowercase';
+				$html_exclusion = [];
+				$exclude_class = '';
+				$title_attribute = SimpleTags_Plugin::get_option_value( 'auto_link_title' );
+				$link_class = '';
+			}
+
+            $detail_id = $search_details['type'] . '_' . $search_details['option_id'];
+
+            if (!isset($option_limits[$detail_id])) {
+                $option_limits[$detail_id] = $search_details['post_limit'];
+            }
+            
+            if (!isset($term_limits[$detail_id])) {
+                $term_limits[$detail_id] = $search_details['term_limit'];
+            }
+
+            if (!isset($option_remaining[$detail_id])) {
+                $option_remaining[$detail_id] = $option_limits[$detail_id];
+            }
+            
+            if (!isset($option_tagged_counts[$detail_id])) {
+                $option_tagged_counts[$detail_id] = 0;
+            }
+
+			$html_exclusion[] = 'meta';
+			$html_exclusion[] = 'link';
+			$html_exclusion[] = 'head';
+
+			//auto link exclusion
+			$exclusion = '[not(ancestor::a)]';
+			if(count($html_exclusion) > 0){
+				foreach($html_exclusion as $exclude_ancestor){
+					$exclusion .= '[not(ancestor::'.strtolower($exclude_ancestor).')]';
+				}
+			}
+
+			// Prepare exclude terms array
+			$excludes_class = explode( ',', $exclude_class );
+			if ( !empty( $excludes_class ) ) {
+				$excludes_class = array_filter( $excludes_class );
+				$excludes_class = array_unique( $excludes_class );
+				if(count($excludes_class) > 0){
+					foreach($excludes_class as $idclass ){
+						if(substr( trim($idclass), 0, 1 ) === "#"){
+							$div_id = ltrim(trim($idclass), "#");
+							$exclusion .= "[not(ancestor::div/@id='$div_id')]";
+						}else{
+							$div_class = ltrim(trim($idclass), ".");
+							$exclusion .= "[not(ancestor::div/@class='$div_class')]";
+						}
+					}
+				}
+			}
+
+			$result = $dom->loadHtml(mb_convert_encoding($html_content, 'HTML-ENTITIES', "UTF-8"));
+			if ( false === $result ) {
+				continue;
+			}
+
+			$xpath = new DOMXPath($dom);
             foreach ($xpath->query('//text()'.$exclusion.'') as $node) {
+				$note_title = sanitize_title($node->wholeText);
+				if (isset($node_text[$note_title])) {
+					$tagged_node_text = $node_text[$note_title];
+				} else {
+					$tagged_node_text = $node->wholeText;
+					$node_text[$note_title] = $tagged_node_text;
+				}
+				
                 $substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">$search</a>";
                 $link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">";
                 $link_closing = '</a>';
                 $upperterm = strtoupper($search);
                 $lowerterm = strtolower($search);
 
-				if ($max_by_post > 0 && $remaining_usage === 0) {
+				if ($option_limits[$detail_id] > 0 && $option_remaining[$detail_id] === 0) {
 					break;
 				}
 
-				if ($same_usage_max > 0 && array_key_exists($search, $replaced_tags_counts) && $replaced_tags_counts[$search] >= $same_usage_max) {
+				if ($term_limits[$detail_id] > 0 && array_key_exists($search, $replaced_tags_counts) && $replaced_tags_counts[$search] >= $term_limits[$detail_id]) {
 					continue;
 				}
 
-                if ('i' === $case) {
+				$replaced = str_ireplace($search, $substitute, $node_text[$note_title], $rep_count);
+				
+                /*if ('i' === $case) {
                     if ($autolink_case === 'none') {//retain case
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
                     } elseif ($autolink_case === 'uppercase') {//uppercase
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
                     } elseif ($autolink_case === 'termcase') {//termcase
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
                     } else {//lowercase
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
                     }
                 } else {
-                    $replaced = str_replace($search, $substitute, $node->wholeText);
-                }
+                    $replaced = str_ireplace($search, $substitute, $node_text[$note_title], $rep_count);
+                }*/
 
                 if ($replaced && !empty(trim($replaced))) {
-                    $j ++;
                     if ($rep_count > 0) {
+						$node_text[$note_title] = $replaced;
 						if (array_key_exists($search, $replaced_tags_counts)) {
 							$replaced_tags_counts[$search] = $replaced_tags_counts[$search] + $rep_count;
 						} else {
 							$replaced_tags_counts[$search] = $rep_count;
 						}
-                        $replaced_count = $replaced_count+$rep_count;
-                        self::$tagged_link_count = self::$tagged_link_count+$rep_count;
+                        $option_tagged_counts[$detail_id] = $option_tagged_counts[$detail_id]+$rep_count;
                     }
                 }
                 $newNode = $dom->createDocumentFragment();
-                $newNode->appendXML($replaced);
+                $newNode->appendXML($node_text[$note_title]);
                 $node->parentNode->replaceChild($newNode, $node);
-				$remaining_usage = $max_by_post-self::$tagged_link_count;
+				$option_remaining[$detail_id] = $option_limits[$detail_id]-$option_tagged_counts[$detail_id];
             }
+			$html_content = mb_substr($dom->saveHTML($xpath->query('//body')->item(0)), 6, - 7, "UTF-8");
         }
      
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
-		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
+		$content = $html_content;
 		$content = str_replace('|--|','&#',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
 		$content = str_replace('&#60;','<',$content);
 		$content = str_replace('&#62;','>',$content);
@@ -710,8 +759,15 @@ class SimpleTags_Client_Autolinks {
 			}
 
 			$auto_link_replace[] = [
-				'term_name' => $term_name,
-				'term_link' => $term_link,
+				'term_name'  => $term_name,
+				'term_link'  => $term_link,
+				'case'       => $case,
+				'rel'        => $rel,
+				'options'    => '',
+				'option_id'  => 0,
+				'post_limit' => SimpleTags_Plugin::get_option_value('auto_link_max_by_post'),
+				'term_limit' => SimpleTags_Plugin::get_option_value('auto_link_max_by_tag'),
+				'type'       => 'content',
 			];
 			
 			if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
@@ -726,7 +782,7 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-			self::replace_by_links_dom( $title, $auto_link_replace, $auto_link_replace, $case, $rel, false, 'title' );
+			self::replace_by_links_dom( $title, $auto_link_replace );
 		}
 
 		return $title;
@@ -749,7 +805,6 @@ class SimpleTags_Client_Autolinks {
 		}
 
         $post_tags = taxopress_get_autolink_data();
-
 
 		// user preference for this post ?
 		$meta_value = get_post_meta( $post->ID, '_exclude_autolinks', true );
@@ -825,8 +880,15 @@ class SimpleTags_Client_Autolinks {
 						}
 
 						$auto_link_replace[] = [
-							'term_name' => $term_name,
-							'term_link' => $term_link,
+							'term_name'  => $term_name,
+							'term_link'  => $term_link,
+							'case'       => $case,
+							'rel'        => $rel,
+							'options'    => $post_tag,
+                            'option_id'  => $post_tag['ID'],
+							'post_limit' => $post_tag['autolink_usage_max'],
+							'term_limit' => $post_tag['autolink_same_usage_max'],
+							'type'       => 'content',
 						];
 						
 						if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
@@ -836,7 +898,7 @@ class SimpleTags_Client_Autolinks {
 				}
 			}
 			if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-				self::replace_by_links_dom( $content, $auto_link_replace, $auto_link_replace, $case, $rel, $post_tag );
+				self::replace_by_links_dom( $content, $auto_link_replace );
 			}
     	}
 		return $content;
@@ -937,8 +999,15 @@ class SimpleTags_Client_Autolinks {
 			}
 
 			$auto_link_replace[] = [
-				'term_name' => $term_name,
-				'term_link' => $term_link,
+				'term_name'  => $term_name,
+				'term_link'  => $term_link,
+				'case'       => $case,
+				'rel'        => $rel,
+				'options'    => $post_tag,
+				'option_id'  => $post_tag['ID'],
+				'post_limit' => $post_tag['autolink_usage_max'],
+				'term_limit' => $post_tag['autolink_same_usage_max'],
+				'type'       => 'content',
 			];
 			
 			if (!class_exists( 'DOMDocument' ) || !class_exists( 'DOMXPath' ) ) {
@@ -946,7 +1015,7 @@ class SimpleTags_Client_Autolinks {
 			}
 		}
 		if (class_exists( 'DOMDocument' ) && class_exists( 'DOMXPath' ) ) {
-			self::replace_by_links_dom( $title, $auto_link_replace, $auto_link_replace, $case, $rel, $post_tag, 'title' );
+			self::replace_by_links_dom( $title, $auto_link_replace);
 		}
     }
     }
