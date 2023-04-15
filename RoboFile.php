@@ -7,6 +7,7 @@
  */
 class RoboFile extends \PublishPressBuilder\PackageBuilderTasks
 {
+//todo
     public function __construct()
     {
         $this->setPluginFileName('simple-tags.php');
