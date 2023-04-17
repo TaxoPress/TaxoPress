@@ -422,13 +422,13 @@ class SimpleTags_Client_Autolinks {
             if (!isset($option_limits[$detail_id])) {
                 $option_limits[$detail_id] = $search_details['post_limit'];
             }
-            
-            if (!isset($term_limits[$detail_id])) {
-                $term_limits[$detail_id] = $search_details['term_limit'];
-            }
 
             if (!isset($option_remaining[$detail_id])) {
                 $option_remaining[$detail_id] = $option_limits[$detail_id];
+            }
+            
+            if (!isset($term_limits[$detail_id])) {
+                $term_limits[$detail_id] = min($search_details['term_limit'], $option_remaining[$detail_id]);
             }
             
             if (!isset($option_tagged_counts[$detail_id])) {
@@ -471,8 +471,10 @@ class SimpleTags_Client_Autolinks {
                 $link_closing = '</a>';
                 $upperterm = strtoupper($search);
                 $lowerterm = strtolower($search);
+				
 
-				if ($option_limits[$detail_id] > 0 && $option_remaining[$detail_id] === 0) {
+
+				if ($option_limits[$detail_id] > 0 && 0 >= $option_remaining[$detail_id]) {
 					break;
 				}
 
@@ -480,9 +482,10 @@ class SimpleTags_Client_Autolinks {
 					continue;
 				}
 
-				$same_usage_max = $option_remaining[$detail_id];
 				if ($term_limits[$detail_id] > 0 && array_key_exists($search, $replaced_tags_counts)) {
 					$same_usage_max = min($term_limits[$detail_id] - $replaced_tags_counts[$search], $option_remaining[$detail_id]);
+				} else {
+					$same_usage_max = min($term_limits[$detail_id], $option_remaining[$detail_id]);
 				}
 
                 //if ('i' === $case) {
@@ -508,15 +511,15 @@ class SimpleTags_Client_Autolinks {
 							$replaced_tags_counts[$search] = $rep_count;
 						}
 						$option_tagged_counts[$detail_id] = $option_tagged_counts[$detail_id]+$rep_count;
+						$option_remaining[$detail_id] = $option_limits[$detail_id]-$option_tagged_counts[$detail_id];
                     }
                 }
                 $newNode = $dom->createDocumentFragment();
                 $newNode->appendXML($replaced);
                 $node->parentNode->replaceChild($newNode, $node);
-				$option_remaining[$detail_id] = $option_limits[$detail_id]-$option_tagged_counts[$detail_id];
-                /*if ($replaced_count >= $same_usage_max || 0 === (int) $same_usage_max) {// Limit replacement at 1 by default, or options value !
+                if ($option_remaining[$detail_id] === 0) {
                     break;
-                }*/
+                }
             }
         }
 
