@@ -239,6 +239,12 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
+v3.7.3- 2023-04-18
+* Fixed: 3.7.2 Auto links issue, #1625
+* Fixed: "Maximum number of links per post" not working, #1627
+* Fixed: Term case isn't working, #1622
+* Fixed: Fix "Maximum number of links for the same term", #1620
+
 v3.7.2- 2023-04-13
 * Fixed: Fatal error on v3.7.1, #1610
 * Fixed: Autolink not working with custom taxonomy, #1611
