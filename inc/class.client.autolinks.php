@@ -374,6 +374,7 @@ class SimpleTags_Client_Autolinks {
         }
 		$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
         $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
+		$content = '||starttaxopressrandom||' . $content . '||endtaxopressrandom||';//we're having issue when content start with styles https://wordpress.org/support/topic/3-7-2-auto-link-case-not-working/#post-16665257
 		//$content = utf8_decode($content);
 
         libxml_use_internal_errors(true);
@@ -537,6 +538,9 @@ class SimpleTags_Client_Autolinks {
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
         $content = str_replace('%7C--%7C038;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/1377
+
+		$content = str_replace('||starttaxopressrandom||', '',  $content);
+		$content = str_replace('||endtaxopressrandom||', '', $content);
 		
 	}
 
