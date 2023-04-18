@@ -128,7 +128,6 @@ class SimpleTags_Client_Autolinks {
                 $term_taxonomy = 'post_tag';
             }
             $results = get_tags(['taxonomy' => $term_taxonomy, 'hide_empty' => false]);
-
 			// Get cache if exist
 			$cache = wp_cache_get( 'generate_keywords', 'simple-tags' );
 			if ( $options || false === $cache ) {
@@ -204,7 +203,7 @@ class SimpleTags_Client_Autolinks {
                     $max_char_pass = strlen($term->name) <= $autolink_max_char ? true : false;
                 }
 
-			if ( $auto_link_min === 0 || ($term->count >= $auto_link_min  && $min_char_pass && $max_char_pass) ) {
+			if ( $auto_link_min === 0 || $term->count >= $auto_link_min  && $min_char_pass && $max_char_pass ) {
 				self::$link_tags[ $term->name ] = esc_url( get_term_link( $term, $term->taxonomy ) );
 			}
 		}
@@ -327,9 +326,12 @@ class SimpleTags_Client_Autolinks {
 	private static function replace_by_links_dom( &$content, $search = '', $replace = '', $case = '', $rel = '', $options = false, $content_type = 'content' ) {
 		global $post, $autolinked_contents;
 
-		if (!is_object($post) || !isset($post->ID)) {
+		if (!is_object($post) || !isset($post->ID) || empty($content)) {
 			return $content;
 		}
+
+		$dom = new DOMDocument();
+        
 
 		if (!is_array($search)) {
 			$search_lists = [];
@@ -362,21 +364,31 @@ class SimpleTags_Client_Autolinks {
 		}
 
 		if (isset($autolinked_contents[$content_key])) {
-			return $autolinked_contents[$content_key];
+			$content = $autolinked_contents[$content_key];
+			return $content;
 		}
 
-		$dom = new DOMDocument();
-        libxml_use_internal_errors(true);
-  
         //replace html entity with their entity code
         foreach(taxopress_html_character_and_entity() as $enity => $code){
            $content = str_replace($enity, $code,$content);
         }
 		$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
         $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
+		$content = '||starttaxopressrandom||' . $content . '||endtaxopressrandom||';//we're having issue when content start with styles https://wordpress.org/support/topic/3-7-2-auto-link-case-not-working/#post-16665257
 		//$content = utf8_decode($content);
 
-		$html_content 	      = $content;
+        libxml_use_internal_errors(true);
+		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
+		$result = $dom->loadHtml( mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" ) );
+
+		if ( false === $result ) {
+			return;
+		}
+
+		$xpath = new DOMXPath( $dom );
+		$j        = 0;
+        $replaced_count = 0;
+
 		$replaced_tags_counts = [];
         $option_limits    	  = [];
         $term_limits    	  = [];
@@ -384,14 +396,13 @@ class SimpleTags_Client_Autolinks {
         $option_tagged_counts = [];
 		$node_text            = [];
         foreach ($search_lists as $search_details) {
-			if (empty($html_content)) {
-				continue;
-			}
+
 			$search  = $search_details['term_name'];
 			$replace = $search_details['term_link'];
 			$case 	 = $search_details['case'];
 			$rel 	 = $search_details['rel'];
 			$options = $search_details['options'];
+
 
 			if(is_array($options)) {
 				$autolink_case 	 = $options['autolink_case'];
@@ -412,13 +423,13 @@ class SimpleTags_Client_Autolinks {
             if (!isset($option_limits[$detail_id])) {
                 $option_limits[$detail_id] = $search_details['post_limit'];
             }
-            
-            if (!isset($term_limits[$detail_id])) {
-                $term_limits[$detail_id] = $search_details['term_limit'];
-            }
 
             if (!isset($option_remaining[$detail_id])) {
                 $option_remaining[$detail_id] = $option_limits[$detail_id];
+            }
+            
+            if (!isset($term_limits[$detail_id])) {
+                $term_limits[$detail_id] = min($search_details['term_limit'], $option_remaining[$detail_id]);
             }
             
             if (!isset($option_tagged_counts[$detail_id])) {
@@ -455,28 +466,16 @@ class SimpleTags_Client_Autolinks {
 				}
 			}
 
-			$result = $dom->loadHtml(mb_convert_encoding($html_content, 'HTML-ENTITIES', "UTF-8"));
-			if ( false === $result ) {
-				continue;
-			}
-
-			$xpath = new DOMXPath($dom);
             foreach ($xpath->query('//text()'.$exclusion.'') as $node) {
-				$note_title = sanitize_title($node->wholeText);
-				if (isset($node_text[$note_title])) {
-					$tagged_node_text = $node_text[$note_title];
-				} else {
-					$tagged_node_text = $node->wholeText;
-					$node_text[$note_title] = $tagged_node_text;
-				}
-				
                 $substitute = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">$search</a>";
                 $link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag '.$link_class.'" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">";
                 $link_closing = '</a>';
                 $upperterm = strtoupper($search);
                 $lowerterm = strtolower($search);
+				
 
-				if ($option_limits[$detail_id] > 0 && $option_remaining[$detail_id] === 0) {
+
+				if ($option_limits[$detail_id] > 0 && 0 >= $option_remaining[$detail_id]) {
 					break;
 				}
 
@@ -484,62 +483,65 @@ class SimpleTags_Client_Autolinks {
 					continue;
 				}
 
-				$replaced = str_ireplace($search, $substitute, $node_text[$note_title], $rep_count);
-				
-                /*if ('i' === $case) {
+				if ($term_limits[$detail_id] > 0 && array_key_exists($search, $replaced_tags_counts)) {
+					$same_usage_max = min($term_limits[$detail_id] - $replaced_tags_counts[$search], $option_remaining[$detail_id]);
+				} else {
+					$same_usage_max = min($term_limits[$detail_id], $option_remaining[$detail_id]);
+				}
+
+                //if ('i' === $case) {
                     if ($autolink_case === 'none') {//retain case
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                     } elseif ($autolink_case === 'uppercase') {//uppercase
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                     } elseif ($autolink_case === 'termcase') {//termcase
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                     } else {//lowercase
-                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node_text[$note_title], $term_limits[$detail_id], $rep_count);
+                        $replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
                     }
-                } else {
-                    $replaced = str_ireplace($search, $substitute, $node_text[$note_title], $rep_count);
+                /*} else {
+                    $replaced = str_replace($search, $substitute, $node->wholeText);
                 }*/
 
                 if ($replaced && !empty(trim($replaced))) {
+                    $j ++;
                     if ($rep_count > 0) {
-						$node_text[$note_title] = $replaced;
 						if (array_key_exists($search, $replaced_tags_counts)) {
 							$replaced_tags_counts[$search] = $replaced_tags_counts[$search] + $rep_count;
 						} else {
 							$replaced_tags_counts[$search] = $rep_count;
 						}
-                        $option_tagged_counts[$detail_id] = $option_tagged_counts[$detail_id]+$rep_count;
+						$option_tagged_counts[$detail_id] = $option_tagged_counts[$detail_id]+$rep_count;
+						$option_remaining[$detail_id] = $option_limits[$detail_id]-$option_tagged_counts[$detail_id];
                     }
                 }
                 $newNode = $dom->createDocumentFragment();
-                $newNode->appendXML($node_text[$note_title]);
+                $newNode->appendXML($replaced);
                 $node->parentNode->replaceChild($newNode, $node);
-				$option_remaining[$detail_id] = $option_limits[$detail_id]-$option_tagged_counts[$detail_id];
+                if ($option_remaining[$detail_id] === 0) {
+                    break;
+                }
             }
-			$html_content = mb_substr($dom->saveHTML($xpath->query('//body')->item(0)), 6, - 7, "UTF-8");
         }
-     
+
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
-		$content = $html_content;
+		$content = mb_substr( $dom->saveHTML( $xpath->query( '//body' )->item( 0 ) ), 6, - 7, "UTF-8" );
 		$content = str_replace('|--|','&#',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
 		$content = str_replace('&#60;','<',$content);
 		$content = str_replace('&#62;','>',$content);
         foreach(taxopress_html_character_and_entity(true) as $enity => $code){
           $content = str_replace($enity, $code,$content);
         }
-        
-
 		$content = str_replace('&amp ;rsquo;','&rsquo;',$content);
 		$content = str_replace(['’', ' ’', '&rsquor;', ' &rsquor;', '&rsquo;', ' &rsquo;'],'\'', $content);
 
         $content = str_replace('&#38;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/770
         $content = str_replace(';amp;',';',$content); //https://github.com/TaxoPress/TaxoPress/issues/810
         $content = str_replace('%7C--%7C038;','&',$content); //https://github.com/TaxoPress/TaxoPress/issues/1377
-	
 
-		$autolinked_contents[$content_key] = $content;
-		$content = $content;
-
+		$content = str_replace('||starttaxopressrandom||', '',  $content);
+		$content = str_replace('||endtaxopressrandom||', '', $content);
+		
 	}
 
 	/**
