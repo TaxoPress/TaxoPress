@@ -17,7 +17,7 @@ class TaxopressCoreAdmin {
                         function ($settings) {
                             $settings['publishpress-taxopress'] = [
                                 'message' => 'You\'re using TaxoPress Free. The Pro version has more features and support. %sUpgrade to Pro%s',
-                                'link'    => 'https://taxopress.com/pro',
+                                'link'    => 'https://taxopress.com/taxopress/',
                                 'screens' => [
                                     ['base' => 'taxopress_page_st_taxonomies', 'id'   => 'taxopress_page_st_taxonomies'],
                                     ['base' => 'taxopress_page_st_mass_terms', 'id'   => 'taxopress_page_st_mass_terms'],
@@ -46,7 +46,7 @@ class TaxopressCoreAdmin {
                             $settings['publishpress-taxopress'] = [
                                 'parent' => 'st_options',
                                 'label'  => 'Upgrade to Pro',
-                                'link'   => 'https://taxopress.com/pro',
+                                'link'   => 'https://taxopress.com/taxopress/',
                             ];
 
                             return $settings;
@@ -100,7 +100,7 @@ class TaxopressCoreAdmin {
                             <li><?php echo esc_html__('No ads inside the plugin', 'simple-tags'); ?></li>
                         </ul>
                         <div class="upgrade-btn">
-                            <a href="https://taxopress.com/pro" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@ class TaxopressCoreAdmin {
                     <div class="inside-content">
                         <p><?php echo esc_html__('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add terms to your imported content.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
-                            <a href="https://taxopress.com/pro" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@ class TaxopressCoreAdmin {
                     <div class="inside-content">
                         <p><?php echo esc_html__('TaxoPress Pro allows you to generate new terms for your content using the Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
-                            <a href="https://taxopress.com/pro" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -202,7 +202,7 @@ class TaxopressCoreAdmin {
                     <div class="inside-content">
                         <p><?php echo esc_html__('TaxoPress Pro allows you to change how Auto Terms analyzes your posts. You will need to know how to write Regular Expressions to use this feature.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
-                            <a href="https://taxopress.com/pro" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
                     </div>
                 </div>
