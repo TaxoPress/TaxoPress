@@ -547,6 +547,7 @@ class SimpleTags_Admin {
 
 				$sanitized_options = [];
 				foreach ($options as $key => $value) {
+					$value = isset($_POST[$key]) ? $_POST[$key] : '';
 					if (!is_array($value)) {
 						$sanitized_options[$key] = taxopress_sanitize_text_field($value);
 					} else {
