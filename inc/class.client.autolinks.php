@@ -31,8 +31,8 @@ class SimpleTags_Client_Autolinks {
 		    }
 
             //new UI
-            add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
-            add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 12);
+            add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 9);
+            add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 9);
     }
 
 	}
