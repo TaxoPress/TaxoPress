@@ -31,8 +31,8 @@ class SimpleTags_Client_Autolinks {
 		    }
 
             //new UI
-            add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 9);
-            add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 9);
+            add_filter('the_content', array( __CLASS__, 'taxopress_autolinks_the_content'), 12);
+            add_filter('the_title', array( __CLASS__, 'taxopress_autolinks_the_title'), 12);
     }
 
 	}
@@ -372,8 +372,8 @@ class SimpleTags_Client_Autolinks {
         foreach(taxopress_html_character_and_entity() as $enity => $code){
            $content = str_replace($enity, $code,$content);
         }
-		$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
-        $content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
+		//$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
+        //$content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
 		$content = '||starttaxopressrandom||' . $content . '||endtaxopressrandom||';//we're having issue when content start with styles https://wordpress.org/support/topic/3-7-2-auto-link-case-not-working/#post-16665257
 		//$content = utf8_decode($content);
 
@@ -384,7 +384,7 @@ class SimpleTags_Client_Autolinks {
 		if ( false === $result ) {
 			return;
 		}
-
+		
 		$xpath = new DOMXPath( $dom );
 		$j        = 0;
         $replaced_count = 0;
@@ -403,6 +403,7 @@ class SimpleTags_Client_Autolinks {
 			$rel 	 = $search_details['rel'];
 			$options = $search_details['options'];
 
+			$search = str_replace('&amp;','||taxopressamp||',$search);// https://github.com/TaxoPress/TaxoPress/issues/1638
 
 			if(is_array($options)) {
 				$autolink_case 	 = $options['autolink_case'];

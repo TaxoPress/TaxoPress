@@ -274,6 +274,7 @@ function taxopress_html_character_and_entity($enity_code_as_key = false){
         '&rsquor;'   => '&#8217;',
         '&lsquo;'   => '&#8216;',
         '&lsquor;'   => '&#8218;',
+        '&amp;'   => '||taxopressamp||',
     ];
 
     if($enity_code_as_key){
