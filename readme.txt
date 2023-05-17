@@ -239,7 +239,7 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
-v3.7.4- 2023-05-16
+v3.7.4- 2023-05-17
 * Fixed: Settings changes not saving, #1635
 * Fixed: Auto Links has problems with the & character, #1638
 * Fixed: Auto Links has problems with the < > characters, #1637
