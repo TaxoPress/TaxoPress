@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 6.2
-Stable tag: 3.7.3
+Stable tag: 3.7.4
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -238,6 +238,13 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.7.4- 2023-05-17
+* Fixed: Settings changes not saving, #1635
+* Fixed: Auto Links has problems with the & character, #1638
+* Fixed: Auto Links has problems with the < > characters, #1637
+* Update: Update Pro links to the plugin page, #1636
+* Update: Updating Translations ES-FR-IT_TaxoPress 28 April 2023, #1639
 
 v3.7.3- 2023-04-18
 * Fixed: 3.7.2 Auto links issue, #1625

@@ -804,7 +804,7 @@ class SimpleTags_Autolink
                                         The Pro version has more features and support.', 'simple-tags'); ?>
                                     </div>
                                     <div class="pp-version-notice-bold-purple-button"><a
-                                            href="https://taxopress.com/pro" target="_blank"><?php esc_html_e('Upgrade to Pro', 'simple-tags'); ?></a>
+                                            href="https://taxopress.com/taxopress/" target="_blank"><?php esc_html_e('Upgrade to Pro', 'simple-tags'); ?></a>
                                     </div>
                                 </div>
 

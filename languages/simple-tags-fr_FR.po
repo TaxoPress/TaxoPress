@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Plugins - TaxoPress is the WordPress Tag, Category, and "
 "Taxonomy Manager - Stable (latest release)\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-04-12 13:19+0000\n"
+"PO-Revision-Date: 2023-04-28 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Poedit 3.0.1\n"
 
 #: inc/class.admin.mass.php:83
 msgid "%1$s %2$s(s) terms updated with success !"
@@ -64,7 +64,7 @@ msgstr "%s n’a pas pu être mis à jour"
 #: inc/class.compatibility.php:40
 #, php-format
 msgid "%s is the minimum version required for this plugin."
-msgstr ""
+msgstr "%s est la version minimale nécessaire pour cette extension."
 
 #. Used for autofill
 #: inc/taxonomies.php:1326
@@ -227,22 +227,22 @@ msgstr "il y a 7 jours"
 
 #: inc/helper.options.default.php:48 inc/class.client.related_posts.php:103
 msgid ""
-"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
-"%post_title%</a> (%post_comment%)"
+"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title"
+"%</a> (%post_comment%)"
 msgstr ""
-"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
-"%post_title%</a> (%post_comment%)"
+"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title"
+"%</a> (%post_comment%)"
 
 #: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:271
 #: inc/helper.options.default.php:60
 msgid ""
-"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
-"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
-"%tag_color%\">%tag_name%</a>"
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%"
+"\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">"
+"%tag_name%</a>"
 msgstr ""
-"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
-"t%tag_scale%\" title=\"%tag_count% publications\" %tag_rel% "
-"style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%"
+"\" title=\"%tag_count% publications\" %tag_rel% style=\"%tag_size% %tag_color"
+"%\">%tag_name%</a>"
 
 #: inc/helper.options.default.php:38
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
@@ -250,11 +250,11 @@ msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 
 #: inc/post-tags-functions.php:155 inc/class.client.post_tags.php:111
 msgid ""
-"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
-"%tag_name%</a>"
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</"
+"a>"
 msgstr ""
-"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
-"%tag_name%</a>"
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</"
+"a>"
 
 #: inc/helper.options.admin.php:242 inc/helper.options.admin.php:321
 #: inc/helper.options.admin.php:467
@@ -359,8 +359,8 @@ msgstr "<code>singleonly</code> &ndash; Seulement sur votre vue unique."
 
 #: inc/helper.options.admin.php:469
 msgid ""
-"<code>singular</code> &ndash; Only on your singular view (single post & page)"
-" (default)."
+"<code>singular</code> &ndash; Only on your singular view (single post & "
+"page) (default)."
 msgstr ""
 "<code>singular</code> &ndash; Seulement sur votre vue singulière "
 "(publication et page uniques) (par défaut)."
@@ -576,7 +576,7 @@ msgstr "Ajoutez des termes à tous les %s."
 
 #: inc/taxonomies.php:1393
 msgid "Add the taxonomy to the WordPress wp-json API."
-msgstr ""
+msgstr "Ajouter la taxonomie à l’API wp-json de WordPress."
 
 #: inc/taxonomies.php:355
 msgid "Admin Area"
@@ -722,10 +722,10 @@ msgstr "Liens automatiques"
 
 #: inc/autolinks.php:130 inc/helper.options.admin.php:37
 msgid ""
-"Auto Links can automatically create links to your defined terms. For example,"
-" if you have a term called “WordPress”, the Auto Links feature can find the "
-"word “WordPress” in your content and add links to the archive page for that "
-"term."
+"Auto Links can automatically create links to your defined terms. For "
+"example, if you have a term called “WordPress”, the Auto Links feature can "
+"find the word “WordPress” in your content and add links to the archive page "
+"for that term."
 msgstr ""
 "Les liens automatiques peuvent créer automatiquement des liens vers vos "
 "termes définis. Par exemple, si vous avez un terme appelé « WordPress », la "
@@ -1118,10 +1118,9 @@ msgid "Default Taxonomy"
 msgstr "Taxonomie par défaut"
 
 #: inc/taxonomies.php:535
-#, fuzzy
 #| msgid "Default Term"
 msgid "Default Terms"
-msgstr "Terme par défaut"
+msgstr "Termes par défaut"
 
 #: inc/autoterms-table.php:275 inc/terms-table.php:158 inc/terms-table.php:417
 #: inc/post-tags-table.php:275 inc/related-posts-table.php:276
@@ -1326,9 +1325,9 @@ msgstr "Activez cette instance de liens automatiques pour :"
 
 #: inc/helper.options.admin.php:218
 msgid ""
-"Enabling this will allow Wordpress to look for tag cloud shortcode <code>"
-"[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. "
-"WordPress replace this shortcode by a tag cloud."
+"Enabling this will allow Wordpress to look for tag cloud shortcode "
+"<code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying "
+"posts. WordPress replace this shortcode by a tag cloud."
 msgstr ""
 "L’activation de cette option permet à WordPress de rechercher le code court "
 "<code>[st_tag_cloud]</code> ou <code>[st-tag-cloud]</code> du nuage "
@@ -1405,8 +1404,8 @@ msgid ""
 msgstr ""
 "Exemple: Vous avez un mot clef nommé \"WordPress\" et le contenu de votre "
 "article contient le mot \"wordpress\", cette fonctionnalité remplacera le "
-"mot \"wordpress\" par un lien \"wordpress\" pointant sur la page du mot clef."
-" (http://monblog.net/tag/wordpress/)"
+"mot \"wordpress\" par un lien \"wordpress\" pointant sur la page du mot "
+"clef. (http://monblog.net/tag/wordpress/)"
 
 #: inc/autolinks.php:297
 msgid "Exceptions"
@@ -1606,8 +1605,8 @@ msgstr ""
 #: review-request/review.php:275
 msgid ""
 "Hey, you've been using TaxoPress for %s on your site. We hope the plugin has "
-"been useful. Please could you quickly leave a 5-star rating on WordPress.org?"
-" It really does help to keep TaxoPress growing."
+"been useful. Please could you quickly leave a 5-star rating on WordPress."
+"org? It really does help to keep TaxoPress growing."
 msgstr ""
 "Bonjour, vous utilisez TaxoPress depuis %s sur votre site. Nous espérons que "
 "l’extension vous a été utile. Pourriez-vous rapidement laisser une "
@@ -1679,6 +1678,8 @@ msgid ""
 "If your website language does not use the A-Z alphabet, %1s please read this "
 "documentation. %2s"
 msgstr ""
+"Si la langue de votre site n’utilise pas l’alphabet A-Z, %1s veuillez lire "
+"cette documentation. %2s"
 
 #: inc/helper.options.admin.php:439
 msgid "Ignore case for auto link feature ?"
@@ -2130,7 +2131,7 @@ msgstr "Aucune étiquette."
 
 #: inc/class-taxonomies-table.php:93
 msgid "No taxonomies found."
-msgstr ""
+msgstr "Aucune taxonomie n’a été trouvée."
 
 #: inc/class.admin.manage.php:774
 msgid "No term added."
@@ -2174,7 +2175,7 @@ msgstr ""
 
 #: inc/terms-table.php:271
 msgid "No terms found."
-msgstr ""
+msgstr "Aucun terme n’a été trouvé."
 
 #: inc/class.admin.suggest.php:334 inc/class.admin.clickterms.php:221
 msgid "No terms in your WordPress database."
@@ -2400,8 +2401,8 @@ msgstr ""
 #: inc/taxonomies-functions.php:1193
 msgid "Please do not use quotes in post type/taxonomy names or rewrite slugs"
 msgstr ""
-"Veuillez ne pas utiliser de guillemets dans les noms de type de "
-"publication/taxonomie ou les slugs de réécriture"
+"Veuillez ne pas utiliser de guillemets dans les noms de type de publication/"
+"taxonomie ou les slugs de réécriture"
 
 #: inc/taxonomies-functions.php:1156
 msgid "Please provide a post type to attach to."
@@ -2654,7 +2655,7 @@ msgstr "Les publications similaires ont été supprimées avec succès."
 
 #: inc/terms-table.php:403
 msgid "Remove From All Posts"
-msgstr ""
+msgstr "Retirer de toutes les publications"
 
 #: inc/class.admin.manage.php:304
 msgid "Remove rarely used terms"
@@ -2921,12 +2922,14 @@ msgid ""
 "Set the default terms for this taxonomy. Enter the term names or slugs. "
 "Separate multiple terms with by comma."
 msgstr ""
+"Définissez les termes par défaut pour cette taxonomie. Saisissez les noms "
+"des termes ou les slugs. Séparez les termes multiples par une virgule."
 
 #: inc/taxonomies.php:1520
 msgid ""
-"Sets a callback function name for the meta box display. Hierarchical default:"
-" post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To "
-"remove the metabox completely, use \"false\"."
+"Sets a callback function name for the meta box display. Hierarchical "
+"default: post_categories_meta_box, non-hierarchical default: "
+"post_tags_meta_box. To remove the metabox completely, use \"false\"."
 msgstr ""
 "Définit un nom de fonction de rappel pour l’affichage de la boîte méta. "
 "Hiérarchique par défaut : post_categories_meta_box, non-hiérarchique par "
@@ -3001,7 +3004,7 @@ msgstr "Afficher dans les menus de l’administration"
 
 #: inc/taxonomies.php:1001
 msgid "Show in Filter"
-msgstr ""
+msgstr "Afficher dans le filtre"
 
 #: inc/taxonomies.php:926
 msgid "Show in frontend menus"
@@ -3105,7 +3108,7 @@ msgstr "Étiquettes suggérées"
 
 #: inc/class.admin.clickterms.php:144
 msgid "suggested terms"
-msgstr ""
+msgstr "termes suggérés"
 
 #: inc/autoterms.php:813
 msgid "Support hashtags symbols # in Auto Terms."
@@ -3215,7 +3218,7 @@ msgstr ""
 
 #: inc/autolinks.php:869 inc/autoterms.php:1118
 msgid "TaxoPress and Languages"
-msgstr ""
+msgstr "TaxoPress et les langues"
 
 #: inc/class.admin.php:470 inc/class.admin.php:471 inc/class.admin.php:473
 #: inc/class.admin.php:478
@@ -3352,7 +3355,7 @@ msgstr "Taxonomie"
 
 #: inc/terms-functions.php:90
 msgid "Term removed from all posts successfully."
-msgstr ""
+msgstr "Le terme a bien été retiré de toutes les publications."
 
 #: inc/class.admin.manage.php:776
 msgid "Term(s) added to %1s %2s."
@@ -3485,11 +3488,11 @@ msgstr "Merci d’utiliser TaxoPress | %1sTaxoPress.com%2s | Version %3s"
 #: inc/class.compatibility.php:38
 #, php-format
 msgid "The active plugin %s is not compatible with your PHP version."
-msgstr ""
+msgstr "L’extension active %s n’est pas compatible avec votre version de PHP."
 
 #: inc/taxonomies.php:1402
 msgid "The base slug that this taxonomy will use in the REST API."
-msgstr ""
+msgstr "Le slug de base que cette taxonomie utilisera dans l’API REST."
 
 #: inc/helper.options.admin.php:180
 msgid ""
@@ -3531,6 +3534,8 @@ msgid ""
 "The name of a custom Rest Controller class instead of "
 "WP_REST_Terms_Controller."
 msgstr ""
+"Le nom d’une classe de Rest Controller personnalisée au lieu de "
+"WP_REST_Terms_Controller."
 
 #: inc/post-tags.php:687
 msgid "The name of the tag"
@@ -3765,10 +3770,10 @@ msgid ""
 "metabox where you can browse all your existing terms. \"Suggest Terms\" can "
 "also analyze your content and find new ideas for terms."
 msgstr ""
-"Cette fonction est utile lorsque vous rédigez du contenu. « Termes "
-"suggérés\" peut afficher une boîte méta où vous pouvez parcourir tous vos "
-"termes existants. « Termes suggérés\" peut également analyser votre contenu "
-"et trouver de nouvelles idées de termes."
+"Cette fonction est utile lorsque vous rédigez du contenu. « Termes suggérés"
+"\" peut afficher une boîte méta où vous pouvez parcourir tous vos termes "
+"existants. « Termes suggérés\" peut également analyser votre contenu et "
+"trouver de nouvelles idées de termes."
 
 #: inc/class.admin.manage.php:169
 msgid ""
@@ -4165,7 +4170,7 @@ msgstr "Voir l’étiquette de média"
 
 #: inc/class.compatibility.php:37
 msgid "Warning:"
-msgstr ""
+msgstr "Avertissement :"
 
 #: inc/class.widgets.php:389
 msgid "What to show"
@@ -4265,8 +4270,8 @@ msgstr ""
 #: inc/helper.options.admin.php:148 inc/helper.options.admin.php:277
 #: inc/helper.options.admin.php:351
 msgid ""
-"You can find markers and explanations <a href=\"https://github."
-"com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
+"You can find markers and explanations <a href=\"https://github.com/"
+"WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
 msgstr ""
 "Vous pouvez trouver des repères et des explications <a href=\"https://github."
 "com/WebFactoryLtd/simple-tags/wiki\">dans la documentation en ligne.</a>"
@@ -4278,40 +4283,40 @@ msgstr "Vous pouvez uniquement supprimer les taxonomies créées avec TaxoPress.
 #: inc/helper.options.admin.php:383
 msgid ""
 "You can use the same syntax as <code>st_related_posts()</code>public static "
-"function to customize display. See <a href=\"https://github."
-"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/"
+"WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
 msgstr ""
-"Vous pouvez utiliser la même syntaxe que la fonction statique publique <code>"
-"st_related_posts()</code> pour personnaliser l’affichage. Voir <a "
-"href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">la "
-"documentation</a> pour plus de détails."
+"Vous pouvez utiliser la même syntaxe que la fonction statique publique "
+"<code>st_related_posts()</code> pour personnaliser l’affichage. Voir <a href="
+"\"https://github.com/WebFactoryLtd/simple-tags/wiki\">la documentation</a> "
+"pour plus de détails."
 
 #: inc/helper.options.admin.php:210
 msgid ""
 "You can use the same syntax as <code>st_tag_cloud()</code> public static "
-"function to customize display. See <a href=\"https://github."
-"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/"
+"WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
 msgstr ""
-"Vous pouvez utiliser la même syntaxe que la fonction statique publique <code>"
-"st_tag_cloud()</code> pour personnaliser l’affichage. Voir <a href=\"https:"
-"//github.com/WebFactoryLtd/simple-tags/wiki\">la documentation</a> pour plus "
-"de détails."
+"Vous pouvez utiliser la même syntaxe que la fonction statique publique "
+"<code>st_tag_cloud()</code> pour personnaliser l’affichage. Voir <a href="
+"\"https://github.com/WebFactoryLtd/simple-tags/wiki\">la documentation</a> "
+"pour plus de détails."
 
 #: inc/helper.options.admin.php:288
 msgid ""
 "You can use the same syntax as <code>st_the_tags()</code> public static "
-"function to customize display. See <a href=\"https://github."
-"com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+"function to customize display. See <a href=\"https://github.com/"
+"WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
 msgstr ""
-"Vous pouvez utiliser la même syntaxe que la fonction statique publique <code>"
-"st_the_tags()</code> pour personnaliser l’affichage. Voir <a href=\"https:"
-"//github.com/WebFactoryLtd/simple-tags/wiki\">la documentation</a> pour plus "
-"de détails."
+"Vous pouvez utiliser la même syntaxe que la fonction statique publique "
+"<code>st_the_tags()</code> pour personnaliser l’affichage. Voir <a href="
+"\"https://github.com/WebFactoryLtd/simple-tags/wiki\">la documentation</a> "
+"pour plus de détails."
 
 #: inc/helper.options.admin.php:83
 msgid ""
-"You must set &#8216;Order tags selection&#8217; to <strong>count-"
-"desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags "
+"You must set &#8216;Order tags selection&#8217; to <strong>count-desc</"
+"strong> for retrieve the 100 tags most popular and &#8216;Order tags "
 "display&#8217; to <strong>random</strong> for randomize cloud."
 msgstr ""
 "Vous devez fixer l’option &#8216;Ordre de sélection des étiquettes&#8217; "

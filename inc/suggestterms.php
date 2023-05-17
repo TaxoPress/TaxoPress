@@ -714,7 +714,7 @@ class SimpleTags_SuggestTerms
                                                             'simple-tags'); ?>
                                     </div>
                                     <div class="pp-version-notice-bold-purple-button"><a
-                                            href="https://taxopress.com/pro" target="_blank"><?php echo esc_html__('Upgrade to Pro',
+                                            href="https://taxopress.com/taxopress/" target="_blank"><?php echo esc_html__('Upgrade to Pro',
                                                             'simple-tags'); ?></a>
                                     </div>
                                 </div>
