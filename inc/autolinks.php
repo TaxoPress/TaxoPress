@@ -474,69 +474,6 @@ class SimpleTags_Autolink
                                                                 'required'  => false,
                                                             ]);
 
-
-
-                                                            $select             = [
-                                                                'options' => [
-                                                                    [
-                                                                        'attr'    => '0',
-                                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                                        'default' => 'true',
-                                                                    ],
-                                                                    [
-                                                                        'attr' => '1',
-                                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                                    ],
-                                                                ],
-                                                            ];
-                                                            $selected           = (isset($current) && isset($current['unattached_terms'])) ? taxopress_disp_boolean($current['unattached_terms']) : '';
-                                                            $select['selected'] = !empty($selected) ? $current['unattached_terms'] : '';
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_select_checkbox_input([
-                                                                'namearray'  => 'taxopress_autolink',
-                                                                'name'       => 'unattached_terms',
-                                                                'labeltext'  => esc_html__(
-                                                                    'Add links for unattached terms',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'aftertext'  => esc_html__(
-                                                                    'By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms.',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ]);
-
-
-                                                            $select             = [
-                                                                'options' => [
-                                                                    [
-                                                                        'attr'    => '0',
-                                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                                        'default' => 'true',
-                                                                    ],
-                                                                    [
-                                                                        'attr' => '1',
-                                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                                    ],
-                                                                ],
-                                                            ];
-                                                            $selected           = (isset($current) && isset($current['ignore_attached'])) ? taxopress_disp_boolean($current['ignore_attached']) : '';
-                                                            $select['selected'] = !empty($selected) ? $current['ignore_attached'] : '';
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_select_checkbox_input([
-                                                                'namearray'  => 'taxopress_autolink',
-                                                                'name'       => 'ignore_attached',
-                                                                'labeltext'  => esc_html__(
-                                                                    'Don\'t add links for attached terms',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'aftertext'  => esc_html__(
-                                                                    'Don\'t add Auto Links if the term is already attached to the post.',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ]);
-
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_td_end() . $ui->get_tr_end();
                                                             ?>
@@ -831,6 +768,37 @@ class SimpleTags_Autolink
                                                                 ),
                                                                 'aftertext'  => esc_html__(
                                                                     'Add links to the content synonyms.',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ]);
+
+
+                                                            $select             = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '0',
+                                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '1',
+                                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected           = (isset($current) && isset($current['unattached_terms'])) ? taxopress_disp_boolean($current['unattached_terms']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['unattached_terms'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input([
+                                                                'namearray'  => 'taxopress_autolink',
+                                                                'name'       => 'unattached_terms',
+                                                                'labeltext'  => esc_html__(
+                                                                    'Add links for all terms',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'aftertext'  => esc_html__(
+                                                                    'By default, TaxoPress will add links for all terms. If this box is unchecked, Auto Links will only add links for terms that are attached to the post.',
                                                                     'simple-tags'
                                                                 ),
                                                                 'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
