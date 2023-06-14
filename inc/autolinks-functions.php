@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fetch our TAXOPRESS Autolinks option.
  *
@@ -6,8 +7,11 @@
  */
 function taxopress_get_autolink_data()
 {
-    return array_filter((array)apply_filters('taxopress_get_autolink_data', get_option('taxopress_autolinks', []),
-        get_current_blog_id()));
+    return array_filter((array)apply_filters(
+        'taxopress_get_autolink_data',
+        get_option('taxopress_autolinks', []),
+        get_current_blog_id()
+    ));
 }
 
 /**
@@ -54,7 +58,7 @@ function taxopress_process_autolink()
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -87,8 +91,10 @@ function taxopress_process_autolink()
     if (!empty($_POST) && isset($_POST['autolink_submit'])) {
         $result = '';
         if (isset($_POST['autolink_submit'])) {
-            check_admin_referer('taxopress_addedit_autolink_nonce_action',
-                'taxopress_addedit_autolink_nonce_field');
+            check_admin_referer(
+                'taxopress_addedit_autolink_nonce_action',
+                'taxopress_addedit_autolink_nonce_field'
+            );
             $result = taxopress_update_autolink($_POST);
         }
 
@@ -134,7 +140,7 @@ function taxopress_create_default_autolink()
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -166,6 +172,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['ignore_case']              = '1';
     $default['taxopress_autolink']['ignore_attached']          = '0';
     $default['taxopress_autolink']['autolink_dom']             = '1';
+    $default['taxopress_autolink']['synonyms_link']            = '0';
     $default['autolink_submit']                                = 'Add Auto Links';
     $default['cpt_tax_status']                                 = 'new';
     $result                                                    = taxopress_update_autolink($default);
@@ -216,7 +223,7 @@ function taxopress_update_autolink($data = [])
     if (!isset($data['taxopress_autolink']['unattached_terms'])) {
         $data['taxopress_autolink']['unattached_terms'] = 0;
     }
-    if (!isset($data['taxopress_autolink']['ignore_case'])) {//auto set ignore case to true
+    if (!isset($data['taxopress_autolink']['ignore_case'])) { //auto set ignore case to true
         $data['taxopress_autolink']['ignore_case'] = 1;
     }
     if (!isset($data['taxopress_autolink']['ignore_attached'])) {
@@ -224,6 +231,9 @@ function taxopress_update_autolink($data = [])
     }
     if (!isset($data['taxopress_autolink']['autolink_dom'])) {
         $data['taxopress_autolink']['autolink_dom'] = 0;
+    }
+    if (!isset($data['taxopress_autolink']['synonyms_link'])) {
+        $data['taxopress_autolink']['synonyms_link'] = 0;
     }
 
 
@@ -240,7 +250,6 @@ function taxopress_update_autolink($data = [])
     }
 
     return $autolink_id;
-
 }
 
 /**
@@ -347,7 +356,7 @@ function taxopress_post_type_autolink_autolink()
     global $pagenow;
 
     $allowed_pages = ['post-new.php', 'post.php', 'page.php', 'page-new.php'];
-    if(!in_array($pagenow, $allowed_pages)){
+    if (!in_array($pagenow, $allowed_pages)) {
         return false;
     }
 
@@ -366,7 +375,6 @@ function taxopress_post_type_autolink_autolink()
             if (in_array(get_post_type(), $post_types)) {
                 return $autolink;
             }
-
         }
     }
 
