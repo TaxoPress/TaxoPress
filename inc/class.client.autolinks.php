@@ -172,14 +172,12 @@ class SimpleTags_Client_Autolinks
 			$unattached_terms = (int) $options['unattached_terms'];
 			$autolink_min_char = (int) $options['autolink_min_char'];
 			$autolink_max_char = (int) $options['autolink_max_char'];
-			$ignore_attached = (int) $options['ignore_attached'];
 			$term_taxonomy = $options['taxonomy'];
 		} else {
 			$auto_link_min = (int) SimpleTags_Plugin::get_option_value('auto_link_min');
 			$unattached_terms  = (int) SimpleTags_Plugin::get_option_value('auto_link_all');
 			$autolink_min_char = 0;
 			$autolink_max_char = 0;
-			$ignore_attached   = 0;
 			$term_taxonomy = 'post_tag';
 		}
 
@@ -190,11 +188,6 @@ class SimpleTags_Client_Autolinks
 		}
 
 		foreach ((array) $terms as $term) {
-			if ($ignore_attached > 0) {
-				if (has_term($term->term_id, $term_taxonomy, $post)) {
-					continue;
-				}
-			}
 
 			//add primary term
 			$primary_term_link = get_term_link($term, $term->taxonomy);
