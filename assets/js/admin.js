@@ -7,7 +7,6 @@
    */
 
   $(document).ready(function () {
-
     
     
     // -------------------------------------------------------------
@@ -798,6 +797,65 @@
     function isEmptyOrSpaces(str) {
       return str === null || str.match(/^ *$/) !== null;
     }
+
+    /* Start COPIED FROM PP BLOCKS */
+      $(".taxopress-dashboard-settings-control .slider").bind("click", function (e) {
+        try {
+            e.preventDefault();
+            if ($(this).hasClass("slider--disabled")) {
+                return false;
+            }
+            var checkbox = $(this).parent().find("input");
+            var isChecked = checkbox.is(":checked") ? 1 : 0;
+            var newState = isChecked == 1 ? 0 : 1;
+            var feature = checkbox.data("feature");
+            var option_key = checkbox.data("option_key");
+            var slider = checkbox.parent().find(".slider");
+            $.ajax({
+                url: st_admin_localize.ajaxurl,
+                method: "POST",
+                data: { action: "save_taxopress_dashboard_feature_by_ajax", feature: option_key, new_state: newState, nonce: st_admin_localize.check_nonce },
+                beforeSend: function () {
+                    slider.css("opacity", 0.5);
+                },
+                success: function () {
+                    newState == 1 ? checkbox.prop("checked", true) : checkbox.prop("checked", false);
+                    slider.css("opacity", 1);
+                    taxopressDynamicSubmenu(feature, newState)
+                    taxopressTimerStatus();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(jqXHR.responseText);
+                    taxopressTimerStatus("error");
+                },
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    });
+    function taxopressTimerStatus(type = "success") {
+        setTimeout(function () {
+            var uniqueClass = "taxopress-floating-msg-" + Math.round(new Date().getTime() + Math.random() * 100);
+            var message = type === "success" ? wp.i18n.__("Changes saved!", "capsman-enhanced") : wp.i18n.__(" Error: changes can't be saved.", "capsman-enhanced");
+            var instances = $(".taxopress-floating-status").length;
+            $("#wpbody-content").after('<span class="taxopress-floating-status taxopress-floating-status--' + type + " " + uniqueClass + '">' + message + "</span>");
+            $("." + uniqueClass)
+                .css("bottom", instances * 45)
+                .fadeIn(1e3)
+                .delay(1e4)
+                .fadeOut(1e3, function () {
+                    $(this).remove();
+                });
+        }, 500);
+    }
+    function taxopressDynamicSubmenu(slug, newState) {
+        var pMenu = $("#toplevel_page_st_options");
+        var cSubmenu = $(pMenu).find("li." + slug + "-menu-item");
+        if (cSubmenu.length) {
+            newState == 1 ? cSubmenu.removeClass("taxopress-hide-menu-item").find("a").removeClass("taxopress-hide-menu-item") : cSubmenu.addClass("taxopress-hide-menu-item").find("a").addClass("taxopress-hide-menu-item");
+        }
+    }
+    /* end COPIED FROM PP BLOCKS */
 
   });
 
