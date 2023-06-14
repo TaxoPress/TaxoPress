@@ -12,6 +12,7 @@ return array(
     'active_manage'          => 1,
     'active_related_posts'   => 1,
     'active_autotags'        => 1,
+    
     'allow_embed_tcloud'     => 1,
     // Auto link
     'auto_link_tags'         => 0,
