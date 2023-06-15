@@ -46,9 +46,11 @@ class SimpleTags_Admin
 		SimpleTags_Dashboard::get_instance();
 
 		//terms
-		require STAGS_DIR . '/inc/terms-table.php';
-		require STAGS_DIR . '/inc/terms.php';
-		SimpleTags_Terms::get_instance();
+		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_st_terms')) {
+			require STAGS_DIR . '/inc/terms-table.php';
+			require STAGS_DIR . '/inc/terms.php';
+			SimpleTags_Terms::get_instance();
+		}
 
 		//tag clouds/ terms display
 		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_terms_display')) {

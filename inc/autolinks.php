@@ -311,9 +311,9 @@ class SimpleTags_Autolink
                                                                                                     ); ?></span></a>
                                                         </li>
 
-                                                        <li aria-current="<?php echo $active_tab === 'autolink_synonyms' ? 'true' : 'false'; ?>" class="autolink_synonyms_tab <?php echo $active_tab === 'autolink_synonyms' ? 'active' : ''; ?>" data-content="autolink_synonyms">
-                                                            <a href="#autolink_synonyms"><span><?php esc_html_e(
-                                                                                                    'Synonyms',
+                                                        <li aria-current="<?php echo $active_tab === 'autolink_options' ? 'true' : 'false'; ?>" class="autolink_options_tab <?php echo $active_tab === 'autolink_options' ? 'active' : ''; ?>" data-content="autolink_options">
+                                                            <a href="#autolink_options"><span><?php esc_html_e(
+                                                                                                    'Options',
                                                                                                     'simple-tags'
                                                                                                 ); ?></span></a>
                                                         </li>
@@ -740,7 +740,7 @@ class SimpleTags_Autolink
                                                         </table>
 
 
-                                                        <table class="form-table taxopress-table autolink_synonyms" style="<?php echo $active_tab === 'autolink_synonyms' ? '' : 'display:none;'; ?>">
+                                                        <table class="form-table taxopress-table autolink_options" style="<?php echo $active_tab === 'autolink_options' ? '' : 'display:none;'; ?>">
                                                             <?php
                                                             $select             = [
                                                                 'options' => [
@@ -767,7 +767,7 @@ class SimpleTags_Autolink
                                                                     'simple-tags'
                                                                 ),
                                                                 'aftertext'  => esc_html__(
-                                                                    'Add links to the content synonyms.',
+                                                                    'Add links to the term synonyms.',
                                                                     'simple-tags'
                                                                 ),
                                                                 'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
