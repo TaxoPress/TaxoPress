@@ -4,7 +4,7 @@ return array(
     'active_taxonomies'      => 1,
     'active_terms_display'   => 1,
     'active_post_tags'       => 1,
-    'active_related_posts_new'=> 1,
+    'active_related_posts_new' => 1,
     'active_auto_links'      => 1,
     'active_auto_terms'      => 1,
     'active_suggest_terms'   => 1,
@@ -12,6 +12,8 @@ return array(
     'active_manage'          => 1,
     'active_related_posts'   => 1,
     'active_autotags'        => 1,
+    'active_st_terms'        => 1,
+
     'allow_embed_tcloud'     => 1,
     // Auto link
     'auto_link_tags'         => 0,

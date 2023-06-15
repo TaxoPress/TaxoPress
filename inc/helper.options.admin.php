@@ -1,71 +1,5 @@
 <?php
 return array(
-    'features'       => array(
-        array(
-            'active_taxonomies',
-            __('Taxonomies', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature allows you to create new taxonomies and edit all the settings for each taxonomy.', 'simple-tags')
-        ),
-        array(
-            'active_terms_display',
-            __('Terms Display', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags')
-        ),
-        array(
-            'active_post_tags',
-            __('Terms for Current Post', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature allows you create a customizable display of all the terms assigned to the current post.', 'simple-tags')
-        ),
-        array(
-            'active_related_posts_new',
-            __('Related Posts', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags')
-        ),
-        array(
-            'active_auto_links',
-            __('Auto Links', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('Auto Links can automatically create links to your defined terms. For example, if you have a term called “WordPress”, the Auto Links feature can find the word “WordPress” in your content and add links to the archive page for that term.', 'simple-tags')
-        ),
-        array(
-            'active_auto_terms',
-            __('Auto Terms', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('Auto Terms can scan your content and automatically assign new and existing terms.', 'simple-tags')
-        ),
-        array(
-            'active_suggest_terms',
-            __('Suggest Terms', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.', 'simple-tags')
-        ),
-        array(
-            'active_mass_edit',
-            __('Mass Edit terms', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature allows you to edit the terms of any taxonomy for multiple posts at the same time.', 'simple-tags')
-        ),
-        array(
-            'active_manage',
-            __('Advanced Manage Terms', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature allows you to edit, merge, delete and add terms for any taxonomy.', 'simple-tags')
-        )
-    ),
-
     'legacy'       => array(
 
 
@@ -75,7 +9,7 @@ return array(
             'text_helper',
             'helper',
             '',
-            '<p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Terms Display" screen instead.', 'simple-tags').'</strong></p><br /><br /><ul style="list-style:square;margin-left:20px;">
+            '<p class="taxopress-warning"><strong>' . __('These settings are no longer being updated. Please use the "Terms Display" screen instead.', 'simple-tags') . '</strong></p><br /><br /><ul style="list-style:square;margin-left:20px;">
 				<li>' . __('<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag\'s cloud generation, corresponding to collect tags.', 'simple-tags') . '</li>
 				<li>' . __('<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display.', 'simple-tags') . '</li>
 			</ul>' .
@@ -180,9 +114,11 @@ return array(
             __("The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee).", 'simple-tags'),
             'legacy-tab-content legacy-tag-cloud-content'
         ),
-        array('cloud_min_color', __('Least popular color:', 'simple-tags'), 'text-color', 'medium-text st-color-field',
+        array(
+            'cloud_min_color', __('Least popular color:', 'simple-tags'), 'text-color', 'medium-text st-color-field',
             '',
-            'legacy-tab-content legacy-tag-cloud-content'),
+            'legacy-tab-content legacy-tag-cloud-content'
+        ),
         array(
             'cloud_max_size',
             __('Most popular font size:', 'simple-tags'),
@@ -191,9 +127,11 @@ return array(
             __("The two font sizes are the size of the largest and smallest tags.", 'simple-tags'),
             'legacy-tab-content legacy-tag-cloud-content'
         ),
-        array('cloud_min_size', __('Least popular font size:', 'simple-tags'), ['type' => 'number', 'attr' => 'min="0" max=""'], 'small-text',
+        array(
+            'cloud_min_size', __('Least popular font size:', 'simple-tags'), ['type' => 'number', 'attr' => 'min="0" max=""'], 'small-text',
             '',
-            'legacy-tab-content legacy-tag-cloud-content'),
+            'legacy-tab-content legacy-tag-cloud-content'
+        ),
         array(
             'cloud_unit',
             __('The units to display the font sizes with, on tag clouds:', 'simple-tags'),
@@ -227,12 +165,14 @@ return array(
             'text_helper',
             'helper',
             '',
-            '<p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Terms for Current Post" screen instead.', 'simple-tags').'</strong></p><br /><br />',
+            '<p class="taxopress-warning"><strong>' . __('These settings are no longer being updated. Please use the "Terms for Current Post" screen instead.', 'simple-tags') . '</strong></p><br /><br />',
             'legacy-tab-content legacy-post-tags-content st-hide-content'
         ),
-        array('tt_feed', __('Automatically display tags list into feeds', 'simple-tags'), 'checkbox', '1',
+        array(
+            'tt_feed', __('Automatically display tags list into feeds', 'simple-tags'), 'checkbox', '1',
             '',
-            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
         array(
             'tt_embedded',
             __('Automatically display tags list into post content:', 'simple-tags'),
@@ -249,15 +189,21 @@ return array(
             '',
             'legacy-tab-content legacy-post-tags-content st-hide-content'
         ),
-        array('tt_separator', __('Post tag separator string:', 'simple-tags'), 'text', 'regular-text',
+        array(
+            'tt_separator', __('Post tag separator string:', 'simple-tags'), 'text', 'regular-text',
             '',
-            'legacy-tab-content legacy-post-tags-content st-hide-content'),
-        array('tt_before', __('Text to display before tags list:', 'simple-tags'), 'text', 'regular-text',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
+        array(
+            'tt_before', __('Text to display before tags list:', 'simple-tags'), 'text', 'regular-text',
             '',
-            'legacy-tab-content legacy-post-tags-content st-hide-content'),
-        array('tt_after', __('Text to display after tags list:', 'simple-tags'), 'text', 'regular-text',
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
+        array(
+            'tt_after', __('Text to display after tags list:', 'simple-tags'), 'text', 'regular-text',
             '',
-            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
         array(
             'tt_number',
             __('Max tags display:', 'simple-tags'),
@@ -266,9 +212,11 @@ return array(
             __('You must set zero (0) for display all tags.', 'simple-tags'),
             'legacy-tab-content legacy-post-tags-content st-hide-content'
         ),
-        array('tt_inc_cats', __('Include categories in result ?', 'simple-tags'), 'checkbox', '1',
+        array(
+            'tt_inc_cats', __('Include categories in result ?', 'simple-tags'), 'checkbox', '1',
             '',
-            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
         array(
             'tt_xformat',
             __('Tag link format:', 'simple-tags'),
@@ -277,9 +225,11 @@ return array(
             __('You can find markers and explanations <a href="https://github.com/WebFactoryLtd/simple-tags/wiki">in the online documentation.</a>', 'simple-tags'),
             'legacy-tab-content legacy-post-tags-content st-hide-content'
         ),
-        array('tt_notagstext', __('Text to display if no tags found:', 'simple-tags'), 'text', 'widefat',
+        array(
+            'tt_notagstext', __('Text to display if no tags found:', 'simple-tags'), 'text', 'widefat',
             '',
-            'legacy-tab-content legacy-post-tags-content st-hide-content'),
+            'legacy-tab-content legacy-post-tags-content st-hide-content'
+        ),
         array(
             'tt_adv_usage',
             __('<strong>Advanced usage</strong>:', 'simple-tags'),
@@ -298,7 +248,7 @@ return array(
             'text_helper',
             'helper',
             '',
-            '<p class="taxopress-warning"><strong>'.__('These settings are no longer being updated. Please use the "Related Posts" screen instead.', 'simple-tags').'</strong></p><br /><br />',
+            '<p class="taxopress-warning"><strong>' . __('These settings are no longer being updated. Please use the "Related Posts" screen instead.', 'simple-tags') . '</strong></p><br /><br />',
             'legacy-tab-content legacy-related-posts-content st-hide-content'
         ),
         array(
@@ -309,8 +259,10 @@ return array(
             __('By default, related posts work with post tags, but you can use a custom taxonomy. Default value : post_tag', 'simple-tags'),
             'legacy-tab-content legacy-related-posts-content st-hide-content'
         ),
-        array('rp_feed', __('Automatically display related posts into feeds', 'simple-tags'), 'checkbox', '1', '',
-            'legacy-tab-content legacy-related-posts-content st-hide-content'),
+        array(
+            'rp_feed', __('Automatically display related posts into feeds', 'simple-tags'), 'checkbox', '1', '',
+            'legacy-tab-content legacy-related-posts-content st-hide-content'
+        ),
         array(
             'rp_embedded',
             __('Automatically display related posts into post content', 'simple-tags'),
@@ -426,14 +378,14 @@ return array(
             __('This setting determines the maximum number of links created by article for the same tag. Default: 1.', 'simple-tags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
         ),
-	    array(
-		    'auto_link_all',
-		    __('Add links for unattached terms', 'simple-tags'),
-		    'checkbox',
-		    '1',
-		    __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms', 'simple-tags'),
+        array(
+            'auto_link_all',
+            __('Add links for unattached terms', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms', 'simple-tags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
-	    ),
+        ),
         array(
             'auto_link_case',
             __('Ignore case for auto link feature ?', 'simple-tags'),
@@ -487,14 +439,14 @@ return array(
             '',
             'legacy-tab-content legacy-auto-link-content st-hide-content'
         ),
-	    array(
-		    'auto_link_title_excl',
-		    __('Add links for post title', 'simple-tags'),
-		    'checkbox',
-		    '1',
-		    __('By default, TaxoPress will exclude Auto Links for terms that are attached to the post title.', 'simple-tags'),
+        array(
+            'auto_link_title_excl',
+            __('Add links for post title', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('By default, TaxoPress will exclude Auto Links for terms that are attached to the post title.', 'simple-tags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
-	    ),
+        ),
 
 
     ),
