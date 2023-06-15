@@ -358,6 +358,12 @@ function taxopress_dashboard_options()
         'option_key'   => 'active_taxonomies',
     ];
 
+    $features['st_terms'] = [
+        'label'        => esc_html__('Terms', 'simple-tags'),
+        'description'  => esc_html__('This feature allows you to search and edit all the terms on your site.', 'simple-tags'),
+        'option_key'   => 'active_st_terms',
+    ];
+
     $features['st_terms_display'] = [
         'label'        => esc_html__('Terms Display', 'simple-tags'),
         'description'  => esc_html__('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags'),
@@ -372,13 +378,13 @@ function taxopress_dashboard_options()
 
     $features['st_related_posts'] = [
         'label'        => esc_html__('Related Posts', 'simple-tags'),
-        'description'  => esc_html__('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags'),
+        'description'  => esc_html__('This feature creates a display of similar posts. If a post has the terms “WordPress” and “Website”, Related Posts will display other posts with those same terms.', 'simple-tags'),
         'option_key'   => 'active_related_posts_new',
     ];
 
     $features['st_autolinks'] = [
         'label'        => esc_html__('Auto Links', 'simple-tags'),
-        'description'  => esc_html__('Auto Links can automatically create links to your defined terms. For example, if you have a term called “WordPress”, the Auto Links feature can find the word “WordPress” in your content and add links to the archive page for that term.', 'simple-tags'),
+        'description'  => esc_html__('This feature automatically adds links to your chosen terms. If you have a term called “WordPress”, Auto Links finds the word “WordPress” in your content and add links to the archive page for that term.', 'simple-tags'),
         'option_key'   => 'active_auto_links',
     ];
 
@@ -390,19 +396,19 @@ function taxopress_dashboard_options()
 
     $features['st_suggestterms'] = [
         'label'        => esc_html__('Suggest Terms', 'simple-tags'),
-        'description'  => esc_html__('This feature helps when you\'re writing content. "Suggest Terms" can show a metabox where you can browse all your existing terms. "Suggest Terms" can also analyze your content and find new ideas for terms.', 'simple-tags'),
+        'description'  => esc_html__('This feature helps when you\'re writing content. "Suggest Terms" shows a box with all existing terms, and can also analyze your content to find new ideas for terms.', 'simple-tags'),
         'option_key'   => 'active_suggest_terms',
     ];
 
     $features['st_mass_terms'] = [
-        'label'        => esc_html__('Mass Edit terms', 'simple-tags'),
-        'description'  => esc_html__('This feature allows you to edit the terms of any taxonomy for multiple posts at the same time.', 'simple-tags'),
+        'label'        => esc_html__('Mass Edit Terms', 'simple-tags'),
+        'description'  => esc_html__('This feature allows you to quickly edit the terms attached to multiple posts at the same time.', 'simple-tags'),
         'option_key'   => 'active_mass_edit',
     ];
 
     $features['st_manage'] = [
-        'label'        => esc_html__('Advanced Manage Terms', 'simple-tags'),
-        'description'  => esc_html__('This feature allows you to edit, merge, delete and add terms for any taxonomy.', 'simple-tags'),
+        'label'        => esc_html__('Manage Terms', 'simple-tags'),
+        'description'  => esc_html__('This feature allows you to add, rename, merge, and delete terms for any taxonomy.', 'simple-tags'),
         'option_key'   => 'active_manage',
     ];
 
