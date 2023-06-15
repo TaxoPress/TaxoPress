@@ -24,10 +24,10 @@ class RoboFile extends \PublishPressBuilder\PackageBuilderTasks
                 'vendor/publishpress/wordpress-version-notices/codeception.dist.yml',
                 'vendor/publishpress/wordpress-version-notices/codeception.yml',
                 'vendor/publishpress/wordpress-version-notices/tests',
-                'trunk/vendor/pimple/pimple/.github',
-                'trunk/vendor/publishpress/wordpress-version-notices/.env.testing.dist',
-                'trunk/vendor/publishpress/wordpress-version-notices/composer.json',
-                'trunk/vendor/publishpress/wordpress-version-notices/composer.lock',
+                'vendor/pimple/pimple/.github',
+                'vendor/publishpress/wordpress-version-notices/.env.testing.dist',
+                'vendor/publishpress/wordpress-version-notices/composer.json',
+                'vendor/publishpress/wordpress-version-notices/composer.lock',
             ]
         );
 
