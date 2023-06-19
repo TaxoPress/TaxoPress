@@ -25,7 +25,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 > <strong>Upgrade to TaxoPress Pro</strong><br />
 > This plugin is the free version of TaxoPress. The Pro version of TaxoPress has extra features and expert support. [Get the TaxoPress Pro plugin now!](https://taxopress.com/taxopress)
 
-## Key Features in TaxoPress ##
+## 10 Key Features in TaxoPress ##
 
 1. **Manage Terms and Taxonomies**: You can create new taxonomies and edit all the settings for each taxonomy.
 2. **Terms Display**: This feature allows you to create a customizable display of all the terms in one taxonomy.
@@ -34,8 +34,9 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
 6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
 7. **Suggest Terms**: This feature can show a metabox where you can browse all your existing terms. A second metabox can analyze your content and find new ideas for terms. 
-8. **Mass Edit Terms**: Quickly add or remove taxonomy terms from any content in WordPress.
-9. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
+8. **Term Synonyms**: Allows you to have multiple words associated with a single term.
+9. **Mass Edit Terms**: Quickly add or remove taxonomy terms from any content in WordPress.
+10. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
 
 ## Feature 1. Create and Manage Taxonomies ##
 
@@ -93,7 +94,15 @@ Suggest Terms can show two metaboxes on your post editing screen:
 
 [Click here to read about suggesting terms](https://taxopress.com/docs/introduction-to-suggested-tags/).
 
-## Feature 8. Mass Edit Terms ##
+## Feature 8. Term Synonyms ##
+
+Synonyms is a feature in TaxoPress Pro that allows you to have multiple words associated with a single term. If TaxoPress scans your content and finds a synonym, it will act as if it has found the main term.
+
+Synonyms will be available on each term screen. For example, if your term is “Apple”, you can create synonyms such as “Apples”, “Golden Delicious”, “Granny Smith”, “Pink Lady”, “Honeycrisp”, “Red Delicious”, “Braeburn” and “Gravenstein”.
+
+[Click here to read about Term Synonyms](https://taxopress.com/docs/synonyms/).
+
+## Feature 9. Mass Edit Terms ##
 
 The Mass Edit Terms screen allows you to quickly add or remove taxonomy terms from any content in WordPress.
 
@@ -101,7 +110,7 @@ The first step is to choose which taxonomy you want to modify. At the top of the
 
 [Click here to read about suggesting terms](https://taxopress.com/docs/mass-edit-terms/).
 
-## Feature 9. Manage Terms ##
+## Feature 10. Manage Terms ##
 
 The Manage Terms screen in TaxoPress provides you with several useful tools to manage the terms on your site. These tools can be used with any taxonomy. Here are some of the tools on the Manage Terms screen:
 
@@ -130,7 +139,6 @@ Bug reports for TaxoPress are welcomed in our [repository on GitHub](https://git
 = Follow the TaxoPress team =
 
 Follow TaxoPress on [Facebook](https://www.facebook.com/taxopress), [Twitter](https://www.twitter.com/taxopress) and [YouTube](https://www.youtube.com/taxopress).
-
 
 
 == Installation ==
