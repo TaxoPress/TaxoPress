@@ -359,13 +359,30 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		$flag = false;
+		$suggested_terms = [];
 		foreach ( (array) $terms as $term ) {
 			$class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
             $term_id = $term->term_id;
 			$term = stripslashes( $term->name );
-			if ( is_string( $term ) && ! empty( $term ) && stristr( $content, $term ) ) {
-				$flag = true;
-				echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr( $class_current ) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html( $term ) . '</span>' . "\n";
+			
+			$add_terms = [];
+			$add_terms[$term] = $term_id;
+			$primary_term = $term;
+
+			$term_synonyms = (array) get_term_meta($term_id, '_taxopress_term_synonyms', true);
+			$term_synonyms = array_filter($term_synonyms);
+			if (!empty($term_synonyms)) {
+				foreach ($term_synonyms as $term_synonym) {
+					$add_terms[$term_synonym] = $term_id;
+				}
+			}
+			
+			foreach ($add_terms as $add_name => $add_term_id) {
+				if (is_string($add_name) && ! empty($add_name) && stristr($content, $add_name) && !in_array($primary_term, $suggested_terms)) {
+					$suggested_terms[] = $primary_term;
+					$flag = true;
+					echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr($class_current) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html($primary_term) . '</span>' . "\n";
+				}
 			}
 		}
 
