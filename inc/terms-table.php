@@ -540,7 +540,8 @@ class Taxopress_Terms_List extends WP_List_Table
     protected function column_count($item)
     {
 
-        $taxonomy = get_taxonomy($item->taxonomy);
+        $taxonomy     = get_taxonomy($item->taxonomy);
+        $term_details = get_term($item->term_id);
 
         if ($taxonomy->query_var) {
             return sprintf(
@@ -552,10 +553,10 @@ class Taxopress_Terms_List extends WP_List_Table
                     ],
                     admin_url('edit.php')
                 ),
-                number_format_i18n($item->count)
+                number_format_i18n($term_details->count)
             );
         } else {
-            return number_format_i18n($item->count);
+            return number_format_i18n($term_details->count);
         }
     }
 
