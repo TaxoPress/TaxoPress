@@ -384,7 +384,7 @@ class SimpleTags_Autolink
                                                             echo $ui->get_select_checkbox_input_main([
                                                                 'namearray'  => 'taxopress_autolink',
                                                                 'name'       => 'taxonomy',
-                                                                'class'      => 'st-post-taxonomy-select',
+                                                                'class'      => 'taxopress-dynamic-taxonomy st-post-taxonomy-select',
                                                                 'labeltext'  => esc_html__('Taxonomy', 'simple-tags'),
                                                                 'required'   => true,
                                                                 'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -653,9 +653,12 @@ class SimpleTags_Autolink
                                                         <table class="form-table taxopress-table autolink_exceptions" style="<?php echo $active_tab === 'autolink_exceptions' ? '' : 'display:none;'; ?>">
                                                             <?php
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_text_input([
+                                                            echo $ui->get_textarea_input([
                                                                 'namearray' => 'taxopress_autolink',
                                                                 'name'      => 'auto_link_exclude',
+                                                                'rows'      => '4',
+                                                                'cols'      => '40',
+                                                                'class'     => 'autocomplete-input',
                                                                 'textvalue' => isset($current['auto_link_exclude']) ? esc_attr($current['auto_link_exclude']) : '',
                                                                 'labeltext' => esc_html__(
                                                                     'Exclude terms from Auto Links',
@@ -1001,5 +1004,6 @@ class SimpleTags_Autolink
                 </div>
 
         <?php
+        do_action( 'simpletags-autolinks');
     }
 }

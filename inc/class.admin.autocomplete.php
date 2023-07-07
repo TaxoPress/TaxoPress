@@ -10,6 +10,7 @@ class SimpleTags_Admin_Autocomplete {
 		add_action( 'simpletags-auto_terms', array( __CLASS__, 'auto_terms_js' ) );
 		add_action( 'simpletags-manage_terms', array( __CLASS__, 'manage_terms_js' ) );
 		add_action( 'simpletags-mass_terms', array( __CLASS__, 'mass_terms_js' ) );
+		add_action( 'simpletags-autolinks', array( __CLASS__, 'autolinks_js' ) );
 
 		// Javascript
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
@@ -38,7 +39,7 @@ class SimpleTags_Admin_Autocomplete {
 		// Declare locations
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
-		$st_pages      = array( 'st_autoterms', 'st_mass_terms', 'st_manage' );
+		$st_pages      = array( 'st_autoterms', 'st_mass_terms', 'st_manage', 'st_autolinks' );
 
 		// Helper for posts/pages and for Auto Tags, Mass Edit Tags and Manage tags !
 		if ( ( in_array( $pagenow, $wp_post_pages, true ) || ( in_array( $pagenow, $wp_page_pages, true ) && is_page_have_tags() ) ) || ( isset( $_GET['page'] ) && in_array( $_GET['page'], $st_pages, true ) ) ) {
@@ -186,6 +187,26 @@ class SimpleTags_Admin_Autocomplete {
 		<script type="text/javascript">
           <!--
           st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . esc_attr($taxonomy) )); ?>", <?php echo (int)$autocomplete_min; ?>)
+          -->
+		</script>
+		<?php
+	}
+
+	/**
+	 * public static function called on autolinks page
+	 *
+	 * @param string $taxonomy
+	 *
+	 * @return void
+	 * @author ojopaul
+	 */
+	public static function autolinks_js() {
+		// Get option
+		$autocomplete_min = 0
+		?>
+		<script type="text/javascript">
+          <!--
+          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=')); ?>", <?php echo (int)$autocomplete_min; ?>, '.taxopress-dynamic-taxonomy')
           -->
 		</script>
 		<?php
