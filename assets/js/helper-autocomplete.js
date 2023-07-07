@@ -6,7 +6,7 @@ function st_extract_last (term) {
   return st_split(term).pop()
 }
 
-function st_init_autocomplete (p_target, p_url, p_min_chars) {
+function st_init_autocomplete (p_target, p_url, p_min_chars, dynamic_taxonomy = false) {
   // Dynamic width ?
   p_width = jQuery('' + p_target).width()
   if (p_width === 0) {
@@ -22,7 +22,11 @@ function st_init_autocomplete (p_target, p_url, p_min_chars) {
     }
   }).autocomplete({
     minLength: p_min_chars,
-    source: function (request, response) {
+    source: function (request, response) {    
+      // Dynamic taxonomy?
+      if (dynamic_taxonomy) {
+        p_url = replaceUrlParam(p_url, 'taxonomy', jQuery(dynamic_taxonomy).val());
+      }
       jQuery.getJSON(p_url, {
         term: st_extract_last(request.term)
       }, response)
@@ -43,6 +47,19 @@ function st_init_autocomplete (p_target, p_url, p_min_chars) {
       return false
     }
   })
+}
+
+function replaceUrlParam(url, paramName, paramValue)
+{
+    if (paramValue == null) {
+        paramValue = '';
+    }
+    var pattern = new RegExp('\\b('+paramName+'=).*?(&|#|$)');
+    if (url.search(pattern)>=0) {
+        return url.replace(pattern,'$1' + paramValue + '$2');
+    }
+    url = url.replace(/[?#]$/,'');
+    return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
 }
 
 jQuery(document).ready(function($) {
