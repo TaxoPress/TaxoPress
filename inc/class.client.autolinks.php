@@ -287,7 +287,7 @@ class SimpleTags_Client_Autolinks
 			$term_name = (string) $term_name;
 
 			// Exclude terms ? next...
-			if (in_array($term_name, (array) $excludes_terms, true)) {
+			if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 				continue;
 			}
 
@@ -766,7 +766,7 @@ class SimpleTags_Client_Autolinks
 			$term_name = (string) $term_name;
 
 			// Exclude terms ? next...
-			if (in_array($term_name, (array) $excludes_terms, true)) {
+			if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 				continue;
 			}
 
@@ -888,7 +888,7 @@ class SimpleTags_Client_Autolinks
 						$term_name = (string) $term_name;
 
 						// Exclude terms ? next...
-						if (in_array($term_name, (array) $excludes_terms, true)) {
+						if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 							continue;
 						}
 
@@ -1008,7 +1008,7 @@ class SimpleTags_Client_Autolinks
 						$term_name = (string) $term_name;
 
 						// Exclude terms ? next...
-						if (in_array($term_name, (array) $excludes_terms, true)) {
+						if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 							continue;
 						}
 

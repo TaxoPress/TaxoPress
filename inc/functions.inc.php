@@ -427,3 +427,14 @@ function taxopress_is_pro_version()
 {
     return defined('TAXOPRESS_PRO_VERSION');
 }
+
+/**
+ * Case insensitive in_array function
+ *
+ * @param string $needle
+ * @param array $haystack
+ * @return void
+ */
+function taxopress_in_array_i($needle, $haystack) {
+    return in_array(strtolower($needle), array_map('strtolower', $haystack));
+}
