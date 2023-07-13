@@ -168,6 +168,8 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['hook_priority']            = '12';
     $default['taxopress_autolink']['embedded']                 = [];
     $default['taxopress_autolink']['html_exclusion']           = [];
+    $default['taxopress_autolink']['html_exclusion_customs']   = [];
+    $default['taxopress_autolink']['html_exclusion_customs_entry']   = [];
     $default['taxopress_autolink']['unattached_terms']         = '1';
     $default['taxopress_autolink']['ignore_case']              = '1';
     $default['taxopress_autolink']['autolink_dom']             = '1';
@@ -217,7 +219,9 @@ function taxopress_update_autolink($data = [])
     //update seperate post
     $data['taxopress_autolink']['embedded']       = isset($data['embedded']) ? $data['embedded'] : [];
     $data['taxopress_autolink']['html_exclusion'] = isset($data['html_exclusion']) ? $data['html_exclusion'] : [];
-
+    $data['taxopress_autolink']['html_exclusion_customs'] = isset($data['html_exclusion_customs']) ? $data['html_exclusion_customs'] : [];
+    $data['taxopress_autolink']['html_exclusion_customs_entry'] = isset($data['html_exclusion_customs_entry']) ? array_unique($data['html_exclusion_customs_entry']) : [];
+    
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autolink']['unattached_terms'])) {
         $data['taxopress_autolink']['unattached_terms'] = 0;

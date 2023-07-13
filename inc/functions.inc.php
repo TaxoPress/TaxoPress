@@ -308,7 +308,7 @@ function taxopress_html_character_and_entity($enity_code_as_key = false)
         '&rsquor;'   => '&#8217;',
         '&lsquo;'   => '&#8216;',
         '&lsquor;'   => '&#8218;',
-        '&amp;'   => '||taxopressamp||',
+        '&amp;'   => 'taxopressamp',
     ];
 
     if ($enity_code_as_key) {
@@ -433,7 +433,7 @@ function taxopress_is_pro_version()
  *
  * @param string $needle
  * @param array $haystack
- * @return void
+ * @return bool
  */
 function taxopress_in_array_i($needle, $haystack) {
     return in_array(strtolower($needle), array_map('strtolower', $haystack));
