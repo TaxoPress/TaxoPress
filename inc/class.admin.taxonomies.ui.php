@@ -743,6 +743,7 @@ class taxopress_admin_ui
                 'checklisttext' => '',
                 'labeldescription' => false,
                 'default'       => false,
+                'add_delete'       => false,
             ]
         );
         $args     = wp_parse_args($args, $defaults);
@@ -765,6 +766,11 @@ class taxopress_admin_ui
             $value .= '<input type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[]" value="' . $args['checkvalue'] . '" checked="checked" />';
         }
         $value .= $this->get_label($args['name'], $args['labeltext'], $args['labeldescription']);
+
+        if ($args['add_delete']) {
+            $value .= '<span class="delete">' . esc_html__('Delete', 'simple-tags') . '</span>';
+        }
+
         $value .= '<br/>';
 
         if ($args['wrap']) {
