@@ -772,7 +772,9 @@ ul.taxopress-tab li.posttags_options_tab a::before {
 ul.taxopress-tab li.posttags_display_tab a::before {
     content: "\f186";
 }
-
+.manage-taxopress-terms .column-slug {
+    width: unset;
+}
 .st-html-exclusion-table th {
     padding: unset;
     white-space: nowrap;

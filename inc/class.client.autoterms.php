@@ -189,17 +189,16 @@ class SimpleTags_Client_Autoterms
 						$add_terms[$term] = $term;
 						// add term synonyms
 						if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
-							$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-							if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-								$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-								$term_synonyms = array_filter($term_synonyms);
-								if (!empty($term_synonyms)) {
-									foreach ($term_synonyms as $term_synonym) {
-										$add_terms[$term_synonym] = $term;
-									}
+							$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
+							if (!empty($term_synonyms)) {
+								foreach ($term_synonyms as $term_synonym) {
+									$add_terms[$term_synonym] = $term;
 								}
 							}
 						}
+
+						// add linked term
+						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
 
@@ -288,17 +287,16 @@ class SimpleTags_Client_Autoterms
 
 						// add term synonyms
 						if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
-							$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-							if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-								$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-								$term_synonyms = array_filter($term_synonyms);
-								if (!empty($term_synonyms)) {
-									foreach ($term_synonyms as $term_synonym) {
-										$add_terms[$term_synonym] = $term;
-									}
+							$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
+							if (!empty($term_synonyms)) {
+								foreach ($term_synonyms as $term_synonym) {
+									$add_terms[$term_synonym] = $term;
 								}
 							}
 						}
+
+						// add linked term
+						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
 
@@ -358,17 +356,16 @@ class SimpleTags_Client_Autoterms
 
 				// add term synonyms
 				if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
-					$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-					if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-						$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-						$term_synonyms = array_filter($term_synonyms);
-						if (!empty($term_synonyms)) {
-							foreach ($term_synonyms as $term_synonym) {
-								$add_terms[$term_synonym] = $term;
-							}
+					$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
+					if (!empty($term_synonyms)) {
+						foreach ($term_synonyms as $term_synonym) {
+							$add_terms[$term_synonym] = $term;
 						}
 					}
 				}
+
+				// add linked term
+				$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 				foreach ($add_terms as $find_term => $original_term) {
 
@@ -435,17 +432,16 @@ class SimpleTags_Client_Autoterms
 
 				// add term synonyms
 				if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
-					$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-					if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-						$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-						$term_synonyms = array_filter($term_synonyms);
-						if (!empty($term_synonyms)) {
-							foreach ($term_synonyms as $term_synonym) {
-								$add_terms[$term_synonym] = $term;
-							}
+					$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
+					if (!empty($term_synonyms)) {
+						foreach ($term_synonyms as $term_synonym) {
+							$add_terms[$term_synonym] = $term;
 						}
 					}
 				}
+
+				// add linked term
+				$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 				foreach ($add_terms as $find_term => $original_term) {
 					// Whole word ?

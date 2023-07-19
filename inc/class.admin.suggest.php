@@ -369,13 +369,16 @@ class SimpleTags_Admin_Suggest {
 			$add_terms[$term] = $term_id;
 			$primary_term = $term;
 
-			$term_synonyms = (array) get_term_meta($term_id, '_taxopress_term_synonyms', true);
-			$term_synonyms = array_filter($term_synonyms);
+			// add term synonyms
+			$term_synonyms = taxopress_get_term_synonyms($term_id);
 			if (!empty($term_synonyms)) {
 				foreach ($term_synonyms as $term_synonym) {
 					$add_terms[$term_synonym] = $term_id;
 				}
 			}
+
+			// add linked term
+			$add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $taxonomy);
 			
 			foreach ($add_terms as $add_name => $add_term_id) {
 				if (is_string($add_name) && ! empty($add_name) && stristr($content, $add_name) && !in_array($primary_term, $suggested_terms)) {

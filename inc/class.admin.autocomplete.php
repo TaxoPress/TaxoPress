@@ -78,6 +78,7 @@ class SimpleTags_Admin_Autocomplete {
 
 		// Prepare search
 		$search = ( isset( $_GET['term'] ) ) ? trim( stripslashes( sanitize_text_field($_GET['term']) )) : '';
+		$exclude_term = isset($_REQUEST['exclude_term']) ? (int) $_REQUEST['exclude_term'] : 0;
 
 		// Get all terms, or filter with search
 		$terms = SimpleTags_Admin::getTermsForAjax( $taxonomy, $search );
@@ -90,6 +91,9 @@ class SimpleTags_Admin_Autocomplete {
 		// Format 
 		$results = array();
 		foreach ( (array) $terms as $term ) {
+			if ((int)$term->term_id === $exclude_term) {
+				continue;
+			}
 			$term->name = stripslashes( $term->name );
 			$term->name = str_replace( array( "\r\n", "\r", "\n" ), '', $term->name );
 
