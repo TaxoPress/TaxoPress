@@ -257,7 +257,7 @@ v3.9.0- 2023-07-19
 * Fixed: "Count" column is wrong if the taxonomy is attached to multiple post types, #1685
 * Update: Prevent a synonym from having the same name as existing terms, #1673
 * Update: TaxoFree_ES-IT_TranslationUpdates_June2023, #1675
-* Fixed: TAXO FREE French translation update June 2023, #1678
+* Update: TAXO FREE French translation update June 2023, #1678
 
 v3.8.0- 2023-06-15
 * Feature: Added TaxoPress Dashboard Page #1136
