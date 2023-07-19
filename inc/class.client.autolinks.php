@@ -196,14 +196,16 @@ class SimpleTags_Client_Autolinks
 
 			// add term synonyms
 			if (is_array($options) && isset($options['synonyms_link']) && (int)$options['synonyms_link'] > 0) {
-				$term_synonyms = (array) get_term_meta($term->term_id, '_taxopress_term_synonyms', true);
-				$term_synonyms = array_filter($term_synonyms);
+				$term_synonyms = taxopress_get_term_synonyms($term->term_id);
 				if (!empty($term_synonyms)) {
 					foreach ($term_synonyms as $term_synonym) {
 						$add_terms[$term_synonym] = $primary_term_link;
 					}
 				}
 			}
+
+			// add linked term
+			$add_terms = taxopress_add_linked_term_options($add_terms, $term->name, $term->taxonomy, true);
 
 			foreach ($add_terms as $add_name => $add_term_link) {
 				//min character check

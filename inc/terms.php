@@ -217,7 +217,7 @@ class SimpleTags_Terms
         settings_errors(__CLASS__);
 
 ?>
-        <div class="wrap st_wrap st-manage-taxonomies-page">
+        <div class="wrap st_wrap st-manage-taxonomies-page manage-taxopress-terms">
 
             <div id="">
                 <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
