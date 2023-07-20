@@ -115,7 +115,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'posttypes'  => esc_html__('Post Types', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
             'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
-            'count'  => esc_html__('Count', 'simple-tags')
+            //'count'  => esc_html__('Count', 'simple-tags')
         ];
 
         if (!taxopress_is_pro_version()) {
@@ -137,7 +137,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'name'      => ['name', true],
             'slug'      => ['taxonomy', true],
             'taxonomy'  => ['taxonomy', true],
-            'count'     => ['count', true],
+            //'count'     => ['count', true],
         ];
 
         return $sortable_columns;

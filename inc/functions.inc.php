@@ -440,6 +440,24 @@ function taxopress_in_array_i($needle, $haystack) {
 }
 
 /**
+ * Check if synonyms is enabled
+ * 
+ * @return bool
+ */
+function taxopress_is_synonyms_enabled() {
+    return ((int) SimpleTags_Plugin::get_option_value('active_features_synonyms') === 1);
+}
+
+/**
+ * Check if linked term is enabled
+ * 
+ * @return bool
+ */
+function taxopress_is_linked_terms_enabled() {
+    return ((int) SimpleTags_Plugin::get_option_value('active_features_linked_terms') === 1);
+}
+
+/**
  * Get term synonyms
  *
  * @param string|integer $term
@@ -448,6 +466,12 @@ function taxopress_in_array_i($needle, $haystack) {
  */
 function taxopress_get_term_synonyms($term, $taxonomy = '') {
     $term_synonyms = [];
+
+    if (!taxopress_is_synonyms_enabled()) {
+        // simply return empty array if feature is disabled
+        return $term_synonyms;
+    }
+
     if ((int)$term > 0) {
         $term_synonyms = (array) get_term_meta($term, '_taxopress_term_synonyms', true);
     } else {
@@ -471,6 +495,12 @@ function taxopress_get_term_synonyms($term, $taxonomy = '') {
  */
 function taxopress_get_linked_terms($term, $taxonomy = '', $term_object = false) {
     $linked_terms = [];
+
+    if (!taxopress_is_linked_terms_enabled()) {
+        // simply return empty array if feature is disabled
+        return $linked_terms;
+    }
+
     if ((int)$term > 0) {
         $linked_terms = (array) get_term_meta($term, '_taxopress_linked_terms', true);
     } else {
@@ -507,6 +537,11 @@ function taxopress_get_linked_terms($term, $taxonomy = '', $term_object = false)
  * @return array $term_object
  */
 function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = false, $named_term = false) {
+
+    if (!taxopress_is_linked_terms_enabled()) {
+        // simply return $lists if feature is disabled
+        return $lists;
+    }
 
     if ((int)$term > 0) {
         $term_id = $term;
