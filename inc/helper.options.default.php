@@ -13,6 +13,8 @@ return array(
     'active_related_posts'   => 1,
     'active_autotags'        => 1,
     'active_st_terms'        => 1,
+    'active_features_synonyms'      => 1,
+    'active_features_linked_terms'  => 1,
 
     'allow_embed_tcloud'     => 1,
     // Auto link

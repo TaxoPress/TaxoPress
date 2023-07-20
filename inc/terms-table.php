@@ -114,11 +114,13 @@ class Taxopress_Terms_List extends WP_List_Table
             'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
             'posttypes'  => esc_html__('Post Types', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
-            'count'  => esc_html__('Count', 'simple-tags')
+            'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
+            //'count'  => esc_html__('Count', 'simple-tags')
         ];
 
         if (!taxopress_is_pro_version()) {
             unset($columns['synonyms']);
+            unset($columns['linked_terms']);
         }
 
         return $columns;
@@ -135,7 +137,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'name'      => ['name', true],
             'slug'      => ['taxonomy', true],
             'taxonomy'  => ['taxonomy', true],
-            'count'     => ['count', true],
+            //'count'     => ['count', true],
         ];
 
         return $sortable_columns;
@@ -445,10 +447,26 @@ class Taxopress_Terms_List extends WP_List_Table
      */
     protected function column_synonyms($item)
     {
-        $term_synonyms = (array) get_term_meta($item->term_id, '_taxopress_term_synonyms', true);
-        $term_synonyms = array_filter($term_synonyms);
+        $term_synonyms = taxopress_get_term_synonyms($item->term_id);
         if (!empty($term_synonyms)) {
             return join(', ', $term_synonyms);
+        } else {
+            return '-';
+        }
+    }
+
+    /**
+     * Method for linked_terms column
+     *
+     * @param array $item
+     *
+     * @return string
+     */
+    protected function column_linked_terms($item)
+    {
+        $term_linked_terms = taxopress_get_linked_terms($item->term_id);
+        if (!empty($term_linked_terms)) {
+            return join(', ', $term_linked_terms);
         } else {
             return '-';
         }
@@ -540,7 +558,8 @@ class Taxopress_Terms_List extends WP_List_Table
     protected function column_count($item)
     {
 
-        $taxonomy = get_taxonomy($item->taxonomy);
+        $taxonomy     = get_taxonomy($item->taxonomy);
+        $term_details = get_term($item->term_id);
 
         if ($taxonomy->query_var) {
             return sprintf(
@@ -552,10 +571,10 @@ class Taxopress_Terms_List extends WP_List_Table
                     ],
                     admin_url('edit.php')
                 ),
-                number_format_i18n($item->count)
+                number_format_i18n($term_details->count)
             );
         } else {
-            return number_format_i18n($item->count);
+            return number_format_i18n($term_details->count);
         }
     }
 

@@ -26,7 +26,6 @@ class SimpleTags_Client_Autoterms
 	 */
 	public static function save_post($post_id = null, $object = null)
 	{
-
 		// Get options
 		$options = get_option(STAGS_OPTIONS_NAME_AUTO);
 
@@ -49,13 +48,14 @@ class SimpleTags_Client_Autoterms
 		$current_post_status = $object->post_status;
 		$autoterms = taxopress_get_autoterm_data();
 		$flag = false;
-		foreach ($autoterms as $autoterm_key => $autoterm_data) {
+
+		foreach ($autoterms as $autoterm_data) {
 			$eligible_post_status = isset($autoterm_data['post_status']) && is_array($autoterm_data['post_status']) ? $autoterm_data['post_status'] : ['publish'];
 			$eligible_post_types = isset($autoterm_data['post_types']) && is_array($autoterm_data['post_types']) ? $autoterm_data['post_types'] : [];
 			$eligible_post_types = array_filter($eligible_post_types);
 
 			if (count($eligible_post_types) === 0) {
-				break;
+				continue;
 			}
 			if (!in_array($current_post_type, $eligible_post_types)) {
 				continue;
@@ -187,18 +187,18 @@ class SimpleTags_Client_Autoterms
 						//add primary term
 						$add_terms = [];
 						$add_terms[$term] = $term;
-
 						// add term synonyms
-						$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-						if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-							$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-							$term_synonyms = array_filter($term_synonyms);
+						if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
+							$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
 							if (!empty($term_synonyms)) {
 								foreach ($term_synonyms as $term_synonym) {
 									$add_terms[$term_synonym] = $term;
 								}
 							}
 						}
+
+						// add linked term
+						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
 
@@ -286,16 +286,17 @@ class SimpleTags_Client_Autoterms
 						$add_terms[$term] = $term;
 
 						// add term synonyms
-						$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-						if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-							$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-							$term_synonyms = array_filter($term_synonyms);
+						if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
+							$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
 							if (!empty($term_synonyms)) {
 								foreach ($term_synonyms as $term_synonym) {
 									$add_terms[$term_synonym] = $term;
 								}
 							}
 						}
+
+						// add linked term
+						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
 
@@ -354,16 +355,17 @@ class SimpleTags_Client_Autoterms
 				$add_terms[$term] = $term;
 
 				// add term synonyms
-				$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-				if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-					$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-					$term_synonyms = array_filter($term_synonyms);
+				if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
+					$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
 					if (!empty($term_synonyms)) {
 						foreach ($term_synonyms as $term_synonym) {
 							$add_terms[$term_synonym] = $term;
 						}
 					}
 				}
+
+				// add linked term
+				$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 				foreach ($add_terms as $find_term => $original_term) {
 
@@ -429,16 +431,17 @@ class SimpleTags_Client_Autoterms
 				$add_terms[$term] = $term;
 
 				// add term synonyms
-				$add_terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-				if (is_object($add_terms_object) && isset($add_terms_object->term_id)) {
-					$term_synonyms = (array) get_term_meta($add_terms_object->term_id, '_taxopress_term_synonyms', true);
-					$term_synonyms = array_filter($term_synonyms);
+				if (is_array($options) && isset($options['synonyms_term']) && (int)$options['synonyms_term'] > 0) {
+					$term_synonyms    = taxopress_get_term_synonyms($term, $taxonomy);
 					if (!empty($term_synonyms)) {
 						foreach ($term_synonyms as $term_synonym) {
 							$add_terms[$term_synonym] = $term;
 						}
 					}
 				}
+
+				// add linked term
+				$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 				foreach ($add_terms as $find_term => $original_term) {
 					// Whole word ?

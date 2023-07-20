@@ -384,7 +384,7 @@ class SimpleTags_Autolink
                                                             echo $ui->get_select_checkbox_input_main([
                                                                 'namearray'  => 'taxopress_autolink',
                                                                 'name'       => 'taxonomy',
-                                                                'class'      => 'st-post-taxonomy-select',
+                                                                'class'      => 'taxopress-dynamic-taxonomy st-post-taxonomy-select',
                                                                 'labeltext'  => esc_html__('Taxonomy', 'simple-tags'),
                                                                 'required'   => true,
                                                                 'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -653,9 +653,12 @@ class SimpleTags_Autolink
                                                         <table class="form-table taxopress-table autolink_exceptions" style="<?php echo $active_tab === 'autolink_exceptions' ? '' : 'display:none;'; ?>">
                                                             <?php
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_text_input([
+                                                            echo $ui->get_textarea_input([
                                                                 'namearray' => 'taxopress_autolink',
                                                                 'name'      => 'auto_link_exclude',
+                                                                'rows'      => '4',
+                                                                'cols'      => '40',
+                                                                'class'     => 'autocomplete-input',
                                                                 'textvalue' => isset($current['auto_link_exclude']) ? esc_attr($current['auto_link_exclude']) : '',
                                                                 'labeltext' => esc_html__(
                                                                     'Exclude terms from Auto Links',
@@ -733,6 +736,14 @@ class SimpleTags_Autolink
                                                                     echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
                                                                 }
                                                             }
+  
+                                                            /**
+                                                             * Fires after the autolinks html_exclusions.
+                                                             * @param $current array
+                                                             * @param taxopress_admin_ui $ui Admin UI instance.
+                                                             */
+                                                            do_action('taxopress_autolinks_after_html_exclusions', $current, $ui);
+
                                                             echo '</table></td></tr>';
 
                                                             ?>
@@ -742,36 +753,38 @@ class SimpleTags_Autolink
 
                                                         <table class="form-table taxopress-table autolink_options" style="<?php echo $active_tab === 'autolink_options' ? '' : 'display:none;'; ?>">
                                                             <?php
-                                                            $select             = [
-                                                                'options' => [
-                                                                    [
-                                                                        'attr'    => '0',
-                                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                            if (taxopress_is_synonyms_enabled()) {
+                                                                $select             = [
+                                                                    'options' => [
+                                                                        [
+                                                                            'attr'    => '0',
+                                                                            'text'    => esc_attr__('False', 'simple-tags'),
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '1',
+                                                                            'text' => esc_attr__('True', 'simple-tags'),
+                                                                            'default' => 'true',
+                                                                        ],
                                                                     ],
-                                                                    [
-                                                                        'attr' => '1',
-                                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                                        'default' => 'true',
-                                                                    ],
-                                                                ],
-                                                            ];
-                                                            $selected           = (isset($current) && isset($current['synonyms_link'])) ? taxopress_disp_boolean($current['synonyms_link']) : '';
-                                                            $select['selected'] = !empty($selected) ? $current['synonyms_link'] : '';
+                                                                ];
+                                                                $selected           = (isset($current) && isset($current['synonyms_link'])) ? taxopress_disp_boolean($current['synonyms_link']) : '';
+                                                                $select['selected'] = !empty($selected) ? $current['synonyms_link'] : '';
 
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_select_checkbox_input([
-                                                                'namearray'  => 'taxopress_autolink',
-                                                                'name'       => 'synonyms_link',
-                                                                'labeltext'  => esc_html__(
-                                                                    'Add links to synonyms',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'aftertext'  => esc_html__(
-                                                                    'Add links to the term synonyms.',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ]);
+                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                echo $ui->get_select_checkbox_input([
+                                                                    'namearray'  => 'taxopress_autolink',
+                                                                    'name'       => 'synonyms_link',
+                                                                    'labeltext'  => esc_html__(
+                                                                        'Add links to synonyms',
+                                                                        'simple-tags'
+                                                                    ),
+                                                                    'aftertext'  => esc_html__(
+                                                                        'Add links to the term synonyms.',
+                                                                        'simple-tags'
+                                                                    ),
+                                                                    'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                ]);
+                                                            }
 
 
                                                             $select             = [
@@ -1001,5 +1014,6 @@ class SimpleTags_Autolink
                 </div>
 
         <?php
+        do_action( 'simpletags-autolinks');
     }
 }

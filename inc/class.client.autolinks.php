@@ -196,14 +196,16 @@ class SimpleTags_Client_Autolinks
 
 			// add term synonyms
 			if (is_array($options) && isset($options['synonyms_link']) && (int)$options['synonyms_link'] > 0) {
-				$term_synonyms = (array) get_term_meta($term->term_id, '_taxopress_term_synonyms', true);
-				$term_synonyms = array_filter($term_synonyms);
+				$term_synonyms = taxopress_get_term_synonyms($term->term_id);
 				if (!empty($term_synonyms)) {
 					foreach ($term_synonyms as $term_synonym) {
 						$add_terms[$term_synonym] = $primary_term_link;
 					}
 				}
 			}
+
+			// add linked term
+			$add_terms = taxopress_add_linked_term_options($add_terms, $term->name, $term->taxonomy, true);
 
 			foreach ($add_terms as $add_name => $add_term_link) {
 				//min character check
@@ -287,7 +289,7 @@ class SimpleTags_Client_Autolinks
 			$term_name = (string) $term_name;
 
 			// Exclude terms ? next...
-			if (in_array($term_name, (array) $excludes_terms, true)) {
+			if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 				continue;
 			}
 
@@ -348,7 +350,6 @@ class SimpleTags_Client_Autolinks
 		}
 
 		$dom = new DOMDocument();
-
 
 		if (!is_array($search)) {
 			$search_lists = [];
@@ -420,17 +421,19 @@ class SimpleTags_Client_Autolinks
 			$rel 	 = $search_details['rel'];
 			$options = $search_details['options'];
 
-			$search = str_replace('&amp;', '||taxopressamp||', $search); // https://github.com/TaxoPress/TaxoPress/issues/1638
+			$search = str_replace('&amp;', 'taxopressamp', $search); // https://github.com/TaxoPress/TaxoPress/issues/1638
 
 			if (is_array($options)) {
 				$autolink_case 	 = $options['autolink_case'];
 				$html_exclusion  = $options['html_exclusion'];
+				$html_exclusion_customs  = isset($options['html_exclusion_customs']) ? $options['html_exclusion_customs'] : [];
 				$exclude_class 	 = $options['autolink_exclude_class'];
 				$title_attribute = $options['autolink_title_attribute'];
 				$link_class 	 = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
 			} else {
 				$autolink_case = 'lowercase';
 				$html_exclusion = [];
+				$html_exclusion_customs = [];
 				$exclude_class = '';
 				$title_attribute = SimpleTags_Plugin::get_option_value('auto_link_title');
 				$link_class = '';
@@ -458,11 +461,15 @@ class SimpleTags_Client_Autolinks
 			$html_exclusion[] = 'link';
 			$html_exclusion[] = 'head';
 
+			if (!empty($html_exclusion_customs)) {
+				$html_exclusion = array_merge($html_exclusion, $html_exclusion_customs);
+			}
+
 			//auto link exclusion
-			$exclusion = '[not(ancestor::a)]';
+			$exclusion = '[not(ancestor::a)][not(ancestor-or-self::a/@*)]';
 			if (count($html_exclusion) > 0) {
 				foreach ($html_exclusion as $exclude_ancestor) {
-					$exclusion .= '[not(ancestor::' . strtolower($exclude_ancestor) . ')]';
+					$exclusion .= '[not(ancestor::' . strtolower($exclude_ancestor) . ')][not(ancestor-or-self::' . strtolower($exclude_ancestor) . '/@*)]';
 				}
 			}
 
@@ -485,6 +492,10 @@ class SimpleTags_Client_Autolinks
 			}
 
 			foreach ($xpath->query('//text()' . $exclusion . '') as $node) {
+				    // Exclude URLs from being replaced
+					if (preg_match('/(http|https):\/\/[^\s]+/i', $node->wholeText)) {
+						continue;
+					}
 				$substitute = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">$search</a>";
 				$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">";
 				$link_closing = '</a>';
@@ -507,19 +518,25 @@ class SimpleTags_Client_Autolinks
 					$same_usage_max = min($term_limits[$detail_id], $option_remaining[$detail_id]);
 				}
 
+				
 				//if ('i' === $case) {
-				if ($autolink_case === 'none') { //retain case
-					$replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$0$link_closing", $node->wholeText, $same_usage_max, $rep_count);
-				} elseif ($autolink_case === 'uppercase') { //uppercase
-					$replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$upperterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
-				} elseif ($autolink_case === 'termcase') { //termcase
-					$replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$search$link_closing", $node->wholeText, $same_usage_max, $rep_count);
-				} else { //lowercase
-					$replaced = preg_replace('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', "$link_openeing$lowerterm$link_closing", $node->wholeText, $same_usage_max, $rep_count);
+				if ($autolink_case === 'none') { // retain case
+					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $link_closing) {
+						return $link_openeing . htmlspecialchars($matches[0]) . $link_closing;
+					}, $node->wholeText, $same_usage_max, $rep_count);
+				} elseif ($autolink_case === 'uppercase') { // uppercase
+					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $upperterm, $link_closing) {
+						return $link_openeing . strtoupper($matches[0]) . $link_closing;
+					}, $node->wholeText, $same_usage_max, $rep_count);
+				} elseif ($autolink_case === 'termcase') { // termcase
+					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $search, $link_closing) {
+						return $link_openeing . $search . $link_closing;
+					}, $node->wholeText, $same_usage_max, $rep_count);
+				} else { // lowercase
+					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $lowerterm, $link_closing) {
+						return $link_openeing . strtolower($matches[0]) . $link_closing;
+					}, $node->wholeText, $same_usage_max, $rep_count);
 				}
-				/*} else {
-                    $replaced = str_replace($search, $substitute, $node->wholeText);
-                }*/
 
 				if ($replaced && !empty(trim($replaced))) {
 					$j++;
@@ -535,6 +552,7 @@ class SimpleTags_Client_Autolinks
 				}
 				$newNode = $dom->createDocumentFragment();
 				$newNode->appendXML($replaced);
+
 				$node->parentNode->replaceChild($newNode, $node);
 				if ($option_remaining[$detail_id] === 0) {
 					break;
@@ -547,6 +565,7 @@ class SimpleTags_Client_Autolinks
 		$content = str_replace('|--|', '&#', $content); //https://github.com/TaxoPress/TaxoPress/issues/824
 		$content = str_replace('&#60;', '<', $content);
 		$content = str_replace('&#62;', '>', $content);
+		
 		foreach (taxopress_html_character_and_entity(true) as $enity => $code) {
 			$content = str_replace($enity, $code, $content);
 		}
@@ -576,6 +595,7 @@ class SimpleTags_Client_Autolinks
 		if ($options) {
 			$autolink_case = $options['autolink_case'];
 			$html_exclusion = $options['html_exclusion'];
+			$html_exclusion_customs  = isset($options['html_exclusion_customs']) ? $options['html_exclusion_customs'] : [];
 			$exclude_class = $options['autolink_exclude_class'];
 			$title_attribute = $options['autolink_title_attribute'];
 			$same_usage_max = $options['autolink_same_usage_max'];
@@ -584,11 +604,17 @@ class SimpleTags_Client_Autolinks
 		} else {
 			$autolink_case = 'lowercase';
 			$html_exclusion = [];
+			$html_exclusion_customs = [];
 			$exclude_class = '';
 			$title_attribute = SimpleTags_Plugin::get_option_value('auto_link_title');
 			$same_usage_max = SimpleTags_Plugin::get_option_value('auto_link_max_by_tag');
 			$max_by_post = SimpleTags_Plugin::get_option_value('auto_link_max_by_post');
 			$link_class = '';
+		}
+
+
+		if (!empty($html_exclusion_customs)) {
+			$html_exclusion = array_merge($html_exclusion, $html_exclusion_customs);
 		}
 
 		$must_tokenize = true; // will perform basic tokenization
@@ -766,7 +792,7 @@ class SimpleTags_Client_Autolinks
 			$term_name = (string) $term_name;
 
 			// Exclude terms ? next...
-			if (in_array($term_name, (array) $excludes_terms, true)) {
+			if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 				continue;
 			}
 
@@ -888,7 +914,7 @@ class SimpleTags_Client_Autolinks
 						$term_name = (string) $term_name;
 
 						// Exclude terms ? next...
-						if (in_array($term_name, (array) $excludes_terms, true)) {
+						if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 							continue;
 						}
 
@@ -1008,7 +1034,7 @@ class SimpleTags_Client_Autolinks
 						$term_name = (string) $term_name;
 
 						// Exclude terms ? next...
-						if (in_array($term_name, (array) $excludes_terms, true)) {
+						if (taxopress_in_array_i($term_name, (array) $excludes_terms, true)) {
 							continue;
 						}
 

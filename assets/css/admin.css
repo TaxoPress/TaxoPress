@@ -772,12 +772,20 @@ ul.taxopress-tab li.posttags_options_tab a::before {
 ul.taxopress-tab li.posttags_display_tab a::before {
     content: "\f186";
 }
-
+.manage-taxopress-terms .column-slug {
+    width: unset;
+}
 .st-html-exclusion-table th {
     padding: unset;
+    white-space: nowrap;
+    overflow-wrap: break-word;
+    max-width: 120px;
 }
 .st-html-exclusion-table td {
     padding: 5px 5px;
+  white-space: nowrap;
+  overflow-wrap: break-word;
+  max-width: 300px;
 }
 
 .st-autoterms-single-specific-term {

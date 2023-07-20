@@ -308,7 +308,7 @@ function taxopress_html_character_and_entity($enity_code_as_key = false)
         '&rsquor;'   => '&#8217;',
         '&lsquo;'   => '&#8216;',
         '&lsquor;'   => '&#8218;',
-        '&amp;'   => '||taxopressamp||',
+        '&amp;'   => 'taxopressamp',
     ];
 
     if ($enity_code_as_key) {
@@ -426,4 +426,164 @@ function taxopress_dashboard_options()
 function taxopress_is_pro_version()
 {
     return defined('TAXOPRESS_PRO_VERSION');
+}
+
+/**
+ * Case insensitive in_array function
+ *
+ * @param string $needle
+ * @param array $haystack
+ * @return bool
+ */
+function taxopress_in_array_i($needle, $haystack) {
+    return in_array(strtolower($needle), array_map('strtolower', $haystack));
+}
+
+/**
+ * Check if synonyms is enabled
+ * 
+ * @return bool
+ */
+function taxopress_is_synonyms_enabled() {
+    return ((int) SimpleTags_Plugin::get_option_value('active_features_synonyms') === 1);
+}
+
+/**
+ * Check if linked term is enabled
+ * 
+ * @return bool
+ */
+function taxopress_is_linked_terms_enabled() {
+    return ((int) SimpleTags_Plugin::get_option_value('active_features_linked_terms') === 1);
+}
+
+/**
+ * Get term synonyms
+ *
+ * @param string|integer $term
+ * @param string $taxonomy
+ * @return array  $term_synonyms
+ */
+function taxopress_get_term_synonyms($term, $taxonomy = '') {
+    $term_synonyms = [];
+
+    if (!taxopress_is_synonyms_enabled()) {
+        // simply return empty array if feature is disabled
+        return $term_synonyms;
+    }
+
+    if ((int)$term > 0) {
+        $term_synonyms = (array) get_term_meta($term, '_taxopress_term_synonyms', true);
+    } else {
+        $terms_object = get_term_by('name', esc_attr($term), $taxonomy);
+        if (is_object($terms_object) && isset($terms_object->term_id)) {
+            $term_synonyms = (array) get_term_meta($terms_object->term_id, '_taxopress_term_synonyms', true);
+        }
+    }
+    $term_synonyms = array_filter($term_synonyms);
+
+    return $term_synonyms;
+}
+
+/**
+ * Get linked terms
+ *
+ * @param string|integer $term
+ * @param string $taxonomy
+ * @param string $taxonomy
+ * @return array $term_object
+ */
+function taxopress_get_linked_terms($term, $taxonomy = '', $term_object = false) {
+    $linked_terms = [];
+
+    if (!taxopress_is_linked_terms_enabled()) {
+        // simply return empty array if feature is disabled
+        return $linked_terms;
+    }
+
+    if ((int)$term > 0) {
+        $linked_terms = (array) get_term_meta($term, '_taxopress_linked_terms', true);
+    } else {
+        $terms_object = get_term_by('name', esc_attr($term), $taxonomy);
+        if (is_object($terms_object) && isset($terms_object->term_id)) {
+            $linked_terms = (array) get_term_meta($terms_object->term_id, '_taxopress_linked_terms', true);
+        }
+    }
+    $linked_terms = array_filter($linked_terms);
+
+    if ($term_object) {
+        $linked_term_object = [];
+        foreach ( $linked_terms as $linked_term) {
+            $terms_object = get_term_by('name', esc_attr($linked_term), $taxonomy);
+            if (is_object($terms_object) && isset($terms_object->term_id)) {
+                $linked_term_object[] = $terms_object;
+            }
+        }
+        $linked_terms = $linked_term_object;
+    }
+
+    return $linked_terms;
+}
+
+/**
+ * Add linked terms and it synonyms to list
+ *
+ * @param array $lists
+ * @param string|integer $term
+ * @param string $lists
+ * @param bool $linked
+ * @param bool $named_term
+ * 
+ * @return array $term_object
+ */
+function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = false, $named_term = false) {
+
+    if (!taxopress_is_linked_terms_enabled()) {
+        // simply return $lists if feature is disabled
+        return $lists;
+    }
+
+    if ((int)$term > 0) {
+        $term_id = $term;
+    } else {
+        $terms_object = get_term_by('name', esc_attr($term), $taxonomy);
+        if (is_object($terms_object) && isset($terms_object->term_id)) {
+            $term_id = $terms_object->term_id;
+        } else {
+            $term_id = 0;
+        }
+    }
+
+    if ($term_id > 0) {
+        // get linked terms
+        $linked_terms = taxopress_get_linked_terms($term_id, $taxonomy, true);
+        if (!empty($linked_terms)) {
+            if (!empty($linked_terms)) {
+                foreach ($linked_terms as $linked_term) {
+                    $linked_term_name = stripslashes($linked_term->name);
+                    $linked_term_id   = $linked_term->term_id;
+                    if ($linked) {
+                        $term_value = get_term_link($linked_term, $linked_term->taxonomy);
+                    } elseif ($named_term) {
+                        $term_value = $linked_term_name;
+                    } else {
+                        $term_value = $linked_term_id;
+                    }
+
+                    // add linked term
+                    $lists[$linked_term_name] = $term_value;
+
+                    // add linked term synonyms
+                    $term_synonyms = taxopress_get_term_synonyms($linked_term_id);
+                    if (!empty($term_synonyms)) {
+                        foreach ($term_synonyms as $term_synonym) {
+                            $lists[$term_synonym] = $term_value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return $lists;
 }

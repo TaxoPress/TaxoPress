@@ -2271,7 +2271,7 @@ function taxopress_set_default_taxonomy_terms($post_id, $post) {
                         }
                     }
                     if (!empty($new_terms)) {
-                        wp_set_object_terms($post_id, $new_terms, $taxonomy);
+                        wp_set_object_terms($post_id, $new_terms, $taxonomy, true);
                     }
                 }
             }

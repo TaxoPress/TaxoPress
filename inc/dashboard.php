@@ -18,25 +18,6 @@ class SimpleTags_Dashboard
     {
         // Admin menu
         add_action('admin_menu', [$this, 'admin_menu']);
-        // Javascript
-        add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
-    }
-
-    /**
-     * Init somes JS and CSS need for this feature
-     *
-     * @return void
-     * @author Olatechpro
-     */
-    public static function admin_enqueue_scripts()
-    {
-
-        // add JS for manage click tags
-        if (isset($_GET['page']) && $_GET['page'] == 'st_dashboard') {
-            //wp_enqueue_style('st-taxonomies-css');
-            //wp_enqueue_script('admin-tags');
-            //wp_enqueue_script('inline-edit-tax');
-        }
     }
 
     /** Singleton instance */
