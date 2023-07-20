@@ -247,14 +247,13 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 == Changelog ==
 
-v3.9.0- 2023-07-19
+v3.9.0- 2023-07-20
 * Feature: Linked terms: Automatically add terms if main term is added [PRO] #801
 * Update: Allow custom input in "Prevent Auto Links Inside elements" [PRO], #1653
 * Fixed: Fix Exclude terms from Auto Links not working due to Case sensitivity, #1682
 * Update: Add a synonyms option for Auto Terms, #1674
 * Update: Make Auto Links Exclude terms bigger and Add Autocomplete to the field, #1680
 * Update: Include synonymns consideration when showing suggest terms, #1671
-* Fixed: "Count" column is wrong if the taxonomy is attached to multiple post types, #1685
 * Update: Prevent a synonym from having the same name as existing terms, #1673
 * Update: TaxoFree_ES-IT_TranslationUpdates_June2023, #1675
 * Update: TAXO FREE French translation update June 2023, #1678
