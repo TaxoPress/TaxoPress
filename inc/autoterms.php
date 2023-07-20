@@ -727,22 +727,24 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_options' ? '' : 'display:none;'; ?>">
                                                     <?php
 
-                                                    $selected           = (isset($current) && isset($current['synonyms_term'])) ? taxopress_disp_boolean($current['synonyms_term']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['synonyms_term'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'synonyms_term',
-                                                        'labeltext'  => esc_html__(
-                                                            'Add terms if synonyms found',
-                                                            'simple-tags'
-                                                        ),
-                                                        'aftertext'  => esc_html__(
-                                                            'TaxoPress will add a term to the post if a synonym is found.',
-                                                            'simple-tags'
-                                                        ),
-                                                        'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ]);
+                                                    if (taxopress_is_synonyms_enabled()) {
+                                                        $selected           = (isset($current) && isset($current['synonyms_term'])) ? taxopress_disp_boolean($current['synonyms_term']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['synonyms_term'] : '';
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_autoterm',
+                                                            'name'       => 'synonyms_term',
+                                                            'labeltext'  => esc_html__(
+                                                                'Add terms if synonyms found',
+                                                                'simple-tags'
+                                                            ),
+                                                            'aftertext'  => esc_html__(
+                                                                'TaxoPress will add a term to the post if a synonym is found.',
+                                                                'simple-tags'
+                                                            ),
+                                                            'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ]);
+                                                    }
                                                     
                                                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_number_input([
