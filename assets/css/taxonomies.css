@@ -1,5 +1,7 @@
-.table-view-list.taxonomies .column-name a {
-    margin-left: 8px;
+.table-view-list.taxonomies .column-cb {
+    margin: 0;
+    padding: 0;
+    width: 8px;
 }
 .posttypesui, .taxonomiesui {
     width: calc(100% - 350px);

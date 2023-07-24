@@ -63,6 +63,7 @@ class Taxonomy_List extends WP_List_Table
     function get_columns()
     {
         $columns = [
+            'cb'          => '',
             'name'        => __('Name', 'simple-tags'),
             'registration_key' => __('Registration key', 'simple-tags'),
             'description' => __('Description', 'simple-tags'),
@@ -85,6 +86,19 @@ class Taxonomy_List extends WP_List_Table
     public function column_default($item, $column_name)
     {
         return !empty($item->$column_name) ? $item->$column_name : '&mdash;';
+    }
+
+    /**
+     * The checkbox column
+     *
+     * @param object $item
+     *
+     * @return string|void
+     */
+    protected function column_cb($item)
+    {
+    
+        return '';
     }
 
     /** Text displayed when no stterm data is available */
