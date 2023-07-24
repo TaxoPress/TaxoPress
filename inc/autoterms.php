@@ -727,7 +727,7 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_options' ? '' : 'display:none;'; ?>">
                                                     <?php
 
-                                                    if (taxopress_is_synonyms_enabled()) {
+                                                    if (taxopress_is_pro_version() && taxopress_is_synonyms_enabled()) {
                                                         $selected           = (isset($current) && isset($current['synonyms_term'])) ? taxopress_disp_boolean($current['synonyms_term']) : '';
                                                         $select['selected'] = !empty($selected) ? $current['synonyms_term'] : '';
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
