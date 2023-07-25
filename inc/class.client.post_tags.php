@@ -176,8 +176,9 @@ class SimpleTags_Client_PostTags {
 				}
 				wp_cache_add( $object_id, $to_cache, $taxonomy . '_relationships' );
 			}
-
-			$terms = array_map( 'get_term', $taxterms );
+			if ($taxterms && !is_wp_error($taxterms)) {
+				$terms = array_map('get_term', $taxterms);
+			}
 		}
 
 		// Hook
