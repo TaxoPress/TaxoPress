@@ -111,11 +111,11 @@ class Taxopress_Terms_List extends WP_List_Table
             'cb'      => '<input type="checkbox" />',
             'name'     => esc_html__('Title', 'simple-tags'),
             'slug'     => esc_html__('Slug', 'simple-tags'),
+            'description'     => esc_html__('Description', 'simple-tags'),
             'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
             'posttypes'  => esc_html__('Post Types', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
-            'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
-            //'count'  => esc_html__('Count', 'simple-tags')
+            'linked_terms'  => esc_html__('Linked Terms', 'simple-tags')
         ];
 
         if (!taxopress_is_pro_version()) {
@@ -137,7 +137,6 @@ class Taxopress_Terms_List extends WP_List_Table
             'name'      => ['name', true],
             'slug'      => ['taxonomy', true],
             'taxonomy'  => ['taxonomy', true],
-            //'count'     => ['count', true],
         ];
 
         return $sortable_columns;
@@ -555,27 +554,10 @@ class Taxopress_Terms_List extends WP_List_Table
      *
      * @return string
      */
-    protected function column_count($item)
+    protected function column_description($item)
     {
 
-        $taxonomy     = get_taxonomy($item->taxonomy);
-        $term_details = get_term($item->term_id);
-
-        if ($taxonomy->query_var) {
-            return sprintf(
-                '<a href="%s" class="">%s</a>',
-                add_query_arg(
-                    [
-                        $taxonomy->query_var => esc_attr($item->slug),
-                        'post_type' => isset($taxonomy->object_type[0]) ? $taxonomy->object_type[0] : 'post',
-                    ],
-                    admin_url('edit.php')
-                ),
-                number_format_i18n($term_details->count)
-            );
-        } else {
-            return number_format_i18n($term_details->count);
-        }
+        return term_description($item->term_id);
     }
 
     /**
