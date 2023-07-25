@@ -1,5 +1,5 @@
 {
-    "name": "taxopress/taxopress",
+    "name": "taxopress/simple-tags",
     "require": {
         "php": ">=7.2.5",
         "publishpress/wordpress-version-notices": "^1.1",
