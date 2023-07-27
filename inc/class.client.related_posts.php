@@ -107,6 +107,8 @@ class SimpleTags_Client_RelatedPosts {
 			'title_header'  => '',
 			'wrap_class'  => '',
 			'link_class'  => '',
+			'before'      => '',
+			'after'       => '',
 		);
 
 		// Get values in DB
@@ -405,7 +407,8 @@ class SimpleTags_Client_RelatedPosts {
 
 			$output[] = $element_loop;
 		}
-		return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $output, $copyright, $separator, $wrap_class, $link_class );
+
+		return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $output, $copyright, $separator, $wrap_class, $link_class, $before, $after );
 	}
 
 	/**

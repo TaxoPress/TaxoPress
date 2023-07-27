@@ -146,6 +146,8 @@ function taxopress_create_default_tag_cloud()
     $default = [];
     $default['taxopress_tag_cloud']['title'] = 'Terms Display';
     $default['taxopress_tag_cloud']['post_type'] = '';
+    $default['taxopress_tag_cloud']['before']   = '';
+    $default['taxopress_tag_cloud']['after']    = '';
     $default['taxopress_tag_cloud']['taxonomy'] = 'post_tag';
     $default['taxopress_tag_cloud']['max'] = 45;
     $default['taxopress_tag_cloud']['selectionby'] = 'count';

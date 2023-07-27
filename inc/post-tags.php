@@ -509,7 +509,10 @@ class SimpleTags_Post_Tags
                                                                     'Text to display before terms list',
                                                                     'simple-tags'
                                                                 ),
-                                                                'helptext'  => '',
+                                                                'helptext'  => esc_html__(
+                                                                    'Enter the text that should be display before terms list. This field accepts basic HTML.',
+                                                                    'simple-tags'
+                                                                ),
                                                                 'required'  => false,
                                                             ]);
 
@@ -522,7 +525,10 @@ class SimpleTags_Post_Tags
                                                                     'Text to display after terms list',
                                                                     'simple-tags'
                                                                 ),
-                                                                'helptext'  => '',
+                                                                'helptext'  => esc_html__(
+                                                                    'Enter the text that should be display after terms list. This field accepts basic HTML.',
+                                                                    'simple-tags'
+                                                                ),
                                                                 'required'  => false,
                                                             ]);
 
