@@ -85,6 +85,8 @@ class SimpleTags_Client_TagCloud {
 			'post_type'   => '',
 			'wrap_class'  => '',
 			'link_class'  => '',
+			'before'      => '',
+			'after'       => '',
 		);
 
 		// Get options
@@ -249,7 +251,7 @@ class SimpleTags_Client_TagCloud {
 			$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
 		}
 
-		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright, '', $wrap_class, $link_class );
+		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright, '', $wrap_class, $link_class, $before, $after );
 	}
 
 
