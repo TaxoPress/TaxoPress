@@ -2353,37 +2353,31 @@ function taxopress_get_dropdown(){
 
                     $current = $taxonomies[ $taxonomy_name ];
 
-                    if( array_key_exists( 'show_in_filter', $current ) ){
+                    if( is_array($current) && array_key_exists( 'show_in_filter', $current ) ){
+                        if (isset($current['object_types']) && !empty($current['object_types'])) {
+                            foreach ($current['object_types'] as $object_type) {
 
-                        foreach ($current['object_types'] as $object_type) {
+                                //Media Page
+                                if($pagenow === 'upload.php') {
 
-                            //Media Page
-                            if($pagenow === 'upload.php'){
+                                    if($object_type == "attachment") {
 
-                                if( $object_type == "attachment" ){
+                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
 
-                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter']);
+                                    }
 
+                                } else {
+
+                                    if($object_type == $type) {
+
+                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
+
+                                    }
                                 }
-
-                            }else{
-
-                                if($object_type == $type){
-
-                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter'] );
-
-                                }
-
                             }
-
                         }
-
-
-
-
                     }
                 }
-
             }
         }
 
