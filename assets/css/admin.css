@@ -210,6 +210,61 @@ body.taxopress_page_st_terms tr.inline-edit-row td {
 .box-selector-taxonomy .current-taxonomy{float:right;font-size:16px;font-weight:700;margin:0;}
 .box-selector-taxonomy .change-taxo select{width:200px;}
 
+.st_wrap.st_mass_terms-page .box-selector-taxonomy {
+    margin: 0;
+    padding: 0;
+    background: aliceblue;
+    color: transparent;
+    display: inline-block;
+}
+
+/* Custom CSS for pagination */
+.tablenav.custom-nav .tablenav-pages {
+    margin-top: 10px;
+}
+
+.tablenav.custom-nav .tablenav-pages a, 
+.tablenav.custom-nav .tablenav-pages span {
+    padding: 5px 10px;
+    border: 1px solid #2271b1;
+    border-radius: 3px;
+    text-decoration: none;
+
+    color: #2271b1;
+    background: #f6f7f7;
+}
+
+.tablenav.custom-nav .tablenav-pages a:hover {
+    background-color: #f6f7f7;
+    color: #a7aaad;
+}
+
+.tablenav.custom-nav .tablenav-pages .current-page {
+    font-weight: bold;
+}
+
+.tablenav.custom-nav .tablenav-pages .next-page, 
+.tablenav.custom-nav .tablenav-pages .prev-page {
+    color: #0073aa;
+}
+
+.tablenav.custom-nav .tablenav-pages .next-page.disabled, 
+.tablenav.custom-nav .tablenav-pages .prev-page.disabled {
+    color: #ccc;
+    pointer-events: none;
+}
+
+.tablenav.custom-nav .tablenav-pages .page-numbers.current,
+.tablenav.custom-nav .tablenav-pages .page-numbers.dots {
+    color: #a7aaad;
+    border-color: #dcdcde;
+    background: #f6f7f7;
+    box-shadow: none;
+    cursor: default;
+    transform: none;
+}
+
+
 /* Options Table   */
 .st_wrap fieldset.options legend{display:none;}
 .st_wrap fieldset.options{border:0;}
