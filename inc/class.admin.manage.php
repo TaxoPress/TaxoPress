@@ -466,15 +466,15 @@ class SimpleTags_Admin_Manage
                 return true;
             }
 
-            // Delete old terms
-            foreach ((array) $terms_id as $term_id) {
-                wp_delete_term($term_id, $taxonomy);
-            }
-
             // Set objects to new term ! (Append no replace)
             foreach ((array) $objects_id as $object_id) {
                 wp_set_object_terms($object_id, $new_tag, $taxonomy, true);
                 $counter ++;
+            }
+
+            // Delete old terms
+            foreach ((array) $terms_id as $term_id) {
+                wp_delete_term($term_id, $taxonomy);
             }
 
             // Test if term is also a category

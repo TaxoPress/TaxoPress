@@ -145,7 +145,7 @@ class SimpleTags_Client_Autolinks
 						$results = array_merge($results, $terms);
 					}
 				}
-
+				$cache = [];
 				$cache[$key] = $results;
 				wp_cache_set('generate_keywords', $cache, 'simple-tags');
 			} else {
