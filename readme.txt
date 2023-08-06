@@ -34,7 +34,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
 6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
 7. **Suggest Terms**: This feature can show a metabox where you can browse all your existing terms. A second metabox can analyze your content and find new ideas for terms. 
-8. **Term Synonyms**: Allows you to have multiple words associated with a single term.
+8. **Term Synonyms and Linked Terms**: Allows you to have multiple words associated with a single term.
 9. **Mass Edit Terms**: Quickly add or remove taxonomy terms from any content in WordPress.
 10. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
 
@@ -101,6 +101,12 @@ Synonyms is a feature in TaxoPress Pro that allows you to have multiple words as
 Synonyms will be available on each term screen. For example, if your term is “Apple”, you can create synonyms such as “Apples”, “Golden Delicious”, “Granny Smith”, “Pink Lady”, “Honeycrisp”, “Red Delicious”, “Braeburn” and “Gravenstein”.
 
 [Click here to read about Term Synonyms](https://taxopress.com/docs/synonyms/).
+
+Linked Terms is a feature in TaxoPress Pro that allows you to connect terms. When the main term is added to a post, the linked terms will be added also.
+
+For sites with a lot of terms, this feature makes it easier and quicker for your users to add the correct terms. For example, if you add the term “WordPress” to your posts, TaxoPress can automatically add Linked Terms that include “CMS”, “website”, and “website design”.
+
+[Click here to read about Linked Terms](https://taxopress.com/docs/linked-terms/).
 
 ## Feature 9. Mass Edit Terms ##
 
