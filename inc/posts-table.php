@@ -392,7 +392,7 @@ class Taxopress_Posts_List extends WP_List_Table
                 $terms = get_the_terms($post->ID, $taxonomy_slug);
                 if (!empty($terms) && !is_wp_error($terms)) {
                     $out .='<div class="taxopress-post-taxonomy">';
-                    $out .="<strong>{$taxonomy->labels->name}</strong> &nbsp;";
+                    $out .="<strong>{$taxonomy->labels->name}:</strong> &nbsp;";
                     $out .='<span class="taxopress-post-taxonomy-terms">';
                     
                     $term_links = [];
