@@ -364,6 +364,14 @@ return array(
 
         //auto link legacy
         array(
+            'text_helper',
+            'text_helper',
+            'helper',
+            '',
+            '<p class="taxopress-warning"><strong>' . __('These settings are no longer being updated. Please use the "Auto Links" screen instead.', 'simple-tags') . '</strong></p><br /><br />',
+            'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+        array(
             'auto_link_tags',
             __('Auto links tags', 'simple-tags'),
             'checkbox',
@@ -463,6 +471,25 @@ return array(
             '1',
             __('By default, TaxoPress will exclude Auto Links for terms that are attached to the post title.', 'simple-tags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
+        ),
+
+
+        //mass edit terms legacy
+        array(
+            'text_helper',
+            'text_helper',
+            'helper',
+            '',
+            '<p class="taxopress-warning"><strong>' . __('These feature is no longer being updated and may be removed in the future version of TaxoPress', 'simple-tags') . '</strong></p><br /><br />',
+            'legacy-tab-content legacy-mass-edit-content st-hide-content'
+        ),
+        array(
+            'active_mass_edit_legacy',
+            __('Enable "Mass Edit Terms"', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature allows you to quickly edit the terms attached to multiple posts at the same time.', 'simple-tags'),
+            'legacy-tab-content legacy-mass-edit-content st-hide-content'
         ),
 
 

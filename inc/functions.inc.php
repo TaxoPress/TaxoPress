@@ -407,12 +407,6 @@ function taxopress_dashboard_options()
         'option_key'   => 'active_suggest_terms',
     ];
 
-    $features['st_mass_terms'] = [
-        'label'        => esc_html__('Mass Edit Terms', 'simple-tags'),
-        'description'  => esc_html__('This feature allows you to quickly edit the terms attached to multiple posts at the same time.', 'simple-tags'),
-        'option_key'   => 'active_mass_edit',
-    ];
-
     $features['st_manage'] = [
         'label'        => esc_html__('Manage Terms', 'simple-tags'),
         'description'  => esc_html__('This feature allows you to add, rename, merge, and delete terms for any taxonomy.', 'simple-tags'),

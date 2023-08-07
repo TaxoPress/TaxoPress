@@ -72,7 +72,7 @@ class SimpleTags_Dashboard
             <?php esc_html_e('This screen allows you to enable or disable TaxoPress features.', 'simple-tags'); ?>
         </div>
 
-        <div class="wrap st_wrap tagcloudui st_mass_terms-page admin-settings">
+        <div class="wrap st_wrap tagcloudui st_dashboard-page admin-settings">
             <form id="taxopress-capabilities-dashboard-form">
                 <div class="taxopress-dashboard-settings-boxes">
                     <?php foreach (taxopress_dashboard_options() as $feature => $option) :
