@@ -18,7 +18,8 @@ return array(
     'active_st_posts'        => 1,
 
     // post terms filter format
-    'post_terms_filter_format' => 'term_name',
+    'post_terms_filter_format'  => 'term_name',
+    'post_terms_taxonomy_type' => 'public',
 
     'allow_embed_tcloud'     => 1,
     // Auto link

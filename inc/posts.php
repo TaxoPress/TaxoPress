@@ -68,10 +68,12 @@ class SimpleTags_Posts
             wp_send_json_error(null, 403);
         }
 
-        $search       = !empty($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
-        $field         = !empty($_GET['field']) ? sanitize_text_field($_GET['field']) : 'slug';
-        $terms        = self::get_possible_terms_for_search($search);
-        $filter_format = SimpleTags_Plugin::get_option_value('post_terms_filter_format');
+        $search        = !empty($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
+        $field          = !empty($_GET['field']) ? sanitize_text_field($_GET['field']) : 'slug';
+        $filter_format  = SimpleTags_Plugin::get_option_value('post_terms_filter_format');
+        $taxonomy_type = SimpleTags_Plugin::get_option_value('post_terms_taxonomy_type');
+
+        $terms        = self::get_possible_terms_for_search($search, $taxonomy_type);
         $results = [];
 
         foreach ($terms as $term) {
@@ -102,11 +104,18 @@ class SimpleTags_Posts
      *
      * @return object
      */
-    public static function get_possible_terms_for_search($search)
+    public static function get_possible_terms_for_search($search, $taxonomy_type = 'public')
     {
+        if ($taxonomy_type === 'public') {
+            $taxonomies = array_keys(get_taxonomies(['public' => true]));
+        } elseif ($taxonomy_type === 'private') {
+            $taxonomies = array_keys(get_taxonomies(['public' => false]));
+        } else {
+            $taxonomies = array_keys(get_taxonomies());
+        }
 
         $term_args = [
-            'taxonomy'   => array_keys(get_taxonomies()),
+            'taxonomy'   => $taxonomies,
             'hide_empty' => true,
             'number'     => apply_filters('taxopress_terms_search_result_limit', 20),
             'order_by'   => 'name',

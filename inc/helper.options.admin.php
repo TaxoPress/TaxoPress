@@ -13,7 +13,19 @@ return array(
             ),
             __('This controls the details that appear in the "Terms Filter" display and can help if you have terms with similar names.', 'simple-tags'),
             ''
-        )
+        ),
+        array(
+            'post_terms_taxonomy_type',
+            __('Terms Filter taxonomy:', 'simple-tags'),
+            'radio',
+            array(
+                'public'  => __('Public Taxonomies', 'simple-tags'),
+                'private'   => __('Private Taxonomies', 'simple-tags'),
+                'term_and_private' => __('Public Taxonomies and Private Taxonomies', 'simple-tags'),
+            ),
+            '',
+            ''
+        ),
     ),
 
     // Leggacy tab
