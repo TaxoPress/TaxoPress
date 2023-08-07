@@ -4,14 +4,14 @@ return array(
     'posts'       => array(
         array(
             'post_terms_filter_format',
-            __('Terms filter options format:', 'simple-tags'),
+            __('Terms Filter display:', 'simple-tags'),
             'radio',
             array(
                 'term_name'  => __('Term Name', 'simple-tags'),
                 'term_name_taxonomy_name'   => __('Term Name + Taxonomy Name', 'simple-tags'),
                 'term_name_taxonomy_slug' => __('Term Name + Taxonomy Slug', 'simple-tags'),
             ),
-            '',
+            __('This controls the details that appear in the "Terms Filter" display and can help if you have terms with similar names.', 'simple-tags'),
             ''
         )
     ),
