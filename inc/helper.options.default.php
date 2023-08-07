@@ -15,6 +15,10 @@ return array(
     'active_st_terms'        => 1,
     'active_features_synonyms'      => 1,
     'active_features_linked_terms'  => 1,
+    'active_st_posts'        => 1,
+
+    // post terms filter format
+    'post_terms_filter_format' => 'term_name',
 
     'allow_embed_tcloud'     => 1,
     // Auto link

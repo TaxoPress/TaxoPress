@@ -148,7 +148,8 @@ function taxopress_admin_pages()
         'st_autolinks',
         'st_autoterms',
         'st_suggestterms',
-        'st_terms'
+        'st_terms',
+        'st_posts'
     ];
 
     return apply_filters('taxopress_admin_pages', $taxopress_pages);
@@ -362,6 +363,12 @@ function taxopress_dashboard_options()
         'label'        => esc_html__('Terms', 'simple-tags'),
         'description'  => esc_html__('This feature allows you to search and edit all the terms on your site.', 'simple-tags'),
         'option_key'   => 'active_st_terms',
+    ];
+
+    $features['st_posts'] = [
+        'label'        => esc_html__('Posts', 'simple-tags'),
+        'description'  => esc_html__('This feature allows you to access all the posts on your site.', 'simple-tags'),
+        'option_key'   => 'active_st_posts',
     ];
 
     $features['st_terms_display'] = [

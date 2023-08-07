@@ -1,5 +1,22 @@
 <?php
 return array(
+    // post tab
+    'posts'       => array(
+        array(
+            'post_terms_filter_format',
+            __('Terms filter options format:', 'simple-tags'),
+            'radio',
+            array(
+                'term_name'  => __('Term Name', 'simple-tags'),
+                'term_name_taxonomy_name'   => __('Term Name + Taxonomy Name', 'simple-tags'),
+                'term_name_taxonomy_slug' => __('Term Name + Taxonomy Slug', 'simple-tags'),
+            ),
+            '',
+            ''
+        )
+    ),
+
+    // Leggacy tab
     'legacy'       => array(
 
 
