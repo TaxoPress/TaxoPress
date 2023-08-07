@@ -115,7 +115,8 @@ class Taxopress_Terms_List extends WP_List_Table
             'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
             'posttypes'  => esc_html__('Post Types', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
-            'linked_terms'  => esc_html__('Linked Terms', 'simple-tags')
+            'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
+            'count'  => esc_html__('Count', 'simple-tags')
         ];
 
         if (!taxopress_is_pro_version()) {
@@ -135,8 +136,9 @@ class Taxopress_Terms_List extends WP_List_Table
     {
         $sortable_columns = [
             'name'      => ['name', true],
-            'slug'      => ['taxonomy', true],
+            'slug'      => ['slug', true],
             'taxonomy'  => ['taxonomy', true],
+            'count'     => ['count', true],
         ];
 
         return $sortable_columns;
@@ -546,6 +548,56 @@ class Taxopress_Terms_List extends WP_List_Table
 
         return $posttype;
     }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_count($item)
+    {
+        $term_counts = $this->count_posts_by_term($item->term_id, $item->taxonomy);
+
+        return sprintf(
+            '<a href="%s" class="">%s</a>',
+            add_query_arg(
+                [
+                    'page' => 'st_posts',
+                    'posts_term_filter' => (int) $item->term_id,
+                ],
+                admin_url('admin.php')
+            ),
+            number_format_i18n($term_counts)
+        );
+    }
+
+    protected function count_posts_by_term($term_id, $taxonomy) {
+        
+        $args = array(
+            'post_type' => array_keys(get_post_types(array('public' => true), 'names')),
+            'post_status' => 'any',
+            'posts_per_page' => 1,
+            'tax_query' => array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => $taxonomy,
+                    'field' => 'id',
+                    'terms' => $term_id,
+                ),
+            ),
+        );
+    
+        $term_count = new WP_Query($args);
+
+        if ($term_count->have_posts()) {
+            return $term_count->found_posts;
+        } else {
+            return 0;
+        }
+    }
+    
 
     /**
      * The action column
