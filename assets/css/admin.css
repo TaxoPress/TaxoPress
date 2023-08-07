@@ -198,6 +198,16 @@
 /* end COPIED FROM PP BLOCKS */
 
 
+
+
+.taxopress-select2 {
+    min-width: 150px;
+}
+
+.taxopress-post-taxonomy {
+    margin-bottom: 5px;
+}
+
 body.taxopress_page_st_terms tr.inline-edit-row td {
     padding-left: 20px !important;
 }
