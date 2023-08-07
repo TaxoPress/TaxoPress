@@ -367,7 +367,7 @@ function taxopress_dashboard_options()
 
     $features['st_posts'] = [
         'label'        => esc_html__('Posts', 'simple-tags'),
-        'description'  => esc_html__('This feature allows you to access all the posts on your site.', 'simple-tags'),
+        'description'  => esc_html__('This feature allows you to search for terms and see all the posts attached to that term.', 'simple-tags'),
         'option_key'   => 'active_st_posts',
     ];
 

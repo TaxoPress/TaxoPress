@@ -203,7 +203,7 @@ class SimpleTags_Posts
             <div id="">
                 <h1 class="wp-heading-inline"><?php esc_html_e('Posts', 'simple-tags'); ?></h1>
                 <div class="taxopress-description">
-                    <?php esc_html_e('This screen allows you access all the posts on your site.', 'simple-tags'); ?>
+                    <?php esc_html_e('This feature allows you to search for terms and see all the posts attached to that term.', 'simple-tags'); ?>
                 </div>
 
 
