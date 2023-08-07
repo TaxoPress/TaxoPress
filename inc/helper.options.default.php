@@ -8,7 +8,7 @@ return array(
     'active_auto_links'      => 1,
     'active_auto_terms'      => 1,
     'active_suggest_terms'   => 1,
-    'active_mass_edit'       => 1,
+    'active_mass_edit_legacy' => 0,
     'active_manage'          => 1,
     'active_related_posts'   => 1,
     'active_autotags'        => 1,
