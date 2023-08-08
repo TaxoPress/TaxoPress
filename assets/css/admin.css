@@ -201,7 +201,16 @@
 
 
 .taxopress-select2 {
-    min-width: 150px;
+    min-width: 200px;
+}
+
+.posts-term-filter-select {
+    min-width: 250px;
+}
+
+.st_wrap.manage-taxopress-posts th.column-title, 
+.st_wrap.manage-taxopress-posts th.column-taxonomy_terms {
+    width: 25%;
 }
 
 .taxopress-post-taxonomy {
