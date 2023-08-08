@@ -383,11 +383,20 @@ class Taxopress_Posts_List extends WP_List_Table
     {
         $out = '';
 
+        $taxonomy_type = SimpleTags_Plugin::get_option_value('post_terms_taxonomy_type');
+
         // Get all the taxonomies for the post
         $taxonomies = get_object_taxonomies($post->post_type, 'objects');
         
         if (!empty($taxonomies)) {
             foreach ($taxonomies as $taxonomy_slug => $taxonomy) {
+                // Check if the taxonomy should be displayed based on $taxonomy_type
+                if ($taxonomy_type === 'public' && $taxonomy->public === false) {
+                    continue;
+                } elseif ($taxonomy_type === 'private' && $taxonomy->public === true) {
+                    continue;
+                }
+
                 // Get the assigned terms for each taxonomy
                 $terms = get_the_terms($post->ID, $taxonomy_slug);
                 if (!empty($terms) && !is_wp_error($terms)) {
