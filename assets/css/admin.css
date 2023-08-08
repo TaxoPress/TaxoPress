@@ -288,7 +288,7 @@ body.taxopress_page_st_terms tr.inline-edit-row td {
 .st_wrap fieldset.options legend{display:none;}
 .st_wrap fieldset.options{border:0;}
 .st_wrap .form-table th{width:200px;}
-.st_wrap .stpexplan{font-size:0.9em;}
+.st_wrap .stpexplan{margin-top: 4px; color: #646970;}
 .st_wrap .stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
 .st_wrap .stpexplan ul li{margin:0;padding:0;}
 
