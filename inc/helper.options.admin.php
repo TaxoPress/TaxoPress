@@ -23,7 +23,7 @@ return array(
                 'private'   => __('Private Taxonomies', 'simple-tags'),
                 'term_and_private' => __('Public Taxonomies and Private Taxonomies', 'simple-tags'),
             ),
-            '',
+            __('This controls the taxonomy terms that appear on the "Posts" screen', 'simple-tags'),
             ''
         ),
     ),
