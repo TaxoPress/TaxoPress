@@ -34,8 +34,8 @@
 		<p>
 			<?php wp_nonce_field( 'updateresetoptions-simpletags' ); ?>
 			<input class="button-primary" type="submit" name="updateoptions"
-			       value="<?php _e( 'Update options &raquo;', 'simple-tags' ); ?>"/>
-			<input class="button" type="submit" name="reset_options"
+			       value="<?php _e( 'Save Changes', 'simple-tags' ); ?>"/>
+			<input class="button" type="hidden" name="reset_options"
 			       onclick="return confirm('<?php _e( 'Do you really want to restore the default options?', 'simple-tags' ); ?>');"
 			       value="<?php _e( 'Reset Options', 'simple-tags' ); ?>"/>
 		</p>

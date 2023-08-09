@@ -148,7 +148,8 @@ function taxopress_admin_pages()
         'st_autolinks',
         'st_autoterms',
         'st_suggestterms',
-        'st_terms'
+        'st_terms',
+        'st_posts'
     ];
 
     return apply_filters('taxopress_admin_pages', $taxopress_pages);
@@ -364,6 +365,12 @@ function taxopress_dashboard_options()
         'option_key'   => 'active_st_terms',
     ];
 
+    $features['st_posts'] = [
+        'label'        => esc_html__('Posts', 'simple-tags'),
+        'description'  => esc_html__('This feature allows you to search for terms and see all the posts attached to that term.', 'simple-tags'),
+        'option_key'   => 'active_st_posts',
+    ];
+
     $features['st_terms_display'] = [
         'label'        => esc_html__('Terms Display', 'simple-tags'),
         'description'  => esc_html__('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags'),
@@ -398,12 +405,6 @@ function taxopress_dashboard_options()
         'label'        => esc_html__('Suggest Terms', 'simple-tags'),
         'description'  => esc_html__('This feature helps when you\'re writing content. "Suggest Terms" shows a box with all existing terms, and can also analyze your content to find new ideas for terms.', 'simple-tags'),
         'option_key'   => 'active_suggest_terms',
-    ];
-
-    $features['st_mass_terms'] = [
-        'label'        => esc_html__('Mass Edit Terms', 'simple-tags'),
-        'description'  => esc_html__('This feature allows you to quickly edit the terms attached to multiple posts at the same time.', 'simple-tags'),
-        'option_key'   => 'active_mass_edit',
     ];
 
     $features['st_manage'] = [

@@ -2,8 +2,8 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
-Tested up to: 6.2
-Stable tag: 3.9.0
+Tested up to: 6.3
+Stable tag: 3.10.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -34,7 +34,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
 6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
 7. **Suggest Terms**: This feature can show a metabox where you can browse all your existing terms. A second metabox can analyze your content and find new ideas for terms. 
-8. **Term Synonyms**: Allows you to have multiple words associated with a single term.
+8. **Term Synonyms and Linked Terms**: Allows you to have multiple words associated with a single term.
 9. **Mass Edit Terms**: Quickly add or remove taxonomy terms from any content in WordPress.
 10. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
 
@@ -101,6 +101,12 @@ Synonyms is a feature in TaxoPress Pro that allows you to have multiple words as
 Synonyms will be available on each term screen. For example, if your term is “Apple”, you can create synonyms such as “Apples”, “Golden Delicious”, “Granny Smith”, “Pink Lady”, “Honeycrisp”, “Red Delicious”, “Braeburn” and “Gravenstein”.
 
 [Click here to read about Term Synonyms](https://taxopress.com/docs/synonyms/).
+
+Linked Terms is a feature in TaxoPress Pro that allows you to connect terms. When the main term is added to a post, the linked terms will be added also.
+
+For sites with a lot of terms, this feature makes it easier and quicker for your users to add the correct terms. For example, if you add the term “WordPress” to your posts, TaxoPress can automatically add Linked Terms that include “CMS”, “website”, and “website design”.
+
+[Click here to read about Linked Terms](https://taxopress.com/docs/linked-terms/).
 
 ## Feature 9. Mass Edit Terms ##
 
@@ -246,6 +252,25 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.10.0- 2023-08-09
+* Feature: Add new TaxoPress > Posts Screen, #1748
+* Feature: Setting for which taxonomies to display on Posts screen, #1762
+* Update: Move "Mass Edit Terms" to Legacy, #1759
+* Update: Add "Count" column on the "Terms" page, #1757
+* Update: Auto add tags when using clicktag in classic editor, #1654
+* Update: Update settings "Save Changes" button and remove "Reset Options", #1770
+* Update: Add "Text to display before list" to "Related Posts" and "Terms Display", #1600
+* Update: Update Manage Terms Notification Messages, #1743
+* Update: Add Terms Descriptions column on "Terms" screen, #1706
+* Update: Update Synonyms error message, #1730
+* Fixed: Prevent "Merge Terms" from automatically adding Default Category, #1741
+* Fixed: Warning: Invalid argument supplied for foreach() on Posts page, #1740
+* Fixed: Uncaught TypeError: array_map(): Argument #2 ($array) must be of type array, #1729
+* Fixed: Duplicate not found label on Taxonomies screen, #1701
+* Update: Restrict synonym options to Pro version, #1723
+* Fixed: TAXOPRESS PRO - ES-FR-IT translation Updates July 21, 2023, #1722
+* Fixed: TAXOPRESS FREE - ES-FR-IT translation Updates July 21, 2023, #1721
 
 v3.9.0- 2023-07-20
 * Feature: Linked terms: Automatically add terms if main term is added [PRO] #801

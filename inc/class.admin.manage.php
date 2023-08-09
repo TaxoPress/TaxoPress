@@ -462,19 +462,19 @@ class SimpleTags_Admin_Manage
                     wp_delete_term($term_id, $taxonomy);
                 }
 
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags'), $old, $new, $counter), 'updated');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
                 return true;
-            }
-
-            // Delete old terms
-            foreach ((array) $terms_id as $term_id) {
-                wp_delete_term($term_id, $taxonomy);
             }
 
             // Set objects to new term ! (Append no replace)
             foreach ((array) $objects_id as $object_id) {
                 wp_set_object_terms($object_id, $new_tag, $taxonomy, true);
                 $counter ++;
+            }
+
+            // Delete old terms
+            foreach ((array) $terms_id as $term_id) {
+                wp_delete_term($term_id, $taxonomy);
             }
 
             // Test if term is also a category
@@ -492,7 +492,7 @@ class SimpleTags_Admin_Manage
             if ($counter == 0) {
                 add_settings_error(__CLASS__, __CLASS__, esc_html__('No term merged.', 'simple-tags'), 'updated');
             } else {
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;. %3$s objects edited.', 'simple-tags'), $old, $new, $counter), 'updated');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
             }
         } else { // Error
             add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. You need to enter a single term to merge to in new term name !', 'simple-tags'), $old), 'error');
@@ -567,7 +567,7 @@ class SimpleTags_Admin_Manage
             if ($counter == 0) {
                 add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('This term is not associated with any %1$s.', 'simple-tags'), SimpleTags_Admin::$post_type_name), 'error');
             } else {
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Removed term(s) &laquo;%1$s&raquo; from %2$s %3$s', 'simple-tags'), $new, $counter, SimpleTags_Admin::$post_type_name), 'updated');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Removed term(s) "%1$s" from %2$s %3$s', 'simple-tags'), $new, $counter, SimpleTags_Admin::$post_type_name), 'updated');
             }
         } else { // Error
             add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. No enough terms specified.', 'simple-tags'), $old), 'error');
@@ -653,7 +653,7 @@ class SimpleTags_Admin_Manage
             if ($counter == 0) {
                 add_settings_error(__CLASS__, __CLASS__, esc_html__('No term renamed.', 'simple-tags'), 'updated');
             } else {
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Renamed term(s) &laquo;%1$s&raquo; to &laquo;%2$s&raquo;', 'simple-tags'), $old, $new), 'updated');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Renamed term(s) "%1$s" to "%2$s"', 'simple-tags'), rtrim($old, ','), rtrim($new, ',')), 'updated');
             }
         } else { // Error
             add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. No enough terms for rename.', 'simple-tags'), $old), 'error');

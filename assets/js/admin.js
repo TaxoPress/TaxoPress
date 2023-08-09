@@ -701,6 +701,51 @@
     });
 
     // -------------------------------------------------------------
+    //   post filter
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-posts-tablenav-filter', function (e) {
+      e.preventDefault();
+      $('input[name="posts_term_filter"]').val($('.posts-term-filter-select :selected').val());
+      $('input[name="posts_post_type_filter"]').val($('.posts-post-type-filter-select :selected').val());
+      $('#taxopress-posts-search-submit').trigger('click');
+    });
+
+    $(document).on('change', '.posts-term-filter-select, .posts-post-type-filter-select', function (e) {
+      $('.taxopress-posts-tablenav-filter').trigger('click');
+    });
+
+    /**
+     * TaxoPress posts select2
+     */
+    if ($('.taxopress-term-search').length > 0) {
+        taxopressTermSelect2($('.taxopress-term-search'));
+        $('.taxopress-simple-select2').ppma_select2({
+          placeholder: $(this).data("placeholder"),
+          allowClear: true,
+        });
+        function taxopressTermSelect2(selector) {
+          selector.each(function () {
+              var termsSearch = $(this).ppma_select2({
+                  placeholder: $(this).data("placeholder"),
+                  allowClear: true,
+                  ajax: {
+                      url:
+                          window.ajaxurl +
+                          "?action=taxopress_filter_term_search&field=term_id&nonce=" +
+                          $(this).data("nonce"),
+                      dataType: "json",
+                      data: function (params) {
+                          return {
+                              q: params.term
+                          };
+                      }
+                  }
+              });
+          });
+      }
+    }
+
+    // -------------------------------------------------------------
     //   Auto term limit update filter
     // -------------------------------------------------------------
     $(document).on('click', '.taxopress-logs-limit-update', function (e) {

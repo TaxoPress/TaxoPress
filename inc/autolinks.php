@@ -753,7 +753,7 @@ class SimpleTags_Autolink
 
                                                         <table class="form-table taxopress-table autolink_options" style="<?php echo $active_tab === 'autolink_options' ? '' : 'display:none;'; ?>">
                                                             <?php
-                                                            if (taxopress_is_synonyms_enabled()) {
+                                                            if (taxopress_is_pro_version() && taxopress_is_synonyms_enabled()) {
                                                                 $select             = [
                                                                     'options' => [
                                                                         [

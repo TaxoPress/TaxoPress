@@ -111,11 +111,12 @@ class Taxopress_Terms_List extends WP_List_Table
             'cb'      => '<input type="checkbox" />',
             'name'     => esc_html__('Title', 'simple-tags'),
             'slug'     => esc_html__('Slug', 'simple-tags'),
+            'description'     => esc_html__('Description', 'simple-tags'),
             'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
             'posttypes'  => esc_html__('Post Types', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
             'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
-            //'count'  => esc_html__('Count', 'simple-tags')
+            'count'  => esc_html__('Count', 'simple-tags')
         ];
 
         if (!taxopress_is_pro_version()) {
@@ -135,9 +136,9 @@ class Taxopress_Terms_List extends WP_List_Table
     {
         $sortable_columns = [
             'name'      => ['name', true],
-            'slug'      => ['taxonomy', true],
+            'slug'      => ['slug', true],
             'taxonomy'  => ['taxonomy', true],
-            //'count'     => ['count', true],
+            'count'     => ['count', true],
         ];
 
         return $sortable_columns;
@@ -557,25 +558,58 @@ class Taxopress_Terms_List extends WP_List_Table
      */
     protected function column_count($item)
     {
+        $term_counts = $this->count_posts_by_term($item->term_id, $item->taxonomy);
 
-        $taxonomy     = get_taxonomy($item->taxonomy);
-        $term_details = get_term($item->term_id);
+        return sprintf(
+            '<a href="%s" class="">%s</a>',
+            add_query_arg(
+                [
+                    'page' => 'st_posts',
+                    'posts_term_filter' => (int) $item->term_id,
+                ],
+                admin_url('admin.php')
+            ),
+            number_format_i18n($term_counts)
+        );
+    }
 
-        if ($taxonomy->query_var) {
-            return sprintf(
-                '<a href="%s" class="">%s</a>',
-                add_query_arg(
-                    [
-                        $taxonomy->query_var => esc_attr($item->slug),
-                        'post_type' => isset($taxonomy->object_type[0]) ? $taxonomy->object_type[0] : 'post',
-                    ],
-                    admin_url('edit.php')
+    protected function count_posts_by_term($term_id, $taxonomy) {
+        
+        $args = array(
+            'post_type' => array_keys(get_post_types(array('public' => true), 'names')),
+            'post_status' => 'any',
+            'posts_per_page' => 1,
+            'tax_query' => array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => $taxonomy,
+                    'field' => 'id',
+                    'terms' => $term_id,
                 ),
-                number_format_i18n($term_details->count)
-            );
+            ),
+        );
+    
+        $term_count = new WP_Query($args);
+
+        if ($term_count->have_posts()) {
+            return $term_count->found_posts;
         } else {
-            return number_format_i18n($term_details->count);
+            return 0;
         }
+    }
+    
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_description($item)
+    {
+
+        return term_description($item->term_id);
     }
 
     /**

@@ -176,8 +176,9 @@ class SimpleTags_Client_PostTags {
 				}
 				wp_cache_add( $object_id, $to_cache, $taxonomy . '_relationships' );
 			}
-
-			$terms = array_map( 'get_term', $taxterms );
+			if ($taxterms && !is_wp_error($taxterms)) {
+				$terms = array_map('get_term', $taxterms);
+			}
 		}
 
 		// Hook
@@ -229,9 +230,6 @@ class SimpleTags_Client_PostTags {
 			$output = $notagtext;
 		}
 
-		// Add container
-		$output = $before . $output . $after;
-
-		return SimpleTags_Client::output_content( 'st-post-tags '.taxopress_format_class($wrap_class).'', 'div', '', $output, $copyright );
+		return SimpleTags_Client::output_content( 'st-post-tags '.taxopress_format_class($wrap_class).'', 'div', '', $output, $copyright, '', '', '', $before, $after );
 	}
 }

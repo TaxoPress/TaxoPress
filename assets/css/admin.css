@@ -198,6 +198,25 @@
 /* end COPIED FROM PP BLOCKS */
 
 
+
+
+.taxopress-select2 {
+    min-width: 200px;
+}
+
+.posts-term-filter-select {
+    min-width: 250px;
+}
+
+.st_wrap.manage-taxopress-posts th.column-title, 
+.st_wrap.manage-taxopress-posts th.column-taxonomy_terms {
+    width: 25%;
+}
+
+.taxopress-post-taxonomy {
+    margin-bottom: 5px;
+}
+
 body.taxopress_page_st_terms tr.inline-edit-row td {
     padding-left: 20px !important;
 }
@@ -210,11 +229,66 @@ body.taxopress_page_st_terms tr.inline-edit-row td {
 .box-selector-taxonomy .current-taxonomy{float:right;font-size:16px;font-weight:700;margin:0;}
 .box-selector-taxonomy .change-taxo select{width:200px;}
 
+.st_wrap.st_mass_terms-page .box-selector-taxonomy {
+    margin: 0;
+    padding: 0;
+    background: aliceblue;
+    color: transparent;
+    display: inline-block;
+}
+
+/* Custom CSS for pagination */
+.tablenav.custom-nav .tablenav-pages {
+    margin-top: 10px;
+}
+
+.tablenav.custom-nav .tablenav-pages a, 
+.tablenav.custom-nav .tablenav-pages span {
+    padding: 5px 10px;
+    border: 1px solid #2271b1;
+    border-radius: 3px;
+    text-decoration: none;
+
+    color: #2271b1;
+    background: #f6f7f7;
+}
+
+.tablenav.custom-nav .tablenav-pages a:hover {
+    background-color: #f6f7f7;
+    color: #a7aaad;
+}
+
+.tablenav.custom-nav .tablenav-pages .current-page {
+    font-weight: bold;
+}
+
+.tablenav.custom-nav .tablenav-pages .next-page, 
+.tablenav.custom-nav .tablenav-pages .prev-page {
+    color: #0073aa;
+}
+
+.tablenav.custom-nav .tablenav-pages .next-page.disabled, 
+.tablenav.custom-nav .tablenav-pages .prev-page.disabled {
+    color: #ccc;
+    pointer-events: none;
+}
+
+.tablenav.custom-nav .tablenav-pages .page-numbers.current,
+.tablenav.custom-nav .tablenav-pages .page-numbers.dots {
+    color: #a7aaad;
+    border-color: #dcdcde;
+    background: #f6f7f7;
+    box-shadow: none;
+    cursor: default;
+    transform: none;
+}
+
+
 /* Options Table   */
 .st_wrap fieldset.options legend{display:none;}
 .st_wrap fieldset.options{border:0;}
 .st_wrap .form-table th{width:200px;}
-.st_wrap .stpexplan{font-size:0.9em;}
+.st_wrap .stpexplan{margin-top: 4px; color: #646970;}
 .st_wrap .stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
 .st_wrap .stpexplan ul li{margin:0;padding:0;}
 

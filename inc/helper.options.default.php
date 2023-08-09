@@ -8,13 +8,18 @@ return array(
     'active_auto_links'      => 1,
     'active_auto_terms'      => 1,
     'active_suggest_terms'   => 1,
-    'active_mass_edit'       => 1,
+    'active_mass_edit_legacy' => 0,
     'active_manage'          => 1,
     'active_related_posts'   => 1,
     'active_autotags'        => 1,
     'active_st_terms'        => 1,
     'active_features_synonyms'      => 1,
     'active_features_linked_terms'  => 1,
+    'active_st_posts'        => 1,
+
+    // post terms filter format
+    'post_terms_filter_format'  => 'term_name',
+    'post_terms_taxonomy_type' => 'public',
 
     'allow_embed_tcloud'     => 1,
     // Auto link

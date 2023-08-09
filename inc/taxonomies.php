@@ -1262,23 +1262,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_tax_labels',
-                                                    'name'      => 'not_found',
-                                                    'textvalue' => isset($current['labels']['not_found']) ? esc_attr($current['labels']['not_found']) : null,
-                                                    'aftertext' => esc_attr__('(e.g. No Jobs found)', 'simple-tags'),
-                                                    'labeltext' => esc_html__('Not found', 'simple-tags'),
-                                                    'helptext'  => esc_html__('Custom taxonomy label. Used in the admin menu for displaying taxonomies.',
-                                                        'simple-tags'),
-                                                    'data'      => [
-                                                        /* translators: Used for autofill */
-                                                        'label'     => sprintf(esc_attr__('No %s found', 'simple-tags'),
-                                                            'item'),
-                                                        'plurality' => 'plural',
-                                                    ],
-                                                ]);
-
-                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                echo $ui->get_text_input([
-                                                    'namearray' => 'cpt_tax_labels',
                                                     'name'      => 'no_terms',
                                                     'textvalue' => isset($current['labels']['no_terms']) ? esc_attr($current['labels']['no_terms']) : null,
                                                     'aftertext' => esc_html__('(e.g. No jobs)', 'simple-tags'),

@@ -260,13 +260,13 @@ class SimpleTags_Client {
 	 * @param string $html_class
 	 * @param string $format
 	 * @param string $title
-	 * @param string $content
+	 * @param string|array $content
 	 * @param boolean $copyright
 	 * @param string $separator
 	 *
 	 * @return string|array
 	 */
-	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '' ) {
+	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '', $before = '', $after = '') {
 		if ( empty( $content ) ) {
 			return ''; // return nothing
 		}
@@ -278,10 +278,10 @@ class SimpleTags_Client {
 		if ( is_array( $content ) ) {
 			switch ( $format ) {
 				case 'list' :
-					$output = '<ul class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ul>\n";
+					$output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ul> {$after}\n";
 					break;
 				default :
-					$output = '<div class="' . $html_class . '">' . "\n\t" . implode( "{$separator}\n", $content ) . "</div>\n";
+					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
 			}
 		} else {
@@ -291,10 +291,10 @@ class SimpleTags_Client {
 					$output = $content;
 					break;
 				case 'list' :
-					$output = '<ul class="' . $html_class . '">' . "\n\t" . '<li>' . $content . "</li>\n\t" . "</ul>\n";
+					$output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . $content . "</li>\n\t" . "</ul> {$after}\n";
 					break;
 				default :
-					$output = '<div class="' . $html_class . '">' . "\n\t" . $content . "</div>\n";
+					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;
 			}
 		}
@@ -304,8 +304,8 @@ class SimpleTags_Client {
 			$wrap_div_class_open = '<div class="'.taxopress_format_class($div_class).'">';
 			$wrap_div_class_close = '</div>';
 		}else{
-			$wrap_div_class_open = '';
-			$wrap_div_class_close = '';
+			$wrap_div_class_open = '<div class="taxopress-output-wrapper"> ';
+			$wrap_div_class_close = '</div>';
 		}
 		// Replace false by empty
 		$title = trim( $title );
@@ -344,7 +344,8 @@ class SimpleTags_Client {
 	 */
 	public static function format_internal_tag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
 		// Need term object
-		$element_loop = str_replace( '%tag_link%', esc_url( get_term_link( $term, $term->taxonomy ) ), $element_loop );
+		$tag_link = get_term_link( $term, $term->taxonomy );
+		$element_loop = str_replace( '%tag_link%', esc_url( $tag_link ), $element_loop );
 		$element_loop = str_replace( '%tag_feed%', esc_url( get_term_feed_link( $term->term_id, $term->taxonomy, '' ) ), $element_loop );
 
 		$element_loop = str_replace( '%tag_name%', esc_html( $term->name ), $element_loop );

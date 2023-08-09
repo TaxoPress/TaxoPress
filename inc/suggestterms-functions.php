@@ -383,4 +383,3 @@ function taxopress_current_post_suggest_terms($source = false, $local_check = fa
 
     return empty($all_result) ? false : $all_result;
 }
-?>

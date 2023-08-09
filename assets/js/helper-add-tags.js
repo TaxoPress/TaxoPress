@@ -26,11 +26,13 @@ function addTag(tag, custom_taxonomy = false, term_id = false) {
     tag.replace(/\s+,+\s*/g, ',').replace(/,+/g, ',').replace(/,+\s+,+/g, ',').replace(/,+\s*$/g, '').replace(/^\s*,+/g, '');
     if (jQuery('#new-tag-'+custom_taxonomy).val() === '') {
       jQuery('#new-tag-'+custom_taxonomy).val(tag);
+      jQuery('#new-tag-'+custom_taxonomy).closest('div').find('input[type="button"').trigger('click');
     } else {
       var current_tags = jQuery('#new-tag-' + custom_taxonomy).val();
       var current_tags_array = current_tags.split(',');
       if (!current_tags_array.includes(tag) && !current_tags_array.includes(' ' + tag)) {
         jQuery('#new-tag-' + custom_taxonomy).val(jQuery('#new-tag-' + custom_taxonomy).val() + ', ' + tag);
+        jQuery('#new-tag-'+custom_taxonomy).closest('div').find('input[type="button"').trigger('click');
       }
     }
     //jQuery('.tagadd').WithSelect()

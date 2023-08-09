@@ -1640,16 +1640,8 @@ function get_all_taxopress_taxonomies_request()
         ['name' => 'post_tag'],
         'objects');
 
-    $public                = get_taxonomies([
-        '_builtin' => false,
-        'public'   => true,
-    ],
-        'objects');
-    $private               = get_taxonomies([
-        '_builtin' => false,
-        'public'   => false,
-    ],
-        'objects');
+    $public  = get_taxonomies(['public' => true], 'objects');
+    $private = get_taxonomies(['public' => false], 'objects');
 
     if( !array_key_exists('category', $public) && !array_key_exists('category', $public) ){
         $public = array_merge($category, $public);
@@ -1673,23 +1665,7 @@ function get_all_taxopress_taxonomies_request()
 function get_all_taxopress_taxonomies()
 {
 
-    $category              = get_taxonomies(
-        ['name' => 'category'],
-        'objects');
-    $post_tag              = get_taxonomies(
-        ['name' => 'post_tag'],
-        'objects');
-    $public                = get_taxonomies([
-        '_builtin' => false,
-        'public'   => true,
-    ],
-        'objects');
-    $private               = get_taxonomies([
-        '_builtin' => false,
-        'public'   => false,
-    ],
-        'objects');
-    $registered_taxonomies = array_merge($category, $post_tag, $public, $private);
+    $registered_taxonomies = get_taxonomies([], 'objects');
 
     return $registered_taxonomies;
 }
@@ -1697,21 +1673,7 @@ function get_all_taxopress_taxonomies()
 
 function get_all_taxopress_public_taxonomies()
 {
-
-    $category              = get_taxonomies(
-        ['name' => 'category'],
-        'objects');
-    $post_tag              = get_taxonomies(
-        ['name' => 'post_tag'],
-        'objects');
-    $public                = get_taxonomies([
-        '_builtin' => false,
-        'public'   => true,
-    ],
-        'objects');
-    $registered_taxonomies = array_merge($category, $post_tag, $public);
-
-    return $registered_taxonomies;
+    return get_taxonomies(['public' => true], 'objects');
 }
 
 /**
@@ -2353,37 +2315,31 @@ function taxopress_get_dropdown(){
 
                     $current = $taxonomies[ $taxonomy_name ];
 
-                    if( array_key_exists( 'show_in_filter', $current ) ){
+                    if( is_array($current) && array_key_exists( 'show_in_filter', $current ) ){
+                        if (isset($current['object_types']) && !empty($current['object_types'])) {
+                            foreach ($current['object_types'] as $object_type) {
 
-                        foreach ($current['object_types'] as $object_type) {
+                                //Media Page
+                                if($pagenow === 'upload.php') {
 
-                            //Media Page
-                            if($pagenow === 'upload.php'){
+                                    if($object_type == "attachment") {
 
-                                if( $object_type == "attachment" ){
+                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
 
-                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter']);
+                                    }
 
+                                } else {
+
+                                    if($object_type == $type) {
+
+                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
+
+                                    }
                                 }
-
-                            }else{
-
-                                if($object_type == $type){
-
-                                    taxopress_filter_dropdown( $taxonomy, $current['show_in_filter'] );
-
-                                }
-
                             }
-
                         }
-
-
-
-
                     }
                 }
-
             }
         }
 

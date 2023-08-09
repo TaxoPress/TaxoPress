@@ -325,6 +325,30 @@ class SimpleTags_Related_Post
                                                             'wrap'        => false,
                                                         ]);
 
+                                                        $select             = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                ],
+                                                            ],
+                                                        ];
+                                                        $selected           = (isset($current) && isset($current['hide_title'])) ? taxopress_disp_boolean($current['hide_title']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['hide_title'] : '';
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'hide_title',
+                                                            'labeltext'  => esc_html__('Hide title in output ?',
+                                                                'simple-tags'),
+                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ]);
+
 
                                                         $select             = [
                                                             'options' => [
@@ -450,30 +474,6 @@ class SimpleTags_Related_Post
                                                 <table class="form-table taxopress-table relatedpost_display"
                                                        style="<?php echo $active_tab === 'relatedpost_display' ? '' : 'display:none;'; ?>">
                                                     <?php
-
-                                                        $select             = [
-                                                            'options' => [
-                                                                [
-                                                                    'attr'    => '0',
-                                                                    'text'    => esc_attr__('False', 'simple-tags'),
-                                                                    'default' => 'true',
-                                                                ],
-                                                                [
-                                                                    'attr' => '1',
-                                                                    'text' => esc_attr__('True', 'simple-tags'),
-                                                                ],
-                                                            ],
-                                                        ];
-                                                        $selected           = (isset($current) && isset($current['hide_title'])) ? taxopress_disp_boolean($current['hide_title']) : '';
-                                                        $select['selected'] = !empty($selected) ? $current['hide_title'] : '';
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_select_checkbox_input([
-                                                            'namearray'  => 'taxopress_related_post',
-                                                            'name'       => 'hide_title',
-                                                            'labeltext'  => esc_html__('Hide title in output ?',
-                                                                'simple-tags'),
-                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        ]);
                                                         
                                                         /**
                                                          * Filters the arguments for post types to list for taxonomy association.
@@ -559,6 +559,37 @@ class SimpleTags_Related_Post
                                                 <table class="form-table taxopress-table relatedpost_option"
                                                        style="<?php echo $active_tab === 'relatedpost_option' ? '' : 'display:none;'; ?>">
                                                     <?php
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_text_input([
+                                                                'namearray' => 'taxopress_related_post',
+                                                                'name'      => 'before',
+                                                                'textvalue' => isset($current['before']) ? esc_attr($current['before']) : '',
+                                                                'labeltext' => esc_html__(
+                                                                    'Text to display before posts list',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'helptext'  => esc_html__(
+                                                                    'Enter the text that should be display before posts list. This field accepts basic HTML.',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'required'  => false,
+                                                            ]);
+
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_text_input([
+                                                                'namearray' => 'taxopress_related_post',
+                                                                'name'      => 'after',
+                                                                'textvalue' => isset($current['after']) ? esc_attr($current['after']) : '',
+                                                                'labeltext' => esc_html__(
+                                                                    'Text to display after posts list',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'helptext'  => esc_html__(
+                                                                    'Enter the text that should be display after posts list. This field accepts basic HTML.',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'required'  => false,
+                                                            ]);
 
                                                         $select             = [
                                                             'options' => [

@@ -52,6 +52,13 @@ class SimpleTags_Admin
 			SimpleTags_Terms::get_instance();
 		}
 
+		//posts
+		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_st_posts')) {
+			require STAGS_DIR . '/inc/posts-table.php';
+			require STAGS_DIR . '/inc/posts.php';
+			SimpleTags_Posts::get_instance();
+		}
+
 		//tag clouds/ terms display
 		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_terms_display')) {
 			require_once STAGS_DIR . '/inc/tag-clouds-action.php';
@@ -99,10 +106,8 @@ class SimpleTags_Admin
 		}
 
 		//suggest terms option
-		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_mass_edit')) {
-			require STAGS_DIR . '/inc/class.admin.suggest.php';
-			new SimpleTags_Admin_Suggest();
-		}
+		require STAGS_DIR . '/inc/class.admin.suggest.php';
+		new SimpleTags_Admin_Suggest();
 
 		//click terms option
 		require STAGS_DIR . '/inc/class.admin.clickterms.php';
@@ -112,7 +117,7 @@ class SimpleTags_Admin
 		new SimpleTags_Admin_Autocomplete();
 
 		// Mass edit terms
-		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_mass_edit')) {
+		if ($dashboard_screen || (1 === (int) SimpleTags_Plugin::get_option_value('active_mass_edit_legacy') && empty($_POST['updateoptions'])) || !empty($_POST['active_mass_edit_legacy'])) {
 			require STAGS_DIR . '/inc/class.admin.mass.php';
 			new SimpleTags_Admin_Mass();
 		}
@@ -405,6 +410,10 @@ class SimpleTags_Admin
 	{
 		global $pagenow;
 
+		$select_2_page = false;
+		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts'])) {
+			$select_2_page = true;
+		}
 
 		do_action('taxopress_admin_class_before_assets_register');
 
@@ -418,8 +427,35 @@ class SimpleTags_Admin
 		// Register CSS
 		wp_register_style('st-admin', STAGS_URL . '/assets/css/admin.css', array(), STAGS_VERSION, 'all');
 
+
+        // Register Select 2
+        wp_register_script(
+            'taxopress-admin-select2',
+            STAGS_URL . '/assets/lib/select2/js/select2.full.min.js',
+            ['jquery'],
+            STAGS_VERSION
+        );
+
+        wp_register_style(
+            'taxopress-admin-select2',
+            STAGS_URL . '/assets/lib/select2/css/select2.min.css',
+            [],
+            STAGS_VERSION
+        );
+
+		if ($select_2_page) {
+			wp_enqueue_script('taxopress-admin-select2');
+			wp_enqueue_style('taxopress-admin-select2');
+		}
+		
 		//Register and enqueue admin js
-		wp_register_script('st-admin-js', STAGS_URL . '/assets/js/admin.js', array('jquery'), STAGS_VERSION);
+		$script_dependencies = ['jquery'];
+		if ($select_2_page) {
+			$script_dependencies[] = 'taxopress-admin-select2';
+			$script_dependencies[] = 'wp-util';
+		}
+
+		wp_register_script('st-admin-js', STAGS_URL . '/assets/js/admin.js', $script_dependencies, STAGS_VERSION);
 		wp_enqueue_script('st-admin-js');
 		//localize script
 		wp_localize_script('st-admin-js', 'st_admin_localize', [
@@ -559,6 +595,7 @@ class SimpleTags_Admin
 
 				$sanitized_options = [];
 				foreach ($options as $key => $value) {
+					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					$value = isset($_POST[$key]) ? $_POST[$key] : '';
 
 					if (empty($value) && in_array($key, $dashboard_option_keys)) {
@@ -695,10 +732,11 @@ class SimpleTags_Admin
 
 			if ($section === 'legacy') {
 				$table_sub_tab = '<div class="st-legacy-subtab">
-                <span class="active" data-content=".legacy-tag-cloud-content">Tag Cloud</span> |
-                <span data-content=".legacy-post-tags-content">Tags for Current Post</span> |
-                <span data-content=".legacy-related-posts-content">Related Posts</span> |
-                <span data-content=".legacy-auto-link-content">Auto link</span>
+                <span class="active" data-content=".legacy-tag-cloud-content">'. esc_html__("Tag Cloud", "simple-tags") .'</span> |
+                <span data-content=".legacy-post-tags-content">'. esc_html__("Tags for Current Post", "simple-tags") .'</span> |
+                <span data-content=".legacy-related-posts-content">'. esc_html__("Related Posts", "simple-tags") .'</span> |
+                <span data-content=".legacy-auto-link-content">'. esc_html__("Auto Links", "simple-tags") .'</span> |
+                <span data-content=".legacy-mass-edit-content">'. esc_html__("Mass Edit Terms", "simple-tags") .'</span>
                 </div>' . PHP_EOL;
 			} else {
 				$table_sub_tab = '';
@@ -809,6 +847,8 @@ class SimpleTags_Admin
 				return esc_html__('Related Posts', 'simple-tags');
 			case 'legacy':
 				return esc_html__('Legacy', 'simple-tags');
+			case 'posts':
+				return esc_html__('Posts', 'simple-tags');
 		}
 
 		return '';
