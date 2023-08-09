@@ -27,4 +27,3 @@ require STAGS_DIR . '/inc/ajax-request.php';
 
 //review request
 require STAGS_DIR . '/review-request/review.php';
-?>

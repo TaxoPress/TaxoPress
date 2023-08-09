@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 6.3
-Stable tag: 3.9.0
+Stable tag: 3.10.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -252,6 +252,25 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.10.0- 2023-08-09
+* Feature: Add new TaxoPress > Posts Screen, #1748
+* Feature: Setting for which taxonomies to display on Posts screen, #1762
+* Update: Move "Mass Edit Terms" to Legacy, #1759
+* Update: Add "Count" column on the "Terms" page, #1757
+* Update: Auto add tags when using clicktag in classic editor, #1654
+* Update: Update settings "Save Changes" button and remove "Reset Options", #1770
+* Update: Add "Text to display before list" to "Related Posts" and "Terms Display", #1600
+* Update: Update Manage Terms Notification Messages, #1743
+* Update: Add Terms Descriptions column on "Terms" screen, #1706
+* Update: Update Synonyms error message, #1730
+* Fixed: Prevent "Merge Terms" from automatically adding Default Category, #1741
+* Fixed: Warning: Invalid argument supplied for foreach() on Posts page, #1740
+* Fixed: Uncaught TypeError: array_map(): Argument #2 ($array) must be of type array, #1729
+* Fixed: Duplicate not found label on Taxonomies screen, #1701
+* Update: Restrict synonym options to Pro version, #1723
+* Fixed: TAXOPRESS PRO - ES-FR-IT translation Updates July 21, 2023, #1722
+* Fixed: TAXOPRESS FREE - ES-FR-IT translation Updates July 21, 2023, #1721
 
 v3.9.0- 2023-07-20
 * Feature: Linked terms: Automatically add terms if main term is added [PRO] #801

@@ -595,6 +595,7 @@ class SimpleTags_Admin
 
 				$sanitized_options = [];
 				foreach ($options as $key => $value) {
+					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					$value = isset($_POST[$key]) ? $_POST[$key] : '';
 
 					if (empty($value) && in_array($key, $dashboard_option_keys)) {

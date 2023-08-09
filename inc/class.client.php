@@ -344,7 +344,8 @@ class SimpleTags_Client {
 	 */
 	public static function format_internal_tag( $element_loop = '', $term = null, $rel = '', $scale_result = 0, $scale_max = null, $scale_min = 0, $largest = 0, $smallest = 0, $unit = '', $maxcolor = '', $mincolor = '' ) {
 		// Need term object
-		$element_loop = str_replace( '%tag_link%', esc_url( get_term_link( $term, $term->taxonomy ) ), $element_loop );
+		$tag_link = get_term_link( $term, $term->taxonomy );
+		$element_loop = str_replace( '%tag_link%', esc_url( $tag_link ), $element_loop );
 		$element_loop = str_replace( '%tag_feed%', esc_url( get_term_feed_link( $term->term_id, $term->taxonomy, '' ) ), $element_loop );
 
 		$element_loop = str_replace( '%tag_name%', esc_html( $term->name ), $element_loop );

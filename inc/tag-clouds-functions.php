@@ -350,4 +350,3 @@ function taxopress_termsdisplay_shortcode($atts)
 
 
     }
-?>

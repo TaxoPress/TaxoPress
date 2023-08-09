@@ -122,10 +122,10 @@ class SimpleTags_Post_Tags
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
                 <div id="">
-                    <h1 class="wp-heading-inline"><?php _e('Terms for Current Post', 'simple-tags'); ?></h1>
+                    <h1 class="wp-heading-inline"><?php esc_html_e('Terms for Current Post', 'simple-tags'); ?></h1>
                     <a href="<?php echo esc_url(admin_url('admin.php?page=st_post_tags&add=new_item')); ?>" class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
 
-                    <div class="taxopress-description"><?php _e('This feature allows you create a customizable display of all the terms assigned to the current post.', 'simple-tags'); ?></div>
+                    <div class="taxopress-description"><?php esc_html_e('This feature allows you create a customizable display of all the terms assigned to the current post.', 'simple-tags'); ?></div>
 
 
                     <?php

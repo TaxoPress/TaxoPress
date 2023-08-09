@@ -387,4 +387,3 @@ function taxopress_relatedposts_the_content($content = '')
 
     return $content;
 }
-?>

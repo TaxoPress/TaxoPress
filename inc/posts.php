@@ -221,8 +221,8 @@ class SimpleTags_Posts
                     echo '<span class="subtitle__">';
                     printf(
                         /* translators: %s: Search query. */
-                        __( 'Search results for: %s' ),
-                        '<strong>' . $search . '</strong>'
+                        esc_html__( 'Search results for: %s' ),
+                        '<strong>' . esc_html($search) . '</strong>'
                     );
                     echo '</span>';
                 }
