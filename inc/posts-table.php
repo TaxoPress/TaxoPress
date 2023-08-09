@@ -426,7 +426,7 @@ class Taxopress_Posts_List extends WP_List_Table
 
     protected function update_or_add_url_parameter($param_name, $param_value) {
 
-        $url = $_SERVER['REQUEST_URI'];
+        $url = sanitize_text_field($_SERVER['REQUEST_URI']);
 
         // Check if the parameter already exists in the URL
         $existing_param = get_query_var($param_name);
@@ -516,6 +516,7 @@ class Taxopress_Posts_List extends WP_List_Table
 		$status = apply_filters( 'post_date_column_status', $status, $post, 'date', $mode );
 
 		if ( $status ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $status . '<br />';
 		}
 
@@ -532,6 +533,6 @@ class Taxopress_Posts_List extends WP_List_Table
 		 * @param string  $column_name The column name.
 		 * @param string  $mode        The list display mode ('excerpt' or 'list').
 		 */
-		echo apply_filters( 'post_date_column_time', $t_time, $post, 'date', $mode );
+		echo apply_filters( 'post_date_column_time', $t_time, $post, 'date', $mode ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

@@ -227,7 +227,7 @@ class SimpleTags_Admin_ClickTags {
 		$post_id = ( isset( $_GET['post_id'] ) ) ? intval( $_GET['post_id'] ) : 0;
 
         if(isset($_GET['click_tags_method']) && !empty($_GET['click_tags_method'])){
-            $order_click_tags = ($_GET['click_tags_method'] === 'random') ? sanitize_text_field($_GET['click_tags_method']) : sanitize_text_field($_GET['click_tags_method']).'-'.sanitize_text_field($_GET['click_tags_order']);
+            $order_click_tags = (sanitize_text_field($_GET['click_tags_method']) === 'random') ? sanitize_text_field($_GET['click_tags_method']) : sanitize_text_field($_GET['click_tags_method']).'-'.sanitize_text_field($_GET['click_tags_order']);
         }else{
 		    // Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
 		    $order_click_tags = 'random';

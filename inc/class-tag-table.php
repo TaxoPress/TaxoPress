@@ -147,9 +147,10 @@ class Termcloud_List extends WP_List_Table {
 	 * @return string
 	 */
 	protected function column_name( $item ) {
+        $tag_link = get_term_link($item, $item->taxonomy);
         $title = sprintf(
                 '<a href="%1$s" class="tag-cloud-link"><strong><span class="row-title">%2$s</span></strong></a>', 
-               esc_url( get_term_link( $item, $item->taxonomy )), 
+               esc_url($tag_link), 
                 esc_html($item->name)
             );
 
@@ -210,7 +211,7 @@ class Termcloud_List extends WP_List_Table {
 				die( 'Go get a life script kiddies' );
 			}
 			else {
-				self::delete_stterm( absint( $_GET['stterm'] ) );
+				self::delete_stterm( absint(sanitize_text_field($_GET['stterm'])) );
 			}
 
 		}

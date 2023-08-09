@@ -534,4 +534,3 @@ function taxopress_autoterms_logs_data($per_page = 20, $current_page = 1, $order
     
     return ['posts'=> $logs->posts, 'counts'=> $logs->found_posts];
 }
-?>

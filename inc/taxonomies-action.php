@@ -6,4 +6,3 @@ add_action('init', 'taxopress_create_custom_taxonomies', 9);  // Leave on standa
 add_action('init', 'unregister_tags', 999);
 add_action('init', 'taxopress_recreate_custom_taxonomies', 999);
 add_action('save_post', 'taxopress_set_default_taxonomy_terms', 100, 2);
-?>
