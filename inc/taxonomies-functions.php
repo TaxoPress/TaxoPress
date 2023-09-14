@@ -2276,7 +2276,7 @@ function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
                 'order'           => 'ASC',
                 'hide_empty'      => false,
                 'hide_if_empty'   => true,
-                'selected'        => filter_input( INPUT_GET, $taxonomy->query_var, FILTER_SANITIZE_STRING ),
+                'selected'        => sanitize_text_field(filter_input( INPUT_GET, $taxonomy->query_var, FILTER_UNSAFE_RAW )),
                 'hierarchical'    => true,
                 'name'            => $taxonomy->query_var,
                 'taxonomy'        => $taxonomy->name,
