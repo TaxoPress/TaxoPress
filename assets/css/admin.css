@@ -198,7 +198,12 @@
 /* end COPIED FROM PP BLOCKS */
 
 
-
+.taxopress-expandable-textarea {
+    width: 70%;
+    resize: none;
+    height: 50px;
+    max-height: 100px;
+}
 
 .taxopress-select2 {
     min-width: 200px;
