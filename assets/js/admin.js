@@ -10,6 +10,16 @@
     
     
     // -------------------------------------------------------------
+    //   Expand textarea height based on lines
+    // -------------------------------------------------------------
+    $(document).on('change keyup input', '.taxopress-expandable-textarea', function (e) {
+      var textArea = $(this);
+      textArea.css('height', 'auto');
+      var newHeight = textArea[0].scrollHeight;
+      textArea.height(newHeight);
+    });
+    
+    // -------------------------------------------------------------
     //   TaxoPress term quick edit save
     // -------------------------------------------------------------
     $('.taxopress-save', $('#inline-edit') ).on( 'click', function() {
