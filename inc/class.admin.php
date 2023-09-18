@@ -728,7 +728,6 @@ class SimpleTags_Admin
 		$output = '';
 		foreach ($option_data as $section => $options) {
 			$colspan       = count($options) > 1 ? 'colspan="2"' : '';
-			$desc_html_tag = 'div';
 
 			if ($section === 'legacy') {
 				$table_sub_tab = '<div class="st-legacy-subtab">
@@ -766,6 +765,7 @@ class SimpleTags_Admin
 				}
 
 				$input_type = '';
+				$desc_html_tag = 'div';
 				switch ($option[2]) {
 					case 'radio':
 						$input_type = array();

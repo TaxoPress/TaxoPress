@@ -23,7 +23,7 @@ return array(
                 'private'   => __('Private Taxonomies', 'simple-tags'),
                 'term_and_private' => __('Public Taxonomies and Private Taxonomies', 'simple-tags'),
             ),
-            __('This controls the taxonomy terms that appear on the "Posts" screen', 'simple-tags'),
+            __('This controls the taxonomy terms that appear on the "Posts" screen.', 'simple-tags'),
             ''
         ),
     ),
@@ -285,7 +285,7 @@ return array(
             __('Taxonomy:', 'simple-tags'),
             'text',
             'widefat',
-            __('By default, related posts work with post tags, but you can use a custom taxonomy. Default value : post_tag', 'simple-tags'),
+            __('By default, related posts work with post tags, but you can use a custom taxonomy. Default value : post_tag.', 'simple-tags'),
             'legacy-tab-content legacy-related-posts-content st-hide-content'
         ),
         array(
@@ -388,7 +388,7 @@ return array(
             __('Auto links tags', 'simple-tags'),
             'checkbox',
             '1',
-            __('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/)', 'simple-tags'),
+            __('Example: You have a tag called "WordPress" and your post content contains "wordpress", this feature will replace "wordpress" by a link to "wordpress" tags page. (http://myblog.net/tag/wordpress/).', 'simple-tags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
         ),
         array(
@@ -420,7 +420,7 @@ return array(
             __('Add links for unattached terms', 'simple-tags'),
             'checkbox',
             '1',
-            __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms', 'simple-tags'),
+            __('By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms.', 'simple-tags'),
             'legacy-tab-content legacy-auto-link-content st-hide-content'
         ),
         array(
