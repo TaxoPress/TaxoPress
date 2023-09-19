@@ -149,7 +149,7 @@ function taxopress_create_default_related_post()
     $default['taxopress_related_post']['title_header'] = 'h4';
     $default['taxopress_related_post']['before']       = '';
     $default['taxopress_related_post']['after']        = '';
-    $default['taxopress_related_post']['post_type']    = 'post';
+    $default['taxopress_related_post']['post_types']   = ['post'];
     $default['taxopress_related_post']['taxonomy']     = 'post_tag';
     $default['taxopress_related_post']['number']       = 5;
     $default['taxopress_related_post']['limit_days']   = 0;
@@ -203,6 +203,7 @@ function taxopress_update_relatedpost($data = [])
     $xformat                                    = $data['taxopress_related_post']['xformat'];
     $data['taxopress_related_post']['xformat']  = stripslashes_deep($xformat);
     $data['taxopress_related_post']['embedded'] = isset($data['embedded']) ? $data['embedded'] : [];
+    $data['taxopress_related_post']['post_types'] = isset($data['post_types']) ? $data['post_types'] : [];
 
 
     if (isset($data['edited_relatedpost'])) {

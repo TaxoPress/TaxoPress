@@ -65,7 +65,7 @@ class RelatedPosts_List extends WP_List_Table
         $columns = [
             'title'     =>  esc_html__('Title', 'simple-tags'),
             'taxonomy'  =>  esc_html__('Taxonomy', 'simple-tags'),
-            'post_type' =>  esc_html__('Post Type', 'simple-tags'),
+            'post_type' =>  esc_html__('Post Types', 'simple-tags'),
             'embedded'  =>  esc_html__('Automatic display', 'simple-tags'),
             'shortcode' =>  esc_html__('Shortcode', 'simple-tags')
         ];
@@ -351,8 +351,26 @@ class RelatedPosts_List extends WP_List_Table
                     );
                 }
             }
+        } elseif (isset($item['post_types']) && !empty($item['post_types'])) {
+            $result_array     = [];
+            foreach ($item['post_types'] as $post_type_name) {
+                $post_type = get_post_type_object($post_type_name);
+                if (is_object($post_type)) {
+                    $result_array[] = sprintf(
+                        '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
+                        add_query_arg(
+                            [
+                                'post_type' => $post_type_name,
+                            ],
+                            admin_url('edit.php')
+                        ),
+                        esc_html($post_type->label)
+                    );
+                }
+            }
+            $title = join(', ', $result_array);
         } else {
-            $title =  esc_html__('All', 'simple-tags');
+            $title =  esc_html__('Default', 'simple-tags');
         }
 
         return $title;
