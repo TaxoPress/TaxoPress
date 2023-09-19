@@ -840,6 +840,9 @@ ul.taxopress-tab li.relatedpost_option_tab a::before {
 ul.taxopress-tab li.relatedpost_display_tab a::before {
     content: "\f186";
 }
+ul.taxopress-tab li.relatedpost_post_types_tab a::before {
+    content: "\f116";
+}
 
 
 ul.taxopress-tab li.posttags_advanced_tab a::before {

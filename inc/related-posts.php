@@ -281,6 +281,11 @@ class SimpleTags_Related_Post
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_post_types' ? 'true' : 'false'; ?>" class="relatedpost_post_types_tab <?php echo $active_tab === 'relatedpost_post_types' ? 'active' : ''; ?>" data-content="relatedpost_post_types">
+                                                    <a href="#relatedpost_post_types"><span><?php esc_html_e('Post Types',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                                 <li aria-current="<?php echo $active_tab === 'relatedpost_display' ? 'true' : 'false'; ?>" class="relatedpost_display_tab <?php echo $active_tab === 'relatedpost_display' ? 'active' : ''; ?>" data-content="relatedpost_display">
                                                     <a href="#relatedpost_display"><span><?php esc_html_e('Display',
                                                                 'simple-tags'); ?></span></a>
@@ -397,37 +402,6 @@ class SimpleTags_Related_Post
                                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         ]);
 
-                                                        $options[] = [
-                                                            'attr' => 'st_all_posttype',
-                                                            'text' => esc_html__('All post types', 'simple-tags')
-                                                        ];
-                                                        $options[] = [
-                                                            'attr'    => 'st_current_posttype',
-                                                            'text'    => esc_html__('Current post type', 'simple-tags'),
-                                                            'default' => 'true'
-                                                        ];
-                                                        foreach (get_post_types(['public' => true],
-                                                            'objects') as $post_type) {
-                                                            $options[] = [
-                                                                'attr' => $post_type->name,
-                                                                'text' => $post_type->label
-                                                            ];
-                                                        }
-
-                                                        $select             = [
-                                                            'options' => $options,
-                                                        ];
-                                                        $selected           = (isset($current) && isset($current['post_type'])) ? taxopress_disp_boolean($current['post_type']) : '';
-                                                        $select['selected'] = !empty($selected) ? $current['post_type'] : '';
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_select_checkbox_input_main([
-                                                            'namearray'  => 'taxopress_related_post',
-                                                            'name'       => 'post_type',
-                                                            'class'      => 'st-post-type-select',
-                                                            'labeltext'  => esc_html__('Post Type', 'simple-tags'),
-                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        ]);
-
                                                         $options = [];
                                                         foreach (get_all_taxopress_taxonomies() as $_taxonomy) {
                                                             $_taxonomy = $_taxonomy->name;
@@ -439,14 +413,12 @@ class SimpleTags_Related_Post
                                                                 $options[] = [
                                                                     'attr'    => $tax->name,
                                                                     'text'    => $tax->labels->name. ' ('.$tax->name.')',
-                                                                    'default' => 'true',
-                                                                    'post_type' => join(',', $tax->object_type),
+                                                                    'default' => 'true'
                                                                 ];
                                                             } else {
                                                                 $options[] = [
                                                                     'attr' => $tax->name,
-                                                                    'text' => $tax->labels->name. ' ('.$tax->name.')',
-                                                                    'post_type' => join(',', $tax->object_type),
+                                                                    'text' => $tax->labels->name. ' ('.$tax->name.')'
                                                                 ];
                                                             }
                                                         }
@@ -545,6 +517,92 @@ class SimpleTags_Related_Post
                                                             'name'      => 'number',
                                                             'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
                                                             'labeltext' => esc_html__('Maximum related posts to display',
+                                                                'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => true,
+                                                        ]);
+
+
+                                                    ?>
+
+                                                </table>
+
+
+                                                <table class="form-table taxopress-table relatedpost_post_types"
+                                                       style="<?php echo $active_tab === 'relatedpost_post_types' ? '' : 'display:none;'; ?>">
+                                                    <?php
+                                                        
+                                                        /**
+                                                         * Filters the arguments for post types to list for taxonomy association.
+                                                         *
+                                                         *
+                                                         * @param array $value Array of default arguments.
+                                                         */
+                                                        $args = apply_filters('taxopress_attach_post_types_to_taxonomy',
+                                                            ['public' => true]);
+
+                                                        // If they don't return an array, fall back to the original default. Don't need to check for empty, because empty array is default for $args param in get_post_types anyway.
+                                                        if (!is_array($args)) {
+                                                            $args = ['public' => true];
+                                                        }
+                                                        $output = 'objects'; // Or objects.
+
+                                                        /**
+                                                         * Filters the results returned to post_types for available post types for taxonomy.
+                                                         *
+                                                         * @param array $value Array of post type objects.
+                                                         * @param array $args Array of arguments for the post type query.
+                                                         * @param string $output The output type we want for the results.
+                                                         */
+                                                        $post_types = apply_filters(
+                                                            'taxopress_get_post_types_for_taxonomies',
+                                                            get_post_types($args, $output),
+                                                            $args,
+                                                            $output
+                                                        );
+
+                                                        echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Post Types',
+                                                                'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will display related posts from selected post types. If no post type is selected, Related Posts will be automatically limited to current post type of the post.',
+                                                                'simple-tags') . '</small></th><td>
+                                                                <table class="visbile-table">';
+                                                        foreach ($post_types as $post_type) {
+                                                            $key = $post_type->name;
+                                                            $value = $post_type->label;
+
+                                                            echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
+
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            $legacy_post_type   = (isset($current) && isset($current['post_type'])) ? $current['post_type'] : '';
+                                                            $selected_post_type = (isset($current) && isset($current['post_types'])) ? $current['post_types'] : [];
+                                                            if (!isset($current)) {
+                                                                $selected_post_type = ['post'];
+                                                            }
+                                                            echo $ui->get_check_input([
+                                                                'checkvalue' => esc_attr($key),
+                                                                'checked'    => (
+                                                                        in_array($key, $selected_post_type)
+                                                                        || $legacy_post_type == $key
+                                                                        || $legacy_post_type == 'st_all_posttype'
+                                                                        || $legacy_post_type == 'st_current_posttype'
+                                                                        ) ? 'true' : 'false',
+                                                                'name'       => esc_attr($key),
+                                                                'namearray'  => 'post_types',
+                                                                'textvalue'  => esc_attr($key),
+                                                                'labeltext'  => "",
+                                                                'wrap'       => false,
+                                                            ]);
+
+                                                            echo '</td></tr>';
+
+                                                        }
+                                                        echo '</table></td></tr>';
+
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'number',
+                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
+                                                            'labeltext' => esc_html__('Maximum related posts to post_types',
                                                                 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => true,
