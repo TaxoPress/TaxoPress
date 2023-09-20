@@ -60,9 +60,10 @@ class TaxopressCoreAdmin
         add_action('taxopress_admin_class_before_assets_register', [$this, 'taxopress_load_admin_core_assets']);
         add_action('taxopress_admin_class_after_styles_enqueue', [$this, 'taxopress_load_admin_core_styles']);
         add_action('taxopress_admin_after_sidebar', [$this, 'taxopress_admin_advertising_sidebar_banner']);
-        add_action('taxopress_autoterms_after_autoterm_schedule', [$this, 'taxopress_pro_autoterm_schedule_field']);
-        add_action('taxopress_autoterms_after_autoterm_terms_to_use', [$this, 'taxopress_pro_autoterm_terms_to_use_field']);
+        add_action('taxopress_autoterms_after_autoterm_schedule', [$this, 'taxopress_core_autoterm_schedule_field']);
+        add_action('taxopress_autoterms_after_autoterm_terms_to_use', [$this, 'taxopress_core_autoterm_terms_to_use_field']);
         add_action('taxopress_autoterms_after_autoterm_advanced', [$this, 'taxopress_core_autoterm_advanced_field']);
+        add_action('taxopress_autolinks_after_html_exclusions_tr', [$this, 'taxopress_core_autolinks_after_html_exclusions_promo']);
     }
 
     function taxopress_load_admin_core_assets()
@@ -144,7 +145,7 @@ class TaxopressCoreAdmin
     <?php
     }
 
-    function taxopress_pro_autoterm_schedule_field($current)
+    function taxopress_core_autoterm_schedule_field($current)
     {
     ?>
         <tr>
@@ -168,7 +169,7 @@ class TaxopressCoreAdmin
     <?php
     }
 
-    function taxopress_pro_autoterm_terms_to_use_field($current)
+    function taxopress_core_autoterm_terms_to_use_field($current)
     {
     ?>
         <tr>
@@ -182,6 +183,30 @@ class TaxopressCoreAdmin
 
                     <div class="inside-content">
                         <p><?php echo esc_html__('TaxoPress Pro allows you to generate new terms for your content using the Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    <?php
+    }
+
+    function taxopress_core_autolinks_after_html_exclusions_promo($current)
+    {
+    ?>
+        <tr>
+            <td colspan="2">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                    <div class="postbox-header">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                            <span><?php echo esc_html__('Add Custom Elements', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+
+                    <div class="inside-content">
+                        <p><?php echo esc_html__('TaxoPress Pro allows you complete control over where Auto Links are added. You can choose to skip any HTML elements that appear in your content.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
                             <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
