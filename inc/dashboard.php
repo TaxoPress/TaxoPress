@@ -66,7 +66,31 @@ class SimpleTags_Dashboard
 
         // Display message
         settings_errors(__CLASS__);
-?>
+
+        $show_welcome = isset($_GET['welcome']) ? true : false;
+    ?>
+    <?php if ($show_welcome) : ?>
+        <div class="taxopress-welcome-banner">
+            <div class="banner-wrap">
+                <div class="banner-inner">
+                    <a>
+                        <img src="<?php echo esc_url(STAGS_URL.'/assets/images/tp-email-logo.png'); ?>"  alt="TaxoPress Logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="taxopress-welcome-content">
+            <div class="content-wrap">
+                <div class="taxopress-welcome">
+                    <div class="welcome-panel-content">
+                        <h2><?php esc_html_e('Thanks for using TaxoPress, the WordPress taxonomy plugin', 'simple-tags'); ?></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
         <h1 class="wp-heading-inline"><?php esc_html_e('Dashboard', 'simple-tags'); ?></h1>
         <div class="taxopress-description">
             <?php esc_html_e('This screen allows you to enable or disable TaxoPress features.', 'simple-tags'); ?>
