@@ -745,6 +745,13 @@ class SimpleTags_Autolink
                                                             do_action('taxopress_autolinks_after_html_exclusions', $current, $ui);
 
                                                             echo '</table></td></tr>';
+  
+                                                            /**
+                                                             * Fires after the autolinks html_exclusions tr.
+                                                             * @param $current array
+                                                             * @param taxopress_admin_ui $ui Admin UI instance.
+                                                             */
+                                                            do_action('taxopress_autolinks_after_html_exclusions_tr', $current, $ui);
 
                                                             ?>
 
