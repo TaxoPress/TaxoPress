@@ -25,6 +25,9 @@ class SimpleTags_Admin
 		// Which taxo ?
 		self::register_taxonomy();
 
+		// Redirect on plugin activation
+		add_action('admin_init', array(__CLASS__, 'redirect_on_activate'));
+
 		// Admin menu
 		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
 		// Log cpt
@@ -923,5 +926,19 @@ class SimpleTags_Admin
 				ORDER BY $order_by $order $limit
 			", $taxonomy));
 		}
+	}
+
+	/**
+	 * Redirect user on plugin activation
+	 *
+	 * @return void
+	 */
+	public static function redirect_on_activate()
+	{
+		if (get_option('taxopress_activate')) {
+			delete_option('taxopress_activate');
+			wp_redirect(admin_url("admin.php?page=st_dashboard&welcome"));
+			exit;
+	  	}
 	}
 }

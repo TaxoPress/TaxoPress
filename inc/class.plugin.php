@@ -33,6 +33,9 @@ class SimpleTags_Plugin {
 				$role->add_cap( 'simple_tags' );
 			}
 		}
+
+		// add activated option
+		add_option( 'taxopress_activate', true );
 	}
 
 	/**
