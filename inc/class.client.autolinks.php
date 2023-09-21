@@ -398,7 +398,11 @@ class SimpleTags_Client_Autolinks
 		libxml_use_internal_errors(true);
 		// loadXml needs properly formatted documents, so it's better to use loadHtml, but it needs a hack to properly handle UTF-8 encoding
 		//$result = $dom->loadHtml(mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8"));
-		$result = $dom->loadHtml(htmlspecialchars_decode($content, ENT_QUOTES | ENT_HTML5));
+		//$result = $dom->loadHtml(htmlspecialchars_decode($content, ENT_QUOTES | ENT_HTML5));
+		
+		// Load the content as HTML without adding DOCTYPE and html/body tags
+		$content = '<div>' . $content . '</div>';
+		$result = $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
 		if (false === $result) {
 			return;
@@ -563,8 +567,14 @@ class SimpleTags_Client_Autolinks
 			}
 		}
 
+
+		// Get the innerHTML of the root div, excluding the div itself
+		$content = '';
+		foreach ($dom->documentElement->childNodes as $node) {
+			$content .= $dom->saveHTML($node);
+		}
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
-		$content = mb_substr($dom->saveHTML($xpath->query('//body')->item(0)), 6, -7, "UTF-8");
+		//$content = mb_substr($dom->saveHTML($xpath->query('//body')->item(0)), 6, -7, "UTF-8");
 		$content = str_replace('|--|', '&#', $content); //https://github.com/TaxoPress/TaxoPress/issues/824
 		$content = str_replace('&#60;', '<', $content);
 		$content = str_replace('&#62;', '>', $content);
@@ -581,6 +591,7 @@ class SimpleTags_Client_Autolinks
 
 		$content = str_replace('||starttaxopressrandom||', '',  $content);
 		$content = str_replace('||endtaxopressrandom||', '', $content);
+
 	}
 
 	/**
