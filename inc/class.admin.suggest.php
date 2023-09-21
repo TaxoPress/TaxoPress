@@ -321,7 +321,9 @@ class SimpleTags_Admin_Suggest {
 
 		$taxonomy =  'post_tag';
 
-		if(isset($_GET['suggestterms'])){
+		if (!empty($_GET['taxonomy'])) {
+			$taxonomy = sanitize_key($_GET['taxonomy']);
+		} elseif(isset($_GET['suggestterms'])) {
 			$suggestterms = taxopress_get_suggestterm_data();
 			$selected_suggestterm = (int)$_GET['suggestterms'];
 

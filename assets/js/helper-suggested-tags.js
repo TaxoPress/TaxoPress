@@ -13,14 +13,19 @@ jQuery(document).ready(function ($) {
     var meta_title_content = stHelperSuggestedTagsL10n.content_bloc;
     var meta_title_block   = '';
     var meta_title_action  = '';
-    
+    var taxonomies         = click_term.taxonomy_labels;
+
     //prepare title
     meta_title_block       += '<img style="display:none;" class="st_ajax_loading" src="' + stHelperSuggestedTagsL10n.stag_url + '/assets/images/ajax-loader.gif" />';
     meta_title_block       += click_term.title;
     meta_title_block       += '<select style="' + source_select_style + '" class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="' + click_term.ID + '">';
     meta_title_block         += '<option value="" selected="selected">' + stHelperSuggestedTagsL10n.source_text + '</option>';
     if (use_local > 0) {
-      meta_title_block       += '<option value="tags_from_local_db">' + stHelperSuggestedTagsL10n.local_term_text + '</option>';
+      for (var key in taxonomies) {
+        if (taxonomies.hasOwnProperty(key)) {
+          meta_title_block       += '<option value="tags_from_local_db" data-taxonomy="' + key + '">' + stHelperSuggestedTagsL10n.local_term_text + ' (' + taxonomies[key] + ')</option>';
+        }
+      }
     }
     if (use_dandelion > 0) {
       meta_title_block       += '<option value="tags_from_datatxt">' + stHelperSuggestedTagsL10n.dandelion_text + '</option>';
@@ -79,9 +84,11 @@ jQuery(document).ready(function ($) {
     var suggested_tags_div = $(this).closest('.postbox');
     suggested_tags_div.removeClass('close');
     var suggestterms = Number(suggested_tags_div.find('select.term_suggestion_select').attr('data-suggestterms'));
-    var data_action = suggested_tags_div.find('select.term_suggestion_select :selected').val();
+    var selected_option = suggested_tags_div.find('select.term_suggestion_select :selected');
+    var data_action = selected_option.val();
+    var taxonomy = selected_option.attr('data-taxonomy');
     var current_post_id = jQuery('#post_ID').val();
-    
+
     if (data_action == '') {
       suggested_tags_div.find('.container_clicktags').html(stHelperSuggestedTagsL10n.content_bloc);
       return;
@@ -89,7 +96,7 @@ jQuery(document).ready(function ($) {
     
     suggested_tags_div.find('.st_ajax_loading').show();
 
-    suggested_tags_div.find('.container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + data_action + '&suggestterms=' + suggestterms + '', {
+    suggested_tags_div.find('.container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + data_action + '&suggestterms=' + suggestterms + '&taxonomy=' + taxonomy + '', {
       content: getContentFromEditor(),
       post_id: current_post_id,
       title: getTitleFromEditor()

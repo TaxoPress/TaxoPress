@@ -354,15 +354,17 @@ class SimpleTags_SuggestTerms
                                                     $select             = [
                                                         'options' => $options,
                                                     ];
-                                                    $selected           = isset($current) ? taxopress_disp_boolean($current['taxonomy']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['taxonomy'] : '';
+                                                    $selected           = isset($current) ? $current['taxonomy'] : '';
+                                                    $select['selected'] = !empty($selected) ? (array) $current['taxonomy'] : ['post_tag'];
+
                                                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_select_checkbox_input_main([
                                                         'namearray'  => 'taxopress_suggestterm',
                                                         'name'       => 'taxonomy',
-                                                        'class'      => 'st-post-taxonomy-select',
-                                                        'labeltext'  => esc_html__('Default Taxonomy', 'simple-tags'),
+                                                        'class'      => 'taxopress-select2 taxopress-multi-select2 taxopress_suggestterm_taxonomies',
+                                                        'labeltext'  => esc_html__('Taxonomies', 'simple-tags'),
                                                         'required'   => true,
+                                                        'multiple'   => true,
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
