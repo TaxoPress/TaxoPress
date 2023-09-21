@@ -177,14 +177,17 @@ class taxopress_admin_ui
         $defaults = $this->get_default_input_parameters(
             [
                 'class'    => '',
-                'selections' => []
+                'selections' => [],
+                'multiple' => false
             ]
         );
 
         $args = wp_parse_args($args, $defaults);
+        
+        $selectedresult = (isset($args['selections']) && isset($args['selections']['selected']) && !empty($args['selections']['selected'])) ? true : false;
 
-        $selectedresult = (isset($args['selections']) && isset($args['selections']['selected']) && !empty(trim($args['selections']['selected']))) ? true : false;
-
+        $multiple_select = ($args['multiple'] === true) ? '[]' : '';
+        $multiple_text   = ($args['multiple'] === true) ? 'multiple' : '';
 
         $value = '';
         if ($args['wrap']) {
@@ -201,7 +204,7 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $value .= '<select class="' . $args['class'] . '" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']">';
+        $value .= '<select class="' . $args['class'] . '" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']' . $multiple_select . '" ' . $multiple_text . ' data-placeholder="'. sprintf(esc_html__('Select %1s...', 'simple-tags'), $args['labeltext']) .'">';
         if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
             foreach ($args['selections']['options'] as $val) {
                 $result = '';
@@ -210,11 +213,13 @@ class taxopress_admin_ui
 
                 if (is_numeric($args['selections']['selected'])) {
                     $selected = taxopress_disp_boolean($args['selections']['selected']);
-                } elseif (in_array($args['selections']['selected'], ['true', 'false'], true)) {
+                } elseif (!is_array($args['selections']['selected']) && in_array($args['selections']['selected'], ['true', 'false'], true)) {
                     $selected = $args['selections']['selected'];
                 }
 
-                if (!empty($selected) && $selected === $bool) {
+                if (is_array($args['selections']['selected']) && in_array($val['attr'], $args['selections']['selected'])) {
+                    $result = ' selected="selected"';
+                } elseif (!empty($selected) && $selected === $bool) {
                     $result = ' selected="selected"';
                 } else {
                     if (array_key_exists('default', $val) && !empty($val['default'])) {
