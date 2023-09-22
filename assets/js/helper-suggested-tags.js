@@ -9,11 +9,12 @@ jQuery(document).ready(function ($) {
     var use_dandelion      = Number(click_term.suggest_term_use_dandelion);
     var use_opencalais     = Number(click_term.suggest_term_use_opencalais);
     var term_source_count  = use_local + use_dandelion + use_opencalais;
-    var source_select_style = term_source_count > 1 ? '' : 'display:none;';
+    var source_select_style = '';//term_source_count > 1 ? '' : 'display:none;';
     var meta_title_content = stHelperSuggestedTagsL10n.content_bloc;
     var meta_title_block   = '';
     var meta_title_action  = '';
     var taxonomies         = click_term.taxonomy_labels;
+    var suggest_terms_active = false;
 
     //prepare title
     meta_title_block       += '<img style="display:none;" class="st_ajax_loading" src="' + stHelperSuggestedTagsL10n.stag_url + '/assets/images/ajax-loader.gif" />';
@@ -21,6 +22,7 @@ jQuery(document).ready(function ($) {
     meta_title_block       += '<select style="' + source_select_style + '" class="term_suggestion_select" name="term_suggestion_select"  data-suggestterms="' + click_term.ID + '">';
     meta_title_block         += '<option value="" selected="selected">' + stHelperSuggestedTagsL10n.source_text + '</option>';
     if (use_local > 0) {
+      suggest_terms_active = true;
       for (var key in taxonomies) {
         if (taxonomies.hasOwnProperty(key)) {
           meta_title_block       += '<option value="tags_from_local_db" data-taxonomy="' + key + '">' + stHelperSuggestedTagsL10n.local_term_text + ' (' + taxonomies[key] + ')</option>';
@@ -28,9 +30,11 @@ jQuery(document).ready(function ($) {
       }
     }
     if (use_dandelion > 0) {
+      suggest_terms_active = true;
       meta_title_block       += '<option value="tags_from_datatxt">' + stHelperSuggestedTagsL10n.dandelion_text + '</option>';
     }
     if (use_opencalais > 0) {
+      suggest_terms_active = true;
       meta_title_block       += '<option value="tags_from_opencalais">' + stHelperSuggestedTagsL10n.opencalais_text + '</option>';
     }
     meta_title_block += '</select> <button class="term_suggestion_refresh">' + stHelperSuggestedTagsL10n.refresh_text + '</button>';
@@ -42,6 +46,10 @@ jQuery(document).ready(function ($) {
       meta_title_action += stHelperSuggestedTagsL10n.edit_metabox_text;
       meta_title_action += '</a>';
       meta_title_action += '</span>';
+    }
+
+    if (!suggest_terms_active) {
+      meta_title_block = '';
     }
 
     //add data to metabox

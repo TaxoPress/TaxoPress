@@ -51,6 +51,22 @@ function load_click_tags(search = '') {
     });
 }
 
+/**
+ * The html_entity_decode() php function on JS :)
+ *
+ * See : https://github.com/hirak/phpjs
+ *
+ * @param str
+ * @returns {string | *}
+ */
+function html_entity_decode(str) {
+  var ta = document.createElement('textarea');
+  ta.innerHTML = str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  toReturn = ta.value;
+  ta = null;
+  return toReturn;
+}
+
 //inititiate click tags search when user start typying
     //setup before functions
     var typingTimer;                //timer identifier
