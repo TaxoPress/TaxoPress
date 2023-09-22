@@ -414,7 +414,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
 		$select_2_page = false;
-		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts'])) {
+		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_suggestterms'])) {
 			$select_2_page = true;
 		}
 
