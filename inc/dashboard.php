@@ -66,13 +66,37 @@ class SimpleTags_Dashboard
 
         // Display message
         settings_errors(__CLASS__);
-?>
-        <h1 class="wp-heading-inline"><?php esc_html_e('Dashboard', 'simple-tags'); ?></h1>
-        <div class="taxopress-description">
-            <?php esc_html_e('This screen allows you to enable or disable TaxoPress features.', 'simple-tags'); ?>
+
+        $show_welcome = isset($_GET['welcome']) ? true : false;
+    ?>
+    <?php if ($show_welcome) : ?>
+        <div class="taxopress-welcome-banner">
+            <div class="banner-wrap">
+                <div class="banner-inner">
+                    <a>
+                        <img src="<?php echo esc_url(STAGS_URL.'/assets/images/tp-email-logo.png'); ?>"  alt="TaxoPress Logo"/>
+                    </a>
+                </div>
+            </div>
         </div>
 
+        <div class="taxopress-welcome-content">
+            <div class="content-wrap">
+                <div class="taxopress-welcome">
+                    <div class="welcome-panel-content">
+                        <h2><?php esc_html_e('Welcome to TaxoPress, the WordPress taxonomy plugin', 'simple-tags'); ?></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
         <div class="wrap st_wrap tagcloudui st_dashboard-page admin-settings">
+            <h1 class="wp-heading-inline"><?php esc_html_e('Dashboard', 'simple-tags'); ?></h1>
+            <div class="taxopress-description">
+                <?php esc_html_e('This screen allows you to enable or disable TaxoPress features.', 'simple-tags'); ?>
+            </div>
+
             <form id="taxopress-capabilities-dashboard-form">
                 <div class="taxopress-dashboard-settings-boxes">
                     <?php foreach (taxopress_dashboard_options() as $feature => $option) :

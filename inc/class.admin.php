@@ -25,6 +25,9 @@ class SimpleTags_Admin
 		// Which taxo ?
 		self::register_taxonomy();
 
+		// Redirect on plugin activation
+		add_action('admin_init', array(__CLASS__, 'redirect_on_activate'));
+
 		// Admin menu
 		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
 		// Log cpt
@@ -411,7 +414,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
 		$select_2_page = false;
-		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts'])) {
+		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_suggestterms'])) {
 			$select_2_page = true;
 		}
 
@@ -728,7 +731,6 @@ class SimpleTags_Admin
 		$output = '';
 		foreach ($option_data as $section => $options) {
 			$colspan       = count($options) > 1 ? 'colspan="2"' : '';
-			$desc_html_tag = 'div';
 
 			if ($section === 'legacy') {
 				$table_sub_tab = '<div class="st-legacy-subtab">
@@ -766,6 +768,7 @@ class SimpleTags_Admin
 				}
 
 				$input_type = '';
+				$desc_html_tag = 'div';
 				switch ($option[2]) {
 					case 'radio':
 						$input_type = array();
@@ -923,5 +926,19 @@ class SimpleTags_Admin
 				ORDER BY $order_by $order $limit
 			", $taxonomy));
 		}
+	}
+
+	/**
+	 * Redirect user on plugin activation
+	 *
+	 * @return void
+	 */
+	public static function redirect_on_activate()
+	{
+		if (get_option('taxopress_activate')) {
+			delete_option('taxopress_activate');
+			wp_redirect(admin_url("admin.php?page=st_dashboard&welcome"));
+			exit;
+	  	}
 	}
 }

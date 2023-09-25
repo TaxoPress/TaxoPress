@@ -197,16 +197,16 @@ class SimpleTags_Admin_Manage
 											<label
 												for="addterm_match"><?php _e('Term(s) to match:', 'simple-tags'); ?></label>
 											<br />
-											<input type="text" class="autocomplete-input tag-cloud-input"
-												id="addterm_match" name="addterm_match" value="" size="80" />
+											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea"
+												id="addterm_match" name="addterm_match" size="80" /></textarea>
 										</p>
 
 										<p>
 											<label
 												for="addterm_new"><?php _e('Term(s) to add:', 'simple-tags'); ?></label>
 											<br />
-											<input type="text" class="autocomplete-input" id="addterm_new"
-												name="addterm_new" value="" size="80" />
+											<textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="addterm_new"
+												name="addterm_new" size="80" /></textarea>
 										</p>
 
 										<input class="button-primary" type="submit" name="Add"
@@ -238,16 +238,16 @@ class SimpleTags_Admin_Manage
 											<label
 												for="renameterm_old"><?php _e('Term(s) to rename:', 'simple-tags'); ?></label>
 											<br />
-											<input type="text" class="autocomplete-input tag-cloud-input"
-												id="renameterm_old" name="renameterm_old" value="" size="80" />
+											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea"
+												id="renameterm_old" name="renameterm_old" size="80" /></textarea>
 										</p>
 
 										<p>
 											<label
-												for="renameterm_new"><?php _e('New term name(s):', 'simple-tags'); ?>
+												for="renameterm_new"><?php _e('New term name(s):', 'simple-tags'); ?></label>
 												<br />
-												<input type="text" class="autocomplete-input" id="renameterm_new"
-													name="renameterm_new" value="" size="80" />
+												<textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new"
+													name="renameterm_new" size="80" /></textarea>
 										</p>
 
 										<input class="button-primary" type="submit" name="rename"
@@ -280,16 +280,16 @@ class SimpleTags_Admin_Manage
 											<label
 												for="renameterm_old"><?php _e('Term(s) to merge:', 'simple-tags'); ?></label>
 											<br />
-											<input type="text" class="autocomplete-input tag-cloud-input"
-												id="mergeterm_old" name="renameterm_old" value="" size="80" />
+											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea"
+												id="mergeterm_old" name="renameterm_old" size="80" /></textarea>
 										</p>
 
 										<p>
 											<label
-												for="renameterm_new"><?php _e('New term name:', 'simple-tags'); ?>
+												for="renameterm_new"><?php _e('New term name:', 'simple-tags'); ?></label>
 												<br />
-												<input type="text" class="autocomplete-input" id="renameterm_new"
-													name="renameterm_new" value="" size="80" />
+												<textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new"
+													name="renameterm_new" size="80" /></textarea>
 										</p>
 
 										<input class="button-primary" type="submit" name="merge"
@@ -358,13 +358,13 @@ class SimpleTags_Admin_Manage
                                 <p>
                                     <label for="tagname_match"><?php _e('Term(s) to match:', 'simple-tags'); ?></label>
                                     <br />
-                                    <input type="text" class="autocomplete-input" id="tagname_match" name="tagname_match" value="" size="80" />
+                                    <input type="text" class="autocomplete-input" id="tagname_match" name="tagname_match" size="80" />
                                 </p>
 
                                 <p>
                                     <label for="tagslug_new"><?php _e('Slug(s) to set:', 'simple-tags'); ?></label>
                                     <br />
-                                    <input type="text" class="autocomplete-input" id="tagslug_new" name="tagslug_new" value="" size="80" />
+                                    <input type="text" class="autocomplete-input" id="tagslug_new" name="tagslug_new" size="80" />
                                 </p>
 
                                 <input class="button-primary" type="submit" name="edit" value="<?php _e('Edit', 'simple-tags'); ?>" />

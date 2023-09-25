@@ -10,6 +10,16 @@
     
     
     // -------------------------------------------------------------
+    //   Expand textarea height based on lines
+    // -------------------------------------------------------------
+    $(document).on('change keyup input', '.taxopress-expandable-textarea', function (e) {
+      var textArea = $(this);
+      textArea.css('height', 'auto');
+      var newHeight = textArea[0].scrollHeight;
+      textArea.height(newHeight);
+    });
+    
+    // -------------------------------------------------------------
     //   TaxoPress term quick edit save
     // -------------------------------------------------------------
     $('.taxopress-save', $('#inline-edit') ).on( 'click', function() {
@@ -648,6 +658,12 @@
                 }
               });
 
+              if ($('.taxopress_suggestterm_taxonomies option:selected').length === 0) {
+                field_label = $('.taxopress_suggestterm_taxonomies').closest('tr').find('label').html();
+                field_error_count = 1;
+                field_error_message += '<li>' + field_label + ' is required <span class="required">*</span></li>';
+              }
+
               field_error_message += '</ul>';
 
               if (field_error_count > 0) {
@@ -743,6 +759,12 @@
               });
           });
       }
+    }
+
+    if ($('.taxopress-multi-select2').length > 0) {
+        $('.taxopress-multi-select2').ppma_select2({
+          placeholder: $(this).data("placeholder"),
+        });
     }
 
     // -------------------------------------------------------------

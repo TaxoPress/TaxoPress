@@ -85,12 +85,12 @@ class SimpleTags_Client_RelatedPosts {
 
 		$defaults = array(
 			'taxonomy'      => 'post_tag',
-			'post_type'     => 'post',
+			'post_type'     => get_post_type($post),// leaving this for legacy purpose
+			'post_types'    => '',
 			'number'        => 5,
 			'order'         => 'count-desc',
 			'format'        => 'list',
 			'separator'     => '',
-			'include_page'  => 'true',
 			'exclude_posts' => '',
 			'exclude_terms' => '',
 			'post_id'       => 0,
@@ -244,23 +244,21 @@ class SimpleTags_Client_RelatedPosts {
 			}
 			unset( $limit_days );
 
-            //get post type for current selection
-            if($post_type === 'st_current_posttype'){
-                $post_type = [get_post_type($post)];
-            }
+			if (is_array($post_types) && !empty($post_types)) {
+				$post_type = $post_types;
+			} else {
+				// legacy post type
 
-			// Make array post type
-			if ( is_string( $post_type ) ) {
-				$post_type = explode( ',', $post_type );
+				//get post type for current selection
+				if ($post_type === 'st_current_posttype'){
+					$post_type = [get_post_type($post)];
+				}
+
+				// Make array post type
+				if ( is_string( $post_type ) ) {
+					$post_type = explode( ',', $post_type );
+				}
 			}
-
-
-			// Include_page
-			$include_page = strtolower( $include_page );
-			if ( $include_page == 'true' && (int)$hide_title === 0) {
-				$post_type[] = 'page';
-			}
-			unset( $include_page );
 
 			// Build post type SQL
             if(in_array('st_all_posttype', $post_type)){//if all post type is selected
@@ -354,6 +352,9 @@ class SimpleTags_Client_RelatedPosts {
                 $limit_number
                 ) );
 
+			if (!$cache) {
+				$cache = [];
+			}
 			$cache[ $key ] = $results;
 			wp_cache_set( 'related_posts' . $taxonomy, $cache, 'simple-tags' );
 		}

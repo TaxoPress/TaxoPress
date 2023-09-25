@@ -149,7 +149,7 @@ function taxopress_create_default_suggestterm()
 
     $default                                                            = [];
     $default['taxopress_suggestterm']['title']                          = 'Suggest Term';
-    $default['taxopress_suggestterm']['taxonomy']                       = 'post_tag';
+    $default['taxopress_suggestterm']['taxonomy']                       = ['post_tag'];
     $default['post_types']                                              = ['post'];
     $default['taxopress_suggestterm']['number']                         = '100';
     $default['taxopress_suggestterm']['orderby']                        = 'count';
@@ -369,6 +369,20 @@ function taxopress_current_post_suggest_terms($source = false, $local_check = fa
             if($source && $source === 'existing_terms' && $enable_existing_terms === 0){
                 continue;
             }
+
+            // add taxonomy key => label
+            $taxonomy_labels = [];
+            $taxonomies      = $suggested_term['taxonomy'];
+            if (!is_array($taxonomies)) {
+                $taxonomies = [$taxonomies];
+            }
+            foreach ($taxonomies as $taxonomies_tax) {
+                $_taxonomy = get_taxonomy($taxonomies_tax);
+                if (is_object($_taxonomy) && isset($_taxonomy->name)) {
+                    $taxonomy_labels[$_taxonomy->name] = $_taxonomy->labels->name;
+                }
+            }
+            $suggested_term['taxonomy_labels'] = $taxonomy_labels;
 
             if (in_array(get_post_type(), $post_types)) {
                 if ($single_result) {

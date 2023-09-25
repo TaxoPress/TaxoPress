@@ -65,6 +65,27 @@ class SimpleTags_Client {
 
 
 	/**
+	 * Retrieves the currently queried object.
+	 *
+	 * Wrapper for WP_Query::get_queried_object().
+	 *
+	 * @since 3.1.0
+	 *
+	 * @global WP_Query $wp_query WordPress Query object.
+	 *
+	 * @return WP_Term|WP_Post_Type|WP_Post|WP_User|null The queried object.
+	 */
+	public static function taxopress_get_queried_object() {
+		global $wp_query;
+
+		if (!is_object($wp_query)) {
+			return null;
+		}
+		
+		return $wp_query->get_queried_object();
+	}
+
+	/**
 	 * Add cpt to taxonomy during the query
 	 *
 	 * @param WP_Query $query
@@ -84,7 +105,7 @@ class SimpleTags_Client {
             return $query;
         }
         if ( $query->is_category == true || $query->is_tag == true || $query->is_tax == true ) {
-            $get_queried_object = @get_queried_object();
+            $get_queried_object = self::taxopress_get_queried_object();
             if(is_object($get_queried_object)){
 				if(!isset($get_queried_object->taxonomy)){
                     return $query;

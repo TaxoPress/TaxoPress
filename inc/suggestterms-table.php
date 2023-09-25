@@ -64,7 +64,7 @@ class SuggestTerms_List extends WP_List_Table
     {
         $columns = [
             'title'     => esc_html__('Title', 'simple-tags'),
-            'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
+            'taxonomy'  => esc_html__('Taxonomies', 'simple-tags'),
             'post_types'  => esc_html__('Suggest Term Post type', 'simple-tags')
         ];
 
@@ -230,7 +230,6 @@ class SuggestTerms_List extends WP_List_Table
     {
         $sortable_columns = [
             'title'    => ['title', true],
-            'taxonomy' => ['taxonomy', true],
         ];
 
         return $sortable_columns;
@@ -313,15 +312,17 @@ class SuggestTerms_List extends WP_List_Table
      */
     protected function column_taxonomy($item)
     {
-        $taxonomy = get_taxonomy($item['taxonomy']);
+        $taxonomies = (is_array($item['taxonomy'])) ? $item['taxonomy'] : [$item['taxonomy']];
 
-        if($taxonomy){
-            $return = $taxonomy->labels->name;
-        }else{
-            $return = '&mdash;';
+        $taxonomies_label = [];
+        foreach ($taxonomies as $tax) {
+            $taxonomy = get_taxonomy($tax);
+            if($taxonomy){
+                $taxonomies_label[] = $taxonomy->labels->name;
+            }
         }
 
-        return $return;
+        return join(', ', $taxonomies_label);
     }
 
     /**

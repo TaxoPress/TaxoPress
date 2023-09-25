@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 6.3
-Stable tag: 3.10.0
+Stable tag: 3.10.1
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -34,8 +34,8 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
 6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
 7. **Suggest Terms**: This feature can show a metabox where you can browse all your existing terms. A second metabox can analyze your content and find new ideas for terms. 
-8. **Term Synonyms and Linked Terms**: Allows you to have multiple words associated with a single term.
-9. **Mass Edit Terms**: Quickly add or remove taxonomy terms from any content in WordPress.
+8. **Term Synonyms**: This feature allows you to have multiple words associated with a single term.
+9. **Linked Terms**: You can connect terms. When the main term is added to a post, the linked terms will be added also.
 10. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
 
 ## Feature 1. Create and Manage Taxonomies ##
@@ -102,19 +102,13 @@ Synonyms will be available on each term screen. For example, if your term is “
 
 [Click here to read about Term Synonyms](https://taxopress.com/docs/synonyms/).
 
+## Feature 9. Linked Terms ##
+
 Linked Terms is a feature in TaxoPress Pro that allows you to connect terms. When the main term is added to a post, the linked terms will be added also.
 
 For sites with a lot of terms, this feature makes it easier and quicker for your users to add the correct terms. For example, if you add the term “WordPress” to your posts, TaxoPress can automatically add Linked Terms that include “CMS”, “website”, and “website design”.
 
 [Click here to read about Linked Terms](https://taxopress.com/docs/linked-terms/).
-
-## Feature 9. Mass Edit Terms ##
-
-The Mass Edit Terms screen allows you to quickly add or remove taxonomy terms from any content in WordPress.
-
-The first step is to choose which taxonomy you want to modify. At the top of the screen, use the dropdown boxes to choose your taxonomy. You will now see all your Posts and the Tags attached to them. You can now add or remove terms to all your posts.
-
-[Click here to read about suggesting terms](https://taxopress.com/docs/mass-edit-terms/).
 
 ## Feature 10. Manage Terms ##
 
@@ -252,6 +246,21 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.10.1- 2023-09-25
+* Feature: Allow users to have more than one taxonomy for "Suggest Terms", #1788
+* Fixed: Allow users to choose multiple post types for Related Posts, #1774
+* Fixed: Auto Link function issue with &lt; and &gt; content, #1829
+* Feature: Redirect and welcome message, #1751
+* Update: Prevent users from adding terms if it exists as a synonym, #1793
+* Fixed: Fatal Error after adding a custom taxomomy to a post, #1804
+* Fixed: Deprecated code in PHP 8.2, #1803
+* Fixed: Include synonyms in this count Autolink Term Usage Limit, #1805
+* Fixed: Allow Manage Terms box to expand for more content, #468
+* Update: Add a Pro upgrade message for exceptions in Auto Links, #1807
+* Fixed: Promo banner missing in Posts Screen, #1837
+* Update: ES-FR-IT Translation Updates TaxoPress PRO 3.10, #1785
+* Update: ES-FR-IT Translation Updates TaxoPress FREE August 2023, #1786
 
 v3.10.0- 2023-08-09
 * Feature: Add new TaxoPress > Posts Screen, #1748

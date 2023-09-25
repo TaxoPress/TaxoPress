@@ -63,9 +63,11 @@ class SimpleTags_Admin_ClickTags {
                 continue;
             }
 
-            if($_taxonomy->name === $click_terms['taxonomy']){
+            if (is_array($click_terms['taxonomy']) && in_array($_taxonomy->name, $click_terms['taxonomy'])) {
                 $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
-            }else{
+            } elseif(!is_array($click_terms['taxonomy']) && $_taxonomy->name === $click_terms['taxonomy']) { // backward compatibility
+                $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
+            } else {
                 $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'">'.$_taxonomy->labels->name.'</option>';
             }
         }
