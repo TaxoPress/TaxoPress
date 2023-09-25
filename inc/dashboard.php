@@ -84,7 +84,7 @@ class SimpleTags_Dashboard
             <div class="content-wrap">
                 <div class="taxopress-welcome">
                     <div class="welcome-panel-content">
-                        <h2><?php esc_html_e('Thanks for using TaxoPress, the WordPress taxonomy plugin', 'simple-tags'); ?></h2>
+                        <h2><?php esc_html_e('Welcome to TaxoPress, the WordPress taxonomy plugin', 'simple-tags'); ?></h2>
                     </div>
                 </div>
             </div>
