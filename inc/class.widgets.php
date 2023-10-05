@@ -333,6 +333,8 @@ class SimpleTags_Widget extends WP_Widget {
 						value="flat"><?php esc_html_e( 'Flat (default)', 'simple-tags' ); ?></option>
 					<option <?php selected( esc_attr($instance['format']), 'list' ); ?>
 						value="list"><?php esc_html_e( 'List (UL/LI)', 'simple-tags' ); ?></option>
+					<option <?php selected( esc_attr($instance['format']), 'ol' ); ?>
+						value="list"><?php esc_html_e( 'Ordinary List (OL/LI)', 'simple-tags' ); ?></option>
 				</select>
 			</label>
 		</p>
