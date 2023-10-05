@@ -301,6 +301,9 @@ class SimpleTags_Client {
 				case 'list' :
 					$output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ul> {$after}\n";
 					break;
+				case 'ol' :
+					$output = ''. $before .' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ol> {$after}\n";
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
