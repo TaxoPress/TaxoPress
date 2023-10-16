@@ -13,9 +13,9 @@ class SimpleTags_Admin_ClickTags {
 
         if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_suggest_terms' )){
 		    // Box for post/page
-		    add_action( 'admin_head', array( __CLASS__, 'admin_head' ), 1 );
+		    //add_action( 'admin_head', array( __CLASS__, 'admin_head' ), 1 );
 		    // Javascript
-		    add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
+		    //add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
         }
 	}
 

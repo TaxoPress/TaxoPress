@@ -687,6 +687,7 @@ class SimpleTags_SuggestTerms
                                                         'required'  => false,
                                                     ]);
 
+                                                    do_action('taxopress_suggestterm_after_api_fields', $current);
 
                                                     ?>
 

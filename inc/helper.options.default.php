@@ -21,6 +21,8 @@ return array(
     'post_terms_filter_format'  => 'term_name',
     'post_terms_taxonomy_type' => 'public',
 
+    'taxopress_ai_post_types' => ['post'],
+
     'allow_embed_tcloud'     => 1,
     // Auto link
     'auto_link_tags'         => 0,

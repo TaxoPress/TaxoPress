@@ -1,4 +1,10 @@
 <?php
+require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php';
+$post_type_options = [];
+foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
+    $post_type_options[$post_type] = $post_type_object->labels->name;
+}
+
 return array(
     // post tab
     'posts'       => array(
@@ -24,6 +30,18 @@ return array(
                 'term_and_private' => __('Public Taxonomies and Private Taxonomies', 'simple-tags'),
             ),
             __('This controls the taxonomy terms that appear on the "Posts" screen.', 'simple-tags'),
+            ''
+        ),
+    ),
+
+    // taxopress ai tab
+    'taxopress-ai'       => array(
+        array(
+            'taxopress_ai_post_types',
+            __('Show TaxoPress AI Metabox on:', 'simple-tags'),
+            'multiple_checkbox',
+            $post_type_options,
+            __('Select post types where TaxoPress AI metabox should be added.', 'simple-tags'),
             ''
         ),
     ),

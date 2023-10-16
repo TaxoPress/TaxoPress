@@ -1146,7 +1146,13 @@ body.block-editor-page .clicktags-search-wrapper .option input {
 .taxopress-advertisement-right-sidebar .advertisement-box-header,
 .taxopress-content-promo-box .advertisement-box-header {
     background: #1F48AC;
-    color: #ffffff;
+    color: #ffffff !important;
+    padding: 8px 12px !important;
+}
+
+
+.taxopress-content-promo-box .postbox-header {
+    border-top: none !important;
 }
 
 .taxopress-advertisement-right-sidebar .advertisement-box-content,

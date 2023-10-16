@@ -147,9 +147,9 @@ function taxopress_admin_pages()
         'st_related_posts',
         'st_autolinks',
         'st_autoterms',
-        'st_suggestterms',
         'st_terms',
-        'st_posts'
+        'st_posts',
+        'st_taxopress_ai'
     ];
 
     return apply_filters('taxopress_admin_pages', $taxopress_pages);
@@ -399,12 +399,6 @@ function taxopress_dashboard_options()
         'label'        => esc_html__('Auto Terms', 'simple-tags'),
         'description'  => esc_html__('Auto Terms can scan your content and automatically assign new and existing terms.', 'simple-tags'),
         'option_key'   => 'active_auto_terms',
-    ];
-
-    $features['st_suggestterms'] = [
-        'label'        => esc_html__('Suggest Terms', 'simple-tags'),
-        'description'  => esc_html__('This feature helps when you\'re writing content. "Suggest Terms" shows a box with all existing terms, and can also analyze your content to find new ideas for terms.', 'simple-tags'),
-        'option_key'   => 'active_suggest_terms',
     ];
 
     $features['st_manage'] = [

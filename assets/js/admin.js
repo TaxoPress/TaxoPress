@@ -364,9 +364,15 @@
 
     if ($('.taxopress-tab-content').length > 0) {
       //set tab height
-      if ($('.taxopress-tab-content').height() > $('.taxopress-tab').height()) {
-        $('.taxopress-tab').css('height', $('.taxopress-tab-content').height());
-      }
+      $('.taxopress-tab-content').each(function () {
+        if ($(this).hasClass('multiple')) {
+          if ($(this).closest('.multiple-content').find('.taxopress-tab-content').height() > 0 && $(this).closest('.multiple-content').find('.taxopress-tab-content').height() > $(this).closest('.multiple-content').find('.taxopress-tab').height()) {
+            $(this).closest('.multiple-content').find('.taxopress-tab').css('height', $(this).closest('.multiple-content').find('.taxopress-tab-content').height());
+          }
+        } else {
+          $('.taxopress-tab').css('height', $('.taxopress-tab-content').height());
+        }
+      });
     }
 
 
@@ -807,11 +813,9 @@
     function suggest_term_use_dandelion_action() {
       if ($('.suggest_term_use_dandelion').length > 0) {
         if ($('.suggest_term_use_dandelion').prop("checked")) {
-          $('.terms_datatxt_access_token').closest('tr').removeClass('st-hide-content');
-          $('.terms_datatxt_min_confidence').closest('tr').removeClass('st-hide-content');
+          $('.suggest_term_use_dandelion_children').closest('tr').removeClass('st-hide-content');
         } else {
-          $('.terms_datatxt_access_token').closest('tr').addClass('st-hide-content');
-          $('.terms_datatxt_min_confidence').closest('tr').addClass('st-hide-content');
+          $('.suggest_term_use_dandelion_children').closest('tr').addClass('st-hide-content');
         }
       }
     }
@@ -826,9 +830,9 @@
     function suggest_term_use_opencalais_action() {
       if ($('.suggest_term_use_opencalais').length > 0) {
         if ($('.suggest_term_use_opencalais').prop("checked")) {
-          $('.terms_opencalais_key').closest('tr').removeClass('st-hide-content');
+          $('.suggest_term_use_opencalais_children').closest('tr').removeClass('st-hide-content');
         } else {
-          $('.terms_opencalais_key').closest('tr').addClass('st-hide-content');
+          $('.suggest_term_use_opencalais_children').closest('tr').addClass('st-hide-content');
         }
       }
     }
