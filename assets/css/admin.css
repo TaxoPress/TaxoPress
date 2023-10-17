@@ -471,7 +471,8 @@ div[id^="suggestedtags-"] .container_clicktags .used_term {
   font-style: italic;
 }
 
-.st-hide-content {
+.st-hide-content,
+.st-subhide-content {
   display: none !important;
 }
 
@@ -676,27 +677,41 @@ color: red;
 font-weight: bold;
 }
 
-.st-legacy-subtab {
+.st-legacy-subtab,
+.st-taxopress-ai-subtab {
     margin: 8px 0 0;
     padding: 0;
     font-size: 13px;
     color: #646970;
 }
-.st-legacy-subtab span {
+.st-legacy-subtab span,
+.st-taxopress-ai-subtab span {
     margin: 0;
     white-space: nowrap;
     line-height: 2;
     padding: .2em;
 }
-.st-legacy-subtab span.active {
+.st-legacy-subtab span.active,
+.st-taxopress-ai-subtab span.active {
     color: #000;
     font-weight: 600;
     border: none;
 }
-.st-legacy-subtab span:not(.active) {
+.st-legacy-subtab span:not(.active),
+.st-taxopress-ai-subtab span:not(.active) {
     color: #2271b1;
     cursor: pointer;
 }
+
+.taxopress-settings-subtab-title {
+    margin-bottom: 0;
+}
+
+.taxopress-ai-tab-content td {
+    padding: 0;
+    margin: 0;
+}
+
 .taxopress-warning textarea {
     width: -webkit-fill-available !important;
     width: -moz-available !important;

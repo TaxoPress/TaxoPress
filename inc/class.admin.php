@@ -103,10 +103,6 @@ class SimpleTags_Admin
 			SimpleTags_Autoterms::get_instance();
 		}
 
-		//suggest terms option
-		require STAGS_DIR . '/inc/class.admin.suggest.php';
-		new SimpleTags_Admin_Suggest();
-
 		//click terms option
 		require STAGS_DIR . '/inc/class.admin.clickterms.php';
 		new SimpleTags_Admin_ClickTags();
@@ -594,6 +590,20 @@ class SimpleTags_Admin
 				check_admin_referer('updateresetoptions-simpletags');
 
 				$sanitized_options = [];
+				
+				// add taxopress ai post type options so we can have all post types. TODO: This need to be a filter
+				foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
+					if ($post_type == 'post') {
+						$opt_default_value = 1;
+					} else {
+						$opt_default_value = 0;
+					}
+					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
+					foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
+						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
+					}
+				}
+
 				foreach ($options as $key => $value) {
 					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					$value = isset($_POST[$key]) ? $_POST[$key] : '';
@@ -733,6 +743,15 @@ class SimpleTags_Admin
                 <span data-content=".legacy-auto-link-content">'. esc_html__("Auto Links", "simple-tags") .'</span> |
                 <span data-content=".legacy-mass-edit-content">'. esc_html__("Mass Edit Terms", "simple-tags") .'</span>
                 </div>' . PHP_EOL;
+			} elseif ($section === 'taxopress-ai') {
+				$table_sub_tab_lists = [];
+				$pt_index = 0;
+				foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
+					$active_pt = ($pt_index === 0) ? 'active' : '';
+					$table_sub_tab_lists[] = '<span class="'. $active_pt .'" data-content=".taxopress-ai-'. $post_type .'-content">'. esc_html($post_type_object->labels->name) .'</span>';
+					$pt_index++;
+				}
+				$table_sub_tab = '<div class="st-taxopress-ai-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
 			} else {
 				$table_sub_tab = '';
 			}
@@ -745,7 +764,7 @@ class SimpleTags_Admin
 			foreach ((array) $options as $option) {
 
 				$class = '';
-				if ($section === 'legacy') {
+				if ($section === 'legacy' || $section === 'taxopress-ai') {
 					$class = $option[5];
 				}
 

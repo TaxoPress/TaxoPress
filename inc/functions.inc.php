@@ -582,3 +582,16 @@ function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = f
 
     return $lists;
 }
+
+/**
+ * Fetch our TAXOPRESS SuggestTerms option.
+ * SuggestTerms screen has been removed but we need this function 
+ * to migrate the needed settings.
+ *
+ * @return mixed
+ */
+function taxopress_get_suggestterm_data()
+{
+    return array_filter((array)apply_filters('taxopress_get_suggestterm_data', get_option('taxopress_suggestterms', []),
+        get_current_blog_id()));
+}

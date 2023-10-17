@@ -117,17 +117,53 @@
         // Prevent submitting the form when pressing Enter on a focused field.
         return false;
       }
-    // -------------------------------------------------------------
-    //   Settings sub tab click
-    // -------------------------------------------------------------
-    $(document).on('click', '.st-legacy-subtab span', function (e) {
-      e.preventDefault();
-      var current_content = $(this).attr('data-content');
-      $('.st-legacy-subtab span').removeClass('active');
-      $('.legacy-tab-content').addClass('st-hide-content');
-      $(this).addClass('active');
-      $(current_content).removeClass('st-hide-content');
-    });
+      
+      // -------------------------------------------------------------
+      //   Settings sub tab click
+      // -------------------------------------------------------------
+      $(document).on('click', '.st-legacy-subtab span', function (e) {
+        e.preventDefault();
+        var current_content = $(this).attr('data-content');
+        $('.st-legacy-subtab span').removeClass('active');
+        $('.legacy-tab-content').addClass('st-hide-content');
+        $(this).addClass('active');
+        $(current_content).removeClass('st-hide-content');
+      });
+      
+      // -------------------------------------------------------------
+      //   Settings TaxoPress AI sub tab click
+      // -------------------------------------------------------------
+      $(document).on('click', '.st-taxopress-ai-subtab span', function (e) {
+        e.preventDefault();
+        var current_content = $(this).attr('data-content');
+        $('.st-taxopress-ai-subtab span').removeClass('active');
+        $('.taxopress-ai-tab-content').addClass('st-hide-content');
+        $('.taxopress-ai-tab-content-sub').addClass('st-subhide-content');
+        $(this).addClass('active');
+        $(current_content).removeClass('st-hide-content');
+        if ($(current_content).find('input').prop("checked")) {
+          $(current_content + '-sub').removeClass('st-subhide-content');
+        }
+      });
+      
+      // -------------------------------------------------------------
+      //   Settings TaxoPress AI checkbox changed
+      // -------------------------------------------------------------
+      $(document).on('change', '.taxopress-ai-tab-content input', function (e) {
+        var checked_field = $(this).prop("checked");
+        var field_id      = $(this).attr('id');
+        if (checked_field) {
+            $('.' + field_id + '_field').removeClass('st-subhide-content');
+        } else {
+          $('.' + field_id + '_field').addClass('st-subhide-content');
+        }
+      });
+      // Show taxopress ai settings sub fields for enabled settings
+      if ($('.taxopress-ai-post-content').length > 0) {
+        if ($('.taxopress-ai-post-content').find('input').prop("checked")) {
+          $('.taxopress-ai-post-content-sub').removeClass('st-subhide-content');
+        }
+      }
 
     // -------------------------------------------------------------
     //   Show taxonomy option based on selected CPT
@@ -364,15 +400,12 @@
 
     if ($('.taxopress-tab-content').length > 0) {
       //set tab height
-      $('.taxopress-tab-content').each(function () {
-        if ($(this).hasClass('multiple')) {
-          if ($(this).closest('.multiple-content').find('.taxopress-tab-content').height() > 0 && $(this).closest('.multiple-content').find('.taxopress-tab-content').height() > $(this).closest('.multiple-content').find('.taxopress-tab').height()) {
-            $(this).closest('.multiple-content').find('.taxopress-tab').css('height', $(this).closest('.multiple-content').find('.taxopress-tab-content').height());
-          }
-        } else {
-          $('.taxopress-tab').css('height', $('.taxopress-tab-content').height());
-        }
-      });
+      var tab_height = $('.taxopress-tab-content').height();
+      if (tab_height > 0) {
+        $('.taxopress-tab').css('height', tab_height);
+      } else {
+      $('.taxopress-tab').css('min-height', 300);
+      }
     }
 
 

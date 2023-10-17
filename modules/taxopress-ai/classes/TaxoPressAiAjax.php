@@ -288,17 +288,38 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $taxonomy_details = get_taxonomy($existing_tax);
                         $terms = SimpleTags_Admin::getTermsForAjax($existing_tax, '', $existing_terms_orderby, $existing_terms_order, $limit);
                         if (!empty($terms)) {
-                            $term_results = array_column((array) $terms, 'name');
 
                             if ($suggest_terms) {
-                                $new_term_results = [];
-                                foreach ($term_results as $term_result) {
-                                    if (strpos($content, $term_result) !== false) {
-                                        $new_term_results[] = $term_result;
+                                $term_results = [];
+                                foreach ($terms as $term ) {
+                                    $term_id = $term->term_id;
+                                    $term = stripslashes( $term->name );
+                                    
+                                    $add_terms = [];
+                                    $add_terms[$term] = $term_id;
+                                    $primary_term = $term;
+                        
+                                    // add term synonyms
+                                    $term_synonyms = taxopress_get_term_synonyms($term_id);
+                                    if (!empty($term_synonyms)) {
+                                        foreach ($term_synonyms as $term_synonym) {
+                                            $add_terms[$term_synonym] = $term_id;
+                                        }
+                                    }
+                        
+                                    // add linked term
+                                    $add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $existing_tax);
+                                    
+                                    foreach ($add_terms as $add_name => $add_term_id) {
+                                        if (is_string($add_name) && ! empty($add_name) && stristr($content, $add_name) && !in_array($primary_term, $term_results)) {
+                                            $term_results[] = $primary_term;
+                                        }
                                     }
                                 }
-                                $term_results = $new_term_results;
+                            } else {
+                                $term_results = array_column((array) $terms, 'name');
                             }
+
 
                             $taxonomy_list_page = admin_url('edit-tags.php');
                             $taxonomy_list_page = add_query_arg(
@@ -332,7 +353,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                 } else {
                     $return['status'] = 'error';
                     $return['message'] = esc_html__(
-                        'No matched found for the selected Taxonomy in your post content.',
+                        'No matched found for the selected taxonomy terms in your post content.',
                         'simple-tags'
                     );
                 }
