@@ -93,13 +93,13 @@ class SimpleTags_Admin_Suggest {
 			<div class="taxopress-suggest-terms-contents">
 			<?php
 				$content_tabs = [];
+				$content_tabs['post_terms'] = esc_html__('Manage Post Terms', 'simple-tags');
+				$content_tabs['suggest_local_terms'] = esc_html__('Suggest Existing Terms', 'simple-tags');
 				$content_tabs['existing_terms'] = esc_html__('Show All Existing Terms', 'simple-tags');
 				$content_tabs['open_ai'] = esc_html__('Open AI', 'simple-tags');
 				$content_tabs['ibm_watson'] = esc_html__('IBM Watson', 'simple-tags');
 				$content_tabs['dandelion'] = esc_html__('Dandelion', 'simple-tags');
 				$content_tabs['open_calais'] = esc_html__('LSEG / Refinitiv', 'simple-tags');
-				$content_tabs['suggest_local_terms'] = esc_html__('Suggest Existing Terms', 'simple-tags');
-				$content_tabs['post_terms'] = esc_html__('Manage Post Terms', 'simple-tags');
                 $post_type_taxonomies = get_object_taxonomies($post->post_type, 'objects');
 				$post_type_taxonomy_names = array_keys($post_type_taxonomies);
 				$default_taxonomy = (in_array('post_tag', $post_type_taxonomy_names) ? 'post_tag' : $post_type_taxonomy_names[0]);

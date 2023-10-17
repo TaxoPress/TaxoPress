@@ -12,6 +12,19 @@ if (!class_exists('TaxoPressAiFields')) {
         {
             $fields_tabs = []; 
 
+            $fields_tabs['post_terms'] = [
+                'label' => esc_html__('Manage Post Terms', 'simple-tags'),
+            ];
+
+            $fields_tabs['suggest_local_terms'] = [
+                'label' => esc_html__('Suggest Existing Terms', 'simple-tags'),
+            ];
+            
+            $fields_tabs['existing_terms'] = [
+                'label' => esc_html__('Show All Existing Terms', 'simple-tags'),
+            ];
+
+
             $fields_tabs['open_ai'] = [
                 'label' => esc_html__('Open AI', 'simple-tags'),
             ];
@@ -26,18 +39,6 @@ if (!class_exists('TaxoPressAiFields')) {
 
             $fields_tabs['open_calais'] = [
                 'label' => esc_html__('LSEG / Refinitiv', 'simple-tags'),
-            ];
-
-            $fields_tabs['suggest_local_terms'] = [
-                'label' => esc_html__('Suggest Existing Terms', 'simple-tags'),
-            ];
-
-            $fields_tabs['existing_terms'] = [
-                'label' => esc_html__('Show All Existing Terms', 'simple-tags'),
-            ];
-
-            $fields_tabs['post_terms'] = [
-                'label' => esc_html__('Manage Post Terms', 'simple-tags'),
             ];
 
             /**
