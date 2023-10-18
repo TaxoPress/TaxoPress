@@ -21,6 +21,16 @@ return array(
     'post_terms_filter_format'  => 'term_name',
     'post_terms_taxonomy_type' => 'public',
 
+    // taxopress ai
+    'enable_taxopress_ai_post_metabox' => 1,
+    'enable_taxopress_ai_post_post_terms_tab' => 1,
+    'enable_taxopress_ai_post_suggest_local_terms_tab' => 1,
+    'enable_taxopress_ai_post_existing_terms_tab' => 1,
+    'enable_taxopress_ai_post_open_ai_tab' => 1,
+    'enable_taxopress_ai_post_ibm_watson_tab' => 1,
+    'enable_taxopress_ai_post_dandelion_tab' => 1,
+    'enable_taxopress_ai_post_open_calais_tab' => 1,
+
     'allow_embed_tcloud'     => 1,
     // Auto link
     'auto_link_tags'         => 0,

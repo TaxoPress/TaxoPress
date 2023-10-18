@@ -374,6 +374,14 @@ class Autoterms_List extends WP_List_Table
             $used_source[] = esc_html__('Existing taxonomy terms', 'simple-tags');
         }
         
+        if(isset($item['autoterm_use_open_ai']) && !empty(taxopress_disp_boolean($item['autoterm_use_open_ai']))) {
+            $used_source[] = esc_html__('Open AI', 'simple-tags');
+        }
+        
+        if(isset($item['autoterm_use_ibm_watson']) && !empty(taxopress_disp_boolean($item['autoterm_use_ibm_watson']))) {
+            $used_source[] = esc_html__('IBM Watson', 'simple-tags');
+        }
+        
         if(isset($item['autoterm_use_dandelion']) && !empty(taxopress_disp_boolean($item['autoterm_use_dandelion']))) {
             $used_source[] = esc_html__('Dandelion', 'simple-tags');
         }

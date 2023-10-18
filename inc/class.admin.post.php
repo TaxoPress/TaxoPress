@@ -27,10 +27,10 @@ class SimpleTags_Admin_Post_Settings {
 	 */
 	public static function add_meta_boxes( $post_type ) {
 
-        $click_terms = taxopress_current_post_suggest_terms();
+        $autoterm = taxopress_post_type_autoterms();
         $autolink = taxopress_post_type_autolink_autolink();
 
-        if(!is_array($click_terms) && !is_array($autolink)){
+        if(!is_array($autoterm) && !is_array($autolink)){
             return;
         }
 

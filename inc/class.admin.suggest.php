@@ -1,4 +1,6 @@
 <?php
+require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php';
+require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiAjax.php';
 
 class SimpleTags_Admin_Suggest {
 
@@ -10,13 +12,13 @@ class SimpleTags_Admin_Suggest {
 	public function __construct() {
 		// Ajax action, JS Helper and admin action
 		add_action( 'wp_ajax_simpletags', array( __CLASS__, 'ajax_check' ) );
-
-        if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'active_suggest_terms' )){
-    		// Box for post/page
-	    	add_action( 'admin_head', array( __CLASS__, 'admin_head' ), 1 );
-    		// Javascript
-	    	add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
-        }
+		// Ajax action, JS Helper and admin action
+		add_action( 'load_taxopress_ai_term_results', array( __CLASS__, 'load_result' ) );
+		
+        // Box for post/page
+	    add_action( 'admin_head', array( __CLASS__, 'admin_head' ), 1 );
+    	// Javascript
+    	add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
 	}
 
 	/**
@@ -26,43 +28,35 @@ class SimpleTags_Admin_Suggest {
 	 * @author WebFactory Ltd
 	 */
 	public static function admin_enqueue_scripts() {
-		global $pagenow;
 
-        $click_terms = taxopress_current_post_suggest_terms('term_suggestion', false, false);
+        $taxopress_ai_post_types = SimpleTags_Plugin::get_option_value('taxopress_ai_post_types');
 
-        if(!is_array($click_terms)){
+        if(!is_array($taxopress_ai_post_types) || !in_array(get_post_type(), $taxopress_ai_post_types)){
             return;
         }
 
 		$manage_link = add_query_arg(
 			[
-				'page'                   => 'st_suggestterms',
-				'add'                    => 'new_item',
-				'action'                 => 'edit',
+				'page'                   => 'st_taxopress_ai'
 			],
 			admin_url('admin.php')
 		);
 
-		wp_register_script( 'st-helper-suggested-tags', STAGS_URL . '/assets/js/helper-suggested-tags.js', array(
-			'jquery',
-			'st-helper-add-tags'
+		wp_enqueue_script( 'taxopress-ai-editor-js', STAGS_URL . '/modules/taxopress-ai/assets/js/taxopress-ai-editor.js', array(
+			'jquery'
 		), STAGS_VERSION );
-		wp_localize_script( 'st-helper-suggested-tags', 'stHelperSuggestedTagsL10n', array(
-			'click_terms' 		=> $click_terms,
-			'manage_link' 		=> $manage_link,
-			'stag_url' 		    => STAGS_URL,
-			'manage_metabox'    => current_user_can('admin_simple_tags') ? 1 : 0,
-			'edit_metabox_text' => esc_html__('Edit this metabox', 'simple-tags'),
-			'local_term_text' 	=> esc_html__('Existing terms on your site', 'simple-tags'),
-			'dandelion_text' 	=> esc_html__('dataTXT by Dandelion', 'simple-tags'),
-			'opencalais_text' 	=> esc_html__('OpenCalais', 'simple-tags'),
-			'refresh_text' 	    => esc_html__('Refresh', 'simple-tags'),
-			'content_bloc'      => esc_html__('Select an option above to load suggested terms.', 'simple-tags'),
-			'source_text'       => esc_html__('Select source to load suggested terms', 'simple-tags') 
-		) );
 
-        // Helper for post type
-        wp_enqueue_script( 'st-helper-suggested-tags' );
+		wp_enqueue_style('taxopress-ai-editor-css', STAGS_URL . '/modules/taxopress-ai/assets/css/taxopress-ai-editor.css', [], STAGS_VERSION, 'all');
+
+		wp_localize_script(
+			'taxopress-ai-editor-js',
+			'taxoPressAIRequestAction',
+			[
+				'requiredSuffix' => esc_html__('is required', 'simple-tags'),
+				'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
+				'apiEditLink' => '<span class="edit-suggest-term-metabox"> <a target="blank" href="' . $manage_link . '"> '. esc_html__('Manage API Configuration', 'simple-tags') .' </a></span>'
+			]
+		);
 	}
 
 	/**
@@ -73,39 +67,177 @@ class SimpleTags_Admin_Suggest {
 	 */
 	public static function admin_head() {
 
-        $click_terms = taxopress_current_post_suggest_terms('term_suggestion', false, false);
+        $taxopress_ai_post_types = SimpleTags_Plugin::get_option_value('taxopress_ai_post_types');
 
-        if(!is_array($click_terms)){
+        if(!is_array($taxopress_ai_post_types) || !in_array(get_post_type(), $taxopress_ai_post_types)){
             return;
         }
-		$key_index = 0;
-        foreach ($click_terms as $click_term) {
-            add_meta_box(
-				'suggestedtags-'.$key_index, 
-				esc_html__('Suggested tags', 'simple-tags'), 
-				array(__CLASS__, 'metabox'), 
-				get_post_type(), 
-				'advanced', 
-				'core',
-				['key_index' => $key_index]
-			);
-			$key_index++;
-        }
+
+		add_meta_box(
+			'taxopress-ai-suggestedtags', 
+			esc_html__('TaxoPress AI Integration', 'simple-tags'), 
+			array(__CLASS__, 'metabox'), 
+			get_post_type(), 
+			'normal', 
+			'core'
+		);
 	}
 
 	/**
 	 * Print HTML for suggest tags box
 	 *
 	 **/
-	public static function metabox($post, $callback_args) {
+	public static function metabox($post) {
 		?>
-        <div class="container_clicktags <?php echo esc_attr('container_clicktags_' . $callback_args['args']['key_index']); ?> multiple" data-key_index="<?php echo esc_attr($callback_args['args']['key_index']); ?>" role="group" aria-label="<?php echo esc_attr($callback_args['title']); ?>">
-			<?php 
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo SimpleTags_Admin::getDefaultContentBox(); ?>
-            <div class="clear"></div>
+        <div class="taxopress-post-suggestterm">
+			<div class="taxopress-suggest-terms-contents">
+			<?php
+				$content_tabs = [];
+				$content_tabs['post_terms'] = esc_html__('Manage Post Terms', 'simple-tags');
+				$content_tabs['suggest_local_terms'] = esc_html__('Suggest Existing Terms', 'simple-tags');
+				$content_tabs['existing_terms'] = esc_html__('Show All Existing Terms', 'simple-tags');
+				$content_tabs['open_ai'] = esc_html__('Open AI', 'simple-tags');
+				$content_tabs['ibm_watson'] = esc_html__('IBM Watson', 'simple-tags');
+				$content_tabs['dandelion'] = esc_html__('Dandelion', 'simple-tags');
+				$content_tabs['open_calais'] = esc_html__('LSEG / Refinitiv', 'simple-tags');
+                $post_type_taxonomies = get_object_taxonomies($post->post_type, 'objects');
+				$post_type_taxonomy_names = array_keys($post_type_taxonomies);
+				$default_taxonomy = (in_array('post_tag', $post_type_taxonomy_names) ? 'post_tag' : $post_type_taxonomy_names[0]);
+
+				?>
+				<div class="taxopress-suggest-terms-content">
+					<ul class="taxopress-tab ai-integration-tab">
+						<?php
+						$tab_index = 0;
+						foreach ($content_tabs as $key => $label) {
+							$selected_class = ($tab_index === 0) ? ' active' : '';
+						?>
+							<li class="<?php echo esc_attr($key); ?>_tab <?php esc_attr_e($selected_class); ?>"
+								data-content="<?php echo esc_attr($key); ?>"
+								aria-current="<?php echo $tab_index === 0 ? 'true' : 'false'; ?>">
+								<a href="#<?php echo esc_attr($key); ?>" class="<?php echo esc_attr($key); ?>_icon">
+									<span>
+										<?php esc_html_e($label); ?>
+									</span>
+								</a>
+							</li>
+						<?php
+							$tab_index++;
+						}
+						?>
+					</ul>
+					<div class="st-taxonomy-content taxopress-tab-content multiple">
+						<?php
+						$content_index = 0;
+						foreach ($content_tabs as $key => $label) {
+							$result_request_args = [
+								'action' 	=> 'pageload', 
+								'taxonomy'  => $default_taxonomy,
+								'ai_group'  => $key,
+								'post_title'	=> $post->post_title,
+								'post_content'  => $post->post_content,
+								'post_id'		=> $post->ID,
+							];
+							?>
+							<table class="taxopress-tab-content-item form-table taxopress-table taxopress-ai-tab-content <?php echo esc_attr($key); ?>"
+								data-ai-source="<?php echo esc_attr($key); ?>"
+								data-post_id="<?php echo esc_attr($post->ID); ?>"
+								style="<?php echo ($content_index === 0) ? '' : 'display:none;'; ?>">
+								<tbody>
+									<tr>
+										<td>
+											<div class="taxopress-ai-fetch-wrap">
+												<select class="taxopress-ai-fetch-taxonomy-select">
+														<?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
+														$rest_api_base = !empty($tax_object->rest_base) ? $tax_object->rest_base : $tax_key;
+														$hierarchical = !empty($tax_object->hierarchical) ? (int) $tax_object->hierarchical : 0;
+														 ?>
+															<option value='<?php echo esc_attr($tax_key); ?>'
+															data-rest_base='<?php echo esc_attr($rest_api_base); ?>'
+															data-hierarchical='<?php echo esc_attr($hierarchical); ?>'
+															<?php selected($tax_key, $default_taxonomy); ?>>
+																<?php echo esc_html($tax_object->labels->name. ' ('.$tax_object->name.')'); ?>
+															</option>
+														<?php endforeach; ?>
+												</select>
+												<button class="button button-secondary taxopress-ai-fetch-button">
+													<div class="spinner"></div>
+													<?php echo esc_html__('Fetch Term', 'simple-tags'); ?>
+												</button>
+											</div>
+                                        	<div class="taxopress-ai-fetch-result <?php echo esc_attr($key); ?>">
+											<?php do_action('load_taxopress_ai_term_results', $result_request_args); ?>
+											</div>
+                                        	<div class="taxopress-ai-fetch-result-msg <?php echo esc_attr($key); ?>"></div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<?php
+							$content_index++;
+						}
+						?>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
 		</div>
 		<?php
+	}
+
+	public static function load_result($args) {
+		$action       = $args['action'];
+		$taxonomy     = $args['taxonomy'];
+		$ai_group     = $args['ai_group'];
+		$post_title   = $args['post_title'];
+		$post_content = $args['post_content'];
+		$post_id 	  = $args['post_id'];
+
+		if (in_array($ai_group, ['existing_terms', 'suggest_local_terms', 'post_terms'])) {
+			$content = $post_content . ' ' . $post_title;
+			$settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
+			$result_args = [
+				'settings_data' => $settings_data,
+				'content' => $content,
+				'post_id' => $post_id,
+				'preview_taxonomy' => $taxonomy,
+			];
+
+			if ($ai_group == 'suggest_local_terms') {
+				$result_args['suggest_terms'] = true;
+				$result_args['show_counts'] = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
+				$term_results = TaxoPressAiAjax::get_existing_terms_results($result_args);
+			} elseif ($ai_group == 'existing_terms') {
+				$result_args['show_counts'] = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
+				$term_results = TaxoPressAiAjax::get_existing_terms_results($result_args);
+			} elseif ($ai_group == 'post_terms') {
+				$result_args['show_counts'] = isset($settings_data['post_terms_show_post_count']) ? $settings_data['post_terms_show_post_count'] : 0;
+				$post_terms_results = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'names']);
+				if (!empty($post_terms_results)) {
+					$taxonomy_list_page = admin_url('edit-tags.php');
+					$taxonomy_list_page = add_query_arg(array(
+						'taxonomy' => $taxonomy
+					), $taxonomy_list_page);
+
+					$legend_title  = '<a href="' . esc_url($taxonomy_list_page) . '" target="blank">' . esc_html__('Tags', 'simple-tags') . '</a>';
+					$formatted_result = TaxoPressAiUtilities::format_taxonomy_term_results($post_terms_results, $taxonomy, $post_id, $legend_title, $result_args['show_counts']);
+
+					$term_results['results'] = $formatted_result;
+					$term_results['status'] = 'success';
+					$term_results['message'] = '';
+				} else {
+					$term_results['status'] = 'error';
+					$term_results['message'] =  '';
+				}
+			}
+
+			if (!empty($term_results['results'])) {
+				echo $term_results['results'];
+			} else {
+				echo $term_results['message'];
+			}
+
+		}
 	}
 
 	/**
@@ -361,7 +493,7 @@ class SimpleTags_Admin_Suggest {
 		}
 
 		$flag = false;
-		$suggested_terms = [];
+		$click_terms = [];
 		foreach ( (array) $terms as $term ) {
 			$class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
             $term_id = $term->term_id;
@@ -383,8 +515,8 @@ class SimpleTags_Admin_Suggest {
 			$add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $taxonomy);
 			
 			foreach ($add_terms as $add_name => $add_term_id) {
-				if (is_string($add_name) && ! empty($add_name) && stristr($content, $add_name) && !in_array($primary_term, $suggested_terms)) {
-					$suggested_terms[] = $primary_term;
+				if (is_string($add_name) && ! empty($add_name) && stristr($content, $add_name) && !in_array($primary_term, $click_terms)) {
+					$click_terms[] = $primary_term;
 					$flag = true;
 					echo '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local ' . esc_attr($class_current) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html($primary_term) . '</span>' . "\n";
 				}
