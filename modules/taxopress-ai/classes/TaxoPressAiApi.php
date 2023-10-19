@@ -391,7 +391,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($open_ai_api_key))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'Open AI integration require API Key. Kindly add your API Key and save the settings before running preview.',
+                    'OpenAI integration require API Key. Kindly add your API Key and save the settings before running preview.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {

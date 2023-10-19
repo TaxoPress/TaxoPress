@@ -375,7 +375,7 @@ class Autoterms_List extends WP_List_Table
         }
         
         if(isset($item['autoterm_use_open_ai']) && !empty(taxopress_disp_boolean($item['autoterm_use_open_ai']))) {
-            $used_source[] = esc_html__('Open AI', 'simple-tags');
+            $used_source[] = esc_html__('OpenAI', 'simple-tags');
         }
         
         if(isset($item['autoterm_use_ibm_watson']) && !empty(taxopress_disp_boolean($item['autoterm_use_ibm_watson']))) {
