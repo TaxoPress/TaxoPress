@@ -27,18 +27,22 @@ if (!class_exists('TaxoPressAiFields')) {
 
             $fields_tabs['open_ai'] = [
                 'label' => esc_html__('Open AI', 'simple-tags'),
+                'description'  => sprintf(esc_html__('Open AI is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-openai/">', '</a>'),
             ];
 
             $fields_tabs['ibm_watson'] = [
                 'label' => esc_html__('IBM Watson', 'simple-tags'),
+                'description'  => sprintf(esc_html__('IBM Watson is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-ibm/">', '</a>'),
             ];
 
             $fields_tabs['dandelion'] = [
                 'label' => esc_html__('Dandelion', 'simple-tags'),
+                'description'  => sprintf(esc_html__('Dandelion is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-dandelion/">', '</a>'),
             ];
 
             $fields_tabs['open_calais'] = [
                 'label' => esc_html__('LSEG / Refinitiv', 'simple-tags'),
+                'description'  => sprintf(esc_html__('LSEG / Refinitiv is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-opencalais/">', '</a>'),
             ];
 
             /**

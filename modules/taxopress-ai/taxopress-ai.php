@@ -395,11 +395,15 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                                                     <select class="preview-post-types-select taxopress-ai-select2"
                                                     style="width: 100%;">
-                                                        <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): ?>
-                                                            <option value='<?php echo esc_attr($post_type); ?>'>
-                                                                <?php echo esc_html($post_type_object->labels->name); ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
+                                                        <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
+                                                            if (!in_array($post_type, ['attachment'])) {
+                                                            ?>
+                                                                <option value='<?php echo esc_attr($post_type); ?>'>
+                                                                    <?php echo esc_html($post_type_object->labels->name); ?>
+                                                                </option>
+                                                            <?php 
+                                                            }
+                                                        endforeach; ?>
                                                     </select>
 
                                                     <select class="preview-post-select taxopress-ai-post-search"
@@ -703,10 +707,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
         public function admin_head() {
             global $pagenow;
     
-            if (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
+            if (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && current_user_can('simple_tags') && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
                 add_meta_box(
                     'taxopress-ai-suggestedtags',
-                    esc_html__('TaxoPress AI Integration', 'simple-tags'),
+                    esc_html__('TaxoPress AI', 'simple-tags'),
                     [$this, 'editor_metabox'],
                     get_post_type(),
                     'normal',
@@ -720,6 +724,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
          *
          **/
         public function editor_metabox($post) {
+            if (!current_user_can('simple_tags')) {
+                return;
+            }
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
             ?>
             <div class="taxopress-post-suggestterm">
@@ -834,7 +841,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     </select>
                                                     <button class="button button-secondary taxopress-ai-fetch-button">
                                                         <div class="spinner"></div>
-                                                        <?php echo esc_html__('Fetch Term', 'simple-tags'); ?>
+                                                        <?php echo esc_html__('View Terms', 'simple-tags'); ?>
                                                     </button>
                                                 </div>
                                                 <div class="taxopress-ai-fetch-result <?php echo esc_attr($key); ?>">
