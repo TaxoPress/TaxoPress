@@ -390,14 +390,20 @@ if (!class_exists('TaxoPressAiAjax')) {
                 );
             } else {
                 $taxonomy = !empty($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
-                $post_type_label = !empty($_POST['post_type_label']) ? sanitize_text_field($_POST['post_type_label']) : esc_html__('post', 'simple-tags');
+                $post_type_label = !empty($_POST['post_type_label']) ? sanitize_text_field($_POST['post_type_label']) : esc_html__('Post', 'simple-tags');
                 $post_id = !empty($_POST['post_id']) ? (int) $_POST['post_id'] : 0;
                 $added_tags = !empty($_POST['added_tags']) ? map_deep($_POST['added_tags'], 'sanitize_text_field') : [];
                 $removed_tags = !empty($_POST['removed_tags']) ? map_deep($_POST['removed_tags'], 'sanitize_text_field') : [];
 
+                if (!empty($post_id)) {
+                    $post_type = get_post_type($post_id);
+                    $post_type_details  = get_post_type_object($post_type);
+                    $post_type_label = $post_type_details->labels->singular_name;
+                }
+
                 if (empty($added_tags) && empty($removed_tags)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('Click Term to add or remove from %1s', 'simple-tags'), esc_html($post_type_label));
+                    $response['content'] = sprintf(esc_html__('Click Term to add or remove from this %1s', 'simple-tags'), esc_html($post_type_label));
                 } elseif (empty($taxonomy) || empty($post_id)) {
                     $response['status'] = 'error';
                     $response['content'] = esc_html__('Both Taxonomy and Post are required.', 'simple-tags');
@@ -452,11 +458,11 @@ if (!class_exists('TaxoPressAiAjax')) {
                     }
 
                     if (!empty($added_terms_name)) {
-                        $additional_message .= ' ' . sprintf(esc_html__('%1s terms added to %2s.', 'simple-tags'), '<strong>' . join(', ', $added_terms_name) . '</strong>', esc_html($post_type_label));
+                        $additional_message .= ' ' . sprintf(esc_html__('%1s terms added to this %2s.', 'simple-tags'), '<strong>' . join(', ', $added_terms_name) . '</strong>', esc_html($post_type_label));
                     }
 
                     if (!empty($removed_terms_name)) {
-                        $additional_message .= ' ' . sprintf(esc_html__('%1s terms removed from %2s.', 'simple-tags'), '<strong>' . join(', ', $removed_terms_name) . '</strong>', esc_html($post_type_label));
+                        $additional_message .= ' ' . sprintf(esc_html__('%1s terms removed from this %2s.', 'simple-tags'), '<strong>' . join(', ', $removed_terms_name) . '</strong>', esc_html($post_type_label));
                     }
 
                     $response['content'] = $additional_message;

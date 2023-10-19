@@ -386,7 +386,9 @@
       $(this).attr('aria-current', 'true');
 
       $('.taxopress-tab-content table').hide();
+      $('.tab-table-content').hide();
       $('.taxopress-tab-content table.' + tab_content).show();
+      $('.tab-table-content.' + tab_content + '-tab-table-content').show();
 
       $('.visbile-table').css('display', '');
 

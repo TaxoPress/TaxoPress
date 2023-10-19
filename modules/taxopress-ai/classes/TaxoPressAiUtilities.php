@@ -232,7 +232,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
             $post_terms         = array_merge($post_terms, $current_tags);
 
             $response_content = '<div class="preview-action-title"><p class="description">';
-            $response_content .= sprintf(esc_html__('Click %1s to add or remove from %2s', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->name));
+            $response_content .= sprintf(esc_html__('Click %1s to add or remove them from this %2s.', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
             $response_content .= '</p></div>';
             $response_content .= '<fieldset class="previewed-tag-fieldset">';
             $response_content .= '<legend> '. $legend_title .' </legend>';
@@ -244,17 +244,21 @@ if (!class_exists('TaxoPressAiUtilities')) {
                 $term_result = stripslashes(rtrim($term_result, ','));
 
                 $term_id = false;
-                $class_current = '';
+                $additional_class = '';
                 $term_post_counts = 0;
                 // Check if the term exists for the given taxonomy
                 $term = get_term_by('name', $term_result, $taxonomy);
                 if ($term) {
                     $term_id = $term->term_id;
-                    $class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
+                    $additional_class = in_array($term->term_id, $post_terms) ? 'used_term' : '';
                     $term_post_counts = self::count_term_posts($term->term_id, $taxonomy);
                 }
 
-                $response_content .= '<span class="result-terms ' . esc_attr( $class_current ) . '">';
+                if (!empty($show_counts) && $term_id) {
+                    $additional_class .= ' countable';
+                }
+
+                $response_content .= '<span class="result-terms ' . esc_attr( $additional_class ) . '">';
                 $response_content .= '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="term-name '.esc_attr($taxonomy).'" tabindex="0" role="button" aria-pressed="false">';
                 $response_content .= stripslashes($term_result);
                 $response_content .= '</span>';
@@ -265,12 +269,13 @@ if (!class_exists('TaxoPressAiUtilities')) {
                 }
                 $response_content .= '</span>';
             }
+
             $response_content .= '</div>';
             $response_content .= '</fieldset>';
             $response_content .= '<div class="preview-action-btn-wrap">';
             $response_content .= '<button class="button button-primary taxopress-ai-addtag-button">
             <div class="spinner"></div>
-            '. sprintf(esc_html__('Update %1s %2s', 'simple-tags'), esc_html($post_type_details->labels->name), esc_html($taxonomy_details->labels->name)) .' 
+            '. sprintf(esc_html__('Update %1s on this %2s', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name)) .' 
             </button>';
             $response_content .= '</div>';
 

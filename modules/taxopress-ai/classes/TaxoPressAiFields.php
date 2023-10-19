@@ -2,7 +2,7 @@
 if (!class_exists('TaxoPressAiFields')) {
     class TaxoPressAiFields
     {
-        
+
         /**
          * Get the fields tabs to be rendered on taxopress ai screen
          *
@@ -10,7 +10,7 @@ if (!class_exists('TaxoPressAiFields')) {
          */
         public static function get_fields_tabs()
         {
-            $fields_tabs = []; 
+            $fields_tabs = [];
 
             $fields_tabs['post_terms'] = [
                 'label' => esc_html__('Manage Post Terms', 'simple-tags'),
@@ -19,15 +19,15 @@ if (!class_exists('TaxoPressAiFields')) {
             $fields_tabs['suggest_local_terms'] = [
                 'label' => esc_html__('Suggest Existing Terms', 'simple-tags'),
             ];
-            
+
             $fields_tabs['existing_terms'] = [
                 'label' => esc_html__('Show All Existing Terms', 'simple-tags'),
             ];
 
 
             $fields_tabs['open_ai'] = [
-                'label' => esc_html__('Open AI', 'simple-tags'),
-                'description'  => sprintf(esc_html__('Open AI is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-openai/">', '</a>'),
+                'label' => esc_html__('OpenAI', 'simple-tags'),
+                'description'  => sprintf(esc_html__('OpenAI is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-openai/">', '</a>'),
             ];
 
             $fields_tabs['ibm_watson'] = [
@@ -65,14 +65,14 @@ if (!class_exists('TaxoPressAiFields')) {
 
             //add dandelion fields
             $fields['dandelion_api_token'] = [
-                'label' => esc_html__('Api Token', 'simple-tags'),
+                'label' => esc_html__('API Token', 'simple-tags'),
                 'description'  => sprintf(esc_html__('You need an API key to use Dandelion integration. %1sClick here for documentation.%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/dandelion-api/">', '</a>'),
                 'type' => 'text',
                 'tab' => 'dandelion',
             ];
 
             $fields['dandelion_api_confidence_value'] = [
-                'label' => esc_html__('Api Confidence Value', 'simple-tags'),
+                'label' => esc_html__('API Confidence Value', 'simple-tags'),
                 'description' => esc_html__('Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate.', 'simple-tags'),
                 'other_attr' => 'step=".1" min="0" max="1"',
                 'type' => 'number',
@@ -81,14 +81,14 @@ if (!class_exists('TaxoPressAiFields')) {
             ];
             $fields['dandelion_show_post_count'] = [
             'label' => esc_html__('Show Term Post Count', 'simple-tags'),
-            'description' => esc_html__('This will show number of posts attached to the terms if it exist for preview taxonomy.', 'simple-tags'),
+            'description' => esc_html__('This will show number of posts attached to the term.', 'simple-tags'),
             'type' => 'checkbox',
             'default_value' => 0,
             'tab' => 'dandelion',
             ];
             $fields['dandelion_cache_result'] = [
                 'label' => esc_html__('Cache Results', 'simple-tags'),
-                'description' => esc_html__('By cahing the results locally, new API request will not be made unless the post title or content changes thereby saving API usage.', 'simple-tags'),
+                'description' => esc_html__('By caching the results locally, new API requests will not be made unless the post title or content changes. This saves API usage.', 'simple-tags'),
                 'type' => 'checkbox',
                 'default_value' => 1,
                 'tab' => 'dandelion',
@@ -96,21 +96,21 @@ if (!class_exists('TaxoPressAiFields')) {
 
             //add open calais fields
             $fields['open_calais_api_key'] = [
-                'label' => esc_html__('Api Key', 'simple-tags'),
+                'label' => esc_html__('API Key', 'simple-tags'),
                 'description'  => sprintf(esc_html__('You need an API key to use OpenCalais integration. %1sClick here for documentation.%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/opencalais/">', '</a>'),
                 'type' => 'text',
                 'tab' => 'open_calais',
             ];
             $fields['open_calais_show_post_count'] = [
             'label' => esc_html__('Show Term Post Count', 'simple-tags'),
-            'description' => esc_html__('This will show number of posts attached to the terms if it exist for preview taxonomy.', 'simple-tags'),
+            'description' => esc_html__('This will show number of posts attached to the term.', 'simple-tags'),
             'type' => 'checkbox',
             'default_value' => 0,
             'tab' => 'open_calais',
             ];
             $fields['open_calais_cache_result'] = [
                 'label' => esc_html__('Cache Results', 'simple-tags'),
-                'description' => esc_html__('By cahing the results locally, new API request will not be made unless the post title or content changes thereby saving API usage.', 'simple-tags'),
+                'description' => esc_html__('By caching the results locally, new API requests will not be made unless the post title or content changes. This saves API usage.', 'simple-tags'),
                 'type' => 'checkbox',
                 'default_value' => 1,
                 'tab' => 'open_calais',
@@ -135,7 +135,7 @@ if (!class_exists('TaxoPressAiFields')) {
             ];
             $fields['suggest_local_terms_show_post_count'] = [
             'label' => esc_html__('Show Term Post Count', 'simple-tags'),
-            'description' => esc_html__('This will show number of posts attached to the terms.', 'simple-tags'),
+            'description' => esc_html__('This will show the number of posts attached to the terms.', 'simple-tags'),
             'type' => 'checkbox',
             'default_value' => 0,
             'tab' => 'suggest_local_terms',
@@ -168,7 +168,7 @@ if (!class_exists('TaxoPressAiFields')) {
             ];
             $fields['existing_terms_show_post_count'] = [
             'label' => esc_html__('Show Term Post Count', 'simple-tags'),
-            'description' => esc_html__('This will show number of posts attached to the terms.', 'simple-tags'),
+            'description' => esc_html__('This will show the number of posts attached to the terms.', 'simple-tags'),
             'type' => 'checkbox',
             'default_value' => 0,
             'tab' => 'existing_terms',
@@ -177,7 +177,7 @@ if (!class_exists('TaxoPressAiFields')) {
             //add post terms fields
             $fields['post_terms_show_post_count'] = [
                 'label' => esc_html__('Show Term Post Count', 'simple-tags'),
-                'description' => esc_html__('This will show number of posts attached to the terms.', 'simple-tags'),
+                'description' => esc_html__('This will show the number of posts attached to the terms.', 'simple-tags'),
                 'type' => 'checkbox',
                 'default_value' => 0,
                 'tab' => 'post_terms',

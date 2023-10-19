@@ -123,20 +123,25 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     cursor: pointer;
 }
 
+.taxopress-post-suggestterm .previewed-tag-content .result-terms:not(.countable) {
+    padding: 2px 0;
+}
+
 .taxopress-post-suggestterm .previewed-tag-content .result-terms.used_term {
-    background: #00d084;
-    color: #fff;
+    background: #5ecd8a;
+    color: #333333;
 }
 
 .taxopress-post-suggestterm .previewed-tag-content .result-terms .term-name {
     margin: 0 0.3em;
+    padding: 8px 4px;
 }
 
 .taxopress-post-suggestterm .previewed-tag-content .result-terms .term-counts {
-    background-color: chocolate;
+    background-color: #357AB5;
     color: #fff;
     margin-left: 0.2em;
-    padding: 0.2em 0.4em;
+    padding: 3px 8px;
     display: inline-block;
 }
 

@@ -324,17 +324,14 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     return $value['tab'] === $key;
                                                 });
                                                 ?>
-                                                <table class="form-table taxopress-table <?php echo esc_attr($key); ?>"
+                                                <?php if (!empty($args['description'])): ?>
+                                                    <p class="description tab-table-content <?php echo esc_attr($key); ?>-tab-table-content"
+                                                        style="<?php echo ($key === $active_tab) ? '' : 'display:none;'; ?>">
+                                                        <?php echo $args['description']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                    </p>
+                                                <?php endif; ?>
+                                                <table class="form-table taxopress-table fixed <?php echo esc_attr($key); ?>"
                                                     style="<?php echo ($key === $active_tab) ? '' : 'display:none;'; ?>">
-                                                    <?php if (!empty($args['description'])): ?>
-                                                        <tr>
-                                                            <th class="api-desc-th" colspan="2">
-                                                                <p class="description">
-                                                                    <?php echo $args['description']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                                                                </p>
-                                                            </th>
-                                                        </tr>
-                                                    <?php endif; ?>
                                                     <?php
                                                     foreach ($current_tab_fields as $field_key => $field_args) {
                                                         $field_args['key'] = $field_key;
@@ -418,7 +415,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     <div class="submit-action">
                                                         <button class="button button-secondary taxopress-ai-preview-button">
                                                             <div class="spinner"></div>
-                                                            <?php echo esc_html__('Preview', 'simple-tags'); ?>
+                                                            <?php echo esc_html__('View Terms', 'simple-tags'); ?>
                                                         </button>
                                                     </div>
 
@@ -746,7 +743,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_existing_terms_tab')),
                         ],
                         'open_ai' => [
-                            'label'   => esc_html__('Open AI', 'simple-tags'),
+                            'label'   => esc_html__('OpenAI', 'simple-tags'),
                             'enabled' => (!empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_open_ai_tab')) && !empty($settings_data['open_ai_api_key'])),
                         ],
                         'ibm_watson' => [
