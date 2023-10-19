@@ -32,7 +32,7 @@
   $(document).ready(function () {
 
     if ($('#taxopress-ai-suggestedtags')) {
-      $('#taxopress-ai-suggestedtags').find('.handle-actions').prepend(html_entity_decode(taxoPressAIRequestAction.apiEditLink));
+      //$('#taxopress-ai-suggestedtags').find('.handle-actions').prepend(html_entity_decode(taxoPressAIRequestAction.apiEditLink));
       if (typeof wp.data !== 'undefined' && typeof wp.data.select('core') !== 'undefined' && typeof wp.data.select('core/edit-post') !== 'undefined' && typeof wp.data.select('core/editor') !== 'undefined') {
         $('body').addClass('taxopress-block-editor');
       }
