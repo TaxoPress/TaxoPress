@@ -114,7 +114,7 @@
           var preview_post_type_label = preview_wrapper.find('.preview-post-types-select :selected').text().trim();
 
           if (!preview_post || preview_post == '') {
-            $('.sidebar-response-wrap').html(preview_post_type_label + ' ' + taxoPressAIRequestAction.requiredSuffix).removeClass('updated').addClass('error');
+            $('.sidebar-response-wrap').html('<p>' + preview_post_type_label + ' ' + taxoPressAIRequestAction.requiredSuffix + '</p>').removeClass('updated').addClass('error');
             return;
           }
           
@@ -136,7 +136,7 @@
 
         $.post(ajaxurl, data, function (response) {
             if (response.status === 'error') {
-              $('.sidebar-response-wrap').html(response.content).removeClass('updated').addClass('error');
+              $('.sidebar-response-wrap').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
             } else {
               $('.sidebar-response-preview.' + preview_ai).html(response.content).addClass('has-content');
             }
@@ -237,10 +237,10 @@
 
           $.post(ajaxurl, data, function (response) {
               if (response.status === 'error') {
-                $('.sidebar-response-wrap').html(response.content).removeClass('updated').addClass('error');
+                $('.sidebar-response-wrap').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
               } else {
                 $('.sidebar-response-preview.' + preview_ai).html('').removeClass('has-content');
-                $('.sidebar-response-wrap').html(response.content).removeClass('error').addClass('updated');
+                $('.sidebar-response-wrap').html('<p>' + response.content + '</p>').removeClass('error').addClass('updated');
               }
               
             button.prop('disabled', false);

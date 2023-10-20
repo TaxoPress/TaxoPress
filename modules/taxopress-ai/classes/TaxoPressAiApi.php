@@ -209,12 +209,17 @@ if (!class_exists('TaxoPressAiApi')) {
                                     }
                                 }
 
-                                $return['status'] = 'success';
-                                $return['results'] = $terms;
-                                $return['message'] = esc_html__('Result from api.', 'simple-tags');
-                                
-                                update_post_meta($post_id, $existing_open_calais_result_key, $terms);
-                                update_post_meta($post_id, $old_saved_content_key, $content);
+                                if (!empty($terms)) {
+                                    $return['status'] = 'success';
+                                    $return['results'] = $terms;
+                                    $return['message'] = esc_html__('Result from api.', 'simple-tags');
+
+                                    update_post_meta($post_id, $existing_open_calais_result_key, $terms);
+                                    update_post_meta($post_id, $old_saved_content_key, $content);
+                                } else {
+                                    $return['status'] = 'error';
+                                    $return['message'] = esc_html__('API Error: No matched result for content.', 'simple-tags');
+                                }
                                 
                             } else {
                                 $return['status'] = 'error';

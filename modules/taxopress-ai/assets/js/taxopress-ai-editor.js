@@ -74,7 +74,7 @@
 
       $.post(ajaxurl, data, function (response) {
         if (response.status === 'error') {
-          preview_wrapper.find('.taxopress-ai-fetch-result-msg').html(response.content).removeClass('updated').addClass('error');
+          preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
         } else {
           preview_wrapper.find('.taxopress-ai-fetch-result').html(response.content);
         }
