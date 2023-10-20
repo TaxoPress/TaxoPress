@@ -14,12 +14,6 @@
  *
  * Copyright (c) 2022 Taxopress
  *
- * ------------------------------------------------------------------------------
- * Based on Organize Series
- * Author: Darren Ethier
- * Copyright (c) 2007, 2011 Darren Ethier
- * ------------------------------------------------------------------------------
- *
  * @package 	simple-tags
  * @author		TaxoPress
  * @copyright   Copyright (C) 2007, 2011 Darren Ethier; modifications Copyright (C) 2022 TaxoPress

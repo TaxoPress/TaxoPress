@@ -380,7 +380,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                             <div id="minor-publishing">
                                                 <div class="sidebar-body-wrap">
                                                     <select class="preview-taxonomy-select taxopress-ai-select2"
-                                                    style="width: 100%;">
+                                                    style="max-width: 33%;">
                                                         <?php foreach (TaxoPressAiUtilities::get_taxonomies() as $key => $label): ?>
                                                             <option value='<?php echo esc_attr($key); ?>'
                                                             <?php selected($key, 'post_tag'); ?>>
@@ -391,7 +391,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     </select>
 
                                                     <select class="preview-post-types-select taxopress-ai-select2"
-                                                    style="width: 100%;">
+                                                    style="max-width: 33%;">
                                                         <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
                                                             if (!in_array($post_type, ['attachment'])) {
                                                             ?>
@@ -404,7 +404,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     </select>
 
                                                     <select class="preview-post-select taxopress-ai-post-search"
-                                                    style="width: 100%;"
+                                                    style="max-width: 33%;"
                                                         data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
                                                         data-allow-clear="true"
                                                         data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">

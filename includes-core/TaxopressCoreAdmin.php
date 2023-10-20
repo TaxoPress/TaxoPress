@@ -183,12 +183,12 @@ class TaxopressCoreAdmin
                 <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
                     <div class="postbox-header">
                         <h3 class="advertisement-box-header hndle is-non-sortable">
-                            <span><?php echo esc_html__('Open AI Integration', 'simple-tags'); ?></span>
+                            <span><?php echo esc_html__('OpenAI Integration', 'simple-tags'); ?></span>
                         </h3>
                     </div>
 
                     <div class="inside-content">
-                        <p><?php echo esc_html__('TaxoPress Pro allows you to integrate Open AI to analyze your content and suggest terms.', 'simple-tags'); ?></p>
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to integrate OpenAI to analyze your content and suggest terms.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
                             <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
@@ -238,7 +238,7 @@ class TaxopressCoreAdmin
                     </h3>
                 </div>
                 <div class="inside-content">
-                    <p><?php echo esc_html__('TaxoPress Pro allows you to suggest new terms for your content using the Open AI. This service can analyze your content and suggest new terms.', 'simple-tags'); ?></p>
+                    <p><?php echo esc_html__('TaxoPress Pro allows you to suggest new terms for your content using the OpenAI. This service can analyze your content and suggest new terms.', 'simple-tags'); ?></p>
                     <div class="upgrade-btn">
                         <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                     </div>
@@ -257,7 +257,7 @@ class TaxopressCoreAdmin
                 </div>
 
                 <div class="inside-content">
-                    <p><?php echo esc_html__('TaxoPress Pro allows you to suggest new terms for your content using the IMB Watson. This service can analyze your content and suggest new terms.', 'simple-tags'); ?></p>
+                    <p><?php echo esc_html__('TaxoPress Pro allows you to suggest new terms for your content using the IBM Watson. This service can analyze your content and suggest new terms.', 'simple-tags'); ?></p>
                     <div class="upgrade-btn">
                         <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                     </div>
@@ -280,7 +280,7 @@ class TaxopressCoreAdmin
                     </div>
 
                     <div class="inside-content">
-                        <p><?php echo esc_html__('TaxoPress Pro allows you to generate new terms for your content using the Open AI, IMB Watson, Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to generate new terms for your content using the OpenAI, IBM Watson, Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
                             <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
@@ -304,7 +304,7 @@ class TaxopressCoreAdmin
                     </div>
 
                     <div class="inside-content">
-                        <p><?php echo esc_html__('TaxoPress Pro allows you to suggest new terms for your content using the Open AI, IMB Watson, Dandelion and Open Calais services. These services can analyze your content and suggest new terms.', 'simple-tags'); ?></p>
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to suggest new terms for your content using the OpenAI, IBM Watson, Dandelion and Open Calais services. These services can analyze your content and suggest new terms.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
                             <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                         </div>
