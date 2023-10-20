@@ -69,7 +69,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'Security error. Kindly reload this page and try again',
                     'simple-tags'
                 );
-            } elseif (!current_user_can('simple_tags')) {
+            } elseif (!current_user_can('manage_categories')) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
                     'Permission error. You do not have permission to manage taxopress',
@@ -154,22 +154,39 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 } elseif ($preview_ai == 'dandelion') {
                     ##https://dandelion.eu/docs/api/datatxt/nex/v1/#response
-                    $args['show_counts'] = isset($settings_data['dandelion_show_post_count']) ? $settings_data['dandelion_show_post_count'] : 0;
-                    $dandelion_results = TaxoPressAiApi::get_dandelion_results($args);
-                    if (!empty($dandelion_results['results'])) {
-                        $term_results = $dandelion_results['results'];
+
+                    if (taxopress_is_pro_version()) {
+                        $args['show_counts'] = isset($settings_data['dandelion_show_post_count']) ? $settings_data['dandelion_show_post_count'] : 0;
+                        $dandelion_results = TaxoPressAiApi::get_dandelion_results($args);
+                        if (!empty($dandelion_results['results'])) {
+                            $term_results = $dandelion_results['results'];
+                        }
+                        $response['status'] = $dandelion_results['status'];
+                        $response['content'] = $dandelion_results['message'];
+                    } else {
+                        $response['status'] = 'error';
+                        $response['content'] = esc_html__(
+                            'This integration is only supported in TaxoPress Pro.',
+                            'simple-tags'
+                        );
                     }
-                    $response['status'] = $dandelion_results['status'];
-                    $response['content'] = $dandelion_results['message'];
                 } elseif ($preview_ai == 'open_calais') {
                     ## https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation
-                    $args['show_counts'] = isset($settings_data['open_calais_show_post_count']) ? $settings_data['open_calais_show_post_count'] : 0;
-                    $open_calais_results = TaxoPressAiApi::get_open_calais_results($args);
-                    if (!empty($open_calais_results['results'])) {
-                        $term_results = $open_calais_results['results'];
+                    if (taxopress_is_pro_version()) {
+                        $args['show_counts'] = isset($settings_data['open_calais_show_post_count']) ? $settings_data['open_calais_show_post_count'] : 0;
+                        $open_calais_results = TaxoPressAiApi::get_open_calais_results($args);
+                        if (!empty($open_calais_results['results'])) {
+                            $term_results = $open_calais_results['results'];
+                        }
+                        $response['status'] = $open_calais_results['status'];
+                        $response['content'] = $open_calais_results['message'];
+                    } else {
+                        $response['status'] = 'error';
+                        $response['content'] = esc_html__(
+                            'This integration is only supported in TaxoPress Pro.',
+                            'simple-tags'
+                        );
                     }
-                    $response['status'] = $open_calais_results['status'];
-                    $response['content'] = $open_calais_results['message'];
                 } elseif ($preview_ai == 'suggest_local_terms') {
                     $args['suggest_terms'] = true;
                     $args['show_counts'] = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
@@ -382,7 +399,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'Security error. Kindly reload this page and try again',
                     'simple-tags'
                 );
-            } elseif (!current_user_can('simple_tags')) {
+            } elseif (!current_user_can('manage_categories')) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
                     'Permission error. You do not have permission to manage taxopress',
@@ -492,7 +509,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'Security error. Kindly reload this page and try again',
                     'simple-tags'
                 );
-            } elseif (!current_user_can('simple_tags')) {
+            } elseif (!current_user_can('manage_categories')) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
                     'Permission error. You do not have permission to manage taxopress',
