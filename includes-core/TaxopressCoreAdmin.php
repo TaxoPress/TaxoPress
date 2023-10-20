@@ -69,6 +69,8 @@ class TaxopressCoreAdmin
         add_action('taxopress_autolinks_after_html_exclusions_tr', [$this, 'taxopress_core_autolinks_after_html_exclusions_promo']);
         add_action('taxopress_ai_after_open_ai_fields', [$this, 'taxopress_core_ai_after_open_ai_fields']);
         add_action('taxopress_ai_after_ibm_watson_fields', [$this, 'taxopress_core_ai_after_ibm_watson_fields']);
+        add_action('taxopress_ai_after_dandelion_fields', [$this, 'taxopress_core_ai_after_dandelion_fields']);
+        add_action('taxopress_ai_after_open_calais_fields', [$this, 'taxopress_core_ai_after_open_calais_fields']);
         add_action('load_taxopress_ai_term_results', [$this, 'taxopress_core_ai_term_results_banner']);
     }
 
@@ -213,6 +215,54 @@ class TaxopressCoreAdmin
 
                 <div class="inside-content">
                     <p><?php echo esc_html__('TaxoPress Pro allows you to integrate Watson to analyze your content and suggest terms.', 'simple-tags'); ?></p>
+                    <div class="upgrade-btn">
+                        <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <?php
+    }
+
+    function taxopress_core_ai_after_dandelion_fields($current)
+    {
+    ?>
+    <tr>
+        <td>
+            <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                <div class="postbox-header">
+                    <h3 class="advertisement-box-header hndle is-non-sortable">
+                        <span><?php echo esc_html__('Dandelion Integration', 'simple-tags'); ?></span>
+                    </h3>
+                </div>
+
+                <div class="inside-content">
+                    <p><?php echo esc_html__('TaxoPress Pro allows you to integrate Dandelion to analyze your content and suggest terms.', 'simple-tags'); ?></p>
+                    <div class="upgrade-btn">
+                        <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <?php
+    }
+
+    function taxopress_core_ai_after_open_calais_fields($current)
+    {
+    ?>
+    <tr>
+        <td>
+            <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                <div class="postbox-header">
+                    <h3 class="advertisement-box-header hndle is-non-sortable">
+                        <span><?php echo esc_html__('LSEG / Refinitiv Integration', 'simple-tags'); ?></span>
+                    </h3>
+                </div>
+
+                <div class="inside-content">
+                    <p><?php echo esc_html__('TaxoPress Pro allows you to integrate LSEG / Refinitiv to analyze your content and suggest terms.', 'simple-tags'); ?></p>
                     <div class="upgrade-btn">
                         <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
                     </div>

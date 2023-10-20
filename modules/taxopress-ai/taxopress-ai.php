@@ -704,7 +704,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
         public function admin_head() {
             global $pagenow;
     
-            if (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && current_user_can('simple_tags') && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
+            if (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && current_user_can('manage_categories') && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
                 add_meta_box(
                     'taxopress-ai-suggestedtags',
                     esc_html__('TaxoPress AI', 'simple-tags'),
@@ -721,7 +721,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
          *
          **/
         public function editor_metabox($post) {
-            if (!current_user_can('simple_tags')) {
+            if (!current_user_can('manage_categories')) {
                 return;
             }
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();

@@ -63,59 +63,6 @@ if (!class_exists('TaxoPressAiFields')) {
         public static function get_fields()
         {
 
-            //add dandelion fields
-            $fields['dandelion_api_token'] = [
-                'label' => esc_html__('API Token', 'simple-tags'),
-                'description'  => sprintf(esc_html__('You need an API key to use Dandelion integration. %1sClick here for documentation.%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/dandelion-api/">', '</a>'),
-                'type' => 'text',
-                'tab' => 'dandelion',
-            ];
-
-            $fields['dandelion_api_confidence_value'] = [
-                'label' => esc_html__('API Confidence Value', 'simple-tags'),
-                'description' => esc_html__('Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate.', 'simple-tags'),
-                'other_attr' => 'step=".1" min="0" max="1"',
-                'type' => 'number',
-                'default_value' => '0.6',
-                'tab' => 'dandelion',
-            ];
-            $fields['dandelion_show_post_count'] = [
-            'label' => esc_html__('Show Term Post Count', 'simple-tags'),
-            'description' => esc_html__('This will show number of posts attached to the term.', 'simple-tags'),
-            'type' => 'checkbox',
-            'default_value' => 0,
-            'tab' => 'dandelion',
-            ];
-            $fields['dandelion_cache_result'] = [
-                'label' => esc_html__('Cache Results', 'simple-tags'),
-                'description' => esc_html__('By caching the results locally, new API requests will not be made unless the post title or content changes. This saves API usage.', 'simple-tags'),
-                'type' => 'checkbox',
-                'default_value' => 1,
-                'tab' => 'dandelion',
-            ];
-
-            //add open calais fields
-            $fields['open_calais_api_key'] = [
-                'label' => esc_html__('API Key', 'simple-tags'),
-                'description'  => sprintf(esc_html__('You need an API key to use OpenCalais integration. %1sClick here for documentation.%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/opencalais/">', '</a>'),
-                'type' => 'text',
-                'tab' => 'open_calais',
-            ];
-            $fields['open_calais_show_post_count'] = [
-            'label' => esc_html__('Show Term Post Count', 'simple-tags'),
-            'description' => esc_html__('This will show number of posts attached to the term.', 'simple-tags'),
-            'type' => 'checkbox',
-            'default_value' => 0,
-            'tab' => 'open_calais',
-            ];
-            $fields['open_calais_cache_result'] = [
-                'label' => esc_html__('Cache Results', 'simple-tags'),
-                'description' => esc_html__('By caching the results locally, new API requests will not be made unless the post title or content changes. This saves API usage.', 'simple-tags'),
-                'type' => 'checkbox',
-                'default_value' => 1,
-                'tab' => 'open_calais',
-            ];
-
             //add suggest local terms fields
             $fields['suggest_local_terms_orderby'] = [
                 'label' => esc_html__('Method for choosing terms', 'simple-tags'),
