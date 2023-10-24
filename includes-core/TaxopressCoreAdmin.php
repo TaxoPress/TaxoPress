@@ -107,9 +107,8 @@ class TaxopressCoreAdmin
                                 <li><?php echo esc_html__('Unlimited “Related Posts”', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Unlimited “Auto Links”', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Unlimited “Auto Terms”', 'simple-tags'); ?></li>
-                                <li><?php echo esc_html__('Unlimited “Suggest Terms”', 'simple-tags'); ?></li>
-                                <li><?php echo esc_html__('Automatically create new terms', 'simple-tags'); ?></li>
-                                <li><?php echo esc_html__('Automatically add terms to imported content', 'simple-tags'); ?></li>
+                                <li><?php echo esc_html__('All TaxoPress AI features', 'simple-tags'); ?></li>
+                                <li><?php echo esc_html__('Use Linked Terms', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Use Synonyms and Linked Terms', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Fast, professional support', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('No ads inside the plugin', 'simple-tags'); ?></li>
