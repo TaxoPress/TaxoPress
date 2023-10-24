@@ -205,7 +205,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     'taxopress-ai-js',
                     'taxoPressAIRequestAction',
                     [
-                        'requiredSuffix' => esc_html__('is required', 'simple-tags'),
+                        'requiredSuffix' => esc_html__('Please choose a', 'simple-tags'),
                         'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
                         'aiGroups' => TaxoPressAiUtilities::get_taxopress_ai_groups()
                     ]
@@ -229,7 +229,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     'taxopress-ai-editor-js',
                     'taxoPressAIRequestAction',
                     [
-                        'requiredSuffix' => esc_html__('is required', 'simple-tags'),
+                        'requiredSuffix' => esc_html__('Please choose a', 'simple-tags'),
                         'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
                         'apiEditLink' => '<span class="edit-suggest-term-metabox"> <a target="blank" href="' . $manage_link . '"> '. esc_html__('Manage API Configuration', 'simple-tags') .' </a></span>'
                     ]
@@ -381,12 +381,14 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                 <div class="sidebar-body-wrap">
                                                     <select class="preview-taxonomy-select taxopress-ai-select2"
                                                     style="max-width: 33%;">
-                                                        <?php foreach (TaxoPressAiUtilities::get_taxonomies() as $key => $label): ?>
+                                                        <?php foreach (TaxoPressAiUtilities::get_taxonomies() as $key => $label):
+                                                            if (!in_array($key, ['post_format'])) { ?>
                                                             <option value='<?php echo esc_attr($key); ?>'
                                                             <?php selected($key, 'post_tag'); ?>>
                                                                 <?php echo esc_html($label); ?>
                                                             </option>
-                                                        <?php endforeach; ?>
+                                                        <?php }
+                                                        endforeach; ?>
 
                                                     </select>
 
@@ -395,7 +397,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
                                                             if (!in_array($post_type, ['attachment'])) {
                                                             ?>
-                                                                <option value='<?php echo esc_attr($post_type); ?>'>
+                                                                <option value='<?php echo esc_attr($post_type); ?>'
+                                                                    data-singular_label="<?php echo esc_html($post_type_object->labels->singular_name); ?>">
                                                                     <?php echo esc_html($post_type_object->labels->name); ?>
                                                                 </option>
                                                             <?php 
@@ -825,16 +828,18 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                 <div class="taxopress-ai-fetch-wrap">
                                                     <select class="taxopress-ai-fetch-taxonomy-select">
                                                             <?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
-                                                            $rest_api_base = !empty($tax_object->rest_base) ? $tax_object->rest_base : $tax_key;
-                                                            $hierarchical = !empty($tax_object->hierarchical) ? (int) $tax_object->hierarchical : 0;
-                                                             ?>
-                                                                <option value='<?php echo esc_attr($tax_key); ?>'
-                                                                data-rest_base='<?php echo esc_attr($rest_api_base); ?>'
-                                                                data-hierarchical='<?php echo esc_attr($hierarchical); ?>'
-                                                                <?php selected($tax_key, $default_taxonomy); ?>>
-                                                                    <?php echo esc_html($tax_object->labels->name. ' ('.$tax_object->name.')'); ?>
-                                                                </option>
-                                                            <?php endforeach; ?>
+                                                            if (!in_array($tax_key, ['post_format'])) {
+                                                                $rest_api_base = !empty($tax_object->rest_base) ? $tax_object->rest_base : $tax_key;
+                                                                $hierarchical = !empty($tax_object->hierarchical) ? (int) $tax_object->hierarchical : 0;
+                                                                ?>
+                                                                    <option value='<?php echo esc_attr($tax_key); ?>'
+                                                                    data-rest_base='<?php echo esc_attr($rest_api_base); ?>'
+                                                                    data-hierarchical='<?php echo esc_attr($hierarchical); ?>'
+                                                                    <?php selected($tax_key, $default_taxonomy); ?>>
+                                                                        <?php echo esc_html($tax_object->labels->name. ' ('.$tax_object->name.')'); ?>
+                                                                    </option>
+                                                                <?php }
+                                                            endforeach; ?>
                                                     </select>
                                                     <button class="button button-secondary taxopress-ai-fetch-button">
                                                         <div class="spinner"></div>

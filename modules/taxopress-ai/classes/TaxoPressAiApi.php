@@ -41,7 +41,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($dandelion_api_token))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'Dandelion integration require API Token. Kindly add your token and save the settings before running preview.',
+                    'The Dandelion integration requires an API Key. Please add your API Key and save the settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
@@ -150,7 +150,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($open_calais_api_key))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'Open calais integration require API Key. Kindly add your key and save the settings before running preview.',
+                    'The LSEG / Refinitiv integration requires an API Key. Please add your API Key and save the settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
@@ -268,7 +268,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($ibm_watson_api_url)) || empty(trim($ibm_watson_api_key))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'Ibm Watson integration require API Key and URL. Kindly add your credentials and save the settings before running preview.',
+                    'The Ibm Watson integration requires an API Key and URL. Please add your API Key and save the settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
@@ -396,7 +396,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($open_ai_api_key))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'OpenAI integration require API Key. Kindly add your API Key and save the settings before running preview.',
+                    'The OpenAI integration requires an API Key. Please add your API Key and save the settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {

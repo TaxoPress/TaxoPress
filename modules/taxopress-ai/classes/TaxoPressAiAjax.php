@@ -227,7 +227,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $response['content'] = esc_html__('Term Results', 'simple-tags');
                     } else {
                         $response['status'] = 'error';
-                        $response['content'] = sprintf(esc_html__('No term found for %1s and %2s', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->name));
+                        $response['content'] = esc_html__('No results found for this post with this taxonomy.', 'simple-tags');
                     }
                 }
 
@@ -370,7 +370,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                 } else {
                     $return['status'] = 'error';
                     $return['message'] = esc_html__(
-                        'No matched found for the selected taxonomy terms in your post content.',
+                        'No results found for this taxonomy.',
                         'simple-tags'
                     );
                 }

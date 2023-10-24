@@ -14,14 +14,17 @@ if (!class_exists('TaxoPressAiFields')) {
 
             $fields_tabs['post_terms'] = [
                 'label' => esc_html__('Manage Post Terms', 'simple-tags'),
+                'description'  => esc_html__('This feature allows you to manage all the terms that are currently attached to a post.', 'simple-tags'),
             ];
 
             $fields_tabs['suggest_local_terms'] = [
                 'label' => esc_html__('Suggest Existing Terms', 'simple-tags'),
+                'description'  => esc_html__('This feature can scan your posts and suggest relevant terms.', 'simple-tags'),
             ];
 
             $fields_tabs['existing_terms'] = [
                 'label' => esc_html__('Show All Existing Terms', 'simple-tags'),
+                'description'  => esc_html__('This feature allows you to browse all the terms in a taxonomy.', 'simple-tags'),
             ];
 
 
