@@ -691,8 +691,6 @@ if (!class_exists('TaxoPress_AI_Module')) {
     
                 if (!empty($term_results['results'])) {
                     echo $term_results['results'];
-                } else {
-                    echo $term_results['message'];
                 }
     
             }
