@@ -631,6 +631,8 @@ class SimpleTags_Admin
 				SimpleTags_Plugin::set_default_option();
 
 				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated');
+			} else {
+				add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
 			}
 		}
 
@@ -823,6 +825,10 @@ class SimpleTags_Admin
 						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="' . $option[3] . '" />' . PHP_EOL;
 						break;
 
+					case 'licence_field':
+						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" class="' . $option[5] . '" />' . PHP_EOL;
+						break;
+
 					case 'number':
 						$input_type = '<input type="number" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="' . $option[3] . '" />' . PHP_EOL;
 						break;
@@ -877,6 +883,8 @@ class SimpleTags_Admin
 				return esc_html__('Posts', 'simple-tags');
 			case 'taxopress-ai':
 				return esc_html__('Taxopress AI', 'simple-tags');
+			case 'licence':
+				return esc_html__('License', 'simple-tags');
 		}
 
 		return '';
