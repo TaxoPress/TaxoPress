@@ -2,71 +2,18 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     border: #7e8993 solid 1px;
 }
 
-.taxopress-post-suggestterm .open_ai_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 25px;
-    height: 20px;
-    background-image: url(../images/open-ai.png);
-    background-size: cover;
-    margin-left: -4px;
-}
-
-.taxopress-post-suggestterm .ibm_watson_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url(../images/ibm-watson.png);
-    background-size: cover;
-}
-
-.taxopress-post-suggestterm .dandelion_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-image: url(../images/dandelion.png);
-    background-size: cover;
-}
-
-.taxopress-post-suggestterm .open_calais_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    background-image: url(../images/open-calais.png);
-    background-size: cover;
-}
-
-.taxopress-post-suggestterm .suggest_local_terms_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 23px;
-    height: 20px;
-    background-image: url(../images/single-tag.png);
-    background-size: cover;
-    margin-left: -4px;
-}
-
-.taxopress-post-suggestterm .existing_terms_icon::before {
-    content: "" !important;
-    display: inline-block;
+.taxopress-post-suggestterm ul.taxopress-tab.ai-integration-tab li a::before {
     width: 20px;
     height: 16px;
-    background-image: url(../images/tag.png);
-    background-size: cover;
-    margin-left: -4px;
-}
-
-.taxopress-post-suggestterm .post_terms_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-    background-image: url(../images/article.png);
-    background-size: cover;
+    font-family: Dashicons;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\f323" !important;
+    font-variant: normal;
+    text-decoration: none;
+    color: grey;
 }
 
 .taxopress-post-suggestterm .taxopress-ai-fetch-wrap {

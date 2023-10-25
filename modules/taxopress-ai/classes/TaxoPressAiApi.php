@@ -384,7 +384,7 @@ if (!class_exists('TaxoPressAiApi')) {
             $content        = $args['content'];
             $clean_content  = $args['clean_content'];
             $content_source = $args['content_source'];
-            $preview_feature = $args['preview_feature'];
+            $preview_feature = !empty($args['preview_feature']) ? $args['preview_feature'] : '';
             
             $post_id = !empty($args['post_id']) ? (int) $args['post_id'] : 0;
             $open_ai_api_key = !empty($settings_data['open_ai_api_key']) ? $settings_data['open_ai_api_key'] : '';
