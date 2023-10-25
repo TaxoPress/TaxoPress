@@ -749,9 +749,11 @@ class SimpleTags_Admin
 				$table_sub_tab_lists = [];
 				$pt_index = 0;
 				foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
-					$active_pt = ($pt_index === 0) ? 'active' : '';
-					$table_sub_tab_lists[] = '<span class="'. $active_pt .'" data-content=".taxopress-ai-'. $post_type .'-content">'. esc_html($post_type_object->labels->name) .'</span>';
-					$pt_index++;
+					if (!in_array($post_type, ['attachment'])) {
+						$active_pt = ($pt_index === 0) ? 'active' : '';
+						$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".taxopress-ai-' . $post_type . '-content">' . esc_html($post_type_object->labels->name) . '</span>';
+						$pt_index++;
+					}
 				}
 				$table_sub_tab = '<div class="st-taxopress-ai-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
 			} else {
@@ -882,7 +884,7 @@ class SimpleTags_Admin
 			case 'posts':
 				return esc_html__('Posts', 'simple-tags');
 			case 'taxopress-ai':
-				return esc_html__('Taxopress AI', 'simple-tags');
+				return esc_html__('TaxoPress AI', 'simple-tags');
 			case 'licence':
 				return esc_html__('License', 'simple-tags');
 		}
