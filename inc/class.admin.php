@@ -1,4 +1,6 @@
 <?php
+// Include modules
+require_once (TAXOPRESS_ABSPATH . '/modules/taxopress-ai/taxopress-ai.php');
 
 class SimpleTags_Admin
 {
@@ -101,17 +103,6 @@ class SimpleTags_Admin
 			SimpleTags_Autoterms::get_instance();
 		}
 
-		//Suggest Terms
-		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_suggest_terms')) {
-			require STAGS_DIR . '/inc/suggestterms-table.php';
-			require STAGS_DIR . '/inc/suggestterms.php';
-			SimpleTags_SuggestTerms::get_instance();
-		}
-
-		//suggest terms option
-		require STAGS_DIR . '/inc/class.admin.suggest.php';
-		new SimpleTags_Admin_Suggest();
-
 		//click terms option
 		require STAGS_DIR . '/inc/class.admin.clickterms.php';
 		new SimpleTags_Admin_ClickTags();
@@ -142,6 +133,8 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/taxonomies.php';
 			SimpleTags_Admin_Taxonomies::get_instance();
 		}
+		
+		TaxoPress_AI_Module::get_instance();
 
 		do_action('taxopress_admin_class_after_includes');
 
@@ -414,7 +407,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
 		$select_2_page = false;
-		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_suggestterms'])) {
+		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts'])) {
 			$select_2_page = true;
 		}
 
@@ -597,6 +590,20 @@ class SimpleTags_Admin
 				check_admin_referer('updateresetoptions-simpletags');
 
 				$sanitized_options = [];
+				
+				// add taxopress ai post type options so we can have all post types. TODO: This need to be a filter
+				foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
+					if ($post_type == 'post') {
+						$opt_default_value = 1;
+					} else {
+						$opt_default_value = 0;
+					}
+					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
+					foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
+						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
+					}
+				}
+
 				foreach ($options as $key => $value) {
 					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					$value = isset($_POST[$key]) ? $_POST[$key] : '';
@@ -608,11 +615,7 @@ class SimpleTags_Admin
 					if (!is_array($value)) {
 						$sanitized_options[$key] = taxopress_sanitize_text_field($value);
 					} else {
-						$new_value = [];
-						foreach ($options[$key] as $option_key => $option_value) {
-							$new_value[$option_key] = taxopress_sanitize_text_field($option_value);
-						}
-						$sanitized_options[$key] = $new_value;
+						$sanitized_options[$key] = map_deep($value, 'sanitize_text_field');
 					}
 				}
 				$options = $sanitized_options;
@@ -628,6 +631,8 @@ class SimpleTags_Admin
 				SimpleTags_Plugin::set_default_option();
 
 				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated');
+			} else {
+				add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
 			}
 		}
 
@@ -740,6 +745,17 @@ class SimpleTags_Admin
                 <span data-content=".legacy-auto-link-content">'. esc_html__("Auto Links", "simple-tags") .'</span> |
                 <span data-content=".legacy-mass-edit-content">'. esc_html__("Mass Edit Terms", "simple-tags") .'</span>
                 </div>' . PHP_EOL;
+			} elseif ($section === 'taxopress-ai') {
+				$table_sub_tab_lists = [];
+				$pt_index = 0;
+				foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
+					if (!in_array($post_type, ['attachment'])) {
+						$active_pt = ($pt_index === 0) ? 'active' : '';
+						$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".taxopress-ai-' . $post_type . '-content">' . esc_html($post_type_object->labels->name) . '</span>';
+						$pt_index++;
+					}
+				}
+				$table_sub_tab = '<div class="st-taxopress-ai-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
 			} else {
 				$table_sub_tab = '';
 			}
@@ -752,7 +768,7 @@ class SimpleTags_Admin
 			foreach ((array) $options as $option) {
 
 				$class = '';
-				if ($section === 'legacy') {
+				if ($section === 'legacy' || $section === 'taxopress-ai') {
 					$class = $option[5];
 				}
 
@@ -783,6 +799,17 @@ class SimpleTags_Admin
 						$input_type    = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" ' . (($option_actual[$option[0]]) ? 'checked="checked"' : '') . ' />' . PHP_EOL;
 						break;
 
+					case 'taxopress_ai_multiple_checkbox':
+						$desc_html_tag = 'div';
+						$input_type = array();
+						foreach ($option[3] as $field_name => $text) {
+							$checked_option = !empty($option_actual[$field_name]) ? (int) $option_actual[$field_name] : 0;
+							$selected_option = ($checked_option > 0) ? true : false;
+							$input_type[] = '<label><input type="checkbox" id="' . $option[0] . '" name="' . $field_name . '" value="1" ' . checked($selected_option, true, false) . ' /> ' . $text . '</label> <br />' . PHP_EOL;
+						}
+						$input_type = implode('<br />', $input_type);
+						break;
+
 					case 'dropdown':
 						$selopts = explode('/', $option[3]);
 						$seldata = '';
@@ -798,6 +825,10 @@ class SimpleTags_Admin
 
 					case 'text':
 						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="' . $option[3] . '" />' . PHP_EOL;
+						break;
+
+					case 'licence_field':
+						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" class="' . $option[5] . '" />' . PHP_EOL;
 						break;
 
 					case 'number':
@@ -852,6 +883,10 @@ class SimpleTags_Admin
 				return esc_html__('Legacy', 'simple-tags');
 			case 'posts':
 				return esc_html__('Posts', 'simple-tags');
+			case 'taxopress-ai':
+				return esc_html__('TaxoPress AI', 'simple-tags');
+			case 'licence':
+				return esc_html__('License', 'simple-tags');
 		}
 
 		return '';

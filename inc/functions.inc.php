@@ -147,9 +147,9 @@ function taxopress_admin_pages()
         'st_related_posts',
         'st_autolinks',
         'st_autoterms',
-        'st_suggestterms',
         'st_terms',
-        'st_posts'
+        'st_posts',
+        'st_taxopress_ai'
     ];
 
     return apply_filters('taxopress_admin_pages', $taxopress_pages);
@@ -401,12 +401,6 @@ function taxopress_dashboard_options()
         'option_key'   => 'active_auto_terms',
     ];
 
-    $features['st_suggestterms'] = [
-        'label'        => esc_html__('Suggest Terms', 'simple-tags'),
-        'description'  => esc_html__('This feature helps when you\'re writing content. "Suggest Terms" shows a box with all existing terms, and can also analyze your content to find new ideas for terms.', 'simple-tags'),
-        'option_key'   => 'active_suggest_terms',
-    ];
-
     $features['st_manage'] = [
         'label'        => esc_html__('Manage Terms', 'simple-tags'),
         'description'  => esc_html__('This feature allows you to add, rename, merge, and delete terms for any taxonomy.', 'simple-tags'),
@@ -587,4 +581,17 @@ function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = f
     }
 
     return $lists;
+}
+
+/**
+ * Fetch our TAXOPRESS SuggestTerms option.
+ * SuggestTerms screen has been removed but we need this function 
+ * to migrate the needed settings.
+ *
+ * @return mixed
+ */
+function taxopress_get_suggestterm_data()
+{
+    return array_filter((array)apply_filters('taxopress_get_suggestterm_data', get_option('taxopress_suggestterms', []),
+        get_current_blog_id()));
 }

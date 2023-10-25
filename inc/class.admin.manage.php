@@ -261,7 +261,7 @@ class SimpleTags_Admin_Manage
 							<td>
 								<h2><?php _e('Merge Terms', 'simple-tags'); ?>
 								</h2>
-								<p><?php printf(esc_html__('Enter the term to merge and its new value. Click "Merge" and all %s which use this term will be updated.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
+								<p><?php esc_html_e('This feature will delete existing terms and replace them with another term. If you want to merge term “A” into term “B”, put “A” in the first box and “B” in the second box.', 'simple-tags'); ?>
 								</p>
 
 
@@ -278,7 +278,7 @@ class SimpleTags_Admin_Manage
 
 										<p>
 											<label
-												for="renameterm_old"><?php _e('Term(s) to merge:', 'simple-tags'); ?></label>
+												for="renameterm_old"><?php _e('Term(s) to merge. These terms will be deleted', 'simple-tags'); ?></label>
 											<br />
 											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea"
 												id="mergeterm_old" name="renameterm_old" size="80" /></textarea>
@@ -286,7 +286,7 @@ class SimpleTags_Admin_Manage
 
 										<p>
 											<label
-												for="renameterm_new"><?php _e('New term name:', 'simple-tags'); ?></label>
+												for="renameterm_new"><?php _e('New term. Any posts assigned to the old terms will be re-assigned to this term.', 'simple-tags'); ?></label>
 												<br />
 												<textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new"
 													name="renameterm_new" size="80" /></textarea>
@@ -426,10 +426,17 @@ class SimpleTags_Admin_Manage
         // Remove empty element and trim
         $old_terms = array_filter($old_terms, '_delete_empty_element');
         $new_terms = array_filter($new_terms, '_delete_empty_element');
+        $common_elements = array_intersect($old_terms, $new_terms);
 
         // If old/new tag are empty => exit !
         if (empty($old_terms) || empty($new_terms)) {
             add_settings_error(__CLASS__, __CLASS__, esc_html__('No new/old valid term specified!', 'simple-tags'), 'error');
+
+            return false;
+        }
+
+        if (!empty($common_elements)) {
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('Term to merge and New Term must not contain same term.', 'simple-tags'), 'error');
 
             return false;
         }

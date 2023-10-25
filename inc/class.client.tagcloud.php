@@ -230,7 +230,7 @@ class SimpleTags_Client_TagCloud {
 
 		$order = strtolower( $order );
 		if ( $order == 'desc' && $orderby != 'random' ) {
-			$counts = array_reverse( $counts );
+			$counts = array_reverse( $counts, true );
 		}
 
 		$output = array();

@@ -1040,7 +1040,7 @@ PPMAS2.define('ppma_select2/results',[
     }
 
     if (data.title) {
-      option.title = data.title;
+      //option.title = data.title;
     }
 
     if (data.children) {
@@ -1435,7 +1435,7 @@ PPMAS2.define('ppma_select2/selection/base',[
       this._tabindex = this.$element.attr('tabindex');
     }
 
-    $selection.attr('title', this.$element.attr('title'));
+    //$selection.attr('title', this.$element.attr('title'));
     $selection.attr('tabindex', this._tabindex);
     $selection.attr('aria-disabled', 'false');
 
@@ -1684,7 +1684,8 @@ PPMAS2.define('ppma_select2/selection/single',[
     var title = selection.title || selection.text;
 
     if (title) {
-      $rendered.attr('title', title);
+      $rendered.removeAttr('title');
+      //$rendered.attr('title', title);
     } else {
       $rendered.removeAttr('title');
     }
@@ -1794,7 +1795,8 @@ PPMAS2.define('ppma_select2/selection/multiple',[
       var title = selection.title || selection.text;
 
       if (title) {
-        $selection.attr('title', title);
+        $selection.removeAttr('title');
+        //$selection.attr('title', title);
       }
 
       Utils.StoreData($selection[0], 'data', selection);
@@ -3374,7 +3376,7 @@ PPMAS2.define('ppma_select2/data/select',[
     }
 
     if (data.title) {
-      option.title = data.title;
+      //option.title = data.title;
     }
 
     var $option = $(option);

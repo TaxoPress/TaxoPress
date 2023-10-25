@@ -41,6 +41,41 @@ function taxopress_get_current_autoterm()
 }
 
 /**
+ * Get auto terms for current post
+ *
+ *
+ * @return mixed
+ */
+function taxopress_post_type_autoterms()
+{
+    global $pagenow;
+
+    $allowed_pages = ['post-new.php', 'post.php', 'page.php', 'page-new.php'];
+    if (!in_array($pagenow, $allowed_pages)) {
+        return false;
+    }
+
+    $autoterms = taxopress_get_autoterm_data();
+
+    if (count($autoterms) > 0) {
+        foreach ($autoterms as $autoterm) {
+
+            $post_types = (isset($autoterm['post_types']) && is_array($autoterm['post_types']) && count($autoterm['post_types']) > 0) ? $autoterm['post_types'] : false;
+
+            if (!$post_types) {
+                continue;
+            }
+
+            if (in_array(get_post_type(), $post_types)) {
+                return $autoterm;
+            }
+        }
+    }
+
+    return false;
+}
+
+/**
  * Handle the save and deletion of autoterm data.
  */
 function taxopress_process_autoterm()

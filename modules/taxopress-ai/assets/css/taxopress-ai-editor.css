@@ -1,0 +1,114 @@
+body.taxopress-block-editor .taxopress-post-suggestterm {
+    border: #7e8993 solid 1px;
+}
+
+.taxopress-post-suggestterm ul.taxopress-tab.ai-integration-tab li a::before {
+    width: 20px;
+    height: 16px;
+    font-family: Dashicons;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\f323" !important;
+    font-variant: normal;
+    text-decoration: none;
+    color: grey;
+}
+
+.taxopress-post-suggestterm .taxopress-ai-fetch-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.taxopress-post-suggestterm .taxopress-ai-fetch-wrap select {
+    margin-right: 10px;
+}
+
+.taxopress-post-suggestterm .taxopress-ai-fetch-wrap .spinner:not(.is-active) {
+    display: none;
+}
+
+.taxopress-post-suggestterm .previewed-tag-fieldset {
+    border: none;
+    overflow: auto;
+    margin: 3px 0 0;
+}
+
+.taxopress-post-suggestterm .previewed-tag-fieldset legend {
+    display: none;
+}
+
+.taxopress-post-suggestterm .previewed-tag-fieldset legend a {
+    text-decoration: none;
+}
+
+.taxopress-post-suggestterm .preview-action-btn-wrap {
+   /* display: flex;*/
+    margin-top: 10px;
+    justify-content: right;
+    display: none;
+}
+
+.taxopress-post-suggestterm .preview-action-btn-wrap .spinner:not(.is-active) {
+    display: none;
+}
+
+.preview-action-title .description {
+    margin: 3px 1px 3px 10px;
+}
+
+.taxopress-post-suggestterm .previewed-tag-content .result-terms {
+    margin: 3px 1px 3px 10px;
+    padding: 0;
+    display: inline-block;
+    white-space: nowrap;
+    background: #ddd;
+    border: 1px dotted transparent;
+    color: #1e1e1e;
+    cursor: pointer;
+}
+
+.taxopress-post-suggestterm .previewed-tag-content .result-terms:not(.countable) {
+    padding: 2px 0;
+}
+
+.taxopress-post-suggestterm .previewed-tag-content .result-terms.used_term {
+    background: #5ecd8a;
+    color: #333333;
+}
+
+.taxopress-post-suggestterm .previewed-tag-content .result-terms .term-name {
+    margin: 0 0.3em;
+    padding: 8px 4px;
+}
+
+.taxopress-post-suggestterm .previewed-tag-content .result-terms .term-counts {
+    background-color: #357AB5;
+    color: #fff;
+    margin-left: 0.2em;
+    padding: 3px 8px;
+    display: inline-block;
+}
+
+.taxopress-post-suggestterm .previewed-tag-content .result-terms.disabled {
+    color: #a7aaad !important;
+    border-color: #dcdcde !important;
+    background: #f6f7f7 !important;
+    box-shadow: none !important;
+    cursor: default;
+    transform: none !important;
+}
+
+.edit-suggest-term-metabox a  {
+    text-decoration: none;
+}
+
+.taxopress-post-suggestterm ul.taxopress-tab {
+    width: 25%;
+}
+
+.taxopress-post-suggestterm .taxopress-tab-content {
+    width: 75%;
+}
