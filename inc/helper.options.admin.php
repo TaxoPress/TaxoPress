@@ -37,7 +37,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
     $pt_index++;
 }
 
-return array(
+return apply_filters('taxopress_admin_options', array(
     // post tab
     'posts'       => array(
         array(
@@ -547,4 +547,5 @@ return array(
 
 
     ),
+)
 );
