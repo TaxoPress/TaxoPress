@@ -205,7 +205,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     'taxopress-ai-js',
                     'taxoPressAIRequestAction',
                     [
-                        'requiredSuffix' => esc_html__('Please choose a', 'simple-tags'),
+                        'requiredSuffix' => esc_html__('Please choose a post to use with TaxoPress AI.', 'simple-tags'),
                         'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
                         'aiGroups' => TaxoPressAiUtilities::get_taxopress_ai_groups()
                     ]
@@ -229,7 +229,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     'taxopress-ai-editor-js',
                     'taxoPressAIRequestAction',
                     [
-                        'requiredSuffix' => esc_html__('Please choose a', 'simple-tags'),
+                        'requiredSuffix' => esc_html__('Please choose a post to use with TaxoPress AI.', 'simple-tags'),
                         'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
                         'apiEditLink' => '<span class="edit-suggest-term-metabox"> <a target="blank" href="' . $manage_link . '"> '. esc_html__('Manage API Configuration', 'simple-tags') .' </a></span>'
                     ]

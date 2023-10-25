@@ -1,5 +1,4 @@
-
-.general-settings-icon::before {
+ul.taxopress-tab.ai-integration-tab li a::before {
     width: 20px;
     height: 16px;
     font-family: Dashicons;
@@ -7,77 +6,10 @@
     text-transform: none;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    content: "\f111";
+    content: "\f323" !important;
     font-variant: normal;
     text-decoration: none;
     color: grey;
-}
-
-.open_ai_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 25px;
-    height: 20px;
-    background-image: url(../images/open-ai.png); 
-    background-size: cover; 
-    margin-left: -4px;
-}
-
-.ibm_watson_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url(../images/ibm-watson.png); 
-    background-size: cover; 
-}
-
-.dandelion_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-image: url(../images/dandelion.png); 
-    background-size: cover; 
-}
-
-.open_calais_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    background-image: url(../images/open-calais.png); 
-    background-size: cover; 
-}
-
-.suggest_local_terms_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 23px;
-    height: 20px;
-    background-image: url(../images/single-tag.png); 
-    background-size: cover; 
-    margin-left: -3px;
-}
-
-.existing_terms_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 20px;
-    height: 16px;
-    background-image: url(../images/tag.png); 
-    background-size: cover; 
-    margin-left: -4px;
-}
-
-.post_terms_icon::before {
-    content: "" !important;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-    background-image: url(../images/article.png); 
-    background-size: cover; 
 }
 
 .st_taxopress_ai-wrap .right-body-content {
@@ -176,9 +108,14 @@
     display: flex;
 }
 
+.st_taxopress_ai-wrap .description {
+    color: #3c434a;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 .st_taxopress_ai-wrap .description.tab-table-content {
     margin-top: 10px;
-    color: #3c434a;
 }
 
 .st_taxopress_ai-wrap .form-table th {

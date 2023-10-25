@@ -707,11 +707,6 @@ font-weight: bold;
     margin-bottom: 0;
 }
 
-.taxopress-ai-tab-content td {
-    padding: 0;
-    margin: 0;
-}
-
 .taxopress-warning textarea {
     width: -webkit-fill-available !important;
     width: -moz-available !important;

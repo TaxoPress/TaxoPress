@@ -1,4 +1,7 @@
 <?php
+// TaxoPress AI Module
+require_once STAGS_DIR . '/modules/taxopress-ai/taxopress-ai.php';
+
 require STAGS_DIR . '/inc/functions.inc.php'; // Internal functions
 require STAGS_DIR . '/inc/taxonomies-functions.php'; // Taxonomy functions
 require STAGS_DIR . '/inc/tag-clouds-functions.php'; // Tag cloud functions

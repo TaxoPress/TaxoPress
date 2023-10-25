@@ -115,7 +115,7 @@
           var preview_post_type_single_label = preview_wrapper.find('.preview-post-types-select :selected').attr('data-singular_label');
 
           if (!preview_post || preview_post == '') {
-            $('.sidebar-response-wrap').html('<p>' + taxoPressAIRequestAction.requiredSuffix + ' ' + preview_post_type_single_label + '</p>').removeClass('updated').addClass('error');
+            $('.sidebar-response-wrap').html('<p>' + taxoPressAIRequestAction.requiredSuffix + ' </p>').removeClass('updated').addClass('error');
             return;
           }
           

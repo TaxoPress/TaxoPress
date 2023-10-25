@@ -387,7 +387,7 @@ class Autoterms_List extends WP_List_Table
         }
         
         if(isset($item['autoterm_use_opencalais']) && !empty(taxopress_disp_boolean($item['autoterm_use_opencalais']))) {
-            $used_source[] = esc_html__('Open Calais', 'simple-tags');
+            $used_source[] = esc_html__('LSEG / Refinitiv', 'simple-tags');
         }
 
         return join(', ', $used_source);
