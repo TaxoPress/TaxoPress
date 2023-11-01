@@ -269,8 +269,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $fields = TaxoPressAiFields::get_fields();
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
 
-            $active_tab = !empty($settings_data['active_tab']) ? $settings_data['active_tab'] : 'open_ai';
+            $active_tab = !empty($settings_data['active_tab']) ? $settings_data['active_tab'] : 'post_terms';
             $active_tab_label = '';
+
+            $default_post_type = '';
+            $post = false;
             ?>
 
             <div class="wrap st_wrap st-manage-taxonomies-page <?php echo esc_attr(self::PAGE_MENU_SLUG . '-wrap'); ?>">
@@ -394,6 +397,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     style="max-width: 33%;">
                                                         <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
                                                             if (!in_array($post_type, ['attachment'])) {
+                                                                if (empty($default_post_type)) {
+                                                                    $default_post_type = $post_type;
+                                                                    $posts = $posts = get_posts(['post_type' => $post_type, 'numberposts' => 1, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
+                                                                    if (!empty($posts)) {
+                                                                        $post = $posts[0];
+                                                                    }
+                                                                }
                                                             ?>
                                                                 <option value='<?php echo esc_attr($post_type); ?>'
                                                                     data-singular_label="<?php echo esc_html($post_type_object->labels->singular_name); ?>">
@@ -409,7 +419,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
                                                         data-allow-clear="true"
                                                         data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">
-
+                                                        <?php if (is_object($post)) : ?>
+                                                            <option value='<?php echo esc_attr($post->ID); ?>'>
+                                                                    <?php echo esc_html($post->post_title); ?>
+                                                                </option>
+                                                        <?php endif; ?>
                                                     </select>
                                                 </div>
                                                 <div class="sidebar-submit-wrap">
@@ -422,8 +436,23 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                                                 </div>
                                                 <div class="sidebar-response-wrap"></div>
-                                                <?php foreach (TaxoPressAiUtilities::get_taxopress_ai_groups() as $ai_group) : ?>
-                                                    <div class="sidebar-response-preview <?php echo esc_attr($ai_group); ?>"></div>
+                                                <?php foreach (TaxoPressAiUtilities::get_taxopress_ai_groups() as $ai_group) :
+                                                    if (is_object($post)) {
+                                                        $result_request_args = [
+                                                            'action' 	=> 'pageload', 
+                                                            'taxonomy'  => 'post_tag',
+                                                            'ai_group'  => $ai_group,
+                                                            'post_title'	=> $post->post_title,
+                                                            'post_content'  => $post->post_content,
+                                                            'post_id'		=> $post->ID,
+                                                        ];
+                                                    } else {
+                                                        $result_request_args = [];
+                                                    }
+                                                    ?>
+                                                    <div class="sidebar-response-preview <?php echo esc_attr($ai_group); ?>" style="<?php echo ($ai_group === $active_tab) ? '' : 'display:none;'; ?>">
+                                                        <?php do_action('load_taxopress_ai_term_results', $result_request_args); ?>
+                                                    </div>
                                                 <?php endforeach; ?>
                                             </div>
                                         </div>
@@ -642,6 +671,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
         }
 
         public function load_result($args) {
+
+            if (empty($args)) {
+                return;
+            }
+
             $action       = $args['action'];
             $taxonomy     = $args['taxonomy'];
             $ai_group     = $args['ai_group'];
