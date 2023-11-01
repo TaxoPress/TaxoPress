@@ -111,7 +111,7 @@ class SimpleTags_Admin
 		new SimpleTags_Admin_Autocomplete();
 
 		// Mass edit terms
-		if ($dashboard_screen || (1 === (int) SimpleTags_Plugin::get_option_value('active_mass_edit_legacy') && empty($_POST['updateoptions'])) || !empty($_POST['active_mass_edit_legacy'])) {
+		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_mass_edit')) {
 			require STAGS_DIR . '/inc/class.admin.mass.php';
 			new SimpleTags_Admin_Mass();
 		}
@@ -742,8 +742,7 @@ class SimpleTags_Admin
                 <span class="active" data-content=".legacy-tag-cloud-content">'. esc_html__("Tag Cloud", "simple-tags") .'</span> |
                 <span data-content=".legacy-post-tags-content">'. esc_html__("Tags for Current Post", "simple-tags") .'</span> |
                 <span data-content=".legacy-related-posts-content">'. esc_html__("Related Posts", "simple-tags") .'</span> |
-                <span data-content=".legacy-auto-link-content">'. esc_html__("Auto Links", "simple-tags") .'</span> |
-                <span data-content=".legacy-mass-edit-content">'. esc_html__("Mass Edit Terms", "simple-tags") .'</span>
+                <span data-content=".legacy-auto-link-content">'. esc_html__("Auto Links", "simple-tags") .'</span>
                 </div>' . PHP_EOL;
 			} elseif ($section === 'taxopress-ai') {
 				$table_sub_tab_lists = [];

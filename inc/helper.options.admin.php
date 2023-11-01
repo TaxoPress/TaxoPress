@@ -526,26 +526,6 @@ return apply_filters('taxopress_admin_options', array(
             'legacy-tab-content legacy-auto-link-content st-hide-content'
         ),
 
-
-        //mass edit terms legacy
-        array(
-            'text_helper',
-            'text_helper',
-            'helper',
-            '',
-            '<p class="taxopress-warning"><strong>' . __('These feature is no longer being updated and may be removed in the future version of TaxoPress', 'simple-tags') . '</strong></p><br /><br />',
-            'legacy-tab-content legacy-mass-edit-content st-hide-content'
-        ),
-        array(
-            'active_mass_edit_legacy',
-            __('Enable "Mass Edit Terms"', 'simple-tags'),
-            'checkbox',
-            '1',
-            __('This feature allows you to quickly edit the terms attached to multiple posts at the same time.', 'simple-tags'),
-            'legacy-tab-content legacy-mass-edit-content st-hide-content'
-        ),
-
-
     ),
 )
 );
