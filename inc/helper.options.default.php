@@ -30,6 +30,7 @@ return array(
     'enable_taxopress_ai_post_ibm_watson_tab' => 1,
     'enable_taxopress_ai_post_dandelion_tab' => 1,
     'enable_taxopress_ai_post_open_calais_tab' => 1,
+    'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
 
     'allow_embed_tcloud'     => 1,
     // Auto link

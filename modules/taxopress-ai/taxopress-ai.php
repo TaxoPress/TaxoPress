@@ -28,8 +28,6 @@ if (!class_exists('TaxoPress_AI_Module')) {
          */
         public function __construct()
         {
-
-            add_filter('set-screen-option', [$this, 'set_screen'], 10, 3);
             // Admin menu
             add_action('admin_menu', [$this, 'admin_menu']);
             // Script and Styles
@@ -770,6 +768,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                     $post_type_taxonomies = get_object_taxonomies($post->post_type, 'objects');
                     $post_type_taxonomy_names = array_keys($post_type_taxonomies);
+                    $post_type_default_taxonomy = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_metabox_default_taxonomy');
+                    if (empty($post_type_default_taxonomy)) {
+                        $post_type_default_taxonomy = 'post_tag';
+                    }
 
                     if (empty($post_type_taxonomy_names)) { 
                         echo '<div style="padding: 15px;">';
@@ -780,7 +782,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         esc_html_e('No TaxoPress AI feature is enabled for this post type in settings.', 'simple-tags');
                         echo '</div>';
                     } else {
-                        $default_taxonomy = (in_array('post_tag', $post_type_taxonomy_names) ? 'post_tag' : $post_type_taxonomy_names[0]);
+                        $default_taxonomy = (in_array($post_type_default_taxonomy, $post_type_taxonomy_names) ? $post_type_default_taxonomy : $post_type_taxonomy_names[0]);
                     ?>
                     <div class="taxopress-suggest-terms-content">
                         <ul class="taxopress-tab ai-integration-tab">
@@ -826,7 +828,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                 <div class="taxopress-ai-fetch-wrap">
                                                     <select class="taxopress-ai-fetch-taxonomy-select">
                                                             <?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
-                                                            if (!in_array($tax_key, ['post_format'])) {
+                                                            
+                                                            if (!in_array($tax_key, ['post_format']) && !empty($tax_object->show_ui)) {
                                                                 $rest_api_base = !empty($tax_object->rest_base) ? $tax_object->rest_base : $tax_key;
                                                                 $hierarchical = !empty($tax_object->hierarchical) ? (int) $tax_object->hierarchical : 0;
                                                                 ?>

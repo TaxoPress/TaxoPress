@@ -52,9 +52,11 @@ if (!class_exists('TaxoPressAiUtilities')) {
          */
         public static function get_taxonomies()
         {
+
+            $show_ui_tax = get_taxonomies(['public' => true, 'show_ui' => true], 'objects', 'and');
             
             $taxonomies = [];
-            foreach (get_all_taxopress_public_taxonomies() as $tax) {
+            foreach ($show_ui_tax as $tax) {
                 if (empty($tax->labels->name)) {
                     continue;
                 }
