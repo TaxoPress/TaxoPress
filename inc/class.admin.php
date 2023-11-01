@@ -591,13 +591,14 @@ class SimpleTags_Admin
 
 				$sanitized_options = [];
 				
-				// add taxopress ai post type options so we can have all post types. TODO: This need to be a filter
+				// add taxopress ai post type and taxonomies options so we can have all post types. TODO: This need to be a filter
 				foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
 					if ($post_type == 'post') {
-						$opt_default_value = 1;
+						$opt_default_value = 'post_tag';
 					} else {
 						$opt_default_value = 0;
 					}
+					$options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
 					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
 					foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
 						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
@@ -748,7 +749,7 @@ class SimpleTags_Admin
 				$table_sub_tab_lists = [];
 				$pt_index = 0;
 				foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
-					if (!in_array($post_type, ['attachment'])) {
+					if (!in_array($post_type, ['attachment']) && !empty(get_object_taxonomies($post_type))) {
 						$active_pt = ($pt_index === 0) ? 'active' : '';
 						$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".taxopress-ai-' . $post_type . '-content">' . esc_html($post_type_object->labels->name) . '</span>';
 						$pt_index++;
@@ -809,11 +810,21 @@ class SimpleTags_Admin
 						$input_type = implode('<br />', $input_type);
 						break;
 
-					case 'dropdown':
+					case 'dropdown':// legacy
 						$selopts = explode('/', $option[3]);
 						$seldata = '';
 						foreach ((array) $selopts as $sel) {
 							$seldata .= '<option value="' . esc_attr($sel) . '" ' . ((isset($option_actual[$option[0]]) && $option_actual[$option[0]] == $sel) ? 'selected="selected"' : '') . ' >' . ucfirst($sel) . '</option>' . PHP_EOL;
+						}
+						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>' . PHP_EOL;
+						break;
+
+
+					case 'select':
+						$selopts = $option[3];
+						$seldata = '';
+						foreach ((array) $selopts as $sel_key => $sel_label) {
+							$seldata .= '<option value="' . esc_attr($sel_key) . '" ' . ((isset($option_actual[$option[0]]) && $option_actual[$option[0]] == $sel_key) ? 'selected="selected"' : '') . ' >' . ucfirst($sel_label) . '</option>' . PHP_EOL;
 						}
 						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>' . PHP_EOL;
 						break;

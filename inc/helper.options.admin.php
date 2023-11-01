@@ -14,26 +14,48 @@ $taxopress_ai_fields = [];
 $pt_index = 0;
 foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
     $hidden_field = ($pt_index === 0) ? '' : 'st-hide-content';
-    $taxopress_ai_fields[] = array(
-        'enable_taxopress_ai_' . $post_type . '_metabox',
-        sprintf(esc_html__('%1s Metabox', 'simple-tags'), esc_html($post_type_object->labels->name)),
-        'checkbox',
-        '1',
-        sprintf(esc_html__('Enable the TaxoPress AI metabox on the %1s screen.', 'simple-tags'), esc_html($post_type_object->labels->name)),
-        'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
-    );
-    $tab_field_options = [];
-    foreach ($taxopress_ai_tabs as $taxopress_ai_tab => $taxopress_ai_tab_label) {
-        $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $taxopress_ai_tab_label;
+
+    $default_taxonomy_options = [];
+    foreach (get_object_taxonomies($post_type, 'objects') as $tax_key => $tax_object) {
+        if (!in_array($tax_key, ['post_format']) && !empty($tax_object->show_ui)) {
+            $default_taxonomy_options[$tax_key] = $tax_object->labels->name. ' ('.$tax_object->name.')';
+        }
     }
-    $taxopress_ai_fields[] = array(
-        'enable_taxopress_ai_' . $post_type . '_tab',
-        '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Features', 'simple-tags') . '</div>',
-        'taxopress_ai_multiple_checkbox',
-        $tab_field_options,
-        '<p class="taxopress-ai-tab-content-sub taxopress-settings-description taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field description st-subhide-content">' . esc_html__('Features that require an API key will not display without a valid key.', 'simple-tags') . '</p>',
-        'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
-    );
+
+    if (!empty($default_taxonomy_options)) { // This feature only matter if a post has taxonomy
+        $taxopress_ai_fields[] = array(
+            'enable_taxopress_ai_' . $post_type . '_metabox',
+            sprintf(esc_html__('%1s Metabox', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'checkbox',
+            '1',
+            sprintf(esc_html__('Enable the TaxoPress AI metabox on the %1s screen.', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
+        );
+
+        // add taxonomy
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_default_taxonomy',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Default Taxonomy', 'simple-tags') . '</div>',
+            'select',
+            $default_taxonomy_options,
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+            );
+
+        // add feature tab
+        $tab_field_options = [];
+        foreach ($taxopress_ai_tabs as $taxopress_ai_tab => $taxopress_ai_tab_label) {
+            $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $taxopress_ai_tab_label;
+        }
+        $taxopress_ai_fields[] = array(
+            'enable_taxopress_ai_' . $post_type . '_tab',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Features', 'simple-tags') . '</div>',
+            'taxopress_ai_multiple_checkbox',
+            $tab_field_options,
+            '<p class="taxopress-ai-tab-content-sub taxopress-settings-description taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field description st-subhide-content">' . esc_html__('Features that require an API key will not display without a valid key.', 'simple-tags') . '</p>',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+        );
+    }
     $pt_index++;
 }
 
