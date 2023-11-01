@@ -745,19 +745,19 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         ],
                         'open_ai' => [
                             'label'   => esc_html__('OpenAI', 'simple-tags'),
-                            'enabled' => (!empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_open_ai_tab')) && !empty($settings_data['open_ai_api_key'])),
+                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_open_ai_tab')) && !empty($settings_data['open_ai_api_key'])),
                         ],
                         'ibm_watson' => [
                             'label'   => esc_html__('IBM Watson', 'simple-tags'),
-                            'enabled' => (!empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_ibm_watson_tab')) && !empty($settings_data['ibm_watson_api_url']) && !empty($settings_data['ibm_watson_api_key'])),
+                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_ibm_watson_tab')) && !empty($settings_data['ibm_watson_api_url']) && !empty($settings_data['ibm_watson_api_key'])),
                         ],
                         'dandelion' => [
                             'label'   => esc_html__('Dandelion', 'simple-tags'),
-                            'enabled' => (!empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_dandelion_tab')) && !empty($settings_data['dandelion_api_token'])),
+                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_dandelion_tab')) && !empty($settings_data['dandelion_api_token'])),
                         ],
                         'open_calais' => [
                             'label' => esc_html__('LSEG / Refinitiv', 'simple-tags'),
-                            'enabled' => (!empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_open_calais_tab')) && !empty($settings_data['open_calais_api_key'])),
+                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_open_calais_tab')) && !empty($settings_data['open_calais_api_key'])),
                         ],
                     ];
 
