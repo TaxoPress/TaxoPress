@@ -8,7 +8,7 @@ return array(
     'active_auto_links'      => 1,
     'active_auto_terms'      => 1,
     'active_suggest_terms'   => 1,
-    'active_mass_edit_legacy' => 0,
+    'active_mass_edit'       => 1,
     'active_manage'          => 1,
     'active_related_posts'   => 1,
     'active_autotags'        => 1,
@@ -30,6 +30,7 @@ return array(
     'enable_taxopress_ai_post_ibm_watson_tab' => 1,
     'enable_taxopress_ai_post_dandelion_tab' => 1,
     'enable_taxopress_ai_post_open_calais_tab' => 1,
+    'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
 
     'allow_embed_tcloud'     => 1,
     // Auto link

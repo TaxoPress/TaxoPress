@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
 Requires at least: 3.3
 Tested up to: 6.3
-Stable tag: 3.11.0
+Stable tag: 3.11.1
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -246,6 +246,16 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.11.1- 2023-11-02
+* Update: Add TaxoPress AI metabox default taxonomy settings, #1923
+* Update: Show duplicate synonym name in synonyms error message, #1931
+* Update: Add "Select All" and "Deselect All Toggle to TaxoPress AI tags, #1906
+* Fixed: Problem with korean translation, #1933
+* Update: Default choices for TaxoPress AI Preview, #1930
+* Update: Return Mass Edit Terms from legacy to dashboard, #1920
+* Update: Remove TaxoPress AI pro metaboxes in Free version, #1921
+* Update: TaxoPress Free Italian French Spanish translation updates October 2023, #1926
 
 v3.11.0- 2023-10-25
 * Feature: Added AI to the TaxoPress plugin, #1810
