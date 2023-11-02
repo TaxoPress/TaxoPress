@@ -226,18 +226,25 @@ if (!class_exists('TaxoPressAiUtilities')) {
             if (empty($term_results)) {
                 return '';
             }
-
+            
             $post_data          = get_post($post_id);
             $taxonomy_details   = get_taxonomy($taxonomy);
             $post_type_details  = get_post_type_object($post_data->post_type);
             $post_terms         = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'ids']);
             $post_terms         = array_merge($post_terms, $current_tags);
 
+            if (count($post_terms) === count($term_results)) {
+                $modified_legend_title = '<span class="ai-select-all all-selected" data-select-all="'. sprintf(esc_attr__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'" data-deselect-all="'. sprintf(esc_attr__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'">'. sprintf(esc_html__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'</span>';
+            } else {
+                $modified_legend_title = '<span class="ai-select-all" data-select-all="'. sprintf(esc_attr__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'" data-deselect-all="'. sprintf(esc_attr__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'">'. sprintf(esc_html__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'</span>';
+            }
+
+            //$modified_legend_title .= ' <span class="ai-original-legend">'. $legend_title .'</span>';
             $response_content = '<div class="preview-action-title"><p class="description">';
             $response_content .= sprintf(esc_html__('Click %1s to add or remove them from this %2s.', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
             $response_content .= '</p></div>';
             $response_content .= '<fieldset class="previewed-tag-fieldset">';
-            $response_content .= '<legend> '. $legend_title .' </legend>';
+            $response_content .= '<legend> '. $modified_legend_title .' </legend>';
             $response_content .= '<div class="previewed-tag-content">';
             foreach ($term_results as $term_result) {
                 if (!is_string($term_result) || empty(trim($term_result)) || !strip_tags($term_result)) {

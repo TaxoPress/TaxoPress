@@ -34,6 +34,10 @@ ul.taxopress-tab.ai-integration-tab li a::before {
     padding: 10px 0;
 }
 
+.taxopress-ai-preview-sidebar .ai-select-all {
+    cursor: pointer;
+}
+
 .previewed-tag-fieldset {
     padding-left: 10px;
     padding-top: 5px;
@@ -45,6 +49,8 @@ ul.taxopress-tab.ai-integration-tab li a::before {
 
 .previewed-tag-fieldset legend {
     padding: 0 10px;
+    padding-bottom: 5px;
+    color: #2271b1;
 }
 
 .previewed-tag-fieldset legend a {
