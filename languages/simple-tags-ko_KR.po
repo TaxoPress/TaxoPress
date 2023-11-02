@@ -1,0 +1,4068 @@
+# Translation of Plugins - TaxoPress is the WordPress Tag, Category, and Taxonomy Manager - Stable (latest release) in Korean
+# This file is distributed under the same license as the Plugins - TaxoPress is the WordPress Tag, Category, and Taxonomy Manager - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-09-18 08:23:19+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.0-alpha.7\n"
+"Language: ko_KR\n"
+"Project-Id-Version: Plugins - TaxoPress is the WordPress Tag, Category, and Taxonomy Manager - Stable (latest release)\n"
+
+#: views/admin/page-settings.php:37
+msgid "Save Changes"
+msgstr "변경 사항 저장"
+
+#: includes-core/TaxopressCoreAdmin.php:104
+msgid "Use Synonyms and Linked Terms"
+msgstr "동의어 및 연결된 용어 사용"
+
+#: inc/related-posts.php:587
+msgid "Enter the text that should be display after posts list. This field accepts basic HTML."
+msgstr "글 목록 뒤에 표시할 텍스트를 입력합니다. 이 필드에는 기본 HTML을 사용할 수 있습니다."
+
+#: inc/related-posts.php:583
+msgid "Text to display after posts list"
+msgstr "글 목록 뒤에 표시할 텍스트"
+
+#: inc/related-posts.php:571
+msgid "Enter the text that should be display before posts list. This field accepts basic HTML."
+msgstr "글 목록 앞에 표시할 텍스트를 입력합니다. 이 필드에는 기본 HTML을 사용할 수 있습니다."
+
+#: inc/related-posts.php:567
+msgid "Text to display before posts list"
+msgstr "글 목록 앞에 표시할 텍스트"
+
+#: inc/posts.php:240
+msgid "Search Posts"
+msgstr "글 검색"
+
+#. translators: %s: Search query.
+#: inc/posts.php:224
+msgid "Search results for: %s"
+msgstr "검색 결과: %s"
+
+#: inc/posts-table.php:503
+msgid "Last Modified"
+msgstr "최종 수정일"
+
+#: inc/posts-table.php:500
+msgid "Scheduled"
+msgstr "예약됨"
+
+#: inc/posts-table.php:498
+msgid "Missed schedule"
+msgstr "놓친 예약"
+
+#: inc/posts-table.php:495
+msgid "Published"
+msgstr "발행됨"
+
+#. translators: Post time format. See
+#. https://www.php.net/manual/datetime.format.php
+#: inc/posts-table.php:487
+msgid "g:i a"
+msgstr "g:i a"
+
+#. translators: Post date format. See
+#. https://www.php.net/manual/datetime.format.php
+#: inc/posts-table.php:485
+msgid "Y/m/d"
+msgstr "Y/m/d"
+
+#. translators: 1: Post date, 2: Post time.
+#: inc/posts-table.php:483
+msgid "%1$s at %2$s"
+msgstr "%2$s에서 %1$s"
+
+#: inc/posts-table.php:478
+msgid "Unpublished"
+msgstr "미발행"
+
+#: inc/posts-table.php:215
+msgid "No posts found."
+msgstr "게시물이 없습니다."
+
+#: inc/posts-table.php:184
+msgid "All Post Types"
+msgstr "모든 게시물 유형"
+
+#: inc/posts-table.php:183
+msgid "Post Types Filter"
+msgstr "게시물 유형 필터"
+
+#: inc/posts-table.php:164
+msgid "Terms Filter"
+msgstr "용어 필터"
+
+#: inc/posts-table.php:39
+msgid "Author"
+msgstr "작성자"
+
+#: inc/posts-table.php:38
+msgid "Post Status"
+msgstr "게시물 상태"
+
+#: inc/post-tags.php:528 inc/tag-clouds.php:565
+msgid "Enter the text that should be display after terms list. This field accepts basic HTML."
+msgstr "용어 목록 뒤에 표시할 텍스트를 입력합니다. 이 필드에는 기본 HTML을 사용할 수 있습니다."
+
+#: inc/post-tags.php:512 inc/tag-clouds.php:549
+msgid "Enter the text that should be display before terms list. This field accepts basic HTML."
+msgstr "용어 목록 앞에 표시할 텍스트를 입력합니다. 이 필드에는 기본 HTML을 사용할 수 있습니다."
+
+#: inc/helper.options.admin.php:500
+msgid "Enable \"Mass Edit Terms\""
+msgstr "\"약관 대량 수정\" 사용"
+
+#: inc/helper.options.admin.php:495
+msgid "These feature is no longer being updated and may be removed in the future version of TaxoPress"
+msgstr "이 기능은 더 이상 업데이트되지 않으며 향후 TaxoPress 버전에서 제거될 수 있습니다."
+
+#: inc/helper.options.admin.php:383
+msgid "These settings are no longer being updated. Please use the \"Auto Links\" screen instead."
+msgstr "이 설정은 더 이상 업데이트되지 않습니다. 대신 '자동 링크' 화면을 사용하세요."
+
+#: inc/helper.options.admin.php:26
+msgid "This controls the taxonomy terms that appear on the \"Posts\" screen"
+msgstr "'글' 화면에 표시되는 분류 용어를 제어합니다."
+
+#: inc/helper.options.admin.php:24
+msgid "Public Taxonomies and Private Taxonomies"
+msgstr "공개 분류 및 비공개 분류"
+
+#: inc/helper.options.admin.php:19
+msgid "Terms Filter taxonomy:"
+msgstr "용어 필터 분류:"
+
+#: inc/helper.options.admin.php:14
+msgid "This controls the details that appear in the \"Terms Filter\" display and can help if you have terms with similar names."
+msgstr "이렇게 하면 '용어 필터' 디스플레이에 표시되는 세부 정보를 제어할 수 있으며, 이름이 비슷한 용어가 있는 경우 도움이 될 수 있습니다."
+
+#: inc/helper.options.admin.php:12
+msgid "Term Name + Taxonomy Slug"
+msgstr "학기 이름 + 분류 슬러그"
+
+#: inc/helper.options.admin.php:11
+msgid "Term Name + Taxonomy Name"
+msgstr "학기 이름 + 분류 이름"
+
+#: inc/helper.options.admin.php:10
+msgid "Term Name"
+msgstr "용어 이름"
+
+#: inc/helper.options.admin.php:7
+msgid "Terms Filter display:"
+msgstr "용어 필터 표시:"
+
+#: inc/functions.inc.php:370 inc/posts.php:215
+msgid "This feature allows you to search for terms and see all the posts attached to that term."
+msgstr "이 기능을 사용하면 용어를 검색하고 해당 용어에 첨부된 모든 게시물을 볼 수 있습니다."
+
+#: inc/class.admin.manage.php:656
+msgid "Renamed term(s) \"%1$s\" to \"%2$s\""
+msgstr "용어 \"%1$s\"를 \"%2$s\"로 이름 변경"
+
+#: inc/class.admin.manage.php:570
+msgid "Removed term(s) \"%1$s\" from %2$s %3$s"
+msgstr "%2$s %3$s에서 용어 \"%1$s\"를 제거했습니다."
+
+#: inc/class.admin.manage.php:465 inc/class.admin.manage.php:495
+msgid "Merge term(s) \"%1$s\" to \"%2$s\". %3$s posts edited."
+msgstr "용어 \"%1$s\"를 \"%2$s\"로 병합합니다. %3$s 게시물이 편집되었습니다."
+
+#: inc/terms-table.php:118
+msgid "Linked Terms"
+msgstr "연결된 용어"
+
+#: inc/autoterms.php:741
+msgid "TaxoPress will add a term to the post if a synonym is found."
+msgstr "동의어가 발견되면 TaxoPress가 게시물에 해당 용어를 추가합니다."
+
+#: inc/autoterms.php:737
+msgid "Add terms if synonyms found"
+msgstr "동의어가 발견되면 용어 추가"
+
+#: inc/terms-table.php:117
+msgid "Synonyms"
+msgstr "동의어"
+
+#: inc/functions.inc.php:412
+msgid "This feature allows you to add, rename, merge, and delete terms for any taxonomy."
+msgstr "이 기능을 사용하면 모든 분류체계에 대한 용어를 추가, 이름 변경, 병합 및 삭제할 수 있습니다."
+
+#: inc/helper.options.admin.php:503
+msgid "This feature allows you to quickly edit the terms attached to multiple posts at the same time."
+msgstr "이 기능을 사용하면 여러 개의 글에 첨부된 용어를 동시에 빠르게 편집할 수 있습니다."
+
+#: inc/functions.inc.php:406
+msgid "This feature helps when you're writing content. \"Suggest Terms\" shows a box with all existing terms, and can also analyze your content to find new ideas for terms."
+msgstr "이 기능은 콘텐츠를 작성할 때 유용합니다. '용어 제안'은 기존의 모든 용어가 표시된 상자를 보여주며, 콘텐츠를 분석하여 새로운 용어 아이디어를 찾을 수도 있습니다."
+
+#: inc/functions.inc.php:394
+msgid "This feature automatically adds links to your chosen terms. If you have a term called “WordPress”, Auto Links finds the word “WordPress” in your content and add links to the archive page for that term."
+msgstr "이 기능은 선택한 용어에 대한 링크를 자동으로 추가합니다. \"워드프레스\"라는 용어가 있는 경우 자동 링크는 콘텐츠에서 \"워드프레스\"라는 단어를 찾아 해당 용어의 아카이브 페이지에 링크를 추가합니다."
+
+#: inc/functions.inc.php:388
+msgid "This feature creates a display of similar posts. If a post has the terms “WordPress” and “Website”, Related Posts will display other posts with those same terms."
+msgstr "이 기능은 유사한 글을 표시합니다. 글에 \"워드프레스\" 및 \"웹사이트\"라는 용어가 포함된 경우 관련 글에는 같은 용어가 포함된 다른 글이 표시됩니다."
+
+#: inc/functions.inc.php:364
+msgid "This feature allows you to search and edit all the terms on your site."
+msgstr "이 기능을 사용하면 사이트의 모든 용어를 검색하고 편집할 수 있습니다."
+
+#: inc/dashboard.php:72
+msgid "This screen allows you to enable or disable TaxoPress features."
+msgstr "이 화면에서 택소프레스 기능을 활성화 또는 비활성화할 수 있습니다."
+
+#: inc/dashboard.php:43 inc/dashboard.php:44 inc/dashboard.php:70
+msgid "Dashboard"
+msgstr "알림판"
+
+#: inc/class.admin.php:176
+msgid "Error: wrong data"
+msgstr "오류: 잘못된 데이터"
+
+#: inc/class.admin.php:171
+msgid "Invalid nonce token!"
+msgstr "논스 토큰이 잘못되었습니다!"
+
+#: inc/class.admin.php:161
+msgid "No permission!"
+msgstr "권한이 없습니다!"
+
+#: inc/autolinks.php:813
+msgid "By default, TaxoPress will add links for all terms. If this box is unchecked, Auto Links will only add links for terms that are attached to the post."
+msgstr "기본적으로 택소프레스는 모든 용어에 대한 링크를 추가합니다. 이 확인란을 선택 취소하면 자동 링크는 글에 첨부된 용어에 대한 링크만 추가합니다."
+
+#: inc/autolinks.php:809
+msgid "Add links for all terms"
+msgstr "모든 용어에 대한 링크 추가"
+
+#: inc/autolinks.php:781
+msgid "Add links to the term synonyms."
+msgstr "용어 동의어에 대한 링크를 추가합니다."
+
+#: inc/autolinks.php:777
+msgid "Add links to synonyms"
+msgstr "동의어에 링크 추가"
+
+#: inc/terms.php:135
+msgid "Error updating term."
+msgstr "용어를 업데이트하는 동안 오류가 발생했습니다."
+
+#: inc/terms-table.php:411
+msgid "Remove From All Posts"
+msgstr "모든 게시물에서 제거"
+
+#: inc/terms-table.php:280
+msgid "No terms found."
+msgstr "용어를 찾을 수 없습니다."
+
+#: inc/terms-functions.php:90
+msgid "Term removed from all posts successfully."
+msgstr "모든 게시물에서 용어가 제거되었습니다."
+
+#: inc/taxonomies.php:536
+msgid "Set the default terms for this taxonomy. Enter the term names or slugs. Separate multiple terms with by comma."
+msgstr "이 택소노미의 기본 용어를 설정합니다. 용어 이름 또는 슬래그를 입력합니다. 여러 용어를 쉼표로 구분합니다."
+
+#: inc/class-taxonomies-table.php:107
+msgid "No taxonomies found."
+msgstr "택소노미를 찾을 수 없습니다."
+
+#: inc/class.admin.clickterms.php:144
+msgid "suggested terms"
+msgstr "제안 용어"
+
+#: inc/taxonomies.php:1395
+msgid "The name of a custom Rest Controller class instead of WP_REST_Terms_Controller."
+msgstr "WP_REST_Terms_Controller 대신 사용자 지정 RestController 클래스의 이름."
+
+#: inc/taxonomies.php:1385
+msgid "The base slug that this taxonomy will use in the REST API."
+msgstr "이 택소노미이 REST API에서 사용할 기본 슬러그입니다."
+
+#: inc/taxonomies.php:1376
+msgid "Add the taxonomy to the WordPress wp-json API."
+msgstr "택소노미를 워드프레스 wp-json API에 추가합니다."
+
+#: inc/class.compatibility.php:40
+msgid "%s is the minimum version required for this plugin."
+msgstr "%s은(는) 이 플러그인에 필요한 최소 버전입니다."
+
+#: inc/class.compatibility.php:38
+msgid "The active plugin %s is not compatible with your PHP version."
+msgstr "활성 플러그인 %s이(가) PHP 버전과 호환되지 않습니다."
+
+#: inc/class.compatibility.php:37
+msgid "Warning:"
+msgstr "경고:"
+
+#: inc/taxonomies.php:1001
+msgid "Show in Filter"
+msgstr "필터에 표시"
+
+#: inc/autolinks.php:979 inc/autoterms.php:1142
+msgid "If your website language does not use the A-Z alphabet, %1s please read this documentation. %2s"
+msgstr "웹 사이트 언어가 A-Z 알파벳을 사용하지 않는 경우 %1s 이 설명서를 읽어 보십시오. %2s"
+
+#: inc/autolinks.php:975 inc/autoterms.php:1138
+msgid "TaxoPress and Languages"
+msgstr "택소프레스와 언어"
+
+#: inc/terms.php:225
+msgid "This screen allows you search and edit all the terms on your site."
+msgstr "이 화면에서 사이트의 모든 용어를 검색하고 편집할 수 있습니다."
+
+#: inc/tag-clouds.php:780
+msgid "Font size minimum must not be greater than Font size maximum value."
+msgstr "최소 글꼴 크기는 최대 글꼴 크기 값보다 클 수 없습니다."
+
+#: inc/tag-clouds.php:699
+msgid "This is the color of the most popular term"
+msgstr "이것은 가장 인기있는 용어의 색입니다"
+
+#: inc/tag-clouds.php:688
+msgid "This is the color of the least popular term"
+msgstr "이것은 가장 인기 없는 용어의 색입니다"
+
+#: inc/tag-clouds.php:677
+msgid "Enable colors for terms"
+msgstr "용어에 색상 사용"
+
+#. Description of the plugin
+msgid "TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms."
+msgstr "택소프레스를 사용하면 태그, 카테고리 및 모든 워드프레스 택소노미 용어를 만들고 관리할 수 있습니다."
+
+#: inc/terms.php:115
+msgid "Item not updated."
+msgstr "항목이 업데이트되지 않았습니다."
+
+#: inc/terms-table.php:691
+msgid "Cancel"
+msgstr "취소"
+
+#: inc/terms-table.php:676
+msgctxt "term name"
+msgid "Taxonomy"
+msgstr "택소노미"
+
+#: inc/terms-table.php:667
+msgctxt "term name"
+msgid "Name"
+msgstr "이름."
+
+#: inc/terms-table.php:664
+msgid "Quick Edit"
+msgstr "빠른 편집"
+
+#: inc/terms-table.php:397
+msgid "Quick&nbsp;Edit"
+msgstr "빠른&nbsp;편집"
+
+#. translators: %s: Taxonomy term name.
+#: inc/terms-table.php:396
+msgid "Quick edit &#8220;%s&#8221; inline"
+msgstr "빠른 편집 &#8220;%s&#8221; 인라인"
+
+#: includes-core/TaxopressCoreAdmin.php:208
+msgid "TaxoPress Pro allows you to change how Auto Terms analyzes your posts. You will need to know how to write Regular Expressions to use this feature."
+msgstr "택소프레스 프로를 사용하면 자동 용어가 게시물을 분석하는 방법을 변경할 수 있습니다. 이 기능을 사용하려면 정규식을 작성하는 방법을 알아야 합니다."
+
+#: includes-core/TaxopressCoreAdmin.php:203
+msgid "Use Regular Expressions to modify Auto Terms"
+msgstr "정규식을 사용하여 자동 용어 수정"
+
+#: inc/terms.php:248
+msgid "Search Terms"
+msgstr "검색어"
+
+#: inc/terms-table.php:255
+msgid "Terms deleted successfully."
+msgstr "용어가 삭제되었습니다."
+
+#: inc/functions.inc.php:363 inc/posts-table.php:36 inc/terms-table.php:15
+#: inc/terms.php:171 inc/terms.php:172 inc/terms.php:223
+msgid "Terms"
+msgstr "용어"
+
+#: inc/terms-table.php:14
+msgid "Term"
+msgstr "용어"
+
+#: inc/terms-functions.php:81 inc/terms-table.php:258
+msgid "Term deleted successfully."
+msgstr "용어가 삭제되었습니다."
+
+#: inc/post-tags.php:72
+msgid "Current Post"
+msgstr "현재 게시물"
+
+#: inc/class-taxonomies-table.php:295 inc/terms-table.php:435
+msgid "View"
+msgstr "보기"
+
+#: inc/tag-clouds.php:598
+msgid "Hide display output if no terms?"
+msgstr "용어가 없는 경우 디스플레이 출력을 숨기시겠습니까?"
+
+#: inc/tag-clouds.php:356
+msgid "Hide title in output?"
+msgstr "결과에서 제목을 숨기시겠습니까?"
+
+#: inc/autoterms.php:908
+msgid "This enables you to skip posts that have already been analyzed by the Existing Content feature."
+msgstr "이렇게 하면 기존 콘텐츠 기능으로 이미 분석된 게시물을 건너뛸 수 있습니다."
+
+#: inc/autoterms.php:907
+msgid "Exclude previously analyzed content"
+msgstr "이전에 분석한 콘텐츠 제외"
+
+#: inc/ajax-request.php:91
+msgid "Completed: %s posts checked."
+msgstr "완료됨: %s 게시물이 확인되었습니다."
+
+#: inc/ajax-request.php:81
+msgid "Progress report: %s posts checked."
+msgstr "진행 보고서: %s 게시물이 확인되었습니다."
+
+#: inc/class.admin.suggest.php:140
+msgid "Invalid request."
+msgstr "잘못된 요청입니다."
+
+#: inc/autoterms.php:183
+msgid "Delete All Logs"
+msgstr "모든 로그 삭제"
+
+#: inc/autoterms.php:183
+msgid "Are you sure you want to delete all logs?"
+msgstr "모든 로그를 삭제하시겠습니까?"
+
+#: inc/autoterms.php:180
+msgid "Disable Logs"
+msgstr "로그 사용 안 함"
+
+#: inc/autoterms.php:180
+msgid "Are you sure you want to disable logs?"
+msgstr "로그를 사용하지 않도록 설정하시겠습니까?"
+
+#: inc/autoterms.php:178
+msgid "Enable Logs"
+msgstr "로그 사용"
+
+#: inc/autoterms-logs-table.php:550 inc/terms-table.php:692
+msgid "Update"
+msgstr "업데이트"
+
+#: inc/autoterms-logs-table.php:548
+msgid "Limit the number of logs"
+msgstr "로그 수 제한"
+
+#: inc/autoterms-functions.php:389
+msgid "Auto Terms limit must be greater than 0."
+msgstr "자동 용어 제한은 0보다 커야 합니다."
+
+#: inc/autoterms-functions.php:383
+msgid "Auto Terms limit updated successfully."
+msgstr "자동 용어 제한이 업데이트되었습니다."
+
+#: inc/autoterms-functions.php:377
+msgid "Auto Terms logs deleted successfully."
+msgstr "자동 용어 로그가 성공적으로 삭제되었습니다."
+
+#: inc/autoterms-functions.php:371
+msgid "Auto Terms log deleted successfully."
+msgstr "자동 용어 로그가 성공적으로 삭제되었습니다."
+
+#: inc/autoterms-functions.php:365
+msgid "Auto Terms deleted successfully."
+msgstr "자동 용어가 성공적으로 삭제되었습니다."
+
+#: inc/autoterms-functions.php:359
+msgid "Auto Terms logs disabled successfully."
+msgstr "자동 용어 로그를 사용할 수 없도록 설정했습니다."
+
+#: inc/autoterms-functions.php:353
+msgid "Auto Terms logs enabled successfully."
+msgstr "자동 용어 로그가 사용 가능으로 설정되었습니다."
+
+#: inc/related-posts.php:879
+msgid "The post excerpt"
+msgstr "게시물 발췌문"
+
+#: inc/related-posts.php:878
+msgid "A list of tags used by both the current post and the related post"
+msgstr "현재 게시물과 관련 게시물 모두에서 사용한 태그 목록"
+
+#: inc/related-posts.php:877
+msgid "The ID of the post"
+msgstr "게시물의 ID"
+
+#: inc/related-posts.php:876
+msgid "The number of comments on the post"
+msgstr "게시물에 대한 댓글 수"
+
+#: inc/related-posts.php:875
+msgid "The number of tags used by both posts"
+msgstr "두 게시물에서 사용한 태그 수"
+
+#: inc/related-posts.php:874
+msgid "The date of the post (this shows inside a tooltip)"
+msgstr "게시 날짜(도구 설명 내부에 표시됨)"
+
+#: inc/related-posts.php:873
+msgid "The title of the post"
+msgstr "게시물의 제목"
+
+#: inc/related-posts.php:872
+msgid "The URL of the post"
+msgstr "게시물의 URL"
+
+#: inc/related-posts.php:870
+msgid "Here are the tokens you can use for related posts format"
+msgstr "다음은 관련 게시물 형식에 사용할 수 있는 토큰입니다"
+
+#: inc/related-posts.php:865
+msgid "Related Posts format"
+msgstr "관련 게시물 형식"
+
+#: inc/post-tags.php:732
+msgid "You can also add HTML elements to the formatting."
+msgstr "서식에 HTML 요소를 추가할 수도 있습니다."
+
+#: inc/post-tags.php:730
+msgid "Replaced by the tag’s name, formatted for attribute HTML"
+msgstr "태그 이름으로 대체되고 특성 HTML 형식으로 지정됩니다"
+
+#: inc/post-tags.php:729
+msgid "Replaced by the tag ID"
+msgstr "태그 ID로 대체됨"
+
+#: inc/post-tags.php:728
+msgid "Replaced by the RSS tag link"
+msgstr "RSS 태그 링크로 대체됨"
+
+#: inc/post-tags.php:726
+msgid "The name of the tag"
+msgstr "태그 이름"
+
+#: inc/post-tags.php:725
+msgid "The URL of the tag"
+msgstr "태그의 URL"
+
+#: inc/post-tags.php:723
+msgid "Here are the tokens you can use for Terms for Current Post format"
+msgstr "다음은 현재 게시물 형식의 용어에 사용할 수 있는 토큰입니다"
+
+#: inc/post-tags.php:291 inc/related-posts.php:285
+msgid "Display"
+msgstr "표시"
+
+#: inc/class.admin.php:520
+msgid "New TaxoPress Logs"
+msgstr "새 택소프레스 로그"
+
+#: inc/class.admin.php:519
+msgid "Add New TaxoPress Logs"
+msgstr "새 택소프레스 로그 추가"
+
+#: inc/class.admin.php:518
+msgid "Update TaxoPress Logs"
+msgstr "택소프레스 로그 업데이트"
+
+#: inc/class.admin.php:517
+msgid "Edit TaxoPress Logs"
+msgstr "택소프레스 로그 편집"
+
+#: inc/class.admin.php:515
+msgid "Search TaxoPress Logs"
+msgstr "택소프레스 로그 검색"
+
+#: inc/class.admin.php:513 inc/class.admin.php:514 inc/class.admin.php:516
+#: inc/class.admin.php:521
+msgid "TaxoPress Logs"
+msgstr "택소프레스 로그"
+
+#: inc/autoterms.php:1025
+msgid "Click the button to add Auto Terms to existing content."
+msgstr "자동 용어를 기존 콘텐츠에 추가하려면 버튼을 클릭합니다."
+
+#: inc/autoterms.php:1013
+msgid "This setting allows you to add Auto Terms only to recent content."
+msgstr "이 설정을 사용하면 최근 콘텐츠에만 자동 용어를 추가할 수 있습니다."
+
+#: inc/autoterms.php:1011
+msgid "Limit Auto Terms, based on published date"
+msgstr "게시된 날짜를 기준으로 자동 용어 제한"
+
+#: inc/autoterms.php:960 inc/autoterms.php:994
+msgid "1 year ago"
+msgstr "1년 전"
+
+#: inc/autoterms.php:956 inc/autoterms.php:990
+msgid "6 months ago"
+msgstr "6개월 전"
+
+#: inc/autoterms.php:951 inc/autoterms.php:986
+msgid "1 month ago"
+msgstr "1개월 전"
+
+#: inc/autoterms.php:947 inc/autoterms.php:982
+msgid "2 weeks ago"
+msgstr "2주 전"
+
+#: inc/autoterms.php:943 inc/autoterms.php:978
+msgid "7 days ago"
+msgstr "7일 전"
+
+#: inc/autoterms.php:939 inc/autoterms.php:974
+msgid "24 hours ago"
+msgstr "24시간 전"
+
+#: inc/autoterms.php:930
+msgid "This is the wait time (in seconds) between processing batches of Auto Terms. If you have a lot of existing content, set this to a higher number to avoid timeouts."
+msgstr "이것은 자동 용어의 처리 배치 사이의 대기 시간(초)입니다. 기존 콘텐츠가 많은 경우 시간 초과를 방지하려면 이 값을 더 큰 값으로 설정합니다."
+
+#: inc/autoterms.php:929
+msgid "Batches wait time"
+msgstr "배치 대기 시간"
+
+#: inc/autoterms.php:919
+msgid "This enables you to add Auto Terms to existing content in batches. If you have a lot of existing content, set this to a lower number to avoid timeouts."
+msgstr "이렇게 하면 자동 용어를 기존 콘텐츠에 일괄적으로 추가할 수 있습니다. 기존 콘텐츠가 많은 경우 시간 초과를 방지하려면 이 값을 더 작은 숫자로 설정합니다."
+
+#: inc/autoterms.php:917
+msgid "Limit per batches"
+msgstr "회차별 제한"
+
+#: inc/autoterms.php:238 inc/autoterms.php:348
+msgid "Logs"
+msgstr "로그"
+
+#: inc/autoterms.php:207
+msgid "Search Auto Terms Logs"
+msgstr "자동 용어 로그 검색"
+
+#: inc/autoterms.php:186
+msgid "Auto Terms logs history."
+msgstr "자동 용어는 이력을 기록합니다."
+
+#: inc/autoterms.php:175 inc/autoterms.php:235
+msgid "Add New Auto Terms"
+msgstr "새 자동 용어 추가"
+
+#: inc/autoterms.php:170
+msgid "Auto Terms Logs"
+msgstr "자동 용어 로그"
+
+#: inc/autoterms-table.php:382
+msgid "Open Calais"
+msgstr "Open Calais"
+
+#: inc/autoterms-table.php:378
+msgid "Dandelion"
+msgstr "Dandelion"
+
+#: inc/autoterms-logs-table.php:112 inc/autoterms-logs-table.php:477
+msgid "No new matching terms for Auto Terms settings and the post content."
+msgstr "자동 용어 설정 및 게시물 콘텐츠에 대해 일치하는 새 용어가 없습니다."
+
+#: inc/autoterms-logs-table.php:108 inc/autoterms-logs-table.php:476
+msgid "Terms added successfully"
+msgstr "용어가 성공적으로 추가되었습니다"
+
+#: inc/autoterms-logs-table.php:111 inc/autoterms-logs-table.php:475
+msgid "Post content is empty."
+msgstr "게시물 콘텐츠가 비어 있습니다."
+
+#: inc/autoterms-logs-table.php:110 inc/autoterms-logs-table.php:474
+msgid "Auto Terms settings are configured to skip posts with terms."
+msgstr "자동 용어 설정은 용어가 포함된 게시물을 건너뛰도록 구성됩니다."
+
+#: inc/autoterms-logs-table.php:109 inc/autoterms-logs-table.php:473
+msgid "Auto Terms settings do not exist."
+msgstr "자동 용어 설정이 없습니다."
+
+#: inc/autoterms-logs-table.php:322
+msgid "Delete Log"
+msgstr "로그 삭제"
+
+#: inc/autoterms-logs-table.php:310
+msgid "Edit Main Post"
+msgstr "기본 게시물 편집"
+
+#: inc/autoterms-logs-table.php:194 inc/posts-table.php:40
+msgid "Date"
+msgstr "날짜"
+
+#: inc/autoterms-logs-table.php:155 inc/autoterms-logs-table.php:193
+msgid "Status message"
+msgstr "상태 메시지"
+
+#: inc/autoterms-logs-table.php:192
+msgid "Terms added"
+msgstr "추가된 용어"
+
+#: inc/autoterms-logs-table.php:146 inc/autoterms-logs-table.php:191
+#: inc/autoterms-table.php:69
+msgid "Source"
+msgstr "출처"
+
+#: inc/autoterms-logs-table.php:128 inc/autoterms-logs-table.php:189
+#: inc/terms-table.php:202
+msgid "Post type"
+msgstr "게시물 유형"
+
+#: inc/autoterms-logs-table.php:188 inc/posts-table.php:21
+msgid "Post"
+msgstr "게시물"
+
+#: inc/autoterms-logs-table.php:100 inc/autoterms-logs-table.php:403
+msgid "Scheduled hourly cron"
+msgstr "예약된 시간당 크론"
+
+#: inc/autoterms-logs-table.php:99 inc/autoterms-logs-table.php:402
+msgid "Scheduled daily cron"
+msgstr "예약된 일별 크론"
+
+#: inc/autoterms-logs-table.php:98 inc/autoterms-logs-table.php:401
+msgid "Existing content"
+msgstr "기존 콘텐츠"
+
+#: inc/autoterms-logs-table.php:97 inc/autoterms-logs-table.php:400
+msgid "Manual post update"
+msgstr "수동 게시물 업데이트"
+
+#: inc/autoterms-logs-table.php:15
+msgid "autotermslogs"
+msgstr "자동 용어 로그"
+
+#: inc/autoterms-logs-table.php:14
+msgid "autotermslog"
+msgstr "자동 용어 로그"
+
+#: includes-core/TaxopressCoreAdmin.php:184
+msgid "TaxoPress Pro allows you to generate new terms for your content using the Dandelion and Open Calais services. These services can analyze your content and add new terms."
+msgstr "택소프레스 프로를 사용하면 Dandelion 및 Open Calais 서비스를 사용하여 콘텐츠에 대한 새로운 용어를 생성할 수 있습니다. 이러한 서비스는 콘텐츠를 분석하고 새로운 용어를 추가할 수 있습니다."
+
+#: includes-core/TaxopressCoreAdmin.php:179
+msgid "Automatically add new terms to your content"
+msgstr "콘텐츠에 새 용어 자동 추가"
+
+#: includes-core/TaxopressCoreAdmin.php:103
+msgid "Automatically add terms to imported content"
+msgstr "가져온 콘텐츠에 자동으로 용어 추가"
+
+#: includes-core/TaxopressCoreAdmin.php:102
+msgid "Automatically create new terms"
+msgstr "새 용어 자동 생성"
+
+#: inc/taxonomies.php:428
+msgid "The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr "슬러그는 이름의 URL 친화적인 버전입니다. 일반적으로 모두 소문자이며 문자, 숫자 및 하이픈만 포함됩니다."
+
+#: inc/tag-clouds.php:856
+msgid "The name of the term with any HTML stripped out"
+msgstr "HTML이 제거된 용어의 이름"
+
+#: inc/tag-clouds.php:855
+msgid "The name of the term"
+msgstr "용어 이름"
+
+#: inc/tag-clouds.php:854
+msgid "The font color for the term"
+msgstr "용어의 글꼴 색"
+
+#: inc/tag-clouds.php:853
+msgid "The font size for the term"
+msgstr "용어의 글꼴 크기"
+
+#: inc/tag-clouds.php:852
+msgid "it creates"
+msgstr "생성"
+
+#: inc/post-tags.php:727 inc/tag-clouds.php:852
+msgid "This provides rel tag markup"
+msgstr "이것은 rel 태그 마크업을 제공합니다"
+
+#: inc/tag-clouds.php:851
+msgid "The number of times the term is used"
+msgstr "용어가 사용된 횟수"
+
+#: inc/tag-clouds.php:850
+msgid "The weighted size of the term in the display"
+msgstr "디스플레이에 표시되는 용어의 가중치 크기"
+
+#: inc/tag-clouds.php:849
+msgid "The ID of the term"
+msgstr "용어의 ID"
+
+#: inc/tag-clouds.php:848
+msgid "The URL of the term"
+msgstr "용어의 URL"
+
+#: inc/tag-clouds.php:846
+msgid "Here are the tokens you can use for Term link format"
+msgstr "다음은 용어 링크 형식에 사용할 수 있는 토큰입니다"
+
+#: inc/tag-clouds.php:841
+msgid "Terms Display format"
+msgstr "용어 표시 형식"
+
+#: inc/tag-clouds.php:744
+msgid "This option allows you to change the format of your terms. You can use any of the tokens in the \"Terms Display format\" sidebar\". Find more details %1sin the documentation%2s."
+msgstr "이 옵션을 사용하면 용어의 형식을 변경할 수 있습니다. \"용어 표시 형식\" 사이드바에서 토큰을 사용할 수 있습니다. %1s 에 대한 자세한 내용은 %2s 설명서를 참조하십시오."
+
+#: inc/tag-clouds.php:301
+msgid "Display Format"
+msgstr "표시 형식"
+
+#: inc/tag-clouds.php:296
+msgid "Design"
+msgstr "디자인"
+
+#: inc/tag-clouds.php:286
+msgid "Choose Terms"
+msgstr "용어 선택"
+
+#: inc/suggestterms.php:684
+msgid "You need an API key to use OpenCalais to suggest terms. %1sClick here for documentation.%2s."
+msgstr "OpenCalais를 사용하여 용어를 제안하려면 API 키가 필요합니다. %1s설명을 보려면 여기를 클릭하십시오.%2s."
+
+#: inc/suggestterms.php:626
+msgid "You need an API key to use Dandelion to suggest terms. %1sClick here for documentation.%2s."
+msgstr "Dandelion을 사용하여 용어를 제안하려면 API 키가 필요합니다. %1s설명을 보려면 여기를 클릭하십시오.%2s."
+
+#: inc/suggestterms.php:544
+msgid "This feature shows a metabox that can analyze your content and find ideas for terms."
+msgstr "이 기능은 콘텐츠를 분석하고 용어에 대한 아이디어를 찾을 수 있는 메타박스를 보여줍니다."
+
+#: inc/suggestterms.php:476
+msgid "Set (0) for no limit."
+msgstr "제한 없음으로 (0)을 설정합니다."
+
+#: inc/post-tags.php:613 inc/related-posts.php:762
+msgid "You can find markers and explanations %1sin the documentation%2s."
+msgstr "%2s 설명서에서 마커 및 %1 설명을 찾을 수 있습니다."
+
+#: inc/post-tags.php:475
+msgid "You must set zero (0) to display all post tags."
+msgstr "모든 게시 태그를 표시하려면 0을 설정해야 합니다."
+
+#: inc/class.compatibility.php:20
+msgid "TaxoPress requires PHP version %s or greater to be activated."
+msgstr "택소프레스를 활성화하려면 PHP 버전 %s 이상이 필요합니다."
+
+#: inc/class.admin.suggest.php:393
+msgid "There are no terms that are relevant to your content."
+msgstr "콘텐츠와 관련된 용어가 없습니다."
+
+#: inc/class.admin.suggest.php:178 inc/class.admin.suggest.php:259
+#: inc/class.admin.suggest.php:344
+msgid "There's no content to scan."
+msgstr "검색할 콘텐츠가 없습니다."
+
+#: inc/class.admin.suggest.php:59
+msgid "Refresh"
+msgstr "새로 고침"
+
+#: inc/class.admin.suggest.php:56
+msgid "Existing terms on your site"
+msgstr "사이트의 기존 용어"
+
+#: inc/class.admin.php:708
+msgid "Thanks for using TaxoPress | %1sTaxoPress.com%2s | Version %3s"
+msgstr "택소프레스 | %1sTaxoPress.com %2s | 버전 %3s를 사용해 주셔서 감사합니다"
+
+#: inc/class.admin.manage.php:89
+msgid "Missing valid taxonomy for work. Try again."
+msgstr "작업에 대한 올바른 택소노미이 없습니다. 다시 해보세요."
+
+#: inc/class.admin.manage.php:86 inc/class.admin.mass.php:58
+msgid "Security problem. Try again."
+msgstr "보안 문제입니다. 다시 해보세요."
+
+#: inc/class.admin.clickterms.php:132 inc/class.admin.suggest.php:55
+msgid "Edit this metabox"
+msgstr "이 메타박스 편집"
+
+#: inc/autoterms.php:241 inc/functions.inc.php:400
+msgid "Auto Terms can scan your content and automatically assign new and existing terms."
+msgstr "자동 용어는 콘텐츠를 검색하고 새 용어와 기존 용어를 자동으로 할당할 수 있습니다."
+
+#: inc/post-tags.php:642 inc/related-posts.php:790
+msgid ""
+"You're using TaxoPress Free.\n"
+"                                            The Pro version has more features and support."
+msgstr ""
+"택소프레스 무료 버전을 사용하고 있습니다.\n"
+"                                            프로 버전은 더 많은 기능과 지원을 제공합니다."
+
+#: inc/class.admin.manage.php:154
+msgid "Delete unused terms"
+msgstr "사용하지 않는 용어 삭제"
+
+#: inc/class.admin.manage.php:151
+msgid "Merge terms"
+msgstr "용어 병합"
+
+#: inc/class.admin.manage.php:148
+msgid "Rename terms"
+msgstr "용어 이름 바꾸기"
+
+#: inc/class.admin.manage.php:145
+msgid "Add terms"
+msgstr "용어 추가"
+
+#: inc/class.admin.manage.php:83
+msgid "Permission denied!"
+msgstr "권한이 거부되었습니다!"
+
+#: inc/autoterms.php:712
+msgid "Please choose an option for \"Sources\""
+msgstr "\"소스\"에 대한 옵션을 선택하십시오"
+
+#: inc/autoterms.php:633
+msgid "This will add existing terms from the taxonomy selected in the \"General\" tab."
+msgstr "이렇게 하면 \"일반\" 탭에서 선택한 택소노미에서 기존 용어가 추가됩니다."
+
+#: inc/autoterms-table.php:374 inc/autoterms.php:632
+msgid "Existing taxonomy terms"
+msgstr "기존 택소노미 용어"
+
+#: inc/autoterms.php:407
+msgid "Sources"
+msgstr "소스"
+
+#: inc/autolinks.php:909 inc/autoterms.php:1072 inc/suggestterms.php:712
+#: inc/tag-clouds.php:771
+msgid ""
+"You're using TaxoPress Free.\n"
+"                                        The Pro version has more features and support."
+msgstr ""
+"택소프레스 무료 버전을 사용하고 있습니다.\n"
+"                                        프로 버전은 더 많은 기능과 지원을 제공합니다."
+
+#: inc/ajax-request.php:26
+msgid "Permission denied."
+msgstr "권한 거부."
+
+#: includes-core/TaxopressCoreAdmin.php:160
+msgid "TaxoPress Pro allows you to schedule the \"Auto Terms to existing content\" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add terms to your imported content."
+msgstr "택소프레스 프로를 사용하면 \"기존 콘텐츠에 대한 자동 용어\" 기능을 예약할 수 있습니다. 이것은 내용을 정기적으로 워드프레스로 가져오는 경우 유용합니다. 택소프레스 프로는 매일 또는 매시간 실행할 수 있으며 가져온 콘텐츠에 용어를 추가할 수 있습니다."
+
+#: includes-core/TaxopressCoreAdmin.php:155
+msgid "Schedule Auto Terms for your content"
+msgstr "콘텐츠에 대한 자동 용어 예약"
+
+#: includes-core/TaxopressCoreAdmin.php:132
+msgid "View Knowledge Base"
+msgstr "기술 자료 보기"
+
+#: includes-core/TaxopressCoreAdmin.php:130
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "자세한 설명서는 플러그인 웹 사이트에서도 확인할 수 있습니다."
+
+#: includes-core/TaxopressCoreAdmin.php:123
+msgid "Request Support"
+msgstr "지원 요청"
+
+#: includes-core/TaxopressCoreAdmin.php:121
+msgid "If you need help or have a new feature request, let us know."
+msgstr "도움이 필요하거나 새로운 기능 요청이 있으면 알려주십시오."
+
+#: includes-core/TaxopressCoreAdmin.php:116
+msgid "Need TaxoPress Support?"
+msgstr "택소프레스 지원이 필요합니까?"
+
+#: inc/autolinks.php:912 inc/autoterms.php:1076 inc/post-tags.php:645
+#: inc/related-posts.php:794 inc/suggestterms.php:717 inc/tag-clouds.php:775
+#: includes-core/TaxopressCoreAdmin.php:109
+#: includes-core/TaxopressCoreAdmin.php:162
+#: includes-core/TaxopressCoreAdmin.php:186
+#: includes-core/TaxopressCoreAdmin.php:210
+msgid "Upgrade to Pro"
+msgstr "프로로 업그레이드"
+
+#: includes-core/TaxopressCoreAdmin.php:106
+msgid "No ads inside the plugin"
+msgstr "플러그인 내부에 광고가 없습니다"
+
+#: includes-core/TaxopressCoreAdmin.php:105
+msgid "Fast, professional support"
+msgstr "신속하고 전문적인 지원"
+
+#: includes-core/TaxopressCoreAdmin.php:101
+msgid "Unlimited “Suggest Terms”"
+msgstr "제한없는 \"제안 용어\""
+
+#: includes-core/TaxopressCoreAdmin.php:100
+msgid "Unlimited “Auto Terms”"
+msgstr "제한없는 \"자동 용어\""
+
+#: includes-core/TaxopressCoreAdmin.php:99
+msgid "Unlimited “Auto Links”"
+msgstr "제한없는 \"자동 링크\""
+
+#: includes-core/TaxopressCoreAdmin.php:98
+msgid "Unlimited “Related Posts”"
+msgstr "제한없는 \"관련 게시물\""
+
+#: includes-core/TaxopressCoreAdmin.php:97
+msgid "Unlimited “Terms for Current Posts”"
+msgstr "제한없는 \"현재 게시물 용어\""
+
+#: includes-core/TaxopressCoreAdmin.php:96
+msgid "Unlimited “Term Display”"
+msgstr "제한없는 \"용어 표시\""
+
+#: includes-core/TaxopressCoreAdmin.php:93
+msgid "Enhance the power of TaxoPress with the Pro version:"
+msgstr "프로 버전으로 택소프레스의 기능을 강화합니다:"
+
+#: includes-core/TaxopressCoreAdmin.php:88
+msgid "Upgrade to TaxoPress Pro"
+msgstr "택소프레스 프로로 업그레이드"
+
+#: inc/autoterms.php:422
+msgid "Schedule"
+msgstr "스케쥴"
+
+#: inc/suggestterms.php:291
+msgid "Automatic Term Suggestions"
+msgstr "자동 용어 제안"
+
+#: inc/class.admin.manage.php:568
+msgid "This term is not associated with any %1$s."
+msgstr "이 용어는 %1$s와 연관되지 않습니다."
+
+#: inc/autoterms.php:842
+msgid "Please choose an option for \"Content statuses\""
+msgstr "\"콘텐츠 상태\"에 대한 옵션을 선택하십시오"
+
+#: inc/autoterms.php:840
+msgid "Content statuses"
+msgstr "콘텐츠 상태"
+
+#: inc/autoterms.php:838
+msgid "Add terms for unpublished content."
+msgstr "발행되지 않은 콘텐츠에 용어를 추가합니다."
+
+#: inc/autoterms.php:838
+msgid "Add terms for published content."
+msgstr "발행된 콘텐츠에 용어를 추가합니다."
+
+#: inc/suggestterms.php:760
+msgid "Add Suggest Terms"
+msgstr "제안 용어 추가"
+
+#: inc/suggestterms.php:753
+msgid "Save Suggest Terms"
+msgstr "제안 용어 저장"
+
+#: inc/suggestterms.php:672
+msgid "Suggest new terms from the Open Calais service"
+msgstr "Open Calais 서비스의 새로운 용어 제안"
+
+#: inc/suggestterms.php:614
+msgid "Suggest new terms from the Dandelion service"
+msgstr "Dandelion 서비스의 새로운 용어 제안"
+
+#: inc/suggestterms.php:588
+msgid "Suggest existing terms on your site"
+msgstr "사이트의 기존 용어 제안"
+
+#: inc/suggestterms.php:436
+msgid "This feature shows a metabox where you can browse all your existing terms."
+msgstr "이 기능은 기존의 모든 용어를 검색할 수 있는 메타박스를 보여줍니다."
+
+#: inc/suggestterms.php:364
+msgid "Default Taxonomy"
+msgstr "기본 택소노미"
+
+#: inc/suggestterms.php:297
+msgid "Show Existing Terms"
+msgstr "기존 용어 표시"
+
+#: inc/suggestterms.php:272
+msgid "With TaxoPress Pro, you can create unlimited Suggest Terms. You can create Suggest Terms for any taxonomy."
+msgstr "택소프레스 프로를 사용하면 무제한 제안 용어를 만들 수 있습니다. 어떤 택소노미에나 제안 용어를 만들 수 있습니다."
+
+#: inc/suggestterms.php:269
+msgid "To create more Suggest Terms, please upgrade to TaxoPress Pro."
+msgstr "더 많은 제안 용어를 만들려면 택소프레스 프로로 업그레이드하십시오."
+
+#: inc/suggestterms.php:257
+msgid "Add new Suggest Terms"
+msgstr "새 제안 용어 추가"
+
+#: inc/suggestterms.php:250
+msgid "Edit Suggest Terms"
+msgstr "제안 용어 편집"
+
+#: inc/suggestterms.php:233
+msgid "Manage Suggest Terms"
+msgstr "제안 용어 관리"
+
+#: inc/suggestterms.php:152
+msgid "Search Suggest Terms"
+msgstr "검색 제안 용어"
+
+#: inc/suggestterms-table.php:68
+msgid "Suggest Term Post type"
+msgstr "제안 용어 게시물 유형"
+
+#: inc/suggestterms-table.php:14
+msgid "Suggest Term"
+msgstr "제안 용어"
+
+#: inc/suggestterms-functions.php:255
+msgid "Suggest Terms successfully deleted."
+msgstr "제안 용어가 성공적으로 삭제되었습니다."
+
+#: inc/suggestterms.php:130
+msgid "This feature helps when you're writing content. \"Suggest Terms\" can show a metabox where you can browse all your existing terms. \"Suggest Terms\" can also analyze your content and find new ideas for terms."
+msgstr "이 기능은 콘텐츠를 작성할 때 도움이 됩니다. \"제안하는 용어\"는 기존의 모든 용어를 검색할 수 있는 메타박스를 보여줄 수 있습니다. \"제안하는 용어\"는 또한 콘텐츠를 분석하고 용어에 대한 새로운 아이디어를 찾을 수 있습니다."
+
+#: inc/functions.inc.php:405 inc/suggestterms-table.php:15
+#: inc/suggestterms.php:71 inc/suggestterms.php:72 inc/suggestterms.php:125
+msgid "Suggest Terms"
+msgstr "제안 용어"
+
+#: inc/related-posts.php:130
+msgid "The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”."
+msgstr "관련 게시물 기능은 공유 택소노미 용어를 확인함으로써 작동합니다. 게시물에 \"워드프레스\" 및 \"Website\"라는 용어가 있는 경우 관련 게시물에 \"워드프레스\" 및 \"Website\"라는 용어가 있는 다른 게시물이 표시됩니다."
+
+#: inc/functions.inc.php:382 inc/post-tags.php:128
+msgid "This feature allows you create a customizable display of all the terms assigned to the current post."
+msgstr "이 기능을 사용하면 현재 게시물에 할당된 모든 용어를 사용자 정의할 수 있는 표시를 만들 수 있습니다."
+
+#: inc/functions.inc.php:376 inc/tag-clouds.php:130
+msgid "This feature allows you to create a customizable display of all the terms in one taxonomy."
+msgstr "이 기능을 사용하면 하나의 택소노미에 있는 모든 용어를 사용자 정의할 수 있는 표시를 만들 수 있습니다."
+
+#: inc/functions.inc.php:358 inc/taxonomies.php:157
+msgid "This feature allows you to create new taxonomies and edit all the settings for each taxonomy."
+msgstr "이 기능을 사용하면 새 택소노미를 만들고 각 택소노미의 모든 설정을 편집할 수 있습니다."
+
+#: inc/class.admin.suggest.php:163 inc/class.admin.suggest.php:250
+msgid "Suggest terms settings not found"
+msgstr "제안 용어 설정을 찾을 수 없습니다"
+
+#: inc/class.admin.suggest.php:61
+msgid "Select source to load suggested terms"
+msgstr "제안된 용어를 로드할 소스 선택"
+
+#: inc/class.admin.suggest.php:60
+msgid "Select an option above to load suggested terms."
+msgstr "제안된 용어를 로드하려면 위의 옵션을 선택하십시오."
+
+#: inc/class.admin.clickterms.php:173 inc/suggestterms.php:459
+msgid "Show existing terms"
+msgstr "기존 용어 표시"
+
+#: inc/class.admin.clickterms.php:104 inc/suggestterms.php:475
+msgid "Maximum terms"
+msgstr "최대 용어"
+
+#: inc/class.admin.clickterms.php:92 inc/suggestterms.php:530
+msgid "Ordering for choosing terms"
+msgstr "용어 선택 순서 지정"
+
+#: inc/class.admin.clickterms.php:79 inc/suggestterms.php:505
+msgid "Method for choosing terms"
+msgstr "용어 선택 방법"
+
+#: inc/autoterms.php:756
+msgid "Limit the number of generated Auto Terms. '0' for unlimited terms"
+msgstr "생성된 자동 용어의 수를 제한합니다. 무제한 용어의 경우 '0'"
+
+#: inc/autoterms.php:754
+msgid "Auto Terms Limit"
+msgstr "자동 용어 제한"
+
+#: inc/autolinks.php:128
+msgid "Auto Links can automatically create links to your defined terms. For example, if you have a term called “WordPress”, the Auto Links feature can find the word “WordPress” in your content and add links to the archive page for that term."
+msgstr "자동 링크는 정의된 용어에 대한 링크를 자동으로 만들 수 있습니다. 예를 들어, \"워드프레스\"라는 용어가 있는 경우 자동 연결 기능은 내용에서 \"워드프레스\"라는 단어를 찾고 해당 용어의 아카이브 페이지에 대한 링크를 추가할 수 있습니다."
+
+#: review-request/review.php:367
+msgid "I already did"
+msgstr "벌써했어요."
+
+#: review-request/review.php:365
+msgid "Maybe later"
+msgstr "다음 기회에..."
+
+#: review-request/review.php:363
+msgid "Click here to add your rating for TaxoPress"
+msgstr "택소프레스 등급을 추가하려면 여기를 클릭하십시오"
+
+#: review-request/review.php:298
+msgid "3 months"
+msgstr "3개월"
+
+#: review-request/review.php:282
+msgid "1 week"
+msgstr "1주일"
+
+#: review-request/review.php:275
+msgid "Hey, you've been using TaxoPress for %s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep TaxoPress growing."
+msgstr "사이트에서 %s 동안 택소프레스를 사용했습니다. 플러그인이 유용했기를 바랍니다. 워드프레스.org 에 별 5개 등급을 빨리 남겨주실 수 있나요? 그것은 택소프레스의 성장을 유지하는 데 정말 도움이 됩니다."
+
+#: inc/class.admin.post.php:69
+msgid "Disable Auto Links"
+msgstr "자동 링크 사용 안 함"
+
+#: inc/class.admin.post.php:61
+msgid "Disable Auto Terms"
+msgstr "자동 용어 사용 안 함"
+
+#: inc/autoterms.php:1116
+msgid "Add Auto Terms"
+msgstr "자동 용어 추가"
+
+#: inc/autoterms.php:1110
+msgid "Save Auto Terms"
+msgstr "자동 용어 저장"
+
+#: inc/autoterms.php:1021
+msgid "Add Auto Terms to existing content"
+msgstr "기존 콘텐츠에 자동 용어 추가"
+
+#: inc/autoterms.php:833
+msgid "Support hashtags symbols # in Auto Terms."
+msgstr "자동 용어로 해시태그 기호 #을 지원합니다."
+
+#: inc/autoterms.php:832
+msgid "Hashtags"
+msgstr "해시태그"
+
+#: inc/autoterms.php:808
+msgid "Only add terms when the word is an exact match. Do not make matches for partial words."
+msgstr "단어가 정확히 일치하는 경우에만 용어를 추가합니다. 단어의 일부만 일치하는 경우 추가하지 않습니다."
+
+#: inc/autoterms.php:807
+msgid "Whole words"
+msgstr "전체 단어"
+
+#: inc/autoterms.php:783
+msgid "Only use Auto Terms on posts with no added terms."
+msgstr "용어가 추가되지 않은 게시물에 대해서만 자동 용어를 사용하십시오."
+
+#: inc/autoterms.php:782
+msgid "Target content"
+msgstr "대상 콘텐츠"
+
+#: inc/autoterms.php:869
+msgid "Choose terms to be excluded from auto terms."
+msgstr "자동 용어에서 제외할 용어를 선택합니다."
+
+#: inc/autoterms.php:858 inc/autoterms.php:864
+msgid "Stop words"
+msgstr "제외 단어"
+
+#: inc/autoterms.php:715
+msgid "Choose the terms to use."
+msgstr "사용할 용어를 선택합니다."
+
+#: inc/autoterms.php:706
+msgid "Use only some terms in the selected taxonomy."
+msgstr "선택한 택소노미에서 일부 용어만 사용합니다."
+
+#: inc/autoterms.php:679
+msgid "Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms."
+msgstr "선택한 택소노미의 모든 용어를 사용합니다. 이 옵션은 용어가 많을 경우 상당한 서버 리소스를 사용할 수 있으므로 주의하여 테스트하십시오."
+
+#: inc/autoterms.php:523
+msgid "Find term in:"
+msgstr "다음에서 용어 찾기:"
+
+#: inc/autoterms.php:417 inc/autoterms.php:1018
+msgid "Existing Content"
+msgstr "기존 콘텐츠"
+
+#: inc/autoterms.php:390
+msgid "With TaxoPress Pro, you can create unlimited Auto Terms. You can create Auto Terms for any taxonomy."
+msgstr "택소프레스 프로를 사용하면 무제한 자동 용어를 만들 수 있습니다. 모든 택소노미에 대한 자동 용어를 만들 수 있습니다."
+
+#: inc/autoterms.php:387
+msgid "To create more Auto Terms, please upgrade to TaxoPress Pro."
+msgstr "자동 용어를 더 만들려면 택소프레스 프로로 업그레이드하십시오."
+
+#: inc/autoterms.php:375
+msgid "Add new Auto Terms"
+msgstr "새 자동 용어 추가"
+
+#: inc/autoterms.php:368
+msgid "Edit Auto Terms"
+msgstr "자동 용어 편집"
+
+#: inc/autoterms.php:342
+msgid "Manage Auto Terms"
+msgstr "자동 용어 관리"
+
+#: inc/autoterms.php:262
+msgid "Search Auto Terms"
+msgstr "자동 용어 검색"
+
+#: inc/autoterms-table.php:68
+msgid "Auto term Post type"
+msgstr "자동 용어 게시 유형"
+
+#: inc/autoterms-table.php:15
+msgid "Auto terms"
+msgstr "자동 용어"
+
+#: inc/autoterms-table.php:14
+msgid "Auto term"
+msgstr "자동 용어"
+
+#: inc/autoterms-functions.php:347
+msgid "Auto Terms successfully deleted."
+msgstr "자동 용어가 성공적으로 삭제되었습니다."
+
+#: inc/ajax-request.php:38
+msgid "Auto term settings not found"
+msgstr "자동 용어 설정을 찾을 수 없습니다"
+
+#: inc/ajax-request.php:31
+msgid "Kindly save your auto terms settings before running this function"
+msgstr "이 기능을 실행하기 전에 자동 용어 설정을 저장하십시오"
+
+#: simple-tags.php:88
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>이 플러그인은 삭제할 수 있습니다.</strong>"
+
+#: inc/taxonomies.php:1571
+msgid "You can only delete taxonomies created with TaxoPress."
+msgstr "택소프레스로 만든 택소노미만 삭제할 수 있습니다."
+
+#: inc/taxonomies.php:1569
+msgid "Delete Taxonomy"
+msgstr "택소노미 삭제"
+
+#: inc/taxonomies.php:1555
+msgid "Deactivate Taxonomy"
+msgstr "택소노미 비활성화"
+
+#: inc/taxonomies.php:1551
+msgid "Re-activate Taxonomy"
+msgstr "택소노미 다시 활성화"
+
+#: inc/taxonomies.php:535
+msgid "Default Terms"
+msgstr "기본 용어"
+
+#: inc/taxonomies.php:1503
+msgid "Sets a callback function name for the meta box display. Hierarchical default: post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To remove the metabox completely, use \"false\"."
+msgstr "메타 상자 표시에 대한 콜백 함수 이름을 설정합니다. 계층적 기본값: post_categories_meta_box, 비계층적 기본값: post_tags_meta_box. 메타박스를 완전히 제거하려면 \"false\"를 사용합니다."
+
+#: inc/taxonomies.php:1502
+msgid "Metabox callback"
+msgstr "메타박스 콜백"
+
+#: inc/taxonomies.php:1493
+msgid "Sets a custom query_var slug for this taxonomy."
+msgstr "이 택소노미에 대한 사용자 지정 query_var슬러그를 설정합니다."
+
+#: inc/taxonomies.php:1492
+msgid "Custom Query Var String"
+msgstr "사용자 지정 쿼리 Var 문자열"
+
+#: inc/taxonomies.php:1481
+msgid "Enable a custom query_var key for this taxonomy."
+msgstr "이 택소노미에 대해 사용자 지정 query_var 키를 사용합니다."
+
+#: inc/taxonomies.php:1480
+msgid "Query Var"
+msgstr "쿼리 변수"
+
+#: inc/taxonomies.php:1456
+msgid "The taxonomy is publicly queryable."
+msgstr "택소노미은 공개적으로 쿼리할 수 있습니다."
+
+#: inc/taxonomies.php:1455
+msgid "Public Queryable"
+msgstr "공개 쿼리 가능"
+
+#: inc/taxonomies.php:1431
+msgid "The taxonomy is for public use. It can be seen by frontend users."
+msgstr "이 택소노미은 공공용입니다. 프런트 엔드 사용자가 볼 수 있습니다."
+
+#: inc/taxonomies.php:1430
+msgid "Public"
+msgstr "공개"
+
+#: inc/taxonomies.php:1396
+msgid "Custom controller to use instead of WP_REST_Terms_Controller."
+msgstr "WP_REST_Terms_Controller 대신 사용할 사용자 지정 컨트롤러."
+
+#: inc/taxonomies.php:1393
+msgid "REST API controller class"
+msgstr "REST API 컨트롤러 클래스"
+
+#: inc/taxonomies.php:1384
+msgid "REST API base slug"
+msgstr "REST API 기본 슬러그"
+
+#: inc/taxonomies.php:1375
+msgid "Show in REST API"
+msgstr "REST API에 표시"
+
+#. translators: Used for autofill
+#: inc/taxonomies.php:1344
+msgid "Back to %s"
+msgstr "%s로 돌아가기"
+
+#: inc/taxonomies.php:1340
+msgid "The text displayed after a term has been updated for a link back to main index."
+msgstr "주 인덱스로 다시 연결하기 위해 용어 뒤에 표시되는 텍스트가 업데이트되었습니다."
+
+#: inc/taxonomies.php:1339
+msgid "Back to Items"
+msgstr "항목으로 돌아가기"
+
+#: inc/taxonomies.php:1337
+msgid "(e.g. &larr; Back to jobs"
+msgstr "(예: &larr; 작업으로 돌아가기)"
+
+#: inc/taxonomies.php:1322
+msgid "The text displayed via clicking ‘Choose from the most used items’ in the taxonomy meta box when no items are available."
+msgstr "사용 가능한 항목이 없을 때 택소노미 메타 상자에서 '가장 많이 사용하는 항목 중에서 선택'을 클릭하여 표시되는 텍스트입니다."
+
+#: inc/taxonomies.php:1321
+msgid "Not Found"
+msgstr "찾을 수 없음"
+
+#: inc/taxonomies.php:1320
+msgid "(e.g. No jobs found)"
+msgstr "(예: 작업을 찾을 수 없음)"
+
+#. translators: Used for autofill
+#: inc/taxonomies.php:1309
+msgid "%s list"
+msgstr "%s 목록"
+
+#: inc/taxonomies.php:1305
+msgid "Screen reader text for the items list heading on the term listing screen."
+msgstr "용어 목록 화면의 항목 목록 제목에 대한 화면 판독기 텍스트입니다."
+
+#: inc/taxonomies.php:1304
+msgid "Items List"
+msgstr "항목 목록"
+
+#: inc/taxonomies.php:1303
+msgid "(e.g. Jobs list)"
+msgstr "(예: 작업 목록)"
+
+#. translators: Used for autofill
+#: inc/taxonomies.php:1291
+msgid "%s list navigation"
+msgstr "%s 목록 내비게이션"
+
+#: inc/taxonomies.php:1287
+msgid "Screen reader text for the pagination heading on the term listing screen."
+msgstr "용어 목록 화면의 페이지 제목에 대한 화면 판독기 텍스트입니다."
+
+#: inc/taxonomies.php:1286
+msgid "Items List Navigation"
+msgstr "항목 목록 탐색"
+
+#: inc/taxonomies.php:1284
+msgid "(e.g. Jobs list navigation)"
+msgstr "(예: 작업 목록 탐색)"
+
+#. translators: Used for autofill
+#: inc/taxonomies.php:1273
+msgid "No %s"
+msgstr "%s 없음"
+
+#: inc/taxonomies.php:1269
+msgid "Used when indicating that there are no terms in the given taxonomy associated with an object."
+msgstr "지정된 택소노미에 개체와 연결된 용어가 없음을 나타낼 때 사용됩니다."
+
+#: inc/taxonomies.php:1268
+msgid "No terms"
+msgstr "용어 없음"
+
+#: inc/taxonomies.php:1267
+msgid "(e.g. No jobs)"
+msgstr "(예: 작업 없음)"
+
+#. translators: Used for autofill
+#: inc/taxonomies.php:1326
+msgid "No %s found"
+msgstr "%s을(를) 찾을 수 없음"
+
+#: inc/taxonomies.php:1251
+msgid "Choose From Most Used"
+msgstr "가장 많이 사용하는 항목 중에서 선택"
+
+#: inc/taxonomies.php:1249
+msgid "(e.g. Choose from the most used Jobs)"
+msgstr "(예: 가장 많이 사용하는 작업 중에서 선택)"
+
+#: inc/taxonomies.php:1232
+msgid "Add or Remove Items"
+msgstr "항목 추가 또는 제거"
+
+#: inc/taxonomies.php:1230
+msgid "(e.g. Add or remove Jobs)"
+msgstr "(예: 작업 추가 또는 제거)"
+
+#: inc/taxonomies.php:1213
+msgid "Separate Items with Commas"
+msgstr "쉼표로 항목 구분"
+
+#: inc/taxonomies.php:1211
+msgid "(e.g. Separate Jobs with commas)"
+msgstr "(예: 쉼표로 작업 구분)"
+
+#: inc/taxonomies.php:1195
+msgid "Popular Items"
+msgstr "인기 아이템"
+
+#: inc/taxonomies.php:1194
+msgid "(e.g. Popular Jobs)"
+msgstr "(예: 인기 있는 작업)"
+
+#: inc/taxonomies.php:1178
+msgid "Search Items"
+msgstr "항목 검색"
+
+#: inc/taxonomies.php:1177
+msgid "(e.g. Search Jobs)"
+msgstr "(예: 검색 작업)"
+
+#: inc/taxonomies.php:1161
+msgid "Parent Item Colon"
+msgstr "부모 항목 콜론"
+
+#: inc/taxonomies.php:1160
+msgid "(e.g. Parent Job:)"
+msgstr "(예: 상위 작업:)"
+
+#: inc/taxonomies.php:1144
+msgid "Parent Item"
+msgstr "부모 항목"
+
+#: inc/taxonomies.php:1143
+msgid "(e.g. Parent Job)"
+msgstr "(예: 상위 작업)"
+
+#: inc/taxonomies.php:1127
+msgid "New Item Name"
+msgstr "새 항목 이름"
+
+#: inc/taxonomies.php:1126
+msgid "(e.g. New Job Name)"
+msgstr "(예: 새 작업 이름)"
+
+#: inc/taxonomies.php:1111
+msgid "Used at the top of the term editor screen and button text for a new taxonomy term."
+msgstr "새 택소노미 용어의 편집기 화면 및 단추 텍스트 맨 위에 사용됩니다."
+
+#: inc/taxonomies.php:1110
+msgid "Add New Item"
+msgstr "새 항목 추가"
+
+#: inc/taxonomies.php:1109
+msgid "(e.g. Add New Job)"
+msgstr "(예: 새 작업 추가)"
+
+#. translators: Used for autofill
+#: inc/taxonomies.php:1097
+msgid "Update %s name"
+msgstr "%s 이름 업데이트"
+
+#: inc/taxonomies.php:1093 inc/taxonomies.php:1128 inc/taxonomies.php:1145
+#: inc/taxonomies.php:1162 inc/taxonomies.php:1179 inc/taxonomies.php:1196
+#: inc/taxonomies.php:1215 inc/taxonomies.php:1233 inc/taxonomies.php:1252
+msgid "Custom taxonomy label. Used in the admin menu for displaying taxonomies."
+msgstr "사용자 정의 택소노미 레이블입니다. 택소노미를 표시하기 위해 관리 메뉴에서 사용됩니다."
+
+#: inc/taxonomies.php:1092
+msgid "Update Item Name"
+msgstr "항목 이름 업데이트"
+
+#: inc/taxonomies.php:1091
+msgid "(e.g. Update Job Name)"
+msgstr "(예: 작업 이름 업데이트)"
+
+#: inc/taxonomies.php:1076
+msgid "Used in the admin bar when viewing editor screen for an existing taxonomy term."
+msgstr "기존 택소노미 용어에 대한 편집기 화면을 볼 때 관리자 표시줄에서 사용됩니다."
+
+#: inc/taxonomies.php:1075
+msgid "View Item"
+msgstr "항목 보기"
+
+#: inc/taxonomies.php:1074
+msgid "(e.g. View Job)"
+msgstr "(예: 작업 보기)"
+
+#: inc/taxonomies.php:1059
+msgid "Used at the top of the term editor screen for an existing taxonomy term."
+msgstr "기존 택소노미 용어에 대한 용어 편집기 화면의 맨 위에서 사용됩니다."
+
+#: inc/taxonomies.php:1058
+msgid "Edit Item"
+msgstr "항목 편집"
+
+#: inc/taxonomies.php:1057
+msgid "(e.g. Edit Job)"
+msgstr "(예: 작업 편집)"
+
+#: inc/taxonomies.php:1042
+msgid "Used as tab text when showing all terms for hierarchical taxonomy while editing post."
+msgstr "게시물을 편집하는 동안 계층 택소노미에 대한 모든 용어를 표시할 때 탭 텍스트로 사용됩니다."
+
+#: inc/taxonomies.php:1041
+msgid "All Items"
+msgstr "모든 항목"
+
+#: inc/taxonomies.php:1040
+msgid "(e.g. All Jobs)"
+msgstr "(예: 모든 작업)"
+
+#: inc/taxonomies.php:1026
+msgid "Custom admin menu name for your taxonomy."
+msgstr "택소노미의 사용자 지정 관리 메뉴 이름입니다."
+
+#: inc/taxonomies.php:1025
+msgid "Menu Name"
+msgstr "메뉴 이름"
+
+#: inc/taxonomies.php:975
+msgid "Show in \"Quick Edit\" and \"Bulk Edit\""
+msgstr "\"빠른 편집\" 및 \"대량 편집\"에 표시"
+
+#: inc/taxonomies.php:951
+msgid "Show admin column"
+msgstr "관리 열 표시"
+
+#: inc/taxonomies.php:926
+msgid "Show in frontend menus"
+msgstr "프런트 엔드 메뉴에 표시"
+
+#: inc/taxonomies.php:902
+msgid "Show in admin menus"
+msgstr "관리 메뉴에 표시"
+
+#: inc/taxonomies.php:878
+msgid "Show user interface"
+msgstr "사용자 인터페이스 표시"
+
+#: inc/taxonomies.php:844
+msgid "Should the permastruct allow hierarchical urls."
+msgstr "퍼머스트럭처 가 계층 URL을 허용하는지 여부."
+
+#: inc/taxonomies.php:843
+msgid "Rewrite Hierarchical"
+msgstr "계층 구조 다시 쓰기"
+
+#: inc/taxonomies.php:819
+msgid "Should the permastruct be prepended with the front base."
+msgstr "퍼머스트럭처 앞에 앞 베이스를 붙여야 합니다."
+
+#: inc/taxonomies.php:818
+msgid "Rewrite With Front"
+msgstr "앞으로 다시 쓰기"
+
+#: inc/taxonomies.php:795
+msgid "Custom taxonomy rewrite slug."
+msgstr "사용자 정의 택소노미이 슬러그를 다시 씁니다."
+
+#: inc/taxonomies.php:794
+msgid "Custom Rewrite Slug"
+msgstr "사용자 정의 다시 쓰기 슬러그"
+
+#: inc/taxonomies.php:793
+msgid "(default: taxonomy name)"
+msgstr "(기본값: 택소노미 이름)"
+
+#: inc/taxonomies.php:783
+msgid "WordPress can use a custom permalink for this taxonomy. It does not have to match the slug."
+msgstr "워드프레스는 이 택소노미에 사용자 정의 Permal 링크를 사용할 수 있습니다. 그것은 민달팽이와 일치할 필요가 없습니다."
+
+#: inc/taxonomies.php:782
+msgid "Rewrite"
+msgstr "재작성"
+
+#: inc/taxonomies.php:742
+msgid "*Replace \"term_slug\" with the slug of the actual taxonomy term."
+msgstr "* \"term_슬러그\"를 실제 분류 용어의 슬러그로 대체합니다."
+
+#: inc/taxonomies.php:646
+msgid "Show content from all post types on archive page"
+msgstr "아카이브 페이지에 모든 게시물 유형의 콘텐츠 표시"
+
+#: inc/taxonomies.php:645
+msgid "Archive page result"
+msgstr "아카이브 결과"
+
+#: inc/taxonomies.php:526
+msgid "Describe what your taxonomy is used for."
+msgstr "택소노미의 용도를 설명합니다."
+
+#: inc/taxonomies.php:508
+msgid "Can terms in this taxonomy be organized into hierarchical relationships?"
+msgstr "이 택소노미의 용어를 계층적 관계로 구성할 수 있습니까?"
+
+#: inc/taxonomies.php:507
+msgid "Parent-Child Relationships"
+msgstr "부모-자식 관계"
+
+#: inc/taxonomies.php:480
+msgid "Singular Label"
+msgstr "단일 레이블"
+
+#: inc/taxonomies.php:479
+msgid "(e.g. Job)"
+msgstr "(예: 작업)"
+
+#: inc/taxonomies.php:468
+msgid "Plural Label"
+msgstr "다중 레이블"
+
+#: inc/taxonomies.php:467 inc/taxonomies.php:1024
+msgid "(e.g. Jobs)"
+msgstr "(예: 작업)"
+
+#: inc/taxonomies.php:449 inc/taxonomies.php:707
+msgid "Migrate terms to newly renamed taxonomy?"
+msgstr "용어를 새로 이름이 바뀐 택소노미으로 마이그레이션하시겠습니까?"
+
+#: inc/taxonomies.php:438 inc/taxonomies.php:696
+msgid "DO NOT EDIT the taxonomy slug unless also planning to migrate terms. Changing the slug registers a new taxonomy entry."
+msgstr "용어를 마이그레이션할 계획이 없는 한 택소노미 슬러그를 편집하지 마십시오. 슬래그를 변경하면 새 택소노미 항목이 등록됩니다."
+
+#: inc/taxonomies.php:417 inc/taxonomies.php:676
+msgid "Special character not allowed in slug."
+msgstr "특수 문자는 슬러그에 사용할 수 없습니다."
+
+#: inc/taxonomies.php:415 inc/taxonomies.php:673
+msgid "Slug already exists"
+msgstr "슬러그가 이미 존재합니다"
+
+#: inc/taxonomies.php:412 inc/taxonomies.php:670
+msgid "Slug has changed"
+msgstr "슬러그가 변경되었습니다"
+
+#: inc/taxonomies.php:409 inc/taxonomies.php:667
+msgid "Taxonomy Slug"
+msgstr "택소노미 슬러그"
+
+#: inc/taxonomies.php:390
+msgid "Deactivate or Delete"
+msgstr "비활성화 또는 삭제"
+
+#: inc/taxonomies.php:383
+msgid "Templates"
+msgstr "템플릿"
+
+#: inc/taxonomies.php:365
+msgid "REST API"
+msgstr "REST API"
+
+#: inc/taxonomies.php:360
+msgid "Other Labels"
+msgstr "기타 레이블"
+
+#: inc/taxonomies.php:355
+msgid "Admin Area"
+msgstr "관리자 영역"
+
+#: inc/taxonomies.php:350
+msgid "Permalinks"
+msgstr "퍼머링크"
+
+#: inc/taxonomies.php:330
+msgid "Add new Taxonomy"
+msgstr "새 택소노미 추가"
+
+#: inc/taxonomies.php:328
+msgid "Edit Taxonomy"
+msgstr "택소노미 편집"
+
+#: inc/taxonomies.php:1645
+msgid "Add Taxonomy"
+msgstr "택소노미 추가"
+
+#: inc/taxonomies.php:1632
+msgid "Save Taxonomy"
+msgstr "택소노미 저장"
+
+#: inc/taxonomies.php:306
+msgid "Manage Taxonomy"
+msgstr "택소노미 관리"
+
+#: inc/helper.options.admin.php:23 inc/taxonomies.php:196
+#: inc/terms-table.php:222
+msgid "Private Taxonomies"
+msgstr "개인 택소노미"
+
+#: inc/helper.options.admin.php:22 inc/taxonomies.php:195
+#: inc/terms-table.php:221
+msgid "Public Taxonomies"
+msgstr "공용 택소노미"
+
+#: inc/taxonomies.php:194 inc/terms-table.php:220
+msgid "All Taxonomies"
+msgstr "모든 택소노미"
+
+#: inc/taxonomies.php:177
+msgid "Search Taxonomies"
+msgstr "택소노미 검색"
+
+#: inc/taxonomies.php:67
+msgid "Taxonomy slug cannot be numbers only."
+msgstr "택소노미 슬러그는 숫자로만 사용할 수 없습니다."
+
+#: inc/taxonomies.php:65
+msgid "Please select at least one post type."
+msgstr "게시 유형을 하나 이상 선택하십시오."
+
+#: inc/taxonomies.php:63
+msgid "Are you sure you want to delete this? Deleting will NOT remove created content."
+msgstr "삭제하시겠습니까? 삭제해도 생성된 콘텐츠는 제거되지 않습니다."
+
+#: inc/taxonomies-functions.php:1928
+msgid "Invalid taxonomy."
+msgstr "잘못된 택소노미입니다."
+
+#: inc/taxonomies-functions.php:1738
+msgid "Taxonomy has been successfully deleted"
+msgstr "택소노미가 성공적으로 삭제되었습니다"
+
+#: inc/taxonomies-functions.php:1729
+msgid "Taxonomy has been successfully activated"
+msgstr "택소노미가 성공적으로 활성화되었습니다"
+
+#: inc/taxonomies-functions.php:1720
+msgid "Taxonomy has been successfully deactivated"
+msgstr "택소노미가 성공적으로 비활성화되었습니다"
+
+#: inc/taxonomies-functions.php:1710
+msgid "Kindly select atleast one taxonomy to proceed"
+msgstr "계속하려면 택소노미를 하나 이상 선택하십시오"
+
+#: inc/taxonomies-functions.php:1700
+msgid "Kindly select an action in bulk action dropdown!"
+msgstr "대량 작업 드롭다운에서 작업을 선택하십시오!"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1579 inc/taxonomies-functions.php:1626
+#: inc/taxonomies.php:1256
+msgid "Choose from the most used %s"
+msgstr "가장 많이 사용되는 %s 중에서 선택"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1578 inc/taxonomies-functions.php:1625
+#: inc/taxonomies.php:1237
+msgid "Add or remove %s"
+msgstr "%s 추가 또는 제거"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1577 inc/taxonomies-functions.php:1624
+#: inc/taxonomies.php:1219
+msgid "Separate %s with commas"
+msgstr "%s을(를) 쉼표로 구분"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1576 inc/taxonomies-functions.php:1618
+#: inc/taxonomies.php:1132
+msgid "New %s name"
+msgstr "새 %s 이름"
+
+#: inc/taxonomies-functions.php:1574 inc/taxonomies-functions.php:1616
+msgid "Update %s"
+msgstr "%s 업데이트"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1572 inc/taxonomies-functions.php:1614
+#: inc/taxonomies.php:1166
+msgid "Parent %s:"
+msgstr "부모 %s:"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1571 inc/taxonomies-functions.php:1613
+#: inc/taxonomies.php:1149
+msgid "Parent %s"
+msgstr "부모 %s"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1569 inc/taxonomies-functions.php:1622
+#: inc/taxonomies.php:1200
+msgid "Popular %s"
+msgstr "인기 %s"
+
+#: inc/taxonomies-functions.php:1565 inc/taxonomies-functions.php:1608
+msgid "No %s found in trash."
+msgstr "휴지통에 %s이(가) 없습니다."
+
+#: inc/taxonomies-functions.php:1564 inc/taxonomies-functions.php:1607
+msgid "No %s found."
+msgstr "%s을(를) 찾을 수 없습니다."
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1563 inc/taxonomies-functions.php:1568
+#: inc/taxonomies-functions.php:1606 inc/taxonomies-functions.php:1621
+#: inc/taxonomies.php:1183
+msgid "Search %s"
+msgstr "%s 검색"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1562 inc/taxonomies-functions.php:1570
+#: inc/taxonomies-functions.php:1605 inc/taxonomies-functions.php:1623
+#: inc/taxonomies-functions.php:2274 inc/taxonomies.php:1046
+msgid "All %s"
+msgstr "%s 전체"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1560 inc/taxonomies-functions.php:1561
+#: inc/taxonomies-functions.php:1601 inc/taxonomies-functions.php:1604
+#: inc/taxonomies.php:1080
+msgid "View %s"
+msgstr "%s 보기"
+
+#: inc/taxonomies-functions.php:1559 inc/taxonomies-functions.php:1600
+msgid "New %s"
+msgstr "신규 %s"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1558 inc/taxonomies-functions.php:1573
+#: inc/taxonomies-functions.php:1599 inc/taxonomies-functions.php:1615
+#: inc/taxonomies.php:1063
+msgid "Edit %s"
+msgstr "%s 편집"
+
+#. translators: Used for autofill
+#: inc/taxonomies-functions.php:1557 inc/taxonomies-functions.php:1575
+#: inc/taxonomies-functions.php:1598 inc/taxonomies-functions.php:1617
+#: inc/taxonomies.php:1115
+msgid "Add new %s"
+msgstr "새 %s 추가"
+
+#: inc/taxonomies-functions.php:1477
+msgid "%s has failed to be imported"
+msgstr "%s을(를) 가져오지 못했습니다"
+
+#: inc/taxonomies-functions.php:1475
+msgid "%s has been successfully imported"
+msgstr "%s을(를) 성공적으로 가져왔습니다"
+
+#: inc/taxonomies-functions.php:1193
+msgid "Please do not use quotes in post type/taxonomy names or rewrite slugs"
+msgstr "게시물 유형/택소노미 이름에 따옴표를 사용하거나 슬래그를 다시 쓰지 마십시오"
+
+#: inc/taxonomies-functions.php:1179
+msgid "Please choose a different post type name. %s matches an existing page slug, which can cause conflicts."
+msgstr "다른 게시 유형 이름을 선택하십시오. %s이(가) 기존 페이지 슬러그와 일치하므로 충돌이 발생할 수 있습니다."
+
+#: inc/taxonomies-functions.php:1156
+msgid "Please provide a post type to attach to."
+msgstr "첨부할 게시물 유형을 제공하십시오."
+
+#: inc/taxonomies-functions.php:1143
+msgid "Please choose a different taxonomy name. %s is already registered."
+msgstr "다른 택소노미 이름을 선택하십시오. %s은(는) 이미 등록되어 있습니다."
+
+#: inc/taxonomies-functions.php:1129
+msgid "Nonce failed verification"
+msgstr "Nonce 확인 실패"
+
+#: inc/taxonomies-functions.php:1117 inc/taxonomies-functions.php:1471
+msgid "%s has failed to be deleted"
+msgstr "%s을(를) 삭제하지 못했습니다"
+
+#: inc/taxonomies-functions.php:1103 inc/taxonomies-functions.php:1469
+msgid "%s has been successfully deleted"
+msgstr "%s이(가) 성공적으로 삭제되었습니다"
+
+#: inc/taxonomies-functions.php:1088 inc/taxonomies-functions.php:1465
+msgid "%s has failed to be updated"
+msgstr "%s이(가) 업데이트되지 못했습니다"
+
+#: inc/taxonomies-functions.php:1074 inc/taxonomies-functions.php:1463
+msgid "%s has been successfully updated"
+msgstr "%s이(가) 성공적으로 업데이트되었습니다"
+
+#: inc/taxonomies-functions.php:1059 inc/taxonomies-functions.php:1459
+msgid "%s has failed to be added"
+msgstr "%s을(를) 추가하지 못했습니다"
+
+#: inc/taxonomies-functions.php:1045 inc/taxonomies-functions.php:1457
+msgid "%s has been successfully added"
+msgstr "%s이(가) 성공적으로 추가되었습니다"
+
+#: inc/taxonomies-functions.php:1013
+msgid "Object"
+msgstr "오브젝트"
+
+#: inc/taxonomies-functions.php:243
+msgid "Please provide a taxonomy name"
+msgstr "택소노미 이름을 입력하십시오"
+
+#: inc/taxonomies-functions.php:120 inc/taxonomies-functions.php:1846
+msgid "Please provide a taxonomy to delete"
+msgstr "삭제할 택소노미를 입력하십시오"
+
+#: inc/tag-clouds.php:813
+msgid "Add Terms Display"
+msgstr "용어 표시 추가"
+
+#: inc/tag-clouds.php:809
+msgid "Save Terms Display"
+msgstr "용어 표시 저장"
+
+#: inc/tag-clouds.php:719
+msgid "Term display div class"
+msgstr "용어 표시 div 클래스"
+
+#: inc/tag-clouds.php:698
+msgid "Font color maximum"
+msgstr "글꼴 색 최대값"
+
+#: inc/tag-clouds.php:687
+msgid "Font color minimum"
+msgstr "글꼴 색 최소값"
+
+#: inc/tag-clouds.php:646
+msgid "Unit font size"
+msgstr "단위 글꼴 크기"
+
+#: inc/tag-clouds.php:637
+msgid "Percent"
+msgstr "백분율"
+
+#: inc/tag-clouds.php:634
+msgid "Point"
+msgstr "포인트"
+
+#: inc/tag-clouds.php:627
+msgid "Font size maximum"
+msgstr "최대 글꼴 크기"
+
+#: inc/tag-clouds.php:617
+msgid "Font size minimum"
+msgstr "최소 글꼴 크기"
+
+#: inc/tag-clouds.php:526
+msgid "Ordering for choosing terms for display"
+msgstr "표시할 용어 선택 순서"
+
+#: inc/tag-clouds.php:509
+msgid "Method for choosing terms for display"
+msgstr "표시할 용어 선택 방법"
+
+#: inc/tag-clouds.php:491
+msgid "Ordering for choosing term from the database"
+msgstr "데이터베이스에서 용어 선택 순서 지정"
+
+#: inc/class.admin.clickterms.php:89 inc/suggestterms.php:519
+#: inc/tag-clouds.php:482 inc/tag-clouds.php:517
+msgid "Descending"
+msgstr "내림차순"
+
+#: inc/class.admin.clickterms.php:89 inc/suggestterms.php:515
+#: inc/tag-clouds.php:481 inc/tag-clouds.php:516
+msgid "Ascending"
+msgstr "오름차순"
+
+#: inc/tag-clouds.php:474
+msgid "Method for choosing terms from the database"
+msgstr "데이터베이스에서 용어를 선택하는 방법"
+
+#: inc/tag-clouds.php:455
+msgid "Limit terms based on timeframe"
+msgstr "시간에 따른 용어 제한"
+
+#: inc/tag-clouds.php:270
+msgid "With TaxoPress Pro, you can create unlimited Terms Display. You can create Terms Display for any taxonomy and then display those Terms Display anywhere on your site."
+msgstr "택소프레스 프로를 사용하면 무제한 용어 표시를 만들 수 있습니다. 택소노미에 대한 용어 표시를 만든 다음 사이트의 아무 곳에나 해당 용어를 표시할 수 있습니다."
+
+#: inc/tag-clouds.php:267
+msgid "To create more Terms Display, please upgrade to TaxoPress Pro."
+msgstr "용어 표시를 더 만들려면 택소프레스 프로로 업그레이드하십시오."
+
+#: inc/tag-clouds.php:256
+msgid "Add new Terms Display"
+msgstr "새 용어 추가 표시"
+
+#: inc/tag-clouds.php:249
+msgid "Edit Terms Display"
+msgstr "용어 표시 편집"
+
+#: inc/tag-clouds.php:232
+msgid "Manage Terms Display"
+msgstr "용어 표시 관리"
+
+#: inc/tag-clouds.php:150
+msgid "Search Terms Display"
+msgstr "검색어 표시"
+
+#: inc/tag-clouds-table.php:362 inc/tag-clouds.php:412
+msgid "Cloud"
+msgstr "클라우드"
+
+#: inc/tag-clouds-table.php:69 inc/tag-clouds.php:422
+msgid "Display format"
+msgstr "표시 형식"
+
+#: inc/functions.inc.php:375 inc/tag-clouds-table.php:14
+#: inc/tag-clouds-table.php:15 inc/tag-clouds.php:72 inc/tag-clouds.php:73
+#: inc/tag-clouds.php:126
+msgid "Terms Display"
+msgstr "용어 표시"
+
+#: inc/tag-clouds-functions.php:249
+msgid "Terms Display successfully deleted."
+msgstr "용어 표시가 삭제되었습니다."
+
+#: inc/related-posts.php:834
+msgid "Add Related Posts"
+msgstr "관련 게시물 추가"
+
+#: inc/related-posts.php:828
+msgid "Save Related Posts"
+msgstr "관련 게시물 저장"
+
+#: inc/related-posts.php:737
+msgid "Related Posts div class"
+msgstr "관련 게시물 div 클래스"
+
+#: inc/related-posts.php:717
+msgid "Hide output if no related post is found ?"
+msgstr "관련 게시물을 찾을 수 없는 경우 출력을 숨기시겠습니까?"
+
+#: inc/related-posts.php:691
+msgid "Text to show when there is no related post"
+msgstr "관련 게시물이 없을 때 표시할 텍스트"
+
+#: inc/related-posts.php:681
+msgid "Related Posts Order"
+msgstr "관련 게시물 순서"
+
+#: inc/related-posts.php:662
+msgid "Alphabetical"
+msgstr "알파벳순"
+
+#: inc/related-posts.php:658
+msgid "Newer Entries"
+msgstr "새 항목"
+
+#: inc/related-posts.php:654
+msgid "Older Entries"
+msgstr "이전 항목"
+
+#: inc/related-posts.php:648
+msgid "Most common tags between posts"
+msgstr "게시물 간 가장 일반적인 태그"
+
+#: inc/related-posts.php:643
+msgid "Least common tags between posts"
+msgstr "게시물 간 최소 공통 태그"
+
+#: inc/related-posts.php:633
+msgid "Limit related posts based on timeframe"
+msgstr "시간에 따른 관련 게시물 제한"
+
+#: inc/autoterms.php:964 inc/autoterms.php:998 inc/related-posts.php:622
+#: inc/tag-clouds.php:446
+msgid "No limit"
+msgstr "무제한"
+
+#: inc/related-posts.php:618 inc/tag-clouds.php:445
+msgid "1 year"
+msgstr "1년"
+
+#: inc/related-posts.php:614 inc/tag-clouds.php:444
+msgid "6 months"
+msgstr "6개월"
+
+#: inc/related-posts.php:610 inc/tag-clouds.php:443
+#: review-request/review.php:290
+msgid "1 month"
+msgstr "1개월"
+
+#: inc/related-posts.php:606 inc/tag-clouds.php:442
+msgid "2 weeks"
+msgstr "2주"
+
+#: inc/related-posts.php:602 inc/tag-clouds.php:441
+msgid "7 days"
+msgstr "7일"
+
+#: inc/related-posts.php:598 inc/tag-clouds.php:440
+msgid "24 hours"
+msgstr "24시간"
+
+#: inc/related-posts.php:547
+msgid "Maximum related posts to display"
+msgstr "표시할 최대 관련 게시물 수"
+
+#: inc/related-posts.php:512
+msgid "TaxoPress will attempt to automatically display related posts in this content. It may not be successful for all post types and layouts."
+msgstr "택소프레스는 이 콘텐츠에 관련 게시물을 자동으로 표시합니다. 모든 게시 유형 및 레이아웃에 대해 성공적이지 않을 수 있습니다."
+
+#: inc/related-posts.php:511
+msgid "Attempt to automatically display related posts"
+msgstr "관련 게시물 자동 표시 시도"
+
+#: inc/related-posts.php:402 inc/tag-clouds.php:362
+msgid "All post types"
+msgstr "모든 게시물 유형"
+
+#: inc/related-posts.php:347
+msgid "Hide title in output ?"
+msgstr "출력에서 제목을 숨기시겠습니까?"
+
+#: inc/related-posts.php:396
+msgid "Title header"
+msgstr "제목 머리글"
+
+#: inc/related-posts.php:268
+msgid "With TaxoPress Pro, you can create unlimited Related Posts. You can create Related Posts for any taxonomy and then display those Related Posts anywhere on your site."
+msgstr "택소프레스 프로를 사용하면 무제한으로 관련 게시물을 만들 수 있습니다. 택소노미에 대한 관련 게시물을 만든 다음 사이트의 모든 위치에 관련 게시물을 표시할 수 있습니다."
+
+#: inc/related-posts.php:264
+msgid "To create more Related Posts, please upgrade to TaxoPress Pro."
+msgstr "더 많은 관련 게시물을 만들려면 택소프레스 프로로 업그레이드하십시오."
+
+#: inc/related-posts.php:253
+msgid "Add new Related Posts"
+msgstr "새 관련 게시물 추가"
+
+#: inc/related-posts.php:246
+msgid "Edit Related Posts"
+msgstr "관련 게시물 편집"
+
+#: inc/related-posts.php:230
+msgid "Manage Related Posts"
+msgstr "관련 게시물 관리"
+
+#: inc/related-posts.php:150
+msgid "Search Related Posts"
+msgstr "관련 게시물 검색"
+
+#: inc/related-posts-widget.php:142
+msgid "No Related Posts shortcode available. Add new shortcode "
+msgstr "사용 가능한 관련 게시물 쇼트코드가 없습니다. 새 쇼트코드 추가 "
+
+#: inc/related-posts-widget.php:118
+msgid "Select widget Related Posts."
+msgstr "위젯 관련 게시물을 선택합니다."
+
+#: inc/related-posts-widget.php:110
+msgid "Related Posts are added on "
+msgstr "관련 게시물이 추가되었습니다 "
+
+#: inc/related-posts-widget.php:20
+msgid "Taxopress Related Posts Shortcode"
+msgstr "택소프레스 관련 게시물 쇼트코드"
+
+#: inc/related-posts-table.php:336 inc/related-posts.php:406
+msgid "Current post type"
+msgstr "현재 게시물 유형"
+
+#: inc/posts-table.php:37 inc/related-posts-table.php:68
+#: inc/related-posts.php:427 inc/tag-clouds-table.php:68 inc/tag-clouds.php:377
+msgid "Post Type"
+msgstr "게시물 유형"
+
+#: inc/related-posts-table.php:14
+msgid "Related Post"
+msgstr "관련 게시물"
+
+#: inc/related-posts-functions.php:337
+msgid "Related Posts not found."
+msgstr "관련 게시물을 찾을 수 없습니다."
+
+#: inc/related-posts-functions.php:241
+msgid "Related Posts successfully deleted."
+msgstr "관련 게시물이 삭제되었습니다."
+
+#: inc/posts-tags-widget.php:136
+msgid "No terms for current post shortcode available. Add new shortcode "
+msgstr "현재 우편 쇼트코드에 대한 용어가 없습니다. 새 쇼트코드 추가 "
+
+#: inc/posts-tags-widget.php:112
+msgid "Select widget terms for current post."
+msgstr "현재 게시물에 대한 위젯 용어를 선택합니다."
+
+#: inc/posts-tags-widget.php:104
+msgid "Terms for Current Post are added on "
+msgstr "현재 게시물에 대한 용어가 추가되었습니다 "
+
+#: inc/posts-tags-widget.php:18
+msgid "Taxopress Terms for Current Post Shortcode"
+msgstr "현재 게시물 쇼트코드에 대한 택소노미 용어"
+
+#: inc/posts-tags-widget.php:15
+msgid "Terms for Current Post (TaxoPress)"
+msgstr "현재 게시물의 용어(택소프레스)"
+
+#: inc/post-tags.php:697 inc/related-posts.php:845 inc/tag-clouds.php:823
+msgid "Shortcode: "
+msgstr "쇼트코드: "
+
+#: inc/post-tags.php:685
+msgid "Add Terms for Current Post"
+msgstr "현재 게시물에 대한 용어 추가"
+
+#: inc/post-tags.php:679
+msgid "Save Terms for Current Post"
+msgstr "현재 게시물에 대한 용어 저장"
+
+#: inc/post-tags.php:612 inc/related-posts.php:761 inc/tag-clouds.php:743
+msgid "Term link format"
+msgstr "용어 링크 형식"
+
+#: inc/post-tags.php:588
+msgid "Terms for Current Post div class"
+msgstr "현재 게시물의 div 클래스의 용어"
+
+#: inc/post-tags.php:567
+msgid "Hide display output if no terms ?"
+msgstr "용어가 없는 경우 디스플레이 출력 숨기기?"
+
+#: inc/post-tags.php:540
+msgid "Text to display if no terms found"
+msgstr "용어를 찾을 수 없는 경우 표시할 텍스트"
+
+#: inc/post-tags.php:508 inc/tag-clouds.php:545
+msgid "Text to display before terms list"
+msgstr "용어 목록 앞에 표시할 텍스트"
+
+#: inc/post-tags.php:524 inc/tag-clouds.php:561
+msgid "Text to display after terms list"
+msgstr "용어 목록 뒤에 표시할 텍스트"
+
+#: inc/post-tags.php:495
+msgid "Post term separator string:\t"
+msgstr "용어 구분자 문자열:\t"
+
+#: inc/post-tags.php:471 inc/tag-clouds.php:607
+msgid "Maximum terms to display"
+msgstr "표시할 최대 용어"
+
+#: inc/post-tags.php:432
+msgid "TaxoPress will attempt to automatically display terms in this content. It may not be successful for all post types and layouts."
+msgstr "택소프레스는 이 콘텐츠에 용어를 자동으로 표시합니다. 모든 게시물 유형 및 레이아웃에 대해 성공적이지 않을 수 있습니다."
+
+#: inc/post-tags.php:429
+msgid "Attempt to automatically display terms"
+msgstr "자동으로 용어 표시 시도"
+
+#: inc/post-tags.php:271
+msgid "With TaxoPress Pro, you can create unlimited Terms for Current Post. You can create Terms for Current Post for any taxonomy and then display those Terms for Current Post anywhere on your site."
+msgstr "택소프레스 프로를 사용하면 현재 게시물에 대한 무제한 용어를 만들 수 있습니다. 택소노미에 대한 현재 게시물 용어를 만든 다음 사이트의 모든 위치에 현재 게시물 용어를 표시할 수 있습니다."
+
+#: inc/post-tags.php:265
+msgid "To create more Terms for Current Post, please upgrade to TaxoPress Pro."
+msgstr "현재 게시물의 용어를 더 만들려면 택소프레스 프로로 업그레이드하십시오."
+
+#: inc/post-tags.php:254
+msgid "Add new Terms for Current Post"
+msgstr "현재 게시물에 대한 새 용어 추가"
+
+#: inc/post-tags.php:247
+msgid "Edit Terms for Current Post"
+msgstr "현재 게시물의 용어 편집"
+
+#: inc/post-tags.php:230
+msgid "Manage Terms for Current Post"
+msgstr "현재 게시물의 용어 관리"
+
+#: inc/post-tags.php:147
+msgid "Search Terms for Current Post"
+msgstr "현재 게시물에 대한 검색어"
+
+#: inc/post-tags-table.php:69 inc/related-posts-table.php:70
+#: inc/tag-clouds-table.php:70
+msgid "Shortcode"
+msgstr "쇼트코드"
+
+#: inc/post-tags-table.php:68 inc/related-posts-table.php:69
+msgid "Automatic display"
+msgstr "자동 표시"
+
+#: inc/functions.inc.php:381 inc/post-tags-table.php:14
+#: inc/post-tags-table.php:15 inc/post-tags.php:71 inc/post-tags.php:125
+#: inc/post-tags.php:718
+msgid "Terms for Current Post"
+msgstr "현재 게시물의 용어"
+
+#: inc/post-tags-functions.php:354
+msgid "Invalid post terms ID."
+msgstr "게시물 용어 ID가 잘못되었습니다."
+
+#: inc/post-tags-functions.php:198
+msgid "Shortcode entry successfully deleted."
+msgstr "쇼트코드 항목이 성공적으로 삭제되었습니다."
+
+#: inc/helper.options.admin.php:484
+msgid "By default, TaxoPress will exclude Auto Links for terms that are attached to the post title."
+msgstr "기본적으로 택소프레스는 게시 제목에 첨부된 용어에 대해 자동 링크를 제외합니다."
+
+#: inc/helper.options.admin.php:481
+msgid "Add links for post title"
+msgstr "게시물 제목에 대한 링크 추가"
+
+#: inc/helper.options.admin.php:457
+msgid "<code>single</code> &ndash; Only on your single post view."
+msgstr "<code>single</code> &ndash; 싱글 게시물뷰만 해당."
+
+#: inc/helper.options.admin.php:423
+msgid "By default, TaxoPress will only add Auto Links for terms that are attached to the post. If this box is checked, TaxoPress will add links for all terms"
+msgstr "기본적으로 택소프레스는 게시물에 첨부된 용어에 대해서만 자동 링크를 추가합니다. 이 상자를 선택하면 택소프레스가 모든 용어에 대한 링크를 추가합니다"
+
+#: inc/helper.options.admin.php:399
+msgid "This setting helps prevent rarely used terms from being used by Auto Links. Default: 1."
+msgstr "이 설정을 사용하면 거의 사용되지 않는 용어가 자동 링크에서 사용되지 않도록 방지할 수 있습니다. 기본값: 1."
+
+#: inc/helper.options.admin.php:396
+msgid "Minimum usage for terms"
+msgstr "용어의 최소 사용"
+
+#: inc/helper.options.admin.php:372
+msgid "This feature allows you to display related posts based on terms relation."
+msgstr "이 기능을 사용하면 용어 관계를 기반으로 관련 게시물을 표시할 수 있습니다."
+
+#: inc/helper.options.admin.php:280
+msgid "These settings are no longer being updated. Please use the \"Related Posts\" screen instead."
+msgstr "이 설정은 더 이상 업데이트되지 않습니다. 대신 \"관련 게시물\" 화면을 이용해주시기 바랍니다."
+
+#: inc/helper.options.admin.php:197
+msgid "These settings are no longer being updated. Please use the \"Terms for Current Post\" screen instead."
+msgstr "이 설정은 더 이상 업데이트되지 않습니다. 대신 \"현재 게시물 용어\" 화면을 사용하십시오."
+
+#: inc/helper.options.admin.php:111 inc/helper.options.admin.php:254
+#: inc/helper.options.admin.php:332
+msgid "You can find markers and explanations <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">in the online documentation.</a>"
+msgstr "<a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">온라인 설명서</a>에서 마커와 설명을 찾을 수 있습니다."
+
+#: inc/helper.options.admin.php:41
+msgid "These settings are no longer being updated. Please use the \"Terms Display\" screen instead."
+msgstr "이 설정은 더 이상 업데이트되지 않습니다. 대신 \"용어 표시\" 화면을 사용하십시오."
+
+#: inc/suggestterms.php:643
+msgid "Choose a value between 0 and 1. A high value such as 0.8 will provide a few, accurate suggestions. A low value such as 0.2 will produce more suggestions, but they may be less accurate."
+msgstr "0과 1 사이의 값을 선택합니다. 0.8과 같은 높은 값은 몇 가지 정확한 제안을 제공합니다. 0.2와 같이 값이 낮으면 더 많은 제안이 나오지만 정확도가 떨어질 수 있습니다."
+
+#: inc/suggestterms.php:642
+msgid "Dandelion API confidence value"
+msgstr "Dandelion API 신뢰도 값"
+
+#: inc/suggestterms.php:625
+msgid "Dandelion API token"
+msgstr "Dandelion API 토큰"
+
+#: inc/class.widgets.php:212
+msgid "This widget is no longer being updated. Please use the \"Tag Cloud (TaxoPress Shortcode)\" widget instead."
+msgstr "이 위젯은 더 이상 업데이트되지 않습니다. \"태그 클라우드(택소프레스 Shortcode)를 사용하십시오\" 위젯을 대신 사용합니다."
+
+#: inc/class.widgets.php:15
+msgid "Tag Cloud (TaxoPress Legacy)"
+msgstr "태그 클라우드(택소프레스 레거시)"
+
+#: inc/class.shortcode_widgets.php:155
+msgid "No terms display shortcode available. Add new shortcode "
+msgstr "쇼트코드를 표시할 수 있는 용어가 없습니다. 새 쇼트코드 추가 "
+
+#: inc/class.shortcode_widgets.php:152 inc/posts-tags-widget.php:133
+#: inc/related-posts-widget.php:139
+msgid "Here"
+msgstr "여기"
+
+#: inc/class.shortcode_widgets.php:131
+msgid "Select widget terms display."
+msgstr "위젯 용어 표시를 선택합니다."
+
+#: inc/class.shortcode_widgets.php:123
+msgid "Terms Display are added on "
+msgstr "용어 표시가 추가된 날짜 "
+
+#: inc/class.shortcode_widgets.php:18
+msgid "Taxopress Terms Display Shortcode"
+msgstr "택소프레스 용어 표시 쇼트코드"
+
+#: inc/class.shortcode_widgets.php:15
+msgid "Terms Display (TaxoPress Shortcode)"
+msgstr "용어 표시(택소프레스 쇼트코드)"
+
+#: inc/class.client.php:149
+msgid "Back to Media Tags"
+msgstr "미디어 태그로 돌아가기"
+
+#: inc/class.client.php:148
+msgid "Media Tags list"
+msgstr "미디어 태그 목록"
+
+#: inc/class.client.php:147
+msgid "Media Tags list navigation"
+msgstr "미디어 태그 목록 탐색"
+
+#: inc/class.client.php:146
+msgid "No Media Tags"
+msgstr "미디어 태그 없음"
+
+#: inc/class.client.php:145
+msgid "No Media Tags found"
+msgstr "미디어 태그를 찾을 수 없습니다"
+
+#: inc/class.client.php:144
+msgid "Choose from the most used Media Tags"
+msgstr "가장 많이 사용되는 미디어 태그 중에서 선택"
+
+#: inc/class.client.php:143
+msgid "Add or remove Media Tags"
+msgstr "미디어 태그 추가 또는 제거"
+
+#: inc/class.client.php:142
+msgid "Separate Media Tags with commas"
+msgstr "쉼표로 미디어 태그 구분"
+
+#: inc/class.client.php:141
+msgid "Popular Media Tags"
+msgstr "인기 있는 미디어 태그"
+
+#: inc/class.client.php:140
+msgid "Search Media Tags"
+msgstr "미디어 태그 검색"
+
+#: inc/class.client.php:139
+msgid "Parent Media Tag:"
+msgstr "부모 미디어 태그:"
+
+#: inc/class.client.php:138
+msgid "Parent Media Tag"
+msgstr "부모 미디어 태그"
+
+#: inc/class.client.php:137
+msgid "New Media Tag name"
+msgstr "새 미디어 태그 이름"
+
+#: inc/class.client.php:136
+msgid "Add new Media Tag"
+msgstr "새 미디어 태그 추가"
+
+#: inc/class.client.php:135
+msgid "Update Media Tag name"
+msgstr "미디어 태그 이름 업데이트"
+
+#: inc/class.client.php:134
+msgid "View Media Tag"
+msgstr "미디어 태그 보기"
+
+#: inc/class.client.php:133
+msgid "Edit Media Tag"
+msgstr "미디어 태그 편집"
+
+#: inc/class.client.php:132
+msgid "All Media Tags"
+msgstr "모든 미디어 태그"
+
+#: inc/class.client.php:130
+msgid "Media Tag"
+msgstr "미디어 태그"
+
+#: inc/class.client.php:129 inc/class.client.php:131 inc/class.client.php:153
+msgid "Media Tags"
+msgstr "미디어 태그"
+
+#: inc/class.admin.suggest.php:284
+msgid "Invalid access token !"
+msgstr "잘못된 액세스 토큰입니다!"
+
+#: inc/class.admin.suggest.php:57
+msgid "dataTXT by Dandelion"
+msgstr "dandelion의 dataTXT"
+
+#: inc/class.admin.php:849
+msgid "Legacy"
+msgstr "레거시"
+
+#: inc/autoterms-logs-table.php:164 inc/autoterms-logs-table.php:195
+#: inc/class.admin.php:567
+msgid "Settings"
+msgstr "설정"
+
+#: inc/class.admin.php:553 inc/class.admin.php:566
+#: views/admin/page-settings.php:3
+msgid "TaxoPress: Options"
+msgstr "택소프레스: 옵션"
+
+#: inc/class.admin.php:463
+msgid "Please select a valid"
+msgstr "올바른 항목을 선택하십시오"
+
+#: inc/class.admin.mass.php:361
+msgid "Inherit <span class=\"count\">(%s)</span>"
+msgid_plural "Inherit <span class=\"count\">(%s)</span>"
+msgstr[0] "상속됨 <span class=\"count\">(%s)</span>"
+
+#: inc/class.admin.mass.php:360
+msgid "Inherit posts"
+msgstr "게시물 상속"
+
+#: inc/class.admin.mass.php:359
+msgctxt "post"
+msgid "Inherit"
+msgstr "상속"
+
+#: inc/class.admin.manage.php:776
+msgid "Term(s) added to %1s %2s."
+msgstr "%1s %2s에 용어가 추가되었습니다."
+
+#: inc/class.admin.manage.php:659
+msgid "Error. No enough terms for rename."
+msgstr "오류. 이름을 바꿀 용어가 부족합니다."
+
+#: inc/class.admin.manage.php:573
+msgid "Error. No enough terms specified."
+msgstr "오류. 지정된 용어가 부족합니다."
+
+#: inc/class.admin.manage.php:530
+msgid "No valid term specified!"
+msgstr "올바른 용어가 지정되지 않았습니다!"
+
+#: inc/class.admin.manage.php:498
+msgid "Error. You need to enter a single term to merge to in new term name !"
+msgstr "오류. 새 용어 이름에 병합할 단일 용어를 입력해야 합니다!"
+
+#: inc/class.admin.manage.php:325
+msgid "Minimum number of uses for each term:"
+msgstr "각 용어의 최소 사용 횟수:"
+
+#: inc/class.admin.manage.php:309
+msgid "If you choose 5, Taxopress will delete all terms attached to less than 5 %s."
+msgstr "5를 선택하면 택소프레스는 5%s 미만에 첨부된 모든 용어를 삭제합니다."
+
+#: inc/class.admin.manage.php:296
+msgid "Merge"
+msgstr "병합"
+
+#: inc/class.admin.manage.php:289
+msgid "New term name:"
+msgstr "새 용어 이름:"
+
+#: inc/class.admin.manage.php:281
+msgid "Term(s) to merge:"
+msgstr "병합할 용어:"
+
+#: inc/class.admin.manage.php:264
+msgid "Enter the term to merge and its new value. Click \"Merge\" and all %s which use this term will be updated."
+msgstr "병합할 용어와 새 값을 입력합니다. \"병합\"을 클릭하면 이 용어를 사용하는 모든 %s이(가) 업데이트됩니다."
+
+#: inc/class.admin.manage.php:262
+msgid "Merge Terms"
+msgstr "용어 병합"
+
+#: inc/class.admin.manage.php:223
+msgid "Enter the terms to rename and their new names."
+msgstr "이름을 바꿀 용어와 새 이름을 입력합니다."
+
+#: inc/class.admin.manage.php:221
+msgid "Rename Terms"
+msgstr "용어 이름 바꾸기"
+
+#: inc/class.admin.manage.php:193
+msgid "Add terms only to posts with specific terms attached."
+msgstr "특정 용어가 첨부된 게시물에만 용어를 추가합니다."
+
+#: inc/class.admin.manage.php:189
+msgid "Add terms to all %s."
+msgstr "모든 %s에 용어를 추가합니다."
+
+#: inc/class.admin.manage.php:172
+msgid "Terms will be added to all %s If no \"Term(s) to match\" is specified."
+msgstr "\"일치할 용어\"가 지정되지 않은 경우 모든 %s에 용어가 추가됩니다."
+
+#: inc/class.admin.manage.php:60
+msgid "TaxoPress: Manage Terms"
+msgstr "택소프레스: 용어 관리"
+
+#: inc/class.admin.clickterms.php:112 inc/class.admin.clickterms.php:148
+msgid "Start typing to search"
+msgstr "검색할 입력 시작"
+
+#: inc/class.admin.clickterms.php:145
+msgid "Click terms to add them to this %s"
+msgstr "이 %s에 추가하려면 용어를 클릭"
+
+#: inc/class.admin.clickterms.php:143
+msgid "Click to display tags"
+msgstr "태그를 표시하려면 클릭합니다"
+
+#: inc/class-taxonomies-table.php:364
+msgid "WordPress core"
+msgstr "워드프레스 코어"
+
+#: inc/class-taxonomies-table.php:70
+msgid "Active"
+msgstr "활성화"
+
+#: inc/class-taxonomies-table.php:69 inc/taxonomies.php:525
+#: inc/terms-table.php:114
+msgid "Description"
+msgstr "묘사"
+
+#: inc/class-taxonomies-table.php:68
+msgid "Registration key"
+msgstr "등록 키"
+
+#: inc/class-taxonomies-table.php:15 inc/functions.inc.php:357
+#: inc/taxonomies.php:99 inc/taxonomies.php:100 inc/taxonomies.php:153
+msgid "Taxonomies"
+msgstr "택소노미"
+
+#: inc/class-tag-table.php:125
+msgid "No term avaliable."
+msgstr "사용할 수 있는 용어가 없습니다."
+
+#: inc/class-tag-table.php:43 inc/class-taxonomies-table.php:72
+#: inc/terms-table.php:119
+msgid "Count"
+msgstr "카운트"
+
+#: inc/class-tag-table.php:13
+msgid "Tags Cloud"
+msgstr "태그 클라우드"
+
+#: inc/class-tag-table.php:12 inc/class.admin.php:735
+msgid "Tag Cloud"
+msgstr "태그 클라우드"
+
+#: inc/autolinks.php:1013 inc/autoterms.php:1178
+#: inc/class-taxonomies-table.php:388 inc/post-tags.php:765
+#: inc/related-posts.php:915 inc/suggestterms.php:807 inc/tag-clouds.php:895
+#: inc/taxonomies.php:1686
+msgid "Yes"
+msgstr "예"
+
+#: inc/autolinks.php:1012 inc/autoterms.php:1176
+#: inc/class-taxonomies-table.php:386 inc/post-tags-table.php:355
+#: inc/post-tags.php:764 inc/related-posts-table.php:395
+#: inc/related-posts.php:913 inc/suggestterms.php:805 inc/tag-clouds.php:893
+#: inc/taxonomies.php:1684
+msgid "No"
+msgstr "아니오"
+
+#: inc/autolinks.php:1006 inc/autoterms.php:1169 inc/post-tags.php:758
+#: inc/related-posts.php:906 inc/suggestterms.php:797 inc/tag-clouds.php:886
+#: inc/taxonomies.php:1677
+msgid "Okay"
+msgstr "알았어요."
+
+#: inc/autolinks.php:1003 inc/autoterms.php:1166 inc/post-tags.php:755
+#: inc/related-posts.php:903 inc/suggestterms.php:793 inc/tag-clouds.php:883
+#: inc/taxonomies.php:1674
+msgid "Please complete the following required fields to save your changes:"
+msgstr "변경 사항을 저장하려면 다음 필수 필드를 입력하십시오:"
+
+#: inc/autolinks.php:952
+msgid "Add Auto Links"
+msgstr "자동 링크 추가"
+
+#: inc/autolinks.php:946
+msgid "Save Auto Links"
+msgstr "자동 링크 저장"
+
+#: inc/autolinks.php:880
+msgid "The new Auto Links engine uses the DOMDocument PHP class and may offer better performance. If your server does not support this functionality, TaxoPress will use the usual engine."
+msgstr "새로운 자동 링크 엔진은 DOMDocument PHP 클래스를 사용하며 더 나은 성능을 제공할 수 있습니다. 서버가 이 기능을 지원하지 않는 경우 택소프레스는 일반 엔진을 사용합니다."
+
+#: inc/autolinks.php:876
+msgid "Use new Auto Links engine"
+msgstr "새 Auto Links 엔진 사용"
+
+#: inc/autolinks.php:848
+msgid "Change the priority of the Auto Links functions on the_content hook. This is useful for fixing conflicts with other plugins. Higher number means autolink will be executed only after hooks with lower number has been executed."
+msgstr "_contenthook에서 Auto Links 함수의 우선 순위를 변경합니다. 다른 플러그인과의 충돌을 해결하는 데 유용합니다. 숫자가 높을수록 숫자가 작은 후크가 실행된 후에만 자동 링크가 실행됨을 의미합니다."
+
+#: inc/autolinks.php:844
+msgid "Priority on the_content and the_title hook"
+msgstr "_content 및 _title 후크에 대한 우선 순위"
+
+#: inc/autolinks.php:834 inc/post-tags.php:599 inc/related-posts.php:748
+#: inc/tag-clouds.php:730
+msgid "Term link class"
+msgstr "용어 링크 클래스"
+
+#: inc/autolinks.php:708
+msgid "Terms inside these html tags will not be auto link."
+msgstr "선택한 HTML 태그 내의 용어는 자동 링크되지 않습니다."
+
+#: inc/autolinks.php:705
+msgid "Prevent Auto Links inside elements"
+msgstr "요소 내부의 자동 링크 방지"
+
+#: inc/autolinks.php:702
+msgid "code"
+msgstr "코드"
+
+#: inc/autolinks.php:701
+msgid "pre"
+msgstr "이전"
+
+#: inc/autolinks.php:700
+msgid "style"
+msgstr "스타일."
+
+#: inc/autolinks.php:699
+msgid "script"
+msgstr "스크립트"
+
+#: inc/autolinks.php:697 inc/related-posts.php:382
+msgid "H6"
+msgstr "H6"
+
+#: inc/autolinks.php:696 inc/related-posts.php:378
+msgid "H5"
+msgstr "H5"
+
+#: inc/autolinks.php:695 inc/related-posts.php:373
+msgid "H4"
+msgstr "H4"
+
+#: inc/autolinks.php:694 inc/related-posts.php:369
+msgid "H3"
+msgstr "H3"
+
+#: inc/autolinks.php:693 inc/related-posts.php:365
+msgid "H2"
+msgstr "H2"
+
+#: inc/autolinks.php:692 inc/related-posts.php:361
+msgid "H1"
+msgstr "H1"
+
+#: inc/autolinks.php:683
+msgid "Separate multiple entries with a comma. For example: .notag, #main-header"
+msgstr "여러 항목을 쉼표로 구분합니다. 예: .notag, #main-header"
+
+#: inc/autolinks.php:679
+msgid "Prevent Auto Links inside classes or IDs"
+msgstr "클래스 또는 ID 내부의 자동 링크 금지"
+
+#: inc/autolinks.php:667
+msgid "If you enter the terms \"WordPress\", \"Website\" the Auto Links feature will never replace these terms. Separate multiple entries with a comma."
+msgstr "\"Wordpress\", \"Website\"라는 용어를 입력하면 자동 링크 기능이 이러한 용어를 대체하지 않습니다. 여러 항목을 쉼표로 구분합니다."
+
+#: inc/autolinks.php:663
+msgid "Exclude terms from Auto Links"
+msgstr "자동 링크에서 용어 제외"
+
+#: inc/autolinks.php:639
+msgid "For example, '4' would only link terms that are of 4 characters or less in length."
+msgstr "예를 들어 '4'는 길이가 4자 이하인 용어만 연결합니다."
+
+#: inc/autolinks.php:635
+msgid "Maximum character length for an Auto Link"
+msgstr "자동 링크의 최대 문자 길이"
+
+#: inc/autolinks.php:622
+msgid "For example, '4' would only link terms that are of 4 characters or more in length."
+msgstr "예를 들어 '4'는 길이가 4자 이상인 용어만 연결합니다."
+
+#: inc/autolinks.php:618
+msgid "Minimum character length for an Auto Link"
+msgstr "자동 링크의 최소 문자 길이"
+
+#: inc/autolinks.php:605
+msgid "This setting determines the maximum number of Auto Links for each term in one post."
+msgstr "이 설정은 한 게시물에서 각 용어에 대한 자동 링크의 최대 수를 결정합니다."
+
+#: inc/autolinks.php:601
+msgid "Maximum number of links for the same term"
+msgstr "동일 용어에 대한 최대 링크 수"
+
+#: inc/autolinks.php:588
+msgid "This setting determines the maximum number of Auto Links in one post."
+msgstr "이 설정은 게시물 하나에 최대 자동 링크 수를 결정합니다."
+
+#: inc/autolinks.php:584
+msgid "Maximum number of links per post"
+msgstr "게시물당 최대 링크 수"
+
+#: inc/autolinks.php:571
+msgid "To be included in Auto Links, a term must be used at least this many times."
+msgstr "자동 링크에 포함하려면 용어를 이 횟수 이상 사용해야 합니다."
+
+#: inc/autolinks.php:567
+msgid "Minimum term usage for Auto Links"
+msgstr "자동 링크에 대한 최소 용어 사용"
+
+#: inc/autolinks.php:526
+msgid "TaxoPress will attempt to automatically insert Auto Links in this content. It may not be successful for all post types and layouts."
+msgstr "택소프레스는 이 콘텐츠에 자동 링크를 삽입하려고 합니다. 모든 게시 유형 및 레이아웃에 대해 성공적이지 않을 수 있습니다."
+
+#: inc/autolinks.php:523
+msgid "Enable this Auto Links instance for:"
+msgstr "다음에 대해 이 자동 링크 인스턴스 사용:"
+
+#: inc/helper.options.admin.php:420
+msgid "Add links for unattached terms"
+msgstr "첨부되지 않은 용어에 대한 링크 추가"
+
+#: inc/autolinks.php:765 inc/autolinks.php:799 inc/autolinks.php:864
+#: inc/autoterms.php:605 inc/autoterms.php:618 inc/autoterms.php:650
+#: inc/autoterms.php:663 inc/autoterms.php:694 inc/autoterms.php:771
+#: inc/autoterms.php:796 inc/autoterms.php:821 inc/autoterms.php:896
+#: inc/post-tags.php:557 inc/related-posts.php:337 inc/related-posts.php:707
+#: inc/suggestterms.php:449 inc/suggestterms.php:559 inc/suggestterms.php:574
+#: inc/suggestterms.php:603 inc/suggestterms.php:661 inc/tag-clouds.php:346
+#: inc/tag-clouds.php:588 inc/tag-clouds.php:660 inc/taxonomies.php:497
+#: inc/taxonomies.php:616 inc/taxonomies.php:630 inc/taxonomies.php:771
+#: inc/taxonomies.php:807 inc/taxonomies.php:833 inc/taxonomies.php:867
+#: inc/taxonomies.php:891 inc/taxonomies.php:915 inc/taxonomies.php:941
+#: inc/taxonomies.php:965 inc/taxonomies.php:990 inc/taxonomies.php:1364
+#: inc/taxonomies.php:1419 inc/taxonomies.php:1444 inc/taxonomies.php:1469
+msgid "True"
+msgstr "확인"
+
+#: inc/autolinks.php:761 inc/autolinks.php:794 inc/autolinks.php:860
+#: inc/autoterms.php:600 inc/autoterms.php:614 inc/autoterms.php:645
+#: inc/autoterms.php:659 inc/autoterms.php:689 inc/autoterms.php:766
+#: inc/autoterms.php:791 inc/autoterms.php:816 inc/autoterms.php:891
+#: inc/post-tags.php:552 inc/related-posts.php:332 inc/related-posts.php:702
+#: inc/suggestterms.php:444 inc/suggestterms.php:555 inc/suggestterms.php:569
+#: inc/suggestterms.php:598 inc/suggestterms.php:656 inc/tag-clouds.php:341
+#: inc/tag-clouds.php:583 inc/tag-clouds.php:656 inc/taxonomies.php:492
+#: inc/taxonomies.php:611 inc/taxonomies.php:626 inc/taxonomies.php:767
+#: inc/taxonomies.php:803 inc/taxonomies.php:828 inc/taxonomies.php:863
+#: inc/taxonomies.php:887 inc/taxonomies.php:911 inc/taxonomies.php:936
+#: inc/taxonomies.php:960 inc/taxonomies.php:985 inc/taxonomies.php:1360
+#: inc/taxonomies.php:1415 inc/taxonomies.php:1440 inc/taxonomies.php:1465
+msgid "False"
+msgstr "거짓"
+
+#: inc/autolinks.php:469
+msgid "Auto Link title attribute"
+msgstr "제목 자동 연결 속성"
+
+#: inc/autolinks.php:424
+msgid "Auto Link case"
+msgstr "자동 링크 케이스"
+
+#: inc/autolinks.php:414
+msgid "All lowercase"
+msgstr "모두 소문자"
+
+#: inc/autolinks.php:410
+msgid "All uppercase"
+msgstr "모두 대문자"
+
+#: inc/autolinks.php:406
+msgid "Use case of term"
+msgstr "용어 사용 사례"
+
+#: inc/autolinks.php:398
+msgid "Use case of text in content"
+msgstr "콘텐츠의 텍스트 사용 사례"
+
+#: inc/autolinks.php:322 inc/autoterms.php:427 inc/post-tags.php:305
+#: inc/related-posts.php:295 inc/taxonomies.php:370
+msgid "Advanced"
+msgstr "고급"
+
+#: inc/autolinks.php:308
+msgid "Exceptions"
+msgstr "예외"
+
+#: inc/autolinks.php:301
+msgid "Control"
+msgstr "컨트롤"
+
+#: inc/autolinks.php:294 inc/autoterms.php:559
+#: inc/class-taxonomies-table.php:71 inc/suggestterms.php:400
+#: inc/taxonomies.php:345 inc/terms-table.php:116
+msgid "Post Types"
+msgstr "게시물 유형"
+
+#: inc/autolinks.php:287 inc/autoterms.php:402 inc/post-tags.php:284
+#: inc/related-posts.php:280 inc/suggestterms.php:285 inc/tag-clouds.php:281
+#: inc/taxonomies.php:340
+msgid "General"
+msgstr "일반"
+
+#: inc/autolinks.php:274
+msgid "With TaxoPress Pro, you can create unlimited Auto Links. You can create Auto Links for any taxonomy."
+msgstr "택소프레스 프로를 사용하면 무제한 자동 링크를 만들 수 있습니다. 모든 택소노미에 대한 자동 링크를 만들 수 있습니다."
+
+#: inc/autolinks.php:269
+msgid "To create more Auto Links, please upgrade to TaxoPress Pro."
+msgstr "자동 링크를 더 만들려면 택소프레스 프로로 업그레이드하십시오."
+
+#: inc/autolinks.php:257
+msgid "Add new Auto Links"
+msgstr "새 자동 링크 추가"
+
+#: inc/autolinks.php:250
+msgid "Edit Auto Links"
+msgstr "자동 링크 편집"
+
+#: inc/autolinks.php:233
+msgid "Manage Auto Links"
+msgstr "자동 링크 관리"
+
+#: inc/autolinks.php:162 inc/autoterms.php:218 inc/autoterms.php:273
+#: inc/post-tags.php:159 inc/posts.php:252 inc/related-posts.php:161
+#: inc/suggestterms.php:163 inc/tag-clouds.php:161 inc/taxonomies.php:203
+#: inc/terms.php:260
+msgid "Description here."
+msgstr "설명은 여기에 있습니다."
+
+#: inc/autolinks.php:150
+msgid "Search Auto Links"
+msgstr "자동 링크 검색"
+
+#. translators: %s: search keywords
+#: inc/autolinks.php:134 inc/autoterms.php:193 inc/autoterms.php:248
+#: inc/post-tags.php:134 inc/related-posts.php:136 inc/suggestterms.php:138
+#: inc/tag-clouds.php:136 inc/taxonomies.php:163 inc/terms.php:232
+msgid "Search results for &#8220;%s&#8221;"
+msgstr "&#8220;%s&#8221;에 대한 검색 결과;"
+
+#: inc/autolinks.php:126 inc/post-tags.php:126 inc/related-posts.php:128
+#: inc/suggestterms.php:127 inc/tag-clouds.php:128 inc/taxonomies.php:155
+msgid "Add New"
+msgstr "새로 추가"
+
+#: inc/autolinks.php:94 inc/autoterms.php:105 inc/autoterms.php:112
+#: inc/post-tags.php:94 inc/posts.php:184 inc/related-posts.php:95
+#: inc/suggestterms.php:94 inc/tag-clouds.php:95 inc/taxonomies.php:122
+#: inc/terms.php:194
+msgid "Number of items per page"
+msgstr "페이지당 항목 수"
+
+#: inc/autolinks-table.php:374 inc/autolinks.php:444 inc/autoterms.php:511
+msgid "Post Content and Title"
+msgstr "게시물 콘텐츠 및 제목"
+
+#: inc/autolinks-table.php:373 inc/autolinks.php:440 inc/autoterms.php:507
+msgid "Post Title"
+msgstr "게시물 제목"
+
+#: inc/autolinks-table.php:372 inc/autolinks.php:435 inc/autoterms.php:503
+msgid "Post Content"
+msgstr "게시물 콘텐츠"
+
+#: inc/autolinks-table.php:356 inc/autoterms-logs-table.php:428
+#: inc/autoterms-table.php:356 inc/related-posts.php:357
+#: inc/suggestterms-table.php:355
+msgid "None"
+msgstr "없음"
+
+#: inc/autolinks-table.php:346 inc/post-tags-table.php:345
+#: inc/related-posts-table.php:385
+msgid "RSS feed"
+msgstr "RSS 피드"
+
+#: inc/autolinks-table.php:345 inc/post-tags-table.php:344
+#: inc/related-posts-table.php:384
+msgid "Single post display"
+msgstr "단일 게시물 디스플레이"
+
+#: inc/autolinks-table.php:344 inc/post-tags-table.php:343
+#: inc/post-tags.php:423 inc/related-posts-table.php:383
+#: inc/related-posts.php:505
+msgid "Blog display"
+msgstr "블로그 표시"
+
+#: inc/autolinks-table.php:343 inc/post-tags-table.php:342
+#: inc/post-tags.php:422 inc/related-posts-table.php:382
+#: inc/related-posts.php:504
+msgid "Homepage"
+msgstr "홈페이지"
+
+#: inc/autolinks-table.php:91 inc/autoterms-logs-table.php:217
+#: inc/autoterms-table.php:91 inc/post-tags-table.php:91
+#: inc/related-posts-table.php:92 inc/suggestterms-table.php:90
+#: inc/tag-clouds-table.php:92
+msgid "No item avaliable."
+msgstr "사용 가능한 항목이 없습니다."
+
+#: inc/autolinks-table.php:69 inc/autolinks.php:457
+msgid "Auto Link areas"
+msgstr "자동 연결 영역"
+
+#: inc/autolinks-table.php:68
+msgid "Auto Link Post type"
+msgstr "게시물 자동 연결 유형"
+
+#: inc/autolinks-table.php:67 inc/autolinks.php:388
+#: inc/autoterms-logs-table.php:137 inc/autoterms-logs-table.php:190
+#: inc/autoterms-table.php:67 inc/autoterms.php:493
+#: inc/class-taxonomies-table.php:14 inc/class.admin.clickterms.php:55
+#: inc/post-tags-table.php:67 inc/post-tags.php:373
+#: inc/related-posts-table.php:67 inc/related-posts.php:464
+#: inc/suggestterms-table.php:67 inc/tag-clouds-table.php:67
+#: inc/tag-clouds.php:405 inc/terms-table.php:115 inc/terms-table.php:211
+msgid "Taxonomy"
+msgstr "택소노미"
+
+#: inc/autolinks-table.php:66 inc/autolinks.php:341 inc/autoterms-table.php:66
+#: inc/autoterms.php:445 inc/post-tags-table.php:66 inc/post-tags.php:324
+#: inc/posts-table.php:35 inc/related-posts-table.php:66
+#: inc/related-posts.php:313 inc/suggestterms-table.php:66
+#: inc/suggestterms.php:316 inc/tag-clouds-table.php:66 inc/tag-clouds.php:321
+#: inc/terms-table.php:112
+msgid "Title"
+msgstr "제목"
+
+#: inc/autolinks-table.php:15 inc/autolinks.php:71 inc/autolinks.php:72
+#: inc/autolinks.php:125 inc/class.admin.php:738 inc/functions.inc.php:393
+msgid "Auto Links"
+msgstr "자동 링크"
+
+#: inc/autolinks-table.php:14
+msgid "Auto Link"
+msgstr "자동 링크"
+
+#: inc/autolinks-functions.php:270
+msgid "Auto Links successfully deleted."
+msgstr "자동 링크가 삭제되었습니다."
+
+#: inc/autolinks-functions.php:261 inc/autoterms-functions.php:338
+#: inc/post-tags-functions.php:189 inc/related-posts-functions.php:232
+#: inc/suggestterms-functions.php:246 inc/tag-clouds-functions.php:240
+msgid "Settings updated successfully."
+msgstr "설정이 업데이트되었습니다."
+
+#: blocks/related-posts.php:67 inc/related-posts-widget.php:17
+msgid "Related Posts (TaxoPress)"
+msgstr "관련 게시물 (택소프레스)"
+
+#: blocks/related-posts.php:66
+msgid "Select related post shortcode"
+msgstr "관련 우편 쇼트코드 선택"
+
+#: blocks/related-posts.php:65
+msgid "Related Posts shortcode are added on Related Post screen"
+msgstr "관련 게시물 쇼트코드가 관련 게시물 화면에 추가됩니다"
+
+#: blocks/related-posts.php:62 inc/class.shortcode_widgets.php:120
+#: inc/posts-tags-widget.php:101 inc/related-posts-widget.php:107
+msgid "this page."
+msgstr "이 페이지."
+
+#. Author URI of the plugin
+msgid "https://taxopress.com"
+msgstr "https://taxopress.com"
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/simple-tags/"
+msgstr "https://wordpress.org/plugins/simple-tags/"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: inc/class-taxonomies-table.php:367 inc/class.admin.php:554
+#: inc/class.admin.post.php:38
+msgid "TaxoPress"
+msgstr "택소프레스"
+
+#: views/admin/page-settings.php:40
+msgid "Reset Options"
+msgstr "옵션 초기화"
+
+#: views/admin/page-settings.php:39
+msgid "Do you really want to restore the default options?"
+msgstr "기본 옵션을 복원하시겠습니까?"
+
+#: inc/helper.options.default.php:47
+msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
+
+#: inc/helper.options.default.php:44
+msgid "No tags for this post."
+msgstr "이 게시물에 대한 태그가 없습니다."
+
+#: inc/autolinks-functions.php:160 inc/helper.options.default.php:36
+msgid "Posts tagged with %s"
+msgstr "%s 태그가 지정된 게시물"
+
+#: inc/helper.options.admin.php:364
+msgid "You can use the same syntax as <code>st_related_posts()</code>public static function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr "<code>st_related_posts()</code>public static 함수와 동일한 구문을 사용하여 디스플레이를 사용자 지정할 수 있습니다. 자세한 내용은 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">문서</a>를 참조하십시오."
+
+#: inc/helper.options.admin.php:345
+msgid "Enter the text to show when there is no related post:"
+msgstr "관련 게시물이 없을 때 표시할 텍스트를 입력합니다:"
+
+#: inc/helper.options.admin.php:337
+msgid "Maximum number of related posts to display: (default: 5)"
+msgstr "표시할 최대 관련 게시물 수: (기본값: 5)"
+
+#: inc/helper.options.admin.php:329
+msgid "Post link format:"
+msgstr "게시 링크 형식:"
+
+#: inc/helper.options.admin.php:321
+msgid "<code>name-asc</code> &ndash; Alphabetical."
+msgstr "<code>name-asc</code> &ndash; 알파벳순."
+
+#: inc/helper.options.admin.php:320
+msgid "<code>count-desc</code> &ndash; Most common tags between posts (default)"
+msgstr "<code>count-desc</code> &ndash; 게시물 간 대부분의 공통 태그(기본값)"
+
+#: inc/helper.options.admin.php:319
+msgid "<code>count-asc</code> &ndash; Least common tags between posts"
+msgstr "<code>count-asc</code> &ndash; 마지막 공통 태그"
+
+#: inc/helper.options.admin.php:318
+msgid "<code>date-desc</code> &ndash; Newer Entries."
+msgstr "<code>date-desc</code> &ndash; 새로운 항목."
+
+#: inc/helper.options.admin.php:317
+msgid "<code>date-asc</code> &ndash; Older Entries."
+msgstr "<code>date-asc</code> &ndash; 이전 항목."
+
+#: inc/helper.options.admin.php:313
+msgid "Related Posts Order:"
+msgstr "관련 게시물 순서:"
+
+#: inc/helper.options.admin.php:297
+msgid "Automatically display related posts into post content"
+msgstr "게시물 콘텐츠에 관련 게시물을 자동으로 표시"
+
+#: inc/helper.options.admin.php:292
+msgid "Automatically display related posts into feeds"
+msgstr "관련 게시물을 피드에 자동으로 표시"
+
+#: inc/helper.options.admin.php:288
+msgid "By default, related posts work with post tags, but you can use a custom taxonomy. Default value : post_tag"
+msgstr "기본적으로 관련 게시물은 게시 태그와 함께 작동하지만 사용자 정의 택소노미를 사용할 수 있습니다. 기본값: post_tag"
+
+#: inc/helper.options.admin.php:285
+msgid "Taxonomy:"
+msgstr "택소노미:"
+
+#: inc/helper.options.admin.php:267
+msgid "You can use the same syntax as <code>st_the_tags()</code> public static function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr "<code>st_the_tags()</code> public static 함수와 동일한 구문을 사용하여 디스플레이를 사용자 정의할 수 있습니다. 자세한 내용은 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">문서</a>를 참조하십시오."
+
+#: inc/helper.options.admin.php:258
+msgid "Text to display if no tags found:"
+msgstr "태그를 찾을 수 없는 경우 표시할 텍스트:"
+
+#: inc/helper.options.admin.php:245
+msgid "Include categories in result ?"
+msgstr "결과에 범주를 포함하시겠습니까?"
+
+#: inc/helper.options.admin.php:241
+msgid "You must set zero (0) for display all tags."
+msgstr "모든 태그를 표시하려면 0을 설정해야 합니다."
+
+#: inc/helper.options.admin.php:238
+msgid "Max tags display:"
+msgstr "최대 태그 표시:"
+
+#: inc/helper.options.admin.php:232
+msgid "Text to display after tags list:"
+msgstr "태그 목록 뒤에 표시할 텍스트:"
+
+#: inc/helper.options.admin.php:227
+msgid "Text to display before tags list:"
+msgstr "태그 목록 앞에 표시할 텍스트:"
+
+#: inc/helper.options.admin.php:222
+msgid "Post tag separator string:"
+msgstr "게시물 태그 구분자 문자열:"
+
+#: inc/helper.options.admin.php:216 inc/helper.options.admin.php:307
+msgid "<code>pageonly</code> &ndash; Only on your page view."
+msgstr "<code>pageonly</code> &ndash; 페이지 보기 전용."
+
+#: inc/helper.options.admin.php:215 inc/helper.options.admin.php:306
+msgid "<code>singleonly</code> &ndash; Only on your single view."
+msgstr "<code>singleonly</code> &ndash; 단일 보기만 하면 됩니다."
+
+#: inc/helper.options.admin.php:214 inc/helper.options.admin.php:305
+msgid "<code>singularonly</code> &ndash; Only on your singular view (single & page)."
+msgstr "<code>singularonly</code> &ndash; 단일 보기만 하면 됩니다(단일 보기 및 페이지)."
+
+#: inc/helper.options.admin.php:213 inc/helper.options.admin.php:304
+msgid "<code>homeonly</code> &ndash; Only on your home page."
+msgstr "<code>homeonly</code> &ndash; 홈 페이지 전용."
+
+#: inc/helper.options.admin.php:212 inc/helper.options.admin.php:303
+msgid "<code>blogonly</code> &ndash; Only on your blog."
+msgstr "<code>blogonly</code> &ndash 블로그만."
+
+#: inc/helper.options.admin.php:210 inc/helper.options.admin.php:301
+msgid "<code>no</code> &ndash; Nowhere (default)"
+msgstr "<code>no</code> &ndash; Nowhere(기본값)"
+
+#: inc/helper.options.admin.php:207
+msgid "Automatically display tags list into post content:"
+msgstr "태그 목록을 게시물 콘텐츠에 자동으로 표시:"
+
+#: inc/helper.options.admin.php:201
+msgid "Automatically display tags list into feeds"
+msgstr "태그 목록을 피드에 자동으로 표시"
+
+#: inc/helper.options.admin.php:177
+msgid "You can use the same syntax as <code>st_tag_cloud()</code> public static function to customize display. See <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">documentation</a> for more details."
+msgstr "<code>st_tag_cloud()</code> public static 함수와 동일한 구문을 사용하여 디스플레이를 사용자 정의할 수 있습니다. 자세한 내용은 <a href=\"https://github.com/WebFactoryLtd/simple-tags/wiki\">문서</a>를 참조하십시오."
+
+#: inc/helper.options.admin.php:174 inc/helper.options.admin.php:264
+#: inc/helper.options.admin.php:361
+msgid "<strong>Advanced usage</strong>:"
+msgstr "<strong>고급 사용</strong>:"
+
+#: inc/helper.options.admin.php:169
+msgid "The font size units option determines the units that the two font sizes use."
+msgstr "글꼴 크기 단위 옵션은 두 글꼴 크기가 사용하는 단위를 결정합니다."
+
+#: inc/helper.options.admin.php:166
+msgid "The units to display the font sizes with, on tag clouds:"
+msgstr "태그 클라우드에 글꼴 크기를 표시할 단위:"
+
+#: inc/helper.options.admin.php:160
+msgid "Least popular font size:"
+msgstr "가장 덜 사용되는 글꼴 크기:"
+
+#: inc/helper.options.admin.php:156
+msgid "The two font sizes are the size of the largest and smallest tags."
+msgstr "두 글꼴 크기는 가장 큰 태그와 가장 작은 태그의 크기입니다."
+
+#: inc/helper.options.admin.php:153
+msgid "Most popular font size:"
+msgstr "가장 일반적인 글꼴 크기:"
+
+#: inc/helper.options.admin.php:147
+msgid "Least popular color:"
+msgstr "가장 인기 없는 색상:"
+
+#: inc/helper.options.admin.php:143
+msgid "The colours are hexadecimal colours,  and need to have the full six digits (#eee is the shorthand version of #eeeeee)."
+msgstr "색상은 16진수 색상이며, 6자리 숫자를 모두 사용해야 합니다(#eeee는 #eeee의 단축형 버전입니다)."
+
+#: inc/helper.options.admin.php:140
+msgid "Most popular color:"
+msgstr "가장 인기 있는 색상:"
+
+#: inc/helper.options.admin.php:132 inc/helper.options.admin.php:353
+msgid "Enter the positioned title before the list, leave blank for no title:"
+msgstr "목록 앞에 위치한 제목을 입력하고 제목이 없는 경우 공백으로 둡니다:"
+
+#: inc/helper.options.admin.php:124
+msgid "Enter the text to show when there is no tag:"
+msgstr "태그가 없을 때 표시할 텍스트를 입력합니다:"
+
+#: inc/helper.options.admin.php:116
+msgid "Maximum number of tags to display: (default: 45)"
+msgstr "표시할 최대 태그 수: (기본값: 45)"
+
+#: inc/helper.options.admin.php:101
+msgid "<code>flat</code> &ndash; Display inline (no list, just a div)"
+msgstr "<code>flat</code> &ndash; 인라인 디스플레이(목록 없음, 디바만 해당)"
+
+#: inc/helper.options.admin.php:100
+msgid "<code>list</code> &ndash; Display a formatted list (ul/li)."
+msgstr "<code>list</code> &ndash; 포맷된 목록(ul/li)을 표시합니다."
+
+#: inc/helper.options.admin.php:97
+msgid "Tags cloud type format:"
+msgstr "태그 클라우드 유형 형식:"
+
+#: inc/helper.options.admin.php:86
+msgid "Order tags display:"
+msgstr "주문 태그 표시:"
+
+#: inc/helper.options.admin.php:79
+msgid "<code>random</code> &ndash; Random. (default)"
+msgstr "<code>random</code> &ndash;랜덤. (기본값)"
+
+#: inc/helper.options.admin.php:77
+msgid "<code>count</code> &ndash; Counter."
+msgstr "<code>count</code> &ndash; 카운터."
+
+#: inc/helper.options.admin.php:74
+msgid "Order by for tags display:"
+msgstr "태그 표시 순서:"
+
+#: inc/helper.options.admin.php:67 inc/helper.options.admin.php:90
+msgid "<code>desc</code> &ndash; Descending."
+msgstr "<code>desc</code> &ndash; 내림차순."
+
+#: inc/helper.options.admin.php:66 inc/helper.options.admin.php:89
+msgid "<code>asc</code> &ndash; Ascending."
+msgstr "<code>asc</code> &ndash; 오름차순."
+
+#: inc/helper.options.admin.php:63
+msgid "Order tags selection:"
+msgstr "주문 태그 선택:"
+
+#: inc/helper.options.admin.php:55 inc/helper.options.admin.php:78
+msgid "<code>name</code> &ndash; Name."
+msgstr "<code>name</code> &ndash; 이름."
+
+#: inc/helper.options.admin.php:54
+msgid "<code>count</code> &ndash; Counter. (default)"
+msgstr "<code>count</code> &ndash; 카운터. (기본값)"
+
+#: inc/helper.options.admin.php:51
+msgid "Order by for tags selection:"
+msgstr "태그 선택 순서:"
+
+#: inc/helper.options.admin.php:46
+msgid "You must set &#8216;Order tags selection&#8217; to <strong>count-desc</strong> for retrieve the 100 tags most popular and &#8216;Order tags display&#8217; to <strong>random</strong> for randomize cloud."
+msgstr "가장 인기 있는 100개 태그를 검색하려면 &#8216;태그 정렬 선택을 <strong>count-desc<strong>로 설정하고 클라우드 랜덤화를 위해 &#8216; 태그 정렬 표시를 <strong>랜덤</strong>으로 설정해야 합니다."
+
+#: inc/helper.options.admin.php:45
+msgid "<strong>Example:</strong> You want display randomly the 100 tags most popular.<br />"
+msgstr "<strong>예: </strong> 가장 인기 있는 100개의 태그만 임의로 표시합니다.<br />"
+
+#: inc/helper.options.admin.php:43
+msgid "<strong>&#8216;Order tags display&#8217;</strong> is the second. Once tags choosen, you can reorder them before display."
+msgstr "<strong>&#8216;정렬 태그 표시&#8217;</strong>는 두 번째입니다. 한 번 선택하시면 표시 전에 주제를 다시 정렬할 수 있습니다."
+
+#: inc/helper.options.admin.php:42
+msgid "<strong>&#8216;Order tags selection&#8217;</strong> is the first step during tag's cloud generation, corresponding to collect tags."
+msgstr "<strong>&#8216;정렬 태그 선택&#8217;</strong>은 태그 수집에 해당하는 태그 클라우드 생성의 첫 번째 단계입니다."
+
+#: inc/helper.options.admin.php:473
+msgid "Text to display into title attribute for links:"
+msgstr "링크의 제목 속성으로 표시할 텍스트:"
+
+#: inc/helper.options.admin.php:468
+msgid "An engine replacement alternative uses DOMDocument PHP class and theoretically offers better performance. If your server does not offer the functionality, the plugin will use the usual engine."
+msgstr "엔진 교체 대안은 DOMDocument PHP 클래스를 사용하며 이론적으로 더 나은 성능을 제공합니다. 서버가 이 기능을 제공하지 않는 경우 플러그인은 일반 엔진을 사용합니다."
+
+#: inc/helper.options.admin.php:465
+msgid "Try new engine replacement ?"
+msgstr "새 엔진 교체를 시도하시겠습니까?"
+
+#: inc/helper.options.admin.php:458
+msgid "<code>singular</code> &ndash; Only on your singular view (single post & page) (default)."
+msgstr "<code>singular</code> &ndash;단일 보기만(기본값)합니다."
+
+#: inc/helper.options.admin.php:211 inc/helper.options.admin.php:302
+#: inc/helper.options.admin.php:456
+msgid "<code>all</code> &ndash; On your blog and feeds."
+msgstr "<code>all</code> &ndash; 블로그 및 피드."
+
+#: inc/helper.options.admin.php:455
+msgid "<code>no</code> &ndash; Nowhere"
+msgstr "<code>no</code> &ndash; Nowhere"
+
+#: inc/helper.options.admin.php:452
+msgid "Enable autolinks into post content for theses views:"
+msgstr "다음 보기에 대한 게시물 콘텐츠의 자동 링크 허용:"
+
+#: inc/helper.options.admin.php:447
+msgid "For expert, possibility to change the priority of autolinks functions on the_content hook. Useful for fix a conflict with an another plugin. Default: 12."
+msgstr "전문가의 경우 _contenthook에서 자동링크 함수의 우선순위를 변경할 수 있습니다. 다른 플러그인과의 충돌을 해결하는 데 유용합니다. 기본값: 12."
+
+#: inc/helper.options.admin.php:444
+msgid "Priority on hook the_content"
+msgstr "_content 후크 시 우선 순위"
+
+#: inc/helper.options.admin.php:439
+msgid "Example: If you enter the term \"Paris\", the auto link tags feature will never replace this term by this link."
+msgstr "예: \"파리\"라는 용어를 입력하면 자동 링크 태그 기능이 이 용어를 이 링크로 대체하지 않습니다."
+
+#: inc/helper.options.admin.php:436
+msgid "Exclude some terms from tag link. For Ads Link subtition, etc."
+msgstr "태그 링크에서 일부 용어를 제외합니다. 광고 링크 하위 구분 등의 경우."
+
+#: inc/helper.options.admin.php:431
+msgid "Example: If you ignore case, auto link feature will replace the word \"wordpress\" by the tag link \"WordPress\"."
+msgstr "예: 대소문자를 무시하면 자동 링크 기능이 \"워드프레스\"라는 단어를 \"워드프레스\" 태그 링크로 대체합니다."
+
+#: inc/helper.options.admin.php:428
+msgid "Ignore case for auto link feature ?"
+msgstr "자동 링크 기능의 경우 무시하시겠습니까?"
+
+#: inc/helper.options.admin.php:415
+msgid "This setting determines the maximum number of links created by article for the same tag. Default: 1."
+msgstr "이 설정은 동일한 태그에 대해 아티클에서 작성한 최대 링크 수를 결정합니다. 기본값: 1."
+
+#: inc/helper.options.admin.php:412
+msgid "Maximum number of links for the same tag:"
+msgstr "동일한 태그에 대한 최대 링크 수:"
+
+#: inc/helper.options.admin.php:407
+msgid "This setting determines the maximum number of links created by article. Default: 10."
+msgstr "이 설정은 아티클로 작성된 링크의 최대 수를 결정합니다. 기본값: 10."
+
+#: inc/helper.options.admin.php:404
+msgid "Maximum number of links per article:"
+msgstr "아티클당 최대 링크 수:"
+
+#: inc/suggestterms.php:683
+msgid "OpenCalais API Key"
+msgstr "OpenCalais API 키"
+
+#: inc/helper.options.admin.php:56 inc/helper.options.admin.php:323
+msgid "<code>random</code> &ndash; Random."
+msgstr "<code>random</code> &ndash;랜덤."
+
+#: inc/helper.options.admin.php:322
+msgid "<code>name-desc</code> &ndash; Inverse Alphabetical."
+msgstr "<code>name-desc </code> &ndash; 알파벳 역순."
+
+#: inc/helper.options.admin.php:185
+msgid "Enabling this will allow Wordpress to look for tag cloud shortcode <code>[st_tag_cloud]</code> or <code>[st-tag-cloud]</code> when displaying posts. WordPress replace this shortcode by a tag cloud."
+msgstr "이렇게 하면 워드프레스에서 게시물을 표시할 때 태그 클라우드 쇼트코드 <code>[st_tag_cloud]</code> 또는 <code>[st-tag-cloud]</code>를 찾을 수 있습니다. 워드프레스는 이 짧은 코드를 태그 클라우드로 대체합니다."
+
+#: inc/helper.options.admin.php:182
+msgid "Tag cloud Shortcode"
+msgstr "태그 클라우드 쇼트코드"
+
+#: inc/helper.options.admin.php:369
+msgid "Related posts by terms"
+msgstr "용어별 관련 게시물"
+
+#: inc/helper.options.admin.php:391
+msgid "Example: You have a tag called \"WordPress\" and your post content contains \"wordpress\", this feature will replace \"wordpress\" by a link to \"wordpress\" tags page. (http://myblog.net/tag/wordpress/)"
+msgstr "예: \"wordpress\"라는 태그가 있고 게시물 콘텐츠에 \"wordpress\"가 포함되어 있습니다. 이 기능은 \"wordpress\" 태그 페이지에 대한 링크로 \"wordpress\"를 대체합니다. (http://myblog.net/tag/wordpress/)"
+
+#: inc/helper.options.admin.php:388
+msgid "Auto links tags"
+msgstr "태그 자동 연결"
+
+#: inc/class.widgets.php:389
+msgid "What to show"
+msgstr "표시할 항목"
+
+#: inc/class.widgets.php:379
+msgid "Advanced usage:"
+msgstr "고급 사용:"
+
+#: inc/class.widgets.php:369 inc/helper.options.admin.php:108
+#: inc/helper.options.admin.php:251
+msgid "Tag link format:"
+msgstr "태그 링크 형식:"
+
+#: inc/class.widgets.php:360
+msgid "Font color max: (default: #000000)"
+msgstr "글꼴 색상 최대값: (기본값: #000000)"
+
+#: inc/class.widgets.php:351
+msgid "Font color mini: (default: #CCCCCC)"
+msgstr "글꼴 색상 최소값: (기본값: #CCCCC)"
+
+#: inc/class.widgets.php:345
+msgid "Use auto color cloud:"
+msgstr "자동 색상 구름 사용:"
+
+#: inc/class.widgets.php:335 inc/tag-clouds-table.php:363
+#: inc/tag-clouds.php:413
+msgid "List (UL/LI)"
+msgstr "목록(UL/LI)"
+
+#: inc/class.widgets.php:333
+msgid "Flat (default)"
+msgstr "플랫(기본값)"
+
+#: inc/class.widgets.php:329
+msgid "Format:"
+msgstr "형식:"
+
+#: inc/class.widgets.php:322
+msgid "Pourcent"
+msgstr "퍼센트"
+
+#: inc/class.widgets.php:320 inc/tag-clouds.php:636
+msgid "Em"
+msgstr "Em"
+
+#: inc/class.widgets.php:318 inc/tag-clouds.php:635
+msgid "Pixel"
+msgstr "픽셀"
+
+#: inc/class.widgets.php:316
+msgid "Point (default)"
+msgstr "포인트(기본값)"
+
+#: inc/class.widgets.php:312
+msgid "Unit font size:"
+msgstr "단위 글꼴 크기:"
+
+#: inc/class.widgets.php:303
+msgid "Font size max: (default: 22)"
+msgstr "최대 글꼴 크기: (기본값: 22)"
+
+#: inc/class.widgets.php:294
+msgid "Font size mini: (default: 8)"
+msgstr "최소 글꼴 크기: (기본값: 8)"
+
+#: inc/class.widgets.php:281
+msgid "Order for display tags:"
+msgstr "표시 태그 순서:"
+
+#: inc/class.widgets.php:274
+msgid "Random (default)"
+msgstr "랜덤(기본값)"
+
+#: inc/class.admin.clickterms.php:76 inc/class.widgets.php:272
+#: inc/suggestterms.php:490 inc/tag-clouds.php:464 inc/tag-clouds.php:499
+msgid "Counter"
+msgstr "카운터"
+
+#: inc/class.widgets.php:266
+msgid "Order by for display tags:"
+msgstr "표시 태그에 대한 순서:"
+
+#: inc/class.widgets.php:259 inc/class.widgets.php:287
+msgid "DESC (default)"
+msgstr "내림차순(기본값)"
+
+#: inc/class.widgets.php:257 inc/class.widgets.php:285
+msgid "ASC"
+msgstr "오름차순"
+
+#: inc/class.widgets.php:253
+msgid "Order for DB selection tags:"
+msgstr "DB 선택 태그 순서:"
+
+#: inc/class.widgets.php:244
+msgid "Counter (default)"
+msgstr "카운터(기본값)"
+
+#: inc/class.widgets.php:242
+msgid "Term group"
+msgstr "용어 그룹"
+
+#: inc/class-tag-table.php:42 inc/class.widgets.php:240 inc/tag-clouds.php:463
+#: inc/taxonomies.php:376 inc/terms-table.php:113 inc/terms-table.php:672
+msgid "Slug"
+msgstr "슬러그"
+
+#: inc/class-tag-table.php:41 inc/class-taxonomies-table.php:67
+#: inc/class.admin.clickterms.php:76 inc/class.widgets.php:238
+#: inc/class.widgets.php:270 inc/suggestterms.php:486 inc/tag-clouds.php:462
+#: inc/tag-clouds.php:498
+msgid "Name"
+msgstr "이름"
+
+#: inc/class.widgets.php:234
+msgid "Order by for DB selection tags:"
+msgstr "DB 선택 태그에 대해 순서 지정:"
+
+#: inc/class.widgets.php:225
+msgid "Max tags to display: (default: 45)"
+msgstr "표시할 최대 태그 수: (기본값: 45)"
+
+#: inc/class.widgets.php:216
+msgid "Title:"
+msgstr "제목:"
+
+#: inc/class.widgets.php:85
+msgid "Tags"
+msgstr "태그"
+
+#: inc/class.widgets.php:18
+msgid "[DEPRECATED] - Your most used tags in cloud format with dynamic color and many options"
+msgstr "[DECRECATED] - 동적인 색상과 다양한 옵션을 갖춘 클라우드 형식으로 가장 많이 사용하는 태그"
+
+#: inc/class.client.tagcloud.php:560
+msgid "Invalid Taxonomy"
+msgstr "잘못된 택소노미"
+
+#: inc/class.client.tagcloud.php:67 inc/class.client.tagcloud.php:276
+#: inc/helper.options.default.php:67
+msgid "<h4>Tag Cloud</h4>"
+msgstr "<h4>태그 클라우드</h4>"
+
+#: inc/class.client.tagcloud.php:64 inc/class.client.tagcloud.php:273
+#: inc/helper.options.default.php:69
+msgid "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%\">%tag_name%</a>"
+
+#: inc/class.client.tagcloud.php:66 inc/class.client.tagcloud.php:275
+#: inc/helper.options.default.php:66
+msgid "No tags."
+msgstr "태그 없음"
+
+#: inc/class.client.related_posts.php:485
+msgid "%d topic"
+msgid_plural "%d topics"
+msgstr[0] "%d개의 토픽"
+
+#: inc/class.client.related_posts.php:429
+msgid "There is no excerpt because this is a protected post."
+msgstr "보호된 게시물이므로 발췌가 없습니다."
+
+#: inc/class.client.related_posts.php:103 inc/helper.options.default.php:57
+msgid "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+msgstr "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">%post_title%</a> (%post_comment%)"
+
+#: inc/class.client.related_posts.php:101 inc/helper.options.default.php:55
+#: inc/related-posts-functions.php:157
+msgid "No related posts."
+msgstr "관련 게시물이 없습니다."
+
+#: inc/class.client.related_posts.php:100 inc/helper.options.default.php:56
+msgid "<h4>Related posts</h4>"
+msgstr "<h4>관련 게시물</h4>"
+
+#: inc/class.client.post_tags.php:112 inc/post-tags-functions.php:156
+msgid "No tag for this post."
+msgstr "이 게시물에 대한 태그가 없습니다."
+
+#: inc/class.client.post_tags.php:111 inc/post-tags-functions.php:155
+msgid "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
+msgstr "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</a>"
+
+#: inc/class.client.post_tags.php:106 inc/helper.options.default.php:42
+#: inc/post-tags-functions.php:152
+msgid "Tags: "
+msgstr "태그: "
+
+#: inc/class.admin.suggest.php:295
+msgid "No results from dataTXT API."
+msgstr "DataTXT API에서 결과가 없습니다."
+
+#: inc/class.admin.suggest.php:208
+msgid "No results from OpenCalais service."
+msgstr "OpenCalais 서비스에서 결과가 없습니다."
+
+#: inc/class.admin.suggest.php:169
+msgid "OpenCalais need an API key to work. You can register on service website to obtain a key and set it on TaxoPress options."
+msgstr "OpenCala가 작동하려면 API 키가 필요합니다. 서비스 웹사이트에 등록하여 택소프레스 옵션에서 키를 얻고 설정할 수 있습니다."
+
+#: inc/class.admin.suggest.php:85
+msgid "Suggested tags"
+msgstr "제안된 태그"
+
+#: inc/class.admin.suggest.php:58
+msgid "OpenCalais"
+msgstr "OpenCalais"
+
+#: inc/class.widgets.php:48
+msgid "Tag cloud"
+msgstr "태그 클라우드"
+
+#: inc/class.admin.php:737 inc/class.admin.php:847 inc/functions.inc.php:387
+#: inc/related-posts-table.php:15 inc/related-posts.php:72
+#: inc/related-posts.php:73 inc/related-posts.php:126
+msgid "Related Posts"
+msgstr "관련 게시물"
+
+#: inc/class.admin.php:736 inc/class.admin.php:845
+msgid "Tags for Current Post"
+msgstr "현재 게시물에 대한 태그"
+
+#: inc/class.admin.php:843
+msgid "Embedded Tags"
+msgstr "포함된 태그"
+
+#: inc/class.admin.php:841
+msgid "Features"
+msgstr "기능"
+
+#: inc/class.admin.php:839
+msgid "Auto link"
+msgstr "자동 링크"
+
+#: inc/class.admin.php:837
+msgid "Administration"
+msgstr "관리자"
+
+#: inc/class.admin.php:675
+msgid "This feature works only with activated JavaScript. Activate it in your Web browser so you can!"
+msgstr "이 기능은 활성화된 자바 스크립트에서만 작동합니다. 웹 브라우저에서 활성화하여 사용할 수 있습니다!"
+
+#: inc/class.admin.php:673
+msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
+msgstr "이 기능을 사용하려면 태그가 하나 이상 필요합니다. 태그를 추가하는 것부터 시작하세요!"
+
+#: inc/class.admin.php:627
+msgid "TaxoPress options resetted to default options!"
+msgstr "택소프레스 옵션이 기본 옵션으로 재설정되었습니다!"
+
+#: inc/class.admin.php:621
+msgid "Options saved"
+msgstr "옵션 저장됨"
+
+#: inc/class.admin.php:397
+msgid "Change selection"
+msgstr "선택 변경"
+
+#: inc/class.admin.php:340
+msgid "This custom post type not have taxonomies."
+msgstr "이 사용자 지정 게시 유형에는 택소노미이 없습니다."
+
+#: inc/class.admin.php:301 inc/class.admin.php:851 inc/functions.inc.php:369
+#: inc/posts-table.php:22 inc/posts.php:161 inc/posts.php:162 inc/posts.php:213
+msgid "Posts"
+msgstr "게시물"
+
+#: inc/class.admin.php:300
+msgid "Post tags"
+msgstr "게시 태그"
+
+#: inc/class.admin.mass.php:356
+msgid "Private <span class=\"count\">(%s)</span>"
+msgid_plural "Private <span class=\"count\">(%s)</span>"
+msgstr[0] "비공개 <span class=\"count\">(%s)</span>"
+
+#: inc/class.admin.mass.php:355
+msgid "Private posts"
+msgstr "비공개 게시물"
+
+#: inc/class.admin.mass.php:354
+msgctxt "post"
+msgid "Private"
+msgstr "사적인"
+
+#: inc/class.admin.mass.php:351
+msgid "Draft <span class=\"count\">(%s)</span>"
+msgid_plural "Drafts <span class=\"count\">(%s)</span>"
+msgstr[0] "임시글 <span class=\"count\">(%s)</span>"
+
+#: inc/class.admin.mass.php:350
+msgctxt "manage posts header"
+msgid "Drafts"
+msgstr "임시글"
+
+#: inc/class.admin.mass.php:349
+msgctxt "post"
+msgid "Draft"
+msgstr "임시글"
+
+#: inc/class.admin.mass.php:346
+msgid "Pending Review <span class=\"count\">(%s)</span>"
+msgid_plural "Pending Review <span class=\"count\">(%s)</span>"
+msgstr[0] "검토 보류 <span class=\"count\">(%s)</span>"
+
+#: inc/class.admin.mass.php:345
+msgid "Pending posts"
+msgstr "보류 중인 게시물"
+
+#: inc/class.admin.mass.php:344
+msgctxt "post"
+msgid "Pending Review"
+msgstr "검토 보류 중"
+
+#: inc/class.admin.mass.php:341
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "예약됨 <span class=\"count\">(%s)</span>"
+
+#: inc/class.admin.mass.php:340
+msgid "Scheduled posts"
+msgstr "예약 게시물"
+
+#: inc/class.admin.mass.php:339
+msgctxt "post"
+msgid "Scheduled"
+msgstr "예정됨"
+
+#: inc/class.admin.mass.php:336
+msgid "Published <span class=\"count\">(%s)</span>"
+msgid_plural "Published <span class=\"count\">(%s)</span>"
+msgstr[0] "발행됨 <span class=\"count\">(%s)</span>"
+
+#: inc/class.admin.mass.php:335
+msgid "Published posts"
+msgstr "게시글"
+
+#: inc/class.admin.mass.php:334
+msgctxt "post"
+msgid "Published"
+msgstr "공개됨"
+
+#: inc/class.admin.mass.php:284
+msgid "No content to edit."
+msgstr "편집할 콘텐츠가 없습니다."
+
+#: inc/class.admin.mass.php:278
+msgid "Update all &raquo;"
+msgstr "모두 업데이트 &raquo;"
+
+#: inc/autolinks-table.php:264 inc/autoterms-table.php:264
+#: inc/class-taxonomies-table.php:285 inc/class.admin.mass.php:261
+#: inc/post-tags-table.php:264 inc/related-posts-table.php:265
+#: inc/suggestterms-table.php:263 inc/tag-clouds-table.php:265
+#: inc/terms-table.php:391
+msgid "Edit"
+msgstr "편집"
+
+#: inc/class.admin.mass.php:248
+msgid "Terms : %s"
+msgstr "용어: %s"
+
+#: inc/class.admin.mass.php:247
+msgid "Post title"
+msgstr "게시물 제목"
+
+#: inc/autoterms-logs-table.php:172 inc/class.admin.mass.php:229
+#: inc/posts-table.php:192 inc/terms-table.php:225
+msgid "Filter"
+msgstr "필터"
+
+#: inc/class.admin.mass.php:219
+msgid "Quantity&hellip;"
+msgstr "수량&hellip;"
+
+#: inc/class.admin.mass.php:191
+msgid "Show all dates"
+msgstr "모든 날짜 표시"
+
+#: inc/class.admin.mass.php:153
+msgid "Search"
+msgstr "검색"
+
+#: inc/class.admin.mass.php:121 inc/related-posts-table.php:338
+#: inc/related-posts-table.php:355 inc/tag-clouds-table.php:345
+msgid "All"
+msgstr "전체"
+
+#: inc/class.admin.mass.php:113
+msgid "Mass edit terms"
+msgstr "대량 용어 편집"
+
+#: inc/class.admin.mass.php:83
+msgid "%1$s %2$s(s) terms updated with success !"
+msgstr "%1$s %2$s(s) 용어가 성공적으로 업데이트되었습니다!"
+
+#: inc/class.admin.mass.php:30 inc/class.admin.mass.php:31
+#: inc/class.admin.php:739
+msgid "Mass Edit Terms"
+msgstr "대량 용어 편집"
+
+#: inc/class.admin.manage.php:774
+msgid "No term added."
+msgstr "추가된 용어 없음."
+
+#: inc/class.admin.manage.php:721
+msgid "No new term(s) specified!"
+msgstr "새 용어가 지정되지 않았습니다!"
+
+#: inc/class.admin.manage.php:702 inc/class.admin.manage.php:815
+msgid "%1s term(s) deleted."
+msgstr "%1s 용어가 삭제되었습니다."
+
+#: inc/class.admin.manage.php:700 inc/class.admin.manage.php:813
+msgid "No term deleted."
+msgstr "삭제된 용어가 없습니다."
+
+#: inc/class.admin.manage.php:517 inc/class.admin.manage.php:677
+msgid "No term specified!"
+msgstr "지정된 용어가 없습니다!"
+
+#: inc/class.admin.manage.php:493
+msgid "No term merged."
+msgstr "병합된 용어가 없습니다."
+
+#: inc/class.admin.manage.php:442
+msgid "No valid new term."
+msgstr "유효한 새 용어가 없습니다."
+
+#: inc/class.admin.manage.php:654
+msgid "No term renamed."
+msgstr "용어 이름이 변경되지 않았습니다."
+
+#: inc/class.admin.manage.php:432 inc/class.admin.manage.php:607
+msgid "No new/old valid term specified!"
+msgstr "새/이전 유효한 용어가 지정되지 않았습니다!"
+
+#: inc/class.admin.manage.php:417 inc/class.admin.manage.php:592
+msgid "No new term specified!"
+msgstr "새 용어가 지정되지 않았습니다!"
+
+#: inc/class.admin.manage.php:338
+msgid "Delete rarely used"
+msgstr "거의 사용되지 않는 항목 삭제"
+
+#: inc/class.admin.manage.php:306
+msgid "This feature allows you to remove rarely used terms."
+msgstr "이 기능을 사용하면 거의 사용되지 않는 용어를 제거할 수 있습니다."
+
+#: inc/class.admin.manage.php:304
+msgid "Remove rarely used terms"
+msgstr "거의 사용되지 않는 용어 제거"
+
+#: inc/class.admin.manage.php:213
+msgid "Add"
+msgstr "추가"
+
+#: inc/class.admin.manage.php:206
+msgid "Term(s) to add:"
+msgstr "추가할 용어:"
+
+#: inc/class.admin.manage.php:198
+msgid "Term(s) to match:"
+msgstr "일치시킬 용어:"
+
+#: inc/class.admin.manage.php:169
+msgid "This feature lets you add one or more new terms to all %s which match any of the terms given."
+msgstr "이 기능을 사용하면 지정된 용어와 일치하는 하나 이상의 새 용어를 모든 %s에 추가할 수 있습니다."
+
+#: inc/class.admin.manage.php:167
+msgid "Add Terms"
+msgstr "용어 추가"
+
+#: inc/autolinks-table.php:275 inc/autoterms-logs-table.php:240
+#: inc/autoterms-table.php:275 inc/class-tag-table.php:196
+#: inc/class.admin.taxonomies.ui.php:771 inc/post-tags-table.php:275
+#: inc/related-posts-table.php:276 inc/suggestterms-table.php:274
+#: inc/tag-clouds-table.php:276 inc/terms-table.php:167 inc/terms-table.php:427
+msgid "Delete"
+msgstr "삭제"
+
+#: inc/class.admin.manage.php:254
+msgid "Rename"
+msgstr "이름 변경"
+
+#: inc/class.admin.manage.php:247
+msgid "New term name(s):"
+msgstr "새 용어 이름:"
+
+#: inc/class.admin.manage.php:239
+msgid "Term(s) to rename:"
+msgstr "이름을 바꿀 용어:"
+
+#: inc/class.admin.clickterms.php:76 inc/class.widgets.php:246
+#: inc/related-posts.php:671 inc/suggestterms.php:495 inc/tag-clouds.php:465
+#: inc/tag-clouds.php:500
+msgid "Random"
+msgstr "무작위"
+
+#: inc/related-posts.php:666
+msgid "Inverse Alphabetical"
+msgstr "알파벳 역순"
+
+#: inc/class.admin.manage.php:61 inc/class.admin.manage.php:132
+#: inc/functions.inc.php:411
+msgid "Manage Terms"
+msgstr "용어 관리"
+
+#: inc/class.admin.clickterms.php:269 inc/class.admin.suggest.php:351
+msgid "No results from your WordPress database."
+msgstr "워드프레스 데이터베이스에서 결과가 없습니다."
+
+#: inc/class.admin.clickterms.php:221 inc/class.admin.suggest.php:334
+msgid "No terms in your WordPress database."
+msgstr "워드프레스 데이터베이스에 용어가 없습니다."
+
+#: inc/ajax-request.php:89
+msgid "All done! %s terms added."
+msgstr "모두 완료! %s 용어가 추가되었습니다."
+
+#: inc/autolinks.php:315 inc/autoterms.php:412 inc/post-tags.php:298
+#: inc/related-posts.php:290 inc/tag-clouds.php:291
+msgid "Options"
+msgstr "옵션"
+
+#: inc/autoterms.php:172 inc/autoterms.php:233 inc/autoterms.php:345
+msgid "Auto Terms List"
+msgstr "자동 용어 목록"
+
+#: inc/autoterms.php:74 inc/autoterms.php:75 inc/functions.inc.php:399
+msgid "Auto Terms"
+msgstr "자동 용어"
+
+#: inc/class.admin.autocomplete.php:129
+msgid "Separate tags with commas"
+msgstr "쉼표로 태그 구분"
