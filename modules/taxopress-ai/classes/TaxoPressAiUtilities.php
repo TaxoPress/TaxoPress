@@ -122,7 +122,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
          * @return string The cleaned-up content.
          */
         public static function taxopress_clean_up_content($post_content = '', $post_title = '') {
-
+            
             // Return empty string if both post content and title are empty
             if (empty($post_content) && empty($post_title)) {
                 return '';
@@ -131,38 +131,19 @@ if (!class_exists('TaxoPressAiUtilities')) {
             // Apply content and title filters if provided
             if (!empty($post_content)) {
                 $post_content = apply_filters('the_content', $post_content);
+            
+                /* Remove HTML entities */
+                $post_content = preg_replace( '/&#?[a-z0-9]{2,8};/i', '', $post_content );
+        
+                /*  Remove abbreviations */
+                $post_content = preg_replace( '/[A-Z][A-Z]+/', '', $post_content );
+        
+                /* Replace HTML line breaks with newlines */
+                $post_content = preg_replace( '#<br\s?/?>#', "\n\n", $post_content );
+            
+                // Strip all remaining HTML tags
+                $post_content = wp_strip_all_tags( $post_content );
             }
-            if (!empty($post_title)) {
-                $post_title = apply_filters('the_title', $post_title);
-            }
-        
-            /* Define regex patterns for replacements */
-            $patterns = [
-                '/\[.+\](.+)\[\/.+\]/U', // Remove shortcodes, preserve internal caption text
-                '/&#?[a-z0-9]{2,8};/i',   // Remove HTML entities
-                '/[A-Z][A-Z]+/',          // Remove abbreviations
-                '/<br\s?\/?>/i',          // Replace HTML line breaks with newlines
-            ];
-        
-            /* Define replacement strings */
-            $replacements = [
-                '$1',
-                '',
-                '',
-                "\n\n",
-            ];
-        
-            // Perform multiple replacements using preg_replace_callback
-            $post_content = preg_replace_callback(
-                $patterns,
-                function($matches) use ($replacements) {
-                    return array_shift($replacements);
-                },
-                $post_content
-            );
-        
-            // Strip all remaining HTML tags
-            $post_content = wp_strip_all_tags( $post_content );
         
             // Initialize the cleaned-up content variable
             $cleaned_up_content = '';
