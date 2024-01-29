@@ -953,6 +953,10 @@ class SimpleTags_Admin
 	{
 		global $wpdb;
 
+		if ($order_by === 'random') {
+			$order_by = 'RAND()';
+		}
+
 		if (!empty($search)) {
 			return $wpdb->get_results($wpdb->prepare("
 				SELECT DISTINCT t.name, t.term_id

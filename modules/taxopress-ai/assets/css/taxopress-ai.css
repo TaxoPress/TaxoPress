@@ -26,6 +26,7 @@ ul.taxopress-tab.ai-integration-tab li a::before {
 .taxopress-ai-preview-sidebar .sidebar-body-wrap .ppma_select2-container {
     flex: 1 1 0px;
     margin-right: 5px;
+    overflow: auto;
 }
 
 .taxopress-ai-preview-sidebar .sidebar-submit-wrap .submit-action {
@@ -148,6 +149,7 @@ ul.taxopress-tab.ai-integration-tab li a::before {
 .st_taxopress_ai-wrap .tp-ai-flex-item {
     flex: 1 1 0px;
     margin-right: 15px;
+    max-width: 50%
 }
 
 .st_taxopress_ai-wrap ul.taxopress-tab {
