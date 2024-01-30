@@ -486,6 +486,7 @@ class SimpleTags_Client_TagCloud {
 			return array();
 		}
 
+		$cache = [];
 		$cache[ $key ] = $terms;
 		wp_cache_set( 'st_get_tags', $cache, 'simple-tags' );
 
