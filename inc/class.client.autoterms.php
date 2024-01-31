@@ -564,7 +564,9 @@ class SimpleTags_Client_Autoterms
 				foreach ($add_terms as $find_term => $original_term) {
 					// Whole word ?
 					if (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
-						if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
+						//if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
+						if (preg_match("#\b" . preg_quote($find_term) . "\b#i", $content)) {
+							
 							$terms_to_add[] = $term;
 						}
 
