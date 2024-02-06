@@ -10,6 +10,7 @@ class SimpleTags_Admin
 	public static $taxonomy = '';
 	public static $taxo_name = '';
 	public static $admin_url = '';
+	public static $enabled_menus = [];
 
 	const MENU_SLUG = 'st_options';
 
@@ -49,12 +50,17 @@ class SimpleTags_Admin
 		//dashboard
 		require STAGS_DIR . '/inc/dashboard.php';
 		SimpleTags_Dashboard::get_instance();
+		self::$enabled_menus['st_dashboard'] = esc_html__('Dashboard', 'simple-tags');
+		if (1 === (int) SimpleTags_Plugin::get_option_value('active_taxonomies')) {
+			self::$enabled_menus['st_taxonomies'] = esc_html__('Taxonomies', 'simple-tags');
+		}
 
 		//terms
 		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_st_terms')) {
 			require STAGS_DIR . '/inc/terms-table.php';
 			require STAGS_DIR . '/inc/terms.php';
 			SimpleTags_Terms::get_instance();
+			self::$enabled_menus['st_terms'] = esc_html__('Terms', 'simple-tags');
 		}
 
 		//posts
@@ -62,6 +68,7 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/posts-table.php';
 			require STAGS_DIR . '/inc/posts.php';
 			SimpleTags_Posts::get_instance();
+			self::$enabled_menus['st_posts'] = esc_html__('Posts', 'simple-tags');
 		}
 
 		//tag clouds/ terms display
@@ -134,6 +141,8 @@ class SimpleTags_Admin
 			SimpleTags_Admin_Taxonomies::get_instance();
 		}
 		
+		self::$enabled_menus['st_taxopress_ai'] = esc_html__('TaxoPress AI', 'simple-tags');
+		
 		TaxoPress_AI_Module::get_instance();
 
 		do_action('taxopress_admin_class_after_includes');
@@ -142,6 +151,20 @@ class SimpleTags_Admin
 		add_action('wp_ajax_simpletags', array(__CLASS__, 'ajax_check'));
 		// Save dashboard feature
 		add_action('wp_ajax_save_taxopress_dashboard_feature_by_ajax', [__CLASS__, 'saveDashboardFeature']);
+		// Plugin action links
+		add_filter('plugin_action_links_' . plugin_basename(TAXOPRESS_FILE), [__CLASS__, 'plugin_settings_link']);
+	}
+
+	/**
+	 * Plugin action links
+	 */
+	public static function plugin_settings_link($links) {
+
+		foreach (self::$enabled_menus as $menu_slug => $menu_title) {
+			$links[] = '<a href="' . admin_url('admin.php?page=' . $menu_slug) . '">'. $menu_title .'</a>';
+		}
+
+		return $links;
 	}
 
 	/**
