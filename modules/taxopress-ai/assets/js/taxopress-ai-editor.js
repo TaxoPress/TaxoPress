@@ -86,6 +86,23 @@
     });
 
     // -------------------------------------------------------------
+    //  Select/de-select all tags tags
+    // -------------------------------------------------------------
+    $(document).on('click', '.previewed-tag-fieldset .ai-select-all', function () {
+      var button = $(this);
+
+      if (button.hasClass('all-selected')) {
+        button.removeClass('all-selected');
+        button.html(button.attr('data-select-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').addClass('used_term').trigger('click');
+      } else {
+        button.addClass('all-selected');
+        button.html(button.attr('data-deselect-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').removeClass('used_term').trigger('click');
+      }
+    });
+
+    // -------------------------------------------------------------
     //  Select or de-select term (click tags)
     // -------------------------------------------------------------
     $(document).on('click', '.taxopress-ai-fetch-result .result-terms:not(.disabled)', function () {
