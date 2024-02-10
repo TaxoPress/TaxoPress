@@ -53,13 +53,35 @@ if (!class_exists('TaxoPressAiUtilities')) {
         public static function get_taxonomies()
         {
 
-            $show_ui_tax = get_taxonomies(['public' => true, 'show_ui' => true], 'objects', 'and');
-            
+            $all_taxonomies = get_taxonomies([], 'objects');//'public' => true, 'show_ui' => true
+
             $taxonomies = [];
-            foreach ($show_ui_tax as $tax) {
+            foreach ($all_taxonomies as $tax) {
                 if (empty($tax->labels->name)) {
                     continue;
                 }
+
+                if (in_array($tax->name, ['post_format', 'nav_menu', 'link_category', 'wp_theme', 'wp_template_part_area', 'wp_pattern_category'])) {
+                    continue;
+                }
+
+                $object_types = !(empty($tax->object_type)) ? $tax->object_type : [];
+
+                if (is_array($object_types) && !empty($object_types)) {
+                    $show_category = false;
+                    foreach ($object_types as $object_type) {
+                        if (!empty($tax->show_ui)) {
+                            $show_category = true;
+                        } elseif (!empty(SimpleTags_Plugin::get_option_value('taxopress_ai_' . $object_type . '_support_private_taxonomy'))) {
+                            $show_category = true;
+                        }
+                    }
+
+                    if (!$show_category) {
+                        continue;
+                    }
+                }
+
                 $taxonomies[$tax->name] = $tax->labels->name. ' ('.$tax->name.')';
             }
 

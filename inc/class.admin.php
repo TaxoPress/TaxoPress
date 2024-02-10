@@ -622,6 +622,7 @@ class SimpleTags_Admin
 						$opt_default_value = 0;
 					}
 					$options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
+					$options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
 					foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
 						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
@@ -772,6 +773,7 @@ class SimpleTags_Admin
 				$table_sub_tab_lists = [];
 				$pt_index = 0;
 				foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
+
 					if (!in_array($post_type, ['attachment']) && !empty(get_object_taxonomies($post_type))) {
 						$active_pt = ($pt_index === 0) ? 'active' : '';
 						$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".taxopress-ai-' . $post_type . '-content">' . esc_html($post_type_object->labels->name) . '</span>';
