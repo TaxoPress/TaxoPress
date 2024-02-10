@@ -17,7 +17,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
 
     $default_taxonomy_options = [];
     foreach (get_object_taxonomies($post_type, 'objects') as $tax_key => $tax_object) {
-        if (!in_array($tax_key, ['post_format']) && !empty($tax_object->show_ui)) {
+        if (!in_array($tax_key, ['post_format']) && (!empty($tax_object->show_ui) || !empty(SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_support_private_taxonomy')))) {
             $default_taxonomy_options[$tax_key] = $tax_object->labels->name. ' ('.$tax_object->name.')';
         }
     }
@@ -30,6 +30,15 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '1',
             sprintf(esc_html__('Enable the TaxoPress AI metabox on the %1s screen.', 'simple-tags'), esc_html($post_type_object->labels->name)),
             'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
+        );
+
+        $taxopress_ai_fields[] = array(
+             'taxopress_ai_' . $post_type . '_support_private_taxonomy',
+            sprintf(esc_html__('Show %1s Private Taxonomies in Metabox', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'checkbox',
+            '1',
+            sprintf(esc_html__('Add support for %1s private taxonomies in TaxoPress AI.', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
 
         // add taxonomy
