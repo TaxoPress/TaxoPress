@@ -186,9 +186,11 @@
           if (this_selected) {
             jQuery('#tagsdiv-' + taxonomy + ' .tagchecklist').find('li').each(function () {
               var listItem = jQuery(this);
-              var listItemText = listItem.text().trim();
+              var listItemText = listItem.contents().filter(function() {
+                return this.nodeType === 3; // Filter out non-text nodes
+              }).text().trim();
 
-              if (listItemText.includes(this_term_name)) {
+              if (listItemText == this_term_name) {
                 var removeButton = listItem.find('.ntdelbutton');
                 removeButton.trigger('click');
                 term_button.toggleClass('used_term');
