@@ -1377,12 +1377,23 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
+                                                $rest_base_slug = '';
+
+                                                if (!empty($current['rest_base'])) {
+                                                    $rest_base_slug .= $current['rest_base'];
+                                                } elseif (!empty($current['name'])) {
+                                                    $rest_base_slug .= $current['name'];
+                                                } else {
+                                                    $rest_base_slug .= '{taxonomy}';
+                                                }
+
+                                                // $current['name']
                                                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_text_input([
                                                     'namearray' => 'cpt_custom_tax',
                                                     'name'      => 'rest_base',
                                                     'labeltext' => esc_html__('REST API base slug', 'simple-tags'),
-                                                    'helptext'  => esc_attr__('The base slug that this taxonomy will use in the REST API.', 'simple-tags'),
+                                                    'helptext'  => esc_attr__('The base slug that this taxonomy will use in the REST API.', 'simple-tags') . ' <a target="blank" href="'. home_url('/wp-json/wp/v2/'. $rest_base_slug .'').'">'. home_url('/wp-json/wp/v2/'. $rest_base_slug .'').'</a>',
                                                     'textvalue' => isset($current['rest_base']) ? esc_attr($current['rest_base']) : '',
                                                 ]);
 

@@ -1,9 +1,9 @@
-=== TaxoPress is the WordPress Tag, Category, and Taxonomy Manager ===
+=== WordPress Tag and Category Manager - AI Autotagger ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
-Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager
+Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager, ai, openai, open ai, ibm watson, dandelion, open calais, lseg, refinitiv, autotagger, auto tagging
 Requires at least: 3.3
-Tested up to: 6.3
-Stable tag: 3.11.1
+Tested up to: 6.4
+Stable tag: 3.12.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,6 +13,8 @@ TaxoPress enables you to manage Tags, Categories and all your WordPress taxonomy
 == Description ==
 
 TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms. TaxoPress can help with all your WordPress content, from adding Tags and Categories to Pages, to managing WooCommerce Product Categories and bbPress Topic Tags. 
+
+TaxoPress has integrations with AI tools including OpenAI, IBM Watson, Dandelion, LSEG / Refinitiv and more. You can use these services to find the best taxonomy terms for your content.
 
 With TaxoPress, you can organize, optimize, and showcase all your WordPress content:
 
@@ -33,7 +35,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 4. **Related Posts**: Shows lists of posts with similar tags and categories.
 5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
 6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
-7. **Suggest Terms**: This feature can show a metabox where you can browse all your existing terms. A second metabox can analyze your content and find new ideas for terms. 
+7. **TaxoPress AI**: This feature makes it easier for you to find or create the best taxonomy terms for your content.
 8. **Term Synonyms**: This feature allows you to have multiple words associated with a single term.
 9. **Linked Terms**: You can connect terms. When the main term is added to a post, the linked terms will be added also.
 10. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
@@ -83,16 +85,16 @@ This feature allows WordPress to examine your post content and title for specifi
 
 [Click here to read about automatically adding terms](https://taxopress.com/docs/introduction-to-auto-terms/).
 
-## Feature 7. Suggest Terms ##
+## Feature 7. TaxoPress AI ##
 
-The Suggest Terms feature helps when you're writing content in WordPress. It becomes much easier for you to find the best taxonomy terms for your content.
+This feature makes it easier for you to find or create the best taxonomy terms for your content. TaxoPress AI can show a metabox on your post editing screen with all these options:. 
 
-Suggest Terms can show two metaboxes on your post editing screen:
+* **Manage Post Terms**: This feature allows you to manage all the terms that are currently attached to a post.
+* **Suggest Existing Terms**: This feature uses a tool in the TaxoPress plugin that can scan your posts and suggest relevant terms that already exist on your site.
+* **Show All Existing Terms**: This feature allows you to browse all the terms in a taxonomy.
+* **OpenAI** / **IBM Watson** / **Dandelion** / **LSEG**: These integrations allow you to connect to external service. These services will scan your content and suggest relevant terms. They can suggest existing terms and also new terms.
 
-* One metabox can help you browse and select from all your existing terms. 
-* One metabox can analyze your content and find new ideas for terms. TaxoPress can suggest terms that already exist on your site. TaxoPress can also create new ideas from services such as Dandelion and Open Calais.
-
-[Click here to read about suggesting terms](https://taxopress.com/docs/introduction-to-suggested-tags/).
+[Click here to read about TaxoPress AI](https://taxopress.com/docs/introduction-taxopress-ai/).
 
 ## Feature 8. Term Synonyms ##
 
@@ -117,8 +119,6 @@ The Manage Terms screen in TaxoPress provides you with several useful tools to m
 * **Add terms**: Quickly add terms to your content.
 * **Rename terms**: Change the name of your terms in bulk.
 * **Merge terms**: Combine existing terms together. This is very useful for fixing typos in your terms.
-* **Remove terms**: Remove terms from all posts, without deleting those terms.
-* **Delete terms**: Delete terms in bulk.
 * **Delete unused terms**: Delete any terms that are rarely used.
 
 [Click here to read about managing terms](https://taxopress.com/docs/introduction-to-manage-terms/).
@@ -236,6 +236,27 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 
 [Click here to see more about automatically adding WooCoomerce Product Tags](https://taxopress.com/automatically-add-woocommerce-product-tags-and-categories/).
 
+= What’s the Difference Between WordPress Categories and Tags? = 
+
+The main difference between Categories and Tags is the ability to create levels of Categories. Categories are hierarchical, which means terms can be organized into a parent-child relationship. For example, you could have a Category called “Fruit”, and under this Category you could have categories called “Apples”, “Bananas”, “Grapes”, and “Peaches”. Tags are not hierarchical, which means there’s no relationship between them. You can still add the same words as Tags, but by default they can not have relationships. You can modify this using [the Taxonomies screen in TaxoPress](https://taxopress.com/docs/introduction-taxonomies-screen/).
+
+[Click here to see the difference between Tags and Categories](https://taxopress.com/difference-categories-tags/)
+
+= Can I Build WordPress Tag Generator With TaxoPress? =
+
+Yes, this is possible with the TaxoPress plugin. TaxoPress has a feature that can analyze your content and automatically add new terms. This tag generator will be very useful for anyone who creates a lot of content. This feature is called “Auto Terms” and it works by integrating with the OpenAI, IBM Watson, Dandelion or LSEF systems to scan content and create terms.
+
+[Click here to see how to build a tag generator](https://taxopress.com/wordpress-tag-generator/)
+
+= How Do I Integrate OpenAI with TaxoPress? =
+
+OpenAI / OpenAI / ChatGPT is the most popular AI tool available today. The TaxoPress AI feature has an integration with the OpenAI service. [This OpenAI guide](https://taxopress.com/docs/register-openai/) will help you register for an account at OpenAI and get an API Key to use with TaxoPress.
+
+= How Do I Integrate IBW Watson with TaxoPress? =
+
+IBW Watson is one of the most powerful AI tools available today. The TaxoPress AI feature has an integration with the  Natural Language Understanding service from IBM. [This IBM Watson guide](https://taxopress.com/docs/register-ibm/) will help you register for an account at IBM Cloud and get an API Key and URL to use with TaxoPress.
+
+
 == Screenshots ==
 
 1. You can create new taxonomies and edit all the settings for each taxonomy.
@@ -246,6 +267,20 @@ If you have a busy WooCommerce site, it can be difficult to organize all your pr
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.12.0- 2024-02-12
+* Fixed: Auto Terms Regex Option not working, #1338
+* Update: Support for Private Taxonomies in TaxoPress AI, #1950
+* Update: Remove linked tags relationship after a tag is deleted, #1959
+* Update: Add Linked Terms support to TaxoPress AI, #1903
+* Update: Add the "Select all Tags" option to the metabox, #1947
+* Update: Add some plugin links to the plugin description, #1946
+* Fixed: PHP Errors: Unknown modifier, #1962
+* Update: Add more information to REST API tab, #1825
+* Fixed: Deprecated issue on PHP 8.3, #1967
+* Update: Update the error message when adding tags that are already a synonym, #1964
+* Fixed: TaxoPress AI screen UI issue, #1953
+* Update: New Translation updates TaxoPress Free v.3.11.1, #1944
 
 v3.11.1- 2023-11-02
 * Update: Add TaxoPress AI metabox default taxonomy settings, #1923

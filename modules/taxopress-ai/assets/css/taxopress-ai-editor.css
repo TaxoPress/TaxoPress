@@ -30,14 +30,23 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     display: none;
 }
 
+.taxopress-post-suggestterm .ai-select-all {
+    cursor: pointer;
+}
+
 .taxopress-post-suggestterm .previewed-tag-fieldset {
-    border: none;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 3px dashed #D1E6EF;
     overflow: auto;
     margin: 3px 0 0;
 }
 
 .taxopress-post-suggestterm .previewed-tag-fieldset legend {
-    display: none;
+    padding: 0 10px;
+    padding-bottom: 5px;
+    color: #2271b1;
 }
 
 .taxopress-post-suggestterm .previewed-tag-fieldset legend a {

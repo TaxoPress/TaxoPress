@@ -104,7 +104,7 @@ class SimpleTags_Client_Autoterms
 			return false;
 		}
 
-		if (get_the_terms($object->ID, $taxonomy) != false && (int) $options['autoterm_target'] === 1) {
+		if ((int) $options['autoterm_target'] === 1 && get_the_terms($object->ID, $taxonomy) != false) {
 			//update log
 			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'term_only_option');
 			return false; // Skip post with terms, if term only empty post option is checked
@@ -137,6 +137,7 @@ class SimpleTags_Client_Autoterms
 		$autoterm_use_ibm_watson = isset($options['autoterm_use_ibm_watson']) ? (int) $options['autoterm_use_ibm_watson'] : 0;
 		$autoterm_use_dandelion = isset($options['autoterm_use_dandelion']) ? (int) $options['autoterm_use_dandelion'] : 0;
 		$autoterm_use_opencalais = isset($options['autoterm_use_opencalais']) ? (int) $options['autoterm_use_opencalais'] : 0;
+		$autoterm_regex_code = !empty($options['terms_regex_code']) ? stripslashes($options['terms_regex_code']) : '';
 
 		$args = [
 			'post_id' => $object->ID,
@@ -193,9 +194,14 @@ class SimpleTags_Client_Autoterms
 						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
+							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
 
-							// Whole word ?
-							if (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+							if (!empty($terms_regex_code)) {
+								if (preg_match("{$terms_regex_code}", $content)) {
+									$terms_to_add[] = $term;
+								}
+							} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+								// Whole word ?
 								if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
 									$terms_to_add[] = $term;
 								}
@@ -266,9 +272,14 @@ class SimpleTags_Client_Autoterms
 						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
+							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
 
-							// Whole word ?
-							if (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+							if (!empty($terms_regex_code)) {
+								if (preg_match("{$terms_regex_code}", $content)) {
+									$terms_to_add[] = $term;
+								}
+							} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+								// Whole word ?
 								if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
 									$terms_to_add[] = $term;
 								}
@@ -339,9 +350,14 @@ class SimpleTags_Client_Autoterms
 						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
-
-							// Whole word ?
-							if (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
+							
+							if (!empty($terms_regex_code)) {
+								if (preg_match("{$terms_regex_code}", $content)) {
+									$terms_to_add[] = $term;
+								}
+							} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+								// Whole word ?
 								if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
 									$terms_to_add[] = $term;
 								}
@@ -417,9 +433,14 @@ class SimpleTags_Client_Autoterms
 						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 						foreach ($add_terms as $find_term => $original_term) {
-
-							// Whole word ?
-							if (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
+							
+							if (!empty($terms_regex_code)) {
+								if (preg_match("{$terms_regex_code}", $content)) {
+									$terms_to_add[] = $term;
+								}
+							} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+								// Whole word ?
 								if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
 									$terms_to_add[] = $term;
 								}
@@ -486,10 +507,16 @@ class SimpleTags_Client_Autoterms
 				$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 				foreach ($add_terms as $find_term => $original_term) {
+					$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
 
-					// Whole word ?
-					if (isset($options['autoterm_word']) && (int) $options['autoterm_word'] === 1) {
-						if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
+					if (!empty($terms_regex_code)) {
+						if (preg_match("{$terms_regex_code}", $content)) {
+							$terms_to_add[] = $term;
+						}
+					} elseif(isset($options['autoterm_word']) && (int) $options['autoterm_word'] === 1) {
+						// Whole word ?
+						//if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
+						if (preg_match("#\b" . preg_quote($find_term) . "\b#i", $content)) {
 							$terms_to_add[] = $term;
 						}
 
@@ -562,9 +589,17 @@ class SimpleTags_Client_Autoterms
 				$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
 				foreach ($add_terms as $find_term => $original_term) {
-					// Whole word ?
-					if (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
-						if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
+					$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
+
+					if (!empty($terms_regex_code)) {
+						if (preg_match("{$terms_regex_code}", $content)) {
+							$terms_to_add[] = $term;
+						}
+					} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+						// Whole word ?
+						//if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
+						if (preg_match("#\b" . preg_quote($find_term) . "\b#i", $content)) {
+							
 							$terms_to_add[] = $term;
 						}
 

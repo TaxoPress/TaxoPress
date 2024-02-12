@@ -86,6 +86,23 @@
     });
 
     // -------------------------------------------------------------
+    //  Select/de-select all tags tags
+    // -------------------------------------------------------------
+    $(document).on('click', '.previewed-tag-fieldset .ai-select-all', function () {
+      var button = $(this);
+
+      if (button.hasClass('all-selected')) {
+        button.removeClass('all-selected');
+        button.html(button.attr('data-select-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').addClass('used_term').trigger('click');
+      } else {
+        button.addClass('all-selected');
+        button.html(button.attr('data-deselect-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').removeClass('used_term').trigger('click');
+      }
+    });
+
+    // -------------------------------------------------------------
     //  Select or de-select term (click tags)
     // -------------------------------------------------------------
     $(document).on('click', '.taxopress-ai-fetch-result .result-terms:not(.disabled)', function () {
@@ -169,9 +186,11 @@
           if (this_selected) {
             jQuery('#tagsdiv-' + taxonomy + ' .tagchecklist').find('li').each(function () {
               var listItem = jQuery(this);
-              var listItemText = listItem.text().trim();
+              var listItemText = listItem.contents().filter(function() {
+                return this.nodeType === 3; // Filter out non-text nodes
+              }).text().trim();
 
-              if (listItemText.includes(this_term_name)) {
+              if (listItemText == this_term_name) {
                 var removeButton = listItem.find('.ntdelbutton');
                 removeButton.trigger('click');
                 term_button.toggleClass('used_term');

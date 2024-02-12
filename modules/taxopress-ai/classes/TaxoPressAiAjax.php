@@ -234,9 +234,42 @@ if (!class_exists('TaxoPressAiAjax')) {
                 if (!empty($term_results)) {
                     if (is_array($term_results)) {
                         $term_results = array_unique(array_filter($term_results));
-
+                        $addded_term_results = [];
+                        foreach ($term_results as $term_result) {
+                            if (!in_array($preview_ai, ['post_terms', 'existing_terms'])) {
+                                $term_details = get_term_by('name', $term_result, $preview_taxonomy);
+                                if ($term_details) {
+                                    $primary_term = $term_result;
+                                    $term_id = $term_details->term_id;
+                                    $add_terms = [];
+                                    $add_terms[$primary_term] = $term_id;
+                        
+                                    // add term synonyms
+                                    $term_synonyms = taxopress_get_term_synonyms($term_id);
+                                    if (!empty($term_synonyms)) {
+                                        foreach ($term_synonyms as $term_synonym) {
+                                            $add_terms[$term_synonym] = $term_id;
+                                        }
+                                    }
+                
+                                    // add linked term
+                                    $add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $preview_taxonomy);
+                                    
+                                    // add all of the linked and synonmy terms to the list
+                                    foreach ($add_terms as $add_name => $add_term_id) {
+                                        if (is_string($add_name) && ! empty($add_name) && !in_array($add_name, $addded_term_results)) {
+                                            $addded_term_results[] = $add_name;
+                                        }
+                                    }
+                                }
+                               
+                            } else {
+                                $addded_term_results[] = $term_result;
+                            }
+                        }
+                        $addded_term_results = array_unique($addded_term_results);
                         $legend_title = '<a href="' . get_edit_post_link($post_id) . '" target="blank">' . $post_data->post_title . ' (' . esc_html__('Edit', 'simple-tags') . ')</a>';
-                        $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($term_results, $preview_taxonomy, $post_id, $legend_title, $args['show_counts'], $current_tags);
+                        $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($addded_term_results, $preview_taxonomy, $post_id, $legend_title, $args['show_counts'], $current_tags);
 
                     } else {
                         $response_content = $term_results;
@@ -311,7 +344,9 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 foreach ($terms as $term ) {
                                     $term_id = $term->term_id;
                                     $term = stripslashes( $term->name );
-                                    
+                                    if (!stristr($content, $term)) {
+                                        continue;
+                                    }
                                     $add_terms = [];
                                     $add_terms[$term] = $term_id;
                                     $primary_term = $term;
@@ -328,8 +363,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                                     $add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $existing_tax);
                                     
                                     foreach ($add_terms as $add_name => $add_term_id) {
-                                        if (is_string($add_name) && ! empty($add_name) && stristr($content, $add_name) && !in_array($primary_term, $term_results)) {
-                                            $term_results[] = $primary_term;
+                                        if (is_string($add_name) && ! empty($add_name) && !in_array($add_name, $term_results)) {
+                                            $term_results[] = $add_name;
                                         }
                                     }
                                 }

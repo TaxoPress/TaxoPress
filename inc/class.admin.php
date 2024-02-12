@@ -10,6 +10,7 @@ class SimpleTags_Admin
 	public static $taxonomy = '';
 	public static $taxo_name = '';
 	public static $admin_url = '';
+	public static $enabled_menus = [];
 
 	const MENU_SLUG = 'st_options';
 
@@ -49,12 +50,17 @@ class SimpleTags_Admin
 		//dashboard
 		require STAGS_DIR . '/inc/dashboard.php';
 		SimpleTags_Dashboard::get_instance();
+		self::$enabled_menus['st_dashboard'] = esc_html__('Dashboard', 'simple-tags');
+		if (1 === (int) SimpleTags_Plugin::get_option_value('active_taxonomies')) {
+			self::$enabled_menus['st_taxonomies'] = esc_html__('Taxonomies', 'simple-tags');
+		}
 
 		//terms
 		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_st_terms')) {
 			require STAGS_DIR . '/inc/terms-table.php';
 			require STAGS_DIR . '/inc/terms.php';
 			SimpleTags_Terms::get_instance();
+			self::$enabled_menus['st_terms'] = esc_html__('Terms', 'simple-tags');
 		}
 
 		//posts
@@ -62,6 +68,7 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/posts-table.php';
 			require STAGS_DIR . '/inc/posts.php';
 			SimpleTags_Posts::get_instance();
+			self::$enabled_menus['st_posts'] = esc_html__('Posts', 'simple-tags');
 		}
 
 		//tag clouds/ terms display
@@ -134,6 +141,8 @@ class SimpleTags_Admin
 			SimpleTags_Admin_Taxonomies::get_instance();
 		}
 		
+		self::$enabled_menus['st_taxopress_ai'] = esc_html__('TaxoPress AI', 'simple-tags');
+		
 		TaxoPress_AI_Module::get_instance();
 
 		do_action('taxopress_admin_class_after_includes');
@@ -142,6 +151,20 @@ class SimpleTags_Admin
 		add_action('wp_ajax_simpletags', array(__CLASS__, 'ajax_check'));
 		// Save dashboard feature
 		add_action('wp_ajax_save_taxopress_dashboard_feature_by_ajax', [__CLASS__, 'saveDashboardFeature']);
+		// Plugin action links
+		add_filter('plugin_action_links_' . plugin_basename(TAXOPRESS_FILE), [__CLASS__, 'plugin_settings_link']);
+	}
+
+	/**
+	 * Plugin action links
+	 */
+	public static function plugin_settings_link($links) {
+
+		foreach (self::$enabled_menus as $menu_slug => $menu_title) {
+			$links[] = '<a href="' . admin_url('admin.php?page=' . $menu_slug) . '">'. $menu_title .'</a>';
+		}
+
+		return $links;
 	}
 
 	/**
@@ -599,6 +622,7 @@ class SimpleTags_Admin
 						$opt_default_value = 0;
 					}
 					$options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
+					$options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
 					foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
 						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
@@ -749,6 +773,7 @@ class SimpleTags_Admin
 				$table_sub_tab_lists = [];
 				$pt_index = 0;
 				foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
+
 					if (!in_array($post_type, ['attachment']) && !empty(get_object_taxonomies($post_type))) {
 						$active_pt = ($pt_index === 0) ? 'active' : '';
 						$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".taxopress-ai-' . $post_type . '-content">' . esc_html($post_type_object->labels->name) . '</span>';
@@ -952,6 +977,10 @@ class SimpleTags_Admin
 	public static function getTermsForAjax($taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC', $limit = '')
 	{
 		global $wpdb;
+
+		if ($order_by === 'random') {
+			$order_by = 'RAND()';
+		}
 
 		if (!empty($search)) {
 			return $wpdb->get_results($wpdb->prepare("
