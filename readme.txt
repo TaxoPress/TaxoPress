@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager, ai, openai, open ai, ibm watson, dandelion, open calais, lseg, refinitiv, autotagger, auto tagging
 Requires at least: 3.3
 Tested up to: 6.4
-Stable tag: 3.11.1
+Stable tag: 3.12.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,20 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.12.0- 2024-02-12
+* Fixed: Auto Terms Regex Option not working, #1338
+* Update: Support for Private Taxonomies in TaxoPress AI, #1950
+* Update: Remove linked tags relationship after a tag is deleted, #1959
+* Update: Add Linked Terms support to TaxoPress AI, #1903
+* Update: Add the "Select all Tags" option to the metabox, #1947
+* Update: Add some plugin links to the plugin description, #1946
+* Fixed: PHP Errors: Unknown modifier, #1962
+* Update: Add more information to REST API tab, #1825
+* Fixed: Deprecated issue on PHP 8.3, #1967
+* Update: Update the error message when adding tags that are already a synonym, #1964
+* Fixed: TaxoPress AI screen UI issue, #1953
+* Update: New Translation updates TaxoPress Free v.3.11.1, #1944
 
 v3.11.1- 2023-11-02
 * Update: Add TaxoPress AI metabox default taxonomy settings, #1923
