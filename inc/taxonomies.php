@@ -378,13 +378,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             </li>
                                             <?php } ?>
 
-                                            <?php if($taxonomy_edit){ ?>
-                                            <li aria-current="false" class="taxonomy_templates_tab" data-content="taxonomy_templates">
-                                                <a href="#taxonomy_templates"><span><?php esc_html_e('Templates',
-                                                            'simple-tags'); ?></span></a>
-                                            </li>
-                                            <?php } ?>
-
                                             <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
                                             <li aria-current="false" class="taxonomy_delete_tab" data-content="taxonomy_delete">
                                                 <a href="#taxonomy_delete"><span><?php esc_html_e('Deactivate or Delete',
@@ -717,41 +710,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
 
                                                 ?>
 
-                                            </table>
-
-
-                                            <table class="form-table taxopress-table taxonomy_templates"
-                                                   style="display:none;">
-                                                   <?php if (!empty($_GET) && !empty($_GET['action']) && 'edit' === $_GET['action']) { ?>
-                                                <?php
-                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                echo $ui->get_tr_start() . $ui->get_th_start();
-                                                echo 'Template Hierarchy';
-                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                echo $ui->get_th_end();
-
-                                                $template_hierarchy_slug = isset($current['name']) ? esc_attr($current['name']) : '';
-                                                $template_hierarchy = '
-        <ul style="margin-top: 0;">
-        <li style="list-style: decimal;">taxonomy-'.esc_html( $template_hierarchy_slug ).'-term_slug.php *</li>
-        <li style="list-style: decimal;">taxonomy-'. esc_html( $template_hierarchy_slug ).'.php</li>
-        <li style="list-style: decimal;">taxonomy.php</li>
-        <li style="list-style: decimal;">archive.php</li>
-        <li style="list-style: decimal;">index.php</li>
-        </ul>
-        <p style="font-weight:bolder;">'.esc_html__( '*Replace "term_slug" with the slug of the actual taxonomy term.', 'simple-tags' ).'</p>';
-
-        echo '<td>';
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $template_hierarchy;
-        echo '</td>';
-         }
-
-                                               // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                echo $ui->get_tr_end();
-
-
-                                                ?>
                                             </table>
 
 
