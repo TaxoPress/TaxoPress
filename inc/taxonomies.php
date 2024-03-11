@@ -643,7 +643,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'namearray'  => 'cpt_custom_tax',
                                                 'name'       => 'include_in_result',
                                                 'labeltext'  => esc_html__('Archive page result', 'simple-tags'),
-                                                'aftertext'  => esc_html__('Show content from all post types on archive page',
+                                                'aftertext'  => esc_html__('Normally, WordPress will only show one post type on taxonomy archive pages. Enable this feature to show content from all selected posts types.',
                                                     'simple-tags'),
                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
