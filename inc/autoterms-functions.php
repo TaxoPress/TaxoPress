@@ -308,7 +308,7 @@ function taxopress_update_autoterm($data = [])
             foreach ($data[$key] as $option_key => $option_value) {
                 if ($option_key === 'terms_regex_code') {
                     $regex_pattern = sanitize_text_field($option_value);
-                    if ( preg_match( $regex_pattern, '' ) !== false ) {
+                    if ( !empty($regex_pattern) && preg_match( $regex_pattern, '' ) !== false ) {
                         $new_value[$option_key] = $regex_pattern;
                     } else {
                         $new_value[$option_key] = '';//invalid expression
