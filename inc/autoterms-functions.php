@@ -335,6 +335,10 @@ function taxopress_update_autoterm($data = [])
     $data['taxopress_autoterm']['specific_terms']      = isset($data['specific_terms']) ? $data['specific_terms'] : '';
     $data['taxopress_autoterm']['post_types']          = isset($data['post_types']) ? $data['post_types'] : [];
     $data['taxopress_autoterm']['post_status']         = isset($data['post_status']) ? $data['post_status'] : [];
+
+    $data['taxopress_autoterm']['html_exclusion'] = isset($data['html_exclusion']) ? $data['html_exclusion'] : [];
+    $data['taxopress_autoterm']['html_exclusion_customs'] = isset($data['html_exclusion_customs']) ? $data['html_exclusion_customs'] : [];
+    $data['taxopress_autoterm']['html_exclusion_customs_entry'] = isset($data['html_exclusion_customs_entry']) ? array_unique($data['html_exclusion_customs_entry']) : [];
     
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autoterm']['autoterm_useall'])) {
