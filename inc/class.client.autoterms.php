@@ -126,7 +126,20 @@ class SimpleTags_Client_Autoterms
 			$content .= ' ' . $object->post_excerpt;
 		}
 
+		$html_exclusion  = (!empty($options['html_exclusion']) && is_array($options['html_exclusion'])) ? $options['html_exclusion'] :[];
+		$html_exclusion_customs  = !empty($options['html_exclusion_customs']) ? $options['html_exclusion_customs'] : [];
+		if (!empty($html_exclusion_customs)) {
+			$html_exclusion = array_filter(array_merge($html_exclusion, $html_exclusion_customs));
+		}
+		if (count($html_exclusion) > 0) {
+			foreach ($html_exclusion as $html_tag) {
+				$pattern = "/<{$html_tag}[^>]*>.*?<\/{$html_tag}>/is";
+    			$content = preg_replace($pattern, '', $content);
+			}
+		}
+
 		$content = trim(strip_tags($content));
+
 		if (empty($content)) {
 			//update log
 			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_post_content');
