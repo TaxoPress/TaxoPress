@@ -834,7 +834,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_ui',
                                                     'labeltext'  => esc_html__('Show user interface', 'simple-tags'),
-                                                    'aftertext'  => '',
+                                                    'aftertext'  => esc_html__('Should there be a visible interface in the WordPress admin area to manage these terms?', 'simple-tags'),
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
@@ -858,7 +858,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_menu',
                                                     'labeltext'  => esc_html__('Show in admin menus', 'simple-tags'),
-                                                    'aftertext'  => '',
+                                                    'aftertext'  => esc_html__('Should there be links to this taxonomy in the WordPress admin menus?', 'simple-tags'),
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
@@ -882,7 +882,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_in_nav_menus',
                                                     'labeltext'  => esc_html__('Show in frontend menus', 'simple-tags'),
-                                                    'aftertext'  => '',
+                                                    'aftertext'  => esc_html__('Should this taxonomy be available for the frontend “Menus” and “Navigation” options?', 'simple-tags'),
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
@@ -907,7 +907,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'namearray'  => 'cpt_custom_tax',
                                                     'name'       => 'show_admin_column',
                                                     'labeltext'  => esc_html__('Show admin column', 'simple-tags'),
-                                                    'aftertext'  => '',
+                                                    'aftertext'  => esc_html__('Should a column for this taxonomy appear on screens such as “Posts” and “Pages”?', 'simple-tags'),
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
 
@@ -932,7 +932,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 'name'       => 'show_in_quick_edit',
                                                 'labeltext'  => esc_html__('Show in "Quick Edit" and "Bulk Edit"',
                                                     'simple-tags'),
-                                                'aftertext'  => '',
+                                                'aftertext'  => esc_html__('Should this taxonomy be available in editing tools on screens such as “Posts” and “Pages”?', 'simple-tags'),
                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ]);
 
@@ -960,7 +960,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                             'Show in Filter',
                                                             'simple-tags'
                                                         ),
-                                                        'aftertext' => '',
+                                                        'aftertext' => esc_html__('Should this taxonomy be available in filters on screens such as “Posts” and “Pages”?', 'simple-tags'),
                                                         'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     )
                                                 );
