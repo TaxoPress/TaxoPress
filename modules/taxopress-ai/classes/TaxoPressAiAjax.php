@@ -125,6 +125,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                         }
                         $response['status'] = $open_ai_results['status'];
                         $response['content'] = $open_ai_results['message'];
+
                     } else {
                         $response['status'] = 'error';
                         $response['content'] = esc_html__(
@@ -261,6 +262,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                                             $addded_term_results[] = $add_name;
                                         }
                                     }
+                                } else {
+                                    $addded_term_results[] = $term_result;
                                 }
                                
                             } else {

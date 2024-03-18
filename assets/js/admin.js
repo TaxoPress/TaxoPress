@@ -403,8 +403,11 @@
     if ($('.taxopress-tab-content').length > 0) {
       //set tab height
       var tab_height = $('.taxopress-tab-content').height();
+
       if (tab_height > 0) {
-        $('.taxopress-tab').css('height', tab_height);
+        if (tab_height > $('.taxopress-tab').height()) {
+          $('.taxopress-tab').css('height', tab_height);
+        }
       } else {
       $('.taxopress-tab').css('min-height', 300);
       }
