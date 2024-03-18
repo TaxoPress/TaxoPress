@@ -413,6 +413,13 @@ class SimpleTags_Autoterms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_exceptions' ? 'true' : 'false'; ?>" class="autoterm_exceptions_tab <?php echo $active_tab === 'autoterm_exceptions' ? 'active' : ''; ?>" data-content="autoterm_exceptions">
+                                                    <a href="#autoterm_exceptions"><span><?php esc_html_e(
+                                                                                                'Exceptions',
+                                                                                                'simple-tags'
+                                                                                            ); ?></span></a>
+                                                </li>
+
                                                 <li aria-current="<?php echo $active_tab === 'autoterm_oldcontent' ? 'true' : 'false'; ?>" class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
                                                     <a href="#autoterm_oldcontent"><span><?php esc_html_e('Existing Content',
                                                                 'simple-tags'); ?></span></a>
@@ -849,34 +856,102 @@ class SimpleTags_Autoterms
                                                     }
                                                    echo '</td></tr>';
 
-                                                   // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                   echo $ui->get_tr_start();
-
-                                                   // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                   echo $ui->get_th_start();
-                                                   // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                   echo $ui->get_label('autoterm_exclude', esc_html__('Stop words', 'simple-tags'));
-                                                   // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                   echo $ui->get_th_end() . $ui->get_td_start();
-
-                                                   // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                   echo $ui->get_text_input([
-                                                       'labeltext'   => esc_html__('Stop words', 'simple-tags'),
-                                                       'namearray'   => 'taxopress_autoterm',
-                                                       'name'        => 'autoterm_exclude',
-                                                       'textvalue'   => isset($current['autoterm_exclude']) ? esc_attr($current['autoterm_exclude']) : '',
-                                                       'maxlength'   => '',
-                                                       'helptext'    => esc_html__('Choose terms to be excluded from auto terms.', 'simple-tags'),
-                                                       'class'       => 'st-full-width auto-terms-stopwords',
-                                                       'aftertext'   => '',
-                                                       'required'    => false,
-                                                       'placeholder' => false,
-                                                       'wrap'        => false,
-                                                   ]);
-
                                                     ?>
 
                                                 </table>
+
+
+                                                        <table class="form-table taxopress-table autoterm_exceptions" style="<?php echo $active_tab === 'autoterm_exceptions' ? '' : 'display:none;'; ?>">
+                                                            <?php
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_textarea_input([
+                                                                'namearray' => 'taxopress_autoterm',
+                                                                'name'      => 'autoterm_exclude',
+                                                                'rows'      => '4',
+                                                                'cols'      => '40',
+                                                                'class'     => 'autocomplete-input auto-terms-stopwords',
+                                                                'textvalue' => isset($current['autoterm_exclude']) ? esc_attr($current['autoterm_exclude']) : '',
+                                                                'labeltext' => esc_html__(
+                                                                    'Exclude terms from Auto Term',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'helptext'  => esc_html__(
+                                                                    'Choose terms to be excluded from auto terms.',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'required'  => false,
+                                                            ]);
+
+                                                            $html_exclusions = [
+                                                                //headers
+                                                                'h1'     => esc_attr__('H1', 'simple-tags'),
+                                                                'h2'     => esc_attr__('H2', 'simple-tags'),
+                                                                'h3'     => esc_attr__('H3', 'simple-tags'),
+                                                                'h4'     => esc_attr__('H4', 'simple-tags'),
+                                                                'h5'     => esc_attr__('H5', 'simple-tags'),
+                                                                'h6'     => esc_attr__('H6', 'simple-tags'),
+                                                                //html elements
+                                                                'a'      => esc_attr__('a', 'simple-tags'),
+                                                                'script' => esc_attr__('script', 'simple-tags'),
+                                                                'style'  => esc_attr__('style', 'simple-tags'),
+                                                                'pre'    => esc_attr__('pre', 'simple-tags'),
+                                                                'code'   => esc_attr__('code', 'simple-tags'),
+                                                            ];
+
+                                                            echo '<tr valign="top"><th scope="row"><label>' . esc_html__(
+                                                                'Prevent Auto Term inside elements',
+                                                                'simple-tags'
+                                                            ) . '</label><br /><small style=" color: #646970;">' . esc_html__(
+                                                                'Terms inside these html tags will not be auto term.',
+                                                                'simple-tags'
+                                                            ) . '</small></th><td>
+                                                    <table class="visbile-table st-html-exclusion-table">';
+                                                            foreach ($html_exclusions as $key => $value) {
+
+                                                                echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' . esc_html($value) . '</label></th><td>';
+
+                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                echo $ui->get_check_input([
+                                                                    'checkvalue' => $key,
+                                                                    'checked'    => (!empty($current['html_exclusion']) && is_array($current['html_exclusion']) && in_array(
+                                                                        $key,
+                                                                        $current['html_exclusion'],
+                                                                        true
+                                                                    )) ? 'true' : 'false',
+                                                                    'name'       => esc_attr($key),
+                                                                    'namearray'  => 'html_exclusion',
+                                                                    'textvalue'  => esc_attr($key),
+                                                                    'labeltext'  => esc_html($key),
+                                                                    'labeldescription' => true,
+                                                                    'wrap'       => false,
+                                                                ]);
+
+                                                                echo '</td></tr>';
+
+                                                                if ($key === 'h6') {
+                                                                    echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
+                                                                }
+                                                            }
+  
+                                                            /**
+                                                             * Fires after the autoterms html_exclusions.
+                                                             * @param $current array
+                                                             * @param taxopress_admin_ui $ui Admin UI instance.
+                                                             */
+                                                            do_action('taxopress_autoterms_after_html_exclusions', $current, $ui);
+
+                                                            echo '</table></td></tr>';
+  
+                                                            /**
+                                                             * Fires after the autoterms html_exclusions tr.
+                                                             * @param $current array
+                                                             * @param taxopress_admin_ui $ui Admin UI instance.
+                                                             */
+                                                            do_action('taxopress_autoterms_after_html_exclusions_tr', $current, $ui);
+
+                                                            ?>
+
+                                                        </table>
 
 
                                                 <table class="form-table taxopress-table autoterm_oldcontent"

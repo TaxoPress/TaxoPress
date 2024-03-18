@@ -424,10 +424,11 @@ if (!class_exists('TaxoPressAiApi')) {
                         'simple-tags'
                     );
                 } else {
-                    if ($preview_feature == 'suggest_terms') {
-                        $prompt = "Suggest tags from the following content: '$clean_content'. Tags:";
-                    }  else {
-                        $prompt = "Extract tags from the following content: '$clean_content'. Tags:";
+                    $prompt = "Extract tags from the following content: '$clean_content'. Tags:";
+
+                    if (!empty($settings_data['open_ai_tag_prompt'])) {
+                        $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_tag_prompt']));
+                        $prompt = str_replace('{content}', $clean_content, $custom_prompt);
                     }
                     
                     $body_data = array(
@@ -467,9 +468,11 @@ if (!class_exists('TaxoPressAiApi')) {
                             if (!empty($body_data['choices'] )) {
                                 foreach ( $body_data['choices'] as $choice ) {
                                     if ( isset( $choice['message'], $choice['message']['content'] ) ) {
-                                        $data = array_merge($data, explode(', ', sanitize_text_field( trim( $choice['message']['content'], ' "\'' ) )));
-                                        
-                                        ;
+                                        if (count(array_merge($data, explode(', ', sanitize_text_field( trim( $choice['message']['content'], ' "\'' ) )))) === 1) {
+                                            $data = array_merge($data, [$choice['message']['content']]);
+                                        } else {
+                                            $data = array_merge($data, explode(', ', sanitize_text_field( trim( $choice['message']['content'], ' "\'' ) )));
+                                        }
                                     }
                                 }
                             }
@@ -477,7 +480,6 @@ if (!class_exists('TaxoPressAiApi')) {
                             $terms = [];
                             if (!empty($data)) {
                                 $terms = (array) $data;
-
                                 if (!empty($terms)) {
                                     $return['status'] = 'success';
                                     $return['results'] = $terms;

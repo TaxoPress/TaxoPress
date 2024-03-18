@@ -308,7 +308,7 @@ function taxopress_update_autoterm($data = [])
             foreach ($data[$key] as $option_key => $option_value) {
                 if ($option_key === 'terms_regex_code') {
                     $regex_pattern = sanitize_text_field($option_value);
-                    if ( preg_match( $regex_pattern, '' ) !== false ) {
+                    if ( !empty($regex_pattern) && preg_match( $regex_pattern, '' ) !== false ) {
                         $new_value[$option_key] = $regex_pattern;
                     } else {
                         $new_value[$option_key] = '';//invalid expression
@@ -335,6 +335,10 @@ function taxopress_update_autoterm($data = [])
     $data['taxopress_autoterm']['specific_terms']      = isset($data['specific_terms']) ? $data['specific_terms'] : '';
     $data['taxopress_autoterm']['post_types']          = isset($data['post_types']) ? $data['post_types'] : [];
     $data['taxopress_autoterm']['post_status']         = isset($data['post_status']) ? $data['post_status'] : [];
+
+    $data['taxopress_autoterm']['html_exclusion'] = isset($data['html_exclusion']) ? $data['html_exclusion'] : [];
+    $data['taxopress_autoterm']['html_exclusion_customs'] = isset($data['html_exclusion_customs']) ? $data['html_exclusion_customs'] : [];
+    $data['taxopress_autoterm']['html_exclusion_customs_entry'] = isset($data['html_exclusion_customs_entry']) ? array_unique($data['html_exclusion_customs_entry']) : [];
     
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autoterm']['autoterm_useall'])) {
