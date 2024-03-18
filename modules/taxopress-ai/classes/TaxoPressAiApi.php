@@ -424,20 +424,11 @@ if (!class_exists('TaxoPressAiApi')) {
                         'simple-tags'
                     );
                 } else {
-                    if ($preview_feature == 'suggest_terms') {
-                        $prompt = "Suggest tags from the following content: '$clean_content'. Tags:";
+                    $prompt = "Extract tags from the following content: '$clean_content'. Tags:";
 
-                        if (!empty($settings_data['open_ai_suggested_tag_prompt'])) {
-                            $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_suggested_tag_prompt']));
-                            $prompt = str_replace('{content}', $clean_content, $custom_prompt);
-                        }
-                    }  else {
-                        $prompt = "Extract tags from the following content: '$clean_content'. Tags:";
-
-                        if (!empty($settings_data['open_ai_tag_prompt'])) {
-                            $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_tag_prompt']));
-                            $prompt = str_replace('{content}', $clean_content, $custom_prompt);
-                        }
+                    if (!empty($settings_data['open_ai_tag_prompt'])) {
+                        $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_tag_prompt']));
+                        $prompt = str_replace('{content}', $clean_content, $custom_prompt);
                     }
                     
                     $body_data = array(
