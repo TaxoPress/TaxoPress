@@ -30,7 +30,7 @@ class SimpleTags_Client {
 		if ( (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' ) === 1 ) {
             require_once STAGS_DIR . '/inc/related-posts-action.php';
         }
-		if ( (int) SimpleTags_Plugin::get_option_value( 'active_related_posts' ) === 1 || (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' ) === 1 ) {
+		if ( (int) SimpleTags_Plugin::get_option_value( 'active_related_posts_new' ) === 1 ) {
 			require( STAGS_DIR . '/inc/class.client.related_posts.php' );
 			new SimpleTags_Client_RelatedPosts();
 		}
