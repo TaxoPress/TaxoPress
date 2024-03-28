@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.20.0- 2024-03-18
+v3.20.0- 2024-03-28
 * Removed: Remove deprecated Legacy Options and Shortcodes([st-the-tags], [st_tag_cloud]), #2004
 * Update: Allow Linked Terms to connect across Taxonomies, #1858
 * Update: Enable 2-way option for linked terms, #1736
