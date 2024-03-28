@@ -8,66 +8,9 @@ class SimpleTags_Client_RelatedPosts {
 	 * @author WebFactory Ltd
 	 */
 	public function __construct() {
-		// Add related posts in post ( all / feedonly / blogonly / homeonly / singularonly / singleonly / pageonly /no )
-		if ( ( 'no' !== SimpleTags_Plugin::get_option_value( 'rp_embedded' ) ) || ( 1 === (int) SimpleTags_Plugin::get_option_value( 'rp_feed' ) ) ) {
-			add_filter( 'the_content', array( __CLASS__, 'the_content' ), 999993 );
-		}
+
 	}
 
-	/**
-	 * Auto add related posts to post content
-	 *
-	 * @param string $content
-	 *
-	 * @return string
-	 */
-	public static function the_content( $content = '' ) {
-		// Hook already executed ? Check if HTML class exists
-		if ( strpos( $content, 'st-related-posts' ) !== false ) {
-			return $content;
-		}
-
-		// Get option
-		$rp_embedded = SimpleTags_Plugin::get_option_value( 'rp_embedded' );
-
-		$marker = false;
-		if ( is_feed() ) {
-			if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'rp_feed' ) ) {
-				$marker = true;
-			}
-		} elseif ( ! empty( $rp_embedded ) ) {
-			switch ( $rp_embedded ) {
-				case 'blogonly':
-					$marker = ( is_feed() ) ? false : true;
-					break;
-				case 'homeonly':
-					$marker = ( is_home() ) ? true : false;
-					break;
-				case 'singularonly':
-					$marker = ( is_singular() ) ? true : false;
-					break;
-				case 'singleonly':
-					$marker = ( is_single() ) ? true : false;
-					break;
-				case 'pageonly':
-					$marker = ( is_page() ) ? true : false;
-					break;
-				case 'all':
-					$marker = true;
-					break;
-				case 'no':
-				default:
-					$marker = false;
-					break;
-			}
-		}
-
-		if ( $marker === true ) {
-			return ( $content . self::get_related_posts( '', false ) );
-		}
-
-		return $content;
-	}
 
 	/**
 	 * Generate related posts

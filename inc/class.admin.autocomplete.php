@@ -68,10 +68,10 @@ class SimpleTags_Admin_Autocomplete {
 		header( 'Content-Type: application/json; charset=' . get_bloginfo( 'charset' ) );
 
 		$taxonomy = 'post_tag';
-		if ( isset( $_REQUEST['taxonomy'] ) && taxonomy_exists( sanitize_text_field($_REQUEST['taxonomy']) ) ) {
+		if ( isset($_REQUEST['taxonomy']) && !empty($_REQUEST['taxonomy']) ) {//  && 
 			$taxonomy = sanitize_text_field($_REQUEST['taxonomy']);
 		}
-		if ( (int) wp_count_terms( $taxonomy, array( 'hide_empty' => false ) ) === 0 ) { // No tags to suggest
+		if (taxonomy_exists($taxonomy) && (int) wp_count_terms( $taxonomy, array( 'hide_empty' => false ) ) === 0 ) { // No tags to suggest
 			echo wp_json_encode( array() );
 			exit();
 		}
@@ -95,12 +95,18 @@ class SimpleTags_Admin_Autocomplete {
 				continue;
 			}
 			$term->name = stripslashes( $term->name );
+			$original_name = $term->name;
+			if ($taxonomy == 'all_taxopress_taxonomy') {
+				$term->name = $term->name . ' ('. $term->taxonomy .')';
+			}
 			$term->name = str_replace( array( "\r\n", "\r", "\n" ), '', $term->name );
 
 			$results[] = array(
 				'id'    => $term->term_id,
 				'label' => $term->name,
 				'value' => $term->name,
+				'taxonomy' => $term->taxonomy,
+				'name' => $original_name,
 			);
 		}
 

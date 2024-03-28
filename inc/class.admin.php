@@ -983,22 +983,49 @@ class SimpleTags_Admin
 		}
 
 		if (!empty($search)) {
-			return $wpdb->get_results($wpdb->prepare("
-				SELECT DISTINCT t.name, t.term_id
-				FROM {$wpdb->terms} AS t
-				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-				WHERE tt.taxonomy = %s
-				AND t.name LIKE %s
-				ORDER BY $order_by $order $limit
-			", $taxonomy, '%' . $wpdb->esc_like($search) . '%'));
+			if ($taxonomy == 'all_taxopress_taxonomy') {
+				$query = $wpdb->prepare("
+					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
+					FROM {$wpdb->terms} AS t
+					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
+					WHERE tt.taxonomy != 'author'
+					AND t.name LIKE %s
+					ORDER BY $order_by $order $limit
+					", '%' . $wpdb->esc_like($search) . '%'
+				);
+			} else {
+				$query = $wpdb->prepare("
+					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
+					FROM {$wpdb->terms} AS t
+					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
+					WHERE tt.taxonomy = %s
+					AND t.name LIKE %s
+					ORDER BY $order_by $order $limit
+				", $taxonomy, '%' . $wpdb->esc_like($search) . '%'
+				);
+			}
+			return $wpdb->get_results($query);
 		} else {
-			return $wpdb->get_results($wpdb->prepare("
-				SELECT DISTINCT t.name, t.term_id
-				FROM {$wpdb->terms} AS t
-				INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-				WHERE tt.taxonomy = %s
-				ORDER BY $order_by $order $limit
-			", $taxonomy));
+			if ($taxonomy == 'all_taxopress_taxonomy') {
+				$query = "
+					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
+					FROM {$wpdb->terms} AS t
+					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
+					WHERE tt.taxonomy != 'author'
+					ORDER BY $order_by $order $limit
+				";
+
+			} else {
+				$query = $wpdb->prepare("
+					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
+					FROM {$wpdb->terms} AS t
+					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
+					WHERE tt.taxonomy = %s
+					ORDER BY $order_by $order $limit
+				", $taxonomy);
+			}
+
+			return $wpdb->get_results($query);
 		}
 	}
 

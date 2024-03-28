@@ -494,7 +494,9 @@ function taxopress_get_term_synonyms($term, $taxonomy = '') {
  * @param string $taxonomy
  * @return array $term_object
  */
-function taxopress_get_linked_terms($term, $taxonomy = '', $term_object = false) {
+function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = false) {
+    global $wpdb;
+
     $linked_terms = [];
 
     if (!taxopress_is_linked_terms_enabled()) {
@@ -502,28 +504,41 @@ function taxopress_get_linked_terms($term, $taxonomy = '', $term_object = false)
         return $linked_terms;
     }
 
-    if ((int)$term > 0) {
-        $linked_terms = (array) get_term_meta($term, '_taxopress_linked_terms', true);
-    } else {
-        $terms_object = get_term_by('name', esc_attr($term), $taxonomy);
-        if (is_object($terms_object) && isset($terms_object->term_id)) {
-            $linked_terms = (array) get_term_meta($terms_object->term_id, '_taxopress_linked_terms', true);
-        }
-    }
-    $linked_terms = array_filter($linked_terms);
+    $table_name = $wpdb->prefix . 'taxopress_linked_terms';
 
-    if ($term_object) {
-        $linked_term_object = [];
-        foreach ( $linked_terms as $linked_term) {
-            $terms_object = get_term_by('name', esc_attr($linked_term), $taxonomy);
-            if (is_object($terms_object) && isset($terms_object->term_id)) {
-                $linked_term_object[] = $terms_object;
-            }
-        }
-        $linked_terms = $linked_term_object;
-    }
+    $query = $wpdb->prepare(
+        "SELECT * FROM $table_name WHERE term_id = %d OR linked_term_id = %d",
+        $term_id,
+        $term_id
+    );
+
+    $linked_terms = $wpdb->get_results($query);
 
     return $linked_terms;
+}
+
+/**
+ * Find out which is a linked term in our data
+ */
+function taxopress_get_linked_term_data($linked_term_option, $term_id) {
+
+    if ((int)$linked_term_option->linked_term_id === (int)$term_id) {
+        $taxopress_linked_term_id       = $linked_term_option->term_id;
+        $taxopress_linked_term_name     = $linked_term_option->term_name;
+        $taxopress_linked_term_taxonomy = $linked_term_option->term_taxonomy;
+    } else {
+        $taxopress_linked_term_id       = $linked_term_option->linked_term_id;
+        $taxopress_linked_term_name     = $linked_term_option->linked_term_name;
+        $taxopress_linked_term_taxonomy = $linked_term_option->linked_term_taxonomy;
+    }
+
+    $linked_term = (object) [
+        'term_id'       => $taxopress_linked_term_id,
+        'term_name'     => $taxopress_linked_term_name,
+        'term_taxonomy' => $taxopress_linked_term_taxonomy
+    ];
+
+    return $linked_term;
 }
 
 /**
@@ -543,6 +558,15 @@ function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = f
         // simply return $lists if feature is disabled
         return $lists;
     }
+
+    /**
+     * Linked term is no longer in option and it's
+     * now category wide. So, this function is useless until we 
+     * think of how to make it work with our UI
+     * 
+     * So, let return original $lists for now
+     */
+    return $lists;
 
     if ((int)$term > 0) {
         $term_id = $term;

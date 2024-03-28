@@ -7,31 +7,7 @@ class SimpleTags_Client_TagCloud {
 	 * SimpleTags_Client_TagCloud constructor.
 	 */
 	public function __construct() {
-		if ( 1 === (int) SimpleTags_Plugin::get_option_value( 'allow_embed_tcloud' ) ) {
-			add_shortcode( 'st_tag_cloud', array( __CLASS__, 'shortcode' ) );
-			add_shortcode( 'st-tag-cloud', array( __CLASS__, 'shortcode' ) );
-		}
-	}
 
-	/**
-	 * Replace marker by a tag cloud in post content, use ShortCode
-	 *
-	 * @param array $atts
-	 *
-	 * @return string
-	 */
-	public static function shortcode( $atts ) {
-        $atts = shortcode_atts( array( 'param' => '' ), $atts );
-		extract( $atts );
-
-		$param = html_entity_decode( $param );
-		$param = trim( $param );
-
-		if ( empty( $param ) ) {
-			$param = 'title=';
-		}
-
-		return self::extendedTagCloud( $param, false );
 	}
 
 	/**
