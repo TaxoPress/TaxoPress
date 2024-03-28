@@ -467,7 +467,12 @@ class Taxopress_Terms_List extends WP_List_Table
     {
         $term_linked_terms = taxopress_get_linked_terms($item->term_id);
         if (!empty($term_linked_terms)) {
-            return join(', ', $term_linked_terms);
+            $term_linked_term_names = [];
+            foreach ($term_linked_terms as $term_linked_term) {
+                $linked_term_data = taxopress_get_linked_term_data($term_linked_term, $item->term_id);
+                $term_linked_term_names[] = $linked_term_data->term_name . ' ('. $linked_term_data->term_taxonomy .')';
+            }
+            return join(', ', $term_linked_term_names);
         } else {
             return '-';
         }
