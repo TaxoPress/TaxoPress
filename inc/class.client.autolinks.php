@@ -279,10 +279,17 @@ class SimpleTags_Client_Autolinks
 			return $content;
 		}
 
+
 		//replace html entity with their entity code
 		foreach (taxopress_html_character_and_entity() as $enity => $code) {
 			$content = str_replace($enity, $code, $content);
 		}
+
+		// Replace HTML entities with placeholders
+		$content = preg_replace_callback('/&#(\d+);/', function($matches) {
+			return '|TAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITY|';
+		}, $content);
+
 		//$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
 		//$content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
 		$content = '||starttaxopressrandom||' . $content . '||endtaxopressrandom||'; //we're having issue when content start with styles https://wordpress.org/support/topic/3-7-2-auto-link-case-not-working/#post-16665257
@@ -467,6 +474,12 @@ class SimpleTags_Client_Autolinks
 		foreach ($dom->documentElement->childNodes as $node) {
 			$content .= $dom->saveHTML($node);
 		}
+		
+		// Add back the starting "&#"
+		$content = str_replace('|TAXOPRESSENTITY', '&#', $content);
+		// Add back the ending ";"
+		$content = str_replace('TAXOPRESSENTITY|', ';', $content);
+
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		//$content = mb_substr($dom->saveHTML($xpath->query('//body')->item(0)), 6, -7, "UTF-8");
 		$content = str_replace('|--|', '&#', $content); //https://github.com/TaxoPress/TaxoPress/issues/824
