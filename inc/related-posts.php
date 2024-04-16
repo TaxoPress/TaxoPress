@@ -602,7 +602,7 @@ class SimpleTags_Related_Post
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'number',
                                                             'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum related posts to post_types',
+                                                            'labeltext' => esc_html__('Maximum related posts to posts_type',
                                                                 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => true,
