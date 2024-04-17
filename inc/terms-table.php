@@ -11,8 +11,8 @@ class Taxopress_Terms_List extends WP_List_Table
     {
 
         parent::__construct([
-            'singular' => esc_html__('Term', 'simple-tags'), //singular name of the listed records
-            'plural'   => esc_html__('Terms', 'simple-tags'), //plural name of the listed records
+            'singular' => 'Term', //singular name of the listed records
+            'plural'   => 'Terms', //plural name of the listed records
             'ajax'     => true //does this table support ajax?
         ]);
     }
