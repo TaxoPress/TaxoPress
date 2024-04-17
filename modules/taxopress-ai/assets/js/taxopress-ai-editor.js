@@ -59,12 +59,14 @@
       button.prop('disabled', true);
       preview_wrapper.find('.spinner').addClass('is-active');
 
+      var search_text = preview_wrapper.find('.taxopress-taxonomy-search').val();
 
       //prepare ajax data
       var data = {
         action: "taxopress_ai_preview_feature",
         preview_ai: preview_ai,
         preview_taxonomy: preview_taxonomy,
+        search_text: search_text,
         preview_post: preview_post,
         post_content: post_content,
         post_title: post_title,
@@ -85,20 +87,16 @@
 
     });
 
+        
     // -------------------------------------------------------------
-    //  Select/de-select all tags tags
+    //   Show/hide search box for eligible tab
     // -------------------------------------------------------------
-    $(document).on('click', '.previewed-tag-fieldset .ai-select-all', function () {
-      var button = $(this);
-
-      if (button.hasClass('all-selected')) {
-        button.removeClass('all-selected');
-        button.html(button.attr('data-select-all'));
-        button.closest('.previewed-tag-fieldset').find('.result-terms').addClass('used_term').trigger('click');
+    $(document).on('click', 'ul.taxopress-tab.ai-integration-tab li', function () {
+      var current_tab      = $(this).attr('data-content');
+      if (current_tab === 'existing_terms') {
+        $('.taxopress-taxonomy-search').show();
       } else {
-        button.addClass('all-selected');
-        button.html(button.attr('data-deselect-all'));
-        button.closest('.previewed-tag-fieldset').find('.result-terms').removeClass('used_term').trigger('click');
+        $('.taxopress-taxonomy-search').hide();
       }
     });
 

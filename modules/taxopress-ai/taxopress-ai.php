@@ -872,6 +872,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                         <tr>
                                             <td>
                                                 <div class="taxopress-ai-fetch-wrap">
+                                                    <input 
+                                                        class="taxopress-taxonomy-search" 
+                                                        type="search" 
+                                                        value="" 
+                                                        placeholder="<?php echo esc_html__('Search Terms...', 'simple-tags'); ?>"
+                                                        style="display: none; margin-right: 5px;"
+                                                        onkeydown="return event.key != 'Enter';" />
                                                     <select class="taxopress-ai-fetch-taxonomy-select">
                                                             <?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
                                                             
