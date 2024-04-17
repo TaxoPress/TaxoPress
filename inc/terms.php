@@ -272,11 +272,6 @@ class SimpleTags_Terms
                 (function($) {
                     'use strict';
 
-                    /**
-                     * All of the code for admin-facing JavaScript source
-                     * should reside in this file.
-                     */
-
                     $(document).ready(function() {
                         // -------------------------------------------------------------
                         //   TaxoPress terms quick edit
