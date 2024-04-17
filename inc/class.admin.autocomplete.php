@@ -96,7 +96,7 @@ class SimpleTags_Admin_Autocomplete {
 			}
 			$term->name = stripslashes( $term->name );
 			$original_name = $term->name;
-			if ($taxonomy == 'all_taxopress_taxonomy') {
+			if ($taxonomy == 'linked_term_taxonomies') {
 				$term->name = $term->name . ' ('. $term->taxonomy .')';
 			}
 			$term->name = str_replace( array( "\r\n", "\r", "\n" ), '', $term->name );

@@ -21,6 +21,9 @@ return array(
     'post_terms_filter_format'  => 'term_name',
     'post_terms_taxonomy_type' => 'public',
 
+    // linked terms
+    'linked_terms_taxonomies' => ['category', 'post_tag'],
+
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,
     'enable_taxopress_ai_post_post_terms_tab' => 1,
