@@ -10,12 +10,15 @@
 			$style = '';
 
 			// Deactive tabs if feature not actived
-			if ( isset( $options['active_related_posts'] ) && (int) $options['active_related_posts'] == 0 && $key == 'relatedposts' ) {
+			if ( $key == 'relatedposts' && isset( $options['active_related_posts'] ) && (int) $options['active_related_posts'] == 0 ) {
 				$style = 'style="display:none;"';
 			}
 
-			// Deactive tabs if feature not actived
-			if ( isset( $options['auto_link_tags'] ) && ( (int) $options['auto_link_tags'] == 0 || (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 0 )&& $key == 'auto-links' ) {
+			if ( $key == 'auto-links' && isset( $options['auto_link_tags'] ) && ( (int) $options['auto_link_tags'] == 0 || (int) SimpleTags_Plugin::get_option_value( 'auto_link_tags' ) === 0 ) ) {
+				$style = 'style="display:none;"';
+			}
+
+			if ( $key == 'linked_terms' && (!taxopress_is_pro_version() || (isset($options['active_features_linked_terms']) && (int) $options['active_features_linked_terms'] == 0))) {
 				$style = 'style="display:none;"';
 			}
 
