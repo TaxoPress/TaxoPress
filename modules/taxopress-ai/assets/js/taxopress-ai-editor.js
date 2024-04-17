@@ -87,7 +87,7 @@
 
     });
 
-        
+
     // -------------------------------------------------------------
     //   Show/hide search box for eligible tab
     // -------------------------------------------------------------
@@ -97,6 +97,23 @@
         $('.taxopress-taxonomy-search').show();
       } else {
         $('.taxopress-taxonomy-search').hide();
+      }
+    });
+
+    // -------------------------------------------------------------
+    //  Select/de-select all tags tags
+    // -------------------------------------------------------------
+    $(document).on('click', '.previewed-tag-fieldset .ai-select-all', function () {
+      var button = $(this);
+
+      if (button.hasClass('all-selected')) {
+        button.removeClass('all-selected');
+        button.html(button.attr('data-select-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').addClass('used_term').trigger('click');
+      } else {
+        button.addClass('all-selected');
+        button.html(button.attr('data-deselect-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').removeClass('used_term').trigger('click');
       }
     });
 
