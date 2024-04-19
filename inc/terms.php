@@ -142,7 +142,6 @@ class SimpleTags_Terms
     }
 
 
-
     public static function set_screen($status, $option, $value)
     {
         return $value;

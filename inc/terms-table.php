@@ -26,7 +26,7 @@ class Taxopress_Terms_List extends WP_List_Table
 
         $orderby        = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID';
         $order          = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc';
-        $items_per_page = $this->get_items_per_page('st_Terms_per_page', 20);
+        $items_per_page = $this->get_items_per_page('st_terms_per_page', 20);
         $page           = $this->get_pagenum();
         $offset         = ($page - 1) * $items_per_page;
 
@@ -333,7 +333,7 @@ class Taxopress_Terms_List extends WP_List_Table
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = $this->get_items_per_page('st_Terms_per_page', 20);
+        $per_page = $this->get_items_per_page('st_terms_per_page', 20);
 
         /**
          * Fetch the data
