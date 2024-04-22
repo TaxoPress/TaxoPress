@@ -114,7 +114,7 @@ return apply_filters('taxopress_admin_options', array(
             __('Enable Taxonomies:', 'simple-tags'),
             'multiselect',
             $linked_terms_taxonomy_options,
-            __('This control taxonomies enabled for Linked Terms feature.', 'simple-tags'),
+            __('This controls which taxonomies are available for the Linked Terms feature.', 'simple-tags'),
             ''
         )
     ),
