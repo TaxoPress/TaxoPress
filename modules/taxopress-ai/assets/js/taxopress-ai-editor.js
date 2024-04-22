@@ -59,12 +59,14 @@
       button.prop('disabled', true);
       preview_wrapper.find('.spinner').addClass('is-active');
 
+      var search_text = preview_wrapper.find('.taxopress-taxonomy-search').val();
 
       //prepare ajax data
       var data = {
         action: "taxopress_ai_preview_feature",
         preview_ai: preview_ai,
         preview_taxonomy: preview_taxonomy,
+        search_text: search_text,
         preview_post: preview_post,
         post_content: post_content,
         post_title: post_title,
@@ -83,6 +85,19 @@
         preview_wrapper.find('.spinner').removeClass('is-active');
       });
 
+    });
+
+
+    // -------------------------------------------------------------
+    //   Show/hide search box for eligible tab
+    // -------------------------------------------------------------
+    $(document).on('click', 'ul.taxopress-tab.ai-integration-tab li', function () {
+      var current_tab      = $(this).attr('data-content');
+      if (current_tab === 'existing_terms') {
+        $('.taxopress-taxonomy-search').show();
+      } else {
+        $('.taxopress-taxonomy-search').hide();
+      }
     });
 
     // -------------------------------------------------------------

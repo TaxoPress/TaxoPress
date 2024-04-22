@@ -58,7 +58,7 @@ function taxopress_re_order_menu()
 
     foreach ($submenu as $menuName => $menuItems) {
         if ('st_options' === $menuName) {
-            $taxopress_settings = $taxopress_dashboard = $taxopress_taxonomies = $taxopress_upgrade = false;
+            $taxopress_settings = $taxopress_dashboard = $taxopress_taxonomies = $taxopress_linked_terms = $taxopress_upgrade = false;
 
             $taxopress_submenus     = $submenu['st_options'];
             $dashboard_options      = taxopress_dashboard_options();
@@ -86,6 +86,11 @@ function taxopress_re_order_menu()
                     $taxopress_dashboard = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
+                if ($taxopress_submenu[2] === 'st_linked_terms') { //linked terms
+                    $taxopress_linked_terms = $taxopress_submenus[$key];
+                    unset($taxopress_submenus[$key]);
+                }
+                
                 if ($taxopress_submenu[2] === 'st_options-menu-upgrade-link') { //upgrade to pro link
                     $taxopress_upgrade = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
@@ -98,6 +103,10 @@ function taxopress_re_order_menu()
             // add dashboard as first item
             if ($taxopress_dashboard) {
                 $taxopress_submenus = array_merge([$taxopress_dashboard], $taxopress_submenus);
+            }
+            // add linked terms
+            if ($taxopress_linked_terms) {
+               $taxopress_submenus = taxopress_add_at_menu_index(['st_terms', 'st_taxonomies', 'st_dashboard'], $taxopress_linked_terms, $taxopress_submenus);
             }
             // add settings as last item
             if ($taxopress_settings) {
@@ -115,6 +124,24 @@ function taxopress_re_order_menu()
             break;
         }
     }
+}
+
+function taxopress_add_at_menu_index($key_options, $new_menu, $existing_menus) {
+
+    foreach($key_options as $key_option) {
+        $index = array_search($key_option, array_column($existing_menus, 2));
+        if ($index !== false) {
+            $index++;//add it after
+            array_splice($existing_menus, $index, 0, [$new_menu]);
+            break;
+        }
+    }
+    // add as last if index is false;
+    if ($index === false) {
+        $existing_menus = array_merge($existing_menus, [$new_menu]);
+    }
+
+    return $existing_menus;
 }
 
 // Init TaxoPress

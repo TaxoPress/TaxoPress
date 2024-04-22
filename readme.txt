@@ -1,9 +1,9 @@
-=== WordPress Tag and Category Manager - AI Autotagger ===
+=== WordPress Tag, Category, and Taxonomy Manager - AI Autotagger ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
-Tags: category, tag, taxonomy, related posts, tag cloud, terms, tagging, navigation, tag manager, tags manager, term manager, terms manager, ai, openai, open ai, ibm watson, dandelion, open calais, lseg, refinitiv, autotagger, auto tagging
+Tags: category, tag, taxonomy, related posts, tag cloud
 Requires at least: 3.3
-Tested up to: 6.4
-Stable tag: 3.20.0
+Tested up to: 6.5
+Stable tag: 3.21.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -268,7 +268,16 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.20.0- 2024-03-18
+v3.21.0- 2024-04-22
+* Feature: Add a new "Linked Terms" screen, #2006
+* Update: Add button to fill in Linked Terms for existing posts, #1988
+* Update: Add a search box to TaxoPress AI "Show All Existing Terms" Metabox Tab, #2017
+* Fixed: WordPress lists fail when content includes "<", #1961
+* Fixed: TaxoPress Post Quick Edit link not working in French, Spanish and Italian, #2020
+* Update: Add Linked Terms taxonomies option in settings, #2007
+* Fixed: TaxoPress v.3.20.0 Italian, French, and Spanish translation updates, #2014
+
+v3.20.0- 2024-03-28
 * Removed: Remove deprecated Legacy Options and Shortcodes([st-the-tags], [st_tag_cloud]), #2004
 * Update: Allow Linked Terms to connect across Taxonomies, #1858
 * Update: Enable 2-way option for linked terms, #1736

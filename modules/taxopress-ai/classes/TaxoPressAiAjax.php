@@ -79,6 +79,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $preview_ai = !empty($_POST['preview_ai']) ? sanitize_text_field($_POST['preview_ai']) : '';
                 $current_tags = !empty($_POST['current_tags']) ? array_map('sanitize_text_field', $_POST['current_tags']) : [];
                 $preview_taxonomy = !empty($_POST['preview_taxonomy']) ? sanitize_text_field($_POST['preview_taxonomy']) : '';
+                $search_text = !empty($_POST['search_text']) ? sanitize_text_field($_POST['search_text']) : '';
                 $preview_post = !empty($_POST['preview_post']) ? (int) $_POST['preview_post'] : 0;
                 $preview_feature = 'data';
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
@@ -199,6 +200,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $response['content'] = $suggest_local_terms_results['message'];
                 } elseif ($preview_ai == 'existing_terms') {
                     $args['show_counts'] = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
+                    $args['search_text'] = $search_text;
                     $existing_terms_results = self::get_existing_terms_results($args);
                     if (!empty($existing_terms_results['results'])) {
                         $term_results = $existing_terms_results['results'];
@@ -301,7 +303,7 @@ if (!class_exists('TaxoPressAiAjax')) {
             $content = $args['content'];
             $suggest_terms = !empty($args['suggest_terms']);
             $current_tags = !empty($args['current_tags']) ? (array) $args['current_tags'] : [];
-
+            $search_text = !empty($args['search_text']) ? $args['search_text'] : '';
             $post_id = !empty($args['post_id']) ? (int) $args['post_id'] : 0;
             $post_type = get_post_type($post_id);
             $existing_terms_taxonomy = isset($args['preview_taxonomy']) ? $args['preview_taxonomy'] : ['post_tag'];
@@ -339,7 +341,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                     if (in_array($existing_tax, $post_type_taxonomies)) {
                         $supported_tax = true;
                         $taxonomy_details = get_taxonomy($existing_tax);
-                        $terms = SimpleTags_Admin::getTermsForAjax($existing_tax, '', $existing_terms_orderby, $existing_terms_order, $limit);
+                        
+                        $terms = SimpleTags_Admin::getTermsForAjax($existing_tax, $search_text, $existing_terms_orderby, $existing_terms_order, $limit);
                         if (!empty($terms)) {
 
                             if ($suggest_terms) {

@@ -824,6 +824,16 @@ class SimpleTags_Admin
 						$input_type    = '<input type="checkbox" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option[3]) . '" ' . (($option_actual[$option[0]]) ? 'checked="checked"' : '') . ' />' . PHP_EOL;
 						break;
 
+					case 'multiselect':
+						$desc_html_tag = 'div';
+						$input_type = array();
+						foreach ($option[3] as $field_name => $text) {
+							$selected_option = (is_array($option_actual[$option[0]]) && in_array($field_name, $option_actual[$option[0]])) ? true : false;
+							$input_type[] = '<label><input type="checkbox" id="' . $option[0] . '-' . $field_name . '" name="' . $option[0] . '[]" value="' . $field_name . '" ' . checked($selected_option, true, false) . ' /> ' . $text . '</label> <br />' . PHP_EOL;
+						}
+						$input_type = implode('<br />', $input_type);
+						break;
+
 					case 'taxopress_ai_multiple_checkbox':
 						$desc_html_tag = 'div';
 						$input_type = array();
@@ -920,6 +930,8 @@ class SimpleTags_Admin
 				return esc_html__('Posts', 'simple-tags');
 			case 'taxopress-ai':
 				return esc_html__('TaxoPress AI', 'simple-tags');
+			case 'linked_terms':
+				return esc_html__('Linked Terms', 'simple-tags');
 			case 'licence':
 				return esc_html__('License', 'simple-tags');
 		}
@@ -981,14 +993,22 @@ class SimpleTags_Admin
 		if ($order_by === 'random') {
 			$order_by = 'RAND()';
 		}
+		if ($taxonomy == 'linked_term_taxonomies') {
+			$taxonomies = SimpleTags_Plugin::get_option_value('linked_terms_taxonomies');
+			if (empty($taxonomies) || !is_array($taxonomies)) {
+				$taxonomies = ['category', 'post_tag'];
+			}
+			$taxonomies_list = "'" . implode("', '", $taxonomies) . "'";
+		}
 
 		if (!empty($search)) {
-			if ($taxonomy == 'all_taxopress_taxonomy') {
+			if ($taxonomy == 'linked_term_taxonomies') {
+
 				$query = $wpdb->prepare("
 					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-					WHERE tt.taxonomy != 'author'
+					WHERE tt.taxonomy IN ($taxonomies_list)
 					AND t.name LIKE %s
 					ORDER BY $order_by $order $limit
 					", '%' . $wpdb->esc_like($search) . '%'
@@ -1006,12 +1026,12 @@ class SimpleTags_Admin
 			}
 			return $wpdb->get_results($query);
 		} else {
-			if ($taxonomy == 'all_taxopress_taxonomy') {
+			if ($taxonomy == 'linked_term_taxonomies') {
 				$query = "
 					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
-					WHERE tt.taxonomy != 'author'
+					WHERE tt.taxonomy IN ($taxonomies_list)
 					ORDER BY $order_by $order $limit
 				";
 

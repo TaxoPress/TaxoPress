@@ -68,6 +68,15 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
     $pt_index++;
 }
 
+$all_taxonomies = get_taxonomies([], 'objects');
+$linked_terms_taxonomy_options = [];
+foreach ($all_taxonomies as $tax) {
+    if (in_array($tax->name, ['author', 'post_format', 'nav_menu', 'link_category', 'wp_theme', 'wp_template_part_area', 'wp_pattern_category'])) {
+        continue;
+    }
+    $linked_terms_taxonomy_options[$tax->name] = $tax->label;
+}
+
 return apply_filters('taxopress_admin_options', array(
     // post tab
     'posts'       => array(
@@ -95,6 +104,19 @@ return apply_filters('taxopress_admin_options', array(
             __('This controls the taxonomy terms that appear on the "Posts" screen.', 'simple-tags'),
             ''
         ),
+    ),
+
+    
+    // linked terms tab
+    'linked_terms'       => array(
+        array(
+            'linked_terms_taxonomies',
+            __('Enable Taxonomies:', 'simple-tags'),
+            'multiselect',
+            $linked_terms_taxonomy_options,
+            __('This controls which taxonomies are available for the Linked Terms feature.', 'simple-tags'),
+            ''
+        )
     ),
 
     // taxopress ai tab

@@ -142,7 +142,6 @@ class SimpleTags_Terms
     }
 
 
-
     public static function set_screen($status, $option, $value)
     {
         return $value;
@@ -271,11 +270,6 @@ class SimpleTags_Terms
             <script>
                 (function($) {
                     'use strict';
-
-                    /**
-                     * All of the code for admin-facing JavaScript source
-                     * should reside in this file.
-                     */
 
                     $(document).ready(function() {
                         // -------------------------------------------------------------
