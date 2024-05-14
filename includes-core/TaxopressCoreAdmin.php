@@ -49,7 +49,7 @@ class TaxopressCoreAdmin
                 function ($settings) {
                     $settings['publishpress-taxopress'] = [
                         'parent' => 'st_options',
-                        'label'  => 'Upgrade to Pro',
+                        'label'  => __('Upgrade to Pro', 'simple-tags'),
                         'link'   => 'https://taxopress.com/taxopress/',
                     ];
 
