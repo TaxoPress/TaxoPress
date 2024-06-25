@@ -19,7 +19,7 @@ class TaxopressCoreAdmin
                     \PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
                     function ($settings) {
                         $settings['publishpress-taxopress'] = [
-                            'message' => 'You\'re using TaxoPress Free. The Pro version has more features and support. %sUpgrade to Pro%s',
+                            'message' => esc_html__("You're using TaxoPress Free. The Pro version has more features and support. %sUpgrade to Pro%s", 'simple-tags'),
                             'link'    => 'https://taxopress.com/taxopress/',
                             'screens' => [
                                 ['base' => 'taxopress_page_st_dashboard', 'id'   => 'taxopress_page_st_dashboard'],
@@ -49,7 +49,7 @@ class TaxopressCoreAdmin
                 function ($settings) {
                     $settings['publishpress-taxopress'] = [
                         'parent' => 'st_options',
-                        'label'  => 'Upgrade to Pro',
+                        'label'  => __('Upgrade to Pro', 'simple-tags'),
                         'link'   => 'https://taxopress.com/taxopress/',
                     ];
 
