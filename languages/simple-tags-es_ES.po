@@ -6,7 +6,7 @@ msgstr ""
 "Taxonomy Manager - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
 "POT-Creation-Date: 2024-03-18 07:40+0000\n"
-"PO-Revision-Date: 2024-04-22 08:29+0000\n"
+"PO-Revision-Date: 2024-04-23 10:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Poedit 3.4\n"
 
 #: inc/class.admin.mass.php:83
 #, php-format
@@ -252,18 +252,18 @@ msgstr "Hace 7 días"
 
 #: inc/class.client.related_posts.php:46 inc/helper.options.default.php:71
 msgid ""
-"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
-"%post_title%</a> (%post_comment%)"
+"<a href=\"%post_permalink%\" title=\"%post_title% "
+"(%post_date%)\">%post_title%</a> (%post_comment%)"
 msgstr ""
-"<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\">"
-"%post_title%</a> (%post_comment%)"
+"<a href=\"%post_permalink%\" title=\"%post_title% "
+"(%post_date%)\">%post_title%</a> (%post_comment%)"
 
 #: inc/class.client.tagcloud.php:40 inc/class.client.tagcloud.php:249
 #: inc/helper.options.default.php:83
 msgid ""
-"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
-"t%tag_scale%\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% "
-"%tag_color%\">%tag_name%</a>"
+"<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%"
+"\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%"
+"\">%tag_name%</a>"
 msgstr ""
 "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags "
 "t%tag_scale%» title=\"%tag_count% entradas\" %tag_rel% style=\"%tag_size% "
@@ -275,11 +275,11 @@ msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 
 #: inc/class.client.post_tags.php:31 inc/post-tags-functions.php:155
 msgid ""
-"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
-"%tag_name%</a>"
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</"
+"a>"
 msgstr ""
-"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>"
-"%tag_name%</a>"
+"<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</"
+"a>"
 
 #: inc/class.client.related_posts.php:43 inc/helper.options.default.php:70
 msgid "<h4>Related posts</h4>"
@@ -635,10 +635,10 @@ msgstr "Enlances automáticos"
 
 #: inc/autolinks.php:128
 msgid ""
-"Auto Links can automatically create links to your defined terms. For example,"
-" if you have a term called “WordPress”, the Auto Links feature can find the "
-"word “WordPress” in your content and add links to the archive page for that "
-"term."
+"Auto Links can automatically create links to your defined terms. For "
+"example, if you have a term called “WordPress”, the Auto Links feature can "
+"find the word “WordPress” in your content and add links to the archive page "
+"for that term."
 msgstr ""
 "Los enlaces automáticos pueden crear automáticamente enlaces a tus términos "
 "definidos. Por ejemplo, si tiene un término llamado «WordPress», la "
@@ -782,8 +782,9 @@ msgstr "Tanto «Taxonomía» como «Entrada» son obligatorias."
 
 #: inc/autolinks.php:820
 msgid ""
-"By default, TaxoPress will add links for all terms. If this box is unchecked,"
-" Auto Links will only add links for terms that are attached to the post."
+"By default, TaxoPress will add links for all terms. If this box is "
+"unchecked, Auto Links will only add links for terms that are attached to the "
+"post."
 msgstr ""
 "Por defecto, TaxoPress añadirá enlaces para todos los términos. Si esta "
 "casilla no está marcada, Enlaces automáticos sólo añadirá enlaces para los "
@@ -1168,7 +1169,7 @@ msgstr "Activar los registros"
 
 #: inc/helper.options.admin.php:114
 msgid "Enable Taxonomies:"
-msgstr ""
+msgstr "Activar las taxonomías:"
 
 #: inc/helper.options.admin.php:31
 #, php-format
@@ -1447,8 +1448,8 @@ msgstr ""
 #, php-format
 msgid ""
 "Hey, you've been using TaxoPress for %s on your site. We hope the plugin has "
-"been useful. Please could you quickly leave a 5-star rating on WordPress.org?"
-" It really does help to keep TaxoPress growing."
+"been useful. Please could you quickly leave a 5-star rating on WordPress."
+"org? It really does help to keep TaxoPress growing."
 msgstr ""
 "Hola, has utilizado TaxoPress durante %s en tu sitio. Esperamos que el "
 "plugin haya sido útil. Por favor, ¿podría dejar rápidamente una valoración "
@@ -1733,10 +1734,8 @@ msgid "Maximum related posts to display"
 msgstr "Máximas entradas relacionadas a mostrar"
 
 #: inc/related-posts.php:605
-#, fuzzy
-#| msgid "Maximum related posts to post_types"
 msgid "Maximum related posts to posts_type"
-msgstr "Máximas entradas relacionadas a los tipos de contenido (post_types)"
+msgstr "Máximas entradas relacionadas con los tipos de contenido"
 
 #: inc/class.admin.clickterms.php:106
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:96
@@ -2804,7 +2803,7 @@ msgstr "Buscar términos para la entrada actual"
 
 #: modules/taxopress-ai/taxopress-ai.php:879
 msgid "Search Terms..."
-msgstr ""
+msgstr "Términos de búsqueda..."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:68
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:439
@@ -2828,7 +2827,6 @@ msgid "Select %s"
 msgstr "Selecciona %s"
 
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:240
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:242
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:242
 #, php-format
 msgid "Select all %1s"
@@ -2906,9 +2904,9 @@ msgstr ""
 
 #: inc/taxonomies.php:1472
 msgid ""
-"Sets a callback function name for the meta box display. Hierarchical default:"
-" post_categories_meta_box, non-hierarchical default: post_tags_meta_box. To "
-"remove the metabox completely, use \"false\"."
+"Sets a callback function name for the meta box display. Hierarchical "
+"default: post_categories_meta_box, non-hierarchical default: "
+"post_tags_meta_box. To remove the metabox completely, use \"false\"."
 msgstr ""
 "Establece un nombre de función de respuesta para la visualización de la caja "
 "meta. Valor jerárquico por defecto: `post_categories_meta_box`. Valor no "
@@ -3784,6 +3782,8 @@ msgstr "No hay contenido que analizar."
 #: inc/helper.options.admin.php:117
 msgid "This control taxonomies enabled for Linked Terms feature."
 msgstr ""
+"Esto controla las taxonomías activadas para la característica de términos "
+"enlazados."
 
 #: inc/helper.options.admin.php:92
 msgid ""
