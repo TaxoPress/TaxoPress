@@ -79,6 +79,9 @@ class SimpleTags_Client_Autolinks
 			// Get cache if exist
 			$cache = wp_cache_get('generate_keywords', 'simple-tags');
 			if ($options || false === $cache) {
+				if ($cache === false) {
+					$cache = [];
+				}
 				foreach (self::$posts as $object_id) {
 					// Get terms
 					$terms = get_object_term_cache($object_id, $term_taxonomy);
