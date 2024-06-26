@@ -118,13 +118,13 @@ class SimpleTags_Terms
                     $update_term = $wpdb->update(
                         $wpdb->prefix . 'term_taxonomy',
                         ['taxonomy' => $edit_taxonomy],
-                        ['term_taxonomy_id' => $tag->term_id],
+                        ['term_taxonomy_id' => $tag->term_taxonomy_id],
                         ['%s'],
                         ['%d']
                     );
                     if ($update_term) {
                         clean_term_cache($tag->term_id);
-                        $tag = get_term($tag->term_id);
+                        $tag = get_term($tag->term_id, $edit_taxonomy);
                     }
                 }
             }
