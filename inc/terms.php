@@ -124,7 +124,7 @@ class SimpleTags_Terms
                     );
                     if ($update_term) {
                         clean_term_cache($tag->term_id);
-                        $tag = get_term($tag->term_id);
+                        $tag = get_term($tag->term_id, $edit_taxonomy);
                     }
                 }
             }
