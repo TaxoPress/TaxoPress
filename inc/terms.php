@@ -120,7 +120,7 @@ class SimpleTags_Terms
                         ['taxonomy' => $edit_taxonomy],
                         ['term_taxonomy_id' => $tag->term_taxonomy_id],
                         ['%s'],
-                        ['%d', '%s']
+                        ['%d']
                     );
                     if ($update_term) {
                         clean_term_cache($tag->term_id);
