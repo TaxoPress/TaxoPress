@@ -118,9 +118,9 @@ class SimpleTags_Terms
                     $update_term = $wpdb->update(
                         $wpdb->prefix . 'term_taxonomy',
                         ['taxonomy' => $edit_taxonomy],
-                        ['term_id' => $tag->term_id],
+                        ['term_id' => $tag->term_id, 'taxonomy' => $taxonomy],
                         ['%s'],
-                        ['%d']
+                        ['%d', '%s']
                     );
                     if ($update_term) {
                         clean_term_cache($tag->term_id);
