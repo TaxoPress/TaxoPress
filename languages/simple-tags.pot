@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TaxoPress 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2024-04-22 08:56+0000\n"
+"POT-Creation-Date: 2024-06-26 06:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2420,7 +2420,6 @@ msgid "Related Posts"
 msgstr ""
 
 #: blocks/related-posts.php:67 inc/related-posts-widget.php:17
-#: dist/simple-tags/blocks/related-posts.php:67
 msgid "Related Posts (TaxoPress)"
 msgstr ""
 
@@ -2444,7 +2443,7 @@ msgstr ""
 msgid "Related Posts Order"
 msgstr ""
 
-#: blocks/related-posts.php:65 dist/simple-tags/blocks/related-posts.php:65
+#: blocks/related-posts.php:65
 msgid "Related Posts shortcode are added on Related Post screen"
 msgstr ""
 
@@ -2712,7 +2711,7 @@ msgstr ""
 msgid "Select all %1s"
 msgstr ""
 
-#: blocks/related-posts.php:66 dist/simple-tags/blocks/related-posts.php:66
+#: blocks/related-posts.php:66
 msgid "Select related post shortcode"
 msgstr ""
 
@@ -3721,7 +3720,6 @@ msgstr ""
 
 #: blocks/related-posts.php:62 inc/class.shortcode_widgets.php:120
 #: inc/posts-tags-widget.php:101 inc/related-posts-widget.php:107
-#: dist/simple-tags/blocks/related-posts.php:62
 msgid "this page."
 msgstr ""
 
@@ -3900,6 +3898,7 @@ msgstr ""
 
 #: inc/autolinks.php:919 inc/autoterms.php:1151 inc/post-tags.php:645
 #: inc/related-posts.php:852 inc/tag-clouds.php:776
+#: includes-core/TaxopressCoreAdmin.php:52
 #: includes-core/TaxopressCoreAdmin.php:117
 #: includes-core/TaxopressCoreAdmin.php:170
 #: includes-core/TaxopressCoreAdmin.php:194
@@ -4109,4 +4108,11 @@ msgid ""
 "You're using TaxoPress Free.\n"
 "                                        The Pro version has more features "
 "and support."
+msgstr ""
+
+#: includes-core/TaxopressCoreAdmin.php:22
+#, php-format
+msgid ""
+"You're using TaxoPress Free. The Pro version has more features and support. "
+"%sUpgrade to Pro%s"
 msgstr ""
