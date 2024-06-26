@@ -391,11 +391,11 @@ class SimpleTags_Client_Autolinks
 				if (count($excludes_class) > 0) {
 					foreach ($excludes_class as $idclass) {
 						if (substr(trim($idclass), 0, 1) === "#") {
-							$div_id = ltrim(trim($idclass), "#");
-							$exclusion .= "[not(ancestor::div/@id='$div_id')]";
+							$element_id = ltrim(trim($idclass), "#");
+							$exclusion .= "[not(ancestor::*[@id='$element_id'])]";
 						} else {
-							$div_class = ltrim(trim($idclass), ".");
-							$exclusion .= "[not(ancestor::div/@class='$div_class')]";
+							$element_class = ltrim(trim($idclass), ".");
+							$exclusion .= "[not(ancestor::*[@class='$element_class'])]";
 						}
 					}
 				}
