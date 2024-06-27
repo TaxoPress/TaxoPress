@@ -1,14 +1,14 @@
 === WordPress Tag, Category, and Taxonomy Manager - AI Autotagger ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
-Tags: category, tag, taxonomy, related posts, tag cloud
+Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
 Tested up to: 6.5
-Stable tag: 3.21.0
+Stable tag: 3.21.1
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-TaxoPress enables you to manage Tags, Categories and all your WordPress taxonomy terms.
+Tags, Categories and WordPress terms are easy with TaxoPress. Add a Tag or Category to Pages, manage your WooCommerce Categories and Tags and more.
 
 == Description ==
 
@@ -267,6 +267,13 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.21.1- 2024-06-26
+* Fixed: Auto Links class/id exclusions not working on <p> elements, #2040
+* Fixed: Plugin conflict with Linked Terms, #2045
+* Fixed: TaxoPress conflict with the WP All Import plugin, #2037
+* Fixed: Deprecated in class.client.autolinks.php on line 94, #2043
+* Update: TaxoPress Italian French Spanish translation updates v. 3.21.0, #2035
 
 v3.21.0- 2024-04-22
 * Feature: Add a new "Linked Terms" screen, #2006
