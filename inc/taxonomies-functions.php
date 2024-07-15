@@ -1897,6 +1897,7 @@ function taxopress_action_delete_taxonomy($term_object)
 
 function unregister_tags()
 {
+    global $remove_current_taxonomy;
 
     $all_taxonomies = (array)get_option('taxopress_deactivated_taxonomies');
     $all_taxonomies = array_unique(array_filter($all_taxonomies));
@@ -1918,7 +1919,7 @@ function unregister_tags()
 function taxopress_remove_taxonomy_from_menus()
 {
     global $remove_current_taxonomy;
-    remove_menu_page('edit-tags.php?taxonomy=post_tag');
+    remove_menu_page('edit-tags.php?taxonomy=' . $remove_current_taxonomy);
 }
 
 
