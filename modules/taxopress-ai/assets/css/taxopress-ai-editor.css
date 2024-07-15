@@ -23,6 +23,7 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 }
 
 .taxopress-post-suggestterm .taxopress-ai-fetch-wrap select {
+    max-width: 200px;
     margin-right: 10px;
 }
 

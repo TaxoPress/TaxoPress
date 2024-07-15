@@ -158,7 +158,10 @@
           var preview_wrapper  = $('.taxopress-ai-preview-sidebar');
           var preview_title    = $('.taxopress-ai-preview-sidebar').find('.preview-title');
           var ai_groups        = taxoPressAIRequestAction.aiGroups;
+          var button_label     = taxoPressAIRequestAction.fieldTabs[current_tab].button_label;
           var ai_group_icons   = ai_groups.map(item => `${item}_icon`);
+
+          preview_wrapper.find('.taxopress-ai-preview-button .btn-text').html(button_label);
 
           preview_wrapper.removeClass(ai_groups.join(' '));
           preview_wrapper
