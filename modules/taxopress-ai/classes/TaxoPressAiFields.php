@@ -14,37 +14,44 @@ if (!class_exists('TaxoPressAiFields')) {
 
             $fields_tabs['post_terms'] = [
                 'label' => esc_html__('Manage Post Terms', 'simple-tags'),
+                'button_label'   => esc_html__('View Current Post Terms', 'simple-tags'),
                 'description'  => esc_html__('This feature allows you to manage all the terms that are currently attached to a post.', 'simple-tags'),
             ];
 
             $fields_tabs['suggest_local_terms'] = [
                 'label' => esc_html__('Suggest Existing Terms', 'simple-tags'),
+                'button_label'   => esc_html__('View Suggested Terms', 'simple-tags'),
                 'description'  => esc_html__('This feature can scan your posts and suggest relevant terms.', 'simple-tags'),
             ];
 
             $fields_tabs['existing_terms'] = [
                 'label' => esc_html__('Show All Existing Terms', 'simple-tags'),
+                'button_label'   => esc_html__('View Existing Terms', 'simple-tags'),
                 'description'  => esc_html__('This feature allows you to browse all the terms in a taxonomy.', 'simple-tags'),
             ];
 
 
             $fields_tabs['open_ai'] = [
                 'label' => esc_html__('OpenAI', 'simple-tags'),
+                'button_label'   => esc_html__('View Terms', 'simple-tags'),
                 'description'  => sprintf(esc_html__('OpenAI is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-openai/">', '</a>'),
             ];
 
             $fields_tabs['ibm_watson'] = [
                 'label' => esc_html__('IBM Watson', 'simple-tags'),
+                'button_label'   => esc_html__('View Terms', 'simple-tags'),
                 'description'  => sprintf(esc_html__('IBM Watson is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-ibm/">', '</a>'),
             ];
 
             $fields_tabs['dandelion'] = [
                 'label' => esc_html__('Dandelion', 'simple-tags'),
+                'button_label'   => esc_html__('View Terms', 'simple-tags'),
                 'description'  => sprintf(esc_html__('Dandelion is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-dandelion/">', '</a>'),
             ];
 
             $fields_tabs['open_calais'] = [
                 'label' => esc_html__('LSEG / Refinitiv', 'simple-tags'),
+                'button_label'   => esc_html__('View Terms', 'simple-tags'),
                 'description'  => sprintf(esc_html__('LSEG / Refinitiv is an external service that can scan your content and suggest relevant terms. %1sClick here for details%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/register-opencalais/">', '</a>'),
             ];
 
