@@ -34,6 +34,9 @@ class SimpleTags_Plugin {
 			}
 		}
 
+		// disable media tag
+		taxopress_deactivate_taxonomy('media_tag');
+
 		// add activated option
 		add_option( 'taxopress_activate', true );
 	}
