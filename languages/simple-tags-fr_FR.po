@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - TaxoPress is the WordPress Tag, Category, and "
 "Taxonomy Manager - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2024-03-18 07:40+0000\n"
-"PO-Revision-Date: 2024-04-23 11:09+0200\n"
+"POT-Creation-Date: 2024-06-26 06:31+0000\n"
+"PO-Revision-Date: 2024-06-27 18:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: inc/class.admin.mass.php:83
 #, php-format
@@ -2546,7 +2546,6 @@ msgid "Related Posts"
 msgstr "Publications similaires"
 
 #: blocks/related-posts.php:67 inc/related-posts-widget.php:17
-#: dist/simple-tags/blocks/related-posts.php:67
 msgid "Related Posts (TaxoPress)"
 msgstr "Publications similaires (TaxoPress)"
 
@@ -2570,7 +2569,7 @@ msgstr "Publications similaires non trouvées."
 msgid "Related Posts Order"
 msgstr "Tri de publications similaires"
 
-#: blocks/related-posts.php:65 dist/simple-tags/blocks/related-posts.php:65
+#: blocks/related-posts.php:65
 msgid "Related Posts shortcode are added on Related Post screen"
 msgstr ""
 "Le code court des publications similaires à été ajouté à l’écran des "
@@ -2843,7 +2842,7 @@ msgstr "Sélectionnez %s"
 msgid "Select all %1s"
 msgstr "Sélectionner tout %1s"
 
-#: blocks/related-posts.php:66 dist/simple-tags/blocks/related-posts.php:66
+#: blocks/related-posts.php:66
 msgid "Select related post shortcode"
 msgstr "Sélectionnez le code court des publications similaires"
 
@@ -3800,12 +3799,6 @@ msgstr "Il n’y a pas d’extrait car ceci est une publication protégée."
 msgid "There's no content to scan."
 msgstr "Il n’y a pas de contenu à analyser."
 
-#: inc/helper.options.admin.php:117
-msgid "This control taxonomies enabled for Linked Terms feature."
-msgstr ""
-"Ceci contrôle les taxonomies qui sont disponibles pour la fonctionnalité "
-"« Termes liés »."
-
 #: inc/helper.options.admin.php:92
 msgid ""
 "This controls the details that appear in the \"Terms Filter\" display and "
@@ -3819,6 +3812,13 @@ msgid "This controls the taxonomy terms that appear on the \"Posts\" screen."
 msgstr ""
 "Ceci contrôle les termes de la taxonomie qui sont affichés dans l’écran "
 "« Publications »."
+
+#: inc/helper.options.admin.php:117
+msgid ""
+"This controls which taxonomies are available for the Linked Terms feature."
+msgstr ""
+"Ceci contrôle quelles taxonomies sont disponibles pour la fonctionnalité "
+"« Termes liés »."
 
 #: inc/class.admin.php:359
 msgid "This custom post type not have taxonomies."
@@ -4014,7 +4014,6 @@ msgstr ""
 
 #: blocks/related-posts.php:62 inc/class.shortcode_widgets.php:120
 #: inc/posts-tags-widget.php:101 inc/related-posts-widget.php:107
-#: dist/simple-tags/blocks/related-posts.php:62
 msgid "this page."
 msgstr "cette page."
 
@@ -4215,6 +4214,7 @@ msgstr "Mise à jour des journaux de TaxoPress"
 
 #: inc/autolinks.php:919 inc/autoterms.php:1151 inc/post-tags.php:645
 #: inc/related-posts.php:852 inc/tag-clouds.php:776
+#: includes-core/TaxopressCoreAdmin.php:52
 #: includes-core/TaxopressCoreAdmin.php:117
 #: includes-core/TaxopressCoreAdmin.php:170
 #: includes-core/TaxopressCoreAdmin.php:194
@@ -4468,3 +4468,12 @@ msgstr ""
 "Vous utilisez TaxoPress Free.\n"
 "                                            La version Pro a plus de "
 "fonctionnalités et de support."
+
+#: includes-core/TaxopressCoreAdmin.php:22
+#, php-format
+msgid ""
+"You're using TaxoPress Free. The Pro version has more features and support. "
+"%sUpgrade to Pro%s"
+msgstr ""
+"Vous utilisez TaxoPress Free. La version Pro a plus de fonctionnalités et de "
+"support. %sPasser en Pro%s"
