@@ -199,13 +199,16 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     STAGS_VERSION
                 );
 
+                
+
                 wp_localize_script(
                     'taxopress-ai-js',
                     'taxoPressAIRequestAction',
                     [
                         'requiredSuffix' => esc_html__('Please choose a post to use with TaxoPress AI.', 'simple-tags'),
                         'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
-                        'aiGroups' => TaxoPressAiUtilities::get_taxopress_ai_groups()
+                        'aiGroups' => TaxoPressAiUtilities::get_taxopress_ai_groups(),
+                        'fieldTabs' => TaxoPressAiFields::get_fields_tabs()
                     ]
                 );
             } elseif (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
@@ -229,7 +232,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     [
                         'requiredSuffix' => esc_html__('Please choose a post to use with TaxoPress AI.', 'simple-tags'),
                         'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
-                        'apiEditLink' => '<span class="edit-suggest-term-metabox"> <a target="blank" href="' . $manage_link . '"> '. esc_html__('Manage API Configuration', 'simple-tags') .' </a></span>'
+                        'apiEditLink' => '<span class="edit-suggest-term-metabox"> <a target="blank" href="' . $manage_link . '"> '. esc_html__('Manage API Configuration', 'simple-tags') .' </a></span>',
+                        'fieldTabs' => TaxoPressAiFields::get_fields_tabs()
                     ]
                 );
             }
@@ -274,6 +278,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
             $default_post_type = '';
             $post = false;
+            
+            $button_label = $fields_tabs[$active_tab]['button_label'];
             ?>
 
             <div class="wrap st_wrap st-manage-taxonomies-page <?php echo esc_attr(self::PAGE_MENU_SLUG . '-wrap'); ?>">
@@ -430,7 +436,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     <div class="submit-action">
                                                         <button class="button button-secondary taxopress-ai-preview-button">
                                                             <div class="spinner"></div>
-                                                            <?php echo esc_html__('View Terms', 'simple-tags'); ?>
+                                                            <span class="btn-text"><?php echo esc_html($button_label); ?></span>
                                                         </button>
                                                     </div>
 
@@ -768,6 +774,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 return;
             }
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
+            $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
             ?>
             <div class="taxopress-post-suggestterm">
                 <div class="taxopress-suggest-terms-contents">
@@ -863,6 +870,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                     'post_content'  => $post->post_content,
                                     'post_id'		=> $post->ID,
                                 ];
+                                $button_label = $fields_tabs[$key]['button_label'];
                                 ?>
                                 <table class="taxopress-tab-content-item form-table taxopress-table taxopress-ai-tab-content <?php echo esc_attr($key); ?>"
                                     data-ai-source="<?php echo esc_attr($key); ?>"
@@ -897,7 +905,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     </select>
                                                     <button class="button button-secondary taxopress-ai-fetch-button">
                                                         <div class="spinner"></div>
-                                                        <?php echo esc_html__('View Terms', 'simple-tags'); ?>
+                                                        <span class="btn-text"><?php echo esc_html($button_label); ?></span>
                                                     </button>
                                                 </div>
                                                 <div class="taxopress-ai-fetch-result <?php echo esc_attr($key); ?>">

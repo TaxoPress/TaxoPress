@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - TaxoPress is the WordPress Tag, Category, and "
 "Taxonomy Manager - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2024-03-18 07:40+0000\n"
-"PO-Revision-Date: 2024-04-23 11:05+0200\n"
+"POT-Creation-Date: 2024-06-26 06:31+0000\n"
+"PO-Revision-Date: 2024-06-27 18:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: inc/class.admin.mass.php:83
 #, php-format
@@ -2526,7 +2526,6 @@ msgid "Related Posts"
 msgstr "Articoli correlati"
 
 #: blocks/related-posts.php:67 inc/related-posts-widget.php:17
-#: dist/simple-tags/blocks/related-posts.php:67
 msgid "Related Posts (TaxoPress)"
 msgstr "Articoli correlati (TaxoPress)"
 
@@ -2550,7 +2549,7 @@ msgstr "Articoli correlati non trovati."
 msgid "Related Posts Order"
 msgstr "Ordine degli articoli correlati"
 
-#: blocks/related-posts.php:65 dist/simple-tags/blocks/related-posts.php:65
+#: blocks/related-posts.php:65
 msgid "Related Posts shortcode are added on Related Post screen"
 msgstr ""
 "Gli shortcode degli articoli correlati vengono aggiunti nella schermata "
@@ -2823,7 +2822,7 @@ msgstr "Seleziona %s"
 msgid "Select all %1s"
 msgstr "Seleziona tutte le %1s"
 
-#: blocks/related-posts.php:66 dist/simple-tags/blocks/related-posts.php:66
+#: blocks/related-posts.php:66
 msgid "Select related post shortcode"
 msgstr "Seleziona lo shortcode dell'articolo correlato"
 
@@ -3770,12 +3769,6 @@ msgstr "Non c'è alcun riassunto perché l'articolo è protetto."
 msgid "There's no content to scan."
 msgstr "Nessun contenuto da ricercare."
 
-#: inc/helper.options.admin.php:117
-msgid "This control taxonomies enabled for Linked Terms feature."
-msgstr ""
-"Questo controlla le tassonomie abilitate per la caratteristica \"Termini "
-"collegati\"."
-
 #: inc/helper.options.admin.php:92
 msgid ""
 "This controls the details that appear in the \"Terms Filter\" display and "
@@ -3789,6 +3782,13 @@ msgid "This controls the taxonomy terms that appear on the \"Posts\" screen."
 msgstr ""
 "Questo controlla i termini della tassonomia che appaiono nella schermata "
 "\"Articoli\"."
+
+#: inc/helper.options.admin.php:117
+msgid ""
+"This controls which taxonomies are available for the Linked Terms feature."
+msgstr ""
+"Questo controlla quale tassonomie sono disponibili per la caratteristica "
+"\"Termini collegati\"."
 
 #: inc/class.admin.php:359
 msgid "This custom post type not have taxonomies."
@@ -3982,7 +3982,6 @@ msgstr ""
 
 #: blocks/related-posts.php:62 inc/class.shortcode_widgets.php:120
 #: inc/posts-tags-widget.php:101 inc/related-posts-widget.php:107
-#: dist/simple-tags/blocks/related-posts.php:62
 msgid "this page."
 msgstr "questa pagina."
 
@@ -4179,6 +4178,7 @@ msgstr "Aggiorna TaxoPress Logs"
 
 #: inc/autolinks.php:919 inc/autoterms.php:1151 inc/post-tags.php:645
 #: inc/related-posts.php:852 inc/tag-clouds.php:776
+#: includes-core/TaxopressCoreAdmin.php:52
 #: includes-core/TaxopressCoreAdmin.php:117
 #: includes-core/TaxopressCoreAdmin.php:170
 #: includes-core/TaxopressCoreAdmin.php:194
@@ -4424,3 +4424,12 @@ msgstr ""
 "Stai utilizzando TaxoPress Free.\n"
 "                                            La versione Pro ha molte più "
 "funzionalità e un miglior supporto."
+
+#: includes-core/TaxopressCoreAdmin.php:22
+#, php-format
+msgid ""
+"You're using TaxoPress Free. The Pro version has more features and support. "
+"%sUpgrade to Pro%s"
+msgstr ""
+"Stai utilizzando TaxoPress Free. La versione Pro ha molte più funzionalità e "
+"un miglior supporto. %sAggiorna a Pro%s"

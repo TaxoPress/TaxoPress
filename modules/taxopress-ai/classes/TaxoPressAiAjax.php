@@ -350,27 +350,26 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 foreach ($terms as $term ) {
                                     $term_id = $term->term_id;
                                     $term = stripslashes( $term->name );
-                                    if (!stristr($content, $term)) {
-                                        continue;
-                                    }
                                     $add_terms = [];
                                     $add_terms[$term] = $term_id;
                                     $primary_term = $term;
-                        
+                                    $term_check_names = [];
                                     // add term synonyms
                                     $term_synonyms = taxopress_get_term_synonyms($term_id);
                                     if (!empty($term_synonyms)) {
                                         foreach ($term_synonyms as $term_synonym) {
+                                            $term_check_names[$term_synonym] = $primary_term;
                                             $add_terms[$term_synonym] = $term_id;
                                         }
                                     }
                         
                                     // add linked term
                                     $add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $existing_tax);
-                                    
                                     foreach ($add_terms as $add_name => $add_term_id) {
-                                        if (is_string($add_name) && ! empty($add_name) && !in_array($add_name, $term_results)) {
-                                            $term_results[] = $add_name;
+                                        $new_term = (isset($term_check_names[$add_name])) ? $term_check_names[$add_name] : $add_name;
+
+                                        if (is_string($new_term) && ! empty($new_term) && stristr($content, $add_name) && !in_array($new_term, $term_results)) {
+                                            $term_results[] = $new_term;
                                         }
                                     }
                                 }
