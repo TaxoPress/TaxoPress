@@ -635,7 +635,7 @@ class SimpleTags_Autoterms
                                                     echo $ui->get_select_checkbox_input([
                                                         'namearray'  => 'taxopress_autoterm',
                                                         'name'       => 'autoterm_use_taxonomy',
-                                                        'class'      => 'autoterm_use_taxonomy',
+                                                        'class'      => 'autoterm_use_taxonomy autoterm-terms-to-use-field',
                                                         'labeltext'  => esc_html__('Existing taxonomy terms', 'simple-tags'),
                                                         'aftertext'  => esc_html__('This will add existing terms from the taxonomy selected in the "General" tab.', 'simple-tags'),
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
