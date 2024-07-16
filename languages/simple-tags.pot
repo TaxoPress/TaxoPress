@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TaxoPress 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2024-06-26 06:31+0000\n"
+"POT-Creation-Date: 2024-07-16 11:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "%1s Metabox"
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:377
+#: modules/taxopress-ai/taxopress-ai.php:383
 #, php-format
 msgid "%1s Preview"
 msgstr ""
@@ -39,12 +39,12 @@ msgstr ""
 msgid "%1s term(s) deleted."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:519
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:518
 #, php-format
 msgid "%1s terms added to this %2s."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:523
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:522
 #, php-format
 msgid "%1s terms removed from this %2s."
 msgstr ""
@@ -479,7 +479,7 @@ msgstr ""
 msgid "Advanced usage:"
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:294
+#: modules/taxopress-ai/taxopress-ai.php:300
 msgid "AI Integration Settings"
 msgstr ""
 
@@ -491,7 +491,7 @@ msgstr ""
 #. Used for autofill
 #: inc/taxonomies-functions.php:1562 inc/taxonomies-functions.php:1570
 #: inc/taxonomies-functions.php:1605 inc/taxonomies-functions.php:1623
-#: inc/taxonomies-functions.php:2274 inc/taxonomies.php:1004
+#: inc/taxonomies-functions.php:2275 inc/taxonomies.php:1004
 #, php-format
 msgid "All %s"
 msgstr ""
@@ -537,7 +537,7 @@ msgstr ""
 msgid "Alphabetical"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:541
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:540
 msgid "An error occured."
 msgstr ""
 
@@ -757,7 +757,7 @@ msgstr ""
 msgid "Blog display"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:467
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:466
 msgid "Both Taxonomy and Post are required."
 msgstr ""
 
@@ -823,7 +823,7 @@ msgstr ""
 msgid "Click here to add your rating for TaxoPress"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:464
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:463
 #, php-format
 msgid "Click Term to add or remove from this %1s"
 msgstr ""
@@ -913,8 +913,8 @@ msgid "Custom taxonomy rewrite slug."
 msgstr ""
 
 #: inc/autoterms-table.php:386 inc/helper.options.admin.php:10
-#: modules/taxopress-ai/taxopress-ai.php:797
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:42
+#: modules/taxopress-ai/taxopress-ai.php:804
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:47
 msgid "Dandelion"
 msgstr ""
 
@@ -922,7 +922,7 @@ msgstr ""
 msgid "Dandelion Integration"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:43
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:49
 #, php-format
 msgid ""
 "Dandelion is an external service that can scan your content and suggest "
@@ -1426,8 +1426,8 @@ msgid "I already did"
 msgstr ""
 
 #: inc/autoterms-table.php:382 inc/helper.options.admin.php:9
-#: modules/taxopress-ai/taxopress-ai.php:793
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:37
+#: modules/taxopress-ai/taxopress-ai.php:800
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:41
 msgid "IBM Watson"
 msgstr ""
 
@@ -1435,7 +1435,7 @@ msgstr ""
 msgid "IBM Watson Integration"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:38
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:43
 #, php-format
 msgid ""
 "IBM Watson is an external service that can scan your content and suggest "
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "Invalid post terms ID."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:588
+#: modules/taxopress-ai/taxopress-ai.php:594
 msgid "Invalid request."
 msgstr ""
 
@@ -1555,8 +1555,8 @@ msgid "Logs"
 msgstr ""
 
 #: inc/autoterms-table.php:390 inc/helper.options.admin.php:11
-#: modules/taxopress-ai/taxopress-ai.php:801
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:47
+#: modules/taxopress-ai/taxopress-ai.php:808
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:53
 msgid "LSEG / Refinitiv"
 msgstr ""
 
@@ -1564,14 +1564,14 @@ msgstr ""
 msgid "LSEG / Refinitiv Integration"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:48
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:55
 #, php-format
 msgid ""
 "LSEG / Refinitiv is an external service that can scan your content and "
 "suggest relevant terms. %1sClick here for details%2s."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:232
+#: modules/taxopress-ai/taxopress-ai.php:235
 msgid "Manage API Configuration"
 msgstr ""
 
@@ -1583,7 +1583,7 @@ msgstr ""
 msgid "Manage Auto Terms"
 msgstr ""
 
-#: inc/helper.options.admin.php:5 modules/taxopress-ai/taxopress-ai.php:777
+#: inc/helper.options.admin.php:5 modules/taxopress-ai/taxopress-ai.php:784
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:16
 msgid "Manage Post Terms"
 msgstr ""
@@ -1596,7 +1596,7 @@ msgstr ""
 msgid "Manage Taxonomy"
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:281
+#: modules/taxopress-ai/taxopress-ai.php:287
 msgid "Manage TaxoPress AI integration"
 msgstr ""
 
@@ -1651,7 +1651,7 @@ msgid "Maximum related posts to posts_type"
 msgstr ""
 
 #: inc/class.admin.clickterms.php:106
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:96
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:103
 msgid "Maximum terms"
 msgstr ""
 
@@ -1713,8 +1713,8 @@ msgid "Metabox Features"
 msgstr ""
 
 #: inc/class.admin.clickterms.php:81
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:71
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:104
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:78
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:111
 msgid "Method for choosing terms"
 msgstr ""
 
@@ -1878,7 +1878,7 @@ msgstr ""
 msgid "No new term(s) specified!"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:515
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:514
 msgid "No new terms were added or removed."
 msgstr ""
 
@@ -1907,11 +1907,11 @@ msgstr ""
 msgid "No results found for this post with this taxonomy."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:413
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:412
 msgid "No results found for this taxonomy."
 msgstr ""
 
-#: inc/class.admin.clickterms.php:271 modules/taxopress-ai/taxopress-ai.php:633
+#: inc/class.admin.clickterms.php:271 modules/taxopress-ai/taxopress-ai.php:639
 msgid "No results from your WordPress database."
 msgstr ""
 
@@ -1932,7 +1932,7 @@ msgstr ""
 msgid "No taxonomies found."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:828
+#: modules/taxopress-ai/taxopress-ai.php:835
 msgid "No TaxoPress AI feature is enabled for this post type in settings."
 msgstr ""
 
@@ -1976,7 +1976,7 @@ msgstr ""
 msgid "No terms found."
 msgstr ""
 
-#: inc/class.admin.clickterms.php:223 modules/taxopress-ai/taxopress-ai.php:616
+#: inc/class.admin.clickterms.php:223 modules/taxopress-ai/taxopress-ai.php:622
 msgid "No terms in your WordPress database."
 msgstr ""
 
@@ -2037,8 +2037,8 @@ msgid "Only use Auto Terms on posts with no added terms."
 msgstr ""
 
 #: inc/autoterms-table.php:378 inc/helper.options.admin.php:8
-#: modules/taxopress-ai/taxopress-ai.php:789
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:32
+#: modules/taxopress-ai/taxopress-ai.php:796
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:35
 msgid "OpenAI"
 msgstr ""
 
@@ -2046,7 +2046,7 @@ msgstr ""
 msgid "OpenAI Integration"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:33
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:37
 #, php-format
 msgid ""
 "OpenAI is an external service that can scan your content and suggest "
@@ -2083,8 +2083,8 @@ msgid "Ordering for choosing term from the database"
 msgstr ""
 
 #: inc/class.admin.clickterms.php:94
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:79
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:112
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:86
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:119
 msgid "Ordering for choosing terms"
 msgstr ""
 
@@ -2152,8 +2152,8 @@ msgid "Permission denied."
 msgstr ""
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:74
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:445
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:555
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:444
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:554
 msgid "Permission error. You do not have permission to manage taxopress"
 msgstr ""
 
@@ -2173,8 +2173,8 @@ msgstr ""
 msgid "Please choose a different taxonomy name. %s is already registered."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:206
-#: modules/taxopress-ai/taxopress-ai.php:230
+#: modules/taxopress-ai/taxopress-ai.php:208
+#: modules/taxopress-ai/taxopress-ai.php:233
 msgid "Please choose a post to use with TaxoPress AI."
 msgstr ""
 
@@ -2243,7 +2243,7 @@ msgid "Popular Media Tags"
 msgstr ""
 
 #: inc/autoterms-logs-table.php:188 inc/posts-table.php:21
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:451
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:450
 msgid "Post"
 msgstr ""
 
@@ -2334,7 +2334,7 @@ msgstr ""
 msgid "Prevent Auto Term inside elements"
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:373
+#: modules/taxopress-ai/taxopress-ai.php:379
 msgid "Preview"
 msgstr ""
 
@@ -2494,8 +2494,8 @@ msgid "Replaced by the tag’s name, formatted for attribute HTML"
 msgstr ""
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:60
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:431
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:592
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:430
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:591
 msgid "Request completed."
 msgstr ""
 
@@ -2515,7 +2515,7 @@ msgstr ""
 msgid "REST API controller class"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:401
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:400
 msgid "Result from ajax request."
 msgstr ""
 
@@ -2566,7 +2566,7 @@ msgstr ""
 msgid "Save Related Posts"
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:362
+#: modules/taxopress-ai/taxopress-ai.php:368
 msgid "Save Settings"
 msgstr ""
 
@@ -2680,13 +2680,13 @@ msgstr ""
 msgid "Search Terms for Current Post"
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:879
+#: modules/taxopress-ai/taxopress-ai.php:887
 msgid "Search Terms..."
 msgstr ""
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:68
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:439
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:549
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:438
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:548
 msgid "Security error. Kindly reload this page and try again"
 msgstr ""
 
@@ -2699,7 +2699,7 @@ msgstr ""
 msgid "Select %1s..."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:528
+#: modules/taxopress-ai/taxopress-ai.php:534
 #, php-format
 msgid "Select %s"
 msgstr ""
@@ -2727,7 +2727,7 @@ msgstr ""
 msgid "Select widget terms for current post."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:419
+#: modules/taxopress-ai/taxopress-ai.php:425
 msgid "Select..."
 msgstr ""
 
@@ -2738,7 +2738,7 @@ msgstr ""
 msgid "Selected content is empty."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:407
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:406
 msgid "Selected taxonomy is not associated with the preview post type."
 msgstr ""
 
@@ -2766,7 +2766,7 @@ msgstr ""
 msgid "Separate tags with commas"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:97
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:104
 msgid "Set (0) for no limit."
 msgstr ""
 
@@ -2870,8 +2870,8 @@ msgstr ""
 msgid "Show all dates"
 msgstr ""
 
-#: inc/helper.options.admin.php:7 modules/taxopress-ai/taxopress-ai.php:785
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:26
+#: inc/helper.options.admin.php:7 modules/taxopress-ai/taxopress-ai.php:792
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:28
 msgid "Show All Existing Terms"
 msgstr ""
 
@@ -2899,9 +2899,9 @@ msgstr ""
 msgid "Show in REST API"
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:87
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:120
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:129
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:94
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:127
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:136
 msgid "Show Term Post Count"
 msgstr ""
 
@@ -2956,8 +2956,8 @@ msgstr ""
 msgid "style"
 msgstr ""
 
-#: inc/helper.options.admin.php:6 modules/taxopress-ai/taxopress-ai.php:781
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:21
+#: inc/helper.options.admin.php:6 modules/taxopress-ai/taxopress-ai.php:788
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:22
 msgid "Suggest Existing Terms"
 msgstr ""
 
@@ -2999,7 +2999,7 @@ msgstr ""
 msgid "Tag link format:"
 msgstr ""
 
-#: inc/class.widgets.php:85 modules/taxopress-ai/taxopress-ai.php:722
+#: inc/class.widgets.php:85 modules/taxopress-ai/taxopress-ai.php:728
 msgid "Tags"
 msgstr ""
 
@@ -3065,9 +3065,9 @@ msgid "TaxoPress"
 msgstr ""
 
 #: inc/class.admin.php:144 inc/class.admin.php:932
-#: modules/taxopress-ai/taxopress-ai.php:248
-#: modules/taxopress-ai/taxopress-ai.php:249
-#: modules/taxopress-ai/taxopress-ai.php:753
+#: modules/taxopress-ai/taxopress-ai.php:252
+#: modules/taxopress-ai/taxopress-ai.php:253
+#: modules/taxopress-ai/taxopress-ai.php:759
 msgid "TaxoPress AI"
 msgstr ""
 
@@ -3549,7 +3549,7 @@ msgid ""
 "lowercase and contains only letters, numbers, and underscores."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:675
+#: modules/taxopress-ai/taxopress-ai.php:681
 msgid "There are no terms that are relevant to your content."
 msgstr ""
 
@@ -3557,7 +3557,7 @@ msgstr ""
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:626
+#: modules/taxopress-ai/taxopress-ai.php:632
 msgid "There's no content to scan."
 msgstr ""
 
@@ -3604,7 +3604,7 @@ msgid ""
 "taxonomy."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:27
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:30
 msgid "This feature allows you to browse all the terms in a taxonomy."
 msgstr ""
 
@@ -3620,7 +3620,7 @@ msgid ""
 "for each taxonomy."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:17
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:18
 msgid ""
 "This feature allows you to manage all the terms that are currently attached "
 "to a post."
@@ -3653,7 +3653,7 @@ msgid ""
 "content and add links to the archive page for that term."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:22
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:24
 msgid "This feature can scan your posts and suggest relevant terms."
 msgstr ""
 
@@ -3723,7 +3723,7 @@ msgstr ""
 msgid "this page."
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:824
+#: modules/taxopress-ai/taxopress-ai.php:831
 msgid "This post does not have any attached taxonomies."
 msgstr ""
 
@@ -3770,9 +3770,9 @@ msgid ""
 "tab."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:88
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:121
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:130
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:95
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:128
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:137
 msgid "This will show the number of posts attached to the terms."
 msgstr ""
 
@@ -3997,6 +3997,14 @@ msgstr ""
 msgid "View %s"
 msgstr ""
 
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:17
+msgid "View Current Post Terms"
+msgstr ""
+
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:29
+msgid "View Existing Terms"
+msgstr ""
+
 #: inc/taxonomies.php:1033
 msgid "View Item"
 msgstr ""
@@ -4009,8 +4017,14 @@ msgstr ""
 msgid "View Media Tag"
 msgstr ""
 
-#: modules/taxopress-ai/taxopress-ai.php:433
-#: modules/taxopress-ai/taxopress-ai.php:900
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:23
+msgid "View Suggested Terms"
+msgstr ""
+
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:36
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:42
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:48
+#: modules/taxopress-ai/classes/TaxoPressAiFields.php:54
 msgid "View Terms"
 msgstr ""
 
