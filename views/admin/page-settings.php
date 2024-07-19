@@ -1,3 +1,4 @@
+<div class="taxopress-block-wrap">
 <div class="wrap st_wrap tagcloudui admin-settings">
 	<div id="icon-themes" class="icon32"><br></div>
 	<h2><?php _e( 'TaxoPress: Options', 'simple-tags' ); ?></h2>
@@ -49,4 +50,5 @@
 
 <div class="taxopress-right-sidebar admin-settings-sidebar">
 	<?php do_action('taxopress_admin_after_sidebar'); ?>
+</div>
 </div>

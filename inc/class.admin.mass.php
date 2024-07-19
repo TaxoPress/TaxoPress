@@ -104,6 +104,7 @@ class SimpleTags_Admin_Mass {
 		// Display message
 		settings_errors( __CLASS__ );
 		?>
+		<div class="taxopress-block-wrap">
 		<div class="wrap st_wrap tagcloudui st_mass_terms-page admin-settings">
 			<form id="posts-filter" action="" method="get">
 				<input type="hidden" name="page" value="st_mass_terms"/>
@@ -290,6 +291,8 @@ class SimpleTags_Admin_Mass {
 
 		<div class="taxopress-right-sidebar admin-settings-sidebar">
 			<?php do_action('taxopress_admin_after_sidebar'); ?>
+		</div>
+		
 		</div>
 
 		<?php
