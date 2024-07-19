@@ -90,7 +90,7 @@ class SimpleTags_Dashboard
             </div>
         </div>
     <?php endif; ?>
-
+    <div class="taxopress-block-wrap">
         <div class="wrap st_wrap tagcloudui st_dashboard-page admin-settings">
             <h1 class="wp-heading-inline"><?php esc_html_e('Dashboard', 'simple-tags'); ?></h1>
             <div class="taxopress-description">
@@ -121,6 +121,8 @@ class SimpleTags_Dashboard
 
         <div class="taxopress-right-sidebar admin-settings-sidebar">
             <?php do_action('taxopress_admin_after_sidebar'); ?>
+        </div>
+
         </div>
 
 <?php
