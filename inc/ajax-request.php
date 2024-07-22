@@ -17,25 +17,54 @@ function taxopress_autoterms_content_by_ajax()
         $response['percentage'] = '';
 
         $autoterms      = taxopress_get_autoterm_data();
-        $auto_term_id = isset($_POST['auto_term_id']) ? (int)$_POST['auto_term_id'] : 0;
-        $start_from = ( isset($_POST['start_from']) && (int)$_POST['start_from'] > 0) ? ((int)$_POST['start_from']) : 0;
-        $offset_start_from = ( isset($_POST['start_from']) && (int)$_POST['start_from'] > 0) ? ((int)$_POST['start_from']-1) : 0;
+        $auto_term_id = !empty($_POST['taxopress_autoterm_content']['autoterm_id']) ? (int)$_POST['taxopress_autoterm_content']['autoterm_id'] : 0;
 
+        $existing_terms_batches = !empty($_POST['taxopress_autoterm_content']['existing_terms_batches']) ? (int)$_POST['taxopress_autoterm_content']['existing_terms_batches'] : 0;
+        $existing_terms_sleep = !empty($_POST['taxopress_autoterm_content']['existing_terms_sleep']) ? (int)$_POST['taxopress_autoterm_content']['existing_terms_sleep'] : 0;
+        $limit_days = !empty($_POST['taxopress_autoterm_content']['limit_days']) ? (int)$_POST['taxopress_autoterm_content']['limit_days'] : 0;
+        $autoterm_existing_content_exclude = !empty($_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude']) ? (int)$_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude'] : 0;
+
+        $start_from = ( isset($_POST['start_from']) && (int)$_POST['start_from'] > 0) ? ((int)$_POST['start_from']) : 0;
+        $offset_start_from = $start_from > 0 ? ((int)$start_from - 1) : 0;
 
         if(!current_user_can('simple_tags')){
             $response['message'] = esc_html__('Permission denied.', 'simple-tags');
             wp_send_json($response);
         }
 
-        if($auto_term_id === 0 ){
-            $response['message'] = esc_html__('Kindly save your auto terms settings before running this function', 'simple-tags');
+        $auto_term_settings = [
+            'autoterm_id' => $auto_term_id,
+            'existing_terms_batches' => $existing_terms_batches,
+            'existing_terms_sleep' => $existing_terms_sleep,
+            'limit_days' => $limit_days,
+            'autoterm_existing_content_exclude' => $autoterm_existing_content_exclude,
+        ];
+        update_option('taxopress_autoterms_content', $auto_term_settings);
+
+        if (empty($auto_term_id)) {
+            $response['message'] = esc_html__('Auto Term is required, kindly add an Auto Term from Auto Term menu.', 'simple-tags');
+            wp_send_json($response);
+        } elseif (empty($existing_terms_batches)) {
+            $response['message'] = esc_html__('Limit per batches is required.', 'simple-tags');
+            wp_send_json($response);
+        } elseif (empty($existing_terms_sleep)) {
+            $response['message'] = esc_html__('Batches wait time is required.', 'simple-tags');
             wp_send_json($response);
         }
 
         if ($auto_term_id && array_key_exists($auto_term_id, $autoterms)) {
                 $autoterm_data       = $autoterms[$auto_term_id];
+                $autoterm_data['existing_terms_batches'] = $existing_terms_batches;
+                $autoterm_data['existing_terms_sleep'] = $existing_terms_sleep;
+                $autoterm_data['limit_days'] = $limit_days;
+                $autoterm_data['autoterm_exclude'] = $autoterm_existing_content_exclude;
         }else{
             $response['message'] = esc_html__('Auto term settings not found', 'simple-tags');
+            wp_send_json($response);
+        }
+
+        if (empty($autoterm_data['post_types'])) {
+            $response['message'] = esc_html__('Selected Auto term is not enabled for any post type. Kindly select at least one post type in the Auto Term settings.', 'simple-tags');
             wp_send_json($response);
         }
 

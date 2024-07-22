@@ -107,7 +107,9 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/autoterms-table.php';
 			require STAGS_DIR . '/inc/autoterms-logs-table.php';
 			require STAGS_DIR . '/inc/autoterms.php';
+			require STAGS_DIR . '/inc/autoterms_content.php';
 			SimpleTags_Autoterms::get_instance();
+			SimpleTags_Autoterms_Content::get_instance();
 		}
 
 		//click terms option
