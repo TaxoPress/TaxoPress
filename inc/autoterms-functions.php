@@ -11,6 +11,17 @@ function taxopress_get_autoterm_data()
 }
 
 /**
+ * Fetch our TAXOPRESS Autoterms option.
+ *
+ * @return mixed
+ */
+function taxopress_get_autoterms_content_data()
+{
+    return array_filter((array)apply_filters('taxopress_get_autoterm_content_data', get_option('taxopress_autoterms_content', []),
+        get_current_blog_id()));
+}
+
+/**
  * Get the selected autoterm from the $_POST global.
  *
  * @return bool|string False on no result, sanitized autoterm if set.

@@ -650,21 +650,20 @@
         e.preventDefault();
         $('.auto-term-content-result').html('');
         $('.auto-term-content-result-title').html('');
-        var auto_term_id = Number($('input[name="edited_autoterm"]').val());
         var button = $(this);
-        auto_terms_all_content(0, auto_term_id, button);
+        auto_terms_all_content(0, button);
       });
 
-      function auto_terms_all_content(start_from, auto_term, button){
+      function auto_terms_all_content(start_from, button){
 
           $(".taxopress-spinner").addClass("is-active");
           button.attr('disabled', true);
-          var data = {
-            'action': 'taxopress_autoterms_content_by_ajax',
-            'auto_term_id': auto_term,
-            'start_from': start_from,
-            'security': st_admin_localize.check_nonce,
-          };
+
+          var data = $('#auto_term_content_form').serializeArray();
+          data.push({ name: 'action', value: 'taxopress_autoterms_content_by_ajax' });
+          data.push({ name: 'start_from', value: start_from });
+          data.push({ name: 'security', value: st_admin_localize.check_nonce });
+
           $.post(st_admin_localize.ajaxurl, data, function (response) {
               if(response.status === 'error') {
                   $('.auto-term-content-result').append('<li><font color="red">'+response.message+'</font></li>');
@@ -674,7 +673,7 @@
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
                 $('.auto-term-content-result').prepend(response.content);
                 //send next batch
-                auto_terms_all_content(response.done, auto_term, button);
+                auto_terms_all_content(response.done, button);
               }else if(response.status === 'sucess') {
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
                 $('.auto-term-content-result').prepend('<li><font color="green">'+response.message+'</font></li>');
