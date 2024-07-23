@@ -249,8 +249,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
         {
             $hook = add_submenu_page(
                 self::MENU_SLUG,
-                esc_html__('TaxoPress AI', 'simple-tags'),
-                esc_html__('TaxoPress AI', 'simple-tags'),
+                esc_html__('Metaboxes', 'simple-tags'),
+                esc_html__('Metaboxes', 'simple-tags'),
                 'simple_tags',
                 self::PAGE_MENU_SLUG,
                 [

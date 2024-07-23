@@ -111,6 +111,10 @@ class SimpleTags_Admin
 			SimpleTags_Autoterms::get_instance();
 			SimpleTags_Autoterms_Content::get_instance();
 		}
+		
+		self::$enabled_menus['st_taxopress_ai'] = esc_html__('TaxoPress AI', 'simple-tags');
+		
+		TaxoPress_AI_Module::get_instance();
 
 		//click terms option
 		require STAGS_DIR . '/inc/class.admin.clickterms.php';
@@ -142,10 +146,6 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/taxonomies.php';
 			SimpleTags_Admin_Taxonomies::get_instance();
 		}
-		
-		self::$enabled_menus['st_taxopress_ai'] = esc_html__('TaxoPress AI', 'simple-tags');
-		
-		TaxoPress_AI_Module::get_instance();
 
 		do_action('taxopress_admin_class_after_includes');
 
@@ -447,6 +447,7 @@ class SimpleTags_Admin
 
 		// Register CSS
 		wp_register_style('st-admin', STAGS_URL . '/assets/css/admin.css', array(), STAGS_VERSION, 'all');
+		wp_register_style('st-admin-global', STAGS_URL . '/assets/css/admin-global.css', array(), STAGS_VERSION, 'all');
 
 
         // Register Select 2
@@ -496,6 +497,8 @@ class SimpleTags_Admin
 		$wp_page_pages = array('page.php', 'page-new.php');
 
 		$taxopress_pages = taxopress_admin_pages();
+
+		wp_enqueue_style('st-admin-global');
 
 		// Common Helper for Post, Page and Plugin Page
 		if (

@@ -1,0 +1,20 @@
+#adminmenu #toplevel_page_st_options ul.wp-submenu-wrap li {
+    clear: both;
+}
+
+#toplevel_page_st_options .wp-submenu li {
+    width: 100%;
+}
+
+.taxopress-menu-separator:after {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
+    display: block;
+    float: left;
+    margin: 13px 0 8px 0;
+    content: "";
+    width: 100%;
+}
+
+.taxopress-menu-separator a {
+    display: none !important;
+}
