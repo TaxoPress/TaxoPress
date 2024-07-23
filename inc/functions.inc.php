@@ -48,6 +48,18 @@ function st_register_widget()
     }
 }
 
+function taxopress_menu_separator($identifier, $parent) {
+    // create a separator menu
+    $separator_menu = [];
+    $separator_menu[] = '';
+    $separator_menu[] = $parent;
+    $separator_menu[] = $parent . $identifier;
+    $separator_menu[] = '';
+    $separator_menu[] = 'taxopress-menu-separator ' . $parent . $identifier;
+
+    return $separator_menu;
+}
+
 /**
  * Change menu item order
  */
@@ -65,6 +77,7 @@ function taxopress_re_order_menu()
             $dashboard_option_pages = array_keys($dashboard_options);
             foreach ($taxopress_submenus as $key => $taxopress_submenu) {
                 $slug_ = $taxopress_submenu[2];
+                $parent_ = $taxopress_submenu[1];
                 if (in_array($slug_, $dashboard_option_pages)) {
                     if (1 === (int) SimpleTags_Plugin::get_option_value($dashboard_options[$slug_]['option_key'])) {
                         $showHide = '';
@@ -74,24 +87,24 @@ function taxopress_re_order_menu()
                     $taxopress_submenus[$key][4] = $slug_ . '-menu-item' . $showHide;
                 }
 
-                if ($taxopress_submenu[2] === 'st_options') { //settings
+                if ($slug_ === 'st_options') { //settings
                     $taxopress_settings = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
-                if ($taxopress_submenu[2] === 'st_taxonomies') { //taxonomies
+                if ($slug_ === 'st_taxonomies') { //taxonomies
                     $taxopress_taxonomies = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
-                if ($taxopress_submenu[2] === 'st_dashboard') { //dashboard
+                if ($slug_ === 'st_dashboard') { //dashboard
                     $taxopress_dashboard = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
-                if ($taxopress_submenu[2] === 'st_linked_terms') { //linked terms
+                if ($slug_ === 'st_linked_terms') { //linked terms
                     $taxopress_linked_terms = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
                 
-                if ($taxopress_submenu[2] === 'st_options-menu-upgrade-link') { //upgrade to pro link
+                if ($slug_ === 'st_options-menu-upgrade-link') { //upgrade to pro link
                     $taxopress_upgrade = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
@@ -115,6 +128,51 @@ function taxopress_re_order_menu()
             // upgrade to pro should be last item if exists
             if ($taxopress_upgrade) {
                 $taxopress_submenus = array_merge($taxopress_submenus, [$taxopress_upgrade]);
+            }
+
+            //resort array
+            ksort($taxopress_submenus);
+
+            // add separator 1 to menus
+            $separator1_positions = ['st_posts', 'st_linked_terms', 'st_terms', 'st_taxonomies', 'st_dashboard'];
+            foreach ($separator1_positions as $pos) {
+                $index = array_search($pos, array_column($taxopress_submenus, 2));
+                if ($index !== false) {
+                    $separator = taxopress_menu_separator('st_separator_end', 'simple_tags');
+                    array_splice($taxopress_submenus, $index + 1, 0, [$separator]);
+                    break;
+                }
+            }
+
+            // Add separator 2 to menus
+            $separator2_positions = ['st_autolinks', 'st_related_posts', 'st_post_tags', 'st_terms_display'];
+            foreach ($separator2_positions as $pos) {
+                 $index = array_search($pos, array_column($taxopress_submenus, 2));
+                if ($index !== false) {
+                    $separator = taxopress_menu_separator('st_separator_end', 'simple_tags');
+                    array_splice($taxopress_submenus, $index + 1, 0, [$separator]);
+                    break;
+                }
+            }
+
+            // Add separator 3 to menus
+            $separator2_positions = ['st_taxopress_ai', 'st_autoterms_content', 'st_autoterms'];
+            foreach ($separator2_positions as $pos) {
+                 $index = array_search($pos, array_column($taxopress_submenus, 2));
+                if ($index !== false) {
+                    $separator = taxopress_menu_separator('st_separator_end', 'simple_tags');
+                    array_splice($taxopress_submenus, $index + 1, 0, [$separator]);
+                    break;
+                }
+            }
+
+            if (!taxopress_is_pro_version()) {
+                // Add separator 4 to menus
+                $index = array_search('st_options', array_column($taxopress_submenus, 2));
+                if ($index !== false) {
+                    $separator = taxopress_menu_separator('st_separator_end', 'simple_tags');
+                    array_splice($taxopress_submenus, $index + 1, 0, [$separator]);
+                }
             }
 
             //resort array
