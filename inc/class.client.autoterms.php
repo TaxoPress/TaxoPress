@@ -181,9 +181,9 @@ class SimpleTags_Client_Autoterms
 						}
 
 						//check if term belong to the post already
-						if (has_term($term, $taxonomy, $object)) {
+						/*if (has_term($term, $taxonomy, $object)) {
 							continue;
-						}
+						}*/
 
 						//exclude if name found in exclude terms
 						if (in_array($term, $autoterm_exclude)) {
@@ -237,10 +237,8 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		}
-
-		//Autoterm with IBM Watson
-		if ($autoterm_use_ibm_watson > 0 && taxopress_is_pro_version()) {
+		} elseif ($autoterm_use_ibm_watson > 0 && taxopress_is_pro_version()) {
+			//Autoterm with IBM Watson
 			$ibm_watson_results = TaxoPressAiApi::get_ibm_watson_results($args);
 			if (!empty($ibm_watson_results['results'])) {
 				$term_results = $ibm_watson_results['results'];
@@ -259,9 +257,9 @@ class SimpleTags_Client_Autoterms
 						}
 
 						//check if term belong to the post already
-						if (has_term($term, $taxonomy, $object)) {
+						/*if (has_term($term, $taxonomy, $object)) {
 							continue;
-						}
+						}*/
 
 						//exclude if name found in exclude terms
 						if (in_array($term, $autoterm_exclude)) {
@@ -315,10 +313,8 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		}
-
-		//Autoterm with Dandelion
-		if ($autoterm_use_dandelion > 0 && taxopress_is_pro_version()) {
+		} elseif ($autoterm_use_dandelion > 0 && taxopress_is_pro_version()) {
+			//Autoterm with Dandelion
 			$dandelion_results = TaxoPressAiApi::get_dandelion_results($args);
 			if (!empty($dandelion_results['results'])) {
 				$term_results = $dandelion_results['results'];
@@ -337,9 +333,9 @@ class SimpleTags_Client_Autoterms
 						}
 
 						//check if term belong to the post already
-						if (has_term($term, $taxonomy, $object)) {
+						/*if (has_term($term, $taxonomy, $object)) {
 							continue;
-						}
+						}*/
 
 						//exclude if name found in exclude terms
 						if (in_array($term, $autoterm_exclude)) {
@@ -393,10 +389,8 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		}
-
-		//Autoterm with OpenCalais
-		if ($autoterm_use_opencalais > 0 && taxopress_is_pro_version()) {
+		} elseif ($autoterm_use_opencalais > 0 && taxopress_is_pro_version()) {
+			//Autoterm with OpenCalais
 			$open_calais_results = TaxoPressAiApi::get_open_calais_results($args);
 			if (!empty($open_calais_results['results'])) {
 				$data = $open_calais_results['results'];
@@ -419,9 +413,9 @@ class SimpleTags_Client_Autoterms
 						}
 
 						//check if term belong to the post already
-						if (has_term($term, $taxonomy, $object)) {
+						/*if (has_term($term, $taxonomy, $object)) {
 							continue;
-						}
+						}*/
 
 						//exclude if name found in exclude terms
 						if (in_array($term, $autoterm_exclude)) {
@@ -476,10 +470,8 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		}
-
-		// Auto term with specific auto terms list
-		if (isset($options['specific_terms']) && isset($options['autoterm_useonly']) && (int) $options['autoterm_useonly'] === 1) {
+		} elseif (isset($options['specific_terms']) && isset($options['autoterm_useonly']) && (int) $options['autoterm_useonly'] === 1) {
+			// Auto term with specific auto terms list
 			$terms = maybe_unserialize($options['specific_terms']);
 			$terms = taxopress_change_to_array($terms);
 			foreach ($terms as $term) {
@@ -493,9 +485,9 @@ class SimpleTags_Client_Autoterms
 				}
 
 				//check if term belong to the post already
-				if (has_term($term, $taxonomy, $object)) {
+				/*if (has_term($term, $taxonomy, $object)) {
 					continue;
-				}
+				}*/
 
 				//exclude if name found in exclude terms
 				if (in_array($term, $autoterm_exclude)) {
@@ -550,10 +542,8 @@ class SimpleTags_Client_Autoterms
 				}
 			}
 			unset($terms, $term);
-		}
-
-		// Auto terms with all terms
-		if (isset($options['autoterm_useall']) && (int) $options['autoterm_useall'] === 1) {
+		} elseif (isset($options['autoterm_useall']) && (int) $options['autoterm_useall'] === 1) {
+			// Auto terms with all terms
 			// Get all terms
 			$terms = $wpdb->get_col($wpdb->prepare("SELECT DISTINCT name
 				FROM {$wpdb->terms} AS t
@@ -575,9 +565,9 @@ class SimpleTags_Client_Autoterms
 				}
 
 				//check if term belong to the post already
-				if (has_term($term, $taxonomy, $object)) {
+				/*if (has_term($term, $taxonomy, $object)) {
 					continue;
-				}
+				}*/
 
 				//exclude if name found in exclude terms
 				if (in_array($term, $autoterm_exclude)) {
