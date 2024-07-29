@@ -88,7 +88,7 @@ class SimpleTags_Client_Autoterms
 	 */
 	public static function auto_terms_post($object, $taxonomy = 'post_tag', $options = array(), $counter = false, $action = 'save_posts', $component = 'st_autoterms')
 	{
-		global $wpdb;
+		global $wpdb, $added_post_term;
 
 		$terms_to_add = array();
 
@@ -636,11 +636,32 @@ class SimpleTags_Client_Autoterms
 				$terms_to_add = array_slice($terms_to_add, 0, $terms_limit);
 			}
 
+			// remove term that already belongs to the post
+			foreach ($terms_to_add as $index => $term_name) {
+				if (has_term($term_name, $taxonomy, $object)) {
+					unset($terms_to_add[$index]);
+				}
+			}
+
+			$terms_to_add = array_filter(array_values($terms_to_add));
+
+			if (empty($terms_to_add)) {
+				//update log
+				self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms');
+				return false;
+			}
+
 			if ($counter == true) {
 				// Increment counter
 				$counter = ((int) get_option('tmp_auto_terms_st')) + count($terms_to_add);
 				update_option('tmp_auto_terms_st', $counter);
 			}
+
+			if (!is_array($added_post_term)) {
+				$added_post_term = [];
+			}
+
+			$added_post_term[$object->ID] = $terms_to_add;
 
 			// Add terms to posts
 			wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, true);

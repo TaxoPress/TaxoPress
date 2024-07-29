@@ -3,7 +3,9 @@
 add_action('wp_ajax_taxopress_autoterms_content_by_ajax', 'taxopress_autoterms_content_by_ajax');
 function taxopress_autoterms_content_by_ajax()
 {
-    global $wpdb;
+    global $wpdb, $added_post_term;
+
+        $added_post_term = [];
 
         // run a quick security check
         check_ajax_referer('st-admin-js', 'security');
@@ -100,9 +102,19 @@ function taxopress_autoterms_content_by_ajax()
             foreach ($objects as $object) {
                 update_post_meta($object->ID, '_taxopress_autotermed', 1);
                 SimpleTags_Client_Autoterms::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, true, 'existing_content', 'st_autoterms' );
-                $response_content .= '<li>#' . $object->ID . ' ' . $object->post_title . '</li>';
+                if (!empty($added_post_term[$object->ID])) {
+                    $tag_lists = array_map(function($item) {
+                        return '<span class="taxopress-term"><span class="term-name">' . $item . '</span></span>';
+                    }, $added_post_term[$object->ID]);
+                    $added_terms_html = join('', $tag_lists);
+                } else {
+                    $added_terms_html = '';
+
+                }
+                $response_content .= '<li class="result-item"><div class="post-data"><a target="_blank" href="'. esc_url(get_edit_post_link($object->ID)) . '">' . $object->post_title . '</a></div><div class="term-data">'. $added_terms_html .'</div></li>';
                 unset($object);
             }
+
             $response['status'] = 'progress';
             $response['content'] = $response_content;
             $response['done'] = ($start_from + count($objects));
