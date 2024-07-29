@@ -420,10 +420,10 @@ class SimpleTags_Autoterms
                                                                                             ); ?></span></a>
                                                 </li>
 
-                                                <li aria-current="<?php echo $active_tab === 'autoterm_oldcontent' ? 'true' : 'false'; ?>" class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
+                                                <!--<li aria-current="<?php echo $active_tab === 'autoterm_oldcontent' ? 'true' : 'false'; ?>" class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
                                                     <a href="#autoterm_oldcontent"><span><?php esc_html_e('Existing Content',
                                                                 'simple-tags'); ?></span></a>
-                                                </li>
+                                                </li>-->
 
                                                 <li aria-current="<?php echo $active_tab === 'autoterm_schedule' ? 'true' : 'false'; ?>" class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
                                                     <a href="#autoterm_schedule"><span><?php esc_html_e('Schedule',
