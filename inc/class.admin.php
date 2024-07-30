@@ -358,7 +358,8 @@ class SimpleTags_Admin
 
 			// TODO: Redirect for help user that see the URL...
 		} elseif (!isset($taxo)) {
-			wp_die(esc_html__('This custom post type not have taxonomies.', 'simple-tags'));
+			// TODO: We can't wp_die on init as it affect all pages
+			//wp_die(esc_html__('This custom post type not have taxonomies.', 'simple-tags'));
 		}
 
 		// Free memory
