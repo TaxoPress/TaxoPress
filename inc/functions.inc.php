@@ -711,3 +711,102 @@ function taxopress_get_suggestterm_data()
     return array_filter((array)apply_filters('taxopress_get_suggestterm_data', get_option('taxopress_suggestterms', []),
         get_current_blog_id()));
 }
+
+function taxopress_get_all_wp_roles() {
+    global $wp_roles;
+
+    if (!isset($wp_roles)) {
+        $wp_roles = new \WP_Roles();
+    }
+    
+    return $wp_roles->roles;
+}
+
+/**
+ * Check if current user can manage taxopress metabox
+ */
+function can_manage_taxopress_metabox($user_id = false) {
+    $can_manage = false;
+
+    if (!$user_id) {
+        $user_id = get_current_user_id();
+    }
+
+    $user = get_userdata($user_id);
+    if (is_object($user) && isset($user->roles)) {
+        foreach ($user->roles as $role_name) {
+            if (!empty(SimpleTags_Plugin::get_option_value('enable_' . $role_name . '_metabox'))) {
+                $can_manage = true;
+                break;
+            }
+        }
+
+    }
+
+    return $can_manage;
+}
+
+/**
+ * Check if current user can manage metabox taxonomy
+ */
+function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false) {
+    $can_manage = false;
+
+    if (!$user_id) {
+        $user_id = get_current_user_id();
+    }
+
+    $user = get_userdata($user_id);
+    if (is_object($user) && isset($user->roles)) {
+        foreach ($user->roles as $role_name) {
+            $role_options = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $role_name . '');
+            if (in_array($taxonomy, $role_options)) {
+                $can_manage = true;
+                break;
+            }
+        }
+
+    }
+
+    return $can_manage;
+}
+
+/**
+ * Get all the taxonomy removed for current user
+ */
+function taxopress_user_role_removed_taxonomy($user_id = false) {
+
+    $removed_taxonomies_tax = [];
+    $removed_taxonomies_css = [];
+    if (!$user_id) {
+        $user_id = get_current_user_id();
+    }
+
+    $user = get_userdata($user_id);
+    if (is_object($user) && isset($user->roles)) {
+        foreach ($user->roles as $role_name) {
+            $role_options = (array) SimpleTags_Plugin::get_option_value('remove_taxonomy_metabox_' . $role_name . '');
+            $role_options = array_filter($role_options);
+            if (!empty($role_options)) {
+                foreach ($role_options as $removed_tax) {
+                    $removed_taxonomies_tax[] = $removed_tax;
+                    if ($removed_tax == 'category') {
+                        $removed_taxonomies_css[] = '#category-add-toggle, #categories, #categorydiv, #categorydivsb, th.column-categories, td.categories, #screen-options-wrap label[for=categorydiv-hide]';
+                    } elseif ($removed_tax == 'post_tag') {
+                        $removed_taxonomies_css[] = '#tags, #tagsdiv,#tagsdivsb,#tagsdiv-post_tag, th.column-tags, td.tags, #screen-options-wrap label[for=tagsdiv-post_tag-hide]';
+                    } else {
+                        $removed_taxonomies_css[] = "#{$removed_tax}, #{$removed_tax}div,#{$removed_tax}divsb,#tagsdiv-{$removed_tax}, th.column-{$removed_tax}, td.{$removed_tax}, #screen-options-wrap label[for=tagsdiv-{$removed_tax}-hide], #screen-options-wrap label[for={$removed_tax}div-hide]";
+                    }
+                }
+            }
+        }
+
+    }
+
+    $removed_taxonomies = [
+        'taxonomies' => $removed_taxonomies_tax,
+        'custom_css' => $removed_taxonomies_css
+    ];
+
+    return $removed_taxonomies;
+}

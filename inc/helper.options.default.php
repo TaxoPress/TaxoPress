@@ -35,6 +35,17 @@ return array(
     'enable_taxopress_ai_post_open_calais_tab' => 1,
     'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
 
+    // metabox
+    'enable_administrator_metabox' => 1,
+    'enable_editor_metabox' => 1,
+    'enable_author_metabox' => 1,
+    'enable_contributor_metabox' => 1,
+    
+    'enable_metabox_administrator' => ['category', 'post_tag'],
+    'enable_metabox_editor' => ['category', 'post_tag'],
+    'enable_metabox_author' => ['category', 'post_tag'],
+    'enable_metabox_contributor' => ['category', 'post_tag'],
+
     'allow_embed_tcloud'     => 1,
     // Auto link
     'auto_link_tags'         => 0,

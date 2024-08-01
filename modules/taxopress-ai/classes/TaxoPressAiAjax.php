@@ -69,7 +69,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'Security error. Kindly reload this page and try again',
                     'simple-tags'
                 );
-            } elseif (!current_user_can('manage_categories')) {
+            } elseif (!can_manage_taxopress_metabox()) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
                     'Permission error. You do not have permission to manage taxopress',
@@ -87,6 +87,16 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $post_content = isset($_POST['post_content']) ? taxopress_sanitize_text_field($_POST['post_content']) : $post_data->post_content;
                 $post_title = isset($_POST['post_title']) ? taxopress_sanitize_text_field($_POST['post_title']) : $post_data->post_title;
                 $term_results = [];
+
+                if (!can_manage_taxopress_metabox_taxonomy($preview_taxonomy)) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__(
+                        'Permission error. You do not have permission to manage this taxonomy',
+                        'simple-tags'
+                    );
+                    wp_send_json($response);
+                    exit;
+                }
 
                 $content = $post_content . ' ' . $post_title;
                 $clean_content = TaxoPressAiUtilities::taxopress_clean_up_content($post_content, $post_title);
@@ -439,7 +449,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'Security error. Kindly reload this page and try again',
                     'simple-tags'
                 );
-            } elseif (!current_user_can('manage_categories')) {
+            } elseif (!can_manage_taxopress_metabox()) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
                     'Permission error. You do not have permission to manage taxopress',
@@ -451,6 +461,16 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $post_id = !empty($_POST['post_id']) ? (int) $_POST['post_id'] : 0;
                 $added_tags = !empty($_POST['added_tags']) ? map_deep($_POST['added_tags'], 'sanitize_text_field') : [];
                 $removed_tags = !empty($_POST['removed_tags']) ? map_deep($_POST['removed_tags'], 'sanitize_text_field') : [];
+
+                if (!can_manage_taxopress_metabox_taxonomy($taxonomy)) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__(
+                        'Permission error. You do not have permission to manage this taxonomy',
+                        'simple-tags'
+                    );
+                    wp_send_json($response);
+                    exit;
+                }
 
                 if (!empty($post_id)) {
                     $post_type = get_post_type($post_id);
@@ -549,7 +569,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'Security error. Kindly reload this page and try again',
                     'simple-tags'
                 );
-            } elseif (!current_user_can('manage_categories')) {
+            } elseif (!can_manage_taxopress_metabox()) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
                     'Permission error. You do not have permission to manage taxopress',
@@ -558,6 +578,16 @@ if (!class_exists('TaxoPressAiAjax')) {
             } else {
                 $taxonomy = !empty($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
                 $term_name = !empty($_POST['term_name']) ? sanitize_text_field($_POST['term_name']) : '';
+
+                if (!can_manage_taxopress_metabox_taxonomy($taxonomy)) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__(
+                        'Permission error. You do not have permission to manage this taxonomy',
+                        'simple-tags'
+                    );
+                    wp_send_json($response);
+                    exit;
+                }
 
                 $term_id   = 0;
                 $term_data = false;
