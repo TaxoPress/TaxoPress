@@ -164,6 +164,43 @@
           $('.taxopress-ai-post-content-sub').removeClass('st-subhide-content');
         }
       }
+      
+      // -------------------------------------------------------------
+      //   Settings metabox sub tab click
+      // -------------------------------------------------------------
+      $(document).on('click', '.st-metabox-subtab span', function (e) {
+        e.preventDefault();
+        var current_content = $(this).attr('data-content');
+        $('.st-metabox-subtab span').removeClass('active');
+        $('.metabox-tab-content').addClass('st-hide-content');
+        $('.metabox-tab-content-sub').addClass('st-subhide-content');
+        $(this).addClass('active');
+        $(current_content).removeClass('st-hide-content');
+        if ($(current_content).find('input').prop("checked")) {
+          $(current_content + '-sub').removeClass('st-subhide-content');
+        }
+      });
+      
+      // -------------------------------------------------------------
+      //   Settings metabox checkbox changed
+      // -------------------------------------------------------------
+      /*
+      $(document).on('change', '.metabox-tab-content input', function (e) {
+        var checked_field = $(this).prop("checked");
+        var field_id      = $(this).attr('id');
+
+        if (checked_field) {
+            $('.' + field_id + '_field').removeClass('st-subhide-content');
+        } else {
+          $('.' + field_id + '_field').addClass('st-subhide-content');
+        }
+      });
+      // Show metabox settings sub fields for enabled settings
+      if ($('.metabox-post-content').length > 0) {
+        if ($('.metabox-post-content').find('input').prop("checked")) {
+          $('.metabox-post-content-sub').removeClass('st-subhide-content');
+        }
+      }*/
 
     // -------------------------------------------------------------
     //   Show taxonomy option based on selected CPT

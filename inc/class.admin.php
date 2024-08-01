@@ -29,6 +29,9 @@ class SimpleTags_Admin
 		self::register_taxonomy();
 
 		// Redirect on plugin activation
+		add_action('admin_init', array(__CLASS__, 'plugin_installer_upgrade_code'));
+
+		// Redirect on plugin activation
 		add_action('admin_init', array(__CLASS__, 'redirect_on_activate'));
 
 		// Admin menu
@@ -634,6 +637,18 @@ class SimpleTags_Admin
 						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
 					}
 				}
+				
+				// add metabox post type and taxonomies options so we can have all post types. TODO: This need to be a filter
+				foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
+					if (in_array($role_name, ['administrator', 'editor', 'author', 'contributor'])) {
+						$enable_acess_default_value = 1;
+					} else {
+						$enable_acess_default_value = 0;
+					}
+					$options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
+					$options['enable_metabox_' . $role_name . ''] = [];
+					$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
+				}
 
 				foreach ($options as $key => $value) {
 					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -663,7 +678,7 @@ class SimpleTags_Admin
 
 				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated');
 			} else {
-				add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
+				//add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
 			}
 		}
 
@@ -787,6 +802,15 @@ class SimpleTags_Admin
 					}
 				}
 				$table_sub_tab = '<div class="st-taxopress-ai-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
+			} elseif ($section === 'metabox') {
+				$table_sub_tab_lists = [];
+				$pt_index = 0;
+				foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
+					$active_pt = ($pt_index === 0) ? 'active' : '';
+					$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".metabox-' . $role_name . '-content">' . esc_html($role_info['name']) . '</span>';
+					$pt_index++;
+				}
+				$table_sub_tab = '<div class="st-metabox-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
 			} else {
 				$table_sub_tab = '';
 			}
@@ -799,7 +823,7 @@ class SimpleTags_Admin
 			foreach ((array) $options as $option) {
 
 				$class = '';
-				if ($section === 'legacy' || $section === 'taxopress-ai') {
+				if (in_array($section, ['legacy', 'taxopress-ai', 'metabox'])) {
 					$class = $option[5];
 				}
 
@@ -840,7 +864,7 @@ class SimpleTags_Admin
 						$input_type = implode('<br />', $input_type);
 						break;
 
-					case 'taxopress_ai_multiple_checkbox':
+					case 'sub_multiple_checkbox':
 						$desc_html_tag = 'div';
 						$input_type = array();
 						foreach ($option[3] as $field_name => $text) {
@@ -892,13 +916,18 @@ class SimpleTags_Admin
 				}
 
 				// Additional Information
-				$extra = '';
+				$extra_prefix = '';
+				$extra_suffix = '';
 				if (!empty($option[4])) {
-					$extra = '<' . $desc_html_tag . ' class="stpexplan">' . __($option[4]) . '</' . $desc_html_tag . '>' . PHP_EOL;
+					if ($option[2] == 'sub_multiple_checkbox') {
+						$extra_prefix = '<' . $desc_html_tag . ' class="stpexplan">' . __($option[4]) . '</' . $desc_html_tag . '>' . PHP_EOL;
+					} else {
+						$extra_suffix = '<' . $desc_html_tag . ' class="stpexplan">' . __($option[4]) . '</' . $desc_html_tag . '>' . PHP_EOL;
+					}
 				}
 
 				// Output
-				$output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . __($option[1]) . '</label></th><td>' . $input_type . '	' . $extra . '</td></tr>' . PHP_EOL;
+				$output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . __($option[1]) . '</label></th><td>'. $extra_prefix .' ' . $input_type . ' ' . $extra_suffix . '</td></tr>' . PHP_EOL;
 			}
 			$output .= '</table>' . PHP_EOL;
 			$output .= '</fieldset>' . PHP_EOL;
@@ -936,6 +965,8 @@ class SimpleTags_Admin
 				return esc_html__('Posts', 'simple-tags');
 			case 'taxopress-ai':
 				return esc_html__('TaxoPress AI', 'simple-tags');
+			case 'metabox':
+				return esc_html__('Metabox', 'simple-tags');
 			case 'linked_terms':
 				return esc_html__('Linked Terms', 'simple-tags');
 			case 'licence':
@@ -970,11 +1001,11 @@ class SimpleTags_Admin
 			}
 
 			// Remove old options
-			foreach ($current_options as $key => $current_value) {
+			/*foreach ($current_options as $key => $current_value) {
 				if (!isset($default_options[$key])) {
 					unset($current_options[$key]);
 				}
-			}
+			}*/
 
 			update_option(STAGS_OPTIONS_NAME . '-version', STAGS_VERSION);
 			update_option(STAGS_OPTIONS_NAME, $current_options);
@@ -1052,6 +1083,36 @@ class SimpleTags_Admin
 			}
 
 			return $wpdb->get_results($query);
+		}
+	}
+
+	/**
+	 * Plugin installer/uograde code
+	 *
+	 * @return void
+	 */
+	public static function plugin_installer_upgrade_code()
+	{
+		if (!get_option('taxopress_3_23_0_upgraded')) {
+
+			$options = SimpleTags_Plugin::get_option();
+			
+			// add metabox default values
+			$tax_names = array_keys(get_taxonomies([], 'names'));
+			foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
+				if (in_array($role_name, ['administrator', 'editor', 'author', 'contributor'])) {
+					$enable_acess_default_value = 1;
+				} else {
+					$enable_acess_default_value = 0;
+				}
+				$options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
+				$options['enable_metabox_' . $role_name . ''] = $tax_names;
+				$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
+			}
+
+			SimpleTags_Plugin::set_option($options);
+
+			update_option('taxopress_3_23_0_upgraded', true);
 		}
 	}
 
