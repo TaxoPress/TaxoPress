@@ -132,9 +132,9 @@ class SimpleTags_Autoterms_Content
                                         echo $ui->get_select_number_select([
                                             'namearray'  => 'taxopress_autoterm_content',
                                             'name'       => 'autoterm_id',
-                                            'labeltext'  => esc_html__('Auto Term',
+                                            'labeltext'  => esc_html__('Auto Terms setting',
                                                 'simple-tags'),
-                                                'aftertext'  => esc_html__('Select an auto term option settings to be used for existing content.', 'simple-tags'),
+                                                'aftertext'  => esc_html__('Select an Auto Terms configuration to use when scanning content.', 'simple-tags'),
                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                         ]);
 

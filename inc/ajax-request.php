@@ -66,7 +66,7 @@ function taxopress_autoterms_content_by_ajax()
         }
 
         if (empty($autoterm_data['post_types'])) {
-            $response['message'] = esc_html__('Selected Auto term is not enabled for any post type. Kindly select at least one post type in the Auto Term settings.', 'simple-tags');
+            $response['message'] = esc_html__('The selected Auto Term setting is not enabled for any post type. Please select at least one post type in the Auto Term settings.', 'simple-tags');
             wp_send_json($response);
         }
 
