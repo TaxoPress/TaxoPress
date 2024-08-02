@@ -966,7 +966,7 @@ class SimpleTags_Admin
 			case 'taxopress-ai':
 				return esc_html__('TaxoPress AI', 'simple-tags');
 			case 'metabox':
-				return esc_html__('Metabox', 'simple-tags');
+				return esc_html__('Metaboxes', 'simple-tags');
 			case 'linked_terms':
 				return esc_html__('Linked Terms', 'simple-tags');
 			case 'licence':
