@@ -169,7 +169,7 @@ class SimpleTags_Autoterms
             <div id="">
                 <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms Logs', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms')); ?>"
-                   class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
+                   class="page-title-action"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
@@ -230,7 +230,7 @@ class SimpleTags_Autoterms
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></h1>
+                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
 
@@ -342,7 +342,7 @@ class SimpleTags_Autoterms
             <h1><?php echo esc_html__('Manage Auto Terms', 'simple-tags'); ?>
 
             <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms')); ?>"
-                   class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
+                   class="page-title-action"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
                    class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <span class="update-plugins"><span class="plugin-count"><?php echo esc_html($this->autoterms_logs_count()); ?></span></span></a>

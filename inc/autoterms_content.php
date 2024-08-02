@@ -87,6 +87,9 @@ class SimpleTags_Autoterms_Content
         ?>
         <div class="wrap taxopress-split-wrap taxopress-autoterm-content">
             <h1><?php echo esc_html__('Existing Content', 'simple-tags'); ?> </h1>
+            <div class="taxopress-description">
+                <?php esc_html_e('This feature can scan your existing content and automatically assign new and existing terms.', 'simple-tags'); ?>
+            </div>
             <div class="wp-clearfix"></div>
             <form method="post" id="auto_term_content_form" action="">
                 <div id="poststuff">

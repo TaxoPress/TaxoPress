@@ -301,8 +301,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
             <div class="wrap st_wrap st-manage-taxonomies-page <?php echo esc_attr(self::PAGE_MENU_SLUG . '-wrap'); ?>">
                 <h1>
-                    <?php echo esc_html__('Manage TaxoPress AI integration', 'simple-tags'); ?>
+                    <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
+                <div class="taxopress-description">
+                    <?php esc_html_e('This feature allows users to manage terms while creating and editing content.', 'simple-tags'); ?>
+                </div>
                 <div class="wp-clearfix"></div>
                 <form method="post" action="">
                     <input type="hidden" name="taxopress_ai_integration[active_tab]" class="taxopress-active-subtab"
