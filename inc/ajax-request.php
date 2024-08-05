@@ -108,10 +108,18 @@ function taxopress_autoterms_content_by_ajax()
                     }, $added_post_term[$object->ID]);
                     $added_terms_html = join('', $tag_lists);
                 } else {
-                    $added_terms_html = '';
+                    $added_terms_html = esc_html__('No terms added.', 'simple-tags');
 
                 }
-                $response_content .= '<li class="result-item"><div class="post-data"><a target="_blank" href="'. esc_url(get_edit_post_link($object->ID)) . '">' . $object->post_title . '</a></div><div class="term-data">'. $added_terms_html .'</div></li>';
+                $response_content .= '<li class="result-item">
+                <fieldset>
+                    <legend> 
+                        <span class="result-title">
+                            <a target="_blank" href="'. esc_url(get_edit_post_link($object->ID)) . '">' . $object->post_title . '</a>
+                        </span> 
+                    </legend>
+                    <div class="result-content">'. $added_terms_html .'</div>
+                </fieldset></li>';
                 unset($object);
             }
 
