@@ -1054,28 +1054,43 @@ ul.taxopress-tab li.posttags_display_tab a::before {
 
 .taxopress-response-css {
     position: relative;
-    background: #fff;
-    border: 1px solid #c3c4c7;
-    border-left-width: 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
-    margin: 5px 0 15px;
-    padding: 1px 12px;
-    padding-right: 38px;
+    align-items: center;
+    background-color: #fff;
+    border-left: 4px solid #3858e9;
+    display: flex;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+    font-size: 13px;
+    padding: 8px 12px;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+.taxopress-response-css p {
+    margin: 4px 25px 4px 0;
+    flex-grow: 1;
+}
+
+.taxopress-response-css button {
+    align-items: center;
+    align-self: flex-start;
+    color: #757575;
+    flex-shrink: 0;
 }
 
 .taxopress-response-css.green {
     border-left-color: #00a32a;
     background: #edfaef;
+    background-color: #eff9f1;
+    border-left-color: #4ab866;
 }
 
 .taxopress-response-css.yellow {
-    border-left-color: #bd8600;
-    background: #fcf9e8;
+    background-color: #fef8ee;
+    border-left-color: #f0b849;
 }
 
 .taxopress-response-css.red {
-    border-left-color: #e65054;
-    background: #fcf0f1;
+    background-color: #f4a2a2;
+    border-left-color: #cc1818;
 }
 
 .remove-specific-term {
