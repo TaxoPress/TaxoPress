@@ -681,6 +681,15 @@
 
 
     // -------------------------------------------------------------
+    //   Auto term close button
+    // -------------------------------------------------------------
+    $(document).on('click', '.auto-term-content-result-title .notice-dismiss', function (e) {
+        e.preventDefault();
+        $('.auto-term-content-result-title').html('');
+    });
+
+
+    // -------------------------------------------------------------
     //   Auto term all content
     // -------------------------------------------------------------
     $(document).on('click', '.taxopress-autoterm-all-content', function (e) {
@@ -689,7 +698,7 @@
         $('.auto-term-content-result-title').html('');
         var button = $(this);
         auto_terms_all_content(0, button);
-      });
+    });
 
       function auto_terms_all_content(start_from, button){
 
@@ -703,7 +712,7 @@
 
           $.post(st_admin_localize.ajaxurl, data, function (response) {
               if(response.status === 'error') {
-                  $('.auto-term-content-result').append('<li><font color="red">'+response.message+'</font></li>');
+                $('.auto-term-content-result-title').html(''+response.message+'');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
               }else if(response.status === 'progress') {
@@ -713,7 +722,6 @@
                 auto_terms_all_content(response.done, button);
               }else if(response.status === 'sucess') {
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
-                $('.auto-term-content-result').prepend('<li><font color="green">'+response.message+'</font></li>');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
               }
