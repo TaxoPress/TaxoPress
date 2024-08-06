@@ -268,12 +268,13 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.23.0- 2024-08-01
+v3.23.0- 2024-08-06
 * Update: Add role visibility settings for metabox, #1957
 * Update: Allow users to remove the default Tags and Categories metaboxes, #2044
 * Update: Re-organize TaxoPress Menu, #2069
 * Update: Move Existing Content to new menu, #2022
 * Fixed: Fatal error on some website related to legacy code, #2083
+* Fixed: Auto Links doesn't work on apostrophes #2097
 * Fixed: "Auto Terms Limit" not working in Classic Editor, #2076
 * Fixed: Mass Edit Terms broken by the WordPress update notice, #2070
 * Update: Translation Updates ES-FR-IT TAXO Free v3.22.0, #2068
