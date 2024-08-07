@@ -1093,7 +1093,7 @@ class SimpleTags_Admin
 	 */
 	public static function plugin_installer_upgrade_code()
 	{
-		if (!get_option('taxopress_3_23_0_upgraded')) {
+		if (!get_option('taxopress_3_23_0_upgrade_completed')) {
 
 			$options = SimpleTags_Plugin::get_option();
 			
@@ -1112,7 +1112,7 @@ class SimpleTags_Admin
 
 			SimpleTags_Plugin::set_option($options);
 
-			update_option('taxopress_3_23_0_upgraded', true);
+			update_option('taxopress_3_23_0_upgrade_completed', true);
 		}
 	}
 
