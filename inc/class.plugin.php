@@ -66,7 +66,7 @@ class SimpleTags_Plugin {
 			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 			$default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
 			foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
-				$default_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
+				$default_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = 1;
 			}
 		}
 		

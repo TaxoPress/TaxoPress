@@ -28,7 +28,7 @@ class SimpleTags_Admin
 		// Which taxo ?
 		self::register_taxonomy();
 
-		// Redirect on plugin activation
+		// Plugin installer
 		add_action('admin_init', array(__CLASS__, 'plugin_installer_upgrade_code'));
 
 		// Redirect on plugin activation
@@ -795,7 +795,7 @@ class SimpleTags_Admin
 				$pt_index = 0;
 				foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
 
-					if (!in_array($post_type, ['attachment']) && !empty(get_object_taxonomies($post_type))) {
+					if (!in_array($post_type, ['attachment'])) {
 						$active_pt = ($pt_index === 0) ? 'active' : '';
 						$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".taxopress-ai-' . $post_type . '-content">' . esc_html($post_type_object->labels->name) . '</span>';
 						$pt_index++;
@@ -829,7 +829,7 @@ class SimpleTags_Admin
 
 				// Helper
 				if ($option[2] == 'helper') {
-					$output .= '<tr style="vertical-align: middle;" class="' . $class . '"><td class="helper" ' . $colspan . '>' . stripslashes($option[4]) . '</td></tr>' . PHP_EOL;
+					$output .= '<tr style="vertical-align: middle;" class="' . $class . '"><td class="helper stpexplan" ' . $colspan . '>' . stripslashes($option[4]) . '</td></tr>' . PHP_EOL;
 					continue;
 				}
 
@@ -964,9 +964,9 @@ class SimpleTags_Admin
 			case 'posts':
 				return esc_html__('Posts', 'simple-tags');
 			case 'taxopress-ai':
-				return esc_html__('TaxoPress AI', 'simple-tags');
-			case 'metabox':
 				return esc_html__('Metaboxes', 'simple-tags');
+			case 'metabox':
+				return esc_html__('Metabox Access', 'simple-tags');
 			case 'linked_terms':
 				return esc_html__('Linked Terms', 'simple-tags');
 			case 'licence':

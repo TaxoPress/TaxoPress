@@ -22,7 +22,17 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
         }
     }
 
-    if (!empty($default_taxonomy_options)) { // This feature only matter if a post has taxonomy
+    if (empty($default_taxonomy_options)) { 
+        // This feature only matter if a post has taxonomy
+        $taxopress_ai_fields[] = array(
+            'enable_taxopress_ai_' . $post_type . '_text',
+            '',
+            'helper',
+            '1',
+            esc_html__('This post type has no taxonomies.', 'simple-tags'),
+            'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
+        );
+    } else {
         $taxopress_ai_fields[] = array(
             'enable_taxopress_ai_' . $post_type . '_metabox',
             sprintf(esc_html__('%1s Metabox', 'simple-tags'), esc_html($post_type_object->labels->name)),
@@ -37,7 +47,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             sprintf(esc_html__('Show %1s Private Taxonomies in Metabox', 'simple-tags'), esc_html($post_type_object->labels->name)),
             'checkbox',
             '1',
-            sprintf(esc_html__('Add support for %1s private taxonomies in TaxoPress AI.', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            sprintf(esc_html__('Add support for %1s private taxonomies.', 'simple-tags'), esc_html($post_type_object->labels->name)),
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
 
@@ -70,11 +80,15 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
 
 $all_taxonomies = get_taxonomies([], 'objects');
 $all_taxonomy_options = [];
+$builtin_taxonomy_options = [];
 foreach ($all_taxonomies as $tax) {
     if (in_array($tax->name, ['author', 'post_format', 'nav_menu', 'link_category', 'wp_theme', 'wp_template_part_area', 'wp_pattern_category'])) {
         continue;
     }
     $all_taxonomy_options[$tax->name] = $tax->label;
+    if (in_array($tax->name, ['category', 'post_tag'])) {
+        $builtin_taxonomy_options[$tax->name] = $tax->label;
+    }
 }
 
 
@@ -106,7 +120,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         'remove_taxonomy_metabox_' . $role_name . '',
         '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content '. $hidden_field .'">' . esc_html__('Remove Default Metaboxes', 'simple-tags') . '</div>',
         'multiselect',
-        $all_taxonomy_options,
+        $builtin_taxonomy_options,
         '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content description '. $hidden_field .'">' . sprintf(esc_html__('Remove default taxonomy metaboxes for users in the %1s role.', 'simple-tags'), esc_html($role_info['name'])) . '</p>',
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
@@ -156,10 +170,10 @@ return apply_filters('taxopress_admin_options', array(
         )
     ),
 
-    // metabox tab
-    'metabox' => $metabox_fields,
-
     // taxopress ai tab
     'taxopress-ai' => $taxopress_ai_fields,
+
+    // metabox tab
+    'metabox' => $metabox_fields,
 )
 );

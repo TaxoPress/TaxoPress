@@ -410,6 +410,9 @@ body.taxopress_page_st_terms tr.inline-edit-row td {
 .st_wrap .stpexplan{margin-top: 4px; color: #646970;}
 .st_wrap .stpexplan ul{list-style:square;margin:0 0 0 20px;padding:0;}
 .st_wrap .stpexplan ul li{margin:0;padding:0;}
+.st_wrap .stpexplan.helper {
+    padding-left: 0;
+}
 
 /* Options - Input Color   */
 .box_color{display:block;width:20px;height:20px;border:1px solid #ccc;}
