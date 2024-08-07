@@ -301,8 +301,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
             <div class="wrap st_wrap st-manage-taxonomies-page <?php echo esc_attr(self::PAGE_MENU_SLUG . '-wrap'); ?>">
                 <h1>
-                    <?php echo esc_html__('Manage TaxoPress AI integration', 'simple-tags'); ?>
+                    <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
+                <div class="taxopress-description">
+                    <?php esc_html_e('This feature allows users to manage terms while creating and editing content.', 'simple-tags'); ?>
+                </div>
                 <div class="wp-clearfix"></div>
                 <form method="post" action="">
                     <input type="hidden" name="taxopress_ai_integration[active_tab]" class="taxopress-active-subtab"
@@ -773,7 +776,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             if (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && can_manage_taxopress_metabox() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
                 add_meta_box(
                     'taxopress-ai-suggestedtags',
-                    esc_html__('TaxoPress AI', 'simple-tags'),
+                    esc_html__('TaxoPress', 'simple-tags'),
                     [$this, 'editor_metabox'],
                     get_post_type(),
                     'normal',
@@ -855,7 +858,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         echo '</div>';
                     } elseif (empty($content_tabs)) { 
                         echo '<div style="padding: 15px;">';
-                        esc_html_e('No TaxoPress AI feature is enabled for this post type in settings.', 'simple-tags');
+                        esc_html_e('No TaxoPress Metabox features are enabled for this post type.', 'simple-tags');
                         echo '</div>';
                     } else {
                         $default_taxonomy = (in_array($post_type_default_taxonomy, $post_type_taxonomy_names) ? $post_type_default_taxonomy : $post_type_taxonomy_names[0]);

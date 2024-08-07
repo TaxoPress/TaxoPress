@@ -87,6 +87,9 @@ class SimpleTags_Autoterms_Content
         ?>
         <div class="wrap taxopress-split-wrap taxopress-autoterm-content">
             <h1><?php echo esc_html__('Existing Content', 'simple-tags'); ?> </h1>
+            <div class="taxopress-description">
+                <?php esc_html_e('This feature can scan your existing content and automatically assign new and existing terms.', 'simple-tags'); ?>
+            </div>
             <div class="wp-clearfix"></div>
             <form method="post" id="auto_term_content_form" action="">
                 <div id="poststuff">
@@ -129,9 +132,9 @@ class SimpleTags_Autoterms_Content
                                         echo $ui->get_select_number_select([
                                             'namearray'  => 'taxopress_autoterm_content',
                                             'name'       => 'autoterm_id',
-                                            'labeltext'  => esc_html__('Auto Term',
+                                            'labeltext'  => esc_html__('Auto Terms setting',
                                                 'simple-tags'),
-                                                'aftertext'  => esc_html__('Select an auto term option settings to be used for existing content.', 'simple-tags'),
+                                                'aftertext'  => esc_html__('Select an Auto Terms configuration to use when scanning content.', 'simple-tags'),
                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                         ]);
 
