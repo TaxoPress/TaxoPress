@@ -30,6 +30,14 @@
    */
 
   $(document).ready(function () {
+    var removed_tax = taxoPressAIRequestAction.removed_tax;
+    
+    // Remove built in tax for block editor
+    if (removed_tax.length > 0 && typeof wp.data !== 'undefined' && typeof wp.data.dispatch('core/edit-post') !== 'undefined') {
+      for (let i = 0; i < removed_tax.length; i++) {
+          wp.data.dispatch('core/edit-post').removeEditorPanel('taxonomy-panel-' + removed_tax[i]);
+      }
+    }
 
     if ($('#taxopress-ai-suggestedtags')) {
       //$('#taxopress-ai-suggestedtags').find('.handle-actions').prepend(html_entity_decode(taxoPressAIRequestAction.apiEditLink));

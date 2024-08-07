@@ -169,7 +169,7 @@ class SimpleTags_Autoterms
             <div id="">
                 <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms Logs', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms')); ?>"
-                   class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
+                   class="page-title-action"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
@@ -230,7 +230,7 @@ class SimpleTags_Autoterms
             <div class="wrap st_wrap st-manage-taxonomies-page">
 
             <div id="">
-                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></h1>
+                <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
                    class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
 
@@ -342,7 +342,7 @@ class SimpleTags_Autoterms
             <h1><?php echo esc_html__('Manage Auto Terms', 'simple-tags'); ?>
 
             <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms')); ?>"
-                   class="page-title-action"><?php esc_html_e('Auto Terms List', 'simple-tags'); ?></a>
+                   class="page-title-action"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
                    class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <span class="update-plugins"><span class="plugin-count"><?php echo esc_html($this->autoterms_logs_count()); ?></span></span></a>
@@ -420,10 +420,10 @@ class SimpleTags_Autoterms
                                                                                             ); ?></span></a>
                                                 </li>
 
-                                                <li aria-current="<?php echo $active_tab === 'autoterm_oldcontent' ? 'true' : 'false'; ?>" class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
+                                                <!--<li aria-current="<?php echo $active_tab === 'autoterm_oldcontent' ? 'true' : 'false'; ?>" class="autoterm_oldcontent_tab <?php echo $active_tab === 'autoterm_oldcontent' ? 'active' : ''; ?>" data-content="autoterm_oldcontent">
                                                     <a href="#autoterm_oldcontent"><span><?php esc_html_e('Existing Content',
                                                                 'simple-tags'); ?></span></a>
-                                                </li>
+                                                </li>-->
 
                                                 <li aria-current="<?php echo $active_tab === 'autoterm_schedule' ? 'true' : 'false'; ?>" class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
                                                     <a href="#autoterm_schedule"><span><?php esc_html_e('Schedule',

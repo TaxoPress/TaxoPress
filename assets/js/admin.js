@@ -164,6 +164,43 @@
           $('.taxopress-ai-post-content-sub').removeClass('st-subhide-content');
         }
       }
+      
+      // -------------------------------------------------------------
+      //   Settings metabox sub tab click
+      // -------------------------------------------------------------
+      $(document).on('click', '.st-metabox-subtab span', function (e) {
+        e.preventDefault();
+        var current_content = $(this).attr('data-content');
+        $('.st-metabox-subtab span').removeClass('active');
+        $('.metabox-tab-content').addClass('st-hide-content');
+        $('.metabox-tab-content-sub').addClass('st-subhide-content');
+        $(this).addClass('active');
+        $(current_content).removeClass('st-hide-content');
+        if ($(current_content).find('input').prop("checked")) {
+          $(current_content + '-sub').removeClass('st-subhide-content');
+        }
+      });
+      
+      // -------------------------------------------------------------
+      //   Settings metabox checkbox changed
+      // -------------------------------------------------------------
+      /*
+      $(document).on('change', '.metabox-tab-content input', function (e) {
+        var checked_field = $(this).prop("checked");
+        var field_id      = $(this).attr('id');
+
+        if (checked_field) {
+            $('.' + field_id + '_field').removeClass('st-subhide-content');
+        } else {
+          $('.' + field_id + '_field').addClass('st-subhide-content');
+        }
+      });
+      // Show metabox settings sub fields for enabled settings
+      if ($('.metabox-post-content').length > 0) {
+        if ($('.metabox-post-content').find('input').prop("checked")) {
+          $('.metabox-post-content-sub').removeClass('st-subhide-content');
+        }
+      }*/
 
     // -------------------------------------------------------------
     //   Show taxonomy option based on selected CPT
@@ -644,40 +681,47 @@
 
 
     // -------------------------------------------------------------
+    //   Auto term close button
+    // -------------------------------------------------------------
+    $(document).on('click', '.auto-term-content-result-title .notice-dismiss', function (e) {
+        e.preventDefault();
+        $('.auto-term-content-result-title').html('');
+    });
+
+
+    // -------------------------------------------------------------
     //   Auto term all content
     // -------------------------------------------------------------
     $(document).on('click', '.taxopress-autoterm-all-content', function (e) {
         e.preventDefault();
         $('.auto-term-content-result').html('');
         $('.auto-term-content-result-title').html('');
-        var auto_term_id = Number($('input[name="edited_autoterm"]').val());
         var button = $(this);
-        auto_terms_all_content(0, auto_term_id, button);
-      });
+        auto_terms_all_content(0, button);
+    });
 
-      function auto_terms_all_content(start_from, auto_term, button){
+      function auto_terms_all_content(start_from, button){
 
           $(".taxopress-spinner").addClass("is-active");
           button.attr('disabled', true);
-          var data = {
-            'action': 'taxopress_autoterms_content_by_ajax',
-            'auto_term_id': auto_term,
-            'start_from': start_from,
-            'security': st_admin_localize.check_nonce,
-          };
+
+          var data = $('#auto_term_content_form').serializeArray();
+          data.push({ name: 'action', value: 'taxopress_autoterms_content_by_ajax' });
+          data.push({ name: 'start_from', value: start_from });
+          data.push({ name: 'security', value: st_admin_localize.check_nonce });
+
           $.post(st_admin_localize.ajaxurl, data, function (response) {
               if(response.status === 'error') {
-                  $('.auto-term-content-result').append('<li><font color="red">'+response.message+'</font></li>');
+                $('.auto-term-content-result-title').html(''+response.message+'');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
               }else if(response.status === 'progress') {
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
                 $('.auto-term-content-result').prepend(response.content);
                 //send next batch
-                auto_terms_all_content(response.done, auto_term, button);
+                auto_terms_all_content(response.done, button);
               }else if(response.status === 'sucess') {
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
-                $('.auto-term-content-result').prepend('<li><font color="green">'+response.message+'</font></li>');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
               }

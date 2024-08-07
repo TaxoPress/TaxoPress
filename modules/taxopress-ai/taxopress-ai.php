@@ -212,6 +212,12 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     ]
                 );
             } elseif (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
+
+                if ($pagenow && !empty($_GET['post'])) {
+                    $main_post_screen = false;
+                } else {
+                    $main_post_screen = true;
+                }
                 
                 $manage_link = add_query_arg(
                     [
@@ -220,11 +226,20 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     admin_url('admin.php')
                 );
 
+                $removed_taxonomies = taxopress_user_role_removed_taxonomy();
+                $removed_taxonomies_tax = $removed_taxonomies['taxonomies'];
+                $removed_taxonomies_css = $removed_taxonomies['custom_css'];
+
+
                 wp_enqueue_script( 'taxopress-ai-editor-js', plugins_url('', __FILE__) . '/assets/js/taxopress-ai-editor.js', array(
                     'jquery'
                 ), STAGS_VERSION );
 
                 wp_enqueue_style('taxopress-ai-editor-css', plugins_url('', __FILE__) . '/assets/css/taxopress-ai-editor.css', [], STAGS_VERSION, 'all');
+
+                if (!empty($removed_taxonomies_css) && !$main_post_screen) {
+                    wp_add_inline_style('taxopress-ai-editor-css', '' . implode(',', $removed_taxonomies_css) . ' {display:none !important;}');
+                }
 
                 wp_localize_script(
                     'taxopress-ai-editor-js',
@@ -233,9 +248,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         'requiredSuffix' => esc_html__('Please choose a post to use with TaxoPress AI.', 'simple-tags'),
                         'nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
                         'apiEditLink' => '<span class="edit-suggest-term-metabox"> <a target="blank" href="' . $manage_link . '"> '. esc_html__('Manage API Configuration', 'simple-tags') .' </a></span>',
-                        'fieldTabs' => TaxoPressAiFields::get_fields_tabs()
+                        'fieldTabs' => TaxoPressAiFields::get_fields_tabs(),
+                        'removed_tax' => $removed_taxonomies_tax,
                     ]
                 );
+                
             }
         }
 
@@ -249,8 +266,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
         {
             $hook = add_submenu_page(
                 self::MENU_SLUG,
-                esc_html__('TaxoPress AI', 'simple-tags'),
-                esc_html__('TaxoPress AI', 'simple-tags'),
+                esc_html__('Metaboxes', 'simple-tags'),
+                esc_html__('Metaboxes', 'simple-tags'),
                 'simple_tags',
                 self::PAGE_MENU_SLUG,
                 [
@@ -284,8 +301,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
             <div class="wrap st_wrap st-manage-taxonomies-page <?php echo esc_attr(self::PAGE_MENU_SLUG . '-wrap'); ?>">
                 <h1>
-                    <?php echo esc_html__('Manage TaxoPress AI integration', 'simple-tags'); ?>
+                    <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
+                <div class="taxopress-description">
+                    <?php esc_html_e('This feature allows users to manage terms while creating and editing content.', 'simple-tags'); ?>
+                </div>
                 <div class="wp-clearfix"></div>
                 <form method="post" action="">
                     <input type="hidden" name="taxopress_ai_integration[active_tab]" class="taxopress-active-subtab"
@@ -753,10 +773,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
         public function admin_head() {
             global $pagenow;
     
-            if (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && current_user_can('manage_categories') && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
+            if (in_array($pagenow, ['post-new.php', 'post.php', 'page.php', 'page-new.php', 'edit.php']) && can_manage_taxopress_metabox() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . get_post_type() . '_metabox'))) {
                 add_meta_box(
                     'taxopress-ai-suggestedtags',
-                    esc_html__('TaxoPress AI', 'simple-tags'),
+                    esc_html__('TaxoPress', 'simple-tags'),
                     [$this, 'editor_metabox'],
                     get_post_type(),
                     'normal',
@@ -770,7 +790,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
          *
          **/
         public function editor_metabox($post) {
-            if (!current_user_can('manage_categories')) {
+            if (!can_manage_taxopress_metabox()) {
                 return;
             }
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
@@ -819,7 +839,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                     $support_private_taxonomy = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_support_private_taxonomy');
 
-                    $post_type_taxonomies = get_object_taxonomies($post->post_type, 'objects');
+                    $post_type_taxonomies = [];
+                    foreach(get_object_taxonomies($post->post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
+                        if (can_manage_taxopress_metabox_taxonomy($taxonomy_name)) {
+                            $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                        }
+                    }
+                    
                     $post_type_taxonomy_names = array_keys($post_type_taxonomies);
                     $post_type_default_taxonomy = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_metabox_default_taxonomy');
                     if (empty($post_type_default_taxonomy)) {
@@ -828,11 +854,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                     if (empty($post_type_taxonomy_names)) { 
                         echo '<div style="padding: 15px;">';
-                        esc_html_e('This post does not have any attached taxonomies.', 'simple-tags');
+                        esc_html_e('This user does not have access to manage any of this post attached taxonomies.', 'simple-tags');
                         echo '</div>';
                     } elseif (empty($content_tabs)) { 
                         echo '<div style="padding: 15px;">';
-                        esc_html_e('No TaxoPress AI feature is enabled for this post type in settings.', 'simple-tags');
+                        esc_html_e('No TaxoPress Metabox features are enabled for this post type.', 'simple-tags');
                         echo '</div>';
                     } else {
                         $default_taxonomy = (in_array($post_type_default_taxonomy, $post_type_taxonomy_names) ? $post_type_default_taxonomy : $post_type_taxonomy_names[0]);

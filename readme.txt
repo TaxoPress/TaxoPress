@@ -2,8 +2,8 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
-Tested up to: 6.5
-Stable tag: 3.22.0
+Tested up to: 6.6
+Stable tag: 3.23.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,17 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.23.0- 2024-08-07
+* Update: Add role visibility settings for metabox, #1957
+* Update: Allow users to remove the default Tags and Categories metaboxes, #2044
+* Update: Re-organize TaxoPress Menu, #2069
+* Update: Move Existing Content to new menu, #2022
+* Fixed: Fatal error on some website related to legacy code, #2083
+* Fixed: Auto Links doesn't work on apostrophes #2097
+* Fixed: "Auto Terms Limit" not working in Classic Editor, #2076
+* Fixed: Mass Edit Terms broken by the WordPress update notice, #2070
+* Update: Translation Updates ES-FR-IT TAXO Free v3.22.0, #2068
 
 v3.22.0- 2024-07-16
 * Fixed: TaxoPress AI Synonyms not working properly, #2013

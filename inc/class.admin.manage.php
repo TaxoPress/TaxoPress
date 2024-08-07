@@ -126,6 +126,7 @@ class SimpleTags_Admin_Manage
 
         settings_errors(__CLASS__); ?>
 <div class="clear"></div>
+<div class="taxopress-block-wrap">
 <div class="wrap st_wrap tagcloudui st-manage-terms-page admin-settings wrap st_wrap">
 	<?php SimpleTags_Admin::boxSelectorTaxonomy('st_manage'); ?>
 
@@ -391,6 +392,7 @@ class SimpleTags_Admin_Manage
 	<?php do_action('taxopress_admin_after_sidebar'); ?>
 </div>
 
+</div>
 
 
 	<?php SimpleTags_Admin::printAdminFooter(); ?>

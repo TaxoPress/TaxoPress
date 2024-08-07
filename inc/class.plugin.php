@@ -53,7 +53,37 @@ class SimpleTags_Plugin {
 	 * @return array
 	 */
 	private static function load_default_option() {
-		return (array) include STAGS_DIR . '/inc/helper.options.default.php';
+		$default_options = (array) include STAGS_DIR . '/inc/helper.options.default.php';
+				
+		// add taxopress ai post type and taxonomies options so we can have all post types. TODO: This need to be a filter
+		foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
+			if ($post_type == 'post') {
+				$opt_default_value = 'post_tag';
+			} else {
+				$opt_default_value = 0;
+			}
+			$default_options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
+			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
+			$default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
+			foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
+				$default_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = 1;
+			}
+		}
+		
+		// add metabox post type and taxonomies options so we can have all post types. TODO: This need to be a filter
+		$tax_names = array_keys(get_taxonomies([], 'names'));
+		foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
+			if (in_array($role_name, ['administrator', 'editor', 'author', 'contributor'])) {
+				$enable_acess_default_value = 1;
+			} else {
+				$enable_acess_default_value = 0;
+			}
+			$default_options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
+			$options['enable_metabox_' . $role_name . ''] = $tax_names;
+			$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
+		}
+
+		return $default_options;
 	}
 
 	/**

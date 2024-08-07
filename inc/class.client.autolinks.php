@@ -428,7 +428,11 @@ class SimpleTags_Client_Autolinks
 					$same_usage_max = min($term_limits[$detail_id], $option_remaining[$detail_id]);
 				}
 
-				
+				// Replace HTML entities with placeholders in term name too to match them in content
+				$search = preg_replace_callback('/&#(\d+);/', function($matches) {
+					return '|TAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITY|';
+				}, wptexturize($search));
+
 				//if ('i' === $case) {
 				if ($autolink_case === 'none') { // retain case
 					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $link_closing) {
@@ -725,8 +729,9 @@ class SimpleTags_Client_Autolinks
 						$excludes_terms = array_filter($excludes_terms, '_delete_empty_element');
 						$excludes_terms = array_unique($excludes_terms);
 					}
-
+					
 					$z = 0;
+					
 					foreach ((array) self::$link_tags as $term_name => $term_link) {
 						$z++;
 						// Force string for tags "number"
@@ -738,7 +743,7 @@ class SimpleTags_Client_Autolinks
 						}
 
 						// Make a first test with PHP function, economize CPU with regexp
-						if (false === $strpos_fnc($content, $term_name)) {
+						if (false === $strpos_fnc($post->post_content, $term_name)) {
 							continue;
 						}
 
