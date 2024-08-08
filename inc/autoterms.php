@@ -683,7 +683,7 @@ class SimpleTags_Autoterms
                                                         'name'       => 'autoterm_useall',
                                                         'class'      => 'autoterm_useall autoterm-terms-to-use-field',
                                                         'labeltext'  => '',
-                                                        'aftertext'  => esc_html__('Use all the terms in the selected taxonomy. Please test this option carefully as it can use significant server resources if you have many terms.', 'simple-tags'),
+                                                        'aftertext'  => esc_html__('Use all the terms in the selected taxonomy.', 'simple-tags'),
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         'required'    => false,
                                                     ]);
