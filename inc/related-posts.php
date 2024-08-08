@@ -935,6 +935,8 @@ class SimpleTags_Related_Post
                             <li><code>%post_id%</code> <?php echo esc_html__('The ID of the post', 'simple-tags'); ?></li>
                             <li><code>%post_relatedtags%</code> <?php echo esc_html__('A list of tags used by both the current post and the related post', 'simple-tags'); ?></li>
                             <li><code>%post_excerpt%</code> <?php echo esc_html__('The post excerpt', 'simple-tags'); ?></li>
+                            <li><code> %post_thumb%</code> <?php echo esc_html__('The post thumb', 'simple-tags'); ?></li>
+                           
                         </ul>
                     </div>
                 </div>
