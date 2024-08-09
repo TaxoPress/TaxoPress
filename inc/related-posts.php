@@ -562,7 +562,7 @@ class SimpleTags_Related_Post
                                                         );
 
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Post Types',
-                                                                'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will display related posts from selected post types. If no post type is selected, Related Posts will be automatically limited to current post type of the post.',
+                                                                'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will display related posts from selected post types.',
                                                                 'simple-tags') . '</small></th><td>
                                                                 <table class="visbile-table">';
                                                         foreach ($post_types as $post_type) {
@@ -602,7 +602,7 @@ class SimpleTags_Related_Post
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'number',
                                                             'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum related posts to posts_type',
+                                                            'labeltext' => esc_html__('Maximum number of related posts',
                                                                 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => true,
