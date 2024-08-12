@@ -490,6 +490,11 @@ class SimpleTags_Client_Autolinks
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		//$content = mb_substr($dom->saveHTML($xpath->query('//body')->item(0)), 6, -7, "UTF-8");
 		$content = str_replace('|--|', '&#', $content); //https://github.com/TaxoPress/TaxoPress/issues/824
+		/**
+		 * I commented the line below because of https://github.com/TaxoPress/TaxoPress/issues/2118
+		 * In summary, when content contain < and > special character which are intentiona;, they're been
+		 * changed to < > which is not needed
+		 */
 		//$content = str_replace('&#60;', '<', $content);
 		//$content = str_replace('&#62;', '>', $content);
 		
