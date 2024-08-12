@@ -43,7 +43,11 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simple-tags' ),
 			'nopoststext'   => __( 'No related posts.', 'simple-tags' ),
 			'dateformat'    => get_option( 'date_format' ),
-			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title% <br> %post_thumb%</a> (%post_comment%)', 'simple-tags' ),
+            'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			                        %post_title% <br> 
+			                        <img src="%post_thumb%" height="200" width="200" class="custom-image-class" />
+			                        </a> 
+									(%post_comment%)', 'simple-tags' ),
 			'ID'            => 0,
 			'hide_title'    => 0,
 			'hide_output'   => 0,
@@ -336,8 +340,8 @@ class SimpleTags_Client_RelatedPosts {
 			$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
 
 			//Add Featured Image
-			$post_thumbnail = get_the_post_thumbnail( $result->ID, 'thumbnail', ['class' => 'related-post-thumbnail'] );
-            $element_loop = str_replace( '%post_thumb%', $post_thumbnail, $element_loop );
+			$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'thumbnail' );
+            $element_loop = str_replace( '%post_thumb%', $post_thumbnail_url, $element_loop );
 
 			$element_loop = str_replace( '%post_date%', mysql2date( $dateformat, $result->post_date ), $element_loop );
 			$element_loop = str_replace( '%post_permalink%', get_permalink( $result ), $element_loop );
