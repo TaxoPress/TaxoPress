@@ -287,15 +287,15 @@ class SimpleTags_Client_Autolinks
 		foreach (taxopress_html_character_and_entity() as $enity => $code) {
 			$content = str_replace($enity, $code, $content);
 		}
-		
+
 		// Replace HTML entities with placeholders
 		$content = preg_replace_callback('/&#(\d+);/', function($matches) {
-			return '|TAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITY|';
+			return 'STARTTAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITYEND';
 		}, $content);
 
 		//$content = str_replace('&#','|--|',$content);//https://github.com/TaxoPress/TaxoPress/issues/824
 		//$content = str_replace('&','&#38;',$content); //https://github.com/TaxoPress/TaxoPress/issues/770*/
-		$content = '||starttaxopressrandom||' . $content . '||endtaxopressrandom||'; //we're having issue when content start with styles https://wordpress.org/support/topic/3-7-2-auto-link-case-not-working/#post-16665257
+		$content = 'starttaxopressrandom' . $content . 'endtaxopressrandom'; //we're having issue when content start with styles https://wordpress.org/support/topic/3-7-2-auto-link-case-not-working/#post-16665257
 		//$content = utf8_decode($content);
 
 		libxml_use_internal_errors(true);
@@ -430,7 +430,7 @@ class SimpleTags_Client_Autolinks
 
 				// Replace HTML entities with placeholders in term name too to match them in content
 				$search = preg_replace_callback('/&#(\d+);/', function($matches) {
-					return '|TAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITY|';
+					return 'STARTTAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITYEND';
 				}, wptexturize($search));
 
 				//if ('i' === $case) {
@@ -483,9 +483,9 @@ class SimpleTags_Client_Autolinks
 		}
 		
 		// Add back the starting "&#"
-		$content = str_replace('|TAXOPRESSENTITY', '&#', $content);
+		$content = str_replace('STARTTAXOPRESSENTITY', '&#', $content);
 		// Add back the ending ";"
-		$content = str_replace('TAXOPRESSENTITY|', ';', $content);
+		$content = str_replace('TAXOPRESSENTITYEND', ';', $content);
 
 		// get only the body tag with its contents, then trim the body tag itself to get only the original content
 		//$content = mb_substr($dom->saveHTML($xpath->query('//body')->item(0)), 6, -7, "UTF-8");
@@ -501,7 +501,7 @@ class SimpleTags_Client_Autolinks
 		foreach (taxopress_html_character_and_entity(true) as $enity => $code) {
 			$content = str_replace($enity, $code, $content);
 		}
-		
+
 		$content = str_replace('&amp ;rsquo;', '&rsquo;', $content);
 		$content = str_replace(['’', ' ’', '&rsquor;', ' &rsquor;', '&rsquo;', ' &rsquo;'], '\'', $content);
 
@@ -509,8 +509,8 @@ class SimpleTags_Client_Autolinks
 		$content = str_replace(';amp;', ';', $content); //https://github.com/TaxoPress/TaxoPress/issues/810
 		$content = str_replace('%7C--%7C038;', '&', $content); //https://github.com/TaxoPress/TaxoPress/issues/1377
 
-		$content = str_replace('||starttaxopressrandom||', '',  $content);
-		$content = str_replace('||endtaxopressrandom||', '', $content);
+		$content = str_replace('starttaxopressrandom', '',  $content);
+		$content = str_replace('endtaxopressrandom', '', $content);
 
 	}
 
