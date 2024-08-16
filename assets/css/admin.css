@@ -991,17 +991,23 @@ ul.taxopress-tab li.posttags_display_tab a::before {
 .manage-taxopress-terms .column-slug {
     width: unset;
 }
-.st-html-exclusion-table th {
+.st-html-exclusion-table th,
+.st-custom-exclusion-table th {
     padding: unset;
     white-space: nowrap;
     overflow-wrap: break-word;
     max-width: 120px;
 }
-.st-html-exclusion-table td {
+.st-html-exclusion-table td,
+.st-custom-exclusion-table td {
     padding: 5px 5px;
   white-space: nowrap;
   overflow-wrap: break-word;
   max-width: 300px;
+}
+
+.st-custom-exclusion-table .ppma_select2-container {
+    margin-top: 15px;
 }
 
 .st-autoterms-single-specific-term {
