@@ -858,7 +858,7 @@ class SimpleTags_Related_Post
                 <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
                        value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
             </div>
-            <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
+            <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
         </td>
     </tr>
 </table>
@@ -976,7 +976,7 @@ class SimpleTags_Related_Post
                             <li><code>%post_id%</code> <?php echo esc_html__('The ID of the post', 'simple-tags'); ?></li>
                             <li><code>%post_relatedtags%</code> <?php echo esc_html__('A list of tags used by both the current post and the related post', 'simple-tags'); ?></li>
                             <li><code>%post_excerpt%</code> <?php echo esc_html__('The post excerpt', 'simple-tags'); ?></li>
-                            <li><code>%post_thumb%</code> <?php echo esc_html__('The post featured image', 'simple-tags'); ?></li>
+                            <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>
