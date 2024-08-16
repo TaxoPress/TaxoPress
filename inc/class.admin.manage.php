@@ -132,6 +132,7 @@ class SimpleTags_Admin_Manage
 
 	<h2><?php _e('Manage Terms', 'simple-tags'); ?>
 	</h2>
+    <div class="manageterms-description"><?php esc_html_e('This feature allows you to manage your content terms by adding, renaming, merging and deleting unused terms.', 'simple-tags'); ?></div>
 
 	<div class="clear"></div>
 
