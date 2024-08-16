@@ -170,6 +170,10 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['html_exclusion']           = [];
     $default['taxopress_autolink']['html_exclusion_customs']   = [];
     $default['taxopress_autolink']['html_exclusion_customs_entry']   = [];
+    $default['taxopress_autolink']['shortcodes_exclusion']   = [];
+    $default['taxopress_autolink']['shortcodes_exclusion_entries']   = [];
+    $default['taxopress_autolink']['blocks_exclusion']   = [];
+    $default['taxopress_autolink']['blocks_exclusion_entries']   = [];
     $default['taxopress_autolink']['unattached_terms']         = '1';
     $default['taxopress_autolink']['ignore_case']              = '1';
     $default['taxopress_autolink']['autolink_dom']             = '1';
@@ -221,6 +225,10 @@ function taxopress_update_autolink($data = [])
     $data['taxopress_autolink']['html_exclusion'] = isset($data['html_exclusion']) ? $data['html_exclusion'] : [];
     $data['taxopress_autolink']['html_exclusion_customs'] = isset($data['html_exclusion_customs']) ? $data['html_exclusion_customs'] : [];
     $data['taxopress_autolink']['html_exclusion_customs_entry'] = isset($data['html_exclusion_customs_entry']) ? array_unique($data['html_exclusion_customs_entry']) : [];
+    $data['taxopress_autolink']['shortcodes_exclusion'] = isset($data['shortcodes_exclusion']) ? array_unique($data['shortcodes_exclusion']) : [];
+    $data['taxopress_autolink']['shortcodes_exclusion_entries'] = isset($data['shortcodes_exclusion_entries']) ? array_unique($data['shortcodes_exclusion_entries']) : [];
+    $data['taxopress_autolink']['blocks_exclusion'] = isset($data['blocks_exclusion']) ? array_unique($data['blocks_exclusion']) : [];
+    $data['taxopress_autolink']['blocks_exclusion_entries'] = isset($data['blocks_exclusion_entries']) ? $data['blocks_exclusion_entries'] : [];
     
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autolink']['unattached_terms'])) {

@@ -376,7 +376,11 @@ class taxopress_admin_ui
      */
     public function get_label($label_for = '', $label_text = '', $labeldescription = false)
     {
-        if($labeldescription){
+        if($labeldescription === 2){
+            return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities('['.$label_text.']').'</code></label>';
+        } elseif($labeldescription === 3){
+            return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities($label_text).'</code></label>';
+        } elseif($labeldescription){
             return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities('<'.$label_text.'> </'.$label_text.'>').'</code></label>';
         }else{
             return '<label for="' . esc_attr($label_for) . '">' . wp_strip_all_tags($label_text) . '</label>';
