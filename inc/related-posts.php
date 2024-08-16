@@ -1,3 +1,4 @@
+
 <?php
 
 class SimpleTags_Related_Post
@@ -39,11 +40,12 @@ class SimpleTags_Related_Post
     {
 
         // add JS for manage click tags
+            
         if (isset($_GET['page']) && $_GET['page'] == 'st_related_posts') {
             wp_enqueue_style('st-taxonomies-css');
         }
     }
-
+   
     public static function set_screen($status, $option, $value)
     {
         return $value;
@@ -82,6 +84,8 @@ class SimpleTags_Related_Post
         if(taxopress_is_screen_main_page()){
           add_action("load-$hook", [$this, 'screen_option']);
         }
+        
+        
     }
 
     /**
@@ -108,6 +112,8 @@ class SimpleTags_Related_Post
      * @return void
      * @author Olatechpro
      */
+
+     
     public function page_manage_relatedposts()
     {
         // Default order
@@ -820,19 +826,54 @@ class SimpleTags_Related_Post
                                                                 'helptext'  => sprintf(esc_html__('You can find markers and explanations %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
                                                                 'required'  => false,
                                                             ]);
+                                                            
+                                                            
+                                                     // Default Featured Image Integration
+                                                    
+          
+?>
+  <table class="form-table taxopress-table relatedpost_advanced"
+       style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
+    <tr valign="top">
+        <th scope="row">
+            <label for="default_featured_media"><?php echo esc_html__('Default Post Thumb', 'simple-tags'); ?></label>
+        </th>
+        <td>
+            <div class="default-featured-media-field-wrapper">
+                <div class="default-featured-media-field-container">
+                    <?php if (!empty($current['default_featured_media'])) : ?>
+                        <img src="<?php echo esc_url($current['default_featured_media']); ?>" style="max-width: 300px;" alt=""/>
+                    <?php endif; ?>
+                </div>
 
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_td_end() . $ui->get_tr_end();
-                                                    ?>
-                                                </table>
+                <p class="hide-if-no-js">
+                    <a class="select-default-featured-media-field <?php echo !empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                        <?php esc_html_e('Select Media', 'simple-tags'); ?>
+                    </a>
+                    <a class="delete-default-featured-media-field <?php echo empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                        <?php esc_html_e('Remove Image', 'simple-tags'); ?>
+                    </a>
+                </p>
 
+                <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
+                       value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
+            </div>
+            <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
+        </td>
+    </tr>
+</table>
 
-                                            </div>
+<?php
+                                                           // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                           echo $ui->get_td_end() . $ui->get_tr_end();
+                                                       ?>
+                                                   </table>
 
-
-                                        <?php }//end new fields
-                                        ?>
-
+                                                    </div>
+                                                    <?php
+                                                }//end new fields
+                                        
+?>
 
                                         <div class="clear"></div>
 
@@ -935,6 +976,7 @@ class SimpleTags_Related_Post
                             <li><code>%post_id%</code> <?php echo esc_html__('The ID of the post', 'simple-tags'); ?></li>
                             <li><code>%post_relatedtags%</code> <?php echo esc_html__('A list of tags used by both the current post and the related post', 'simple-tags'); ?></li>
                             <li><code>%post_excerpt%</code> <?php echo esc_html__('The post excerpt', 'simple-tags'); ?></li>
+                            <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>

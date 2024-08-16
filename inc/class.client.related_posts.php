@@ -43,7 +43,11 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simple-tags' ),
 			'nopoststext'   => __( 'No related posts.', 'simple-tags' ),
 			'dateformat'    => get_option( 'date_format' ),
-			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simple-tags' ),
+            'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			                        %post_title% <br> 
+			                        <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
+			                        </a> 
+									(%post_comment%)', 'simple-tags' ),
 			'ID'            => 0,
 			'hide_title'    => 0,
 			'hide_output'   => 0,
@@ -52,6 +56,7 @@ class SimpleTags_Client_RelatedPosts {
 			'link_class'  => '',
 			'before'      => '',
 			'after'       => '',
+			'default_featured_media' => '',
 		);
 
 		// Get values in DB
@@ -333,6 +338,20 @@ class SimpleTags_Client_RelatedPosts {
 
 			$element_loop = $xformat;
 			$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
+
+			// Add featured Image
+			$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'thumbnail' );
+		
+			if (empty($post_thumbnail_url)) {
+				$post_thumbnail_url = $default_featured_media;
+			}
+
+			if (empty($post_thumbnail_url)) {
+    			$element_loop = preg_replace('/<img\b[^>]*\bsrc="%post_thumb_url%"[^>]*>/i', '', $element_loop);
+			}
+		
+			$element_loop = str_replace('%post_thumb_url%', $post_thumbnail_url, $element_loop);
+		
 			$element_loop = str_replace( '%post_date%', mysql2date( $dateformat, $result->post_date ), $element_loop );
 			$element_loop = str_replace( '%post_permalink%', get_permalink( $result ), $element_loop );
 			$element_loop = str_replace( '%post_title%', $post_title, $element_loop );
