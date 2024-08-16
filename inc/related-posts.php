@@ -226,7 +226,6 @@ class SimpleTags_Related_Post
             if (!isset($current['title']) && count($relatedposts) > 0 && apply_filters('taxopress_related_posts_create_limit', true)) {
                 $related_post_limit = true;
             }
-            write_log($current);
 
 
             $ui = new taxopress_admin_ui();
@@ -837,7 +836,7 @@ class SimpleTags_Related_Post
        style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
     <tr valign="top">
         <th scope="row">
-            <label for="default_featured_media"><?php echo esc_html__('Default Featured Media', 'simple-tags'); ?></label>
+            <label for="default_featured_media"><?php echo esc_html__('Default Post Thumb', 'simple-tags'); ?></label>
         </th>
         <td>
             <div class="default-featured-media-field-wrapper">
@@ -859,6 +858,7 @@ class SimpleTags_Related_Post
                 <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
                        value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
             </div>
+            <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
         </td>
     </tr>
 </table>
@@ -874,55 +874,6 @@ class SimpleTags_Related_Post
                                                 }//end new fields
                                         
 ?>
-
-<script type="text/javascript">
-   jQuery(document).ready(function($){
-        var frame;
-        
-        // Select Media
-        $('.select-default-featured-media-field').on('click', function(e){
-            e.preventDefault();
-            
-            // If the media frame already exists, reopen it.
-            if (frame) {
-                frame.open();
-                return;
-            }
-            
-            // Create a new media frame
-            frame = wp.media({
-                title: '<?php esc_html_e('Select Default Featured Media', 'simple-tags'); ?>',
-                button: {
-                    text: '<?php esc_html_e('Use this media', 'simple-tags'); ?>'
-                },
-                multiple: false
-            });
-
-            // When an image is selected in the media frame...
-            frame.on('select', function(){
-                var attachment = frame.state().get('selection').first().toJSON();
-                $('#default_featured_media').val(attachment.url);
-                $('.default-featured-media-field-container').html('<img src="' + attachment.url + '" style="max-width: 300px;" />');
-                $('.select-default-featured-media-field').addClass('hidden');
-                $('.delete-default-featured-media-field').removeClass('hidden');
-            });
-
-            // Finally, open the modal on click
-            frame.open();
-        });
-
-        // Remove Media
-        $('.delete-default-featured-media-field').on('click', function(e){
-            e.preventDefault();
-            $('#default_featured_media').val('');
-            $('.default-featured-media-field-container').html('');
-            $('.select-default-featured-media-field').removeClass('hidden');
-            $('.delete-default-featured-media-field').addClass('hidden');
-        });
-    });
-
-</script>
-
 
                                         <div class="clear"></div>
 
@@ -1025,6 +976,7 @@ class SimpleTags_Related_Post
                             <li><code>%post_id%</code> <?php echo esc_html__('The ID of the post', 'simple-tags'); ?></li>
                             <li><code>%post_relatedtags%</code> <?php echo esc_html__('A list of tags used by both the current post and the related post', 'simple-tags'); ?></li>
                             <li><code>%post_excerpt%</code> <?php echo esc_html__('The post excerpt', 'simple-tags'); ?></li>
+                            <li><code>%post_thumb%</code> <?php echo esc_html__('The post featured image', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>

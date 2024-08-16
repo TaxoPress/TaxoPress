@@ -930,6 +930,52 @@
       }
     }
 
+    // Add related posts uploaded
+    if ($('.select-default-featured-media-field').length > 0) {
+      
+      var frame;
+      // Select Media
+      $('.select-default-featured-media-field').on('click', function(e){
+          e.preventDefault();
+          
+          // If the media frame already exists, reopen it.
+          if (frame) {
+              frame.open();
+              return;
+          }
+          
+          // Create a new media frame
+          frame = wp.media({
+              title: st_admin_localize.select_default_label,
+              button: {
+                  text: st_admin_localize.use_media_label
+              },
+              multiple: false
+          });
+
+          // When an image is selected in the media frame...
+          frame.on('select', function(){
+              var attachment = frame.state().get('selection').first().toJSON();
+              $('#default_featured_media').val(attachment.url);
+              $('.default-featured-media-field-container').html('<img src="' + attachment.url + '" style="max-width: 300px;" />');
+              $('.select-default-featured-media-field').addClass('hidden');
+              $('.delete-default-featured-media-field').removeClass('hidden');
+          });
+
+          // Finally, open the modal on click
+          frame.open();
+      });
+
+      // Remove Media
+      $('.delete-default-featured-media-field').on('click', function(e){
+          e.preventDefault();
+          $('#default_featured_media').val('');
+          $('.default-featured-media-field-container').html('');
+          $('.select-default-featured-media-field').removeClass('hidden');
+          $('.delete-default-featured-media-field').addClass('hidden');
+      });
+    }
+
 
     // -------------------------------------------------------------
     //   Auto term Existing taxonomy terms check
