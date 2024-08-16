@@ -339,10 +339,20 @@ class SimpleTags_Client_RelatedPosts {
 			$element_loop = $xformat;
 			$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
 
-			//Add Featured Image
+			// Add featured Image
 			$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'thumbnail' );
-            $element_loop = str_replace( '%post_thumb%', $post_thumbnail_url, $element_loop );
+		
+			if (empty($post_thumbnail_url)) {
+				$post_thumbnail_url = $default_featured_media;
+			}
 
+			if (empty($post_thumbnail_url)){
+				$post_thumbnail_url = $default_featured_media;
+				$element_loop = preg_replace('/img[^>/]','', $element_loop);
+			}
+		
+			$element_loop = str_replace('%post_thumb%', $post_thumbnail_url, $element_loop);
+		
 			$element_loop = str_replace( '%post_date%', mysql2date( $dateformat, $result->post_date ), $element_loop );
 			$element_loop = str_replace( '%post_permalink%', get_permalink( $result ), $element_loop );
 			$element_loop = str_replace( '%post_title%', $post_title, $element_loop );
