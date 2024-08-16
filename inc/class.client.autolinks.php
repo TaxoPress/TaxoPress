@@ -283,6 +283,52 @@ class SimpleTags_Client_Autolinks
 			return $content;
 		}
 
+		// process blocks exclusion
+		if (is_array($search_lists[0]['options']) && !empty($search_lists[0]['options']['blocks_exclusion'])) {
+			$blocks_exclusion = $search_lists[0]['options']['blocks_exclusion'];
+			$process = function($item) {
+				// Replace "core/" prefixes
+				$item = str_replace("core/", "", $item);
+				// Add "wp:" prefixes
+				return "wp:" . $item;
+			};
+			// Apply the processing function to each element of the array
+			$blocks_to_exclude = array_map($process, $blocks_exclusion);
+
+			// Escape special characters for regex pattern
+			$escaped_blocks = array_map(function($block) {
+				return preg_quote($block, '/');
+			}, $blocks_to_exclude);
+
+			// Create a regex pattern from the block names
+			$pattern = '/<!-- (' . implode('|', $escaped_blocks) . ')(.*?)-->(.*?)<!-- \/wp\:(.*?) -->/s';
+			
+			$content = preg_replace_callback(
+				$pattern,
+				function ($matches) {
+					// Return the matched block content wrapped in taxopressnotag
+					return '<taxopressnotag>' . $matches[0] . '</taxopressnotag>';
+				},
+				$content
+			);
+		}
+		
+		// process shortcodes exclusion
+		if (is_array($search_lists[0]['options']) && !empty($search_lists[0]['options']['shortcodes_exclusion'])) {
+			$shortcodes_exclusion = $search_lists[0]['options']['shortcodes_exclusion'];
+			
+			// Create a regex pattern to match any of the shortcodes with or without attributes
+			$pattern = '/\[(?:' . implode('|', $shortcodes_exclusion) . ')[^\]]*\]/';
+			
+			// Define the replacement function to wrap matched shortcodes
+			$callback = function($matches) {
+				return '<taxopressnotag>' . $matches[0] . '</taxopressnotag>';
+			};
+
+			// Apply the regex pattern to the content using the callback
+			$content = preg_replace_callback($pattern, $callback, $content);
+		}
+
 		//replace html entity with their entity code
 		foreach (taxopress_html_character_and_entity() as $enity => $code) {
 			$content = str_replace($enity, $code, $content);
@@ -305,6 +351,7 @@ class SimpleTags_Client_Autolinks
 		
 		// Load the content as HTML without adding DOCTYPE and html/body tags
 		$content = '<div>' . $content . '</div>';
+
 		$content = @mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
 		$result = $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -367,6 +414,7 @@ class SimpleTags_Client_Autolinks
 				$option_tagged_counts[$detail_id] = 0;
 			}
 
+			$html_exclusion[] = 'taxopressnotag';
 			$html_exclusion[] = 'meta';
 			$html_exclusion[] = 'link';
 			$html_exclusion[] = 'head';
@@ -511,6 +559,9 @@ class SimpleTags_Client_Autolinks
 
 		$content = str_replace('starttaxopressrandom', '',  $content);
 		$content = str_replace('endtaxopressrandom', '', $content);
+		// replace <taxopressnotag> added to skip certain elements
+		$content = str_replace('<taxopressnotag>', '', $content);
+		$content = str_replace('</taxopressnotag>', '', $content);
 
 	}
 
