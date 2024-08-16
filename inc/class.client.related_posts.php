@@ -359,6 +359,8 @@ class SimpleTags_Client_RelatedPosts {
 			$element_loop = str_replace( '%post_comment%', (int) $result->comment_count, $element_loop );
 			$element_loop = str_replace( '%post_tagcount%', (int) $result->counter, $element_loop );
 			$element_loop = str_replace( '%post_id%', $result->ID, $element_loop );
+			
+			
 
 			if ( isset( $result->terms_id ) ) {
 				$element_loop = str_replace( '%post_relatedtags%', self::get_tags_from_id( $result->terms_id, $taxonomy ), $element_loop, $link_class );

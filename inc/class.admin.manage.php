@@ -130,8 +130,9 @@ class SimpleTags_Admin_Manage
 <div class="wrap st_wrap tagcloudui st-manage-terms-page admin-settings wrap st_wrap">
 	<?php SimpleTags_Admin::boxSelectorTaxonomy('st_manage'); ?>
 
-	<h2><?php _e('Manage Terms', 'simple-tags'); ?>
-	</h2>
+	<h1><?php _e('Manage Terms', 'simple-tags'); ?>
+	</h1>
+    <div class="taxopress-description"><?php esc_html_e('This feature allows you to manage your content terms by adding, renaming, merging and deleting unused terms.', 'simple-tags'); ?></div>
 
 	<div class="clear"></div>
 
