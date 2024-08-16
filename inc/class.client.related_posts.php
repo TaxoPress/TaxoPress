@@ -45,7 +45,7 @@ class SimpleTags_Client_RelatedPosts {
 			'dateformat'    => get_option( 'date_format' ),
             'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
 			                        %post_title% <br> 
-			                        <img src="%post_thumb%" height="200" width="200" class="custom-image-class" />
+			                        <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 			                        </a> 
 									(%post_comment%)', 'simple-tags' ),
 			'ID'            => 0,
@@ -79,7 +79,6 @@ class SimpleTags_Client_RelatedPosts {
 			'%commentcount%' => '%post_comment%',
 			'%tagcount%'     => '%post_tagcount%',
 			'%postid%'       => '%post_id%',
-			'%postthumb%'       => '%post_thumb%',
 		);
 		if ( ! is_array( $user_args ) ) {
 			$user_args = strtr( $user_args, $markers );
@@ -347,11 +346,11 @@ class SimpleTags_Client_RelatedPosts {
 				$post_thumbnail_url = $default_featured_media;
 			}
 
-			if (empty($post_thumbnail_url)){
-				$element_loop = preg_replace('/img[^>/]','', $element_loop);
+			if (empty($post_thumbnail_url)) {
+    			$element_loop = preg_replace('/<img\b[^>]*\bsrc="%post_thumb_url%"[^>]*>/i', '', $element_loop);
 			}
 		
-			$element_loop = str_replace('%post_thumb%', $post_thumbnail_url, $element_loop);
+			$element_loop = str_replace('%post_thumb_url%', $post_thumbnail_url, $element_loop);
 		
 			$element_loop = str_replace( '%post_date%', mysql2date( $dateformat, $result->post_date ), $element_loop );
 			$element_loop = str_replace( '%post_permalink%', get_permalink( $result ), $element_loop );
