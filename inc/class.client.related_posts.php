@@ -56,6 +56,7 @@ class SimpleTags_Client_RelatedPosts {
 			'link_class'  => '',
 			'before'      => '',
 			'after'       => '',
+			'default_featured_media' => '',
 		);
 
 		// Get values in DB
