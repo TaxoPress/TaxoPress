@@ -113,6 +113,8 @@ class SimpleTags_Admin_Mass {
 
         <h2><?php _e( 'Mass edit terms', 'simple-tags' ); ?></h2>
       <br>
+	  <p><?php esc_html_e('This feature allows users to mass edit terms while creating and editing content.', 'simple-tags'); ?></p>
+      <br>
 
 				<ul class="subsubsub">
 					<?php
