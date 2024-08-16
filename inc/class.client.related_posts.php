@@ -348,7 +348,6 @@ class SimpleTags_Client_RelatedPosts {
 			}
 
 			if (empty($post_thumbnail_url)){
-				$post_thumbnail_url = $default_featured_media;
 				$element_loop = preg_replace('/img[^>/]','', $element_loop);
 			}
 		
