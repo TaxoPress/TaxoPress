@@ -826,6 +826,16 @@ class SimpleTags_Related_Post
                                                                 'helptext'  => sprintf(esc_html__('You can find markers and explanations %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
                                                                 'required'  => false,
                                                             ]);
+                                                            echo $ui->get_number_input([
+                                                                'namearray' => 'taxopress_related_post',
+                                                                'name'      => 'max_post_chars',
+                                                                'textvalue' => isset($current['max_post_chars']) ? esc_attr($current['max_post_chars']) : '100',
+                                                                'labeltext' => esc_html__('Maximum characters of post content to display',
+                                                                'simple-tags'),
+                                                                // 'max' => '100',
+                                                                'helptext'  => '',
+                                                                'required'  => true,
+                                                            ]);
                                                             
                                                             
                                                      // Default Featured Image Integration
@@ -861,6 +871,7 @@ class SimpleTags_Related_Post
             <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
         </td>
     </tr>
+    
 </table>
 
 <?php
@@ -977,6 +988,7 @@ class SimpleTags_Related_Post
                             <li><code>%post_relatedtags%</code> <?php echo esc_html__('A list of tags used by both the current post and the related post', 'simple-tags'); ?></li>
                             <li><code>%post_excerpt%</code> <?php echo esc_html__('The post excerpt', 'simple-tags'); ?></li>
                             <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
+                            <li><code>%post_content%</code> <?php echo esc_html__('The post content', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>
