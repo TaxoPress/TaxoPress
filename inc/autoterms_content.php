@@ -296,7 +296,7 @@ class SimpleTags_Autoterms_Content
                                         </div>
                                     </div>
                                 </div>
-                                <?php do_action('taxopress_admin_after_sidebar'); ?>
+                                <?php //do_action('taxopress_admin_after_sidebar'); ?>
                             </div>
 
                         </div>
