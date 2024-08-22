@@ -194,7 +194,7 @@ class SimpleTags_Client_TagCloud {
 
 		//Set consistent font size and color if format is "WordPress Default"
         if ($format === 'comma') { 
-            $largest = $smallest;
+            $smallest = $largest;
             $mincolor = $maxcolor;
         }
 
