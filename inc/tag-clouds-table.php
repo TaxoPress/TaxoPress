@@ -360,8 +360,8 @@ class TagClouds_List extends WP_List_Table
 
         $days_options = [
             'flat' => esc_attr__( 'Cloud', 'simple-tags' ),
-            'list' => esc_attr__( 'List (UL/LI)', 'simple-tags' ),
-            'ol' => esc_attr__( 'Ordinary List (OL/LI)', 'simple-tags' ),
+            'list' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ),
+            'ol' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ),
         ];
 
         return $days_options[$item['format']];

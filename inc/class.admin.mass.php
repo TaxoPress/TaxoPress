@@ -111,7 +111,9 @@ class SimpleTags_Admin_Mass {
 				<input type="hidden" name="taxo" value="<?php echo esc_attr( SimpleTags_Admin::$taxonomy ); ?>"/>
 				<input type="hidden" name="cpt" value="<?php echo esc_attr( SimpleTags_Admin::$post_type ); ?>"/>
 
-        <h2><?php _e( 'Mass edit terms', 'simple-tags' ); ?></h2>
+        <h1><?php _e( 'Mass edit terms', 'simple-tags' ); ?></h1>
+      <br>
+	  <div class="taxopress-description"><?php esc_html_e('This feature allows users to mass edit terms while creating and editing content.', 'simple-tags'); ?></div>
       <br>
 
 				<ul class="subsubsub">

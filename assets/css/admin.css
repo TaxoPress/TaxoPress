@@ -319,6 +319,10 @@
     max-height: 100px;
 }
 
+#auto_link_exclude {
+    width: 100%;
+}
+
 .taxopress-select2 {
     min-width: 200px;
 }
@@ -991,17 +995,27 @@ ul.taxopress-tab li.posttags_display_tab a::before {
 .manage-taxopress-terms .column-slug {
     width: unset;
 }
-.st-html-exclusion-table th {
+.st-html-exclusion-table th,
+.st-custom-exclusion-table th {
     padding: unset;
-    white-space: nowrap;
     overflow-wrap: break-word;
     max-width: 120px;
 }
-.st-html-exclusion-table td {
+.st-html-exclusion-table td,
+.st-custom-exclusion-table td {
     padding: 5px 5px;
-  white-space: nowrap;
-  overflow-wrap: break-word;
-  max-width: 300px;
+    overflow-wrap: break-word;
+    max-width: 180px;
+}
+
+.st-custom-exclusion-table th,
+.st-custom-exclusion-table td {
+    max-width: unset;
+}
+
+.st-exclusion-custom-form .flex-parent {
+    display: flex;
+    padding-bottom: 5px;
 }
 
 .st-autoterms-single-specific-term {

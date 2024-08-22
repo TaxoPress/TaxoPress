@@ -31,6 +31,7 @@ class SimpleTags_Client_RelatedPosts {
 			'post_type'     => get_post_type($post),// leaving this for legacy purpose
 			'post_types'    => '',
 			'number'        => 5,
+			'max_post_chars' => 100,
 			'order'         => 'count-desc',
 			'format'        => 'list',
 			'separator'     => '',
@@ -43,15 +44,19 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simple-tags' ),
 			'nopoststext'   => __( 'No related posts.', 'simple-tags' ),
 			'dateformat'    => get_option( 'date_format' ),
-			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simple-tags' ),
-			'ID'            => 0,
-			'hide_title'    => 0,
-			'hide_output'   => 0,
-			'title_header'  => '',
-			'wrap_class'  => '',
-			'link_class'  => '',
-			'before'      => '',
-			'after'       => '',
+			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			                       %post_title% <br> 
+			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
+			                       </a> 
+			                       (%post_comment%)', 'simple-tags' ),
+             'ID'            => 0,
+			 'hide_title'    => 0,
+			 'hide_output'   => 0,
+			 'title_header'  => '',
+			 'wrap_class'  => '',
+			 'link_class'  => '',
+			 'before'      => '',
+			 'after'       => '',
 		);
 
 		// Get values in DB
@@ -74,6 +79,7 @@ class SimpleTags_Client_RelatedPosts {
 			'%commentcount%' => '%post_comment%',
 			'%tagcount%'     => '%post_tagcount%',
 			'%postid%'       => '%post_id%',
+			'%postcontent'   => '%post_content%',
 		);
 		if ( ! is_array( $user_args ) ) {
 			$user_args = strtr( $user_args, $markers );
@@ -179,128 +185,128 @@ class SimpleTags_Client_RelatedPosts {
 					break;
 			}
 
-			// Limit days - 86400 seconds = 1 day
-			$limit_days     = (int) $limit_days;
-			$limit_days_sql = '';
-			if ( $limit_days != 0 ) {
-				$limit_days_sql = 'AND p.post_date > "' . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . '"';
-			}
-			unset( $limit_days );
-
-			if (is_array($post_types) && !empty($post_types)) {
-				$post_type = $post_types;
-			} else {
-				// legacy post type
-
-				//get post type for current selection
-				if ($post_type === 'st_current_posttype'){
-					$post_type = [get_post_type($post)];
-				}
-
-				// Make array post type
-				if ( is_string( $post_type ) ) {
-					$post_type = explode( ',', $post_type );
-				}
-			}
-
-			// Build post type SQL
-            if(in_array('st_all_posttype', $post_type)){//if all post type is selected
-                $restrict_sql = '';
-            }else{
-                $restrict_sql = "AND p.post_type IN ('" . implode( "', '", $post_type ) . "')";
-            }
-
-			// Restrict posts
-			$exclude_posts_sql = '';
-			if ( $exclude_posts != '' ) {
-				$exclude_posts     = (array) explode( ',', $exclude_posts );
-				$exclude_posts     = array_unique( $exclude_posts );
-				$exclude_posts_sql = "AND p.ID NOT IN (";
-				foreach ( $exclude_posts as $value ) {
-					$value = (int) $value;
-					if ( $value > 0 && $value != $object_id ) {
-						$exclude_posts_sql .= '"' . $value . '", ';
-					}
-				}
-				$exclude_posts_sql .= '"' . $object_id . '")';
-			} else {
-				$exclude_posts_sql = "AND p.ID <> {$object_id}";
-			}
-			unset( $exclude_posts );
-
-			// Restricts tags
-			$terms_to_exclude = array();
-			if ( $exclude_terms != '' ) {
-				$exclude_terms = (array) explode( ',', $exclude_terms );
-				$exclude_terms = array_unique( $exclude_terms );
-				foreach ( $exclude_terms as $value ) {
-					$terms_to_exclude[] = trim( $value );
-				}
-			}
-			unset( $exclude_terms );
-
-			// SQL Terms list
-			$term_list = array();
-			foreach ( (array) $current_terms as $term ) {
-				if ( ! in_array( $term->name, $terms_to_exclude ) ) {
-					$term_list[] = '"' . (int) $term->term_id . '"';
-				}
-			}
-			$term_list = implode( ', ', $term_list );
-
-			// Build SQL terms subqueries array
-			$include_terms_sql = array();
-			if ( ! empty( $term_list ) ) {
-				$include_terms_sql[ $taxonomy ] = $term_list;
-			}
-
-			// Group Concat check if post_relatedtags is used by xformat...
-			$select_gp_concat = '';
-			if ( strpos( $xformat, '%post_relatedtags%' ) || $min_shared > 1 ) {
-				$select_gp_concat = ', GROUP_CONCAT(tt.term_id) as terms_id';
-			}
-
-			// Check if post_excerpt is used by xformat...
-			$select_excerpt = '';
-			//if ( strpos( $xformat, '%post_excerpt%' ) ) {
-			//	$select_excerpt = ', p.post_content, p.post_excerpt, p.post_password';
-			//}
-
-			// If empty return no posts text
-			if ( empty( $include_terms_sql ) ) {
-                if((int)$hide_output === 0){
-				    return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright, '', $wrap_class, $link_class );
-                }else {
-                    return '';
-                }
-			}
-
-			// Posts: title, comments_count, date, permalink, post_id, counter
-			$results = $wpdb->get_results( 
-                $wpdb->prepare( "
-				SELECT p.*, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
-				FROM {$wpdb->posts} AS p
-				INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
-				INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
-				WHERE 1 = 1
-				AND (tt.taxonomy = '{$taxonomy}' AND tt.term_id IN ({$term_list}))
-				{$exclude_posts_sql}
-				AND p.post_status = 'publish'
-				AND p.post_date_gmt < '" . current_time( 'mysql' ) . "'
-				{$limit_days_sql}
-				{$restrict_sql}
-				GROUP BY tr.object_id
-				ORDER BY {$order_by}
-                LIMIT 0, %d",
-                $limit_number
-                ) );
-
-			if (!$cache) {
-				$cache = [];
-			}
-			$cache[ $key ] = $results;
-			wp_cache_set( 'related_posts' . $taxonomy, $cache, 'simple-tags' );
+		// Limit days - 86400 seconds = 1 day
+		$limit_days     = (int) $limit_days;
+		$limit_days_sql = '';
+		if ( $limit_days != 0 ) {
+			$limit_days_sql = 'AND p.post_date > "' . date( 'Y-m-d H:i:s', time() - $limit_days * 86400 ) . '"';
 		}
+		unset( $limit_days );
+
+		if (is_array($post_types) && !empty($post_types)) {
+			$post_type = $post_types;
+		} else {
+			// legacy post type
+
+			//get post type for current selection
+			if ($post_type === 'st_current_posttype'){
+				$post_type = [get_post_type($post)];
+			}
+
+			// Make array post type
+			if ( is_string( $post_type ) ) {
+				$post_type = explode( ',', $post_type );
+			}
+		}
+
+		// Build post type SQL
+		if(in_array('st_all_posttype', $post_type)){//if all post type is selected
+			$restrict_sql = '';
+		}else{
+			$restrict_sql = "AND p.post_type IN ('" . implode( "', '", $post_type ) . "')";
+		}
+
+		// Restrict posts
+		$exclude_posts_sql = '';
+		if ( $exclude_posts != '' ) {
+			$exclude_posts     = (array) explode( ',', $exclude_posts );
+			$exclude_posts     = array_unique( $exclude_posts );
+			$exclude_posts_sql = "AND p.ID NOT IN (";
+			foreach ( $exclude_posts as $value ) {
+				$value = (int) $value;
+				if ( $value > 0 && $value != $object_id ) {
+					$exclude_posts_sql .= '"' . $value . '", ';
+				}
+			}
+			$exclude_posts_sql .= '"' . $object_id . '")';
+		} else {
+			$exclude_posts_sql = "AND p.ID <> {$object_id}";
+		}
+		unset( $exclude_posts );
+
+		// Restricts tags
+		$terms_to_exclude = array();
+		if ( $exclude_terms != '' ) {
+			$exclude_terms = (array) explode( ',', $exclude_terms );
+			$exclude_terms = array_unique( $exclude_terms );
+			foreach ( $exclude_terms as $value ) {
+				$terms_to_exclude[] = trim( $value );
+			}
+		}
+		unset( $exclude_terms );
+
+		// SQL Terms list
+		$term_list = array();
+		foreach ( (array) $current_terms as $term ) {
+			if ( ! in_array( $term->name, $terms_to_exclude ) ) {
+				$term_list[] = '"' . (int) $term->term_id . '"';
+			}
+		}
+		$term_list = implode( ', ', $term_list );
+
+		// Build SQL terms subqueries array
+		$include_terms_sql = array();
+		if ( ! empty( $term_list ) ) {
+			$include_terms_sql[ $taxonomy ] = $term_list;
+		}
+
+		// Group Concat check if post_relatedtags is used by xformat...
+		$select_gp_concat = '';
+		if ( strpos( $xformat, '%post_relatedtags%' ) || $min_shared > 1 ) {
+			$select_gp_concat = ', GROUP_CONCAT(tt.term_id) as terms_id';
+		}
+
+		// Check if post_excerpt is used by xformat...
+		$select_excerpt = '';
+		//if ( strpos( $xformat, '%post_excerpt%' ) ) {
+		//	$select_excerpt = ', p.post_content, p.post_excerpt, p.post_password';
+		//}
+
+		// If empty return no posts text
+		if ( empty( $include_terms_sql ) ) {
+			if((int)$hide_output === 0){
+				return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $nopoststext, $copyright, '', $wrap_class, $link_class );
+			}else {
+				return '';
+			}
+		}
+
+		// Posts: title, comments_count, date, permalink, post_id, counter
+		$results = $wpdb->get_results( 
+			$wpdb->prepare( "
+			SELECT p.*, COUNT(tr.object_id) AS counter {$select_excerpt} {$select_gp_concat}
+			FROM {$wpdb->posts} AS p
+			INNER JOIN {$wpdb->term_relationships} AS tr ON (p.ID = tr.object_id)
+			INNER JOIN {$wpdb->term_taxonomy} AS tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
+			WHERE 1 = 1
+			AND (tt.taxonomy = '{$taxonomy}' AND tt.term_id IN ({$term_list}))
+			{$exclude_posts_sql}
+			AND p.post_status = 'publish'
+			AND p.post_date_gmt < '" . current_time( 'mysql' ) . "'
+			{$limit_days_sql}
+			{$restrict_sql}
+			GROUP BY tr.object_id
+			ORDER BY {$order_by}
+			LIMIT 0, %d",
+			$limit_number
+			) );
+
+		if (!$cache) {
+			$cache = [];
+		}
+		$cache[ $key ] = $results;
+		wp_cache_set( 'related_posts' . $taxonomy, $cache, 'simple-tags' );
+	}
 
 		if ( $format == 'object' || $format == 'array' ) {
 			return $results;
@@ -325,34 +331,60 @@ class SimpleTags_Client_RelatedPosts {
 		}
 		
 
-		// Replace placeholders
-		foreach ( (array) $results as $result ) {
-			if ( ( $min_shared > 1 && ( count( explode( ',', $result->terms_id ) ) < $min_shared ) ) || ! is_object( $result ) ) {
-				continue;
-			}
+	// Replace placeholders
+    foreach ((array) $results as $result) {
+       if (($min_shared > 1 && (count(explode(',', $result->terms_id)) < $min_shared)) || !is_object($result)) {
+           continue;
+        }
 
-			$element_loop = $xformat;
-			$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
-			$element_loop = str_replace( '%post_date%', mysql2date( $dateformat, $result->post_date ), $element_loop );
-			$element_loop = str_replace( '%post_permalink%', get_permalink( $result ), $element_loop );
-			$element_loop = str_replace( '%post_title%', $post_title, $element_loop );
-			$element_loop = str_replace( '%post_title_attribute%', esc_html( strip_tags( $post_title ) ), $element_loop );
-			$element_loop = str_replace( '%post_comment%', (int) $result->comment_count, $element_loop );
-			$element_loop = str_replace( '%post_tagcount%', (int) $result->counter, $element_loop );
-			$element_loop = str_replace( '%post_id%', $result->ID, $element_loop );
+		$element_loop = $xformat;
+		$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
 
-			if ( isset( $result->terms_id ) ) {
-				$element_loop = str_replace( '%post_relatedtags%', self::get_tags_from_id( $result->terms_id, $taxonomy ), $element_loop, $link_class );
-			}
-
-			if ( isset( $result->post_excerpt ) || isset( $result->post_content ) ) {
-				$element_loop = str_replace( '%post_excerpt%', self::get_excerpt_post( $result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap ), $element_loop );
-			}
-
-			$output[] = $element_loop;
+		// Add featured Image
+		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'thumbnail' );
+		
+		if (empty($post_thumbnail_url)) {
+			$post_thumbnail_url = $default_featured_media;
 		}
 
-		return SimpleTags_Client::output_content( 'st-related-posts', $format, $title, $output, $copyright, $separator, $wrap_class, $link_class, $before, $after );
+		if (empty($post_thumbnail_url)) {
+			$element_loop = preg_replace('/<img\b[^>]*\bsrc="%post_thumb_url%"[^>]*>/i', '', $element_loop);
+		}
+	
+		$element_loop = str_replace('%post_thumb_url%', $post_thumbnail_url, $element_loop);
+	
+
+    $element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
+    $element_loop = str_replace('%post_permalink%', get_permalink($result), $element_loop);
+    $element_loop = str_replace('%post_title%', $post_title, $element_loop);
+    $element_loop = str_replace('%post_title_attribute%', esc_html(strip_tags($post_title)), $element_loop);
+    $element_loop = str_replace('%post_comment%', (int) $result->comment_count, $element_loop);
+    $element_loop = str_replace('%post_tagcount%', (int) $result->counter, $element_loop);
+    $element_loop = str_replace('%post_id%', $result->ID, $element_loop);
+
+    if (isset($result->terms_id)) {
+        $element_loop = str_replace('%post_relatedtags%', self::get_tags_from_id($result->terms_id, $taxonomy), $element_loop);
+    }
+
+    if (isset($result->post_excerpt) || isset($result->post_content)) {
+        $element_loop = str_replace('%post_excerpt%', self::get_excerpt_post($result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap), $element_loop);
+    }
+
+       
+	   $max_chars = isset($max_post_chars) ? (int) $max_post_chars : 100;
+
+	   if (isset($result->post_content)) {
+		   // Trim content based on the maximum characters
+		   $content_excerpt = mb_strimwidth(wp_strip_all_tags($result->post_content), 0, $max_chars, '...');
+		   $element_loop = str_replace('%post_content%', esc_html($content_excerpt), $element_loop);
+	   }
+   
+
+   
+    $output[] = $element_loop;
+}
+
+return SimpleTags_Client::output_content('st-related-posts', $format, $title, $output, $copyright, $separator, $wrap_class, $link_class, $before, $after);
 	}
 
 	/**

@@ -436,7 +436,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
 		$select_2_page = false;
-		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts'])) {
+		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks'])) {
 			$select_2_page = true;
 		}
 
@@ -481,6 +481,12 @@ class SimpleTags_Admin
 			$script_dependencies[] = 'wp-util';
 		}
 
+		$taxopress_pages = taxopress_admin_pages();
+
+		if (isset($_GET['page']) && in_array($_GET['page'], $taxopress_pages)) {
+			wp_enqueue_media();
+		}
+
 		wp_register_script('st-admin-js', STAGS_URL . '/assets/js/admin.js', $script_dependencies, STAGS_VERSION);
 		wp_enqueue_script('st-admin-js');
 		//localize script
@@ -488,6 +494,8 @@ class SimpleTags_Admin
 			'ajaxurl'     => admin_url('admin-ajax.php'),
 			'select_valid' => esc_html__('Please select a valid', 'simple-tags'),
 			'check_nonce' => wp_create_nonce('st-admin-js'),
+			'select_default_label' => esc_html__('Select Default Post Thumb', 'simple-tags'),
+			'use_media_label' => esc_html__('Use this media', 'simple-tags'),
 		]);
 
 
@@ -499,8 +507,6 @@ class SimpleTags_Admin
 		// Register location
 		$wp_post_pages = array('post.php', 'post-new.php');
 		$wp_page_pages = array('page.php', 'page-new.php');
-
-		$taxopress_pages = taxopress_admin_pages();
 
 		wp_enqueue_style('st-admin-global');
 
