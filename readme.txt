@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.24.0- 2024-08-21
+v3.24.0- 2024-08-22
 * Update: Add options to Exclude Blocks from Auto Links, #2134
 * Update: Add options to Exclude Shortcodes from Auto Links, #2135
 * Update: Allow %post_content% as an option in Related Posts, #2127
