@@ -13,6 +13,9 @@ class SimpleTags_Client {
 		// Register media tags taxonomy
 		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
 
+		// Enqueue frontend scripts
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ) );
+
         require( STAGS_DIR . '/inc/class.client.autolinks.php' );
         new SimpleTags_Client_Autolinks();
 
@@ -61,6 +64,29 @@ class SimpleTags_Client {
         }
 
 		return true;
+	}
+
+	function enqueue_frontend_scripts() {
+		wp_enqueue_script('jquery');
+
+		$plugin_url = plugin_dir_url(dirname(__FILE__));
+
+		//enqueue frontend.js
+		wp_enqueue_script(
+			'frontend-js',
+			$plugin_url . 'assets/js/frontend.js', 
+			array('jquery'),
+			'1.0',
+			true 
+		);
+
+		// Enqueue frontend.css
+		wp_enqueue_style(
+			'frontend-css',
+			$plugin_url . 'assets/css/frontend.css', 
+			array(),
+			'1.0'
+		);
 	}
 
 
@@ -304,6 +330,23 @@ class SimpleTags_Client {
 				case 'ol' :
 					$output = ''. $before .' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ol> {$after}\n";
 					break;
+				case 'table' :
+					$output = $before . '<table class="' . $html_class . ' table-container">' . "\n\t";	
+					$count = 0;
+					foreach ($content as $item) {
+						$display_class = $count >= 6 ? 'hidden' : '';
+						$char_count = strlen($item);
+						$output .= '<tr class="table-row ' . $display_class . '"><td>' . $item . '</td><td class="char-count">' . $char_count . '</td></tr>' . "\n\t";
+						$count++;
+					}
+					if ($count > 6) {
+						$output .= '<tr><td class="see-more-close-container" colspan="2">';
+						$output .= '<span class="see-more-link">see more <span class="arrow right"></span></span>';
+						$output .= '<span class="close-table-link">close table <span class="arrow down"></span></span>';
+						$output .= '</td></tr>' . "\n";
+					}
+					$output .= "</table>" . $after . "\n";
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
@@ -316,6 +359,11 @@ class SimpleTags_Client {
 					break;
 				case 'list' :
 					$output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . $content . "</li>\n\t" . "</ul> {$after}\n";
+					break;
+				case 'table':
+					        $output = $before . '<table class="' . $html_class . '">' . "\n\t"
+							. '<tr><td>' . $content . '</td></tr>' . "\n\t"
+							. "</table>" . $after . "\n";
 					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";

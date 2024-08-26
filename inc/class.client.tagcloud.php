@@ -192,6 +192,11 @@ class SimpleTags_Client_TagCloud {
 			$xformat = str_replace( '%tag_size%', '', $xformat );
 		}
 
+		if ($format === 'table') { 
+			$smallest = $largest;
+			$mincolor = $maxcolor;
+		}
+
 		// Order terms before output
 		// count, name, rand | asc, desc
 

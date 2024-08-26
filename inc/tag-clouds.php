@@ -412,6 +412,7 @@ class SimpleTags_Tag_Clouds
 									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simple-tags' ), 'default' => 'true' ],
 									                    [ 'attr' => 'list', 'text' => esc_attr__( 'List (UL/LI)', 'simple-tags' ) ],
 									                    [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordinary List (OL/LI)', 'simple-tags' ) ],
+                                                        ['attr' => 'table', 'text' => esc_attr__('Table List', 'simple-tags')],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';
