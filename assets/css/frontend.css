@@ -2,8 +2,19 @@
     width: 100%;
     border: 1px solid #ddd;
     border-radius: 5px;
+    border-top: 0;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-collapse: collapse;
+    margin-top: -1px; 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-title {
+    padding: 15px 20px;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+    margin-bottom: -1px;
 }
 
 .table-row td {
