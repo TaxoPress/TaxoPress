@@ -639,7 +639,7 @@ class SimpleTags_Autoterms
                                                         'labeltext'  => esc_html__('Existing taxonomy terms', 'simple-tags'),
                                                         'aftertext'  => esc_html__('This will add existing terms from the taxonomy selected in the "General" tab.', 'simple-tags'),
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        'required'    => true,
+                                                        'required'    => false,
                                                     ]);
 
 
