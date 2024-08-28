@@ -67,6 +67,47 @@ class SimpleTags_Autoterms_Content
                 'page_manage_autoterms_content',
             ]
         );
+        add_action("load-$hook", [$this, 'save_autoterms_content_settings']);
+    }
+
+    public function save_autoterms_content_settings() {
+
+        if( !empty($_POST['taxopress_autoterm_content_submit']) 
+            && !empty($_POST['_nonce']) 
+            && wp_verify_nonce(sanitize_text_field($_POST['_nonce']), 'taxopress_autoterm_content_nonce')
+            && current_user_can('simple_tags')
+        ) {
+            $auto_term_id = !empty($_POST['taxopress_autoterm_content']['autoterm_id']) ? (int)$_POST['taxopress_autoterm_content']['autoterm_id'] : 0;
+
+            $existing_terms_batches = !empty($_POST['taxopress_autoterm_content']['existing_terms_batches']) ? (int)$_POST['taxopress_autoterm_content']['existing_terms_batches'] : 0;
+            $existing_terms_sleep = !empty($_POST['taxopress_autoterm_content']['existing_terms_sleep']) ? (int)$_POST['taxopress_autoterm_content']['existing_terms_sleep'] : 0;
+            $limit_days = !empty($_POST['taxopress_autoterm_content']['limit_days']) ? (int)$_POST['taxopress_autoterm_content']['limit_days'] : 0;
+            $autoterm_existing_content_exclude = !empty($_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude']) ? (int)$_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude'] : 0;
+
+            $response_message = esc_html__('An error occured.', 'simple-tags');
+            $response_sucess  = false;
+            if (empty($existing_terms_batches)) {
+                $response_message = esc_html__('Limit per batches is required.', 'simple-tags');
+            } elseif (empty($existing_terms_sleep)) {
+                $response_message = esc_html__('Batches wait time is required.', 'simple-tags');
+            } else {
+                $auto_term_settings = [
+                    'autoterm_id' => $auto_term_id,
+                    'existing_terms_batches' => $existing_terms_batches,
+                    'existing_terms_sleep' => $existing_terms_sleep,
+                    'limit_days' => $limit_days,
+                    'autoterm_existing_content_exclude' => $autoterm_existing_content_exclude,
+                ];
+                update_option('taxopress_autoterms_content', $auto_term_settings);
+                $response_message = esc_html__('Settings updated successfully.', 'simple-tags');
+                $response_sucess  = true;
+            }
+
+            add_action('admin_notices', function () use($response_message, $response_sucess) {
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                echo taxopress_admin_notices_helper($response_message, $response_sucess);
+            });
+        }
     }
 
     /**
@@ -270,6 +311,10 @@ class SimpleTags_Autoterms_Content
                                         ?>
                                     </table>
                                 </div>
+                            </div>
+                            <div class="tp-submit-div">
+                                <?php wp_nonce_field('taxopress_autoterm_content_nonce', '_nonce'); ?>
+                                <input type="submit" class="button-primary taxopress-taxonomy-submit taxopress-autoterm-content-submit" name="taxopress_autoterm_content_submit" value="<?php echo esc_attr__('Save Settings', 'simple-tags'); ?>">
                             </div>
                         </div>
 
