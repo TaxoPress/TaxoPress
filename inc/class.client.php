@@ -372,11 +372,6 @@ class SimpleTags_Client {
 			$title = '';
 		}
 
-		//put title inside table and make uppercase
-		if ($format === 'table'){
-			$title = '<div class="taxopress-table-title">' . strtoupper($title) . '</div>';
-		}
-
 		// Put title if exist
 		if ( ! empty( $title ) ) {
 			$title .= "\n\t";
