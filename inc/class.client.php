@@ -14,7 +14,7 @@ class SimpleTags_Client {
 		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
 
 		// Enqueue frontend scripts
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_displayformat_scripts' ) );
 
         require( STAGS_DIR . '/inc/class.client.autolinks.php' );
         new SimpleTags_Client_Autolinks();
@@ -66,13 +66,13 @@ class SimpleTags_Client {
 		return true;
 	}
 
-	function enqueue_frontend_scripts() {
+	function enqueue_displayformat_scripts() {
 
-		wp_register_script('table.js', STAGS_URL . '/assets/js/table.js', array('jquery'), STAGS_VERSION);
-		wp_register_style('table.css', STAGS_URL . '/assets/css/table.css', array(), STAGS_VERSION, 'all');
+		wp_register_script('st-table-list.js', STAGS_URL . '/assets/js/st-table-list.js', array('jquery'), STAGS_VERSION);
+		wp_register_style('st-table-list.css', STAGS_URL . '/assets/css/st-table-list.css', array(), STAGS_VERSION, 'all');
 
-		wp_enqueue_script('table.js');
-		wp_enqueue_style('table.css');
+		wp_enqueue_script('st-table-list.js');
+		wp_enqueue_style('st-table-list.css');
 
 	}
 
