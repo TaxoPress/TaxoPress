@@ -67,26 +67,13 @@ class SimpleTags_Client {
 	}
 
 	function enqueue_frontend_scripts() {
-		wp_enqueue_script('jquery');
 
-		$plugin_url = plugin_dir_url(dirname(__FILE__));
+		wp_register_script('frontend.js', STAGS_URL . '/assets/js/frontend.js', array('jquery'), STAGS_VERSION);
+		wp_register_style('frontend.css', STAGS_URL . '/assets/css/frontend.css', array(), STAGS_VERSION, 'all');
 
-		//enqueue frontend.js
-		wp_enqueue_script(
-			'frontend-js',
-			$plugin_url . 'assets/js/frontend.js', 
-			array('jquery'),
-			'1.0',
-			true 
-		);
+		wp_enqueue_script('frontend.js');
+		wp_enqueue_style('frontend.css');
 
-		// Enqueue frontend.css
-		wp_enqueue_style(
-			'frontend-css',
-			$plugin_url . 'assets/css/frontend.css', 
-			array(),
-			'1.0'
-		);
 	}
 
 
@@ -331,18 +318,18 @@ class SimpleTags_Client {
 					$output = ''. $before .' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ol> {$after}\n";
 					break;
 				case 'table' :
-					$output = $before . '<table class="' . $html_class . ' table-container">' . "\n\t";	
+					$output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";		
 					$count = 0;
 					foreach ($content as $item) {
 						$display_class = $count >= 6 ? 'hidden' : '';
 						$char_count = strlen($item);
-						$output .= '<tr class="table-row ' . $display_class . '"><td>' . $item . '</td><td class="char-count">' . $char_count . '</td></tr>' . "\n\t";
+						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-char-count">' . $char_count . '</td></tr>' . "\n\t";
 						$count++;
 					}
 					if ($count > 6) {
-						$output .= '<tr><td class="see-more-close-container" colspan="2">';
-						$output .= '<span class="see-more-link">see more <span class="arrow right"></span></span>';
-						$output .= '<span class="close-table-link">close table <span class="arrow down"></span></span>';
+						$output .= '<tr><td class="taxopress-see-more-container" colspan="2">';
+						$output .= '<span class="taxopress-see-more-link">see more <span class="taxopress-arrow right"></span></span>';
+						$output .= '<span class="taxopress-close-table-link">close table <span class="taxopress-arrow down"></span></span>';
 						$output .= '</td></tr>' . "\n";
 					}
 					$output .= "</table>" . $after . "\n";

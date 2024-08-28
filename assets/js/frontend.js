@@ -3,34 +3,34 @@ jQuery(document).ready(function($) {
     //   Show More / Close Table Functions
     // -------------------------------------------------------------
     function showMore() {
-        var rows = $(".table-row");
+        var rows = $(".taxopress-table-row");
         rows.each(function (index, row) {
             if (index >= 6) {
                 $(row).show();
             }
         });
-        $(".see-more-link").hide();
-        $(".close-table-link").show();
+        $(".taxopress-see-more-link").hide();
+        $(".taxopress-close-table-link").show();
     }
     
     function closeTable() {
-        var rows = $(".table-row");
+        var rows = $(".taxopress-table-row");
         rows.each(function (index, row) {
             if (index >= 6) {
                 $(row).hide();
             }
         });
-        $(".close-table-link").hide();
-        $(".see-more-link").show();
+        $(".taxopress-close-table-link").hide();
+        $(".taxopress-see-more-link").show();
     }
     
     // Event listeners for Show More and Close Table
-    $(document).on('click', '.see-more-link', function (e) {
+    $(document).on('click', '.taxopress-see-more-link', function (e) {
         e.preventDefault();
         showMore();
     });
 
-    $(document).on('click', '.close-table-link', function (e) {
+    $(document).on('click', '.taxopress-close-table-link', function (e) {
         e.preventDefault();
         closeTable();
     });

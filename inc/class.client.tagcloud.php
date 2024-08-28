@@ -191,10 +191,10 @@ class SimpleTags_Client_TagCloud {
 		if ( $size == 'false' ) {
 			$xformat = str_replace( '%tag_size%', '', $xformat );
 		}
-
+		
+        //Remove style component when display format is set to table
 		if ($format === 'table') { 
-			$smallest = $largest;
-			$mincolor = $maxcolor;
+			$xformat     = __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel%>%tag_name%</a>', 'simple-tags' );
 		}
 
 		// Order terms before output
