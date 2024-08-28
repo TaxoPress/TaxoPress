@@ -192,6 +192,11 @@ class SimpleTags_Client_TagCloud {
 			$xformat = str_replace( '%tag_size%', '', $xformat );
 		}
 
+		//remove font size and color if format is "WordPress Default"
+        if ($format === 'comma') { 
+            $xformat     = __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel%>%tag_name%</a>', 'simple-tags' );
+        }
+
 		// Order terms before output
 		// count, name, rand | asc, desc
 
