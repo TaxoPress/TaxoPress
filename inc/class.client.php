@@ -68,11 +68,11 @@ class SimpleTags_Client {
 
 	function enqueue_frontend_scripts() {
 
-		wp_register_script('frontend.js', STAGS_URL . '/assets/js/frontend.js', array('jquery'), STAGS_VERSION);
-		wp_register_style('frontend.css', STAGS_URL . '/assets/css/frontend.css', array(), STAGS_VERSION, 'all');
+		wp_register_script('table.js', STAGS_URL . '/assets/js/table.js', array('jquery'), STAGS_VERSION);
+		wp_register_style('table.css', STAGS_URL . '/assets/css/table.css', array(), STAGS_VERSION, 'all');
 
-		wp_enqueue_script('frontend.js');
-		wp_enqueue_style('frontend.css');
+		wp_enqueue_script('table.js');
+		wp_enqueue_style('table.css');
 
 	}
 
