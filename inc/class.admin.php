@@ -113,9 +113,8 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/autoterms_content.php';
 			SimpleTags_Autoterms::get_instance();
 			SimpleTags_Autoterms_Content::get_instance();
+			self::$enabled_menus['st_autoterms'] = esc_html__('Auto Terms', 'simple-tags');
 		}
-		
-		self::$enabled_menus['st_taxopress_ai'] = esc_html__('TaxoPress AI', 'simple-tags');
 		
 		TaxoPress_AI_Module::get_instance();
 
