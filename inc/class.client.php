@@ -68,11 +68,11 @@ class SimpleTags_Client {
 
 	function enqueue_displayformat_scripts() {
 
-		wp_register_script('st-table-list.js', STAGS_URL . '/assets/js/st-table-list.js', array('jquery'), STAGS_VERSION);
-		wp_register_style('st-table-list.css', STAGS_URL . '/assets/css/st-table-list.css', array(), STAGS_VERSION, 'all');
+		wp_register_script('taxopress-frontend.js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
+		wp_register_style('taxopress-frontend.css', STAGS_URL . '/assets/frontend/css/frontend.css', array(), STAGS_VERSION, 'all');
 
-		wp_enqueue_script('st-table-list.js');
-		wp_enqueue_style('st-table-list.css');
+		wp_enqueue_script('taxopress-frontend.js');
+		wp_enqueue_style('taxopress-frontend.css');
 
 	}
 
