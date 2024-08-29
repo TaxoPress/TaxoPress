@@ -1213,7 +1213,7 @@ class SimpleTags_Autoterms
                                         <span><?php echo esc_html__('TaxoPress and Languages', 'simple-tags'); ?></span>
                                     </h3>
                                 </div>
-                                <div class="inside">
+                                <div class="inside">                                    
                                      <p><?php echo sprintf(esc_html__('Please note that this is an automatic tool. It does have limitations around languages, types of content, and other factors. %1s Please read this documentation. %2s', 'simple-tags'), '<a href="https://taxopress.com/docs/characters/">', '</a>'); ?>
                                     </p>
                                 </div>

@@ -334,12 +334,13 @@ class SimpleTags_Client {
 					}
 					$output .= "</table>" . $after . "\n";
 				case 'comma':
-					$output = ''. ''. ''. ''. $before .  implode(', ', $content) . " {$after}\n";
+						$output = ''. ''. ''. ''. $before .  implode(', ', $content) . " {$after}\n";
 					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
 			}
+			
 		} else {
 			$content = trim( $content );
 			switch ( $format ) {
@@ -354,9 +355,9 @@ class SimpleTags_Client {
 							. '<tr><td>' . $content . '</td></tr>' . "\n\t"
 							. "</table>" . $after . "\n";
 					break;
-					case 'comma':
+				case 'comma':
 						$output = ''. ''. ''. ''. $before . $content . " {$after}\n";
-						break;
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;
