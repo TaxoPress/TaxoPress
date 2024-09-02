@@ -26,8 +26,8 @@ function taxopress_autoterms_content_by_ajax()
         $limit_days = !empty($_POST['taxopress_autoterm_content']['limit_days']) ? (int)$_POST['taxopress_autoterm_content']['limit_days'] : 0;
         $autoterm_existing_content_exclude = !empty($_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude']) ? (int)$_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude'] : 0;
 
-        $start_from = ( isset($_POST['start_from']) && (int)$_POST['start_from'] > 0) ? ((int)$_POST['start_from']) : 0;
-        $offset_start_from = $start_from > 0 ? ((int)$start_from - 1) : 0;
+        $start_from = isset($_POST['start_from']) && (int)$_POST['start_from'] > 0 ? (int)$_POST['start_from'] : 0;
+        $offset_start_from = max(0, $start_from);
 
         if(!current_user_can('simple_tags')){
             $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Permission denied.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
@@ -73,8 +73,6 @@ function taxopress_autoterms_content_by_ajax()
         $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 20;
 
         $sleep = (isset($autoterm_data['existing_terms_sleep']) && (int)$autoterm_data['existing_terms_sleep'] > 0) ? (int)$autoterm_data['existing_terms_sleep'] : 0;
-
-        $autoterm_existing_content_exclude = isset($autoterm_data['autoterm_existing_content_exclude']) ? (int)$autoterm_data['autoterm_existing_content_exclude'] : 0;
         
         if($sleep > 0 && $start_from > 0){
             sleep($sleep);
