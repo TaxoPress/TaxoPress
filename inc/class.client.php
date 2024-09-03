@@ -336,6 +336,9 @@ class SimpleTags_Client {
 						$output .= '</td></tr>' . "\n";
 					}
 					$output .= "</table>" . $after . "\n";
+					break;
+				case 'border':
+					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;	
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
@@ -350,13 +353,16 @@ class SimpleTags_Client {
 				case 'list' :
 					$output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . $content . "</li>\n\t" . "</ul> {$after}\n";
 					break;
-					case 'comma':
-						$output = ''. ''. ''. ''. $before . $content . " {$after}\n";
-						break;
-					case 'table':
-						$output = $before . '<table class="' . $html_class . '">' . "\n\t"
+				case 'comma':
+					$output = ''. ''. ''. ''. $before . $content . " {$after}\n";
+					break;
+				case 'table':
+					$output = $before . '<table class="' . $html_class . '">' . "\n\t"
 						. '<tr><td>' . $content . '</td></tr>' . "\n\t"
 						. "</table>" . $after . "\n";
+					break;
+				case 'border':
+					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;	
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";

@@ -48,3 +48,12 @@
     border-right: 5px solid transparent;
     border-top: 5px solid;
 }
+
+/* border-cloud styling */
+.taxopress-border-cloud a{
+    text-decoration: none;
+    border: 1px solid;
+    padding: 4px 7px; 
+    display: inline-block;
+    margin: 3px;
+}
