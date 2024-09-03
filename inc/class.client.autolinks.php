@@ -479,7 +479,7 @@ class SimpleTags_Client_Autolinks
 				// Replace HTML entities with placeholders in term name too to match them in content
 				$search = preg_replace_callback('/&#(\d+);/', function($matches) {
 					return 'STARTTAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITYEND';
-				}, wptexturize($search));
+				}, $search);
 
 				//if ('i' === $case) {
 				if ($autolink_case === 'none') { // retain case
