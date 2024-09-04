@@ -688,6 +688,18 @@
         $('.auto-term-content-result-title').html('');
     });
 
+    if ($('.taxopress-autoterm-content #autoterm_id').length > 0) {
+      auto_terms_content_settings_edit();
+      $(document).on('change', '.taxopress-autoterm-content #autoterm_id', function (e) {
+        auto_terms_content_settings_edit();
+      });
+    }
+    function auto_terms_content_settings_edit() {
+      $('.autoterm-content-settings-link').remove();
+      var current_settings_id = $('.taxopress-autoterm-content #autoterm_id').val();
+      $('.taxopress-autoterm-content #autoterm_id').next('p').append('<a target="_blank" class="autoterm-content-settings-link" href="' + st_admin_localize.autoterm_admin_url + '&add=new_item&action=edit&taxopress_autoterms=' + current_settings_id + '">' + st_admin_localize.existing_content_admin_label + '</a>');
+    }
+
 
     // -------------------------------------------------------------
     //   Auto term all content

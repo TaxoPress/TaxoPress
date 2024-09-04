@@ -1030,6 +1030,12 @@ ul.taxopress-tab li.posttags_display_tab a::before {
     max-height: 430px;
     overflow-y: scroll;
 }
+
+.autoterm-content-settings-link {
+    margin-left: 5px;
+    text-decoration: none;
+}
+
 .taxopress-spinner {
     float: none;
 }
