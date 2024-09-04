@@ -34,6 +34,10 @@ function taxopress_autoterms_content_by_ajax()
             wp_send_json($response);
         }
 
+        if ($start_from === 0) {
+            delete_option('tmp_auto_terms_st');
+        }
+
         $auto_term_settings = [
             'autoterm_id' => $auto_term_id,
             'existing_terms_batches' => $existing_terms_batches,
@@ -125,7 +129,8 @@ function taxopress_autoterms_content_by_ajax()
             $response['content'] = $response_content;
             $response['done'] = ($start_from + count($objects));
             $percentage = 100;
-            $progress_message = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Progress Report: %s posts checked.', 'simple-tags'), ($start_from + count($objects))) .'</p></div>';
+            $response['notice'] = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Please leave this screen running to continue the scan. To stop the scan, close this screen or click this button: %1s Stop %2s', 'simple-tags'), '<a href="#" class="terminate-autoterm-scan">', '</a>') .'</p></div>';
+            $progress_message = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Progress Report: %s posts checked.', 'simple-tags'), '<strong>' . ($start_from + count($objects)) . '</strong>') .'</p></div>';
               
         } else {
 
