@@ -1,0 +1,59 @@
+.taxopress-table-container {
+    width: 100%;
+}
+
+.taxopress-table-row td {
+    border: none;
+}
+
+.taxopress-table-row:nth-child(n+7) {
+    display: none;
+}
+
+.taxopress-see-more-link,
+.taxopress-close-table-link {
+    cursor: pointer;
+}
+
+.taxopress-close-table-link {
+    display: none;
+}
+
+.taxopress-see-more-container {
+    text-align: right;
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.taxopress-table-container .taxopress-char-count {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.taxopress-arrow {
+    display: inline-block;
+}
+
+.taxopress-arrow.right {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid;
+}
+
+.taxopress-arrow.down {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+}
+
+/* border-cloud styling */
+.taxopress-border-cloud a{
+    text-decoration: none;
+    border: 1px solid;
+    padding: 4px 7px; 
+    display: inline-block;
+    margin: 3px;
+}

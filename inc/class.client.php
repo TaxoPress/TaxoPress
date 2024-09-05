@@ -13,6 +13,9 @@ class SimpleTags_Client {
 		// Register media tags taxonomy
 		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
 
+		// Enqueue frontend scripts
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_displayformat_scripts' ) );
+
         require( STAGS_DIR . '/inc/class.client.autolinks.php' );
         new SimpleTags_Client_Autolinks();
 
@@ -62,6 +65,16 @@ class SimpleTags_Client {
 
 		return true;
 	}
+
+	function enqueue_displayformat_scripts() {
+
+		wp_register_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
+		wp_register_style('taxopress-frontend-css', STAGS_URL . '/assets/frontend/css/frontend.css', array(), STAGS_VERSION, 'all');
+
+		wp_enqueue_script('taxopress-frontend-js');
+		wp_enqueue_style('taxopress-frontend-css');
+
+	}	
 
 
 	/**
@@ -304,6 +317,29 @@ class SimpleTags_Client {
 				case 'ol' :
 					$output = ''. $before .' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ol> {$after}\n";
 					break;
+				case 'comma':
+					$output = ''. ''. ''. ''. $before .  implode(', ', $content) . " {$after}\n";
+					break;
+				case 'table' :
+					$output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";
+					$count = 0;
+					foreach ($content as $item) {
+						$display_class = $count >= 6 ? 'hidden' : '';
+						$char_count = strlen($item);
+						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-char-count">' . $char_count . '</td></tr>' . "\n\t";
+						$count++;
+					}
+					if ($count > 6) {
+						$output .= '<tr><td class="taxopress-see-more-container" colspan="2">';
+						$output .= '<span class="taxopress-see-more-link">see more <span class="taxopress-arrow right"></span></span>';	
+						$output .= '<span class="taxopress-close-table-link">close table <span class="taxopress-arrow down"></span></span>';
+						$output .= '</td></tr>' . "\n";
+					}
+					$output .= "</table>" . $after . "\n";
+					break;
+				case 'border':
+					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
+					break;	
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
@@ -317,6 +353,17 @@ class SimpleTags_Client {
 				case 'list' :
 					$output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . $content . "</li>\n\t" . "</ul> {$after}\n";
 					break;
+				case 'comma':
+					$output = ''. ''. ''. ''. $before . $content . " {$after}\n";
+					break;
+				case 'table':
+					$output = $before . '<table class="' . $html_class . '">' . "\n\t"
+						. '<tr><td>' . $content . '</td></tr>' . "\n\t"
+						. "</table>" . $after . "\n";
+					break;
+				case 'border':
+					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
+					break;	
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;

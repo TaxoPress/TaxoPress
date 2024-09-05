@@ -460,8 +460,12 @@ if (!class_exists('TaxoPressAiApi')) {
 
                         if ($status_code !== 200) {
                             $error_message = (is_array($body_data) && !empty($body_data['error']['message'])) ? $body_data['error']['message'] : $status_code;
+                            if (strpos($error_message, 'You exceeded your current quota, please check your plan and billing details') !== false) {
+                                // https://github.com/TaxoPress/TaxoPress/issues/1951
+                                $error_message = esc_html__('Error: OpenAI says there is an issue with this API key. Please check your plan or billing details.', 'simple-tags');
+                            }
                             $return['status'] = 'error';
-                            $return['message'] = sprintf(esc_html__('API Error: %1s.', 'simple-tags'), $error_message);
+                            $return['message'] = $error_message;//sprintf(esc_html__('API Error: %1s.', 'simple-tags'), $error_message);
                         } else {
 
                             $data = [];

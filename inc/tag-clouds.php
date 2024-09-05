@@ -410,8 +410,11 @@ class SimpleTags_Tag_Clouds
                                                 $select = [
 								                    'options' => [
 									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simple-tags' ), 'default' => 'true' ],
-									                    [ 'attr' => 'list', 'text' => esc_attr__( 'List (UL/LI)', 'simple-tags' ) ],
-									                    [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordinary List (OL/LI)', 'simple-tags' ) ],
+									                    [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
+									                    [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
+                                                        [ 'attr' => 'comma', 'text' => esc_attr__( 'WordPress Default', 'simple-tags' ), 'default' => 'true'],
+                                                        ['attr' => 'table', 'text' => esc_attr__('Table List', 'simple-tags')],
+                                                        ['attr' => 'border', 'text' => esc_attr__('Border Cloud', 'simple-tags')],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';

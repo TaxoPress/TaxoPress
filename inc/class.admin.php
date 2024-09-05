@@ -113,9 +113,8 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/autoterms_content.php';
 			SimpleTags_Autoterms::get_instance();
 			SimpleTags_Autoterms_Content::get_instance();
+			self::$enabled_menus['st_autoterms'] = esc_html__('Auto Terms', 'simple-tags');
 		}
-		
-		self::$enabled_menus['st_taxopress_ai'] = esc_html__('TaxoPress AI', 'simple-tags');
 		
 		TaxoPress_AI_Module::get_instance();
 
@@ -496,6 +495,8 @@ class SimpleTags_Admin
 			'check_nonce' => wp_create_nonce('st-admin-js'),
 			'select_default_label' => esc_html__('Select Default Post Thumb', 'simple-tags'),
 			'use_media_label' => esc_html__('Use this media', 'simple-tags'),
+			'existing_content_admin_label' => esc_html__('Edit the current setting.', 'simple-tags'),
+			'autoterm_admin_url' => admin_url('admin.php?page=st_autoterms'),
 		]);
 
 
