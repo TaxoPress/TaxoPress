@@ -65,7 +65,7 @@ class Autoterms_List extends WP_List_Table
         $columns = [
             'title'     => __('Title', 'simple-tags'),
             'taxonomy'  => __('Taxonomy', 'simple-tags'),
-            'post_types'  => __('Auto term Post type', 'simple-tags'),
+            'post_types'  => __('Post Type', 'simple-tags'),
             'source'  => __('Source', 'simple-tags')
         ];
 
