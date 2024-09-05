@@ -442,6 +442,23 @@ class SimpleTags_Related_Post
                                                             'required'   => true,
                                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         ]);
+
+                                                        $select = [
+                                                            'options' => [
+                                                                [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
+                                                                [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
+                                                                [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ) ],
+                                                            ], 
+                                                        ]; 
+                                                        $selected = (isset($current) && isset($current['format'])) ? taxopress_disp_boolean($current['format']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['format'] : ''; 
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                        echo $ui->get_select_checkbox_input_main( [
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'format',
+                                                            'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
+                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ] );
                                                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_td_end() . $ui->get_tr_end();
                                                     ?>

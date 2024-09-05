@@ -340,6 +340,9 @@ class SimpleTags_Client {
 				case 'border':
 					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;	
+				case 'box':	
+					$output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
@@ -364,6 +367,9 @@ class SimpleTags_Client {
 				case 'border':
 					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;	
+				case 'box':
+					$output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;
