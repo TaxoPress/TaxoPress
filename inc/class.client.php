@@ -289,6 +289,22 @@ class SimpleTags_Client {
 	}
 
 	/**
+	 *  Function to get the total number of posts
+	 * 
+	 * @param string $post_tags
+	 * @param string $categories
+	 * @param string $link_categories
+	 * @return int Total number of posts.
+	 */
+	public static function get_total_post_count( $post_type = 'post' ) {
+		$count_posts = wp_count_posts( $post_type );
+		if ( isset( $count_posts->publish ) ) {
+			return (int) $count_posts->publish;
+		}
+		return 0;
+	}
+
+	/**
 	 * Format data for output
 	 *
 	 * @param string $html_class
@@ -324,9 +340,15 @@ class SimpleTags_Client {
 					$output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";
 					$count = 0;
 					foreach ($content as $item) {
+
+						$term = get_term_by('name', $item, 'post_tag', 'categories', 'link_categories');
+						$post_count = 0;
+						if ($term && !is_wp_error($term)) {
+							$post_count = $term->count;
+						}	
+
 						$display_class = $count >= 6 ? 'hidden' : '';
-						$char_count = strlen($item);
-						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-char-count">' . $char_count . '</td></tr>' . "\n\t";
+						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-char-count">' . $post_count . '</td></tr>' . "\n\t";
 						$count++;
 					}
 					if ($count > 6) {
