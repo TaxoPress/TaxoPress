@@ -348,7 +348,7 @@ class SimpleTags_Client {
 						}	
 
 						$display_class = $count >= 6 ? 'hidden' : '';
-						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-char-count">' . $post_count . '</td></tr>' . "\n\t";
+						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-post-count">' . $post_count . '</td></tr>' . "\n\t";
 						$count++;
 					}
 					if ($count > 6) {
