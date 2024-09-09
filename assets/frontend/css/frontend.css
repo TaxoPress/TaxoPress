@@ -61,20 +61,12 @@
 /* box-list styling */
 .taxopress-box-list{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    overflow: scroll;
 }
 
 .taxopress-box-list a{
     text-decoration: none;
-    flex: 0 1 25%;
     margin: 10px;
     box-sizing: border-box;
-
-}
-
-.taxopress-box-list img{
-    max-width: 100%;
-    height: auto;
 
 }
