@@ -289,19 +289,22 @@ class SimpleTags_Client {
 	}
 
 	/**
-	 *  Function to get the total number of posts
+	 *  Detect the taxonomy based on the item or context.
 	 * 
-	 * @param string $post_tags
-	 * @param string $categories
-	 * @param string $link_categories
-	 * @return int Total number of posts.
+	 * @param string $item
+	 * @return string|false The detected taxonomy or false if not detected.
 	 */
-	public static function get_total_post_count( $post_type = 'post' ) {
-		$count_posts = wp_count_posts( $post_type );
-		if ( isset( $count_posts->publish ) ) {
-			return (int) $count_posts->publish;
+	public static function detect_taxonomy( $item) {
+
+		$taxonomies = get_taxonomies(array( 'public' => true,), 'names');
+
+		foreach ($taxonomies as $taxonomy){
+			if (term_exists($item, $taxonomy)){
+				return $taxonomy;
+			}
 		}
-		return 0;
+
+		return false;
 	}
 
 	/**
@@ -316,7 +319,7 @@ class SimpleTags_Client {
 	 *
 	 * @return string|array
 	 */
-	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '', $before = '', $after = '') {
+	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '', $before = '', $after = '', $taxonomy ='') {
 		if ( empty( $content ) ) {
 			return ''; // return nothing
 		}
@@ -341,7 +344,15 @@ class SimpleTags_Client {
 					$count = 0;
 					foreach ($content as $item) {
 
-						$term = get_term_by('name', $item, 'post_tag', 'categories', 'link_categories');
+						if (empty($taxonomy)){
+							$taxonomy = self::detect_taxonomy($item);
+
+							if (!$taxonomy){
+								continue;
+							}
+						}
+
+						$term = get_term_by('name', $item, $taxonomy);
 						$post_count = 0;
 						if ($term && !is_wp_error($term)) {
 							$post_count = $term->count;
