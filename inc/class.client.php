@@ -289,6 +289,25 @@ class SimpleTags_Client {
 	}
 
 	/**
+	 *  Detect the taxonomy based on the item or context.
+	 * 
+	 * @param string $item
+	 * @return string|false The detected taxonomy or false if not detected.
+	 */
+	public static function detect_taxonomy( $item) {
+
+		$taxonomies = get_taxonomies(array( 'public' => true,), 'names');
+
+		foreach ($taxonomies as $taxonomy){
+			if (term_exists($item, $taxonomy)){
+				return $taxonomy;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Format data for output
 	 *
 	 * @param string $html_class
@@ -300,7 +319,7 @@ class SimpleTags_Client {
 	 *
 	 * @return string|array
 	 */
-	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '', $before = '', $after = '') {
+	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '', $before = '', $after = '', $taxonomy ='') {
 		if ( empty( $content ) ) {
 			return ''; // return nothing
 		}
@@ -324,9 +343,23 @@ class SimpleTags_Client {
 					$output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";
 					$count = 0;
 					foreach ($content as $item) {
+
+						if (empty($taxonomy)){
+							$taxonomy = self::detect_taxonomy($item);
+
+							if (!$taxonomy){
+								continue;
+							}
+						}
+
+						$term = get_term_by('name', $item, $taxonomy);
+						$post_count = 0;
+						if ($term && !is_wp_error($term)) {
+							$post_count = $term->count;
+						}	
+
 						$display_class = $count >= 6 ? 'hidden' : '';
-						$char_count = strlen($item);
-						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-char-count">' . $char_count . '</td></tr>' . "\n\t";
+						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-post-count">' . $post_count . '</td></tr>' . "\n\t";
 						$count++;
 					}
 					if ($count > 6) {
