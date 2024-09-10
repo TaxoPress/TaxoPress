@@ -499,7 +499,9 @@ class SimpleTags_Related_Post
                                                             'blogonly' => esc_attr__('Blog display', 'simple-tags'),
                                                         ];
                                                         foreach ($post_types as $post_type) {
-                                                            $term_auto_locations[$post_type->name] = $post_type->label;
+                                                            if (!in_array($post_type->name, ['attachment'])) {
+                                                                $term_auto_locations[$post_type->name] = $post_type->label;
+                                                            }
                                                         }
 
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display related posts',
@@ -591,6 +593,9 @@ class SimpleTags_Related_Post
                                                             $key = $post_type->name;
                                                             $value = $post_type->label;
 
+                                                            if (in_array($post_type->name, ['attachment'])) {
+                                                                continue;
+                                                            }
                                                             echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
 
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
