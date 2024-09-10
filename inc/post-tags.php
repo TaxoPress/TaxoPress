@@ -423,7 +423,9 @@ class SimpleTags_Post_Tags
                                                                 'blogonly' => esc_attr__('Blog display', 'simple-tags'),
                                                             ];
                                                             foreach ($post_types as $post_type) {
-                                                                $term_auto_locations[$post_type->name] = $post_type->label;
+                                                                if (!in_array($post_type->name, ['attachment'])) {
+                                                                    $term_auto_locations[$post_type->name] = $post_type->label;
+                                                                }
                                                             }
 
                                                             echo '<tr valign="top"><th scope="row"><label>' . esc_html__(

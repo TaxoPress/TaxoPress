@@ -361,7 +361,9 @@ class SimpleTags_Tag_Clouds
 
                                                 $options[] = [ 'attr' => '', 'text' => esc_html__('All post types', 'simple-tags'), 'default' => 'true' ];
                                                 foreach ( get_post_types(['public' => true], 'objects') as $post_type ) {
-                                                    $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
+                                                    if (!in_array($post_type->name, ['attachment'])) {
+                                                        $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
+                                                    }
                                                 }
 
                                                 $select = [
