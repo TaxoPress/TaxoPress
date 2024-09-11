@@ -352,8 +352,8 @@ class SimpleTags_Client {
 							}
 						}
 						
-						$name = strip_tags($item);
-						$term = get_term_by('name', $name, $taxonomy);
+						$term_name = strip_tags($item);
+						$term = get_term_by('name', $term_name, $taxonomy);
 						$post_count = 0;
 
 						if ($term && !is_wp_error($term)) {
