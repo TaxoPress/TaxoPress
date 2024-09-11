@@ -1010,6 +1010,7 @@ class SimpleTags_Related_Post
                             <li><code>%post_excerpt%</code> <?php echo esc_html__('The post excerpt', 'simple-tags'); ?></li>
                             <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
                             <li><code>%post_content%</code> <?php echo esc_html__('The post content', 'simple-tags'); ?></li>
+                            <li><code>%post_category%</code> <?php echo esc_html__('The post category', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>
