@@ -78,6 +78,11 @@
     display: block;
 }
 
+.taxopress-relatedpost-date, .taxopress-relatedpost-cat{
+    color:#666;
+    font-size: 0.9em;
+}
+
 @media (max-width: 1200px) {
     .taxopress-box-list a {
         flex: 1 1 calc(50% - 10px);
