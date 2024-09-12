@@ -237,7 +237,9 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		} elseif ($autoterm_use_ibm_watson > 0 && taxopress_is_pro_version()) {
+		}
+		
+		if ($autoterm_use_ibm_watson > 0 && taxopress_is_pro_version()) {
 			//Autoterm with IBM Watson
 			$ibm_watson_results = TaxoPressAiApi::get_ibm_watson_results($args);
 			if (!empty($ibm_watson_results['results'])) {
@@ -313,7 +315,9 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		} elseif ($autoterm_use_dandelion > 0 && taxopress_is_pro_version()) {
+		} 
+		
+		if ($autoterm_use_dandelion > 0 && taxopress_is_pro_version()) {
 			//Autoterm with Dandelion
 			$dandelion_results = TaxoPressAiApi::get_dandelion_results($args);
 			if (!empty($dandelion_results['results'])) {
@@ -389,7 +393,9 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		} elseif ($autoterm_use_opencalais > 0 && taxopress_is_pro_version()) {
+		} 
+		
+		if ($autoterm_use_opencalais > 0 && taxopress_is_pro_version()) {
 			//Autoterm with OpenCalais
 			$open_calais_results = TaxoPressAiApi::get_open_calais_results($args);
 			if (!empty($open_calais_results['results'])) {
@@ -470,7 +476,9 @@ class SimpleTags_Client_Autoterms
 					}
 				}
 			}
-		} elseif (isset($options['specific_terms']) && isset($options['autoterm_useonly']) && (int) $options['autoterm_useonly'] === 1) {
+		} 
+		
+		if (isset($options['specific_terms']) && isset($options['autoterm_useonly']) && (int) $options['autoterm_useonly'] === 1) {
 			// Auto term with specific auto terms list
 			$terms = maybe_unserialize($options['specific_terms']);
 			$terms = taxopress_change_to_array($terms);
