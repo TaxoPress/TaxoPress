@@ -672,12 +672,12 @@
     // -------------------------------------------------------------
     //   Limit auto term source to only one option
     // -------------------------------------------------------------
-    $(document).on('change', '.autoterm-terms-to-use-field', function (e) {
+    /*$(document).on('change', '.autoterm-terms-to-use-field', function (e) {
         if(!$(this).hasClass('autoterm_useall') && !$(this).hasClass('autoterm_useonly')) {
           $('.autoterm-terms-to-use-field').not(this).prop('checked', false);
           autoterm_use_taxonomy_action();
         }
-    });
+    });*/
 
 
     // -------------------------------------------------------------
