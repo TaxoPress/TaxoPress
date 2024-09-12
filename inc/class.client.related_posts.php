@@ -288,7 +288,7 @@ class SimpleTags_Client_RelatedPosts {
 			$xformat       = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 								   <br>
-								   %post_content%
+								   %post_title%
 								   <br>
 								   %post_date% &bull; %post_category%
 			                       </a> 
@@ -362,7 +362,7 @@ class SimpleTags_Client_RelatedPosts {
 			 }, $categories);
 			 $post_category = implode(', ', $category_names); // Join categories with a comma if there are multiple
 		 } else {
-			 $post_category = 'Uncategorized'; // Fallback if no category is found
+			 $post_category = '';
 		 }
 	 
 		 // Replace %post_category% in the element loop
@@ -389,7 +389,7 @@ class SimpleTags_Client_RelatedPosts {
         }
 
 	$element_loop = str_replace('%post_date%', $formatted_date, $element_loop);
-	
+
     $element_loop = str_replace('%post_permalink%', get_permalink($result), $element_loop);
     $element_loop = str_replace('%post_title%', $post_title, $element_loop);
     $element_loop = str_replace('%post_title_attribute%', esc_html(strip_tags($post_title)), $element_loop);
