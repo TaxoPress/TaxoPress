@@ -61,16 +61,31 @@
 /* box-list styling */
 .taxopress-box-list {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 10px; 
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.taxopress-box-list a {
+    display: block;
+    text-decoration: none;
+    flex: 1 1 calc(33.333% - 10px);
+    box-sizing: border-box;
 }
 
 .taxopress-box-list img {
-    max-width: 100%; 
-    height: auto; 
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
-.taxopress-box-list a{
-    text-decoration: none;
+@media (max-width: 1200px) {
+    .taxopress-box-list a {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
 
+@media (max-width: 768px) {
+    .taxopress-box-list a {
+        flex: 1 1 100%;
+    }
 }

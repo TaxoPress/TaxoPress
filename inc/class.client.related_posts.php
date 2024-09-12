@@ -290,7 +290,7 @@ class SimpleTags_Client_RelatedPosts {
 								   <br>
 								   %post_title%
 								   <br>
-								   %post_date% &bull; %post_category%
+								    <span style="color: #666; font-size: 0.9em;">%post_date% &bull;</span>  <span style="color: #666; font-size: 0.9em;">%post_category%</span>
 			                       </a> 
 			                       ', 'simple-tags' );
 		}
