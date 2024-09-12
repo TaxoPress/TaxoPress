@@ -57,3 +57,20 @@
     display: inline-block;
     margin: 3px;
 }
+
+/* box-list styling */
+.taxopress-box-list {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
+
+.taxopress-box-list img {
+    max-width: 100%; 
+    height: auto; 
+}
+
+.taxopress-box-list a{
+    text-decoration: none;
+
+}
