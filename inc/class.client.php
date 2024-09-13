@@ -289,23 +289,29 @@ class SimpleTags_Client {
 	}
 
 	/**
-	 * Detect the texonomy based on the item or context
+	 * Retrieve the post count for a term across all taxonomies.
+	 * 
+	 * This function queries terms based on the given term name and returns the number of posts associated with the first matching term.
+	 * It does not require specifying a taxonomy and will search across all public taxonomies.
 	 * 
 	 * @param string $item
-	 * @return string|false The detected taxonomy or false if not detected
+	 * @return int The number of posts associated with the first matching term. Returns 0 if no term is found or if it has no posts.
 	 */
-	public static function detect_taxonomy($item){
+	public static function get_term_post_counts( $item ) {
 
-		$taxonomies = get_taxonomies(array( 'public' => true,), 'names');
+			$terms = get_terms( array(
+				'name' => strip_tags($item),
+				'hide_empty' => false,
+				'fields' => 'all',
+				) );	
 
-		foreach ($taxonomies as $taxonomy){
-			if (term_exists($item, $taxonomy)){
-				return $taxonomy;
-			}	
-		}		
+				// If terms exist, return the first matching term's count
+				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+					return $terms[0]->count;
+				}	
 
-		return false;
-	}
+				return 0;
+	    }
 
 	/**
 	 * Format data for output
@@ -344,21 +350,12 @@ class SimpleTags_Client {
 					$count = 0;
 					foreach ($content as $item) {
 
-						if (empty($taxonomy)){
-							$taxonomy = self::detect_taxonomy($item);
-
-							if (!$taxonomy){
-								continue;
-							}
-						}
-						
 						$term_name = strip_tags($item);
-						$term = get_term_by('name', $term_name, $taxonomy);
-						$post_count = 0;
+						$post_count = self::get_term_post_counts( $term_name );
 
-						if ($term && !is_wp_error($term)) {
-							$post_count = $term->count;
-						}
+						if ( $post_count === 0 ) {
+							continue;
+						}	
 
 						$display_class = $count >= 6 ? 'hidden' : '';
 						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-post-count">' . $post_count . '</td></tr>' . "\n\t";
