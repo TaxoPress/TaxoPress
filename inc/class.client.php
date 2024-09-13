@@ -303,6 +303,7 @@ class SimpleTags_Client {
 				'name' => strip_tags($item),
 				'hide_empty' => false,
 				'fields' => 'all',
+				'number' => 1,
 				) );	
 
 				// If terms exist, return the first matching term's count
