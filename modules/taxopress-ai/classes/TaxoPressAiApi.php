@@ -388,6 +388,7 @@ if (!class_exists('TaxoPressAiApi')) {
             
             $post_id = !empty($args['post_id']) ? (int) $args['post_id'] : 0;
             $open_ai_api_key = !empty($settings_data['open_ai_api_key']) ? $settings_data['open_ai_api_key'] : '';
+            $open_ai_model = !empty($settings_data['open_ai_model']) ? $settings_data['open_ai_model'] : self::OPEN_AI_MODEL;
             $open_ai_cache_result = !empty($settings_data['open_ai_cache_result']) ? $settings_data['open_ai_cache_result'] : '';
 
             $existing_open_ai_result_key = '_taxopress_open_ai_' . $content_source . '_result';
@@ -432,7 +433,7 @@ if (!class_exists('TaxoPressAiApi')) {
                     }
                     
                     $body_data = array(
-                        'model'         => self::OPEN_AI_MODEL,
+                        'model'         => $open_ai_model,
                         'messages'    => [
                             [
                                 'role'    => 'system',
