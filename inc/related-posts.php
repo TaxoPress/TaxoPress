@@ -42,6 +42,8 @@ class SimpleTags_Related_Post
             
         if (isset($_GET['page']) && $_GET['page'] == 'st_related_posts') {
             wp_enqueue_style('st-taxonomies-css');
+
+            wp_enqueue_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
         }
     }
    
@@ -505,6 +507,29 @@ class SimpleTags_Related_Post
                                                             }
                                                         }
 
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'input_max',
+                                                            'textvalue' => isset($current['input_max']) ? esc_attr($current['input_max']) : '5',
+                                                            'labeltext' => esc_html__('Maximum number of related posts',
+                                                                'simple-tags'),
+                                                            'helptext'  => esc_html__('Set the maximum number of related posts that will be considered when generating the list. This is the upper limit of related posts available to display.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
+
+                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                         echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'number',
+                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
+                                                            'labeltext' => esc_html__('Maximum related posts to display',
+                                                                'simple-tags'),
+                                                            'helptext'  => esc_html__('Specify the number of related posts to display on the page. This value cannot exceed the Maximum number of related posts*.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
+                                                        echo '<p id="taxopress_maxposts_helptext" style="color: red; display: none;">' . esc_html__('The number of related posts to display cannot exceed the maximum number of related posts.', 'simple-tags') . '</p>';
+
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display related posts',
                                                                 'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display related posts in this content. It may not be successful for all post types and layouts.',
                                                                 'simple-tags') . '</small></th><td>
@@ -535,17 +560,6 @@ class SimpleTags_Related_Post
 
                                                         }
                                                         echo '</table></td></tr>';
-
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum related posts to display',
-                                                                'simple-tags'),
-                                                            'helptext'  => '',
-                                                            'required'  => true,
-                                                        ]);
 
 
                                                     ?>
@@ -624,17 +638,6 @@ class SimpleTags_Related_Post
 
                                                         }
                                                         echo '</table></td></tr>';
-
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum number of related posts',
-                                                                'simple-tags'),
-                                                            'helptext'  => '',
-                                                            'required'  => true,
-                                                        ]);
 
 
                                                     ?>
