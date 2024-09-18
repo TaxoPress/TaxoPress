@@ -322,7 +322,61 @@ class TaxopressCoreAdmin
     ?>
         <tr>
             <td colspan="2">
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-openai-notice">
+                    <div class="postbox-header">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                            <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+
+                    <div class="inside-content">
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to generate new terms for your content using the OpenAI, IBM Watson, Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-ibm-watson-notice">
+                    <div class="postbox-header">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                            <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+
+                    <div class="inside-content">
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to generate new terms for your content using the OpenAI, IBM Watson, Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-dandelion-notice">
+                    <div class="postbox-header">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                            <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+
+                    <div class="inside-content">
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to generate new terms for your content using the OpenAI, IBM Watson, Dandelion and Open Calais services. These services can analyze your content and add new terms.', 'simple-tags'); ?></p>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-lseg-refinitiv-notice">
                     <div class="postbox-header">
                         <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>
