@@ -430,7 +430,7 @@
       $('.visbile-table').css('display', '');
 
       //set tab height
-      if ($('.taxopress-tab-content').height() > $('.taxopress-tab').height()) {
+      if ($('.taxopress-tab-content').height() > $('.taxopress-tab').height() || $('.taxopress-tab').height() > $('.taxopress-tab-content').height()) {
         $('.taxopress-tab').css('height', $('.taxopress-tab-content').height());
       }
       //set active tab value
@@ -667,18 +667,6 @@
       }
 
     });
-
-
-    // -------------------------------------------------------------
-    //   Limit auto term source to only one option
-    // -------------------------------------------------------------
-    /*$(document).on('change', '.autoterm-terms-to-use-field', function (e) {
-        if(!$(this).hasClass('autoterm_useall') && !$(this).hasClass('autoterm_useonly')) {
-          $('.autoterm-terms-to-use-field').not(this).prop('checked', false);
-          autoterm_use_taxonomy_action();
-        }
-    });*/
-
 
     // -------------------------------------------------------------
     //   Auto term close button
@@ -999,34 +987,80 @@
           $('.delete-default-featured-media-field').addClass('hidden');
       });
     }
-
+    // -------------------------------------------------------------
+    //   Auto term source to only change
+    // -------------------------------------------------------------
+    $(document).on('change', '.autoterm-terms-to-use-field', function (e) {
+      hide_show_tab_group_fields();
+    })
 
     // -------------------------------------------------------------
-    //   Auto term Existing taxonomy terms check
+    //   Button group click
     // -------------------------------------------------------------
-    $(document).on('click', '.autoterm_use_taxonomy', function (e) {
-      autoterm_use_taxonomy_action();
+    if ($('.taxopress-group-wrap.autoterm-tab-group').length > 0) {
+      hide_show_tab_group_fields();
+    }
+    $(document).on("click", ".taxopress-button-group label", function () {
+      var current_button = $(this);
+      var button_group   = current_button.closest('.taxopress-button-group');
+      //remove active class
+      button_group.find('label').removeClass('current');
+      //add active class to current select
+      current_button.addClass('current');
+      current_button.addClass('selected');
+      // show/hide group based on selected fields
+      hide_show_tab_group_fields();
     });
-    autoterm_use_taxonomy_action();
-    function autoterm_use_taxonomy_action() {
-      if ($('.autoterm_use_taxonomy').length > 0) {
-        if ($('.autoterm_use_taxonomy').prop("checked")) {
-          $('.autoterm_useall').closest('tr').removeClass('st-hide-content');
-          $('.autoterm_useonly').closest('tr').removeClass('st-hide-content');
-          if(!$('.autoterm_useonly').prop('checked')){
-            $('.autoterm_useall').prop('checked', true);
-            $('.autoterm_useonly_options').addClass('st-hide-content');
+
+    function hide_show_tab_group_fields() {
+      var tabs = [
+        'existing',
+        'openai',
+        'ibm-watson',
+        'dandelion',
+        'lseg-refinitiv'
+      ];
+
+      tabs.forEach(function(tab) {
+        if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').length > 0) {
+          $('.taxopress-button-group label.' + tab).addClass('selected');
+          $('.taxopress-button-group label.' + tab + ' input').prop('checked', true);
+          $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.taxopress-button-group label.' + tab).removeClass('selected');
+          $('.taxopress-button-group label.' + tab + ' input').prop('checked', false);
+          $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').addClass('st-hide-content');
+        }
+
+        // show/hide all current tab fields
+        if ($('.taxopress-group-wrap.autoterm-tab-group label.' + tab).hasClass("current")) {
+          $('.autoterm-terms-use-' + tab).closest('tr').removeClass('st-hide-content');
+          // conditional show/hide tab fields if main field is checked
+          if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').length > 0) {
+            $('.taxopress-button-group label.' + tab).addClass('selected');
+            $('.taxopress-button-group label.' + tab + ' input').prop('checked', true);
+            $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').removeClass('st-hide-content');
+            // show or hide autoterm_use_taxonomy sub field
+            if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').hasClass('autoterm_use_taxonomy')) {
+              $('.autoterm_useall').closest('tr').removeClass('st-hide-content');
+                $('.autoterm_useonly').closest('tr').removeClass('st-hide-content');
+                if(!$('.autoterm_useonly').prop('checked')){
+                  $('.autoterm_useall').prop('checked', true);
+                  $('.autoterm_useonly_options').addClass('st-hide-content');
+                }
+            }
+          } else {
+            $('.taxopress-button-group label.' + tab).removeClass('selected');
+            $('.taxopress-button-group label.' + tab + ' input').prop('checked', false);
+            $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').addClass('st-hide-content');
           }
         } else {
-          $('.autoterm_useall').closest('tr').addClass('st-hide-content');
-          $('.autoterm_useonly').closest('tr').addClass('st-hide-content');
-          $('.autoterm_useonly_options').addClass('st-hide-content');
-          $('.autoterm_useall').prop('checked', false);
-          $('.autoterm_useonly').prop('checked', false);
+          $('.autoterm-terms-use-' + tab).closest('tr').addClass('st-hide-content');
         }
-      }
+      });
+      // re-adjust the height
+      $('ul.taxopress-tab li.autoterm_terms_tab.active').trigger('click');
     }
-
 
     function isEmptyOrSpaces(str) {
       return str === null || str.match(/^ *$/) !== null;
