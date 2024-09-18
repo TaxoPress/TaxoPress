@@ -42,8 +42,6 @@ class SimpleTags_Related_Post
             
         if (isset($_GET['page']) && $_GET['page'] == 'st_related_posts') {
             wp_enqueue_style('st-taxonomies-css');
-
-            wp_enqueue_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
         }
     }
    
