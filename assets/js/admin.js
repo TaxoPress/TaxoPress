@@ -1000,9 +1000,9 @@
       });
     }
 
-     //   Maximum number of related posts / Maximum related posts to display
-     const inputMax = $('#input_max');
-     const numberDisplay = $('#number');
+     // Maximum number of related posts / Maximum related posts to display
+     const inputMax = $('.relatedpost_display #input_max');
+     const numberDisplay = $('.relatedpost_display #number');
      const helpText = $('#taxopress_maxposts_helptext');
  
      function validateInput() {
@@ -1019,7 +1019,7 @@
      }
  
      // Attach event listeners to both fields to validate on change
-     $('#input_max, #number').on('input', validateInput);
+     $('.relatedpost_display #input_max, .relatedpost_display #number').on('input', validateInput);
  
      // Initial validation
      validateInput();
