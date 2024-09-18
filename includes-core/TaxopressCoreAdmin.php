@@ -322,7 +322,7 @@ class TaxopressCoreAdmin
     ?>
         <tr>
             <td colspan="2">
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-openai">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-openai-notice">
                     <div class="postbox-header">
                         <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>
@@ -340,7 +340,7 @@ class TaxopressCoreAdmin
         </tr>
         <tr>
             <td colspan="2">
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-ibm-watson">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-ibm-watson-notice">
                     <div class="postbox-header">
                         <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>
@@ -358,7 +358,7 @@ class TaxopressCoreAdmin
         </tr>
         <tr>
             <td colspan="2">
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-dandelion">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-dandelion-notice">
                     <div class="postbox-header">
                         <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>
@@ -376,7 +376,7 @@ class TaxopressCoreAdmin
         </tr>
         <tr>
             <td colspan="2">
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-lseg-refinitiv">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-lseg-refinitiv-notice">
                     <div class="postbox-header">
                         <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Auto terms using AI', 'simple-tags'); ?></span>

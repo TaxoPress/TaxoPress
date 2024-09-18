@@ -1054,8 +1054,11 @@
             $('.taxopress-button-group label.' + tab + ' input').prop('checked', false);
             $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').addClass('st-hide-content');
           }
+          // make sure notice/description always show even if control is not checked
+          $('.autoterm-terms-use-' + tab + '-notice').closest('tr').removeClass('st-hide-content');
         } else {
           $('.autoterm-terms-use-' + tab).closest('tr').addClass('st-hide-content');
+          $('.autoterm-terms-use-' + tab + '-notice').closest('tr').addClass('st-hide-content');
         }
       });
       // re-adjust the height
