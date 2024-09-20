@@ -991,9 +991,6 @@
     // Check if the 'relatedpost_display' tab is active
     if ($('.relatedpost_display').length > 0) {
 
-      // Ensure the tab is loaded or triggered
-      $(".simple-tags-nav-tab-wrapper").find("[data-page='" + $('.relatedpost_display').attr('data-page') + "']").trigger('click');
-
       // Maximum number of related posts / Maximum related posts to display
       const inputMax = $('.relatedpost_display #input_max');
       const numberDisplay = $('.relatedpost_display #number');
