@@ -73,8 +73,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
             if (!get_option('migrate_taxopress_ai_legacy_api') && current_user_can('simple_tags')) {
                 $taxopress_ai_settings = get_option(self::TAXOPRESS_AI_OPTION_KEY);
                 if (empty($taxopress_ai_settings)) {
-                    $suggestterm_datas = taxopress_get_suggestterm_data();
-                    $autoterm_datas = taxopress_get_autoterm_data();
+                    $suggestterm_datas = function_exists('taxopress_get_suggestterm_data') ? taxopress_get_suggestterm_data() : [];
+                    $autoterm_datas = function_exists('taxopress_get_autoterm_data') ? taxopress_get_autoterm_data() : [];
                     $taxopress_ai_settings = [];
 
                     $dandelion_api_token = false;
