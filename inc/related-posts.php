@@ -43,10 +43,8 @@ class SimpleTags_Related_Post
         if (isset($_GET['page']) && $_GET['page'] == 'st_related_posts') {
             wp_enqueue_style('st-taxonomies-css');
 
-            wp_register_script('taxopress-admin-js', STAGS_URL . '/assets/js/admin.js', array('jquery'), STAGS_VERSION);
-            wp_enqueue_script('taxopress-admin-js');
             //localize scripts
-            wp_localize_script( 'taxopress-admin-js', 'taxopress_relatedposts_localize',[
+            wp_localize_script( 'st-admin-js', 'taxopress_relatedposts_localize',[
                 'max_posts_error' => __('This value cannot exceed the maximum number of related posts.', 'simple-tags')
             ]);
         }
