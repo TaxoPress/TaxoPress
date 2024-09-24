@@ -1002,7 +1002,7 @@
 
         if (displayVal > maxVal) {
             helpText.show();
-            numberDisplay[0].setCustomValidity(taxopress_relatedposts_localize.max_posts_error);
+            numberDisplay[0].setCustomValidity(st_admin_localize.max_posts_error);
           } else {
             helpText.hide();
             numberDisplay[0].setCustomValidity('');

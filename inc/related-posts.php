@@ -42,11 +42,6 @@ class SimpleTags_Related_Post
             
         if (isset($_GET['page']) && $_GET['page'] == 'st_related_posts') {
             wp_enqueue_style('st-taxonomies-css');
-
-            //localize scripts
-            wp_localize_script( 'st-admin-js', 'taxopress_relatedposts_localize',[
-                'max_posts_error' => __('This value cannot exceed the maximum number of related posts.', 'simple-tags')
-            ]);
         }
     }
    
