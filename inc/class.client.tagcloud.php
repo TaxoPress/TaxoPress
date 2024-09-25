@@ -51,6 +51,7 @@ class SimpleTags_Client_TagCloud {
 			'size'        => 'true',
 			'color'       => 'true',
 			'exclude'     => '',
+			'exclude_terms' => '',
 			'include'     => '',
 			'limit_days'  => 0,
 			'min_usage'   => 0,
@@ -123,6 +124,22 @@ class SimpleTags_Client_TagCloud {
 		// Get terms
 		$terms = self::getTags( $args, $taxonomy );
 		extract( $args ); // Params to variables
+
+		// Process exclude_terms
+		if ( ! empty( $exclude_terms ) ) {
+			// Convert the exclude terms string into a set (associative array) for faster lookup
+			$exclude_terms_set = array_flip(array_map('trim', explode(',', $exclude_terms)));
+		} else {
+			$exclude_terms_set = array();
+		}
+
+		// Filter out excluded terms
+		if ( ! empty( $exclude_terms_set ) ) {
+			// Use array_filter to remove terms that exist in the exclude set
+			$terms = array_filter( $terms, function( $term ) use ( $exclude_terms_set ) {
+				return ! isset( $exclude_terms_set[ $term->name ] );
+			});
+		}
 
 		// If empty use default xformat !
 		if ( empty( $xformat ) ) {
@@ -673,6 +690,9 @@ class SimpleTags_Client_TagCloud {
 		$where .= $inclusions;
 
 		$exclusions = '';
+
+		$excluded_terms = array(); // Collect all terms to exclude
+
 		if ( ! empty( $exclude_tree ) ) {
 			$excluded_trunks = wp_parse_id_list( $exclude_tree );
 			foreach ( $excluded_trunks as $extrunk ) {
@@ -688,6 +708,9 @@ class SimpleTags_Client_TagCloud {
 						$exclusions .= ' AND t.term_id <> ' . intval( $exterm ) . ' ';
 					}
 				}
+
+				 // Also collect terms for batch exclusion
+				 $excluded_terms = array_merge( $excluded_terms, $excluded_children );
 			}
 		}
 
@@ -700,6 +723,17 @@ class SimpleTags_Client_TagCloud {
 					$exclusions .= ' AND t.term_id <> ' . intval( $exterm ) . ' ';
 				}
 			}
+
+			 // Also collect terms for batch exclusion
+			 $excluded_terms = array_merge( $excluded_terms, $exterms );
+		}
+
+		// Batch exclusion logic with 'NOT IN'
+		$excluded_terms = array_unique( $excluded_terms );
+		if ( ! empty( $excluded_terms ) ) {
+			$excluded_terms_sql = implode( ',', array_map( 'intval', $excluded_terms ) );
+			// Batch exclusion will be combined with original exclusion logic
+			$exclusions .= " AND t.term_id NOT IN ($excluded_terms_sql)";
 		}
 
 		if ( ! empty( $exclusions ) ) {
