@@ -505,6 +505,17 @@ class SimpleTags_Related_Post
                                                             }
                                                         }
 
+                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                         echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'number',
+                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
+                                                            'labeltext' => esc_html__('Maximum related posts to display',
+                                                                'simple-tags'),
+                                                            'helptext'  => esc_html__('Specify the number of related posts to display.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
+
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display related posts',
                                                                 'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display related posts in this content. It may not be successful for all post types and layouts.',
                                                                 'simple-tags') . '</small></th><td>
@@ -535,17 +546,6 @@ class SimpleTags_Related_Post
 
                                                         }
                                                         echo '</table></td></tr>';
-
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum related posts to display',
-                                                                'simple-tags'),
-                                                            'helptext'  => '',
-                                                            'required'  => true,
-                                                        ]);
 
 
                                                     ?>
@@ -624,17 +624,6 @@ class SimpleTags_Related_Post
 
                                                         }
                                                         echo '</table></td></tr>';
-
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum number of related posts',
-                                                                'simple-tags'),
-                                                            'helptext'  => '',
-                                                            'required'  => true,
-                                                        ]);
 
 
                                                     ?>
