@@ -147,3 +147,52 @@ function taxopress_autoterms_content_by_ajax()
         wp_send_json($response);
 
 }
+
+
+//Taxopress search post call back
+add_action('wp_ajax_taxopress_post_search', 'taxopress_post_search_callback');
+
+function taxopress_post_search_callback()
+{
+    header('Content-Type: application/javascript');
+
+    if (
+        empty($_GET['nonce'])
+        || !wp_verify_nonce(sanitize_key($_GET['nonce']), 'taxopress-post-search')
+    ) {
+        wp_send_json_error(null, 403);
+    }
+
+    if (!current_user_can('simple_tags')) {
+        wp_send_json_error(null, 403);
+    }
+
+    $search = !empty($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
+    $post_type = !empty($_GET['post_types']) ? array_map('sanitize_text_field', $_GET['post_types']) : 'any';
+
+    $post_args = [
+        'post_type' => $post_type,
+        'post_status' => 'publish',
+        'posts_per_page' => apply_filters('taxopress_filter_posts_search_result_limit', 20),
+    ];
+
+    if (!empty($search)) {
+        $post_args['s'] = $search;
+    }
+
+    $posts = get_posts($post_args);
+    $results = [];
+
+    foreach ($posts as $post) {
+        $results[] = [
+            'id' => $post->ID,
+            'text' => $post->post_title,
+        ];
+    }
+
+    $response = [
+        'results' => $results,
+    ];
+    echo wp_json_encode($response);
+    exit;
+}

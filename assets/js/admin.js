@@ -688,6 +688,17 @@
       $('.taxopress-autoterm-content #autoterm_id').next('p').append('<a target="_blank" class="autoterm-content-settings-link" href="' + st_admin_localize.autoterm_admin_url + '&add=new_item&action=edit&taxopress_autoterms=' + current_settings_id + '">' + st_admin_localize.existing_content_admin_label + '</a>');
     }
 
+    if ($('.settings-metabox_auto_term-wrap #metabox_auto_term').length > 0) {
+      auto_terms_metabox_settings_edit();
+      $(document).on('change', '.settings-metabox_auto_term-wrap #metabox_auto_term', function (e) {
+        auto_terms_metabox_settings_edit();
+      });
+    }
+    function auto_terms_metabox_settings_edit() {
+      $('.autoterm-settings-link').remove();
+      var current_settings_id = $('.settings-metabox_auto_term-wrap #metabox_auto_term').val();
+      $('.settings-metabox_auto_term-wrap #metabox_auto_term').closest('td').find('p.description').append('<a target="_blank" class="autoterm-settings-link" href="' + st_admin_localize.autoterm_admin_url + '&add=new_item&action=edit&taxopress_autoterms=' + current_settings_id + '">' + st_admin_localize.existing_content_admin_label + '</a>');
+    }
 
     // -------------------------------------------------------------
     //   Auto term all content
@@ -842,7 +853,7 @@
     });
 
     /**
-     * TaxoPress posts select2
+     * TaxoPress term select2
      */
     if ($('.taxopress-term-search').length > 0) {
         taxopressTermSelect2($('.taxopress-term-search'));
@@ -869,6 +880,44 @@
                   }
               });
           });
+      }
+    }
+
+    
+    if ($('.taxopress-post-search').length > 0) {
+      taxopressPostSelect2($('.taxopress-post-search'));
+      function taxopressPostSelect2(selector) {
+        selector.each(function () {
+
+            var checkedPostTypes = [];
+            $('input[name="post_types[]"]:checked').each(function () {
+                checkedPostTypes.push($(this).val());
+            });
+
+            // Build the post_types parameter as a query string (e.g., post_types=post&post_types=page)
+            var postTypesParam = '';
+            if (checkedPostTypes.length > 0) {
+                postTypesParam = checkedPostTypes.map(function(postType) {
+                    return '&post_types[]=' + encodeURIComponent(postType);
+                }).join('');
+            }
+
+            var postsSearch = $(this).ppma_select2({
+                placeholder: $(this).data("placeholder"),
+                allowClear: $(this).data("allow-clear"),
+                ajax: {
+                    url:
+                        window.ajaxurl +
+                        "?action=taxopress_post_search&nonce=" + $(this).data("nonce") + postTypesParam,
+                    dataType: "json",
+                    data: function (params) {
+                        return {
+                            q: params.term
+                        };
+                    }
+                }
+            });
+        });
       }
     }
 
@@ -987,6 +1036,7 @@
           $('.delete-default-featured-media-field').addClass('hidden');
       });
     }
+
     // -------------------------------------------------------------
     //   Auto term source to only change
     // -------------------------------------------------------------
