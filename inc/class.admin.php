@@ -497,7 +497,6 @@ class SimpleTags_Admin
 			'use_media_label' => esc_html__('Use this media', 'simple-tags'),
 			'existing_content_admin_label' => esc_html__('Edit the current setting.', 'simple-tags'),
 			'autoterm_admin_url' => admin_url('admin.php?page=st_autoterms'),
-			'max_posts_error' => esc_html__('This value cannot exceed the maximum number of related posts.', 'simple-tags'),
 		]);
 
 

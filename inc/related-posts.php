@@ -508,17 +508,6 @@ class SimpleTags_Related_Post
                                                          // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                          echo $ui->get_number_input([
                                                             'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'input_max',
-                                                            'textvalue' => isset($current['input_max']) ? esc_attr($current['input_max']) : '5',
-                                                            'labeltext' => esc_html__('Maximum number of related posts',
-                                                                'simple-tags'),
-                                                            'helptext'  => esc_html__('Set the maximum number of related posts that will be considered when generating the list. This is the upper limit of related posts available to display.', 'simple-tags'),
-                                                            'required'  => true,
-                                                        ]);
-
-                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                         echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
                                                             'name'      => 'number',
                                                             'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
                                                             'labeltext' => esc_html__('Maximum related posts to display',

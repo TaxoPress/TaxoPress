@@ -43,7 +43,6 @@ class SimpleTags_Client_RelatedPosts {
 			'post_type'     => get_post_type($post),// leaving this for legacy purpose
 			'post_types'    => '',
 			'number'        => 5,
-			'input_max'     => 5,
 			'max_post_chars' => 100,
 			'order'         => 'count-desc',
 			'format'        => 'list',

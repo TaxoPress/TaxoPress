@@ -987,34 +987,7 @@
           $('.delete-default-featured-media-field').addClass('hidden');
       });
     }
-    
-    // Check if the 'relatedpost_display' tab is active
-    if ($('.relatedpost_display').length > 0) {
 
-      // Maximum number of related posts / Maximum related posts to display
-      const inputMax = $('.relatedpost_display #input_max');
-      const numberDisplay = $('.relatedpost_display #number');
-      const helpText = $('#taxopress_maxposts_helptext');
-
-      function validateInput() {
-        const maxVal = parseInt(inputMax.val(), 10);
-        const displayVal = parseInt(numberDisplay.val(), 10);
-
-        if (displayVal > maxVal) {
-            helpText.show();
-            numberDisplay[0].setCustomValidity(st_admin_localize.max_posts_error);
-          } else {
-            helpText.hide();
-            numberDisplay[0].setCustomValidity('');
-          }
-      }   
-
-      // Attach event listeners to both fields to validate on change
-      $(document).on('input', '.relatedpost_display #input_max, .relatedpost_display #number', validateInput);
-
-      // Initial validation
-      validateInput();
-    }  
     // -------------------------------------------------------------
     //   Auto term source to only change
     // -------------------------------------------------------------
