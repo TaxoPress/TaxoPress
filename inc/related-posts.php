@@ -512,7 +512,7 @@ class SimpleTags_Related_Post
                                                             'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
                                                             'labeltext' => esc_html__('Maximum related posts to display',
                                                                 'simple-tags'),
-                                                            'helptext'  => esc_html__('Specify the number of related posts to display on the page. This value cannot exceed the Maximum number of related posts*.', 'simple-tags'),
+                                                            'helptext'  => esc_html__('Specify the number of related posts to display on the page.', 'simple-tags'),
                                                             'required'  => true,
                                                         ]);
                                                         echo '<p id="taxopress_maxposts_helptext" style="color: red; display: none;">' . esc_html__('The number of related posts to display cannot exceed the maximum number of related posts.', 'simple-tags') . '</p>';
