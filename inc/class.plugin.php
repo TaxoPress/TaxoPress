@@ -54,7 +54,7 @@ class SimpleTags_Plugin {
 	 */
 	private static function load_default_option() {
 		$default_options = (array) include STAGS_DIR . '/inc/helper.options.default.php';
-				
+
 		// add taxopress ai post type and taxonomies options so we can have all post types. TODO: This need to be a filter
 		foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
 			if ($post_type == 'post') {
@@ -65,11 +65,11 @@ class SimpleTags_Plugin {
 			$default_options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
 			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 			$default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
-			foreach (['post_terms', 'suggest_local_terms', 'existing_terms', 'open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $taxopress_ai_tab) {
+			foreach (['post_terms', 'existing_terms', 'suggest_local_terms'] as $taxopress_ai_tab) {
 				$default_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = 1;
 			}
 		}
-		
+
 		// add metabox post type and taxonomies options so we can have all post types. TODO: This need to be a filter
 		$tax_names = array_keys(get_taxonomies([], 'names'));
 		foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
@@ -91,7 +91,7 @@ class SimpleTags_Plugin {
 	 */
 	private static function load_option() {
 		$saved_option = wp_parse_args( (array) get_option( STAGS_OPTIONS_NAME ), self::load_default_option() );
-		
+
 		self::$options = $saved_option;
 	}
 

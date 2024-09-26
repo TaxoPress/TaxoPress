@@ -54,6 +54,10 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     text-decoration: none;
 }
 
+.taxopress-ai-fetch-result.suggest_local_terms .previewed-tag-fieldset {
+    margin-bottom: 30px;
+}
+
 .taxopress-post-suggestterm .preview-action-btn-wrap {
    /* display: flex;*/
     margin-top: 10px;
