@@ -68,6 +68,7 @@
       preview_wrapper.find('.spinner').addClass('is-active');
 
       var search_text = preview_wrapper.find('.taxopress-taxonomy-search').val();
+      var selected_autoterms = preview_wrapper.find('.taxopress-autoterms-options').val();
 
       //prepare ajax data
       var data = {
@@ -75,6 +76,7 @@
         preview_ai: preview_ai,
         preview_taxonomy: preview_taxonomy,
         search_text: search_text,
+        selected_autoterms: selected_autoterms,
         preview_post: preview_post,
         post_content: post_content,
         post_title: post_title,
@@ -105,6 +107,12 @@
         $('.taxopress-taxonomy-search').show();
       } else {
         $('.taxopress-taxonomy-search').hide();
+      }
+
+      if (current_tab === 'suggest_local_terms') {
+        $('.taxopress-autoterms-options').show();
+      } else {
+        $('.taxopress-autoterms-options').hide();
       }
     });
 
