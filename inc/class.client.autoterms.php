@@ -154,6 +154,15 @@ class SimpleTags_Client_Autoterms
 		$autoterm_use_taxonomy = !empty($options['autoterm_use_taxonomy']) && (int) $options['autoterm_use_taxonomy'] === 1;
 		$autoterm_useall = !empty($options['autoterm_useall']) && (int) $options['autoterm_useall'] === 1;
 		$autoterm_useonly = !empty($options['autoterm_useonly']) && (int) $options['autoterm_useonly'] === 1;
+		
+		/**
+		 * Filter auto term content
+		 *
+		 * @param string $content Original content to be analyzed. It could include post title, 
+		 * content and/excerpt based on autoterms settings
+		 * @param integer $post_id This is the post id
+		 */
+		$content = apply_filters('taxopress_filter_autoterm_content', $content, $object->ID);
 
 		$args = [
 			'post_id' => $object->ID,

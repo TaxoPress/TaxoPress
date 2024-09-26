@@ -102,6 +102,19 @@ if (!class_exists('TaxoPressAiAjax')) {
                     wp_send_json($response);
                     exit;
                 }
+                
+                /**
+                 * Filter auto term content
+                 *
+                 * @param string $content Original content to be analyzed. It could include post title,
+                 *  content and/excerpt based on autoterms settings
+                 * @param integer $post_id This is the post id
+                 */
+                if (!empty($post_content)) {
+                    $post_content = apply_filters('taxopress_filter_autoterm_content', $post_content, $post_data->ID);
+                } elseif (!empty($post_title)) {
+                    $post_title = apply_filters('taxopress_filter_autoterm_content', $post_title, $post_data->ID);
+                }
 
                 $content = $post_content . ' ' . $post_title;
                 $clean_content = TaxoPressAiUtilities::taxopress_clean_up_content($post_content, $post_title);
