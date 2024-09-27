@@ -445,9 +445,9 @@ class SimpleTags_Related_Post
 
                                                         $select = [
                                                             'options' => [
+                                                                [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ), 'default' => 'true' ],
                                                                 [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
                                                                 [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
-                                                                [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ) ],
                                                             ], 
                                                         ]; 
                                                         $selected = (isset($current) && isset($current['format'])) ? taxopress_disp_boolean($current['format']) : '';
@@ -509,7 +509,7 @@ class SimpleTags_Related_Post
                                                          echo $ui->get_number_input([
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
+                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '3',
                                                             'labeltext' => esc_html__('Maximum related posts to display',
                                                                 'simple-tags'),
                                                             'helptext'  => esc_html__('Specify the number of related posts to display.', 'simple-tags'),
