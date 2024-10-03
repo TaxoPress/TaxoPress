@@ -996,7 +996,7 @@ class SimpleTags_Autoterms
                                                                 'Prevent Auto Term inside elements',
                                                                 'simple-tags'
                                                             ) . '</label><br /><small style=" color: #646970;">' . esc_html__(
-                                                                'Terms inside these html tags will not be auto term.',
+                                                                'Terms inside these HTML tags will not be used to generate terms.',
                                                                 'simple-tags'
                                                             ) . '</small></th><td>
                                                     <table class="visbile-table st-html-exclusion-table">';
