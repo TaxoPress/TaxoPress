@@ -305,7 +305,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
                 <div class="taxopress-description">
-                    <?php esc_html_e('This feature allows users to manage terms while creating and editing content.', 'simple-tags'); ?>
+                    <?php esc_html_e('This screen allows you to preview the TaxoPress features that users will see when creating and editing content.', 'simple-tags'); ?>
                 </div>
                 <div class="wp-clearfix"></div>
                 <form method="post" action="">
@@ -318,7 +318,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                 <div id="post-body-content" class="right-body-content" style="position: relative;">
                                     <div class="postbox-header">
                                         <h2 class="hndle ui-sortable-handle">
-                                            <?php esc_html_e('AI Integration Settings', 'simple-tags'); ?>
+                                            <?php esc_html_e('Metabox Options', 'simple-tags'); ?>
                                         </h2>
                                     </div>
                                     <div class="main">
