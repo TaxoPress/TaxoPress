@@ -526,10 +526,9 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     'name'      => 'default_term',
                                                     'textvalue' => isset($current['default_term']) ? esc_attr($current['default_term']) : '',
                                                     'labeltext' => esc_html__('Default Terms', 'simple-tags'),
-                                                    'helptext'  => esc_html__('Set the default terms for this taxonomy. Enter the term names or slugs. Separate multiple terms with by comma.',
+                                                    'helptext'  => esc_html__('Set the default terms for this taxonomy. These will be automatically added to all new posts. Enter the term names or slugs. Separate multiple terms with by comma.',
                                                         'simple-tags'),
                                                 ]);
-
 
 
                                                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
