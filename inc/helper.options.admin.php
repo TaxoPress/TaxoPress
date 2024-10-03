@@ -34,7 +34,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             sprintf(esc_html__('%1s Metabox', 'simple-tags'), esc_html($post_type_object->labels->name)),
             'checkbox',
             '1',
-            sprintf(esc_html__('Enable the TaxoPress AI metabox on the %1s screen.', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            sprintf(esc_html__('Enable the metabox on the %1s screen.', 'simple-tags'), esc_html($post_type_object->labels->name)),
             'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
         );
 
