@@ -1125,7 +1125,7 @@
         
           var numberRarely = $('#number-delete').val();
         
-          $('#terms-feedback').text('Checking terms...');
+          $('#terms-feedback').text(st_admin_localize.checking_terms_message); 
         
           $.ajax({
             url: st_admin_localize.ajaxurl,
@@ -1143,8 +1143,9 @@
                 }
             },
             error: function(xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-                $('#terms-feedback').text('An error occurred while checking terms.');
+              // Handle any errors (e.g., network issues)
+              console.error('AJAX Error:', status, error);
+              $('#terms-feedback').text(st_admin_localize.terms_error);
             }
         });
     });
