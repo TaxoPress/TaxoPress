@@ -744,54 +744,6 @@ class SimpleTags_Autoterms
 
                                                     echo '</td></tr>';
 
-                                                    
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_number_input([
-                                                        'namearray' => 'taxopress_autoterm',
-                                                        'name'      => 'suggest_local_terms_maximum',
-                                                        'textvalue' => isset($current['suggest_local_terms_maximum']) ? esc_attr($current['suggest_local_terms_maximum']) : 45,
-                                                        'labeltext' => esc_html__('Metabox Maximum Terms to Display',
-                                                            'simple-tags'),
-                                                        'helptext'  => esc_html__('Set (0) for no limit.', 'simple-tags'),
-                                                        'min'       => '0',
-                                                        'class'      => 'autoterm-terms-to-use-field autoterm-terms-use-existing',
-                                                        'required'  => false,
-                                                    ]);
-                                                            
-                                                    $select = [
-                                                        'options' => [
-                                                            [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-                                                            [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags'), 'default' => 'true' ],
-                                                            [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ) ],
-                                                        ],
-                                                    ];
-                                                    $selected = isset( $current ) && !empty( $current['suggest_local_terms_orderby'] ) ? taxopress_disp_boolean( $current['suggest_local_terms_orderby'] ) : '';
-                                                    $select['selected'] = ! empty( $selected ) ? $current['suggest_local_terms_orderby'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input_main( [
-                                                            'namearray'  => 'taxopress_autoterm',
-                                                            'name'       => 'suggest_local_terms_orderby',
-                                                            'labeltext'  => esc_html__('Method for choosing terms', 'simple-tags' ),
-                                                            'class'      => 'autoterm-terms-to-use-field autoterm-terms-use-existing',
-                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ] );
-
-                                                    $select = [
-                                                        'options' => [
-                                                            [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
-                                                            [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-                                                        ],
-                                                    ];
-                                                    $selected = isset( $current ) && !empty( $current['suggest_local_terms_order'] ) ? taxopress_disp_boolean( $current['suggest_local_terms_order'] ) : '';
-                                                    $select['selected'] = ! empty( $selected ) ? $current['suggest_local_terms_order'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input_main( [
-                                                            'namearray'  => 'taxopress_autoterm',
-                                                            'name'       => 'suggest_local_terms_order',
-                                                            'labeltext'  => esc_html__( 'Ordering for choosing terms', 'simple-tags' ),
-                                                            'class'      => 'autoterm-terms-to-use-field autoterm-terms-use-existing',
-                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ] );
 
                                                     $select             = [
                                                     'options' => [
