@@ -24,6 +24,9 @@ class SimpleTags_Admin_Manage
 
         // Javascript
         add_action('admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11);
+
+        //load ajax
+        add_action('wp_ajax_check_terms', array( $this, 'handle_check_terms_ajax'));
     }
 
     /**
@@ -336,8 +339,16 @@ class SimpleTags_Admin_Manage
 											</select>
 										</p>
 
-										<input class="button-primary" type="submit" name="Delete"
-											value="<?php esc_attr_e('Delete rarely used', 'simple-tags'); ?>" />
+                                        <label for="check-terms"><?php _e('Check how many terms will be deleted:', 'simple-tags'); ?></label>
+											<br />
+                                            <input style="margin-top: 2px;" id="check-terms-btn" class="button-primary" type="submit" name="Delete"
+											value="<?php esc_attr_e('Check Terms', 'simple-tags'); ?>" />
+                                        <div id="terms-feedback"></div>
+
+                                        <label for="terms-delete"><?php _e('Delete rarely used terms:', 'simple-tags'); ?></label>
+                                        <br />
+										<input style="margin-top: 2px;" class="button-primary" type="submit" name="Delete"
+											value="<?php esc_attr_e('Delete Terms', 'simple-tags'); ?>" />
 									</form>
 								</fieldset>
 							</td>
@@ -826,6 +837,38 @@ class SimpleTags_Admin_Manage
         }
 
         return true;
+    }
+
+    function handle_check_terms_ajax() {
+       
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
+            wp_send_json_error(array('message' => 'Nonce verification failed.'));
+            wp_die();
+        }
+    
+        global $wpdb;
+    
+        // Get the minimum number of uses from the AJAX request
+        $number = isset($_POST['number']) ? intval($_POST['number']) : 0;
+    
+        if ($number > 0) {
+            // Query to get terms with count less than the provided number
+            $terms = $wpdb->get_col($wpdb->prepare("
+                SELECT term_id FROM $wpdb->term_taxonomy
+                WHERE taxonomy = 'post_tag' AND count < %d", $number));
+    
+            $term_count = count($terms);
+    
+            if ($term_count > 0) {
+                wp_send_json_success(array('message' => $term_count . ' terms will be deleted.'));
+            } else {
+                wp_send_json_error(array('message' => 'No terms will be deleted.'));
+            }
+        } else {
+            wp_send_json_error(array('message' => 'Invalid number specified.'));
+        }
+    
+        wp_die();
     }
 
     /**

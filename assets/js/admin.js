@@ -1119,6 +1119,36 @@
       return str === null || str.match(/^ *$/) !== null;
     }
 
+        // Event listener for the 'Check Terms' button click
+        $('.auto-terms-content.st-delete-unuused-terms').find('#check-terms-btn').on('click', function(e) {
+          e.preventDefault();
+        
+          var numberRarely = $('#number-delete').val();
+        
+          $('#terms-feedback').text('Checking terms...');
+        
+          $.ajax({
+            url: st_admin_localize.ajaxurl,
+            method: "POST",
+            data: {
+                action: 'check_terms',
+                nonce: st_admin_localize.check_nonce,
+                number: numberRarely
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#terms-feedback').text(response.data.message);
+                } else {
+                    $('#terms-feedback').text(response.data.message || st_admin_localize.no_terms_message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+                $('#terms-feedback').text('An error occurred while checking terms.');
+            }
+        });
+    });
+
     /* Start COPIED FROM PP BLOCKS */
       $(".taxopress-dashboard-settings-control .slider").bind("click", function (e) {
         try {
