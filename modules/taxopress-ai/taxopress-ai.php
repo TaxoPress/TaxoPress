@@ -871,6 +871,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         </ul>
                         <div class="st-taxonomy-content taxopress-tab-content multiple">
                             <?php
+                            $auto_term_options = TaxoPressAiUtilities::get_auto_term_options();
+                            $auto_term_class = count($auto_term_options) > 1 ? 'multiple-option' : 'single-option';
                             $content_index = 0;
                             foreach ($content_tabs as $key => $label) {
                                 $result_request_args = [
@@ -898,8 +900,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         placeholder="<?php echo esc_html__('Search Terms...', 'simple-tags'); ?>"
                                                         style="display: none; margin-right: 5px;"
                                                         onkeydown="return event.key != 'Enter';" />
-                                                        <select class="taxopress-autoterms-options">
-                                                                <?php foreach (TaxoPressAiUtilities::get_auto_term_options() as $option_name => $option_label): ?>
+                                                        <select class="taxopress-autoterms-options <?php echo esc_attr($auto_term_class); ?>">
+                                                                <?php foreach ($auto_term_options as $option_name => $option_label): ?>
                                                                     <option value='<?php echo esc_attr($option_name); ?>'>
                                                                             <?php echo esc_html($option_label); ?>
                                                                         </option> 

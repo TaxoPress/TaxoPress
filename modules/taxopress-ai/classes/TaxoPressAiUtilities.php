@@ -247,7 +247,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
             if (empty($term_results)) {
                 return '';
             }
-            
+
             $post_data          = get_post($post_id);
             $taxonomy_details   = get_taxonomy($taxonomy);
             $post_type_details  = get_post_type_object($post_data->post_type);
@@ -322,6 +322,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
             $term_results   = $args['results'];
             $post_id        = $args['post_id'];
             $taxonomy       = $args['preview_taxonomy'];
+            $show_counts    = !empty($args['show_counts']);
             
             $post_data          = get_post($post_id);
             $taxonomy_details   = get_taxonomy($taxonomy);
