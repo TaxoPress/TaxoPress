@@ -842,7 +842,7 @@ class SimpleTags_Admin_Manage
     function handle_check_terms_ajax() {
        
         if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
-            wp_send_json_error(array('message' => 'Nonce verification failed.'));
+            wp_send_json_error(array('message' => __('Nonce verification failed.', 'simple-tags')));
             wp_die();
         }
     
@@ -864,12 +864,12 @@ class SimpleTags_Admin_Manage
             $term_count = count($terms);
     
             if ($term_count > 0) {
-                wp_send_json_success(array('message' => $term_count . ' terms will be deleted.'));
+                wp_send_json_success(array('message' => sprintf(__('%d terms will be deleted.', 'simple-tags'), $term_count)));
             } else {
-                wp_send_json_error(array('message' => 'No terms will be deleted.'));
+                wp_send_json_error(array('message' => __('No terms will be deleted.', 'simple-tags')));
             }
         } else {
-            wp_send_json_error(array('message' => 'Invalid number specified.'));
+            wp_send_json_error(array('message' => __('Invalid number specified.', 'simple-tags')));
         }
     
         wp_die();
