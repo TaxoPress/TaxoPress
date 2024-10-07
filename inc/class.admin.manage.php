@@ -26,7 +26,7 @@ class SimpleTags_Admin_Manage
         add_action('admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11);
 
         //load ajax
-        add_action('wp_ajax_check_terms', array( $this, 'handle_check_terms_ajax'));
+        add_action('wp_ajax_taxopress_check_delete_terms', array( $this, 'handle_taxopress_check_delete_terms_ajax'));
     }
 
     /**
@@ -839,7 +839,7 @@ class SimpleTags_Admin_Manage
         return true;
     }
 
-    function handle_check_terms_ajax() {
+    function handle_taxopress_check_delete_terms_ajax() {
        
         if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
             wp_send_json_error(array('message' => __('Nonce verification failed.', 'simple-tags')));
