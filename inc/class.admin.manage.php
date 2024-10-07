@@ -341,7 +341,7 @@ class SimpleTags_Admin_Manage
 
                                         <label for="check-terms"><?php _e('Check how many terms will be deleted:', 'simple-tags'); ?></label>
 											<br />
-                                            <input style="margin-top: 2px;" id="check-terms-btn" class="button-primary" type="submit" name="Delete"
+                                            <input style="margin-top: 2px;" id="check-terms-btn" class="button-primary" type="submit" name="Check"
 											value="<?php esc_attr_e('Check Terms', 'simple-tags'); ?>" />
                                         <div id="terms-feedback"></div>
 
@@ -848,14 +848,18 @@ class SimpleTags_Admin_Manage
     
         global $wpdb;
     
-        // Get the minimum number of uses from the AJAX request
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : 'post_tag';
         $number = isset($_POST['number']) ? intval($_POST['number']) : 0;
+
+        if ((int) $number > 100) {
+            wp_die('Tcheater ?');
+        }
     
         if ($number > 0) {
-            // Query to get terms with count less than the provided number
             $terms = $wpdb->get_col($wpdb->prepare("
                 SELECT term_id FROM $wpdb->term_taxonomy
-                WHERE taxonomy = 'post_tag' AND count < %d", $number));
+                WHERE taxonomy = %s AND count < %d", 
+                $taxonomy, (int) $number));
     
             $term_count = count($terms);
     

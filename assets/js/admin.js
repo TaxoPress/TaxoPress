@@ -1143,7 +1143,6 @@
                 }
             },
             error: function(xhr, status, error) {
-              // Handle any errors (e.g., network issues)
               console.error('AJAX Error:', status, error);
               $('#terms-feedback').text(st_admin_localize.terms_error);
             }
