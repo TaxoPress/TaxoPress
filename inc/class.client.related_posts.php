@@ -297,8 +297,8 @@ class SimpleTags_Client_RelatedPosts {
 
 		//set default xformat contents when display format is box
 		if ($format == 'box'){
-			$defaults['number'] = 3;
-			$xformat       = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			$defaults['number']    = 3;
+			$defaults['xformat']   = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 								   <br>
 								   %post_title%
