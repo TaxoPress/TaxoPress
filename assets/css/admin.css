@@ -640,6 +640,12 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
 .auto-terms-content input[type="submit"] {
     margin-top: 10px;
 }
+
+.button-secondary.delete-unused-term {
+    color: red !important;
+    border-color: red !important;
+}
+
 .auto-terms-keyword-list-wrapper {
     margin-left: 100px;
 }

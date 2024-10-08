@@ -347,7 +347,7 @@ class SimpleTags_Admin_Manage
 
                                         <label for="terms-delete"><?php _e('Delete rarely used terms:', 'simple-tags'); ?></label>
                                         <br />
-										<input style="margin-top: 2px;" class="button-primary" type="submit" name="Delete"
+										<input style="margin-top: 2px;" class="button-secondary delete-unused-term" type="submit" name="Delete"
 											value="<?php esc_attr_e('Delete Terms', 'simple-tags'); ?>" />
 									</form>
 								</fieldset>
