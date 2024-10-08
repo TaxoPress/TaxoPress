@@ -646,6 +646,10 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
     border-color: red !important;
 }
 
+#terms-feedback .taxopress-response-css {
+    margin-top: 10px;
+}
+
 .auto-terms-keyword-list-wrapper {
     margin-left: 100px;
 }

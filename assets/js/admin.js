@@ -1124,8 +1124,10 @@
           e.preventDefault();
         
           var numberRarely = $('.auto-terms-content.st-delete-unuused-terms #number-delete').val();
+
+          $('.taxopress-response-css').remove();
         
-          $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').text(st_admin_localize.checking_terms_message); 
+          $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css yellow"><p>' + st_admin_localize.checking_terms_message + '</p></div>'); 
         
           $.ajax({
             url: st_admin_localize.ajaxurl,
@@ -1137,13 +1139,13 @@
             },
             success: function(response) {
                 if (response.success) {
-                    $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').text(response.data.message);
+                    $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css yellow"><p>' + response.data.message + '</p></div>');
                 } else {
-                    $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').text(response.data.message || st_admin_localize.no_terms_message);
+                    $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css red"><p>' +response.data.message || st_admin_localize.no_terms_message + '</p></div>');
                 }
             },
             error: function(xhr, status, error) {
-              $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').text(st_admin_localize.terms_error);
+              $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css red"><p>' +st_admin_localize.terms_error + '</p></div>');
             }
         });
     });
