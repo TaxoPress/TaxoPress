@@ -105,6 +105,24 @@ if (!class_exists('TaxoPressAiUtilities')) {
         }
 
         /**
+         * Get auto term options
+         *
+         * @return array
+         */
+        public static function get_auto_term_options()
+        {
+            
+            $autoterm_data = taxopress_get_autoterm_data();
+            
+            $auto_term_opions = [];
+            foreach ($autoterm_data as $autoterm_settings) {
+                $auto_term_opions[$autoterm_settings['ID']] = $autoterm_settings['title'];
+            }
+
+            return $auto_term_opions;
+        }
+
+        /**
          * Get existing terms order
          *
          * @return array
@@ -229,7 +247,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
             if (empty($term_results)) {
                 return '';
             }
-            
+
             $post_data          = get_post($post_id);
             $taxonomy_details   = get_taxonomy($taxonomy);
             $post_type_details  = get_post_type_object($post_data->post_type);
@@ -290,6 +308,71 @@ if (!class_exists('TaxoPressAiUtilities')) {
             '. sprintf(esc_html__('Update %1s on this %2s', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name)) .' 
             </button>';
             $response_content .= '</div>';
+
+            return $response_content;
+        }
+
+        
+
+        /**
+         * Format taxonomy term results
+         */
+        public static function get_term_fieldset_html($args)
+        {
+            $term_results   = $args['results'];
+            $post_id        = $args['post_id'];
+            $taxonomy       = $args['preview_taxonomy'];
+            $show_counts    = !empty($args['show_counts']);
+            
+            $post_data          = get_post($post_id);
+            $taxonomy_details   = get_taxonomy($taxonomy);
+            $post_terms         = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'ids']);
+
+            if (count($post_terms) === count($term_results)) {
+                $modified_legend_title = '<span class="ai-select-all all-selected" data-select-all="'. sprintf(esc_attr__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'" data-deselect-all="'. sprintf(esc_attr__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'">'. sprintf(esc_html__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'</span>';
+            } else {
+                $modified_legend_title = '<span class="ai-select-all" data-select-all="'. sprintf(esc_attr__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'" data-deselect-all="'. sprintf(esc_attr__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'">'. sprintf(esc_html__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) .'</span>';
+            }
+
+            $response_content = '';
+            $response_content .= '<fieldset class="previewed-tag-fieldset">';
+            $response_content .= '<legend> '. $args['legend_title'] .' ('. $modified_legend_title .')</legend>';
+            $response_content .= '<div class="previewed-tag-content">';
+            foreach ($term_results as $term_result) {
+                if (!is_string($term_result) || empty(trim($term_result)) || !strip_tags($term_result)) {
+                    continue;
+                }
+                $term_result = stripslashes(rtrim($term_result, ','));
+
+                $term_id = false;
+                $additional_class = '';
+                $term_post_counts = 0;
+                // Check if the term exists for the given taxonomy
+                $term = get_term_by('name', $term_result, $taxonomy);
+                if ($term) {
+                    $term_id = $term->term_id;
+                    $additional_class = in_array($term->term_id, $post_terms) ? 'used_term' : '';
+                    $term_post_counts = self::count_term_posts($term->term_id, $taxonomy);
+                }
+
+                if (!empty($show_counts) && $term_id) {
+                    $additional_class .= ' countable';
+                }
+
+                $response_content .= '<span class="result-terms ' . esc_attr( $additional_class ) . '">';
+                $response_content .= '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="term-name '.esc_attr($taxonomy).'" tabindex="0" role="button" aria-pressed="false">';
+                $response_content .= stripslashes($term_result);
+                $response_content .= '</span>';
+                if (!empty($show_counts) && $term_id) {
+                    $response_content .= '<span class="term-counts">';
+                    $response_content .= number_format_i18n($term_post_counts);
+                    $response_content .= '</span>';
+                }
+                $response_content .= '</span>';
+            }
+
+            $response_content .= '</div>';
+            $response_content .= '</fieldset>';
 
             return $response_content;
         }

@@ -289,6 +289,32 @@ class SimpleTags_Client {
 	}
 
 	/**
+	 * Retrieve the post count for a term across all taxonomies.
+	 * 
+	 * This function queries terms based on the given term name and returns the number of posts associated with the first matching term.
+	 * It does not require specifying a taxonomy and will search across all public taxonomies.
+	 * 
+	 * @param string $item
+	 * @return int The number of posts associated with the first matching term. Returns 0 if no term is found or if it has no posts.
+	 */
+	public static function get_term_post_counts( $item ) {
+
+			$terms = get_terms( array(
+				'name' => strip_tags($item),
+				'hide_empty' => false,
+				'fields' => 'all',
+				'number' => 1,
+				) );	
+
+				// If terms exist, return the first matching term's count
+				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+					return $terms[0]->count;
+				}	
+
+				return 0;
+	    }
+
+	/**
 	 * Format data for output
 	 *
 	 * @param string $html_class
@@ -300,7 +326,7 @@ class SimpleTags_Client {
 	 *
 	 * @return string|array
 	 */
-	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '', $before = '', $after = '') {
+	public static function output_content( $html_class = '', $format = 'list', $title = '', $content = '', $copyright = true, $separator = '', $div_class = '', $a_class = '', $before = '', $after = '', $taxonomy = '') {
 		if ( empty( $content ) ) {
 			return ''; // return nothing
 		}
@@ -324,9 +350,16 @@ class SimpleTags_Client {
 					$output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";
 					$count = 0;
 					foreach ($content as $item) {
+
+						$term_name = strip_tags($item);
+						$post_count = self::get_term_post_counts( $term_name );
+
+						if ( $post_count === 0 ) {
+							continue;
+						}	
+
 						$display_class = $count >= 6 ? 'hidden' : '';
-						$char_count = strlen($item);
-						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-char-count">' . $char_count . '</td></tr>' . "\n\t";
+						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-post-count">' . $post_count . '</td></tr>' . "\n\t";
 						$count++;
 					}
 					if ($count > 6) {
@@ -340,6 +373,9 @@ class SimpleTags_Client {
 				case 'border':
 					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;	
+				case 'box':
+					$output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
@@ -363,7 +399,10 @@ class SimpleTags_Client {
 					break;
 				case 'border':
 					$output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
-					break;	
+					break;
+				case 'box':	
+					$output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;

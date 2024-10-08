@@ -41,7 +41,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($dandelion_api_token))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'The Dandelion integration requires an API Key. Please add your API Key and save the settings.',
+                    'The Dandelion integration requires an API Key. Please add your API Key in the Auto Term settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
@@ -150,7 +150,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($open_calais_api_key))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'The LSEG / Refinitiv integration requires an API Key. Please add your API Key and save the settings.',
+                    'The LSEG / Refinitiv integration requires an API Key. Please add your API Key in the Auto Term settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
@@ -268,7 +268,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($ibm_watson_api_url)) || empty(trim($ibm_watson_api_key))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'The Ibm Watson integration requires an API Key and URL. Please add your API Key and save the settings.',
+                    'The IBM Watson integration requires an API Key and URL. Please add your API Key in the Auto Term settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
@@ -388,6 +388,7 @@ if (!class_exists('TaxoPressAiApi')) {
             
             $post_id = !empty($args['post_id']) ? (int) $args['post_id'] : 0;
             $open_ai_api_key = !empty($settings_data['open_ai_api_key']) ? $settings_data['open_ai_api_key'] : '';
+            $open_ai_model = !empty($settings_data['open_ai_model']) ? $settings_data['open_ai_model'] : self::OPEN_AI_MODEL;
             $open_ai_cache_result = !empty($settings_data['open_ai_cache_result']) ? $settings_data['open_ai_cache_result'] : '';
 
             $existing_open_ai_result_key = '_taxopress_open_ai_' . $content_source . '_result';
@@ -396,7 +397,7 @@ if (!class_exists('TaxoPressAiApi')) {
             if (empty(trim($open_ai_api_key))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
-                    'The OpenAI integration requires an API Key. Please add your API Key and save the settings.',
+                    'The OpenAI integration requires an API Key. Please add your API Key in the Auto Term settings.',
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
@@ -432,7 +433,7 @@ if (!class_exists('TaxoPressAiApi')) {
                     }
                     
                     $body_data = array(
-                        'model'         => self::OPEN_AI_MODEL,
+                        'model'         => $open_ai_model,
                         'messages'    => [
                             [
                                 'role'    => 'system',

@@ -111,6 +111,7 @@
           var preview_ai       = preview_wrapper.attr('data-ai-source');
           var preview_taxonomy = preview_wrapper.find('.preview-taxonomy-select :selected').val();
           var preview_post     = preview_wrapper.find('.preview-post-select').val();
+          var selected_autoterms  = $('.settings-metabox_auto_term-wrap #metabox_auto_term').val();
           var preview_post_type_label = preview_wrapper.find('.preview-post-types-select :selected').text().trim();
           var preview_post_type_single_label = preview_wrapper.find('.preview-post-types-select :selected').attr('data-singular_label');
 
@@ -132,6 +133,7 @@
             preview_ai: preview_ai,
             preview_taxonomy: preview_taxonomy,
             preview_post: preview_post,
+            selected_autoterms: selected_autoterms,
             nonce: taxoPressAIRequestAction.nonce,
         };
 

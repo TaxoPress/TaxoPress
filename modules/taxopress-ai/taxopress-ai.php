@@ -73,8 +73,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
             if (!get_option('migrate_taxopress_ai_legacy_api') && current_user_can('simple_tags')) {
                 $taxopress_ai_settings = get_option(self::TAXOPRESS_AI_OPTION_KEY);
                 if (empty($taxopress_ai_settings)) {
-                    $suggestterm_datas = taxopress_get_suggestterm_data();
-                    $autoterm_datas = taxopress_get_autoterm_data();
+                    $suggestterm_datas = function_exists('taxopress_get_suggestterm_data') ? taxopress_get_suggestterm_data() : [];
+                    $autoterm_datas = function_exists('taxopress_get_autoterm_data') ? taxopress_get_autoterm_data() : [];
                     $taxopress_ai_settings = [];
 
                     $dandelion_api_token = false;
@@ -277,6 +277,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             );
         }
 
+
         /**
          * @return void
          */
@@ -290,7 +291,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $fields = TaxoPressAiFields::get_fields();
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
 
-            $active_tab = !empty($settings_data['active_tab']) ? $settings_data['active_tab'] : 'post_terms';
+            $active_tab = !empty($settings_data['active_tab']) && !empty($fields_tabs[$settings_data['active_tab']]) ? $settings_data['active_tab'] : 'post_terms';
             $active_tab_label = '';
 
             $default_post_type = '';
@@ -304,7 +305,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
                 <div class="taxopress-description">
-                    <?php esc_html_e('This feature allows users to manage terms while creating and editing content.', 'simple-tags'); ?>
+                    <?php esc_html_e('This screen allows you to preview the TaxoPress features that users will see when creating and editing content.', 'simple-tags'); ?>
                 </div>
                 <div class="wp-clearfix"></div>
                 <form method="post" action="">
@@ -317,7 +318,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                 <div id="post-body-content" class="right-body-content" style="position: relative;">
                                     <div class="postbox-header">
                                         <h2 class="hndle ui-sortable-handle">
-                                            <?php esc_html_e('AI Integration Settings', 'simple-tags'); ?>
+                                            <?php esc_html_e('Metabox Options', 'simple-tags'); ?>
                                         </h2>
                                     </div>
                                     <div class="main">
@@ -719,7 +720,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $post_content = $args['post_content'];
             $post_id 	  = $args['post_id'];
     
-            if (in_array($ai_group, ['existing_terms', 'suggest_local_terms', 'post_terms'])) {
+            if (in_array($ai_group, ['existing_terms', '__suggest_local_terms', 'post_terms'])) {
                 $content = $post_content . ' ' . $post_title;
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
                 $result_args = [
@@ -804,29 +805,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             'label'   => esc_html__('Manage Post Terms', 'simple-tags'),
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_post_terms_tab')),
                         ],
-                        'suggest_local_terms' => [
-                            'label'   => esc_html__('Suggest Existing Terms', 'simple-tags'),
-                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
-                        ],
                         'existing_terms' => [
                             'label'   => esc_html__('Show All Existing Terms', 'simple-tags'),
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_existing_terms_tab')),
                         ],
-                        'open_ai' => [
-                            'label'   => esc_html__('OpenAI', 'simple-tags'),
-                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_open_ai_tab')) && !empty($settings_data['open_ai_api_key'])),
-                        ],
-                        'ibm_watson' => [
-                            'label'   => esc_html__('IBM Watson', 'simple-tags'),
-                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_ibm_watson_tab')) && !empty($settings_data['ibm_watson_api_url']) && !empty($settings_data['ibm_watson_api_key'])),
-                        ],
-                        'dandelion' => [
-                            'label'   => esc_html__('Dandelion', 'simple-tags'),
-                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_dandelion_tab')) && !empty($settings_data['dandelion_api_token'])),
-                        ],
-                        'open_calais' => [
-                            'label' => esc_html__('LSEG / Refinitiv', 'simple-tags'),
-                            'enabled' => (taxopress_is_pro_version() && !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_open_calais_tab')) && !empty($settings_data['open_calais_api_key'])),
+                        'suggest_local_terms' => [
+                            'label'   => esc_html__('Auto Terms', 'simple-tags'),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
                         ],
                     ];
 
@@ -886,6 +871,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         </ul>
                         <div class="st-taxonomy-content taxopress-tab-content multiple">
                             <?php
+                            $auto_term_options = TaxoPressAiUtilities::get_auto_term_options();
+                            $auto_term_class = count($auto_term_options) > 1 ? 'multiple-option' : 'single-option';
                             $content_index = 0;
                             foreach ($content_tabs as $key => $label) {
                                 $result_request_args = [
@@ -896,7 +883,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                     'post_content'  => $post->post_content,
                                     'post_id'		=> $post->ID,
                                 ];
-                                $button_label = $fields_tabs[$key]['button_label'];
+                                $button_label = !empty($fields_tabs[$key]['button_label']) ? $fields_tabs[$key]['button_label'] : esc_html__('View Terms', 'simple-tags');
                                 ?>
                                 <table class="taxopress-tab-content-item form-table taxopress-table taxopress-ai-tab-content <?php echo esc_attr($key); ?>"
                                     data-ai-source="<?php echo esc_attr($key); ?>"
@@ -913,6 +900,15 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         placeholder="<?php echo esc_html__('Search Terms...', 'simple-tags'); ?>"
                                                         style="display: none; margin-right: 5px;"
                                                         onkeydown="return event.key != 'Enter';" />
+                                                        <select class="taxopress-autoterms-options <?php echo esc_attr($auto_term_class); ?>">
+                                                                <?php foreach ($auto_term_options as $option_name => $option_label): ?>
+                                                                    <option value='<?php echo esc_attr($option_name); ?>'>
+                                                                            <?php echo esc_html($option_label); ?>
+                                                                        </option> 
+                                                                    <?php
+                                                                endforeach; ?>
+                                                        </select>
+                                                        
                                                     <select class="taxopress-ai-fetch-taxonomy-select">
                                                             <?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
                                                             

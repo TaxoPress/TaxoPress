@@ -80,6 +80,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $current_tags = !empty($_POST['current_tags']) ? array_map('sanitize_text_field', $_POST['current_tags']) : [];
                 $preview_taxonomy = !empty($_POST['preview_taxonomy']) ? sanitize_text_field($_POST['preview_taxonomy']) : '';
                 $search_text = !empty($_POST['search_text']) ? sanitize_text_field($_POST['search_text']) : '';
+                $selected_autoterms = !empty($_POST['selected_autoterms']) ? sanitize_text_field($_POST['selected_autoterms']) : '';
                 $preview_post = !empty($_POST['preview_post']) ? (int) $_POST['preview_post'] : 0;
                 $preview_feature = 'data';
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
@@ -87,6 +88,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $post_content = isset($_POST['post_content']) ? taxopress_sanitize_text_field($_POST['post_content']) : $post_data->post_content;
                 $post_title = isset($_POST['post_title']) ? taxopress_sanitize_text_field($_POST['post_title']) : $post_data->post_title;
                 $term_results = [];
+
+                if ($preview_ai == 'suggest_local_terms') {
+                    $preview_ai = 'autoterms';
+                }
 
                 if (!can_manage_taxopress_metabox_taxonomy($preview_taxonomy)) {
                     $response['status'] = 'error';
@@ -96,6 +101,19 @@ if (!class_exists('TaxoPressAiAjax')) {
                     );
                     wp_send_json($response);
                     exit;
+                }
+                
+                /**
+                 * Filter auto term content
+                 *
+                 * @param string $content Original content to be analyzed. It could include post title,
+                 *  content and/excerpt based on autoterms settings
+                 * @param integer $post_id This is the post id
+                 */
+                if (!empty($post_content)) {
+                    $post_content = apply_filters('taxopress_filter_autoterm_content', $post_content, $post_data->ID);
+                } elseif (!empty($post_title)) {
+                    $post_title = apply_filters('taxopress_filter_autoterm_content', $post_title, $post_data->ID);
                 }
 
                 $content = $post_content . ' ' . $post_title;
@@ -113,6 +131,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'post_type_details' => $post_type_details,
                     'preview_feature' => $preview_feature,
                     'current_tags' => $current_tags,
+                    'selected_autoterms' => $selected_autoterms,
                     'content_source' => $preview_feature . '_post_content_title'
 
                 ];
@@ -123,82 +142,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                         'Posts content and title is empty.',
                         'simple-tags'
                     );
-                } elseif ($preview_ai == 'open_ai') {
-                    ##https://platform.openai.com/docs/guides/gpt
-                    ##https://platform.openai.com/docs/api-reference/chat/create
-                    ##https://platform.openai.com/docs/models/model-endpoint-compatibility
-
-                    if (taxopress_is_pro_version()) {
-                        $args['show_counts'] = isset($settings_data['open_ai_show_post_count']) ? $settings_data['open_ai_show_post_count'] : 0;
-                        $open_ai_results = TaxoPressAiApi::get_open_ai_results($args);
-                        if (!empty($open_ai_results['results'])) {
-                            $term_results = $open_ai_results['results'];
-                        }
-                        $response['status'] = $open_ai_results['status'];
-                        $response['content'] = $open_ai_results['message'];
-
-                    } else {
-                        $response['status'] = 'error';
-                        $response['content'] = esc_html__(
-                            'This integration is only supported in TaxoPress Pro.',
-                            'simple-tags'
-                        );
-                    }
-
-                } elseif ($preview_ai == 'ibm_watson') {
-                    ##https://cloud.ibm.com/apidocs/natural-language-understanding
-
-                    if (taxopress_is_pro_version()) {
-                        $args['show_counts'] = isset($settings_data['ibm_watson_show_post_count']) ? $settings_data['ibm_watson_show_post_count'] : 0;
-                        $ibm_watson_results = TaxoPressAiApi::get_ibm_watson_results($args);
-                        if (!empty($ibm_watson_results['results'])) {
-                            $term_results = $ibm_watson_results['results'];
-                        }
-                        $response['status'] = $ibm_watson_results['status'];
-                        $response['content'] = $ibm_watson_results['message'];
-                    } else {
-                        $response['status'] = 'error';
-                        $response['content'] = esc_html__(
-                            'This integration is only supported in TaxoPress Pro.',
-                            'simple-tags'
-                        );
-                    }
-
-                } elseif ($preview_ai == 'dandelion') {
-                    ##https://dandelion.eu/docs/api/datatxt/nex/v1/#response
-
-                    if (taxopress_is_pro_version()) {
-                        $args['show_counts'] = isset($settings_data['dandelion_show_post_count']) ? $settings_data['dandelion_show_post_count'] : 0;
-                        $dandelion_results = TaxoPressAiApi::get_dandelion_results($args);
-                        if (!empty($dandelion_results['results'])) {
-                            $term_results = $dandelion_results['results'];
-                        }
-                        $response['status'] = $dandelion_results['status'];
-                        $response['content'] = $dandelion_results['message'];
-                    } else {
-                        $response['status'] = 'error';
-                        $response['content'] = esc_html__(
-                            'This integration is only supported in TaxoPress Pro.',
-                            'simple-tags'
-                        );
-                    }
-                } elseif ($preview_ai == 'open_calais') {
-                    ## https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation
-                    if (taxopress_is_pro_version()) {
-                        $args['show_counts'] = isset($settings_data['open_calais_show_post_count']) ? $settings_data['open_calais_show_post_count'] : 0;
-                        $open_calais_results = TaxoPressAiApi::get_open_calais_results($args);
-                        if (!empty($open_calais_results['results'])) {
-                            $term_results = $open_calais_results['results'];
-                        }
-                        $response['status'] = $open_calais_results['status'];
-                        $response['content'] = $open_calais_results['message'];
-                    } else {
-                        $response['status'] = 'error';
-                        $response['content'] = esc_html__(
-                            'This integration is only supported in TaxoPress Pro.',
-                            'simple-tags'
-                        );
-                    }
                 } elseif ($preview_ai == 'suggest_local_terms') {
                     $args['suggest_terms'] = true;
                     $args['show_counts'] = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
@@ -241,6 +184,123 @@ if (!class_exists('TaxoPressAiAjax')) {
                     } else {
                         $response['status'] = 'error';
                         $response['content'] = esc_html__('No results found for this post with this taxonomy.', 'simple-tags');
+                    }
+                } elseif ($preview_ai == 'autoterms') {
+                    $autoterm_data      = taxopress_get_autoterm_data();
+                    $settings_data      = array_key_exists($selected_autoterms, $autoterm_data) ? $autoterm_data[$selected_autoterms] : [];
+                    $autoterm_use_taxonomy      = !empty($settings_data['autoterm_use_taxonomy']);
+                    $autoterm_use_open_ai       = !empty($settings_data['autoterm_use_open_ai']);
+                    $autoterm_use_ibm_watson    = !empty($settings_data['autoterm_use_ibm_watson']);
+                    $autoterm_use_dandelion     = !empty($settings_data['autoterm_use_dandelion']);
+                    $autoterm_use_opencalais    = !empty($settings_data['autoterm_use_opencalais']);
+
+                    if (empty($selected_autoterms) || empty($settings_data)) {
+                        $response['status'] = 'error';
+                        $response['content'] = esc_html__('Invalid Auto Term ID. Please save the settings before using preview.', 'simple-tags');
+                    } elseif ( !$autoterm_use_taxonomy && !$autoterm_use_open_ai && !$autoterm_use_ibm_watson && !$autoterm_use_dandelion && !$autoterm_use_opencalais
+                    ) {
+                        $response['status'] = 'error';
+                        $response['content'] = esc_html__('You must enable at least one AI integration source to use auto term preview.', 'simple-tags');
+                    } else {
+                        $request_args  = $args;
+                        $request_args['settings_data'] = $settings_data;
+                        $request_args['return_tags'] = true;
+                        $terms_found = false;
+
+                        $term_results = '<div class="preview-action-title"><p class="description">';
+                        $term_results .= sprintf(esc_html__('Click %1s to add or remove them from this %2s.', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
+                        $term_results .= '</p></div>';
+                        // autoterm_use_taxonomy
+                        if ($autoterm_use_taxonomy) {
+                            $request_args['suggest_terms'] = true;
+                            $request_args['show_counts'] = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
+
+                            $suggest_local_terms_results = TaxoPressAiAjax::get_existing_terms_results($request_args);
+                
+                            if (!empty($suggest_local_terms_results['results'])) {
+                                $terms_found = true;
+                                $request_args['results']        = $suggest_local_terms_results['results'];
+                                $request_args['legend_title']   = esc_html__('Suggest Existing Terms', 'simple-tags');
+                                $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
+                            } else {
+                                $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('Suggest Existing Terms', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $suggest_local_terms_results['message'] .'</p></div></div></fieldset>';
+                            }
+                        }
+                
+                        if (taxopress_is_pro_version()) {
+                            // autoterm_use_open_ai
+                            if ($autoterm_use_open_ai) {
+                                ##https://platform.openai.com/docs/guides/gpt
+                                ##https://platform.openai.com/docs/api-reference/chat/create
+                                ##https://platform.openai.com/docs/models/model-endpoint-compatibility
+
+                                $request_args['show_counts'] = isset($settings_data['open_ai_show_post_count']) ? $settings_data['open_ai_show_post_count'] : 0;
+                                $open_ai_results = TaxoPressAiApi::get_open_ai_results($request_args);
+                                if (!empty($open_ai_results['results'])) {
+                                    $terms_found = true;
+                                    $request_args['results']        = $open_ai_results['results'];
+                                    $request_args['legend_title']   = esc_html__('OpenAI', 'simple-tags');
+                                    $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
+                                } else {
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('OpenAI', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $open_ai_results['message'] .'</p></div></div></fieldset>';
+                                }
+                            }
+                    
+                            // autoterm_use_ibm_watson
+                            if ($autoterm_use_ibm_watson) {
+                                ##https://cloud.ibm.com/apidocs/natural-language-understanding
+                                $request_args['show_counts'] = isset($settings_data['ibm_watson_show_post_count']) ? $settings_data['ibm_watson_show_post_count'] : 0;
+                                $ibm_watson_results = TaxoPressAiApi::get_ibm_watson_results($request_args);
+                                if (!empty($ibm_watson_results['results'])) {
+                                    $terms_found = true;
+                                    $request_args['results']        = $ibm_watson_results['results'];
+                                    $request_args['legend_title']   = esc_html__('IBM Watson', 'simple-tags');
+                                    $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
+                                } else {
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('IBM Watson', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $ibm_watson_results['message'] .'</p></div></div></fieldset>';
+                                }            
+                            }
+                    
+                            // autoterm_use_dandelion
+                            if ($autoterm_use_dandelion) {
+                                ##https://dandelion.eu/docs/api/datatxt/nex/v1/#response
+                                $request_args['show_counts'] = isset($settings_data['dandelion_show_post_count']) ? $settings_data['dandelion_show_post_count'] : 0;
+                                $dandelion_results = TaxoPressAiApi::get_dandelion_results($request_args);
+                                if (!empty($dandelion_results['results'])) {
+                                    $terms_found = true;
+                                    $request_args['results']        = $dandelion_results['results'];
+                                    $request_args['legend_title']   = esc_html__('Dandelion', 'simple-tags');
+                                    $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
+                                } else {
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('Dandelion', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $dandelion_results['message'] .'</p></div></div></fieldset>';
+                                } 
+                            }
+                    
+                            // autoterm_use_opencalais
+                            if ($autoterm_use_opencalais) {
+                                ## https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation
+                                $request_args['show_counts'] = isset($settings_data['open_calais_show_post_count']) ? $settings_data['open_calais_show_post_count'] : 0;
+                                $open_calais_results = TaxoPressAiApi::get_open_calais_results($request_args);
+                                if (!empty($open_calais_results['results'])) {
+                                    $terms_found = true;
+                                    $request_args['results']        = $open_calais_results['results'];
+                                    $request_args['legend_title']   = esc_html__('LSEG / Refinitiv', 'simple-tags');
+                                    $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
+                                } else {
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('LSEG / Refinitiv', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $open_calais_results['message'] .'</p></div></div></fieldset>';
+                                } 
+                            }
+                        }
+
+                        if ($terms_found) {
+                            $term_results .= '<div class="preview-action-btn-wrap">';
+                            $term_results .= '<button class="button button-primary taxopress-ai-addtag-button">
+                            <div class="spinner"></div>
+                            '. sprintf(esc_html__('Update %1s on this %2s', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name)) .' 
+                            </button>';
+                            $term_results .= '</div>';
+                        }
+
                     }
                 }
 
@@ -312,6 +372,7 @@ if (!class_exists('TaxoPressAiAjax')) {
             $settings_data = $args['settings_data'];
             $content = $args['content'];
             $suggest_terms = !empty($args['suggest_terms']);
+            $return_tags = !empty($args['return_tags']);
             $current_tags = !empty($args['current_tags']) ? (array) $args['current_tags'] : [];
             $search_text = !empty($args['search_text']) ? $args['search_text'] : '';
             $post_id = !empty($args['post_id']) ? (int) $args['post_id'] : 0;
@@ -328,6 +389,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $existing_terms_orderby = isset($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : 'count';
                 $existing_terms_order = isset($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : 'desc';
                 $existing_terms_show_post_count = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
+            }
+
+            if (!empty($args['show_counts'])) {
+                $existing_terms_show_post_count = 1;
             }
 
             if ($existing_terms_maximum_terms > 0) {
@@ -398,7 +463,11 @@ if (!class_exists('TaxoPressAiAjax')) {
                             );
 
                             $legend_title = '<a href="' . esc_url($taxonomy_list_page) . '" target="blank">' . $taxonomy_details->labels->name . '</a>';
-                            $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($term_results, $existing_tax, $post_id, $legend_title, $existing_terms_show_post_count, $current_tags);
+                            if ($return_tags) {
+                                $response_content = $term_results;
+                            } else {
+                                $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($term_results, $existing_tax, $post_id, $legend_title, $existing_terms_show_post_count, $current_tags);
+                            }
                         }
 
                     }

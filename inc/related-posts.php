@@ -442,6 +442,24 @@ class SimpleTags_Related_Post
                                                             'required'   => true,
                                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         ]);
+
+                                                        $select = [
+                                                            'options' => [
+                                                                [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ), 'default' => 'true' ],
+                                                                [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
+                                                                [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
+                                                            ], 
+                                                        ]; 
+                                                        $selected = (isset($current) && isset($current['format'])) ? taxopress_disp_boolean($current['format']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['format'] : ''; 
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                        echo $ui->get_select_checkbox_input_main( [
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'format',
+                                                            'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
+                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ] );
+                                                        
                                                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_td_end() . $ui->get_tr_end();
                                                     ?>
@@ -482,8 +500,21 @@ class SimpleTags_Related_Post
                                                             'blogonly' => esc_attr__('Blog display', 'simple-tags'),
                                                         ];
                                                         foreach ($post_types as $post_type) {
-                                                            $term_auto_locations[$post_type->name] = $post_type->label;
+                                                            if (!in_array($post_type->name, ['attachment'])) {
+                                                                $term_auto_locations[$post_type->name] = $post_type->label;
+                                                            }
                                                         }
+
+                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                         echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'number',
+                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '3',
+                                                            'labeltext' => esc_html__('Maximum related posts to display',
+                                                                'simple-tags'),
+                                                            'helptext'  => esc_html__('Specify the number of related posts to display.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
 
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display related posts',
                                                                 'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display related posts in this content. It may not be successful for all post types and layouts.',
@@ -515,17 +546,6 @@ class SimpleTags_Related_Post
 
                                                         }
                                                         echo '</table></td></tr>';
-
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum related posts to display',
-                                                                'simple-tags'),
-                                                            'helptext'  => '',
-                                                            'required'  => true,
-                                                        ]);
 
 
                                                     ?>
@@ -574,6 +594,9 @@ class SimpleTags_Related_Post
                                                             $key = $post_type->name;
                                                             $value = $post_type->label;
 
+                                                            if (in_array($post_type->name, ['attachment'])) {
+                                                                continue;
+                                                            }
                                                             echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
 
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -601,17 +624,6 @@ class SimpleTags_Related_Post
 
                                                         }
                                                         echo '</table></td></tr>';
-
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '5',
-                                                            'labeltext' => esc_html__('Maximum number of related posts',
-                                                                'simple-tags'),
-                                                            'helptext'  => '',
-                                                            'required'  => true,
-                                                        ]);
 
 
                                                     ?>
@@ -988,6 +1000,7 @@ class SimpleTags_Related_Post
                             <li><code>%post_excerpt%</code> <?php echo esc_html__('The post excerpt', 'simple-tags'); ?></li>
                             <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
                             <li><code>%post_content%</code> <?php echo esc_html__('The post content', 'simple-tags'); ?></li>
+                            <li><code>%post_category%</code> <?php echo esc_html__('The post category', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>

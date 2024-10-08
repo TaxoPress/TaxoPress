@@ -292,6 +292,11 @@ class SimpleTags_Tag_Clouds
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'tagcloud_exceptions' ? 'true' : 'false'; ?>" class="tagcloud_exceptions_tab <?php echo $active_tab === 'tagcloud_exceptions' ? 'active' : ''; ?>" data-content="tagcloud_exceptions">
+                                                    <a href="#tagcloud_exceptions"><span><?php esc_html_e('Exceptions',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                                 <li aria-current="<?php echo $active_tab === 'tagcloud_design' ? 'true' : 'false'; ?>" class="tagcloud_design_tab <?php echo $active_tab === 'tagcloud_design' ? 'active' : ''; ?>" data-content="tagcloud_design">
                                                     <a href="#tagcloud_design"><span><?php esc_html_e('Design',
                                                                 'simple-tags'); ?></span></a>
@@ -361,7 +366,9 @@ class SimpleTags_Tag_Clouds
 
                                                 $options[] = [ 'attr' => '', 'text' => esc_html__('All post types', 'simple-tags'), 'default' => 'true' ];
                                                 foreach ( get_post_types(['public' => true], 'objects') as $post_type ) {
-                                                    $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
+                                                    if (!in_array($post_type->name, ['attachment'])) {
+                                                        $options[] = [ 'attr' => $post_type->name, 'text' => $post_type->label ];
+                                                    }
                                                 }
 
                                                 $select = [
@@ -572,6 +579,26 @@ class SimpleTags_Tag_Clouds
                                                                 ),
                                                                 'required'  => false,
                                                             ]);
+                                                        ?>
+                                                </table>
+
+                                                <table class="form-table taxopress-table tagcloud_exceptions"
+                                                       style="<?php echo $active_tab === 'tagcloud_exceptions' ? '' : 'display:none;'; ?>">
+                                                       <?php 
+
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_textarea_input([
+                                                        'namearray' => 'taxopress_tag_cloud', 
+                                                        'name'      => 'exclude_terms',
+                                                        'rows'      => '4',
+                                                        'cols'      => '40',
+                                                        'class'     => 'autocomplete-input tagclouds-exclude', 
+                                                        'textvalue' => isset($current['exclude_terms']) ? esc_attr($current['exclude_terms']) : '',
+                                                        'labeltext' => esc_html__('Exclude terms from terms display', 'simple-tags'),
+                                                        'helptext'  => esc_html__('Enter terms (comma-separated) to exclude from the terms display.', 'simple-tags'),
+                                                        'required'  => false,
+                                                    ]);
+                                                           
                                                         ?>
                                                 </table>
 

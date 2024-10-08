@@ -28,7 +28,7 @@
     display: none;
 }
 
-.taxopress-table-container .taxopress-char-count {
+.taxopress-table-container .taxopress-post-count {
     text-align: right;
     padding-right: 30px;
 }
@@ -56,4 +56,41 @@
     padding: 4px 7px; 
     display: inline-block;
     margin: 3px;
+}
+
+/* box-list styling */
+.taxopress-box-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.taxopress-box-list a {
+    display: block;
+    text-decoration: none;
+    flex: 1 1 calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+
+.taxopress-box-list img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.taxopress-relatedpost-date, .taxopress-relatedpost-cat{
+    color:#666;
+    font-size: 0.9em;
+}
+
+@media (max-width: 1200px) {
+    .taxopress-box-list a {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .taxopress-box-list a {
+        flex: 1 1 100%;
+    }
 }

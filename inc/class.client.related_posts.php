@@ -9,7 +9,19 @@ class SimpleTags_Client_RelatedPosts {
 	 */
 	public function __construct() {
 
+		//Enqueue frontend scripts
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_boxdisplay_scripts' ) );
+
 	}
+
+	function enqueue_boxdisplay_scripts() {
+
+		wp_register_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
+		wp_register_style('taxopress-frontend-css', STAGS_URL . '/assets/frontend/css/frontend.css', array(), STAGS_VERSION, 'all');
+
+		wp_enqueue_script('taxopress-frontend-js');
+		wp_enqueue_style('taxopress-frontend-css');
+	}	
 
 
 	/**
@@ -80,7 +92,8 @@ class SimpleTags_Client_RelatedPosts {
 			'%commentcount%' => '%post_comment%',
 			'%tagcount%'     => '%post_tagcount%',
 			'%postid%'       => '%post_id%',
-			'%postcontent'   => '%post_content%',
+			'%postcontent%'   => '%post_content%',
+			'%postcategory%' => '%post_category%',
 		);
 		if ( ! is_array( $user_args ) ) {
 			$user_args = strtr( $user_args, $markers );
@@ -282,6 +295,19 @@ class SimpleTags_Client_RelatedPosts {
 			}
 		}
 
+		//set default xformat contents when display format is box
+		if ($format == 'box'){
+			$defaults['number'] = 3;
+			$xformat       = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
+								   <br>
+								   %post_title%
+								   <br>
+								    <span class="taxopress-relatedpost-date">%post_date% &bull;</span>  <span class="taxopress-relatedpost-cat">%post_category%</span>
+			                       </a> 
+			                       ', 'simple-tags' );
+		}
+
 		// Posts: title, comments_count, date, permalink, post_id, counter
 		$results = $wpdb->get_results( 
 			$wpdb->prepare( "
@@ -341,6 +367,20 @@ class SimpleTags_Client_RelatedPosts {
 		$element_loop = $xformat;
 		$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
 
+		 // Get the category of the post
+		 $categories = get_the_category($result->ID);
+		 if (!empty($categories)) {
+			 $category_names = array_map(function ($cat) {
+				 return esc_html($cat->name);
+			 }, $categories);
+			 $post_category = implode(', ', $category_names); // Join categories with a comma if there are multiple
+		 } else {
+			 $post_category = '';
+		 }
+	 
+		 // Replace %post_category% in the element loop
+		 $element_loop = str_replace('%post_category%', $post_category, $element_loop);
+
 		// Add featured Image
 		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'thumbnail' );
 		
@@ -354,8 +394,15 @@ class SimpleTags_Client_RelatedPosts {
 	
 		$element_loop = str_replace('%post_thumb_url%', $post_thumbnail_url, $element_loop);
 	
+        // Get the post date, formatted differently for 'box' format
+        if ($format == 'box') {
+        $formatted_date = date('d.m.Y', strtotime($result->post_date));
+        } else {
+        $formatted_date = mysql2date($dateformat, $result->post_date);
+        }
 
-    $element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
+	$element_loop = str_replace('%post_date%', $formatted_date, $element_loop);
+
     $element_loop = str_replace('%post_permalink%', get_permalink($result), $element_loop);
     $element_loop = str_replace('%post_title%', $post_title, $element_loop);
     $element_loop = str_replace('%post_title_attribute%', esc_html(strip_tags($post_title)), $element_loop);

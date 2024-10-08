@@ -44,6 +44,10 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     margin: 3px 0 0;
 }
 
+.taxopress-autoterms-options.single-option {
+    display: none !important;
+}
+
 .taxopress-post-suggestterm .previewed-tag-fieldset legend {
     padding: 0 10px;
     padding-bottom: 5px;
@@ -52,6 +56,10 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 
 .taxopress-post-suggestterm .previewed-tag-fieldset legend a {
     text-decoration: none;
+}
+
+.taxopress-ai-fetch-result.suggest_local_terms .previewed-tag-fieldset {
+    margin-bottom: 30px;
 }
 
 .taxopress-post-suggestterm .preview-action-btn-wrap {
