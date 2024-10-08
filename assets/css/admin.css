@@ -640,6 +640,16 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
 .auto-terms-content input[type="submit"] {
     margin-top: 10px;
 }
+
+.button-secondary.delete-unused-term {
+    color: red !important;
+    border-color: red !important;
+}
+
+#terms-feedback .taxopress-response-css {
+    margin-top: 10px;
+}
+
 .auto-terms-keyword-list-wrapper {
     margin-left: 100px;
 }

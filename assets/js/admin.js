@@ -1119,6 +1119,37 @@
       return str === null || str.match(/^ *$/) !== null;
     }
 
+        // Event listener for the 'Check Terms to be deleted' button click
+        $(document).on('click', '.auto-terms-content.st-delete-unuused-terms #check-terms-btn', function(e) {
+          e.preventDefault();
+        
+          var numberRarely = $('.auto-terms-content.st-delete-unuused-terms #number-delete').val();
+
+          $('.taxopress-response-css').remove();
+        
+          $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css yellow"><p>' + st_admin_localize.checking_terms_message + '</p></div>'); 
+        
+          $.ajax({
+            url: st_admin_localize.ajaxurl,
+            method: "POST",
+            data: {
+                action: 'taxopress_check_delete_terms',
+                nonce: st_admin_localize.check_nonce,
+                number: numberRarely
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css yellow"><p>' + response.data.message + '</p></div>');
+                } else {
+                    $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css red"><p>' +response.data.message || st_admin_localize.no_terms_message + '</p></div>');
+                }
+            },
+            error: function(xhr, status, error) {
+              $('.auto-terms-content.st-delete-unuused-terms #terms-feedback').html('<div class="taxopress-response-css red"><p>' +st_admin_localize.terms_error + '</p></div>');
+            }
+        });
+    });
+
     /* Start COPIED FROM PP BLOCKS */
       $(".taxopress-dashboard-settings-control .slider").bind("click", function (e) {
         try {

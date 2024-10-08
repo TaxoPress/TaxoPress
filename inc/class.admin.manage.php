@@ -24,6 +24,9 @@ class SimpleTags_Admin_Manage
 
         // Javascript
         add_action('admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11);
+
+        //load ajax
+        add_action('wp_ajax_taxopress_check_delete_terms', array( $this, 'handle_taxopress_check_delete_terms_ajax'));
     }
 
     /**
@@ -336,8 +339,16 @@ class SimpleTags_Admin_Manage
 											</select>
 										</p>
 
-										<input class="button-primary" type="submit" name="Delete"
-											value="<?php esc_attr_e('Delete rarely used', 'simple-tags'); ?>" />
+                                        <label for="check-terms"><?php _e('Check how many terms will be deleted:', 'simple-tags'); ?></label>
+											<br />
+                                            <input style="margin-top: 2px;" id="check-terms-btn" class="button-primary" type="submit" name="Check"
+											value="<?php esc_attr_e('Check Terms', 'simple-tags'); ?>" />
+                                        <div id="terms-feedback"></div>
+
+                                        <label for="terms-delete"><?php _e('Delete rarely used terms:', 'simple-tags'); ?></label>
+                                        <br />
+										<input style="margin-top: 2px;" class="button-secondary delete-unused-term" type="submit" name="Delete"
+											value="<?php esc_attr_e('Delete Terms', 'simple-tags'); ?>" />
 									</form>
 								</fieldset>
 							</td>
@@ -826,6 +837,42 @@ class SimpleTags_Admin_Manage
         }
 
         return true;
+    }
+
+    function handle_taxopress_check_delete_terms_ajax() {
+       
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
+            wp_send_json_error(array('message' => __('Nonce verification failed.', 'simple-tags')));
+            wp_die();
+        }
+    
+        global $wpdb;
+    
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : 'post_tag';
+        $number = isset($_POST['number']) ? intval($_POST['number']) : 0;
+
+        if ((int) $number > 100) {
+            wp_die('Tcheater ?');
+        }
+    
+        if ($number > 0) {
+            $terms = $wpdb->get_col($wpdb->prepare("
+                SELECT term_id FROM $wpdb->term_taxonomy
+                WHERE taxonomy = %s AND count < %d", 
+                $taxonomy, (int) $number));
+    
+            $term_count = count($terms);
+    
+            if ($term_count > 0) {
+                wp_send_json_success(array('message' => sprintf(__('%d terms will be deleted.', 'simple-tags'), $term_count)));
+            } else {
+                wp_send_json_error(array('message' => __('No terms will be deleted.', 'simple-tags')));
+            }
+        } else {
+            wp_send_json_error(array('message' => __('Invalid number specified.', 'simple-tags')));
+        }
+    
+        wp_die();
     }
 
     /**

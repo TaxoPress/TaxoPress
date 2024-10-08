@@ -497,6 +497,10 @@ class SimpleTags_Admin
 			'use_media_label' => esc_html__('Use this media', 'simple-tags'),
 			'existing_content_admin_label' => esc_html__('Edit the current setting.', 'simple-tags'),
 			'autoterm_admin_url' => admin_url('admin.php?page=st_autoterms'),
+			'no_terms_message' => esc_html__('No terms will be deleted', 'simple-tags'),
+            'terms_count_message' => esc_html__(' terms will be deleted.', 'simple-tags'),
+			'checking_terms_message' => esc_html__('Checking terms...', 'simple-tags'),
+			'terms_error'            => esc_html__('An error occurred while checking terms.', 'simple-tags')
 		]);
 
 
