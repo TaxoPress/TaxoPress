@@ -504,6 +504,7 @@ class SimpleTags_Related_Post
                                                                 $term_auto_locations[$post_type->name] = $post_type->label;
                                                             }
                                                         }
+                                                        $default_location = 'post';
 
                                                          // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                          echo $ui->get_number_input([
@@ -528,7 +529,7 @@ class SimpleTags_Related_Post
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_check_input([
                                                                 'checkvalue' => esc_attr($key),
-                                                                'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
+                                                                'checked'    => ($key === 'post' || !empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
                                                                         $current['embedded'], true)) ? 'true' : 'false',
                                                                 'name'       => esc_attr($key),
                                                                 'namearray'  => 'embedded',

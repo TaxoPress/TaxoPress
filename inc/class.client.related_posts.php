@@ -42,7 +42,7 @@ class SimpleTags_Client_RelatedPosts {
 			'taxonomy'      => 'post_tag',
 			'post_type'     => get_post_type($post),// leaving this for legacy purpose
 			'post_types'    => '',
-			'number'        => 5,
+			'number'        => 3,
 			'max_post_chars' => 100,
 			'order'         => 'count-desc',
 			'format'        => 'list',
@@ -165,7 +165,7 @@ class SimpleTags_Client_RelatedPosts {
 			// Number - Limit
 			$number = (int) $number;
 			if ( $number == 0 ) {
-				$number = 5;
+				$number = 3;
 			} elseif ( $number > 50 ) {
 				$number = 50;
 			}
