@@ -498,6 +498,7 @@ class SimpleTags_Related_Post
                                                         $term_auto_locations = [
                                                             'homeonly' => esc_attr__('Homepage', 'simple-tags'),
                                                             'blogonly' => esc_attr__('Blog display', 'simple-tags'),
+                                                            'post'     => esc_attr__('Posts', 'simple-tags'),
                                                         ];
                                                         foreach ($post_types as $post_type) {
                                                             if (!in_array($post_type->name, ['attachment'])) {
@@ -529,8 +530,7 @@ class SimpleTags_Related_Post
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_check_input([
                                                                 'checkvalue' => esc_attr($key),
-                                                                'checked'    => ($key === 'post' || !empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
-                                                                        $current['embedded'], true)) ? 'true' : 'false',
+                                                                'checked' => (isset($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) ? 'true' : 'false',
                                                                 'name'       => esc_attr($key),
                                                                 'namearray'  => 'embedded',
                                                                 'textvalue'  => esc_attr($key),
