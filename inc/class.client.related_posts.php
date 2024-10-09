@@ -56,6 +56,7 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simple-tags' ),
 			'nopoststext'   => __( 'No related posts.', 'simple-tags' ),
 			'dateformat'    => get_option( 'date_format' ),
+			'taxopressdate_format' => get_option('taxopressdate_format'),
 			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
 			                       %post_title% <br> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
@@ -345,8 +346,8 @@ class SimpleTags_Client_RelatedPosts {
             }
 		}
 
-		if ( empty( $dateformat ) ) {
-			$dateformat = get_option( 'date_format' );
+		if ( empty( $taxopressdate_format ) ) {
+			$taxopressdate_format = get_option( 'date_format' );
 		}
 
 		$output = array();
@@ -396,9 +397,9 @@ class SimpleTags_Client_RelatedPosts {
 	
         // Get the post date, formatted differently for 'box' format
         if ($format == 'box') {
-        $formatted_date = date('d.m.Y', strtotime($result->post_date));
+        $formatted_date = date($taxopressdate_format, strtotime($result->post_date));
         } else {
-        $formatted_date = mysql2date($dateformat, $result->post_date);
+        $formatted_date = mysql2date($taxopressdate_format, $result->post_date);
         }
 
 	$element_loop = str_replace('%post_date%', $formatted_date, $element_loop);

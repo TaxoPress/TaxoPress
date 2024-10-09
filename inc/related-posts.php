@@ -459,6 +459,25 @@ class SimpleTags_Related_Post
                                                             'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
                                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         ] );
+
+                                                        $select = [
+                                                            'options' => [
+                                                                ['attr' => 'd.m.Y', 'text' => esc_attr__('d.m.Y (e.g., 09.10.2024)', 'simple-tags'), 'default' => 'true'],
+                                                                ['attr' => 'F j, Y', 'text' => esc_attr__('F j, Y (e.g., October 9, 2024)', 'simple-tags')],
+                                                                ['attr' => 'Y-m-d', 'text' => esc_attr__('Y-m-d (e.g., 2024-10-09)', 'simple-tags')],
+                                                                ['attr' => 'm/d/Y', 'text' => esc_attr__('m/d/Y (e.g., 10/09/2024)', 'simple-tags')],
+                                                                ['attr' => 'd M, Y', 'text' => esc_attr__('d M, Y (e.g., 09 Oct, 2024)', 'simple-tags')],
+                                                            ], 
+                                                        ]; 
+                                                        $selected = (isset($current) && isset($current['taxopressdate_format'])) ? taxopress_disp_boolean($current['taxopressdate_format']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['taxopressdate_format'] : ''; 
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                        echo $ui->get_select_checkbox_input_main( [
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'taxopressdate_format',
+                                                            'labeltext'  => esc_html__( '%post_date% format', 'simple-tags' ),
+                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ] );
                                                         
                                                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_td_end() . $ui->get_tr_end();
