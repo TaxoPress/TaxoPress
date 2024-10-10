@@ -297,13 +297,13 @@ class SimpleTags_Client_RelatedPosts {
 
 		//set default xformat contents when display format is box
 		if ($format == 'box'){
-			$defaults['number'] = 3;
-			$xformat       = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			$defaults['number']    = 3;
+			$defaults['xformat']   = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 								   <br>
 								   %post_title%
 								   <br>
-								    <span class="taxopress-relatedpost-date">%post_date% &bull;</span>  <span class="taxopress-relatedpost-cat">%post_category%</span>
+								    <span>%post_date% &bull;</span>  <span>%post_category%</span>
 			                       </a> 
 			                       ', 'simple-tags' );
 		}
@@ -377,6 +377,9 @@ class SimpleTags_Client_RelatedPosts {
 		 } else {
 			 $post_category = '';
 		 }
+
+		    //style the category
+			$post_category = '<span class="taxopress-boxrelatedpost-cat">' . $post_category . '</span>';
 	 
 		 // Replace %post_category% in the element loop
 		 $element_loop = str_replace('%post_category%', $post_category, $element_loop);
@@ -410,9 +413,38 @@ class SimpleTags_Client_RelatedPosts {
     $element_loop = str_replace('%post_tagcount%', (int) $result->counter, $element_loop);
     $element_loop = str_replace('%post_id%', $result->ID, $element_loop);
 
-    if (isset($result->terms_id)) {
-        $element_loop = str_replace('%post_relatedtags%', self::get_tags_from_id($result->terms_id, $taxonomy), $element_loop);
-    }
+	//format related tags differently for box format
+	if ($results) {
+		foreach ($results as $result) {
+			if ($format == 'box' && !empty($result->terms_id)) {
+				// Convert the comma-separated term IDs to an array
+				$terms_ids = explode(',', $result->terms_id);
+				
+				// Get the terms' names from the term IDs
+				$tags = wp_get_object_terms($result->ID, $taxonomy, array(
+					'include' => $terms_ids,
+					'fields'  => 'names'
+				));
+				
+				if (!is_wp_error($tags) && !empty($tags)) {
+					// Convert the array of tag names to a comma-separated string
+					$tags_list = implode(', ', $tags);
+					
+					// Replace %post_relatedtags% with the comma-separated tag names
+					$element_loop = str_replace('%post_relatedtags%', $tags_list, $element_loop);
+				} else {
+					$element_loop = str_replace('%post_relatedtags%', '', $element_loop);
+				}
+			} elseif (isset($result->terms_id)) {
+				// Handle other formats
+				$element_loop = str_replace('%post_relatedtags%', self::get_tags_from_id($result->terms_id, $taxonomy), $element_loop);
+			}
+		}
+	}
+
+    // if (isset($result->terms_id)) {
+    //     $element_loop = str_replace('%post_relatedtags%', self::get_tags_from_id($result->terms_id, $taxonomy), $element_loop);
+    // }
 
     if (isset($result->post_excerpt) || isset($result->post_content)) {
         $element_loop = str_replace('%post_excerpt%', self::get_excerpt_post($result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap), $element_loop);
