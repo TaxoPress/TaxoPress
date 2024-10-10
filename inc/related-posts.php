@@ -505,7 +505,6 @@ class SimpleTags_Related_Post
                                                                 $term_auto_locations[$post_type->name] = $post_type->label;
                                                             }
                                                         }
-                                                        $default_location = 'post';
 
                                                          // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                          echo $ui->get_number_input([
@@ -524,13 +523,24 @@ class SimpleTags_Related_Post
                                                                 <table class="visbile-table">';
                                                         foreach ($term_auto_locations as $key => $value) {
 
+                                                            $is_checked = 'false';
+
+                                                            // Set 'post' as default if nothing is set in the $current['embedded'] array
+                                                            if ((!isset($current['embedded']) || !is_array($current['embedded'])) && $key === 'post') {
+                                                                $is_checked = 'true';
+                                                            }
+                                                            // If there's a value set in $current['embedded'], check it against $key
+                                                            elseif (isset($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) {
+                                                                $is_checked = 'true';
+                                                            }
+
 
                                                             echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
 
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_check_input([
                                                                 'checkvalue' => esc_attr($key),
-                                                                'checked' => (isset($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) ? 'true' : 'false',
+                                                                'checked' => $is_checked,
                                                                 'name'       => esc_attr($key),
                                                                 'namearray'  => 'embedded',
                                                                 'textvalue'  => esc_attr($key),
