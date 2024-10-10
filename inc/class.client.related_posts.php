@@ -378,9 +378,8 @@ class SimpleTags_Client_RelatedPosts {
 			 $post_category = '';
 		 }
 
-		 if ($format == 'box') {
+		    //style the category
 			$post_category = '<span class="taxopress-boxrelatedpost-cat">' . $post_category . '</span>';
-		}
 	 
 		 // Replace %post_category% in the element loop
 		 $element_loop = str_replace('%post_category%', $post_category, $element_loop);
@@ -401,7 +400,6 @@ class SimpleTags_Client_RelatedPosts {
         // Get the post date, formatted differently for 'box' format
         if ($format == 'box') {
         $formatted_date = date('d.m.Y', strtotime($result->post_date));
-		$formatted_date = '<span class="taxopress-boxrelatedpost-date">' . $formatted_date . '</span>'; 
         } else {
         $formatted_date = mysql2date($dateformat, $result->post_date);
         }
