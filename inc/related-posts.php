@@ -498,6 +498,7 @@ class SimpleTags_Related_Post
                                                         $term_auto_locations = [
                                                             'homeonly' => esc_attr__('Homepage', 'simple-tags'),
                                                             'blogonly' => esc_attr__('Blog display', 'simple-tags'),
+                                                            'post'     => esc_attr__('Posts', 'simple-tags'),
                                                         ];
                                                         foreach ($post_types as $post_type) {
                                                             if (!in_array($post_type->name, ['attachment'])) {
@@ -522,14 +523,24 @@ class SimpleTags_Related_Post
                                                                 <table class="visbile-table">';
                                                         foreach ($term_auto_locations as $key => $value) {
 
+                                                            $is_checked = 'false';
+
+                                                            // Set 'post' as default if nothing is set in the $current['embedded'] array
+                                                            if ((!isset($current['embedded']) || !is_array($current['embedded'])) && $key === 'post') {
+                                                                $is_checked = 'true';
+                                                            }
+                                                            // If there's a value set in $current['embedded'], check it against $key
+                                                            elseif (isset($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) {
+                                                                $is_checked = 'true';
+                                                            }
+
 
                                                             echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
 
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_check_input([
                                                                 'checkvalue' => esc_attr($key),
-                                                                'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
-                                                                        $current['embedded'], true)) ? 'true' : 'false',
+                                                                'checked' => $is_checked,
                                                                 'name'       => esc_attr($key),
                                                                 'namearray'  => 'embedded',
                                                                 'textvalue'  => esc_attr($key),
