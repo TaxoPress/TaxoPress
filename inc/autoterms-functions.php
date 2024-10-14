@@ -266,7 +266,7 @@ function taxopress_create_default_autoterm()
                     $default['taxopress_autoterm']['autoterm_word']            = isset($options_taxonomy_data['only_full_word']) ? $options_taxonomy_data['only_full_word'] : 0;
                     $default['taxopress_autoterm']['autoterm_hash']            = isset($options_taxonomy_data['allow_hashtag_format']) ? $options_taxonomy_data['allow_hashtag_format'] : 0;
                     $default['specific_terms']            = isset($options_taxonomy_data['auto_list']) ? (array) maybe_unserialize($options_taxonomy_data['auto_list']) : [];
-                    $default['taxopress_autoterm']['terms_limit']              = '0';
+                    $default['taxopress_autoterm']['terms_limit']              = '5';
                     $default['taxopress_autoterm']['synonyms_term']            = '0';
 
                     $result                                                    = taxopress_update_autoterm($default);
@@ -288,7 +288,7 @@ function taxopress_create_default_autoterm()
         $default['taxopress_autoterm']['autoterm_target']          = '0';
         $default['taxopress_autoterm']['autoterm_word']            = '0';
         $default['taxopress_autoterm']['autoterm_hash']            = '0';
-        $default['taxopress_autoterm']['terms_limit']              = '0';
+        $default['taxopress_autoterm']['terms_limit']              = '5';
         $default['taxopress_autoterm']['synonyms_term']            = '0';
         $default['specific_terms']                                  = [];
         $result                                                    = taxopress_update_autoterm($default);
