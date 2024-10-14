@@ -44,6 +44,8 @@ class SimpleTags_Client_RelatedPosts {
 			'post_types'    => '',
 			'number'        => 5,
 			'max_post_chars' => 100,
+			'taxopress_max_cats' => 3,
+			'taxopress_max_tags' => 3,
 			'order'         => 'count-desc',
 			'format'        => 'list',
 			'separator'     => '',
@@ -371,16 +373,26 @@ class SimpleTags_Client_RelatedPosts {
 		 // Get the category of the post
 		 $categories = get_the_category($result->ID);
 		 if (!empty($categories)) {
+
+			if ($taxopress_max_cats === '0'){
+				$limited_categories = $categories;
+			} else {
+				$limited_categories = array_slice($categories, 0, $taxopress_max_cats);
+			}
+			
 			 $category_names = array_map(function ($cat) {
 				 return esc_html($cat->name);
-			 }, $categories);
-			 $post_category = implode(', ', $category_names); // Join categories with a comma if there are multiple
+			 }, $limited_categories);
+			 $limited_categories = implode(', ', $category_names); // Join categories with a comma if there are multiple
 		 } else {
-			 $post_category = '';
+			$limited_categories = '';
 		 }
+
+		 //style the category
+		 $limited_categories = '<span class="taxopress-boxrelatedpost-cat">'. $limited_categories . '</span>';
 	 
 		 // Replace %post_category% in the element loop
-		 $element_loop = str_replace('%post_category%', $post_category, $element_loop);
+		 $element_loop = str_replace('%post_category%', $limited_categories, $element_loop);
 
 		// Add featured Image
 		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'thumbnail' );
@@ -411,9 +423,48 @@ class SimpleTags_Client_RelatedPosts {
     $element_loop = str_replace('%post_tagcount%', (int) $result->counter, $element_loop);
     $element_loop = str_replace('%post_id%', $result->ID, $element_loop);
 
-    if (isset($result->terms_id)) {
-        $element_loop = str_replace('%post_relatedtags%', self::get_tags_from_id($result->terms_id, $taxonomy), $element_loop);
-    }
+	//format related tags differently for box format
+	if ($results) {
+		foreach ($results as $result) {
+			if ($format == 'box' && !empty($result->terms_id)) {
+				
+				$terms_ids = explode(',', $result->terms_id);
+				
+				
+				$tags = wp_get_object_terms($result->ID, $taxonomy, array(
+					'include' => $terms_ids,
+					'fields'  => 'names'
+				));
+				
+				if (!is_wp_error($tags) && !empty($tags)) {
+
+					if ($taxopress_max_tags === '0'){
+						$limited_tags = $tags;
+					} else {
+						$limited_tags = array_slice($tags, 0, $taxopress_max_tags);
+					}
+					$tags_list = implode(', ', $limited_tags);
+					
+					// Replace %post_relatedtags% with the comma-separated tag names
+					$element_loop = str_replace('%post_relatedtags%', $tags_list, $element_loop);
+				} else {
+					$element_loop = str_replace('%post_relatedtags%', '', $element_loop);
+				}
+			} elseif (isset($result->terms_id)) {
+				// Handle other formats
+				$tags_list = self::get_tags_from_id($result->terms_id, $taxonomy);
+
+				if ($taxopress_max_tags === '0'){
+					//display all tags
+				} else{
+					$limited_tags = explode(', ', $tags_list);
+					$tags_list = implode(', ', array_slice($limited_tags, 0, $taxopress_max_tags));
+				}
+
+				$element_loop = str_replace('%post_relatedtags%', $tags_list, $element_loop);
+			}
+		}
+	}
 
     if (isset($result->post_excerpt) || isset($result->post_content)) {
         $element_loop = str_replace('%post_excerpt%', self::get_excerpt_post($result->post_excerpt, $result->post_content, $result->post_password, $excerpt_wrap), $element_loop);
