@@ -297,13 +297,13 @@ class SimpleTags_Client_RelatedPosts {
 
 		//set default xformat contents when display format is box
 		if ($format == 'box'){
-			$defaults['number'] = 3;
-			$xformat       = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			$defaults['number']    = 3;
+			$defaults['xformat']   = __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 								   <br>
 								   %post_title%
 								   <br>
-								    <span class="taxopress-relatedpost-date">%post_date% &bull;</span>  <span class="taxopress-relatedpost-cat">%post_category%</span>
+								    <span>%post_date% &bull;</span>  <span>%post_category%</span>
 			                       </a> 
 			                       ', 'simple-tags' );
 		}
@@ -377,6 +377,9 @@ class SimpleTags_Client_RelatedPosts {
 		 } else {
 			 $post_category = '';
 		 }
+
+		    //style the category
+			$post_category = '<span class="taxopress-boxrelatedpost-cat">' . $post_category . '</span>';
 	 
 		 // Replace %post_category% in the element loop
 		 $element_loop = str_replace('%post_category%', $post_category, $element_loop);
