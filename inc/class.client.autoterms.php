@@ -655,7 +655,7 @@ class SimpleTags_Client_Autoterms
 			$terms_to_add = array_unique($terms_to_add);
 
 			//auto terms limit
-			$terms_limit = isset($options['terms_limit']) ? (int) $options['terms_limit'] : 0;
+			$terms_limit = isset($options['terms_limit']) ? (int) $options['terms_limit'] : 5;
 			if ($terms_limit > 0 && count($terms_to_add) > $terms_limit) {
 				$terms_to_add = array_slice($terms_to_add, 0, $terms_limit);
 			}

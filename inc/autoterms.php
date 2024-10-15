@@ -803,7 +803,7 @@ class SimpleTags_Autoterms
                                                     echo $ui->get_number_input([
                                                         'namearray' => 'taxopress_autoterm',
                                                         'name'      => 'terms_limit',
-                                                        'textvalue' => isset($current['terms_limit']) ? esc_attr($current['terms_limit']) : '',
+                                                        'textvalue' => isset($current['terms_limit']) ? esc_attr($current['terms_limit']) : '5',
                                                         'labeltext' => esc_html__('Auto Terms Limit',
                                                             'simple-tags'),
                                                         'helptext'  => esc_html__('Limit the number of generated Auto Terms. \'0\' for unlimited terms', 'simple-tags'),
