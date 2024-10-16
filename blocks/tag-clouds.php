@@ -62,7 +62,6 @@ function st_tag_clouds_block_init()
         esc_html__('this page.', 'simple-tags')
     );
 
-    //$select_desc  = __('Related Posts shortcode are added on Related Post screen', 'simple-tags');
     $select_label = __('Select Terms Display shortcode', 'simple-tags');
     $panel_title  = __('Terms Display (TaxoPress)', 'simple-tags');
 
@@ -70,7 +69,6 @@ function st_tag_clouds_block_init()
         'options'      => $options,
         'panel_title'  => $panel_title,
         'select_label' => $select_label,
-        //'select_desc'  => $select_desc
     ]);
 
 }
