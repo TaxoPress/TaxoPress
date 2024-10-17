@@ -469,17 +469,15 @@ class SimpleTags_Related_Post
                                                                 ['attr' => 'd M, Y', 'text' => esc_attr__('d M, Y (e.g., 09 Oct, 2024)', 'simple-tags')],
                                                             ], 
                                                         ]; 
-                                                        $selected = (isset($current) && isset($current['taxopressdate_format'])) ? taxopress_disp_boolean($current['taxopressdate_format']) : '';
-                                                        $select['selected'] = !empty($selected) ? $current['taxopressdate_format'] : ''; 
+                                                        $selected = (isset($current) && isset($current['dateformat'])) ? taxopress_disp_boolean($current['dateformat']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['dateformat'] : ''; 
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
                                                         echo $ui->get_select_checkbox_input_main( [
                                                             'namearray'  => 'taxopress_related_post',
-                                                            'name'       => 'taxopressdate_format',
+                                                            'name'       => 'dateformat',
                                                             'labeltext'  => esc_html__( '%post_date% format', 'simple-tags' ),
                                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         ] );
-                                                        
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
                                                           // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
                                                           echo $ui->get_number_input([
