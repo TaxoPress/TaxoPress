@@ -23,6 +23,8 @@ require STAGS_DIR . '/inc/related-posts-widget.php';
 
 //include blocks
 require STAGS_DIR . '/blocks/related-posts.php';
+require STAGS_DIR . '/blocks/post-tags.php';
+require STAGS_DIR . '/blocks/tag-clouds.php';
 
 //include ajax
 require STAGS_DIR . '/inc/ajax-request.php';
