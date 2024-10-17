@@ -854,10 +854,13 @@ font-weight: bold;
     margin: 10px 0;
 }
 .stb-block-related-post,
-.stb-block-related-post + p {
+.stb-block-related-post + p,
+.stb-block-tag-clouds-post,
+.stb-block-tag-clouds-post + p {
     padding: 10px;
 }
-select#stb-related-post-select {
+select#stb-related-post-select,
+select#stb-tag-clouds-select {
     height: 40px;
 }
 
