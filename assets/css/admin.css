@@ -855,12 +855,18 @@ font-weight: bold;
 }
 .stb-block-related-post,
 .stb-block-related-post + p,
+
+
 .stb-block-post-tags,
-.stb-block-post-tags + p {
+.stb-block-post-tags + p,
+.stb-block-tag-clouds-post,
+.stb-block-tag-clouds-post + p  {
     padding: 10px;
 }
 select#stb-related-post-select,
-select#stb-post-tags-select {
+select#stb-post-tags-select,
+select#stb-related-post-select,
+select#stb-tag-clouds-select {
     height: 40px;
 }
 
