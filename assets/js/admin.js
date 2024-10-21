@@ -350,6 +350,19 @@
     });
 
     // -------------------------------------------------------------
+    //   Manage terms remove terms option check
+    // -------------------------------------------------------------
+    $(document).on('click', '.removeterm_type_matched_only', function (e) {
+      $('#removeterm_match').val($('#removeterm_match').attr('data-prev'));
+      $('.removeterms-to-match-input').show();
+    });
+    $(document).on('click', '.removeterm_type_all_posts', function (e) {
+      $('#removeterm_match').attr('data-prev', $('#removeterm_match').val());
+      $('#removeterm_match').val('');
+      $('.removeterms-to-match-input').hide();
+    });
+
+    // -------------------------------------------------------------
     //   Terms display submit validation
     // -------------------------------------------------------------
     $('.taxopress-tag-cloud-submit').on('click', function (e) {
