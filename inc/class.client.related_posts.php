@@ -407,15 +407,8 @@ class SimpleTags_Client_RelatedPosts {
 		}
 	
 		$element_loop = str_replace('%post_thumb_url%', $post_thumbnail_url, $element_loop);
-	
-        // Get the post date, formatted differently for 'box' format
-        if ($format == 'box') {
-        $formatted_date = date('d.m.Y', strtotime($result->post_date));
-        } else {
-        $formatted_date = mysql2date($dateformat, $result->post_date);
-        }
 
-	$element_loop = str_replace('%post_date%', $formatted_date, $element_loop);
+	$element_loop = str_replace('%post_date%', mysql2date($dateformat, $result->post_date), $element_loop);
 
     $element_loop = str_replace('%post_permalink%', get_permalink($result), $element_loop);
     $element_loop = str_replace('%post_title%', $post_title, $element_loop);
