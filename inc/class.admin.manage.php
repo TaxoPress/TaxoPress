@@ -110,6 +110,11 @@ class SimpleTags_Admin_Manage
                 $newtag   = (isset($_POST['addterm_new'])) ? sanitize_text_field($_POST['addterm_new']) : '';
                 self::addMatchTerms(SimpleTags_Admin::$taxonomy, $matchtag, $newtag);
                 $default_tab = '.st-add-terms';
+            }  elseif ($_POST['term_action'] == 'removeterm') {
+                $matchtag = (isset($_POST['removeterm_match'])) ? sanitize_text_field($_POST['removeterm_match']) : '';
+                $removetag = (isset($_POST['remove_term'])) ? sanitize_text_field($_POST['remove_term']) : '';
+                self::removeMatchTerms(SimpleTags_Admin::$taxonomy, $matchtag, $removetag);
+                $default_tab = '.st-remove-terms';    
             } elseif ($_POST['term_action'] == 'remove-rarelyterms') {
                 self::removeRarelyUsed(SimpleTags_Admin::$taxonomy, (int) $_POST['number-rarely']);
                 $default_tab = '.st-delete-unuused-terms';
@@ -156,6 +161,9 @@ class SimpleTags_Admin_Manage
 					<ul class="simple-tags-nav-tab-wrapper">
 						<li class="nav-tab nav-tab-active" data-page=".st-add-terms">
 							<?php echo esc_html__('Add terms', 'simple-tags'); ?>
+						</li>
+                        <li class="nav-tab" data-page=".st-remove-terms">
+							<?php echo esc_html__('Remove terms', 'simple-tags'); ?>
 						</li>
 						<li class="nav-tab" data-page=".st-rename-terms">
 							<?php echo esc_html__('Rename terms', 'simple-tags'); ?>
@@ -227,6 +235,60 @@ class SimpleTags_Admin_Manage
 
 										<input class="button-primary" type="submit" name="Add"
 											value="<?php _e('Add', 'simple-tags'); ?>" />
+									</form>
+								</fieldset>
+							</td>
+						</tr>
+
+                        <tr valign="top" style="display:none;" class="auto-terms-content st-remove-terms">
+							<td>
+								<h2><?php _e('Remove Terms', 'simple-tags'); ?>
+								</h2>
+								<p><?php printf(esc_html__('This feature lets you remove one or more terms from all %s which match any of the terms given.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
+								</p>
+
+								<p><?php printf(esc_html__('Terms will be removed from all %s If no "Term(s) to match" is specified.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
+								</p>
+
+								<fieldset>
+									<form action="" method="post">
+										<input type="hidden" name="taxo"
+											value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
+										<input type="hidden" name="cpt"
+											value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
+
+										<input type="hidden" name="term_action" value="removeterm" />
+										<input type="hidden" name="term_nonce"
+											value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
+
+										<p class="terms-type-options">
+											<label><input type="radio" id="removeterm_type" class="removeterm_type_all_posts"
+													name="removeterm_type" value="all_posts"
+													checked="checked"><?php printf(esc_html__('Remove terms from all %s.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></label><br>
+
+											<label><input type="radio" id="removeterm_type"
+													class="removeterm_type_matched_only" name="removeterm_type"
+													value="matched_only"><?php _e('Remove terms only from posts with specific terms attached.', 'simple-tags'); ?></label>
+										</p>
+
+										<p class="removeterms-to-match-input" style="display: none;">
+											<label
+												for="removeterm_match"><?php _e('Term(s) to match:', 'simple-tags'); ?></label>
+											<br />
+											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea"
+												id="removeterm_match" name="removeterm_match" size="80" /></textarea>
+										</p>
+
+										<p>
+											<label
+												for="remove_term"><?php _e('Term(s) to remove:', 'simple-tags'); ?></label>
+											<br />
+											<textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="remove_term"
+												name="remove_term" size="80" /></textarea>
+										</p>
+
+										<input class="button-primary" type="submit" name="Remove"
+											value="<?php _e('Remove', 'simple-tags'); ?>" />
 									</form>
 								</fieldset>
 							</td>
@@ -1013,6 +1075,96 @@ class SimpleTags_Admin_Manage
 
         return self::filterHiddenTerms($terms, $taxonomy);
     }
+
+        /**
+     * Method for removing terms from all or specified posts
+     *
+     * @param string $taxonomy
+     * @param string $match
+     * @param string $remove
+     *
+     * @return boolean
+     * @author WebFactory Ltd
+     */
+    public static function removeMatchTerms($taxonomy = 'post_tag', $match = '', $remove = '')
+    {
+        if (trim(str_replace(',', '', stripslashes($remove))) == '') {
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term(s) specified for removal!', 'simple-tags'), 'error');
+            return false;
+        }
+    
+        $match_terms  = explode(',', $match);
+        $remove_terms = explode(',', $remove);
+    
+        $match_terms  = array_filter($match_terms, '_delete_empty_element');
+        $remove_terms = array_filter($remove_terms, '_delete_empty_element');
+    
+        // Arrays to track if terms entered is valid
+        $valid_remove_terms = array();
+        $invalid_remove_terms = array();
+    
+        foreach ((array) $remove_terms as $remove_term) {
+            $term = get_term_by('name', sanitize_text_field($remove_term), $taxonomy);
+            if ($term) {
+                $valid_remove_terms[] = $remove_term; // Add to valid list if the term exists
+            } else {
+                $invalid_remove_terms[] = $remove_term; // Collect invalid remove terms
+            }
+        }
+
+        if (empty($valid_remove_terms)) {
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('Term(s) does not exist.', 'simple-tags'), 'error');
+            return false;
+        }
+        
+        $counter = 0;
+        if (!empty($match_terms)) {
+            // Get terms ID from match terms
+            $terms_id = array();
+            foreach ((array) $match_terms as $match_term) {
+                $term = get_term_by('name', sanitize_text_field($match_term), $taxonomy);
+                if ($term) {
+                    $terms_id[] = (int) $term->term_id;
+                }
+            }
+    
+            // Get object ID with terms ID
+            $objects_id = get_objects_in_term($terms_id, $taxonomy, array('fields' => 'all_with_object_id'));
+    
+            // Remove specified terms from matched posts
+            foreach ((array) $objects_id as $object_id) {
+                wp_remove_object_terms($object_id, $valid_remove_terms, $taxonomy);
+                $counter++;
+            }
+    
+            clean_object_term_cache($objects_id, $taxonomy);
+            clean_term_cache($terms_id, $taxonomy);
+        } else {
+            // Get all posts if no match terms were provided
+            global $wpdb;
+            $post_type_sql = "(post_status = 'publish' OR post_status = 'inherit') AND post_type = '".SimpleTags_Admin::$post_type."'";
+            $objects_id = $wpdb->get_col("SELECT ID FROM {$wpdb->posts} WHERE {$post_type_sql}");
+    
+            // Remove valid terms for all posts
+            foreach ((array) $objects_id as $object_id) {
+                wp_remove_object_terms($object_id, $valid_remove_terms, $taxonomy);
+                clean_object_term_cache($object_id, $taxonomy);
+                clean_term_cache($valid_remove_terms, $taxonomy);
+                $counter++;
+            }
+    
+            clean_object_term_cache($objects_id, $taxonomy);
+        }
+    
+        if ($counter == 0) {
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No matching term found.', 'simple-tags'), 'updated');
+        } else {
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Term(s) removed from %1s %2s.', 'simple-tags'), $counter, SimpleTags_Admin::$post_type_name), 'updated');
+        }
+    
+        return true;
+    }
+    
 
     /**
      * Method for edit one or more terms slug

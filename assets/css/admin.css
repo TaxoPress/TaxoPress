@@ -689,7 +689,9 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
     width: 35%;
 }
 .addterm_type_all_posts,
-.addterm_type_matched_only {
+.addterm_type_matched_only,
+.removeterm_type_all_posts,
+.removeterm_type_matched_only {
     margin-right: 9px !important;
 }
 .terms-type-options {
