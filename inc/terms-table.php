@@ -436,6 +436,20 @@ class Taxopress_Terms_List extends WP_List_Table
             );
         }
 
+        $actions['copy_term'] = sprintf(
+            '<a href="%s">%s</a>',
+            add_query_arg(
+                [
+                    'page'                   => 'st_terms',
+                    'action'                 => 'taxopress-copy-term',
+                    'taxopress_terms'        => esc_attr($item->term_id),
+                    '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            ),
+            esc_html__('Copy', 'simple-tags')
+        );
+
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
     }
 
