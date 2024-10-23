@@ -208,7 +208,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $terms_found = false;
 
                         $term_results = '<div class="preview-action-title"><p class="description">';
-                        $term_results .= sprintf(esc_html__('Click %1s to add or remove them from this %2s.', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
+                        $term_results .= sprintf(esc_html__('Click %1s to select or deselect them from this %2s.', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
                         $term_results .= '</p></div>';
                         // autoterm_use_taxonomy
                         if ($autoterm_use_taxonomy) {
@@ -549,7 +549,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 if (empty($added_tags) && empty($removed_tags)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('Click Term to add or remove from this %1s', 'simple-tags'), esc_html($post_type_label));
+                    $response['content'] = sprintf(esc_html__('Click Term to select or deselect from this %1s', 'simple-tags'), esc_html($post_type_label));
                 } elseif (empty($taxonomy) || empty($post_id)) {
                     $response['status'] = 'error';
                     $response['content'] = esc_html__('Both Taxonomy and Post are required.', 'simple-tags');
@@ -600,7 +600,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $response['added_terms_id'] = $added_terms_id;
                     if (empty($added_terms_name) && empty($removed_terms_name)) {
                         $response['status'] = 'error';
-                        $additional_message = esc_html__('No new terms were added or removed.', 'simple-tags');
+                        $additional_message = esc_html__('No new terms were selected or deselected.', 'simple-tags');
                     }
 
                     if (!empty($added_terms_name)) {

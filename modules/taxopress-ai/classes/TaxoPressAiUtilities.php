@@ -262,7 +262,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
 
             //$modified_legend_title .= ' <span class="ai-original-legend">'. $legend_title .'</span>';
             $response_content = '<div class="preview-action-title"><p class="description">';
-            $response_content .= sprintf(esc_html__('Click %1s to add or remove them from this %2s.', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
+            $response_content .= sprintf(esc_html__('Click %1s to select or deselect them from this %2s.', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
             $response_content .= '</p></div>';
             $response_content .= '<fieldset class="previewed-tag-fieldset">';
             $response_content .= '<legend> '. $modified_legend_title .' </legend>';
