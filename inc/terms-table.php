@@ -197,7 +197,41 @@ class Taxopress_Terms_List extends WP_List_Table
             }
 ?>
 
+            <div class="alignleft actions autoterms-terms-table-copy" id="taxopress-copy-selection-boxes" style="display: none;">
+                <select class="auto-terms-terms-copy-select" name="taxopress_destination_taxonomy" id="terms_copy_select_destination_taxonomy">
+                    <option value=""><?php esc_html_e('Select Destination Taxonomy', 'simple-tags'); ?></option> <?php
+                    foreach ($taxonomies as $taxonomy) {
+                        echo '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->labels->name) . '</option>';
+                    } ?>
+                </select>
 
+                <select class="auto-terms-terms-copy-select" name="taxopress_destination_post_type" id="terms_copy_select_destination_post">
+                    <?php
+                        $post_type_label = !empty($selected_post_type) ? esc_html($selected_post_type) : esc_html__('post type', 'simple-tags');
+                        ?>
+                        <option value=""><?php printf(esc_html__('Select Destination %s', 'simple-tags'), $post_type_label); ?></option>
+                        <option value="all" <?php selected($selected_post, 'all'); ?>><?php printf(esc_html__('All %s', 'simple-tags'), $post_type_label); ?></option>.
+                        <?php  
+                        // I want to show all posts when no post type is selected
+                        if (empty($selected_post_type)) {
+                            $all_posts = get_posts(['post_type' => 'any', 'numberposts' => -1]);
+                            foreach ($all_posts as $post): ?>
+                            <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
+                            <?php echo esc_html($post->post_title); ?>
+                            </option>
+                            <?php endforeach; 
+                        } else {
+                            // Show posts only for selected post type
+                            $posts = get_posts(['post_type' => $selected_post_type, 'numberposts' => -1]);
+                            foreach ($posts as $post): ?>
+                            <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
+                            <?php echo esc_html($post->post_title); ?>
+                            </option>
+                            <?php endforeach; 
+                        }
+                            ?>
+                </select>
+            </div>
             <div class="alignleft actions autoterms-terms-table-filter">
 
                 <select class="auto-terms-terms-filter-select" name="terms_filter_select_post_type" id="terms_filter_select_post_type">
@@ -223,41 +257,7 @@ class Taxopress_Terms_List extends WP_List_Table
                     <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
                     <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
                 </select>
-
-                <select class="auto-terms-terms-copy-select" name="taxopress_destination_taxonomy" id="terms_copy_select_destination_taxonomy">
-                    <option value=""><?php esc_html_e('Select Destination Taxonomy', 'simple-tags'); ?></option> <?php
-                    foreach ($taxonomies as $taxonomy) {
-                        echo '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->labels->name) . '</option>';
-                    } ?>
-                </select>
-
-                <select class="auto-terms-terms-copy-select" name="taxopress_destination_post_type" id="terms_copy_select_destination_post">
-                <?php
-                    $post_type_label = !empty($selected_post_type) ? esc_html($selected_post_type) : esc_html__('post type', 'simple-tags');
-                    ?>
-                    <option value=""><?php printf(esc_html__('Select Destination %s', 'simple-tags'), $post_type_label); ?></option>
-                    <option value="all" <?php selected($selected_post, 'all'); ?>><?php printf(esc_html__('All %s', 'simple-tags'), $post_type_label); ?></option>.
-                    <?php  
-                    // I want to show all posts when no post type is selected
-                    if (empty($selected_post_type)) {
-                        $all_posts = get_posts(['post_type' => 'any', 'numberposts' => -1]);
-                        foreach ($all_posts as $post): ?>
-                        <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
-                        <?php echo esc_html($post->post_title); ?>
-                        </option>
-                        <?php endforeach; 
-                    } else {
-                        // Show posts only for selected post type
-                        $posts = get_posts(['post_type' => $selected_post_type, 'numberposts' => -1]);
-                        foreach ($posts as $post): ?>
-                        <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
-                        <?php echo esc_html($post->post_title); ?>
-                        </option>
-                        <?php endforeach; 
-                    }
-                        ?>
-                </select>
-
+                
                 <a href="javascript:void(0)" class="taxopress-terms-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
 
             </div>

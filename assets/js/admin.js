@@ -682,6 +682,20 @@
     });
 
     // -------------------------------------------------------------
+    //   Show or hide the copy terms selection box
+    // -------------------------------------------------------------
+    if ($('body').hasClass('taxopress_page_st_terms')) {
+      $(document).on('change', '#bulk-action-selector-top', function (e) {
+          e.preventDefault();
+          if (this.value === 'taxopress-terms-copy-terms') {
+              $('#taxopress-copy-selection-boxes').show();
+          } else {
+              $('#taxopress-copy-selection-boxes').hide();
+          }
+      });
+  }
+
+    // -------------------------------------------------------------
     //   Auto term close button
     // -------------------------------------------------------------
     $(document).on('click', '.auto-term-content-result-title .notice-dismiss', function (e) {
