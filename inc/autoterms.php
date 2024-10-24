@@ -435,6 +435,11 @@ class SimpleTags_Autoterms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_preview' ? 'true' : 'false'; ?>" class="autoterm_preview_tab <?php echo $active_tab === 'autoterm_preview' ? 'active' : ''; ?>" data-content="autoterm_preview">
+                                                    <a href="#autoterm_preview"><span><?php esc_html_e('Preview',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                             </ul>
 
                                             <div class="st-taxonomy-content taxopress-tab-content">
@@ -1168,6 +1173,60 @@ class SimpleTags_Autoterms
                                                        style="<?php echo $active_tab === 'autoterm_advanced' ? '' : 'display:none;'; ?>">
 
                                                         <?php do_action('taxopress_autoterms_after_autoterm_advanced', $current); ?>
+
+                                                </table>
+
+
+                                                <table class="form-table taxopress-table autoterm_preview"
+                                                       style="<?php echo $active_tab === 'autoterm_preview' ? '' : 'display:none;'; ?>">
+                                                    <tr class="autoterm-description-tr">
+                                                        <td colspan="2">
+                                                        <p class="description" style="margin-bottom: 20px;"><?php echo esc_attr__('Save changes to the settings before using this feature.', 'simple-tags'); ?></p>
+                                                            <div class="taxopress-autoterm-fetch-wrap">
+                                                                <select class="preview-post-types-select"
+                                                                style="width: auto;max-width: 33%;display: none;">
+                                                                    <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
+                                                                        if (!in_array($post_type, ['attachment'])) {
+                                                                            if (empty($default_post_type)) {
+                                                                                $default_post_type = $post_type;
+                                                                                $posts = $posts = get_posts(['post_type' => $post_type, 'numberposts' => 1, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
+                                                                                if (!empty($posts)) {
+                                                                                    $post = $posts[0];
+                                                                                }
+                                                                            }
+                                                                        ?>
+                                                                            <option value='<?php echo esc_attr($post_type); ?>'
+                                                                                data-singular_label="<?php echo esc_html($post_type_object->labels->singular_name); ?>">
+                                                                                <?php echo esc_html($post_type_object->labels->name); ?>
+                                                                            </option>
+                                                                        <?php 
+                                                                        }
+                                                                    endforeach; ?>
+                                                                </select>
+
+                                                                <select class="preview-post-select taxopress-post-search"
+                                                                style="width: 33%;max-width: 33%;"
+                                                                    data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
+                                                                    data-allow-clear="true"
+                                                                    data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-post-search')); ?>">
+                                                                    <?php if (is_object($post)) : ?>
+                                                                        <option value='<?php echo esc_attr($post->ID); ?>'>
+                                                                                <?php echo esc_html($post->post_title); ?>
+                                                                            </option>
+                                                                    <?php endif; ?>
+                                                                </select>
+                                                                <button class="button button-secondary preview-button">
+                                                                    <div class="spinner"></div>
+                                                                    <span class="btn-text"><?php echo esc_attr__('Preview', 'simple-tags'); ?></span>
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="taxopress-autoterm-result">
+                                                                <div class="output"></div>
+                                                                <div class="response"></div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
 
                                                 </table>
 

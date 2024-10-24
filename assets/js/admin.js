@@ -940,6 +940,158 @@
         });
     }
 
+    if ($('.taxopress-single-select2').length > 0) {
+        $('.taxopress-single-select2').ppma_select2({
+          placeholder: $(this).data("placeholder"),
+        });
+    }
+
+    /**
+     * Auto Term preview
+     */
+    $(document).on("click", ".taxopress-autoterm-fetch-wrap .preview-button", function (event) {
+      event.preventDefault();
+      
+      var button = $(this);
+      var preview_wrapper  = $(button).closest('.taxopress-autoterm-fetch-wrap');
+      var preview_ai       = 'autoterms';
+      var preview_taxonomy = $('.st-post-taxonomy-select').val();
+      var preview_post     = preview_wrapper.find('.preview-post-select').val();
+      var selected_autoterms  = $('input[name="taxopress_autoterm[ID]"]').val();
+
+      if (!preview_post || preview_post == '') {
+        $('.taxopress-autoterm-result .response').html('<p>' + st_admin_localize.post_required + ' </p>').removeClass('updated').addClass('error');
+        return;
+      }
+      
+      if (!selected_autoterms || selected_autoterms == '') {
+        $('.taxopress-autoterm-result .response').html('<p>' + st_admin_localize.save_settings + ' </p>').removeClass('updated').addClass('error');
+        return;
+      }
+      
+      $('.taxopress-autoterm-result .response').html('').removeClass('updated').removeClass('error');
+      $('.taxopress-autoterm-result .output').html('');
+
+      button.prop('disabled', true);
+      preview_wrapper.find('.spinner').addClass('is-active');
+
+    //prepare ajax data
+    var data = {
+        action: "taxopress_ai_preview_feature",
+        preview_ai: preview_ai,
+        preview_taxonomy: preview_taxonomy,
+        preview_post: preview_post,
+        selected_autoterms: selected_autoterms,
+        nonce: st_admin_localize.ai_nonce,
+    };
+
+    $.post(ajaxurl, data, function (response) {
+        if (response.status === 'error') {
+          $('.taxopress-autoterm-result .response').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
+        } else {
+          $('.taxopress-autoterm-result .output').html(response.content);
+        }
+        
+        button.prop('disabled', false);
+        preview_wrapper.find('.spinner').removeClass('is-active');
+    });
+
+    });
+
+    // -------------------------------------------------------------
+    //  Select and de-select tags
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-autoterm-result .output .previewed-tag-content .result-terms', function () {
+      $(this).toggleClass('used_term');
+    });
+
+    // -------------------------------------------------------------
+    //  Select/de-select all tags tags
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-autoterm-result .output .previewed-tag-fieldset .ai-select-all', function () {
+      var button = $(this);
+
+      if (button.hasClass('all-selected')) {
+        button.removeClass('all-selected');
+        button.html(button.attr('data-select-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').removeClass('used_term');
+      } else {
+        button.addClass('all-selected');
+        button.html(button.attr('data-deselect-all'));
+        button.closest('.previewed-tag-fieldset').find('.result-terms').addClass('used_term');
+      }
+    });
+
+    // -------------------------------------------------------------
+    //  Update selected tags
+    // -------------------------------------------------------------
+    $(document).on('click', '.taxopress-autoterm-result .output .taxopress-ai-addtag-button', function (e) {
+      e.preventDefault();
+      var button = $(this);
+      var preview_wrapper = button.closest('.taxopress-autoterm-result .output'); 
+      var this_result = ''; 
+      var this_term_id = ''; 
+      var this_term_name = ''; 
+      var this_selected = '';
+      var term_data = '';
+      var preview_taxonomy = $('.st-post-taxonomy-select :selected').val();
+      var preview_taxonomy_label = $('.st-post-taxonomy-select :selected').text().trim();
+      var preview_post     = $('.preview-post-select').val();
+      var preview_post_type_label = '';
+      var preview_ai       = 'autoterms';
+
+      button.prop('disabled', true);
+      button.find('.spinner').addClass('is-active');
+      
+      $('.taxopress-autoterm-result .response').html('').removeClass('updated').removeClass('error');
+
+      var added_tags    = [];
+      var removed_tags  = [];
+
+      preview_wrapper.find('.result-terms').each(function () {
+        this_result = $(this).find('.term-name');
+        this_selected = $(this).hasClass('used_term');
+        this_term_id = Number(this_result.attr('data-term_id'));
+        this_term_name = this_result.html();
+        term_data = {
+          'term_id': this_term_id,
+          'name': this_term_name
+        };
+
+        if (this_selected) {
+          added_tags.push(term_data);
+        } else if (this_term_id > 0) {
+          removed_tags.push(term_data);
+        }
+      });
+
+      //prepare ajax data
+      var data = {
+          action: "taxopress_ai_add_post_term",
+          taxonomy: preview_taxonomy,
+          taxonomy_label: preview_taxonomy_label,
+          post_id: preview_post,
+          post_type_label: preview_post_type_label,
+          added_tags: added_tags,
+          removed_tags: removed_tags,
+          nonce: st_admin_localize.ai_nonce,
+      };
+
+      $.post(ajaxurl, data, function (response) {
+          if (response.status === 'error') {
+            $('.taxopress-autoterm-result .response').html('<p>' + response.content + ' </p>').removeClass('updated').addClass('error');
+          } else {
+            $('.taxopress-autoterm-result .response').html('<p>' + response.content + ' </p>').removeClass('error').addClass('updated');
+          }
+          
+        button.prop('disabled', false);
+        button.find('.spinner').removeClass('is-active');
+      });
+
+    });
+
+    
+
     // -------------------------------------------------------------
     //   Auto term limit update filter
     // -------------------------------------------------------------
