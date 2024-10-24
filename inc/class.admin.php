@@ -500,7 +500,10 @@ class SimpleTags_Admin
 			'no_terms_message' => esc_html__('No terms will be deleted', 'simple-tags'),
             'terms_count_message' => esc_html__(' terms will be deleted.', 'simple-tags'),
 			'checking_terms_message' => esc_html__('Checking terms...', 'simple-tags'),
-			'terms_error'            => esc_html__('An error occurred while checking terms.', 'simple-tags')
+			'terms_error'            => esc_html__('An error occurred while checking terms.', 'simple-tags'),
+			'post_required' => esc_html__('Kindly select a post to use preview feature.', 'simple-tags'),
+			'save_settings' => esc_html__('Auto Term ID missing. Kindly save the auto term before using this feature.', 'simple-tags'),
+			'ai_nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
 		]);
 
 
