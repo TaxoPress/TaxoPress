@@ -224,6 +224,25 @@
 
     });
 
+    // Show taxonomy option based on selected DPT
+$(document).on('change paste keyup', '.st-dpt-select', function (e) {
+  e.preventDefault();
+  var val = this.value;
+  var options = document.getElementsByClassName('add-term-taxonomy-select')[0].options;
+  var new_val = null;
+  for (var i = 0; i < options.length; i++) {
+      if (options[i].attributes["data-post"].value === val) {
+          if (!new_val) {
+              new_val = options[i].value;
+          }
+          options[i].classList.remove("st-hide-deji");
+      } else {
+          options[i].classList.add("st-hide-deji");
+      }
+  }
+  document.getElementsByClassName('add-term-taxonomy-select')[0].value = new_val;
+});
+
     // -------------------------------------------------------------
     //   Prevent non number from number type input
     // -------------------------------------------------------------

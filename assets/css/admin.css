@@ -429,6 +429,10 @@ body.taxopress_page_st_terms tr.inline-edit-row td {
     display: inline-block;
 }
 
+#submit-change-taxo{
+    margin-top: -1px;
+}
+
 /* Custom CSS for pagination */
 .tablenav.custom-nav .tablenav-pages {
     margin-top: 10px;

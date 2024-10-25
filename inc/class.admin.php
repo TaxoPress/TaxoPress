@@ -7,8 +7,12 @@ class SimpleTags_Admin
 	// CPT and Taxonomy support
 	public static $post_type = 'post';
 	public static $post_type_name = '';
+	public static $post_type_addterm = '';
+	public static $post_type_taxopress = '';
+	public static $taxopress_taxonomy = '';
 	public static $taxonomy = '';
 	public static $taxo_name = '';
+	public static $daxo_name = '';
 	public static $admin_url = '';
 	public static $enabled_menus = [];
 
@@ -321,7 +325,9 @@ class SimpleTags_Admin
 	public static function init()
 	{
 		self::$taxo_name      = esc_html__('Post tags', 'simple-tags');
+		self::$daxo_name      = esc_html__('Post tags', 'simple-tags');
 		self::$post_type_name = esc_html__('Posts', 'simple-tags');
+		self::$post_type_addterm = esc_html__('Posts', 'simple-tags');
 
 		// Custom CPT ?
 		if (isset($_GET['cpt']) && !empty($_GET['cpt']) && post_type_exists(sanitize_text_field($_GET['cpt']))) {
@@ -330,8 +336,16 @@ class SimpleTags_Admin
 			self::$post_type_name = $cpt->labels->name;
 		}
 
+		// Custom DPT ?
+		if (isset($_GET['dpt']) && !empty($_GET['dpt']) && post_type_exists(sanitize_text_field($_GET['dpt']))) {
+			$dpt                  = get_post_type_object(sanitize_text_field($_GET['dpt']));
+			self::$post_type_taxopress      = $dpt->name;
+			self::$post_type_addterm = $dpt->labels->name;
+		}
+
 		// Get compatible taxo for current post type
 		$compatible_taxonomies = get_object_taxonomies(self::$post_type);
+		$taxopress_compatible_taxonomies = get_object_taxonomies(self::$post_type_taxopress);
 
 		// Custom taxo ?
 		if (isset($_GET['taxo']) && !empty($_GET['taxo']) && taxonomy_exists(sanitize_text_field($_GET['taxo']))) {
@@ -343,6 +357,19 @@ class SimpleTags_Admin
 				self::$taxo_name = $taxo->labels->name;
 			} else {
 				unset($taxo);
+			}
+		}
+
+		// Custom daxo ?
+		if (isset($_GET['daxo']) && !empty($_GET['daxo']) && taxonomy_exists(sanitize_text_field($_GET['daxo']))) {
+			$daxo = get_taxonomy(sanitize_text_field($_GET['daxo']));
+
+			// Daxo is compatible ?
+			if (in_array($daxo->name, $taxopress_compatible_taxonomies)) {
+				self::$taxopress_taxonomy  = $daxo->name;
+				self::$daxo_name = $daxo->labels->name;
+			} else {
+				unset($daxo);
 			}
 		}
 
@@ -364,8 +391,27 @@ class SimpleTags_Admin
 			//wp_die(esc_html__('This custom post type not have taxonomies.', 'simple-tags'));
 		}
 
+		// Default daxo from DPT...
+		if (!isset($daxo) && is_array($taxopress_compatible_taxonomies) && !empty($taxopress_compatible_taxonomies)) {
+			// Take post_tag before category
+			if (in_array('post_tag', $taxopress_compatible_taxonomies, true)) {
+				$daxo = get_taxonomy('post_tag');
+			} else {
+				$daxo = get_taxonomy(current($taxopress_compatible_taxonomies));
+			}
+
+			self::$taxopress_taxonomy  = $daxo->name;
+			self::$daxo_name = $daxo->labels->name;
+
+			// TODO: Redirect for help user that see the URL...
+		} elseif (!isset($daxo)) {
+			// TODO: We can't wp_die on init as it affect all pages
+			//wp_die(esc_html__('This custom post type not have taxonomies.', 'simple-tags'));
+		}
+
 		// Free memory
 		unset($cpt, $taxo);
+		unset($dpt, $daxo);
 	}
 
 	/**
@@ -413,6 +459,54 @@ class SimpleTags_Admin
 					}
 
 					echo '<option ' . selected($tax_name, self::$taxonomy, false) . ' value="' . esc_attr($tax_name) . '" data-post="' . esc_attr($parent_post) . '" class="' . esc_attr($class) . '">' . esc_html($taxonomy->labels->name) . '</option>' . PHP_EOL;
+				}
+			}
+		}
+		echo '</select>' . PHP_EOL;
+
+		echo '<input type="submit" class="button" id="submit-change-taxo" value="' . esc_attr__('Change selection', 'simple-tags') . '" />' . PHP_EOL;
+		echo '</form>' . PHP_EOL;
+		echo '</div>' . PHP_EOL;
+		echo '</div>' . PHP_EOL;
+	}
+
+	public static function addSelectorTaxonomy($page_value = '')
+	{
+		echo '<div class="add-selector-taxonomy">' . PHP_EOL;
+
+		echo '<div class="change-taxo">' . PHP_EOL;
+		echo '<form action="" method="get">' . PHP_EOL;
+		if (!empty($page_value)) {
+			echo '<input type="hidden" name="page" value="' . esc_attr($page_value) . '" />' . PHP_EOL;
+		}
+		$taxonomies = [];
+		echo '<select name="pt" id="dpt-select" class="st-dpt-select">' . PHP_EOL;
+		foreach (get_post_types(array('show_ui' => true), 'objects') as $post_type_taxopress) {
+			$taxopress_taxonomies_children = get_object_taxonomies($post_type_taxopress->name);
+			if (empty($taxopress_taxonomies_children)) {
+				continue;
+			}
+			$taxonomies[$post_type_taxopress->name] = $taxopress_taxonomies_children;
+			echo '<option ' . selected($post_type_taxopress->name, self::$post_type_taxopress, false) . ' value="' . esc_attr($post_type_taxopress->name) . '">' . esc_html($post_type_taxopress->labels->name) . '</option>' . PHP_EOL;
+		}
+		echo '</select>' . PHP_EOL;
+
+		echo '<select name="daxo" id="add-term-select" class="add-term-taxonomy-select">' . PHP_EOL;
+		foreach ($taxonomies as $taxopress_post => $taxopress_taxonomy) {
+			if (count($taxopress_taxonomy) > 0) {
+				foreach ($taxopress_taxonomy as $dax_name) {
+					$taxopress_taxonomy = get_taxonomy($dax_name);
+					if (false === (bool) $taxopress_taxonomy->show_ui) {
+						continue;
+					}
+
+					if (self::$post_type_taxopress == $taxopress_post) {
+						$class = "";
+					} else {
+						$class = "st-hide-deji";
+					}
+
+					echo '<option ' . selected($dax_name, self::$taxopress_taxonomy, false) . ' value="' . esc_attr($dax_name) . '" data-post="' . esc_attr($taxopress_post) . '" class="' . esc_attr($class) . '">' . esc_html($taxopress_taxonomy->labels->name) . '</option>' . PHP_EOL;
 				}
 			}
 		}

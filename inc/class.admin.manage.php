@@ -190,18 +190,19 @@ class SimpleTags_Admin_Manage
 							<td>
 								<h2><?php _e('Add Terms', 'simple-tags'); ?>
 								</h2>
-								<p><?php printf(esc_html__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
+                                <?php SimpleTags_Admin::addSelectorTaxonomy('st_manage'); ?>
+								<p><?php printf(esc_html__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_addterm)); ?>
 								</p>
 
-								<p><?php printf(esc_html__('Terms will be added to all %s If no "Term(s) to match" is specified.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
+								<p><?php printf(esc_html__('Terms will be added to all %s If no "Term(s) to match" is specified.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_addterm)); ?>
 								</p>
 
 								<fieldset>
 									<form action="" method="post">
-										<input type="hidden" name="taxo"
-											value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-										<input type="hidden" name="cpt"
-											value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
+										<input type="hidden" name="daxo"
+											value="<?php echo esc_attr(SimpleTags_Admin::$taxopress_taxonomy); ?>" />
+										<input type="hidden" name="dpt"
+											value="<?php echo esc_attr(SimpleTags_Admin::$post_type_taxopress); ?>" />
 
 										<input type="hidden" name="term_action" value="addterm" />
 										<input type="hidden" name="term_nonce"
@@ -244,6 +245,7 @@ class SimpleTags_Admin_Manage
 							<td>
 								<h2><?php _e('Remove Terms', 'simple-tags'); ?>
 								</h2>
+                                <?php SimpleTags_Admin::boxSelectorTaxonomy('st_manage'); ?>
 								<p><?php printf(esc_html__('This feature lets you remove one or more terms from all %s which match any of the terms given.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
 								</p>
 
