@@ -366,6 +366,26 @@ if (!class_exists('TaxoPressAiApi')) {
 
             return $return;
         }
+
+        /**
+         * Clean api response to fix //https://github.com/TaxoPress/TaxoPress/issues/2258
+         */
+        public static function clean_api_response($content) {
+                    
+            //- OpenAI sometimes start response like "Tags:
+            $content = str_replace('Tags: ', '', $content);
+
+            // Remove leading dashes, numbers with a dot, and any extra whitespace
+            $content = preg_replace("/(?:\s*[-–—]\s*|\d+\.\s*)/", "|", $content);
+            
+            // Split by the delimiter "|"
+            $words = array_filter(array_map('trim', explode("|", $content)));
+            
+            // Join into comma-separated list
+            $cleaned_content = implode(", ", $words);
+
+            return $cleaned_content;
+        }
         
 
         /**
@@ -473,10 +493,11 @@ if (!class_exists('TaxoPressAiApi')) {
                             if (!empty($body_data['choices'] )) {
                                 foreach ( $body_data['choices'] as $choice ) {
                                     if ( isset( $choice['message'], $choice['message']['content'] ) ) {
-                                        if (count(array_merge($data, explode(', ', sanitize_text_field( trim( $choice['message']['content'], ' "\'' ) )))) === 1) {
-                                            $data = array_merge($data, [$choice['message']['content']]);
+                                        $cleaned_response = self::clean_api_response($choice['message']['content']);
+                                        if (count(array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )))) === 1) {
+                                            $data = array_merge($data, [$cleaned_response]);
                                         } else {
-                                            $data = array_merge($data, explode(', ', sanitize_text_field( trim( $choice['message']['content'], ' "\'' ) )));
+                                            $data = array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )));
                                         }
                                     }
                                 }
