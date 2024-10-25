@@ -69,8 +69,54 @@ function taxopress_process_terms()
         add_action('admin_notices', "taxopress_term_posts_remov_success_admin_notice");
         add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
     }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-term') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
+            $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
+
+            $taxopress_term_name = $term->name . ' Copy';
+            $taxopress_term_slug = wp_unique_term_slug($term->slug . '-copy', $term->taxonomy);
+            $taxopress_term_data = wp_insert_term($taxopress_term_name, $term->taxonomy, [
+                'slug' => $taxopress_term_slug,
+                'description' => $term->description,
+            ]);
+    
+            if (!is_wp_error($taxopress_term_data)) {
+                $taxopress_term_id = $taxopress_term_data['term_id'];
+    
+                $args = array(
+                    'post_type' => 'any',
+                    'posts_per_page' => -1,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => $term->taxonomy,
+                            'field' => 'id',
+                            'terms' => $term->term_id
+                        )
+                    )
+                );
+                $posts = get_posts($args);
+                
+                foreach ( $posts as $post ){
+                    wp_set_object_terms( $post->ID, $taxopress_term_id, $term->taxonomy, true );
+                }
+            }
+        }
+        add_action('admin_notices', "taxopress_term_copy_success_admin_notice");
+        add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
+    }
 }
 add_action('admin_init', 'taxopress_process_terms', 8);
+
+/**
+ * Successful term copy callback.
+ */
+function taxopress_term_copy_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Term copied successfully.', 'simple-tags'), true);
+}
 
 /**
  * Successful deleted callback.
