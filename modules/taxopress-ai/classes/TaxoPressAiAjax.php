@@ -125,6 +125,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'post_id' => $post_id,
                     'settings_data' => $settings_data,
                     'content' => $content,
+                    'taxonomy' => $preview_taxonomy,
                     'clean_content' => $clean_content,
                     'preview_taxonomy' => $preview_taxonomy,
                     'preview_taxonomy_details' => $preview_taxonomy_details,

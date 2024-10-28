@@ -168,6 +168,7 @@ class SimpleTags_Client_Autoterms
 			'post_id' => $object->ID,
 			'settings_data' => $options,
 			'content' => $content,
+			'taxonomy' => $taxonomy,
 			'clean_content' => TaxoPressAiUtilities::taxopress_clean_up_content($content),
 			'content_source' => 'autoterm_' . $content_source
 

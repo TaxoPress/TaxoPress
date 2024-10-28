@@ -405,6 +405,7 @@ if (!class_exists('TaxoPressAiApi')) {
             $clean_content  = $args['clean_content'];
             $content_source = $args['content_source'];
             $preview_feature = !empty($args['preview_feature']) ? $args['preview_feature'] : '';
+            $taxonomy           = !empty($args['taxonomy']) ? $args['taxonomy'] : '';
             
             $post_id = !empty($args['post_id']) ? (int) $args['post_id'] : 0;
             $open_ai_api_key = !empty($settings_data['open_ai_api_key']) ? $settings_data['open_ai_api_key'] : '';
@@ -450,6 +451,11 @@ if (!class_exists('TaxoPressAiApi')) {
                     if (!empty($settings_data['open_ai_tag_prompt'])) {
                         $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_tag_prompt']));
                         $prompt = str_replace('{content}', $clean_content, $custom_prompt);
+                        if (!empty($taxonomy) && !empty($post_id)) {
+                            $post_terms_results = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'names']);
+                            $post_terms_comma_join = !empty($post_terms_results) ? join(', ', $post_terms_results) : '';
+                            $prompt = str_replace('{post_terms}', $post_terms_comma_join, $prompt);
+                        }
                     }
                     
                     $body_data = array(
