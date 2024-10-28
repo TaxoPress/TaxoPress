@@ -166,6 +166,18 @@ return apply_filters('taxopress_admin_options', array(
         )
     ),
 
+    // term synonyms tab
+    'synonyms'       => array(
+        array(
+            'synonyms_taxonomies',
+            __('Enable Taxonomies:', 'simple-tags'),
+            'multiselect',
+            $all_taxonomy_options,
+            __('This controls which taxonomies are available for the Term Synonyms feature.', 'simple-tags'),
+            ''
+        )
+    ),
+
     // taxopress ai tab
     'taxopress-ai' => $taxopress_ai_fields,
 
