@@ -901,45 +901,64 @@ class SimpleTags_Related_Post
                                                                 'helptext'  => '',
                                                                 'required'  => true,
                                                             ]);
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                            $select = [
+                                                                'options' => [
+                                                                    ['attr' => 'thumbnail', 'text' => esc_attr__('Thumbnail (150x150)', 'simple-tags')],
+                                                                    ['attr' => 'medium', 'text' => esc_attr__('Medium (300x300)', 'simple-tags')],
+                                                                    ['attr' => 'large', 'text' => esc_attr__('Large (1024x1024)', 'simple-tags')],
+                                                                    ['attr' => '1536x1536', 'text' => esc_attr__('1536x1536 (High Res)', 'simple-tags'), 'default' => 'true'],
+                                                                    ['attr' => '2048x2048', 'text' => esc_attr__('2048x2048 (Ultra High Res)', 'simple-tags')],
+                                                                ], 
+                                                            ];
                                                             
+                                                            $selected = (isset($current) && isset($current['imageresolution'])) ? taxopress_disp_boolean($current['imageresolution']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['imageresolution'] : ''; 
                                                             
-                                                     // Default Featured Image Integration
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                'namearray'  => 'taxopress_related_post',
+                                                                'name'       => 'imageresolution',
+                                                                'labeltext'  => esc_html__( 'Post_thumb Image Resolution', 'simple-tags' ),
+                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
                                                     
           
-?>
-  <table class="form-table taxopress-table relatedpost_advanced"
-       style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
-    <tr valign="top">
-        <th scope="row">
-            <label for="default_featured_media"><?php echo esc_html__('Default Post Thumb', 'simple-tags'); ?></label>
-        </th>
-        <td>
-            <div class="default-featured-media-field-wrapper">
-                <div class="default-featured-media-field-container">
-                    <?php if (!empty($current['default_featured_media'])) : ?>
-                        <img src="<?php echo esc_url($current['default_featured_media']); ?>" style="max-width: 300px;" alt=""/>
-                    <?php endif; ?>
-                </div>
+                                                            ?>
+                                                            <!-- Default Featured Image Integration -->
+                                                            <table class="form-table taxopress-table relatedpost_advanced"
+                                                                style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
+                                                                <tr valign="top">
+                                                                    <th scope="row">
+                                                                        <label for="default_featured_media"><?php echo esc_html__('Default Post Thumb', 'simple-tags'); ?></label>
+                                                                    </th>
+                                                                    <td>
+                                                                        <div class="default-featured-media-field-wrapper">
+                                                                            <div class="default-featured-media-field-container">
+                                                                                <?php if (!empty($current['default_featured_media'])) : ?>
+                                                                                    <img src="<?php echo esc_url($current['default_featured_media']); ?>" style="max-width: 300px;" alt=""/>
+                                                                                <?php endif; ?>
+                                                                            </div>
 
-                <p class="hide-if-no-js">
-                    <a class="select-default-featured-media-field <?php echo !empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
-                        <?php esc_html_e('Select Media', 'simple-tags'); ?>
-                    </a>
-                    <a class="delete-default-featured-media-field <?php echo empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
-                        <?php esc_html_e('Remove Image', 'simple-tags'); ?>
-                    </a>
-                </p>
+                                                                            <p class="hide-if-no-js">
+                                                                                <a class="select-default-featured-media-field <?php echo !empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                    <?php esc_html_e('Select Media', 'simple-tags'); ?>
+                                                                                </a>
+                                                                                <a class="delete-default-featured-media-field <?php echo empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                    <?php esc_html_e('Remove Image', 'simple-tags'); ?>
+                                                                                </a>
+                                                                            </p>
 
-                <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
-                       value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
-            </div>
-            <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
-        </td>
-    </tr>
-    
-</table>
+                                                                            <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
+                                                                                value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
+                                                                        </div>
+                                                                        <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                            </table>
 
-<?php
+                                                            <?php
                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                            echo $ui->get_td_end() . $ui->get_tr_end();
                                                        ?>
@@ -949,7 +968,7 @@ class SimpleTags_Related_Post
                                                     <?php
                                                 }//end new fields
                                         
-?>
+                                                    ?>
 
                                         <div class="clear"></div>
 

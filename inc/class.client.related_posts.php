@@ -72,6 +72,7 @@ class SimpleTags_Client_RelatedPosts {
 			 'before'      => '',
 			 'after'       => '',
 			 'default_featured_media' => '',
+			 'imageresolution' => 'medium',
 		);
 
 		// Get values in DB
@@ -351,6 +352,10 @@ class SimpleTags_Client_RelatedPosts {
 			$dateformat = get_option( 'date_format' );
 		}
 
+		if (empty ($imageresolution)){
+			$imageresolution = 'medium';
+		}
+
 		$output = array();
 
 		//update xformat with class link class
@@ -396,7 +401,7 @@ class SimpleTags_Client_RelatedPosts {
 		 $element_loop = str_replace('%post_category%', $post_category, $element_loop);
 
 		// Add featured Image
-		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'thumbnail' );
+		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, $imageresolution );
 		
 		if (empty($post_thumbnail_url)) {
 			$post_thumbnail_url = $default_featured_media;
