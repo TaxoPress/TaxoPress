@@ -983,6 +983,8 @@ class SimpleTags_Admin
 				return esc_html__('Metabox Access', 'simple-tags');
 			case 'linked_terms':
 				return esc_html__('Linked Terms', 'simple-tags');
+			case 'synonyms':
+				return esc_html__('Term Synonyms', 'simple-tags');
 			case 'licence':
 				return esc_html__('License', 'simple-tags');
 		}

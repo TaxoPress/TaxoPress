@@ -24,6 +24,9 @@ return array(
     // linked terms
     'linked_terms_taxonomies' => ['category', 'post_tag'],
 
+    // term synonyms
+    'synonyms_taxonomies' => ['category', 'post_tag'],
+
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,
     'enable_taxopress_ai_post_post_terms_tab' => 1,
