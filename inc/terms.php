@@ -215,6 +215,17 @@ class SimpleTags_Terms
 
         settings_errors(__CLASS__);
 
+        $view = isset($_GET['view']) ? sanitize_text_field($_GET['view']) : '';
+        if ($view === 'trashed') {
+            // Set up your terms table to show trashed terms
+            $this->terms_table = new Taxopress_Terms_List();
+            $this->terms_table->prepare_items(['post_status' => 'trash']); // Modify this to filter trashed terms
+        } else {
+            // Regular terms table
+            $this->terms_table = new Taxopress_Terms_List();
+            $this->terms_table->prepare_items(); // Default to normal terms
+        }
+
 ?>
         <div class="wrap st_wrap st-manage-taxonomies-page manage-taxopress-terms">
 
@@ -223,6 +234,18 @@ class SimpleTags_Terms
                 <div class="taxopress-description">
                     <?php esc_html_e('This screen allows you search and edit all the terms on your site.', 'simple-tags'); ?>
                 </div>
+
+                <div class="taxopress-trashed-link">
+                <?php if ($view === 'trashed') : ?>
+                    <a style="text-decoration:none;" href="<?php echo esc_url(remove_query_arg('view', admin_url('admin.php?page=st_terms'))); ?>">
+                        <?php esc_html_e('&larr; Back to Terms', 'simple-tags'); ?>
+                    </a>
+                <?php else : ?>
+                    <a style="text-decoration:none;" href="<?php echo esc_url(add_query_arg('view', 'trashed', admin_url('admin.php?page=st_terms'))); ?>">
+                        <?php esc_html_e('View Trashed Terms &rarr;', 'simple-tags'); ?>
+                    </a>
+                <?php endif; ?>
+            </div>
 
 
                 <?php

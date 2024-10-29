@@ -47,6 +47,24 @@ class Taxopress_Terms_List extends WP_List_Table
             'pad_counts' => true,
             'update_term_meta_cache' => true,
         );
+
+        $trashed_terms = isset($_REQUEST['view']) && $_REQUEST['view'] === 'trashed';
+        if ($trashed_terms){
+            $terms_attr['meta_query'] = [
+                [
+                    'key'     => '_trashed',
+                    'compare' => 'EXISTS', // Change to EXISTS to get trashed terms
+                ],
+            ];
+        } else {
+            $terms_attr['meta_query'] = [
+                [
+                    'key'     => '_trashed',
+                    'compare' => 'NOT EXISTS',
+                ],
+            ];
+        }
+
         if ($count) {
             $terms_attr['number'] = 0;
         } else {
@@ -284,7 +302,10 @@ class Taxopress_Terms_List extends WP_List_Table
             if (!empty($taxopress_terms)) {
                 foreach ($taxopress_terms as $taxopress_term) {
                     $term = get_term($taxopress_term);
-                    wp_delete_term($term->term_id, $term->taxonomy);
+                    // Check if the term exists before trying to delete it
+                    if ($term && !is_wp_error($term)) {
+                        wp_delete_term($term->term_id, $term->taxonomy);
+                    }
                 }
                 if (count($taxopress_terms) > 1) {
                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -475,20 +496,52 @@ class Taxopress_Terms_List extends WP_List_Table
             );
         }
 
+        $is_trashed = get_term_meta($item->term_id, '_trashed', true);
+
         if (current_user_can('delete_term', $item->term_id)) {
-            $actions['delete'] = sprintf(
-                '<a href="%s" class="delete-terms">%s</a>',
-                add_query_arg(
-                    [
-                        'page'                   => 'st_terms',
-                        'action'                 => 'taxopress-delete-terms',
-                        'taxopress_terms'        => esc_attr($item->term_id),
-                        '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
-                    ],
-                    admin_url('admin.php')
-                ),
-                esc_html__('Delete', 'simple-tags')
-            );
+            if ($is_trashed) {
+                $actions['delete'] = sprintf(
+                    '<a href="%s" class="delete-terms">%s</a>',
+                    add_query_arg(
+                        [
+                            'page'                   => 'st_terms',
+                            'action'                 => 'taxopress-delete-terms',
+                            'taxopress_terms'        => esc_attr($item->term_id),
+                            '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
+                        ],
+                        admin_url('admin.php')
+                    ),
+                    esc_html__('Delete Permanently', 'simple-tags')
+                );
+
+                $actions['restore'] = sprintf(
+                    '<a href="%s" class="restore-terms">%s</a>',
+                    add_query_arg(
+                        [
+                            'page'            => 'st_terms',
+                            'action'          => 'taxopress-restore-terms',
+                            'taxopress_terms' => esc_attr($item->term_id),
+                            '_wpnonce'        => wp_create_nonce('terms-action-request-nonce'),
+                        ],
+                        admin_url('admin.php')
+                    ),
+                    esc_html__('Restore', 'simple-tags')
+                );
+            }else {
+                $actions['trash'] = sprintf(
+                    '<a href="%s" class="trash-terms">%s</a>',
+                    add_query_arg(
+                        [
+                            'page'            => 'st_terms',
+                            'action'          => 'taxopress-trash-terms',
+                            'taxopress_terms' => esc_attr($item->term_id),
+                            '_wpnonce'        => wp_create_nonce('terms-action-request-nonce'),
+                        ],
+                        admin_url('admin.php')
+                    ),
+                    esc_html__('Trash', 'simple-tags')
+                );
+            }
         }
 
         if (is_taxonomy_viewable($item->taxonomy)) {

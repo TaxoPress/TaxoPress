@@ -70,6 +70,65 @@ function taxopress_process_terms()
         add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
     }
 
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-trash-terms') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
+            $term_id = sanitize_text_field($_REQUEST['taxopress_terms']);
+            $term = get_term($term_id);
+
+            if ($term && !is_wp_error($term)) {
+                $args = array(
+                    'post_type' => 'any',
+                    'posts_per_page' => -1,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => $term->taxonomy,
+                            'field' => 'id',
+                            'terms' => $term->term_id,
+                        ),
+                    ),
+                );
+
+                $posts = get_posts($args);
+                $associated_posts = wp_list_pluck($posts, 'ID');
+
+                foreach ($posts as $post) {
+                    wp_remove_object_terms($post->ID, $term->term_id, $term->taxonomy);
+                    clean_object_term_cache($post->ID, $term->taxonomy);
+                }
+
+                // Mark as trashed and store associated posts
+                update_term_meta($term_id, '_trashed', true);
+                update_term_meta($term_id, '_associated_posts', $associated_posts);
+            }
+        }
+        add_action('admin_notices', "taxopress_term_trash_success_admin_notice");
+        add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
+    }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-restore-terms') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
+            $term_id = sanitize_text_field($_REQUEST['taxopress_terms']);
+            $term = get_term($term_id);
+
+            if ($term && !is_wp_error($term) && get_term_meta($term_id, '_trashed', true)) {
+                delete_term_meta($term_id, '_trashed');
+
+                $associated_posts = get_term_meta($term_id, '_associated_posts', true);
+                if (is_array($associated_posts)) {
+                    foreach ($associated_posts as $post_id) {
+                        wp_set_post_terms($post_id, array($term->term_id), $term->taxonomy, true);
+                        clean_object_term_cache($post_id, $term->taxonomy);
+                    }
+                }
+                delete_term_meta($term_id, '_associated_posts');
+            }
+        }
+        add_action('admin_notices', "taxopress_term_restore_success_admin_notice");
+        add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
+    }
+
     if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-term') {
         $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
         if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
@@ -116,6 +175,23 @@ function taxopress_term_copy_success_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo taxopress_admin_notices_helper(esc_html__('Term copied successfully.', 'simple-tags'), true);
+}
+
+/**
+ * Successful trash callback.
+ */
+function taxopress_term_trash_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Term moved to Trash successfully.', 'simple-tags'), false);
+}
+
+/**
+ * Successful restore callback.
+ */
+function taxopress_term_restore_success_admin_notice()
+{
+    echo taxopress_admin_notices_helper(esc_html__('Term restored successfully.', 'simple-tags'), false);
 }
 
 /**
