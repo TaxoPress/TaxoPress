@@ -665,7 +665,7 @@
         field_error_message += '<li>' + $('.auto-terms-to-use-error').html() + ' <span class="required">*</span></li>';
       }
       //post status check
-      if (!$('.autoterm_post_status_publish').prop("checked") && !$('.autoterm_post_status_draft').prop("checked")) {
+      if ($('input[name="post_status[]"]:checked').length === 0) {
         field_error_count = 1;
         field_error_message += '<li>' + $('.auto-terms-post-status-error').html() + ' <span class="required">*</span></li>';
       }

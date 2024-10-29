@@ -892,8 +892,13 @@ class SimpleTags_Autoterms
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
-
-                                                    $post_status_options = ['publish' => esc_html__('Add terms for published content.', 'simple-tags'), 'draft' => esc_html__('Add terms for unpublished content.', 'simple-tags')];
+                                                    $post_status_objects = taxopress_get_post_statuses();
+                                                    $post_status_options = [];
+                                                    foreach ( $post_status_objects as $status_slug => $status_object ) {
+                                                        if (in_array($status_slug, ['publish', 'future', 'draft', 'pending'])) {
+                                                            $post_status_options[$status_slug] = $status_object->label;
+                                                        }
+                                                    }
 
                                                     echo '<tr valign="top"><th scope="row"><label for="">' . esc_html__('Content statuses', 'simple-tags') . '</label>  <span class="required">*</span></th><td>';
 
