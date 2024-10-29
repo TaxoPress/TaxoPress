@@ -810,3 +810,13 @@ function taxopress_user_role_removed_taxonomy($user_id = false) {
 
     return $removed_taxonomies;
 }
+
+/**
+ * Get post statuses
+ */
+function taxopress_get_post_statuses() {
+    
+    $post_statuses = get_post_stati( array(), 'objects' );
+
+    return $post_statuses;
+}
