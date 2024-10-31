@@ -330,6 +330,7 @@ function taxopress_update_taxonomy($data = [])
     $rest_base             = trim($data['cpt_custom_tax']['rest_base']);
     $rest_controller_class = trim($data['cpt_custom_tax']['rest_controller_class']);
     $show_quickpanel_bulk  = !empty($data['cpt_custom_tax']['show_in_quick_edit']) ? taxopress_disp_boolean($data['cpt_custom_tax']['show_in_quick_edit']) : '';
+    $show_in_filter        = !empty($data['cpt_custom_tax']['show_in_filter']) ? taxopress_disp_boolean($data['cpt_custom_tax']['show_in_filter']) : '';
     $default_term          = trim($data['cpt_custom_tax']['default_term']);
 
     $meta_box_cb = trim($data['cpt_custom_tax']['meta_box_cb']);
@@ -373,7 +374,7 @@ function taxopress_update_taxonomy($data = [])
             'labels'                => $data['cpt_tax_labels'],
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
-            'show_in_filter'        => taxopress_disp_boolean( $data['cpt_custom_tax']['show_in_filter'] ),
+            'show_in_filter'        => $$show_in_filter,
         ];
 
         $taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = $data['cpt_post_types'];
@@ -425,7 +426,7 @@ function taxopress_update_taxonomy($data = [])
             'labels'                => $data['cpt_tax_labels'],
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
-            'show_in_filter'        => taxopress_disp_boolean( $data['cpt_custom_tax']['show_in_filter'] ),
+            'show_in_filter'        => $show_in_filter,
         ];
 
         $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : [];
@@ -1358,6 +1359,8 @@ function taxopress_register_single_taxonomy($taxonomy = [])
 
     $show_in_quick_edit = (!empty($taxonomy['show_in_quick_edit']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_quick_edit'])) ? true : false;
 
+    $show_in_filter = (!empty($taxonomy['show_in_filter']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_filter'])) ? true : false;
+
     $rest_base = null;
     if (!empty($taxonomy['rest_base'])) {
         $rest_base = $taxonomy['rest_base'];
@@ -1411,6 +1414,7 @@ function taxopress_register_single_taxonomy($taxonomy = [])
         'rest_base'             => $rest_base,
         'rest_controller_class' => $rest_controller_class,
         'show_in_quick_edit'    => $show_in_quick_edit,
+        'show_in_filter'        => $show_in_filter,
         'meta_box_cb'           => $meta_box_cb,
         'default_term'          => $default_term,
     ];
@@ -2141,6 +2145,8 @@ function taxopress_re_register_single_taxonomy($taxonomy)
 
     $show_in_quick_edit = (!empty($taxonomy['show_in_quick_edit']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_quick_edit'])) ? true : false;
 
+    $show_in_filter = (!empty($taxonomy['show_in_filter']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_filter'])) ? true : false;
+
     $rest_base = null;
     if (!empty($taxonomy['rest_base'])) {
         $rest_base = $taxonomy['rest_base'];
@@ -2195,6 +2201,7 @@ function taxopress_re_register_single_taxonomy($taxonomy)
         'rest_base'             => $rest_base,
         'rest_controller_class' => $rest_controller_class,
         'show_in_quick_edit'    => $show_in_quick_edit,
+        'show_in_filter'        => $show_in_filter,
         'meta_box_cb'           => $meta_box_cb,
         'default_term'          => $default_term,
     ];
@@ -2289,6 +2296,12 @@ function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
 
 }
 
+function taxopress_get_all_taxonomies() {
+    $custom_taxonomies = get_taxonomies(['_builtin' => false], 'objects');
+    $builtin_taxonomies = get_taxonomies(['_builtin' => true], 'objects');
+    return array_merge($custom_taxonomies, $builtin_taxonomies);
+}
+
 function taxopress_get_dropdown(){
 
     global $pagenow;
@@ -2302,43 +2315,24 @@ function taxopress_get_dropdown(){
             $type = sanitize_text_field($_GET['post_type']);
         }
 
-        $taxonomies = taxopress_get_taxonomy_data();
+        $taxonomies = taxopress_get_all_taxonomies();
 
         if( !empty($taxonomies) ) {
 
-            $all_taxonomies    = get_all_taxopress_taxonomies();
+            //let's reduce the load on the foreach loop for easy readability
+            foreach ( $taxonomies as $taxonomy ) {
+                
+                // Retrieve and evaluate the show_in_filter attribute directly
+                $show_in_filter = isset($taxonomy->show_in_filter) ? $taxonomy->show_in_filter : false;
 
-            foreach ( $all_taxonomies as $taxonomy ) {
-
-                $taxonomy_name = $taxonomy->name;
-
-                if( array_key_exists( $taxonomy_name, $taxonomies ) ){
-
-                    $current = $taxonomies[ $taxonomy_name ];
-
-                    if( is_array($current) && array_key_exists( 'show_in_filter', $current ) ){
-                        if (isset($current['object_types']) && !empty($current['object_types'])) {
-                            foreach ($current['object_types'] as $object_type) {
-
-                                //Media Page
-                                if($pagenow === 'upload.php') {
-
-                                    if($object_type == "attachment") {
-
-                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
-
-                                    }
-
-                                } else {
-
-                                    if($object_type == $type) {
-
-                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
-
-                                    }
-                                }
-                            }
-                        }
+                // Conditionally display filter dropdown based on post type and media page
+                if ( $pagenow === 'upload.php' ) {
+                    if ( $show_in_filter && in_array('attachment', $taxonomy->object_type, true) ) {
+                        taxopress_filter_dropdown($taxonomy, $show_in_filter);
+                    }
+                } else {
+                    if ( $show_in_filter && in_array($type, $taxonomy->object_type, true) ) {
+                        taxopress_filter_dropdown($taxonomy, $show_in_filter);
                     }
                 }
             }
