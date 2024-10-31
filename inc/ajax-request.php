@@ -196,3 +196,51 @@ function taxopress_post_search_callback()
     echo wp_json_encode($response);
     exit;
 }
+
+
+//Taxopress search field call back
+add_action('wp_ajax_taxopress_custom_fields_search', 'taxopress_custom_fields_search_callback');
+
+function taxopress_custom_fields_search_callback()
+{
+    global $wpdb;
+
+    header('Content-Type: application/javascript');
+
+    if (
+        empty($_GET['nonce'])
+        || !wp_verify_nonce(sanitize_key($_GET['nonce']), 'taxopress-custom-fields-search')
+    ) {
+        wp_send_json_error(null, 403);
+    }
+
+    if (!current_user_can('simple_tags')) {
+        wp_send_json_error(null, 403);
+    }
+
+    $search = !empty($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
+
+    $whereClause = '';
+    if (!empty($search)) {
+        $like = '%' . $wpdb->esc_like($search) . '%';
+        $whereClause = $wpdb->prepare("AND meta_key LIKE %s", $like);
+    }
+
+    $queryResults = $wpdb->get_col("SELECT DISTINCT meta_key FROM $wpdb->postmeta WHERE 1=1 $whereClause ORDER BY meta_key ASC LIMIT 20");
+
+    $results = [];
+    if (!empty($queryResults)) {
+        foreach ($queryResults as $queryResult) {
+            $results[] = [
+                'id' => $queryResult,
+                'text' => $queryResult,
+            ];
+        }
+    }
+    
+    $response = [
+        'results' => $results,
+    ];
+    echo wp_json_encode($response);
+    exit;
+}

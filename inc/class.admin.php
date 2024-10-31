@@ -503,6 +503,7 @@ class SimpleTags_Admin
 			'terms_error'            => esc_html__('An error occurred while checking terms.', 'simple-tags'),
 			'post_required' => esc_html__('Kindly select a post to use preview feature.', 'simple-tags'),
 			'save_settings' => esc_html__('Auto Term ID missing. Kindly save the auto term before using this feature.', 'simple-tags'),
+			'delete_label' => esc_html__('Delete', 'simple-tags'),
 			'ai_nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
 		]);
 

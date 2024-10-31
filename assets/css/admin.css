@@ -1,3 +1,49 @@
+table.st-autoterm-area-table {
+    width: 100px;
+}
+
+table.st-autoterm-area-table th.action {
+    width: 12%;
+}
+
+table.st-autoterm-area-table th,
+table.st-autoterm-area-table td {
+    padding: 6px 1px 4px 1px;
+}
+
+table.st-autoterm-area-table .find-in-customs-row td.item-header div {
+    display: flex;
+    margin-right: 10px;
+    max-width: 300px;
+}
+
+table.st-autoterm-area-table tr:nth-child(n+3) td {
+    padding: 6px 1px 4px 5px;
+}
+
+table.st-autoterm-area-table tr:nth-child(n+3) td {
+    border-top: 1px solid #c3c4c7;
+    border-right: 1px solid #c3c4c7;
+}
+
+table.st-autoterm-area-table tr:nth-child(n+3) td:first-child {
+    border-left: 1px solid #c3c4c7;
+}
+
+table.st-autoterm-area-table tr:last-child:not(.form-tr) td {
+    border-bottom: 1px solid #c3c4c7;
+}
+
+table.st-autoterm-area-table .delete {
+    color: #f54d4d;
+    cursor: pointer;
+    padding: 5px;
+}
+
+table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
+    margin-right: 10px;
+}
+
 .form-table.taxopress-table.autoterm_terms .tab-group-tr td {
     padding: 20px 10px 20px 0;
 }

@@ -103,17 +103,29 @@ if (!class_exists('TaxoPressAiAjax')) {
                     exit;
                 }
                 
+
+                if ($preview_ai == 'autoterms' && !empty($selected_autoterms)) {
+                    $autoterm_data      = taxopress_get_autoterm_data();
+                    $settings_data      = array_key_exists($selected_autoterms, $autoterm_data) ? $autoterm_data[$selected_autoterms] : [];
+                    $autoterm_use_taxonomy      = !empty($settings_data['autoterm_use_taxonomy']);
+                    $autoterm_use_open_ai       = !empty($settings_data['autoterm_use_open_ai']);
+                    $autoterm_use_ibm_watson    = !empty($settings_data['autoterm_use_ibm_watson']);
+                    $autoterm_use_dandelion     = !empty($settings_data['autoterm_use_dandelion']);
+                    $autoterm_use_opencalais    = !empty($settings_data['autoterm_use_opencalais']);
+                }
+
                 /**
                  * Filter auto term content
                  *
                  * @param string $content Original content to be analyzed. It could include post title,
                  *  content and/excerpt based on autoterms settings
                  * @param integer $post_id This is the post id
+                 * @param array $settings_data Autoterm settings
                  */
                 if (!empty($post_content)) {
-                    $post_content = apply_filters('taxopress_filter_autoterm_content', $post_content, $post_data->ID);
+                    $post_content = apply_filters('taxopress_filter_autoterm_content', $post_content, $post_data->ID, $settings_data);
                 } elseif (!empty($post_title)) {
-                    $post_title = apply_filters('taxopress_filter_autoterm_content', $post_title, $post_data->ID);
+                    $post_title = apply_filters('taxopress_filter_autoterm_content', $post_title, $post_data->ID, $settings_data);
                 }
 
                 $content = $post_content . ' ' . $post_title;
@@ -187,14 +199,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $response['content'] = esc_html__('No results found for this post with this taxonomy.', 'simple-tags');
                     }
                 } elseif ($preview_ai == 'autoterms') {
-                    $autoterm_data      = taxopress_get_autoterm_data();
-                    $settings_data      = array_key_exists($selected_autoterms, $autoterm_data) ? $autoterm_data[$selected_autoterms] : [];
-                    $autoterm_use_taxonomy      = !empty($settings_data['autoterm_use_taxonomy']);
-                    $autoterm_use_open_ai       = !empty($settings_data['autoterm_use_open_ai']);
-                    $autoterm_use_ibm_watson    = !empty($settings_data['autoterm_use_ibm_watson']);
-                    $autoterm_use_dandelion     = !empty($settings_data['autoterm_use_dandelion']);
-                    $autoterm_use_opencalais    = !empty($settings_data['autoterm_use_opencalais']);
-
                     if (empty($selected_autoterms) || empty($settings_data)) {
                         $response['status'] = 'error';
                         $response['content'] = esc_html__('Invalid Auto Term ID. Please save the settings before using preview.', 'simple-tags');
