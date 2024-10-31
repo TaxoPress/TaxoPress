@@ -291,6 +291,9 @@ function taxopress_create_default_autoterm()
         $default['taxopress_autoterm']['terms_limit']              = '5';
         $default['taxopress_autoterm']['synonyms_term']            = '0';
         $default['specific_terms']                                  = [];
+        $default['find_in_customs_entries']                         = [];
+        $default['find_in_custom_fields_custom_items']              = [];
+        $default['find_in_taxonomies_custom_items']                 = [];
         $result                                                    = taxopress_update_autoterm($default);
     }
     update_option('taxopress_default_autoterms', $result);
@@ -350,6 +353,11 @@ function taxopress_update_autoterm($data = [])
     $data['taxopress_autoterm']['html_exclusion'] = isset($data['html_exclusion']) ? $data['html_exclusion'] : [];
     $data['taxopress_autoterm']['html_exclusion_customs'] = isset($data['html_exclusion_customs']) ? $data['html_exclusion_customs'] : [];
     $data['taxopress_autoterm']['html_exclusion_customs_entry'] = isset($data['html_exclusion_customs_entry']) ? array_unique($data['html_exclusion_customs_entry']) : [];
+
+    $data['taxopress_autoterm']['find_in_customs_entries'] = isset($data['find_in_customs_entries']) ? $data['find_in_customs_entries'] : [];
+    $data['taxopress_autoterm']['find_in_custom_fields_custom_items'] = isset($data['find_in_custom_fields_custom_items']) ? $data['find_in_custom_fields_custom_items'] : [];
+    $data['taxopress_autoterm']['find_in_taxonomies_custom_items'] = isset($data['find_in_taxonomies_custom_items']) ? $data['find_in_taxonomies_custom_items'] : [];
+
     
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autoterm']['autoterm_useall'])) {

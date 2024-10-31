@@ -507,36 +507,128 @@ class SimpleTags_Autoterms
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
+                                                    $selected_option    = (isset($current) && isset($current['autoterm_from'])) ? $current['autoterm_from'] : '';
 
-                                                    $select             = [
-                                                        'options' => [
-                                                            [
-                                                                'attr'    => 'post_content',
-                                                                'text'    => esc_attr__('Post Content', 'simple-tags')
-                                                            ],
-                                                            [
-                                                                'attr' => 'post_title',
-                                                                'text' => esc_attr__('Post Title', 'simple-tags')
-                                                            ],
-                                                            [
-                                                                'attr' => 'posts',
-                                                                'text' => esc_attr__('Post Content and Title',
-                                                                    'simple-tags'),
-                                                                'default' => 'true'
-                                                            ]
-                                                        ],
+                                                    $term_from_options = [
+                                                        'post_content'  =>  esc_attr__('Post Content', 'simple-tags'),
+                                                        'post_title'    =>  esc_attr__('Post Title', 'simple-tags'),
+                                                        'posts'         => esc_attr__('Post Content and Title', 'simple-tags')
                                                     ];
-                                                    $selected           = (isset($current) && isset($current['autoterm_from'])) ? taxopress_disp_boolean($current['autoterm_from']) : '';
-                                                    $select['selected'] = !empty($selected) ? $current['autoterm_from'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input_main([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_from',
-                                                        'labeltext'  => esc_html__('Find term in:',
-                                                            'simple-tags'),
-                                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ]);
+                                                    ?>
+                                                    <tr valign="top">
+                                                        <th scope="row">
+                                                            <label for="autoterm_from">
+                                                                <?php esc_html_e('Find term in:', 'simple-tags'); ?>
+                                                            </label>
+                                                        </th>
+                                                        <td>
+                                                            <select class="" id="autoterm_from" name="taxopress_autoterm[autoterm_from]">
+                                                                <?php foreach ($term_from_options as $option => $label) : ?>
+                                                                    <option value="<?php echo esc_attr($option); ?>" <?php selected($selected_option, $option); ?>>
+                                                                        <?php echo esc_html($label); ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr valign="top">
+                                                        <th></th>
+                                                        <td style="margin-top: 0; padding-top: 0;">
+                                                            <table class="visbile-table st-autoterm-area-table">
+                                                                <tr>
+                                                                    <th scope="row" colspan="3" style="margin-top: 0; padding-top: 0; padding-bottom: 0;">
+                                                                        <label>
+                                                                            <?php echo esc_html__('Find in more areas:', 'simple-tags'); ?>
+                                                                        </label>
+                                                                    </th>
+                                                                </tr>
+                                                                <tr class="autoterm-custom-findin-row form-tr">
+                                                                    <td style="padding-left: 0; padding-top: 0;">
+                                                                        <select class="autoterm-area-custom-type" style="max-width: 130px;">
+                                                                            <?php 
+                                                                            $area_types = [
+                                                                                'custom_fields' => esc_html__('Custom Field', 'simple-tags'),
+                                                                                'taxonomies'    => esc_html__('Taxonomy', 'simple-tags'),
+                                                                            ];
+                                                                            foreach ($area_types as $area_type_value => $area_type_label) : ?>
+                                                                                <option value="<?php echo esc_attr($area_type_value); ?>">
+                                                                                    <?php echo esc_html($area_type_label); ?>
+                                                                                </option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td style="padding-left: 0; padding-top: 0;">
+                                                                        <select class="autoterm-area-custom-taxonomy st-hide-content find-in-content taxonomies" style="max-width: 150px;"
+                                                                        placeholder="<?php echo esc_attr__("Search Taxonomy", "simple-tags"); ?>">
+                                                                        <option value=""><?php echo esc_html__("Search Taxonomy", "simple-tags"); ?></option>
+                                                                            <?php
+                                                                            foreach (get_all_taxopress_taxonomies() as $_taxonomy) :
+                                                                                $_taxonomy = $_taxonomy->name;
+                                                                                $tax       = get_taxonomy($_taxonomy);
+                                                                                if (empty($tax->labels->name)) {
+                                                                                    continue;
+                                                                                }
+                                                                            ?>
+                                                                                <option value="<?php echo esc_attr($tax->name); ?>">
+                                                                                    <?php echo esc_html($tax->labels->name. ' ('.$tax->name.')'); ?>
+                                                                                </option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+                                                                        <div class="autoterm-field-area">
+                                                                            <select style="width: 100%;" class="taxopress-custom-fields-search find-in-content custom_fields" 
+                                                                                data-placeholder="<?php echo esc_attr__("Search Custom Field...", "simple-tags"); ?>" 
+                                                                                data-nonce="<?php echo esc_attr__(wp_create_nonce('taxopress-custom-fields-search')); ?>"></select>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <?php                    
+                                                                    $find_in_customs_entries = (!empty($current['find_in_customs_entries']) && is_array($current['find_in_customs_entries'])) ? $current['find_in_customs_entries'] : [];
+                                                                    
+                                                                    $find_in_custom_fields_custom_items = (!empty($current['find_in_custom_fields_custom_items']) && is_array($current['find_in_custom_fields_custom_items'])) ? $current['find_in_custom_fields_custom_items'] : [];
+                                                                    
+                                                                    $find_in_taxonomies_custom_items = (!empty($current['find_in_taxonomies_custom_items']) && is_array($current['find_in_taxonomies_custom_items'])) ? $current['find_in_taxonomies_custom_items'] : [];
 
+                                                                    if (!empty($find_in_customs_entries)) : 
+                                                                        foreach ($find_in_customs_entries as $entry_type => $entry_options) :
+
+                                                                            if (!empty($entry_options)) : 
+                                                                                foreach ($entry_options as $entry_option) : 
+                                                                                $checked_option = false;
+                                                                                if ($entry_type == 'custom_fields' && in_array($entry_option, $find_in_custom_fields_custom_items)) {
+                                                                                    $checked_option = true;
+                                                                                } elseif (in_array($entry_option, $find_in_taxonomies_custom_items)) {
+                                                                                    $checked_option = true;
+                                                                                }
+                                                                                ?>
+                                                                                <tr valign="top" class="find-in-customs-row <?php echo esc_attr($entry_type); ?> <?php echo esc_attr($entry_option); ?>">
+                                                                                    <td colspan="2" class="item-header">
+                                                                                        <div>
+                                                                                            <span class="action-checkbox">
+                                                                                                <input type="hidden" name="find_in_customs_entries[<?php echo esc_attr($entry_type); ?>][]" value="<?php echo esc_attr($entry_option); ?>" /><input type="checkbox" id="<?php echo esc_attr($entry_option); ?>" name="find_in_<?php echo esc_attr($entry_type); ?>_custom_items[]" value="<?php echo esc_attr($entry_option); ?>" <?php checked($checked_option, true); ?> />
+                                                                                            </span>
+                                                                                            <label for="<?php echo esc_attr($entry_option); ?>">
+                                                                                                <?php echo esc_html($entry_option); ?>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <span class="delete">
+                                                                                            <?php echo esc_html__("Delete", "simple-tags"); ?>
+                                                                                        </span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <?php endforeach;
+                                                                            endif;
+                                                                            
+                                                                        endforeach;
+                                                                    endif;
+
+                                                                ?>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
 
                                                     /**
                                                      * Filters the arguments for post types to list for taxonomy association.

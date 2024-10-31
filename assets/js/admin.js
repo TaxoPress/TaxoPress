@@ -268,7 +268,7 @@
     // -------------------------------------------------------------
     $(document).on('click', '.st-add-suggestion-input', function (e) {
       e.preventDefault();
-      $('.auto-terms-keyword-list').append('<input type="text" name="auto_list[]" /> <input class="st-delete-suggestion-input" type="button" value="Delete"/>');
+      $('.auto-terms-keyword-list').append('<input type="text" name="auto_list[]" /> <input class="st-delete-suggestion-input" type="button" value="' + st_admin_localize.delete_label+ '"/>');
     });
 
     // -------------------------------------------------------------
@@ -879,6 +879,88 @@
       $('.taxopress-posts-tablenav-filter').trigger('click');
     });
 
+    // -------------------------------------------------------------
+    //   Auto Term find in type change
+    // -------------------------------------------------------------
+    $(document).on('change', '.autoterm-area-custom-type', function (e) {
+      e.preventDefault();
+      if ($(this).val() == 'custom_fields') {
+        $('.autoterm-area-custom-taxonomy').addClass('st-hide-content');
+        $('.autoterm-field-area').removeClass('st-hide-content');
+      } else {
+        $('.autoterm-area-custom-taxonomy').removeClass('st-hide-content');
+        $('.autoterm-field-area').addClass('st-hide-content');
+      }
+    });
+
+    /**
+     * Delete find in custom item
+     */
+    $(document).on('click', 'table.st-autoterm-area-table .delete', function (e) {
+        e.preventDefault();
+        $(this).closest('tr').remove();
+    });
+
+    // -------------------------------------------------------------
+    //   Auto Term find in taxonomy change
+    // -------------------------------------------------------------
+    $(document).on('change', '.autoterm-area-custom-taxonomy', function (e) {
+      addNewFindInItem('taxonomies', $(this).val());
+      $(this).val('');
+    });
+
+    if ($('.find-in-customs-row td label').length > 0) {
+      breakLongAutoTermFindinWords(); 
+    }
+
+    function addNewFindInItem(find_in_type, find_in_value) {
+      var button = $('.add-new-autoterm-area');
+      if (!isEmptyOrSpaces(find_in_value)) {
+        $('tr.' + find_in_type + '.' + find_in_value).remove();
+        var new_element_html = '';
+        new_element_html += '<tr valign="top" class="find-in-customs-row ' + find_in_type + ' ' + find_in_value + '"><td colspan="2" class="item-header"><div><span class="action-checkbox"><input type="hidden" name="find_in_customs_entries[' + find_in_type + '][]" value="' + find_in_value + '" /><input type="checkbox" id="' + find_in_value + '" name="find_in_' + find_in_type + '_custom_items[]" value="' + find_in_value + '" checked /></span><label for="' + find_in_value + '">' + find_in_value + '</label></div></td>';
+        
+        new_element_html += '<td><span class="delete">' + st_admin_localize.delete_label+ '</span></td></tr>';
+        $('.autoterm-custom-findin-row').after(new_element_html);  
+
+        breakLongAutoTermFindinWords(); 
+      }
+    }
+
+    /**
+     * TaxoPress posts select2
+     */
+    if ($('.taxopress-custom-fields-search').length > 0) {
+      
+      taxopressFieldSelect2($('.taxopress-custom-fields-search'));
+      function taxopressFieldSelect2(selector) {
+        selector.each(function () {
+            var fieldSearch = $(this).ppma_select2({
+                placeholder: $(this).data("placeholder"),
+                allowClear: true,
+                ajax: {
+                    url:
+                        window.ajaxurl +
+                        "?action=taxopress_custom_fields_search&nonce=" +
+                        $(this).data("nonce"),
+                    dataType: "json",
+                    data: function (params) {
+                        return {
+                            q: params.term
+                        };
+                    }
+                }
+            }).on('ppma_select2:select', function (e) {
+              
+              var data = e.params.data;
+              var selected_name = data.id;
+              addNewFindInItem('custom_fields', selected_name);
+              $(this).val(null).trigger('change'); 
+          });
+        });
+    }
+  }
+
     /**
      * TaxoPress term select2
      */
@@ -1387,6 +1469,54 @@
         }
     }
     /* end COPIED FROM PP BLOCKS */
+
+
+    function decodeHTMLEntities(text) {
+      var entities = [
+        ['amp', '&'],
+        ['apos', '\''],
+        ['lt', '<'],
+        ['gt', '>'],
+        ['quot', '"']
+      ];
+    
+      for (var i = 0; i < entities.length; i++) {
+        text = text.replace(new RegExp('&' + entities[i][0] + ';', 'g'), entities[i][1]);
+      }
+    
+      return text;
+    }
+
+    function breakLongAutoTermFindinWords() {
+
+      var elements_th = document.querySelectorAll('.find-in-customs-row td label');
+      for (var i = 0; i < elements_th.length; i++) {
+        breakLongWords(elements_th[i]);
+      }
+    }
+
+    function breakLongWords(element) {
+
+      var  html_element = decodeHTMLEntities(element.innerHTML);
+
+      if (html_element.indexOf('<wbr>') !== -1) {
+        return;
+      }
+      var words = html_element.split('/\s+/');
+          
+      for (var i = 0; i < words.length; i++) {
+        var word = words[i];
+        var wrappedWord = '';
+
+        for (var j = 0; j < word.length; j++) {
+          wrappedWord += '<wbr>' + word[j];
+        }
+
+        words[i] = wrappedWord;
+      }
+
+      element.innerHTML = words.join(' ');
+    }
 
   });
 
