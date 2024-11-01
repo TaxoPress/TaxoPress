@@ -377,7 +377,7 @@ function taxopress_update_taxonomy($data = [])
             'show_in_filter'        => $show_in_filter,
         ];
 
-        $taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = $data['cpt_post_types'];
+        $taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : '';
 
 
         /**
@@ -925,6 +925,24 @@ function taxopress_get_taxonomy_data()
 {
     return apply_filters('taxopress_get_taxonomy_data', get_option('taxopress_taxonomies', []), get_current_blog_id());
 }
+
+/**
+ * Fetch both internal and external edited taxopress taxonomies
+ *
+ * @return mixed
+ */
+function taxopress_get_all_edited_taxonomy_data()
+{
+    $internal_taxonomies          = taxopress_get_taxonomy_data();
+    $external_taxonomies = taxopress_get_extername_taxonomy_data();
+
+    $all_taxonomies = array_merge($internal_taxonomies, $external_taxonomies);
+
+    return array_filter($all_taxonomies);
+}
+
+
+
 
 /**
  * Fetch our TAXOPRESS taxonomies option.
@@ -2315,25 +2333,43 @@ function taxopress_get_dropdown(){
             $type = sanitize_text_field($_GET['post_type']);
         }
 
-        $all_taxonomies    = get_all_taxopress_taxonomies();
+        $taxonomies = taxopress_get_all_edited_taxonomy_data();
 
-        if( !empty($all_taxonomies) ) {
-            $taxonomies = taxopress_get_all_taxonomies();
+        if( !empty($taxonomies) ) {
 
-            //let's reduce the load on the foreach loop for easy readability
-            foreach ( $taxonomies as $taxonomy ) {
-                
-                // Retrieve and evaluate the show_in_filter attribute directly
-                $show_in_filter = isset($taxonomy->show_in_filter) ? $taxonomy->show_in_filter : false;
+            $all_taxonomies    = taxopress_get_all_taxonomies();
 
-                // Conditionally display filter dropdown based on post type and media page
-                if ( $pagenow === 'upload.php' ) {
-                    if ( $show_in_filter && in_array('attachment', $taxonomy->object_type, true) ) {
-                        taxopress_filter_dropdown($taxonomy, $show_in_filter);
-                    }
-                } else {
-                    if ( $show_in_filter && in_array($type, $taxonomy->object_type, true) ) {
-                        taxopress_filter_dropdown($taxonomy, $show_in_filter);
+            foreach ( $all_taxonomies as $taxonomy ) {
+
+                $taxonomy_name = $taxonomy->name;
+  
+                if( array_key_exists( $taxonomy_name, $taxonomies ) ){
+     
+                    $current = isset($taxonomies[ $taxonomy_name ]) ? $taxonomies[ $taxonomy_name ] : '';
+
+                    if( is_array($current) && array_key_exists( 'show_in_filter', $current ) ){
+                        if (isset($current['object_types']) && !empty($current['object_types'])) {
+                            foreach ($current['object_types'] as $object_type) {
+
+                                //Media Page
+                                if($pagenow === 'upload.php') {
+
+                                    if($object_type == "attachment") {
+
+                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
+
+                                    }
+
+                                } else {
+
+                                    if($object_type == $type) {
+
+                                        taxopress_filter_dropdown($taxonomy, $current['show_in_filter']);
+
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
