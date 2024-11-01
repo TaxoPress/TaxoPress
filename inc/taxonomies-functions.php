@@ -374,7 +374,7 @@ function taxopress_update_taxonomy($data = [])
             'labels'                => $data['cpt_tax_labels'],
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
-            'show_in_filter'        => $$show_in_filter,
+            'show_in_filter'        => $show_in_filter,
         ];
 
         $taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = $data['cpt_post_types'];
