@@ -2315,9 +2315,10 @@ function taxopress_get_dropdown(){
             $type = sanitize_text_field($_GET['post_type']);
         }
 
-        $taxonomies = taxopress_get_all_taxonomies();
+        $all_taxonomies    = get_all_taxopress_taxonomies();
 
-        if( !empty($taxonomies) ) {
+        if( !empty($all_taxonomies) ) {
+            $taxonomies = taxopress_get_all_taxonomies();
 
             //let's reduce the load on the foreach loop for easy readability
             foreach ( $taxonomies as $taxonomy ) {
