@@ -157,6 +157,18 @@ return apply_filters('taxopress_admin_options', array(
     // linked terms tab
     'linked_terms'       => array(
         array(
+            'linked_terms_type',
+            __('Linked Terms Type:', 'simple-tags'),
+            'radio',
+            array(
+                'main'       => __('2-way relationship. When the main term or secondary term are added to the post, other term will be added also.', 'simple-tags'),
+                'primary'     => __('Add the primary term, get the secondary term', 'simple-tags'),
+                'secondary'     => __('Add the secondary term, get the primary term.', 'simple-tags'),
+            ),
+            '',
+            ''
+        ),
+        array(
             'linked_terms_taxonomies',
             __('Enable Taxonomies:', 'simple-tags'),
             'multiselect',

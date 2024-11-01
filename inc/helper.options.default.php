@@ -23,6 +23,7 @@ return array(
 
     // linked terms
     'linked_terms_taxonomies' => ['category', 'post_tag'],
+    'linked_terms_type'       => 'main',
 
     // term synonyms
     'synonyms_taxonomies' => ['category', 'post_tag'],
