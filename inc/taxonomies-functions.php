@@ -2378,5 +2378,3 @@ function taxopress_get_dropdown(){
     }
 
 }
-
-add_action( 'restrict_manage_posts' , 'taxopress_get_dropdown' );
