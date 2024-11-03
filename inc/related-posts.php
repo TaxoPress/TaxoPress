@@ -919,7 +919,7 @@ class SimpleTags_Related_Post
                                                             echo $ui->get_select_checkbox_input_main( [
                                                                 'namearray'  => 'taxopress_related_post',
                                                                 'name'       => 'imageresolution',
-                                                                'labeltext'  => esc_html__( 'Post_thumb Image Resolution', 'simple-tags' ),
+                                                                'labeltext'  => esc_html__( 'Thumbnail image resolution', 'simple-tags' ),
                                                                 'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             ] );
                                                     
@@ -930,7 +930,7 @@ class SimpleTags_Related_Post
                                                                 style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
                                                                 <tr valign="top">
                                                                     <th scope="row">
-                                                                        <label for="default_featured_media"><?php echo esc_html__('Default Post Thumb', 'simple-tags'); ?></label>
+                                                                        <label for="default_featured_media"><?php echo esc_html__('Default Post thumbnail', 'simple-tags'); ?></label>
                                                                     </th>
                                                                     <td>
                                                                         <div class="default-featured-media-field-wrapper">
