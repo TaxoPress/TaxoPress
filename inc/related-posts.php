@@ -478,30 +478,6 @@ class SimpleTags_Related_Post
                                                             'labeltext'  => esc_html__( '%post_date% format', 'simple-tags' ),
                                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         ] );
-
-                                                          // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
-                                                          echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'taxopress_max_cats',
-                                                            'textvalue' => isset($current['taxopress_max_cats']) ? esc_attr($current['taxopress_max_cats']) : '3',
-                                                            'labeltext' => esc_html__('Maximum number of categories',
-                                                            'simple-tags'),
-                                                            'helptext'  =>  esc_html__('You must set zero (0) to display all post categories.', 'simple-tags'),
-                                                            'min'       => '0',
-                                                            'required'  => true,
-                                                        ]);
-
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
-                                                        echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'taxopress_max_tags',
-                                                            'textvalue' => isset($current['taxopress_max_tags']) ? esc_attr($current['taxopress_max_tags']) : '3',
-                                                            'labeltext' => esc_html__('Maximum number of post tags',
-                                                            'simple-tags'),
-                                                            'helptext'  =>  esc_html__('You must set zero (0) to display all post tags.', 'simple-tags'),
-                                                            'min'       => '0',
-                                                            'required'  => true,
-                                                        ]);
                                                         
                                                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_td_end() . $ui->get_tr_end();
@@ -901,6 +877,30 @@ class SimpleTags_Related_Post
                                                                 'helptext'  => '',
                                                                 'required'  => true,
                                                             ]);
+
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                          echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'taxopress_max_cats',
+                                                            'textvalue' => isset($current['taxopress_max_cats']) ? esc_attr($current['taxopress_max_cats']) : '3',
+                                                            'labeltext' => esc_html__('Maximum number of categories',
+                                                            'simple-tags'),
+                                                            'helptext'  =>  esc_html__('You must set zero (0) to display all post categories.', 'simple-tags'),
+                                                            'min'       => '0',
+                                                            'required'  => true,
+                                                        ]);
+
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'taxopress_max_tags',
+                                                            'textvalue' => isset($current['taxopress_max_tags']) ? esc_attr($current['taxopress_max_tags']) : '3',
+                                                            'labeltext' => esc_html__('Maximum number of tags',
+                                                            'simple-tags'),
+                                                            'helptext'  =>  esc_html__('You must set zero (0) to display all post tags.', 'simple-tags'),
+                                                            'min'       => '0',
+                                                            'required'  => true,
+                                                        ]);
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
                                                             $select = [
                                                                 'options' => [
