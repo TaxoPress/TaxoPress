@@ -930,7 +930,7 @@ class SimpleTags_Related_Post
                                                                 style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
                                                                 <tr valign="top">
                                                                     <th scope="row">
-                                                                        <label for="default_featured_media"><?php echo esc_html__('Default Post thumbnail', 'simple-tags'); ?></label>
+                                                                        <label for="default_featured_media"><?php echo esc_html__('Default post thumbnail', 'simple-tags'); ?></label>
                                                                     </th>
                                                                     <td>
                                                                         <div class="default-featured-media-field-wrapper">
