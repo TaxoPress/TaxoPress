@@ -542,9 +542,9 @@ class SimpleTags_Autoterms
                                                                         </label>
                                                                     </th>
                                                                 </tr>
-                                                                <tr class="autoterm-custom-findin-row form-tr">
-                                                                    <td style="padding-left: 0; padding-top: 0;">
-                                                                        <select class="autoterm-area-custom-type" style="max-width: 130px;">
+                                                                <tr class="autoterm-custom-findin-row form-tr option">
+                                                                    <td style="padding-left: 0; padding-top: 0;" colspan="3">
+                                                                        <select class="autoterm-area-custom-type" style="max-width: 100%;">
                                                                             <?php 
                                                                             $area_types = [
                                                                                 'custom_fields' => esc_html__('Custom Field', 'simple-tags'),
@@ -557,8 +557,10 @@ class SimpleTags_Autoterms
                                                                             <?php endforeach; ?>
                                                                         </select>
                                                                     </td>
-                                                                    <td style="padding-left: 0; padding-top: 0;">
-                                                                        <select class="autoterm-area-custom-taxonomy st-hide-content find-in-content taxonomies" style="max-width: 150px;"
+                                                                </tr>
+                                                                <tr class="autoterm-custom-findin-row form-tr fields">
+                                                                    <td style="padding-left: 0; padding-top: 0;" colspan="3">
+                                                                        <select class="autoterm-area-custom-taxonomy st-hide-content find-in-content taxonomies" style="max-width: 100%"
                                                                         placeholder="<?php echo esc_attr__("Search Taxonomy", "simple-tags"); ?>">
                                                                         <option value=""><?php echo esc_html__("Search Taxonomy", "simple-tags"); ?></option>
                                                                             <?php
@@ -580,7 +582,6 @@ class SimpleTags_Autoterms
                                                                                 data-nonce="<?php echo esc_attr__(wp_create_nonce('taxopress-custom-fields-search')); ?>"></select>
                                                                         </div>
                                                                     </td>
-                                                                    <td></td>
                                                                 </tr>
                                                                 <?php                    
                                                                     $find_in_customs_entries = (!empty($current['find_in_customs_entries']) && is_array($current['find_in_customs_entries'])) ? $current['find_in_customs_entries'] : [];
