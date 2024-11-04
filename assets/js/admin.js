@@ -921,7 +921,7 @@
         new_element_html += '<tr valign="top" class="find-in-customs-row ' + find_in_type + ' ' + find_in_value + '"><td colspan="2" class="item-header"><div><span class="action-checkbox"><input type="hidden" name="find_in_customs_entries[' + find_in_type + '][]" value="' + find_in_value + '" /><input type="checkbox" id="' + find_in_value + '" name="find_in_' + find_in_type + '_custom_items[]" value="' + find_in_value + '" checked /></span><label for="' + find_in_value + '">' + find_in_value + '</label></div></td>';
         
         new_element_html += '<td><span class="delete">' + st_admin_localize.delete_label+ '</span></td></tr>';
-        $('.autoterm-custom-findin-row').after(new_element_html);  
+        $('.autoterm-custom-findin-row.fields').after(new_element_html);  
 
         breakLongAutoTermFindinWords(); 
       }

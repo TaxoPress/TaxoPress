@@ -17,16 +17,16 @@ table.st-autoterm-area-table .find-in-customs-row td.item-header div {
     max-width: 300px;
 }
 
-table.st-autoterm-area-table tr:nth-child(n+3) td {
+table.st-autoterm-area-table tr:nth-child(n+4) td {
     padding: 6px 1px 4px 5px;
 }
 
-table.st-autoterm-area-table tr:nth-child(n+3) td {
+table.st-autoterm-area-table tr:nth-child(n+4) td {
     border-top: 1px solid #c3c4c7;
     border-right: 1px solid #c3c4c7;
 }
 
-table.st-autoterm-area-table tr:nth-child(n+3) td:first-child {
+table.st-autoterm-area-table tr:nth-child(n+4) td:first-child {
     border-left: 1px solid #c3c4c7;
 }
 
