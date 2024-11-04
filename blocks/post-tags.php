@@ -62,7 +62,7 @@ function st_post_tags_block_init()
         esc_html__('Here', 'simple-tags')
     );
 
-    $select_label = __(' Select current post shortcode', 'simple-tags');
+    $select_label = __(' Select current post', 'simple-tags');
     $panel_title  = __('Current Posts (TaxoPress)', 'simple-tags');
 
     wp_localize_script('st-block-post-tags', 'ST_POST_TAGS', [

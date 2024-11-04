@@ -62,7 +62,7 @@ function st_tag_clouds_block_init()
         esc_html__('this page.', 'simple-tags')
     );
 
-    $select_label = __('Select Terms Display shortcode', 'simple-tags');
+    $select_label = __('Select Terms Display', 'simple-tags');
     $panel_title  = __('Terms Display (TaxoPress)', 'simple-tags');
 
     wp_localize_script('st-block-tag-clouds', 'ST_TAG_CLOUDS', [
