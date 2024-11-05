@@ -593,22 +593,23 @@ function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = fal
 
     $table_name = $wpdb->prefix . 'taxopress_linked_terms';
 
-    // Define query condition based on the linked terms type
-    $condition = '';
     if ($linked_terms_type == 'primary') {
-        $condition = 'term_id = %d';
+        $query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE term_id = %d",
+            $term_id
+        );
     } elseif ($linked_terms_type == 'secondary') {
-        $condition = 'linked_term_id = %d';
+        $query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE linked_term_id = %d",
+            $term_id
+        );
     } else {
-        $condition = 'term_id = %d OR linked_term_id = %d';
+        $query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE term_id = %d OR linked_term_id = %d",
+            $term_id,
+            $term_id
+        );
     }
-
-    // Prepare query based on the condition
-    $query = $wpdb->prepare(
-        "SELECT * FROM $table_name WHERE $condition",
-        $term_id,
-        $linked_terms_type === 'main' ? $term_id : null
-    );
 
     $linked_terms = $wpdb->get_results($query);
 
