@@ -615,7 +615,7 @@ class SimpleTags_Autoterms
                                                                                     </td>
                                                                                     <td>
                                                                                         <span class="delete">
-                                                                                            <?php echo esc_html__("Delete", "simple-tags"); ?>
+                                                                                            <?php echo esc_html__("Delete", "simple-tags"); ?> 
                                                                                         </span>
                                                                                     </td>
                                                                                 </tr>

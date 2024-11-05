@@ -909,10 +909,6 @@
       $(this).val('');
     });
 
-    if ($('.find-in-customs-row td label').length > 0) {
-      breakLongAutoTermFindinWords(); 
-    }
-
     function addNewFindInItem(find_in_type, find_in_value) {
       var button = $('.add-new-autoterm-area');
       if (!isEmptyOrSpaces(find_in_value)) {
@@ -923,7 +919,6 @@
         new_element_html += '<td><span class="delete">' + st_admin_localize.delete_label+ '</span></td></tr>';
         $('.autoterm-custom-findin-row.fields').after(new_element_html);  
 
-        breakLongAutoTermFindinWords(); 
       }
     }
 
@@ -1469,54 +1464,6 @@
         }
     }
     /* end COPIED FROM PP BLOCKS */
-
-
-    function decodeHTMLEntities(text) {
-      var entities = [
-        ['amp', '&'],
-        ['apos', '\''],
-        ['lt', '<'],
-        ['gt', '>'],
-        ['quot', '"']
-      ];
-    
-      for (var i = 0; i < entities.length; i++) {
-        text = text.replace(new RegExp('&' + entities[i][0] + ';', 'g'), entities[i][1]);
-      }
-    
-      return text;
-    }
-
-    function breakLongAutoTermFindinWords() {
-
-      var elements_th = document.querySelectorAll('.find-in-customs-row td label');
-      for (var i = 0; i < elements_th.length; i++) {
-        breakLongWords(elements_th[i]);
-      }
-    }
-
-    function breakLongWords(element) {
-
-      var  html_element = decodeHTMLEntities(element.innerHTML);
-
-      if (html_element.indexOf('<wbr>') !== -1) {
-        return;
-      }
-      var words = html_element.split('/\s+/');
-          
-      for (var i = 0; i < words.length; i++) {
-        var word = words[i];
-        var wrappedWord = '';
-
-        for (var j = 0; j < word.length; j++) {
-          wrappedWord += '<wbr>' + word[j];
-        }
-
-        words[i] = wrappedWord;
-      }
-
-      element.innerHTML = words.join(' ');
-    }
 
   });
 

@@ -15,6 +15,7 @@ table.st-autoterm-area-table .find-in-customs-row td.item-header div {
     display: flex;
     margin-right: 10px;
     max-width: 300px;
+    overflow-wrap: anywhere;
 }
 
 table.st-autoterm-area-table tr:nth-child(n+4) td {
@@ -37,7 +38,6 @@ table.st-autoterm-area-table tr:last-child:not(.form-tr) td {
 table.st-autoterm-area-table .delete {
     color: #f54d4d;
     cursor: pointer;
-    padding: 5px;
 }
 
 table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
