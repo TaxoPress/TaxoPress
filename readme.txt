@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.27.0- 2024-11-05
+v3.27.0- 2024-11-06
 * Update: Add setting to Make Linked Terms 1-way or 2-way, #2099
 * Update: Add a subscript 1 or 2 to linked term to make it easy to know if a linked term is the primary term or secondary term, #2099
 * Update: Allow Auto Terms to search more content areas (Taxonomies and Fields), #2096
