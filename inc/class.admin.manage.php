@@ -431,7 +431,7 @@ class SimpleTags_Admin_Manage
 							<td>
 								<h2><?php esc_html_e('Hide rarely used terms', 'simple-tags'); ?>
 								</h2>
-								<p><?php esc_html_e('This feature allows you to hide rarely used terms.', 'simple-tags'); ?>
+								<p><?php esc_html_e('This feature allows you to hide rarely used terms from the admin area..', 'simple-tags'); ?>
 								</p>
 
 								<p><?php printf(esc_html__('If you choose 5, Taxopress will hide all terms attached to less than 5 %s.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
