@@ -505,6 +505,7 @@ class SimpleTags_Admin
 			'save_settings' => esc_html__('Auto Term ID missing. Kindly save the auto term before using this feature.', 'simple-tags'),
 			'delete_label' => esc_html__('Delete', 'simple-tags'),
 			'ai_nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
+			'default_format' => esc_html__('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>', 'simple-tags'),
 		]);
 
 
