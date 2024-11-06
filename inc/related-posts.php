@@ -498,6 +498,7 @@ class SimpleTags_Related_Post
                                                         $term_auto_locations = [
                                                             'homeonly' => esc_attr__('Homepage', 'simple-tags'),
                                                             'blogonly' => esc_attr__('Blog display', 'simple-tags'),
+                                                            'post'     => esc_attr__('Posts', 'simple-tags'),
                                                         ];
                                                         foreach ($post_types as $post_type) {
                                                             if (!in_array($post_type->name, ['attachment'])) {
@@ -522,14 +523,24 @@ class SimpleTags_Related_Post
                                                                 <table class="visbile-table">';
                                                         foreach ($term_auto_locations as $key => $value) {
 
+                                                            $is_checked = 'false';
+
+                                                            // Set 'post' as default if nothing is set in the $current['embedded'] array
+                                                            if ((!isset($current['embedded']) || !is_array($current['embedded'])) && $key === 'post') {
+                                                                $is_checked = 'true';
+                                                            }
+                                                            // If there's a value set in $current['embedded'], check it against $key
+                                                            elseif (isset($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) {
+                                                                $is_checked = 'true';
+                                                            }
+
 
                                                             echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
 
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_check_input([
                                                                 'checkvalue' => esc_attr($key),
-                                                                'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key,
-                                                                        $current['embedded'], true)) ? 'true' : 'false',
+                                                                'checked' => $is_checked,
                                                                 'name'       => esc_attr($key),
                                                                 'namearray'  => 'embedded',
                                                                 'textvalue'  => esc_attr($key),
@@ -824,6 +835,25 @@ class SimpleTags_Related_Post
                                                             'helptext'  => '',
                                                             'required'  => false,
                                                         ]);
+                                                        
+                                                        $select = [
+                                                            'options' => [
+                                                                ['attr' => 'd.m.Y', 'text' => esc_attr__('d.m.Y (e.g., 09.10.2024)', 'simple-tags'), 'default' => 'true'],
+                                                                ['attr' => 'F j, Y', 'text' => esc_attr__('F j, Y (e.g., October 9, 2024)', 'simple-tags')],
+                                                                ['attr' => 'Y-m-d', 'text' => esc_attr__('Y-m-d (e.g., 2024-10-09)', 'simple-tags')],
+                                                                ['attr' => 'm/d/Y', 'text' => esc_attr__('m/d/Y (e.g., 10/09/2024)', 'simple-tags')],
+                                                                ['attr' => 'd M, Y', 'text' => esc_attr__('d M, Y (e.g., 09 Oct, 2024)', 'simple-tags')],
+                                                            ], 
+                                                        ]; 
+                                                        $selected = (isset($current) && isset($current['dateformat'])) ? taxopress_disp_boolean($current['dateformat']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['dateformat'] : ''; 
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                        echo $ui->get_select_checkbox_input_main( [
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'dateformat',
+                                                            'labeltext'  => esc_html__( 'Post date format', 'simple-tags' ),
+                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ] );
 
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         echo $ui->get_textarea_input([
@@ -847,45 +877,88 @@ class SimpleTags_Related_Post
                                                                 'helptext'  => '',
                                                                 'required'  => true,
                                                             ]);
+
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                          echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'taxopress_max_cats',
+                                                            'textvalue' => isset($current['taxopress_max_cats']) ? esc_attr($current['taxopress_max_cats']) : '3',
+                                                            'labeltext' => esc_html__('Maximum number of categories',
+                                                            'simple-tags'),
+                                                            'helptext'  =>  esc_html__('You must set zero (0) to display all post categories.', 'simple-tags'),
+                                                            'min'       => '0',
+                                                            'required'  => true,
+                                                        ]);
+
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'taxopress_max_tags',
+                                                            'textvalue' => isset($current['taxopress_max_tags']) ? esc_attr($current['taxopress_max_tags']) : '3',
+                                                            'labeltext' => esc_html__('Maximum number of tags',
+                                                            'simple-tags'),
+                                                            'helptext'  =>  esc_html__('You must set zero (0) to display all post tags.', 'simple-tags'),
+                                                            'min'       => '0',
+                                                            'required'  => true,
+                                                        ]);
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                            $select = [
+                                                                'options' => [
+                                                                    ['attr' => 'thumbnail', 'text' => esc_attr__('Thumbnail (150x150)', 'simple-tags')],
+                                                                    ['attr' => 'medium', 'text' => esc_attr__('Medium (300x300)', 'simple-tags')],
+                                                                    ['attr' => 'large', 'text' => esc_attr__('Large (1024x1024)', 'simple-tags')],
+                                                                    ['attr' => '1536x1536', 'text' => esc_attr__('1536x1536 (High Res)', 'simple-tags'), 'default' => 'true'],
+                                                                    ['attr' => '2048x2048', 'text' => esc_attr__('2048x2048 (Ultra High Res)', 'simple-tags')],
+                                                                ], 
+                                                            ];
                                                             
+                                                            $selected = (isset($current) && isset($current['imageresolution'])) ? taxopress_disp_boolean($current['imageresolution']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['imageresolution'] : ''; 
                                                             
-                                                     // Default Featured Image Integration
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                'namearray'  => 'taxopress_related_post',
+                                                                'name'       => 'imageresolution',
+                                                                'labeltext'  => esc_html__( 'Thumbnail image resolution', 'simple-tags' ),
+                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
                                                     
           
-?>
-  <table class="form-table taxopress-table relatedpost_advanced"
-       style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
-    <tr valign="top">
-        <th scope="row">
-            <label for="default_featured_media"><?php echo esc_html__('Default Post Thumb', 'simple-tags'); ?></label>
-        </th>
-        <td>
-            <div class="default-featured-media-field-wrapper">
-                <div class="default-featured-media-field-container">
-                    <?php if (!empty($current['default_featured_media'])) : ?>
-                        <img src="<?php echo esc_url($current['default_featured_media']); ?>" style="max-width: 300px;" alt=""/>
-                    <?php endif; ?>
-                </div>
+                                                            ?>
+                                                            <!-- Default Featured Image Integration -->
+                                                            <table class="form-table taxopress-table relatedpost_advanced"
+                                                                style="<?php echo $active_tab === 'relatedpost_advanced' ? '' : 'display:none;'; ?>">
+                                                                <tr valign="top">
+                                                                    <th scope="row">
+                                                                        <label for="default_featured_media"><?php echo esc_html__('Default post thumbnail', 'simple-tags'); ?></label>
+                                                                    </th>
+                                                                    <td>
+                                                                        <div class="default-featured-media-field-wrapper">
+                                                                            <div class="default-featured-media-field-container">
+                                                                                <?php if (!empty($current['default_featured_media'])) : ?>
+                                                                                    <img src="<?php echo esc_url($current['default_featured_media']); ?>" style="max-width: 300px;" alt=""/>
+                                                                                <?php endif; ?>
+                                                                            </div>
 
-                <p class="hide-if-no-js">
-                    <a class="select-default-featured-media-field <?php echo !empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
-                        <?php esc_html_e('Select Media', 'simple-tags'); ?>
-                    </a>
-                    <a class="delete-default-featured-media-field <?php echo empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
-                        <?php esc_html_e('Remove Image', 'simple-tags'); ?>
-                    </a>
-                </p>
+                                                                            <p class="hide-if-no-js">
+                                                                                <a class="select-default-featured-media-field <?php echo !empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                    <?php esc_html_e('Select Media', 'simple-tags'); ?>
+                                                                                </a>
+                                                                                <a class="delete-default-featured-media-field <?php echo empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                    <?php esc_html_e('Remove Image', 'simple-tags'); ?>
+                                                                                </a>
+                                                                            </p>
 
-                <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
-                       value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
-            </div>
-            <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
-        </td>
-    </tr>
-    
-</table>
+                                                                            <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
+                                                                                value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
+                                                                        </div>
+                                                                        <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                            </table>
 
-<?php
+                                                            <?php
                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                            echo $ui->get_td_end() . $ui->get_tr_end();
                                                        ?>
@@ -895,7 +968,7 @@ class SimpleTags_Related_Post
                                                     <?php
                                                 }//end new fields
                                         
-?>
+                                                    ?>
 
                                         <div class="clear"></div>
 

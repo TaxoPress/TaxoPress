@@ -435,7 +435,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
 		$select_2_page = false;
-		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks'])) {
+		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms'])) {
 			$select_2_page = true;
 		}
 
@@ -500,7 +500,11 @@ class SimpleTags_Admin
 			'no_terms_message' => esc_html__('No terms will be deleted', 'simple-tags'),
             'terms_count_message' => esc_html__(' terms will be deleted.', 'simple-tags'),
 			'checking_terms_message' => esc_html__('Checking terms...', 'simple-tags'),
-			'terms_error'            => esc_html__('An error occurred while checking terms.', 'simple-tags')
+			'terms_error'            => esc_html__('An error occurred while checking terms.', 'simple-tags'),
+			'post_required' => esc_html__('Kindly select a post to use preview feature.', 'simple-tags'),
+			'save_settings' => esc_html__('Auto Term ID missing. Kindly save the auto term before using this feature.', 'simple-tags'),
+			'delete_label' => esc_html__('Delete', 'simple-tags'),
+			'ai_nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
 		]);
 
 
@@ -980,6 +984,8 @@ class SimpleTags_Admin
 				return esc_html__('Metabox Access', 'simple-tags');
 			case 'linked_terms':
 				return esc_html__('Linked Terms', 'simple-tags');
+			case 'synonyms':
+				return esc_html__('Term Synonyms', 'simple-tags');
 			case 'licence':
 				return esc_html__('License', 'simple-tags');
 		}

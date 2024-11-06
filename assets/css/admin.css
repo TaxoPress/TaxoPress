@@ -1,3 +1,49 @@
+table.st-autoterm-area-table {
+    width: 100px;
+}
+
+table.st-autoterm-area-table th.action {
+    width: 12%;
+}
+
+table.st-autoterm-area-table th,
+table.st-autoterm-area-table td {
+    padding: 6px 1px 4px 1px;
+}
+
+table.st-autoterm-area-table .find-in-customs-row td.item-header div {
+    display: flex;
+    margin-right: 10px;
+    max-width: 300px;
+    overflow-wrap: anywhere;
+}
+
+table.st-autoterm-area-table tr:nth-child(n+4) td {
+    padding: 6px 1px 4px 5px;
+}
+
+table.st-autoterm-area-table tr:nth-child(n+4) td {
+    border-top: 1px solid #c3c4c7;
+    border-right: 1px solid #c3c4c7;
+}
+
+table.st-autoterm-area-table tr:nth-child(n+4) td:first-child {
+    border-left: 1px solid #c3c4c7;
+}
+
+table.st-autoterm-area-table tr:last-child:not(.form-tr) td {
+    border-bottom: 1px solid #c3c4c7;
+}
+
+table.st-autoterm-area-table .delete {
+    color: #f54d4d;
+    cursor: pointer;
+}
+
+table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
+    margin-right: 10px;
+}
+
 .form-table.taxopress-table.autoterm_terms .tab-group-tr td {
     padding: 20px 10px 20px 0;
 }
@@ -689,7 +735,9 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
     width: 35%;
 }
 .addterm_type_all_posts,
-.addterm_type_matched_only {
+.addterm_type_matched_only,
+.removeterm_type_all_posts,
+.removeterm_type_matched_only {
     margin-right: 9px !important;
 }
 .terms-type-options {
@@ -703,6 +751,91 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
 .taxopress-split-wrap select {
     width: 300px;
 }
+
+.taxopress-autoterm-fetch-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.taxopress-autoterm-fetch-wrap .preview-button {
+    margin-left: 10px;
+}
+
+.taxopress-autoterm-fetch-wrap .spinner:not(.is-active) {
+    display: none;
+}
+
+.previewed-tag-fieldset {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 3px dashed #D1E6EF;
+    overflow: auto;
+    margin: 3px 0 0;
+}
+
+.previewed-tag-fieldset legend {
+    padding: 0 10px;
+    padding-bottom: 5px;
+    color: #2271b1;
+}
+
+.previewed-tag-fieldset legend a {
+    text-decoration: none;
+}
+
+.taxopress-autoterm-result .output  .previewed-tag-fieldset {
+    margin-bottom: 30px;
+}
+
+.taxopress-autoterm-result .output .ai-select-all {
+    cursor: pointer;
+}
+
+.preview-action-btn-wrap {
+    display: flex;
+    margin-top: 10px;
+    justify-content: right;
+}
+
+.preview-action-btn-wrap .spinner:not(.is-active) {
+    display: none;
+}
+
+.previewed-tag-content .result-terms {
+    margin: 3px 1px 3px 10px;
+    padding: 0;
+    display: inline-block;
+    white-space: nowrap;
+    background: #ddd;
+    border: 1px dotted transparent;
+    color: #1e1e1e;
+    cursor: pointer;
+}
+
+.previewed-tag-content .result-terms:not(.countable) {
+    padding: 2px 0;
+}
+
+.previewed-tag-content .result-terms.used_term {
+    background: #5ecd8a;
+    color: #333333;
+}
+
+.previewed-tag-content .result-terms .term-name {
+    margin: 0 0.3em;
+    padding: 8px 4px;
+}
+
+.previewed-tag-content .result-terms .term-counts {
+    background-color: #357AB5;
+    color: #fff;
+    margin-left: 0.2em;
+    padding: 0.2em 0.4em;
+    display: inline-block;
+}
+
 .taxopress-warning {
     border: 1px solid rgb(230, 219, 84);
     color: #8a8a8a;
@@ -854,10 +987,19 @@ font-weight: bold;
     margin: 10px 0;
 }
 .stb-block-related-post,
-.stb-block-related-post + p {
+.stb-block-related-post + p,
+
+
+.stb-block-post-tags,
+.stb-block-post-tags + p,
+.stb-block-tag-clouds-post,
+.stb-block-tag-clouds-post + p  {
     padding: 10px;
 }
-select#stb-related-post-select {
+select#stb-related-post-select,
+select#stb-post-tags-select,
+select#stb-related-post-select,
+select#stb-tag-clouds-select {
     height: 40px;
 }
 
@@ -1034,6 +1176,9 @@ ul.taxopress-tab li.autoterm_logs_tab a::before {
 }
 ul.taxopress-tab li.autoterm_advanced_tab a::before {
     content: "\f111";
+}
+ul.taxopress-tab li.autoterm_preview_tab a::before {
+    content: "\f115";
 }
 
 

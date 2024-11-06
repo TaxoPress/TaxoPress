@@ -23,6 +23,10 @@ return array(
 
     // linked terms
     'linked_terms_taxonomies' => ['category', 'post_tag'],
+    'linked_terms_type'       => 'main',
+
+    // term synonyms
+    'synonyms_taxonomies' => ['category', 'post_tag'],
 
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,

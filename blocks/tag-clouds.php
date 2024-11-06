@@ -3,7 +3,7 @@
 /**
  * Register our block.
  */
-function st_related_posts_block_init()
+function st_tag_clouds_block_init()
 {
     global $post, $pagenow;
 
@@ -17,18 +17,18 @@ function st_related_posts_block_init()
 
     // Register our block editor script.
     wp_register_script(
-        'st-block-related-posts', STAGS_URL . '/blocks/src/related-posts.js',
+        'st-block-tag-clouds', STAGS_URL . '/blocks/src/tag-clouds.js',
         ['wp-blocks', 'wp-element', 'wp-components', 'wp-editor']
     );
 
     // Register our block, and explicitly define the attributes we accept.
-    $relatedposts_data = taxopress_get_relatedpost_data();
+    $tagcloud_data = taxopress_get_tagcloud_data();
 
     $options = [];
     $default = '';
-    if (count($relatedposts_data) > 0) {
+    if (count($tagcloud_data) > 0) {
         $sn = 0;
-        foreach ($relatedposts_data as $key => $value) {
+        foreach ($tagcloud_data as $key => $value) {
             $sn++;
             if ($sn === 1) {
                 $default = $key;
@@ -37,9 +37,9 @@ function st_related_posts_block_init()
         }
     }
 
-    register_block_type('taxopress/related-posts', [
+    register_block_type('taxopress/tag-clouds', [
         'attributes'      => [
-            'relatedpost_id' => [
+            'tagcloud_id' => [
                 'type'    => 'string',
                 'default' => $default,
             ],
@@ -47,46 +47,44 @@ function st_related_posts_block_init()
                 'type' => 'string',
             ],
         ],
-        'editor_script'   => 'st-block-related-posts',
-        'render_callback' => 'st_related_posts_render',
+        'editor_script'   => 'st-block-tag-clouds',
+        'render_callback' => 'st_tag_clouds_render',
     ]);
 
     $shortcode_page = sprintf(
         '<a href="%s">%s</a>',
         add_query_arg(
             [
-                'page' => 'st_related_posts',
+                'page'               => 'st_terms_display',
             ],
             admin_url('admin.php')
         ),
-        __('this page.', 'simple-tags')
+        esc_html__('this page.', 'simple-tags')
     );
 
-    //$select_desc  = __('Related Posts shortcode are added on Related Post screen', 'simple-tags');
-    $select_label = __('Select related post', 'simple-tags');
-    $panel_title  = __('Related Posts (TaxoPress)', 'simple-tags');
+    $select_label = __('Select Terms Display', 'simple-tags');
+    $panel_title  = __('Terms Display (TaxoPress)', 'simple-tags');
 
-    wp_localize_script('st-block-related-posts', 'ST_RELATED_POST', [
+    wp_localize_script('st-block-tag-clouds', 'ST_TAG_CLOUDS', [
         'options'      => $options,
         'panel_title'  => $panel_title,
         'select_label' => $select_label,
-        //'select_desc'  => $select_desc
     ]);
 
 }
 
-add_action('init', 'st_related_posts_block_init');
+add_action('init', 'st_tag_clouds_block_init');
 
 /**
  * Our combined block and shortcode renderer.
  *
  * @param array $attributes The attributes that were set on the block or shortcode.
  */
-function st_related_posts_render($attributes)
+function st_tag_clouds_render($attributes)
 {
     global $post;
     ob_start();
-    echo do_shortcode('[taxopress_relatedposts id="' . $attributes['relatedpost_id'] . '"]');
+    echo do_shortcode('[taxopress_termsdisplay id="' . $attributes['tagcloud_id'] . '"]');
 
     return ob_get_clean();
 }

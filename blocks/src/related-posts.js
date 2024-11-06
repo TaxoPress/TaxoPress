@@ -27,7 +27,7 @@
           id: 'stb-related-post-select',
           className: 'stb-block-related-post',
           label: ST_RELATED_POST.select_label,
-          help: ST_RELATED_POST.select_desc,
+          //help: ST_RELATED_POST.select_desc,
           options: ST_RELATED_POST.options,
           onChange: function (value) {
             props.setAttributes({

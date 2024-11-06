@@ -14,6 +14,7 @@ class SimpleTags_Client_Autoterms
 			add_action('save_post', array(__CLASS__, 'save_post'), 12, 2);
 			add_action('post_syndicated_item', array(__CLASS__, 'save_post'), 12, 2);
 		}
+		add_filter( 'taxopress_filter_autoterm_content', array(__CLASS__, 'filter_taxopress_autoterm_content'), 10, 3);
 	}
 
 	/**
@@ -73,6 +74,51 @@ class SimpleTags_Client_Autoterms
 		}
 
 		return true;
+	}
+
+	/**
+	 * Filter auto term content
+	 *
+	 * @param string $content Original content to be analyzed. It could include post title,
+	 * content and/excerpt based on autoterms settings
+	 * @param integer $post_id This is the post id
+	 * @param array $options Autoterm settings
+	 *
+	 * @return string
+	 */
+	public static function filter_taxopress_autoterm_content($content, $post_id, $settings_data) {
+
+		// add taxonomies data to content
+		if (!empty($settings_data['find_in_taxonomies_custom_items']) && is_array($settings_data['find_in_taxonomies_custom_items'])) {
+			foreach ($settings_data['find_in_taxonomies_custom_items'] as $taxonomy) {
+				// Fetch all terms in the specified taxonomy
+				$terms = wp_get_post_terms($post_id, $taxonomy, array('fields' => 'names'));
+
+				// Check if there are any terms and then process them
+				if (!is_wp_error($terms) && !empty($terms)) {
+					// Join the term names with a space
+					$joined_terms = implode(' ', $terms);
+					// add data to content
+					$content .= ' ' . $joined_terms;
+				}
+			}
+		}
+
+		// add custom field data to content
+		if (!empty($settings_data['find_in_custom_fields_custom_items']) && is_array($settings_data['find_in_custom_fields_custom_items'])) {
+			foreach ($settings_data['find_in_custom_fields_custom_items'] as $metakey) {
+				// get meta key value
+				$meta_value = get_post_meta($post_id, $metakey, true);
+
+				if (!empty($meta_value)) {
+					// add data to content
+					$content .= ' ' . $meta_value;
+				}
+
+			}
+		}
+
+		return $content;
 	}
 
 	/**
@@ -161,13 +207,15 @@ class SimpleTags_Client_Autoterms
 		 * @param string $content Original content to be analyzed. It could include post title, 
 		 * content and/excerpt based on autoterms settings
 		 * @param integer $post_id This is the post id
+		 * @param array $options Autoterm settings
 		 */
-		$content = apply_filters('taxopress_filter_autoterm_content', $content, $object->ID);
+		$content = apply_filters('taxopress_filter_autoterm_content', $content, $object->ID, $options);
 
 		$args = [
 			'post_id' => $object->ID,
 			'settings_data' => $options,
 			'content' => $content,
+			'taxonomy' => $taxonomy,
 			'clean_content' => TaxoPressAiUtilities::taxopress_clean_up_content($content),
 			'content_source' => 'autoterm_' . $content_source
 
@@ -655,7 +703,7 @@ class SimpleTags_Client_Autoterms
 			$terms_to_add = array_unique($terms_to_add);
 
 			//auto terms limit
-			$terms_limit = isset($options['terms_limit']) ? (int) $options['terms_limit'] : 0;
+			$terms_limit = isset($options['terms_limit']) ? (int) $options['terms_limit'] : 5;
 			if ($terms_limit > 0 && count($terms_to_add) > $terms_limit) {
 				$terms_to_add = array_slice($terms_to_add, 0, $terms_limit);
 			}

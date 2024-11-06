@@ -60,16 +60,16 @@
 
 /* box-list styling */
 .taxopress-box-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
 }
 
 .taxopress-box-list a {
     display: block;
     text-decoration: none;
-    flex: 1 1 calc(33.333% - 10px);
     box-sizing: border-box;
+    word-wrap: break-word;
 }
 
 .taxopress-box-list img {
@@ -78,19 +78,21 @@
     display: block;
 }
 
-.taxopress-relatedpost-date, .taxopress-relatedpost-cat{
+.taxopress-boxrelatedpost-cat{
     color:#666;
     font-size: 0.9em;
 }
 
 @media (max-width: 1200px) {
-    .taxopress-box-list a {
-        flex: 1 1 calc(50% - 10px);
+    .taxopress-box-list {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
+
 @media (max-width: 768px) {
-    .taxopress-box-list a {
-        flex: 1 1 100%;
+    .taxopress-box-list {
+        grid-template-columns: 1fr;
+        word-wrap: break-word;
     }
 }

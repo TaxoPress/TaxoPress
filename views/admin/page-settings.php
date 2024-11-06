@@ -23,6 +23,10 @@
 				$style = 'style="display:none;"';
 			}
 
+			if ( $key == 'synonyms' && (!taxopress_is_pro_version() || (isset($options['active_features_synonyms']) && (int) $options['active_features_synonyms'] == 0))) {
+				$style = 'style="display:none;"';
+			}
+
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<a id="' . esc_attr(sanitize_title( $key )) . '-tab" class="nav-tab" ' . $style . ' href="#' . esc_attr(sanitize_title( $key )) . '">' . self::getNiceTitleOptions( $key ) . '</a>';
 		}

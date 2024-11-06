@@ -164,7 +164,8 @@ class Taxopress_Terms_List extends WP_List_Table
     protected function get_bulk_actions()
     {
         $actions = [
-            'taxopress-terms-delete-terms' => esc_html__('Delete', 'simple-tags')
+            'taxopress-terms-delete-terms' => esc_html__('Delete', 'simple-tags'),
+            'taxopress-terms-copy-terms'   => esc_html__('Copy', 'simple-tags')
         ];
 
         return $actions;
@@ -186,6 +187,7 @@ class Taxopress_Terms_List extends WP_List_Table
 
             $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_text_field($_REQUEST['terms_filter_post_type']) : '';
             $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
+            $selected_post = (!empty($_REQUEST['destination_post'])) ? sanitize_text_field($_REQUEST['destination_post']) : '';
 
             $selected_option = 'public';
             if (isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all') {
@@ -195,7 +197,41 @@ class Taxopress_Terms_List extends WP_List_Table
             }
 ?>
 
+            <div class="alignleft actions autoterms-terms-table-copy" id="taxopress-copy-selection-boxes" style="display: none;">
+                <select class="auto-terms-terms-copy-select" name="taxopress_destination_taxonomy" id="terms_copy_select_destination_taxonomy">
+                    <option value=""><?php esc_html_e('Select Destination Taxonomy', 'simple-tags'); ?></option> <?php
+                    foreach ($taxonomies as $taxonomy) {
+                        echo '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->labels->name) . '</option>';
+                    } ?>
+                </select>
 
+                <select class="auto-terms-terms-copy-select" name="taxopress_destination_post_type" id="terms_copy_select_destination_post">
+                    <?php
+                        $post_type_label = !empty($selected_post_type) ? esc_html($selected_post_type) : esc_html__('post type', 'simple-tags');
+                        ?>
+                        <option value=""><?php printf(esc_html__('Select Destination %s', 'simple-tags'), $post_type_label); ?></option>
+                        <option value="all" <?php selected($selected_post, 'all'); ?>><?php printf(esc_html__('All %s', 'simple-tags'), $post_type_label); ?></option>.
+                        <?php  
+                        // I want to show all posts when no post type is selected
+                        if (empty($selected_post_type)) {
+                            $all_posts = get_posts(['post_type' => 'any', 'numberposts' => -1]);
+                            foreach ($all_posts as $post): ?>
+                            <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
+                            <?php echo esc_html($post->post_title); ?>
+                            </option>
+                            <?php endforeach; 
+                        } else {
+                            // Show posts only for selected post type
+                            $posts = get_posts(['post_type' => $selected_post_type, 'numberposts' => -1]);
+                            foreach ($posts as $post): ?>
+                            <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
+                            <?php echo esc_html($post->post_title); ?>
+                            </option>
+                            <?php endforeach; 
+                        }
+                            ?>
+                </select>
+            </div>
             <div class="alignleft actions autoterms-terms-table-filter">
 
                 <select class="auto-terms-terms-filter-select" name="terms_filter_select_post_type" id="terms_filter_select_post_type">
@@ -221,7 +257,7 @@ class Taxopress_Terms_List extends WP_List_Table
                     <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
                     <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
                 </select>
-
+                
                 <a href="javascript:void(0)" class="taxopress-terms-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
 
             </div>
@@ -257,6 +293,33 @@ class Taxopress_Terms_List extends WP_List_Table
                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo taxopress_admin_notices_helper(esc_html__('Term deleted successfully.', 'simple-tags'), false);
                 }
+            }
+        }
+        if ($this->current_action() === 'taxopress-terms-copy-terms') {
+            $taxopress_terms = array_map('sanitize_text_field', (array)$_REQUEST['taxopress_terms']);
+            $destination_taxonomy = sanitize_text_field($_REQUEST['taxopress_destination_taxonomy']);
+            $destination_post = sanitize_text_field($_REQUEST['taxopress_destination_post_type']);
+
+            if (!empty($taxopress_terms) && !empty($destination_taxonomy)) {
+                foreach ($taxopress_terms as $taxopress_term) {
+                    $term = get_term($taxopress_term);
+                    wp_insert_term($term->name, $destination_taxonomy, [
+                        'slug' => $term->slug,
+                        'description' => $term->description,
+                    ]);
+                                if (!empty($destination_post) && $destination_post !== 'all') {
+                                    wp_set_object_terms($destination_post, [$term->term_id], $destination_taxonomy, true);
+                                }
+                
+                                if ($destination_post === 'all') {
+                                    $all_posts = get_posts(['post_type' => 'any', 'numberposts' => -1]);
+                                    foreach ($all_posts as $post) {
+                                        wp_set_object_terms($post->ID, [$term->term_id], $destination_taxonomy, true);
+                                    }
+                                }
+                            }
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                echo taxopress_admin_notices_helper(esc_html__('Term(s) copied successfully.', 'simple-tags'), true);
             }
         }
     }
@@ -435,6 +498,20 @@ class Taxopress_Terms_List extends WP_List_Table
                 esc_html__('View', 'simple-tags')
             );
         }
+
+        $actions['copy_term'] = sprintf(
+            '<a href="%s">%s</a>',
+            add_query_arg(
+                [
+                    'page'                   => 'st_terms',
+                    'action'                 => 'taxopress-copy-term',
+                    'taxopress_terms'        => esc_attr($item->term_id),
+                    '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
+                ],
+                admin_url('admin.php')
+            ),
+            esc_html__('Copy', 'simple-tags')
+        );
 
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
     }

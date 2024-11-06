@@ -262,42 +262,50 @@ if (!class_exists('TaxoPressAiUtilities')) {
 
             //$modified_legend_title .= ' <span class="ai-original-legend">'. $legend_title .'</span>';
             $response_content = '<div class="preview-action-title"><p class="description">';
-            $response_content .= sprintf(esc_html__('Click %1s to add or remove them from this %2s.', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
+            $response_content .= sprintf(esc_html__('Click %1s to select or deselect them from this %2s.', 'simple-tags'), esc_html($taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
             $response_content .= '</p></div>';
             $response_content .= '<fieldset class="previewed-tag-fieldset">';
             $response_content .= '<legend> '. $modified_legend_title .' </legend>';
             $response_content .= '<div class="previewed-tag-content">';
+            
             foreach ($term_results as $term_result) {
                 if (!is_string($term_result) || empty(trim($term_result)) || !strip_tags($term_result)) {
                     continue;
                 }
                 $term_result = stripslashes(rtrim($term_result, ','));
 
-                $term_id = false;
-                $additional_class = '';
-                $term_post_counts = 0;
+                $linked_term_results = [$term_result => 0];
                 // Check if the term exists for the given taxonomy
                 $term = get_term_by('name', $term_result, $taxonomy);
                 if ($term) {
-                    $term_id = $term->term_id;
-                    $additional_class = in_array($term->term_id, $post_terms) ? 'used_term' : '';
-                    $term_post_counts = self::count_term_posts($term->term_id, $taxonomy);
+                    //add linked terms if term exist
+                    $linked_term_results = taxopress_add_linked_term_options([$term_result => $term->term_id], $term->term_id, $taxonomy);
                 }
 
-                if (!empty($show_counts) && $term_id) {
-                    $additional_class .= ' countable';
-                }
+                foreach ($linked_term_results as $linked_term_name => $linked_term_id) {
+                    $additional_class = '';
+                    $term_post_counts = 0;
+                    $term_id = false;
+                    if (!empty($linked_term_id)) {
+                        $term_id = $linked_term_id;
+                        $additional_class = in_array($term_id, $post_terms) ? 'used_term' : '';
+                        if (!empty($show_counts)) {
+                            $additional_class .= ' countable';
+                        }
+                        $term_post_counts = self::count_term_posts($term_id, $taxonomy);
+                    }
 
-                $response_content .= '<span class="result-terms ' . esc_attr( $additional_class ) . '">';
-                $response_content .= '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="term-name '.esc_attr($taxonomy).'" tabindex="0" role="button" aria-pressed="false">';
-                $response_content .= stripslashes($term_result);
-                $response_content .= '</span>';
-                if (!empty($show_counts) && $term_id) {
-                    $response_content .= '<span class="term-counts">';
-                    $response_content .= number_format_i18n($term_post_counts);
+                    $response_content .= '<span class="result-terms ' . esc_attr( $additional_class ) . '">';
+                    $response_content .= '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="term-name '.esc_attr($taxonomy).'" tabindex="0" role="button" aria-pressed="false">';
+                    $response_content .= stripslashes($linked_term_name);
+                    $response_content .= '</span>';
+                    if (!empty($show_counts) && $term_id) {
+                        $response_content .= '<span class="term-counts">';
+                        $response_content .= number_format_i18n($term_post_counts);
+                        $response_content .= '</span>';
+                    }
                     $response_content .= '</span>';
                 }
-                $response_content .= '</span>';
             }
 
             $response_content .= '</div>';
@@ -338,37 +346,45 @@ if (!class_exists('TaxoPressAiUtilities')) {
             $response_content .= '<fieldset class="previewed-tag-fieldset">';
             $response_content .= '<legend> '. $args['legend_title'] .' ('. $modified_legend_title .')</legend>';
             $response_content .= '<div class="previewed-tag-content">';
+
             foreach ($term_results as $term_result) {
                 if (!is_string($term_result) || empty(trim($term_result)) || !strip_tags($term_result)) {
                     continue;
                 }
                 $term_result = stripslashes(rtrim($term_result, ','));
 
-                $term_id = false;
-                $additional_class = '';
-                $term_post_counts = 0;
+                $linked_term_results = [$term_result => 0];
                 // Check if the term exists for the given taxonomy
                 $term = get_term_by('name', $term_result, $taxonomy);
                 if ($term) {
-                    $term_id = $term->term_id;
-                    $additional_class = in_array($term->term_id, $post_terms) ? 'used_term' : '';
-                    $term_post_counts = self::count_term_posts($term->term_id, $taxonomy);
+                    //add linked terms if term exist
+                    $linked_term_results = taxopress_add_linked_term_options([$term_result => $term->term_id], $term->term_id, $taxonomy);
                 }
 
-                if (!empty($show_counts) && $term_id) {
-                    $additional_class .= ' countable';
-                }
+                foreach ($linked_term_results as $linked_term_name => $linked_term_id) {
+                    $additional_class = '';
+                    $term_post_counts = 0;
+                    $term_id = false;
+                    if (!empty($linked_term_id)) {
+                        $term_id = $linked_term_id;
+                        $additional_class = in_array($term_id, $post_terms) ? 'used_term' : '';
+                        if (!empty($show_counts)) {
+                            $additional_class .= ' countable';
+                        }
+                        $term_post_counts = self::count_term_posts($term_id, $taxonomy);
+                    }
 
-                $response_content .= '<span class="result-terms ' . esc_attr( $additional_class ) . '">';
-                $response_content .= '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="term-name '.esc_attr($taxonomy).'" tabindex="0" role="button" aria-pressed="false">';
-                $response_content .= stripslashes($term_result);
-                $response_content .= '</span>';
-                if (!empty($show_counts) && $term_id) {
-                    $response_content .= '<span class="term-counts">';
-                    $response_content .= number_format_i18n($term_post_counts);
+                    $response_content .= '<span class="result-terms ' . esc_attr( $additional_class ) . '">';
+                    $response_content .= '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="term-name '.esc_attr($taxonomy).'" tabindex="0" role="button" aria-pressed="false">';
+                    $response_content .= stripslashes($linked_term_name);
+                    $response_content .= '</span>';
+                    if (!empty($show_counts) && $term_id) {
+                        $response_content .= '<span class="term-counts">';
+                        $response_content .= number_format_i18n($term_post_counts);
+                        $response_content .= '</span>';
+                    }
                     $response_content .= '</span>';
                 }
-                $response_content .= '</span>';
             }
 
             $response_content .= '</div>';

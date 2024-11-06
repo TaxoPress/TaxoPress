@@ -575,33 +575,47 @@ function taxopress_get_term_synonyms($term, $taxonomy = '') {
 /**
  * Get linked terms
  *
- * @param string|integer $term
+ * @param int|string $term_id
  * @param string $taxonomy
- * @param string $taxonomy
- * @return array $term_object
+ * @param bool $term_object
+ * @param string $linked_terms_type
+ * @return array $linked_terms
  */
-function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = false) {
+function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = false, $linked_terms_type = 'main') {
     global $wpdb;
 
     $linked_terms = [];
 
     if (!taxopress_is_linked_terms_enabled()) {
-        // simply return empty array if feature is disabled
+        // Simply return an empty array if the feature is disabled
         return $linked_terms;
     }
 
     $table_name = $wpdb->prefix . 'taxopress_linked_terms';
 
-    $query = $wpdb->prepare(
-        "SELECT * FROM $table_name WHERE term_id = %d OR linked_term_id = %d",
-        $term_id,
-        $term_id
-    );
+    if ($linked_terms_type == 'primary') {
+        $query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE term_id = %d",
+            $term_id
+        );
+    } elseif ($linked_terms_type == 'secondary') {
+        $query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE linked_term_id = %d",
+            $term_id
+        );
+    } else {
+        $query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE term_id = %d OR linked_term_id = %d",
+            $term_id,
+            $term_id
+        );
+    }
 
     $linked_terms = $wpdb->get_results($query);
 
     return $linked_terms;
 }
+
 
 /**
  * Find out which is a linked term in our data
@@ -645,15 +659,6 @@ function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = f
         return $lists;
     }
 
-    /**
-     * Linked term is no longer in option and it's
-     * now category wide. So, this function is useless until we 
-     * think of how to make it work with our UI
-     * 
-     * So, let return original $lists for now
-     */
-    return $lists;
-
     if ((int)$term > 0) {
         $term_id = $term;
     } else {
@@ -667,14 +672,20 @@ function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = f
 
     if ($term_id > 0) {
         // get linked terms
-        $linked_terms = taxopress_get_linked_terms($term_id, $taxonomy, true);
+        $linked_terms_type = SimpleTags_Plugin::get_option_value('linked_terms_type');
+        $linked_terms = taxopress_get_linked_terms($term_id, $taxonomy, true, $linked_terms_type);
         if (!empty($linked_terms)) {
             if (!empty($linked_terms)) {
                 foreach ($linked_terms as $linked_term) {
-                    $linked_term_name = stripslashes($linked_term->name);
-                    $linked_term_id   = $linked_term->term_id;
+                    // skip this if term and linked term is not in the same category as linked terms is now category wide.
+                    if ($linked_term->term_taxonomy !== $linked_term->linked_term_taxonomy) {
+                        continue;
+                    }
+                    $linked_term_data = taxopress_get_linked_term_data($linked_term, $term_id);
+                    $linked_term_name = stripslashes($linked_term_data->term_name);
+                    $linked_term_id   = $linked_term_data->term_id;
                     if ($linked) {
-                        $term_value = get_term_link($linked_term, $linked_term->taxonomy);
+                        $term_value = get_term_link($linked_term, $linked_term_data->term_taxonomy);
                     } elseif ($named_term) {
                         $term_value = $linked_term_name;
                     } else {
@@ -809,4 +820,14 @@ function taxopress_user_role_removed_taxonomy($user_id = false) {
     ];
 
     return $removed_taxonomies;
+}
+
+/**
+ * Get post statuses
+ */
+function taxopress_get_post_statuses() {
+    
+    $post_statuses = get_post_stati( array(), 'objects' );
+
+    return $post_statuses;
 }
