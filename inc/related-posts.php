@@ -526,7 +526,7 @@ class SimpleTags_Related_Post
                                                             $is_checked = 'false';
 
                                                             // Set 'post' as default if nothing is set in the $current['embedded'] array
-                                                            if ((!isset($current['embedded']) || !is_array($current['embedded'])) && $key === 'post') {
+                                                            if ((!isset($current['embedded']) || empty($current['embedded'])) && $key === 'post') {
                                                                 $is_checked = 'true';
                                                             }
                                                             // If there's a value set in $current['embedded'], check it against $key
