@@ -648,8 +648,23 @@ class SimpleTags_Related_Post
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_text_input([
                                                                 'namearray' => 'taxopress_related_post',
+                                                                'name'      => 'before_list',
+                                                                'textvalue' => isset($current['before_list']) ? esc_attr($current['before_list']) : '',
+                                                                'labeltext' => esc_html__('Text before related posts list', 'simple-tags'),
+                                                                'helptext'  => esc_html__('Enter the text to display before the related posts list.', 'simple-tags'),
+                                                                'required'  => false,
+                                                            ]);
                                                                 'name'      => 'before',
                                                                 'textvalue' => isset($current['before']) ? esc_attr($current['before']) : '',
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_text_input([
+                                                                'namearray' => 'taxopress_related_post',
+                                                                'name'      => 'after_list',
+                                                                'textvalue' => isset($current['after_list']) ? esc_attr($current['after_list']) : '',
+                                                                'labeltext' => esc_html__('Text after related posts list', 'simple-tags'),
+                                                                'helptext'  => esc_html__('Enter the text to display after the related posts list.', 'simple-tags'),
+                                                                'required'  => false,
+                                                            ]);
                                                                 'labeltext' => esc_html__(
                                                                     'Text to display before posts list',
                                                                     'simple-tags'
