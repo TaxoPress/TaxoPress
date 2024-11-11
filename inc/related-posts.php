@@ -655,7 +655,7 @@ class SimpleTags_Related_Post
                                                                     'simple-tags'
                                                                 ),
                                                                 'helptext'  => esc_html__(
-                                                                    'Enter the text that should be display before posts list. This field accepts basic HTML.',
+                                                                    'Enter the text that should be displayed before the posts list.',
                                                                     'simple-tags'
                                                                 ),
                                                                 'required'  => false,
@@ -671,7 +671,7 @@ class SimpleTags_Related_Post
                                                                     'simple-tags'
                                                                 ),
                                                                 'helptext'  => esc_html__(
-                                                                    'Enter the text that should be display after posts list. This field accepts basic HTML.',
+                                                                    'Enter the text that should be display after the posts list.',
                                                                     'simple-tags'
                                                                 ),
                                                                 'required'  => false,
