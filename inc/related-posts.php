@@ -27,6 +27,9 @@ class SimpleTags_Related_Post
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
 
+        //ajax
+        add_action('wp_ajax_taxopress_get_box_xformat', [$this, 'taxopress_get_box_xformat' ]);
+
     }
 
     /**
@@ -184,6 +187,25 @@ class SimpleTags_Related_Post
         <?php SimpleTags_Admin::printAdminFooter(); ?>
         </div>
         <?php
+    }
+
+    public function taxopress_get_box_xformat() {
+
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
+            wp_send_json_error(array('message' => __('Nonce verification failed.', 'simple-tags')));
+            wp_die();
+        }
+    
+        $placeholders = array(
+            'post_permalink' => '%post_permalink%',
+            'post_title' => '%post_title%',
+            'post_date' => '%post_date%',
+            'post_thumb_url' => '%post_thumb_url%',
+            'post_category' => '%post_category%',
+        );
+    
+        wp_send_json_success(array('placeholders' => $placeholders));
+        wp_die();
     }
 
 
