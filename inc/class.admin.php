@@ -436,7 +436,7 @@ class SimpleTags_Admin
 
 		$select_2_page = false;
 		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_taxonomies'])
-		// we need select2 on wordpress post screen
+		// need select2 on wordpress post screen
 		|| in_array($pagenow, ['post.php', 'edit.php'])) {
 			$select_2_page = true;
 		}
