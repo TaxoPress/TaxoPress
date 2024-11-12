@@ -544,6 +544,30 @@
 
     });
 
+    // Update term link format when format is changed to 'box'
+    if ($('body').hasClass('taxopress_page_st_related_posts')) {
+      $(document).on('change', 'select[name="taxopress_related_post[format]"]', function () {
+          var xformatField = $('textarea[name="taxopress_related_post[xformat]"]');
+          
+          if ($(this).val() === 'box') {
+              xformatField.val(
+                  '<a href="' + st_admin_localize.post_permalink + '" title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')">' +
+                  '<img src="' + st_admin_localize.post_thumb_url + '" height="200" width="200" class="custom-image-class"/>' + 
+                  '<br>' + st_admin_localize.post_title + '<br>'
+                   + st_admin_localize.post_date + '<br>'
+                   + st_admin_localize.post_category +
+                  '</a>'
+              );
+          } else {
+              xformatField.val(
+                  '<a href="' + st_admin_localize.post_permalink + '" title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')">' +
+                  st_admin_localize.post_title +
+                  '</a>'
+              );
+          }
+      });
+  }
+
 
     // -------------------------------------------------------------
     //   Post tags submit error
@@ -1292,42 +1316,6 @@
           $('.delete-default-featured-media-field').addClass('hidden');
       });
     }
-
-    $(document).on('change', '.relatedpost_display_format #format', function () {
-
-      var format = $(this).val();
-  
-      if (format === 'box' && $('.relatedpost_display_format').is(':visible')) {
-          $.ajax({
-              url: st_admin_localize.ajaxurl,
-              method: 'POST',
-              data: {
-                  action: 'taxopress_get_box_xformat',
-                  nonce: st_admin_localize.check_nonce,
-              },
-              success: function (response) {
-                  if (response.success) {
-                      var placeholders = response.data.placeholders;
-  
-                      var boxHtml = '<a href="' + placeholders.post_permalink + '" title="' + placeholders.post_title + ' (' + placeholders.post_date + ')">' +
-                      '<img src="' + placeholders.post_thumb_url + '" height="200" width="200" class="custom-image-class" /><br>' +
-                      placeholders.post_title + '<br>' +
-                      '<span>' + placeholders.post_date + '</span>' + '<br>' +
-                      '<span>' + placeholders.post_category + '</span>' +
-                      '</a>';
-        
-  
-                      $('#xformat').val(boxHtml);
-                  }
-              },
-              error: function () {
-                  $('#xformat').val(st_admin_localize.default_format);
-              }
-          });
-      } else {
-          $('#xformat').val(st_admin_localize.default_format);
-      }
-  });
 
     // -------------------------------------------------------------
     //   Auto term source to only change
