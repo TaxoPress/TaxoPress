@@ -510,6 +510,7 @@ class SimpleTags_Autoterms
                                                     $selected_option    = (isset($current) && isset($current['autoterm_from'])) ? $current['autoterm_from'] : '';
 
                                                     $term_from_options = [
+                                                        ''              =>  esc_attr__('None', 'simple-tags'),
                                                         'post_content'  =>  esc_attr__('Post Content', 'simple-tags'),
                                                         'post_title'    =>  esc_attr__('Post Title', 'simple-tags'),
                                                         'posts'         => esc_attr__('Post Content and Title', 'simple-tags')
