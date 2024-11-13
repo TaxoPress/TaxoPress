@@ -2376,10 +2376,34 @@ function taxopress_get_dropdown(){
         }
 
         if ($typenow == 'post') {
-            echo '<select id="taxopress-select2-filter" style="width: 200px;" 
-                    data-placeholder="' . esc_attr__('Search Terms', 'simple-tags') . '">
-                    <option value="">' . esc_html__('Search Terms', 'simple-tags') . '</option>
-                  </select>';
+
+            $selected_term = isset($_GET['selected_term']) ? sanitize_text_field($_GET['selected_term']) : '';
+            $selected_term_text = '';
+    
+            if (!empty($selected_term)) {
+                if (strpos($selected_term, 'post_') === 0) {
+                    $post_id = str_replace('post_', '', $selected_term);
+                    $post = get_post($post_id);
+                    if ($post) {
+                        $selected_term_text = $post->post_title;
+                    }
+                } elseif (strpos($selected_term, 'term_') === 0) {
+                    $term_id = str_replace('term_', '', $selected_term);
+                    $term = get_term($term_id);
+                    if ($term && !is_wp_error($term)) {
+                        $selected_term_text = $term->name;
+                    }
+                }
+            }
+
+            echo '<select id="taxopress-select2-filter" style="width: 200px;" data-placeholder="' . esc_attr__('Search Terms or Posts', 'simple-tags') . '">
+                    <option value="">' . esc_html__('Search Terms or Posts', 'simple-tags') . '</option>';
+    
+            if (!empty($selected_term) && !empty($selected_term_text)) {
+                echo '<option value="' . esc_attr($selected_term) . '" selected>' . esc_html($selected_term_text) . '</option>';
+            }
+    
+            echo '</select>';
         }
 
     }
@@ -2400,13 +2424,13 @@ function taxopress_filter_selected_term($query) {
             $term = get_term($term_id);
 
             if ($term && !is_wp_error($term)) {
-                $query->set('tax_query', array(
-                    array(
+                $query->set('tax_query', [
+                    [
                         'taxonomy' => $term->taxonomy,
                         'field'    => 'term_id',
                         'terms'    => $term_id,
-                    ),
-                ));
+                    ],
+                ]);
             }
         }
     }

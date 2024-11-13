@@ -957,14 +957,14 @@
                   });
               });
           }
-
+  
           $(document).on('focus', '#taxopress-select2-filter', function() {
               if (!$(this).data('select2')) {
                 taxopressTaxSelect2($(this));
               }
               $(this).select2('open');
           });
-
+  
             // Handle submit with selected term
             $(document).on('click', '#post-query-submit', function() {
               var selectedTerm = $('#taxopress-select2-filter').val();
