@@ -505,7 +505,6 @@ class SimpleTags_Admin
 			'save_settings' => esc_html__('Auto Term ID missing. Kindly save the auto term before using this feature.', 'simple-tags'),
 			'delete_label' => esc_html__('Delete', 'simple-tags'),
 			'ai_nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
-			//we want to pass these as placeholders so no need to translate
 			'post_title'              => '%post_title%',
 			'post_permalink'          => '%post_permalink%',
 			'post_date'               => '%post_date%',
