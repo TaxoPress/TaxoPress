@@ -11,7 +11,7 @@ class SimpleTags_Client {
 		add_action( 'init', array( __CLASS__, 'init_translation' ) );
 
 		// Register media tags taxonomy
-		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ) );
+		add_action( 'init', array( $this, 'simple_tags_register_media_tag' ), 0 );
 
 		// Enqueue frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_displayformat_scripts' ) );
