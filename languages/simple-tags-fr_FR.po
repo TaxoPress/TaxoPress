@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - TaxoPress is the WordPress Tag, Category, and "
 "Taxonomy Manager - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2024-10-08 09:57+0000\n"
-"PO-Revision-Date: 2024-10-09 12:43+0200\n"
+"POT-Creation-Date: 2024-11-05 07:07+0000\n"
+"PO-Revision-Date: 2024-11-07 12:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -15,6 +15,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Poedit 3.4.4\n"
+
+#: blocks/post-tags.php:65
+msgid " Select current post"
+msgstr " Sélectionner la publication actuelle"
 
 #: inc/class.admin.php:501
 msgid " terms will be deleted."
@@ -35,67 +39,72 @@ msgstr "Boîte méta de %1s"
 msgid "%1s Preview"
 msgstr "Aperçu de %1s"
 
-#: inc/class.admin.manage.php:723 inc/class.admin.manage.php:836
+#: inc/class.admin.manage.php:841 inc/class.admin.manage.php:954
 #, php-format
 msgid "%1s term(s) deleted."
 msgstr "%1s terme(s) effacé(s)."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:607
+#: inc/class.admin.manage.php:1017
+#, php-format
+msgid "%1s term(s) hidden."
+msgstr "%1s terme(s) masqué(s)."
+
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:612
 #, php-format
 msgid "%1s terms added to this %2s."
 msgstr "%1s termes ajoutés à cette %2s."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:611
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:616
 #, php-format
 msgid "%1s terms removed from this %2s."
 msgstr "%1s termes retirés de cette %2s."
 
-#: inc/class.admin.manage.php:867
+#: inc/class.admin.manage.php:985
 msgid "%d terms will be deleted."
 msgstr "%d les termes seront supprimés."
 
-#: inc/class.client.related_posts.php:509
+#: inc/class.client.related_posts.php:558
 msgid "%d topic"
 msgid_plural "%d topics"
 msgstr[0] "%d sujet"
 msgstr[1] "%d sujets"
 
-#: inc/taxonomies-functions.php:1045 inc/taxonomies-functions.php:1457
+#: inc/taxonomies-functions.php:1064 inc/taxonomies-functions.php:1479
 #, php-format
 msgid "%s has been successfully added"
 msgstr "%s a été ajouté avec succès"
 
-#: inc/taxonomies-functions.php:1103 inc/taxonomies-functions.php:1469
+#: inc/taxonomies-functions.php:1122 inc/taxonomies-functions.php:1491
 #, php-format
 msgid "%s has been successfully deleted"
 msgstr "%s a été supprimé avec succès"
 
-#: inc/taxonomies-functions.php:1475
+#: inc/taxonomies-functions.php:1497
 #, php-format
 msgid "%s has been successfully imported"
 msgstr "%s a été importé avec succès"
 
-#: inc/taxonomies-functions.php:1074 inc/taxonomies-functions.php:1463
+#: inc/taxonomies-functions.php:1093 inc/taxonomies-functions.php:1485
 #, php-format
 msgid "%s has been successfully updated"
 msgstr "%s a été mis à jour avec succès"
 
-#: inc/taxonomies-functions.php:1059 inc/taxonomies-functions.php:1459
+#: inc/taxonomies-functions.php:1078 inc/taxonomies-functions.php:1481
 #, php-format
 msgid "%s has failed to be added"
 msgstr "%s n’a pas pu être ajouté"
 
-#: inc/taxonomies-functions.php:1117 inc/taxonomies-functions.php:1471
+#: inc/taxonomies-functions.php:1136 inc/taxonomies-functions.php:1493
 #, php-format
 msgid "%s has failed to be deleted"
 msgstr "%s n’a pas pu être supprimé"
 
-#: inc/taxonomies-functions.php:1477
+#: inc/taxonomies-functions.php:1499
 #, php-format
 msgid "%s has failed to be imported"
 msgstr "L’importation de %s a échoué"
 
-#: inc/taxonomies-functions.php:1088 inc/taxonomies-functions.php:1465
+#: inc/taxonomies-functions.php:1107 inc/taxonomies-functions.php:1487
 #, php-format
 msgid "%s has failed to be updated"
 msgstr "%s n’a pas pu être mis à jour"
@@ -201,12 +210,12 @@ msgstr "(par exemple, mettre à jour le nom de l’emploi)"
 msgid "(e.g. View Job)"
 msgstr "(par exemple, voir l’emploi)"
 
-#: inc/related-posts.php:685 inc/tag-clouds.php:454
+#: inc/related-posts.php:696 inc/tag-clouds.php:454
 #: review-request/review.php:290
 msgid "1 month"
 msgstr "1 mois"
 
-#: inc/autoterms.php:1072 inc/autoterms.php:1107 inc/autoterms_content.php:246
+#: inc/autoterms.php:1175 inc/autoterms.php:1210 inc/autoterms_content.php:246
 #: inc/autoterms_content.php:281
 msgid "1 month ago"
 msgstr "il y a 1 mois"
@@ -215,29 +224,45 @@ msgstr "il y a 1 mois"
 msgid "1 week"
 msgstr "1 semaine"
 
-#: inc/related-posts.php:693 inc/tag-clouds.php:456
+#: inc/related-posts.php:704 inc/tag-clouds.php:456
 msgid "1 year"
 msgstr "1 an"
 
-#: inc/autoterms.php:1081 inc/autoterms.php:1115 inc/autoterms_content.php:255
+#: inc/autoterms.php:1184 inc/autoterms.php:1218 inc/autoterms_content.php:255
 #: inc/autoterms_content.php:289
 msgid "1 year ago"
 msgstr "il y a un an"
 
-#: inc/related-posts.php:681 inc/tag-clouds.php:453
+#: inc/related-posts.php:910
+msgid "1536x1536 (High Res)"
+msgstr "1536x1536 (Haute résolution)"
+
+#: inc/related-posts.php:692 inc/tag-clouds.php:453
 msgid "2 weeks"
 msgstr "2 semaine"
 
-#: inc/autoterms.php:1068 inc/autoterms.php:1103 inc/autoterms_content.php:242
+#: inc/autoterms.php:1171 inc/autoterms.php:1206 inc/autoterms_content.php:242
 #: inc/autoterms_content.php:277
 msgid "2 weeks ago"
 msgstr "il y a 2 semaines"
 
-#: inc/related-posts.php:673 inc/tag-clouds.php:451
+#: inc/helper.options.admin.php:164
+msgid ""
+"2-way relationship. When the main term or secondary term are added to the "
+"post, other term will be added also."
+msgstr ""
+"Relation à double sens. Lorsque le terme principal ou le terme secondaire "
+"sont ajoutés à la publication, d’autres termes sont également ajoutés."
+
+#: inc/related-posts.php:911
+msgid "2048x2048 (Ultra High Res)"
+msgstr "2048x2048 (Ultra haute résolution)"
+
+#: inc/related-posts.php:684 inc/tag-clouds.php:451
 msgid "24 hours"
 msgstr "24 heures"
 
-#: inc/autoterms.php:1060 inc/autoterms.php:1095 inc/autoterms_content.php:234
+#: inc/autoterms.php:1163 inc/autoterms.php:1198 inc/autoterms_content.php:234
 #: inc/autoterms_content.php:269
 msgid "24 hours ago"
 msgstr "il y a 24 heures"
@@ -246,25 +271,25 @@ msgstr "il y a 24 heures"
 msgid "3 months"
 msgstr "3 mois"
 
-#: inc/related-posts.php:689 inc/tag-clouds.php:455
+#: inc/related-posts.php:700 inc/tag-clouds.php:455
 msgid "6 months"
 msgstr "6 mois"
 
-#: inc/autoterms.php:1077 inc/autoterms.php:1111 inc/autoterms_content.php:251
+#: inc/autoterms.php:1180 inc/autoterms.php:1214 inc/autoterms_content.php:251
 #: inc/autoterms_content.php:285
 msgid "6 months ago"
 msgstr "il y a 6 mois"
 
-#: inc/related-posts.php:677 inc/tag-clouds.php:452
+#: inc/related-posts.php:688 inc/tag-clouds.php:452
 msgid "7 days"
 msgstr "7 jours"
 
-#: inc/autoterms.php:1064 inc/autoterms.php:1099 inc/autoterms_content.php:238
+#: inc/autoterms.php:1167 inc/autoterms.php:1202 inc/autoterms_content.php:238
 #: inc/autoterms_content.php:273
 msgid "7 days ago"
 msgstr "il y a 7 jours"
 
-#: inc/class.client.related_posts.php:59
+#: inc/class.client.related_posts.php:61
 msgid ""
 "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\"> \n"
 "\t\t\t                       %post_title% <br> \n"
@@ -280,14 +305,19 @@ msgstr ""
 "\t\t\t                       </a> \n"
 "\t\t\t                       (%post_comment%)"
 
-#: inc/class.client.related_posts.php:301
+#: inc/class.client.related_posts.php:304
 #| msgid ""
 #| "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\"> \n"
-#| "\t\t\t                       %post_title% <br> \n"
 #| "\t\t\t                       <img src=\"%post_thumb_url%\" height=\"200\" "
 #| "width=\"200\" class=\"custom-image-class\" />\n"
+#| "\t\t\t\t\t\t\t\t   <br>\n"
+#| "\t\t\t\t\t\t\t\t   %post_title%\n"
+#| "\t\t\t\t\t\t\t\t   <br>\n"
+#| "\t\t\t\t\t\t\t\t    <span class=\"taxopress-relatedpost-"
+#| "date\">%post_date% &bull;</span>  <span class=\"taxopress-relatedpost-"
+#| "cat\">%post_category%</span>\n"
 #| "\t\t\t                       </a> \n"
-#| "\t\t\t                       (%post_comment%)"
+#| "\t\t\t                       "
 msgid ""
 "<a href=\"%post_permalink%\" title=\"%post_title% (%post_date%)\"> \n"
 "\t\t\t                       <img src=\"%post_thumb_url%\" height=\"200\" "
@@ -295,8 +325,7 @@ msgid ""
 "\t\t\t\t\t\t\t\t   <br>\n"
 "\t\t\t\t\t\t\t\t   %post_title%\n"
 "\t\t\t\t\t\t\t\t   <br>\n"
-"\t\t\t\t\t\t\t\t    <span class=\"taxopress-relatedpost-date\">%post_date% "
-"&bull;</span>  <span class=\"taxopress-relatedpost-cat\">%post_category%</"
+"\t\t\t\t\t\t\t\t    <span>%post_date% &bull;</span>  <span>%post_category%</"
 "span>\n"
 "\t\t\t                       </a> \n"
 "\t\t\t                       "
@@ -307,13 +336,12 @@ msgstr ""
 "\t\t\t\t\t\t\t\t   <br>\n"
 "\t\t\t\t\t\t\t\t   %post_title%\n"
 "\t\t\t\t\t\t\t\t   <br>\n"
-"\t\t\t\t\t\t\t\t    <span class=\"taxopress-relatedpost-date\">%post_date% "
-"&bull;</span>  <span class=\"taxopress-relatedpost-cat\">%post_category%</"
+"\t\t\t\t\t\t\t\t    <span>%post_date% &bull;</span>  <span>%post_category%</"
 "span>\n"
 "\t\t\t                       </a> \n"
 "\t\t\t                       "
 
-#: inc/helper.options.default.php:78
+#: inc/helper.options.default.php:82
 msgid ""
 "<a href=\"%post_permalink%\" title=\"%post_title% "
 "(%post_date%)\">%post_title%</a> (%post_comment%)"
@@ -322,7 +350,7 @@ msgstr ""
 "(%post_date%)\">%post_title%</a> (%post_comment%)"
 
 #: inc/class.client.tagcloud.php:40 inc/class.client.tagcloud.php:271
-#: inc/helper.options.default.php:90
+#: inc/helper.options.default.php:94
 msgid ""
 "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%"
 "\" title=\"%tag_count% topics\" %tag_rel% style=\"%tag_size% %tag_color%"
@@ -340,7 +368,7 @@ msgstr ""
 "<a href=\"%tag_link%\" id=\"tag-link-%tag_id%\" class=\"st-tags t%tag_scale%"
 "\" title=\"%tag_count% topics\" %tag_rel%>%tag_name%</a>"
 
-#: inc/helper.options.default.php:68
+#: inc/helper.options.default.php:72
 msgid "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 msgstr "<a href=\"%tag_link%\" title=\"%tag_name%\" %tag_rel%>%tag_name%</a>"
 
@@ -352,12 +380,12 @@ msgstr ""
 "<a href=\"%tag_link%\" title=\"%tag_name_attribute%\" %tag_rel%>%tag_name%</"
 "a>"
 
-#: inc/class.client.related_posts.php:56 inc/helper.options.default.php:77
+#: inc/class.client.related_posts.php:58 inc/helper.options.default.php:81
 msgid "<h4>Related posts</h4>"
 msgstr "<h4>Publications similaires</h4>"
 
 #: inc/class.client.tagcloud.php:43 inc/class.client.tagcloud.php:274
-#: inc/helper.options.default.php:88
+#: inc/helper.options.default.php:92
 msgid "<h4>Tag Cloud</h4>"
 msgstr "<h4>Nuage d’étiquettes</h4>"
 
@@ -373,11 +401,11 @@ msgstr ""
 "[DEPRECATED] - Vos étiquettes les plus utilisées dans un format de nuage "
 "avec des couleurs dynamiques et de nombreuses options"
 
-#: inc/autoterms.php:940
+#: inc/autoterms.php:1043
 msgid "a"
 msgstr "a"
 
-#: inc/related-posts.php:999
+#: inc/related-posts.php:1072
 msgid "A list of tags used by both the current post and the related post"
 msgstr ""
 "Une liste de balises utilisées tant par la publication actuelle que par la "
@@ -387,7 +415,7 @@ msgstr ""
 msgid "Active"
 msgstr "Active"
 
-#: inc/class.admin.manage.php:218
+#: inc/class.admin.manage.php:237
 msgid "Add"
 msgstr "Ajouter"
 
@@ -395,11 +423,11 @@ msgstr "Ajouter"
 msgid "Add Auto Links"
 msgstr "Ajouter liens automatiques"
 
-#: inc/autoterms.php:1237
+#: inc/autoterms.php:1394
 msgid "Add Auto Terms"
 msgstr "Ajouter les termes automatiques"
 
-#: inc/autoterms.php:1142 inc/autoterms_content.php:336
+#: inc/autoterms.php:1245 inc/autoterms_content.php:336
 msgid "Add Auto Terms to existing content"
 msgstr "Ajouter les termes automatiques à tout le contenu existant"
 
@@ -425,8 +453,8 @@ msgid "Add New"
 msgstr "Add New"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1557 inc/taxonomies-functions.php:1575
-#: inc/taxonomies-functions.php:1598 inc/taxonomies-functions.php:1617
+#: inc/taxonomies-functions.php:1579 inc/taxonomies-functions.php:1597
+#: inc/taxonomies-functions.php:1620 inc/taxonomies-functions.php:1639
 #: inc/taxonomies.php:1072
 #, php-format
 msgid "Add new %s"
@@ -460,7 +488,7 @@ msgstr "Ajouter de nouvelle publications similaires"
 msgid "Add new Taxonomy"
 msgstr "Ajouter une nouvelle taxonomie"
 
-#: inc/class.admin.php:558
+#: inc/class.admin.php:562
 msgid "Add New TaxoPress Logs"
 msgstr "Ajouter de nouveaux journaux TaxoPress"
 
@@ -473,7 +501,7 @@ msgid "Add new Terms for Current Post"
 msgstr "Ajouter nouveaux termes pour la publication actuelle"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1578 inc/taxonomies-functions.php:1625
+#: inc/taxonomies-functions.php:1600 inc/taxonomies-functions.php:1647
 #: inc/taxonomies.php:1194
 #, php-format
 msgid "Add or remove %s"
@@ -487,7 +515,7 @@ msgstr "Ajouter ou retirer éléments"
 msgid "Add or remove Media Tags"
 msgstr "Ajoutez ou supprimez les étiquettes de média"
 
-#: inc/related-posts.php:955
+#: inc/related-posts.php:1028
 msgid "Add Related Posts"
 msgstr "Ajouter les publications similaires"
 
@@ -500,11 +528,11 @@ msgstr "Ajouter la prise en charge des taxonomies privées %1s."
 msgid "Add Taxonomy"
 msgstr "Ajouter une taxonomie"
 
-#: inc/class.admin.manage.php:172
+#: inc/class.admin.manage.php:191
 msgid "Add Terms"
 msgstr "Ajouter des termes"
 
-#: inc/class.admin.manage.php:150
+#: inc/class.admin.manage.php:163
 msgid "Add terms"
 msgstr "Ajouter les termes"
 
@@ -516,28 +544,28 @@ msgstr "Ajouter l’affichage des termes"
 msgid "Add Terms for Current Post"
 msgstr "Ajouter les termes pour la publication actuelle"
 
-#: inc/autoterms.php:891
-msgid "Add terms for published content."
-msgstr "Ajouter des termes pour le contenu publié."
-
-#: inc/autoterms.php:891
-msgid "Add terms for unpublished content."
-msgstr "Ajouter des termes pour le contenu non publié."
-
-#: inc/autoterms.php:790
+#: inc/autoterms.php:888
 msgid "Add terms if synonyms found"
 msgstr "Ajouter les termes si des synonymes ont été trouvés"
 
-#: inc/class.admin.manage.php:198
+#: inc/class.admin.manage.php:217
 msgid "Add terms only to posts with specific terms attached."
 msgstr ""
 "Ajoutez des termes uniquement aux publications auxquelles sont associés des "
 "termes spécifiques."
 
-#: inc/class.admin.manage.php:194
+#: inc/class.admin.manage.php:213
 #, php-format
 msgid "Add terms to all %s."
 msgstr "Ajoutez des termes à tous les %s."
+
+#: inc/helper.options.admin.php:165
+msgid "Add the primary term, get the secondary term"
+msgstr "Ajouter le terme primaire, obtenir le terme secondaire"
+
+#: inc/helper.options.admin.php:166
+msgid "Add the secondary term, get the primary term."
+msgstr "Ajouter le terme secondaire, obtenir le terme primaire."
 
 #: inc/taxonomies.php:1333
 msgid "Add the taxonomy to the WordPress wp-json API."
@@ -547,7 +575,7 @@ msgstr "Ajouter la taxonomie à l’API wp-json de WordPress."
 msgid "Admin Area"
 msgstr "Zone d’administration"
 
-#: inc/class.admin.php:962
+#: inc/class.admin.php:966
 msgid "Administration"
 msgstr "Administration"
 
@@ -566,9 +594,10 @@ msgid "All"
 msgstr "Tous"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1562 inc/taxonomies-functions.php:1570
-#: inc/taxonomies-functions.php:1605 inc/taxonomies-functions.php:1623
-#: inc/taxonomies-functions.php:2275 inc/taxonomies.php:1003
+#: inc/taxonomies-functions.php:1584 inc/taxonomies-functions.php:1592
+#: inc/taxonomies-functions.php:1627 inc/taxonomies-functions.php:1645
+#: inc/taxonomies-functions.php:2300 inc/taxonomies.php:1003
+#: inc/terms-table.php:213
 #, php-format
 msgid "All %s"
 msgstr "Tous les %s"
@@ -593,13 +622,9 @@ msgstr "Tous les types de publication"
 msgid "All post types"
 msgstr "Tous les types de publication"
 
-#: inc/taxonomies.php:194 inc/terms-table.php:220
+#: inc/taxonomies.php:194 inc/terms-table.php:256
 msgid "All Taxonomies"
 msgstr "Toutes les taxonomies"
-
-#: includes-core/TaxopressCoreAdmin.php:111
-msgid "All TaxoPress AI features"
-msgstr "Toutes les fonctionnalités de TaxoPress IA"
 
 #: inc/autolinks.php:410
 msgid "All uppercase"
@@ -612,12 +637,12 @@ msgstr ""
 "Autoriser les utilisateurs/utilisatrices ayant le rôle %1s à utiliser la "
 "boîte méta de TaxoPress."
 
-#: inc/related-posts.php:737
+#: inc/related-posts.php:748
 msgid "Alphabetical"
 msgstr "Alphabétique"
 
 #: inc/autoterms_content.php:87
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:629
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:634
 msgid "An error occured."
 msgstr "Une erreur s’est produite."
 
@@ -666,7 +691,7 @@ msgstr "ASC"
 msgid "Ascending"
 msgstr "Ascendant"
 
-#: inc/related-posts.php:519
+#: inc/related-posts.php:520
 msgid "Attempt to automatically display related posts"
 msgstr "Tenter d’afficher automatiquement les publications similaires"
 
@@ -682,7 +707,7 @@ msgstr "Auteur/autrice"
 msgid "Auto Link"
 msgstr "Lien automatique"
 
-#: inc/class.admin.php:964
+#: inc/class.admin.php:968
 msgid "Auto link"
 msgstr "Liens automatiques"
 
@@ -703,7 +728,7 @@ msgid "Auto Link title attribute"
 msgstr "Attribut de titre de lien automatique"
 
 #: inc/autolinks-table.php:15 inc/autolinks.php:71 inc/autolinks.php:72
-#: inc/autolinks.php:125 inc/class.admin.php:802 inc/functions.inc.php:479
+#: inc/autolinks.php:125 inc/class.admin.php:806 inc/functions.inc.php:479
 msgid "Auto Links"
 msgstr "Liens automatiques"
 
@@ -727,6 +752,13 @@ msgstr "Les liens automatiques ont été supprimés avec succès."
 #: inc/autoterms-table.php:14
 msgid "Auto term"
 msgstr "Terme automatique"
+
+#: inc/class.admin.php:505
+msgid ""
+"Auto Term ID missing. Kindly save the auto term before using this feature."
+msgstr ""
+"L’ID du terme automatique est manquant. Veuillez enregistrer le terme "
+"automatique avant d’utiliser cette fonctionnalité."
 
 #: inc/ajax-request.php:51
 msgid "Auto Term is required, kindly add an Auto Term from Auto Term menu."
@@ -759,23 +791,23 @@ msgstr ""
 "Termes automatiques peut analyser votre contenu et assigner automatiquement "
 "les termes nouveaux et existants."
 
-#: inc/autoterms-functions.php:424
+#: inc/autoterms-functions.php:432
 msgid "Auto Terms deleted successfully."
 msgstr "Les termes automatiques ont été supprimés avec succès."
 
-#: inc/autoterms.php:807
+#: inc/autoterms.php:905
 msgid "Auto Terms Limit"
 msgstr "Limite de termes automatiques"
 
-#: inc/autoterms-functions.php:448
+#: inc/autoterms-functions.php:456
 msgid "Auto Terms limit must be greater than 0."
 msgstr "La limite des termes automatiques doit être supérieure à 0."
 
-#: inc/autoterms-functions.php:442
+#: inc/autoterms-functions.php:450
 msgid "Auto Terms limit updated successfully."
 msgstr "La limite des termes automatiques a bien été mis à jour."
 
-#: inc/autoterms-functions.php:430
+#: inc/autoterms-functions.php:438
 msgid "Auto Terms log deleted successfully."
 msgstr "Le journal des termes automatiques a bien été supprimé."
 
@@ -783,15 +815,15 @@ msgstr "Le journal des termes automatiques a bien été supprimé."
 msgid "Auto Terms Logs"
 msgstr "Journaux des termes automatiques"
 
-#: inc/autoterms-functions.php:436
+#: inc/autoterms-functions.php:444
 msgid "Auto Terms logs deleted successfully."
 msgstr "Les journaux des termes automatiques ont été supprimés avec succès."
 
-#: inc/autoterms-functions.php:418
+#: inc/autoterms-functions.php:426
 msgid "Auto Terms logs disabled successfully."
 msgstr "Les journaux des termes automatiques ont été désactivés avec succès."
 
-#: inc/autoterms-functions.php:412
+#: inc/autoterms-functions.php:420
 msgid "Auto Terms logs enabled successfully."
 msgstr "Les journaux des termes automatiques ont été activés avec succès."
 
@@ -814,7 +846,7 @@ msgstr ""
 msgid "Auto Terms settings do not exist."
 msgstr "Les réglages des termes automatiques n’existent pas."
 
-#: inc/autoterms-functions.php:406
+#: inc/autoterms-functions.php:414
 msgid "Auto Terms successfully deleted."
 msgstr "Termes automatiques supprimés avec succès."
 
@@ -851,7 +883,7 @@ msgstr "Retour aux éléments"
 msgid "Back to Media Tags"
 msgstr "Retour aux étiquettes de média"
 
-#: inc/autoterms.php:1050 inc/autoterms_content.php:224
+#: inc/autoterms.php:1153 inc/autoterms_content.php:224
 msgid "Batches wait time"
 msgstr "Temps d’attente pour les lots"
 
@@ -869,7 +901,7 @@ msgstr "Affichage du blog"
 msgid "Border Cloud"
 msgstr "Bordure de nuage"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:555
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:560
 msgid "Both Taxonomy and Post are required."
 msgstr "La taxonomie et la publication sont toutes deux obligatoires."
 
@@ -894,7 +926,7 @@ msgstr ""
 "Les termes de cette taxonomie peuvent-ils être organisés en relations "
 "hiérarchiques ?"
 
-#: inc/terms-table.php:696
+#: inc/terms-table.php:773
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -913,11 +945,11 @@ msgstr ""
 "extensions. Un nombre plus élevé signifie que le lien automatique ne sera "
 "exécuté qu’après l’exécution des crochets ayant un nombre inférieur."
 
-#: inc/class.admin.manage.php:342
+#: inc/class.admin.manage.php:415
 msgid "Check how many terms will be deleted:"
 msgstr "Vérifier combien de termes seront supprimés :"
 
-#: inc/class.admin.manage.php:345
+#: inc/class.admin.manage.php:418
 msgid "Check Terms"
 msgstr "Vérifier les termes"
 
@@ -930,7 +962,7 @@ msgid "Choose From Most Used"
 msgstr "Choisissez parmi les plus utilisés"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1579 inc/taxonomies-functions.php:1626
+#: inc/taxonomies-functions.php:1601 inc/taxonomies-functions.php:1648
 #: inc/taxonomies.php:1213
 #, php-format
 msgid "Choose from the most used %s"
@@ -944,49 +976,49 @@ msgstr "Choisissez parmi les étiquettes de média les plus utilisées"
 msgid "Choose Terms"
 msgstr "Choisissez les termes"
 
-#: inc/autoterms.php:924
+#: inc/autoterms.php:1027
 msgid "Choose terms to be excluded from auto terms."
 msgstr "Choisissez les termes à exclure des termes automatiques."
 
-#: inc/autoterms.php:742
+#: inc/autoterms.php:840
 msgid "Choose the terms to use."
 msgstr "Choisissez les termes à utiliser."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:211
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:216
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:265
 #, php-format
-msgid "Click %1s to add or remove them from this %2s."
-msgstr "Cliquez sur %1s pour les ajouter ou les retirer de ce %2s."
+msgid "Click %1s to select or deselect them from this %2s."
+msgstr "Cliquer sur %1s pour les sélectionner ou désélectionner de ce %2s."
 
 #: review-request/review.php:363
 msgid "Click here to add your rating for TaxoPress"
-msgstr "Cliquez ici pour ajouter votre évaluation de TaxoPress"
+msgstr "Cliquer ici pour ajouter votre évaluation de TaxoPress"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:552
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:557
 #, php-format
-msgid "Click Term to add or remove from this %1s"
-msgstr "Cliquez sur le terme pour ajouter ou retirer de ce %1s"
+msgid "Click Term to select or deselect from this %1s"
+msgstr "Cliquer sur le terme pour le sélectionner ou désélectionner de ce %1s"
 
 #: inc/class.admin.clickterms.php:147
 #, php-format
 msgid "Click terms to add them to this %s"
-msgstr "Cliquez sur les termes pour les ajouter à ce %s"
+msgstr "Cliquer sur les termes pour les ajouter à ce %s"
 
-#: inc/autoterms.php:1146
+#: inc/autoterms.php:1249
 msgid "Click the button to add Auto Terms to existing content."
 msgstr ""
-"Cliquez sur le bouton pour ajouter des termes automatiques au contenu "
+"Cliquer sur le bouton pour ajouter des termes automatiques au contenu "
 "existant."
 
 #: inc/class.admin.clickterms.php:145
 msgid "Click to display tags"
-msgstr "Cliquez pour afficher les étiquettes"
+msgstr "Cliquer pour afficher les étiquettes"
 
 #: inc/tag-clouds-table.php:362 inc/tag-clouds.php:419
 msgid "Cloud"
 msgstr "Cloud"
 
-#: inc/autolinks.php:704 inc/autoterms.php:944
+#: inc/autolinks.php:704 inc/autoterms.php:1047
 msgid "code"
 msgstr "code"
 
@@ -995,13 +1027,17 @@ msgstr "code"
 msgid "Completed: %s terms added from %s posts checked."
 msgstr "Terminé : %s termes ajoutés à partir de %s publications vérifiées."
 
-#: inc/autoterms.php:893
+#: inc/autoterms.php:996
 msgid "Content statuses"
 msgstr "États du contenu"
 
 #: inc/autolinks.php:301
 msgid "Control"
 msgstr "Contrôle"
+
+#: inc/terms-table.php:168 inc/terms-table.php:513
+msgid "Copy"
+msgstr "Copier"
 
 #: inc/class-tag-table.php:43 inc/class-taxonomies-table.php:72
 #: inc/terms-table.php:119
@@ -1018,6 +1054,10 @@ msgstr "Compteur"
 msgid "Counter (default)"
 msgstr "Compteur (par défaut)"
 
+#: includes-core/TaxopressCoreAdmin.php:111
+msgid "Create new terms using OpenAI and other sources"
+msgstr "Créer de nouveaux termes à l’aide de l’OpenAI et d’autres sources"
+
 #: inc/post-tags.php:72
 msgid "Current Post"
 msgstr "Publication actuelle"
@@ -1025,6 +1065,10 @@ msgstr "Publication actuelle"
 #: inc/related-posts-table.php:336
 msgid "Current post type"
 msgstr "Type de publication actuel"
+
+#: blocks/post-tags.php:66
+msgid "Current Posts (TaxoPress)"
+msgstr "Publications actuelles (TaxoPress)"
 
 #: inc/taxonomies.php:983
 msgid "Custom admin menu name for your taxonomy."
@@ -1034,6 +1078,10 @@ msgstr "Nom du menu d’administration personnalisé pour votre taxonomie."
 msgid "Custom controller to use instead of WP_REST_Terms_Controller."
 msgstr ""
 "Contrôleur personnalisé à utiliser à la place de WP_REST_Terms_Controller."
+
+#: inc/autoterms.php:550
+msgid "Custom Field"
+msgstr "Champ personnalisé"
 
 #: inc/taxonomies.php:1460
 msgid "Custom Query Var String"
@@ -1056,9 +1104,17 @@ msgstr ""
 msgid "Custom taxonomy rewrite slug."
 msgstr "Slug de réécriture de taxonomie personnalisée."
 
-#: inc/autoterms-table.php:386 inc/autoterms.php:613
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:272
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:275
+#: inc/related-posts.php:845
+msgid "d M, Y (e.g., 09 Oct, 2024)"
+msgstr "d M Y (par ex. 09 Oct 2024)"
+
+#: inc/related-posts.php:841
+msgid "d.m.Y (e.g., 09.10.2024)"
+msgstr "d.m.Y (par ex. 09.10.2024)"
+
+#: inc/autoterms-table.php:386 inc/autoterms.php:711
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:277
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:280
 msgid "Dandelion"
 msgstr "Dandelion"
 
@@ -1087,8 +1143,8 @@ msgstr "Désactiver la taxonomie"
 msgid "Default"
 msgstr "Par défaut"
 
-#: inc/related-posts.php:860
-msgid "Default Post Thumb"
+#: inc/related-posts.php:933
+msgid "Default post thumbnail"
 msgstr "Image mise en avant par défaut"
 
 #: inc/taxonomies.php:528
@@ -1096,10 +1152,11 @@ msgid "Default Terms"
 msgstr "Termes par défaut"
 
 #: inc/autolinks-table.php:275 inc/autoterms-logs-table.php:240
-#: inc/autoterms-table.php:275 inc/class-tag-table.php:196
+#: inc/autoterms-table.php:275 inc/autoterms.php:618
+#: inc/class-tag-table.php:196 inc/class.admin.php:506
 #: inc/class.admin.taxonomies.ui.php:780 inc/post-tags-table.php:275
 #: inc/related-posts-table.php:276 inc/tag-clouds-table.php:276
-#: inc/terms-table.php:167 inc/terms-table.php:427
+#: inc/terms-table.php:167 inc/terms-table.php:490
 msgid "Delete"
 msgstr "Effacer"
 
@@ -1111,7 +1168,7 @@ msgstr "Supprimer tous les journaux"
 msgid "Delete Log"
 msgstr "Supprimer le journal"
 
-#: inc/class.admin.manage.php:348
+#: inc/class.admin.manage.php:421
 msgid "Delete rarely used terms:"
 msgstr "Supprimer les termes rarement utilisés :"
 
@@ -1119,11 +1176,11 @@ msgstr "Supprimer les termes rarement utilisés :"
 msgid "Delete Taxonomy"
 msgstr "Supprimer la taxonomie"
 
-#: inc/class.admin.manage.php:351
+#: inc/class.admin.manage.php:424
 msgid "Delete Terms"
 msgstr "Supprimer les termes"
 
-#: inc/class.admin.manage.php:159
+#: inc/class.admin.manage.php:175
 msgid "Delete unused terms"
 msgstr "Supprimer les termes inutilisés"
 
@@ -1154,8 +1211,8 @@ msgstr "La description ici."
 
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:258
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:260
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:332
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:334
+#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:340
+#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:342
 #, php-format
 msgid "Deselect all %1s"
 msgstr "Désélectionner tout %1s"
@@ -1206,14 +1263,14 @@ msgstr ""
 #: inc/autolinks-table.php:264 inc/autoterms-table.php:264
 #: inc/class-taxonomies-table.php:285 inc/class.admin.mass.php:264
 #: inc/post-tags-table.php:264 inc/related-posts-table.php:265
-#: inc/tag-clouds-table.php:265 inc/terms-table.php:391
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:346
+#: inc/tag-clouds-table.php:265 inc/terms-table.php:454
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:351
 msgid "Edit"
 msgstr "Modifier"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1558 inc/taxonomies-functions.php:1573
-#: inc/taxonomies-functions.php:1599 inc/taxonomies-functions.php:1615
+#: inc/taxonomies-functions.php:1580 inc/taxonomies-functions.php:1595
+#: inc/taxonomies-functions.php:1621 inc/taxonomies-functions.php:1637
 #: inc/taxonomies.php:1020
 #, php-format
 msgid "Edit %s"
@@ -1247,7 +1304,7 @@ msgstr "Modifier les publications similaires"
 msgid "Edit Taxonomy"
 msgstr "Modifier la taxonomie"
 
-#: inc/class.admin.php:556
+#: inc/class.admin.php:560
 msgid "Edit TaxoPress Logs"
 msgstr "Modifier les journaux de TaxoPress"
 
@@ -1271,7 +1328,7 @@ msgstr "Modifier cette boîte méta"
 msgid "Em"
 msgstr "Em"
 
-#: inc/class.admin.php:968
+#: inc/class.admin.php:972
 msgid "Embedded Tags"
 msgstr "Étiquettes embarquées"
 
@@ -1287,7 +1344,7 @@ msgstr "Activer les couleurs pour les termes"
 msgid "Enable Logs"
 msgstr "Activer la journalisation"
 
-#: inc/helper.options.admin.php:161
+#: inc/helper.options.admin.php:173 inc/helper.options.admin.php:185
 msgid "Enable Taxonomies:"
 msgstr "Activer les taxonomies :"
 
@@ -1310,11 +1367,11 @@ msgstr ""
 "Saisir les termes (séparés par des virgules) à exclure de l’affichage des "
 "termes."
 
-#: inc/class.admin.manage.php:228
+#: inc/class.admin.manage.php:301
 msgid "Enter the terms to rename and their new names."
 msgstr "Saisissez les termes à renommer et leurs nouveaux noms."
 
-#: inc/related-posts.php:662
+#: inc/related-posts.php:673
 msgid ""
 "Enter the text that should be display after posts list. This field accepts "
 "basic HTML."
@@ -1330,7 +1387,7 @@ msgstr ""
 "Saisissez le texte qui doit être affiché après la liste des termes. Ce champ "
 "accepte le HTML de base."
 
-#: inc/related-posts.php:646
+#: inc/related-posts.php:657
 msgid ""
 "Enter the text that should be display before posts list. This field accepts "
 "basic HTML."
@@ -1349,27 +1406,27 @@ msgstr ""
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:114
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:231
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:358
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:507
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:534
 msgid "Error establishing connection with the API server. Try again."
 msgstr ""
 "Erreur lors de l’établissement de la connexion avec le serveur API. "
 "Réessayer."
 
-#: inc/class.admin.manage.php:680
+#: inc/class.admin.manage.php:798
 msgid "Error. No enough terms for rename."
 msgstr "Erreur. Pas assez de termes pour le renommer."
 
-#: inc/class.admin.manage.php:594
+#: inc/class.admin.manage.php:712
 msgid "Error. No enough terms specified."
 msgstr "Erreur. Pas suffisamment de termes spécifiés."
 
-#: inc/class.admin.manage.php:519
+#: inc/class.admin.manage.php:637
 msgid "Error. You need to enter a single term to merge to in new term name !"
 msgstr ""
 "Erreur. Vous devez saisir un seul terme à fusionner dans le nouveau nom du "
 "terme !"
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:466
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:492
 msgid ""
 "Error: OpenAI says there is an issue with this API key. Please check your "
 "plan or billing details."
@@ -1385,7 +1442,7 @@ msgstr "Erreur : données incorrectes"
 msgid "Exceptions"
 msgstr "Exceptions"
 
-#: inc/autoterms.php:1028 inc/autoterms_content.php:202
+#: inc/autoterms.php:1131 inc/autoterms_content.php:202
 msgid "Exclude previously analyzed content"
 msgstr "Exclure le contenu précédemment analysé"
 
@@ -1393,7 +1450,7 @@ msgstr "Exclure le contenu précédemment analysé"
 msgid "Exclude terms from Auto Links"
 msgstr "Exclure les termes des liens automatiques"
 
-#: inc/autoterms.php:920
+#: inc/autoterms.php:1023
 msgid "Exclude terms from Auto Term"
 msgstr "Exclure les termes des termes automatiques"
 
@@ -1401,7 +1458,7 @@ msgstr "Exclure les termes des termes automatiques"
 msgid "Exclude terms from terms display"
 msgstr "Exclure les termes de l’affichage des termes"
 
-#: inc/autoterms.php:424 inc/autoterms.php:1139 inc/autoterms_content.php:61
+#: inc/autoterms.php:424 inc/autoterms.php:1242 inc/autoterms_content.php:61
 #: inc/autoterms_content.php:62 inc/autoterms_content.php:130
 msgid "Existing Content"
 msgstr "Contenu existant"
@@ -1410,21 +1467,21 @@ msgstr "Contenu existant"
 msgid "Existing content"
 msgstr "Contenu existant"
 
-#: inc/autoterms-table.php:374 inc/autoterms.php:659
+#: inc/autoterms-table.php:374 inc/autoterms.php:757
 msgid "Existing taxonomy terms"
 msgstr "Termes existants de la taxonomie"
 
-#: inc/autoterms.php:607
+#: inc/autoterms.php:705
 msgid "Existing Terms"
 msgstr "Termes existants"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:369
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:374
 msgid "Existing Terms not found for the selected post type and taxonomies"
 msgstr ""
 "Termes existants non trouvés pour le type de publication et les taxonomies "
 "sélectionnés"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:406
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:411
 msgid ""
 "Existing Terms taxonomy is required. Kindly select taxonomies and save the "
 "settings before running preview."
@@ -1432,12 +1489,16 @@ msgstr ""
 "La taxonomie « Termes existante » est obligatoire. Veuillez sélectionner les "
 "taxonomies et enregistrer les réglages avant de lancer la prévisualisation."
 
+#: inc/related-posts.php:842
+msgid "F j, Y (e.g., October 9, 2024)"
+msgstr "j F Y (par ex. 9 October 2024)"
+
 #: inc/autolinks.php:770 inc/autolinks.php:803 inc/autolinks.php:869
-#: inc/autoterms.php:627 inc/autoterms.php:641 inc/autoterms.php:672
-#: inc/autoterms.php:686 inc/autoterms.php:716 inc/autoterms.php:752
-#: inc/autoterms.php:819 inc/autoterms.php:844 inc/autoterms.php:869
-#: inc/autoterms.php:1012 inc/autoterms_content.php:186 inc/post-tags.php:554
-#: inc/related-posts.php:342 inc/related-posts.php:777 inc/tag-clouds.php:346
+#: inc/autoterms.php:725 inc/autoterms.php:739 inc/autoterms.php:770
+#: inc/autoterms.php:784 inc/autoterms.php:814 inc/autoterms.php:850
+#: inc/autoterms.php:917 inc/autoterms.php:942 inc/autoterms.php:967
+#: inc/autoterms.php:1115 inc/autoterms_content.php:186 inc/post-tags.php:554
+#: inc/related-posts.php:342 inc/related-posts.php:788 inc/tag-clouds.php:346
 #: inc/tag-clouds.php:614 inc/tag-clouds.php:687 inc/taxonomies.php:485
 #: inc/taxonomies.php:603 inc/taxonomies.php:618 inc/taxonomies.php:724
 #: inc/taxonomies.php:760 inc/taxonomies.php:785 inc/taxonomies.php:820
@@ -1451,7 +1512,7 @@ msgstr "Faux"
 msgid "Fast, professional support"
 msgstr "Une assistance rapide et professionnelle"
 
-#: inc/class.admin.php:966
+#: inc/class.admin.php:970
 msgid "Features"
 msgstr "Fonctionnalités"
 
@@ -1462,11 +1523,15 @@ msgstr ""
 "une clé valide."
 
 #: inc/autoterms-logs-table.php:172 inc/class.admin.mass.php:232
-#: inc/posts-table.php:192 inc/terms-table.php:225
+#: inc/posts-table.php:192 inc/terms-table.php:261
 msgid "Filter"
 msgstr "Filtrer"
 
-#: inc/autoterms.php:530
+#: inc/autoterms.php:541
+msgid "Find in more areas:"
+msgstr "Trouver dans d’autres zones :"
+
+#: inc/autoterms.php:521
 msgid "Find term in:"
 msgstr "Trouver le terme dans :"
 
@@ -1537,40 +1602,40 @@ msgstr "Format :"
 msgid "General"
 msgstr "Général"
 
-#: inc/autolinks.php:694 inc/autoterms.php:933 inc/related-posts.php:371
+#: inc/autolinks.php:694 inc/autoterms.php:1036 inc/related-posts.php:371
 msgid "H1"
 msgstr "H1"
 
-#: inc/autolinks.php:695 inc/autoterms.php:934 inc/related-posts.php:375
+#: inc/autolinks.php:695 inc/autoterms.php:1037 inc/related-posts.php:375
 msgid "H2"
 msgstr "H2"
 
-#: inc/autolinks.php:696 inc/autoterms.php:935 inc/related-posts.php:379
+#: inc/autolinks.php:696 inc/autoterms.php:1038 inc/related-posts.php:379
 msgid "H3"
 msgstr "H3"
 
-#: inc/autolinks.php:697 inc/autoterms.php:936 inc/related-posts.php:383
+#: inc/autolinks.php:697 inc/autoterms.php:1039 inc/related-posts.php:383
 msgid "H4"
 msgstr "H4"
 
-#: inc/autolinks.php:698 inc/autoterms.php:937 inc/related-posts.php:388
+#: inc/autolinks.php:698 inc/autoterms.php:1040 inc/related-posts.php:388
 msgid "H5"
 msgstr "H5"
 
-#: inc/autolinks.php:699 inc/autoterms.php:938 inc/related-posts.php:392
+#: inc/autolinks.php:699 inc/autoterms.php:1041 inc/related-posts.php:392
 msgid "H6"
 msgstr "H6"
 
-#: inc/autoterms.php:885
+#: inc/autoterms.php:983
 msgid "Hashtags"
 msgstr "Hashtags"
 
-#: inc/class.shortcode_widgets.php:152 inc/posts-tags-widget.php:133
-#: inc/related-posts-widget.php:139
+#: blocks/post-tags.php:62 inc/class.shortcode_widgets.php:152
+#: inc/posts-tags-widget.php:133 inc/related-posts-widget.php:139
 msgid "Here"
 msgstr "Ici"
 
-#: inc/related-posts.php:991
+#: inc/related-posts.php:1064
 msgid "Here are the tokens you can use for related posts format"
 msgstr ""
 "Voici les jetons que vous pouvez utiliser pour le format des publications "
@@ -1607,9 +1672,21 @@ msgstr "Cacher la sortie de l’affichage si aucun terme ?"
 msgid "Hide display output if no terms?"
 msgstr "Cacher la sortie de l’affichage si aucun terme n’est utilisé ?"
 
-#: inc/related-posts.php:792
+#: inc/related-posts.php:803
 msgid "Hide output if no related post is found ?"
 msgstr "Masquer la sortie si aucune publication similaire n’est trouvée ?"
+
+#: inc/class.admin.manage.php:432
+msgid "Hide rarely used terms"
+msgstr "Masquer les termes rarement utilisés"
+
+#: inc/class.admin.manage.php:466
+msgid "Hide rarely used terms:"
+msgstr "Masquer les termes rarement utilisés :"
+
+#: inc/class.admin.manage.php:469
+msgid "Hide Terms"
+msgstr "Masquer les termes"
 
 #: inc/related-posts.php:357
 msgid "Hide title in output ?"
@@ -1618,6 +1695,10 @@ msgstr "Cacher le titre dans la sortie ?"
 #: inc/tag-clouds.php:361
 msgid "Hide title in output?"
 msgstr "Cacher le titre dans la sortie ?"
+
+#: inc/class.admin.manage.php:178
+msgid "Hide unused terms"
+msgstr "Masquer les termes inutilisés"
 
 #: inc/autolinks-table.php:343 inc/post-tags-table.php:342
 #: inc/post-tags.php:422 inc/related-posts-table.php:400
@@ -1637,9 +1718,9 @@ msgstr "https://wordpress.org/plugins/simple-tags/"
 msgid "I already did"
 msgstr "Je l’ai déjà fait"
 
-#: inc/autoterms-table.php:382 inc/autoterms.php:611
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:257
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:260
+#: inc/autoterms-table.php:382 inc/autoterms.php:709
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:262
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:265
 msgid "IBM Watson"
 msgstr "IBM Watson"
 
@@ -1647,13 +1728,21 @@ msgstr "IBM Watson"
 msgid "IBM Watson Integration"
 msgstr "Intégration de IBM Watson"
 
-#: inc/class.admin.manage.php:314
+#: inc/class.admin.manage.php:387
 #, php-format
 msgid ""
 "If you choose 5, Taxopress will delete all terms attached to less than 5 %s."
 msgstr ""
 "Si vous choisissez 5, Taxopress supprimera tous les termes attachés à moins "
 "de 5 %s."
+
+#: inc/class.admin.manage.php:437
+#, php-format
+msgid ""
+"If you choose 5, Taxopress will hide all terms attached to less than 5 %s."
+msgstr ""
+"Si vous choisissez 5, Taxopress masquera tous les termes attachés à moins de "
+"5 %s."
 
 #: inc/autolinks.php:669
 msgid ""
@@ -1670,7 +1759,7 @@ msgstr ""
 "Si vous avez besoin d’aide ou si vous avez une nouvelle demande de "
 "fonctionnalité, faites-le nous savoir."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:199
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:204
 msgid "Invalid Auto Term ID. Please save the settings before using preview."
 msgstr ""
 "L’ID du terme automatique est invalide. Veuillez enregistrer les réglages "
@@ -1680,7 +1769,7 @@ msgstr ""
 msgid "Invalid nonce token!"
 msgstr "Jeton de nonce invalide !"
 
-#: inc/class.admin.manage.php:872
+#: inc/class.admin.manage.php:990
 msgid "Invalid number specified."
 msgstr "Le nombre spécifié est invalide."
 
@@ -1692,7 +1781,7 @@ msgstr "ID de termes de la publication invalide."
 msgid "Invalid request."
 msgstr "Requête invalide."
 
-#: inc/related-posts.php:741
+#: inc/related-posts.php:752
 msgid "Inverse Alphabetical"
 msgstr "Inverse de l’ordre alphabétique"
 
@@ -1708,33 +1797,43 @@ msgstr "Liste des éléments"
 msgid "Items List Navigation"
 msgstr "Navigation dans la liste des éléments"
 
-#: inc/taxonomies-functions.php:1700
+#: inc/class.admin.php:504
+msgid "Kindly select a post to use preview feature."
+msgstr ""
+"Veuillez sélectionner une publication pour utiliser la fonctionnalité de "
+"prévisualisation."
+
+#: inc/taxonomies-functions.php:1722
 msgid "Kindly select an action in bulk action dropdown!"
 msgstr ""
 "Veuillez sélectionner une action dans la liste déroulante des actions "
 "groupées !"
 
-#: inc/taxonomies-functions.php:1710
+#: inc/taxonomies-functions.php:1732
 msgid "Kindly select atleast one taxonomy to proceed"
 msgstr "Veuillez sélectionner au moins une taxonomie pour continuer"
 
-#: inc/related-posts.php:718
+#: inc/related-posts.php:909
+msgid "Large (1024x1024)"
+msgstr "Grand (1024x1024)"
+
+#: inc/related-posts.php:729
 msgid "Least common tags between posts"
 msgstr "Les étiquettes les moins communes entre les publications"
 
-#: inc/class.admin.php:974
+#: inc/class.admin.php:978
 msgid "Legacy"
 msgstr "Héritage"
 
-#: inc/class.admin.php:984
+#: inc/class.admin.php:990
 msgid "License"
 msgstr "Licence"
 
-#: inc/autoterms.php:1132 inc/autoterms_content.php:306
+#: inc/autoterms.php:1235 inc/autoterms_content.php:306
 msgid "Limit Auto Terms, based on published date"
 msgstr "Limiter les termes automatiques, en fonction de la date de publication"
 
-#: inc/autoterms.php:1038 inc/autoterms_content.php:212
+#: inc/autoterms.php:1141 inc/autoterms_content.php:212
 msgid "Limit per batches"
 msgstr "Limite par lot"
 
@@ -1742,7 +1841,7 @@ msgstr "Limite par lot"
 msgid "Limit per batches is required."
 msgstr "Le limite par lot est obligatoire."
 
-#: inc/related-posts.php:708
+#: inc/related-posts.php:719
 msgid "Limit related posts based on timeframe"
 msgstr ""
 "Limiter les publications similaires en fonction de la fenêtre temporelle"
@@ -1751,7 +1850,7 @@ msgstr ""
 msgid "Limit terms based on timeframe"
 msgstr "Limiter les termes en fonction de la fenêtre temporelle"
 
-#: inc/autoterms.php:809
+#: inc/autoterms.php:907
 msgid "Limit the number of generated Auto Terms. '0' for unlimited terms"
 msgstr ""
 "Limite le nombre de termes automatiques générés. `0` pour un nombre illimité "
@@ -1761,9 +1860,13 @@ msgstr ""
 msgid "Limit the number of logs"
 msgstr "Limiter le nombre de journaux"
 
-#: inc/class.admin.php:982 inc/terms-table.php:118
+#: inc/class.admin.php:986 inc/terms-table.php:118
 msgid "Linked Terms"
 msgstr "Termes liés"
+
+#: inc/helper.options.admin.php:161
+msgid "Linked Terms Type:"
+msgstr "Type de termes liés :"
 
 #: inc/class.widgets.php:335
 msgid "List (UL/LI)"
@@ -1773,15 +1876,19 @@ msgstr "Liste (UL/LI)"
 msgid "Logs"
 msgstr "Journaux"
 
-#: inc/autoterms-table.php:390 inc/autoterms.php:615
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:287
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:290
+#: inc/autoterms-table.php:390 inc/autoterms.php:713
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:292
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:295
 msgid "LSEG / Refinitiv"
 msgstr "LSEG/Refinitiv"
 
 #: includes-core/TaxopressCoreAdmin.php:260
 msgid "LSEG / Refinitiv Integration"
 msgstr "Intégration de LSEG/Refinitiv"
+
+#: inc/related-posts.php:844
+msgid "m/d/Y (e.g., 10/09/2024)"
+msgstr "d/m/Y (par ex. 09/10/2024)"
 
 #: modules/taxopress-ai/taxopress-ai.php:250
 msgid "Manage API Configuration"
@@ -1808,7 +1915,7 @@ msgstr "Gérer les publications similaires"
 msgid "Manage Taxonomy"
 msgstr "Gérer la taxonomie"
 
-#: inc/class.admin.manage.php:64 inc/class.admin.manage.php:136
+#: inc/class.admin.manage.php:69 inc/class.admin.manage.php:149
 #: inc/functions.inc.php:497
 msgid "Manage Terms"
 msgstr "Gestion des termes"
@@ -1842,9 +1949,13 @@ msgstr "Nombre maximum d’étiquettes à afficher : (par défaut : 45)"
 msgid "Maximum character length for an Auto Link"
 msgstr "Longueur maximale des caractères pour un lien automatique"
 
-#: inc/related-posts.php:844
+#: inc/related-posts.php:874
 msgid "Maximum characters of post content to display"
 msgstr "Nombre maximal de caractères du contenu de la publication à afficher"
+
+#: inc/related-posts.php:886
+msgid "Maximum number of categories"
+msgstr "Nombre maximum de catégories"
 
 #: inc/autolinks.php:603
 msgid "Maximum number of links for the same term"
@@ -1854,7 +1965,11 @@ msgstr "Nombre maximum de liens automatiques pour le même terme"
 msgid "Maximum number of links per post"
 msgstr "Nombre maximum de liens par publication"
 
-#: inc/related-posts.php:513
+#: inc/related-posts.php:898
+msgid "Maximum number of tags"
+msgstr "Nombre maximum d’étiquettes"
+
+#: inc/related-posts.php:514
 msgid "Maximum related posts to display"
 msgstr "Nombre maximal de publications similaires à afficher"
 
@@ -1887,29 +2002,33 @@ msgstr "Liste des étiquettes de média"
 msgid "Media Tags list navigation"
 msgstr "Navigation de la liste des étiquettes de média"
 
+#: inc/related-posts.php:908
+msgid "Medium (300x300)"
+msgstr "Moyen (300x300)"
+
 #: inc/taxonomies.php:982
 msgid "Menu Name"
 msgstr "Nom du menu"
 
-#: inc/class.admin.manage.php:301
+#: inc/class.admin.manage.php:374
 msgid "Merge"
 msgstr "Fusionner"
 
-#: inc/class.admin.manage.php:486 inc/class.admin.manage.php:516
+#: inc/class.admin.manage.php:604 inc/class.admin.manage.php:634
 #, php-format
 msgid "Merge term(s) \"%1$s\" to \"%2$s\". %3$s posts edited."
 msgstr ""
 "Fusionner le(s) terme(s) « %1$s » vers « %2$s ». %3$s publications éditées."
 
-#: inc/class.admin.manage.php:267
+#: inc/class.admin.manage.php:340
 msgid "Merge Terms"
 msgstr "Fusionner les termes"
 
-#: inc/class.admin.manage.php:156
+#: inc/class.admin.manage.php:172
 msgid "Merge terms"
 msgstr "Fusionner les termes"
 
-#: inc/class.admin.php:980 inc/helper.options.admin.php:99
+#: inc/class.admin.php:984 inc/helper.options.admin.php:99
 msgid "Metabox Access"
 msgstr "Accès à la boîte méta"
 
@@ -1929,7 +2048,7 @@ msgstr "Fonctionnalités de la boîte méta"
 msgid "Metabox Options"
 msgstr "Options de la boîte méta"
 
-#: inc/class.admin.php:978 modules/taxopress-ai/taxopress-ai.php:269
+#: inc/class.admin.php:982 modules/taxopress-ai/taxopress-ai.php:269
 #: modules/taxopress-ai/taxopress-ai.php:270
 #: modules/taxopress-ai/taxopress-ai.php:305
 msgid "Metaboxes"
@@ -1956,7 +2075,7 @@ msgstr "Migrer les termes vers une taxonomie nouvellement renommée ?"
 msgid "Minimum character length for an Auto Link"
 msgstr "Longueur minimale des caractères pour un lien automatique"
 
-#: inc/class.admin.manage.php:330
+#: inc/class.admin.manage.php:403 inc/class.admin.manage.php:453
 msgid "Minimum number of uses for each term:"
 msgstr "Nombre minimum d’utilisations pour chaque terme :"
 
@@ -1964,11 +2083,11 @@ msgstr "Nombre minimum d’utilisations pour chaque terme :"
 msgid "Minimum term usage for Auto Links"
 msgstr "Utilisation minimale pour les liens automatiques"
 
-#: inc/class.admin.manage.php:92
+#: inc/class.admin.manage.php:97
 msgid "Missing valid taxonomy for work. Try again."
 msgstr "Il manque une taxonomie valide pour le travail. Réessayer."
 
-#: inc/related-posts.php:723
+#: inc/related-posts.php:734
 msgid "Most common tags between posts"
 msgstr "Les étiquettes les plus courantes entre les publications"
 
@@ -1983,13 +2102,13 @@ msgstr "Nom"
 msgid "Need TaxoPress Support?"
 msgstr "Besoin d’aide pour TaxoPress ?"
 
-#: inc/taxonomies-functions.php:1559 inc/taxonomies-functions.php:1600
+#: inc/taxonomies-functions.php:1581 inc/taxonomies-functions.php:1622
 #, php-format
 msgid "New %s"
 msgstr "Nouveau %s"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1576 inc/taxonomies-functions.php:1618
+#: inc/taxonomies-functions.php:1598 inc/taxonomies-functions.php:1640
 #: inc/taxonomies.php:1089
 #, php-format
 msgid "New %s name"
@@ -2003,15 +2122,15 @@ msgstr "Nom du nouvel élément"
 msgid "New Media Tag name"
 msgstr "Nouveau nom d’étiquette de média"
 
-#: inc/class.admin.php:559
+#: inc/class.admin.php:563
 msgid "New TaxoPress Logs"
 msgstr "Nouveaux journaux de TaxoPress"
 
-#: inc/class.admin.manage.php:252
+#: inc/class.admin.manage.php:325
 msgid "New term name(s):"
 msgstr "Nom des nouveaux termes :"
 
-#: inc/class.admin.manage.php:294
+#: inc/class.admin.manage.php:367
 msgid ""
 "New term. Any posts assigned to the old terms will be re-assigned to this "
 "term."
@@ -2019,14 +2138,14 @@ msgstr ""
 "Nouveau terme. Tous les publications attribuées aux anciens termes seront "
 "réattribuées à ce terme."
 
-#: inc/related-posts.php:733
+#: inc/related-posts.php:744
 msgid "Newer Entries"
 msgstr "Entrées plus récentes"
 
-#: inc/autolinks.php:1021 inc/autoterms.php:1297
+#: inc/autolinks.php:1021 inc/autoterms.php:1454
 #: inc/class-taxonomies-table.php:386 inc/post-tags-table.php:355
 #: inc/post-tags.php:766 inc/related-posts-table.php:413
-#: inc/related-posts.php:1037 inc/tag-clouds.php:924 inc/taxonomies.php:1652
+#: inc/related-posts.php:1110 inc/tag-clouds.php:924 inc/taxonomies.php:1652
 msgid "No"
 msgstr "Non"
 
@@ -2042,12 +2161,12 @@ msgstr "Pas de %s"
 msgid "No %s found"
 msgstr "Aucun %s trouvé"
 
-#: inc/taxonomies-functions.php:1565 inc/taxonomies-functions.php:1608
+#: inc/taxonomies-functions.php:1587 inc/taxonomies-functions.php:1630
 #, php-format
 msgid "No %s found in trash."
 msgstr "Aucun %s n’a été trouvé dans la corbeille."
 
-#: inc/taxonomies-functions.php:1564 inc/taxonomies-functions.php:1607
+#: inc/taxonomies-functions.php:1586 inc/taxonomies-functions.php:1629
 #, php-format
 msgid "No %s found."
 msgstr "Aucun %s trouvé."
@@ -2066,8 +2185,8 @@ msgstr "Pas de contenu à éditer."
 msgid "No item avaliable."
 msgstr "Aucun élément disponible."
 
-#: inc/autoterms.php:1085 inc/autoterms.php:1119 inc/autoterms_content.php:259
-#: inc/autoterms_content.php:293 inc/related-posts.php:697
+#: inc/autoterms.php:1188 inc/autoterms.php:1222 inc/autoterms_content.php:259
+#: inc/autoterms_content.php:293 inc/related-posts.php:708
 #: inc/tag-clouds.php:457
 msgid "No limit"
 msgstr "Aucune limite"
@@ -2078,10 +2197,14 @@ msgstr "Aucune limite"
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:226
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:252
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:352
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:380
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:501
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:400
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:528
 msgid "No matched result from the API Server."
 msgstr "Aucun résultat correspondant n’a été fourni par le serveur API."
+
+#: inc/class.admin.manage.php:1160
+msgid "No matching term found."
+msgstr "Aucun terme correspondant n’a été trouvé."
 
 #: inc/class.client.php:180
 msgid "No Media Tags"
@@ -2097,19 +2220,19 @@ msgstr ""
 "Aucun nouveau terme ne correspond aux réglages des termes automatiques et au "
 "contenu de la publication."
 
-#: inc/class.admin.manage.php:431 inc/class.admin.manage.php:613
+#: inc/class.admin.manage.php:549 inc/class.admin.manage.php:731
 msgid "No new term specified!"
 msgstr "Aucun nouveau terme spécifié !"
 
-#: inc/class.admin.manage.php:742
+#: inc/class.admin.manage.php:860
 msgid "No new term(s) specified!"
 msgstr "Pas de nouveau(x) terme(s) spécifié(s) !"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:603
-msgid "No new terms were added or removed."
-msgstr "Aucun nouveau terme n’a été ajouté ou retiré."
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:608
+msgid "No new terms were selected or deselected."
+msgstr "Aucun nouveau terme n’a été sélectionné ou désélectionné."
 
-#: inc/class.admin.manage.php:447 inc/class.admin.manage.php:628
+#: inc/class.admin.manage.php:565 inc/class.admin.manage.php:746
 msgid "No new/old valid term specified!"
 msgstr "Aucun terme valide nouveau/ancien n’est spécifié !"
 
@@ -2127,17 +2250,17 @@ msgstr ""
 "Aucun code court de publications similaires disponible. Ajouter un nouveau "
 "code court "
 
-#: inc/class.client.related_posts.php:57 inc/helper.options.default.php:76
+#: inc/class.client.related_posts.php:59 inc/helper.options.default.php:80
 #: inc/related-posts-functions.php:157
 msgid "No related posts."
 msgstr "Aucune publication similaire."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:186
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:199
 msgid "No results found for this post with this taxonomy."
 msgstr ""
 "Aucun résultat n’a été trouvé pour cette publication avec cette taxonomie."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:491
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:496
 msgid "No results found for this taxonomy."
 msgstr "Aucun résultat n’a été trouvé pour cette taxonomie."
 
@@ -2149,12 +2272,12 @@ msgstr "Aucun résultat depuis la base de données de WordPress."
 msgid "No tag for this post."
 msgstr "Aucune étiquette pour cette publication."
 
-#: inc/helper.options.default.php:65
+#: inc/helper.options.default.php:69
 msgid "No tags for this post."
 msgstr "Aucune étiquette pour cette publication."
 
 #: inc/class.client.tagcloud.php:42 inc/class.client.tagcloud.php:273
-#: inc/helper.options.default.php:87
+#: inc/helper.options.default.php:91
 msgid "No tags."
 msgstr "Aucune étiquette."
 
@@ -2168,7 +2291,7 @@ msgstr ""
 "Aucune fonctionnalité de la boîte méta de TaxoPress n’est activée pour ce "
 "type de publication."
 
-#: inc/class.admin.manage.php:795
+#: inc/class.admin.manage.php:913
 msgid "No term added."
 msgstr "Aucun terme ajouté."
 
@@ -2176,21 +2299,25 @@ msgstr "Aucun terme ajouté."
 msgid "No term avaliable."
 msgstr "Aucun terme n’est disponible."
 
-#: inc/class.admin.manage.php:721 inc/class.admin.manage.php:834
+#: inc/class.admin.manage.php:839 inc/class.admin.manage.php:952
 msgid "No term deleted."
 msgstr "Aucun terme effacé."
 
-#: inc/class.admin.manage.php:514
+#: inc/class.admin.manage.php:632
 msgid "No term merged."
 msgstr "Aucun terme fusionné."
 
-#: inc/class.admin.manage.php:675
+#: inc/class.admin.manage.php:793
 msgid "No term renamed."
 msgstr "Aucun terme renommé."
 
-#: inc/class.admin.manage.php:538 inc/class.admin.manage.php:698
+#: inc/class.admin.manage.php:656 inc/class.admin.manage.php:816
 msgid "No term specified!"
 msgstr "Aucun terme spécifié !"
+
+#: inc/class.admin.manage.php:1092
+msgid "No term(s) specified for removal!"
+msgstr "Pas de nouveau(x) terme(s) spécifié(s) pour la suppression !"
 
 #: inc/taxonomies.php:1225
 msgid "No terms"
@@ -2212,9 +2339,13 @@ msgstr ""
 "Aucun code court « termes pour la publication actuelle » n’est disponible. "
 "Ajouter un nouveau code court "
 
-#: inc/terms-table.php:280
+#: inc/terms-table.php:343
 msgid "No terms found."
 msgstr "Aucun terme n’a été trouvé."
+
+#: inc/class.admin.manage.php:1015
+msgid "No terms hidden."
+msgstr "Aucun terme masqué."
 
 #: inc/class.admin.clickterms.php:223 modules/taxopress-ai/taxopress-ai.php:643
 msgid "No terms in your WordPress database."
@@ -2224,23 +2355,23 @@ msgstr "Aucun terme dans la base de données de WordPress."
 msgid "No terms will be deleted"
 msgstr "Aucun terme sera supprimé"
 
-#: inc/class.admin.manage.php:869
+#: inc/class.admin.manage.php:987
 msgid "No terms will be deleted."
 msgstr "Aucun terme sera supprimé."
 
-#: inc/class.admin.manage.php:463
+#: inc/class.admin.manage.php:581
 msgid "No valid new term."
 msgstr "Aucun nouveau terme valide."
 
-#: inc/class.admin.manage.php:551
+#: inc/class.admin.manage.php:669
 msgid "No valid term specified!"
 msgstr "Aucun terme valide spécifié !"
 
-#: inc/taxonomies-functions.php:1129
+#: inc/taxonomies-functions.php:1148
 msgid "Nonce failed verification"
 msgstr "Échec de la vérification de nonce"
 
-#: inc/class.admin.manage.php:845
+#: inc/class.admin.manage.php:963
 msgid "Nonce verification failed."
 msgstr "La vérification du nonce a échoué."
 
@@ -2268,20 +2399,20 @@ msgstr "Non trouvé"
 msgid "Number of items per page"
 msgstr "Nombre d’éléments par page"
 
-#: inc/taxonomies-functions.php:1013
+#: inc/taxonomies-functions.php:1032
 msgid "Object"
 msgstr "Objet"
 
-#: inc/autolinks.php:1015 inc/autoterms.php:1290 inc/post-tags.php:760
-#: inc/related-posts.php:1030 inc/tag-clouds.php:917 inc/taxonomies.php:1645
+#: inc/autolinks.php:1015 inc/autoterms.php:1447 inc/post-tags.php:760
+#: inc/related-posts.php:1103 inc/tag-clouds.php:917 inc/taxonomies.php:1645
 msgid "Okay"
 msgstr "D’accord"
 
-#: inc/related-posts.php:729
+#: inc/related-posts.php:740
 msgid "Older Entries"
 msgstr "Entrées plus anciennes"
 
-#: inc/autoterms.php:861
+#: inc/autoterms.php:959
 msgid ""
 "Only add terms when the word is an exact match. Do not make matches for "
 "partial words."
@@ -2289,15 +2420,15 @@ msgstr ""
 "N’ajoutez des termes que lorsque le mot est une correspondance exacte. Ne "
 "faites pas de correspondance pour les mots partiels."
 
-#: inc/autoterms.php:836
+#: inc/autoterms.php:934
 msgid "Only use Auto Terms on posts with no added terms."
 msgstr ""
 "Utilisez les termes automatiques uniquement sur les publications qui n’ont "
 "pas de termes ajoutés."
 
-#: inc/autoterms-table.php:378 inc/autoterms.php:609
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:242
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:245
+#: inc/autoterms-table.php:378 inc/autoterms.php:707
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:247
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:250
 msgid "OpenAI"
 msgstr "OpenAI"
 
@@ -2310,7 +2441,7 @@ msgstr "Intégration de OpenAI"
 msgid "Options"
 msgstr "Options"
 
-#: inc/class.admin.php:684
+#: inc/class.admin.php:688
 msgid "Options saved"
 msgstr "Les options ont été enregistrées"
 
@@ -2357,14 +2488,14 @@ msgid "Other Labels"
 msgstr "Autres libellés"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1571 inc/taxonomies-functions.php:1613
+#: inc/taxonomies-functions.php:1593 inc/taxonomies-functions.php:1635
 #: inc/taxonomies.php:1106
 #, php-format
 msgid "Parent %s"
 msgstr "%s parent"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1572 inc/taxonomies-functions.php:1614
+#: inc/taxonomies-functions.php:1594 inc/taxonomies-functions.php:1636
 #: inc/taxonomies.php:1123
 #, php-format
 msgid "Parent %s:"
@@ -2398,7 +2529,7 @@ msgstr "Pourcentage"
 msgid "Permalinks"
 msgstr "Permaliens"
 
-#: inc/class.admin.manage.php:86
+#: inc/class.admin.manage.php:91
 msgid "Permission denied!"
 msgstr "Droit refusé !"
 
@@ -2407,14 +2538,14 @@ msgid "Permission denied."
 msgstr "Droit refusé."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:74
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:523
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:643
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:528
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:648
 msgid "Permission error. You do not have permission to manage taxopress"
 msgstr "Erreur de droit. Vous n’avez pas la permission de gérer taxopress"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:98
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:536
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:653
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:541
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:658
 msgid "Permission error. You do not have permission to manage this taxonomy"
 msgstr ""
 "Erreur de droit. Vous n’avez pas la permission de gérer cette taxonomie"
@@ -2423,7 +2554,7 @@ msgstr ""
 msgid "Pixel"
 msgstr "Pixel"
 
-#: inc/taxonomies-functions.php:1179
+#: inc/taxonomies-functions.php:1198
 #, php-format
 msgid ""
 "Please choose a different post type name. %s matches an existing page slug, "
@@ -2432,7 +2563,7 @@ msgstr ""
 "Veuillez choisir un autre nom de type de publication. Le terme %s correspond "
 "à un slug de page existant, ce qui peut provoquer des conflits."
 
-#: inc/taxonomies-functions.php:1143
+#: inc/taxonomies-functions.php:1162
 #, php-format
 msgid "Please choose a different taxonomy name. %s is already registered."
 msgstr "Veuillez choisir un autre nom de taxonomie. %s est déjà enregistré."
@@ -2442,22 +2573,22 @@ msgstr "Veuillez choisir un autre nom de taxonomie. %s est déjà enregistré."
 msgid "Please choose a post to use with TaxoPress AI."
 msgstr "Veuillez choisir une publication à utiliser avec TaxoPress IA."
 
-#: inc/autoterms.php:895
+#: inc/autoterms.php:998
 msgid "Please choose an option for \"Content statuses\""
 msgstr "Veuillez choisir une option pour les « états du contenu »"
 
-#: inc/autoterms.php:739
+#: inc/autoterms.php:837
 msgid "Please choose an option for \"Sources\""
 msgstr "Veuillez choisir une option pour « Sources »."
 
-#: inc/autolinks.php:1012 inc/autoterms.php:1287 inc/post-tags.php:757
-#: inc/related-posts.php:1027 inc/tag-clouds.php:914 inc/taxonomies.php:1642
+#: inc/autolinks.php:1012 inc/autoterms.php:1444 inc/post-tags.php:757
+#: inc/related-posts.php:1100 inc/tag-clouds.php:914 inc/taxonomies.php:1642
 msgid "Please complete the following required fields to save your changes:"
 msgstr ""
 "Veuillez remplir les champs obligatoires suivants pour enregistrer vos "
 "modifications :"
 
-#: inc/taxonomies-functions.php:1193
+#: inc/taxonomies-functions.php:1212
 msgid "Please do not use quotes in post type/taxonomy names or rewrite slugs"
 msgstr ""
 "Veuillez ne pas utiliser de guillemets dans les noms de type de publication/"
@@ -2472,7 +2603,7 @@ msgstr ""
 "Veuillez laisser cet écran ouvert pour poursuivre l’analyse. Pour arrêter "
 "l’analyse, fermer cet écran ou cliquer sur ce bouton : %1s Arrêter %2s"
 
-#: inc/autolinks.php:988 inc/autoterms.php:1263
+#: inc/autolinks.php:988 inc/autoterms.php:1420
 #, php-format
 msgid ""
 "Please note that this is an automatic tool. It does have limitations around "
@@ -2483,7 +2614,7 @@ msgstr ""
 "concernant les langues, les types de publication et d’autres facteurs. %1s "
 "Veuillez lire cette documentation. %2s"
 
-#: inc/taxonomies-functions.php:1156
+#: inc/taxonomies-functions.php:1175
 msgid "Please provide a post type to attach to."
 msgstr "Veuillez fournir un type de publication à joindre."
 
@@ -2491,7 +2622,7 @@ msgstr "Veuillez fournir un type de publication à joindre."
 msgid "Please provide a taxonomy name"
 msgstr "Veuillez fournir un nom de taxonomie"
 
-#: inc/taxonomies-functions.php:120 inc/taxonomies-functions.php:1846
+#: inc/taxonomies-functions.php:120 inc/taxonomies-functions.php:1868
 msgid "Please provide a taxonomy to delete"
 msgstr "Veuillez fournir un nom de taxonomie à supprimer"
 
@@ -2516,7 +2647,7 @@ msgid "Point (default)"
 msgstr "Point (par défaut)"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1569 inc/taxonomies-functions.php:1622
+#: inc/taxonomies-functions.php:1591 inc/taxonomies-functions.php:1644
 #: inc/taxonomies.php:1157
 #, php-format
 msgid "Popular %s"
@@ -2531,21 +2662,25 @@ msgid "Popular Media Tags"
 msgstr "Étiquettes de média populaires"
 
 #: inc/autoterms-logs-table.php:188 inc/posts-table.php:21
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:529
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:534
 msgid "Post"
 msgstr "Publication"
 
-#: inc/autolinks-table.php:372 inc/autolinks.php:435 inc/autoterms.php:510
+#: inc/autolinks-table.php:372 inc/autolinks.php:435 inc/autoterms.php:513
 msgid "Post Content"
 msgstr "Contenu de la publication"
 
-#: inc/autolinks-table.php:374 inc/autolinks.php:444 inc/autoterms.php:518
+#: inc/autolinks-table.php:374 inc/autolinks.php:444 inc/autoterms.php:515
 msgid "Post Content and Title"
 msgstr "Contenu et titre de la publication"
 
 #: inc/autoterms-logs-table.php:111 inc/autoterms-logs-table.php:475
 msgid "Post content is empty."
 msgstr "Le contenu de la publication est vide."
+
+#: inc/related-posts.php:854
+msgid "Post date format"
+msgstr "Format de la date de la publication"
 
 #: inc/posts-table.php:38
 msgid "Post Status"
@@ -2573,13 +2708,17 @@ msgid "Post Type"
 msgstr "Type de publication"
 
 #: inc/autoterms-logs-table.php:128 inc/autoterms-logs-table.php:189
-#: inc/terms-table.php:202
+#: inc/terms-table.php:238
 msgid "Post type"
 msgstr "Type de publication"
 
-#: inc/autolinks.php:294 inc/autoterms.php:568
+#: inc/terms-table.php:210
+msgid "post type"
+msgstr "type de publication"
+
+#: inc/autolinks.php:294 inc/autoterms.php:666
 #: inc/class-taxonomies-table.php:71 inc/related-posts-table.php:68
-#: inc/related-posts.php:290 inc/related-posts.php:589 inc/taxonomies.php:345
+#: inc/related-posts.php:290 inc/related-posts.php:600 inc/taxonomies.php:345
 #: inc/terms-table.php:116
 msgid "Post Types"
 msgstr "Types de publication"
@@ -2588,17 +2727,17 @@ msgstr "Types de publication"
 msgid "Post Types Filter"
 msgstr "Filtre de types de publication"
 
-#: inc/class.admin.php:74 inc/class.admin.php:324 inc/class.admin.php:976
+#: inc/class.admin.php:74 inc/class.admin.php:324 inc/class.admin.php:980
 #: inc/functions.inc.php:455 inc/posts-table.php:22 inc/posts.php:161
-#: inc/posts.php:162 inc/posts.php:213
+#: inc/posts.php:162 inc/posts.php:213 inc/related-posts.php:501
 msgid "Posts"
 msgstr "Publications"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:141
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:154
 msgid "Posts content and title is empty."
 msgstr "Le contenu et le titre des publications sont vides."
 
-#: inc/autolinks-functions.php:160 inc/helper.options.default.php:57
+#: inc/autolinks-functions.php:160 inc/helper.options.default.php:61
 #, php-format
 msgid "Posts tagged with %s"
 msgstr "Publications étiquetées avec %s"
@@ -2607,7 +2746,7 @@ msgstr "Publications étiquetées avec %s"
 msgid "Pourcent"
 msgstr "Pourcentage"
 
-#: inc/autolinks.php:703 inc/autoterms.php:943
+#: inc/autolinks.php:703 inc/autoterms.php:1046
 msgid "pre"
 msgstr "avant"
 
@@ -2619,10 +2758,11 @@ msgstr "Empêcher les liens automatiques dans les éléments ou les IDs"
 msgid "Prevent Auto Links inside elements"
 msgstr "Empêcher les liens automatiques dans les éléments"
 
-#: inc/autoterms.php:947
+#: inc/autoterms.php:1050
 msgid "Prevent Auto Term inside elements"
 msgstr "Empêcher les termes automatiques dans les éléments"
 
+#: inc/autoterms.php:439 inc/autoterms.php:1318
 #: modules/taxopress-ai/taxopress-ai.php:400
 msgid "Preview"
 msgstr "Aperçu"
@@ -2632,7 +2772,7 @@ msgid "Priority on the_content and the_title hook"
 msgstr "Priorité des crochets the_content et the_title"
 
 #: inc/helper.options.admin.php:148 inc/taxonomies.php:196
-#: inc/terms-table.php:222
+#: inc/terms-table.php:258
 msgid "Private Taxonomies"
 msgstr "Taxonomies privées"
 
@@ -2650,7 +2790,7 @@ msgid "Public Queryable"
 msgstr "Publiquement interrogeable"
 
 #: inc/helper.options.admin.php:147 inc/taxonomies.php:195
-#: inc/terms-table.php:221
+#: inc/terms-table.php:257
 msgid "Public Taxonomies"
 msgstr "Taxonomies publiques"
 
@@ -2666,22 +2806,22 @@ msgstr "Quantité&hellip;"
 msgid "Query Var"
 msgstr "Query Var"
 
-#: inc/terms-table.php:669
+#: inc/terms-table.php:746
 msgid "Quick Edit"
 msgstr "Modification rapide"
 
 #. %s: Taxonomy term name.
-#: inc/terms-table.php:396
+#: inc/terms-table.php:459
 #, php-format
 msgid "Quick edit &#8220;%s&#8221; inline"
 msgstr "Modification rapide &#8220;%s&#8221; en ligne"
 
-#: inc/terms-table.php:397
+#: inc/terms-table.php:460
 msgid "Quick&nbsp;Edit"
 msgstr "Modification&nbsp;rapide"
 
 #: inc/class.admin.clickterms.php:78 inc/class.widgets.php:246
-#: inc/related-posts.php:746 inc/tag-clouds.php:476 inc/tag-clouds.php:511
+#: inc/related-posts.php:757 inc/tag-clouds.php:476 inc/tag-clouds.php:511
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:101
 msgid "Random"
 msgstr "Aléatoire"
@@ -2702,7 +2842,7 @@ msgstr "Clé d’enregistrement"
 msgid "Related Post"
 msgstr "Publications similaires"
 
-#: inc/class.admin.php:801 inc/class.admin.php:972 inc/functions.inc.php:473
+#: inc/class.admin.php:805 inc/class.admin.php:976 inc/functions.inc.php:473
 #: inc/related-posts-table.php:15 inc/related-posts.php:73
 #: inc/related-posts.php:74 inc/related-posts.php:131
 msgid "Related Posts"
@@ -2716,11 +2856,11 @@ msgstr "Publications similaires (TaxoPress)"
 msgid "Related Posts are added on "
 msgstr "Les publications similaires sont ajoutées sur "
 
-#: inc/related-posts.php:812
+#: inc/related-posts.php:823
 msgid "Related Posts div class"
 msgstr "Classe div des publications similaires"
 
-#: inc/related-posts.php:986
+#: inc/related-posts.php:1059
 msgid "Related Posts format"
 msgstr "Format des publications similaires"
 
@@ -2728,19 +2868,17 @@ msgstr "Format des publications similaires"
 msgid "Related Posts not found."
 msgstr "Publications similaires non trouvées."
 
-#: inc/related-posts.php:756
+#: inc/related-posts.php:767
 msgid "Related Posts Order"
 msgstr "Tri de publications similaires"
-
-#: blocks/related-posts.php:65
-msgid "Related Posts shortcode are added on Related Post screen"
-msgstr ""
-"Le code court des publications similaires à été ajouté à l’écran des "
-"publications similaires"
 
 #: inc/related-posts-functions.php:242
 msgid "Related Posts successfully deleted."
 msgstr "Les publications similaires ont été supprimées avec succès."
+
+#: inc/class.admin.manage.php:291
+msgid "Remove"
+msgstr "Retirer"
 
 #: inc/helper.options.admin.php:117
 msgid "Remove Default Metaboxes"
@@ -2753,36 +2891,55 @@ msgstr ""
 "Retirer les boîtes méta de taxonomie par défaut pour les utilisateurs/"
 "utilisatrices ayant le rôle %1s."
 
-#: inc/terms-table.php:411
+#: inc/terms-table.php:474
 msgid "Remove From All Posts"
 msgstr "Retirer de toutes les publications"
 
-#: inc/related-posts.php:875
+#: inc/related-posts.php:948
 msgid "Remove Image"
 msgstr "Retirer l’image"
 
-#: inc/class.admin.manage.php:309
+#: inc/class.admin.manage.php:382
 msgid "Remove rarely used terms"
 msgstr "Supprimer les termes rarement utilisés"
 
-#: inc/class.admin.manage.php:591
+#: inc/class.admin.manage.php:245
+msgid "Remove Terms"
+msgstr "Retirer les termes"
+
+#: inc/class.admin.manage.php:166
+msgid "Remove terms"
+msgstr "Retirer les termes"
+
+#: inc/class.admin.manage.php:267
+#, php-format
+msgid "Remove terms from all %s."
+msgstr "Retirer les termes de tous les %s."
+
+#: inc/class.admin.manage.php:271
+msgid "Remove terms only from posts with specific terms attached."
+msgstr ""
+"Retirer les termes uniquement de publications auxquelles sont jointés des "
+"termes spécifiques."
+
+#: inc/class.admin.manage.php:709
 #, php-format
 msgid "Removed term(s) \"%1$s\" from %2$s %3$s"
 msgstr "Termes « %1$s » supprimés de %2$s %3$s"
 
-#: inc/class.admin.manage.php:259
+#: inc/class.admin.manage.php:332
 msgid "Rename"
 msgstr "Renommer"
 
-#: inc/class.admin.manage.php:226
+#: inc/class.admin.manage.php:299
 msgid "Rename Terms"
 msgstr "Renommer les termes"
 
-#: inc/class.admin.manage.php:153
+#: inc/class.admin.manage.php:169
 msgid "Rename terms"
 msgstr "Renommer les termes"
 
-#: inc/class.admin.manage.php:677
+#: inc/class.admin.manage.php:795
 #, php-format
 msgid "Renamed term(s) \"%1$s\" to \"%2$s\""
 msgstr "Renommé le(s) terme(s) « %1$s » en « %2$s »"
@@ -2800,8 +2957,8 @@ msgid "Replaced by the tag’s name, formatted for attribute HTML"
 msgstr "Remplacé par le nom de l’étiquette, mis en forme pour l’attribut HTML"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:60
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:509
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:690
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:514
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:695
 msgid "Request completed."
 msgstr "Demande complétée."
 
@@ -2821,21 +2978,21 @@ msgstr "Slug de base de l’API REST"
 msgid "REST API controller class"
 msgstr "Classe de contrôleur API REST"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:479
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:484
 msgid "Result from ajax request."
 msgstr "Résultat de la demande ajax."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:98
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:215
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:341
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:491
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:518
 msgid "Result from api."
 msgstr "Résultat de l’api."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:67
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:176
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:294
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:423
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:444
 msgid "Result from cache."
 msgstr "Résultat de la cache."
 
@@ -2864,15 +3021,21 @@ msgstr "Flux RSS"
 msgid "Save Auto Links"
 msgstr "Enregistrer les liens automatiques"
 
-#: inc/autoterms.php:1231
+#: inc/autoterms.php:1388
 msgid "Save Auto Terms"
 msgstr "Enregistrer les termes automatiques"
 
-#: views/admin/page-settings.php:41
+#: views/admin/page-settings.php:45
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
-#: inc/related-posts.php:949
+#: inc/autoterms.php:1282
+msgid "Save changes to the settings before using this feature."
+msgstr ""
+"Enregistrer le modifications des réglages avant d’utiliser cette "
+"fonctionnalité."
+
+#: inc/related-posts.php:1022
 msgid "Save Related Posts"
 msgstr "Enregistrer les publications similaires"
 
@@ -2922,7 +3085,7 @@ msgstr ""
 "Texte pour lecteur d’écran pour le titre de la pagination sur l’écran de la "
 "liste des termes."
 
-#: inc/autolinks.php:701 inc/autoterms.php:941
+#: inc/autolinks.php:701 inc/autoterms.php:1044
 msgid "script"
 msgstr "script"
 
@@ -2931,8 +3094,8 @@ msgid "Search"
 msgstr "Rechercher"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1563 inc/taxonomies-functions.php:1568
-#: inc/taxonomies-functions.php:1606 inc/taxonomies-functions.php:1621
+#: inc/taxonomies-functions.php:1585 inc/taxonomies-functions.php:1590
+#: inc/taxonomies-functions.php:1628 inc/taxonomies-functions.php:1643
 #: inc/taxonomies.php:1140
 #, php-format
 msgid "Search %s"
@@ -2949,6 +3112,10 @@ msgstr "Rechercher les termes automatiques"
 #: inc/autoterms.php:207
 msgid "Search Auto Terms Logs"
 msgstr "Rechercher les journaux des termes automatiques"
+
+#: inc/autoterms.php:581
+msgid "Search Custom Field..."
+msgstr "Rechercher champ pérsonnalisé…"
 
 #: inc/taxonomies.php:1135
 msgid "Search Items"
@@ -2978,7 +3145,11 @@ msgstr "Résultats de recherche pour &#8220;%s&#8221;"
 msgid "Search Taxonomies"
 msgstr "Rechercher les taxonomies"
 
-#: inc/class.admin.php:554
+#: inc/autoterms.php:564 inc/autoterms.php:565
+msgid "Search Taxonomy"
+msgstr "Rechercher la taxonomie"
+
+#: inc/class.admin.php:558
 msgid "Search TaxoPress Logs"
 msgstr "Rechercher les journaux de TaxoPress"
 
@@ -2999,12 +3170,12 @@ msgid "Search Terms..."
 msgstr "Termes de recherche…"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:68
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:517
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:637
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:522
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:642
 msgid "Security error. Kindly reload this page and try again"
 msgstr "Erreur de sécurité. Veuillez recharger cette page et réessayer."
 
-#: inc/class.admin.manage.php:89 inc/class.admin.mass.php:58
+#: inc/class.admin.manage.php:94 inc/class.admin.mass.php:58
 msgid "Security problem. Try again."
 msgstr "Problème de sécurité. Réessayer."
 
@@ -3020,8 +3191,8 @@ msgstr "Sélectionnez %s"
 
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:258
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:260
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:332
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:334
+#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:340
+#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:342
 #, php-format
 msgid "Select all %1s"
 msgstr "Sélectionner tout %1s"
@@ -3041,7 +3212,17 @@ msgstr "Sélectionner une option…"
 msgid "Select Default Post Thumb"
 msgstr "Sélectionner l’image mise en avant de la publication par défaut"
 
-#: inc/related-posts.php:872
+#: inc/terms-table.php:212
+#, php-format
+#| msgid "Select all %1s"
+msgid "Select Destination %s"
+msgstr "Sélectionner la destination %s"
+
+#: inc/terms-table.php:202
+msgid "Select Destination Taxonomy"
+msgstr "Sélectionner la destination de la taxonomie"
+
+#: inc/related-posts.php:945
 msgid "Select Media"
 msgstr "Sélectionner un média"
 
@@ -3049,7 +3230,11 @@ msgstr "Sélectionner un média"
 msgid "Select related post shortcode"
 msgstr "Sélectionner le code court des publications similaires"
 
-#: inc/related-posts.php:882
+#: blocks/tag-clouds.php:65
+msgid "Select Terms Display"
+msgstr "Sélectionner l’affichage de termes"
+
+#: inc/related-posts.php:955
 msgid ""
 "Select the default %post_thumb_url% to be used when a post doesn't have a "
 "featured image."
@@ -3078,25 +3263,25 @@ msgstr "Sélectionnez le widget affichage des termes."
 msgid "Select widget terms for current post."
 msgstr "Sélectionnez le widget termes pour la publication actuelle."
 
-#: modules/taxopress-ai/taxopress-ai.php:446
+#: inc/autoterms.php:1307 modules/taxopress-ai/taxopress-ai.php:446
 msgid "Select..."
 msgstr "Sélectionnez..."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:50
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:159
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:277
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:406
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:427
 msgid "Selected content is empty."
 msgstr "Le contenu sélectionné est vide."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:485
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:490
 msgid "Selected taxonomy is not associated with the preview post type."
 msgstr ""
 "La taxonomie sélectionnée n’est pas associée au type de publication de "
 "l’aperçu."
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1577 inc/taxonomies-functions.php:1624
+#: inc/taxonomies-functions.php:1599 inc/taxonomies-functions.php:1646
 #: inc/taxonomies.php:1176
 #, php-format
 msgid "Separate %s with commas"
@@ -3151,11 +3336,11 @@ msgid "Sets a custom query_var slug for this taxonomy."
 msgstr "Définissez un slug query_var personnalisé pour cette taxonomie."
 
 #: inc/autoterms-logs-table.php:164 inc/autoterms-logs-table.php:195
-#: inc/autoterms_content.php:142 inc/class.admin.php:606
+#: inc/autoterms_content.php:142 inc/class.admin.php:610
 msgid "Settings"
 msgstr "Réglages"
 
-#: inc/autolinks-functions.php:269 inc/autoterms-functions.php:397
+#: inc/autolinks-functions.php:269 inc/autoterms-functions.php:405
 #: inc/autoterms_content.php:102 inc/post-tags-functions.php:189
 #: inc/related-posts-functions.php:233 inc/tag-clouds-functions.php:240
 #: modules/taxopress-ai/taxopress-ai.php:167
@@ -3171,7 +3356,7 @@ msgstr "Code court"
 msgid "Shortcode entry successfully deleted."
 msgstr "L’entrée du code court a été supprimé avec succès."
 
-#: inc/post-tags.php:699 inc/related-posts.php:966 inc/tag-clouds.php:854
+#: inc/post-tags.php:699 inc/related-posts.php:1039 inc/tag-clouds.php:854
 msgid "Shortcode: "
 msgstr "Code court : "
 
@@ -3271,14 +3456,14 @@ msgstr "Afficher dans les menus de l’interface publique"
 msgid "Show in REST API"
 msgstr "Afficher dans l’API REST"
 
-#: inc/autoterms.php:767 modules/taxopress-ai/classes/TaxoPressAiFields.php:77
+#: inc/autoterms.php:865 modules/taxopress-ai/classes/TaxoPressAiFields.php:77
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:86
 msgid "Show Term Post Count"
 msgstr "Afficher le nombre de publications du terme"
 
 #: inc/taxonomies.php:835
 msgid "Show user interface"
-msgstr "Afficher l’interface de l’utilisateur ou utilisatrice"
+msgstr "Afficher l’interface de l’utilisateur/utilisatrice"
 
 #: inc/autolinks-table.php:345 inc/post-tags-table.php:344
 #: inc/related-posts-table.php:402
@@ -3290,7 +3475,7 @@ msgid "Singular Label"
 msgstr "Libellé au singulier"
 
 #: inc/class-tag-table.php:42 inc/class.widgets.php:240 inc/tag-clouds.php:474
-#: inc/taxonomies.php:376 inc/terms-table.php:113 inc/terms-table.php:677
+#: inc/taxonomies.php:376 inc/terms-table.php:113 inc/terms-table.php:754
 msgid "Slug"
 msgstr "Slug"
 
@@ -3315,7 +3500,7 @@ msgstr "Sources"
 msgid "Special character not allowed in slug."
 msgstr "Les caractères spéciaux ne sont pas permis dans le slug."
 
-#: inc/related-posts.php:515
+#: inc/related-posts.php:516
 msgid "Specify the number of related posts to display."
 msgstr "Spécifier le nombre de publications similaires à afficher."
 
@@ -3327,12 +3512,12 @@ msgstr "Commencez à taper pour rechercher"
 msgid "Status message"
 msgstr "Message de l’état"
 
-#: inc/autolinks.php:702 inc/autoterms.php:942
+#: inc/autolinks.php:702 inc/autoterms.php:1045
 msgid "style"
 msgstr "style"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:223
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:226
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:228
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:231
 msgid "Suggest Existing Terms"
 msgstr "Suggérer des termes existants"
 
@@ -3350,7 +3535,7 @@ msgstr "Suggérer des termes en utilisant l’IA"
 msgid "suggested terms"
 msgstr "termes suggérés"
 
-#: inc/autoterms.php:886
+#: inc/autoterms.php:984
 msgid "Support hashtags symbols # in Auto Terms."
 msgstr ""
 "Prise en charge des symboles # des hashtags dans les termes automatiques."
@@ -3363,7 +3548,7 @@ msgstr "Synonymes"
 msgid "Table List"
 msgstr "Liste du tableau"
 
-#: inc/class-tag-table.php:12 inc/class.admin.php:799
+#: inc/class-tag-table.php:12 inc/class.admin.php:803
 msgid "Tag Cloud"
 msgstr "Nuage d’étiquettes"
 
@@ -3387,16 +3572,16 @@ msgstr "Étiquettes"
 msgid "Tags Cloud"
 msgstr "Nuages d’étiquettes"
 
-#: inc/class.admin.php:800 inc/class.admin.php:970
+#: inc/class.admin.php:804 inc/class.admin.php:974
 msgid "Tags for Current Post"
 msgstr "Étiquettes de la publication actuelle"
 
-#: inc/class.client.post_tags.php:26 inc/helper.options.default.php:63
+#: inc/class.client.post_tags.php:26 inc/helper.options.default.php:67
 #: inc/post-tags-functions.php:152
 msgid "Tags: "
 msgstr "Étiquettes : "
 
-#: inc/autoterms.php:835
+#: inc/autoterms.php:933
 msgid "Target content"
 msgstr "Contenu ciblé"
 
@@ -3412,24 +3597,24 @@ msgstr "Taxonomies dans la boîte méta"
 
 #: inc/autolinks-table.php:67 inc/autolinks.php:388
 #: inc/autoterms-logs-table.php:137 inc/autoterms-logs-table.php:190
-#: inc/autoterms-table.php:67 inc/autoterms.php:500
+#: inc/autoterms-table.php:67 inc/autoterms.php:505 inc/autoterms.php:551
 #: inc/class-taxonomies-table.php:14 inc/class.admin.clickterms.php:55
 #: inc/post-tags-table.php:67 inc/post-tags.php:373
 #: inc/related-posts-table.php:67 inc/related-posts.php:441
 #: inc/tag-clouds-table.php:67 inc/tag-clouds.php:412 inc/terms-table.php:115
-#: inc/terms-table.php:211
+#: inc/terms-table.php:247
 msgid "Taxonomy"
 msgstr "Taxonomie"
 
-#: inc/taxonomies-functions.php:1729
+#: inc/taxonomies-functions.php:1751
 msgid "Taxonomy has been successfully activated"
 msgstr "La taxonomie a été activée avec succès"
 
-#: inc/taxonomies-functions.php:1720
+#: inc/taxonomies-functions.php:1742
 msgid "Taxonomy has been successfully deactivated"
 msgstr "La taxonomie a été désactivée avec succès"
 
-#: inc/taxonomies-functions.php:1738
+#: inc/taxonomies-functions.php:1760
 msgid "Taxonomy has been successfully deleted"
 msgstr "La taxonomie a été supprimée avec succès"
 
@@ -3443,7 +3628,7 @@ msgstr "Le slug de taxonomie ne peut pas être uniquement des chiffres."
 
 #. Name of the plugin
 #. Author of the plugin
-#: inc/class-taxonomies-table.php:367 inc/class.admin.php:593
+#: inc/class-taxonomies-table.php:367 inc/class.admin.php:597
 #: inc/class.admin.post.php:38 modules/taxopress-ai/taxopress-ai.php:780
 msgid "TaxoPress"
 msgstr "TaxoPress"
@@ -3456,16 +3641,16 @@ msgstr ""
 "TaxoPress vous permet de créer et de gérer des étiquettes, des catégories et "
 "tous les termes de votre taxonomie WordPress."
 
-#: inc/autolinks.php:984 inc/autoterms.php:1259
+#: inc/autolinks.php:984 inc/autoterms.php:1416
 msgid "TaxoPress and Languages"
 msgstr "TaxoPress et les langues"
 
-#: inc/class.admin.php:552 inc/class.admin.php:553 inc/class.admin.php:555
-#: inc/class.admin.php:560
+#: inc/class.admin.php:556 inc/class.admin.php:557 inc/class.admin.php:559
+#: inc/class.admin.php:564
 msgid "TaxoPress Logs"
 msgstr "Journaux de TaxoPress"
 
-#: inc/class.admin.php:690
+#: inc/class.admin.php:694
 msgid "TaxoPress options resetted to default options!"
 msgstr ""
 "Les options de TaxoPress ont été réinitialisées aux options par défaut !"
@@ -3586,12 +3771,12 @@ msgstr "Code court Taxopress pour l’affichage des termes"
 msgid "Taxopress Terms for Current Post Shortcode"
 msgstr "Code court Taxopress pour les termes pour la publication actuelle"
 
-#: inc/autoterms.php:794
+#: inc/autoterms.php:892
 msgid "TaxoPress will add a term to the post if a synonym is found."
 msgstr ""
 "TaxoPress ajoutera un terme à la publication si un synonyme est trouvé."
 
-#: inc/related-posts.php:520
+#: inc/related-posts.php:521
 msgid ""
 "TaxoPress will attempt to automatically display related posts in this "
 "content. It may not be successful for all post types and layouts."
@@ -3618,22 +3803,26 @@ msgstr ""
 "contenu. Cela peut ne pas réussir pour tous les types de publication et de "
 "mises en page."
 
-#: inc/related-posts.php:590
+#: inc/related-posts.php:601
 msgid "TaxoPress will display related posts from selected post types."
 msgstr ""
 "TaxoPress affichera les publications similaires des types de publication "
 "sélectionnés."
 
-#: inc/class.admin.manage.php:63
+#: inc/class.admin.manage.php:68
 msgid "TaxoPress: Manage Terms"
 msgstr "TaxoPress : Gérer les termes"
 
-#: inc/class.admin.php:592 inc/class.admin.php:605
+#: inc/class.admin.php:596 inc/class.admin.php:609
 #: views/admin/page-settings.php:4
 msgid "TaxoPress: Options"
 msgstr "TaxoPress : Options"
 
-#: inc/terms-functions.php:81 inc/terms-table.php:258
+#: inc/terms-functions.php:118
+msgid "Term copied successfully."
+msgstr "Le terme a bien été copié."
+
+#: inc/terms-functions.php:127 inc/terms-table.php:294
 msgid "Term deleted successfully."
 msgstr "Le terme a bien été supprimé."
 
@@ -3645,12 +3834,12 @@ msgstr "Classe div d’affichage du terme"
 msgid "Term group"
 msgstr "Groupe du terme"
 
-#: inc/autolinks.php:843 inc/post-tags.php:601 inc/related-posts.php:823
+#: inc/autolinks.php:843 inc/post-tags.php:601 inc/related-posts.php:834
 #: inc/tag-clouds.php:761
 msgid "Term link class"
 msgstr "Classe lien de terme"
 
-#: inc/post-tags.php:614 inc/related-posts.php:836 inc/tag-clouds.php:774
+#: inc/post-tags.php:614 inc/related-posts.php:866 inc/tag-clouds.php:774
 msgid "Term link format"
 msgstr "Format du lien du terme"
 
@@ -3658,12 +3847,12 @@ msgstr "Format du lien du terme"
 msgid "Term Name"
 msgstr "Nom du terme"
 
-#: inc/terms-table.php:672
+#: inc/terms-table.php:749
 msgctxt "term name"
 msgid "Name"
 msgstr "Nom"
 
-#: inc/terms-table.php:681
+#: inc/terms-table.php:758
 msgctxt "term name"
 msgid "Taxonomy"
 msgstr "Taxonomie"
@@ -3676,38 +3865,59 @@ msgstr "Nom du terme + nom de la taxonomie"
 msgid "Term Name + Taxonomy Slug"
 msgstr "Nom du terme + slug de la taxonomie"
 
-#: inc/terms-functions.php:90
+#: inc/terms-functions.php:136
 msgid "Term removed from all posts successfully."
 msgstr "Le terme a bien été retiré de toutes les publications."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:183
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:196
 msgid "Term Results"
 msgstr "Résultats du terme"
 
-#: inc/class.admin.manage.php:453
+#: inc/class.admin.php:988
+msgid "Term Synonyms"
+msgstr "Synonymes du terme"
+
+#: inc/class.admin.manage.php:571
 msgid "Term to merge and New Term must not contain same term."
 msgstr ""
 "Le terme à fusionner et le nouveau terme ne doivent pas contenir le même "
 "terme."
 
-#: inc/class.admin.manage.php:797
+#: inc/class.admin.manage.php:915
 #, php-format
 msgid "Term(s) added to %1s %2s."
 msgstr "Terme(s) ajouté(s) à %1s %2s."
 
-#: inc/class.admin.manage.php:211
+#: inc/terms-table.php:322
+msgid "Term(s) copied successfully."
+msgstr "Les termes ont bien été copiés."
+
+#: inc/class.admin.manage.php:1116
+msgid "Term(s) does not exist."
+msgstr "Les termes n’existent pas."
+
+#: inc/class.admin.manage.php:1162
+#, php-format
+msgid "Term(s) removed from %1s %2s."
+msgstr "Termes retirés de %1s %2s."
+
+#: inc/class.admin.manage.php:230
 msgid "Term(s) to add:"
 msgstr "Terme(s) à ajouter :"
 
-#: inc/class.admin.manage.php:203
+#: inc/class.admin.manage.php:222 inc/class.admin.manage.php:276
 msgid "Term(s) to match:"
 msgstr "Terme(s) à faire correspondre :"
 
-#: inc/class.admin.manage.php:286
+#: inc/class.admin.manage.php:359
 msgid "Term(s) to merge. These terms will be deleted"
 msgstr "Terme(s) à fusionner. Ces termes seront supprimés"
 
-#: inc/class.admin.manage.php:244
+#: inc/class.admin.manage.php:284
+msgid "Term(s) to remove:"
+msgstr "Terme(s) à retirer :"
+
+#: inc/class.admin.manage.php:317
 msgid "Term(s) to rename:"
 msgstr "Terme(s) à renommer :"
 
@@ -3729,7 +3939,7 @@ msgstr "Termes ajoutés"
 msgid "Terms added successfully"
 msgstr "Termes bien ajoutés"
 
-#: inc/terms-table.php:255
+#: inc/terms-table.php:291
 msgid "Terms deleted successfully."
 msgstr "Les termes ont bien été supprimés."
 
@@ -3742,6 +3952,10 @@ msgstr "Affichage de termes"
 #: inc/class.shortcode_widgets.php:15
 msgid "Terms Display (TaxoPress Shortcode)"
 msgstr "Affichage des termes (TaxoPress Code court)"
+
+#: blocks/tag-clouds.php:66
+msgid "Terms Display (TaxoPress)"
+msgstr "Affichage des termes (TaxoPress)"
 
 #: inc/class.shortcode_widgets.php:123
 msgid "Terms Display are added on "
@@ -3785,7 +3999,7 @@ msgstr "Les termes pour la publication actuelle sont ajoutés sur "
 msgid "Terms for Current Post div class"
 msgstr "Classe div termes pour la publication actuelle"
 
-#: inc/autoterms.php:950
+#: inc/autoterms.php:1053
 msgid "Terms inside these HTML tags will not be used to generate terms."
 msgstr ""
 "Les termes situés à l’intérieur de ces balises HTML ne seront pas utilisés "
@@ -3797,14 +4011,22 @@ msgstr ""
 "Les termes situés à l’intérieur de ces balises HTML n’auront pas appliqué de "
 "liens automatiques."
 
-#: inc/class.admin.manage.php:177
+#: inc/class.admin.manage.php:196
 #, php-format
 msgid "Terms will be added to all %s If no \"Term(s) to match\" is specified."
 msgstr ""
 "Les termes seront ajoutés à tous les %s si aucun « Terme(s) à correspondre » "
 "n’est spécifié."
 
-#: inc/related-posts.php:658
+#: inc/class.admin.manage.php:250
+#, php-format
+msgid ""
+"Terms will be removed from all %s If no \"Term(s) to match\" is specified."
+msgstr ""
+"Les termes seront retirés de tous les %s si aucun « Terme(s) à "
+"correspondre » n’est spécifié."
+
+#: inc/related-posts.php:669
 msgid "Text to display after posts list"
 msgstr "Texte à afficher après la liste des publications"
 
@@ -3812,7 +4034,7 @@ msgstr "Texte à afficher après la liste des publications"
 msgid "Text to display after terms list"
 msgstr "Texte à afficher après la liste des étiquettes"
 
-#: inc/related-posts.php:642
+#: inc/related-posts.php:653
 msgid "Text to display before posts list"
 msgstr "Texte à afficher avant la liste des publications"
 
@@ -3824,11 +4046,11 @@ msgstr "Texte à afficher avant la liste des étiquettes"
 msgid "Text to display if no terms found"
 msgstr "Texte à afficher si aucune étiquette n’est trouvée"
 
-#: inc/related-posts.php:766
+#: inc/related-posts.php:777
 msgid "Text to show when there is no related post"
 msgstr "Texte à afficher lorsqu’il n’y a pas de publication similaire"
 
-#: inc/class.admin.php:773
+#: inc/class.admin.php:777
 #, php-format
 msgid "Thanks for using TaxoPress | %1sTaxoPress.com%2s | Version %3s"
 msgstr "Merci d’utiliser TaxoPress | %1sTaxoPress.com%2s | Version %3s"
@@ -3850,7 +4072,7 @@ msgstr ""
 "L’intégration de Dandelion nécessite une clé API. Veuillez ajouter votre clé "
 "API dans les réglages de termes automatiques."
 
-#: inc/related-posts.php:995
+#: inc/related-posts.php:1068
 msgid "The date of the post (this shows inside a tooltip)"
 msgstr "La date de la publication (cela s’affiche dans une infobulle)"
 
@@ -3870,7 +4092,7 @@ msgstr ""
 "L’intégration de Ibm Watson nécessite une clé API. Veuillez ajouter votre "
 "clé API dans les réglages de termes automatiques."
 
-#: inc/related-posts.php:998
+#: inc/related-posts.php:1071
 msgid "The ID of the post"
 msgstr "L’ID de la publication"
 
@@ -3916,11 +4138,11 @@ msgstr ""
 "peut offrir de meilleures performances. Si votre serveur ne supporte pas "
 "cette fonctionnalité, TaxoPress utilisera le moteur habituel."
 
-#: inc/related-posts.php:997
+#: inc/related-posts.php:1070
 msgid "The number of comments on the post"
 msgstr "Le nombre de commentaires sur la publication"
 
-#: inc/related-posts.php:996
+#: inc/related-posts.php:1069
 msgid "The number of tags used by both posts"
 msgstr "Le nombre de balises utilisées par les deux publications"
 
@@ -3928,7 +4150,7 @@ msgstr "Le nombre de balises utilisées par les deux publications"
 msgid "The number of times the term is used"
 msgstr "Le nombre de fois où le terme est utilisé"
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:399
+#: modules/taxopress-ai/classes/TaxoPressAiApi.php:420
 msgid ""
 "The OpenAI integration requires an API Key. Please add your API Key in the "
 "Auto Term settings."
@@ -3936,19 +4158,19 @@ msgstr ""
 "L’intégration de OpenAI nécessite une clé API. Veuillez ajouter votre clé "
 "API dans les réglages de termes automatiques."
 
-#: inc/related-posts.php:1003
+#: inc/related-posts.php:1076
 msgid "The post category"
 msgstr "La catègorie de la publication"
 
-#: inc/related-posts.php:1002
+#: inc/related-posts.php:1075
 msgid "The post content"
 msgstr "Le contenu de la publication"
 
-#: inc/related-posts.php:1000
+#: inc/related-posts.php:1073
 msgid "The post excerpt"
 msgstr "L’extrait de la publication"
 
-#: inc/related-posts.php:1001
+#: inc/related-posts.php:1074
 msgid "The post featured image url"
 msgstr "L’url de l’image mise en avant de la publication"
 
@@ -3976,7 +4198,7 @@ msgstr ""
 #: inc/taxonomies.php:1399
 msgid "The taxonomy is for public use. It can be seen by frontend users."
 msgstr ""
-"La taxonomie est à usage public. Elle peut être vue par les utilisateurs et "
+"La taxonomie est à usage public. Elle peut être vue par les utilisateurs/"
 "utilisatrices de l’interface publique."
 
 #: inc/taxonomies.php:1424
@@ -4000,11 +4222,11 @@ msgstr ""
 "utilisés » dans la boîte méta de la taxonomie lorsqu’aucun élément n’est "
 "disponible."
 
-#: inc/related-posts.php:994
+#: inc/related-posts.php:1067
 msgid "The title of the post"
 msgstr "Le titre de la publication"
 
-#: inc/related-posts.php:993
+#: inc/related-posts.php:1066
 msgid "The URL of the post"
 msgstr "L’URL de la publication"
 
@@ -4033,7 +4255,7 @@ msgstr ""
 msgid "There are no terms that are relevant to your content."
 msgstr "Il n’y a pas de termes pertinents pour votre contenu."
 
-#: inc/class.client.related_posts.php:453
+#: inc/class.client.related_posts.php:502
 msgid "There is no excerpt because this is a protected post."
 msgstr "Il n’y a pas d’extrait car ceci est une publication protégée."
 
@@ -4055,14 +4277,21 @@ msgstr ""
 "Ceci contrôle les termes de la taxonomie qui sont affichés dans l’écran "
 "« Publications »."
 
-#: inc/helper.options.admin.php:164
+#: inc/helper.options.admin.php:176
 msgid ""
 "This controls which taxonomies are available for the Linked Terms feature."
 msgstr ""
 "Ceci contrôle quelles taxonomies sont disponibles pour la fonctionnalité "
 "« Termes liés »."
 
-#: inc/autoterms.php:1040
+#: inc/helper.options.admin.php:188
+msgid ""
+"This controls which taxonomies are available for the Term Synonyms feature."
+msgstr ""
+"Ceci contrôle quelles taxonomies sont disponibles pour la fonctionnalité "
+"« Synonymes du terme »."
+
+#: inc/autoterms.php:1143
 msgid ""
 "This enables you to add Auto Terms to existing content in batches. If you "
 "have a lot of existing content, set this to a lower number to avoid timeouts."
@@ -4080,7 +4309,7 @@ msgstr ""
 "avez beaucoup de contenu existant, fixez cette valeur à un nombre plus "
 "faible pour éviter les temps dépassés."
 
-#: inc/autoterms.php:1029 inc/autoterms_content.php:203
+#: inc/autoterms.php:1132 inc/autoterms_content.php:203
 msgid ""
 "This enables you to skip posts that have already been analyzed by the "
 "Existing Content feature."
@@ -4142,6 +4371,11 @@ msgstr ""
 "Cette fonction vous permet de créer de nouvelles taxonomies et de modifier "
 "tous les réglages de chaque taxonomie."
 
+#: inc/class.admin.manage.php:434
+msgid "This feature allows you to hide rarely used terms."
+msgstr ""
+"Cette fonctionnalité vous permet de masquer les termes rarement utilisés."
+
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:18
 msgid ""
 "This feature allows you to manage all the terms that are currently attached "
@@ -4150,7 +4384,7 @@ msgstr ""
 "Cette fonctionnalité vous permet de gérer tous les termes qui sont "
 "actuellement associés à une publication."
 
-#: inc/class.admin.manage.php:138
+#: inc/class.admin.manage.php:151
 msgid ""
 "This feature allows you to manage your content terms by adding, renaming, "
 "merging and deleting unused terms."
@@ -4166,7 +4400,7 @@ msgstr ""
 "Cette fonctionnalité vous permet de modifier rapidement les termes associés "
 "à plusieurs publications en même temps."
 
-#: inc/class.admin.manage.php:311
+#: inc/class.admin.manage.php:384
 msgid "This feature allows you to remove rarely used terms."
 msgstr ""
 "Cette fonctionnalité vous permet de supprimer les termes rarement utilisés."
@@ -4214,7 +4448,7 @@ msgstr ""
 "publication contient les termes « WordPress » et «  Site », les publications "
 "similaires afficheront d’autres publications contenant ces mêmes termes."
 
-#: inc/class.admin.manage.php:174
+#: inc/class.admin.manage.php:193
 #, php-format
 msgid ""
 "This feature lets you add one or more new terms to all %s which match any of "
@@ -4223,13 +4457,22 @@ msgstr ""
 "Cette fonctionnalité vous permet d’ajouter un ou plusieurs nouveaux termes à "
 "tous vos %s qui correspondent à l’un des termes donnés."
 
-#: inc/class.admin.php:738
+#: inc/class.admin.manage.php:247
+#, php-format
+msgid ""
+"This feature lets you remove one or more terms from all %s which match any "
+"of the terms given."
+msgstr ""
+"Cette fonctionnalité vous permet de retirer un ou plusieurs termes de tous "
+"%s qui correspondent à l’un des termes donnés."
+
+#: inc/class.admin.php:742
 msgid "This feature requires at least 1 tag to work. Begin by adding tags!"
 msgstr ""
 "Cette fonctionnalité nécéssite au moins 1 étiquette pour fonctionner. "
 "Commencez par ajouter des étiquettes !"
 
-#: inc/class.admin.manage.php:269
+#: inc/class.admin.manage.php:342
 msgid ""
 "This feature will delete existing terms and replace them with another term. "
 "If you want to merge term “A” into term “B”, put “A” in the first box and "
@@ -4240,7 +4483,7 @@ msgstr ""
 "avec le terme « B », mettez « A » dans la première case et « B » dans la "
 "seconde."
 
-#: inc/class.admin.php:740
+#: inc/class.admin.php:744
 msgid ""
 "This feature works only with activated JavaScript. Activate it in your Web "
 "browser so you can!"
@@ -4256,7 +4499,7 @@ msgstr "C’est la couleur du terme le moins populaire"
 msgid "This is the color of the most popular term"
 msgstr "C’est la couleur du terme le plus populaire"
 
-#: inc/autoterms.php:1051 inc/autoterms_content.php:225
+#: inc/autoterms.php:1154 inc/autoterms_content.php:225
 msgid ""
 "This is the wait time (in seconds) between processing batches of Auto Terms. "
 "If you have a lot of existing content, set this to a higher number to avoid "
@@ -4278,8 +4521,9 @@ msgstr ""
 "d’affichage des termes ». Vous trouverez plus de détails %1sdans la "
 "documentation%2s."
 
-#: blocks/related-posts.php:62 inc/class.shortcode_widgets.php:120
-#: inc/posts-tags-widget.php:101 inc/related-posts-widget.php:107
+#: blocks/related-posts.php:62 blocks/tag-clouds.php:62
+#: inc/class.shortcode_widgets.php:120 inc/posts-tags-widget.php:101
+#: inc/related-posts-widget.php:107
 msgid "this page."
 msgstr "cette page."
 
@@ -4312,7 +4556,7 @@ msgstr ""
 "les utilisateurs/utilisatrices verront lorsqu’ils créeront et modifieront du "
 "contenu."
 
-#: inc/autoterms.php:1134
+#: inc/autoterms.php:1237
 msgid "This setting allows you to add Auto Terms only to recent content."
 msgstr ""
 "Ce réglage vous permet d’ajouter des termes automatiques uniquement au "
@@ -4337,7 +4581,7 @@ msgstr ""
 "Ce réglage détermine le nombre maximum de liens automatiques dans une "
 "publication."
 
-#: inc/class.admin.manage.php:589
+#: inc/class.admin.manage.php:707
 #, php-format
 msgid "This term is not associated with any %1$s."
 msgstr "Ce terme n’est associé à aucune %1$s."
@@ -4358,7 +4602,7 @@ msgstr ""
 "Ce widget n’est plus mis à jour. Veuillez utiliser le widget « Nuage "
 "d’étiquettes (TaxoPress Code court) » à la place."
 
-#: inc/autoterms.php:660
+#: inc/autoterms.php:758
 msgid ""
 "This will add existing terms from the taxonomy selected in the \"General\" "
 "tab."
@@ -4366,13 +4610,21 @@ msgstr ""
 "Cela ajoutera les termes existants de la taxonomie sélectionnée dans "
 "l’onglet « Général »."
 
-#: inc/autoterms.php:768 modules/taxopress-ai/classes/TaxoPressAiFields.php:78
+#: inc/autoterms.php:866 modules/taxopress-ai/classes/TaxoPressAiFields.php:78
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:87
 msgid "This will show the number of posts attached to the terms."
 msgstr "Ceci montrera le nombre de publications attachées aux termes."
 
+#: inc/related-posts.php:907
+msgid "Thumbnail (150x150)"
+msgstr "Miniature (150x150)"
+
+#: inc/related-posts.php:922
+msgid "Thumbnail image resolution"
+msgstr "Résolution de l’image miniature"
+
 #: inc/autolinks-table.php:66 inc/autolinks.php:341 inc/autoterms-table.php:66
-#: inc/autoterms.php:452 inc/post-tags-table.php:66 inc/post-tags.php:324
+#: inc/autoterms.php:457 inc/post-tags-table.php:66 inc/post-tags.php:324
 #: inc/posts-table.php:35 inc/related-posts-table.php:66
 #: inc/related-posts.php:323 inc/tag-clouds-table.php:66 inc/tag-clouds.php:326
 #: inc/terms-table.php:112
@@ -4421,11 +4673,11 @@ msgstr ""
 "TaxoPress Pro."
 
 #: inc/autolinks.php:774 inc/autolinks.php:808 inc/autolinks.php:873
-#: inc/autoterms.php:632 inc/autoterms.php:645 inc/autoterms.php:677
-#: inc/autoterms.php:690 inc/autoterms.php:721 inc/autoterms.php:757
-#: inc/autoterms.php:824 inc/autoterms.php:849 inc/autoterms.php:874
-#: inc/autoterms.php:1017 inc/autoterms_content.php:191 inc/post-tags.php:559
-#: inc/related-posts.php:347 inc/related-posts.php:782 inc/tag-clouds.php:351
+#: inc/autoterms.php:730 inc/autoterms.php:743 inc/autoterms.php:775
+#: inc/autoterms.php:788 inc/autoterms.php:819 inc/autoterms.php:855
+#: inc/autoterms.php:922 inc/autoterms.php:947 inc/autoterms.php:972
+#: inc/autoterms.php:1120 inc/autoterms_content.php:191 inc/post-tags.php:559
+#: inc/related-posts.php:347 inc/related-posts.php:793 inc/tag-clouds.php:351
 #: inc/tag-clouds.php:619 inc/tag-clouds.php:691 inc/taxonomies.php:490
 #: inc/taxonomies.php:608 inc/taxonomies.php:622 inc/taxonomies.php:728
 #: inc/taxonomies.php:764 inc/taxonomies.php:790 inc/taxonomies.php:824
@@ -4468,17 +4720,17 @@ msgstr "« Termes pour la publication actuelle » illimités"
 msgid "Unordered List (UL/LI)"
 msgstr "Liste non ordonnée (UL/LI)"
 
-#: inc/autoterms-logs-table.php:550 inc/terms-table.php:697
+#: inc/autoterms-logs-table.php:550 inc/terms-table.php:774
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:299
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:308
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:304
+#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:316
 #, php-format
 msgid "Update %1s on this %2s"
 msgstr "Mise à jour de %1s sur ce %2s"
 
-#: inc/taxonomies-functions.php:1574 inc/taxonomies-functions.php:1616
+#: inc/taxonomies-functions.php:1596 inc/taxonomies-functions.php:1638
 #, php-format
 msgid "Update %s"
 msgstr "Mettre à jour %s"
@@ -4501,12 +4753,12 @@ msgstr "Mettre à jour le nom de l’élément"
 msgid "Update Media Tag name"
 msgstr "Mis à jour du nom d’étiquette de média"
 
-#: inc/class.admin.php:557
+#: inc/class.admin.php:561
 msgid "Update TaxoPress Logs"
 msgstr "Mise à jour des journaux de TaxoPress"
 
-#: inc/autolinks.php:921 inc/autoterms.php:1197 inc/post-tags.php:647
-#: inc/related-posts.php:915 inc/tag-clouds.php:806
+#: inc/autolinks.php:921 inc/autoterms.php:1354 inc/post-tags.php:647
+#: inc/related-posts.php:988 inc/tag-clouds.php:806
 #: includes-core/TaxopressCoreAdmin.php:53
 #: includes-core/TaxopressCoreAdmin.php:118
 #: includes-core/TaxopressCoreAdmin.php:171
@@ -4530,7 +4782,7 @@ msgstr "Passer en version Pro"
 msgid "Upgrade to TaxoPress Pro"
 msgstr "Passer en version TaxoPress Pro"
 
-#: inc/autoterms.php:706
+#: inc/autoterms.php:804
 msgid "Use all the terms in the selected taxonomy."
 msgstr "Utiliser tous les termes de la taxonomie sélectionnée."
 
@@ -4554,7 +4806,7 @@ msgstr "Utiliser les termes liés"
 msgid "Use new Auto Links engine"
 msgstr "Utiliser le nouveau moteur de liens automatiques"
 
-#: inc/autoterms.php:733
+#: inc/autoterms.php:831
 msgid "Use only some terms in the selected taxonomy."
 msgstr "N’utiliser que certains termes de la taxonomie sélectionnée."
 
@@ -4564,8 +4816,8 @@ msgstr ""
 "Utilisez des expressions régulières pour modifier les termes automatiques"
 
 #: includes-core/TaxopressCoreAdmin.php:113
-msgid "Use Synonyms and Linked Terms"
-msgstr "Utiliser les synonymes et les termes liés"
+msgid "Use Synonyms"
+msgstr "Utiliser les synonymes"
 
 #: inc/class.admin.php:497
 msgid "Use this media"
@@ -4610,13 +4862,13 @@ msgstr ""
 "Utilisé pour indiquer qu’il n’y a pas de termes dans la taxonomie donnée "
 "associés à un objet."
 
-#: inc/class-taxonomies-table.php:295 inc/terms-table.php:435
+#: inc/class-taxonomies-table.php:295 inc/terms-table.php:498
 msgid "View"
 msgstr "Voir"
 
 #. Used for autofill
-#: inc/taxonomies-functions.php:1560 inc/taxonomies-functions.php:1561
-#: inc/taxonomies-functions.php:1601 inc/taxonomies-functions.php:1604
+#: inc/taxonomies-functions.php:1582 inc/taxonomies-functions.php:1583
+#: inc/taxonomies-functions.php:1623 inc/taxonomies-functions.php:1626
 #: inc/taxonomies.php:1037
 #, php-format
 msgid "View %s"
@@ -4659,7 +4911,7 @@ msgstr "Bienvenue à TaxoPress, l’extension de taxonomie pour WordPress"
 msgid "What to show"
 msgstr "Ce qu’il faut montrer"
 
-#: inc/autoterms.php:860
+#: inc/autoterms.php:958
 msgid "Whole words"
 msgstr "Mots entiers"
 
@@ -4729,9 +4981,13 @@ msgstr "Cœur de WordPress"
 msgid "WordPress Default"
 msgstr "WordPress par défaut"
 
-#: inc/autolinks.php:1022 inc/autoterms.php:1299
+#: inc/related-posts.php:843
+msgid "Y-m-d (e.g., 2024-10-09)"
+msgstr "d-m-Y (par ex. 09-10-2024)"
+
+#: inc/autolinks.php:1022 inc/autoterms.php:1456
 #: inc/class-taxonomies-table.php:388 inc/post-tags.php:767
-#: inc/related-posts.php:1039 inc/tag-clouds.php:926 inc/taxonomies.php:1654
+#: inc/related-posts.php:1112 inc/tag-clouds.php:926 inc/taxonomies.php:1654
 msgid "Yes"
 msgstr "Oui"
 
@@ -4739,7 +4995,7 @@ msgstr "Oui"
 msgid "You can also add HTML elements to the formatting."
 msgstr "Vous pouvez également ajouter des éléments HTML à la mise en forme."
 
-#: inc/post-tags.php:615 inc/related-posts.php:837
+#: inc/post-tags.php:615 inc/related-posts.php:867
 #, php-format
 msgid "You can find markers and explanations %1sin the documentation%2s."
 msgstr ""
@@ -4750,20 +5006,26 @@ msgstr ""
 msgid "You can only delete taxonomies created with TaxoPress."
 msgstr "Vous pouvez uniquement supprimer les taxonomies créées avec TaxoPress."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:203
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:208
 msgid ""
 "You must enable at least one AI integration source to use auto term preview."
 msgstr ""
 "Vous devez activer au moins une source d’intégration IA pour utiliser "
 "l’aperçu automatique des termes."
 
-#: inc/post-tags.php:477
+#: inc/related-posts.php:888
+msgid "You must set zero (0) to display all post categories."
+msgstr ""
+"Vous devez définir zéro (0) pour afficher toutes les catégories de "
+"publication."
+
+#: inc/post-tags.php:477 inc/related-posts.php:900
 msgid "You must set zero (0) to display all post tags."
 msgstr ""
 "Vous devez définir zéro (0) pour afficher toutes les étiquettes de "
 "publication."
 
-#: inc/post-tags.php:644 inc/related-posts.php:911
+#: inc/post-tags.php:644 inc/related-posts.php:984
 msgid ""
 "You're using TaxoPress Free.\n"
 "                                            The Pro version has more "
@@ -4773,7 +5035,7 @@ msgstr ""
 "                                            La version Pro a plus de "
 "fonctionnalités et de support."
 
-#: inc/autolinks.php:918 inc/autoterms.php:1193 inc/tag-clouds.php:802
+#: inc/autolinks.php:918 inc/autoterms.php:1350 inc/tag-clouds.php:802
 msgid ""
 "You're using TaxoPress Free.\n"
 "                                        The Pro version has more features "
@@ -4791,6 +5053,23 @@ msgid ""
 msgstr ""
 "Vous utilisez TaxoPress Free. La version Pro a plus de fonctionnalités et de "
 "support. %sPasser en Pro%s"
+
+#~ msgid "Add terms for published content."
+#~ msgstr "Ajouter des termes pour le contenu publié."
+
+#~ msgid "Add terms for unpublished content."
+#~ msgstr "Ajouter des termes pour le contenu non publié."
+
+#~ msgid "All TaxoPress AI features"
+#~ msgstr "Toutes les fonctionnalités de TaxoPress IA"
+
+#~ msgid "Related Posts shortcode are added on Related Post screen"
+#~ msgstr ""
+#~ "Le code court des publications similaires à été ajouté à l’écran des "
+#~ "publications similaires"
+
+#~ msgid "Use Synonyms and Linked Terms"
+#~ msgstr "Utiliser les synonymes et les termes liés"
 
 #~ msgid "AI Integration Settings"
 #~ msgstr "Réglages de l’intégration de l’IA"
@@ -4821,9 +5100,6 @@ msgstr ""
 #~ msgstr ""
 #~ "LSEG/Refinitiv est un service externe qui peut analyser votre contenu et "
 #~ "suggérer des termes pertinents. %1sCliquez ici pour plus de détails%2s."
-
-#~ msgid "Maximum number of related posts"
-#~ msgstr "Nombre maximum de publications similaires"
 
 #, php-format
 #~ msgid ""
@@ -4887,11 +5163,6 @@ msgstr ""
 #, php-format
 #~ msgid "All done! %s terms added."
 #~ msgstr "Terminé ! %s terme(s) ajouté(s)."
-
-#~ msgid "Kindly save your auto terms settings before running this function"
-#~ msgstr ""
-#~ "Veuillez enregistrer vos réglages de termes automatiques avant d’exécuter "
-#~ "cette fonction"
 
 #~ msgid "Manage TaxoPress AI integration"
 #~ msgstr "Gérer l’intégration de TaxoPress IA"
