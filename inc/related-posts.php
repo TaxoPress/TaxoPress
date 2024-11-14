@@ -521,8 +521,8 @@ class SimpleTags_Related_Post
                                                                 <table class="visbile-table">';
                                                         foreach ($term_auto_locations as $key => $value) {
 
-                                                            if ($key === 'post') {
-                                                                continue; //skip "post" in display tab
+                                                            if (in_array($key, ['post', 'page'])) {
+                                                                continue;
                                                             }
 
                                                             echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
@@ -540,9 +540,9 @@ class SimpleTags_Related_Post
 
                                                             echo '</td></tr>';
 
-                                                            if ($key === 'blogonly') {
-                                                                echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
-                                                            }
+                                                            // if ($key === 'blogonly') {
+                                                            //     echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
+                                                            // }
 
 
                                                         }
@@ -588,7 +588,7 @@ class SimpleTags_Related_Post
                                                         );
 
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Post Types',
-                                                                'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will display related posts from selected post types.',
+                                                                'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display related posts in "Posts" or "Pages" if you select those post types.',
                                                                 'simple-tags') . '</small></th><td>
                                                                 <table class="visbile-table">';
                                                         foreach ($post_types as $post_type) {

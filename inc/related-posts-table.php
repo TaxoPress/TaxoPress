@@ -388,8 +388,10 @@ class RelatedPosts_List extends WP_List_Table
         $embedded = (isset($item['embedded']) && is_array($item['embedded']) && count($item['embedded']) > 0) ? $item['embedded'] : [];
         $selected_post_type = isset($item['post_types']) ? $item['post_types'] : [];
 
-        if (in_array('post', $selected_post_type, true) && !in_array('post', $embedded, true)) {
-            $embedded[] = 'post';
+        foreach (['post', 'page'] as $type) {
+            if (in_array($type, $selected_post_type, true) && !in_array($type, $embedded, true)) {
+                $embedded[] = $type;
+            }
         }
         
         if ($embedded) {
