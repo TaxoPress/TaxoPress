@@ -467,16 +467,32 @@ class SimpleTags_Related_Post
 
 
                                                 <table class="form-table taxopress-table relatedpost_display"
-                                                    style="<?php echo $active_tab === 'relatedpost_display' ? '' : 'display:none;'; ?>">
+                                                       style="<?php echo $active_tab === 'relatedpost_display' ? '' : 'display:none;'; ?>">
                                                     <?php
+                                                        
+                                                        /**
+                                                         * Filters the arguments for post types to list for taxonomy association.
+                                                         *
+                                                         *
+                                                         * @param array $value Array of default arguments.
+                                                         */
                                                         $args = apply_filters('taxopress_attach_post_types_to_taxonomy', ['public' => true]);
 
+                                                        // If they don't return an array, fall back to the original default. Don't need to check for empty, because empty array is default for $args param in get_post_types anyway.
                                                         if (!is_array($args)) {
                                                             $args = ['public' => true];
                                                         }
+                                                        $output = 'objects'; // Or objects.
 
-                                                        $output = 'objects';
-                                                        $post_types = apply_filters('taxopress_get_post_types_for_taxonomies', get_post_types($args, $output), $args, $output);
+                                                        /**
+                                                         * Filters the results returned to display for available post types for taxonomy.
+                                                         *
+                                                         * @param array $value Array of post type objects.
+                                                         * @param array $args Array of arguments for the post type query.
+                                                         * @param string $output The output type we want for the results.
+                                                         */
+                                                        $post_types = apply_filters('taxopress_get_post_types_for_taxonomies',
+                                                            get_post_types($args, $output), $args, $output);
 
                                                         $term_auto_locations = [
                                                             'homeonly' => esc_attr__('Homepage', 'simple-tags'),
@@ -488,8 +504,8 @@ class SimpleTags_Related_Post
                                                             }
                                                         }
 
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_number_input([
+                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                         echo $ui->get_number_input([
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'number',
                                                             'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '3',
@@ -509,8 +525,9 @@ class SimpleTags_Related_Post
                                                                 continue; //skip "post" in display tab
                                                             }
 
-                                                            echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' . esc_html($value) . '</label></th><td>';
+                                                            echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
 
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_check_input([
                                                                 'checkvalue' => esc_attr($key),
                                                                 'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) ? 'true' : 'false',
@@ -526,9 +543,14 @@ class SimpleTags_Related_Post
                                                             if ($key === 'blogonly') {
                                                                 echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
                                                             }
+
+
                                                         }
                                                         echo '</table></td></tr>';
+
+
                                                     ?>
+
                                                 </table>
 
 
