@@ -481,7 +481,6 @@ class SimpleTags_Related_Post
                                                         $term_auto_locations = [
                                                             'homeonly' => esc_attr__('Homepage', 'simple-tags'),
                                                             'blogonly' => esc_attr__('Blog display', 'simple-tags'),
-                                                            'post'     => esc_attr__('Posts', 'simple-tags'),
                                                         ];
                                                         foreach ($post_types as $post_type) {
                                                             if (!in_array($post_type->name, ['attachment'])) {
@@ -500,26 +499,21 @@ class SimpleTags_Related_Post
                                                             'required'  => true,
                                                         ]);
 
-                                                        $selected_post_type = isset($current['post_types']) ? $current['post_types'] : [];
-                                                        $is_post_selected = in_array('post', $selected_post_type);
-
                                                         echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display related posts',
                                                                 'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display related posts in this content. It may not be successful for all post types and layouts.',
                                                                 'simple-tags') . '</small></th><td>
                                                                 <table class="visbile-table">';
                                                         foreach ($term_auto_locations as $key => $value) {
-                                                            
-                                                            $is_checked = ($key === 'post' && $is_post_selected) ? 'true' : 'false';
 
-                                                            if (isset($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) {
-                                                                $is_checked = 'true';
+                                                            if ($key === 'post') {
+                                                                continue; //skip "post" in display tab
                                                             }
 
                                                             echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' . esc_html($value) . '</label></th><td>';
 
                                                             echo $ui->get_check_input([
                                                                 'checkvalue' => esc_attr($key),
-                                                                'checked'    => $is_checked,
+                                                                'checked'    => (!empty($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) ? 'true' : 'false',
                                                                 'name'       => esc_attr($key),
                                                                 'namearray'  => 'embedded',
                                                                 'textvalue'  => esc_attr($key),
