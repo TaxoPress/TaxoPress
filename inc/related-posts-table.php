@@ -385,7 +385,13 @@ class RelatedPosts_List extends WP_List_Table
      */
     protected function column_embedded($item)
     {
-        $embedded = (isset($item['embedded']) && is_array($item['embedded']) && count($item['embedded']) > 0) ? $item['embedded'] : false;
+        $embedded = (isset($item['embedded']) && is_array($item['embedded']) && count($item['embedded']) > 0) ? $item['embedded'] : [];
+        $selected_post_type = isset($item['post_types']) ? $item['post_types'] : [];
+
+        if (in_array('post', $selected_post_type, true) && !in_array('post', $embedded, true)) {
+            $embedded[] = 'post';
+        }
+        
         if ($embedded) {
             $args = apply_filters('taxopress_attach_post_types_to_taxonomy', ['public' => true]);
             if (!is_array($args)) {
