@@ -544,6 +544,30 @@
 
     });
 
+       // Update term link format when format is changed to 'box'
+       if ($('body').hasClass('taxopress_page_st_related_posts')) {
+        $(document).on('change', 'select[name="taxopress_related_post[format]"]', function () {
+            var xformatField = $('textarea[name="taxopress_related_post[xformat]"]');
+            
+            if ($(this).val() === 'box') {
+                xformatField.val(
+                    '<a href="' + st_admin_localize.post_permalink + '" title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')">' +
+                    '<img src="' + st_admin_localize.post_thumb_url + '" height="200" width="200" class="custom-image-class"/>' + 
+                    '<br>' + st_admin_localize.post_title + '<br>'
+                     + st_admin_localize.post_date + '<br>'
+                     + st_admin_localize.post_category +
+                    '</a>'
+                );
+            } else {
+                xformatField.val(
+                    '<a href="' + st_admin_localize.post_permalink + '" title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')">' +
+                    st_admin_localize.post_title +
+                    '</a>'
+                );
+            }
+        });
+    }
+
 
     // -------------------------------------------------------------
     //   Post tags submit error
