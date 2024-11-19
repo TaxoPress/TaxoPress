@@ -2380,29 +2380,3 @@ function taxopress_get_dropdown(){
     }
 
 }
-
-
-function taxopress_filter_selected_term($query) {
-    if (is_admin() && $query->is_main_query() && isset($_GET['selected_term'])) {
-        $selected_term = sanitize_text_field($_GET['selected_term']);
-
-        if (strpos($selected_term, 'post_') === 0) {
-            $post_id = str_replace('post_', '', $selected_term);
-            $query->set('p', $post_id);
-
-        } elseif (strpos($selected_term, 'term_') === 0) {
-            $term_id = str_replace('term_', '', $selected_term);
-            $term = get_term($term_id);
-
-            if ($term && !is_wp_error($term)) {
-                $query->set('tax_query', [
-                    [
-                        'taxonomy' => $term->taxonomy,
-                        'field'    => 'term_id',
-                        'terms'    => $term_id,
-                    ],
-                ]);
-            }
-        }
-    }
-}
