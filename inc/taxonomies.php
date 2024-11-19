@@ -232,7 +232,13 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
     public function handle_taxopress_select2_filter() {
         $search_term = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
         $taxonomy = isset($_GET['taxonomy']) ? sanitize_text_field($_GET['taxonomy']) : 'category';
-        
+        $nonce = isset($_GET['nonce']) ? sanitize_text_field($_REQUEST['nonce']) : '';
+
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'st-admin-js')) {
+            wp_send_json_error(array('message' => esc_html__('Invalid nonce. Request is not authorized.', 'simple-tags')));
+            wp_die();
+        }
+
         $args = array(
             'taxonomy'   => $taxonomy,
             'hide_empty' => false,
