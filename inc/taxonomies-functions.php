@@ -2307,6 +2307,8 @@ function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
                 'name'            => $taxonomy->query_var,
                 'taxonomy'        => $taxonomy->name,
                 'value_field'     => 'slug',
+                'id'              => $taxonomy->name,
+                'class'           => 'taxopress-select2-term-filter'
             )
         );
 
@@ -2373,37 +2375,6 @@ function taxopress_get_dropdown(){
                     }
                 }
             }
-        }
-
-        if ($typenow == 'post') {
-
-            $selected_term = isset($_GET['selected_term']) ? sanitize_text_field($_GET['selected_term']) : '';
-            $selected_term_text = '';
-    
-            if (!empty($selected_term)) {
-                if (strpos($selected_term, 'post_') === 0) {
-                    $post_id = str_replace('post_', '', $selected_term);
-                    $post = get_post($post_id);
-                    if ($post) {
-                        $selected_term_text = $post->post_title;
-                    }
-                } elseif (strpos($selected_term, 'term_') === 0) {
-                    $term_id = str_replace('term_', '', $selected_term);
-                    $term = get_term($term_id);
-                    if ($term && !is_wp_error($term)) {
-                        $selected_term_text = $term->name;
-                    }
-                }
-            }
-
-            echo '<select id="taxopress-select2-filter" style="width: 200px;" data-placeholder="' . esc_attr__('Search Terms or Posts', 'simple-tags') . '">
-                    <option value="">' . esc_html__('Search Terms or Posts', 'simple-tags') . '</option>';
-    
-            if (!empty($selected_term) && !empty($selected_term_text)) {
-                echo '<option value="' . esc_attr($selected_term) . '" selected>' . esc_html($selected_term_text) . '</option>';
-            }
-    
-            echo '</select>';
         }
 
     }

@@ -227,72 +227,38 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
     }
 
      /**
-     * Select2 Search for Posts and Taxonomies
+     * Select2 Search taxonomy terms query
      */
     public function handle_taxopress_select2_filter() {
         $search_term = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
-        $results = array();
-    
-        if (empty($search_term)) {
-            $taxonomies = get_taxonomies(array('public' => true), 'names');
-            foreach ($taxonomies as $taxonomy) {
-                $terms = get_terms(array(
-                    'taxonomy'   => $taxonomy,
-                    'number'     => 10,
-                    'hide_empty' => false,
-                ));
-                foreach ($terms as $term) {
-                    $results[] = array(
-                        'id'       => 'term_' . $term->term_id,
-                        'text'     => $term->name,
-                        'type'     => 'taxonomy',
-                        'taxonomy' => $taxonomy
-                    );
-                }
-            }
-        } else {
-            $args = array(
-                'post_type'      => 'any',
-                's'              => $search_term,
-                'posts_per_page' => 10,
-                'post_status'    => 'publish',
+        $taxonomy = isset($_GET['taxonomy']) ? sanitize_text_field($_GET['taxonomy']) : 'category';
+        
+        $args = array(
+            'taxonomy'   => $taxonomy,
+            'hide_empty' => false,
+            'number'     => 20,
+            'search'     => $search_term,
+            'orderby'    => 'name',
+            'order'      => 'ASC',
+        );
+        
+        $terms = get_terms($args);
+        
+        $results = [];
+        foreach ($terms as $term) {
+            $results[] = array(
+                'id'       => $term->slug,
+                'text'     => $term->name,
             );
-            $query = new WP_Query($args);
-            
-            foreach ($query->posts as $post) {
-                $results[] = array(
-                    'id' => 'post_' . $post->ID,
-                    'text' => $post->post_title,
-                    'type' => 'post'
-                );
-            }
-    
-            $taxonomies = get_taxonomies(array('public' => true), 'names');
-            foreach ($taxonomies as $taxonomy) {
-                $terms = get_terms(array(
-                    'taxonomy'   => $taxonomy,
-                    'name__like' => $search_term,
-                    'number'     => 10,
-                    'hide_empty' => false,
-                ));
-                foreach ($terms as $term) {
-                    $results[] = array(
-                        'id'       => 'term_' . $term->term_id,
-                        'text'     => $term->name,
-                        'type'     => 'taxonomy',
-                        'taxonomy' => $taxonomy
-                    );
-                }
-            }
         }
     
         wp_send_json(array(
-            'items' => $results,
-            'more'  => (count($results) >= 10) ? true : false
+            'items' => $results
         ));
-    
+        
         wp_die();
     }
+    
 
 
     /**
