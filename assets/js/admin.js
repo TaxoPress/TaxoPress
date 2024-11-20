@@ -946,6 +946,44 @@
       }
     }
 
+        // -------------------------------------------------------------
+    //   Select2 Search Box for Posts and Taxonomies on wordpress post screen
+    // -------------------------------------------------------------
+    if ($('.taxopress-select2-term-filter').length > 0) {
+      taxopressTaxSelect2($('.taxopress-select2-term-filter'));
+        
+            function taxopressTaxSelect2(selector) {
+              selector.each(function() {
+                  $(this).ppma_select2({
+                      placeholder: $(this).data('placeholder') || 'Select Option...',
+                      allowClear: true,
+                      ajax: {
+                          url: st_admin_localize.ajaxurl,
+                          dataType: 'json',
+                          data: function(params) {
+                              return {
+                                  action: 'taxopress_select2_term_filter',
+                                  taxonomy: $(this).attr('id'),
+                                  s: params.term || '',
+                                  page: params.page || 1
+                              };
+                          },
+                          processResults: function(data, params) {
+                              params.page = params.page || 1;
+                              return {
+                                  results: data.items,
+                                  pagination: {
+                                      more: data.more
+                                  }
+                              };
+                          },
+                          cache: true
+                      }
+                  });
+              });
+          }
+    }
+
     /**
      * TaxoPress posts select2
      */

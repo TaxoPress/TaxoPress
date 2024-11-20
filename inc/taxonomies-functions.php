@@ -2307,6 +2307,8 @@ function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
                 'name'            => $taxonomy->query_var,
                 'taxonomy'        => $taxonomy->name,
                 'value_field'     => 'slug',
+                'id'              => $taxonomy->name,
+                'class'           => 'taxopress-select2-term-filter'
             )
         );
 
@@ -2322,7 +2324,7 @@ function taxopress_get_all_taxonomies() {
 
 function taxopress_get_dropdown(){
 
-    global $pagenow;
+    global $pagenow, $typenow;
 
     if ( is_admin() ) {
 

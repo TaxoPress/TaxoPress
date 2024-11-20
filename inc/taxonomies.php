@@ -27,6 +27,8 @@ class SimpleTags_Admin_Taxonomies
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
 
+        add_action('wp_ajax_taxopress_select2_term_filter', [$this, 'handle_taxopress_select2_filter']);
+
     }
 
     /**
@@ -223,6 +225,46 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
         <?php
         do_action('simpletags-taxonomies', SimpleTags_Admin::$taxonomy);
     }
+
+     /**
+     * Select2 Search taxonomy terms query
+     */
+    public function handle_taxopress_select2_filter() {
+        $search_term = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
+        $taxonomy = isset($_GET['taxonomy']) ? sanitize_text_field($_GET['taxonomy']) : 'category';
+        $nonce = isset($_GET['nonce']) ? sanitize_text_field($_REQUEST['nonce']) : '';
+
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'st-admin-js')) {
+            wp_send_json_error(array('message' => esc_html__('Invalid nonce. Request is not authorized.', 'simple-tags')));
+            wp_die();
+        }
+
+        $args = array(
+            'taxonomy'   => $taxonomy,
+            'hide_empty' => false,
+            'number'     => 20,
+            'search'     => $search_term,
+            'orderby'    => 'name',
+            'order'      => 'ASC',
+        );
+        
+        $terms = get_terms($args);
+        
+        $results = [];
+        foreach ($terms as $term) {
+            $results[] = array(
+                'id'       => $term->slug,
+                'text'     => $term->name,
+            );
+        }
+    
+        wp_send_json(array(
+            'items' => $results
+        ));
+        
+        wp_die();
+    }
+    
 
 
     /**
