@@ -166,7 +166,7 @@ function taxopress_create_default_post_tags()
     $defaults['number']    = (int)$options['tt_number'];
 
     $post_tags_default                                     = [];
-    $post_tags_default['taxopress_post_tags']['title']     = 'Terms for Current Post';
+    $post_tags_default['taxopress_post_tags']['title']     = esc_html__('Terms for Current Post', 'simple-tags');
     $post_tags_default['taxopress_post_tags']['taxonomy']  = 'post_tag';
     $post_tags_default['taxopress_post_tags']['embedded']  = [];
     $post_tags_default['taxopress_post_tags']['number']    = $defaults['number'];

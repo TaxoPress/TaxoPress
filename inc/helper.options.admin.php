@@ -99,7 +99,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         esc_html__('Metabox Access', 'simple-tags'),
         'checkbox',
         '1',
-        sprintf(esc_html__('Allow users in the %1s role to use the TaxoPress metabox.', 'simple-tags'), esc_html($role_info['name'])),
+        sprintf(esc_html__('Allow users in the %1s role to use the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
     // add metabox allowed taxonomies
@@ -108,7 +108,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .'">' . esc_html__('Taxonomies in Metabox', 'simple-tags') . '</div>',
         'multiselect',
         $all_taxonomy_options,
-        '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field description '. $hidden_field .'">' . sprintf(esc_html__('Select the taxonomies that users in %1s role can manage in the TaxoPress metabox.', 'simple-tags'), esc_html($role_info['name'])) . '</p>',
+        '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field description '. $hidden_field .'">' . sprintf(esc_html__('Select the taxonomies that users in %1s role can manage in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
         'metabox-tab-content metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .''
     );
     // add core removed taxonomies
@@ -117,7 +117,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content '. $hidden_field .'">' . esc_html__('Remove Default Metaboxes', 'simple-tags') . '</div>',
         'multiselect',
         $builtin_taxonomy_options,
-        '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content description '. $hidden_field .'">' . sprintf(esc_html__('Remove default taxonomy metaboxes for users in the %1s role.', 'simple-tags'), esc_html($role_info['name'])) . '</p>',
+        '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content description '. $hidden_field .'">' . sprintf(esc_html__('Remove default taxonomy metaboxes for users in the %1s role.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
 

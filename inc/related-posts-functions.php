@@ -145,7 +145,7 @@ function taxopress_create_default_related_post()
     }
 
     $default                                           = [];
-    $default['taxopress_related_post']['title']        = 'Related Posts';
+    $default['taxopress_related_post']['title']        = esc_html__('Related Posts', 'simple-tags');
     $default['taxopress_related_post']['title_header'] = 'h4';
     $default['taxopress_related_post']['before']       = '';
     $default['taxopress_related_post']['after']        = '';

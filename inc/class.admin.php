@@ -827,7 +827,7 @@ class SimpleTags_Admin
 				$pt_index = 0;
 				foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
 					$active_pt = ($pt_index === 0) ? 'active' : '';
-					$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".metabox-' . $role_name . '-content">' . esc_html($role_info['name']) . '</span>';
+					$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".metabox-' . $role_name . '-content">' . esc_html(translate_user_role($role_info['name'])) . '</span>';
 					$pt_index++;
 				}
 				$table_sub_tab = '<div class="st-metabox-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;

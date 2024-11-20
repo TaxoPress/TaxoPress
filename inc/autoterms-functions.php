@@ -277,7 +277,7 @@ function taxopress_create_default_autoterm()
 
     if($create_default){
         $default                                                   = [];
-        $default['taxopress_autoterm']['title']                    = 'Auto term';
+        $default['taxopress_autoterm']['title']                    = esc_html__('Auto term', 'simple-tags');
         $default['taxopress_autoterm']['taxonomy']                 = 'post_tag';
         $default['post_types']                                     = [];
         $default['post_status']                                    = ['publish'];
