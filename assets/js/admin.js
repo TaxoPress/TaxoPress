@@ -8,6 +8,7 @@
 
   $(document).ready(function () {
     
+    var autoTermProcessingPaused = false;
     
     // -------------------------------------------------------------
     //   Expand textarea height based on lines
@@ -774,34 +775,64 @@
       $('.auto-term-content-result-title').html('');
     });
 
-      function auto_terms_all_content(start_from, button) {
+    // Pause or Resume Auto Term Scan
+    $(document).on('click', '.pause-autoterm-scan', function (e) {
+        e.preventDefault();
+        var pause_text = $(this).data('pause-text');
+        var resume_text = $(this).data('resume-text');
+        var button = $('.taxopress-autoterm-all-content');
+        
+        if (!autoTermProcessingPaused) {
+            // Pause processing
+            autoTermProcessingPaused = true;
+            $(this).text(resume_text);
+            if (existingContentAjaxRequest) {
+                existingContentAjaxRequest.abort();
+                $(".taxopress-spinner").removeClass("is-active");
+            }
+        } else {
+            // Resume processing
+            autoTermProcessingPaused = false;
+            $(this).text(pause_text);
+            // Resume from last stored point
+            var resumeFrom = button.data('resume-from') || 0;
+            auto_terms_all_content(resumeFrom, button);
+        }
+    });
 
-          $(".taxopress-spinner").addClass("is-active");
-          button.attr('disabled', true);
+    function auto_terms_all_content(start_from, button) {
+        // Don't start new request if paused
+        if (autoTermProcessingPaused) {
+            return;
+        }
 
-          var data = $('#auto_term_content_form').serializeArray();
-          data.push({ name: 'action', value: 'taxopress_autoterms_content_by_ajax' });
-          data.push({ name: 'start_from', value: start_from });
-          data.push({ name: 'security', value: st_admin_localize.check_nonce });
+        $(".taxopress-spinner").addClass("is-active");
+        button.attr('disabled', true);
 
-          existingContentAjaxRequest = $.post(st_admin_localize.ajaxurl, data, function (response) {
-              if(response.status === 'error') {
+        var data = $('#auto_term_content_form').serializeArray();
+        data.push({ name: 'action', value: 'taxopress_autoterms_content_by_ajax' });
+        data.push({ name: 'start_from', value: start_from });
+        data.push({ name: 'security', value: st_admin_localize.check_nonce });
+
+        // Store the next start point for later resume
+        button.data('resume-from', start_from);
+        existingContentAjaxRequest = $.post(st_admin_localize.ajaxurl, data, function (response) {
+
+            if(response.status === 'error') {
                 $('.auto-term-content-result-title').html(''+response.message+'');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
-              }else if(response.status === 'progress') {
+            } else if(response.status === 'progress') {
                 $('.auto-term-content-result-title').html(response.percentage + response.notice);
                 $('.auto-term-content-result').prepend(response.content);
-                //send next batch
                 auto_terms_all_content(response.done, button);
-              }else if(response.status === 'sucess') {
+            } else if(response.status === 'sucess') {
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
-              }
-            });
-        }
-
+            }
+        });
+    }
 
         // -------------------------------------------------------------
         //   Suggest terms submit error
