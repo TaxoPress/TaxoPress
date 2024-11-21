@@ -447,12 +447,15 @@ if (!class_exists('TaxoPressAiApi')) {
                     );
                 } else {
                     $prompt = "Extract tags from the following content: '$clean_content'. Tags:";
-
+                    $post_terms_in_prompt = false;
+                    $existing_post_terms = [];
                     if (!empty($settings_data['open_ai_tag_prompt'])) {
+                        $post_terms_in_prompt = strpos($settings_data['open_ai_tag_prompt'], '{post_terms}') !== false;
                         $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_tag_prompt']));
                         $prompt = str_replace('{content}', $clean_content, $custom_prompt);
                         if (!empty($taxonomy) && !empty($post_id)) {
                             $post_terms_results = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'names']);
+                            $existing_post_terms = $post_terms_results;
                             $post_terms_comma_join = !empty($post_terms_results) ? join(', ', $post_terms_results) : '';
                             $prompt = str_replace('{post_terms}', $post_terms_comma_join, $prompt);
                         }
@@ -507,6 +510,10 @@ if (!class_exists('TaxoPressAiApi')) {
                                         }
                                     }
                                 }
+                            }
+
+                            if (!empty($settings_data['open_ai_exclude_post_terms']) && $post_terms_in_prompt) {
+                                $data = array_intersect($data, $existing_post_terms);
                             }
 
                             $terms = [];
