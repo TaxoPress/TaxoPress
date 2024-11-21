@@ -825,6 +825,7 @@
             } else if(response.status === 'progress') {
                 $('.auto-term-content-result-title').html(response.percentage + response.notice);
                 $('.auto-term-content-result').prepend(response.content);
+                //send next batch
                 auto_terms_all_content(response.done, button);
             } else if(response.status === 'sucess') {
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
