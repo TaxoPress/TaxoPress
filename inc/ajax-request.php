@@ -74,6 +74,11 @@ function taxopress_autoterms_content_by_ajax()
             wp_send_json($response);
         }
 
+        if (empty($autoterm_data['autoterm_for_existing_content'])) {
+            $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('The selected Auto Term is not enabled for existing content. Please enable it in Auto Term settings.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+            wp_send_json($response);
+        }
+
         $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 20;
 
         $sleep = (isset($autoterm_data['existing_terms_sleep']) && (int)$autoterm_data['existing_terms_sleep'] > 0) ? (int)$autoterm_data['existing_terms_sleep'] : 0;

@@ -1075,6 +1075,7 @@ ul.taxopress-tab {
     background-color: #fafafa;
     border-right: 1px solid #eee;
     box-sizing: border-box;
+    min-height: 400px;
 }
 .taxopress-tab-content {
     float: left;
@@ -1155,6 +1156,9 @@ ul.taxopress-tab li.autolink_control_tab a::before {
 
 ul.taxopress-tab li.autoterm_terms_tab a::before {
     content: "\f323";
+}
+ul.taxopress-tab li.autoterm_when_to_use_tab a::before {
+    content: "\f506";
 }
 ul.taxopress-tab li.autoterm_options_tab a::before {
     content: "\f180";

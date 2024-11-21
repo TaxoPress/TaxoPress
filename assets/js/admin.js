@@ -1359,28 +1359,28 @@
     //   Auto term source to only change
     // -------------------------------------------------------------
     $(document).on('change', '.autoterm-terms-to-use-field', function (e) {
-      hide_show_tab_group_fields();
+      hide_show_source_tab_group_fields();
     })
 
     // -------------------------------------------------------------
-    //   Button group click
+    //   Button group(source tab) click
     // -------------------------------------------------------------
-    if ($('.taxopress-group-wrap.autoterm-tab-group').length > 0) {
-      hide_show_tab_group_fields();
+    if ($('.taxopress-group-wrap.autoterm-tab-group.source').length > 0) {
+      hide_show_source_tab_group_fields();
     }
-    $(document).on("click", ".taxopress-button-group label", function () {
+    $(document).on("click", ".taxopress-group-wrap.autoterm-tab-group.source label", function () {
       var current_button = $(this);
-      var button_group   = current_button.closest('.taxopress-button-group');
+      var button_group   = current_button.closest('.taxopress-group-wrap.autoterm-tab-group.source');
       //remove active class
       button_group.find('label').removeClass('current');
       //add active class to current select
       current_button.addClass('current');
       current_button.addClass('selected');
       // show/hide group based on selected fields
-      hide_show_tab_group_fields();
+      hide_show_source_tab_group_fields();
     });
 
-    function hide_show_tab_group_fields() {
+    function hide_show_source_tab_group_fields() {
       var tabs = [
         'existing',
         'openai',
@@ -1391,22 +1391,22 @@
 
       tabs.forEach(function(tab) {
         if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').length > 0) {
-          $('.taxopress-button-group label.' + tab).addClass('selected');
-          $('.taxopress-button-group label.' + tab + ' input').prop('checked', true);
+          $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).addClass('selected');
+          $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab + ' input').prop('checked', true);
           $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').removeClass('st-hide-content');
         } else {
-          $('.taxopress-button-group label.' + tab).removeClass('selected');
-          $('.taxopress-button-group label.' + tab + ' input').prop('checked', false);
+          $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).removeClass('selected');
+          $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab + ' input').prop('checked', false);
           $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').addClass('st-hide-content');
         }
 
         // show/hide all current tab fields
-        if ($('.taxopress-group-wrap.autoterm-tab-group label.' + tab).hasClass("current")) {
+        if ($('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).hasClass("current")) {
           $('.autoterm-terms-use-' + tab).closest('tr').removeClass('st-hide-content');
           // conditional show/hide tab fields if main field is checked
           if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').length > 0) {
-            $('.taxopress-button-group label.' + tab).addClass('selected');
-            $('.taxopress-button-group label.' + tab + ' input').prop('checked', true);
+            $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).addClass('selected');
+            $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab + ' input').prop('checked', true);
             $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').removeClass('st-hide-content');
             // show or hide autoterm_use_taxonomy sub field
             if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').hasClass('autoterm_use_taxonomy')) {
@@ -1418,8 +1418,8 @@
                 }
             }
           } else {
-            $('.taxopress-button-group label.' + tab).removeClass('selected');
-            $('.taxopress-button-group label.' + tab + ' input').prop('checked', false);
+            $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).removeClass('selected');
+            $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab + ' input').prop('checked', false);
             $('.autoterm-terms-use-' + tab + ':not(.fields-control)').closest('tr').addClass('st-hide-content');
           }
           // make sure notice/description always show even if control is not checked
@@ -1427,6 +1427,83 @@
         } else {
           $('.autoterm-terms-use-' + tab).closest('tr').addClass('st-hide-content');
           $('.autoterm-terms-use-' + tab + '-notice').closest('tr').addClass('st-hide-content');
+        }
+      });
+      // re-adjust the height
+      $('ul.taxopress-tab li.autoterm_terms_tab.active').trigger('click');
+    }
+
+    // -------------------------------------------------------------
+    //   Auto term when to only change
+    // -------------------------------------------------------------
+    $(document).on('change', '.autoterm-terms-when-to-field', function (e) {
+      hide_show_when_tab_group_fields();
+    })
+
+    // -------------------------------------------------------------
+    //   Button group(when tab) click
+    // -------------------------------------------------------------
+    if ($('.taxopress-group-wrap.autoterm-tab-group.when').length > 0) {
+      hide_show_when_tab_group_fields();
+    }
+    $(document).on("click", ".taxopress-group-wrap.autoterm-tab-group.when label", function () {
+      var current_button = $(this);
+      var button_group   = current_button.closest('.taxopress-group-wrap.autoterm-tab-group.when');
+      //remove active class
+      button_group.find('label').removeClass('current');
+      //add active class to current select
+      current_button.addClass('current');
+      current_button.addClass('selected');
+      // show/hide group based on selected fields
+      hide_show_when_tab_group_fields();
+    });
+
+    function hide_show_when_tab_group_fields() {
+      var tabs = [
+        'post',
+        'schedule',
+        'existing-content',
+        'metaboxes'
+      ];
+
+      tabs.forEach(function(tab) {
+        if ($('.fields-control.autoterm-terms-when-' + tab + ':checked').length > 0) {
+          $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab).addClass('selected');
+          $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab + ' input').prop('checked', true);
+          $('.autoterm-terms-when-' + tab + ':not(.fields-control)').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab).removeClass('selected');
+          $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab + ' input').prop('checked', false);
+          $('.autoterm-terms-when-' + tab + ':not(.fields-control)').closest('tr').addClass('st-hide-content');
+        }
+
+        // show/hide all current tab fields
+        if ($('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab).hasClass("current")) {
+          $('.autoterm-terms-when-' + tab).closest('tr').removeClass('st-hide-content');
+          // conditional show/hide tab fields if main field is checked
+          if ($('.fields-control.autoterm-terms-when-' + tab + ':checked').length > 0) {
+            $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab).addClass('selected');
+            $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab + ' input').prop('checked', true);
+            $('.autoterm-terms-when-' + tab + ':not(.fields-control)').closest('tr').removeClass('st-hide-content');
+            // show or hide autoterm_use_taxonomy sub field
+            if ($('.fields-control.autoterm-terms-when-' + tab + ':checked').hasClass('autoterm_use_taxonomy')) {
+              $('.autoterm_useall').closest('tr').removeClass('st-hide-content');
+                $('.autoterm_useonly').closest('tr').removeClass('st-hide-content');
+                if(!$('.autoterm_useonly').prop('checked')){
+                  $('.autoterm_useall').prop('checked', true);
+                  $('.autoterm_useonly_options').addClass('st-hide-content');
+                }
+            }
+          } else {
+            $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab).removeClass('selected');
+            $('.taxopress-group-wrap.autoterm-tab-group.when label.' + tab + ' input').prop('checked', false);
+            $('.autoterm-terms-when-' + tab + ':not(.fields-control)').closest('tr').addClass('st-hide-content');
+          }
+          // make sure notice/description always show even if control is not checked
+          $('.autoterm-terms-when-' + tab + '-notice').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.autoterm-terms-when-' + tab).closest('tr').addClass('st-hide-content');
+          $('.autoterm-terms-when-' + tab + '-notice').closest('tr').addClass('st-hide-content');
         }
       });
       // re-adjust the height
