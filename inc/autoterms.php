@@ -402,6 +402,10 @@ class SimpleTags_Autoterms
                                                     <a href="#autoterm_general"><span><?php esc_html_e('General',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
+                                                <li aria-current="<?php echo $active_tab === 'autoterm_display' ? 'true' : 'false'; ?>" class="autoterm_display_tab <?php echo $active_tab === 'autoterm_display' ? 'active' : ''; ?>" data-content="autoterm_display">
+                                                    <a href="#autoterm_display"><span><?php esc_html_e('Post Types',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
 
                                                 <li aria-current="<?php echo $active_tab === 'autoterm_terms' ? 'true' : 'false'; ?>" class="autoterm_terms_tab <?php echo $active_tab === 'autoterm_terms' ? 'active' : ''; ?>" data-content="autoterm_terms">
                                                     <a href="#autoterm_terms"><span><?php esc_html_e('Sources',
@@ -636,6 +640,15 @@ class SimpleTags_Autoterms
                                                         </td>
                                                     </tr>
                                                     <?php
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_td_end() . $ui->get_tr_end();
+                                                    ?>
+                                                </table>
+
+                                                <table class="form-table taxopress-table autoterm_display"
+                                                       style="<?php echo $active_tab === 'autoterm_display' ? '' : 'display:none;'; ?>">
+                                                       
+                                                    <?php
 
                                                     /**
                                                      * Filters the arguments for post types to list for taxonomy association.
@@ -692,12 +705,9 @@ class SimpleTags_Autoterms
 
                                                     }
                                                     echo '</table></td></tr>';
-
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_td_end() . $ui->get_tr_end();
                                                     ?>
-                                                </table>
 
+                                                </table>
 
 
                                                 <table class="form-table taxopress-table autoterm_when_to_use"

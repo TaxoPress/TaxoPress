@@ -1160,6 +1160,9 @@ ul.taxopress-tab li.autoterm_terms_tab a::before {
 ul.taxopress-tab li.autoterm_when_to_use_tab a::before {
     content: "\f506";
 }
+ul.taxopress-tab li.autoterm_display_tab a::before {
+    content: "\f186";
+}
 ul.taxopress-tab li.autoterm_options_tab a::before {
     content: "\f180";
 }
