@@ -290,6 +290,14 @@ function taxopress_create_default_autoterm()
         $default['taxopress_autoterm']['autoterm_hash']            = '0';
         $default['taxopress_autoterm']['terms_limit']              = '5';
         $default['taxopress_autoterm']['synonyms_term']            = '0';
+        $default['taxopress_autoterm']['autoterm_for_post']        = '1';
+        $default['taxopress_autoterm']['autoterm_for_schedule']    = '1';
+        $default['taxopress_autoterm']['autoterm_for_existing_content'] = '1';
+        $default['taxopress_autoterm']['autoterm_for_metaboxes']    = '1';
+        $default['taxopress_autoterm']['schedule_terms_limit']      = '5';
+        $default['taxopress_autoterm']['schedule_autoterm_target']  = '0';
+        $default['taxopress_autoterm']['schedule_autoterm_word']    = '0';
+        $default['taxopress_autoterm']['schedule_autoterm_hash']    = '0';
         $default['specific_terms']                                  = [];
         $default['find_in_customs_entries']                         = [];
         $default['find_in_custom_fields_custom_items']              = [];
@@ -377,6 +385,27 @@ function taxopress_update_autoterm($data = [])
     }
     if (!isset($data['taxopress_autoterm']['synonyms_term'])) {
         $data['taxopress_autoterm']['synonyms_term'] = 0;
+    }
+    if (!isset($data['taxopress_autoterm']['autoterm_for_post'])) {
+        $data['taxopress_autoterm']['autoterm_for_post'] = 0;
+    }
+    if (!isset($data['taxopress_autoterm']['autoterm_for_schedule'])) {
+        $data['taxopress_autoterm']['autoterm_for_schedule'] = 0;
+    }
+    if (!isset($data['taxopress_autoterm']['autoterm_for_existing_content'])) {
+        $data['taxopress_autoterm']['autoterm_for_existing_content'] = 0;
+    }
+    if (!isset($data['taxopress_autoterm']['autoterm_for_metaboxes'])) {
+        $data['taxopress_autoterm']['autoterm_for_metaboxes'] = 0;
+    }
+    if (!isset($data['taxopress_autoterm']['schedule_autoterm_target'])) {
+        $data['taxopress_autoterm']['schedule_autoterm_target'] = 0;
+    }
+    if (!isset($data['taxopress_autoterm']['schedule_autoterm_word'])) {
+            $data['taxopress_autoterm']['schedule_autoterm_word'] = 0;
+    }
+    if (!isset($data['taxopress_autoterm']['schedule_autoterm_hash'])) {
+        $data['taxopress_autoterm']['schedule_autoterm_hash'] = 0;
     }
 
     if (isset($data['edited_autoterm'])) {

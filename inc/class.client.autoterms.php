@@ -64,6 +64,10 @@ class SimpleTags_Client_Autoterms
 			if (!in_array($current_post_status, $eligible_post_status)) {
 				continue;
 			}
+			// check if auto term is enabled for post
+			if (empty($autoterm_data['autoterm_for_post'])) {
+				continue;
+			}	
 
 			self::auto_terms_post($object, $autoterm_data['taxonomy'], $autoterm_data, false, 'save_posts', 'st_autoterms');
 			$flag = true;

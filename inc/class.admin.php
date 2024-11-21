@@ -1135,6 +1135,25 @@ class SimpleTags_Admin
 			SimpleTags_Plugin::set_option($options);
 
 			update_option('taxopress_3_23_0_upgrade_completed', true);
+		} elseif (!get_option('taxopress_3_28_0_upgrade_completed')) {
+
+			if (function_exists('taxopress_get_autoterm_data')) {
+				$autoterms      = taxopress_get_autoterm_data();
+				foreach ($autoterms as $autoterm_index => $autoterm) {
+					//enable when to fields
+					$autoterms[$autoterm_index]['autoterm_for_post'] = 1;
+					$autoterms[$autoterm_index]['autoterm_for_schedule'] = 1;
+					$autoterms[$autoterm_index]['autoterm_for_existing_content'] = 1;
+					$autoterms[$autoterm_index]['autoterm_for_metaboxes'] = 1;
+					// update new cloned fields for other groups
+					$autoterms[$autoterm_index]['schedule_terms_limit'] = !empty($autoterm['terms_limit']) ? $autoterm['terms_limit'] : 5;
+					$autoterms[$autoterm_index]['schedule_autoterm_target'] = !empty($autoterm['autoterm_target']) ? $autoterm['autoterm_target'] : 0;
+					$autoterms[$autoterm_index]['schedule_autoterm_word'] = !empty($autoterm['autoterm_word']) ? $autoterm['autoterm_word'] : 0;
+					$autoterms[$autoterm_index]['schedule_autoterm_hash'] = !empty($autoterm['autoterm_hash']) ? $autoterm['autoterm_hash'] : 0;
+				}
+				update_option('taxopress_autoterms', $autoterms);
+			}
+			update_option('taxopress_3_28_0_upgrade_completed', true);
 		}
 	}
 
