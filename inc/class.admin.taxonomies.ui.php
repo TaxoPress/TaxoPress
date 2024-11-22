@@ -167,6 +167,70 @@ class taxopress_admin_ui
     }
 
     /**
+     * Return a populated `radio` input.
+     *
+     * @param array $args Arguments to use with the `radio` input.
+     * @return string $value Complete radio input with options and selected attribute.
+     */
+    public function get_radio_input($args = [])
+    {
+        $defaults = $this->get_default_input_parameters(
+            [
+                'class'    => '',
+                'selections' => []
+                ]
+        );
+
+        
+        $args = wp_parse_args($args, $defaults);
+
+        $value = '';
+        if ($args['wrap']) {
+            $value = $this->get_tr_start();
+            $value .= $this->get_th_start();
+            $value .= $this->get_label($args['name'], $args['labeltext']);
+            if ($args['required']) {
+                $value .= $this->get_required_span();
+            }
+            if (!empty($args['helptext'])) {
+                $value .= $this->get_help($args['helptext']);
+            }
+            $value .= $this->get_th_end();
+            $value .= $this->get_td_start();
+        }
+
+        $radio_html = '';
+
+        if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
+            if (isset($args['selections']['selected']) && $args['selections']['selected'] !== '') {
+                $selected_option = $args['selections']['selected'];
+            } else {
+                $selected_option = '';
+            }
+            foreach ($args['selections']['options'] as $val) {
+                $checked = '';
+                if (($selected_option == '' && !empty($val['default']) && $val['default'] == 'true') || ($selected_option !== '' && $selected_option == $val['attr'])) {
+                    $checked = 'checked="checked"';
+                }
+                
+                $radio_html .= '<div class="taxopress-radio-input"><label> <input class="' . $args['class'] . '" type="radio" id="' . $args['name'] . '-' . $val['attr'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $val['attr'] . '" ' . $checked . ' />' . $val['text'] . '</label></div>';
+            }
+        }
+        $value .= $radio_html;
+
+        if (!empty($args['aftertext'])) {
+            $value .= '<p class="taxopress-field-description description">' . $args['aftertext'] . '</p>';
+        }
+
+        if ($args['wrap']) {
+            $value .= $this->get_td_end();
+            $value .= $this->get_tr_end();
+        }
+
+        return $value;
+    }
+
+    /**
      * Return a populated `<select>` input.
      *
      * @param array $args Arguments to use with the `<select>` input.

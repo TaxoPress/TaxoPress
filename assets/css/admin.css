@@ -102,6 +102,10 @@ table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
     display: none !important;
 }
 
+.taxopress-radio-input {
+    margin-bottom: 10px;
+}
+
 .autoterm-description-tr td {
     padding: 0;
 }
