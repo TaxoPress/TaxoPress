@@ -67,7 +67,9 @@ class SimpleTags_Client_Autoterms
 			// check if auto term is enabled for post
 			if (empty($autoterm_data['autoterm_for_post'])) {
 				continue;
-			}	
+			}
+			
+			$autoterm_data['replace_type'] = isset($autoterm_data['post_replace_type']) ? $autoterm_data['post_replace_type'] : '';
 
 			self::auto_terms_post($object, $autoterm_data['taxonomy'], $autoterm_data, false, 'save_posts', 'st_autoterms');
 			$flag = true;
@@ -210,6 +212,8 @@ class SimpleTags_Client_Autoterms
 		$autoterm_use_taxonomy = !empty($options['autoterm_use_taxonomy']) && (int) $options['autoterm_use_taxonomy'] === 1;
 		$autoterm_useall = !empty($options['autoterm_useall']) && (int) $options['autoterm_useall'] === 1;
 		$autoterm_useonly = !empty($options['autoterm_useonly']) && (int) $options['autoterm_useonly'] === 1;
+
+		$autoterm_replace_type = isset($options['replace_type']) ? $options['replace_type'] : '';
 
 		$args = [
 			'post_id' => $object->ID,
@@ -718,6 +722,10 @@ class SimpleTags_Client_Autoterms
 			$terms_to_add = array_filter(array_values($terms_to_add));
 
 			if (empty($terms_to_add)) {
+				// remove term if replace type is replace and term is empty
+				if ($autoterm_replace_type == 'replace') {
+					wp_set_object_terms($object->ID, [], $taxonomy, true);
+				}
 				//update log
 				self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms');
 				return false;
@@ -736,7 +744,11 @@ class SimpleTags_Client_Autoterms
 			$added_post_term[$object->ID] = $terms_to_add;
 
 			// Add terms to posts
-			wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, true);
+			if ($autoterm_replace_type == '' || $autoterm_replace_type == 'append') {
+				wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, true);
+			} elseif ($autoterm_replace_type == 'append_and_replace' || $autoterm_replace_type == 'replace') {
+				wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, false);
+			}
 
 			// Clean cache
 			clean_post_cache($object->ID);
@@ -746,6 +758,11 @@ class SimpleTags_Client_Autoterms
 
 			return true;
 		} else {
+			// remove term if replace type is replace and term is empty
+			if ($autoterm_replace_type == 'replace') {
+				wp_set_object_terms($object->ID, [], $taxonomy, true);
+			}
+
 			//update log
 			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms');
 		}

@@ -64,6 +64,7 @@ function taxopress_autoterms_content_by_ajax()
                 $autoterm_data['existing_terms_sleep'] = $existing_terms_sleep;
                 $autoterm_data['limit_days'] = $limit_days;
                 $autoterm_data['autoterm_exclude'] = $autoterm_existing_content_exclude;
+                $autoterm_data['replace_type'] = isset($autoterm_data['existing_content_replace_type']) ? $autoterm_data['existing_content_replace_type'] : '';
         }else{
             $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Auto term settings not found', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
             wp_send_json($response);

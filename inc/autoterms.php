@@ -335,6 +335,24 @@ class SimpleTags_Autoterms
 
 
         $ui = new taxopress_admin_ui();
+
+        $taxonomy_replace_options = [
+            'options' => [
+                [
+                    'attr' => 'append',
+                    'text' => esc_attr__('Append new terms to old terms.', 'simple-tags'),
+                    'default' => 'true'
+                ],
+                [
+                    'attr' => 'append_and_replace',
+                    'text' => esc_attr__('Add new terms and remove old terms.', 'simple-tags')
+                ],
+                [
+                    'attr' => 'replace',
+                    'text' => esc_attr__('Replace and remove old terms even if no new terms are found.', 'simple-tags')
+                ]
+            ],
+        ];
         ?>
 
 
@@ -830,6 +848,19 @@ class SimpleTags_Autoterms
                                                         'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
+                                                    $selected   = (isset($current) && isset($current['post_replace_type'])) ? taxopress_disp_boolean($current['post_replace_type']) : '';
+                                                    $taxonomy_replace_options['selected'] = !empty($selected) ? $current['post_replace_type'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_radio_input([
+                                                        'namearray'  => 'taxopress_autoterm',
+                                                        'name'       => 'post_replace_type',
+                                                        'class'      => 'autoterm_for_post autoterm-terms-when-to-field autoterm-terms-when-post',
+                                                        'labeltext'  => esc_html__('Auto Terms replace settings',
+                                                            'simple-tags'),
+                                                            'aftertext'  => esc_html__('This option determines what happens when adding new terms to posts.', 'simple-tags'),
+                                                        'selections' => $taxonomy_replace_options,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    ]);
+
 
                                                     /**
                                                      * Schedule
@@ -899,6 +930,19 @@ class SimpleTags_Autoterms
                                                         'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
+                                                    $selected   = (isset($current) && isset($current['schedule_replace_type'])) ? taxopress_disp_boolean($current['schedule_replace_type']) : '';
+                                                    $taxonomy_replace_options['selected'] = !empty($selected) ? $current['schedule_replace_type'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_radio_input([
+                                                        'namearray'  => 'taxopress_autoterm',
+                                                        'name'       => 'schedule_replace_type',
+                                                        'class'      => 'autoterm_for_schedule autoterm-terms-when-to-field autoterm-terms-when-schedule',
+                                                        'labeltext'  => esc_html__('Auto Terms replace settings',
+                                                            'simple-tags'),
+                                                            'aftertext'  => esc_html__('This option determines what happens when adding new terms to posts.', 'simple-tags'),
+                                                        'selections' => $taxonomy_replace_options,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    ]);
+
                                                     /**
                                                      * Existing Content
                                                      */
@@ -913,6 +957,19 @@ class SimpleTags_Autoterms
                                                         'aftertext'  => esc_html__('Enable Auto Term for Existing Content.', 'simple-tags'),
                                                         'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         'required'    => false,
+                                                    ]);
+
+                                                    $selected   = (isset($current) && isset($current['existing_content_replace_type'])) ? taxopress_disp_boolean($current['existing_content_replace_type']) : '';
+                                                    $taxonomy_replace_options['selected'] = !empty($selected) ? $current['existing_content_replace_type'] : '';
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_radio_input([
+                                                        'namearray'  => 'taxopress_autoterm',
+                                                        'name'       => 'existing_content_replace_type',
+                                                        'class'      => 'autoterm_for_existing_content autoterm-terms-when-to-field autoterm-terms-when-existing-content',
+                                                        'labeltext'  => esc_html__('Auto Terms replace settings',
+                                                            'simple-tags'),
+                                                            'aftertext'  => esc_html__('This option determines what happens when adding new terms to posts.', 'simple-tags'),
+                                                        'selections' => $taxonomy_replace_options,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
 
