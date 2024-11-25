@@ -63,7 +63,6 @@ class TaxopressCoreAdmin
         add_action('taxopress_admin_class_before_assets_register', [$this, 'taxopress_load_admin_core_assets']);
         add_action('taxopress_admin_class_after_styles_enqueue', [$this, 'taxopress_load_admin_core_styles']);
         add_action('taxopress_admin_after_sidebar', [$this, 'taxopress_admin_advertising_sidebar_banner']);
-        add_action('taxopress_autoterms_after_autoterm_schedule', [$this, 'taxopress_core_autoterm_schedule_field']);
         add_action('taxopress_autoterms_after_autoterm_terms_to_use', [$this, 'taxopress_core_autoterm_terms_to_use_field']);
         add_action('taxopress_suggestterm_after_api_fields', [$this, 'taxopress_core_suggestterm_after_api_fields']);
         add_action('taxopress_autoterms_after_autoterm_advanced', [$this, 'taxopress_core_autoterm_advanced_field']);
@@ -150,30 +149,6 @@ class TaxopressCoreAdmin
             </div>
         </div>
 
-    <?php
-    }
-
-    function taxopress_core_autoterm_schedule_field($current)
-    {
-    ?>
-        <tr>
-            <td>
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
-                    <div class="postbox-header">
-                        <h3 class="advertisement-box-header hndle is-non-sortable">
-                            <span><?php echo esc_html__('Schedule Auto Terms for your content', 'simple-tags'); ?></span>
-                        </h3>
-                    </div>
-
-                    <div class="inside-content">
-                        <p><?php echo esc_html__('TaxoPress Pro allows you to schedule the "Auto Terms to existing content" feature. This is helpful if you regularly import content into WordPress. TaxoPress Pro can run either daily or hourly and add terms to your imported content.', 'simple-tags'); ?></p>
-                        <div class="upgrade-btn">
-                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
     <?php
     }
 
