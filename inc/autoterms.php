@@ -452,11 +452,6 @@ class SimpleTags_Autoterms
                                                                 'simple-tags'); ?></span></a>
                                                 </li>-->
 
-                                                <li aria-current="<?php echo $active_tab === 'autoterm_schedule' ? 'true' : 'false'; ?>" class="autoterm_schedule_tab <?php echo $active_tab === 'autoterm_schedule' ? 'active' : ''; ?>" data-content="autoterm_schedule">
-                                                    <a href="#autoterm_schedule"><span><?php esc_html_e('Schedule',
-                                                                'simple-tags'); ?></span></a>
-                                                </li>
-
                                                 <li aria-current="<?php echo $active_tab === 'autoterm_advanced' ? 'true' : 'false'; ?>" class="autoterm_advanced_tab <?php echo $active_tab === 'autoterm_advanced' ? 'active' : ''; ?>" data-content="autoterm_advanced">
                                                     <a href="#autoterm_advanced"><span><?php esc_html_e('Advanced',
                                                                 'simple-tags'); ?></span></a>
@@ -737,7 +732,7 @@ class SimpleTags_Autoterms
 
                                                                     <label class="post current">
                                                                         <input disabled type="checkbox" name="taxopress_autoterm[autoterm_source_when_to_use_tab][]" value="post"><?php esc_html_e('Post', 'simple-tags'); ?></label>
-                                                                    <label class="schedule">
+                                                                    <label class="schedule" style="<?php echo taxopress_is_pro_version() ? '' : 'display: none;'; ?>">
                                                                         <input disabled type="checkbox" name="taxopress_autoterm[autoterm_source_when_to_use_tab][]" value="schedule"><?php esc_html_e('Schedule', 'simple-tags'); ?></label>
                                                                     <label class="existing-content">
                                                                         <input disabled type="checkbox" name="taxopress_autoterm[autoterm_source_when_to_use_tab][]" value="existing_content"><?php esc_html_e('Existing Content', 'simple-tags'); ?></label>
@@ -1467,14 +1462,6 @@ class SimpleTags_Autoterms
 
                                                             <ul class="auto-term-content-result"></ul>
                                                         </td></tr>
-
-                                                </table>
-
-
-                                                <table class="form-table taxopress-table autoterm_schedule"
-                                                       style="<?php echo $active_tab === 'autoterm_schedule' ? '' : 'display:none;'; ?>">
-
-                                                        <?php do_action('taxopress_autoterms_after_autoterm_schedule', $current); ?>
 
                                                 </table>
 

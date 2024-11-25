@@ -168,9 +168,9 @@ class SimpleTags_Autoterms_Content
                                         endif;
                                         $select = [];
                                         $select['options']  = $auto_term_opionts;
-                                        $select['selected'] = $selected_autoterm;
+                                        $select['selected'] = '';
                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                        echo $ui->get_select_number_select([
+                                        echo $ui->get_select_checkbox_input_main([
                                             'namearray'  => 'taxopress_autoterm_content',
                                             'name'       => 'autoterm_id',
                                             'labeltext'  => esc_html__('Auto Terms setting',
