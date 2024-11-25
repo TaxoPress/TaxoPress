@@ -594,7 +594,7 @@ function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = fal
 
     $linked_terms = [];
 
-    if (!taxopress_is_linked_terms_enabled()) {
+    if (!taxopress_is_pro_version() || !taxopress_is_linked_terms_enabled()) {
         // Simply return an empty array if the feature is disabled
         return $linked_terms;
     }
