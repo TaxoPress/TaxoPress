@@ -1009,7 +1009,8 @@
                                   action: 'taxopress_select2_term_filter',
                                   taxonomy: $(this).attr('id'),
                                   s: params.term || '',
-                                  page: params.page || 1
+                                  page: params.page || 1,
+                                  nonce: st_admin_localize.check_nonce
                               };
                           },
                           processResults: function(data, params) {
