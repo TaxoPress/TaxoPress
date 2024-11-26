@@ -130,10 +130,10 @@ function init_free_simple_tags()
         new \PublishPress\Taxopress\TaxopressCoreAdmin();
     }
 }
-add_action('plugins_loaded', 'init_free_simple_tags');
+add_action('init', 'init_free_simple_tags');
 
 // Activation, uninstall
 register_activation_hook(__FILE__, array('SimpleTags_Plugin', 'activation'));
 register_deactivation_hook(__FILE__, array('SimpleTags_Plugin', 'deactivation'));
 
-add_action('plugins_loaded', 'init_simple_tags');
+add_action('init', 'init_simple_tags');
