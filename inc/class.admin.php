@@ -1150,6 +1150,8 @@ class SimpleTags_Admin
 					$autoterms[$autoterm_index]['schedule_autoterm_target'] = !empty($autoterm['autoterm_target']) ? $autoterm['autoterm_target'] : 0;
 					$autoterms[$autoterm_index]['schedule_autoterm_word'] = !empty($autoterm['autoterm_word']) ? $autoterm['autoterm_word'] : 0;
 					$autoterms[$autoterm_index]['schedule_autoterm_hash'] = !empty($autoterm['autoterm_hash']) ? $autoterm['autoterm_hash'] : 0;
+
+					$autoterms[$autoterm_index]['existing_content_terms_limit'] = !empty($autoterm['terms_limit']) ? $autoterm['terms_limit'] : 5;
 				}
 				update_option('taxopress_autoterms', $autoterms);
 			}

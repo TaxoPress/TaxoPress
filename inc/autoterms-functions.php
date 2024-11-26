@@ -309,6 +309,7 @@ function taxopress_create_default_autoterm()
         $default['taxopress_autoterm']['schedule_autoterm_target']  = '0';
         $default['taxopress_autoterm']['schedule_autoterm_word']    = '0';
         $default['taxopress_autoterm']['schedule_autoterm_hash']    = '0';
+        $default['taxopress_autoterm']['existing_content_terms_limit'] = '5';
         $default['specific_terms']                                  = [];
         $default['find_in_customs_entries']                         = [];
         $default['find_in_custom_fields_custom_items']              = [];

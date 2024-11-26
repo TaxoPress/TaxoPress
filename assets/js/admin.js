@@ -776,6 +776,20 @@
         auto_terms_all_content(0, button);
     });
 
+    // -------------------------------------------------------------
+    //   Auto term existing content log button
+    // -------------------------------------------------------------
+    $(document).on('click', '.log-message-show-button a, .log-message-hide-button a', function (e) {
+        e.preventDefault();
+        $(this).hide();
+        if ($(this).hasClass('msg-show')) {
+          $(this).closest('.result-item').find('.log-message-hide-button a').show();
+        } else {
+          $(this).closest('.result-item').find('.log-message-show-button a').show();
+        }
+        $(this).closest('.result-item').find('.autoterm-log-message').slideToggle(400);
+    });
+
     // Terminate the AJAX request when "Stop" button is clicked
     $(document).on('click', '.terminate-autoterm-scan', function (e) {
       e.preventDefault();

@@ -953,6 +953,19 @@ class SimpleTags_Autoterms
                                                         'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         'required'    => false,
                                                     ]);
+                                                    
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_number_input([
+                                                        'namearray' => 'taxopress_autoterm',
+                                                        'name'      => 'existing_content_terms_limit',
+                                                        'textvalue' => isset($current['existing_content_terms_limit']) ? esc_attr($current['existing_content_terms_limit']) : '5',
+                                                        'class'      => 'autoterm_for_existing_content autoterm-terms-when-to-field autoterm-terms-when-existing-content',
+                                                        'labeltext' => esc_html__('Auto Terms Limit',
+                                                            'simple-tags'),
+                                                        'helptext'  => esc_html__('Limit the number of generated Auto Terms. \'0\' for unlimited terms', 'simple-tags'),
+                                                        'min'       => '0',
+                                                        'required'  => false,
+                                                    ]);
 
                                                     $selected   = (isset($current) && isset($current['existing_content_replace_type'])) ? taxopress_disp_boolean($current['existing_content_replace_type']) : '';
                                                     $taxonomy_replace_options['selected'] = !empty($selected) ? $current['existing_content_replace_type'] : '';
