@@ -1260,6 +1260,20 @@ ul.taxopress-tab li.posttags_display_tab a::before {
 .st-autoterms-single-specific-term.new {
     margin: 25px 0;
 }
+
+.autoterm-log-message {
+    display: none;
+}
+
+.log-message-hide-button {
+    margin-bottom: 10px;
+}
+
+.autoterm-log-message ul {
+    list-style: decimal;
+    padding: 12px;
+}
+
 .auto-term-content-result {
     margin-top: 10px;
     max-height: 430px;

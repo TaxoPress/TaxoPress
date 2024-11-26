@@ -204,7 +204,7 @@ if (!class_exists('TaxoPressAiApi')) {
 
                             if (!empty($data)) {
                                 foreach ($data as $_data_raw) {
-                                    if (isset($_data_raw['_typeGroup']) && $_data_raw['_typeGroup'] == 'socialTag') {
+                                    if (isset($_data_raw['_typeGroup']) && $_data_raw['_typeGroup'] == 'socialTag' && !empty(trim($_data_raw['name']))) {
                                         $terms[] = $_data_raw['name'];
                                     }
                                 }
