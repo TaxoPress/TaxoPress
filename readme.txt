@@ -2,8 +2,8 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
-Tested up to: 6.6
-Stable tag: 3.27.0
+Tested up to: 6.7
+Stable tag: 3.28.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,32 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.28.0- 2024-11-27
+* Update: Add new Auto Term tab "When to Use", and move applicable settings to each subtabs, #2200
+* Update: Add a Pause button to the Existing Content screen, #2210
+* Update: Auto Terms: allow users to remove existing terms when adding new terms via Auto Terms, #1910
+* Update: Add more details to "no terms added" in Existing Content, #2289
+* Update: Use select2 search for term filters to improve term load, #2294
+* Fixed: Custom taxonomy filter isn't working, #2372
+* Fixed: Translation warning from 6.7, #2356
+* Fixed: Database error: table taxopress_linked_terms doesn’t exist, #2368
+* Update: Make "Schedule Auto Terms" into a menu link, #2144
+* Fixed: Auto Term Error message goes off the screen, #2334
+* Update: Add OpenAI settings to exclude terms not in {post_terms} if used in custom prompt, #2335
+* Update: Move Auto Term post type to new tab, #2361
+* Update: Automatically display related posts in selected post types, #2313
+* Update: Equal width for Linked Terms columns, #2344
+* Update: Text change for Linked Terms screren, #2343
+* Update: New "Display Format" tab, #2314
+* Fixed: Media Tags are not appearing in the output of get_taxonomies(), #2298
+* Update: Make Auto Term Content and Title option in Auto Term content area, #2327
+* Fixed: "Exclude terms from terms display" should cover lowercase and uppercase, #2325
+* Update: Text change for Terms screen, #2345
+* Update: Text change for Related Posts option, #2341
+* Fixed: Missing translation strings in TaxoPress Free, #2295
+* Fixed: Missing strings in TaxoPress Pro, #2349
+* Update: TAXOPRESS v3.27.0 - Translation Updates ES-FR-IT, #2339
 
 v3.27.0- 2024-11-06
 * Update: Add setting to Make Linked Terms 1-way or 2-way, #2099
