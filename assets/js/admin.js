@@ -1013,7 +1013,7 @@
             function taxopressTaxSelect2(selector) {
               selector.each(function() {
                   $(this).ppma_select2({
-                      placeholder: $(this).data('placeholder') || 'Select Option...',
+                      placeholder: $(this).data('placeholder') || $(this).find('option:first').text(),
                       allowClear: true,
                       ajax: {
                           url: st_admin_localize.ajaxurl,
