@@ -103,7 +103,8 @@ class SimpleTags_Admin_Manage
             } elseif ($_POST['term_action'] == 'mergeterm') {
                 $oldtag = (isset($_POST['renameterm_old'])) ? sanitize_text_field($_POST['renameterm_old']) : '';
                 $newtag = (isset($_POST['renameterm_new'])) ? sanitize_text_field($_POST['renameterm_new']) : '';
-                self::mergeTerms(SimpleTags_Admin::$taxonomy, $oldtag, $newtag);
+                $merge_type = (isset($_POST['mergeterm_type'])) ? sanitize_text_field($_POST['mergeterm_type']) : '';
+                self::mergeTerms(SimpleTags_Admin::$taxonomy, $oldtag, $newtag, $merge_type);
                 $default_tab = '.st-merge-terms';
             } elseif ($_POST['term_action'] == 'addterm') {
                 $matchtag = (isset($_POST['addterm_match'])) ? sanitize_text_field($_POST['addterm_match']) : '';
@@ -341,6 +342,11 @@ class SimpleTags_Admin_Manage
 								</h2>
 								<p><?php esc_html_e('This feature will delete existing terms and replace them with another term. If you want to merge term “A” into term “B”, put “A” in the first box and “B” in the second box.', 'simple-tags'); ?>
 								</p>
+                                <p>
+                                    <?php
+                                    esc_html_e('For terms with the same name, put name in the first box and merge. For terms with different names, provide the terms to merge and the new term name in the second box; the old terms will be replaced.', 'simple-tags');
+                                    ?>
+                                </p>
 
 
 								<fieldset>
@@ -354,17 +360,27 @@ class SimpleTags_Admin_Manage
 										<input type="hidden" name="term_nonce"
 											value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
 
+                                            <p class="terms-type-options">
+											<label><input type="radio" id="mergeterm_type" class="mergeterm_type_same_name"
+													name="mergeterm_type" value="same_name"
+													checked="checked"><?php printf(esc_html__('Merge terms with same name.', 'simple-tags')); ?></label><br>
+
+											<label><input type="radio" id="mergeterm_type"
+													class="mergeterm_type_different_name" name="mergeterm_type"
+													value="different_name"><?php _e('Merge terms with different name.', 'simple-tags'); ?></label>
+										</p>
+
 										<p>
 											<label
-												for="renameterm_old"><?php _e('Term(s) to merge. These terms will be deleted', 'simple-tags'); ?></label>
+												for="renameterm_old"><?php _e('Term(s) to merge.', 'simple-tags'); ?></label>
 											<br />
 											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea"
 												id="mergeterm_old" name="renameterm_old" size="80" /></textarea>
 										</p>
 
-										<p>
+										<p class="new_name_input" style="display: none;">
 											<label
-												for="renameterm_new"><?php _e('New term. Any posts assigned to the old terms will be re-assigned to this term.', 'simple-tags'); ?></label>
+												for="renameterm_new"><?php _e('New term. The Old terms will be deleted and any posts assigned to the old terms will be re-assigned to this term.', 'simple-tags'); ?></label>
 												<br />
 												<textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new"
 													name="renameterm_new" size="80" /></textarea>
@@ -543,101 +559,177 @@ class SimpleTags_Admin_Manage
      * @return boolean
      * @author olatechpro
      */
-    public static function mergeTerms($taxonomy = 'post_tag', $old = '', $new = '')
+    public static function mergeTerms($taxonomy = 'post_tag', $old = '', $new = '', $merge_type = '')
     {
-        if (trim(str_replace(',', '', stripslashes($new))) == '') {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term specified!', 'simple-tags'), 'error');
+        if ($merge_type === 'same_name'){
 
-            return false;
-        }
+            $old_terms = explode(',', $old);
 
-        // String to array
-        $old_terms = explode(',', $old);
-        $new_terms = explode(',', $new);
+            $old_terms = array_filter($old_terms, '_delete_empty_element');
 
-        // Remove empty element and trim
-        $old_terms = array_filter($old_terms, '_delete_empty_element');
-        $new_terms = array_filter($new_terms, '_delete_empty_element');
-        $common_elements = array_intersect($old_terms, $new_terms);
+            if (empty($old_terms)) {
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms provided for merging!', 'simple-tags'), 'error');
+                return false;
+            }
 
-        // If old/new tag are empty => exit !
-        if (empty($old_terms) || empty($new_terms)) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new/old valid term specified!', 'simple-tags'), 'error');
+            $terms =[];
+            foreach ($old_terms as $term_name) {
+                $term_objects = get_terms([
+                    'taxonomy' => $taxonomy,
+                    'name' => sanitize_text_field($term_name),
+                    'hide_empty' => false,
+                ]);
 
-            return false;
-        }
+                if (is_array($term_objects) && count($term_objects) > 1) {
+                    $terms = array_merge($terms, $term_objects);
+                }
+            }
 
-        if (!empty($common_elements)) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('Term to merge and New Term must not contain same term.', 'simple-tags'), 'error');
+            if (empty($terms)) {
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms with the same name found.', 'simple-tags'), 'error');
+                return false;
+            }
 
-            return false;
-        }
+            usort($terms, function ($a, $b) use ($term_name) {
+                // Score based on similarity to term name
+                similar_text($term_name, $a->slug, $similarity_a);
+                similar_text($term_name, $b->slug, $similarity_b);
+            
+                if ($similarity_a === $similarity_b) {
+                    // If similarity is the same, sort by length (shortest first)
+                    return strlen($a->slug) - strlen($b->slug);
+                }
+            
+                // Otherwise, sort by similarity (higher first)
+                return $similarity_b - $similarity_a;
+            });
+            
+            // Retain the term with the highest similarity and shortest slug (first in sorted array)
+            $retained_term = $terms[0];
+            $retained_slug = $retained_term->slug;
+            $retained_id = $retained_term->term_id;
+            
+            // Collect terms to delete
+            $terms_to_delete = array_filter($terms, function ($term) use ($retained_id) {
+                return $term->term_id !== $retained_id;
+            });
+            
+            // Reassign objects and delete old terms (existing logic)
+            $terms_id = array_map(function ($term) {
+                return $term->term_id;
+            }, $terms_to_delete);
+            
+            $objects_id = get_objects_in_term($terms_id, $taxonomy, ['fields' => 'ids']);
+            foreach ($objects_id as $object_id) {
+                wp_set_object_terms($object_id, $retained_slug, $taxonomy, true);
+            }
+            
+            foreach ($terms_to_delete as $term) {
+                wp_delete_term($term->term_id, $taxonomy);
+            }
+            
+            // Clean caches
+            clean_object_term_cache($objects_id, $taxonomy);
+            clean_term_cache($terms_id, $taxonomy);
+            
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merged term(s) with the same name "%s". %d posts updated.', 'simple-tags'), $retained_term->name, count($objects_id)), 'updated');
+            return true;
+        } else {
 
-        $counter = 0;
-        if (count($new_terms) == 1) { // Merge
-            // Set new tag
-            $new_tag = sanitize_text_field($new_terms[0]);
-            if (empty($new_tag)) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('No valid new term.', 'simple-tags'), 'error');
+            if (trim(str_replace(',', '', stripslashes($new))) == '' && $merge_type !== 'same_name' ) {
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term specified!', 'simple-tags'), 'error');
 
                 return false;
             }
 
-            // Get terms ID from old terms names
-            $terms_id = array();
-            foreach ((array) $old_terms as $old_tag) {
-                $term       = get_term_by('name', addslashes(sanitize_text_field($old_tag)), $taxonomy);
-                $terms_id[] = (int) $term->term_id;
+            // String to array
+            $old_terms = explode(',', $old);
+            $new_terms = explode(',', $new);
+
+            // Remove empty element and trim
+            $old_terms = array_filter($old_terms, '_delete_empty_element');
+            $new_terms = array_filter($new_terms, '_delete_empty_element');
+            $common_elements = array_intersect($old_terms, $new_terms);
+
+            // If old/new tag are empty => exit !
+            if (empty($old_terms) || empty($new_terms)) {
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No new/old valid term specified!', 'simple-tags'), 'error');
+
+                return false;
             }
 
-            // Get objects from terms ID
-            $objects_id = get_objects_in_term($terms_id, $taxonomy, array( 'fields' => 'all_with_object_id' ));
+            if (!empty($common_elements)) {
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Term to merge and New Term must not contain same term.', 'simple-tags'), 'error');
 
-            // No objects ? exit !
-            if (! $objects_id) {
+                return false;
+            }
+
+            $counter = 0;
+            if (count($new_terms) == 1) { // Merge
+                // Set new tag
+                $new_tag = sanitize_text_field($new_terms[0]);
+                if (empty($new_tag)) {
+                    add_settings_error(__CLASS__, __CLASS__, esc_html__('No valid new term.', 'simple-tags'), 'error');
+
+                    return false;
+                }
+
+                // Get terms ID from old terms names
+                $terms_id = array();
+                foreach ((array) $old_terms as $old_tag) {
+                    $term       = get_term_by('name', addslashes(sanitize_text_field($old_tag)), $taxonomy);
+                    $terms_id[] = (int) $term->term_id;
+                }
+
+                // Get objects from terms ID
+                $objects_id = get_objects_in_term($terms_id, $taxonomy, array( 'fields' => 'all_with_object_id' ));
+
+                // No objects ? exit !
+                if (! $objects_id) {
+
+                    // Delete old terms
+                    foreach ((array) $terms_id as $term_id) {
+                        wp_delete_term($term_id, $taxonomy);
+                    }
+
+                    add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
+                    return true;
+                }
+
+                // Set objects to new term ! (Append no replace)
+                foreach ((array) $objects_id as $object_id) {
+                    wp_set_object_terms($object_id, $new_tag, $taxonomy, true);
+                    $counter ++;
+                }
 
                 // Delete old terms
                 foreach ((array) $terms_id as $term_id) {
                     wp_delete_term($term_id, $taxonomy);
                 }
 
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
-                return true;
+                // Test if term is also a category
+                /*
+                if ( is_term($new_tag, 'category') ) {
+                    // Edit the slug to use the new term
+                    self::editTermSlug( $new_tag, sanitize_title($new_tag) );
+                }
+                */
+
+                // Clean cache
+                clean_object_term_cache($objects_id, $taxonomy);
+                clean_term_cache($terms_id, $taxonomy);
+
+                if ($counter == 0) {
+                    add_settings_error(__CLASS__, __CLASS__, esc_html__('No term merged.', 'simple-tags'), 'updated');
+                } else {
+                    add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
+                }
+            } else { // Error
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. You need to enter a single term to merge to in new term name !', 'simple-tags'), $old), 'error');
             }
 
-            // Set objects to new term ! (Append no replace)
-            foreach ((array) $objects_id as $object_id) {
-                wp_set_object_terms($object_id, $new_tag, $taxonomy, true);
-                $counter ++;
-            }
-
-            // Delete old terms
-            foreach ((array) $terms_id as $term_id) {
-                wp_delete_term($term_id, $taxonomy);
-            }
-
-            // Test if term is also a category
-            /*
-            if ( is_term($new_tag, 'category') ) {
-                // Edit the slug to use the new term
-                self::editTermSlug( $new_tag, sanitize_title($new_tag) );
-            }
-            */
-
-            // Clean cache
-            clean_object_term_cache($objects_id, $taxonomy);
-            clean_term_cache($terms_id, $taxonomy);
-
-            if ($counter == 0) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('No term merged.', 'simple-tags'), 'updated');
-            } else {
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
-            }
-        } else { // Error
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. You need to enter a single term to merge to in new term name !', 'simple-tags'), $old), 'error');
+            return true;
         }
-
-        return true;
     }
 
     /**

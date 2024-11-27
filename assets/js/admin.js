@@ -363,6 +363,19 @@
       $('.removeterms-to-match-input').hide();
     });
 
+        // -------------------------------------------------------------
+    //   Manage terms merge terms option check
+    // -------------------------------------------------------------
+    $(document).on('click', '.mergeterm_type_different_name', function (e) {
+      $('#mergeterm_new').val($('#mergeterm_new').attr('data-prev'));
+      $('.new_name_input').show();
+    });
+    $(document).on('click', '.mergeterm_type_same_name', function (e) {
+      $('#mergeterm_new').attr('data-prev', $('#mergeterm_new').val());
+      $('#mergeterm_new').val('');
+      $('.new_name_input').hide();
+    });
+
     // -------------------------------------------------------------
     //   Terms display submit validation
     // -------------------------------------------------------------
