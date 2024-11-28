@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TaxoPress 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2024-11-27 06:45+0000\n"
+"POT-Creation-Date: 2024-11-28 07:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -495,8 +495,12 @@ msgstr ""
 msgid "Add New TaxoPress Logs"
 msgstr ""
 
+#: inc/autoterms.php:343
+msgid "Add new terms and keep existing terms."
+msgstr ""
+
 #: inc/autoterms.php:348
-msgid "Add new terms and remove old terms."
+msgid "Add new terms and remove existing terms."
 msgstr ""
 
 #: inc/tag-clouds.php:256
@@ -664,10 +668,6 @@ msgstr ""
 msgid "API Error: No matched result for content."
 msgstr ""
 
-#: inc/autoterms.php:343
-msgid "Append new terms to old terms."
-msgstr ""
-
 #: inc/taxonomies.php:679
 msgid "Archive page result"
 msgstr ""
@@ -826,7 +826,7 @@ msgid "Auto Terms logs history."
 msgstr ""
 
 #: inc/autoterms.php:853 inc/autoterms.php:935 inc/autoterms.php:977
-msgid "Auto Terms replace settings"
+msgid "Auto Terms replacement settings"
 msgstr ""
 
 #: inc/autoterms_content.php:176
@@ -1238,6 +1238,10 @@ msgid ""
 "Changing the slug registers a new taxonomy entry."
 msgstr ""
 
+#: inc/autoterms.php:535
+msgid "Don't scan Post Content or Title"
+msgstr ""
+
 #: inc/autolinks-table.php:264 inc/autoterms-table.php:264
 #: inc/class-taxonomies-table.php:285 inc/class.admin.mass.php:264
 #: inc/post-tags-table.php:264 inc/related-posts-table.php:264
@@ -1315,19 +1319,19 @@ msgid "Enable a custom query_var key for this taxonomy."
 msgstr ""
 
 #: inc/autoterms.php:952
-msgid "Enable Auto Term for Existing Content."
+msgid "Enable Auto Terms for the \"Existing Content\" feature."
 msgstr ""
 
 #: inc/autoterms.php:995
-msgid "Enable Auto Term for Metaboxes."
+msgid "Enable Auto Terms for the \"Metaboxes\" feature."
 msgstr ""
 
 #: inc/autoterms.php:871
-msgid "Enable Auto Term Schedule."
+msgid "Enable Auto Terms for the \"Schedule\" feature."
 msgstr ""
 
 #: inc/autoterms.php:789
-msgid "Enable Auto Terms when a Post is Saved or Updated."
+msgid "Enable Auto Terms when a post is saved or updated."
 msgstr ""
 
 #: inc/tag-clouds.php:708
@@ -2324,7 +2328,7 @@ msgid "Nonce verification failed."
 msgstr ""
 
 #: inc/autolinks-table.php:356 inc/autoterms-logs-table.php:429
-#: inc/autoterms-table.php:356 inc/autoterms.php:535 inc/related-posts.php:367
+#: inc/autoterms-table.php:356 inc/related-posts.php:367
 msgid "None"
 msgstr ""
 
@@ -2551,7 +2555,7 @@ msgstr ""
 #, php-format
 msgid ""
 "Please leave this screen running to continue the scan. To stop the scan, "
-"close this screen or click this button: %1s Stop %2s | %3s Pause %4s"
+"close this screen or click here: %1s Stop %2s | %3s Pause %4s"
 msgstr ""
 
 #: inc/autolinks.php:988 inc/autoterms.php:1632
@@ -2609,7 +2613,7 @@ msgstr ""
 msgid "Popular Media Tags"
 msgstr ""
 
-#: inc/autoterms-logs-table.php:189 inc/autoterms.php:734 inc/autoterms.php:788
+#: inc/autoterms-logs-table.php:189 inc/autoterms.php:788
 #: inc/posts-table.php:21 modules/taxopress-ai/classes/TaxoPressAiAjax.php:537
 msgid "Post"
 msgstr ""
@@ -2668,7 +2672,7 @@ msgstr ""
 msgid "post type"
 msgstr ""
 
-#: inc/autolinks.php:294 inc/autoterms.php:424 inc/autoterms.php:698
+#: inc/autolinks.php:294 inc/autoterms.php:424
 #: inc/class-taxonomies-table.php:71 inc/related-posts-table.php:68
 #: inc/related-posts.php:290 inc/related-posts.php:521 inc/taxonomies.php:387
 #: inc/terms-table.php:116
@@ -2679,9 +2683,13 @@ msgstr ""
 msgid "Post Types Filter"
 msgstr ""
 
-#: inc/class.admin.php:74 inc/class.admin.php:324 inc/class.admin.php:985
-#: inc/functions.inc.php:463 inc/posts-table.php:22 inc/posts.php:161
-#: inc/posts.php:162 inc/posts.php:213
+#: inc/autoterms.php:698
+msgid "Post Types to scan:"
+msgstr ""
+
+#: inc/autoterms.php:734 inc/class.admin.php:74 inc/class.admin.php:324
+#: inc/class.admin.php:985 inc/functions.inc.php:463 inc/posts-table.php:22
+#: inc/posts.php:161 inc/posts.php:162 inc/posts.php:213
 msgid "Posts"
 msgstr ""
 
@@ -2841,6 +2849,10 @@ msgstr ""
 msgid "Remove default taxonomy metaboxes for users in the %1s role."
 msgstr ""
 
+#: inc/autoterms.php:352
+msgid "Remove existing terms even if no new terms are found."
+msgstr ""
+
 #: inc/terms-table.php:474
 msgid "Remove From All Posts"
 msgstr ""
@@ -2890,10 +2902,6 @@ msgstr ""
 #: inc/class.admin.manage.php:795
 #, php-format
 msgid "Renamed term(s) \"%1$s\" to \"%2$s\""
-msgstr ""
-
-#: inc/autoterms.php:352
-msgid "Replace and remove old terms even if no new terms are found."
 msgstr ""
 
 #: inc/post-tags.php:730

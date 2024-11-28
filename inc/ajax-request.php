@@ -82,7 +82,7 @@ function taxopress_autoterms_content_by_ajax()
             wp_send_json($response);
         }
 
-        $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 20;
+        $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 2;
 
         $sleep = (isset($autoterm_data['existing_terms_sleep']) && (int)$autoterm_data['existing_terms_sleep'] > 0) ? (int)$autoterm_data['existing_terms_sleep'] : 0;
         
@@ -148,7 +148,7 @@ function taxopress_autoterms_content_by_ajax()
             $response['content'] = $response_content;
             $response['done'] = ($start_from + count($objects));
             $percentage = 100;
-            $response['notice'] = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Please leave this screen running to continue the scan. To stop the scan, close this screen or click this button: %1s Stop %2s | %3s Pause %4s', 'simple-tags'), '<a href="#" class="terminate-autoterm-scan">', '</a>', '<a href="#" class="pause-autoterm-scan" data-pause="0" data-pause-text="'. esc_html__('Pause', 'simple-tags') .'" data-resume-text="'. esc_html__('Resume', 'simple-tags') .'">', '</a>') .'</p></div>';
+            $response['notice'] = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Please leave this screen running to continue the scan. To stop the scan, close this screen or click here: %1s Stop %2s | %3s Pause %4s', 'simple-tags'), '<a href="#" class="terminate-autoterm-scan">', '</a>', '<a href="#" class="pause-autoterm-scan" data-pause="0" data-pause-text="'. esc_html__('Pause', 'simple-tags') .'" data-resume-text="'. esc_html__('Resume', 'simple-tags') .'">', '</a>') .'</p></div>';
             $progress_message = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Progress Report: %s posts checked.', 'simple-tags'), '<strong>' . ($start_from + count($objects)) . '</strong>') .'</p></div>';
               
         } else {
