@@ -76,7 +76,7 @@ return array(
     'rp_feed'                => 0,
     'rp_embedded'            => 'no',
     'rp_order'               => 'count-desc',
-    'rp_limit_qty'           => 5,
+    'rp_limit_qty'           => 3,
     'rp_notagstext'          => __('No related posts.', 'simple-tags'),
     'rp_title'               => __('<h4>Related posts</h4>', 'simple-tags'),
     'rp_xformat'             => __('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simple-tags'),
