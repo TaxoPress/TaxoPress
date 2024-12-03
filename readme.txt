@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.28.0- 2024-11-27
+v3.28.0- 2024-12-03
 * Update: Add new Auto Term tab "When to Use", and move applicable settings to each subtabs, #2200
 * Update: Add a Pause button to the Existing Content screen, #2210
 * Update: Auto Terms: allow users to remove existing terms when adding new terms via Auto Terms, #1910
