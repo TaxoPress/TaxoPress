@@ -64,6 +64,12 @@ class SimpleTags_Client_Autoterms
 			if (!in_array($current_post_status, $eligible_post_status)) {
 				continue;
 			}
+			// check if auto term is enabled for post
+			if (empty($autoterm_data['autoterm_for_post'])) {
+				continue;
+			}
+			
+			$autoterm_data['replace_type'] = isset($autoterm_data['post_replace_type']) ? $autoterm_data['post_replace_type'] : '';
 
 			self::auto_terms_post($object, $autoterm_data['taxonomy'], $autoterm_data, false, 'save_posts', 'st_autoterms');
 			$flag = true;
@@ -134,23 +140,34 @@ class SimpleTags_Client_Autoterms
 	 */
 	public static function auto_terms_post($object, $taxonomy = 'post_tag', $options = array(), $counter = false, $action = 'save_posts', $component = 'st_autoterms')
 	{
-		global $wpdb, $added_post_term;
+		global $wpdb, $added_post_term, $empty_term_messages;
+
+		if (!is_array($empty_term_messages)) {
+			$empty_term_messages = [];
+		} 
+
+		if (!isset($empty_term_messages[$object->ID]['message'])) {
+			$empty_term_messages[$object->ID]['message'] = [];
+		}
 
 		$terms_to_add = array();
 
 		$exclude_autotags = get_post_meta($object->ID, '_exclude_autotags', true);
 		if ($exclude_autotags) {
+			$empty_term_messages[$object->ID]['message'][] = esc_html__('Post is excluded from Auto Term from post area.', 'simple-tags');
 			return false;
 		}
 
 		// Option exists ?
 		if ($options == false || empty($options)) {
+			$empty_term_messages[$object->ID]['message'][] = esc_html__('Invalid Auto Term settings.', 'simple-tags');
 			//update log
 			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'invalid_option');
 			return false;
 		}
 
-		if ((int) $options['autoterm_target'] === 1 && get_the_terms($object->ID, $taxonomy) != false) {
+		if ($action == 'save_posts' && (int) $options['autoterm_target'] === 1 && get_the_terms($object->ID, $taxonomy) != false) {
+			$empty_term_messages[$object->ID]['message'][] = esc_html__('Only use Auto Terms on posts with no added terms is enabled and this post contain terms.', 'simple-tags');
 			//update log
 			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'term_only_option');
 			return false; // Skip post with terms, if term only empty post option is checked
@@ -164,12 +181,8 @@ class SimpleTags_Client_Autoterms
 			$content = $object->post_title;
 		} elseif ($content_source === 'post_content') {
 			$content = $object->post_content;
-		} else {
+		} elseif ($content_source === 'posts') {
 			$content = $object->post_content . ' ' . $object->post_title;
-		}
-
-		if (isset($object->post_excerpt)) {
-			$content .= ' ' . $object->post_excerpt;
 		}
 
 		$html_exclusion  = (!empty($options['html_exclusion']) && is_array($options['html_exclusion'])) ? $options['html_exclusion'] :[];
@@ -177,7 +190,7 @@ class SimpleTags_Client_Autoterms
 		if (!empty($html_exclusion_customs)) {
 			$html_exclusion = array_filter(array_merge($html_exclusion, $html_exclusion_customs));
 		}
-		if (count($html_exclusion) > 0) {
+		if (!empty($content) && count($html_exclusion) > 0) {
 			foreach ($html_exclusion as $html_tag) {
 				$pattern = "/<{$html_tag}[^>]*>.*?<\/{$html_tag}>/is";
     			$content = preg_replace($pattern, '', $content);
@@ -185,8 +198,19 @@ class SimpleTags_Client_Autoterms
 		}
 
 		$content = trim(strip_tags($content));
+		
+		/**
+		 * Filter auto term content
+		 *
+		 * @param string $content Original content to be analyzed. It could include post title, 
+		 * content and/excerpt based on autoterms settings
+		 * @param integer $post_id This is the post id
+		 * @param array $options Autoterm settings
+		 */
+		$content = apply_filters('taxopress_filter_autoterm_content', $content, $object->ID, $options);
 
-		if (empty($content)) {
+		if (empty(trim($content))) {
+			$empty_term_messages[$object->ID]['message'][] = esc_html__('Auto Term content is empty. Could not suggest terms without content.', 'simple-tags');
 			//update log
 			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_post_content');
 			return false;
@@ -200,16 +224,8 @@ class SimpleTags_Client_Autoterms
 		$autoterm_use_taxonomy = !empty($options['autoterm_use_taxonomy']) && (int) $options['autoterm_use_taxonomy'] === 1;
 		$autoterm_useall = !empty($options['autoterm_useall']) && (int) $options['autoterm_useall'] === 1;
 		$autoterm_useonly = !empty($options['autoterm_useonly']) && (int) $options['autoterm_useonly'] === 1;
-		
-		/**
-		 * Filter auto term content
-		 *
-		 * @param string $content Original content to be analyzed. It could include post title, 
-		 * content and/excerpt based on autoterms settings
-		 * @param integer $post_id This is the post id
-		 * @param array $options Autoterm settings
-		 */
-		$content = apply_filters('taxopress_filter_autoterm_content', $content, $object->ID, $options);
+
+		$autoterm_replace_type = isset($options['replace_type']) ? $options['replace_type'] : '';
 
 		$args = [
 			'post_id' => $object->ID,
@@ -227,48 +243,47 @@ class SimpleTags_Client_Autoterms
 			if (!empty($open_ai_results['results'])) {
 				$term_results = $open_ai_results['results'];
 				$data = $term_results;
-				if (!empty($data)) {
-					foreach ((array) $data as $term) {
-						$term = stripslashes($term);
+				foreach ((array) $data as $term) {
+					$term = stripslashes($term);
 
-						if (!is_string($term)) {
-							continue;
-						}
+					if (!is_string($term)) {
+						continue;
+					}
 
-						$term = trim($term);
-						if (empty($term)) {
-							continue;
-						}
+					$term = trim($term);
+					if (empty($term)) {
+						continue;
+					}
 
-						//check if term belong to the post already
-						/*if (has_term($term, $taxonomy, $object)) {
-							continue;
-						}*/
+					//exclude if name found in exclude terms
+					if (in_array($term, $autoterm_exclude)) {
+						$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('%1s was suggested by OpenAI but excluded by Auto Term Exception settings.', 'simple-tags'), '<strong>' . $term . '</strong>');
+						continue;
+					}
 
-						//exclude if name found in exclude terms
-						if (in_array($term, $autoterm_exclude)) {
-							continue;
-						}
-
-						//add primary term
-						$add_terms = [];
-						$add_terms[$term] = $term;
-						// add term synonyms
-						if (is_array($options) && isset($options['synonyms_term']) && (int) $options['synonyms_term'] > 0) {
-							$term_synonyms = taxopress_get_term_synonyms($term, $taxonomy);
-							if (!empty($term_synonyms)) {
-								foreach ($term_synonyms as $term_synonym) {
-									$add_terms[$term_synonym] = $term;
-								}
+					//add primary term
+					$add_terms = [];
+					$add_terms[$term] = $term;
+					// add term synonyms
+					if (is_array($options) && isset($options['synonyms_term']) && (int) $options['synonyms_term'] > 0) {
+						$term_synonyms = taxopress_get_term_synonyms($term, $taxonomy);
+						if (!empty($term_synonyms)) {
+							foreach ($term_synonyms as $term_synonym) {
+								$add_terms[$term_synonym] = $term;
 							}
 						}
+					}
 
-						// add linked term
-						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
+					// add linked term
+					$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
-						foreach ($add_terms as $find_term => $original_term) {
-							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
+					foreach ($add_terms as $find_term => $original_term) {
+						$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
 
+						if (!in_array($action, ['save_posts', 'hourly_cron_schedule', 'daily_cron_schedule'])) {
+							// The settings only apply to saving post and schedule auto terms. So, just add the terms for other component since it's suggested by the service.
+							$terms_to_add[] = $term;
+						} else {
 							if (!empty($terms_regex_code)) {
 								if (preg_match("{$terms_regex_code}", $content)) {
 									$terms_to_add[] = $term;
@@ -297,6 +312,8 @@ class SimpleTags_Client_Autoterms
 						}
 					}
 				}
+			} else {
+				$empty_term_messages[$object->ID]['message'][] = esc_html__('OpenAI', 'simple-tags') . ': ' . $open_ai_results['message'];
 			}
 		}
 		
@@ -306,69 +323,68 @@ class SimpleTags_Client_Autoterms
 			if (!empty($ibm_watson_results['results'])) {
 				$term_results = $ibm_watson_results['results'];
 				$data = $term_results;
-				if (!empty($data)) {
-					foreach ((array) $data as $term) {
-						$term = stripslashes($term);
+				foreach ((array) $data as $term) {
+					$term = stripslashes($term);
 
-						if (!is_string($term)) {
-							continue;
-						}
+					if (!is_string($term)) {
+						continue;
+					}
 
-						$term = trim($term);
-						if (empty($term)) {
-							continue;
-						}
+					$term = trim($term);
+					if (empty($term)) {
+						continue;
+					}
 
-						//check if term belong to the post already
-						/*if (has_term($term, $taxonomy, $object)) {
-							continue;
-						}*/
+					//exclude if name found in exclude terms
+					if (in_array($term, $autoterm_exclude)) {
+						$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('%1s was suggested by IBM Watson but excluded by Auto Term Exception settings.', 'simple-tags'), '<strong>' . $term . '</strong>');
+						continue;
+					}
 
-						//exclude if name found in exclude terms
-						if (in_array($term, $autoterm_exclude)) {
-							continue;
-						}
-
-						//add primary term
-						$add_terms = [];
-						$add_terms[$term] = $term;
-						// add term synonyms
-						if (is_array($options) && isset($options['synonyms_term']) && (int) $options['synonyms_term'] > 0) {
-							$term_synonyms = taxopress_get_term_synonyms($term, $taxonomy);
-							if (!empty($term_synonyms)) {
-								foreach ($term_synonyms as $term_synonym) {
-									$add_terms[$term_synonym] = $term;
-								}
+					//add primary term
+					$add_terms = [];
+					$add_terms[$term] = $term;
+					// add term synonyms
+					if (is_array($options) && isset($options['synonyms_term']) && (int) $options['synonyms_term'] > 0) {
+						$term_synonyms = taxopress_get_term_synonyms($term, $taxonomy);
+						if (!empty($term_synonyms)) {
+							foreach ($term_synonyms as $term_synonym) {
+								$add_terms[$term_synonym] = $term;
 							}
 						}
+					}
 
-						// add linked term
-						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
+					// add linked term
+					$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
-						foreach ($add_terms as $find_term => $original_term) {
-							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
+					foreach ($add_terms as $find_term => $original_term) {
+						$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
 
+						if (!in_array($action, ['save_posts', 'hourly_cron_schedule', 'daily_cron_schedule'])) {
+							// The settings only apply to saving post and schedule auto terms. So, just add the terms for other component since it's suggested by the service.
+							$terms_to_add[] = $term;
+						} else {
 							if (!empty($terms_regex_code)) {
 								if (preg_match("{$terms_regex_code}", $content)) {
-									$terms_to_add[] = $term;
+								$terms_to_add[] = $term;
 								}
 							} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
 								// Whole word ?
 								//if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
 								if (preg_match("#\b" . preg_quote($find_term) . "\b#i", $content)) {
-									$terms_to_add[] = $term;
+								$terms_to_add[] = $term;
 								}
 
 								//make exception for hashtag special character
 								if (substr($find_term, 0, strlen('#')) === '#') {
-									$trim_term = ltrim($find_term, '#');
-									if (preg_match("/\B(\#+$trim_term\b)(?!;)/i", $content)) {
-										$terms_to_add[] = $term;
-									}
+								$trim_term = ltrim($find_term, '#');
+								if (preg_match("/\B(\#+$trim_term\b)(?!;)/i", $content)) {
+									$terms_to_add[] = $term;
+								}
 								}
 
 								if (isset($options['autoterm_hash']) && (int) $options['autoterm_hash'] == 1 && stristr($content, '#' . $find_term)) {
-									$terms_to_add[] = $term;
+								$terms_to_add[] = $term;
 								}
 							} elseif (stristr($content, $find_term)) {
 								$terms_to_add[] = $term;
@@ -376,6 +392,8 @@ class SimpleTags_Client_Autoterms
 						}
 					}
 				}
+			} else {
+				$empty_term_messages[$object->ID]['message'][] = esc_html__('IBM Watson', 'simple-tags') . ': ' . $ibm_watson_results['message'];
 			}
 		} 
 		
@@ -398,13 +416,9 @@ class SimpleTags_Client_Autoterms
 							continue;
 						}
 
-						//check if term belong to the post already
-						/*if (has_term($term, $taxonomy, $object)) {
-							continue;
-						}*/
-
 						//exclude if name found in exclude terms
 						if (in_array($term, $autoterm_exclude)) {
+							$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('%1s was suggested by Dandelion but excluded by Auto Term Exception settings.', 'simple-tags'), '<strong>' . $term . '</strong>');
 							continue;
 						}
 
@@ -427,34 +441,41 @@ class SimpleTags_Client_Autoterms
 						foreach ($add_terms as $find_term => $original_term) {
 							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
 							
-							if (!empty($terms_regex_code)) {
-								if (preg_match("{$terms_regex_code}", $content)) {
-									$terms_to_add[] = $term;
-								}
-							} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
-								// Whole word ?
-								//if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
-								if (preg_match("#\b" . preg_quote($find_term) . "\b#i", $content)) {
-									$terms_to_add[] = $term;
-								}
-
-								//make exception for hashtag special character
-								if (substr($find_term, 0, strlen('#')) === '#') {
-									$trim_term = ltrim($find_term, '#');
-									if (preg_match("/\B(\#+$trim_term\b)(?!;)/i", $content)) {
+							if (!in_array($action, ['save_posts', 'hourly_cron_schedule', 'daily_cron_schedule'])) {
+								// The settings only apply to saving post and schedule auto terms. So, just add the terms for other component since it's suggested by the service.
+								$terms_to_add[] = $term;
+							} else {
+								if (!empty($terms_regex_code)) {
+									if (preg_match("{$terms_regex_code}", $content)) {
 										$terms_to_add[] = $term;
 									}
-								}
+								} elseif (isset($options['autoterm_word']) && (int) $options['autoterm_word'] == 1) {
+									// Whole word ?
+									//if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
+									if (preg_match("#\b" . preg_quote($find_term) . "\b#i", $content)) {
+										$terms_to_add[] = $term;
+									}
 
-								if (isset($options['autoterm_hash']) && (int) $options['autoterm_hash'] == 1 && stristr($content, '#' . $find_term)) {
+									//make exception for hashtag special character
+									if (substr($find_term, 0, strlen('#')) === '#') {
+										$trim_term = ltrim($find_term, '#');
+										if (preg_match("/\B(\#+$trim_term\b)(?!;)/i", $content)) {
+											$terms_to_add[] = $term;
+										}
+									}
+
+									if (isset($options['autoterm_hash']) && (int) $options['autoterm_hash'] == 1 && stristr($content, '#' . $find_term)) {
+										$terms_to_add[] = $term;
+									}
+								} elseif (stristr($content, $find_term)) {
 									$terms_to_add[] = $term;
 								}
-							} elseif (stristr($content, $find_term)) {
-								$terms_to_add[] = $term;
 							}
 						}
 					}
 				}
+			} else {
+				$empty_term_messages[$object->ID]['message'][] = esc_html__('Dandelion', 'simple-tags') . ': ' . $dandelion_results['message'];
 			}
 		} 
 		
@@ -463,54 +484,48 @@ class SimpleTags_Client_Autoterms
 			$open_calais_results = TaxoPressAiApi::get_open_calais_results($args);
 			if (!empty($open_calais_results['results'])) {
 				$data = $open_calais_results['results'];
-				if (!empty($data)) {
-					// Remove empty terms
-					$data = array_filter($data, '_delete_empty_element');
-					$data = array_unique($data);
+				foreach ((array) $data as $term) {
+					$term = stripslashes($term);
 
+					if (!is_string($term)) {
+						continue;
+					}
 
-					foreach ((array) $data as $term) {
-						$term = stripslashes($term);
+					$term = trim($term);
+					if (empty($term)) {
+						continue;
+					}
 
-						if (!is_string($term)) {
-							continue;
-						}
+					//exclude if name found in exclude terms
+					if (in_array($term, $autoterm_exclude)) {
+						$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('%1s was suggested by OpenCalais but excluded by Auto Term Exception settings.', 'simple-tags'), '<strong>' . $term . '</strong>');
+						continue;
+					}
 
-						$term = trim($term);
-						if (empty($term)) {
-							continue;
-						}
+					//add primary term
+					$add_terms = [];
+					$add_terms[$term] = $term;
 
-						//check if term belong to the post already
-						/*if (has_term($term, $taxonomy, $object)) {
-							continue;
-						}*/
-
-						//exclude if name found in exclude terms
-						if (in_array($term, $autoterm_exclude)) {
-							continue;
-						}
-
-						//add primary term
-						$add_terms = [];
-						$add_terms[$term] = $term;
-
-						// add term synonyms
-						if (is_array($options) && isset($options['synonyms_term']) && (int) $options['synonyms_term'] > 0) {
-							$term_synonyms = taxopress_get_term_synonyms($term, $taxonomy);
-							if (!empty($term_synonyms)) {
-								foreach ($term_synonyms as $term_synonym) {
-									$add_terms[$term_synonym] = $term;
-								}
+					// add term synonyms
+					if (is_array($options) && isset($options['synonyms_term']) && (int) $options['synonyms_term'] > 0) {
+						$term_synonyms = taxopress_get_term_synonyms($term, $taxonomy);
+						if (!empty($term_synonyms)) {
+							foreach ($term_synonyms as $term_synonym) {
+								$add_terms[$term_synonym] = $term;
 							}
 						}
+					}
 
-						// add linked term
-						$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
+					// add linked term
+					$add_terms = taxopress_add_linked_term_options($add_terms, $term, $taxonomy, false, true);
 
-						foreach ($add_terms as $find_term => $original_term) {
-							$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
-							
+					foreach ($add_terms as $find_term => $original_term) {
+						$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
+
+						if (!in_array($action, ['save_posts', 'hourly_cron_schedule', 'daily_cron_schedule'])) {
+							// The settings only apply to saving post and schedule auto terms. So, just add the terms for other component since it's suggested by the service.
+							$terms_to_add[] = $term;
+						} else {
 							if (!empty($terms_regex_code)) {
 								if (preg_match("{$terms_regex_code}", $content)) {
 									$terms_to_add[] = $term;
@@ -526,7 +541,7 @@ class SimpleTags_Client_Autoterms
 								if (substr($find_term, 0, strlen('#')) === '#') {
 									$trim_term = ltrim($find_term, '#');
 									if (preg_match("/\B(\#+$trim_term\b)(?!;)/i", $content)) {
-										$terms_to_add[] = $term;
+									$terms_to_add[] = $term;
 									}
 								}
 
@@ -539,6 +554,8 @@ class SimpleTags_Client_Autoterms
 						}
 					}
 				}
+			} else {
+				$empty_term_messages[$object->ID]['message'][] = esc_html__('OpenCalais', 'simple-tags') . ': ' . $open_calais_results['message'];
 			}
 		} 
 		
@@ -556,13 +573,9 @@ class SimpleTags_Client_Autoterms
 					continue;
 				}
 
-				//check if term belong to the post already
-				/*if (has_term($term, $taxonomy, $object)) {
-					continue;
-				}*/
-
 				//exclude if name found in exclude terms
 				if (in_array($term, $autoterm_exclude)) {
+					$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('%1s was suggested by Suggested terms from specific terms but excluded by Auto Term Exception settings.', 'simple-tags'), '<strong>' . $term . '</strong>');
 					continue;
 				}
 
@@ -585,7 +598,7 @@ class SimpleTags_Client_Autoterms
 
 				foreach ($add_terms as $find_term => $original_term) {
 					$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
-
+					// This settings must be applied to inbuilt suggested terms as we need to suggest terms that are found in content
 					if (!empty($terms_regex_code)) {
 						if (preg_match("{$terms_regex_code}", $content)) {
 							$terms_to_add[] = $term;
@@ -636,13 +649,9 @@ class SimpleTags_Client_Autoterms
 					continue;
 				}
 
-				//check if term belong to the post already
-				/*if (has_term($term, $taxonomy, $object)) {
-					continue;
-				}*/
-
 				//exclude if name found in exclude terms
 				if (in_array($term, $autoterm_exclude)) {
+					$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('%1s was suggested by Suggested terms from taxonomy terms but excluded by Auto Term Exception settings.', 'simple-tags'), '<strong>' . $term . '</strong>');
 					continue;
 				}
 
@@ -666,6 +675,7 @@ class SimpleTags_Client_Autoterms
 				foreach ($add_terms as $find_term => $original_term) {
 					$terms_regex_code = !empty($autoterm_regex_code) ? str_replace('{term}', preg_quote($find_term), $autoterm_regex_code) : '';
 
+					// This settings must be applied to inbuilt suggested terms as we need to suggest terms that are found in content
 					if (!empty($terms_regex_code)) {
 						if (preg_match("{$terms_regex_code}", $content)) {
 							$terms_to_add[] = $term;
@@ -712,14 +722,23 @@ class SimpleTags_Client_Autoterms
 			foreach ($terms_to_add as $index => $term_name) {
 				if (has_term($term_name, $taxonomy, $object)) {
 					unset($terms_to_add[$index]);
+					$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('%1s was suggested but not added because it already belongs to the post.', 'simple-tags'), '<strong>' . $term_name . '</strong>');
 				}
 			}
 
 			$terms_to_add = array_filter(array_values($terms_to_add));
 
 			if (empty($terms_to_add)) {
-				//update log
-				self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms');
+				// remove term if replace type is replace and term is empty
+				if ($autoterm_replace_type == 'replace') {
+					$empty_term_messages[$object->ID]['message'][] = esc_html__('No term was suggested but all post terms removed based on Auto Terms replace settings.', 'simple-tags');
+					wp_set_object_terms($object->ID, [], $taxonomy, true);
+					//update log
+					self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms_remove_all');
+				} else {
+					//update log
+					self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms');
+				}
 				return false;
 			}
 
@@ -736,7 +755,11 @@ class SimpleTags_Client_Autoterms
 			$added_post_term[$object->ID] = $terms_to_add;
 
 			// Add terms to posts
-			wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, true);
+			if ($autoterm_replace_type == '' || $autoterm_replace_type == 'append') {
+				wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, true);
+			} elseif ($autoterm_replace_type == 'append_and_replace' || $autoterm_replace_type == 'replace') {
+				wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, false);
+			}
 
 			// Clean cache
 			clean_post_cache($object->ID);
@@ -746,8 +769,13 @@ class SimpleTags_Client_Autoterms
 
 			return true;
 		} else {
+			// remove term if replace type is replace and term is empty
+			if ($autoterm_replace_type == 'replace') {
+				wp_set_object_terms($object->ID, [], $taxonomy, true);
+			}
+
 			//update log
-			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms');
+			self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms_remove_all');
 		}
 
 		return false;
@@ -761,7 +789,7 @@ class SimpleTags_Client_Autoterms
 	 * COMPONENT: (st_autoterms)
 	 * ACTION: (existing_content, save_posts, daily_cron_schedule, hourly_cron_schedule)
 	 * STATUS: (failed, success)
-	 * STATUS MESSAGE: (invalid_option, term_only_option, empty_post_content, terms_added, empty_terms)
+	 * STATUS MESSAGE: (invalid_option, term_only_option, empty_post_content, terms_added, empty_terms, empty_terms_remove_all)
 	 * 
 	 * @param object $object
 	 * @param string $taxonomy

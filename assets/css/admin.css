@@ -102,6 +102,10 @@ table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
     display: none !important;
 }
 
+.taxopress-radio-input {
+    margin-bottom: 10px;
+}
+
 .autoterm-description-tr td {
     padding: 0;
 }
@@ -746,9 +750,9 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
 .tagcloudui:not(.st-manage-terms-page):not(.st_mass_terms-page) input[type=text],
 .tagcloudui:not(.st-manage-terms-page):not(.st_mass_terms-page) input[type=number],
 .tagcloudui:not(.st-manage-terms-page):not(.st_mass_terms-page) select,
-.taxopress-split-wrap input[type=text],
-.taxopress-split-wrap input[type=number],
-.taxopress-split-wrap select {
+.taxopress-split-wrap input[type=text]:not(.current-page),
+.taxopress-split-wrap input[type=number]:not(.current-page),
+.taxopress-split-wrap select:not(#bulk-action-selector-top):not(.post-top-filter) {
     width: 300px;
 }
 
@@ -1075,6 +1079,7 @@ ul.taxopress-tab {
     background-color: #fafafa;
     border-right: 1px solid #eee;
     box-sizing: border-box;
+    min-height: 400px;
 }
 .taxopress-tab-content {
     float: left;
@@ -1155,6 +1160,12 @@ ul.taxopress-tab li.autolink_control_tab a::before {
 
 ul.taxopress-tab li.autoterm_terms_tab a::before {
     content: "\f323";
+}
+ul.taxopress-tab li.autoterm_when_to_use_tab a::before {
+    content: "\f506";
+}
+ul.taxopress-tab li.autoterm_display_tab a::before {
+    content: "\f186";
 }
 ul.taxopress-tab li.autoterm_options_tab a::before {
     content: "\f180";
@@ -1249,6 +1260,20 @@ ul.taxopress-tab li.posttags_display_tab a::before {
 .st-autoterms-single-specific-term.new {
     margin: 25px 0;
 }
+
+.autoterm-log-message {
+    display: none;
+}
+
+.log-message-hide-button {
+    margin-bottom: 10px;
+}
+
+.autoterm-log-message ul {
+    list-style: decimal;
+    padding: 12px;
+}
+
 .auto-term-content-result {
     margin-top: 10px;
     max-height: 430px;

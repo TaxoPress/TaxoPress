@@ -204,7 +204,7 @@ if (!class_exists('TaxoPressAiApi')) {
 
                             if (!empty($data)) {
                                 foreach ($data as $_data_raw) {
-                                    if (isset($_data_raw['_typeGroup']) && $_data_raw['_typeGroup'] == 'socialTag') {
+                                    if (isset($_data_raw['_typeGroup']) && $_data_raw['_typeGroup'] == 'socialTag' && !empty(trim($_data_raw['name']))) {
                                         $terms[] = $_data_raw['name'];
                                     }
                                 }
@@ -447,94 +447,106 @@ if (!class_exists('TaxoPressAiApi')) {
                     );
                 } else {
                     $prompt = "Extract tags from the following content: '$clean_content'. Tags:";
-
+                    $post_terms_in_prompt = false;
+                    $existing_post_terms = [];
                     if (!empty($settings_data['open_ai_tag_prompt'])) {
+                        $post_terms_in_prompt = strpos($settings_data['open_ai_tag_prompt'], '{post_terms}') !== false;
                         $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_tag_prompt']));
                         $prompt = str_replace('{content}', $clean_content, $custom_prompt);
                         if (!empty($taxonomy) && !empty($post_id)) {
                             $post_terms_results = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'names']);
+                            $existing_post_terms = $post_terms_results;
                             $post_terms_comma_join = !empty($post_terms_results) ? join(', ', $post_terms_results) : '';
                             $prompt = str_replace('{post_terms}', $post_terms_comma_join, $prompt);
                         }
                     }
-                    
-                    $body_data = array(
-                        'model'         => $open_ai_model,
-                        'messages'    => [
-                            [
-                                'role'    => 'system',
-                                'content' => $prompt,
+
+                    if ($post_terms_in_prompt && empty($existing_post_terms)) {
+                        $return['status'] = 'error';
+                        $return['message'] = esc_html__('You added {post_terms} in the prompt but your post does not contain any terms.', 'simple-tags');
+                    } else {
+                        $body_data = array(
+                            'model'         => $open_ai_model,
+                            'messages'    => [
+                                [
+                                    'role'    => 'system',
+                                    'content' => $prompt,
+                                ],
                             ],
-                        ],
-                        'temperature'   => 0.9,
-                        'max_tokens'    => 50,
-                    );
+                            'temperature'   => 0.9,
+                            'max_tokens'    => 50,
+                        );
+                        
+                        $headers = [
+                            'Content-Type' => 'application/json',
+                            'Authorization' => 'Bearer ' . $open_ai_api_key,
+                        ];
                     
-                    $headers = [
-                        'Content-Type' => 'application/json',
-                        'Authorization' => 'Bearer ' . $open_ai_api_key,
-                    ];
-                
-                    $response = wp_remote_post(self::OPEN_AI_API_URL, array(
-                        'timeout' => 60,
-                        'headers' => $headers,
-                        'body' => wp_json_encode($body_data),
-                    ));
+                        $response = wp_remote_post(self::OPEN_AI_API_URL, array(
+                            'timeout' => 60,
+                            'headers' => $headers,
+                            'body' => wp_json_encode($body_data),
+                        ));
 
-                    if (!is_wp_error($response) && $response != null) {
-                        $status_code = wp_remote_retrieve_response_code($response);
-                        $body_data = json_decode(wp_remote_retrieve_body($response), true);
+                        if (!is_wp_error($response) && $response != null) {
+                            $status_code = wp_remote_retrieve_response_code($response);
+                            $body_data = json_decode(wp_remote_retrieve_body($response), true);
 
-                        if ($status_code !== 200) {
-                            $error_message = (is_array($body_data) && !empty($body_data['error']['message'])) ? $body_data['error']['message'] : $status_code;
-                            if (strpos($error_message, 'You exceeded your current quota, please check your plan and billing details') !== false) {
-                                // https://github.com/TaxoPress/TaxoPress/issues/1951
-                                $error_message = esc_html__('Error: OpenAI says there is an issue with this API key. Please check your plan or billing details.', 'simple-tags');
-                            }
-                            $return['status'] = 'error';
-                            $return['message'] = $error_message;//sprintf(esc_html__('API Error: %1s.', 'simple-tags'), $error_message);
-                        } else {
+                            if ($status_code !== 200) {
+                                $error_message = (is_array($body_data) && !empty($body_data['error']['message'])) ? $body_data['error']['message'] : $status_code;
+                                if (strpos($error_message, 'You exceeded your current quota, please check your plan and billing details') !== false) {
+                                    // https://github.com/TaxoPress/TaxoPress/issues/1951
+                                    $error_message = esc_html__('Error: OpenAI says there is an issue with this API key. Please check your plan or billing details.', 'simple-tags');
+                                }
+                                $return['status'] = 'error';
+                                $return['message'] = $error_message;//sprintf(esc_html__('API Error: %1s.', 'simple-tags'), $error_message);
+                            } else {
 
-                            $data = [];
-                            if (!empty($body_data['choices'] )) {
-                                foreach ( $body_data['choices'] as $choice ) {
-                                    if ( isset( $choice['message'], $choice['message']['content'] ) ) {
-                                        $cleaned_response = self::clean_api_response($choice['message']['content']);
-                                        if (count(array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )))) === 1) {
-                                            $data = array_merge($data, [$cleaned_response]);
-                                        } else {
-                                            $data = array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )));
+                                $data = [];
+                                if (!empty($body_data['choices'] )) {
+                                    foreach ( $body_data['choices'] as $choice ) {
+                                        if ( isset( $choice['message'], $choice['message']['content'] ) ) {
+                                            $cleaned_response = self::clean_api_response($choice['message']['content']);
+                                            if (count(array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )))) === 1) {
+                                                $data = array_merge($data, [$cleaned_response]);
+                                            } else {
+                                                $data = array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )));
+                                            }
                                         }
                                     }
                                 }
-                            }
 
-                            $terms = [];
-                            if (!empty($data)) {
-                                $terms = (array) $data;
-                                if (!empty($terms)) {
-                                    $return['status'] = 'success';
-                                    $return['results'] = $terms;
-                                    $return['message'] = esc_html__(
-                                        'Result from api.',
-                                        'simple-tags'
-                                    );
-
-                                    update_post_meta($post_id, $existing_open_ai_result_key, $terms);
-                                    update_post_meta($post_id, $old_saved_content_key, $content);
+                                if (!empty($data) &&!empty($settings_data['open_ai_exclude_post_terms']) && $post_terms_in_prompt) {
+                                    $data = array_intersect($data, $existing_post_terms);
                                 }
-                            } else {
-                                $return['status'] = 'error';
-                                $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
-                            }
 
+                                $terms = [];
+                                if (!empty($data)) {
+                                    $terms = (array) $data;
+                                    if (!empty($terms)) {
+                                        $return['status'] = 'success';
+                                        $return['results'] = $terms;
+                                        $return['message'] = esc_html__(
+                                            'Result from api.',
+                                            'simple-tags'
+                                        );
+
+                                        update_post_meta($post_id, $existing_open_ai_result_key, $terms);
+                                        update_post_meta($post_id, $old_saved_content_key, $content);
+                                    }
+                                } else {
+                                    $return['status'] = 'error';
+                                    $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
+                                }
+
+                            }
+                        } else {
+                            $return['status'] = 'error';
+                            $return['message'] = esc_html__(
+                                'Error establishing connection with the API server. Try again.',
+                                'simple-tags'
+                            );
                         }
-                    } else {
-                        $return['status'] = 'error';
-                        $return['message'] = esc_html__(
-                            'Error establishing connection with the API server. Try again.',
-                            'simple-tags'
-                        );
                     }
                 }
 

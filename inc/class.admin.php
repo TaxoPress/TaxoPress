@@ -36,8 +36,6 @@ class SimpleTags_Admin
 
 		// Admin menu
 		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
-		// Log cpt
-		add_action('init', array(__CLASS__, 'taxopress_log_post_type'));
 
 		//Admin footer credit
 		add_action('in_admin_footer', array(__CLASS__, 'taxopress_admin_footer'));
@@ -435,7 +433,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
 		$select_2_page = false;
-		if (isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms'])) {
+		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms'])) || in_array($pagenow, ['post.php', 'edit.php'])) {
 			$select_2_page = true;
 		}
 
@@ -505,6 +503,11 @@ class SimpleTags_Admin
 			'save_settings' => esc_html__('Auto Term ID missing. Kindly save the auto term before using this feature.', 'simple-tags'),
 			'delete_label' => esc_html__('Delete', 'simple-tags'),
 			'ai_nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
+			'post_title'              => '%post_title%',
+			'post_permalink'          => '%post_permalink%',
+			'post_date'               => '%post_date%',
+			'post_thumb_url'          => '%post_thumb_url%',
+			'post_category'           => '%post_category%',
 		]);
 
 
@@ -540,46 +543,6 @@ class SimpleTags_Admin
 		}
 
 		do_action('taxopress_admin_class_after_assets_enqueue');
-	}
-
-	/**
-	 * Register log post type.
-	 *
-	 * @return void
-	 * @author olatechpro
-	 */
-	public static function taxopress_log_post_type()
-	{
-
-		// set up labels
-		$labels = array(
-			'name' => __('TaxoPress Logs', 'simple-tags'),
-			'singular_name' => __('TaxoPress Logs', 'simple-tags'),
-			'search_items' => __('Search TaxoPress Logs', 'simple-tags'),
-			'all_items' => __('TaxoPress Logs', 'simple-tags'),
-			'edit_item' => __('Edit TaxoPress Logs', 'simple-tags'),
-			'update_item' => __('Update TaxoPress Logs', 'simple-tags'),
-			'add_new_item' => __('Add New TaxoPress Logs', 'simple-tags'),
-			'new_item_name' => __('New TaxoPress Logs', 'simple-tags'),
-			'menu_name' => __('TaxoPress Logs', 'simple-tags')
-		);
-
-		register_post_type('taxopress_logs', array(
-			'labels' => $labels,
-			'public' => false,
-			'show_ui' => false,
-			'capability_type' => 'post',
-			'hierarchical' => false,
-			'rewrite' => array('slug' => 'taxopress_logs'),
-			'query_var' => false,
-			'show_in_nav_menus' => false,
-			'menu_icon' => 'dashicons-editor-justify',
-			'supports' => array(
-				'title',
-				'editor',
-				'author',
-			),
-		));
 	}
 
 	/**
@@ -822,7 +785,7 @@ class SimpleTags_Admin
 				$pt_index = 0;
 				foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
 					$active_pt = ($pt_index === 0) ? 'active' : '';
-					$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".metabox-' . $role_name . '-content">' . esc_html($role_info['name']) . '</span>';
+					$table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".metabox-' . $role_name . '-content">' . esc_html(translate_user_role($role_info['name'])) . '</span>';
 					$pt_index++;
 				}
 				$table_sub_tab = '<div class="st-metabox-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
@@ -1130,6 +1093,27 @@ class SimpleTags_Admin
 			SimpleTags_Plugin::set_option($options);
 
 			update_option('taxopress_3_23_0_upgrade_completed', true);
+		} elseif (!get_option('taxopress_3_28_0_upgrade_completed')) {
+
+			if (function_exists('taxopress_get_autoterm_data')) {
+				$autoterms      = taxopress_get_autoterm_data();
+				foreach ($autoterms as $autoterm_index => $autoterm) {
+					//enable when to fields
+					$autoterms[$autoterm_index]['autoterm_for_post'] = 1;
+					$autoterms[$autoterm_index]['autoterm_for_schedule'] = 1;
+					$autoterms[$autoterm_index]['autoterm_for_existing_content'] = 1;
+					$autoterms[$autoterm_index]['autoterm_for_metaboxes'] = 1;
+					// update new cloned fields for other groups
+					$autoterms[$autoterm_index]['schedule_terms_limit'] = !empty($autoterm['terms_limit']) ? $autoterm['terms_limit'] : 5;
+					$autoterms[$autoterm_index]['schedule_autoterm_target'] = !empty($autoterm['autoterm_target']) ? $autoterm['autoterm_target'] : 0;
+					$autoterms[$autoterm_index]['schedule_autoterm_word'] = !empty($autoterm['autoterm_word']) ? $autoterm['autoterm_word'] : 0;
+					$autoterms[$autoterm_index]['schedule_autoterm_hash'] = !empty($autoterm['autoterm_hash']) ? $autoterm['autoterm_hash'] : 0;
+
+					$autoterms[$autoterm_index]['existing_content_terms_limit'] = !empty($autoterm['terms_limit']) ? $autoterm['terms_limit'] : 5;
+				}
+				update_option('taxopress_autoterms', $autoterms);
+			}
+			update_option('taxopress_3_28_0_upgrade_completed', true);
 		}
 	}
 

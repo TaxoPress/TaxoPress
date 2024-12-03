@@ -3,9 +3,10 @@
 add_action('wp_ajax_taxopress_autoterms_content_by_ajax', 'taxopress_autoterms_content_by_ajax');
 function taxopress_autoterms_content_by_ajax()
 {
-    global $wpdb, $added_post_term;
+    global $wpdb, $added_post_term, $empty_term_messages;
 
         $added_post_term = [];
+        $empty_term_messages = [];
 
         // run a quick security check
         check_ajax_referer('st-admin-js', 'security');
@@ -64,6 +65,8 @@ function taxopress_autoterms_content_by_ajax()
                 $autoterm_data['existing_terms_sleep'] = $existing_terms_sleep;
                 $autoterm_data['limit_days'] = $limit_days;
                 $autoterm_data['autoterm_exclude'] = $autoterm_existing_content_exclude;
+                $autoterm_data['replace_type'] = isset($autoterm_data['existing_content_replace_type']) ? $autoterm_data['existing_content_replace_type'] : '';
+                $autoterm_data['terms_limit'] = !empty($autoterm_data['existing_content_terms_limit']) ? $autoterm_data['existing_content_terms_limit'] : '';
         }else{
             $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Auto term settings not found', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
             wp_send_json($response);
@@ -74,7 +77,12 @@ function taxopress_autoterms_content_by_ajax()
             wp_send_json($response);
         }
 
-        $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 20;
+        if (empty($autoterm_data['autoterm_for_existing_content'])) {
+            $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('The selected Auto Term is not enabled for existing content. Please enable it in Auto Term settings.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+            wp_send_json($response);
+        }
+
+        $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 2;
 
         $sleep = (isset($autoterm_data['existing_terms_sleep']) && (int)$autoterm_data['existing_terms_sleep'] > 0) ? (int)$autoterm_data['existing_terms_sleep'] : 0;
         
@@ -104,14 +112,25 @@ function taxopress_autoterms_content_by_ajax()
             foreach ($objects as $object) {
                 update_post_meta($object->ID, '_taxopress_autotermed', 1);
                 SimpleTags_Client_Autoterms::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, true, 'existing_content', 'st_autoterms' );
+                $log_messages = !empty($empty_term_messages[$object->ID]['message']) ? $empty_term_messages[$object->ID]['message'] : [];
+                $log_message_html = '';
+                if (!empty($log_messages)) {
+                    $log_message_html .= '<div class="log-message-show-button"><a href="#" class="msg-show">' . sprintf(esc_html__('Show Log Messages (%1s)', 'simple-tags'), '<strong>' . count($log_messages) . '</strong>') . '</a></div>';
+                    $log_message_html .= '<div class="autoterm-log-message" style="display: none;"><ul>';
+                    $log_msg_lists = array_map(function($item) {
+                        return '<li class="log-message-list">' . $item . '</li>';
+                    }, $log_messages);
+                    $log_message_html .= join('', $log_msg_lists);
+                    $log_message_html .= '</ul></div>';
+                    $log_message_html .= '<div class="log-message-hide-button"><a href="#" class="msg-hide" style="display: none;">' . sprintf(esc_html__('Hide Log Messages (%1s)', 'simple-tags'), '<strong>' . count($log_messages) . '</strong>') . '</a></div>';
+                }
                 if (!empty($added_post_term[$object->ID])) {
                     $tag_lists = array_map(function($item) {
                         return '<span class="taxopress-term"><span class="term-name">' . $item . '</span></span>';
                     }, $added_post_term[$object->ID]);
-                    $added_terms_html = join('', $tag_lists);
+                    $added_terms_html = join('', $tag_lists) . $log_message_html;
                 } else {
-                    $added_terms_html = esc_html__('No terms added.', 'simple-tags');
-
+                    $added_terms_html = esc_html__('No terms added.', 'simple-tags') . $log_message_html;;
                 }
                 $response_content .= '<li class="result-item">
                 <fieldset>
@@ -129,7 +148,7 @@ function taxopress_autoterms_content_by_ajax()
             $response['content'] = $response_content;
             $response['done'] = ($start_from + count($objects));
             $percentage = 100;
-            $response['notice'] = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Please leave this screen running to continue the scan. To stop the scan, close this screen or click this button: %1s Stop %2s', 'simple-tags'), '<a href="#" class="terminate-autoterm-scan">', '</a>') .'</p></div>';
+            $response['notice'] = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Please leave this screen running to continue the scan. To stop the scan, close this screen or click here: %1s Stop %2s | %3s Pause %4s', 'simple-tags'), '<a href="#" class="terminate-autoterm-scan">', '</a>', '<a href="#" class="pause-autoterm-scan" data-pause="0" data-pause-text="'. esc_html__('Pause', 'simple-tags') .'" data-resume-text="'. esc_html__('Resume', 'simple-tags') .'">', '</a>') .'</p></div>';
             $progress_message = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Progress Report: %s posts checked.', 'simple-tags'), '<strong>' . ($start_from + count($objects)) . '</strong>') .'</p></div>';
               
         } else {

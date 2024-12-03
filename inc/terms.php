@@ -221,7 +221,7 @@ class SimpleTags_Terms
             <div id="">
                 <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
                 <div class="taxopress-description">
-                    <?php esc_html_e('This screen allows you search and edit all the terms on your site.', 'simple-tags'); ?>
+                    <?php esc_html_e('This screen allows you to search and edit all the terms on your site.', 'simple-tags'); ?>
                 </div>
 
 

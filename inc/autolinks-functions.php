@@ -153,7 +153,7 @@ function taxopress_create_default_autolink()
     }
 
     $default                                                   = [];
-    $default['taxopress_autolink']['title']                    = 'Auto link';
+    $default['taxopress_autolink']['title']                    = esc_html__('Auto link', 'simple-tags');
     $default['taxopress_autolink']['taxonomy']                 = 'post_tag';
     $default['taxopress_autolink']['autolink_case']            = 'none';
     $default['taxopress_autolink']['autolink_display']         = 'post_content';

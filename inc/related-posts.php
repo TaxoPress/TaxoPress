@@ -291,8 +291,8 @@ class SimpleTags_Related_Post
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
-                                                <li aria-current="<?php echo $active_tab === 'relatedpost_display' ? 'true' : 'false'; ?>" class="relatedpost_display_tab <?php echo $active_tab === 'relatedpost_display' ? 'active' : ''; ?>" data-content="relatedpost_display">
-                                                    <a href="#relatedpost_display"><span><?php esc_html_e('Display',
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_display_format' ? 'true' : 'false'; ?>" class="relatedpost_display_format_tab <?php echo $active_tab === 'relatedpost_display_format' ? 'active' : ''; ?>" data-content="relatedpost_display_format">
+                                                    <a href="#relatedpost_display_format"><span><?php esc_html_e('Display format',
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
@@ -442,123 +442,44 @@ class SimpleTags_Related_Post
                                                             'required'   => true,
                                                             'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         ]);
-
-                                                        $select = [
-                                                            'options' => [
-                                                                [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ), 'default' => 'true' ],
-                                                                [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
-                                                                [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
-                                                            ], 
-                                                        ]; 
-                                                        $selected = (isset($current) && isset($current['format'])) ? taxopress_disp_boolean($current['format']) : '';
-                                                        $select['selected'] = !empty($selected) ? $current['format'] : ''; 
-                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
-                                                        echo $ui->get_select_checkbox_input_main( [
-                                                            'namearray'  => 'taxopress_related_post',
-                                                            'name'       => 'format',
-                                                            'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
-                                                            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        ] );
                                                         
                                                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     echo $ui->get_td_end() . $ui->get_tr_end();
                                                     ?>
                                                 </table>
 
-
-                                                <table class="form-table taxopress-table relatedpost_display"
-                                                       style="<?php echo $active_tab === 'relatedpost_display' ? '' : 'display:none;'; ?>">
+                                                <table class="form-table taxopress-table relatedpost_display_format"
+                                                       style="<?php echo $active_tab === 'relatedpost_display_format' ? '' : 'display:none;'; ?>">
                                                     <?php
-                                                        
-                                                        /**
-                                                         * Filters the arguments for post types to list for taxonomy association.
-                                                         *
-                                                         *
-                                                         * @param array $value Array of default arguments.
-                                                         */
-                                                        $args = apply_filters('taxopress_attach_post_types_to_taxonomy',
-                                                            ['public' => true]);
 
-                                                        // If they don't return an array, fall back to the original default. Don't need to check for empty, because empty array is default for $args param in get_post_types anyway.
-                                                        if (!is_array($args)) {
-                                                            $args = ['public' => true];
-                                                        }
-                                                        $output = 'objects'; // Or objects.
-
-                                                        /**
-                                                         * Filters the results returned to display for available post types for taxonomy.
-                                                         *
-                                                         * @param array $value Array of post type objects.
-                                                         * @param array $args Array of arguments for the post type query.
-                                                         * @param string $output The output type we want for the results.
-                                                         */
-                                                        $post_types = apply_filters('taxopress_get_post_types_for_taxonomies',
-                                                            get_post_types($args, $output), $args, $output);
-
-                                                        $term_auto_locations = [
-                                                            'homeonly' => esc_attr__('Homepage', 'simple-tags'),
-                                                            'blogonly' => esc_attr__('Blog display', 'simple-tags'),
-                                                            'post'     => esc_attr__('Posts', 'simple-tags'),
-                                                        ];
-                                                        foreach ($post_types as $post_type) {
-                                                            if (!in_array($post_type->name, ['attachment'])) {
-                                                                $term_auto_locations[$post_type->name] = $post_type->label;
-                                                            }
-                                                        }
-
-                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                         echo $ui->get_number_input([
-                                                            'namearray' => 'taxopress_related_post',
-                                                            'name'      => 'number',
-                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '3',
-                                                            'labeltext' => esc_html__('Maximum related posts to display',
-                                                                'simple-tags'),
-                                                            'helptext'  => esc_html__('Specify the number of related posts to display.', 'simple-tags'),
-                                                            'required'  => true,
-                                                        ]);
-
-                                                        echo '<tr valign="top"><th scope="row"><label>' . esc_html__('Attempt to automatically display related posts',
-                                                                'simple-tags') . '</label><br /><small style=" color: #646970;">' . esc_html__('TaxoPress will attempt to automatically display related posts in this content. It may not be successful for all post types and layouts.',
-                                                                'simple-tags') . '</small></th><td>
-                                                                <table class="visbile-table">';
-                                                        foreach ($term_auto_locations as $key => $value) {
-
-                                                            $is_checked = 'false';
-
-                                                            // Set 'post' as default if nothing is set in the $current['embedded'] array
-                                                            if ((!isset($current['embedded']) || !is_array($current['embedded'])) && $key === 'post') {
-                                                                $is_checked = 'true';
-                                                            }
-                                                            // If there's a value set in $current['embedded'], check it against $key
-                                                            elseif (isset($current['embedded']) && is_array($current['embedded']) && in_array($key, $current['embedded'], true)) {
-                                                                $is_checked = 'true';
-                                                            }
-
-
-                                                            echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' .esc_html($value) . '</label></th><td>';
-
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_check_input([
-                                                                'checkvalue' => esc_attr($key),
-                                                                'checked' => $is_checked,
-                                                                'name'       => esc_attr($key),
-                                                                'namearray'  => 'embedded',
-                                                                'textvalue'  => esc_attr($key),
-                                                                'labeltext'  => "",
-                                                                'wrap'       => false,
+                                                            echo $ui->get_textarea_input([
+                                                                'namearray' => 'taxopress_related_post',
+                                                                'name'      => 'xformat',
+                                                                'class'     => 'st-full-width',
+                                                                'rows'      => '4',
+                                                                'cols'      => '40',
+                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>'),
+                                                                'labeltext' => esc_html__('Term link format', 'simple-tags'),
+                                                                'helptext'  => sprintf(esc_html__('You can find markers and explanations %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
+                                                                'required'  => false,
                                                             ]);
 
-                                                            echo '</td></tr>';
-
-                                                            if ($key === 'blogonly') {
-                                                                echo '<tr valign="top"><th style="padding: 0;" scope="row"><hr /></th><td style="padding: 0;"><hr /></td></tr>';
-                                                            }
-
-
-                                                        }
-                                                        echo '</table></td></tr>';
-
-
+                                                            $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ), 'default' => 'true' ],
+                                                                    [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
+                                                                ], 
+                                                            ]; 
+                                                            $selected = (isset($current) && isset($current['format'])) ? taxopress_disp_boolean($current['format']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['format'] : ''; 
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                'namearray'  => 'taxopress_related_post',
+                                                                'name'       => 'format',
+                                                                'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
+                                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
                                                     ?>
 
                                                 </table>
@@ -645,6 +566,17 @@ class SimpleTags_Related_Post
                                                 <table class="form-table taxopress-table relatedpost_option"
                                                        style="<?php echo $active_tab === 'relatedpost_option' ? '' : 'display:none;'; ?>">
                                                     <?php
+
+                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                         echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'number',
+                                                            'textvalue' => isset($current['number']) ? esc_attr($current['number']) : '3',
+                                                            'labeltext' => esc_html__('Maximum related posts to display',
+                                                                'simple-tags'),
+                                                            'helptext'  => esc_html__('Specify the number of related posts to display.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_text_input([
                                                                 'namearray' => 'taxopress_related_post',
@@ -655,7 +587,7 @@ class SimpleTags_Related_Post
                                                                     'simple-tags'
                                                                 ),
                                                                 'helptext'  => esc_html__(
-                                                                    'Enter the text that should be display before posts list. This field accepts basic HTML.',
+                                                                    'Enter the text that should be displayed before the posts list.',
                                                                     'simple-tags'
                                                                 ),
                                                                 'required'  => false,
@@ -671,7 +603,7 @@ class SimpleTags_Related_Post
                                                                     'simple-tags'
                                                                 ),
                                                                 'helptext'  => esc_html__(
-                                                                    'Enter the text that should be display after posts list. This field accepts basic HTML.',
+                                                                    'Enter the text that should be display after the posts list.',
                                                                     'simple-tags'
                                                                 ),
                                                                 'required'  => false,
@@ -856,17 +788,7 @@ class SimpleTags_Related_Post
                                                         ] );
 
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        echo $ui->get_textarea_input([
-                                                                'namearray' => 'taxopress_related_post',
-                                                                'name'      => 'xformat',
-                                                                'class'     => 'st-full-width',
-                                                                'rows'      => '4',
-                                                                'cols'      => '40',
-                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>'),
-                                                                'labeltext' => esc_html__('Term link format', 'simple-tags'),
-                                                                'helptext'  => sprintf(esc_html__('You can find markers and explanations %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
-                                                                'required'  => false,
-                                                            ]);
+
                                                             echo $ui->get_number_input([
                                                                 'namearray' => 'taxopress_related_post',
                                                                 'name'      => 'max_post_chars',

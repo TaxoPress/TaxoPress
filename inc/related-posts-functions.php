@@ -145,7 +145,7 @@ function taxopress_create_default_related_post()
     }
 
     $default                                           = [];
-    $default['taxopress_related_post']['title']        = 'Related Posts';
+    $default['taxopress_related_post']['title']        = esc_html__('Related Posts', 'simple-tags');
     $default['taxopress_related_post']['title_header'] = 'h4';
     $default['taxopress_related_post']['before']       = '';
     $default['taxopress_related_post']['after']        = '';
@@ -202,7 +202,6 @@ function taxopress_update_relatedpost($data = [])
 
     $xformat                                    = $data['taxopress_related_post']['xformat'];
     $data['taxopress_related_post']['xformat']  = stripslashes_deep($xformat);
-    $data['taxopress_related_post']['embedded'] = isset($data['embedded']) ? $data['embedded'] : [];
     $data['taxopress_related_post']['post_types'] = isset($data['post_types']) ? $data['post_types'] : [];
 
 
@@ -361,22 +360,14 @@ function taxopress_relatedposts_the_content($content = '')
         foreach ($post_tags as $post_tag) {
 
             // Get option
-            $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
+            $post_types = (isset($post_tag['post_types']) && is_array($post_tag['post_types']) && count($post_tag['post_types']) > 0) ? $post_tag['post_types'] : false;
 
-            if (!$embedded) {
+            if (!$post_types) {
                 continue;
             }
 
             $marker = false;
-            if (is_feed() && in_array('feed', $embedded)) {
-                $marker = true;
-            } elseif (is_home() && in_array('homeonly', $embedded)) {
-                $marker = true;
-            } elseif (is_feed() && in_array('blogonly', $embedded)) {
-                $marker = true;
-            } elseif (is_singular() && in_array('singleonly', $embedded)) {
-                $marker = true;
-            } elseif (is_singular() && in_array(get_post_type(), $embedded)) {
+            if (is_singular() && in_array(get_post_type(), $post_types)) {
                 $marker = true;
             }
             if (true === $marker) {

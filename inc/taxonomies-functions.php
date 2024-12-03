@@ -2288,6 +2288,21 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
             return $status;
 }
 
+/**
+ * Filter the dropdown cats to remove the value="0" to solve issue with filter when
+ * tag=0 https://github.com/TaxoPress/TaxoPress/issues/2372
+ * @param string $output
+ * @return string
+ */
+function taxopress_filter_dropdown_cats($output) {
+
+    if (strpos($output, 'taxopress-select2-term-filter') !== false) {
+        $output = str_replace(['value="0"', "value='0'"], ['value=""', "value=''"], $output);
+    }
+    
+    return $output;
+}
+
 /* Show taxonomy filter on post list */
 function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
 
@@ -2307,6 +2322,8 @@ function taxopress_filter_dropdown( $taxonomy, $show_filter ) {
                 'name'            => $taxonomy->query_var,
                 'taxonomy'        => $taxonomy->name,
                 'value_field'     => 'slug',
+                'id'              => $taxonomy->name,
+                'class'           => 'taxopress-select2-term-filter'
             )
         );
 
@@ -2322,7 +2339,7 @@ function taxopress_get_all_taxonomies() {
 
 function taxopress_get_dropdown(){
 
-    global $pagenow;
+    global $pagenow, $typenow;
 
     if ( is_admin() ) {
 

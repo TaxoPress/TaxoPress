@@ -70,7 +70,7 @@ function taxopress_re_order_menu()
 
     foreach ($submenu as $menuName => $menuItems) {
         if ('st_options' === $menuName) {
-            $taxopress_settings = $taxopress_dashboard = $taxopress_taxonomies = $taxopress_linked_terms = $taxopress_upgrade = false;
+            $taxopress_settings = $taxopress_dashboard = $taxopress_taxonomies = $taxopress_linked_terms = $taxopress_autoterms_schedule = $taxopress_upgrade = false;
 
             $taxopress_submenus     = $submenu['st_options'];
             $dashboard_options      = taxopress_dashboard_options();
@@ -103,6 +103,10 @@ function taxopress_re_order_menu()
                     $taxopress_linked_terms = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
+                if ($slug_ === 'st_autoterms_schedule') { //autoterms schedule
+                    $taxopress_autoterms_schedule = $taxopress_submenus[$key];
+                    unset($taxopress_submenus[$key]);
+                }
                 
                 if ($slug_ === 'st_options-menu-upgrade-link') { //upgrade to pro link
                     $taxopress_upgrade = $taxopress_submenus[$key];
@@ -120,6 +124,10 @@ function taxopress_re_order_menu()
             // add linked terms
             if ($taxopress_linked_terms) {
                $taxopress_submenus = taxopress_add_at_menu_index(['st_terms', 'st_taxonomies', 'st_dashboard'], $taxopress_linked_terms, $taxopress_submenus);
+            }
+            // add autoterms schedule
+            if ($taxopress_autoterms_schedule) {
+                $taxopress_submenus = taxopress_add_at_menu_index(['st_autoterms', 'st_autoterms_content', 'st_taxopress_ai'], $taxopress_autoterms_schedule, $taxopress_submenus);
             }
             // add settings as last item
             if ($taxopress_settings) {
@@ -156,7 +164,7 @@ function taxopress_re_order_menu()
             }
 
             // Add separator 3 to menus
-            $separator2_positions = ['st_taxopress_ai', 'st_autoterms_content', 'st_autoterms'];
+            $separator2_positions = ['st_taxopress_ai', 'st_autoterms_content', 'st_autoterms_schedule', 'st_autoterms'];
             foreach ($separator2_positions as $pos) {
                  $index = array_search($pos, array_column($taxopress_submenus, 2));
                 if ($index !== false) {
@@ -586,7 +594,7 @@ function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = fal
 
     $linked_terms = [];
 
-    if (!taxopress_is_linked_terms_enabled()) {
+    if (!taxopress_is_pro_version() || !taxopress_is_linked_terms_enabled()) {
         // Simply return an empty array if the feature is disabled
         return $linked_terms;
     }

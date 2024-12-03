@@ -128,7 +128,7 @@ class SimpleTags_Client_TagCloud {
 		// Process exclude_terms
 		if ( ! empty( $exclude_terms ) ) {
 			// Convert the exclude terms string into a set (associative array) for faster lookup
-			$exclude_terms_set = array_flip(array_map('trim', explode(',', $exclude_terms)));
+			$exclude_terms_set = array_flip(array_map('strtolower', array_map('trim', explode(',', $exclude_terms))));
 		} else {
 			$exclude_terms_set = array();
 		}
@@ -137,7 +137,7 @@ class SimpleTags_Client_TagCloud {
 		if ( ! empty( $exclude_terms_set ) ) {
 			// Use array_filter to remove terms that exist in the exclude set
 			$terms = array_filter( $terms, function( $term ) use ( $exclude_terms_set ) {
-				return ! isset( $exclude_terms_set[ $term->name ] );
+				return ! isset( $exclude_terms_set[ strtolower($term->name) ] );
 			});
 		}
 

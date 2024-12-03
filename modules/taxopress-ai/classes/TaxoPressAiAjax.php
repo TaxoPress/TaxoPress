@@ -206,6 +206,9 @@ if (!class_exists('TaxoPressAiAjax')) {
                     ) {
                         $response['status'] = 'error';
                         $response['content'] = esc_html__('You must enable at least one AI integration source to use auto term preview.', 'simple-tags');
+                    } elseif (empty($settings_data['autoterm_for_metaboxes'])) {
+                        $response['status'] = 'error';
+                        $response['content'] = esc_html__('The selected Auto Term is not enabled for metaboxes. Please enable it in Auto Term settings.', 'simple-tags');
                     } else {
                         $request_args  = $args;
                         $request_args['settings_data'] = $settings_data;
