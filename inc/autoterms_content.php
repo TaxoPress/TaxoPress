@@ -208,7 +208,7 @@ class SimpleTags_Autoterms_Content
                                         echo $ui->get_number_input([
                                             'namearray' => 'taxopress_autoterm_content',
                                             'name'      => 'existing_terms_batches',
-                                            'textvalue' => isset($autoterms_content['existing_terms_batches']) ? esc_attr($autoterms_content['existing_terms_batches']) : '20',
+                                            'textvalue' => isset($autoterms_content['existing_terms_batches']) ? esc_attr($autoterms_content['existing_terms_batches']) : '2',
                                             'labeltext' => esc_html__('Limit per batches',
                                                 'simple-tags'),
                                             'helptext'  => esc_html__('This enables you to add Terms to existing content in batches. If you have a lot of existing content, set this to a lower number to avoid timeouts.', 'simple-tags'),
