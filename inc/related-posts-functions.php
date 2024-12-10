@@ -202,6 +202,7 @@ function taxopress_update_relatedpost($data = [])
 
     $xformat                                    = $data['taxopress_related_post']['xformat'];
     $data['taxopress_related_post']['xformat']  = stripslashes_deep($xformat);
+    $data['taxopress_related_post']['embedded'] = isset($data['embedded']) ? $data['embedded'] : [];
     $data['taxopress_related_post']['post_types'] = isset($data['post_types']) ? $data['post_types'] : [];
 
 
@@ -360,14 +361,22 @@ function taxopress_relatedposts_the_content($content = '')
         foreach ($post_tags as $post_tag) {
 
             // Get option
-            $post_types = (isset($post_tag['post_types']) && is_array($post_tag['post_types']) && count($post_tag['post_types']) > 0) ? $post_tag['post_types'] : false;
+            $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
 
-            if (!$post_types) {
+            if (!$embedded) {
                 continue;
             }
 
             $marker = false;
-            if (is_singular() && in_array(get_post_type(), $post_types)) {
+            if (is_feed() && in_array('feed', $embedded)) {
+                $marker = true;
+            } elseif (is_home() && in_array('homeonly', $embedded)) {
+                $marker = true;
+            } elseif (is_feed() && in_array('blogonly', $embedded)) {
+                $marker = true;
+            } elseif (is_singular() && in_array('singleonly', $embedded)) {
+                $marker = true;
+            } elseif (is_singular() && in_array(get_post_type(), $embedded)) {
                 $marker = true;
             }
             if (true === $marker) {
