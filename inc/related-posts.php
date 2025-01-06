@@ -901,7 +901,7 @@ class SimpleTags_Related_Post
                                                             'simple-tags'),
                                                             'helptext'  =>  esc_html__('You must set zero (0) to display all post categories.', 'simple-tags'),
                                                             'min'       => '0',
-                                                            'required'  => true,
+                                                            'required'  => false,
                                                         ]);
 
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
@@ -913,7 +913,7 @@ class SimpleTags_Related_Post
                                                             'simple-tags'),
                                                             'helptext'  =>  esc_html__('You must set zero (0) to display all post tags.', 'simple-tags'),
                                                             'min'       => '0',
-                                                            'required'  => true,
+                                                            'required'  => false,
                                                         ]);
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
                                                             $select = [
