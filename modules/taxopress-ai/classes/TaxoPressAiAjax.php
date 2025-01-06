@@ -491,7 +491,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                 } elseif (!$supported_tax) {
                     $return['status'] = 'error';
                     $return['message'] = esc_html__(
-                        'Selected taxonomy is not associated with the preview post type.',
+                        'The selected taxonomy is not associated with the selected post type.',
                         'simple-tags'
                     );
                 } else {
