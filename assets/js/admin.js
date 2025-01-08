@@ -643,6 +643,55 @@
       $(this).closest('.st-autoterms-single-specific-term').remove();
     });
 
+    // -------------------------------------------------------------
+    //   Specific term input change
+    // -------------------------------------------------------------
+    $(document).on('keydown', '.specific_terms_input', function (e) {
+      if (e.type === 'keydown' && e.key === 'Enter') {
+        $(this).trigger('change');
+        return;
+      }
+    });
+    $(document).on('change', '.specific_terms_input', function (e) {
+      var new_term = $(this).val();
+
+      if (new_term.endsWith(", ")) {
+        var term_name = new_term.replace(/,\s$/, '');
+      } else {
+        term_name = new_term;
+      }
+
+      var existing_values = [];
+      if ($('.taxopress-terms-names').length > 0) {
+        existing_values = $('.taxopress-terms-names').map(function() {
+          return $(this).val();
+        }).get();
+      }
+      if (!existing_values.includes(term_name) && !isEmptyOrSpaces(term_name)) {
+        var linked_term_list = $(".taxopress-term-list-style");
+        var new_linked_term = "";
+        new_linked_term += '<li class="taxopress-term-li">';
+        new_linked_term +=
+          '<span class="display-text">' + term_name + '</span>';
+        new_linked_term +=
+          '<span class="remove-term-row"><span class="dashicons dashicons-no-alt"></span></span>';
+        new_linked_term +=
+          '<input type="hidden" class="taxopress-terms-names" name="specific_terms[]" value="' +
+          term_name +
+          '">';
+        new_linked_term += "</li>";
+        linked_term_list.append(new_linked_term);
+      }
+      $(this).val(' ');
+    });
+
+    // -------------------------------------------------------------
+    //  Remove specific term
+    // -------------------------------------------------------------
+    $(document).on("click", ".taxopress-term-list-style .remove-term-row", function () {
+        $(this).closest("li").remove();
+    });
+
 
 
         // -------------------------------------------------------------
