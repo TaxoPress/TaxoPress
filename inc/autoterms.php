@@ -1139,14 +1139,30 @@ class SimpleTags_Autoterms
                                                         'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     ]);
 
-                                                    $specific_terms = ( isset($current) && isset($current['specific_terms'])) ? taxopress_change_to_strings($current['specific_terms']) : '';
+                                                    $specific_terms = ( isset($current) && isset($current['specific_terms'])) ? taxopress_change_to_array($current['specific_terms']) : '';
                                                     echo '<tr class="autoterm_useonly_options '. ($selected === 'false' ? 'st-hide-content' : '') .'" valign="top"><th scope="row"><label for=""></label></th><td>';
                                                     echo '<div class="auto-terms-to-use-error" style="display:none;"> '.esc_html__('Please choose an option for "Sources"', 'simple-tags').' </div>';
 
                                                             echo '<div class="st-autoterms-single-specific-term autoterm-terms-use-existing">
-                                                            <input autocomplete="off" type="text" class="st-full-width specific_terms_input" name="specific_terms" maxlength="32" placeholder="'. esc_attr(__('Choose the terms to use.', 'simple-tags')) .'" value="'. esc_attr($specific_terms) .'">
+                                                            <input autocomplete="off" type="text" class="st-full-width specific_terms_input" name="specific_terms_search" maxlength="32" placeholder="'. esc_attr(__('Choose the terms to use.', 'simple-tags')) .'" value="">
                                                         </div>';
-
+                                                    echo '<ul class="taxopress-term-list-style">';
+                                                    if (!empty($specific_terms)) {
+                                                        foreach ($specific_terms as $specific_term) {
+                                                            if (!empty($specific_term)) {
+                                                            ?>
+                                                            <li class="taxopress-term-li">
+                                                                <span class="display-text"><?php echo esc_html($specific_term); ?></span>
+                                                                <span class="remove-term-row">
+                                                                    <span class="dashicons dashicons-no-alt"></span>
+                                                                </span>
+                                                                <input type="hidden" class="taxopress-terms-names" name="specific_terms[]" value="<?php echo esc_attr($specific_term); ?>">
+                                                            </li>
+                                                            <?php
+                                                            }
+                                                        }
+                                                    }
+                                                    echo '</div>';
                                                     echo '</td></tr>';
 
 
