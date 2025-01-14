@@ -1220,6 +1220,10 @@
         });
     }
 
+    if ($('.auto_term_terms_options.select').length > 0) {
+      autoterm_option_select2();
+    }
+
     /**
      * Auto Term preview
      */
@@ -1256,6 +1260,7 @@
         preview_taxonomy: preview_taxonomy,
         preview_post: preview_post,
         selected_autoterms: selected_autoterms,
+        screen_source: 'st_autoterms',
         nonce: st_admin_localize.ai_nonce,
     };
 
@@ -1264,12 +1269,53 @@
           $('.taxopress-autoterm-result .response').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
         } else {
           $('.taxopress-autoterm-result .output').html(response.content);
+          autoterm_option_select2();
         }
         
         button.prop('disabled', false);
         preview_wrapper.find('.spinner').removeClass('is-active');
     });
 
+    });
+
+    // -------------------------------------------------------------
+    //  Auto Term term select, checkbox, or radio synch with default
+    // -------------------------------------------------------------
+    $(document).on('change', '.auto-terms-options-wrap .auto_term_terms_options', function () {
+      var $field = $(this);
+      var $selectedOptionsAttr = [];
+
+      // Check if the field is a <select> field
+      if ($field.is('select')) {
+        // Loop through all selected options
+        $field.find('option:selected').each(function () {
+          $selectedOptionsAttr.push($(this).attr('data-term_link_id'));
+        });
+      }
+
+      // Check if the field is a checkbox
+      if ($field.is('input[type="checkbox"]')) {
+        // Loop through all checked checkboxes within the container
+        $field.closest('.auto-terms-options-wrap').find('input[type="checkbox"]:checked').each(function () {
+          $selectedOptionsAttr.push($(this).attr('data-term_link_id'));
+        });
+      }
+
+      // Check if the field is a radio button
+      if ($field.is('input[type="radio"]')) {
+        $selectedOptionsAttr.push($field.attr('data-term_link_id'));
+      }
+
+      // loop through all result terms to mark as selected or not
+      $field.closest('fieldset').find('.result-terms').each(function () {
+          if ($(this).hasClass('used_term') && !$selectedOptionsAttr.includes($(this).attr('data-term_link_id'))) {
+            // trigger click to unselect term if previously selected but missing in the list
+            $(this).trigger('click');
+          } else if (!$(this).hasClass('used_term') && $selectedOptionsAttr.includes($(this).attr('data-term_link_id'))) {
+            // trigger click to select term if not previously selected but in the list
+            $(this).trigger('click');
+          }
+        });
     });
 
     // -------------------------------------------------------------
@@ -1724,6 +1770,13 @@
         }
     }
     /* end COPIED FROM PP BLOCKS */
+    
+
+    function autoterm_option_select2() {
+      $('.auto_term_terms_options.select').ppma_select2({
+        placeholder: $(this).data("placeholder"),
+      });
+    }
 
   });
 

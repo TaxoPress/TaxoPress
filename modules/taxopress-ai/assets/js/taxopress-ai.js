@@ -134,6 +134,7 @@
             preview_taxonomy: preview_taxonomy,
             preview_post: preview_post,
             selected_autoterms: selected_autoterms,
+            screen_source: 'st_taxopress_ai',
             nonce: taxoPressAIRequestAction.nonce,
         };
 
@@ -142,6 +143,7 @@
               $('.sidebar-response-wrap').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
             } else {
               $('.sidebar-response-preview.' + preview_ai).html(response.content).addClass('has-content');
+              autoterm_option_select2();
             }
             
             button.prop('disabled', false);
@@ -270,6 +272,12 @@
             button.find('.spinner').removeClass('is-active');
           });
 
+        });
+      }
+
+      function autoterm_option_select2() {
+        $('.auto_term_terms_options.select').ppma_select2({
+          placeholder: $(this).data("placeholder"),
         });
       }
 

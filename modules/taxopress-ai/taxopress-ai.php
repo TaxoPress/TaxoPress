@@ -725,6 +725,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
                 $result_args = [
                     'settings_data' => $settings_data,
+                    'screen_source' => 'st_taxopress_ai',
                     'content' => $content,
                     'post_id' => $post_id,
                     'preview_taxonomy' => $taxonomy,
@@ -747,7 +748,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         ), $taxonomy_list_page);
     
                         $legend_title  = '<a href="' . esc_url($taxonomy_list_page) . '" target="blank">' . esc_html__('Tags', 'simple-tags') . '</a>';
-                        $formatted_result = TaxoPressAiUtilities::format_taxonomy_term_results($post_terms_results, $taxonomy, $post_id, $legend_title, $result_args['show_counts']);
+                        $formatted_result = TaxoPressAiUtilities::format_taxonomy_term_results($post_terms_results, $taxonomy, $post_id, $legend_title, $result_args['show_counts'], [], $result_args);
     
                         $term_results['results'] = $formatted_result;
                         $term_results['status'] = 'success';
