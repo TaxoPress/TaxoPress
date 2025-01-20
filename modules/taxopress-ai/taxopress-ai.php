@@ -840,7 +840,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                     if (empty($post_type_taxonomy_names)) { 
                         echo '<div style="padding: 15px;">';
-                        esc_html_e('This user does not have access to manage any of this post attached taxonomies.', 'simple-tags');
+                        printf(esc_html__('This user does not have access to manage any of this post attached taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
                         echo '</div>';
                     } elseif (empty($content_tabs)) { 
                         echo '<div style="padding: 15px;">';
