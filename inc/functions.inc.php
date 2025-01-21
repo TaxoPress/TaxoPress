@@ -693,7 +693,10 @@ function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = f
                     $linked_term_name = stripslashes($linked_term_data->term_name);
                     $linked_term_id   = $linked_term_data->term_id;
                     if ($linked) {
-                        $term_value = get_term_link($linked_term, $linked_term_data->term_taxonomy);
+                        $term_value = get_term_link($linked_term->term_id, $linked_term_data->term_taxonomy);
+                        if (is_wp_error($term_value)) {
+                            $term_value = '';
+                        }
                     } elseif ($named_term) {
                         $term_value = $linked_term_name;
                     } else {

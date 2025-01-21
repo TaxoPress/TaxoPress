@@ -153,6 +153,8 @@ class SimpleTags_Client_RelatedPosts {
             }
         }
 
+		$title = taxopress_sanitize_text_field($title);
+
 		// If cache not exist, get datas and set cache
 		if ( $results === false || $results === null ) {
 			// Get get tags
