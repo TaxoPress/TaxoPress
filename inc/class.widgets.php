@@ -93,10 +93,11 @@ class SimpleTags_Widget extends WP_Widget {
 			}
 		}
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+		$title = esc_html($title);
 
 		// Set values and clean it
 		foreach ( (array) self::get_fields() as $field => $field_value ) {
-            ${$field} = isset($instance[$field]) ? trim($instance[$field]) : '';
+            ${$field} = isset($instance[$field]) ? esc_html(trim($instance[$field])) : '';
 		}
 
 		$param = '';
@@ -191,7 +192,7 @@ class SimpleTags_Widget extends WP_Widget {
 		$instance = $old_instance;
 
 		foreach ( (array) self::get_fields() as $field => $field_value ) {
-			$instance[ $field ] = $new_instance[ $field ];
+			$instance[ $field ] = sanitize_text_field($new_instance[ $field ]);
 		}
 
 		return $instance;
