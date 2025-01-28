@@ -13,6 +13,7 @@ class RoboFile extends \PublishPressBuilder\PackageBuilderTasks
         $this->setVersionConstantName('STAGS_VERSION');
         $this->appendToFileToIgnore(
             [
+                'dist',
                 '.phplint.yml',
                 'webpack.config.js',
                 'vendor/pimple/pimple/.gitignore',
