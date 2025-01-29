@@ -363,6 +363,19 @@
       $('.removeterms-to-match-input').hide();
     });
 
+        // -------------------------------------------------------------
+    //   Manage terms merge terms option check
+    // -------------------------------------------------------------
+    $(document).on('click', '.mergeterm_type_different_name', function (e) {
+      $('#mergeterm_new').val($('#mergeterm_new').attr('data-prev'));
+      $('.new_name_input').show();
+    });
+    $(document).on('click', '.mergeterm_type_same_name', function (e) {
+      $('#mergeterm_new').attr('data-prev', $('#mergeterm_new').val());
+      $('#mergeterm_new').val('');
+      $('.new_name_input').hide();
+    });
+
     // -------------------------------------------------------------
     //   Terms display submit validation
     // -------------------------------------------------------------
@@ -628,6 +641,55 @@
     $(document).on('click', '.remove-specific-term', function (e) {
       e.preventDefault();
       $(this).closest('.st-autoterms-single-specific-term').remove();
+    });
+
+    // -------------------------------------------------------------
+    //   Specific term input change
+    // -------------------------------------------------------------
+    $(document).on('keydown', '.specific_terms_input', function (e) {
+      if (e.type === 'keydown' && e.key === 'Enter') {
+        $(this).trigger('change');
+        return;
+      }
+    });
+    $(document).on('change', '.specific_terms_input', function (e) {
+      var new_term = $(this).val();
+
+      if (new_term.endsWith(", ")) {
+        var term_name = new_term.replace(/,\s$/, '');
+      } else {
+        term_name = new_term;
+      }
+
+      var existing_values = [];
+      if ($('.taxopress-terms-names').length > 0) {
+        existing_values = $('.taxopress-terms-names').map(function() {
+          return $(this).val();
+        }).get();
+      }
+      if (!existing_values.includes(term_name) && !isEmptyOrSpaces(term_name)) {
+        var linked_term_list = $(".taxopress-term-list-style");
+        var new_linked_term = "";
+        new_linked_term += '<li class="taxopress-term-li">';
+        new_linked_term +=
+          '<span class="display-text">' + term_name + '</span>';
+        new_linked_term +=
+          '<span class="remove-term-row"><span class="dashicons dashicons-no-alt"></span></span>';
+        new_linked_term +=
+          '<input type="hidden" class="taxopress-terms-names" name="specific_terms[]" value="' +
+          term_name +
+          '">';
+        new_linked_term += "</li>";
+        linked_term_list.append(new_linked_term);
+      }
+      $(this).val(' ');
+    });
+
+    // -------------------------------------------------------------
+    //  Remove specific term
+    // -------------------------------------------------------------
+    $(document).on("click", ".taxopress-term-list-style .remove-term-row", function () {
+        $(this).closest("li").remove();
     });
 
 
@@ -1158,6 +1220,10 @@
         });
     }
 
+    if ($('.auto_term_terms_options.select').length > 0) {
+      autoterm_option_select2();
+    }
+
     /**
      * Auto Term preview
      */
@@ -1194,6 +1260,7 @@
         preview_taxonomy: preview_taxonomy,
         preview_post: preview_post,
         selected_autoterms: selected_autoterms,
+        screen_source: 'st_autoterms',
         nonce: st_admin_localize.ai_nonce,
     };
 
@@ -1202,12 +1269,53 @@
           $('.taxopress-autoterm-result .response').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
         } else {
           $('.taxopress-autoterm-result .output').html(response.content);
+          autoterm_option_select2();
         }
         
         button.prop('disabled', false);
         preview_wrapper.find('.spinner').removeClass('is-active');
     });
 
+    });
+
+    // -------------------------------------------------------------
+    //  Auto Term term select, checkbox, or radio synch with default
+    // -------------------------------------------------------------
+    $(document).on('change', '.auto-terms-options-wrap .auto_term_terms_options', function () {
+      var $field = $(this);
+      var $selectedOptionsAttr = [];
+
+      // Check if the field is a <select> field
+      if ($field.is('select')) {
+        // Loop through all selected options
+        $field.find('option:selected').each(function () {
+          $selectedOptionsAttr.push($(this).attr('data-term_link_id'));
+        });
+      }
+
+      // Check if the field is a checkbox
+      if ($field.is('input[type="checkbox"]')) {
+        // Loop through all checked checkboxes within the container
+        $field.closest('.auto-terms-options-wrap').find('input[type="checkbox"]:checked').each(function () {
+          $selectedOptionsAttr.push($(this).attr('data-term_link_id'));
+        });
+      }
+
+      // Check if the field is a radio button
+      if ($field.is('input[type="radio"]')) {
+        $selectedOptionsAttr.push($field.attr('data-term_link_id'));
+      }
+
+      // loop through all result terms to mark as selected or not
+      $field.closest('fieldset').find('.result-terms').each(function () {
+          if ($(this).hasClass('used_term') && !$selectedOptionsAttr.includes($(this).attr('data-term_link_id'))) {
+            // trigger click to unselect term if previously selected but missing in the list
+            $(this).trigger('click');
+          } else if (!$(this).hasClass('used_term') && $selectedOptionsAttr.includes($(this).attr('data-term_link_id'))) {
+            // trigger click to select term if not previously selected but in the list
+            $(this).trigger('click');
+          }
+        });
     });
 
     // -------------------------------------------------------------
@@ -1662,6 +1770,13 @@
         }
     }
     /* end COPIED FROM PP BLOCKS */
+    
+
+    function autoterm_option_select2() {
+      $('.auto_term_terms_options.select').ppma_select2({
+        placeholder: $(this).data("placeholder"),
+      });
+    }
 
   });
 

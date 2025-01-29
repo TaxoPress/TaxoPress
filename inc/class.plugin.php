@@ -63,6 +63,7 @@ class SimpleTags_Plugin {
 				$opt_default_value = 0;
 			}
 			$default_options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
+			$default_options['taxopress_ai_' . $post_type . '_metabox_display_option'] = 'default';
 			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 			$default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
 			foreach (['post_terms', 'existing_terms', 'suggest_local_terms'] as $taxopress_ai_tab) {

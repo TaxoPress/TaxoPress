@@ -81,6 +81,7 @@
         post_content: post_content,
         post_title: post_title,
         current_tags: current_tags,
+        screen_source: 'post.php',
         nonce: taxoPressAIRequestAction.nonce,
       };
 
@@ -89,6 +90,7 @@
           preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
         } else {
           preview_wrapper.find('.taxopress-ai-fetch-result').html(response.content);
+          autoterm_option_select2();
         }
 
         button.prop('disabled', false);
@@ -431,6 +433,12 @@
 
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
+    }
+
+    function autoterm_option_select2() {
+      $('.auto_term_terms_options.select').ppma_select2({
+        placeholder: $(this).data("placeholder"),
+      });
     }
 
 

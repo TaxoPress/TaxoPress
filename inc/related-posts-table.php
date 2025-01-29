@@ -66,6 +66,7 @@ class RelatedPosts_List extends WP_List_Table
             'title'     =>  esc_html__('Title', 'simple-tags'),
             'taxonomy'  =>  esc_html__('Taxonomy', 'simple-tags'),
             'post_type' =>  esc_html__('Post Types', 'simple-tags'),
+            'embedded'  =>  esc_html__('Automatic display', 'simple-tags'),
             'shortcode' =>  esc_html__('Shortcode', 'simple-tags')
         ];
 
@@ -373,6 +374,46 @@ class RelatedPosts_List extends WP_List_Table
         }
 
         return $title;
+    }
+
+    /**
+     * The action column
+     *
+     * @param $item
+     *
+     * @return string
+     */
+    protected function column_embedded($item)
+    {
+        $embedded = (isset($item['embedded']) && is_array($item['embedded']) && count($item['embedded']) > 0) ? $item['embedded'] : false;
+        if ($embedded) {
+            $args = apply_filters('taxopress_attach_post_types_to_taxonomy', ['public' => true]);
+            if (!is_array($args)) {
+                $args = ['public' => true];
+            }
+            $output     = 'objects'; // Or objects.
+            $post_types = apply_filters('taxopress_get_post_types_for_taxonomies', get_post_types($args, $output),
+                $args, $output);
+
+            $result_array     = [];
+            $embedded_options = [
+                'homeonly'   => esc_html__('Homepage', 'simple-tags'),
+                'blogonly'   => esc_html__('Blog display', 'simple-tags'),
+                'singleonly' => esc_html__('Single post display', 'simple-tags'),
+                'feed'       => esc_html__('RSS feed', 'simple-tags'),
+            ];
+            foreach ($post_types as $post_type) {
+                $embedded_options[$post_type->name] = $post_type->label;
+            }
+            foreach ($embedded as $location) {
+                $result_array[] = isset($embedded_options[$location]) ? $embedded_options[$location] : '';
+            }
+            $result = join(', ', $result_array);
+        } else {
+            $result = esc_html__('No', 'simple-tags');
+        }
+
+        return $result;
     }
 
     /**

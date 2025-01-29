@@ -43,6 +43,7 @@ class SimpleTags_Client_RelatedPosts {
 			'post_type'     => get_post_type($post),// leaving this for legacy purpose
 			'post_types'    => '',
 			'number'        => 3,
+			'max_related_posts' => 3,
 			'max_post_chars' => 100,
 			'taxopress_max_cats' => 3,
 			'taxopress_max_tags' => 3,
@@ -151,6 +152,8 @@ class SimpleTags_Client_RelatedPosts {
                 $title = $new_title;
             }
         }
+
+		$title = taxopress_sanitize_text_field($title);
 
 		// If cache not exist, get datas and set cache
 		if ( $results === false || $results === null ) {

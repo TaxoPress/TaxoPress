@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
 Tested up to: 6.7
-Stable tag: 3.28.1
+Stable tag: 3.30.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -35,7 +35,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 4. **Related Posts**: Shows lists of posts with similar tags and categories.
 5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
 6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
-7. **TaxoPress AI**: This feature makes it easier for you to find or create the best taxonomy terms for your content.
+7. **TaxoPress and AI**: The Pro version of TaxoPress has AI integrations with OpenAI, IBM Watson, and more. This makes it easier for you to find or create the best taxonomy terms for your content.
 8. **Term Synonyms**: This feature allows you to have multiple words associated with a single term.
 9. **Linked Terms**: You can connect terms. When the main term is added to a post, the linked terms will be added also.
 10. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
@@ -85,7 +85,7 @@ This feature allows WordPress to examine your post content and title for specifi
 
 [Click here to read about automatically adding terms](https://taxopress.com/docs/introduction-to-auto-terms/).
 
-## Feature 7. TaxoPress AI ##
+## Feature 7. TaxoPress and AI (Pro version) ##
 
 This feature makes it easier for you to find or create the best taxonomy terms for your content. TaxoPress AI can show a metabox on your post editing screen with all these options:. 
 
@@ -94,7 +94,7 @@ This feature makes it easier for you to find or create the best taxonomy terms f
 * **Show All Existing Terms**: This feature allows you to browse all the terms in a taxonomy.
 * **OpenAI** / **IBM Watson** / **Dandelion** / **LSEG**: These integrations allow you to connect to external service. These services will scan your content and suggest relevant terms. They can suggest existing terms and also new terms.
 
-[Click here to read about TaxoPress AI](https://taxopress.com/docs/introduction-taxopress-ai/).
+[Click here to read about TaxoPress and AI](https://taxopress.com/docs/sources-for-auto-terms/).
 
 ## Feature 8. Term Synonyms ##
 
@@ -267,6 +267,21 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.30.0- 2025-01-29
+* Update: Add settings to Control how the metgabox Taxonomy box appears:  Select / Dropdown / Checkbox, #2128
+* Update: Allow users to merge multiple terms with the same name, #2357
+* Fixed: Issue with commas in "Use only some terms in the selected taxonomy.", #2301
+* Update: Update {post_terms} text, #2389
+* Update: Improve metabox permission error message, #2433
+* Fixed: Update and sanitize legacy widgets title, #2435
+* Update: Add a configuration link on Metabox description, #2440
+* Update: Small text update for Auto Term preview area, #2416
+* Update: Add back a "Display automatically" option to Related Posts, #2413
+* Update: Remove extra space in Existing Content "Stop" button link, #2414
+* Update: Text update for Related Posts, #2408
+* Update: remove the "required" label from maximum number of categories and tags, #2409
+* Update: TaxoPress v.3.28.0 Italian French Spanish translation updates, #2407
 
 v3.28.1- 2024-12-04
 * Fixes: Missing Taxonomies after v3.28.0 upgrade, #2401

@@ -1,3 +1,29 @@
+ul.taxopress-term-list-style li {
+    border: 1px solid #cccccc;
+    background-color: #fdfdfd;
+    padding-top: 7px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    display: inline-block;
+    margin-top: 0;
+    margin-right: 5px;
+}
+
+ul.taxopress-term-list-style li::before {
+    content: attr(data-position);
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.75em;
+    padding: 2px;
+}
+
+ul.taxopress-term-list-style li .remove-term-row {
+    cursor: pointer;
+}
+
 table.st-autoterm-area-table {
     width: 100px;
 }
@@ -793,6 +819,11 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
     margin-bottom: 30px;
 }
 
+.preview-action-title.taxopress-autoterm-element:not(.default),
+.previewed-tag-content.taxopress-autoterm-element:not(.default) {
+    display: none;
+}
+
 .taxopress-autoterm-result .output .ai-select-all {
     cursor: pointer;
 }
@@ -838,6 +869,21 @@ div[id^="suggestedtags-"] .postbox-header .hndle,
     margin-left: 0.2em;
     padding: 0.2em 0.4em;
     display: inline-block;
+}
+
+.auto-terms-options-wrap.radio,
+.auto-terms-options-wrap.checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.auto-terms-options-wrap.radio label,
+.auto-terms-options-wrap.checkbox label {
+    flex: 0 0 auto;
+    cursor: pointer;
 }
 
 .taxopress-warning {

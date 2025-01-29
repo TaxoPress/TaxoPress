@@ -281,6 +281,8 @@ class SimpleTags_Client {
 			return $content; // Return PHP array if format is array
 		}
 
+		$title = taxopress_sanitize_text_field($title);
+
 		if ( is_array( $content ) ) {
 			switch ( $format ) {
 				case 'list' :
@@ -414,6 +416,12 @@ class SimpleTags_Client {
 
 		// Need max/min/scale and other :)
 		if ( $scale_result !== null ) {
+			$scale_result = (int) $scale_result;
+			$scale_min = (int) $scale_min;
+			$scale_max = (int) $scale_max;
+			$largest = (int) $largest;
+			$smallest = (int) $smallest;
+
 			$element_loop = str_replace( '%tag_size%', 'font-size:' . self::round( ( $scale_result - $scale_min ) * ( $largest - $smallest ) / ( $scale_max - $scale_min ) + $smallest, 2 ) . $unit . ';', $element_loop );
 			$element_loop = str_replace( '%tag_color%', 'color:' . self::get_color_by_scale( self::round( ( $scale_result - $scale_min ) * ( 100 ) / ( $scale_max - $scale_min ), 2 ), $mincolor, $maxcolor ) . ';', $element_loop );
 			$element_loop = str_replace( '%tag_scale%', $scale_result, $element_loop );

@@ -305,7 +305,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
                 <div class="taxopress-description">
-                    <?php esc_html_e('This screen allows you to preview the TaxoPress features that users will see when creating and editing content.', 'simple-tags'); ?>
+                    <?php esc_html_e('This screen allows you to preview the TaxoPress features that users will see when creating and editing content.', 'simple-tags'); ?> <a target="_blank" href="<?php echo admin_url('admin.php?page=st_options#taxopress-ai') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
                 </div>
                 <div class="wp-clearfix"></div>
                 <form method="post" action="">
@@ -725,6 +725,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
                 $result_args = [
                     'settings_data' => $settings_data,
+                    'screen_source' => 'st_taxopress_ai',
                     'content' => $content,
                     'post_id' => $post_id,
                     'preview_taxonomy' => $taxonomy,
@@ -747,7 +748,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         ), $taxonomy_list_page);
     
                         $legend_title  = '<a href="' . esc_url($taxonomy_list_page) . '" target="blank">' . esc_html__('Tags', 'simple-tags') . '</a>';
-                        $formatted_result = TaxoPressAiUtilities::format_taxonomy_term_results($post_terms_results, $taxonomy, $post_id, $legend_title, $result_args['show_counts']);
+                        $formatted_result = TaxoPressAiUtilities::format_taxonomy_term_results($post_terms_results, $taxonomy, $post_id, $legend_title, $result_args['show_counts'], [], $result_args);
     
                         $term_results['results'] = $formatted_result;
                         $term_results['status'] = 'success';
@@ -839,7 +840,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                     if (empty($post_type_taxonomy_names)) { 
                         echo '<div style="padding: 15px;">';
-                        esc_html_e('This user does not have access to manage any of this post attached taxonomies.', 'simple-tags');
+                        printf(esc_html__('This user does not have access to manage any of this post attached taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
                         echo '</div>';
                     } elseif (empty($content_tabs)) { 
                         echo '<div style="padding: 15px;">';
