@@ -62,7 +62,6 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             $default_taxonomy_display_options = [
                 'default' => esc_html__('Default', 'simple-tags'),
                 'dropdown' => esc_html__('Dropdown', 'simple-tags'),
-                'radio' => esc_html__('Radio', 'simple-tags'),
                 'checkbox' => esc_html__('Checkbox', 'simple-tags'),
             ];
             
