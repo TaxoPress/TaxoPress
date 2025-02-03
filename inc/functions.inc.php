@@ -63,7 +63,7 @@ function taxopress_menu_separator($identifier, $parent) {
 /**
  * Change menu item order
  */
-add_action('custom_menu_order', 'taxopress_re_order_menu');
+add_action('admin_menu', 'taxopress_re_order_menu', 15);
 function taxopress_re_order_menu()
 {
     global $submenu;
