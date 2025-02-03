@@ -12,16 +12,16 @@ if (!class_exists('TaxoPressAiFields')) {
         {
             $fields_tabs = [];
 
-            $fields_tabs['post_terms'] = [
-                'label' => esc_html__('Manage Post Terms', 'simple-tags'),
-                'button_label'   => esc_html__('View Current Post Terms', 'simple-tags'),
-                'description'  => esc_html__('This feature allows you to manage all the terms that are currently attached to a post.', 'simple-tags'),
-            ];
-
             $fields_tabs['existing_terms'] = [
                 'label' => esc_html__('Show All Existing Terms', 'simple-tags'),
                 'button_label'   => esc_html__('View Existing Terms', 'simple-tags'),
                 'description'  => esc_html__('This feature allows you to browse all the terms in a taxonomy.', 'simple-tags'),
+            ];
+
+            $fields_tabs['post_terms'] = [
+                'label' => esc_html__('Manage Post Terms', 'simple-tags'),
+                'button_label'   => esc_html__('View Current Post Terms', 'simple-tags'),
+                'description'  => esc_html__('This feature allows you to manage all the terms that are currently attached to a post.', 'simple-tags'),
             ];
 
             $fields_tabs['autoterms'] = [
