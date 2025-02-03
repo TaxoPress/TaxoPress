@@ -291,7 +291,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $fields = TaxoPressAiFields::get_fields();
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
 
-            $active_tab = !empty($settings_data['active_tab']) && !empty($fields_tabs[$settings_data['active_tab']]) ? $settings_data['active_tab'] : 'post_terms';
+            $active_tab = !empty($settings_data['active_tab']) && !empty($fields_tabs[$settings_data['active_tab']]) ? $settings_data['active_tab'] : 'existing_terms';
             $active_tab_label = '';
 
             $default_post_type = '';
@@ -802,13 +802,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 <div class="taxopress-suggest-terms-contents">
                 <?php
                     $all_content_tabs = [
-                        'post_terms' => [
-                            'label'   => esc_html__('Manage Post Terms', 'simple-tags'),
-                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_post_terms_tab')),
-                        ],
                         'existing_terms' => [
                             'label'   => esc_html__('Show All Existing Terms', 'simple-tags'),
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_existing_terms_tab')),
+                        ],
+                        'post_terms' => [
+                            'label'   => esc_html__('Manage Post Terms', 'simple-tags'),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_post_terms_tab')),
                         ],
                         'suggest_local_terms' => [
                             'label'   => esc_html__('Auto Terms', 'simple-tags'),
