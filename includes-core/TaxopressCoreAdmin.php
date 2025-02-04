@@ -110,6 +110,8 @@ class TaxopressCoreAdmin
                                 <li><?php echo esc_html__('Create new terms using OpenAI and other sources', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Use Linked Terms', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Use Synonyms', 'simple-tags'); ?></li>
+                                <li><?php echo esc_html__('Schedule Auto Terms to run automatically', 'simple-tags'); ?></li>
+                                <li><?php echo esc_html__('Control the display of term metaboxes', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Fast, professional support', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('No ads inside the plugin', 'simple-tags'); ?></li>
                             </ul>
