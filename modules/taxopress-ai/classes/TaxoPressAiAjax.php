@@ -431,6 +431,20 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $taxonomy_details = get_taxonomy($existing_tax);
                         
                         $terms = SimpleTags_Admin::getTermsForAjax($existing_tax, $search_text, $existing_terms_orderby, $existing_terms_order, $limit);
+                        // make sure post terms are always included
+                        if (!$suggest_terms) {
+                            $post_terms = wp_get_post_terms($post_id, $existing_tax);
+                            if (!empty($post_terms)) {
+                                // Transform post_terms to match terms structure
+                                $structured_post_terms = array_map(fn($term) => (object) [
+                                    'name' => $term->name,
+                                    'term_id' => $term->term_id,
+                                    'taxonomy' => $term->taxonomy
+                                ], $post_terms);
+                                // add structured post terms
+                                $terms = array_merge($structured_post_terms, $terms);
+                            }
+                        }
                         if (!empty($terms)) {
 
                             if ($suggest_terms) {
@@ -462,7 +476,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                                     }
                                 }
                             } else {
-                                $term_results = array_column((array) $terms, 'name');
+                                $term_results = array_unique(array_column((array) $terms, 'name'));
                             }
 
 
