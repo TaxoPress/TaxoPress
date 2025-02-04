@@ -103,6 +103,9 @@ class SimpleTags_Client_RelatedPosts {
 			$user_args = strtr( $user_args, $markers );
 		}
 		$args = wp_parse_args( $user_args, $defaults );
+
+		$args['number'] = $args['max_related_posts'];
+
 		extract( $args );
 
 		// If empty use default xformat !
