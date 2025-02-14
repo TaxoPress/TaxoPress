@@ -263,6 +263,17 @@ class Autoterms_List extends WP_List_Table
                 ),
                 __('Edit', 'simple-tags')
             ),
+            'copy' => sprintf(
+                '<a href="%s" class="copy-autoterm">%s</a>',
+                add_query_arg([
+                    'page'                   => 'st_autoterms',
+                    'action'                 => 'taxopress-copy-autoterm',
+                    'taxopress_autoterms' => esc_attr($item['ID']),
+                    '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
+                ],
+                    admin_url('admin.php')),
+                __('Copy', 'simple-tags')
+            ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-autoterm">%s</a>',
                 add_query_arg([

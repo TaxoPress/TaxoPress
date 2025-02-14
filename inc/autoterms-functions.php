@@ -140,6 +140,21 @@ function taxopress_process_autoterm()
         }
     }
 
+    if (isset($_GET['copied_autoterm'])) {
+        if ((int)$_GET['copied_autoterm'] === 1) {
+            add_action('admin_notices', "taxopress_autoterms_copy_success_admin_notice");
+            add_filter('removable_query_args', 'taxopress_copied_autoterm_filter_removable_query_args');
+        }
+    }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-autoterm') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'autoterm-action-request-nonce')) {
+            taxopress_action_copy_autoterm(sanitize_text_field($_REQUEST['taxopress_autoterms']));
+        }
+        add_filter('removable_query_args', 'taxopress_copy_autoterm_filter_removable_query_args');
+    }
+
 
     if (!empty($_POST) && isset($_POST['autoterm_submit'])) {
         $result = '';
@@ -455,6 +470,15 @@ function taxopress_autoterms_delete_success_admin_notice()
     echo taxopress_admin_notices_helper(esc_html__('Auto Terms successfully deleted.', 'simple-tags'), false);
 }
 
+/**
+ * Successful copiedd callback.
+ */
+function taxopress_autoterms_copy_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto Terms successfully copied.', 'simple-tags'), true);
+}
+
 function taxopress_autoterms_enable_log_admin_notice()
 {
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -587,6 +611,49 @@ function taxopress_action_delete_autoterm($autoterm_id)
         );
         exit();
     }
+}
+
+function taxopress_copied_autoterm_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'copied_autoterm',
+    ]);
+}
+
+function taxopress_copy_autoterm_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'action',
+        'taxopress_autoterms',
+        '_wpnonce',
+    ]);
+}
+
+function taxopress_action_copy_autoterm($autoterm_id)
+{
+    $autoterms = taxopress_get_autoterm_data();
+
+    if (array_key_exists($autoterm_id, $autoterms)) {
+        $new_autoterm = $autoterms[$autoterm_id];
+        $new_autoterm['title'] .= '-copy';
+
+        $new_id = (int)get_option('taxopress_autoterm_ids_increament') + 1;
+        $new_autoterm['ID'] = $new_id;
+
+        $autoterms[$new_id] = $new_autoterm;
+
+        update_option('taxopress_autoterms', $autoterms);
+        update_option('taxopress_autoterm_ids_increament', $new_id);
+
+    }
+
+    wp_safe_redirect(
+        add_query_arg([
+            'page'           => 'st_autoterms',
+            'copied_autoterm' => 1,
+        ], taxopress_admin_url('admin.php'))
+    );
+    exit();
 }
 
 /**
