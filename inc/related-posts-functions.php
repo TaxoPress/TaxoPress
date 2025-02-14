@@ -363,6 +363,11 @@ function taxopress_copy_relatedpost_filter_removable_query_args(array $args)
  */
 function taxopress_action_copy_relatedpost($relatedpost_id)
 {
+    if (!taxopress_is_pro_version()) {
+        wp_safe_redirect(admin_url('admin.php?page=st_related_posts&add=new_item'));
+        exit;
+    }
+
     $relatedposts = taxopress_get_relatedpost_data();
 
     if (array_key_exists($relatedpost_id, $relatedposts)) {

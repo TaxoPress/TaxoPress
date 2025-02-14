@@ -631,6 +631,11 @@ function taxopress_copy_autoterm_filter_removable_query_args(array $args)
 
 function taxopress_action_copy_autoterm($autoterm_id)
 {
+    if (!taxopress_is_pro_version()) {
+        wp_safe_redirect(admin_url('admin.php?page=st_autoterms&add=new_item'));
+        exit;
+    }
+
     $autoterms = taxopress_get_autoterm_data();
 
     if (array_key_exists($autoterm_id, $autoterms)) {

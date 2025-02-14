@@ -375,6 +375,11 @@ function taxopress_action_delete_posttags($posttags_id)
 
 function taxopress_action_copy_posttags($posttags_id)
 {
+    if (!taxopress_is_pro_version()) {
+        wp_safe_redirect(admin_url('admin.php?page=st_post_tags&add=new_item'));
+        exit;
+    }
+
     $posttagss = taxopress_get_posttags_data();
 
     if (array_key_exists($posttags_id, $posttagss)) {

@@ -395,6 +395,11 @@ function taxopress_copy_autolink_filter_removable_query_args(array $args)
 
 function taxopress_action_copy_autolink($autolink_id)
 {
+    if (!taxopress_is_pro_version()) {
+        wp_safe_redirect(admin_url('admin.php?page=st_autolinks&add=new_item'));
+        exit;
+    }
+
     $autolinks = taxopress_get_autolink_data();
 
     if (array_key_exists($autolink_id, $autolinks)) {

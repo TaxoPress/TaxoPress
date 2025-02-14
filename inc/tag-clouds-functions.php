@@ -377,6 +377,11 @@ function taxopress_copy_tagcloud_filter_removable_query_args(array $args)
 
 function taxopress_action_copy_tagcloud($tagcloud_id)
 {
+    if (!taxopress_is_pro_version()) {
+        wp_safe_redirect(admin_url('admin.php?page=st_terms_display&add=new_item'));
+        exit;
+    }
+
     $tagclouds = taxopress_get_tagcloud_data();
 
     if (array_key_exists($tagcloud_id, $tagclouds)) {
