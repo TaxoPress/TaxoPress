@@ -82,6 +82,21 @@ function taxopress_process_tagcloud()
         }
     }
 
+    if (isset($_GET['copied_tagcloud'])) { 
+        if ((int)$_GET['copied_tagcloud'] === 1) {
+            add_action('admin_notices', "taxopress_termsdisplay_copy_success_admin_notice");
+            add_filter('removable_query_args', 'taxopress_copied_tagcloud_filter_removable_query_args');
+        }
+    }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-tagcloud') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'tagcloud-action-request-nonce')) {
+            taxopress_action_copy_tagcloud(sanitize_text_field($_REQUEST['taxopress_termsdisplay']));
+        }
+        add_filter('removable_query_args', 'taxopress_copy_tagcloud_filter_removable_query_args');
+    }
+
 
     if (!empty($_POST) && isset($_POST['tagcloud_submit'])) {
         $result = '';
@@ -250,6 +265,15 @@ function taxopress_termsdisplay_delete_success_admin_notice()
 }
 
 /**
+ * Successful copied callback.
+ */
+function taxopress_termsdisplay_copy_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Terms Display successfully copied.', 'simple-tags'), true);
+}
+
+/**
  * Filters the list of query arguments which get removed from admin area URLs in WordPress.
  *
  * @link https://core.trac.wordpress.org/ticket/23367
@@ -322,6 +346,59 @@ function taxopress_action_delete_tagcloud($tagcloud_id)
         );   
         exit();
     }
+}
+
+/**
+ * Prevents success messages from persisting after a refresh.
+ * @param string[] $args Array of removable query arguments.
+ * @return string[] Updated array of removable query arguments.
+ */
+function taxopress_copied_tagcloud_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'copied_tagcloud',
+    ]);
+}
+
+/**
+ * Cleans up copy action parameters from the URL.
+ * @param string[] $args Array of removable query arguments.
+ * @return string[] Updated array of removable query arguments.
+ */
+function taxopress_copy_tagcloud_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'action',
+        'taxopress_termsdisplay',
+        '_wpnonce',
+    ]);
+}
+
+
+function taxopress_action_copy_tagcloud($tagcloud_id)
+{
+    $tagclouds = taxopress_get_tagcloud_data();
+
+    if (array_key_exists($tagcloud_id, $tagclouds)) {
+        $new_tagcloud = $tagclouds[$tagcloud_id];
+        $new_tagcloud['title'] .= '-copy';
+        
+        $new_id = (int)get_option('taxopress_tagcloud_ids_increament') + 1;
+        $new_tagcloud['ID'] = $new_id;
+        
+        $tagclouds[$new_id] = $new_tagcloud;
+        
+        update_option('taxopress_tagclouds', $tagclouds);
+        update_option('taxopress_tagcloud_ids_increament', $new_id);
+    }
+
+    wp_safe_redirect(
+        add_query_arg([
+            'page'             => 'st_terms_display',
+            'copied_tagcloud'  => 1,
+        ], taxopress_admin_url('admin.php'))
+    );   
+    exit();
 }
 
 function taxopress_termsdisplay_shortcode($atts)
