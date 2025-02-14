@@ -263,6 +263,17 @@ class Autolinks_List extends WP_List_Table
                 ),
                 __('Edit', 'simple-tags')
             ),
+            'copy' => sprintf(
+                '<a href="%s" class="copy-autolink">%s</a>',
+                add_query_arg([
+                    'page'                   => 'st_autolinks',
+                    'action'                 => 'taxopress-copy-autolink',
+                    'taxopress_autolinks' => esc_attr($item['ID']),
+                    '_wpnonce'               => wp_create_nonce('autolink-action-request-nonce')
+                ],
+                    admin_url('admin.php')),
+                __('Copy', 'simple-tags')
+            ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-autolink">%s</a>',
                 add_query_arg([

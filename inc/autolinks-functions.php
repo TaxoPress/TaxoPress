@@ -87,6 +87,21 @@ function taxopress_process_autolink()
         }
     }
 
+    if (isset($_GET['copied_autolink'])) {
+        if ((int)$_GET['copied_autolink'] === 1) {
+            add_action('admin_notices', "taxopress_autolinks_copy_success_admin_notice");
+            add_filter('removable_query_args', 'taxopress_copied_autolink_filter_removable_query_args');
+        }
+    }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-autolink') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'autolink-action-request-nonce')) {
+            taxopress_action_copy_autolink(sanitize_text_field($_REQUEST['taxopress_autolinks']));
+        }
+        add_filter('removable_query_args', 'taxopress_copy_autolink_filter_removable_query_args');
+    }
+
 
     if (!empty($_POST) && isset($_POST['autolink_submit'])) {
         $result = '';
@@ -279,6 +294,15 @@ function taxopress_autolinks_delete_success_admin_notice()
 }
 
 /**
+ * Successful copied callback.
+ */
+function taxopress_autolinks_copy_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Auto Links successfully copied.', 'simple-tags'), true);
+}
+
+/**
  * Filters the list of query arguments which get removed from admin area URLs in WordPress.
  *
  * @link https://core.trac.wordpress.org/ticket/23367
@@ -351,6 +375,49 @@ function taxopress_action_delete_autolink($autolink_id)
         );
         exit();
     }
+}
+
+function taxopress_copied_autolink_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'copied_autolink',
+    ]);
+}
+
+function taxopress_copy_autolink_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'action',
+        'taxopress_autolinks',
+        '_wpnonce',
+    ]);
+}
+
+function taxopress_action_copy_autolink($autolink_id)
+{
+    $autolinks = taxopress_get_autolink_data();
+
+    if (array_key_exists($autolink_id, $autolinks)) {
+        $new_autolink = $autolinks[$autolink_id];
+        $new_autolink['title'] .= '-copy';
+
+        $new_id = (int)get_option('taxopress_autolink_ids_increament') + 1;
+        $new_autolink['ID'] = $new_id;
+
+        $autolinks[$new_id] = $new_autolink;
+
+        update_option('taxopress_autolinks', $autolinks);
+        update_option('taxopress_autolink_ids_increament', $new_id);
+
+    }
+
+    wp_safe_redirect(
+        add_query_arg([
+            'page'           => 'st_autolinks',
+            'copied_autolink' => 1,
+        ], taxopress_admin_url('admin.php'))
+    );
+    exit();
 }
 
 /**
