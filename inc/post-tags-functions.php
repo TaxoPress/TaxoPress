@@ -84,6 +84,21 @@ function taxopress_process_posttags()
         }
     }
 
+    if (isset($_GET['copied_posttags'])) {
+        if ((int)$_GET['copied_posttags'] === 1) {
+            add_action('admin_notices', "taxopress_posttags_copy_success_admin_notice");
+            add_filter('removable_query_args', 'taxopress_copied_posttags_filter_removable_query_args');
+        }
+    }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-posttags') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'posttags-action-request-nonce')) {
+            taxopress_action_copy_posttags(sanitize_text_field($_REQUEST['taxopress_posttags']));
+        }
+        add_filter('removable_query_args', 'taxopress_copy_posttags_filter_removable_query_args');
+    }
+
 
     if (!empty($_POST) && isset($_POST['posttags_submit'])) {
         $result = '';
@@ -199,6 +214,15 @@ function taxopress_posttags_delete_success_admin_notice()
 }
 
 /**
+ * Successful copied callback.
+ */
+function taxopress_posttags_copy_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Shortcode entry successfully copied.', 'simple-tags'), true);
+}
+
+/**
  * Filters the list of query arguments which get removed from admin area URLs in WordPress.
  *
  * @link https://core.trac.wordpress.org/ticket/23367
@@ -237,6 +261,22 @@ function taxopress_deleted_posttags_filter_removable_query_args(array $args)
  * @return string[] Updated array of removable query arguments.
  */
 function taxopress_delete_posttags_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'action',
+        'taxopress_posttags',
+        '_wpnonce',
+    ]);
+}
+
+function taxopress_copied_posttags_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'copied_posttags',
+    ]);
+}
+
+function taxopress_copy_posttags_filter_removable_query_args(array $args)
 {
     return array_merge($args, [
         'action',
@@ -331,6 +371,32 @@ function taxopress_action_delete_posttags($posttags_id)
         );
         exit();
     }
+}
+
+function taxopress_action_copy_posttags($posttags_id)
+{
+    $posttagss = taxopress_get_posttags_data();
+
+    if (array_key_exists($posttags_id, $posttagss)) {
+        $new_posttags = $posttagss[$posttags_id];
+        $new_posttags['title'] .= '-copy';
+        
+        $new_id = (int) get_option('taxopress_posttags_ids_increament') + 1;
+        $new_posttags['ID'] = $new_id;
+        
+        $posttagss[$new_id] = $new_posttags;
+        
+        update_option('taxopress_posttagss', $posttagss);
+        update_option('taxopress_posttags_ids_increament', $new_id);
+    }
+
+    wp_safe_redirect(
+        add_query_arg([
+            'page'             => 'st_post_tags',
+            'copied_posttags'  => 1,
+        ], taxopress_admin_url('admin.php'))
+    );   
+    exit();
 }
 
 function taxopress_posttags_shortcode($atts)

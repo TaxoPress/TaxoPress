@@ -263,6 +263,17 @@ class PostTags_List extends WP_List_Table
                 ),
                 esc_html__('Edit', 'simple-tags')
             ),
+            'copy' => sprintf(
+                '<a href="%s" class="copy-posttags">%s</a>',
+                add_query_arg([
+                    'page'               => 'st_post_tags',
+                    'action'             => 'taxopress-copy-posttags',
+                    'taxopress_posttags' => esc_attr($item['ID']),
+                    '_wpnonce'           => wp_create_nonce('posttags-action-request-nonce')
+                ],
+                    admin_url('admin.php')),
+                esc_html__('Copy', 'simple-tags')
+            ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-posttags">%s</a>',
                 add_query_arg([
