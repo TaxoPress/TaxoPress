@@ -83,6 +83,21 @@ function taxopress_process_relatedpost()
         }
     }
 
+    if (isset($_GET['copied_relatedpost'])) {
+        if ((int)$_GET['copied_relatedpost'] === 1) {
+            add_action('admin_notices', "taxopress_relatedposts_copy_success_admin_notice");
+            add_filter('removable_query_args', 'taxopress_copied_relatedpost_filter_removable_query_args');
+        }
+    }
+
+    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-relatedpost') {
+        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        if (wp_verify_nonce($nonce, 'relatedpost-action-request-nonce')) {
+            taxopress_action_copy_relatedpost(sanitize_text_field($_REQUEST['taxopress_relatedposts']));
+        }
+        add_filter('removable_query_args', 'taxopress_copy_relatedpost_filter_removable_query_args');
+    }
+
 
     if (!empty($_POST) && isset($_POST['relatedpost_submit'])) {
         $result = '';
@@ -243,6 +258,15 @@ function taxopress_relatedposts_delete_success_admin_notice()
 }
 
 /**
+ * Successful copied callback.
+ */
+function taxopress_relatedposts_copy_success_admin_notice()
+{
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo taxopress_admin_notices_helper(esc_html__('Related Posts successfully copied.', 'simple-tags'), true);
+}
+
+/**
  * Filters the list of query arguments which get removed from admin area URLs in WordPress.
  *
  * @link https://core.trac.wordpress.org/ticket/23367
@@ -315,6 +339,52 @@ function taxopress_action_delete_relatedpost($relatedpost_id)
         );
         exit();
     }
+}
+
+function taxopress_copied_relatedpost_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'copied_relatedpost',
+    ]);
+}
+
+function taxopress_copy_relatedpost_filter_removable_query_args(array $args)
+{
+    return array_merge($args, [
+        'action',
+        'taxopress_relatedposts',
+        '_wpnonce',
+    ]);
+}
+
+/**
+ * Copy our custom related post from the array of related posts.
+ * @return bool|string False on failure, string on success.
+ */
+function taxopress_action_copy_relatedpost($relatedpost_id)
+{
+    $relatedposts = taxopress_get_relatedpost_data();
+
+    if (array_key_exists($relatedpost_id, $relatedposts)) {
+        $new_relatedpost = $relatedposts[$relatedpost_id];
+        $new_relatedpost['title'] .= '-copy';
+
+        $new_id = (int)get_option('taxopress_relatedpost_ids_increament') + 1;
+        $new_relatedpost['ID'] = $new_id;
+
+        $relatedposts[$new_id] = $new_relatedpost;
+
+        update_option('taxopress_relatedposts', $relatedposts);
+        update_option('taxopress_relatedpost_ids_increament', $new_id);
+    }
+
+    wp_safe_redirect(
+        add_query_arg([
+            'page'                => 'st_related_posts',
+            'copied_relatedpost'  => 1,
+        ], taxopress_admin_url('admin.php'))
+    );
+    exit();
 }
 
 function taxopress_relatedposts_shortcode($atts)

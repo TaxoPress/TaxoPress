@@ -264,6 +264,17 @@ class RelatedPosts_List extends WP_List_Table
                 ),
                  esc_html__('Edit', 'simple-tags')
             ),
+            'copy' => sprintf(
+                '<a href="%s" class="copy-relatedpost">%s</a>',
+                add_query_arg([
+                    'page'                   => 'st_related_posts',
+                    'action'                 => 'taxopress-copy-relatedpost',
+                    'taxopress_relatedposts' => esc_attr($item['ID']),
+                    '_wpnonce'               => wp_create_nonce('relatedpost-action-request-nonce')
+                ],
+                    admin_url('admin.php')),
+                 esc_html__('Copy', 'simple-tags')
+            ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-relatedpost">%s</a>',
                 add_query_arg([
