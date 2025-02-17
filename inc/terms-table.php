@@ -114,6 +114,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'description'     => esc_html__('Description', 'simple-tags'),
             'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
             'posttypes'  => esc_html__('Post Types', 'simple-tags'),
+            'custom_url'  => esc_html__('Custom URL', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
             'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
             'count'  => esc_html__('Count', 'simple-tags')
@@ -322,6 +323,13 @@ class Taxopress_Terms_List extends WP_List_Table
                 echo taxopress_admin_notices_helper(esc_html__('Term(s) copied successfully.', 'simple-tags'), true);
             }
         }
+    }
+
+    protected function column_custom_url($item) {
+        $custom_url = get_term_meta($item->term_id, 'custom_url', true);
+        return (!empty($custom_url) && filter_var($custom_url, FILTER_VALIDATE_URL)) 
+            ? sprintf('<a href="%s" target="_blank">%s</a>', esc_url($custom_url), esc_html($custom_url)) 
+            : __('-', 'simple-tags');
     }
 
     /**
