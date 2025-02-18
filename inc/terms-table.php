@@ -329,7 +329,7 @@ class Taxopress_Terms_List extends WP_List_Table
         $custom_url = get_term_meta($item->term_id, 'custom_url', true);
         return (!empty($custom_url) && filter_var($custom_url, FILTER_VALIDATE_URL)) 
             ? sprintf('<a href="%s" target="_blank">%s</a>', esc_url($custom_url), esc_html($custom_url)) 
-            : __('-', 'simple-tags');
+            : '-';
     }
 
     /**
