@@ -114,7 +114,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'description'     => esc_html__('Description', 'simple-tags'),
             'taxonomy'  => esc_html__('Taxonomy', 'simple-tags'),
             'posttypes'  => esc_html__('Post Types', 'simple-tags'),
-            'custom_url'  => esc_html__('Custom URL', 'simple-tags'),
+            'taxopress_custom_url'  => esc_html__('Custom URL', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
             'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
             'count'  => esc_html__('Count', 'simple-tags')
@@ -325,10 +325,10 @@ class Taxopress_Terms_List extends WP_List_Table
         }
     }
 
-    protected function column_custom_url($item) {
-        $custom_url = get_term_meta($item->term_id, 'custom_url', true);
-        return (!empty($custom_url) && filter_var($custom_url, FILTER_VALIDATE_URL)) 
-            ? sprintf('<a href="%s" target="_blank">%s</a>', esc_url($custom_url), esc_html($custom_url)) 
+    protected function column_taxopress_custom_url($item) {
+        $taxopress_custom_url = get_term_meta($item->term_id, 'taxopress_custom_url', true);
+        return (!empty($taxopress_custom_url) && filter_var($taxopress_custom_url, FILTER_VALIDATE_URL)) 
+            ? sprintf('<a href="%s" target="_blank">%s</a>', esc_url($taxopress_custom_url), esc_html($taxopress_custom_url)) 
             : '-';
     }
 

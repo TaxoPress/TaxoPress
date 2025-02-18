@@ -40,10 +40,10 @@ class SimpleTags_Client_Autolinks
 
 		foreach ($taxonomies as $taxonomy) {
 
-            add_action("{$taxonomy}_edit_form_fields", [$this, 'add_custom_url_field']);
-            add_action("{$taxonomy}_add_form_fields", [$this, 'add_custom_url_field_new']);
-            add_action("edited_{$taxonomy}", [$this, 'save_custom_url_field']);
-            add_action("created_{$taxonomy}", [$this, 'save_custom_url_field']);
+            add_action("{$taxonomy}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
+            add_action("{$taxonomy}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
+            add_action("edited_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
+            add_action("created_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
         }	
 
 	}
@@ -173,17 +173,21 @@ class SimpleTags_Client_Autolinks
 		return array();
 	}
 
-	public function add_custom_url_field($term) {
+	public function taxopress_add_custom_url_field($term) {
 
-		$custom_url = get_term_meta($term->term_id, 'custom_url', true);
+		if (!is_object($term)) {
+			return;
+		}
+
+		$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
 		
 		?>
 		<tr class="form-field">
 			<th scope="row" valign="top">
-				<label for="custom_url"><?php esc_html_e('Custom URL', 'simple-tags'); ?></label>
+				<label for="taxopress_custom_url"><?php esc_html_e('Custom URL', 'simple-tags'); ?></label>
 			</th>
 			<td>
-				<input type="text" name="custom_url" id="custom_url" value="<?php echo esc_attr($custom_url); ?>" size="40">
+				<input type="text" name="taxopress_custom_url" id="taxopress_custom_url" value="<?php echo esc_attr($taxopress_custom_url); ?>" size="40">
 				<p class="description">
 					<?php esc_html_e('Enter a custom URL for this term. This URL will only be used for auto-linked terms. If left empty, the term will link to its archive page.', 'simple-tags'); ?>
 				</p>
@@ -193,11 +197,11 @@ class SimpleTags_Client_Autolinks
 		<?php
 	}
 
-	public function add_custom_url_field_new() {
+	public function taxopress_add_custom_url_field_new() {
 		?>
 		<div class="form-field">
-			<label for="custom_url"><?php esc_html_e('Custom URL', 'simple-tags'); ?></label>
-			<input type="text" name="custom_url" id="custom_url" value="" size="40">
+			<label for="taxopress_custom_url"><?php esc_html_e('Custom URL', 'simple-tags'); ?></label>
+			<input type="text" name="taxopress_custom_url" id="taxopress_custom_url" value="" size="40">
 			<p class="description">
 				<?php esc_html_e('Enter a custom URL for this term. This URL will only be used if the term is auto-linked. If left empty, the term will link to its archive page.', 'simple-tags'); ?>
 			</p>
@@ -205,16 +209,14 @@ class SimpleTags_Client_Autolinks
 		<?php
 	}
 
-	public function save_custom_url_field($term_id) {
-		if (isset($_POST['custom_url'])) {
-			$custom_url = trim($_POST['custom_url']);
-	
-			if (!empty($custom_url)) {
-				update_term_meta($term_id, 'custom_url', esc_url_raw($custom_url));
+	public function taxopress_save_custom_url_field($term_id) {
+			if (!empty($_POST['taxopress_custom_url'])) {
+				$taxopress_custom_url = sanitize_url(wp_unslash($_POST['taxopress_custom_url']));
+				update_term_meta($term_id, 'taxopress_custom_url', $taxopress_custom_url);
 			} else {
-				delete_term_meta($term_id, 'custom_url');
+				delete_term_meta($term_id, 'taxopress_custom_url');
 			}
-		}
+		
 	}
 
 	/**
@@ -247,8 +249,8 @@ class SimpleTags_Client_Autolinks
 		foreach ((array) $terms as $term) {
 
 			//add primary term
-			$custom_url = get_term_meta($term->term_id, 'custom_url', true);
-            $primary_term_link = !empty($custom_url) ? esc_url($custom_url) : get_term_link($term, $term->taxonomy);
+			$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+            $primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
 			$add_terms = [];
 			$add_terms[$term->name] = $primary_term_link;
 
