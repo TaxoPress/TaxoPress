@@ -29,9 +29,7 @@ class SimpleTags_Admin_Manage
         add_action('wp_ajax_taxopress_check_delete_terms', array( $this, 'handle_taxopress_check_delete_terms_ajax'));
 
         // TaxoPress Hooks
-        add_filter('get_terms', array( $this, 'taxopress_exclude_hidden_terms'), 10, 3);
-        add_filter('get_the_terms', array( $this, 'taxopress_exclude_hidden_terms_from_post'), 10, 3);
-        add_filter('wp_tag_cloud', array( $this, 'taxopress_exclude_hidden_terms_from_tag_cloud'));
+        add_filter('term_link', [$this, 'modifyTermLinks'], 10, 3);
     }
 
     /**
@@ -120,7 +118,7 @@ class SimpleTags_Admin_Manage
                 self::removeRarelyUsed(SimpleTags_Admin::$taxonomy, (int) $_POST['number-rarely']);
                 $default_tab = '.st-delete-unuused-terms';
             } elseif ($_POST['term_action'] == 'hide-rarelyterms') {
-                self::hideRarelyUsed(SimpleTags_Admin::$taxonomy, (int) $_POST['hide-rarely']);
+                self::updateRarelyUsedTerms(SimpleTags_Admin::$taxonomy, (int) $_POST['hide-rarely']);
                 $default_tab = '.st-hide-unuused-terms';
             } /* elseif ( $_POST['term_action'] == 'editslug'  ) {
 
@@ -444,49 +442,38 @@ class SimpleTags_Admin_Manage
 						</tr>
 
                         <tr valign="top" style="display:none;" class="auto-terms-content st-hide-unuused-terms">
-							<td>
-								<h2><?php esc_html_e('Hide rarely used terms', 'simple-tags'); ?>
-								</h2>
-								<p><?php esc_html_e('This feature allows you to hide rarely used terms from the admin area..', 'simple-tags'); ?>
-								</p>
+                            <td>
+                                <h2><?php esc_html_e('Hide rarely used terms', 'simple-tags'); ?></h2>
+                                <p><?php esc_html_e('This feature will redirect rarely used terms to the homepage.', 'simple-tags'); ?></p>
 
-								<p><?php printf(esc_html__('If you choose 5, Taxopress will hide all terms attached to less than 5 %s.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
-								</p>
+                                <p><?php printf(esc_html__('If you choose 5, Taxopress will redirect all terms attached to less than 5 %s to the homepage.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
 
-								<fieldset>
-									<form action="" method="post">
-										<input type="hidden" name="taxo"
-											value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
-										<input type="hidden" name="cpt"
-											value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
+                                <fieldset>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>" />
+                                        <input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>" />
+                                        <input type="hidden" name="term_action" value="hide-rarelyterms" />
+                                        <input type="hidden" name="term_nonce" value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
 
-										<input type="hidden" name="term_action" value="hide-rarelyterms" />
-										<input type="hidden" name="term_nonce"
-											value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
-
-										<p>
-											<label
-												for="number-hidden"><?php _e('Minimum number of uses for each term:', 'simple-tags'); ?></label>
-											<br />
-											<select name="hide-rarely" id="number-hidden">
-												<?php for ($i = 1; $i <= 100; $i ++) : ?>
-												<option
-													value="<?php echo esc_attr($i); ?>">
-													<?php echo esc_html($i); ?>
-												</option>
-												<?php endfor; ?>
-											</select>
-										</p>
                                         <p>
+                                            <label for="number-hidden"><?php _e('Minimum number of uses for each term:', 'simple-tags'); ?></label>
+                                            <br />
+                                            <select name="hide-rarely" id="number-hidden">
+                                                <?php for ($i = 1; $i <= 100; $i++) : ?>
+                                                <option value="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></option>
+                                                <?php endfor; ?>
+                                            </select>
+                                        </p>
 
-                                        <label for="terms-hidden"><?php _e('Hide rarely used terms:', 'simple-tags'); ?></label>
-                                        <br />
-										<input style="margin-top: 2px;" class="button-primary hide-unused-term" type="submit" name="Hide"
-											value="<?php esc_attr_e('Hide Terms', 'simple-tags'); ?>" />
-									</form>
-								</fieldset>
-							</td>
-						</tr>
+                                        <p>
+                                            <label for="terms-hidden"><?php _e('Redirect rarely used terms:', 'simple-tags'); ?></label>
+                                            <br />
+                                            <input style="margin-top: 2px;" class="button-primary hide-unused-term" type="submit" name="Redirect" value="<?php esc_attr_e('Redirect Terms', 'simple-tags'); ?>" />
+                                        </p>
+                                    </form>
+                                </fieldset>
+                            </td>
+                        </tr>
 
 						<?php /*
                 <tr valign="top">
@@ -1085,87 +1072,40 @@ class SimpleTags_Admin_Manage
         wp_die();
     }
 
-    public static function hideRarelyUsed($taxonomy = 'post_tag', $number = 0)
-    {
+    public static function updateRarelyUsedTerms($taxonomy = 'post_tag', $number = 0) {
         global $wpdb;
-
+    
         if ((int) $number > 100) {
             wp_die('Cheater?');
         }
-
+    
         // Get terms with count below the specified number
         $terms_id = $wpdb->get_col($wpdb->prepare("SELECT term_id FROM $wpdb->term_taxonomy WHERE taxonomy = %s AND count < %d", $taxonomy, (int) $number));
-
-        // Store the IDs of rarely used terms
-        set_transient('taxopress_hidden_terms_' . $taxonomy, $terms_id, DAY_IN_SECONDS);
-
+    
+        set_transient('taxopress_redirected_terms_' . $taxonomy, $terms_id, DAY_IN_SECONDS);
+    
         if (!empty($terms_id)) {
             clean_term_cache($terms_id, $taxonomy);
         }
-
+    
         if (empty($terms_id)) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms hidden.', 'simple-tags'), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms redirected.', 'simple-tags'), 'updated');
         } else {
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) hidden.', 'simple-tags'), count($terms_id)), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) will now be redirected to the homepage.', 'simple-tags'), count($terms_id)), 'updated');
         }
-
+    
         return true;
     }
-
-     /**
-     * Filter out hidden terms based on the taxonomy.
-     *
-     * @param array $terms An array of term objects.
-     * @param string $taxonomy The taxonomy slug.
-     * @return array Filtered array of term objects.
-     */
-    public static function filterHiddenTerms($terms, $taxonomy) {
-       
-        $hidden_terms = get_transient('taxopress_hidden_terms_' . $taxonomy);
     
-        if (!empty($hidden_terms)) {
-            $hidden_term_ids = array_flip($hidden_terms);
-            $hidden_slugs = array_map('sanitize_title', $hidden_terms);
+    // Modify term links for rarely used terms
+    public static function modifyTermLinks($term_link, $term, $taxonomy) {
+        $redirected_terms = get_transient('taxopress_redirected_terms_' . $taxonomy);
     
-            foreach ($terms as $key => $term) {
-                
-                if (isset($term->term_id) && isset($hidden_term_ids[$term->term_id])) {
-                    unset($terms[$key]);
-                    continue;
-                }
-                // Fallback to checking slugs
-                elseif (isset($term->slug) && in_array($term->slug, $hidden_slugs)) {
-                    unset($terms[$key]);
-                }
-            }
+        if (!empty($redirected_terms) && in_array($term->term_id, $redirected_terms)) {
+            return home_url();
         }
     
-        return $terms;
-    }
-
-    /**
-     * Exclude hidden terms from general term queries
-     */
-    public function taxopress_exclude_hidden_terms($terms, $taxonomies, $args) {
-
-        $taxonomy = isset($taxonomies[0]) ? $taxonomies[0] : 'post_tag';
-
-        return self::filterHiddenTerms($terms, $taxonomy);
-    }
-
-    /**
-     * Exclude hidden terms from post terms
-     */
-    public function taxopress_exclude_hidden_terms_from_post($terms, $post_id, $taxonomy) {
-
-        return self::filterHiddenTerms($terms, $taxonomy);
-    }
-
-    public function taxopress_exclude_hidden_terms_from_tag_cloud($terms, $args = array()) {
-        
-        $taxonomy = isset($args['taxonomy']) ? $args['taxonomy'] : 'post_tag';
-
-        return self::filterHiddenTerms($terms, $taxonomy);
+        return $term_link;
     }
 
         /**
