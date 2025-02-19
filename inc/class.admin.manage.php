@@ -466,9 +466,9 @@ class SimpleTags_Admin_Manage
                                         </p>
 
                                         <p>
-                                            <label for="terms-hidden"><?php _e('Redirect rarely used terms:', 'simple-tags'); ?></label>
+                                            <label for="terms-hidden"><?php _e('Hide rarely used terms:', 'simple-tags'); ?></label>
                                             <br />
-                                            <input style="margin-top: 2px;" class="button-primary hide-unused-term" type="submit" name="Redirect" value="<?php esc_attr_e('Redirect Terms', 'simple-tags'); ?>" />
+                                            <input style="margin-top: 2px;" class="button-primary hide-unused-term" type="submit" name="Hide" value="<?php esc_attr_e('Hide Terms', 'simple-tags'); ?>" />
                                         </p>
                                     </form>
                                 </fieldset>
