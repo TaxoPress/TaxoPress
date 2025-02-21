@@ -47,6 +47,8 @@ class SimpleTags_Client_TagCloud {
 			'smallest'    => 8,
 			'unit'        => 'pt',
 			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
+			'parent_term' => '',
+			'display_mode' => 'parents_and_sub',
 			// Simple Tag other defaults
 			'size'        => 'true',
 			'color'       => 'true',
@@ -85,6 +87,8 @@ class SimpleTags_Client_TagCloud {
 		$defaults['smallest']    = $options['cloud_min_size'];
 		$defaults['unit']        = $options['cloud_unit'];
 		$defaults['taxonomy']    = $options['cloud_taxonomy'];
+		$defaults['parent_term'] = $options['cloud_parent_term'];
+		$defaults['display_mode'] = $options['cloud_display_mode'];
 
 		$adv_usage = $options['cloud_adv_usage'];
 		if ( empty( $args ) ) {
@@ -278,6 +282,8 @@ class SimpleTags_Client_TagCloud {
 			'smallest'    => 8,
 			'unit'        => 'pt',
 			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
+			'parent_term' => '',
+			'display_mode' => 'parents_and_sub',
 			// Simple Tag other defaults
 			'size'        => 'true',
 			'color'       => 'true',
@@ -307,6 +313,8 @@ class SimpleTags_Client_TagCloud {
 		$defaults['smallest']    = $options['cloud_min_size'];
 		$defaults['unit']        = $options['cloud_unit'];
 		$defaults['taxonomy']    = $options['cloud_taxonomy'];
+		$defaults['parent_term'] = $options['cloud_parent_term'];
+		$defaults['display_mode'] = $options['cloud_display_mode'];
 
 		$adv_usage = $options['cloud_adv_usage'];
 		if ( empty( $args ) ) {
@@ -479,7 +487,78 @@ class SimpleTags_Client_TagCloud {
 		}
 
 		// Get tags
-		$terms = self::getTerms( $taxonomy, $args );
+		if ( isset( $args['taxonomy'] ) ) {
+			$taxonomy = $args['taxonomy'];
+		}
+
+		if ( isset( $args['parent_term'] ) ) {
+			$parent_term = $args['parent_term'];
+		}
+
+		if ( isset( $args['display_mode'] ) ) {
+			$display_mode = $args['display_mode'];
+		}
+		
+		$term_args = [
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+		];
+		
+		if ($parent_term === 'all') {
+			if ($display_mode === 'parents_only') {
+				$term_args['parent'] = 0;
+			} elseif ($display_mode === 'sub_terms_only') {
+				// Get all parent terms
+				$parent_terms = get_terms([
+					'taxonomy'   => $taxonomy,
+					'parent'     => 0,
+					'hide_empty' => false
+				]);
+		
+				$parent_ids = wp_list_pluck($parent_terms, 'term_id');
+		
+				if (!empty($parent_ids)) {
+					$sub_terms = [];
+					foreach ($parent_ids as $parent_id) {
+						$terms = get_terms([
+							'taxonomy'   => $taxonomy,
+							'parent'     => $parent_id,
+							'hide_empty' => false
+						]);
+						$sub_terms = array_merge($sub_terms, $terms);
+					}
+		
+					$term_args['include'] = wp_list_pluck($sub_terms, 'term_id');
+				} else {
+					$term_args['parent'] = -1;
+				}
+			}
+		} else {
+			// Specific parent term selected
+			if ($display_mode === 'parents_only') {
+				$term_args['include'] = [$parent_term];
+			} elseif ($display_mode === 'sub_terms_only') {
+				$term_args['parent'] = $parent_term;
+			} else {
+				// Both parent and sub-terms
+				$parent_terms = get_terms([
+					'taxonomy' => $taxonomy,
+					'include'  => [$parent_term],
+					'hide_empty' => false
+				]);
+		
+				$sub_terms = get_terms([
+					'taxonomy' => $taxonomy,
+					'parent'   => $parent_term,
+					'hide_empty' => false
+				]);
+		
+				$all_terms = array_merge($parent_terms, $sub_terms);
+				$term_args['include'] = wp_list_pluck($all_terms, 'term_id');
+			}
+		}
+		
+		$terms = get_terms($term_args);
 		if ( empty( $terms ) ) {
 			return array();
 		}
