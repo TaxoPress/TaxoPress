@@ -665,13 +665,13 @@ class SimpleTags_Admin
 
 				do_action('simpletags_settings_save_general_end');
 
-				add_settings_error(__CLASS__, __CLASS__, esc_html__('Options saved', 'simple-tags'), 'updated');
+				add_settings_error(__CLASS__, __CLASS__, esc_html__('Options saved', 'simple-tags'), 'updated taxopress-notice');
 			} elseif (isset($_POST['reset_options'])) {
 				check_admin_referer('updateresetoptions-simpletags');
 
 				SimpleTags_Plugin::set_default_option();
 
-				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated');
+				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated taxopress-notice');
 			} else {
 				//add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
 			}
