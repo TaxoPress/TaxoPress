@@ -1290,7 +1290,7 @@ class SimpleTags_Autoterms
                                                                 'Terms inside these HTML tags will not be used to generate terms.',
                                                                 'simple-tags'
                                                             ) . '</small></th><td>
-                                                    <table class="visbile-table st-html-exclusion-table">';
+                                                    <table class="visbile-table st-html-exclusion-table" style="width: 100%;">';
                                                             foreach ($html_exclusions as $key => $value) {
 
                                                                 echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($key) . '">' . esc_html($value) . '</label></th><td>';
