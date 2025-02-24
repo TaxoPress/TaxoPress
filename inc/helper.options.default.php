@@ -99,4 +99,6 @@ return array(
     'cloud_min_size'         => 8,
     'cloud_unit'             => 'pt',
     'cloud_adv_usage'        => '',
+    'cloud_parent_term'     => '',
+    'cloud_display_mode'   => 'parents_and_sub'
 );
