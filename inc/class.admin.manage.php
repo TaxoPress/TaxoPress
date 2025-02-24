@@ -29,9 +29,7 @@ class SimpleTags_Admin_Manage
         add_action('wp_ajax_taxopress_check_delete_terms', array( $this, 'handle_taxopress_check_delete_terms_ajax'));
 
         // TaxoPress Hooks
-        add_filter('get_terms', array( $this, 'taxopress_exclude_hidden_terms'), 10, 3);
-        add_filter('get_the_terms', array( $this, 'taxopress_exclude_hidden_terms_from_post'), 10, 3);
-        add_filter('wp_tag_cloud', array( $this, 'taxopress_exclude_hidden_terms_from_tag_cloud'));
+        add_filter('term_link', [$this, 'taxopress_modify_hidden_term_links'], 10, 3);
     }
 
     /**
@@ -447,7 +445,7 @@ class SimpleTags_Admin_Manage
 							<td>
 								<h2><?php esc_html_e('Hide rarely used terms', 'simple-tags'); ?>
 								</h2>
-								<p><?php esc_html_e('This feature allows you to hide rarely used terms from the admin area..', 'simple-tags'); ?>
+								<p><?php esc_html_e('This feature allows you to hide rarely used terms by redirecting them to the homepage.', 'simple-tags'); ?>
 								</p>
 
 								<p><?php printf(esc_html__('If you choose 5, Taxopress will hide all terms attached to less than 5 %s.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?>
@@ -1112,60 +1110,14 @@ class SimpleTags_Admin_Manage
         return true;
     }
 
-     /**
-     * Filter out hidden terms based on the taxonomy.
-     *
-     * @param array $terms An array of term objects.
-     * @param string $taxonomy The taxonomy slug.
-     * @return array Filtered array of term objects.
-     */
-    public static function filterHiddenTerms($terms, $taxonomy) {
-       
-        $hidden_terms = get_transient('taxopress_hidden_terms_' . $taxonomy);
+    public static function taxopress_modify_hidden_term_links($term_link, $term, $taxonomy) {
+        $redirected_terms = get_transient('taxopress_hidden_terms_' . $taxonomy);
     
-        if (!empty($hidden_terms)) {
-            $hidden_term_ids = array_flip($hidden_terms);
-            $hidden_slugs = array_map('sanitize_title', $hidden_terms);
-    
-            foreach ($terms as $key => $term) {
-                
-                if (isset($term->term_id) && isset($hidden_term_ids[$term->term_id])) {
-                    unset($terms[$key]);
-                    continue;
-                }
-                // Fallback to checking slugs
-                elseif (isset($term->slug) && in_array($term->slug, $hidden_slugs)) {
-                    unset($terms[$key]);
-                }
-            }
+        if (!empty($redirected_terms) && in_array($term->term_id, $redirected_terms)) {
+            return home_url();
         }
     
-        return $terms;
-    }
-
-    /**
-     * Exclude hidden terms from general term queries
-     */
-    public function taxopress_exclude_hidden_terms($terms, $taxonomies, $args) {
-
-        $taxonomy = isset($taxonomies[0]) ? $taxonomies[0] : 'post_tag';
-
-        return self::filterHiddenTerms($terms, $taxonomy);
-    }
-
-    /**
-     * Exclude hidden terms from post terms
-     */
-    public function taxopress_exclude_hidden_terms_from_post($terms, $post_id, $taxonomy) {
-
-        return self::filterHiddenTerms($terms, $taxonomy);
-    }
-
-    public function taxopress_exclude_hidden_terms_from_tag_cloud($terms, $args = array()) {
-        
-        $taxonomy = isset($args['taxonomy']) ? $args['taxonomy'] : 'post_tag';
-
-        return self::filterHiddenTerms($terms, $taxonomy);
+        return $term_link;
     }
 
         /**
