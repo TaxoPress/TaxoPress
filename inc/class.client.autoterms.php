@@ -731,7 +731,7 @@ class SimpleTags_Client_Autoterms
 			if (empty($terms_to_add)) {
 				// remove term if replace type is replace and term is empty
 				if ($autoterm_replace_type == 'replace') {
-					$empty_term_messages[$object->ID]['message'][] = esc_html__('No term was suggested but all post terms removed based on Auto Terms replace settings.', 'simple-tags');
+					$empty_term_messages[$object->ID]['message'][] = esc_html__('No term was suggested but all post terms were removed based on Auto Terms replace settings.', 'simple-tags');
 					wp_set_object_terms($object->ID, [], $taxonomy, true);
 					//update log
 					self::update_taxopress_logs($object, $taxonomy, $options, $counter, $action, $component, $terms_to_add, 'failed', 'empty_terms_remove_all');
