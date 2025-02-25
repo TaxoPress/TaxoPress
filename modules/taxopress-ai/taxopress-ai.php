@@ -814,6 +814,14 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             'label'   => esc_html__('Auto Terms', 'simple-tags'),
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
                         ],
+                        'suggest_local_terms' => [
+                            'label'   => esc_html__('Auto Terms', 'simple-tags'),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
+                        ],
+                        'create_term' => [
+                            'label'   => esc_html__('Create Terms', 'simple-tags'),
+                            'enabled' => true,
+                        ],
                     ];
 
                     foreach ($all_content_tabs as $all_content_tab_name => $all_content_tab_options) {
@@ -826,9 +834,15 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     $support_private_taxonomy = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_support_private_taxonomy');
 
                     $post_type_taxonomies = [];
+                    $permitted_post_type_taxonomies = [];
                     foreach(get_object_taxonomies($post->post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
                         if (can_manage_taxopress_metabox_taxonomy($taxonomy_name)) {
                             $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                            if (in_array($taxonomy_name, ['category', 'post_tag']) && current_user_can('manage_categories')) {
+                                $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                            } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
+                                $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                            }
                         }
                     }
                     
@@ -910,6 +924,34 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                                 endforeach; ?>
                                                         </select>
                                                         
+                                                    <input 
+                                                        class="taxopress-taxonomy-term-input create-term-item" 
+                                                        type="text" 
+                                                        value="" 
+                                                        placeholder="<?php echo esc_html__('Create Term', 'simple-tags'); ?>"
+                                                        style="display: none; margin-right: 5px;"
+                                                        onkeydown="return event.key != 'Enter';" />
+                                                    <select class="taxopress-ai-fetch-create-taxonomy create-term-item" style="display: none;">
+                                                            <?php foreach ($permitted_post_type_taxonomies as $tax_key => $tax_object):
+                                                            
+                                                            if (!in_array($tax_key, ['post_format']) && (!empty($tax_object->show_ui) || !empty($support_private_taxonomy))) {
+                                                                $rest_api_base = !empty($tax_object->rest_base) ? $tax_object->rest_base : $tax_key;
+                                                                $hierarchical = !empty($tax_object->hierarchical) ? (int) $tax_object->hierarchical : 0;
+                                                                ?>
+                                                                    <option value='<?php echo esc_attr($tax_key); ?>'
+                                                                    data-rest_base='<?php echo esc_attr($rest_api_base); ?>'
+                                                                    data-hierarchical='<?php echo esc_attr($hierarchical); ?>'
+                                                                    <?php selected($tax_key, $default_taxonomy); ?>>
+                                                                        <?php echo esc_html($tax_object->labels->name. ' ('.$tax_object->name.')'); ?>
+                                                                    </option>
+                                                                <?php }
+                                                            endforeach; ?>
+                                                    </select>
+                                                    <button class="button button-secondary taxopress-ai-create-button create-term-item" style="display: none;">
+                                                        <div class="spinner"></div>
+                                                        <span class="btn-text"><?php echo esc_html__('Create Term', 'simple-tags'); ?></span>
+                                                    </button>
+
                                                     <select class="taxopress-ai-fetch-taxonomy-select">
                                                             <?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
                                                             
