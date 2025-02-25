@@ -415,7 +415,8 @@ class SimpleTags_Client_Autolinks
 		// Load the content as HTML without adding DOCTYPE and html/body tags
 		$content = '<div>' . $content . '</div>';
 
-		$content = @mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
+		$content = mb_encode_numericentity($content, [0x80, 0x10FFFF, 0, 0xFFFFF], 'UTF-8');
+
 		$result = $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
 		if (false === $result) {
