@@ -68,6 +68,9 @@
       preview_wrapper.find('.spinner').addClass('is-active');
 
       var search_text = preview_wrapper.find('.taxopress-taxonomy-search').val();
+      var existing_terms_order = preview_wrapper.find('#existing_terms_order :selected').val();
+      var existing_terms_orderby = preview_wrapper.find('#existing_terms_orderby :selected').val();
+      var existing_terms_maximum_terms = preview_wrapper.find('#existing_terms_maximum_terms').val();
       var selected_autoterms = preview_wrapper.find('.taxopress-autoterms-options').val();
 
       //prepare ajax data
@@ -76,6 +79,9 @@
         preview_ai: preview_ai,
         preview_taxonomy: preview_taxonomy,
         search_text: search_text,
+        existing_terms_order: existing_terms_order,
+        existing_terms_orderby: existing_terms_orderby,
+        existing_terms_maximum_terms: existing_terms_maximum_terms,
         selected_autoterms: selected_autoterms,
         preview_post: preview_post,
         post_content: post_content,
@@ -107,12 +113,9 @@
 
       var button = $(this);
       var preview_wrapper = $(button).closest('.taxopress-ai-tab-content');
-      var preview_ai = preview_wrapper.attr('data-ai-source');
       var taxonomy = preview_wrapper.find('.taxopress-ai-fetch-create-taxonomy :selected').val();
-      var taxonomy_rest = preview_wrapper.find('.taxopress-ai-fetch-create-taxonomy :selected').data("rest_base");
      
       var preview_post = preview_wrapper.attr('data-post_id');
-      //preview_wrapper.find('.taxopress-ai-fetch-result').html('');
       preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('').removeClass('updated error');
 
       button.prop('disabled', true);
@@ -170,9 +173,9 @@
     $(document).on('click', 'ul.taxopress-tab.ai-integration-tab li', function () {
       var current_tab      = $(this).attr('data-content');
       if (current_tab === 'existing_terms') {
-        $('.taxopress-taxonomy-search').show();
+        $('.existing-term-item').show();
       } else {
-        $('.taxopress-taxonomy-search').hide();
+        $('.existing-term-item').hide();
       }
       if (current_tab === 'create_term') {
         $('.create-term-item').show();
