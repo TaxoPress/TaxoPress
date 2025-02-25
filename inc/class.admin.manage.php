@@ -86,13 +86,13 @@ class SimpleTags_Admin_Manage
         // Control Post data
         if (isset($_POST['term_action'])) {
             if (!current_user_can('simple_tags')) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('Permission denied!', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Permission denied!', 'simple-tags'), 'error taxopress-notice');
             } elseif (! wp_verify_nonce(sanitize_text_field($_POST['term_nonce']), 'simpletags_admin')) { // Origination and intention
 
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('Security problem. Try again.', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Security problem. Try again.', 'simple-tags'), 'error taxopress-notice');
             } elseif (! isset(SimpleTags_Admin::$taxonomy) || ! taxonomy_exists(SimpleTags_Admin::$taxonomy)) { // Valid taxo ?
 
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('Missing valid taxonomy for work. Try again.', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Missing valid taxonomy for work. Try again.', 'simple-tags'), 'error taxopress-notice');
             } elseif ($_POST['term_action'] == 'renameterm') {
                 $oldtag = (isset($_POST['renameterm_old'])) ? sanitize_text_field($_POST['renameterm_old']) : '';
                 $newtag = (isset($_POST['renameterm_new'])) ? sanitize_text_field($_POST['renameterm_new']) : '';
@@ -566,7 +566,7 @@ class SimpleTags_Admin_Manage
             $old_terms = array_filter($old_terms, '_delete_empty_element');
 
             if (empty($old_terms)) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms provided for merging!', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms provided for merging!', 'simple-tags'), 'error taxopress-notice');
                 return false;
             }
 
@@ -584,7 +584,7 @@ class SimpleTags_Admin_Manage
             }
 
             if (empty($terms)) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms with the same name found.', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms with the same name found.', 'simple-tags'), 'error taxopress-notice');
                 return false;
             }
 
@@ -630,12 +630,12 @@ class SimpleTags_Admin_Manage
             clean_object_term_cache($objects_id, $taxonomy);
             clean_term_cache($terms_id, $taxonomy);
             
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merged term(s) with the same name "%s". %d posts updated.', 'simple-tags'), $retained_term->name, count($objects_id)), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merged term(s) with the same name "%s". %d posts updated.', 'simple-tags'), $retained_term->name, count($objects_id)), 'updated taxopress-notice');
             return true;
         } else {
 
             if (trim(str_replace(',', '', stripslashes($new))) == '' && $merge_type !== 'same_name' ) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term specified!', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term specified!', 'simple-tags'), 'error taxopress-notice');
 
                 return false;
             }
@@ -651,13 +651,13 @@ class SimpleTags_Admin_Manage
 
             // If old/new tag are empty => exit !
             if (empty($old_terms) || empty($new_terms)) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('No new/old valid term specified!', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No new/old valid term specified!', 'simple-tags'), 'error taxopress-notice');
 
                 return false;
             }
 
             if (!empty($common_elements)) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('Term to merge and New Term must not contain same term.', 'simple-tags'), 'error');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Term to merge and New Term must not contain same term.', 'simple-tags'), 'error taxopress-notice');
 
                 return false;
             }
@@ -667,7 +667,7 @@ class SimpleTags_Admin_Manage
                 // Set new tag
                 $new_tag = sanitize_text_field($new_terms[0]);
                 if (empty($new_tag)) {
-                    add_settings_error(__CLASS__, __CLASS__, esc_html__('No valid new term.', 'simple-tags'), 'error');
+                    add_settings_error(__CLASS__, __CLASS__, esc_html__('No valid new term.', 'simple-tags'), 'error taxopress-notice');
 
                     return false;
                 }
@@ -690,7 +690,7 @@ class SimpleTags_Admin_Manage
                         wp_delete_term($term_id, $taxonomy);
                     }
 
-                    add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
+                    add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated taxopress-notice');
                     return true;
                 }
 
@@ -718,12 +718,12 @@ class SimpleTags_Admin_Manage
                 clean_term_cache($terms_id, $taxonomy);
 
                 if ($counter == 0) {
-                    add_settings_error(__CLASS__, __CLASS__, esc_html__('No term merged.', 'simple-tags'), 'updated');
+                    add_settings_error(__CLASS__, __CLASS__, esc_html__('No term merged.', 'simple-tags'), 'updated taxopress-notice');
                 } else {
-                    add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated');
+                    add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated taxopress-notice');
                 }
             } else { // Error
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. You need to enter a single term to merge to in new term name !', 'simple-tags'), $old), 'error');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. You need to enter a single term to merge to in new term name !', 'simple-tags'), $old), 'error taxopress-notice');
             }
 
             return true;
@@ -743,7 +743,7 @@ class SimpleTags_Admin_Manage
     public static function removeTerms($taxonomy = 'post_tag', $post_type = 'posts', $new = '')
     {
         if (trim(str_replace(',', '', stripslashes($new))) == '') {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term specified!', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term specified!', 'simple-tags'), 'error taxopress-notice');
 
             return false;
         }
@@ -756,7 +756,7 @@ class SimpleTags_Admin_Manage
 
         // If new tag are empty => exit !
         if (empty($new_terms)) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No valid term specified!', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No valid term specified!', 'simple-tags'), 'error taxopress-notice');
 
             return false;
         }
@@ -794,12 +794,12 @@ class SimpleTags_Admin_Manage
             }
 
             if ($counter == 0) {
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('This term is not associated with any %1$s.', 'simple-tags'), SimpleTags_Admin::$post_type_name), 'error');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('This term is not associated with any %1$s.', 'simple-tags'), SimpleTags_Admin::$post_type_name), 'error taxopress-notice');
             } else {
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Removed term(s) "%1$s" from %2$s %3$s', 'simple-tags'), $new, $counter, SimpleTags_Admin::$post_type_name), 'updated');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Removed term(s) "%1$s" from %2$s %3$s', 'simple-tags'), $new, $counter, SimpleTags_Admin::$post_type_name), 'updated taxopress-notice');
             }
         } else { // Error
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. No enough terms specified.', 'simple-tags'), $old), 'error');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. No enough terms specified.', 'simple-tags'), $old), 'error taxopress-notice');
         }
 
         return true;
@@ -818,7 +818,7 @@ class SimpleTags_Admin_Manage
     public static function renameTerms($taxonomy = 'post_tag', $old = '', $new = '')
     {
         if (trim(str_replace(',', '', stripslashes($new))) == '') {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term specified!', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term specified!', 'simple-tags'), 'error taxopress-notice');
 
             return false;
         }
@@ -833,7 +833,7 @@ class SimpleTags_Admin_Manage
 
         // If old/new tag are empty => exit !
         if (empty($old_terms) || empty($new_terms)) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new/old valid term specified!', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new/old valid term specified!', 'simple-tags'), 'error taxopress-notice');
 
             return false;
         }
@@ -880,12 +880,12 @@ class SimpleTags_Admin_Manage
             }
 
             if ($counter == 0) {
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('No term renamed.', 'simple-tags'), 'updated');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('No term renamed.', 'simple-tags'), 'updated taxopress-notice');
             } else {
-                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Renamed term(s) "%1$s" to "%2$s"', 'simple-tags'), rtrim($old, ','), rtrim($new, ',')), 'updated');
+                add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Renamed term(s) "%1$s" to "%2$s"', 'simple-tags'), rtrim($old, ','), rtrim($new, ',')), 'updated taxopress-notice');
             }
         } else { // Error
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. No enough terms for rename.', 'simple-tags'), $old), 'error');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. No enough terms for rename.', 'simple-tags'), $old), 'error taxopress-notice');
         }
 
         return true;
@@ -903,7 +903,7 @@ class SimpleTags_Admin_Manage
     public static function deleteTermsByTermList($taxonomy = 'post_tag', $delete = '')
     {
         if (trim(str_replace(',', '', stripslashes($delete))) == '') {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term specified!', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term specified!', 'simple-tags'), 'error taxopress-notice');
 
             return false;
         }
@@ -926,9 +926,9 @@ class SimpleTags_Admin_Manage
         }
 
         if ($counter == 0) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term deleted.', 'simple-tags'), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term deleted.', 'simple-tags'), 'updated taxopress-notice');
         } else {
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) deleted.', 'simple-tags'), $counter), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) deleted.', 'simple-tags'), $counter), 'updated taxopress-notice');
         }
 
         return true;
@@ -947,7 +947,7 @@ class SimpleTags_Admin_Manage
     public static function addMatchTerms($taxonomy = 'post_tag', $match = '', $new = '')
     {
         if (trim(str_replace(',', '', stripslashes($new))) == '') {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term(s) specified!', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term(s) specified!', 'simple-tags'), 'error taxopress-notice');
 
             return false;
         }
@@ -1000,9 +1000,9 @@ class SimpleTags_Admin_Manage
         }
 
         if ($counter == 0) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term added.', 'simple-tags'), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term added.', 'simple-tags'), 'updated taxopress-notice');
         } else {
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Term(s) added to %1s %2s.', 'simple-tags'), $counter, SimpleTags_Admin::$post_type_name), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Term(s) added to %1s %2s.', 'simple-tags'), $counter, SimpleTags_Admin::$post_type_name), 'updated taxopress-notice');
         }
 
         return true;
@@ -1039,9 +1039,9 @@ class SimpleTags_Admin_Manage
         }
 
         if ($counter == 0) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term deleted.', 'simple-tags'), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term deleted.', 'simple-tags'), 'updated taxopress-notice');
         } else {
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) deleted.', 'simple-tags'), $counter), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) deleted.', 'simple-tags'), $counter), 'updated taxopress-notice');
         }
 
         return true;
@@ -1102,9 +1102,9 @@ class SimpleTags_Admin_Manage
         }
 
         if (empty($terms_id)) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms hidden.', 'simple-tags'), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms hidden.', 'simple-tags'), 'updated taxopress-notice');
         } else {
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) hidden.', 'simple-tags'), count($terms_id)), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('%1s term(s) hidden.', 'simple-tags'), count($terms_id)), 'updated taxopress-notice');
         }
 
         return true;
@@ -1133,7 +1133,7 @@ class SimpleTags_Admin_Manage
     public static function removeMatchTerms($taxonomy = 'post_tag', $match = '', $remove = '')
     {
         if (trim(str_replace(',', '', stripslashes($remove))) == '') {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term(s) specified for removal!', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No term(s) specified for removal!', 'simple-tags'), 'error taxopress-notice');
             return false;
         }
     
@@ -1157,7 +1157,7 @@ class SimpleTags_Admin_Manage
         }
 
         if (empty($valid_remove_terms)) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('Term(s) does not exist.', 'simple-tags'), 'error');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('Term(s) does not exist.', 'simple-tags'), 'error taxopress-notice');
             return false;
         }
         
@@ -1201,9 +1201,9 @@ class SimpleTags_Admin_Manage
         }
     
         if ($counter == 0) {
-            add_settings_error(__CLASS__, __CLASS__, esc_html__('No matching term found.', 'simple-tags'), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, esc_html__('No matching term found.', 'simple-tags'), 'updated taxopress-notice');
         } else {
-            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Term(s) removed from %1s %2s.', 'simple-tags'), $counter, SimpleTags_Admin::$post_type_name), 'updated');
+            add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Term(s) removed from %1s %2s.', 'simple-tags'), $counter, SimpleTags_Admin::$post_type_name), 'updated taxopress-notice');
         }
     
         return true;

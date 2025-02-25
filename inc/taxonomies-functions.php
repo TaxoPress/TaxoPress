@@ -990,7 +990,7 @@ function taxopress_admin_notices_helper($message = '', $success = true)
 
     $class   = [];
     $class[] = $success ? 'updated' : 'error';
-    $class[] = 'notice is-dismissible';
+    $class[] = 'notice is-dismissible taxopress-notice';
 
     $messagewrapstart = '<div id="message" class="' . esc_attr(implode(' ', $class)) . '"><p>';
 
@@ -1466,7 +1466,7 @@ function taxopress_admin_notices($action = '', $object_type = '', $success = tru
 {
     $class       = [];
     $class[]     = $success ? 'updated' : 'error';
-    $class[]     = 'notice is-dismissible';
+    $class[]     = 'notice is-dismissible taxopress-notice';
     $object_type = esc_attr($object_type);
 
     $messagewrapstart = '<div id="message" class="' . implode(' ', $class) . '"><p>';

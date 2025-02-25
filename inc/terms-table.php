@@ -785,7 +785,7 @@ class Taxopress_Terms_List extends WP_List_Table
                                 <?php wp_nonce_field('taxinlineeditnonce', '_inline_edit', false); ?>
                                 <br class="clear" />
 
-                                <div class="notice notice-error notice-alt inline hidden">
+                                <div class="notice notice-error notice-alt inline hidden taxopress-notice">
                                     <p class="error"></p>
                                 </div>
                             </div>
