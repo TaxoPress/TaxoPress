@@ -797,6 +797,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
             }
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
             $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
+
+            $existing_terms_maximum_terms = !empty($settings_data ['existing_terms_maximum_terms']) ? $settings_data ['existing_terms_maximum_terms'] : '';
+            $existing_terms_orderby = !empty($settings_data ['existing_terms_orderby']) ? $settings_data ['existing_terms_orderby'] : '';
+            $existing_terms_order = !empty($settings_data ['existing_terms_order']) ? $settings_data ['existing_terms_order'] : '';
             ?>
             <div class="taxopress-post-suggestterm">
                 <div class="taxopress-suggest-terms-contents">
@@ -909,13 +913,16 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                             <td>
                                                 <div class="taxopress-ai-fetch-wrap">
                                                     <input 
-                                                        class="taxopress-taxonomy-search" 
+                                                        class="taxopress-taxonomy-search existing-term-item" 
                                                         type="search" 
                                                         value="" 
                                                         placeholder="<?php echo esc_html__('Search Terms...', 'simple-tags'); ?>"
-                                                        style="display: none; margin-right: 5px;"
+                                                        style="margin-right: 5px;"
                                                         onkeydown="return event.key != 'Enter';" />
-                                                        <select class="taxopress-autoterms-options <?php echo esc_attr($auto_term_class); ?>">
+
+
+                                                        <select class="taxopress-autoterms-options <?php echo esc_attr($auto_term_class); ?>"
+                                                        style="display: none;">
                                                                 <?php foreach ($auto_term_options as $option_name => $option_label): ?>
                                                                     <option value='<?php echo esc_attr($option_name); ?>'>
                                                                             <?php echo esc_html($option_label); ?>
@@ -968,6 +975,33 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                                 <?php }
                                                             endforeach; ?>
                                                     </select>
+                                                    <select id="existing_terms_orderby"
+                                                        class="existing-term-item" style="">
+                                                        <?php foreach (TaxoPressAiUtilities::get_existing_terms_orderby() as $key => $label): ?>
+                                                            <option value='<?php echo esc_attr($key); ?>'
+                                                            <?php selected($key, $existing_terms_orderby); ?>>
+                                                                <?php echo esc_html($label); ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                    <select id="existing_terms_order"
+                                                        class="existing-term-item" style="">
+                                                        <?php foreach (TaxoPressAiUtilities::get_existing_terms_order() as $key => $label): ?>
+                                                            <option value='<?php echo esc_attr($key); ?>'
+                                                            <?php selected($key, $existing_terms_order); ?>>
+                                                                <?php echo esc_html($label); ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                    <input 
+                                                        id="existing_terms_maximum_terms"
+                                                        step="1" min="0"
+                                                        class="existing-term-item" 
+                                                        type="number" 
+                                                        value="<?php echo esc_attr($existing_terms_maximum_terms); ?>" 
+                                                        placeholder="<?php echo esc_attr__('Set (0) for no limit', 'simple-tags'); ?>"
+                                                        style="margin-right: 5px;"
+                                                        onkeydown="return event.key != 'Enter';" />
                                                     <button class="button button-secondary taxopress-ai-fetch-button">
                                                         <div class="spinner"></div>
                                                         <span class="btn-text"><?php echo esc_html($button_label); ?></span>

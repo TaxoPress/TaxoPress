@@ -166,6 +166,17 @@ if (!class_exists('TaxoPressAiAjax')) {
                 } elseif ($preview_ai == 'existing_terms') {
                     $args['show_counts'] = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
                     $args['search_text'] = $search_text;
+
+                    if (isset($_POST['existing_terms_order'])) {
+                        $args['existing_terms_order'] = sanitize_text_field($_POST['existing_terms_order']);
+                    }
+                    if (isset($_POST['existing_terms_orderby'])) {
+                        $args['existing_terms_orderby'] = sanitize_text_field($_POST['existing_terms_orderby']);
+                    }
+                    if (isset($_POST['existing_terms_maximum_terms'])) {
+                        $args['existing_terms_maximum_terms'] = (int)$_POST['existing_terms_maximum_terms'];
+                    }
+                    
                     $existing_terms_results = self::get_existing_terms_results($args);
                     if (!empty($existing_terms_results['results'])) {
                         $term_results = $existing_terms_results['results'];
@@ -398,9 +409,22 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $existing_terms_order = isset($settings_data['suggest_local_terms_order']) ? $settings_data['suggest_local_terms_order'] : 'desc';
                 $existing_terms_show_post_count = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
             } else {
-                $existing_terms_maximum_terms = isset($settings_data['existing_terms_maximum_terms']) ? $settings_data['existing_terms_maximum_terms'] : 45;
-                $existing_terms_orderby = isset($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : 'count';
-                $existing_terms_order = isset($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : 'desc';
+
+                if (isset($args['existing_terms_order'])) {
+                    $existing_terms_order = $args['existing_terms_order'];
+                } else {
+                    $existing_terms_order = isset($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : 'desc';
+                }
+                if (isset($args['existing_terms_orderby'])) {
+                    $existing_terms_orderby = $args['existing_terms_orderby'];
+                } else {
+                    $existing_terms_orderby = isset($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : 'count';
+                }
+                if (isset($args['existing_terms_maximum_terms'])) {
+                    $existing_terms_maximum_terms = (int)$args['existing_terms_maximum_terms'];
+                } else {
+                    $existing_terms_maximum_terms = isset($settings_data['existing_terms_maximum_terms']) ? $settings_data['existing_terms_maximum_terms'] : 45;
+                }
                 $existing_terms_show_post_count = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
             }
 
