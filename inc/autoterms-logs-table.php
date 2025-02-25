@@ -110,7 +110,7 @@ class Autoterms_Logs extends WP_List_Table
                 'term_only_option' => esc_html__( 'Auto Terms settings are configured to skip posts with terms.', 'simple-tags' ),
                 'empty_post_content' => esc_html__( 'Post content is empty.', 'simple-tags' ),
                 'empty_terms' => esc_html__( 'No new matching terms for Auto Terms settings and the post content.', 'simple-tags' ),
-                'empty_terms_remove_all' => esc_html__( 'No new matching terms for Auto Terms settings and the post content but all post terms was removed based on Auto Terms replace settings.', 'simple-tags' )
+                'empty_terms_remove_all' => esc_html__( 'No new matching terms for Auto Terms settings and the post content. However, the existing terms were removed due to the Auto Terms replacement settings.', 'simple-tags' )
             ];
 
             $autoterm_settings = taxopress_get_autoterm_data();
@@ -476,7 +476,7 @@ class Autoterms_Logs extends WP_List_Table
             'empty_post_content' => esc_html__( 'Post content is empty.', 'simple-tags' ),
             'terms_added' => esc_html__( 'Terms added successfully', 'simple-tags' ),
             'empty_terms' => esc_html__( 'No new matching terms for Auto Terms settings and the post content.', 'simple-tags' ),
-            'empty_terms_remove_all' => esc_html__( 'No new matching terms for Auto Terms settings and the post content but all post terms was removed based on Auto Terms replace settings.', 'simple-tags' )
+            'empty_terms_remove_all' => esc_html__( 'No new matching terms for Auto Terms settings and the post content. However, the existing terms were removed due to the Auto Terms replacement settings.', 'simple-tags' )
         ];
 
         if(array_key_exists($taxopress_log_status_message, $status_message_text)){
