@@ -671,6 +671,9 @@ if (!class_exists('TaxoPressAiAjax')) {
             } else {
                 $taxonomy = !empty($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
                 $term_name = !empty($_POST['term_name']) ? sanitize_text_field($_POST['term_name']) : '';
+                $existing_terms = !empty($_POST['existing_terms']) ? map_deep($_POST['existing_terms'], 'sanitize_text_field') : [];
+                $selected_terms = !empty($_POST['selected_terms']) ? map_deep($_POST['selected_terms'], 'intval') : [];
+                $post_id = !empty($_POST['post_id']) ? intval($_POST['post_id']) : 0;
 
                 if (!can_manage_taxopress_metabox_taxonomy($taxonomy)) {
                     $response['status'] = 'error';
@@ -678,6 +681,22 @@ if (!class_exists('TaxoPressAiAjax')) {
                     wp_send_json($response);
                     exit;
                 }
+
+                $taxonomy_data = get_taxonomy( $taxonomy );
+                $can_manage_term = false;
+                if (in_array($taxonomy, ['category', 'post_tag']) && current_user_can('manage_categories')) {
+                    $can_manage_term = true;
+                } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
+                    $can_manage_term = true;
+                }
+
+                if (!$can_manage_term) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__('You do not have capability to manage this taxonomy.', 'simple-tags');
+                    wp_send_json($response);
+                    exit;
+                }
+
 
                 $term_id   = 0;
                 $term_data = false;
@@ -698,6 +717,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $term_exits = 1;
                 }
 
+                $term_html = '';
                 if ($term_id > 0) {
                     $term = get_term($term_id);
                     $term_data = [
@@ -705,11 +725,19 @@ if (!class_exists('TaxoPressAiAjax')) {
                         'name' => $term->name,
                         'term_exits' => $term_exits
                     ];
+                    $existing_terms[] = $term->name;
+                    $existing_terms = array_filter($existing_terms);
+                    if (!empty($post_id)) {
+                        $term_html = TaxoPressAiUtilities::format_taxonomy_term_results($existing_terms, $taxonomy, $post_id, '', false, $selected_terms, ['screen_source' => 'post.php']);
+                    }
                 }
+                $current_term = $term_id;
 
                 $response['status'] = 'success';
                 $response['content'] = esc_html__('Request completed.', 'simple-tags');
                 $response['term'] = $term_data;
+                $response['term_html'] = $term_html;
+                $response['current_term'] = $current_term;
             }
             wp_send_json($response);
             exit;
