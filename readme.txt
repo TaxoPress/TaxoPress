@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
 Tested up to: 6.7
-Stable tag: 3.30.0
+Stable tag: 3.31.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,27 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.31.0- 2025-02-26
+* Feature: Allow users to set a custom URL for Auto Links, #2470
+* Feature: Allow users to create tags manually via the metabox, #2085
+* Update: Add custom taxonomies to "Remove Default Metaboxes" settings option, #2456
+* Update: Make "Show Existing Terms" the default, #2450
+* Update: Make sure post terms is always included in "Show All Existing Terms" tab irrespective of settings restriction, #2444
+* Update: Update the "Hide unused terms" feature, #2326
+* Feature: Add a "Copy" option to taxopress screen tables, #2432
+* Update: Block other plugins from loading their notices on our screens, #2476
+* Update: Add back filter to metaboxes, #2223
+* Update: Allow multiple Auto Terms to be scheduled, #2464
+* Update: Update Taxonomies in settings "Metabox options" to only public taxonomies, #2445
+* Fixed: Auto Links PHP Error: mb_convert_encoding(): Handling HTML entities via mbstring is deprecated, #2471
+* Update: Updated text for Auto Terms logs, #2469
+* Update: Show only a subset of a Taxonomy in Terms Display, #1043
+* Fixed: Display issue for "Exceptions" in Safari, #2398
+* Update: Update the promo box text, #2462
+* Fixed: TaxoPress is adding menu separator with wrong filter, #2427
+* Fixed: Related posts count bug, #2463
+* Update: Translation Updates ES-FR-IT v3.30.0, #2457
 
 v3.30.0- 2025-01-29
 * Update: Add settings to Control how the metgabox Taxonomy box appears:  Select / Dropdown / Checkbox, #2128
