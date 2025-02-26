@@ -102,6 +102,13 @@ foreach ($all_taxonomies as $tax) {
     $all_taxonomy_options[$tax->name] = $tax->label;
 }
 
+$metabox_taxonomy_options = [];
+foreach ($all_taxonomies as $tax) {
+    if (!empty($tax->public) && !empty($tax->show_ui)) {
+        $metabox_taxonomy_options[$tax->name] = $tax->label;
+    }
+}
+
 
 //metabox
 $metabox_fields = [];
@@ -122,7 +129,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         'enable_metabox_' . $role_name . '',
         '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .'">' . esc_html__('Taxonomies in Metabox', 'simple-tags') . '</div>',
         'multiselect',
-        $all_taxonomy_options,
+        $metabox_taxonomy_options,
         '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field description '. $hidden_field .'">' . sprintf(esc_html__('Select the taxonomies that users in %1s role can manage in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
         'metabox-tab-content metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .''
     );
