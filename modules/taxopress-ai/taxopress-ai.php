@@ -917,7 +917,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         type="search" 
                                                         value="" 
                                                         placeholder="<?php echo esc_html__('Search Terms...', 'simple-tags'); ?>"
-                                                        style="margin-right: 5px;"
+                                                        style="margin-right: 5px;margin-bottom: 5px;"
                                                         onkeydown="return event.key != 'Enter';" />
 
 
@@ -936,7 +936,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         type="text" 
                                                         value="" 
                                                         placeholder="<?php echo esc_html__('Create Term', 'simple-tags'); ?>"
-                                                        style="display: none; margin-right: 5px;"
+                                                        style="display: none; margin-right: 0;margin-bottom: 5px;"
                                                         onkeydown="return event.key != 'Enter';" />
                                                     <select class="taxopress-ai-fetch-create-taxonomy create-term-item" style="display: none;">
                                                             <?php foreach ($permitted_post_type_taxonomies as $tax_key => $tax_object):
@@ -1000,7 +1000,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         type="number" 
                                                         value="<?php echo esc_attr($existing_terms_maximum_terms); ?>" 
                                                         placeholder="<?php echo esc_attr__('Set (0) for no limit', 'simple-tags'); ?>"
-                                                        style="margin-right: 5px;"
+                                                        style="margin-right: 0;min-width: unset;width: 70px;margin-bottom: 5px;"
                                                         onkeydown="return event.key != 'Enter';" />
                                                     <button class="button button-secondary taxopress-ai-fetch-button">
                                                         <div class="spinner"></div>
