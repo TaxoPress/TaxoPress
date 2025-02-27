@@ -434,8 +434,8 @@ class SimpleTags_Tag_Clouds
                                                     }
                                                 }
                                                 
-                                                $selected = isset($current['parent_term']) ? (array) $current['parent_term'] : 'all';
-                                                $select['selected'] = ! empty( $selected ) ? $current['parent_term'] : '';
+                                                $selected = isset($current['parent_term']) ? (array) $current['parent_term'] : ['all'];
+                                                $select['selected'] = isset($current['parent_term']) ? $current['parent_term'] : 'all';
                                                 
                                                 $select = [
                                                     'options'  => $options,
