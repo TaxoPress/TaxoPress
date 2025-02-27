@@ -72,6 +72,12 @@ class TaxopressCoreAdmin
         add_action('taxopress_ai_after_dandelion_fields', [$this, 'taxopress_core_ai_after_dandelion_fields']);
         add_action('taxopress_ai_after_open_calais_fields', [$this, 'taxopress_core_ai_after_open_calais_fields']);
         add_action('load_taxopress_ai_term_results', [$this, 'taxopress_core_ai_term_results_banner']);
+
+        add_filter('taxopress_autolink_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
+        add_filter('taxopress_posttags_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
+        add_filter('taxopress_autoterm_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
+        add_filter('taxopress_relatedpost_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
+        add_filter('taxopress_tagclouds_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
     }
 
     function taxopress_load_admin_core_assets()
@@ -110,6 +116,8 @@ class TaxopressCoreAdmin
                                 <li><?php echo esc_html__('Create new terms using OpenAI and other sources', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Use Linked Terms', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Use Synonyms', 'simple-tags'); ?></li>
+                                <li><?php echo esc_html__('Schedule Auto Terms to run automatically', 'simple-tags'); ?></li>
+                                <li><?php echo esc_html__('Control the display of term metaboxes', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('Fast, professional support', 'simple-tags'); ?></li>
                                 <li><?php echo esc_html__('No ads inside the plugin', 'simple-tags'); ?></li>
                             </ul>
@@ -290,6 +298,42 @@ class TaxopressCoreAdmin
             </div>
         <?php
         endif;
+    }
+
+    function taxopress_core_copy_action($actions, $item) {
+        $allowed_pages = ['st_autolinks', 'st_terms_display', 'st_post_tags', 'st_related_posts', 'st_autoterms'];
+    
+        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+    
+        if (in_array($current_page, $allowed_pages, true)) { 
+                $copy_action = [
+                    'copy' => sprintf(
+                        '<a href="%s" class="copy-action-pages">%s</a>',
+                        add_query_arg([
+                            'page' => $current_page,
+                            'add'  => 'new_item',
+                        ], admin_url('admin.php')),
+                        __('Copy', 'simple-tags')
+                    )
+                ];
+    
+                // Ensure "Copy" appears before "Delete"
+                if (isset($actions['delete'])) {
+                    $new_actions = [];
+                    foreach ($actions as $key => $action) {
+                        if ($key === 'delete') {
+                            $new_actions['copy'] = $copy_action['copy'];
+                        }
+                        $new_actions[$key] = $action;
+                    }
+                    $actions = $new_actions;
+                } else {
+                    $actions = $copy_action + $actions;
+                }
+            
+        }
+    
+        return $actions;
     }
 
     function taxopress_core_autoterm_terms_to_use_field($current)

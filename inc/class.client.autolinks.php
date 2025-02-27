@@ -29,7 +29,23 @@ class SimpleTags_Client_Autolinks
 			//new UI
 			add_filter('the_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
 			add_filter('the_title', array(__CLASS__, 'taxopress_autolinks_the_title'), 5);
+
+			add_action('admin_init', [$this, 'taxopress_customurl_taxonomies_fields']);
 		}
+	}
+
+	public function taxopress_customurl_taxonomies_fields(){
+
+		$taxonomies = wp_list_pluck(get_all_taxopress_taxonomies(), 'name'); 
+
+		foreach ($taxonomies as $taxonomy) {
+
+            add_action("{$taxonomy}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
+            add_action("{$taxonomy}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
+            add_action("edited_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
+            add_action("created_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
+        }	
+
 	}
 
 	/**
@@ -157,6 +173,52 @@ class SimpleTags_Client_Autolinks
 		return array();
 	}
 
+	public function taxopress_add_custom_url_field($term) {
+
+		if (!is_object($term)) {
+			return;
+		}
+
+		$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+		
+		?>
+		<tr class="form-field">
+			<th scope="row" valign="top">
+				<label for="taxopress_custom_url"><?php esc_html_e('Custom URL', 'simple-tags'); ?></label>
+			</th>
+			<td>
+				<input type="text" name="taxopress_custom_url" id="taxopress_custom_url" value="<?php echo esc_attr($taxopress_custom_url); ?>" size="40">
+				<p class="description">
+					<?php esc_html_e('Enter a custom URL for this term. This URL will only be used for auto-linked terms. If left empty, the term will link to its archive page.', 'simple-tags'); ?>
+				</p>
+
+			</td>
+		</tr>
+		<?php
+	}
+
+	public function taxopress_add_custom_url_field_new() {
+		?>
+		<div class="form-field">
+			<label for="taxopress_custom_url"><?php esc_html_e('Custom URL', 'simple-tags'); ?></label>
+			<input type="text" name="taxopress_custom_url" id="taxopress_custom_url" value="" size="40">
+			<p class="description">
+				<?php esc_html_e('Enter a custom URL for this term. This URL will only be used if the term is auto-linked. If left empty, the term will link to its archive page.', 'simple-tags'); ?>
+			</p>
+		</div>
+		<?php
+	}
+
+	public function taxopress_save_custom_url_field($term_id) {
+			if (!empty($_POST['taxopress_custom_url'])) {
+				$taxopress_custom_url = sanitize_url(wp_unslash($_POST['taxopress_custom_url']));
+				update_term_meta($term_id, 'taxopress_custom_url', $taxopress_custom_url);
+			} else {
+				delete_term_meta($term_id, 'taxopress_custom_url');
+			}
+		
+	}
+
 	/**
 	 * Get links for each tag for auto link feature
 	 *
@@ -187,7 +249,8 @@ class SimpleTags_Client_Autolinks
 		foreach ((array) $terms as $term) {
 
 			//add primary term
-			$primary_term_link = get_term_link($term, $term->taxonomy);
+			$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+            $primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
 			$add_terms = [];
 			$add_terms[$term->name] = $primary_term_link;
 
@@ -352,7 +415,8 @@ class SimpleTags_Client_Autolinks
 		// Load the content as HTML without adding DOCTYPE and html/body tags
 		$content = '<div>' . $content . '</div>';
 
-		$content = @mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
+		$content = mb_encode_numericentity($content, [0x80, 0x10FFFF, 0, 0xFFFFF], 'UTF-8');
+
 		$result = $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
 		if (false === $result) {

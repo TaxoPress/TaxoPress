@@ -55,7 +55,7 @@ class SimpleTags_Admin_Mass {
 		if ( isset( $_POST['update_mass'] ) ) {
 			// origination and intention
 			if ( ! ( wp_verify_nonce( sanitize_text_field($_POST['secure_mass']), 'st_mass_terms' ) ) ) {
-				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'Security problem. Try again.', 'simple-tags' ), 'error' );
+				add_settings_error( __CLASS__, __CLASS__, esc_html__( 'Security problem. Try again.', 'simple-tags' ), 'error taxopress-notice' );
 
 				return false;
 			}
@@ -80,7 +80,7 @@ class SimpleTags_Admin_Mass {
 					clean_post_cache( $object_id );
 				}
 
-				add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( '%1$s %2$s(s) terms updated with success !', 'simple-tags' ), (int) $counter, strtolower( SimpleTags_Admin::$post_type_name ) ), 'updated' );
+				add_settings_error( __CLASS__, __CLASS__, sprintf( esc_html__( '%1$s %2$s(s) terms updated with success !', 'simple-tags' ), (int) $counter, strtolower( SimpleTags_Admin::$post_type_name ) ), 'updated taxopress-notice' );
 
 				return true;
 			}

@@ -43,6 +43,8 @@ class SimpleTags_Admin
 		// Load JavaScript and CSS
 		add_action('admin_enqueue_scripts', array(__CLASS__, 'admin_enqueue_scripts'));
 
+		add_action('admin_head', array($this, 'taxopress_hide_other_plugin_notices'));
+
 		//ui class is used accross many pages. So, it should be here
 		require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
 
@@ -156,6 +158,20 @@ class SimpleTags_Admin
 		// Plugin action links
 		add_filter('plugin_action_links_' . plugin_basename(TAXOPRESS_FILE), [__CLASS__, 'plugin_settings_link']);
 	}
+
+	public function taxopress_hide_other_plugin_notices() {
+		global $pagenow;
+	
+		$taxopress_pages = taxopress_admin_pages();
+	
+		if (isset($_GET['page']) && in_array($_GET['page'], $taxopress_pages)) {
+			echo '<style>
+				.notice:not(.taxopress-notice) {
+					display: none !important;
+				}
+			</style>';
+		}
+	}	
 
 	/**
 	 * Plugin action links
@@ -649,13 +665,13 @@ class SimpleTags_Admin
 
 				do_action('simpletags_settings_save_general_end');
 
-				add_settings_error(__CLASS__, __CLASS__, esc_html__('Options saved', 'simple-tags'), 'updated');
+				add_settings_error(__CLASS__, __CLASS__, esc_html__('Options saved', 'simple-tags'), 'updated taxopress-notice');
 			} elseif (isset($_POST['reset_options'])) {
 				check_admin_referer('updateresetoptions-simpletags');
 
 				SimpleTags_Plugin::set_default_option();
 
-				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated');
+				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated taxopress-notice');
 			} else {
 				//add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
 			}

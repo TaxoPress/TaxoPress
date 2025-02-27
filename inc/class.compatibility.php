@@ -31,7 +31,7 @@ class SimpleTags_Compatibility {
 	 * Notify the user about the incompatibility issue.
 	 */
 	public static function admin_notices() {
-		echo '<div class="notice error is-dismissible">';
+		echo '<div class="notice error is-dismissible taxopress-notice">';
 		$data = get_plugin_data(TAXOPRESS_FILE);
 
 		echo '<p><strong>' . esc_html__('Warning:', 'simple-tags') . '</strong> '

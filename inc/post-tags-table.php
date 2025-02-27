@@ -276,6 +276,7 @@ class PostTags_List extends WP_List_Table
             ),
         ];
 
+        $actions = apply_filters('taxopress_posttags_row_actions', $actions, $item);
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
     }
 

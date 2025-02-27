@@ -802,18 +802,6 @@
       $('.taxopress-autoterm-content #autoterm_id').next('p').append('<a target="_blank" class="autoterm-content-settings-link" href="' + st_admin_localize.autoterm_admin_url + '&add=new_item&action=edit&taxopress_autoterms=' + current_settings_id + '">' + st_admin_localize.existing_content_admin_label + '</a>');
     }
 
-    if ($('.taxopress-autoterm-schedule #autoterm_id').length > 0) {
-      auto_terms_schedule_settings_edit();
-      $(document).on('change', '.taxopress-autoterm-schedule #autoterm_id', function (e) {
-        auto_terms_schedule_settings_edit();
-      });
-    }
-    function auto_terms_schedule_settings_edit() {
-      $('.autoterm-schedule-settings-link').remove();
-      var current_settings_id = $('.taxopress-autoterm-schedule #autoterm_id').val();
-      $('.taxopress-autoterm-schedule #autoterm_id').next('p').append('<a target="_blank" class="autoterm-schedule-settings-link" href="' + st_admin_localize.autoterm_admin_url + '&add=new_item&action=edit&taxopress_autoterms=' + current_settings_id + '">' + st_admin_localize.existing_content_admin_label + '</a>');
-    }
-
     if ($('.settings-metabox_auto_term-wrap #metabox_auto_term').length > 0) {
       auto_terms_metabox_settings_edit();
       $(document).on('change', '.settings-metabox_auto_term-wrap #metabox_auto_term', function (e) {

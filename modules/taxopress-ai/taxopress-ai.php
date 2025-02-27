@@ -291,7 +291,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $fields = TaxoPressAiFields::get_fields();
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
 
-            $active_tab = !empty($settings_data['active_tab']) && !empty($fields_tabs[$settings_data['active_tab']]) ? $settings_data['active_tab'] : 'post_terms';
+            $active_tab = !empty($settings_data['active_tab']) && !empty($fields_tabs[$settings_data['active_tab']]) ? $settings_data['active_tab'] : 'existing_terms';
             $active_tab_label = '';
 
             $default_post_type = '';
@@ -797,22 +797,34 @@ if (!class_exists('TaxoPress_AI_Module')) {
             }
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
             $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
+
+            $existing_terms_maximum_terms = !empty($settings_data ['existing_terms_maximum_terms']) ? $settings_data ['existing_terms_maximum_terms'] : '';
+            $existing_terms_orderby = !empty($settings_data ['existing_terms_orderby']) ? $settings_data ['existing_terms_orderby'] : '';
+            $existing_terms_order = !empty($settings_data ['existing_terms_order']) ? $settings_data ['existing_terms_order'] : '';
             ?>
             <div class="taxopress-post-suggestterm">
                 <div class="taxopress-suggest-terms-contents">
                 <?php
                     $all_content_tabs = [
-                        'post_terms' => [
-                            'label'   => esc_html__('Manage Post Terms', 'simple-tags'),
-                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_post_terms_tab')),
-                        ],
                         'existing_terms' => [
                             'label'   => esc_html__('Show All Existing Terms', 'simple-tags'),
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_existing_terms_tab')),
                         ],
+                        'post_terms' => [
+                            'label'   => esc_html__('Manage Post Terms', 'simple-tags'),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_post_terms_tab')),
+                        ],
                         'suggest_local_terms' => [
                             'label'   => esc_html__('Auto Terms', 'simple-tags'),
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
+                        ],
+                        'suggest_local_terms' => [
+                            'label'   => esc_html__('Auto Terms', 'simple-tags'),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
+                        ],
+                        'create_term' => [
+                            'label'   => esc_html__('Create Terms', 'simple-tags'),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_create_terms_tab')),
                         ],
                     ];
 
@@ -826,9 +838,15 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     $support_private_taxonomy = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_support_private_taxonomy');
 
                     $post_type_taxonomies = [];
+                    $permitted_post_type_taxonomies = [];
                     foreach(get_object_taxonomies($post->post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
                         if (can_manage_taxopress_metabox_taxonomy($taxonomy_name)) {
                             $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                            if (in_array($taxonomy_name, ['category', 'post_tag']) && current_user_can('manage_categories')) {
+                                $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                            } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
+                                $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                            }
                         }
                     }
                     
@@ -895,13 +913,16 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                             <td>
                                                 <div class="taxopress-ai-fetch-wrap">
                                                     <input 
-                                                        class="taxopress-taxonomy-search" 
+                                                        class="taxopress-taxonomy-search existing-term-item" 
                                                         type="search" 
                                                         value="" 
                                                         placeholder="<?php echo esc_html__('Search Terms...', 'simple-tags'); ?>"
-                                                        style="display: none; margin-right: 5px;"
+                                                        style="margin-right: 5px;margin-bottom: 5px;"
                                                         onkeydown="return event.key != 'Enter';" />
-                                                        <select class="taxopress-autoterms-options <?php echo esc_attr($auto_term_class); ?>">
+
+
+                                                        <select class="taxopress-autoterms-options <?php echo esc_attr($auto_term_class); ?>"
+                                                        style="display: none;">
                                                                 <?php foreach ($auto_term_options as $option_name => $option_label): ?>
                                                                     <option value='<?php echo esc_attr($option_name); ?>'>
                                                                             <?php echo esc_html($option_label); ?>
@@ -910,6 +931,34 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                                 endforeach; ?>
                                                         </select>
                                                         
+                                                    <input 
+                                                        class="taxopress-taxonomy-term-input create-term-item" 
+                                                        type="text" 
+                                                        value="" 
+                                                        placeholder="<?php echo esc_html__('Create Term', 'simple-tags'); ?>"
+                                                        style="display: none; margin-right: 0;margin-bottom: 5px;"
+                                                        onkeydown="return event.key != 'Enter';" />
+                                                    <select class="taxopress-ai-fetch-create-taxonomy create-term-item" style="display: none;">
+                                                            <?php foreach ($permitted_post_type_taxonomies as $tax_key => $tax_object):
+                                                            
+                                                            if (!in_array($tax_key, ['post_format']) && (!empty($tax_object->show_ui) || !empty($support_private_taxonomy))) {
+                                                                $rest_api_base = !empty($tax_object->rest_base) ? $tax_object->rest_base : $tax_key;
+                                                                $hierarchical = !empty($tax_object->hierarchical) ? (int) $tax_object->hierarchical : 0;
+                                                                ?>
+                                                                    <option value='<?php echo esc_attr($tax_key); ?>'
+                                                                    data-rest_base='<?php echo esc_attr($rest_api_base); ?>'
+                                                                    data-hierarchical='<?php echo esc_attr($hierarchical); ?>'
+                                                                    <?php selected($tax_key, $default_taxonomy); ?>>
+                                                                        <?php echo esc_html($tax_object->labels->name. ' ('.$tax_object->name.')'); ?>
+                                                                    </option>
+                                                                <?php }
+                                                            endforeach; ?>
+                                                    </select>
+                                                    <button class="button button-secondary taxopress-ai-create-button create-term-item" style="display: none;">
+                                                        <div class="spinner"></div>
+                                                        <span class="btn-text"><?php echo esc_html__('Create Term', 'simple-tags'); ?></span>
+                                                    </button>
+
                                                     <select class="taxopress-ai-fetch-taxonomy-select">
                                                             <?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
                                                             
@@ -926,6 +975,33 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                                 <?php }
                                                             endforeach; ?>
                                                     </select>
+                                                    <select id="existing_terms_orderby"
+                                                        class="existing-term-item" style="">
+                                                        <?php foreach (TaxoPressAiUtilities::get_existing_terms_orderby() as $key => $label): ?>
+                                                            <option value='<?php echo esc_attr($key); ?>'
+                                                            <?php selected($key, $existing_terms_orderby); ?>>
+                                                                <?php echo esc_html($label); ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                    <select id="existing_terms_order"
+                                                        class="existing-term-item" style="">
+                                                        <?php foreach (TaxoPressAiUtilities::get_existing_terms_order() as $key => $label): ?>
+                                                            <option value='<?php echo esc_attr($key); ?>'
+                                                            <?php selected($key, $existing_terms_order); ?>>
+                                                                <?php echo esc_html($label); ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                    <input 
+                                                        id="existing_terms_maximum_terms"
+                                                        step="1" min="0"
+                                                        class="existing-term-item" 
+                                                        type="number" 
+                                                        value="<?php echo esc_attr($existing_terms_maximum_terms); ?>" 
+                                                        placeholder="<?php echo esc_attr__('Count', 'simple-tags'); ?>"
+                                                        style="margin-right: 0;min-width: unset;width: 80px;margin-bottom: 5px;"
+                                                        onkeydown="return event.key != 'Enter';" />
                                                     <button class="button button-secondary taxopress-ai-fetch-button">
                                                         <div class="spinner"></div>
                                                         <span class="btn-text"><?php echo esc_html($button_label); ?></span>

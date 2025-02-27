@@ -5,6 +5,7 @@ $taxopress_ai_tabs = [];
 $taxopress_ai_tabs['post_terms'] = esc_html__('Manage Post Terms', 'simple-tags');
 $taxopress_ai_tabs['existing_terms'] = esc_html__('Show All Existing Terms', 'simple-tags');
 $taxopress_ai_tabs['suggest_local_terms'] = esc_html__('Auto Terms', 'simple-tags');
+$taxopress_ai_tabs['create_terms'] = esc_html__('Create Terms', 'simple-tags');
 
 $taxopress_ai_fields = [];
 $pt_index = 0;
@@ -95,14 +96,17 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
 
 $all_taxonomies = get_taxonomies([], 'objects');
 $all_taxonomy_options = [];
-$builtin_taxonomy_options = [];
 foreach ($all_taxonomies as $tax) {
     if (in_array($tax->name, ['author', 'post_format', 'nav_menu', 'link_category', 'wp_theme', 'wp_template_part_area', 'wp_pattern_category'])) {
         continue;
     }
     $all_taxonomy_options[$tax->name] = $tax->label;
-    if (in_array($tax->name, ['category', 'post_tag'])) {
-        $builtin_taxonomy_options[$tax->name] = $tax->label;
+}
+
+$metabox_taxonomy_options = [];
+foreach ($all_taxonomies as $tax) {
+    if (!empty($tax->public) && !empty($tax->show_ui)) {
+        $metabox_taxonomy_options[$tax->name] = $tax->label;
     }
 }
 
@@ -126,7 +130,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         'enable_metabox_' . $role_name . '',
         '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .'">' . esc_html__('Taxonomies in Metabox', 'simple-tags') . '</div>',
         'multiselect',
-        $all_taxonomy_options,
+        $metabox_taxonomy_options,
         '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field description '. $hidden_field .'">' . sprintf(esc_html__('Select the taxonomies that users in %1s role can manage in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
         'metabox-tab-content metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .''
     );
@@ -135,7 +139,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         'remove_taxonomy_metabox_' . $role_name . '',
         '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content '. $hidden_field .'">' . esc_html__('Remove Default Metaboxes', 'simple-tags') . '</div>',
         'multiselect',
-        $builtin_taxonomy_options,
+        $all_taxonomy_options,
         '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content description '. $hidden_field .'">' . sprintf(esc_html__('Remove default taxonomy metaboxes for users in the %1s role.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );

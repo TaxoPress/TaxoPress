@@ -414,6 +414,60 @@ class SimpleTags_Tag_Clouds
 								                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							                    ] );
 
+                                                $options = [
+                                                    ['attr' => 'all', 'text' => esc_html__('All Parent Terms', 'simple-tags'), 'default' => 'true']
+                                                ];
+                                                if (!empty($current['taxonomy'])) {
+                                                    $parent_terms = get_terms([
+                                                        'taxonomy'   => $current['taxonomy'],
+                                                        'parent'     => 0,
+                                                        'hide_empty' => false
+                                                    ]);
+                                                
+                                                    if (!empty($parent_terms) && !is_wp_error($parent_terms)) {
+                                                        foreach ($parent_terms as $parent_term) {
+                                                            $options[] = [
+                                                                'attr' => strval($parent_term->term_id),
+                                                                'text' => esc_html($parent_term->name)
+                                                            ];
+                                                        }
+                                                    }
+                                                }
+                                                
+                                                $selected = isset($current['parent_term']) ? (array) $current['parent_term'] : ['all'];
+                                                $select['selected'] = isset($current['parent_term']) ? $current['parent_term'] : 'all';
+                                                
+                                                $select = [
+                                                    'options'  => $options,
+                                                    'selected' => $selected
+                                                ];
+                                                
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_select_checkbox_input_main([
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'parent_term',
+                                                    'labeltext'  => esc_html__('Parent Term', 'simple-tags'),
+                                                    'selections' => $select // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                ]);
+
+                                                $select = [
+                                                    'options' => [
+                                                        [ 'attr' => 'parents_only', 'text' => esc_attr__('Display only Parent Terms', 'simple-tags') ],
+                                                        [ 'attr' => 'sub_terms_only', 'text' => esc_attr__('Display only Sub-Terms', 'simple-tags') ],
+                                                        [ 'attr' => 'parents_and_sub', 'text' => esc_attr__('Display Parents and Sub-Terms', 'simple-tags'), 'default' => 'true' ]
+                                                    ]
+                                                ];
+                                                
+                                                $selected = isset($current['display_mode']) ? taxopress_disp_boolean($current['display_mode']) : '';
+							                    $select['selected'] = ! empty( $selected ) ? $current['display_mode'] : '';
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_select_checkbox_input_main([
+                                                    'namearray'  => 'taxopress_tag_cloud',
+                                                    'name'       => 'display_mode',
+                                                    'labeltext'  => esc_html__('Display Mode', 'simple-tags'),
+                                                    'selections' => $select // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                ]);
+
                                                 $select = [
 								                    'options' => [
 									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simple-tags' ), 'default' => 'true' ],
