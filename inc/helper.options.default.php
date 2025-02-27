@@ -35,6 +35,7 @@ return array(
     'enable_taxopress_ai_post_existing_terms_tab' => 1,
     'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
     'taxopress_ai_post_metabox_display_option' => 'default',
+    'enable_taxopress_ai_post_create_terms_tab' => 1,
 
     // metabox
     'enable_administrator_metabox' => 1,

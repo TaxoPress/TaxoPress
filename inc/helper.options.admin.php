@@ -5,6 +5,7 @@ $taxopress_ai_tabs = [];
 $taxopress_ai_tabs['post_terms'] = esc_html__('Manage Post Terms', 'simple-tags');
 $taxopress_ai_tabs['existing_terms'] = esc_html__('Show All Existing Terms', 'simple-tags');
 $taxopress_ai_tabs['suggest_local_terms'] = esc_html__('Auto Terms', 'simple-tags');
+$taxopress_ai_tabs['create_terms'] = esc_html__('Create Terms', 'simple-tags');
 
 $taxopress_ai_fields = [];
 $pt_index = 0;
