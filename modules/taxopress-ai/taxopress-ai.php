@@ -824,7 +824,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         ],
                         'create_term' => [
                             'label'   => esc_html__('Create Terms', 'simple-tags'),
-                            'enabled' => true,
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_create_terms_tab')),
                         ],
                     ];
 
