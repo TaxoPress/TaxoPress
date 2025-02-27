@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.31.0- 2025-02-26
+v3.31.0- 2025-02-27
 * Feature: Allow users to set a custom URL for Auto Links, #2470
 * Feature: Allow users to create tags manually via the metabox, #2085
 * Update: Add custom taxonomies to "Remove Default Metaboxes" settings option, #2456
