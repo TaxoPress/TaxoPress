@@ -460,11 +460,13 @@ if (!class_exists('TaxoPressAiAjax')) {
                             $post_terms = wp_get_post_terms($post_id, $existing_tax);
                             if (!empty($post_terms)) {
                                 // Transform post_terms to match terms structure
-                                $structured_post_terms = array_map(fn($term) => (object) [
-                                    'name' => $term->name,
-                                    'term_id' => $term->term_id,
-                                    'taxonomy' => $term->taxonomy
-                                ], $post_terms);
+                                $structured_post_terms = array_map(function($term) {
+                                    return (object) [
+                                        'name' => $term->name,
+                                        'term_id' => $term->term_id,
+                                        'taxonomy' => $term->taxonomy
+                                    ];
+                                }, $post_terms);
                                 // add structured post terms
                                 $terms = array_merge($structured_post_terms, $terms);
                             }
