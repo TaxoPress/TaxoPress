@@ -446,6 +446,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_select_checkbox_input_main([
                                                     'namearray'  => 'taxopress_tag_cloud',
                                                     'name'       => 'parent_term',
+                                                    'class'      => 'taxopress-single-select2',
                                                     'labeltext'  => esc_html__('Parent Term', 'simple-tags'),
                                                     'selections' => $select // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);

@@ -448,8 +448,8 @@ class SimpleTags_Admin
 	{
 		global $pagenow;
 
-		$select_2_page = false;
-		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
+    $select_2_page = false;
+		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
 			$select_2_page = true;
 		}
 
