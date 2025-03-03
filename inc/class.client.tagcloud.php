@@ -477,7 +477,7 @@ class SimpleTags_Client_TagCloud {
 	 * @return array
 	 */
 	public static function getTags( $args = '', $taxonomy = 'post_tag' ) {
-		$key = md5( maybe_serialize( $args ) . $taxonomy );
+		$key = md5( maybe_serialize( $args ) . $taxonomy . (isset($args['parent_term']) ? $args['parent_term'] : '') . (isset($args['display_mode']) ? $args['display_mode'] : ''));
 
 		// Get cache if exist
 		if ( $cache = wp_cache_get( 'st_get_tags', 'simple-tags' ) ) {
@@ -498,10 +498,17 @@ class SimpleTags_Client_TagCloud {
 		if ( isset( $args['display_mode'] ) ) {
 			$display_mode = $args['display_mode'];
 		}
+
+		if ( isset( $args['max'] ) ) {
+			$max_terms = intval( $args['max'] );
+		} else {
+			$max_terms = 45;
+		}
 		
 		$term_args = [
 			'taxonomy'   => $taxonomy,
 			'hide_empty' => false,
+			'number' => $max_terms,
 		];
 		
 		if ($parent_term === 'all') {
@@ -523,12 +530,16 @@ class SimpleTags_Client_TagCloud {
 						$terms = get_terms([
 							'taxonomy'   => $taxonomy,
 							'parent'     => $parent_id,
-							'hide_empty' => false
+							'hide_empty' => false,
+							'number'     => $max_terms
 						]);
 						$sub_terms = array_merge($sub_terms, $terms);
+						if ( count( $sub_terms ) > $max_terms ) {
+							break; // Stop once max is reached
+						}
 					}
 		
-					$term_args['include'] = wp_list_pluck($sub_terms, 'term_id');
+					$term_args['include'] = wp_list_pluck(array_slice($sub_terms, 0, $max_terms ), 'term_id');
 				} else {
 					$term_args['parent'] = -1;
 				}
@@ -550,11 +561,12 @@ class SimpleTags_Client_TagCloud {
 				$sub_terms = get_terms([
 					'taxonomy' => $taxonomy,
 					'parent'   => $parent_term,
-					'hide_empty' => false
+					'hide_empty' => false,
+					'number'     => $max_terms
 				]);
 		
 				$all_terms = array_merge($parent_terms, $sub_terms);
-				$term_args['include'] = wp_list_pluck($all_terms, 'term_id');
+				$term_args['include'] = wp_list_pluck(array_slice($all_terms, 0, $max_terms ), 'term_id');
 			}
 		}
 		
