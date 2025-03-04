@@ -210,7 +210,7 @@ class SimpleTags_Widget extends WP_Widget {
 		//Defaults
 		$instance = wp_parse_args( (array) $instance, self::get_fields() );
 		?>
-		<p style="color:red;"><?php esc_html_e( 'This widget is no longer being updated. Please use the "Tag Cloud (TaxoPress Shortcode)" widget instead.', 'simple-tags' ); ?></p>
+		<p style="color:red;"><?php esc_html_e( 'This widget is no longer being updated. Please use the "Terms Display (TaxoPress Shortcode)" widget instead.', 'simple-tags' ); ?></p>
 
 		<p>
 			<label for="<?php echo esc_attr($this->get_field_id( 'title' )); ?>">
