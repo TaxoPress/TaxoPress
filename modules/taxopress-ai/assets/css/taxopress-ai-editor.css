@@ -25,7 +25,6 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 .taxopress-post-suggestterm .taxopress-ai-tab-content.existing_terms .taxopress-ai-fetch-wrap {
     margin-right: 0;
     flex-wrap: wrap;
-    gap: 5px;
     justify-content: normal;
 }
 
@@ -34,9 +33,14 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     min-width: 120px;
 }
 
-.taxopress-post-suggestterm .taxopress-ai-fetch-wrap select {
+.taxopress-post-suggestterm .taxopress-ai-fetch-wrap input,
+.taxopress-post-suggestterm .taxopress-ai-fetch-wrap select,
+.taxopress-post-suggestterm .taxopress-ai-fetch-wrap button {
     max-width: 200px;
     margin-right: 5px;
+    min-height: 30px;
+    max-height: 30px;
+    margin-bottom: 5px;
 }
 
 .taxopress-post-suggestterm .taxopress-ai-fetch-wrap .spinner:not(.is-active) {
