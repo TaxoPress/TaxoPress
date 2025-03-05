@@ -504,82 +504,93 @@ class SimpleTags_Client_TagCloud {
 		} else {
 			$max_terms = 45;
 		}
-		
+  
 		$term_args = [
 			'taxonomy'   => $taxonomy,
 			'hide_empty' => false,
 			'number' => $max_terms,
 		];
+	
+		$is_hierarchical = is_taxonomy_hierarchical($taxonomy);
 		
-		if ($parent_term === 'all') {
-			if ($display_mode === 'parents_only') {
-				$term_args['parent'] = 0;
-			} elseif ($display_mode === 'sub_terms_only') {
-				// Get all parent terms
-				$parent_terms = get_terms([
-					'taxonomy'   => $taxonomy,
-					'parent'     => 0,
-					'hide_empty' => false
-				]);
-		
-				$parent_ids = wp_list_pluck($parent_terms, 'term_id');
-		
-				if (!empty($parent_ids)) {
-					$sub_terms = [];
-					foreach ($parent_ids as $parent_id) {
-						$terms = get_terms([
-							'taxonomy'   => $taxonomy,
-							'parent'     => $parent_id,
-							'hide_empty' => false,
-							'number'     => $max_terms
-						]);
-						$sub_terms = array_merge($sub_terms, $terms);
-						if ( count( $sub_terms ) > $max_terms ) {
-							break; // Stop once max is reached
+		if ($is_hierarchical && isset($args['parent_term'])) {
+			$parent_term = $args['parent_term'];
+			$display_mode = isset($args['display_mode']) ? $args['display_mode'] : '';
+	
+			if ($parent_term === 'all') {
+				if ($display_mode === 'parents_only') {
+					$term_args['parent'] = 0;
+				} elseif ($display_mode === 'sub_terms_only') {
+					// Get all parent terms
+					$parent_terms = get_terms([
+						'taxonomy'   => $taxonomy,
+						'parent'     => 0,
+						'hide_empty' => false
+					]);
+
+					$parent_ids = wp_list_pluck($parent_terms, 'term_id');
+	
+					if (!empty($parent_ids)) {
+						$sub_terms = [];
+						foreach ($parent_ids as $parent_id) {
+							$terms = get_terms([
+								'taxonomy'   => $taxonomy,
+								'parent'     => $parent_id,
+								'hide_empty' => false,
+								'number'     => $max_terms
+							]);
+							$sub_terms = array_merge($sub_terms, $terms);
+							if (count($sub_terms) >= $max_terms) {
+								break;
+							}
 						}
+						$term_args['include'] = wp_list_pluck($sub_terms, 'term_id');
+					} else {
+						$term_args['parent'] = -1;
 					}
-		
-					$term_args['include'] = wp_list_pluck(array_slice($sub_terms, 0, $max_terms ), 'term_id');
+				}
+			} else {
+				// Specific parent term selected
+				if ($display_mode === 'parents_only') {
+					$term_args['include'] = [$parent_term];
+				} elseif ($display_mode === 'sub_terms_only') {
+					$term_args['parent'] = $parent_term;
 				} else {
-					$term_args['parent'] = -1;
+					// Both parent and sub-terms
+					$parent_terms = get_terms([
+						'taxonomy'   => $taxonomy,
+						'include'    => [$parent_term],
+						'hide_empty' => false
+					]);
+					$sub_terms = get_terms([
+						'taxonomy'   => $taxonomy,
+						'parent'     => $parent_term,
+						'hide_empty' => false,
+						'number'     => $max_terms
+					]);
+	
+					$all_terms = array_merge($parent_terms, $sub_terms);
+					$term_args['include'] = wp_list_pluck(array_slice($all_terms, 0, $max_terms), 'term_id');
 				}
 			}
-		} else {
-			// Specific parent term selected
-			if ($display_mode === 'parents_only') {
-				$term_args['include'] = [$parent_term];
-			} elseif ($display_mode === 'sub_terms_only') {
-				$term_args['parent'] = $parent_term;
-			} else {
-				// Both parent and sub-terms
-				$parent_terms = get_terms([
-					'taxonomy' => $taxonomy,
-					'include'  => [$parent_term],
-					'hide_empty' => false
-				]);
-		
-				$sub_terms = get_terms([
-					'taxonomy' => $taxonomy,
-					'parent'   => $parent_term,
-					'hide_empty' => false,
-					'number'     => $max_terms
-				]);
-		
-				$all_terms = array_merge($parent_terms, $sub_terms);
-				$term_args['include'] = wp_list_pluck(array_slice($all_terms, 0, $max_terms ), 'term_id');
-			}
 		}
-		
+	
+		// Ensure `max_terms` is always applied
+		if (!empty($term_args['include'])) {
+			$term_args['include'] = array_slice($term_args['include'], 0, $max_terms);
+		}
+			
 		$terms = get_terms($term_args);
-		if ( empty( $terms ) ) {
-			return array();
+		if (empty($terms)) {
+			return [];
 		}
-
+	
+		// Cache the result
 		$cache = [];
-		$cache[ $key ] = $terms;
-		wp_cache_set( 'st_get_tags', $cache, 'simple-tags' );
-
-		$terms = apply_filters( 'st_get_tags', $terms, $args );
+		$cache[$key] = $terms;
+		wp_cache_set('st_get_tags', $cache, 'simple-tags');
+	
+		$terms = apply_filters('st_get_tags', $terms, $args);
 
 		return $terms;
 	}
