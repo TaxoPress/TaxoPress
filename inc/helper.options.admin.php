@@ -58,25 +58,6 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
             );
 
-        if (taxopress_is_pro_version()) {
-
-            $default_taxonomy_display_options = [
-                'default' => esc_html__('Default', 'simple-tags'),
-                'dropdown' => esc_html__('Dropdown', 'simple-tags'),
-                'checkbox' => esc_html__('Checkbox', 'simple-tags'),
-            ];
-            
-            // add taxonomy display option
-            $taxopress_ai_fields[] = array(
-                'taxopress_ai_' . $post_type . '_metabox_display_option',
-                '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Taxonomy Display', 'simple-tags') . '</div>',
-                'select',
-                $default_taxonomy_display_options,
-                '',
-                'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
-            );
-        }
-
         // add feature tab
         $tab_field_options = [];
         foreach ($taxopress_ai_tabs as $taxopress_ai_tab => $taxopress_ai_tab_label) {
@@ -90,6 +71,8 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '<p class="taxopress-ai-tab-content-sub taxopress-settings-description taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field description st-subhide-content">' . esc_html__('Features that require an API key will not display without a valid key.', 'simple-tags') . '</p>',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
+        // allow to taxopress ai field for each post type
+        $taxopress_ai_fields = apply_filters('taxopress_settings_post_type_ai_fields', $post_type, $taxopress_ai_fields);
     }
     $pt_index++;
 }
