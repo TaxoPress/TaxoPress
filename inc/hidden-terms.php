@@ -25,11 +25,6 @@ if (!class_exists('SimpleTags_Hidden_Terms')) {
             add_action('init', [$this, 'taxopress_set_hidden_terms']);
             add_filter('term_link', [$this, 'taxopress_modify_hidden_term_links'], 10, 3);
             add_filter('get_the_terms', [$this,'taxopress_remove_hidden_terms'], 10, 3);
-
-            // Exclude hidden terms from XML sitemaps
-            add_filter('wp_sitemaps_taxonomies_query_args', [$this, 'taxopress_exclude_hidden_terms_wp_sitemaps'], 10, 2);
-            add_filter('wpseo_sitemap_exclude_taxonomy', [$this, 'taxopress_exclude_hidden_terms_yoast_tax'], 10, 2);
-            add_filter('wpseo_exclude_from_sitemap_by_term_ids', [$this, 'taxopress_exclude_hidden_terms_yoast_ids']);
             
         }
 
