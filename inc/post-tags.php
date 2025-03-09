@@ -654,7 +654,7 @@ class SimpleTags_Post_Tags
                                                                 echo $ui->get_select_checkbox_input([
                                                                     'namearray'  => 'taxopress_post_tags',
                                                                     'name'       => 'hide_terms',
-                                                                    'labeltext'  => esc_html__('Exclude hidden terms from Terms Display?', 'simple-tags'),
+                                                                    'labeltext'  => esc_html__('Exclude hidden terms from Current Post?', 'simple-tags'),
                                                                     'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                                 ]);
                                                             } else {
