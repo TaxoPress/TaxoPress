@@ -117,12 +117,17 @@ class Taxopress_Terms_List extends WP_List_Table
             'taxopress_custom_url'  => esc_html__('Custom URL', 'simple-tags'),
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
             'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
+            'hidden_status' => esc_html__('Status', 'simple-tags'),
             'count'  => esc_html__('Count', 'simple-tags')
         ];
 
         if (!taxopress_is_pro_version()) {
             unset($columns['synonyms']);
             unset($columns['linked_terms']);
+        }
+
+        if (!(int) SimpleTags_Plugin::get_option_value('enable_hidden_terms')) {
+            unset($columns['hidden_status']);
         }
 
         return $columns;
@@ -331,6 +336,16 @@ class Taxopress_Terms_List extends WP_List_Table
             ? sprintf('<a href="%s" target="_blank">%s</a>', esc_url($taxopress_custom_url), esc_html($taxopress_custom_url)) 
             : '-';
     }
+
+    protected function column_hidden_status($item) {
+        $hidden_terms = get_transient('taxopress_hidden_terms_' . $item->taxonomy);
+    
+        if (!empty($hidden_terms) && in_array($item->term_id, $hidden_terms)) {
+            return esc_html__('Hidden', 'simple-tags');
+        } 
+    
+        return esc_html__('Live', 'simple-tags');
+    }  
 
     /**
      * Render a column when no column specific method exist.

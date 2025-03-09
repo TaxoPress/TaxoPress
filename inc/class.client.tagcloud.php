@@ -66,10 +66,12 @@ class SimpleTags_Client_TagCloud {
 			'link_class'  => '',
 			'before'      => '',
 			'after'       => '',
+			'hide_terms' => 0,
 		);
 
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
+		$enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
 
 		// Get values in DB
 		$defaults['selectionby'] = $options['cloud_selectionby'];
@@ -127,6 +129,17 @@ class SimpleTags_Client_TagCloud {
 
 		// Get terms
 		$terms = self::getTags( $args, $taxonomy );
+
+		// Remove hidden terms if enabled
+		if ($enable_hidden_terms && !empty($args['hide_terms'])) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $args['taxonomy']);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+				$terms = array_filter($terms, function ($term) use ($hidden_terms) {
+					return !in_array($term->term_id, $hidden_terms);
+				});
+			}
+		}
+
 		extract( $args ); // Params to variables
 
 		// Process exclude_terms
@@ -291,11 +304,13 @@ class SimpleTags_Client_TagCloud {
 			'include'     => '',
 			'limit_days'  => 0,
 			'min_usage'   => 0,
-			'category'    => 0
+			'category'    => 0,
+			'hide_terms' => 0,
 		);
 
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
+		$enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
 
 		// Get values in DB
 		$defaults['selectionby'] = $options['cloud_selectionby'];
@@ -353,6 +368,16 @@ class SimpleTags_Client_TagCloud {
 
 		// Get terms
 		$terms = self::getTags( $args, $taxonomy );
+
+		// Remove hidden terms if enabled
+		if ($enable_hidden_terms && !empty($args['hide_terms'])) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $args['taxonomy']);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+				$terms = array_filter($terms, function ($term) use ($hidden_terms) {
+					return !in_array($term->term_id, $hidden_terms);
+				});
+			}
+		}
 		extract( $args ); // Params to variables
 
 		// If empty use default xformat !
@@ -504,6 +529,10 @@ class SimpleTags_Client_TagCloud {
 		} else {
 			$max_terms = 45;
 		}
+
+		if ( isset( $args['hide_terms'] ) ) {
+			$hide_terms = $args['hide_terms'];
+		}
   
 		$term_args = [
 			'taxonomy'   => $taxonomy,
@@ -583,6 +612,16 @@ class SimpleTags_Client_TagCloud {
 		$terms = get_terms($term_args);
 		if (empty($terms)) {
 			return [];
+		}
+
+		if ($hide_terms && SimpleTags_Plugin::get_option_value('enable_hidden_terms')) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $taxonomy);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+				$hidden_terms = array_flip($hidden_terms);
+				$terms = array_filter($terms, function ($term) use ($hidden_terms) {
+					return !isset($hidden_terms[$term->term_id]);
+				});
+			}
 		}
 	
 		// Cache the result

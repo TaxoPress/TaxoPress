@@ -653,6 +653,39 @@ class SimpleTags_Tag_Clouds
                                                         'helptext'  => esc_html__('Enter terms (comma-separated) to exclude from the terms display.', 'simple-tags'),
                                                         'required'  => false,
                                                     ]);
+
+                                                    $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
+
+                                                    if ($enable_hidden_terms) {
+                                                        $select = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                ],
+                                                            ],
+                                                        ];
+                                                    
+                                                        $selected = isset($current['hide_terms']) ? taxopress_disp_boolean($current['hide_terms']) : '0';
+                                                        $select['selected'] = !empty($selected) ? $selected : '0';
+                                                    
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_tag_cloud',
+                                                            'name'       => 'hide_terms',
+                                                            'labeltext'  => esc_html__('Exclude hidden terms from Terms Display?', 'simple-tags'),
+                                                            'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ]);
+                                                    } else {
+                                                        if (isset($current['hide_terms']) && $current['hide_terms'] !== '0') {
+                                                            $current['hide_terms'] = '0';
+                                                        }
+                                                    }
                                                            
                                                         ?>
                                                 </table>

@@ -20,6 +20,7 @@ class SimpleTags_Client_PostTags {
 	public static function extendedPostTags( $args = '', $copyright = true ) {
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
+		$enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
 
 		// Default values
 		$defaults = array(
@@ -39,6 +40,7 @@ class SimpleTags_Client_PostTags {
 			'hide_output' => 0,
 			'wrap_class'  => '',
 			'link_class'  => '',
+			'hide_terms' => 0,
 		);
 
 		// Get values in DB
@@ -82,6 +84,14 @@ class SimpleTags_Client_PostTags {
 		    $taxonomies = ( 0 === (int) $inc_cats ) ? 'post_tag' : array( 'post_tag', 'category' );
         }
 
+		$hidden_terms = [];
+		if (!empty($enable_hidden_terms) && !empty($args['hide_terms']) && !empty($args['taxonomy'])) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $args['taxonomy']);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+				$args['exclude'] = implode(',', $hidden_terms);
+			}
+		}
+		
 		// Get terms
 		// According to codex https://developer.wordpress.org/reference/functions/get_object_term_cache/, $taxonomy must be a string
 		$terms = array();
@@ -102,7 +112,13 @@ class SimpleTags_Client_PostTags {
 		}
 
 		// Hook
-		$terms = apply_filters( 'get_the_tags', $terms );
+		if (!empty($enable_hidden_terms) && !empty($hidden_terms)) {
+			$terms = array_filter($terms, function ($term) use ($hidden_terms) {
+				return !in_array($term->term_id, $hidden_terms);
+			});
+		} else {
+			$terms = apply_filters('get_the_tags', $terms);
+		}
 
 		// Limit to max quantity if set
 		$number = (int) $number;
