@@ -28,6 +28,10 @@ return array(
     // term synonyms
     'synonyms_taxonomies' => ['category', 'post_tag'],
 
+    //hidden terms
+    'enable_hidden_terms' => 1,
+    'hide-rarely' => 5,
+
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,
     'enable_taxopress_ai_post_post_terms_tab' => 1,

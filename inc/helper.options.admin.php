@@ -196,6 +196,27 @@ return apply_filters('taxopress_admin_options', array(
         )
     ),
 
+        // hidden terms tab
+        'hidden_terms' => array(
+            array(
+                'enable_hidden_terms',
+                __('Enable Hidden Terms:', 'simple-tags'),
+                'checkbox',
+                '1',
+                __('Enable or disable the hidden terms feature.', 'simple-tags'),
+                ''
+            ),
+            array(
+                'hide-rarely',
+                __('Minimum Usage for Hidden Terms:', 'simple-tags'),
+                'number',
+                '1',
+                __('Set the minimum number of posts a term must be attached to. If you enter 5, any term used in fewer than 5 posts will be hidden across the site, and its archive page will redirect to the homepage.', 'simple-tags'),
+                '',
+                1
+            )
+        ),
+
     // taxopress ai tab
     'taxopress-ai' => $taxopress_ai_fields,
 

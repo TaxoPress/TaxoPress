@@ -58,6 +58,12 @@ class SimpleTags_Admin
 			self::$enabled_menus['st_taxonomies'] = esc_html__('Taxonomies', 'simple-tags');
 		}
 
+		//hidden-terms
+		if (1 === (int) SimpleTags_Plugin::get_option_value('enable_hidden_terms')) {
+			require STAGS_DIR . '/inc/hidden-terms.php';
+			SimpleTags_Hidden_Terms::get_instance();
+		}
+
 		//terms
 		if ($dashboard_screen || 1 === (int) SimpleTags_Plugin::get_option_value('active_st_terms')) {
 			require STAGS_DIR . '/inc/terms-table.php';
@@ -902,8 +908,9 @@ class SimpleTags_Admin
 						break;
 
 					case 'number':
-						$input_type = '<input type="number" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="' . $option[3] . '" />' . PHP_EOL;
-						break;
+						$min_attr = isset($option[6]) ? ' min="' . esc_attr($option[6]) . '"' : '';
+						$input_type = '<input type="number" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="' . $option[3] . '"' . $min_attr . ' />' . PHP_EOL;
+						break;	
 				}
 
 				if (is_array($option[2])) {
@@ -968,6 +975,8 @@ class SimpleTags_Admin
 				return esc_html__('Term Synonyms', 'simple-tags');
 			case 'licence':
 				return esc_html__('License', 'simple-tags');
+			case 'hidden_terms':
+				return esc_html__('Hidden Terms', 'simple-tags');
 		}
 
 		return '';
