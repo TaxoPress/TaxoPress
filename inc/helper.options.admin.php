@@ -72,7 +72,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
         // allow to taxopress ai field for each post type
-        $taxopress_ai_fields = apply_filters('taxopress_settings_post_type_ai_fields', $post_type, $taxopress_ai_fields);
+        $taxopress_ai_fields = apply_filters('taxopress_settings_post_type_ai_fields', $taxopress_ai_fields, $post_type);
     }
     $pt_index++;
 }
