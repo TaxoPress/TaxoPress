@@ -50,7 +50,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
          *
          * @return array
          */
-        public static function get_taxonomies()
+        public static function get_taxonomies($include_data = false)
         {
 
             $all_taxonomies = get_taxonomies([], 'objects');//'public' => true, 'show_ui' => true
@@ -82,7 +82,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
                     }
                 }
 
-                $taxonomies[$tax->name] = $tax->labels->name. ' ('.$tax->name.')';
+                $taxonomies[$tax->name] =$include_data ? $tax : $tax->labels->name. ' ('.$tax->name.')';
             }
 
             return $taxonomies;
