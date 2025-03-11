@@ -116,16 +116,16 @@
       var preview_wrapper = $(button).closest('.taxopress-ai-tab-content');
       var taxonomy = preview_wrapper.find('.taxopress-ai-fetch-create-taxonomy :selected').val();
 
+      var term_name = preview_wrapper.find('.taxopress-taxonomy-term-input').val();
+      if (!term_name || term_name == '') {
+        return;
+      }
+      
       var preview_post = preview_wrapper.attr('data-post_id');
       preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('').removeClass('updated error');
 
       button.prop('disabled', true);
       preview_wrapper.find('.spinner').addClass('is-active');
-
-      var term_name = preview_wrapper.find('.taxopress-taxonomy-term-input').val();
-      if (!term_name || term_name == '') {
-        return;
-      }
 
       // get existing same taxonomy term on the page
       var existing_terms = [];

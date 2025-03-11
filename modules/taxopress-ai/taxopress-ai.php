@@ -880,6 +880,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                 <div class="taxopress-ai-fetch-result <?php echo esc_attr($key); ?>">
                                                 <?php do_action('load_taxopress_ai_term_results', $result_request_args); ?>
                                                 </div>
+                                                <?php if (empty($permitted_post_type_taxonomies)) {
+                                                    
+                                                    echo '<div class="auto-terms-error-red create-term-item" style="display: none;" style="padding: 15px;"><p>';
+                                                    echo esc_html__('You do not have the required capabilities to manage any of this post attached taxonomies.', 'simple-tags');
+                                                    echo '</p></div>';
+                                                }
+                                                ?>
                                                 <div class="taxopress-ai-fetch-result-msg <?php echo esc_attr($key); ?>"></div>
                                             </td>
                                         </tr>

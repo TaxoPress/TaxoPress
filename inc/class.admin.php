@@ -868,10 +868,11 @@ class SimpleTags_Admin
 					case 'sub_multiple_checkbox':
 						$desc_html_tag = 'div';
 						$input_type = array();
-						foreach ($option[3] as $field_name => $text) {
+						foreach ($option[3] as $field_name => $field_option) {
 							$checked_option = !empty($option_actual[$field_name]) ? (int) $option_actual[$field_name] : 0;
 							$selected_option = ($checked_option > 0) ? true : false;
-							$input_type[] = '<label><input type="checkbox" id="' . $option[0] . '" name="' . $field_name . '" value="1" ' . checked($selected_option, true, false) . ' /> ' . $text . '</label> <br />' . PHP_EOL;
+							$field_description = !empty($field_option['description']) ? '<br /><span class="description stpexplan">' . $field_option['description'] . '</span>' : '';
+							$input_type[] = '<label><input type="checkbox" id="' . $option[0] . '" name="' . $field_name . '" value="1" ' . checked($selected_option, true, false) . ' /> ' . $field_option['label'] . '</label> '. $field_description .'<br />' . PHP_EOL;
 						}
 						$input_type = implode('<br />', $input_type);
 						break;
