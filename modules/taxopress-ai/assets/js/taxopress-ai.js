@@ -211,6 +211,7 @@
         //  Update selected tags
         // -------------------------------------------------------------
         $(document).on('click', '.sidebar-response-preview .taxopress-ai-addtag-button', function (e) {
+          return;
           e.preventDefault();
           var button = $(this);
           var preview_wrapper = button.closest('.taxopress-ai-preview-sidebar'); 
