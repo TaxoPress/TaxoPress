@@ -22,10 +22,21 @@ if (!class_exists('SimpleTags_Hidden_Terms')) {
         */
         public function __construct() {
 
-            add_action('init', [$this, 'taxopress_set_hidden_terms']);
+            add_action('admin_init', [$this, 'taxopress_schedule_hidden_terms_cron']);
+
+            add_action('taxopress_update_hidden_terms_event', [$this, 'taxopress_set_hidden_terms']);
             add_filter('term_link', [$this, 'taxopress_modify_hidden_term_links'], 10, 3);
             add_filter('get_the_terms', [$this,'taxopress_remove_hidden_terms'], 10, 3);
             
+        }
+
+         /**
+         * Schedule the cron job to update hidden terms once a day
+         */
+        public function taxopress_schedule_hidden_terms_cron() {
+            if (!wp_next_scheduled('taxopress_update_hidden_terms_event')) {
+                wp_schedule_event(time(), 'daily', 'taxopress_update_hidden_terms_event');
+            }
         }
 
         public function taxopress_set_hidden_terms($taxonomy = 'post_tag', $min_usage = 0) {
@@ -36,7 +47,7 @@ if (!class_exists('SimpleTags_Hidden_Terms')) {
         
             $min_usage = (int) SimpleTags_Plugin::get_option_value('hide-rarely');
             if ((int) $min_usage > 100) {
-                wp_die('Cheater?');
+                return;
             }
         
             $taxonomies = array_keys(get_taxonomies(['public' => true, 'show_ui' => true]));
