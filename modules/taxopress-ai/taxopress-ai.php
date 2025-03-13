@@ -50,6 +50,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
             add_action( 'load_taxopress_ai_term_results', [$this, 'load_result']);
             // Register metabox for suggest tags, for post, and optionnaly cpt.
             add_action( 'admin_head', [$this, 'admin_head'], 1);
+
+            add_filter('taxopress_validate_term_before_insert', ['TaxoPressAiAjax', 'taxopress_validate_term_before_insert'], 10, 2);
         }
 
 

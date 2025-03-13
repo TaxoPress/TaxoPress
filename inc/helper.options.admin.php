@@ -78,6 +78,20 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_exclusions',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Exclusions', 'simple-tags') . '</div>',
+            'textarea',
+            '',
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
+            '',
+            array(
+                'rows' => 6,
+                'placeholder' => esc_attr__('Enter characters you want to exclude when creating new terms, e.g. ! ? #', 'simple-tags'),
+                'width' => '80%'
+            )
+        );
         // allow to taxopress ai field for each post type
         $taxopress_ai_fields = apply_filters('taxopress_settings_post_type_ai_fields', $taxopress_ai_fields, $post_type);
     }

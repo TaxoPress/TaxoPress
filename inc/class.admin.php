@@ -633,8 +633,9 @@ class SimpleTags_Admin
 					$options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
 					$options['taxopress_ai_' . $post_type . '_metabox_display_option'] = 'default';
 					$options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
+					$options['taxopress_ai_' . $post_type . '_exclusions'] = '';
 					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
-					foreach (['post_terms', 'existing_terms', 'suggest_local_terms'] as $taxopress_ai_tab) {
+					foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
 						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
 					}
 				}
@@ -912,6 +913,13 @@ class SimpleTags_Admin
 						$min_attr = isset($option[6]) ? ' min="' . esc_attr($option[6]) . '"' : '';
 						$input_type = '<input type="number" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="' . $option[3] . '"' . $min_attr . ' />' . PHP_EOL;
 						break;	
+
+					case 'textarea':
+						$rows_attr = isset($option[7]['rows']) ? ' rows="' . esc_attr($option[7]['rows']) . '"' : ' rows="4"';
+						$placeholder_attr = isset($option[7]['placeholder']) ? ' placeholder="' . esc_attr($option[7]['placeholder']) . '"' : '';
+						$width_attr = (!empty($option[7]['width'])) ? ' style="width:' . esc_attr($option[7]['width']) . ';"' : ' style="width:100%; max-width:600px;"';
+						$input_type = '<textarea id="' . $option[0] . '" name="' . $option[0] . '"' . $rows_attr . $placeholder_attr . $width_attr . ' class="' . $option[3] . '">' . esc_textarea($option_actual[$option[0]]) . '</textarea>' . PHP_EOL;
+						break;
 				}
 
 				if (is_array($option[2])) {
