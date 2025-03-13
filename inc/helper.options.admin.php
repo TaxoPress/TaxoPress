@@ -218,7 +218,7 @@ return apply_filters('taxopress_admin_options', array(
                 __('Minimum Usage for Hidden Terms:', 'simple-tags'),
                 'number',
                 '1',
-                __('Set the minimum number of posts a term must be attached to. If you enter 5, any term used in fewer than 5 posts will be hidden across the site, and its archive page will redirect to the homepage.', 'simple-tags'),
+                __('Set the minimum number of posts a term must be attached to. <br> If you enter 5, any term used in fewer than 5 posts will be hidden across the site, and its archive page will redirect to the homepage. <br> This check runs once every 24 hours, so changes may take up to a day to reflect.', 'simple-tags'),
                 '',
                 1
             )
