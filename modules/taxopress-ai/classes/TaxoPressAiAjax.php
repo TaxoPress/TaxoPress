@@ -731,6 +731,13 @@ if (!class_exists('TaxoPressAiAjax')) {
                     exit;
                 }
 
+                $validated_term = apply_filters('taxopress_validate_term_before_insert', $term_name, $taxonomy);
+                if (is_wp_error($validated_term)) {
+                    $response['content'] = $validated_term->get_error_message();
+                    wp_send_json($response);
+                    exit;
+                }
+
 
                 $term_id   = 0;
                 $term_data = false;
@@ -780,6 +787,46 @@ if (!class_exists('TaxoPressAiAjax')) {
             }
             wp_send_json($response);
             exit;
+        }
+
+        public static function taxopress_validate_term_before_insert($term, $taxonomy) {
+            $post_id   = 0;
+            $post_type = '';
+        
+            // Check both possible keys for post ID
+            if (!empty($_POST['post_ID'])) {
+                $post_id = intval($_POST['post_ID']);
+            } elseif (!empty($_POST['post_id'])) {
+                $post_id = intval($_POST['post_id']);
+            }
+        
+            if ($post_id) {
+                $post_type = get_post_type($post_id);
+            }
+
+            $post_type = $post_type ?: 'post';
+        
+            $option_name    = 'taxopress_ai_' . $post_type . '_exclusions';
+            $excluded_chars = SimpleTags_Plugin::get_option_value($option_name);
+        
+            if (!empty($excluded_chars)) {
+                $excluded_chars = array_filter(str_split(preg_replace('/\s+/', '', $excluded_chars)));
+        
+                if (!empty($excluded_chars)) {
+                    $exact_chars = array_filter($excluded_chars, function ($char) use ($term) {
+                        return strpos($term, $char) !== false;
+                    });
+        
+                    if (!empty($exact_chars)) {
+                        return new WP_Error(
+                            'invalid_character',
+                            sprintf(__('Terms cannot contain the following characters: %s', 'simple-tags'), implode(' ', $exact_chars))
+                        );
+                    }
+                }
+            }
+        
+            return $term;
         }
 
     }
