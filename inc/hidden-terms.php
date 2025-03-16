@@ -22,8 +22,7 @@ if (!class_exists('SimpleTags_Hidden_Terms')) {
         */
         public function __construct() {
 
-            add_action('admin_init', [$this, 'taxopress_schedule_hidden_terms_cron']);
-
+            add_action('taxopress_settings_saved', [$this, 'taxopress_schedule_hidden_terms_cron']);
             add_action('taxopress_update_hidden_terms_event', [$this, 'taxopress_set_hidden_terms']);
             add_filter('term_link', [$this, 'taxopress_modify_hidden_term_links'], 10, 3);
             add_filter('get_the_terms', [$this,'taxopress_remove_hidden_terms'], 10, 3);
@@ -51,7 +50,7 @@ if (!class_exists('SimpleTags_Hidden_Terms')) {
             global $wpdb;
         
             $min_usage = (int) SimpleTags_Plugin::get_option_value('hide-rarely');
-            if ($min_usage > 100) {
+            if ((int) $min_usage > 100) {
                 return;
             }
         
