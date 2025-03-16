@@ -671,6 +671,7 @@ class SimpleTags_Admin
 				SimpleTags_Plugin::set_option($options);
 
 				do_action('simpletags_settings_save_general_end');
+				do_action('taxopress_settings_saved');
 
 				add_settings_error(__CLASS__, __CLASS__, esc_html__('Options saved', 'simple-tags'), 'updated taxopress-notice');
 			} elseif (isset($_POST['reset_options'])) {

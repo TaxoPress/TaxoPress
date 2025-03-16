@@ -733,6 +733,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 $validated_term = apply_filters('taxopress_validate_term_before_insert', $term_name, $taxonomy);
                 if (is_wp_error($validated_term)) {
+                    $response['status'] = 'error';
                     $response['content'] = $validated_term->get_error_message();
                     wp_send_json($response);
                     exit;
