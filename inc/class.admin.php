@@ -648,6 +648,7 @@ class SimpleTags_Admin
 						$enable_acess_default_value = 0;
 					}
 					$options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
+					$options['enable_restrict' . $role_name . '_metabox'] = $enable_acess_default_value;
 					$options['enable_metabox_' . $role_name . ''] = [];
 					$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
 				}

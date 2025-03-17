@@ -842,3 +842,39 @@ function taxopress_get_post_statuses() {
 
     return $post_statuses;
 }
+
+/**
+ * Check if the current user role matches the given role name
+ *
+ * @param string $role_name
+ * @return bool
+ */
+function taxopress_is_current_user_role($role_name) {
+    if (is_user_logged_in()) {
+        $user = wp_get_current_user();
+        return in_array($role_name, (array) $user->roles);
+    }
+    return false;
+}
+
+/**
+ * Check if the current user can manage specific metabox tabs
+ *
+ * @param array $tabs
+ * @return array
+ */
+function can_manage_taxopress_metabox_tabs($tabs) {
+    $user = wp_get_current_user();
+    $role_name = $user->roles[0] ?? false;
+
+    if ($role_name) {
+        $restrict_metabox = SimpleTags_Plugin::get_option_value('enable_restrict' . $role_name . '_metabox');
+        if ($restrict_metabox && taxopress_is_current_user_role($role_name)) {
+            $tabs['post_terms']['enabled'] = false;
+            $tabs['suggest_local_terms']['enabled'] = false;
+            $tabs['create_term']['enabled'] = false;
+        }
+    }
+
+    return $tabs;
+}

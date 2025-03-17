@@ -81,6 +81,7 @@ class SimpleTags_Plugin {
 				$enable_acess_default_value = 0;
 			}
 			$default_options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
+			$default_options['enable_restrict_' . $role_name . '_metabox'] = $enable_acess_default_value;
 			$options['enable_metabox_' . $role_name . ''] = $tax_names;
 			$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
 		}

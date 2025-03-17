@@ -53,6 +53,11 @@ return array(
     'enable_metabox_author' => ['category', 'post_tag'],
     'enable_metabox_contributor' => ['category', 'post_tag'],
 
+    'enable_restrict_administrator_metabox' => 1,
+    'enable_restrict_editor_metabox' => 1,
+    'enable_restrict_author_metabox' => 1,
+    'enable_restrict_contributor_metabox' => 1,
+
     'allow_embed_tcloud'     => 1,
     // Auto link
     'auto_link_tags'         => 0,
