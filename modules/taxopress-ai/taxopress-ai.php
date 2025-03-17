@@ -655,6 +655,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         ],
                     ];
 
+                    $all_content_tabs = can_manage_taxopress_metabox_tabs($all_content_tabs);
+
                     foreach ($all_content_tabs as $all_content_tab_name => $all_content_tab_options) {
                         if ($all_content_tab_options['enabled']) {
                             $content_tabs[$all_content_tab_name] = $all_content_tab_options['label'];
