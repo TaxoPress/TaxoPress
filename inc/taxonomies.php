@@ -1577,8 +1577,14 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                            id="cpt_submit_delete"
                                            value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
                                                esc_html__('Delete Taxonomy', 'simple-tags'))); ?>"/>
-                                <?php }else{
-                                     echo '<div class="taxopress-warning" style="color:red;">' . esc_html__('You can only delete taxonomies created with TaxoPress.',
+                                <?php } else { ?>
+                                    <input type="submit" class="button-secondary taxopress-delete-bottom"
+                                           name="cpt_delete"
+                                           id="cpt_submit_delete"
+                                           value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
+                                               esc_html__('Delete TaxoPress Edit Data', 'simple-tags'))); ?>"/>
+                                    <?php
+                                     echo '<div class="taxopress-warning"">' . esc_html__('You can only delete taxonomies created with TaxoPress. However, you can delete any changes or edit made from TaxoPress which will remove TaxoPress version edit restoring original taxonomies data or removing it if already deleted',
                                     'simple-tags') . '</div>';
                                 }
                             }

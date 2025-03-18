@@ -129,6 +129,7 @@ function taxopress_delete_taxonomy($data = [])
     do_action('taxopress_before_delete_taxonomy', $data);
 
     $taxonomies = taxopress_get_taxonomy_data();
+    $external_taxonomies = taxopress_get_extername_taxonomy_data();
 
     if (array_key_exists(strtolower($data['cpt_custom_tax']['name']), $taxonomies)) {
 
@@ -143,6 +144,22 @@ function taxopress_delete_taxonomy($data = [])
          */
         if (false === ($success = apply_filters('taxopress_taxonomy_delete_tax', false, $taxonomies, $data))) {
             $success = update_option('taxopress_taxonomies', $taxonomies);
+        }
+    }
+
+    if (array_key_exists(strtolower($data['cpt_custom_tax']['name']), $external_taxonomies)) {
+
+        unset($external_taxonomies[$data['cpt_custom_tax']['name']]);
+
+        /**
+         * Filters whether or not 3rd party options were saved successfully within taxonomy deletion.
+         *
+         * @param bool $value Whether or not someone else saved successfully. Default false.
+         * @param array $external_taxonomies Array of our updated taxonomies data.
+         * @param array $data Array of submitted taxonomy to update.
+         */
+        if (false === ($success = apply_filters('taxopress_taxonomy_delete_tax', false, $external_taxonomies, $data))) {
+            $success = update_option('taxopress_external_taxonomies', $external_taxonomies);
         }
     }
 
