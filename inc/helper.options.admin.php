@@ -272,8 +272,8 @@ return apply_filters('taxopress_admin_options', array(
                 'enable_hidden_terms',
                 __('Enable Hidden Terms:', 'simple-tags'),
                 'checkbox',
-                '1',
-                __('Enable or disable the hidden terms feature.', 'simple-tags'),
+                '0',
+                __('This feature will hide terms that are infrequently used. These terms will be visible inside the WordPress admin area, but not on the front of this site.', 'simple-tags'),
                 ''
             ),
             array(
