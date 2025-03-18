@@ -38,6 +38,12 @@ return array(
     'enable_taxopress_ai_post_suggest_local_terms_tab' => 1,
     'enable_taxopress_ai_post_existing_terms_tab' => 1,
     'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
+    
+    'taxopress_ai_post_metabox_orderby' => 'count',
+    'taxopress_ai_post_metabox_order' => 'desc',
+    'taxopress_ai_post_metabox_maximum_terms' => 45,
+    'taxopress_ai_post_metabox_show_post_count' => 0,
+
     'taxopress_ai_post_metabox_display_option' => 'default',
     'enable_taxopress_ai_post_create_terms_tab' => 1,
     'taxopress_ai_post_exclusions' => '',

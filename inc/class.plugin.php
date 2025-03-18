@@ -64,6 +64,12 @@ class SimpleTags_Plugin {
 			}
 			$default_options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
 			$default_options['taxopress_ai_' . $post_type . '_metabox_display_option'] = 'default';
+					
+			$default_options['taxopress_ai_' . $post_type . '_metabox_orderby'] = 'count';
+			$default_options['taxopress_ai_' . $post_type . '_metabox_order'] = 'desc';
+			$default_options['taxopress_ai_' . $post_type . '_metabox_maximum_terms'] = 45;
+			$default_options['taxopress_ai_' . $post_type . '_metabox_show_post_count'] = 0;
+
 			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 			$default_options['taxopress_ai_' . $post_type . '_exclusions'] = '';
 			$default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
