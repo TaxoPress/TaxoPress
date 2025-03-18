@@ -84,8 +84,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $screen_source = !empty($_POST['screen_source']) ? sanitize_text_field($_POST['screen_source']) : 'st_autoterms';
                 $preview_post = !empty($_POST['preview_post']) ? (int) $_POST['preview_post'] : 0;
                 $preview_feature = 'data';
-                $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
                 $post_data = get_post($preview_post);
+                $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post_data->post_type);
                 $post_content = isset($_POST['post_content']) ? taxopress_sanitize_text_field($_POST['post_content']) : $post_data->post_content;
                 $post_title = isset($_POST['post_title']) ? taxopress_sanitize_text_field($_POST['post_title']) : $post_data->post_title;
                 $term_results = [];

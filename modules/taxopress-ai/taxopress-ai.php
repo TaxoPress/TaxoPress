@@ -524,10 +524,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $post_title   = $args['post_title'];
             $post_content = $args['post_content'];
             $post_id 	  = $args['post_id'];
+            $post         = get_post($post_id);
     
             if (in_array($ai_group, ['existing_terms', '__suggest_local_terms', 'post_terms'])) {
                 $content = $post_content . ' ' . $post_title;
-                $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
+                $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post->post_type);
                 $result_args = [
                     'settings_data' => $settings_data,
                     'screen_source' => 'st_taxopress_ai',
@@ -620,12 +621,12 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 }
             }
 
-            $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
+            $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post->post_type);
             $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
-
-            $existing_terms_maximum_terms = !empty($settings_data ['existing_terms_maximum_terms']) ? $settings_data ['existing_terms_maximum_terms'] : '';
-            $existing_terms_orderby = !empty($settings_data ['existing_terms_orderby']) ? $settings_data ['existing_terms_orderby'] : '';
-            $existing_terms_order = !empty($settings_data ['existing_terms_order']) ? $settings_data ['existing_terms_order'] : '';
+  
+            $existing_terms_maximum_terms = !empty($settings_data['existing_terms_maximum_terms']) ? $settings_data['existing_terms_maximum_terms'] : '';
+            $existing_terms_orderby = !empty($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : '';
+            $existing_terms_order = !empty($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : '';
 
             $wrapper_class = $fast_update_screen ? 'fast_update_screen' : 'editor-screen'
             ?>
