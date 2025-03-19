@@ -1531,7 +1531,7 @@ class SimpleTags_Autoterms
                                                                 </select>
 
                                                                 <select class="preview-post-select taxopress-post-search"
-                                                                style="width: 33%;max-width: 33%;"
+                                                                style="max-width: 250px; width: 250px;"
                                                                     data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
                                                                     data-allow-clear="true"
                                                                     data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-post-search')); ?>">
