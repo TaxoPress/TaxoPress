@@ -758,7 +758,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     <?php if ($fast_update_screen) : ?>
 
                                                             <select class="preview-post-types-select taxopress-ai-select2"
-                                                            style="max-width: 33%;">
+                                                            style="max-width: 100px;">
                                                                 <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
                                                                     if (!in_array($post_type, ['attachment'])) {
                                                                         if (empty($default_post_type)) {
@@ -776,7 +776,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                             </select>
 
                                                             <select class="preview-post-select taxopress-ai-post-search"
-                                                            style="max-width: 33%;"
+                                                            style="max-width: 250px; width: 250px;"
                                                                 data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
                                                                 data-allow-clear="true"
                                                                 data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">

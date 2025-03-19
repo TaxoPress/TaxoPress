@@ -204,12 +204,3 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     box-shadow: 0 1px 1px rgba(0,0,0,.04);
     background: #fff;
 }
-
-.ppma_select2-container,
-.ppma_select2-selection__rendered {
-    min-width: 120px !important;
-  }
-
-.ppma_select2-selection__clear{
-    padding-right: 20px !important;
-}
