@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.33.0- 2025-03-18
+v3.33.0- 2025-03-19
 * Update: Change "Metaboxes" to "Fast Update" and make it share same look as post metabox, #2493
 * Feature: Allow users to prevent some characters from being added to terms, #2500
 * Feature: Allow admins to control which terms users can add, #2259

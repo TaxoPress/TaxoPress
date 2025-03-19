@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TaxoPress 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/simple-tags\n"
-"POT-Creation-Date: 2025-03-18 10:46+0000\n"
+"POT-Creation-Date: 2025-03-19 14:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -840,6 +840,10 @@ msgstr ""
 msgid "Auto Terms settings do not exist."
 msgstr ""
 
+#: includes-pro/modules/autoterms/autoterms.php:618
+msgid "Auto Terms successfully copied."
+msgstr ""
+
 #: inc/autoterms-functions.php:455
 msgid "Auto Terms successfully deleted."
 msgstr ""
@@ -849,6 +853,10 @@ msgstr ""
 #: includes-core/TaxopressCoreAdmin.php:383
 #: includes-core/TaxopressCoreAdmin.php:401
 msgid "Auto terms using AI"
+msgstr ""
+
+#: includes-pro/modules/autolinks/autolinks.php:223
+msgid "Autolink successfully copied."
 msgstr ""
 
 #: inc/post-tags-table.php:68 inc/related-posts-table.php:69
@@ -1027,6 +1035,11 @@ msgstr ""
 
 #: inc/terms-table.php:174 inc/terms-table.php:536
 #: includes-core/TaxopressCoreAdmin.php:316
+#: includes-pro/modules/autolinks/autolinks.php:246
+#: includes-pro/modules/autoterms/autoterms.php:653
+#: includes-pro/modules/post-tags/post-tags.php:102
+#: includes-pro/modules/related-posts/related-posts.php:93
+#: includes-pro/modules/tag-clouds/tag-clouds.php:106
 msgid "Copy"
 msgstr ""
 
@@ -1213,6 +1226,7 @@ msgstr ""
 #: inc/autolinks.php:162 inc/autoterms.php:218 inc/autoterms.php:273
 #: inc/post-tags.php:159 inc/posts.php:252 inc/related-posts.php:166
 #: inc/tag-clouds.php:161 inc/taxonomies.php:205 inc/terms.php:259
+#: includes-pro/modules/autoterms/schedule.php:458
 msgid "Description here."
 msgstr ""
 
@@ -1365,7 +1379,8 @@ msgid "Enable Auto Terms for the \"Existing Content\" feature."
 msgstr ""
 
 #: inc/autoterms.php:995
-msgid "Enable Auto Terms for the \"Metaboxes\" feature."
+msgid ""
+"Enable Auto Terms for the \"Metaboxes\" and the \"Fast Update\" feature."
 msgstr ""
 
 #: inc/autoterms.php:871
@@ -1386,10 +1401,6 @@ msgstr ""
 
 #: inc/autoterms.php:178
 msgid "Enable Logs"
-msgstr ""
-
-#: inc/helper.options.admin.php:276
-msgid "Enable or disable the hidden terms feature."
 msgstr ""
 
 #: inc/helper.options.admin.php:249 inc/helper.options.admin.php:261
@@ -2820,6 +2831,10 @@ msgstr ""
 msgid "Prevent Auto Links inside elements"
 msgstr ""
 
+#: includes-pro/modules/autolinks/autolinks.php:42
+msgid "Prevent Auto Links on Shortcodes and Blocks"
+msgstr ""
+
 #: inc/autoterms.php:1286
 msgid "Prevent Auto Term inside elements"
 msgstr ""
@@ -2931,6 +2946,10 @@ msgstr ""
 
 #: inc/related-posts.php:791
 msgid "Related Posts Order"
+msgstr ""
+
+#: includes-pro/modules/related-posts/related-posts.php:58
+msgid "Related Posts successfully copied."
 msgstr ""
 
 #: inc/related-posts-functions.php:242
@@ -3402,6 +3421,10 @@ msgstr ""
 #: inc/post-tags-table.php:69 inc/related-posts-table.php:70
 #: inc/tag-clouds-table.php:70
 msgid "Shortcode"
+msgstr ""
+
+#: includes-pro/modules/post-tags/post-tags.php:79
+msgid "Shortcode entry successfully copied."
 msgstr ""
 
 #: inc/post-tags-functions.php:198
@@ -3965,6 +3988,10 @@ msgstr ""
 msgid "Terms Display format"
 msgstr ""
 
+#: includes-pro/modules/tag-clouds/tag-clouds.php:77
+msgid "Terms Display successfully copied."
+msgstr ""
+
 #: inc/tag-clouds-functions.php:249
 msgid "Terms Display successfully deleted."
 msgstr ""
@@ -4005,6 +4032,11 @@ msgstr ""
 
 #: inc/autolinks.php:710
 msgid "Terms inside these HTML tags will not have Auto Links applied."
+msgstr ""
+
+#: includes-pro/modules/autolinks/autolinks.php:45
+msgid ""
+"Terms inside these shortcodes and blocks will not have Auto Links applied."
 msgstr ""
 
 #: inc/class.admin.manage.php:187
@@ -4166,12 +4198,6 @@ msgid ""
 "in Auto Term settings."
 msgstr ""
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:228
-msgid ""
-"The selected Auto Term is not enabled for metaboxes. Please enable it in "
-"Auto Term settings."
-msgstr ""
-
 #: inc/ajax-request.php:76
 msgid ""
 "The selected Auto Term setting is not enabled for any post type. Please "
@@ -4238,6 +4264,12 @@ msgstr ""
 
 #: modules/taxopress-ai/taxopress-ai.php:458
 msgid "There's no content to scan."
+msgstr ""
+
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:228
+msgid ""
+"This Auto Terms option is not enabled for metaboxes. Please enable it in the "
+"Auto Terms settings."
 msgstr ""
 
 #: inc/helper.options.admin.php:215
@@ -4405,6 +4437,12 @@ msgid ""
 "This feature will delete existing terms and replace them with another term. "
 "If you want to merge term “A” into term “B”, put “A” in the first box and "
 "“B” in the second box."
+msgstr ""
+
+#: inc/helper.options.admin.php:276
+msgid ""
+"This feature will hide terms that are infrequently used. These terms will be "
+"visible inside the WordPress admin area, but not on the front of this site."
 msgstr ""
 
 #: inc/class.admin.php:740
