@@ -29,7 +29,7 @@ return array(
     'synonyms_taxonomies' => ['category', 'post_tag'],
 
     //hidden terms
-    'enable_hidden_terms' => 1,
+    'enable_hidden_terms' => 0,
     'hide-rarely' => 5,
 
     // taxopress ai
