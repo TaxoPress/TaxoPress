@@ -22,7 +22,7 @@
  */
 
 ######################################
-/* 
+/*
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -91,7 +91,7 @@ if ($pro_active) {
 if (defined('TAXOPRESS_FILE') || $pro_active) {
     if(!function_exists('deactivate_plugins')){
         require_once ABSPATH . 'wp-admin/includes/plugin.php';
-    }    
+    }
     //deactivate current plugin if pro is active
     deactivate_plugins( plugin_basename( __FILE__ ) );
 	return;

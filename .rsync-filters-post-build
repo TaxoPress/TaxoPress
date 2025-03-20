@@ -1,0 +1,12 @@
+- .distignore
+- .git
+- .gitattributes
+- .github
+- .gitignore
+- .rsync-filters-post-build
+- .rsync-filters-pre-build
+- /vendor
+- composer.lock
+- lib/vendor/bin
+- .DS_Store
+- .phplint.cache

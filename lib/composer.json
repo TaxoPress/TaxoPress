@@ -1,0 +1,15 @@
+{
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "vendor-dir": "vendor",
+        "preferred-install": {
+            "*": "dist"
+        },
+        "platform-check": false,
+        "autoloader-suffix": "TaxoPress"
+    },
+    "require": {
+        "php": ">=7.2.5"
+    }
+}

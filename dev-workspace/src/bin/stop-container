@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+RUNNING_CONTAINER=$($BIN_PATH/detect-running-container)
+
+if [ -z "$RUNNING_CONTAINER" ]; then
+    echo "Container is not running"
+    exit 0
+fi
+
+docker stop $RUNNING_CONTAINER
