@@ -4,7 +4,7 @@ FROM node:$NODE_VERSION-alpine AS node
 
 FROM publishpress/dev-workspace-terminal:generic-4.3.4
 
-ENV PLUGIN_NAME="PublishPress Future"
+ENV PLUGIN_NAME="TaxoPress"
 ENV PLUGIN_TYPE="FREE"
 
 COPY --from=node /usr/lib /usr/lib
