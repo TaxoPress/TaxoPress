@@ -15,7 +15,6 @@
 - .wordpress-org
 - /tests
 - /tests-old
-- /vendor
 - /version.txt
 - /webpack.config.js
 - /yarn.lock
