@@ -283,7 +283,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     <?php echo esc_html__('Fast Update', 'simple-tags'); ?>
                 </h1>
                 <div class="taxopress-description">
-                    <?php esc_html_e('This screen allows you to preview the TaxoPress features that users will see when creating and editing content.', 'simple-tags'); ?> <a target="_blank" href="<?php echo admin_url('admin.php?page=st_options#taxopress-ai') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
+                    <?php esc_html_e('This screen allows you to quickly edit the terms on multiple posts. This feature uses the same metabox you see when editing posts.', 'simple-tags'); ?> <a target="_blank" href="<?php echo admin_url('admin.php?page=st_options&active_tab=taxopress-ai') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
                 </div>
                 <div class="wp-clearfix"></div>
                 <form method="post" action="">
@@ -758,7 +758,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     <?php if ($fast_update_screen) : ?>
 
                                                             <select class="preview-post-types-select taxopress-ai-select2"
-                                                            style="max-width: 33%;">
+                                                            style="max-width: 100px;">
                                                                 <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
                                                                     if (!in_array($post_type, ['attachment'])) {
                                                                         if (empty($default_post_type)) {
@@ -776,7 +776,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                             </select>
 
                                                             <select class="preview-post-select taxopress-ai-post-search"
-                                                            style="max-width: 33%;"
+                                                            style="max-width: 250px; width: 250px;"
                                                                 data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
                                                                 data-allow-clear="true"
                                                                 data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">
