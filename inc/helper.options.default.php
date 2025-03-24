@@ -28,14 +28,25 @@ return array(
     // term synonyms
     'synonyms_taxonomies' => ['category', 'post_tag'],
 
+    //hidden terms
+    'enable_hidden_terms' => 0,
+    'hide-rarely' => 5,
+
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,
     'enable_taxopress_ai_post_post_terms_tab' => 1,
     'enable_taxopress_ai_post_suggest_local_terms_tab' => 1,
     'enable_taxopress_ai_post_existing_terms_tab' => 1,
     'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
+    
+    'taxopress_ai_post_metabox_orderby' => 'count',
+    'taxopress_ai_post_metabox_order' => 'desc',
+    'taxopress_ai_post_metabox_maximum_terms' => 45,
+    'taxopress_ai_post_metabox_show_post_count' => 0,
+
     'taxopress_ai_post_metabox_display_option' => 'default',
     'enable_taxopress_ai_post_create_terms_tab' => 1,
+    'taxopress_ai_post_exclusions' => '',
 
     // metabox
     'enable_administrator_metabox' => 1,
@@ -47,6 +58,11 @@ return array(
     'enable_metabox_editor' => ['category', 'post_tag'],
     'enable_metabox_author' => ['category', 'post_tag'],
     'enable_metabox_contributor' => ['category', 'post_tag'],
+
+    'enable_restrict_administrator_metabox' => 1,
+    'enable_restrict_editor_metabox' => 1,
+    'enable_restrict_author_metabox' => 1,
+    'enable_restrict_contributor_metabox' => 1,
 
     'allow_embed_tcloud'     => 1,
     // Auto link

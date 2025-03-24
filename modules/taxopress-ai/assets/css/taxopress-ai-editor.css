@@ -18,15 +18,10 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 
 .taxopress-post-suggestterm .taxopress-ai-fetch-wrap {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 5px;
-}
-
-.taxopress-post-suggestterm .taxopress-ai-tab-content.existing_terms .taxopress-ai-fetch-wrap {
-    margin-right: 0;
-    flex-wrap: wrap;
-    gap: 5px;
     justify-content: normal;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    column-gap: 5px;
 }
 
 .taxopress-post-suggestterm .taxopress-ai-tab-content.existing_terms .taxopress-ai-fetch-wrap input,
@@ -36,7 +31,6 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 
 .taxopress-post-suggestterm .taxopress-ai-fetch-wrap select {
     max-width: 200px;
-    margin-right: 5px;
 }
 
 .taxopress-post-suggestterm .taxopress-ai-fetch-wrap .spinner:not(.is-active) {
@@ -75,9 +69,12 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 }
 
 .taxopress-post-suggestterm .preview-action-btn-wrap {
-   /* display: flex;*/
+   display: flex;
     margin-top: 10px;
     justify-content: right;
+}
+
+.taxopress-post-suggestterm:not(.fast_update_screen) .preview-action-btn-wrap {
     display: none;
 }
 
@@ -141,4 +138,69 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 
 .taxopress-post-suggestterm .taxopress-tab-content {
     width: 75%;
+}
+
+
+
+.st_taxopress_ai-wrap .taxopress-tab-content {
+    min-height: 615px;
+    width: 70%;
+}
+
+.st_taxopress_ai-wrap .description {
+    color: #3c434a;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.st_taxopress_ai-wrap .description.tab-table-content {
+    margin-top: 10px;
+}
+
+.st_taxopress_ai-wrap .form-table th {
+    width: 50%;
+}
+
+.st_taxopress_ai-wrap #poststuff #post-body.columns-2 #side-sortables {
+    width: unset;
+}
+
+.st_taxopress_ai-wrap #poststuff #post-body.columns-2 {
+    margin-right: unset;
+}
+
+.st_taxopress_ai-wrap #post-body-content,
+.st_taxopress_ai-wrap #post-body.columns-2 #postbox-container-1 {
+    width: unset;
+    min-width: unset;
+    float: none;
+    margin-right: unset;
+    margin-bottom: 10px;
+}
+
+.st_taxopress_ai-wrap .tp-ai-flex-item {
+    flex: 1 1 0px;
+    margin-right: 15px;
+    max-width: 50%
+}
+
+.st_taxopress_ai-wrap ul.taxopress-tab {
+    width: 25%;
+}
+
+.st_taxopress_ai-wrap .api-desc-th {
+    font-weight: normal;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100% !important;
+}
+
+.tp-ai-submit-div {
+    display: flex;
+}
+
+.st_taxopress_ai-wrap .right-body-content {
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    background: #fff;
 }

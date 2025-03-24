@@ -56,40 +56,84 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             $default_taxonomy_options,
             '',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
-            );
+        );
 
-        if (taxopress_is_pro_version()) {
+        // add _metabox_orderby
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_orderby',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Method for choosing terms', 'simple-tags') . '</div>',
+            'select',
+            TaxoPressAiUtilities::get_existing_terms_orderby(),
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+        );
 
-            $default_taxonomy_display_options = [
-                'default' => esc_html__('Default', 'simple-tags'),
-                'dropdown' => esc_html__('Dropdown', 'simple-tags'),
-                'checkbox' => esc_html__('Checkbox', 'simple-tags'),
-            ];
-            
-            // add taxonomy display option
-            $taxopress_ai_fields[] = array(
-                'taxopress_ai_' . $post_type . '_metabox_display_option',
-                '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Taxonomy Display', 'simple-tags') . '</div>',
-                'select',
-                $default_taxonomy_display_options,
-                '',
-                'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
-            );
-        }
+        // add _metabox_order
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_order',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Ordering for choosing terms', 'simple-tags') . '</div>',
+            'select',
+            TaxoPressAiUtilities::get_existing_terms_order(),
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+        );
+
+        // add _metabox_maximum_terms
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_maximum_terms',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Maximum terms', 'simple-tags') . '</div>',
+            'number',
+            '',
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+        );
+
+        // add _metabox_show_post_count
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_show_post_count',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Show Term Post Count', 'simple-tags') . '</div>',
+            'checkbox',
+            '1',
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+        );
 
         // add feature tab
         $tab_field_options = [];
         foreach ($taxopress_ai_tabs as $taxopress_ai_tab => $taxopress_ai_tab_label) {
-            $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $taxopress_ai_tab_label;
+            $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = [
+                'label' => $taxopress_ai_tab_label
+            ];
+            if ($taxopress_ai_tab == 'suggest_local_terms') {
+                $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab']['description'] = sprintf(esc_html__('This feature requires a valid API key. %1sView documentation%2s.', 'simple-tags'), '<a href="https://taxopress.com/docs/sources-for-auto-terms/" target="_blank">', '</a>');
+            } elseif ($taxopress_ai_tab == 'create_terms') {
+                $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab']['description'] = sprintf(esc_html__('This feature requires users have the capability to add terms. %1sView documentation%2s.', 'simple-tags'), '<a href="http://taxopress.com/docs/add-terms-capabilities/" target="_blank">', '</a>');
+            }
         }
         $taxopress_ai_fields[] = array(
             'enable_taxopress_ai_' . $post_type . '_tab',
             '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Features', 'simple-tags') . '</div>',
             'sub_multiple_checkbox',
             $tab_field_options,
-            '<p class="taxopress-ai-tab-content-sub taxopress-settings-description taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field description st-subhide-content">' . esc_html__('Features that require an API key will not display without a valid key.', 'simple-tags') . '</p>',
+            '',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_exclusions',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Exclusions', 'simple-tags') . '</div>',
+            'textarea',
+            '',
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
+            '',
+            array(
+                'rows' => 6,
+                'placeholder' => esc_attr__('Enter characters you want to exclude when creating new terms, e.g. ! ? #', 'simple-tags'),
+                'width' => '80%'
+            )
+        );
+        // allow to taxopress ai field for each post type
+        $taxopress_ai_fields = apply_filters('taxopress_settings_post_type_ai_fields', $taxopress_ai_fields, $post_type);
     }
     $pt_index++;
 }
@@ -123,6 +167,15 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         'checkbox',
         '1',
         sprintf(esc_html__('Allow users in the %1s role to use the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
+        'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
+    );
+     // add option to manage terms per user role
+     $metabox_fields[] = array(
+        'enable_restrict' . $role_name . '_metabox',
+        esc_html__('Term Management', 'simple-tags'),
+        'checkbox',
+        '1',
+        sprintf(esc_html__('Restrict users in the %1$s role to selecting from Existing Terms only.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
     // add metabox allowed taxonomies
@@ -212,6 +265,27 @@ return apply_filters('taxopress_admin_options', array(
             ''
         )
     ),
+
+        // hidden terms tab
+        'hidden_terms' => array(
+            array(
+                'enable_hidden_terms',
+                __('Enable Hidden Terms:', 'simple-tags'),
+                'checkbox',
+                '1',
+                __('This feature will hide terms that are infrequently used. These terms will be visible inside the WordPress admin area, but not on the front of this site.', 'simple-tags'),
+                ''
+            ),
+            array(
+                'hide-rarely',
+                __('Minimum Usage for Hidden Terms:', 'simple-tags'),
+                'number',
+                '1',
+                __('Set the minimum number of posts a term must be attached to. If you enter 5, any term used in fewer than 5 posts will be hidden across the site, and its archive page will redirect to the homepage.', 'simple-tags'),
+                '',
+                1
+            )
+        ),
 
     // taxopress ai tab
     'taxopress-ai' => $taxopress_ai_fields,

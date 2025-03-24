@@ -66,10 +66,12 @@ class SimpleTags_Client_TagCloud {
 			'link_class'  => '',
 			'before'      => '',
 			'after'       => '',
+			'hide_terms' => 0,
 		);
 
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
+		$enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
 
 		// Get values in DB
 		$defaults['selectionby'] = $options['cloud_selectionby'];
@@ -127,6 +129,17 @@ class SimpleTags_Client_TagCloud {
 
 		// Get terms
 		$terms = self::getTags( $args, $taxonomy );
+
+		// Remove hidden terms if enabled
+		if ($enable_hidden_terms && !empty($args['hide_terms'])) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $args['taxonomy']);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+				$terms = array_filter($terms, function ($term) use ($hidden_terms) {
+					return !in_array($term->term_id, $hidden_terms);
+				});
+			}
+		}
+
 		extract( $args ); // Params to variables
 
 		// Process exclude_terms
@@ -291,11 +304,13 @@ class SimpleTags_Client_TagCloud {
 			'include'     => '',
 			'limit_days'  => 0,
 			'min_usage'   => 0,
-			'category'    => 0
+			'category'    => 0,
+			'hide_terms' => 0,
 		);
 
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
+		$enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
 
 		// Get values in DB
 		$defaults['selectionby'] = $options['cloud_selectionby'];
@@ -353,6 +368,16 @@ class SimpleTags_Client_TagCloud {
 
 		// Get terms
 		$terms = self::getTags( $args, $taxonomy );
+
+		// Remove hidden terms if enabled
+		if ($enable_hidden_terms && !empty($args['hide_terms'])) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $args['taxonomy']);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+				$terms = array_filter($terms, function ($term) use ($hidden_terms) {
+					return !in_array($term->term_id, $hidden_terms);
+				});
+			}
+		}
 		extract( $args ); // Params to variables
 
 		// If empty use default xformat !
@@ -504,82 +529,107 @@ class SimpleTags_Client_TagCloud {
 		} else {
 			$max_terms = 45;
 		}
-		
+
+		if ( isset( $args['hide_terms'] ) ) {
+			$hide_terms = $args['hide_terms'];
+		}
+  
 		$term_args = [
 			'taxonomy'   => $taxonomy,
 			'hide_empty' => false,
 			'number' => $max_terms,
 		];
+	
+		$is_hierarchical = is_taxonomy_hierarchical($taxonomy);
 		
-		if ($parent_term === 'all') {
-			if ($display_mode === 'parents_only') {
-				$term_args['parent'] = 0;
-			} elseif ($display_mode === 'sub_terms_only') {
-				// Get all parent terms
-				$parent_terms = get_terms([
-					'taxonomy'   => $taxonomy,
-					'parent'     => 0,
-					'hide_empty' => false
-				]);
-		
-				$parent_ids = wp_list_pluck($parent_terms, 'term_id');
-		
-				if (!empty($parent_ids)) {
-					$sub_terms = [];
-					foreach ($parent_ids as $parent_id) {
-						$terms = get_terms([
-							'taxonomy'   => $taxonomy,
-							'parent'     => $parent_id,
-							'hide_empty' => false,
-							'number'     => $max_terms
-						]);
-						$sub_terms = array_merge($sub_terms, $terms);
-						if ( count( $sub_terms ) > $max_terms ) {
-							break; // Stop once max is reached
+		if ($is_hierarchical && isset($args['parent_term'])) {
+			$parent_term = $args['parent_term'];
+			$display_mode = isset($args['display_mode']) ? $args['display_mode'] : '';
+	
+			if ($parent_term === 'all') {
+				if ($display_mode === 'parents_only') {
+					$term_args['parent'] = 0;
+				} elseif ($display_mode === 'sub_terms_only') {
+					// Get all parent terms
+					$parent_terms = get_terms([
+						'taxonomy'   => $taxonomy,
+						'parent'     => 0,
+						'hide_empty' => false
+					]);
+
+					$parent_ids = wp_list_pluck($parent_terms, 'term_id');
+	
+					if (!empty($parent_ids)) {
+						$sub_terms = [];
+						foreach ($parent_ids as $parent_id) {
+							$terms = get_terms([
+								'taxonomy'   => $taxonomy,
+								'parent'     => $parent_id,
+								'hide_empty' => false,
+								'number'     => $max_terms
+							]);
+							$sub_terms = array_merge($sub_terms, $terms);
+							if (count($sub_terms) >= $max_terms) {
+								break;
+							}
 						}
+						$term_args['include'] = wp_list_pluck($sub_terms, 'term_id');
+					} else {
+						$term_args['parent'] = -1;
 					}
-		
-					$term_args['include'] = wp_list_pluck(array_slice($sub_terms, 0, $max_terms ), 'term_id');
+				}
+			} else {
+				// Specific parent term selected
+				if ($display_mode === 'parents_only') {
+					$term_args['include'] = [$parent_term];
+				} elseif ($display_mode === 'sub_terms_only') {
+					$term_args['parent'] = $parent_term;
 				} else {
-					$term_args['parent'] = -1;
+					// Both parent and sub-terms
+					$parent_terms = get_terms([
+						'taxonomy'   => $taxonomy,
+						'include'    => [$parent_term],
+						'hide_empty' => false
+					]);
+					$sub_terms = get_terms([
+						'taxonomy'   => $taxonomy,
+						'parent'     => $parent_term,
+						'hide_empty' => false,
+						'number'     => $max_terms
+					]);
+	
+					$all_terms = array_merge($parent_terms, $sub_terms);
+					$term_args['include'] = wp_list_pluck(array_slice($all_terms, 0, $max_terms), 'term_id');
 				}
 			}
-		} else {
-			// Specific parent term selected
-			if ($display_mode === 'parents_only') {
-				$term_args['include'] = [$parent_term];
-			} elseif ($display_mode === 'sub_terms_only') {
-				$term_args['parent'] = $parent_term;
-			} else {
-				// Both parent and sub-terms
-				$parent_terms = get_terms([
-					'taxonomy' => $taxonomy,
-					'include'  => [$parent_term],
-					'hide_empty' => false
-				]);
-		
-				$sub_terms = get_terms([
-					'taxonomy' => $taxonomy,
-					'parent'   => $parent_term,
-					'hide_empty' => false,
-					'number'     => $max_terms
-				]);
-		
-				$all_terms = array_merge($parent_terms, $sub_terms);
-				$term_args['include'] = wp_list_pluck(array_slice($all_terms, 0, $max_terms ), 'term_id');
+		}
+	
+		// Ensure `max_terms` is always applied
+		if (!empty($term_args['include'])) {
+			$term_args['include'] = array_slice($term_args['include'], 0, $max_terms);
+		}
+			
+		$terms = get_terms($term_args);
+		if (empty($terms)) {
+			return [];
+		}
+
+		if ($hide_terms && SimpleTags_Plugin::get_option_value('enable_hidden_terms')) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $taxonomy);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+				$hidden_terms = array_flip($hidden_terms);
+				$terms = array_filter($terms, function ($term) use ($hidden_terms) {
+					return !isset($hidden_terms[$term->term_id]);
+				});
 			}
 		}
-		
-		$terms = get_terms($term_args);
-		if ( empty( $terms ) ) {
-			return array();
-		}
-
+	
+		// Cache the result
 		$cache = [];
-		$cache[ $key ] = $terms;
-		wp_cache_set( 'st_get_tags', $cache, 'simple-tags' );
-
-		$terms = apply_filters( 'st_get_tags', $terms, $args );
+		$cache[$key] = $terms;
+		wp_cache_set('st_get_tags', $cache, 'simple-tags');
+	
+		$terms = apply_filters('st_get_tags', $terms, $args);
 
 		return $terms;
 	}

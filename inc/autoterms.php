@@ -992,7 +992,7 @@ class SimpleTags_Autoterms
                                                         'name'       => 'autoterm_for_metaboxes',
                                                         'class'      => 'autoterm_for_metaboxes autoterm-terms-when-to-field autoterm-terms-when-metaboxes fields-control',
                                                         'labeltext'  => esc_html__('Metaboxes', 'simple-tags'),
-                                                        'aftertext'  => esc_html__('Enable Auto Terms for the "Metaboxes" feature.', 'simple-tags'),
+                                                        'aftertext'  => esc_html__('Enable Auto Terms for the "Metaboxes" and the "Fast Update" feature.', 'simple-tags'),
                                                         'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         'required'    => false,
                                                     ]);
@@ -1531,7 +1531,7 @@ class SimpleTags_Autoterms
                                                                 </select>
 
                                                                 <select class="preview-post-select taxopress-post-search"
-                                                                style="width: 33%;max-width: 33%;"
+                                                                style="max-width: 250px; width: 250px;"
                                                                     data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
                                                                     data-allow-clear="true"
                                                                     data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-post-search')); ?>">

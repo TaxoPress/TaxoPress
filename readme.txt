@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
 Tested up to: 6.7
-Stable tag: 3.32.0
+Stable tag: 3.33.0
 Requires PHP: 7.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,22 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.33.0- 2025-03-24
+* Update: Change "Metaboxes" to "Fast Update" and make it share same look as post metabox, #2493
+* Feature: Allow users to prevent some characters from being added to terms, #2500
+* Feature: Allow admins to control which terms users can add, #2259
+* Update: Move extra options to the "Settings" area, #2497
+* Update: Move the remaining "Metaboxes" settings, #2439
+* Update: Add button to delete edited taxonomies data from TaxoPress/fix deleted taxonomy data showing in TaxoPress, #2547
+* Update: Add support for new OpenAI models, #2534
+* Update: Update Create Terms capability requirement text for metabox create tab, #2523
+* Fixed: PHP 8 phpcs error in vendor/sabre/vobject, #2533
+* Update: Update the "Hide unused terms" feature, #2326
+* Update: Small visual fixes for metabox filters, #2529
+* Update: Update widget message, #2518
+* Fixed: Maxiumum terms to display is ignored for Non-Hierarchical Taxonomies, #2519
+* Update: TaxoPress v.3.32.0 Translation Update ES-FR-IT, #2517
 
 v3.32.0- 2025-03-03
 * Fixed: PHP Parse error: syntax error, unexpected ‘=>’ on PHP 5.6 or lower, #2505

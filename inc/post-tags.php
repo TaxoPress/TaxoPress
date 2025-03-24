@@ -308,6 +308,11 @@ class SimpleTags_Post_Tags
                                                                                                 ); ?></span></a>
                                                         </li>
 
+                                                        <li aria-current="<?php echo $active_tab === 'posttags_exceptions' ? 'true' : 'false'; ?>" class="posttags_exceptions_tab <?php echo $active_tab === 'posttags_exceptions' ? 'active' : ''; ?>" data-content="posttags_exceptions">
+                                                            <a href="#posttags_exceptions"><span><?php esc_html_e('Exceptions',
+                                                                        'simple-tags'); ?></span></a>
+                                                        </li>
+
                                                     </ul>
 
                                                     <div class="st-taxonomy-content taxopress-tab-content">
@@ -619,6 +624,45 @@ class SimpleTags_Post_Tags
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_td_end() . $ui->get_tr_end();
 
+                                                            ?>
+                                                        </table>
+
+                                                        <table class="form-table taxopress-table posttags_exceptions" style="<?php echo $active_tab === 'posttags_exceptions' ? '' : 'display:none;'; ?>">
+                                                            <?php 
+
+                                                            $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
+
+                                                            if ($enable_hidden_terms) {
+                                                                $select = [
+                                                                    'options' => [
+                                                                        [
+                                                                            'attr'    => '0',
+                                                                            'text'    => esc_attr__('False', 'simple-tags'),
+                                                                            'default' => 'true',
+                                                                        ],
+                                                                        [
+                                                                            'attr' => '1',
+                                                                            'text' => esc_attr__('True', 'simple-tags'),
+                                                                        ],
+                                                                    ],
+                                                                ];
+                                                            
+                                                                $selected = isset($current['hide_terms']) ? taxopress_disp_boolean($current['hide_terms']) : '0';
+                                                                $select['selected'] = !empty($selected) ? $selected : '0';
+                                                            
+                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                echo $ui->get_select_checkbox_input([
+                                                                    'namearray'  => 'taxopress_post_tags',
+                                                                    'name'       => 'hide_terms',
+                                                                    'labeltext'  => esc_html__('Exclude hidden terms from Current Post?', 'simple-tags'),
+                                                                    'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                ]);
+                                                            } else {
+                                                                if (isset($current['hide_terms']) && $current['hide_terms'] !== '0') {
+                                                                    $current['hide_terms'] = '0';
+                                                                }
+                                                            }
+                                                           
                                                             ?>
                                                         </table>
 

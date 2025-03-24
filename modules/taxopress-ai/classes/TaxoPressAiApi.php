@@ -374,9 +374,19 @@ if (!class_exists('TaxoPressAiApi')) {
                     
             //- OpenAI sometimes start response like "Tags:
             $content = str_replace('Tags: ', '', $content);
+            $content = str_replace('Extracted tags: ', '', $content);
+            $content = str_replace('Extracted text: ', '', $content);
+            //o3-mini seems to be more of reasoning than tags
+            $content = preg_replace('/Explanation:.*/', '', $content);
+            $content = preg_replace('/^.*?:\s*/', '', $content); // remove texts after column making sure explanation are removed
+            $content = str_replace(['•','*'], '', $content);
+            $content = preg_replace('/^(.*?)\b(These Tags:|Extracted tags:|Extracted text:|Based on the content:|A simple extraction de-duplicating the words results in the following tags:|Therefore, the extracted tags are:)\s*/is', '', $content);
+
 
             // Remove leading dashes, numbers with a dot, and any extra whitespace
-            $content = preg_replace("/(?:\s*[-–—]\s*|\d+\.\s*)/", "|", $content);
+            $content = preg_replace("/[\r\n]+|\s*[-–—]\s*|\d+\.\s*/", "|", $content);
+
+            $content = str_replace('�', '', $content);
             
             // Split by the delimiter "|"
             $words = array_filter(array_map('trim', explode("|", $content)));
@@ -465,17 +475,25 @@ if (!class_exists('TaxoPressAiApi')) {
                         $return['status'] = 'error';
                         $return['message'] = esc_html__('You added {post_terms} in the prompt but your post does not contain any terms.', 'simple-tags');
                     } else {
-                        $body_data = array(
+                        $body_data = [
                             'model'         => $open_ai_model,
                             'messages'    => [
                                 [
-                                    'role'    => 'system',
+                                    'role'    => 'system', //'system', 'assistant', 'user', 'function', 'tool', and 'developer'.
                                     'content' => $prompt,
                                 ],
-                            ],
-                            'temperature'   => 0.9,
-                            'max_tokens'    => 50,
-                        );
+                            ]
+                        ];
+
+                        
+                        if (!in_array($open_ai_model, ['o3-mini', 'o1-mini', 'o1'])) {
+                            $body_data['max_tokens'] = 50;
+                            $body_data['temperature'] = 0.9;
+                        }
+                        
+                        if (in_array($open_ai_model, ['o1-mini'])) {
+                            $body_data['messages'][0]['role'] = 'user';
+                        }
                         
                         $headers = [
                             'Content-Type' => 'application/json',
@@ -534,7 +552,9 @@ if (!class_exists('TaxoPressAiApi')) {
                                         update_post_meta($post_id, $existing_open_ai_result_key, $terms);
                                         update_post_meta($post_id, $old_saved_content_key, $content);
                                     }
-                                } else {
+                                } 
+                                
+                                if (empty(array_filter($terms))) {
                                     $return['status'] = 'error';
                                     $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
                                 }

@@ -84,11 +84,16 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $screen_source = !empty($_POST['screen_source']) ? sanitize_text_field($_POST['screen_source']) : 'st_autoterms';
                 $preview_post = !empty($_POST['preview_post']) ? (int) $_POST['preview_post'] : 0;
                 $preview_feature = 'data';
-                $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data();
                 $post_data = get_post($preview_post);
+                $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post_data->post_type);
                 $post_content = isset($_POST['post_content']) ? taxopress_sanitize_text_field($_POST['post_content']) : $post_data->post_content;
                 $post_title = isset($_POST['post_title']) ? taxopress_sanitize_text_field($_POST['post_title']) : $post_data->post_title;
                 $term_results = [];
+
+                if ($screen_source == 'st_taxopress_ai') {
+                    $post_content = $post_data->post_content;
+                    $post_title = $post_data->post_title;
+                }
 
                 if ($preview_ai == 'suggest_local_terms') {
                     $preview_ai = 'autoterms';
@@ -125,6 +130,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                 } elseif (!empty($post_title)) {
                     $post_title = apply_filters('taxopress_filter_autoterm_content', $post_title, $post_data->ID, $settings_data);
                 }
+
+                // TODO: Save last selected settings
 
                 $content = $post_content . ' ' . $post_title;
                 $clean_content = TaxoPressAiUtilities::taxopress_clean_up_content($post_content, $post_title);
@@ -218,7 +225,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $response['content'] = esc_html__('You must enable at least one AI integration source to use auto term preview.', 'simple-tags');
                     } elseif (empty($settings_data['autoterm_for_metaboxes'])) {
                         $response['status'] = 'error';
-                        $response['content'] = esc_html__('The selected Auto Term is not enabled for metaboxes. Please enable it in Auto Term settings.', 'simple-tags');
+                        $response['content'] = esc_html__('This Auto Terms option is not enabled for metaboxes. Please enable it in the Auto Terms settings.', 'simple-tags');
                     } else {
                         $request_args  = $args;
                         $request_args['settings_data'] = $settings_data;
@@ -697,6 +704,7 @@ if (!class_exists('TaxoPressAiAjax')) {
             } else {
                 $taxonomy = !empty($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
                 $term_name = !empty($_POST['term_name']) ? sanitize_text_field($_POST['term_name']) : '';
+                $screen_source = !empty($_POST['screen_source']) ? sanitize_text_field($_POST['screen_source']) : '';
                 $existing_terms = !empty($_POST['existing_terms']) ? map_deep($_POST['existing_terms'], 'sanitize_text_field') : [];
                 $selected_terms = !empty($_POST['selected_terms']) ? map_deep($_POST['selected_terms'], 'intval') : [];
                 $post_id = !empty($_POST['post_id']) ? intval($_POST['post_id']) : 0;
@@ -719,6 +727,14 @@ if (!class_exists('TaxoPressAiAjax')) {
                 if (!$can_manage_term) {
                     $response['status'] = 'error';
                     $response['content'] = esc_html__('You do not have capability to manage this taxonomy.', 'simple-tags');
+                    wp_send_json($response);
+                    exit;
+                }
+
+                $validated_term = apply_filters('taxopress_validate_term_before_insert', $term_name, $taxonomy);
+                if (is_wp_error($validated_term)) {
+                    $response['status'] = 'error';
+                    $response['content'] = $validated_term->get_error_message();
                     wp_send_json($response);
                     exit;
                 }
@@ -755,6 +771,11 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $existing_terms = array_filter($existing_terms);
                     if (!empty($post_id)) {
                         $term_html = TaxoPressAiUtilities::format_taxonomy_term_results($existing_terms, $taxonomy, $post_id, '', false, $selected_terms, ['screen_source' => 'post.php']);
+
+                        if ($screen_source == 'st_taxopress_ai') {
+                            wp_set_object_terms($post_id, $term->slug, $taxonomy, true);
+                            clean_term_cache($term_id, $taxonomy);
+                        }
                     }
                 }
                 $current_term = $term_id;
@@ -767,6 +788,46 @@ if (!class_exists('TaxoPressAiAjax')) {
             }
             wp_send_json($response);
             exit;
+        }
+
+        public static function taxopress_validate_term_before_insert($term, $taxonomy) {
+            $post_id   = 0;
+            $post_type = '';
+        
+            // Check both possible keys for post ID
+            if (!empty($_POST['post_ID'])) {
+                $post_id = intval($_POST['post_ID']);
+            } elseif (!empty($_POST['post_id'])) {
+                $post_id = intval($_POST['post_id']);
+            }
+        
+            if ($post_id) {
+                $post_type = get_post_type($post_id);
+            }
+
+            $post_type = $post_type ?: 'post';
+        
+            $option_name    = 'taxopress_ai_' . $post_type . '_exclusions';
+            $excluded_chars = SimpleTags_Plugin::get_option_value($option_name);
+        
+            if (!empty($excluded_chars)) {
+                $excluded_chars = array_filter(str_split(preg_replace('/\s+/', '', $excluded_chars)));
+        
+                if (!empty($excluded_chars)) {
+                    $exact_chars = array_filter($excluded_chars, function ($char) use ($term) {
+                        return strpos($term, $char) !== false;
+                    });
+        
+                    if (!empty($exact_chars)) {
+                        return new WP_Error(
+                            'invalid_character',
+                            sprintf(__('Terms cannot contain the following characters: %s', 'simple-tags'), implode(' ', $exact_chars))
+                        );
+                    }
+                }
+            }
+        
+            return $term;
         }
 
     }

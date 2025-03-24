@@ -8,14 +8,26 @@ if (!class_exists('TaxoPressAiUtilities')) {
          *
          * @return mixed
          */
-        public static function taxopress_get_ai_settings_data()
+        public static function taxopress_get_ai_settings_data($post_type = false)
         {
-            return 
-                (array) apply_filters(
+            // new settings now store it for each post type
+            if ($post_type) {
+                $settings_option = [
+                    'existing_terms_orderby' => SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_metabox_orderby'),
+                    'existing_terms_order' => SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_metabox_order'),
+                    'existing_terms_maximum_terms' => SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_metabox_maximum_terms'),
+                    'existing_terms_show_post_count' => SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_metabox_show_post_count'),
+                ];
+            } else {
+                // keeping this for legacy purpose
+                $settings_option = (array) apply_filters(
                     'taxopress_get_ai_settings_data',
                     get_option(TaxoPress_AI_Module::TAXOPRESS_AI_OPTION_KEY, []),
                     get_current_blog_id()
                 );
+            }
+
+            return $settings_option;
         }
 
         /**
@@ -50,7 +62,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
          *
          * @return array
          */
-        public static function get_taxonomies()
+        public static function get_taxonomies($include_data = false)
         {
 
             $all_taxonomies = get_taxonomies([], 'objects');//'public' => true, 'show_ui' => true
@@ -82,7 +94,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
                     }
                 }
 
-                $taxonomies[$tax->name] = $tax->labels->name. ' ('.$tax->name.')';
+                $taxonomies[$tax->name] =$include_data ? $tax : $tax->labels->name. ' ('.$tax->name.')';
             }
 
             return $taxonomies;
