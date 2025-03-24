@@ -8,12 +8,18 @@ jQuery(document).ready(function() {
     if (typeof(localStorage) != 'undefined' && localStorage != null) {
         activetab = localStorage.getItem("activetab");
     }
+
+    // allow default tab from parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('active_tab')) {
+        activetab = '#' + urlParams.get('active_tab');
+    }
+    
     if (activetab !== '' && jQuery(activetab).length) {
         jQuery(activetab).fadeIn();
     } else {
         jQuery('.group:first').fadeIn();
     }
-    //console.log(activetab);
 
     if (activetab !== '' && jQuery(activetab + '-tab').length) {
         jQuery(activetab + '-tab').addClass('nav-tab-active');

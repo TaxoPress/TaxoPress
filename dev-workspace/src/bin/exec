@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+show_help() {
+    echo "Usage: $0 [run|update|build|build-push]"
+    echo ""
+    echo "Commands:"
+    echo "- run: Run the dev-workspace container"
+    echo "- update: Update the docker image for the dev-workspace container"
+    echo "- build: Build the docker image"
+    echo "- build-push: Build and push the docker image to the registry"
+    echo "- stop: Stop the dev-workspace container"
+}
+
+if [ -z "$1" ]; then
+    show_help
+    exit 1
+fi
+
+if [ "$1" = "help" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    show_help
+    exit 0
+fi
+
+case "$1" in
+    "run")
+        shift
+        $BIN_PATH/run-container "$@"
+        ;;
+    "update")
+        shift
+        $BIN_PATH/update-docker-image "$@"
+        ;;
+    "build")
+        $BIN_PATH/build-docker-image
+        ;;
+    "build-push")
+        $BIN_PATH/build-push-docker-image $IMAGE_NAME
+        ;;
+    "stop")
+        sh $BIN_PATH/stop-container
+        ;;
+    *)
+        show_help
+        exit 1
+        ;;
+esac

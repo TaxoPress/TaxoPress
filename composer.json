@@ -1,5 +1,29 @@
 {
     "name": "taxopress/simple-tags",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "description": "",
+    "authors": [
+        {
+            "name": "PublishPress",
+            "email": "help@publishpress.com",
+            "homepage": "https://publishpress.com",
+            "role": "Developer"
+        }
+    ],
+    "config": {
+        "process-timeout": 600,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "automattic/jetpack-autoloader": true,
+            "php-http/discovery": true
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.2.5",
         "publishpress/wordpress-version-notices": "^1.1",
@@ -9,17 +33,114 @@
         "psr/container": "1.1.1"
     },
     "require-dev": {
-        "automattic/vipwpcs": "^2.3",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-        "publishpress/publishpress-plugin-builder": "^1.3"
+        "automattic/vipwpcs": "^3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "wp-coding-standards/wpcs": "^3",
+        "squizlabs/php_codesniffer": "^3.8",
+        "phpmd/phpmd": "^2.15",
+        "overtrue/phplint": "^9.1",
+        "wp-cli/i18n-command": "^2.6",
+        "wp-cli/wp-cli-bundle": "^2.10",
+        "friendsofphp/php-cs-fixer": "^3.49",
+        "publishpress/publishpress-phpcs-standards": "dev-main"
     },
     "scripts": {
-        "build": "vendor/bin/robo build --ansi",
-        "build-unpacked": "vendor/bin/robo build:unpacked --ansi"
+        "build": "/scripts/pbuild build",
+        "build:dir": "/scripts/pbuild build-dir",
+        "build:clean": "/scripts/pbuild clean",
+        "get:version": "/scripts/pbuild version",
+        "build:pot-php": "wp i18n make-pot . ./languages/post-expirator.pot --domain=post-expirator --exclude=dev-workspace,.wordpress-org,.github,dist,tests,lib,tmp,doc,*.js,*.js.map,*.jsx --allow-root",
+        "build:pot": [
+            "@build:pot-php"
+        ],
+        "build:mo": "wp i18n make-mo ./languages ./languages --allow-root",
+        "build:po-json": "bash ./dev-workspace/scripts/lang-make-json.sh",
+        "build:l10n-php": "wp i18n make-php ./languages --allow-root",
+        "build:lang": [
+            "@build:pot",
+            "@build:mo",
+            "@build:l10n-php",
+            "@build:po-json"
+        ],
+        "check": [
+            "@check:php",
+            "@check:lint",
+            "@check:cs",
+            "@check:longpath"
+        ],
+        "check:php": [
+            "@check:php-5.6",
+            "@check:php-7.2",
+            "@check:php-7.4",
+            "@check:php-8.0",
+            "@check:php-8.1",
+            "@check:php-8.2",
+            "@check:php-8.3"
+        ],
+        "check:php-5.6": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 5.6 ./simple-tags.php",
+        "check:php-7.2": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 7.2 ./simple-tags.php",
+        "check:php-7.4": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 7.4",
+        "check:php-8.0": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.0",
+        "check:php-8.1": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.1",
+        "check:php-8.2": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.2",
+        "check:php-8.3": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.3",
+        "check:lint": "phplint --no-cache",
+        "check:cs": "phpcs",
+        "check:longpath": "longpath .",
+        "check:pot-diff": "php dev-workspace/scripts/php/bin/pptk pot:diff https://raw.githubusercontent.com/TaxoPress/TaxoPress/refs/heads/main/languages/simple-tags.pot ./languages/simple-tags.pot",
+        "check:pot-diff-md": "php dev-workspace/scripts/php/bin/pptk pot:diff https://raw.githubusercontent.com/TaxoPress/TaxoPress/refs/heads/main/languages/simple-tags.pot ./languages/simple-tags.pot -m",
+        "fix:cs": "phpcbf --standard=.phpcs.xml",
+        "fix:php": [
+            "php-cs-fixer fix .",
+            "@fix:cs"
+        ],
+        "docker:cleanup": "docker system prune -f",
+        "info:versions": "bash .\/dev-workspace\/scripts\/info-versions.sh",
+        "set:version": "php .\/dev-workspace\/scripts\/bump-version.php \"$@\"",
+        "config:phpcs": "phpcs --config-set installed_paths \"../../phpcsstandards/phpcsutils,../../phpcsstandards/phpcsextra,../../automattic/vipwpcs,../../phpcompatibility/php-compatibility,../../sirbrillig/phpcs-variable-analysis,../../publishpress/publishpress-phpcs-standards/standards,../../wp-coding-standards/wpcs\"",
+        "post-install-cmd": [
+            "@config:phpcs"
+        ],
+        "post-update-cmd": [
+            "@config:phpcs"
+        ]
     },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+    "scripts-descriptions": {
+        "build": "Builds the plugin.",
+        "build:dir": "Builds the plugin in a directory.",
+        "build:clean": "Cleans up the build directory.",
+        "get:version": "Gets the version of the plugin.",
+        "build:pot-php": "Generates the POT file for translations of PHP files.",
+        "build:pot": "Generates the POT files for translations of PHP and JavaScript files.",
+        "build:mo": "Generates the MO files for translation files.",
+        "build:po-json": "Generates the JSON files for translations of JavaScript files.",
+        "build:l10n-php": "Generates the PHP language files for performant translations (WP 6.5+).",
+        "build:lang": "Generates the language files for translations.",
+        "check": "Runs all the checks.",
+        "check:php": "Checks the PHP compatibility for all versions.",
+        "check:php-5.6": "Checks the PHP compatibility for PHP 5.6 in the main file only.",
+        "check:php-7.4": "Checks the PHP compatibility for PHP 7.4.",
+        "check:php-8.0": "Checks the PHP compatibility for PHP 8.0.",
+        "check:php-8.1": "Checks the PHP compatibility for PHP 8.1.",
+        "check:php-8.2": "Checks the PHP compatibility for PHP 8.2.",
+        "check:php-8.3": "Checks the PHP compatibility for PHP 8.3.",
+        "check:lint": "Checks the PHP files for syntax errors.",
+        "check:cs": "Checks the PHP files for coding standards.",
+        "check:longpath": "Checks the PHP files for long paths.",
+        "fix:cs": "Fixes the PHP files for coding standards.",
+        "fix:php": "Fixes the PHP files.",
+        "docker:cleanup": "Cleans up the Docker system.",
+        "config:phpcs": "Configures the PHP CodeSniffer installed paths.",
+        "info:versions": "Gets the version of the main tools available.",
+        "set:version": "Sets the version of the plugin.",
+        "check:pot-diff": "Checks the POT file for differences in the main branch.",
+        "check:pot-diff-md": "Checks the POT file for differences in the main branch and outputs the results in Markdown format."
+    },
+    "extra": {
+        "plugin-slug": "simple-tags",
+        "plugin-name": "taxopress",
+        "plugin-folder": "simple-tags",
+        "version-constant": "STAGS_VERSION"
     }
 }
