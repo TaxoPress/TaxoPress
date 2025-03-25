@@ -639,6 +639,9 @@ class SimpleTags_Admin
 					$options['taxopress_ai_' . $post_type . '_metabox_maximum_terms'] = 45;
 					$options['taxopress_ai_' . $post_type . '_metabox_show_post_count'] = 0;
 
+					$options['taxopress_ai_' . $post_type . '_minimum_term_length'] = 5;
+					$options['taxopress_ai_' . $post_type . '_maximum_term_length'] = 10;
+
 
 					$options['taxopress_ai_' . $post_type . '_exclusions'] = '';
 					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
