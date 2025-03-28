@@ -34,18 +34,23 @@ class SimpleTags_Client_Autolinks
 		}
 	}
 
-	public function taxopress_customurl_taxonomies_fields(){
-
-		$taxonomies = wp_list_pluck(get_all_taxopress_taxonomies(), 'name'); 
-
+	public function taxopress_customurl_taxonomies_fields() {
+		$taxonomies = get_taxonomies([], 'objects');
+	
 		foreach ($taxonomies as $taxonomy) {
-
-            add_action("{$taxonomy}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
-            add_action("{$taxonomy}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
-            add_action("edited_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
-            add_action("created_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
-        }	
-
+			$taxonomy_name = $taxonomy->name;
+			$taxonomy_data = taxopress_get_taxonomy_data();
+	
+			// Check if the taxonomy has the enable_custom_url_field setting enabled
+			if (!empty($taxonomy_data[$taxonomy_name]['enable_custom_url_field']) || 
+				(!empty($taxonomy->enable_custom_url_field) && get_taxopress_disp_boolean($taxonomy->enable_custom_url_field))) {
+				
+				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
+				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
+				add_action("edited_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
+				add_action("created_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
+			}
+		}
 	}
 
 	/**
