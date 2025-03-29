@@ -42,8 +42,12 @@ class SimpleTags_Client_Autolinks
 			$taxonomy_data = taxopress_get_taxonomy_data();
 	
 			// Check if the taxonomy has the enable_custom_url_field setting enabled
-			if (!empty($taxonomy_data[$taxonomy_name]['enable_custom_url_field']) || 
-				(!empty($taxonomy->enable_custom_url_field) && get_taxopress_disp_boolean($taxonomy->enable_custom_url_field))) {
+			if (
+				(isset($taxonomy_data[$taxonomy_name]['enable_custom_url_field']) &&
+					get_taxopress_disp_boolean($taxonomy_data[$taxonomy_name]['enable_custom_url_field'])) ||
+				(isset($taxonomy->enable_custom_url_field) &&
+					get_taxopress_disp_boolean($taxonomy->enable_custom_url_field))
+			) {
 				
 				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
 				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
