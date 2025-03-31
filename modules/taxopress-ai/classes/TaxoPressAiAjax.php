@@ -826,6 +826,25 @@ if (!class_exists('TaxoPressAiAjax')) {
                     }
                 }
             }
+
+            // Retrieve minimum and maximum term length settings
+            $min_length = (int) SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_minimum_term_length');
+            $max_length = (int) SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_maximum_term_length');
+
+            // Validate term length
+            $term_length = mb_strlen($term);
+            if ($min_length > 0 && $term_length < $min_length) {
+                return new WP_Error(
+                    'term_too_short',
+                    sprintf(__('Terms must be at least %d characters long.', 'simple-tags'), $min_length)
+                );
+            }
+            if ($max_length > 0 && $term_length > $max_length) {
+                return new WP_Error(
+                    'term_too_long',
+                    sprintf(__('Terms cannot exceed %d characters.', 'simple-tags'), $max_length)
+                );
+            }
         
             return $term;
         }
