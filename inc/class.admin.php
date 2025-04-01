@@ -1159,6 +1159,38 @@ class SimpleTags_Admin
 			}
 			update_option('taxopress_3_28_0_upgrade_completed', true);
 		}
+
+		// Ensure default value for enable_custom_url_field during upgrade
+		if (!get_option('taxopress_enable_custom_url_field_set')) {
+			self::set_default_enable_custom_url_field();
+			update_option('taxopress_enable_custom_url_field_set', true);
+		}
+	}
+
+	private static function set_default_enable_custom_url_field()
+	{
+		$taxonomy_data = array_merge(
+			taxopress_get_taxonomy_data(),
+			taxopress_get_extername_taxonomy_data()
+		);
+
+		$taxonomies = $taxonomy_data;
+		$updated = false;
+
+		foreach ($taxonomies as $taxonomy_name => $taxonomy_data) {
+			$default_value = in_array($taxonomy_name, ['category', 'post_tag']);
+			$default_value = apply_filters('taxopress_enable_custom_url_field_default', $default_value, $taxonomy_name);
+
+			if (!isset($taxonomy_data['enable_custom_url_field']) || $taxonomy_data['enable_custom_url_field'] !== $default_value) {
+				$taxonomy_data['enable_custom_url_field'] = $default_value;
+				$taxonomies[$taxonomy_name] = $taxonomy_data;
+				$updated = true;
+			}
+		}
+
+		if ($updated) {
+			update_option('taxopress_taxonomies', $taxonomies);
+		}
 	}
 
 	/**
@@ -1170,6 +1202,10 @@ class SimpleTags_Admin
 	{
 		if (get_option('taxopress_activate')) {
 			delete_option('taxopress_activate');
+
+			// Set default values for enable_custom_url_field on activation
+			self::set_default_enable_custom_url_field();
+
 			wp_redirect(admin_url("admin.php?page=st_dashboard&welcome"));
 			exit;
 	  	}

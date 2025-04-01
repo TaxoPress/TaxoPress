@@ -35,20 +35,28 @@ class SimpleTags_Client_Autolinks
 	}
 
 	public function taxopress_customurl_taxonomies_fields() {
+
 		$taxonomies = get_taxonomies([], 'objects');
 	
 		foreach ($taxonomies as $taxonomy) {
 			$taxonomy_name = $taxonomy->name;
-			$taxonomy_data = taxopress_get_taxonomy_data();
 	
-			// Check if the taxonomy has the enable_custom_url_field setting enabled
-			if (
-				(isset($taxonomy_data[$taxonomy_name]['enable_custom_url_field']) &&
-					get_taxopress_disp_boolean($taxonomy_data[$taxonomy_name]['enable_custom_url_field'])) ||
-				(isset($taxonomy->enable_custom_url_field) &&
-					get_taxopress_disp_boolean($taxonomy->enable_custom_url_field))
-			) {
-				
+			$taxonomy_data = array_merge(
+				taxopress_get_taxonomy_data(),
+				taxopress_get_extername_taxonomy_data()
+			);
+	
+			// Ensure custom URL field is displayed for 'category' and 'post_tag' by default
+			if (in_array($taxonomy_name, ['category', 'post_tag'])) {
+				$enable_custom_url = isset($taxonomy_data[$taxonomy_name]['enable_custom_url_field'])
+					? get_taxopress_disp_boolean($taxonomy_data[$taxonomy_name]['enable_custom_url_field'])
+					: true;
+			} else {
+				$enable_custom_url = isset($taxonomy_data[$taxonomy_name]['enable_custom_url_field']) &&
+					get_taxopress_disp_boolean($taxonomy_data[$taxonomy_name]['enable_custom_url_field']);
+			}
+	
+			if ($enable_custom_url) {
 				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
 				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
 				add_action("edited_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
