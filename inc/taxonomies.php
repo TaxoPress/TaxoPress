@@ -1006,6 +1006,39 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                     )
                                                 );
 
+                                                $default = isset($current['name']) && in_array($current['name'], ['category', 'post_tag']) ? '1' : '0';
+
+                                                $select = [
+                                                    'options' => [
+                                                        [
+                                                            'attr'    => '0',
+                                                            'text'    => esc_attr__('False', 'simple-tags'),
+                                                            'default' => $default === '0' ? 'true' : 'false',
+                                                        ],
+                                                        [
+                                                            'attr'    => '1',
+                                                            'text'    => esc_attr__('True', 'simple-tags'),
+                                                            'default' => $default === '1' ? 'true' : 'false',
+                                                        ],
+                                                    ],
+                                                ];
+                                                
+                                                $selected = isset($current['enable_custom_url_field']) ? taxopress_disp_boolean($current['enable_custom_url_field']) : $default;
+                                                $select['selected'] = !empty($selected) ? $selected : '0';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                echo $ui->get_select_checkbox_input(
+                                                    array(
+                                                        'namearray' => 'cpt_custom_tax',
+                                                        'name' => 'enable_custom_url_field',
+                                                        'labeltext' => esc_html__(
+                                                            'Enable Custom URL Field',
+                                                            'simple-tags'
+                                                        ),
+                                                        'aftertext' => esc_html__('Should Custom URL Field be available for this taxonomy.', 'simple-tags'),
+                                                        'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    )
+                                                );
+
                                                 ?>
 
                                             </table>
