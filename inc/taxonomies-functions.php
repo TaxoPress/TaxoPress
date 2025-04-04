@@ -246,6 +246,9 @@ function taxopress_update_taxonomy($data = [])
     if ( ! isset( $data['cpt_custom_tax']['show_in_filter'] ) ) {
 		$data['cpt_custom_tax']['show_in_filter'] = 0;
 	}
+    if ( ! isset( $data['cpt_custom_tax']['enable_custom_url_field'] ) ) {
+        $data['cpt_custom_tax']['enable_custom_url_field'] = 0;
+	}
 
     /**
      * Fires before a taxonomy is updated to our saved options.
@@ -349,6 +352,7 @@ function taxopress_update_taxonomy($data = [])
     $show_quickpanel_bulk  = !empty($data['cpt_custom_tax']['show_in_quick_edit']) ? taxopress_disp_boolean($data['cpt_custom_tax']['show_in_quick_edit']) : '';
     $show_in_filter        = !empty($data['cpt_custom_tax']['show_in_filter']) ? taxopress_disp_boolean($data['cpt_custom_tax']['show_in_filter']) : '';
     $default_term          = trim($data['cpt_custom_tax']['default_term']);
+    $enable_custom_url_field = !empty($data['cpt_custom_tax']['enable_custom_url_field']) ? taxopress_disp_boolean($data['cpt_custom_tax']['enable_custom_url_field']) : '';
 
     $meta_box_cb = trim($data['cpt_custom_tax']['meta_box_cb']);
     // We may or may not need to force a boolean false keyword.
@@ -392,6 +396,7 @@ function taxopress_update_taxonomy($data = [])
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
             'show_in_filter'        => $show_in_filter,
+            'enable_custom_url_field' => taxopress_disp_boolean($data['cpt_custom_tax']['enable_custom_url_field']),
         ];
 
         $taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : '';
@@ -444,6 +449,7 @@ function taxopress_update_taxonomy($data = [])
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
             'show_in_filter'        => $show_in_filter,
+            'enable_custom_url_field' => taxopress_disp_boolean($data['cpt_custom_tax']['enable_custom_url_field']),
         ];
 
         $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : [];
@@ -1396,6 +1402,8 @@ function taxopress_register_single_taxonomy($taxonomy = [])
 
     $show_in_filter = (!empty($taxonomy['show_in_filter']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_filter'])) ? true : false;
 
+    $enable_custom_url_field = (!empty($taxonomy['enable_custom_url_field']) && false !== get_taxopress_disp_boolean($taxonomy['enable_custom_url_field'])) ? true : false;
+
     $rest_base = null;
     if (!empty($taxonomy['rest_base'])) {
         $rest_base = $taxonomy['rest_base'];
@@ -1452,6 +1460,7 @@ function taxopress_register_single_taxonomy($taxonomy = [])
         'show_in_filter'        => $show_in_filter,
         'meta_box_cb'           => $meta_box_cb,
         'default_term'          => $default_term,
+        'enable_custom_url_field' => $enable_custom_url_field,
     ];
 
     $object_type = !empty($taxonomy['object_types']) ? $taxonomy['object_types'] : '';
@@ -2182,6 +2191,8 @@ function taxopress_re_register_single_taxonomy($taxonomy)
 
     $show_in_filter = (!empty($taxonomy['show_in_filter']) && false !== get_taxopress_disp_boolean($taxonomy['show_in_filter'])) ? true : false;
 
+    $enable_custom_url_field = (!empty($taxonomy['enable_custom_url_field']) && false !== get_taxopress_disp_boolean($taxonomy['enable_custom_url_field'])) ? true : false;
+
     $rest_base = null;
     if (!empty($taxonomy['rest_base'])) {
         $rest_base = $taxonomy['rest_base'];
@@ -2239,6 +2250,7 @@ function taxopress_re_register_single_taxonomy($taxonomy)
         'show_in_filter'        => $show_in_filter,
         'meta_box_cb'           => $meta_box_cb,
         'default_term'          => $default_term,
+        'enable_custom_url_field' => $enable_custom_url_field,
     ];
 
     $object_type = !empty($taxonomy['object_types']) ? $taxonomy['object_types'] : '';
