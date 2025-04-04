@@ -27,6 +27,7 @@ class SimpleTags_Admin_Manage
 
         //load ajax
         add_action('wp_ajax_taxopress_check_delete_terms', array( $this, 'handle_taxopress_check_delete_terms_ajax'));
+        add_action('wp_ajax_taxopress_autocomplete_terms', [ $this, 'handle_taxopress_autocomplete_terms']);
 
     }
 
@@ -364,7 +365,7 @@ class SimpleTags_Admin_Manage
 											<label
 												for="renameterm_old"><?php _e('Term(s) to merge.', 'simple-tags'); ?></label>
 											<br />
-											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea"
+											<textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea merge-feature-autocomplete"
 												id="mergeterm_old" name="renameterm_old" size="80" /></textarea>
 										</p>
 
@@ -372,7 +373,7 @@ class SimpleTags_Admin_Manage
 											<label
 												for="renameterm_new"><?php _e('New term. The Old terms will be deleted and any posts assigned to the old terms will be re-assigned to this term.', 'simple-tags'); ?></label>
 												<br />
-												<textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new"
+												<textarea type="text" class="autocomplete-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_new"
 													name="renameterm_new" size="80" /></textarea>
 										</p>
 
@@ -506,10 +507,14 @@ class SimpleTags_Admin_Manage
      */
     public static function mergeTerms($taxonomy = 'post_tag', $old = '', $new = '', $merge_type = '')
     {
-        if ($merge_type === 'same_name'){
+        // Helper function to extract term name (ignoring slug in brackets)
+        $extractTermName = function ($term) {
+            return trim(preg_replace('/\s*\(.*?\)$/', '', $term));
+        };
 
+        if ($merge_type === 'same_name') {
             $old_terms = explode(',', $old);
-
+            $old_terms = array_map($extractTermName, $old_terms);
             $old_terms = array_filter($old_terms, '_delete_empty_element');
 
             if (empty($old_terms)) {
@@ -591,6 +596,9 @@ class SimpleTags_Admin_Manage
             $old_terms = explode(',', $old);
             $new_terms = explode(',', $new);
 
+            $old_terms = array_map($extractTermName, $old_terms);
+            $new_terms = array_map($extractTermName, $new_terms);
+
             // Remove empty element and trim
             $old_terms = array_filter($old_terms, '_delete_empty_element');
             $new_terms = array_filter($new_terms, '_delete_empty_element');
@@ -619,33 +627,44 @@ class SimpleTags_Admin_Manage
                     return false;
                 }
 
+                // Ensure the new term exists or create it
+                $new_term = get_term_by('name', $new_tag, $taxonomy);
+                if (!$new_term) {
+                    $new_term_info = wp_insert_term($new_tag, $taxonomy);
+                    if (is_wp_error($new_term_info)) {
+                        add_settings_error(__CLASS__, __CLASS__, esc_html__('Failed to create the new term.', 'simple-tags'), 'error taxopress-notice');
+                        return false;
+                    }
+                    $new_term_id = $new_term_info['term_id'];
+                    $new_term_slug = isset($new_term_info['slug']) ? $new_term_info['slug'] : sanitize_title($new_tag);
+                } else {
+                    $new_term_id = $new_term->term_id;
+                    $new_term_slug = $new_term->slug;
+                }
+
                 // Get terms ID from old terms names
                 $terms_id = array();
                 foreach ((array) $old_terms as $old_tag) {
                     $term       = get_term_by('name', addslashes(sanitize_text_field($old_tag)), $taxonomy);
-                    $terms_id[] = (int) $term->term_id;
+                    if ($term) {
+                        $terms_id[] = (int) $term->term_id;
+                    }
                 }
 
                 // Get objects from terms ID
-                $objects_id = get_objects_in_term($terms_id, $taxonomy, array( 'fields' => 'all_with_object_id' ));
+                $objects_id = get_objects_in_term($terms_id, $taxonomy, ['fields' => 'ids']);
 
-                // No objects ? exit !
-                if (! $objects_id) {
+                // Use a set to track unique post IDs
+                $unique_objects = [];
 
-                    // Delete old terms
-                    foreach ((array) $terms_id as $term_id) {
-                        wp_delete_term($term_id, $taxonomy);
-                    }
-
-                    add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Merge term(s) "%1$s" to "%2$s". %3$s posts edited.', 'simple-tags'), rtrim($old, ','), rtrim($new, ','), $counter), 'updated taxopress-notice');
-                    return true;
-                }
-
-                // Set objects to new term ! (Append no replace)
+                // Assign the new term to all posts associated with the old terms
                 foreach ((array) $objects_id as $object_id) {
-                    wp_set_object_terms($object_id, $new_tag, $taxonomy, true);
-                    $counter ++;
+                    wp_set_object_terms($object_id, $new_term_slug, $taxonomy, true);
+                    $unique_objects[$object_id] = true; // Add to unique set
                 }
+
+                // Count unique posts
+                $counter = count($unique_objects);
 
                 // Delete old terms
                 foreach ((array) $terms_id as $term_id) {
@@ -1117,6 +1136,33 @@ class SimpleTags_Admin_Manage
         }
     
         return true;
+    }
+
+    public static function handle_taxopress_autocomplete_terms() {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
+            wp_send_json_error(['message' => __('Nonce verification failed.', 'simple-tags')]);
+            wp_die();
+        }
+    
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : 'post_tag';
+        $term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
+    
+        $terms = get_terms([
+            'taxonomy' => $taxonomy,
+            'name__like' => $term,
+            'hide_empty' => false,
+        ]);
+    
+        $results = [];
+        foreach ($terms as $term) {
+            $results[] = [
+                'name' => $term->name,
+                'slug' => $term->slug
+            ];
+        }
+    
+        wp_send_json($results);
+        wp_die();
     }
     
 

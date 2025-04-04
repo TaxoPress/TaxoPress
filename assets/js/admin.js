@@ -1766,6 +1766,60 @@
       });
     }
 
+    // Autocomplete for merge feature
+    if ($('.merge-feature-autocomplete').length > 0) {
+        $('.merge-feature-autocomplete').each(function () {
+
+            const taxonomy = $('input[name="taxo"]').val();
+            const inputField = $(this);
+
+            inputField.autocomplete({
+                source: function (request, response) {
+                    const lastTerm = request.term.split(',').pop().trim(); // Get the last term after the comma
+                    $.ajax({
+                        url: st_admin_localize.ajaxurl,
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            action: 'taxopress_autocomplete_terms',
+                            term: lastTerm,
+                            taxonomy: taxonomy,
+                            nonce: st_admin_localize.check_nonce
+                        },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.name + ' (' + item.slug + ')',
+                                    value: item.name + ' (' + item.slug + ')'
+                                };
+                            }));
+                        }
+                    });
+                },
+                minLength: 1,
+                focus: function () {
+                    // Prevent value insertion on focus
+                    return false;
+                },
+                select: function (event, ui) {
+                    const currentValue = inputField.val();
+                    const terms = currentValue.split(',').map(term => term.trim());
+
+                    terms[terms.length - 1] = ui.item.value;
+
+                    inputField.val(terms.join(', ') + ', ');
+
+                    return false;
+                }
+            }).on('keydown', function (event) {
+                // Allow autocomplete to trigger after typing a comma
+                if (event.key === ',') {
+                    $(this).autocomplete('search', '');
+                }
+            });
+        });
+    }
+
   });
 
 })(jQuery);
