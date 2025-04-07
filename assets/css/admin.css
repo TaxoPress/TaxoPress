@@ -505,6 +505,16 @@ body.taxopress_page_st_terms tr.inline-edit-row td {
     display: inline-block;
 }
 
+.box-selector-taxonomy .change-taxo select,
+.box-selector-taxonomy .change-taxo input[type="submit"] {
+    margin: 0;
+    padding: 6px 10px;
+    height: auto;
+    font-size: 14px;
+    line-height: 1.42857143; /* Match default WP admin */
+    box-sizing: border-box;
+}
+
 /* Custom CSS for pagination */
 .tablenav.custom-nav .tablenav-pages {
     margin-top: 10px;
