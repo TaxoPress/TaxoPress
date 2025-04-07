@@ -237,7 +237,7 @@
     // -------------------------------------------------------------
     //   Show taxonomy option based on selected CPT for other screen
     // -------------------------------------------------------------
-    $(document).on('change paste keyup', '.st-cpt-select, .st-post-type-select', function () {
+    $(document).on('change paste keyup', '.st-cpt-select, .st-post-type-select', function (e) {
       var val = this.value;
       var $el = $(this);
       var new_val = null;
