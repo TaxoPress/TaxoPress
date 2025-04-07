@@ -468,7 +468,15 @@ class SimpleTags_Admin
 		// Save for use elsewhere
 		self::$post_type = $current_cpt;
 		self::$taxonomy  = $current_taxo;
-	
+
+		// Update $post_type_name dynamically
+		if ($current_cpt) {
+			$post_type_object = get_post_type_object($current_cpt);
+			if ($post_type_object) {
+				self::$post_type_name = $post_type_object->labels->name;
+			}
+		}
+
 		// Save to DB for persistence
 		update_option("{$tab_slug}_taxo", $current_taxo);
 		update_option("{$tab_slug}_cpt", $current_cpt);
