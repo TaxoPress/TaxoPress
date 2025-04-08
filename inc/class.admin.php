@@ -444,7 +444,7 @@ class SimpleTags_Admin
 		echo '</div>' . PHP_EOL;
 	}
 
-	public static function tabSelectorTaxonomy($tab_slug = '')
+	public static function tabSelectorTaxonomy($tab_slug = '', $page_slug = '')
 	{
 		$current_taxo = isset($_GET["{$tab_slug}_taxo"]) ? sanitize_text_field($_GET["{$tab_slug}_taxo"]) : get_option("{$tab_slug}_taxo", '');
 		$current_cpt  = isset($_GET["{$tab_slug}_cpt"]) ? sanitize_text_field($_GET["{$tab_slug}_cpt"]) : get_option("{$tab_slug}_cpt", '');
@@ -487,6 +487,8 @@ class SimpleTags_Admin
 		echo '<div class="change-taxo">' . PHP_EOL;
 	
 		echo '<form action="' . esc_url(admin_url('admin.php')) . '" method="get">' . PHP_EOL;
+		$page = !empty($page_slug) ? $page_slug : (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : 'st_manage');
+		echo '<input type="hidden" name="page" value="' . esc_attr($page) . '" />' . PHP_EOL;
 		echo '<input type="hidden" name="page" value="st_manage" />' . PHP_EOL;
 	
 		if (!empty($tab_slug)) {

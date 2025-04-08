@@ -208,7 +208,7 @@ class SimpleTags_Admin_Manage
 
                     <tr valign="top" class="auto-terms-content st-add-terms" style="<?php echo $active_tab_slug === 'add-terms' ? '' : 'display:none;'; ?>">
                             <td>
-                            <?php SimpleTags_Admin::tabSelectorTaxonomy('add-terms'); ?>
+                            <?php SimpleTags_Admin::tabSelectorTaxonomy('add-terms', 'st_manage'); ?>
                                 <h2><?php _e('Add Terms', 'simple-tags'); ?></h2>
                                 <p><?php printf(esc_html__('This feature lets you add one or more new terms to all %s which match any of the terms given.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
                                 <p><?php printf(esc_html__('Terms will be added to all %s If no "Term(s) to match" is specified.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
@@ -252,7 +252,7 @@ class SimpleTags_Admin_Manage
 
                         <tr valign="top" class="auto-terms-content st-remove-terms" style="<?php echo $active_tab_slug === 'remove-terms' ? '' : 'display:none;'; ?>">
                             <td>
-                            <?php SimpleTags_Admin::tabSelectorTaxonomy('remove-terms'); ?>
+                            <?php SimpleTags_Admin::tabSelectorTaxonomy('remove-terms', 'st_manage'); ?>
                                 <h2><?php _e('Remove Terms', 'simple-tags'); ?></h2>
                                 <p><?php printf(esc_html__('This feature lets you remove one or more terms from all %s which match any of the terms given.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
                                 <p><?php printf(esc_html__('Terms will be removed from all %s If no "Term(s) to match" is specified.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
@@ -296,7 +296,7 @@ class SimpleTags_Admin_Manage
 
 						<tr valign="top" class="auto-terms-content st-rename-terms" style="<?php echo $active_tab_slug === 'rename-terms' ? '' : 'display:none;'; ?>">
                             <td>
-                            <?php SimpleTags_Admin::tabSelectorTaxonomy('rename-terms'); ?>
+                            <?php SimpleTags_Admin::tabSelectorTaxonomy('rename-terms', 'st_manage'); ?>
                                 <h2><?php _e('Rename Terms', 'simple-tags'); ?></h2>
                                 <p><?php _e('Enter the terms to rename and their new names.', 'simple-tags'); ?></p>
 
@@ -325,7 +325,7 @@ class SimpleTags_Admin_Manage
 
 						<tr valign="top" class="auto-terms-content st-merge-terms" style="<?php echo $active_tab_slug === 'merge-terms' ? '' : 'display:none;'; ?>">
                             <td>
-                            <?php SimpleTags_Admin::tabSelectorTaxonomy('merge-terms'); ?>
+                            <?php SimpleTags_Admin::tabSelectorTaxonomy('merge-terms', 'st_manage'); ?>
                                 <h2><?php _e('Merge Terms', 'simple-tags'); ?></h2>
                                 <p><?php esc_html_e('This feature will delete existing terms and replace them with another term. If you want to merge term “A” into term “B”, put “A” in the first box and “B” in the second box.', 'simple-tags'); ?></p>
                                 <p><?php esc_html_e('For terms with the same name, put name in the first box and merge. For terms with different names, provide the terms to merge and the new term name in the second box; the old terms will be replaced.', 'simple-tags'); ?></p>
@@ -361,7 +361,7 @@ class SimpleTags_Admin_Manage
 
 						<tr valign="top" class="auto-terms-content st-delete-unuused-terms" style="<?php echo $active_tab_slug === 'delete-unuused-terms' ? '' : 'display:none;'; ?>">
                             <td>
-                            <?php SimpleTags_Admin::tabSelectorTaxonomy('delete-unuused-terms'); ?>
+                            <?php SimpleTags_Admin::tabSelectorTaxonomy('delete-unuused-terms', 'st_manage'); ?>
                                 <h2><?php esc_html_e('Remove rarely used terms', 'simple-tags'); ?></h2>
                                 <p><?php esc_html_e('This feature allows you to remove rarely used terms.', 'simple-tags'); ?></p>
                                 <p><?php printf(esc_html__('If you choose 5, Taxopress will delete all terms attached to less than 5 %s.', 'simple-tags'), esc_html(SimpleTags_Admin::$post_type_name)); ?></p>
