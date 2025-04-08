@@ -93,29 +93,59 @@ class SimpleTags_Admin_Manage
 
                 add_settings_error(__CLASS__, __CLASS__, esc_html__('Missing valid taxonomy for work. Try again.', 'simple-tags'), 'error taxopress-notice');
             } elseif ($_POST['term_action'] == 'renameterm') {
-                $oldtag = (isset($_POST['renameterm_old'])) ? sanitize_text_field($_POST['renameterm_old']) : '';
-                $newtag = (isset($_POST['renameterm_new'])) ? sanitize_text_field($_POST['renameterm_new']) : '';
-                self::renameTerms(SimpleTags_Admin::$taxonomy, $oldtag, $newtag);
-                $default_tab = '.st-rename-terms';
+                $taxonomy = isset($_POST['current_taxo']) ? sanitize_text_field($_POST['current_taxo']) : 'post_tag';
+                $post_type = isset($_POST['current_cpt']) ? sanitize_text_field($_POST['current_cpt']) : 'post';
+            
+                SimpleTags_Admin::$taxonomy = $taxonomy;
+                SimpleTags_Admin::$post_type = $post_type;
+            
+                $oldtag = isset($_POST['renameterm_old']) ? sanitize_text_field($_POST['renameterm_old']) : '';
+                $newtag = isset($_POST['renameterm_new']) ? sanitize_text_field($_POST['renameterm_new']) : '';
+                self::renameTerms($taxonomy, $oldtag, $newtag);
+                $default_tab = '.st-rename-terms';            
             } elseif ($_POST['term_action'] == 'mergeterm') {
-                $oldtag = (isset($_POST['renameterm_old'])) ? sanitize_text_field($_POST['renameterm_old']) : '';
-                $newtag = (isset($_POST['renameterm_new'])) ? sanitize_text_field($_POST['renameterm_new']) : '';
-                $merge_type = (isset($_POST['mergeterm_type'])) ? sanitize_text_field($_POST['mergeterm_type']) : '';
-                self::mergeTerms(SimpleTags_Admin::$taxonomy, $oldtag, $newtag, $merge_type);
-                $default_tab = '.st-merge-terms';
+                $taxonomy = isset($_POST['current_taxo']) ? sanitize_text_field($_POST['current_taxo']) : 'post_tag';
+                $post_type = isset($_POST['current_cpt']) ? sanitize_text_field($_POST['current_cpt']) : 'post';
+            
+                SimpleTags_Admin::$taxonomy = $taxonomy;
+                SimpleTags_Admin::$post_type = $post_type;
+            
+                $oldtag = isset($_POST['renameterm_old']) ? sanitize_text_field($_POST['renameterm_old']) : '';
+                $newtag = isset($_POST['renameterm_new']) ? sanitize_text_field($_POST['renameterm_new']) : '';
+                $merge_type = isset($_POST['mergeterm_type']) ? sanitize_text_field($_POST['mergeterm_type']) : '';
+                self::mergeTerms($taxonomy, $oldtag, $newtag, $merge_type);
+                $default_tab = '.st-merge-terms';            
             } elseif ($_POST['term_action'] == 'addterm') {
-                $matchtag = (isset($_POST['addterm_match'])) ? sanitize_text_field($_POST['addterm_match']) : '';
-                $newtag   = (isset($_POST['addterm_new'])) ? sanitize_text_field($_POST['addterm_new']) : '';
-                self::addMatchTerms(SimpleTags_Admin::$taxonomy, $matchtag, $newtag);
-                $default_tab = '.st-add-terms';
-            }  elseif ($_POST['term_action'] == 'removeterm') {
-                $matchtag = (isset($_POST['removeterm_match'])) ? sanitize_text_field($_POST['removeterm_match']) : '';
-                $removetag = (isset($_POST['remove_term'])) ? sanitize_text_field($_POST['remove_term']) : '';
-                self::removeMatchTerms(SimpleTags_Admin::$taxonomy, $matchtag, $removetag);
-                $default_tab = '.st-remove-terms';    
+                $taxonomy = isset($_POST['current_taxo']) ? sanitize_text_field($_POST['current_taxo']) : 'post_tag';
+                $post_type = isset($_POST['current_cpt']) ? sanitize_text_field($_POST['current_cpt']) : 'post';
+            
+                SimpleTags_Admin::$taxonomy = $taxonomy;
+                SimpleTags_Admin::$post_type = $post_type;
+            
+                $oldtag = isset($_POST['addterm_match']) ? sanitize_text_field($_POST['addterm_match']) : '';
+                $newtag = isset($_POST['addterm_new']) ? sanitize_text_field($_POST['addterm_new']) : '';
+                self::addMatchTerms($taxonomy, $oldtag, $newtag);
+                $default_tab = '.st-add-terms';           
+            }   elseif ($_POST['term_action'] == 'removeterm') {
+                $taxonomy = isset($_POST['current_taxo']) ? sanitize_text_field($_POST['current_taxo']) : 'post_tag';
+                $post_type = isset($_POST['current_cpt']) ? sanitize_text_field($_POST['current_cpt']) : 'post';
+            
+                SimpleTags_Admin::$taxonomy = $taxonomy;
+                SimpleTags_Admin::$post_type = $post_type;
+            
+                $matchtag = isset($_POST['removeterm_match']) ? sanitize_text_field($_POST['removeterm_match']) : '';
+                $removetag = isset($_POST['remove_term']) ? sanitize_text_field($_POST['remove_term']) : '';
+                self::removeMatchTerms($taxonomy, $matchtag, $removetag);
+                $default_tab = '.st-remove-terms';            
             } elseif ($_POST['term_action'] == 'remove-rarelyterms') {
-                self::removeRarelyUsed(SimpleTags_Admin::$taxonomy, (int) $_POST['number-rarely']);
-                $default_tab = '.st-delete-unuused-terms';
+                $taxonomy = isset($_POST['current_taxo']) ? sanitize_text_field($_POST['current_taxo']) : 'post_tag';
+                $post_type = isset($_POST['current_cpt']) ? sanitize_text_field($_POST['current_cpt']) : 'post';
+            
+                SimpleTags_Admin::$taxonomy = $taxonomy;
+                SimpleTags_Admin::$post_type = $post_type;
+            
+                self::removeRarelyUsed($taxonomy, (int) $_POST['number-rarely']);
+                $default_tab = '.st-delete-unuused-terms';            
             } /* elseif ( $_POST['term_action'] == 'editslug'  ) {
 
                 $matchtag = (isset($_POST['tagname_match'])) ? $_POST['tagname_match'] : '';
@@ -176,7 +206,7 @@ class SimpleTags_Admin_Manage
 
 					<table class="form-table">
 
-                        <tr valign="top" class="auto-terms-content st-add-terms" style="<?php echo $active_tab_slug === 'add-terms' ? '' : 'display:none;'; ?>">
+                    <tr valign="top" class="auto-terms-content st-add-terms" style="<?php echo $active_tab_slug === 'add-terms' ? '' : 'display:none;'; ?>">
                             <td>
                             <?php SimpleTags_Admin::tabSelectorTaxonomy('add-terms'); ?>
                                 <h2><?php _e('Add Terms', 'simple-tags'); ?></h2>
@@ -185,9 +215,11 @@ class SimpleTags_Admin_Manage
 
                                 <fieldset>
                                     <form action="" method="post">
-                                        <input type="hidden" name="term_action" value="addterm" />
-                                        <input type="hidden" name="term_nonce" value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
-                                        <input type="hidden" name="current_tab" value="add-terms" />
+                                    <input type="hidden" name="term_action" value="addterm" />
+                                    <input type="hidden" name="term_nonce" value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
+                                    <input type="hidden" name="current_tab" value="add-terms" />
+                                    <input type="hidden" name="current_taxo" value="<?php echo esc_attr(get_option('add-terms_taxo')); ?>" />
+                                    <input type="hidden" name="current_cpt" value="<?php echo esc_attr(get_option('add-terms_cpt')); ?>" />
 
                                         <p class="terms-type-options">
                                             <label>
@@ -230,6 +262,8 @@ class SimpleTags_Admin_Manage
                                         <input type="hidden" name="term_action" value="removeterm" />
                                         <input type="hidden" name="term_nonce" value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
                                         <input type="hidden" name="current_tab" value="remove-terms" />
+                                        <input type="hidden" name="current_taxo" value="<?php echo esc_attr(get_option('remove-terms_taxo')); ?>" />
+                                        <input type="hidden" name="current_cpt" value="<?php echo esc_attr(get_option('remove-terms_cpt')); ?>" />
 
                                         <p class="terms-type-options">
                                             <label>
@@ -244,14 +278,14 @@ class SimpleTags_Admin_Manage
 
                                         <p class="removeterms-to-match-input" style="display: none;">
                                             <label for="removeterm_match"><?php _e('Term(s) to match:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea" id="removeterm_match" name="removeterm_match" size="80" data-tab="add-terms"
-                                            data-taxo="<?php echo esc_attr(get_option('add-terms_taxo')); ?>"></textarea>
+                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea" id="removeterm_match" name="removeterm_match" size="80" data-tab="remove-terms"
+                                            data-taxo="<?php echo esc_attr(get_option('remove-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <p>
                                             <label for="remove_term"><?php _e('Term(s) to remove:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="remove_term" name="remove_term" size="80" data-tab="add-terms"
-                                            data-taxo="<?php echo esc_attr(get_option('add-terms_taxo')); ?>"></textarea>
+                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="remove_term" name="remove_term" size="80" data-tab="remove-terms"
+                                            data-taxo="<?php echo esc_attr(get_option('remove-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <input class="button-primary" type="submit" name="Remove" value="<?php _e('Remove', 'simple-tags'); ?>" />
@@ -271,15 +305,16 @@ class SimpleTags_Admin_Manage
                                         <input type="hidden" name="term_action" value="renameterm" />
                                         <input type="hidden" name="term_nonce" value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
                                         <input type="hidden" name="current_tab" value="rename-terms" />
-
+                                        <input type="hidden" name="current_taxo" value="<?php echo esc_attr(get_option('rename-terms_taxo')); ?>" />
+                                        <input type="hidden" name="current_cpt" value="<?php echo esc_attr(get_option('rename-terms_cpt')); ?>" />
                                         <p>
                                             <label for="renameterm_old"><?php _e('Term(s) to rename:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea" id="renameterm_old" name="renameterm_old" size="80"></textarea>
+                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea" id="renameterm_old" name="renameterm_old" size="80" data-taxo="<?php echo esc_attr(get_option('rename-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <p>
                                             <label for="renameterm_new"><?php _e('New term name(s):', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new" name="renameterm_new" size="80"></textarea>
+                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new" name="renameterm_new" size="80" data-taxo="<?php echo esc_attr(get_option('rename-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <input class="button-primary" type="submit" name="rename" value="<?php _e('Rename', 'simple-tags'); ?>" />
@@ -300,6 +335,8 @@ class SimpleTags_Admin_Manage
                                         <input type="hidden" name="term_action" value="mergeterm" />
                                         <input type="hidden" name="term_nonce" value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
                                         <input type="hidden" name="current_tab" value="merge-terms" />
+                                        <input type="hidden" name="current_taxo" value="<?php echo esc_attr(get_option('merge-terms_taxo')); ?>" />
+                                        <input type="hidden" name="current_cpt" value="<?php echo esc_attr(get_option('merge-terms_cpt')); ?>" />
 
                                         <p class="terms-type-options">
                                             <label><input type="radio" id="mergeterm_type" class="mergeterm_type_same_name" name="mergeterm_type" value="same_name" checked="checked"><?php esc_html_e('Merge terms with same name.', 'simple-tags'); ?></label><br>
@@ -308,12 +345,12 @@ class SimpleTags_Admin_Manage
 
                                         <p>
                                             <label for="renameterm_old"><?php _e('Term(s) to merge.', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_old" name="renameterm_old" size="80"></textarea>
+                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_old" name="renameterm_old" size="80" data-taxo="<?php echo esc_attr(get_option('merge-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <p class="new_name_input" style="display: none;">
                                             <label for="renameterm_new"><?php _e('New term. The Old terms will be deleted and any posts assigned to the old terms will be re-assigned to this term.', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_new" name="renameterm_new" size="80"></textarea>
+                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_new" name="renameterm_new" size="80" data-taxo="<?php echo esc_attr(get_option('merge-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <input class="button-primary" type="submit" name="merge" value="<?php _e('Merge', 'simple-tags'); ?>" />
@@ -334,6 +371,8 @@ class SimpleTags_Admin_Manage
                                         <input type="hidden" name="term_action" value="remove-rarelyterms" />
                                         <input type="hidden" name="term_nonce" value="<?php echo esc_attr(wp_create_nonce('simpletags_admin')); ?>" />
                                         <input type="hidden" name="current_tab" value="delete-unuused-terms" />
+                                        <input type="hidden" name="current_taxo" value="<?php echo esc_attr(get_option('delete-unuused-terms_taxo')); ?>" />
+                                        <input type="hidden" name="current_cpt" value="<?php echo esc_attr(get_option('delete-unuused-terms_cpt')); ?>" />
 
                                         <p>
                                             <label for="number-delete"><?php _e('Minimum number of uses for each term:', 'simple-tags'); ?></label><br />
