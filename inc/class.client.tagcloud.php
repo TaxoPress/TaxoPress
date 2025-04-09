@@ -227,25 +227,60 @@ class SimpleTags_Client_TagCloud {
 		}
 
 		//Remove style component when display format is set to table, wordpress default, border
-		if (in_array($format, ['comma', 'table', 'border'])) {
+		if (in_array($format, ['comma', 'table', 'border', 'parent/child'])) {
 			$xformat = __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel%>%tag_name%</a>', 'simple-tags' );
 		}	
 
 		// Order terms before output
 		// count, name, rand | asc, desc
 
-		$orderby = strtolower( $orderby );
-		if ( $orderby == 'count' ) {
-			asort( $counts );
-		} elseif ( $orderby == 'name' ) {
-			uksort( $counts, array( __CLASS__, 'uksort_by_name' ) );
-		} else { // rand
-			SimpleTags_Client::random_array( $counts );
-		}
-
-		$order = strtolower( $order );
-		if ( $order == 'desc' && $orderby != 'random' ) {
-			$counts = array_reverse( $counts, true );
+		if (in_array($format, ['parent/child']) && $args['display_mode'] === 'parents_and_sub') {
+			$terms = self::getTags($args, $taxonomy);
+		
+			// Check if terms is empty or invalid
+			if (empty($terms)) {
+				return SimpleTags_Client::output_content('st-tag-cloud', $format, $title, $notagstext, $copyright, '', $wrap_class, $link_class);
+			}
+		
+			// First, group terms by parent term
+			$grouped_terms = [];
+			foreach ($terms as $term) {
+				// Only group terms with a parent (excluding standalone terms)
+				if ($term->parent != 0) {
+					$parent_id = $term->parent;
+					if (!isset($grouped_terms[$parent_id])) {
+						$grouped_terms[$parent_id] = [];
+					}
+					$grouped_terms[$parent_id][] = $term;
+				}
+			}
+		
+			// Then, sort each group by name
+			foreach ($grouped_terms as &$parent_group) {
+				usort($parent_group, function ($a, $b) {
+					return strcmp($a->name, $b->name);
+				});
+			}
+		
+			// Merge all grouped terms into a single array, ensuring correct parent-child order
+			$terms = [];
+			foreach ($grouped_terms as $parent_group) {
+				$terms = array_merge($terms, $parent_group);
+			}
+		} else {
+			// Default sorting logic
+			$orderby = strtolower($orderby);
+			if ($orderby == 'count') {
+				asort($counts);
+			} elseif ($orderby == 'name') {
+				uksort($counts, [__CLASS__, 'uksort_by_name']);
+			} else { // rand
+				SimpleTags_Client::random_array($counts);
+			}
+			$order = strtolower($order);
+			if ($order == 'desc' && $orderby != 'random') {
+				$counts = array_reverse($counts, true);
+			}
 		}
 
 		$output = array();
@@ -266,7 +301,7 @@ class SimpleTags_Client_TagCloud {
 			$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
 		}
 
-		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright, '', $wrap_class, $link_class, $before, $after );
+		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright, '', $wrap_class, $link_class, $before, $after, $taxonomy );
 	}
 
 

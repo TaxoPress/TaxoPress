@@ -366,6 +366,7 @@ class TagClouds_List extends WP_List_Table
             'comma' => esc_attr__('WordPress Default', 'simple-tags'),
             'table' => esc_attr__('Table List', 'simple-tags'), 
             'border' => esc_attr__('Border Cloud', 'simple-tags'),
+            'parent/child' => esc_attr__('Parent / Child', 'simple-tags'),
         ];
 
         return $days_options[$item['format']];
