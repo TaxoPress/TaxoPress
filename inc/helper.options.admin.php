@@ -147,12 +147,12 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Exclusions', 'simple-tags') . '</div>',
             'textarea',
             '',
-            '',
+            '<p>' . esc_html__('Enter characters (comma-separated) to exclude when creating terms.', 'simple-tags') . '</p>',
             'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
             '',
             array(
                 'rows' => 6,
-                'placeholder' => esc_attr__('Enter characters you want to exclude when creating new terms, e.g. ! ? #', 'simple-tags'),
+                'placeholder' => esc_attr__('Enter characters you want to exclude when creating new terms, e.g. !, ?, #', 'simple-tags'),
                 'width' => '80%'
             )
         );
