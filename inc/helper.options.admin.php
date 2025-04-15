@@ -152,7 +152,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             array(
                 'rows' => 6,
-                'placeholder' => esc_attr__('Enter characters you want to exclude when creating new terms, e.g. ! ? #', 'simple-tags'),
+                'placeholder' => esc_attr__('Enter characters that will be blocked when users add new terms inside the "Create Terms" box. For example: !@#$%&*()', 'simple-tags'),
                 'width' => '80%'
             )
         );
