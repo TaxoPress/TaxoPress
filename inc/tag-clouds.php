@@ -416,20 +416,38 @@ class SimpleTags_Tag_Clouds
 
                                                 $options = [
                                                     ['attr' => 'all', 'text' => esc_html__('All Parent Terms', 'simple-tags'), 'default' => 'true']
-                                                ];
+                                                ];                
                                                 if (!empty($current['taxonomy'])) {
-                                                    $parent_terms = get_terms([
-                                                        'taxonomy'   => $current['taxonomy'],
-                                                        'parent'     => 0,
-                                                        'hide_empty' => false
+                                                    $taxonomy = $current['taxonomy'];
+
+                                                    $all_terms = get_terms([
+                                                        'taxonomy'   => $taxonomy,
+                                                        'hide_empty' => false,
                                                     ]);
                                                 
-                                                    if (!empty($parent_terms) && !is_wp_error($parent_terms)) {
-                                                        foreach ($parent_terms as $parent_term) {
-                                                            $options[] = [
-                                                                'attr' => strval($parent_term->term_id),
-                                                                'text' => esc_html($parent_term->name)
-                                                            ];
+                                                    if (!empty($all_terms) && !is_wp_error($all_terms)) {
+                                                        $child_term_ids = [];
+                                                        $parent_term_ids = [];
+                                                
+                                                        // Build child-parent mapping
+                                                        foreach ($all_terms as $term) {
+                                                            if ($term->parent) {
+                                                                $child_term_ids[] = $term->term_id;
+                                                                $parent_term_ids[] = $term->parent;
+                                                            }
+                                                        }
+                                                
+                                                        $parent_term_ids = array_unique($parent_term_ids);
+                                                
+                                                        foreach ($all_terms as $term) {
+                                                            $term_id = $term->term_id;
+                                                
+                                                            if (in_array($term_id, $parent_term_ids, true) || $term->parent == 0) {
+                                                                $options[] = [
+                                                                    'attr' => strval($term_id),
+                                                                    'text' => esc_html($term->name)
+                                                                ];
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -477,6 +495,7 @@ class SimpleTags_Tag_Clouds
                                                         [ 'attr' => 'comma', 'text' => esc_attr__( 'WordPress Default', 'simple-tags' ), 'default' => 'true'],
                                                         ['attr' => 'table', 'text' => esc_attr__('Table List', 'simple-tags')],
                                                         ['attr' => 'border', 'text' => esc_attr__('Border Cloud', 'simple-tags')],
+                                                        ['attr' => 'parent/child', 'text' => esc_attr__('Parent / Child', 'simple-tags')],
 								                    ],
 							                    ];
 							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';
