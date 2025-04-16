@@ -265,6 +265,14 @@ class SimpleTags_Client_Autolinks
 
 		foreach ((array) $terms as $term) {
 
+			//hidden terms should not be auto linked
+			if ((int) SimpleTags_Plugin::get_option_value('enable_hidden_terms') === 1) {
+				$min_usage = (int) SimpleTags_Plugin::get_option_value('hide-rarely');
+				if ($term->count < $min_usage) {
+					continue;
+				}
+			}
+
 			//add primary term
 			$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
             $primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
