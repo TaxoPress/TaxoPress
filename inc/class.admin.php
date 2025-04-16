@@ -619,6 +619,18 @@ class SimpleTags_Admin
 			'post_date'               => '%post_date%',
 			'post_thumb_url'          => '%post_thumb_url%',
 			'post_category'           => '%post_category%',
+			'merge_cancelled'         => esc_html__('Merge has been cancelled.', 'simple-tags'),
+			'cancel_label' 		      => esc_html__('Cancel', 'simple-tags'),
+			'paused_label'            => esc_html__('Pause.', 'simple-tags'),
+			'continue_label'   	      => esc_html__('Continue', 'simple-tags'),
+			'merge_large_data'        => esc_html__('Large dataset detected, terms will be merged in batches of 20!', 'simple-tags'),
+			'merge_none_merged'       => esc_html__('No terms were merged.', 'simple-tags'),
+			'batch_merge_progress'     => esc_html__('Batch %1$s of %2$s merged.', 'simple-tags'),
+			'terms_merged_text'       => esc_html__('terms merged', 'simple-tags'),
+			'posts_updated_text'      => esc_html__('posts updated', 'simple-tags'),
+			'merge_success_update' => esc_html__('All terms merged into %s', 'simple-tags'),
+			'ajax_merge_terms_error'  => esc_html__('AJAX error on batch', 'simple-tags'),
+			'batch_error_text'        => esc_html__('Error on batch %1$s:', 'simple-tags')
 		]);
 
 
