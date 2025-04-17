@@ -268,6 +268,17 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.33.1- 2025-04-17
+* Update: Remove Hidden Terms from Auto Links, #2582
+* Update: Clarify the Exclusions message, #2573
+* Feature: Allow Users to disable Custom URL Field for Taxonomies, #2568
+* Update: Allow users to see the slug, not just the name in the Merge feture, #2567
+* Feature: Add a Parent / Child display format, #2526
+* Feature: Allow users to specify maximum or minimum length for new terms, #2525
+* Update: Reposition filters on the Manage Terms screen, #2475
+* Update: Add Ajax Support for merging large terms, #2438
+* Fixed: Add simple-tags/vendor/publishpress/wordpress-version-notices/tests/ to ignore directory list #2566
+
 v3.33.0- 2025-03-24
 * Update: Change "Metaboxes" to "Fast Update" and make it share same look as post metabox, #2493
 * Feature: Allow users to prevent some characters from being added to terms, #2500
