@@ -1897,7 +1897,7 @@
         $('#merge-progress').html(
           '<div class="taxopress-response-css red">' +
             '<p>' + st_admin_localize.merge_large_data + 
-              '<span class="taxopress-spinner spinner is-active" style="margin-bottom: 10px;"></span>' + // Added is-active class
+              '<span class="taxopress-spinner spinner is-active" style="margin-bottom: 10px;"></span>' + 
               '<button type="button" class="taxopress-dismiss-merge-message notice-dismiss" style="float: right;"></button>' +
               '<span class="merge-controls" style="float: right;">' +
                 '<button type="button" id="merge-cancel">' + st_admin_localize.cancel_label + '</button> ' +
