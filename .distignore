@@ -26,6 +26,7 @@
 /test
 tests
 test
+/vendor/publishpress/wordpress-version-notices/tests
 bin
 codeception.dist.yml
 codeception.yml
