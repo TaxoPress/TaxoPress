@@ -229,6 +229,7 @@ function taxopress_update_autolink($data = [])
     $data['taxopress_autolink']['shortcodes_exclusion_entries'] = isset($data['shortcodes_exclusion_entries']) ? array_unique($data['shortcodes_exclusion_entries']) : [];
     $data['taxopress_autolink']['blocks_exclusion'] = isset($data['blocks_exclusion']) ? array_unique($data['blocks_exclusion']) : [];
     $data['taxopress_autolink']['blocks_exclusion_entries'] = isset($data['blocks_exclusion_entries']) ? $data['blocks_exclusion_entries'] : [];
+    $data['taxopress_autolink']['enable_customurl_field'] = isset($data['taxopress_autolink']['enable_customurl_field']) ? $data['taxopress_autolink']['enable_customurl_field'] : [];
     
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autolink']['unattached_terms'])) {
