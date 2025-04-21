@@ -44,6 +44,9 @@ return array(
     'taxopress_ai_post_metabox_maximum_terms' => 45,
     'taxopress_ai_post_metabox_show_post_count' => 0,
 
+    'taxopress_ai_post_minimum_term_length' => 2,
+    'taxopress_ai_post_maximum_term_length' => 40,
+
     'taxopress_ai_post_metabox_display_option' => 'default',
     'enable_taxopress_ai_post_create_terms_tab' => 1,
     'taxopress_ai_post_exclusions' => '',

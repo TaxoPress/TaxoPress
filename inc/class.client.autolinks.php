@@ -34,18 +34,42 @@ class SimpleTags_Client_Autolinks
 		}
 	}
 
-	public function taxopress_customurl_taxonomies_fields(){
-
-		$taxonomies = wp_list_pluck(get_all_taxopress_taxonomies(), 'name'); 
-
-		foreach ($taxonomies as $taxonomy) {
-
-            add_action("{$taxonomy}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
-            add_action("{$taxonomy}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
-            add_action("edited_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
-            add_action("created_{$taxonomy}", [$this, 'taxopress_save_custom_url_field']);
-        }	
-
+	public function taxopress_customurl_taxonomies_fields() {
+		$taxonomies = get_taxonomies([], 'objects');
+		$autolink_settings = taxopress_get_autolink_data();
+	
+		$default_enabled_taxonomies = ['post_tag', 'category'];
+	
+		$enabled_taxonomies = [];
+	
+		// Flag to detect if the setting was ever saved
+		$has_setting_saved = false;
+	
+		foreach ($autolink_settings as $setting) {
+			if (isset($setting['enable_customurl_field']) && is_array($setting['enable_customurl_field'])) {
+				$has_setting_saved = true;
+				foreach ($setting['enable_customurl_field'] as $tax) {
+					$enabled_taxonomies[] = $tax;
+				}
+			}
+		}
+	
+		// If no settings saved, default to tags and categories
+		if (!$has_setting_saved) {
+			$enabled_taxonomies = $default_enabled_taxonomies;
+		}
+	
+		// Remove duplicates just in case
+		$enabled_taxonomies = array_unique($enabled_taxonomies);
+	
+		foreach ($taxonomies as $taxonomy_name => $taxonomy) {
+			if (in_array($taxonomy_name, $enabled_taxonomies, true)) {
+				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
+				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
+				add_action("edited_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
+				add_action("created_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
+			}
+		}
 	}
 
 	/**
@@ -247,6 +271,14 @@ class SimpleTags_Client_Autolinks
 		}
 
 		foreach ((array) $terms as $term) {
+
+			//hidden terms should not be auto linked
+			if ((int) SimpleTags_Plugin::get_option_value('enable_hidden_terms') === 1) {
+				$min_usage = (int) SimpleTags_Plugin::get_option_value('hide-rarely');
+				if ($term->count < $min_usage) {
+					continue;
+				}
+			}
 
 			//add primary term
 			$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);

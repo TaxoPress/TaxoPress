@@ -1005,7 +1005,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                         'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     )
                                                 );
-
+                                                
                                                 ?>
 
                                             </table>

@@ -85,7 +85,8 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'number',
             '',
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
+            0
         );
 
         // add _metabox_show_post_count
@@ -118,6 +119,29 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
+
+        //add minimum term length
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_minimum_term_length',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Minimum Term Length', 'simple-tags') . '</div>',
+            'number',
+            '',
+            '<p>' . esc_html__('Specify the minimum length for new terms when creating terms.', 'simple-tags') . '</p>',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
+            1 
+        );
+
+        //add maximum term length
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_maximum_term_length',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Maximum Term Length', 'simple-tags') . '</div>',
+            'number',
+            '',
+            '<p>' . esc_html__('Specify the maximum length for new terms when creating terms.', 'simple-tags') . '</p>',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
+            1 
+        );
+
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_exclusions',
             '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Exclusions', 'simple-tags') . '</div>',
@@ -128,7 +152,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             array(
                 'rows' => 6,
-                'placeholder' => esc_attr__('Enter characters you want to exclude when creating new terms, e.g. ! ? #', 'simple-tags'),
+                'placeholder' => esc_attr__('Enter characters that will be blocked when users add new terms inside the "Create Terms" box. For example: !@#$%&*()', 'simple-tags'),
                 'width' => '80%'
             )
         );

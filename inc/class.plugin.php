@@ -70,6 +70,9 @@ class SimpleTags_Plugin {
 			$default_options['taxopress_ai_' . $post_type . '_metabox_maximum_terms'] = 45;
 			$default_options['taxopress_ai_' . $post_type . '_metabox_show_post_count'] = 0;
 
+			$default_options['taxopress_ai_' . $post_type . '_minimum_term_length'] = 2;
+			$default_options['taxopress_ai_' . $post_type . '_maximum_term_length'] = 40;
+
 			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 			$default_options['taxopress_ai_' . $post_type . '_exclusions'] = '';
 			$default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;

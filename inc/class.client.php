@@ -324,6 +324,144 @@ class SimpleTags_Client {
 				case 'box':
 					$output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
+				case 'parent/child':
+                    $output = $before . '<ul class="' . $html_class . ' taxopress-parent-child-list">' . "\n";
+
+					// Cache term hierarchy to avoid repeated queries
+					static $term_hierarchy = [];
+					$cache_key = md5($taxonomy . serialize($content));
+							
+					if (!isset($term_hierarchy[$cache_key])) {
+						$terms_by_parent = [];
+						$all_terms = [];
+						
+						$term_names = array_map(function($term_html) {
+							return strip_tags($term_html);
+						}, array_filter($content, 'trim'));
+						
+						if (!empty($term_names)) {
+							$terms = get_terms([
+								'taxonomy' => $taxonomy,
+								'name' => $term_names,
+								'hide_empty' => false,
+								'update_term_meta_cache' => false
+							]);
+							
+							if (!is_wp_error($terms)) {
+								foreach ($terms as $term) {
+									$all_terms[$term->term_id] = [
+										'term' => $term,
+										'html' => $content[array_search($term->name, $term_names)],
+										'is_parent' => false
+									];
+									
+									$parent_id = $term->parent ?: '0';
+									$terms_by_parent[$parent_id][] = $term->term_id;
+								}
+								
+								foreach ($terms_by_parent as $child_ids) {
+									foreach ($child_ids as $child_id) {
+										if (isset($terms_by_parent[$child_id])) {
+											$all_terms[$child_id]['is_parent'] = true;
+										}
+									}
+								}
+							}
+						}
+						
+						$term_hierarchy[$cache_key] = [
+							'terms' => $all_terms,
+							'hierarchy' => $terms_by_parent
+						];
+					}
+							
+					// Use cached hierarchy
+					$data = $term_hierarchy[$cache_key];
+					$all_terms = $data['terms'];
+					$terms_by_parent = $data['hierarchy'];
+
+					// Group terms by parent
+					$terms_by_parent = [];
+					$all_terms = [];
+						
+					// First pass - collect all terms
+					foreach ($content as $term_html) {
+						if (empty(trim($term_html))) continue;
+						
+						$term_name = strip_tags($term_html);
+						$term = get_term_by('name', $term_name, $taxonomy);
+						
+						if (!$term) continue;
+
+						// Store term for reference
+						$all_terms[$term->term_id] = [
+							'term' => $term,
+							'html' => $term_html,
+							'is_parent' => false
+						];
+						
+						$parent_id = $term->parent ?: '0';
+						if (!isset($terms_by_parent[$parent_id])) {
+							$terms_by_parent[$parent_id] = [];
+						}
+						$terms_by_parent[$parent_id][] = $term->term_id;
+					}
+
+					foreach ($terms_by_parent as $parent_id => $children) {
+						foreach ($children as $child_id) {
+							if (isset($terms_by_parent[$child_id])) {
+								$all_terms[$child_id]['is_parent'] = true;
+							}
+						}
+					}
+
+					$output_term = function($term_id, $level = 0) use (&$output_term, &$all_terms, &$terms_by_parent) {
+						if (!isset($all_terms[$term_id])) return '';
+
+						$term_data = $all_terms[$term_id];
+						$html = str_repeat("\t", $level);
+						$html .= '<li class="taxopress-parent-term">' . $term_data['html'];
+						
+						if (isset($terms_by_parent[$term_id])) {
+							$html .= "\n" . str_repeat("\t", $level + 1);
+							$html .= '<ul class="taxopress-child-list">' . "\n";
+							foreach ($terms_by_parent[$term_id] as $child_id) {
+								$html .= $output_term($child_id, $level + 2);
+							}
+							$html .= str_repeat("\t", $level + 1) . "</ul>\n";
+						}
+						
+						$html .= str_repeat("\t", $level) . "</li>\n";
+						return $html;
+					};
+					$display_mode = isset($current['display_mode']) ? $current['display_mode'] : 'parents_and_sub';
+					
+					if ($display_mode === 'parents_only') {
+						foreach ($all_terms as $term_id => $term_data) {
+							if ($term_data['is_parent']) {
+								$output .= '<li class="taxopress-parent-term">' . $term_data['html'] . "</li>\n";
+							}
+						}
+					} elseif ($display_mode === 'sub_terms_only') {
+						foreach ($all_terms as $term_id => $term_data) {
+							if ($term_data['term']->parent > 0) {
+								$output .= '<li class="taxopress-child-term">' . $term_data['html'] . "</li>\n";
+							}
+						}
+					} else {
+						// Display full hierarchy
+						// Start with root terms or terms whose parents aren't in our set
+						foreach ($all_terms as $term_id => $term_data) {
+							$term = $term_data['term'];
+							if ($term->parent === 0 || !isset($all_terms[$term->parent])) {
+								$output .= $output_term($term_id);
+							}
+						}
+					}
+
+					$output .= "</ul>" . $after . "\n";
+					return $output;
+					break;
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode( "{$separator}\n", $content ) . " {$after}</div>\n";
 					break;
@@ -351,6 +489,39 @@ class SimpleTags_Client {
 				case 'box':	
 					$output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;
+				case 'parent/child':
+					$output = $before . '<ul class="' . esc_attr($html_class) . ' taxopress-parent-child-list">' . "\n";
+					$lines = explode("\n", $content);
+					$inside_sublist = false;
+				
+					foreach ($lines as $line) {
+						$line = trim($line);
+						if (empty($line)) {
+							continue;
+						}
+				
+						if (strpos($line, 'taxopress-parent-term') !== false) {
+							if ($inside_sublist) {
+								$output .= "</ul></li>\n";
+								$inside_sublist = false;
+							}
+				
+							$output .= '<li class="parent-item" style="list-style-type: disc; color: black;">' . $line;
+				
+							$output .= "\n<ul class=\"child-items\" style=\"list-style-type: circle; color: black;\">\n";
+							$inside_sublist = true;
+						} else {
+							$output .= '<li class="child-item">' . $line . "</li>\n";
+						}
+					}
+				
+					// Close any open tags
+					if ($inside_sublist) {
+						$output .= "</ul></li>\n";
+					}
+				
+					$output .= "</ul>" . $after . "\n";
+					break;					
 				default :
 					$output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
 					break;

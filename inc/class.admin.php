@@ -444,6 +444,95 @@ class SimpleTags_Admin
 		echo '</div>' . PHP_EOL;
 	}
 
+	public static function tabSelectorTaxonomy($tab_slug = '', $page_slug = '')
+	{
+		$current_taxo = isset($_GET["{$tab_slug}_taxo"]) ? sanitize_text_field($_GET["{$tab_slug}_taxo"]) : get_option("{$tab_slug}_taxo", '');
+		$current_cpt  = isset($_GET["{$tab_slug}_cpt"]) ? sanitize_text_field($_GET["{$tab_slug}_cpt"]) : get_option("{$tab_slug}_cpt", '');
+	
+		// Fallbacks if not yet set
+		if (empty($current_cpt)) {
+			foreach (get_post_types(['show_ui' => true], 'objects') as $pt) {
+				if (!empty(get_object_taxonomies($pt->name))) {
+					$current_cpt = $pt->name;
+					break;
+				}
+			}
+		}
+		if (empty($current_taxo) && $current_cpt) {
+			$possible_taxos = get_object_taxonomies($current_cpt);
+			if (!empty($possible_taxos)) {
+				$current_taxo = $possible_taxos[0];
+			}
+		}
+	
+		// Save for use elsewhere
+		self::$post_type = $current_cpt;
+		self::$taxonomy  = $current_taxo;
+
+		// Update $post_type_name dynamically
+		if ($current_cpt) {
+			$post_type_object = get_post_type_object($current_cpt);
+			if ($post_type_object) {
+				self::$post_type_name = $post_type_object->labels->name;
+			}
+		}
+
+		// Save to DB for persistence
+		update_option("{$tab_slug}_taxo", $current_taxo);
+		update_option("{$tab_slug}_cpt", $current_cpt);
+	
+		// Build list of post types and taxonomies (only CPTs with taxonomies)
+		$taxonomies = [];
+		echo '<div class="box-selector-taxonomy tab-taxo-filter tab-taxo-filter-' . esc_attr($tab_slug) . '">' . PHP_EOL;
+		echo '<div class="change-taxo">' . PHP_EOL;
+	
+		echo '<form action="' . esc_url(admin_url('admin.php')) . '" method="get">' . PHP_EOL;
+		$page = !empty($page_slug) ? $page_slug : (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : 'st_manage');
+		echo '<input type="hidden" name="page" value="' . esc_attr($page) . '" />' . PHP_EOL;
+		echo '<input type="hidden" name="page" value="st_manage" />' . PHP_EOL;
+	
+		if (!empty($tab_slug)) {
+			echo '<input type="hidden" name="tab" value="' . esc_attr($tab_slug) . '" />' . PHP_EOL;
+		}
+	
+		// CPT dropdown
+		echo '<select name="' . esc_attr($tab_slug) . '_cpt" class="st-cpt-select st-cpt-select-' . esc_attr($tab_slug) . '">' . PHP_EOL;
+		foreach (get_post_types(['show_ui' => true], 'objects') as $post_type) {
+			$taxonomies_children = get_object_taxonomies($post_type->name);
+			if (empty($taxonomies_children)) {
+				continue;
+			}
+			$taxonomies[$post_type->name] = $taxonomies_children;
+			echo '<option ' . selected($post_type->name, $current_cpt, false) . ' value="' . esc_attr($post_type->name) . '">' . esc_html($post_type->labels->name) . '</option>' . PHP_EOL;
+		}
+		echo '</select>' . PHP_EOL;
+	
+		// Taxonomy dropdown
+		echo '<select name="' . esc_attr($tab_slug) . '_taxo" class="st-taxonomy-select st-taxonomy-select-' . esc_attr($tab_slug) . '">' . PHP_EOL;
+		foreach ($taxonomies as $parent_post => $taxonomy_list) {
+			foreach ($taxonomy_list as $tax_name) {
+				$taxonomy = get_taxonomy($tax_name);
+				if (false === (bool) $taxonomy->show_ui) {
+					continue;
+				}
+				$class = ($parent_post === $current_cpt) ? '' : 'st-hide-content';
+	
+				echo '<option ' . selected($tax_name, $current_taxo, false) .
+					 ' value="' . esc_attr($tax_name) . '"' .
+					 ' data-post="' . esc_attr($parent_post) . '"' .
+					 ' class="' . esc_attr($class) . '">' .
+					 esc_html($taxonomy->labels->name) .
+					 '</option>' . PHP_EOL;
+			}
+		}
+		echo '</select>' . PHP_EOL;
+	
+		echo '<input type="submit" class="button" value="' . esc_attr__('Change selection', 'simple-tags') . '" />' . PHP_EOL;
+		echo '</form>' . PHP_EOL;
+		echo '</div>' . PHP_EOL;
+		echo '</div>' . PHP_EOL;
+	}
+
 	/**
 	 * Init somes JS and CSS need for TaxoPress.
 	 *
@@ -530,6 +619,18 @@ class SimpleTags_Admin
 			'post_date'               => '%post_date%',
 			'post_thumb_url'          => '%post_thumb_url%',
 			'post_category'           => '%post_category%',
+			'merge_cancelled'         => esc_html__('Merge has been cancelled.', 'simple-tags'),
+			'cancel_label' 		      => esc_html__('Cancel', 'simple-tags'),
+			'paused_label'            => esc_html__('Pause.', 'simple-tags'),
+			'continue_label'   	      => esc_html__('Continue', 'simple-tags'),
+			'merge_large_data'        => esc_html__('Large dataset detected, terms will be merged in batches of 20!', 'simple-tags'),
+			'merge_none_merged'       => esc_html__('No terms were merged.', 'simple-tags'),
+			'batch_merge_progress'     => esc_html__('Batch %1$s of %2$s merged.', 'simple-tags'),
+			'terms_merged_text'       => esc_html__('terms merged', 'simple-tags'),
+			'posts_updated_text'      => esc_html__('posts updated', 'simple-tags'),
+			'merge_success_update' => esc_html__('All terms merged into %s', 'simple-tags'),
+			'ajax_merge_terms_error'  => esc_html__('AJAX error on batch', 'simple-tags'),
+			'batch_error_text'        => esc_html__('Error on batch %1$s:', 'simple-tags')
 		]);
 
 
@@ -638,6 +739,9 @@ class SimpleTags_Admin
 					$options['taxopress_ai_' . $post_type . '_metabox_order'] = 'desc';
 					$options['taxopress_ai_' . $post_type . '_metabox_maximum_terms'] = 45;
 					$options['taxopress_ai_' . $post_type . '_metabox_show_post_count'] = 0;
+
+					$options['taxopress_ai_' . $post_type . '_minimum_term_length'] = 2;
+					$options['taxopress_ai_' . $post_type . '_maximum_term_length'] = 40;
 
 
 					$options['taxopress_ai_' . $post_type . '_exclusions'] = '';

@@ -3,7 +3,7 @@
  * Plugin Name: TaxoPress
  * Plugin URI: https://wordpress.org/plugins/simple-tags/
  * Description: TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms.
- * Version: 3.33.0
+ * Version: 3.34.0
  * Author: TaxoPress
  * Author URI: https://taxopress.com
  * Text Domain: simple-tags
