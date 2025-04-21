@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.34- 2025-04-21
+v3.34.0- 2025-04-21
 * Update: Remove Hidden Terms from Auto Links, #2582
 * Update: Clarify the Exclusions message, #2573
 * Feature: Allow Users to disable Custom URL Field for Taxonomies, #2568
