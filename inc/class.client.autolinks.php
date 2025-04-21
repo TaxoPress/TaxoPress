@@ -35,28 +35,35 @@ class SimpleTags_Client_Autolinks
 	}
 
 	public function taxopress_customurl_taxonomies_fields() {
-
 		$taxonomies = get_taxonomies([], 'objects');
+		$autolink_settings = taxopress_get_autolink_data();
 	
-		foreach ($taxonomies as $taxonomy) {
-			$taxonomy_name = $taxonomy->name;
+		$default_enabled_taxonomies = ['post_tag', 'category'];
 	
-			$taxonomy_data = array_merge(
-				taxopress_get_taxonomy_data(),
-				taxopress_get_extername_taxonomy_data()
-			);
+		$enabled_taxonomies = [];
 	
-			// Ensure custom URL field is displayed for 'category' and 'post_tag' by default
-			if (in_array($taxonomy_name, ['category', 'post_tag'])) {
-				$enable_custom_url = isset($taxonomy_data[$taxonomy_name]['enable_custom_url_field'])
-					? get_taxopress_disp_boolean($taxonomy_data[$taxonomy_name]['enable_custom_url_field'])
-					: true;
-			} else {
-				$enable_custom_url = isset($taxonomy_data[$taxonomy_name]['enable_custom_url_field']) &&
-					get_taxopress_disp_boolean($taxonomy_data[$taxonomy_name]['enable_custom_url_field']);
+		// Flag to detect if the setting was ever saved
+		$has_setting_saved = false;
+	
+		foreach ($autolink_settings as $setting) {
+			if (isset($setting['enable_customurl_field']) && is_array($setting['enable_customurl_field'])) {
+				$has_setting_saved = true;
+				foreach ($setting['enable_customurl_field'] as $tax) {
+					$enabled_taxonomies[] = $tax;
+				}
 			}
+		}
 	
-			if ($enable_custom_url) {
+		// If no settings saved, default to tags and categories
+		if (!$has_setting_saved) {
+			$enabled_taxonomies = $default_enabled_taxonomies;
+		}
+	
+		// Remove duplicates just in case
+		$enabled_taxonomies = array_unique($enabled_taxonomies);
+	
+		foreach ($taxonomies as $taxonomy_name => $taxonomy) {
+			if (in_array($taxonomy_name, $enabled_taxonomies, true)) {
 				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
 				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
 				add_action("edited_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
