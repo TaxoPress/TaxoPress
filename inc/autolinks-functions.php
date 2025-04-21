@@ -244,6 +244,10 @@ function taxopress_update_autolink($data = [])
     if (!isset($data['taxopress_autolink']['synonyms_link'])) {
         $data['taxopress_autolink']['synonyms_link'] = 0;
     }
+    if (!isset($data['taxopress_autolink']['enable_customurl_field']) || empty($data['taxopress_autolink']['enable_customurl_field'])) {
+        $data['taxopress_autolink']['enable_customurl_field'] = ['post_tag', 'category'];
+    }
+    
 
 
     if (isset($data['edited_autolink'])) {
