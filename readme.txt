@@ -4,7 +4,7 @@ Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
 Tested up to: 6.8
 Stable tag: 3.34.0
-Requires PHP: 7.2.5
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.34.0- 2025-04-21
+v3.34.0- 2025-04-22
 * Update: Remove Hidden Terms from Auto Links, #2582
 * Update: Clarify the Exclusions message, #2573
 * Feature: Allow Users to disable Custom URL Field for Taxonomies, #2568
