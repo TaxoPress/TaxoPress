@@ -325,6 +325,10 @@ class SimpleTags_Autolink
                                                                                                 ); ?></span></a>
                                                         </li>
 
+                                                        <li aria-current="<?php echo $active_tab === 'autolink_custom_url' ? 'true' : 'false'; ?>" class="autolink_custom_url_tab <?php echo $active_tab === 'autolink_custom_url' ? 'active' : ''; ?>" data-content="autolink_custom_url">
+                                                            <a href="#autolink_custom_url"><span><?php esc_html_e('Custom URL', 'simple-tags'); ?></span></a>
+                                                        </li>
+
                                                     </ul>
 
                                                     <div class="st-taxonomy-content taxopress-tab-content">
@@ -827,10 +831,83 @@ class SimpleTags_Autolink
                                                             ]);
 
                                                             ?>
+                                                            <?php
+                                                            $select             = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '0',
+                                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '1',
+                                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected           = (isset($current) && isset($current['autolink_dom'])) ? taxopress_disp_boolean($current['autolink_dom']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['autolink_dom'] : '';
+
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input([
+                                                                'namearray'  => 'taxopress_autolink',
+                                                                'name'       => 'autolink_dom',
+                                                                'labeltext'  => esc_html__(
+                                                                    'Use new Auto Links engine',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'aftertext'  => esc_html__(
+                                                                    'The new Auto Links engine uses the DOMDocument PHP class and may offer better performance. If your server does not support this functionality, TaxoPress will use the usual engine.',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ]);
+                                                            ?>
                                                         </table>
 
+                                                        <table class="form-table taxopress-table autolink_custom_url" style="<?php echo $active_tab === 'autolink_custom_url' ? '' : 'display:none;'; ?>">
+                                                            <?php
+                                                            // Fetch all taxonomies
+                                                            $all_taxonomies = get_taxonomies([], 'objects');
 
+                                                            $enable_customurl_field = (!isset($current['enable_customurl_field']) || !is_array($current['enable_customurl_field']) || empty($current['enable_customurl_field']))
+                                                            ? ['post_tag', 'category']
+                                                            : $current['enable_customurl_field'];
 
+                                                            if (is_null($enable_customurl_field)) {
+                                                            $enable_customurl_field = ['post_tag', 'category'];
+                                                            }
+
+                                                            echo '<tr valign="top"><th scope="row"><label>' . esc_html__(
+                                                                'Enable the Custom URL Field:',
+                                                                'simple-tags'
+                                                            ) . '</label><br /><small style=" color: #646970;">' . esc_html__(
+                                                                'This allows users to automatically link terms to a URL instead of the term\'s archive page.',
+                                                                'simple-tags'
+                                                            ) . '<br>' . esc_html__(
+                                                                'The Custom URL field will be visible if at least one Auto Links profile has it enabled for that taxonomy.',
+                                                                'simple-tags'
+                                                            ) . '</small></th><td><table class="visbile-table">';                                                            
+
+                                                            foreach ($all_taxonomies as $taxonomy) {
+                                                                // If $enable_customurl_field is NULL (never saved), default-check tags/categories
+                                                                $is_checked = in_array($taxonomy->name, $enable_customurl_field, true);
+
+                                                                echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->label) . '</label></th><td>';
+                                                                echo $ui->get_check_input([
+                                                                    'checkvalue' => $taxonomy->name,
+                                                                    'checked'    => $is_checked ? 'true' : 'false',
+                                                                    'name'       => esc_attr($taxonomy->name),
+                                                                    'namearray'  => 'taxopress_autolink[enable_customurl_field]',
+                                                                    'textvalue'  => esc_attr($taxonomy->name),
+                                                                    'labeltext'  => '',
+                                                                    'wrap'       => false,
+                                                                ]);
+                                                                echo '</td></tr>';
+                                                            }
+                                                            echo '</table></td></tr>';
+                                                            ?>
+                                                        </table>
 
                                                         <table class="form-table taxopress-table autolink_advanced" style="<?php echo $active_tab === 'autolink_advanced' ? '' : 'display:none;'; ?>">
                                                             <?php
