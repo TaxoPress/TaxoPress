@@ -9,7 +9,7 @@
  * Text Domain: simple-tags
  * Domain Path: /languages
  * Min WP Version: 4.9.7
- * Requires PHP: 5.6
+ * Requires PHP: 7.2
  * License: GPLv3
  *
  * Copyright (c) 2022 Taxopress
@@ -101,7 +101,7 @@ if (defined('TAXOPRESS_FILE') || $pro_active) {
 
 define ( 'TAXOPRESS_FILE', __FILE__ );
 
-define('STAGS_MIN_PHP_VERSION', '7.2.5');
+define('STAGS_MIN_PHP_VERSION', '7.2');
 define('STAGS_OPTIONS_NAME', 'simpletags'); // Option name for save settings
 define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save settings auto terms
 
