@@ -328,8 +328,7 @@ class SimpleTags_Admin_Manage
                             <td>
                             <?php SimpleTags_Admin::tabSelectorTaxonomy('merge-terms', 'st_manage'); ?>
                                 <h2><?php _e('Merge Terms', 'simple-tags'); ?></h2>
-                                <p><?php esc_html_e('This feature will delete existing terms and replace them with another term. If you want to merge term “A” into term “B”, put “A” in the first box and “B” in the second box.', 'simple-tags'); ?></p>
-                                <p><?php esc_html_e('For terms with the same name, put name in the first box and merge. For terms with different names, provide the terms to merge and the new term name in the second box; the old terms will be replaced.', 'simple-tags'); ?></p>
+                                <p><?php esc_html_e('This feature will delete existing terms and replace them with another term.', 'simple-tags'); ?></p>
 
                                 <fieldset>
                                     <form action="" method="post" class="merge-terms-form">
@@ -340,8 +339,8 @@ class SimpleTags_Admin_Manage
                                         <input type="hidden" name="current_cpt" value="<?php echo esc_attr(get_option('merge-terms_cpt')); ?>" />
 
                                         <p class="terms-type-options">
-                                            <label><input type="radio" id="mergeterm_type" class="mergeterm_type_same_name" name="mergeterm_type" value="same_name" checked="checked"><?php esc_html_e('Merge terms with same name.', 'simple-tags'); ?></label><br>
-                                            <label><input type="radio" id="mergeterm_type" class="mergeterm_type_different_name" name="mergeterm_type" value="different_name"><?php _e('Merge terms with different name.', 'simple-tags'); ?></label>
+                                        <label><input type="radio" id="mergeterm_type" class="mergeterm_type_different_name" name="mergeterm_type" value="different_name" checked="checked"><?php _e('Merge terms with different name.', 'simple-tags'); ?></label><br>
+                                        <label><input type="radio" id="mergeterm_type" class="mergeterm_type_same_name" name="mergeterm_type" value="same_name"><?php esc_html_e('Merge terms with same name.', 'simple-tags'); ?></label>
                                         </p>
 
                                         <p>
@@ -349,7 +348,7 @@ class SimpleTags_Admin_Manage
                                             <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_old" name="renameterm_old" size="80" data-taxo="<?php echo esc_attr(get_option('merge-terms_taxo')); ?>"></textarea>
                                         </p>
 
-                                        <p class="new_name_input" style="display: none;">
+                                        <p class="new_name_input">
                                             <label for="renameterm_new"><?php _e('New term. The Old terms will be deleted and any posts assigned to the old terms will be re-assigned to this term.', 'simple-tags'); ?></label><br />
                                             <textarea type="text" class="autocomplete-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_new" name="renameterm_new" size="80" data-taxo="<?php echo esc_attr(get_option('merge-terms_taxo')); ?>"></textarea>
                                         </p>
