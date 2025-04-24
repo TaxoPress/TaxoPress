@@ -257,6 +257,14 @@ return apply_filters('taxopress_admin_options', array(
     // linked terms tab
     'linked_terms'       => array(
         array(
+            'linked_terms_description',
+            '',
+            'helper',
+            '',
+            __('This feature allows you to connect terms. When the primary or secondary term is added to a post, the other term can be added also.', 'simple-tags'),
+            ''
+        ),  
+        array(
             'linked_terms_type',
             __('Linked Terms Type:', 'simple-tags'),
             'radio',
@@ -280,6 +288,14 @@ return apply_filters('taxopress_admin_options', array(
 
     // term synonyms tab
     'synonyms'       => array(
+        array(
+            'synonyms_description',
+            '',
+            'helper',
+            '',
+            __('This feature allows you to have multiple words associated with a single term. If TaxoPress scans your content and finds a synonym, it will act as if it has found the main term.', 'simple-tags'),
+            ''
+        ),
         array(
             'synonyms_taxonomies',
             __('Enable Taxonomies:', 'simple-tags'),
