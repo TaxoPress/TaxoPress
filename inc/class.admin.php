@@ -630,7 +630,11 @@ class SimpleTags_Admin
 			'posts_updated_text'      => esc_html__('posts updated', 'simple-tags'),
 			'merge_success_update' => esc_html__('All terms merged into %s', 'simple-tags'),
 			'ajax_merge_terms_error'  => esc_html__('AJAX error on batch', 'simple-tags'),
-			'batch_error_text'        => esc_html__('Error on batch %1$s:', 'simple-tags')
+			'batch_error_text'        => esc_html__('Error on batch %1$s:', 'simple-tags'),
+			'enable_merge_terms_slug' => SimpleTags_Plugin::get_option_value('enable_merge_terms_slug'),
+			'enable_add_terms_slug' => SimpleTags_Plugin::get_option_value('enable_add_terms_slug'),
+			'enable_remove_terms_slug' => SimpleTags_Plugin::get_option_value('enable_remove_terms_slug'),
+			'enable_rename_terms_slug' => SimpleTags_Plugin::get_option_value('enable_rename_terms_slug'),
 		]);
 
 
@@ -1099,6 +1103,8 @@ class SimpleTags_Admin
 				return esc_html__('License', 'simple-tags');
 			case 'hidden_terms':
 				return esc_html__('Hidden Terms', 'simple-tags');
+			case 'manage_terms':
+				return esc_html__('Manage Terms', 'simple-tags');
 		}
 
 		return '';

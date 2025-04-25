@@ -235,13 +235,13 @@ class SimpleTags_Admin_Manage
 
                                         <p class="terms-to-maatch-input" style="display: none;">
                                             <label for="addterm_match"><?php _e('Term(s) to match:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea" id="addterm_match" name="addterm_match" size="80" data-tab="add-terms"
+                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea add-terms-autocomplete" id="addterm_match" name="addterm_match" size="80" data-tab="add-terms"
                                             data-taxo="<?php echo esc_attr(get_option('add-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <p>
                                             <label for="addterm_new"><?php _e('Term(s) to add:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="addterm_new" name="addterm_new" size="80" data-tab="add-terms"
+                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea add-terms-autocomplete" id="addterm_new" name="addterm_new" size="80" data-tab="add-terms"
                                             data-taxo="<?php echo esc_attr(get_option('add-terms_taxo')); ?>"></textarea>
                                         </p>
 
@@ -279,13 +279,13 @@ class SimpleTags_Admin_Manage
 
                                         <p class="removeterms-to-match-input" style="display: none;">
                                             <label for="removeterm_match"><?php _e('Term(s) to match:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea" id="removeterm_match" name="removeterm_match" size="80" data-tab="remove-terms"
+                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea remove-terms-autocomplete" id="removeterm_match" name="removeterm_match" size="80" data-tab="remove-terms"
                                             data-taxo="<?php echo esc_attr(get_option('remove-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <p>
                                             <label for="remove_term"><?php _e('Term(s) to remove:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="remove_term" name="remove_term" size="80" data-tab="remove-terms"
+                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea remove-terms-autocomplete" id="remove_term" name="remove_term" size="80" data-tab="remove-terms"
                                             data-taxo="<?php echo esc_attr(get_option('remove-terms_taxo')); ?>"></textarea>
                                         </p>
 
@@ -310,12 +310,12 @@ class SimpleTags_Admin_Manage
                                         <input type="hidden" name="current_cpt" value="<?php echo esc_attr(get_option('rename-terms_cpt')); ?>" />
                                         <p>
                                             <label for="renameterm_old"><?php _e('Term(s) to rename:', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea" id="renameterm_old" name="renameterm_old" size="80" data-taxo="<?php echo esc_attr(get_option('rename-terms_taxo')); ?>"></textarea>
+                                            <textarea type="text" class="autocomplete-input tag-cloud-input taxopress-expandable-textarea rename-terms-autocomplete" id="renameterm_old" name="renameterm_old" size="80" data-taxo="<?php echo esc_attr(get_option('rename-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <p>
                                             <label for="renameterm_new"><?php _e('New term name(s):', 'simple-tags'); ?></label><br />
-                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea" id="renameterm_new" name="renameterm_new" size="80" data-taxo="<?php echo esc_attr(get_option('rename-terms_taxo')); ?>"></textarea>
+                                            <textarea type="text" class="autocomplete-input taxopress-expandable-textarea rename-terms-autocomplete" id="renameterm_new" name="renameterm_new" size="80" data-taxo="<?php echo esc_attr(get_option('rename-terms_taxo')); ?>"></textarea>
                                         </p>
 
                                         <input class="button-primary" type="submit" name="rename" value="<?php _e('Rename', 'simple-tags'); ?>" />
@@ -840,6 +840,11 @@ class SimpleTags_Admin_Manage
      */
     public static function renameTerms($taxonomy = 'post_tag', $old = '', $new = '')
     {
+        // Helper function to extract term name (ignoring slug in brackets)
+        $extractTermName = function ($term) {
+            return trim(preg_replace('/\s*\(.*?\)$/', '', $term));
+        };
+
         if (trim(str_replace(',', '', stripslashes($new))) == '') {
             add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term specified!', 'simple-tags'), 'error taxopress-notice');
 
@@ -849,6 +854,10 @@ class SimpleTags_Admin_Manage
         // String to array
         $old_terms = explode(',', $old);
         $new_terms = explode(',', $new);
+
+        // Clean up terms by removing slugs
+        $old_terms = array_map($extractTermName, $old_terms);
+        $new_terms = array_map($extractTermName, $new_terms);
 
         // Remove empty element and trim
         $old_terms = array_filter($old_terms, '_delete_empty_element');
@@ -969,6 +978,11 @@ class SimpleTags_Admin_Manage
      */
     public static function addMatchTerms($taxonomy = 'post_tag', $match = '', $new = '')
     {
+        // Helper function to extract term name (ignoring slug in brackets)
+        $extractTermName = function ($term) {
+            return trim(preg_replace('/\s*\(.*?\)$/', '', $term));
+        };
+
         if (trim(str_replace(',', '', stripslashes($new))) == '') {
             add_settings_error(__CLASS__, __CLASS__, esc_html__('No new term(s) specified!', 'simple-tags'), 'error taxopress-notice');
 
@@ -977,6 +991,10 @@ class SimpleTags_Admin_Manage
 
         $match_terms = explode(',', $match);
         $new_terms   = explode(',', $new);
+
+        // Clean up terms by removing slugs
+        $match_terms = array_map($extractTermName, $match_terms);
+        $new_terms   = array_map($extractTermName, $new_terms);
 
         $match_terms = array_filter($match_terms, '_delete_empty_element');
         $new_terms   = array_filter($new_terms, '_delete_empty_element');
@@ -1118,6 +1136,11 @@ class SimpleTags_Admin_Manage
      */
     public static function removeMatchTerms($taxonomy = 'post_tag', $match = '', $remove = '')
     {
+        // Helper function to extract term name (ignoring slug in brackets)
+        $extractTermName = function ($term) {
+            return trim(preg_replace('/\s*\(.*?\)$/', '', $term));
+        };
+
         if (trim(str_replace(',', '', stripslashes($remove))) == '') {
             add_settings_error(__CLASS__, __CLASS__, esc_html__('No term(s) specified for removal!', 'simple-tags'), 'error taxopress-notice');
             return false;
@@ -1125,6 +1148,10 @@ class SimpleTags_Admin_Manage
     
         $match_terms  = explode(',', $match);
         $remove_terms = explode(',', $remove);
+    
+        // Clean up terms by removing slugs
+        $match_terms  = array_map($extractTermName, $match_terms);
+        $remove_terms = array_map($extractTermName, $remove_terms);
     
         $match_terms  = array_filter($match_terms, '_delete_empty_element');
         $remove_terms = array_filter($remove_terms, '_delete_empty_element');

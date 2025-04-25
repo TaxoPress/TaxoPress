@@ -32,6 +32,12 @@ return array(
     'enable_hidden_terms' => 0,
     'hide-rarely' => 5,
 
+    //manage terms
+    'enable_add_terms_slug' => 0,
+    'enable_remove_terms_slug' => 0,
+    'enable_rename_terms_slug' => 0,
+    'enable_merge_terms_slug' => 1,
+
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,
     'enable_taxopress_ai_post_post_terms_tab' => 1,

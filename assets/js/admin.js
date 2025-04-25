@@ -1800,12 +1800,24 @@
       });
     }
 
-    // Autocomplete for merge feature
-    if ($('.merge-feature-autocomplete').length > 0) {
-        $('.merge-feature-autocomplete').each(function () {
+    // Autocomplete for the manage terms feature
+    if ($('.merge-feature-autocomplete, .add-terms-autocomplete, .remove-terms-autocomplete, .rename-terms-autocomplete').length > 0) {
+        $('.merge-feature-autocomplete, .add-terms-autocomplete, .remove-terms-autocomplete, .rename-terms-autocomplete').each(function () {
 
             const taxonomy = $(this).closest('.auto-terms-content').find('.st-taxonomy-select').val();
             const inputField = $(this);
+            let showSlug = false;
+
+            // Determine which slug display setting to use based on the input class
+            if (inputField.hasClass('merge-feature-autocomplete')) {
+                showSlug = st_admin_localize.enable_merge_terms_slug === '1';
+            } else if (inputField.hasClass('add-terms-autocomplete')) {
+                showSlug = st_admin_localize.enable_add_terms_slug === '1';
+            } else if (inputField.hasClass('remove-terms-autocomplete')) {
+                showSlug = st_admin_localize.enable_remove_terms_slug === '1';
+            } else if (inputField.hasClass('rename-terms-autocomplete')) {
+                showSlug = st_admin_localize.enable_rename_terms_slug === '1';
+            }
 
             inputField.autocomplete({
                 source: function (request, response) {
@@ -1822,9 +1834,11 @@
                         },
                         success: function (data) {
                             response($.map(data, function (item) {
+                                // Only include slug in label/value if enabled
+                                const displayText = showSlug ? item.name + ' (' + item.slug + ')' : item.name;
                                 return {
-                                    label: item.name + ' (' + item.slug + ')',
-                                    value: item.name + ' (' + item.slug + ')'
+                                    label: displayText,
+                                    value: displayText
                                 };
                             }));
                         }

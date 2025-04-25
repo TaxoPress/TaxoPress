@@ -327,6 +327,42 @@ return apply_filters('taxopress_admin_options', array(
             )
         ),
 
+        // Manage terms tab
+        'manage_terms' => array(
+            array(
+                'enable_add_terms_slug',
+                __('Add Terms:', 'simple-tags'),
+                'checkbox',
+                '1',
+                __('Enabling this will allow users to see terms slug while adding terms', 'simple-tags'),
+                ''
+            ),
+            array(
+                'enable_remove_terms_slug',
+                __('Remove Terms:', 'simple-tags'),
+                'checkbox',
+                '1',
+                __('Enabling this will allow users to see terms slug while removing terms', 'simple-tags'),
+                ''
+            ),
+            array(
+                'enable_rename_terms_slug',
+                __('Rename Terms:', 'simple-tags'),
+                'checkbox',
+                '1',
+                __('Enabling this will allow users to see terms slug while Renaming terms', 'simple-tags'),
+                ''
+            ),
+            array(
+                'enable_merge_terms_slug',
+                __('Merge Terms:', 'simple-tags'),
+                'checkbox',
+                '1',
+                __('Enabling this will allow users to see terms slug while merging terms', 'simple-tags'),
+                ''
+            ),
+        ),
+
     // taxopress ai tab
     'taxopress-ai' => $taxopress_ai_fields,
 
