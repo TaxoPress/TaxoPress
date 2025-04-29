@@ -68,12 +68,15 @@ class TaxopressCoreAdmin
         add_action('taxopress_suggestterm_after_api_fields', [$this, 'taxopress_core_suggestterm_after_api_fields']);
         add_action('taxopress_autoterms_after_autoterm_advanced', [$this, 'taxopress_core_autoterm_advanced_field']);
         add_action('taxopress_autolinks_after_html_exclusions_tr', [$this, 'taxopress_core_autolinks_after_html_exclusions_promo']);
+        add_action('taxopress_settings_linked_terms_pro_notice', [$this, 'taxopress_core_linked_terms_content']);
+        add_action('taxopress_settings_synonyms_terms_pro_notice', [$this, 'taxopress_core_synonyms_terms_content']);
         add_action('taxopress_ai_after_open_ai_fields', [$this, 'taxopress_core_ai_after_open_ai_fields']);
         add_action('taxopress_ai_after_ibm_watson_fields', [$this, 'taxopress_core_ai_after_ibm_watson_fields']);
         add_action('taxopress_ai_after_dandelion_fields', [$this, 'taxopress_core_ai_after_dandelion_fields']);
         add_action('taxopress_ai_after_open_calais_fields', [$this, 'taxopress_core_ai_after_open_calais_fields']);
         add_action('load_taxopress_ai_term_results', [$this, 'taxopress_core_ai_term_results_banner']);
-
+        add_filter('taxopress_dashboard_features', [$this, 'taxopress_core_linked_terms_feature']);
+        add_filter('taxopress_dashboard_features', [$this, 'taxopress_core_synonyms_terms_feature']);
         add_filter('taxopress_autolink_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
         add_filter('taxopress_posttags_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
         add_filter('taxopress_autoterm_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
@@ -485,5 +488,86 @@ class TaxopressCoreAdmin
             </td>
         </tr>
 <?php
+    }
+    /**
+     * Add Linked Terms feature to dashboard
+     */
+    function taxopress_core_linked_terms_feature($features) {
+        $st_terms_position = array_search('st_terms', array_keys($features));
+        
+       if ($st_terms_position !== false) {
+            $new_features = array_slice($features, 0, $st_terms_position + 1, true);
+            
+            $new_features['st_linked_terms'] = [
+                'label'        => esc_html__('Linked Terms', 'simple-tags'),
+                'description'  => esc_html__('This feature allows you to connect terms. When the main term or any of these terms are added to the post, all the other terms will be added also.', 'simple-tags'),
+                'option_key'   => 'active_features_core_linked_terms',
+                'class'       => 'feature-pro-locked',
+            ];
+            
+            $new_features += array_slice($features, $st_terms_position + 1, null, true);
+            return $new_features;
+        }
+
+        return $features;
+    }
+
+    function taxopress_core_linked_terms_content($content)
+    {
+        ob_start();
+        ?>
+
+            <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                <div class="postbox-header">
+                    <h3 class="advertisement-box-header hndle is-non-sortable taxopress-core-terms-promobox">
+                        <span><?php echo esc_html__('Linked Terms Feature', 'simple-tags'); ?></span>
+                    </h3>
+                </div>
+                <div class="inside-content">
+                    <p><?php echo esc_html__('TaxoPress Pro allows you to create powerful connections between your terms. When one term is added to a post, its linked terms can be automatically added too. This helps maintain consistent organization across your content.', 'simple-tags'); ?></p>
+                    <div class="upgrade-btn">
+                        <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                    </div>
+                </div>
+            </div>
+        <?php
+        return ob_get_clean();
+    }
+
+     /**
+     * Add Synonyms Terms feature to dashboard
+     */
+    function taxopress_core_synonyms_terms_feature($features) {
+
+        $features['st_features_synonyms'] = [
+            'label'        => esc_html__('Synonyms', 'simple-tags'),
+            'description'  => esc_html__('This feature allows you to associate additional words with each term. For example, "website" can have synonyms such as "websites", "web site", and "web pages".', 'simple-tags'),
+            'option_key'   => 'active_features_core_synonyms_terms',
+            'class'       => 'feature-pro-locked',
+        ];
+
+        return $features;
+    }
+
+    function taxopress_core_synonyms_terms_content($content)
+    {
+        ob_start();
+        ?>
+
+            <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                <div class="postbox-header">
+                    <h3 class="advertisement-box-header hndle is-non-sortable taxopress-core-terms-promobox">
+                        <span><?php echo esc_html__('Synonyms Terms Feature', 'simple-tags'); ?></span>
+                    </h3>
+                </div>
+                <div class="inside-content">
+                    <p><?php echo esc_html__('TaxoPress Pro allows you to have multiple words associated with a single term. If TaxoPress scans your content and finds a synonym, it will act as if it has found the main term.', 'simple-tags'); ?></p>
+                    <div class="upgrade-btn">
+                        <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                    </div>
+                </div>
+            </div>
+        <?php
+        return ob_get_clean();
     }
 }

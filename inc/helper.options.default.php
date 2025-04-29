@@ -15,6 +15,8 @@ return array(
     'active_st_terms'        => 1,
     'active_features_synonyms'      => 1,
     'active_features_linked_terms'  => 1,
+    'active_features_core_linked_terms' => 1,
+    'active_features_core_synonyms_terms' => 1,
     'active_st_posts'        => 1,
 
     // post terms filter format
