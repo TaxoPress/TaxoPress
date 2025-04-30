@@ -957,6 +957,14 @@ class SimpleTags_Admin
 					$option_actual[$option[0]] = '';
 				}
 
+				// Add our custom core_terms_promo type
+				if ($option[2] == 'core_terms_promo') {
+					if (isset($option[4]) && !empty($option[4])) {
+						$output .= '<tr style="vertical-align: middle;" class="' . $class . '"><td class="helper" ' . $colspan . '>' . apply_filters('taxopress_admin_manage_' . $option[0], $option[4]) . '</td></tr>' . PHP_EOL;
+					}
+					continue;
+				}
+
 				$input_type = '';
 				$desc_html_tag = 'div';
 				switch ($option[2]) {
@@ -1105,6 +1113,10 @@ class SimpleTags_Admin
 				return esc_html__('Hidden Terms', 'simple-tags');
 			case 'manage_terms':
 				return esc_html__('Manage Terms', 'simple-tags');
+			case 'core_linked_terms':
+				return esc_html__('Linked Terms', 'simple-tags');
+			case 'core_synonyms_terms':
+				return esc_html__('Term Synonyms', 'simple-tags');
 		}
 
 		return '';

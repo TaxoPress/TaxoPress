@@ -23,7 +23,15 @@
 				$style = 'style="display:none;"';
 			}
 
+			if ( $key == 'core_linked_terms' && (taxopress_is_pro_version() || (isset($options['active_features_core_linked_terms']) && (int) $options['active_features_core_linked_terms'] == 0))) {
+				$style = 'style="display:none;"';
+			}
+
 			if ( $key == 'synonyms' && (!taxopress_is_pro_version() || (isset($options['active_features_synonyms']) && (int) $options['active_features_synonyms'] == 0))) {
+				$style = 'style="display:none;"';
+			}
+
+			if ( $key == 'core_synonyms_terms' && (taxopress_is_pro_version() || (isset($options['active_features_core_synonyms_terms']) && (int) $options['active_features_core_synonyms_terms'] == 0))) {
 				$style = 'style="display:none;"';
 			}
 

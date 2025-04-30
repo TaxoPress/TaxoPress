@@ -365,6 +365,28 @@ return apply_filters('taxopress_admin_options', array(
             )
         ),
 
+        'core_linked_terms' => array(
+        array(
+            'linked_terms_pro_notice',
+            '',
+            'core_terms_promo',
+            '',
+            apply_filters('taxopress_settings_linked_terms_pro_notice', ''),
+            ''
+        )
+    ),
+
+    'core_synonyms_terms' => array(
+        array(
+            'synonyms_terms_pro_notice',
+            '',
+            'core_terms_promo',
+            '',
+            apply_filters('taxopress_settings_synonyms_terms_pro_notice', ''),
+            ''
+        )
+    ),
+
         // Manage terms tab
         'manage_terms' => array(
             array(
