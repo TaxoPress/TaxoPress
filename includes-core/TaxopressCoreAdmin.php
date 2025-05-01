@@ -64,7 +64,7 @@ class TaxopressCoreAdmin
         add_action('taxopress_admin_class_before_assets_register', [$this, 'taxopress_load_admin_core_assets']);
         add_action('taxopress_admin_class_after_styles_enqueue', [$this, 'taxopress_load_admin_core_styles']);
         add_action('taxopress_admin_after_sidebar', [$this, 'taxopress_admin_advertising_sidebar_banner']);
-        add_action('taxopress_autoterms_schedule_autoterm_terms_to_use', [$this, 'taxopress_core_schedule_autoterm_tab_content'], 20);
+        add_action('taxopress_autoterms_schedule_autoterm_terms_to_use', [$this, 'taxopress_core_schedule_autoterm_tab_content']);
         add_action('taxopress_autoterms_after_autoterm_terms_to_use', [$this, 'taxopress_core_autoterm_terms_to_use_field']);
         add_action('taxopress_suggestterm_after_api_fields', [$this, 'taxopress_core_suggestterm_after_api_fields']);
         add_action('taxopress_autoterms_after_autoterm_advanced', [$this, 'taxopress_core_autoterm_advanced_field']);
