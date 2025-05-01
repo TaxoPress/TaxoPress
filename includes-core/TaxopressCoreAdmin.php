@@ -347,7 +347,7 @@ class TaxopressCoreAdmin
         ?>
         <tr>
             <td>
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-when-schedule-notice">
                     <div class="postbox-header">
                         <h3 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Schedule Auto Terms', 'simple-tags'); ?></span>
