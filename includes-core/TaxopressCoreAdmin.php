@@ -64,6 +64,7 @@ class TaxopressCoreAdmin
         add_action('taxopress_admin_class_before_assets_register', [$this, 'taxopress_load_admin_core_assets']);
         add_action('taxopress_admin_class_after_styles_enqueue', [$this, 'taxopress_load_admin_core_styles']);
         add_action('taxopress_admin_after_sidebar', [$this, 'taxopress_admin_advertising_sidebar_banner']);
+        add_action('taxopress_autoterms_schedule_autoterm_terms_to_use', [$this, 'taxopress_core_schedule_autoterm_tab_content']);
         add_action('taxopress_autoterms_after_autoterm_terms_to_use', [$this, 'taxopress_core_autoterm_terms_to_use_field']);
         add_action('taxopress_suggestterm_after_api_fields', [$this, 'taxopress_core_suggestterm_after_api_fields']);
         add_action('taxopress_autoterms_after_autoterm_advanced', [$this, 'taxopress_core_autoterm_advanced_field']);
@@ -338,6 +339,31 @@ class TaxopressCoreAdmin
         }
     
         return $actions;
+    }
+
+    function taxopress_core_schedule_autoterm_tab_content($current)
+    {
+        
+        ?>
+        <tr>
+            <td>
+                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-when-schedule-notice">
+                    <div class="postbox-header">
+                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                            <span><?php echo esc_html__('Schedule Auto Terms', 'simple-tags'); ?></span>
+                        </h3>
+                    </div>
+
+                    <div class="inside-content">
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to schedule the Auto Terms feature to run either hourly or daily. This is really useful if you are regularly updating your posts, or if you’re automatically importing new posts.', 'si’ple-tags'); ?></p>
+                        <div class="upgrade-btn">
+                            <a href="https://taxopress.com/taxopress/" target="_blank"><?php echo esc_html__("Upgrade to Pro", "simple-tags"); ?></a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <?php
     }
 
     function taxopress_core_autoterm_terms_to_use_field($current)
