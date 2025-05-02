@@ -389,7 +389,7 @@ class SimpleTags_Tag_Clouds
                                                 foreach ( get_all_taxopress_taxonomies() as $_taxonomy ) {
                                                     $_taxonomy = $_taxonomy->name;
 						                            $tax = get_taxonomy( $_taxonomy );
-						                            if ( ! $tax->show_tagcloud || empty( $tax->labels->name ) ) {
+						                            if ( ! $tax->show_tagcloud || empty( $tax->labels->name ) || $_taxonomy === 'link_category' ) {
                                                         continue;
                                                     }
                                                     if($tax->name === 'post_tag'){
