@@ -16,9 +16,9 @@
  *
  * @package 	simple-tags
  * @author		TaxoPress
- * @copyright   Copyright (C) 2007, 2011 Darren Ethier; modifications Copyright (C) 2022 TaxoPress
+ * @copyright   Copyright (c) 2022 Taxopress
  * @license		GNU General Public License version 2
- * @link		https://taxoPress.com/
+ * @link		https://TaxoPress.com/
  */
 
 ######################################
