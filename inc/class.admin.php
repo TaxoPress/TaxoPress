@@ -1022,6 +1022,28 @@ class SimpleTags_Admin
 						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>' . PHP_EOL;
 						break;
 
+					case 'select_with_icon':
+						$selopts = $option[3];
+						$seldata = '';
+						foreach ((array) $selopts as $sel_key => $sel_label) {
+							$seldata .= '<option value="' . esc_attr($sel_key) . '" ' . ((isset($option_actual[$option[0]]) && $option_actual[$option[0]] == $sel_key) ? 'selected="selected"' : '') . ' >' . ucfirst($sel_label) . '</option>' . PHP_EOL;
+							}
+							
+							$icon_class = isset($option[6]['icon']) ? $option[6]['icon'] : 'dashicons-lock';
+							$modal_content = isset($option[6]['modal']) ? $option[6]['modal'] : '';
+							$disabled = !empty($option[8]) && isset($option[8]['disabled']) ? 'disabled="disabled"' : '';
+							$class_attr = isset($option[5]) ? esc_attr($option[5]) : '';
+							$icon_wrapper_class = isset($option[6]['icon_wrapper_class']) ? esc_attr($option[6]['icon_wrapper_class']) : 'taxopress-select-icon';
+							$modal_wrapper_class = isset($option[6]['modal_wrapper_class']) ? esc_attr($option[6]['modal_wrapper_class']) : 'taxopress-select-icon-modal';
+
+							$input_type = '<div class="' . $class_attr . '">
+								<select id="' . $option[0] . '" name="' . $option[0] . '" ' . $disabled . '>' . $seldata . '</select>
+								<span class="' . $icon_wrapper_class . ' dashicons ' . esc_attr($icon_class) . '">
+									<div class="' . $modal_wrapper_class . '">' . $modal_content . '</div>
+								</span>
+							</div>' . PHP_EOL;
+							break;
+
 					case 'text-color':
 						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="text-color ' . $option[3] . '" />' . PHP_EOL;
 						break;

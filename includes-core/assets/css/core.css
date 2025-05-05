@@ -2,3 +2,53 @@
     margin: 0 !important;
     padding: 8px 12px;
 }
+
+.taxopress-select-icon {
+    cursor: pointer;
+    color: #646970;
+    position: relative;
+}
+
+.taxopress-select-icon-modal {
+    visibility: hidden;
+    position: absolute;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 300px;
+    z-index: 100;
+    left: 30px;
+    top: 0;
+}
+
+.taxopress-select-icon:hover .taxopress-select-icon-modal,
+.taxopress-select-icon-modal:hover {
+    visibility: visible;
+}
+
+.taxopress-select-icon:hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    width: 15px;
+    height: 20px;
+    background: transparent;
+    z-index: 99;
+}
+
+/* Disabled select */
+.taxopress-select-with-icon select{
+    background-color: #e9ecef;
+    color: #6c757d;
+    opacity: 0.65;
+    border: 1px solid #6c757d;
+    pointer-events: none;
+}
+
+.taxopress-select-with-icon select:hover{
+    background-color: #e9ecef;
+    color: #6c757d;
+}
