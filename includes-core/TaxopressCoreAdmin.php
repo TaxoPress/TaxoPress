@@ -605,12 +605,9 @@ class TaxopressCoreAdmin
                 'default' => esc_html__('Default', 'simple-tags'),
             ];
             
-            $modal_content = '<div class=" taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro taxopress-display-option-modal">
+            $modal_content = '<div class="taxopress-display-option-modal">
                 <div class="inside-content">
-                    <p>' . esc_html__('TaxoPress Pro allows you to customize the display of terms in the TaxoPress metabox. Aside from the wordpress default, you can show terms in a dropdown list or a checkbox list.', 'simple-tags') . '</p>
-                    <div class="upgrade-btn">
-                        <a href="https://taxopress.com/taxopress/" target="_blank">' . esc_html__('Upgrade to Pro', 'simple-tags') . '</a>
-                    </div>
+                    <p>' . esc_html__('TaxoPress Pro allows you to customize the display of terms in the TaxoPress metabox. Aside from the wordpress default, you can show terms in a dropdown list or a checkbox list.', 'simple-tags') . '</p>      
                 </div>
             </div>';
             

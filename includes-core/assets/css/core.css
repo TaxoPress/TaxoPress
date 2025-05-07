@@ -12,15 +12,18 @@
 .taxopress-select-icon-modal {
     visibility: hidden;
     position: absolute;
-    background: white;
+    background: #f1f1f1;
     padding: 15px;
+    padding-bottom: 25px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     width: 300px;
     z-index: 100;
     left: 30px;
     top: 0;
+    font-weight: bold;
+    color: #000;
 }
 
 .taxopress-select-icon:hover .taxopress-select-icon-modal,
