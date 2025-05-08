@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 3.3
 Tested up to: 6.8
-Stable tag: 3.34.0
+Stable tag: 3.35.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -268,6 +268,22 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.35.0- 2025-05-08
+* Fixed: Hide "Link Categories", #2608
+* Fixed: Missing the Free banner on the Fast Update screen, #2591
+* Fixed: Conflict between TaxoPress and Amelia, #2584
+* Update: Update the copyright, #2600
+* Update: Visual clean up of Metaboxes tab, #2593
+* Update: Visual clean up of Merge tab and Manage Terms screen. #2592
+* Update: Pro nudge for Metabox Taxonomy Display, #2581
+* Update: Pro nudge for the Schedule feature, #2580
+* Update: Pro nudge for Linked Terms and Synonyms, #2578
+* Update: Text description for Linked Terms and Synonyms, #2579
+* Update: Make sure all Pro features are promoted in the Free version, #2528
+* Feature: Setting for showing the slugs, #2595
+* Update: TaxoPress v3.33.0 Translation Update ES-FR-IT, #2563, #2564
+* Update: TaxoPress v3.34.0 Translation Update ES-FR-IT, #2601, #2602
+
 v3.34.0- 2025-04-22
 * Update: Remove Hidden Terms from Auto Links, #2582
 * Update: Clarify the Exclusions message, #2573
@@ -277,7 +293,7 @@ v3.34.0- 2025-04-22
 * Feature: Allow users to specify maximum or minimum length for new terms, #2525
 * Update: Reposition filters on the Manage Terms screen, #2475
 * Update: Add Ajax Support for merging large terms, #2438
-* Fixed: Add simple-tags/vendor/publishpress/wordpress-version-notices/tests/ to ignore directory list #2566
+* Fixed: Add simple-tags/vendor/publishpress/wordpress-version-notices/tests/ to ignore directory list, #2566
 
 v3.33.0- 2025-03-24
 * Update: Change "Metaboxes" to "Fast Update" and make it share same look as post metabox, #2493

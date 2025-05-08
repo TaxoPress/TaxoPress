@@ -394,7 +394,7 @@ return apply_filters('taxopress_admin_options', array(
                 __('Add Terms:', 'simple-tags'),
                 'checkbox',
                 '1',
-                __('Enabling this will allow users to see terms slug while adding terms', 'simple-tags'),
+                __('Enabling this will allow users to see the slug while adding terms', 'simple-tags'),
                 ''
             ),
             array(
@@ -402,7 +402,7 @@ return apply_filters('taxopress_admin_options', array(
                 __('Remove Terms:', 'simple-tags'),
                 'checkbox',
                 '1',
-                __('Enabling this will allow users to see terms slug while removing terms', 'simple-tags'),
+                __('Enabling this will allow users to see the slug while removing terms', 'simple-tags'),
                 ''
             ),
             array(
@@ -410,7 +410,7 @@ return apply_filters('taxopress_admin_options', array(
                 __('Rename Terms:', 'simple-tags'),
                 'checkbox',
                 '1',
-                __('Enabling this will allow users to see terms slug while Renaming terms', 'simple-tags'),
+                __('Enabling this will allow users to see the slug while Renaming terms', 'simple-tags'),
                 ''
             ),
             array(
@@ -418,7 +418,7 @@ return apply_filters('taxopress_admin_options', array(
                 __('Merge Terms:', 'simple-tags'),
                 'checkbox',
                 '1',
-                __('Enabling this will allow users to see terms slug while merging terms', 'simple-tags'),
+                __('Enabling this will allow users to see the slug while merging terms', 'simple-tags'),
                 ''
             ),
         ),
