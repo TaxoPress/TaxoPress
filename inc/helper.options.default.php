@@ -15,6 +15,8 @@ return array(
     'active_st_terms'        => 1,
     'active_features_synonyms'      => 1,
     'active_features_linked_terms'  => 1,
+    'active_features_core_linked_terms' => 1,
+    'active_features_core_synonyms_terms' => 1,
     'active_st_posts'        => 1,
 
     // post terms filter format
@@ -31,6 +33,12 @@ return array(
     //hidden terms
     'enable_hidden_terms' => 0,
     'hide-rarely' => 5,
+
+    //manage terms
+    'enable_add_terms_slug' => 0,
+    'enable_remove_terms_slug' => 0,
+    'enable_rename_terms_slug' => 0,
+    'enable_merge_terms_slug' => 1,
 
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,

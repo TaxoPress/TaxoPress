@@ -732,7 +732,7 @@ class SimpleTags_Autoterms
 
                                                                     <label class="post current">
                                                                         <input disabled type="checkbox" name="taxopress_autoterm[autoterm_source_when_to_use_tab][]" value="post"><?php esc_html_e('Posts', 'simple-tags'); ?></label>
-                                                                    <label class="schedule" style="<?php echo taxopress_is_pro_version() ? '' : 'display: none;'; ?>">
+                                                                    <label class="schedule">
                                                                         <input disabled type="checkbox" name="taxopress_autoterm[autoterm_source_when_to_use_tab][]" value="schedule"><?php esc_html_e('Schedule', 'simple-tags'); ?></label>
                                                                     <label class="existing-content">
                                                                         <input disabled type="checkbox" name="taxopress_autoterm[autoterm_source_when_to_use_tab][]" value="existing_content"><?php esc_html_e('Existing Content', 'simple-tags'); ?></label>
@@ -860,83 +860,7 @@ class SimpleTags_Autoterms
                                                     /**
                                                      * Schedule
                                                      */
-                                                    $selected           = (isset($current) && isset($current['autoterm_for_schedule'])) ? taxopress_disp_boolean($current['autoterm_for_schedule']) : '';
-                                                    $default_select['selected'] = !empty($selected) ? $current['autoterm_for_schedule'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'autoterm_for_schedule',
-                                                        'class'      => 'autoterm_for_schedule autoterm-terms-when-to-field autoterm-terms-when-schedule fields-control',
-                                                        'labeltext'  => esc_html__('Schedule', 'simple-tags'),
-                                                        'aftertext'  => esc_html__('Enable Auto Terms for the "Schedule" feature.', 'simple-tags'),
-                                                        'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                        'required'    => false,
-                                                    ]);
-                                                    
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_number_input([
-                                                        'namearray' => 'taxopress_autoterm',
-                                                        'name'      => 'schedule_terms_limit',
-                                                        'textvalue' => isset($current['schedule_terms_limit']) ? esc_attr($current['schedule_terms_limit']) : '5',
-                                                        'class'      => 'autoterm_for_schedule autoterm-terms-when-to-field autoterm-terms-when-schedule',
-                                                        'labeltext' => esc_html__('Auto Terms Limit',
-                                                            'simple-tags'),
-                                                        'helptext'  => esc_html__('Limit the number of generated Auto Terms. \'0\' for unlimited terms', 'simple-tags'),
-                                                        'min'       => '0',
-                                                        'required'  => false,
-                                                    ]);
-
-                                                    
-                                                    $selected           = (isset($current) && isset($current['schedule_autoterm_target'])) ? taxopress_disp_boolean($current['schedule_autoterm_target']) : '';
-                                                    $default_select['selected'] = !empty($selected) ? $current['schedule_autoterm_target'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'schedule_autoterm_target',
-                                                        'class'      => 'autoterm_for_schedule autoterm-terms-when-to-field autoterm-terms-when-schedule',
-                                                        'labeltext'  => esc_html__('Target content', 'simple-tags'),
-                                                        'aftertext'  => esc_html__('Only use Auto Terms on schedules with no added terms.', 'simple-tags'),
-                                                        'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ]);
-
-                                                    
-                                                    $selected           = (isset($current) && isset($current['schedule_autoterm_word'])) ? taxopress_disp_boolean($current['schedule_autoterm_word']) : '';
-                                                    $default_select['selected'] = !empty($selected) ? $current['schedule_autoterm_word'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'schedule_autoterm_word',
-                                                        'class'      => 'autoterm_for_schedule autoterm-terms-when-to-field autoterm-terms-when-schedule',
-                                                        'labeltext'  => esc_html__('Whole words', 'simple-tags'),
-                                                        'aftertext'  => esc_html__('Only add terms when the word is an exact match. Do not make matches for partial words.', 'simple-tags'),
-                                                        'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ]);
-
-                                                    
-                                                    $selected           = (isset($current) && isset($current['schedule_autoterm_hash'])) ? taxopress_disp_boolean($current['schedule_autoterm_hash']) : '';
-                                                    $default_select['selected'] = !empty($selected) ? $current['schedule_autoterm_hash'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_select_checkbox_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'schedule_autoterm_hash',
-                                                        'class'      => 'autoterm_for_schedule autoterm-terms-when-to-field autoterm-terms-when-schedule',
-                                                        'labeltext'  => esc_html__('Hashtags', 'simple-tags'),
-                                                        'aftertext'  => esc_html__('Support hashtags symbols # in Auto Terms.', 'simple-tags'),
-                                                        'selections' => $default_select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ]);
-
-                                                    $selected   = (isset($current) && isset($current['schedule_replace_type'])) ? taxopress_disp_boolean($current['schedule_replace_type']) : '';
-                                                    $taxonomy_replace_options['selected'] = !empty($selected) ? $current['schedule_replace_type'] : '';
-                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    echo $ui->get_radio_input([
-                                                        'namearray'  => 'taxopress_autoterm',
-                                                        'name'       => 'schedule_replace_type',
-                                                        'class'      => 'autoterm_for_schedule autoterm-terms-when-to-field autoterm-terms-when-schedule',
-                                                        'labeltext'  => esc_html__('Auto Terms replacement settings',
-                                                            'simple-tags'),
-                                                            'aftertext'  => esc_html__('This option determines what happens when adding new terms to posts.', 'simple-tags'),
-                                                        'selections' => $taxonomy_replace_options,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                    ]);
+                                                    do_action('taxopress_autoterms_schedule_autoterm_terms_to_use', $current);
 
                                                     /**
                                                      * Existing Content

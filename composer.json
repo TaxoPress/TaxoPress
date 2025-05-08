@@ -29,7 +29,6 @@
         "publishpress/wordpress-version-notices": "^1.1",
         "pimple/pimple": "3.5.0.*",
         "symfony/polyfill-ctype": "1.19.*",
-        "sabre/vobject": "^4.5.1",
         "psr/container": "1.1.1"
     },
     "require-dev": {

@@ -561,6 +561,24 @@ class SimpleTags_Admin
 		wp_register_style('st-admin', STAGS_URL . '/assets/css/admin.css', array(), STAGS_VERSION, 'all');
 		wp_register_style('st-admin-global', STAGS_URL . '/assets/css/admin-global.css', array(), STAGS_VERSION, 'all');
 
+		// Register tooltip
+        wp_register_script(
+            'taxopress-admin-tooltip',
+            STAGS_URL . '/assets/lib/tooltip/js/tooltip.js',
+            ['jquery'],
+            STAGS_VERSION
+        );
+
+		wp_register_style(
+            'taxopress-admin-tooltip',
+            STAGS_URL . '/assets/lib/tooltip/css/tooltip.css',
+            [],
+            STAGS_VERSION
+        );
+
+		//enqueue tooltip
+		wp_enqueue_script('taxopress-admin-tooltip');
+		wp_enqueue_style('taxopress-admin-tooltip');
 
         // Register Select 2
         wp_register_script(
@@ -630,7 +648,11 @@ class SimpleTags_Admin
 			'posts_updated_text'      => esc_html__('posts updated', 'simple-tags'),
 			'merge_success_update' => esc_html__('All terms merged into %s', 'simple-tags'),
 			'ajax_merge_terms_error'  => esc_html__('AJAX error on batch', 'simple-tags'),
-			'batch_error_text'        => esc_html__('Error on batch %1$s:', 'simple-tags')
+			'batch_error_text'        => esc_html__('Error on batch %1$s:', 'simple-tags'),
+			'enable_merge_terms_slug' => SimpleTags_Plugin::get_option_value('enable_merge_terms_slug'),
+			'enable_add_terms_slug' => SimpleTags_Plugin::get_option_value('enable_add_terms_slug'),
+			'enable_remove_terms_slug' => SimpleTags_Plugin::get_option_value('enable_remove_terms_slug'),
+			'enable_rename_terms_slug' => SimpleTags_Plugin::get_option_value('enable_rename_terms_slug'),
 		]);
 
 
@@ -953,6 +975,14 @@ class SimpleTags_Admin
 					$option_actual[$option[0]] = '';
 				}
 
+				// Add our custom core_terms_promo type
+				if ($option[2] == 'core_terms_promo') {
+					if (isset($option[4]) && !empty($option[4])) {
+						$output .= '<tr style="vertical-align: middle;" class="' . $class . '"><td class="helper" ' . $colspan . '>' . apply_filters('taxopress_admin_manage_' . $option[0], $option[4]) . '</td></tr>' . PHP_EOL;
+					}
+					continue;
+				}
+
 				$input_type = '';
 				$desc_html_tag = 'div';
 				switch ($option[2]) {
@@ -1009,6 +1039,28 @@ class SimpleTags_Admin
 						}
 						$input_type = '<select id="' . $option[0] . '" name="' . $option[0] . '">' . $seldata . '</select>' . PHP_EOL;
 						break;
+
+					case 'select_with_icon':
+						$selopts = $option[3];
+						$seldata = '';
+						foreach ((array) $selopts as $sel_key => $sel_label) {
+							$seldata .= '<option value="' . esc_attr($sel_key) . '" ' . ((isset($option_actual[$option[0]]) && $option_actual[$option[0]] == $sel_key) ? 'selected="selected"' : '') . ' >' . ucfirst($sel_label) . '</option>' . PHP_EOL;
+							}
+							
+							$icon_class = isset($option[6]['icon']) ? $option[6]['icon'] : 'dashicons-lock';
+							$modal_content = isset($option[6]['modal']) ? $option[6]['modal'] : '';
+							$disabled = !empty($option[8]) && isset($option[8]['disabled']) ? 'disabled="disabled"' : '';
+							$class_attr = isset($option[5]) ? esc_attr($option[5]) : '';
+							$icon_wrapper_class = isset($option[6]['icon_wrapper_class']) ? esc_attr($option[6]['icon_wrapper_class']) : 'taxopress-select-icon';
+							$modal_wrapper_class = isset($option[6]['modal_wrapper_class']) ? esc_attr($option[6]['modal_wrapper_class']) : 'taxopress-select-icon-modal';
+
+							$input_type = '<div class="' . $class_attr . '">
+								<select id="' . $option[0] . '" name="' . $option[0] . '" ' . $disabled . '>' . $seldata . '</select>
+								<span class="' . $icon_wrapper_class . ' dashicons ' . esc_attr($icon_class) . '">
+									<div class="' . $modal_wrapper_class . '">' . $modal_content . '</div>
+								</span>
+							</div>' . PHP_EOL;
+							break;
 
 					case 'text-color':
 						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="text-color ' . $option[3] . '" />' . PHP_EOL;
@@ -1099,6 +1151,12 @@ class SimpleTags_Admin
 				return esc_html__('License', 'simple-tags');
 			case 'hidden_terms':
 				return esc_html__('Hidden Terms', 'simple-tags');
+			case 'manage_terms':
+				return esc_html__('Manage Terms', 'simple-tags');
+			case 'core_linked_terms':
+				return esc_html__('Linked Terms', 'simple-tags');
+			case 'core_synonyms_terms':
+				return esc_html__('Term Synonyms', 'simple-tags');
 		}
 
 		return '';

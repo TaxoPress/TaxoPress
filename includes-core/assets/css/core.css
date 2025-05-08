@@ -1,0 +1,42 @@
+.taxopress-core-terms-promobox{
+    margin: 0 !important;
+    padding: 8px 12px;
+}
+
+.taxopress-select-icon {
+    cursor: pointer;
+    position: relative;
+    background: #FCB223;
+    color: #000;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    align-content: center;
+    top: -30px !important;
+    float: right !important;
+    margin-left: 5px !important;
+}
+
+/* Disabled select */
+.taxopress-select-with-icon select{
+    background-color: #e9ecef;
+    color: #6c757d;
+    opacity: 0.65;
+    border: 1px solid #6c757d;
+    pointer-events: none;
+    float: left !important;
+}
+
+.taxopress-select-with-icon select:hover{
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.taxopress-stpexplan{
+    margin-top: -15px !important;
+}
+
+.tooltip-text{
+    text-align: center !important;
+}

@@ -9,6 +9,15 @@ jQuery(document).ready(function() {
         activetab = localStorage.getItem("activetab");
     }
 
+    // Check if current tab is accessible
+    if (activetab && !jQuery(activetab + '-tab').is(':visible')) {
+        // Switch to first available tab if current tab is hidden
+        activetab = jQuery('.nav-tab-wrapper a:visible:first').attr('href');
+        if (typeof(localStorage) != 'undefined' && localStorage != null) {
+            localStorage.setItem("activetab", activetab);
+        }
+    }
+
     // allow default tab from parameter
     var urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('active_tab')) {

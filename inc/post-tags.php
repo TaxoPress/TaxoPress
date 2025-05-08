@@ -348,7 +348,7 @@ class SimpleTags_Post_Tags
                                                             foreach (get_all_taxopress_taxonomies() as $_taxonomy) {
                                                                 $_taxonomy = $_taxonomy->name;
                                                                 $tax       = get_taxonomy($_taxonomy);
-                                                                if (empty($tax->labels->name)) {
+                                                                if (empty($tax->labels->name) || $_taxonomy === 'link_category') {
                                                                     continue;
                                                                 }
                                                                 if ($tax->name === 'post_tag') {
