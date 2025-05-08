@@ -612,15 +612,17 @@ class TaxopressCoreAdmin
                 '</div>',
                 'select_with_icon',
                 $default_taxonomy_display_options,
-                '<span class="pp-tooltips-library" data-toggle="tooltip">
-                    <span class="dashicons dashicons-lock taxopress-select-icon"></span>
-                    <span class="tooltip-text">' .
-                        esc_html__('This feature is available in TaxoPress Pro', 'simple-tags') .
-                    '</span>
-                </span>
-                <div class="taxopress-stpexplan">'
-                 . esc_html__('Customize the display of terms in the TaxoPress metabox.', 'simple-tags') . '<br />' .
-                 esc_html__('Options include checkboxes and a dropdown list.', 'simple-tags') .
+                '<div class="taxopress-select-icon-wrapper">
+                    <span class="pp-tooltips-library" data-toggle="tooltip">
+                        <span class="dashicons dashicons-lock taxopress-select-icon"></span>
+                        <span class="tooltip-text">' .
+                            esc_html__('This feature is available in TaxoPress Pro', 'simple-tags') .
+                        '</span>
+                    </span>
+                </div>
+                <div class="taxopress-stpexplan">' .
+                    esc_html__('Customize the display of terms in the TaxoPress metabox.', 'simple-tags') . '<br />' .
+                    esc_html__('Options include checkboxes and a dropdown list.', 'simple-tags') .
                 '</div>',
                 'taxopress-select-with-icon taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
                 array(
