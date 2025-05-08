@@ -5,8 +5,15 @@
 
 .taxopress-select-icon {
     cursor: pointer;
-    color: #646970;
     position: relative;
+    background: #FCB223;
+    color: #000;
+    border-radius: 100%;
+    width: 28px;
+    height: 28px;
+    box-sizing: border-box;
+    align-content: center;
+    top: -4px;
 }
 
 /* Disabled select */
