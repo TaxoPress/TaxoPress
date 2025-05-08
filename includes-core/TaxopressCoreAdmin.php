@@ -605,24 +605,19 @@ class TaxopressCoreAdmin
                 'default' => esc_html__('Default', 'simple-tags'),
             ];
             
-            $modal_content = '<div class="taxopress-display-option-modal">
-                <div class="inside-content">
-                    <p>' . esc_html__('TaxoPress Pro allows you to customize the display of terms in the TaxoPress metabox. Aside from the wordpress default, you can show terms in a dropdown list or a checkbox list.', 'simple-tags') . '</p>      
-                </div>
-            </div>';
-            
             $new_entry = array(
                 'taxopress_ai_' . $post_type . '_metabox_display_option',
                 '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Taxonomy Display', 'simple-tags') . '</div>',
                 'select_with_icon',
                 $default_taxonomy_display_options,
-                '',
+                '<div>' . esc_html__('Customize the display of terms in the TaxoPress metabox.', 'simple-tags') . '</div>' .
+                '<div>' . esc_html__('Options include checkboxes and a dropdown list.', 'simple-tags') . '</div>',
                 'taxopress-select-with-icon taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
                 array(
                     'icon' => 'dashicons-lock',
-                    'modal' => $modal_content,
+                    'modal' => '',
                     'icon_wrapper_class' => 'taxopress-select-icon',
-                    'modal_wrapper_class' => 'taxopress-select-icon-modal',
+                    'modal_wrapper_class' => '',
                 ),
             );
 
