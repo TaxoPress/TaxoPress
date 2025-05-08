@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.35.0- 2025-05-07
+v3.35.0- 2025-05-08
 * Fixed: Hide "Link Categories", #2608
 * Fixed: Missing the Free banner on the Fast Update screen, #2591
 * Fixed: Conflict between TaxoPress and Amelia, #2584
@@ -281,8 +281,8 @@ v3.35.0- 2025-05-07
 * Update: Text description for Linked Terms and Synonyms, #2579
 * Update: Make sure all Pro features are promoted in the Free version, #2528
 * Feature: Setting for showing the slugs, #2595
-* Update: TaxoPress v3.33.0 Transaltion Update ES-FR-IT, #2563, #2564
-* Update: TaxoPress v3.34.0 Transaltion Update ES-FR-IT, #2601, #2602
+* Update: TaxoPress v3.33.0 Translation Update ES-FR-IT, #2563, #2564
+* Update: TaxoPress v3.34.0 Translation Update ES-FR-IT, #2601, #2602
 
 v3.34.0- 2025-04-22
 * Update: Remove Hidden Terms from Auto Links, #2582
