@@ -561,6 +561,24 @@ class SimpleTags_Admin
 		wp_register_style('st-admin', STAGS_URL . '/assets/css/admin.css', array(), STAGS_VERSION, 'all');
 		wp_register_style('st-admin-global', STAGS_URL . '/assets/css/admin-global.css', array(), STAGS_VERSION, 'all');
 
+		// Register tooltip
+        wp_register_script(
+            'taxopress-admin-tooltip',
+            STAGS_URL . '/assets/lib/tooltip/js/tooltip.js',
+            ['jquery'],
+            STAGS_VERSION
+        );
+
+		wp_register_style(
+            'taxopress-admin-tooltip',
+            STAGS_URL . '/assets/lib/tooltip/css/tooltip.css',
+            [],
+            STAGS_VERSION
+        );
+
+		//enqueue tooltip
+		wp_enqueue_script('taxopress-admin-tooltip');
+		wp_enqueue_style('taxopress-admin-tooltip');
 
         // Register Select 2
         wp_register_script(
