@@ -615,7 +615,7 @@ class TaxopressCoreAdmin
                 '<div class="taxopress-select-icon-wrapper">
                     <span class="pp-tooltips-library" data-toggle="tooltip">
                         <span class="dashicons dashicons-lock taxopress-select-icon"></span>
-                        <span class="tooltip-text">' .
+                        <span class="taxopress tooltip-text">' .
                             esc_html__('This feature is available in TaxoPress Pro', 'simple-tags') .
                         '</span>
                     </span>
