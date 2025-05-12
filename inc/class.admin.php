@@ -564,14 +564,14 @@ class SimpleTags_Admin
 		// Register tooltip
         wp_register_script(
             'taxopress-admin-tooltip',
-            STAGS_URL . '/assets/lib/tooltip/js/tooltip.js',
+            STAGS_URL . '/assets/lib/tooltip/js/tooltip.min.js',
             ['jquery'],
             STAGS_VERSION
         );
 
 		wp_register_style(
             'taxopress-admin-tooltip',
-            STAGS_URL . '/assets/lib/tooltip/css/tooltip.css',
+            STAGS_URL . '/assets/lib/tooltip/css/tooltip.min.css',
             [],
             STAGS_VERSION
         );

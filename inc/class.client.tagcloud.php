@@ -574,6 +574,14 @@ class SimpleTags_Client_TagCloud {
 			'hide_empty' => false,
 			'number' => $max_terms,
 		];
+
+		// exclude hidden terms from being queried for display at all
+		if ($hide_terms && SimpleTags_Plugin::get_option_value('enable_hidden_terms')) {
+			$hidden_terms = get_transient('taxopress_hidden_terms_' . $taxonomy);
+			if (!empty($hidden_terms) && is_array($hidden_terms)) {
+					$term_args['exclude'] = $hidden_terms;
+			}
+		}
 	
 		$is_hierarchical = is_taxonomy_hierarchical($taxonomy);
 		
