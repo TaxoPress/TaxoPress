@@ -158,6 +158,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['autolink_case']            = 'none';
     $default['taxopress_autolink']['autolink_display']         = 'post_content';
     $default['taxopress_autolink']['autolink_title_attribute'] = __('Posts tagged with %s', 'simple-tags');
+    $default['taxopress_autolink']['autolink_title_attribute_when_using_custom_url'] = __('Visit this URL for more on %s', 'simple-tags');
     $default['taxopress_autolink']['autolink_usage_min']       = '1';
     $default['taxopress_autolink']['auto_link_exclude']        = '';
     $default['taxopress_autolink']['autolink_usage_max']       = '10';
