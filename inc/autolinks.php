@@ -478,6 +478,18 @@ class SimpleTags_Autolink
                                                                 'required'  => false,
                                                             ]);
 
+                                                             echo $ui->get_text_input([
+                                                                'namearray' => 'taxopress_autolink',
+                                                                'name'      => 'autolink_title_attribute_when_using_custom_url',
+                                                                'textvalue' => isset($current['autolink_title_attribute_when_using_custom_url']) ? esc_attr($current['autolink_title_attribute_when_using_custom_url']) : 'Visit this URL for more on %s',
+                                                                'labeltext' => esc_html__(
+                                                                    'Auto Link title attribute when using a custom URL',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'helptext'  => '',
+                                                                'required'  => false,
+                                                            ]);
+
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_td_end() . $ui->get_tr_end();
                                                             ?>
