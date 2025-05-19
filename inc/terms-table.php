@@ -536,6 +536,7 @@ class Taxopress_Terms_List extends WP_List_Table
             esc_html__('Copy', 'simple-tags')
         );
 
+        $actions = apply_filters('taxopress_terms_row_actions', $actions, $item);
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
     }
 
