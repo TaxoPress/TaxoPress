@@ -177,7 +177,7 @@ class SimpleTags_Terms
             ]
         );
 
-        if (taxopress_is_screen_main_page()) {
+        if (taxopress_is_screen_main_page() && (!isset($_GET['action']) || $_GET['action'] !== 'new_item')) {
             add_action("load-$hook", [$this, 'screen_option']);
         }
     }
@@ -219,6 +219,27 @@ class SimpleTags_Terms
         <div class="wrap st_wrap st-manage-taxonomies-page manage-taxopress-terms">
 
             <div id="">
+
+                <?php
+                if (isset($_GET['action']) && $_GET['action'] === 'new_item') {
+                    ?>
+                    <div class="taxopress-term-wrap">
+                        <div class="taxopress-term-main">
+                             <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
+                            <div class="taxopress-description">
+                                <?php esc_html_e('This screen allows you to search and edit all the terms on your site.', 'simple-tags'); ?>
+                            </div>
+                            <?php
+                            do_action('taxopress_terms_copy_with_metadata_promo');
+                            ?>
+                        </div>
+                        <div class="taxopress-right-sidebar">
+                             <?php do_action('taxopress_admin_after_sidebar'); ?>
+                        </div>
+                    </div>
+                    <?php
+                } else {
+                    ?>
                 <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
                 <div class="taxopress-description">
                     <?php esc_html_e('This screen allows you to search and edit all the terms on your site.', 'simple-tags'); ?>
@@ -286,6 +307,9 @@ class SimpleTags_Terms
             </script>
             <?php SimpleTags_Admin::printAdminFooter(); ?>
         </div>
+        <?php
+                }
+                ?>
 <?php
     }
 }

@@ -1,6 +1,25 @@
 <?php
 
 /**
+ * Generate a unique term slug should user decide to copy same term more than once.
+ * 
+ * @param string $slug The initial slug to check
+ * @param string $taxonomy The taxonomy to check against
+ * @return string Unique slug
+ */
+function taxopress_get_unique_term_slug($slug, $taxonomy) {
+    $original_slug = $slug;
+    $count = 1;
+    
+    while (term_exists($slug, $taxonomy)) {
+        $slug = $original_slug . '-' . $count;
+        $count++;
+    }
+    
+    return $slug;
+}
+
+/**
  * Handle the save and deletion of terms data.
  */
 function taxopress_process_terms()
@@ -76,7 +95,8 @@ function taxopress_process_terms()
             $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
 
             $taxopress_term_name = $term->name . ' Copy';
-            $taxopress_term_slug = wp_unique_term_slug($term->slug . '-copy', $term->taxonomy);
+            $base_slug = $term->slug . '-copy';
+            $taxopress_term_slug = taxopress_get_unique_term_slug($base_slug, $term->taxonomy);
             $taxopress_term_data = wp_insert_term($taxopress_term_name, $term->taxonomy, [
                 'slug' => $taxopress_term_slug,
                 'description' => $term->description,
