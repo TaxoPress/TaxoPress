@@ -1087,7 +1087,7 @@ class SimpleTags_Tag_Clouds
     public function handle_termsdisplay_preview() {
         // Validate nonce
         if (!isset($_POST['nonce']) || !check_ajax_referer('st-admin-js', 'nonce', false)) {
-            wp_send_json_error(['message' => 'Invalid nonce']);
+            wp_send_json_error(['message' => __('Invalid nonce', 'simple-tags')]);
         }
 
         if (!current_user_can('simple_tags')) {
