@@ -581,6 +581,7 @@ class SimpleTags_Client {
 		$element_loop = str_replace( '%tag_name_attribute%', esc_html( strip_tags( $term->name ) ), $element_loop );
 		$element_loop = str_replace( '%tag_id%', $term->term_id, $element_loop );
 		$element_loop = str_replace( '%tag_count%', (int) $term->count, $element_loop );
+		$element_loop = str_replace( '%tag_description%', esc_html( $term->description ), $element_loop );
 
 		// Need rel
 		$element_loop = str_replace( '%tag_rel%', $rel, $element_loop );

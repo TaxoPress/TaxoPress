@@ -825,6 +825,7 @@ class SimpleTags_Post_Tags
                                                 <li><code>%tag_feed%</code><?php echo esc_html__('Replaced by the RSS tag link', 'simple-tags'); ?></li>
                                                 <li><code>%tag_id%</code><?php echo esc_html__('Replaced by the tag ID', 'simple-tags'); ?></li>
                                                 <li><code>%tag_name_attribute%</code><?php echo esc_html__('Replaced by the tag’s name, formatted for attribute HTML', 'simple-tags'); ?></li>
+                                                <li><code>%tag_description%</code> – <?php echo esc_html__('The description of the term', 'simple-tags'); ?></li>
                                             </ul>
                                             <p><?php echo esc_html__('You can also add HTML elements to the formatting.', 'simple-tags'); ?></p>
                                         </div>
