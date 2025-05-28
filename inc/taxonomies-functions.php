@@ -2015,9 +2015,6 @@ function taxopress_unregister_taxonomy($taxonomy)
         delete_option('default_term_' . $taxonomy_object->name);
     }
 
-    // Remove the taxonomy.
-    //unset($wp_taxonomies[$taxonomy]);
-
     /**
      * Fires after a taxonomy is unregistered.
      *
