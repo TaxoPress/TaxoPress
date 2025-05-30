@@ -1979,23 +1979,6 @@ function taxopress_unregister_taxonomy($taxonomy)
 
     // Instead of removing totally, keep minimal structure but disable functionality
    if (isset($wp_taxonomies[$taxonomy])) {
-        // Store original in case we need to restore
-        $original_tax = $wp_taxonomies[$taxonomy];
-        
-        $wp_taxonomies[$taxonomy] = new stdClass();
-        $wp_taxonomies[$taxonomy]->name = $taxonomy;
-        $wp_taxonomies[$taxonomy]->label = $original_tax->label;
-        $wp_taxonomies[$taxonomy]->labels = (object)[
-            'name' => $original_tax->label,
-            'singular_name' => $original_tax->label
-        ];
-        
-        // Keep essential query properties
-        $wp_taxonomies[$taxonomy]->query_var = false;
-        $wp_taxonomies[$taxonomy]->hierarchical = $original_tax->hierarchical;
-        $wp_taxonomies[$taxonomy]->object_type = $original_tax->object_type;
-        
-        // Disable all functionality
         $wp_taxonomies[$taxonomy]->public = false;
         $wp_taxonomies[$taxonomy]->show_ui = false;
         $wp_taxonomies[$taxonomy]->show_in_menu = false;
@@ -2004,15 +1987,18 @@ function taxopress_unregister_taxonomy($taxonomy)
         $wp_taxonomies[$taxonomy]->show_tagcloud = false;
         $wp_taxonomies[$taxonomy]->show_in_quick_edit = false;
         $wp_taxonomies[$taxonomy]->show_admin_column = false;
+        $wp_taxonomies[$taxonomy]->query_var = false;
         
         // Remove rewrite rules
-        $taxonomy_object->remove_rewrite_rules();
-        $taxonomy_object->remove_hooks();
-    }
+        if ($taxonomy_object) {
+            $taxonomy_object->remove_rewrite_rules();
+            $taxonomy_object->remove_hooks();
+        }
 
-    // Remove custom taxonomy default term option.
-    if (!empty($taxonomy_object->default_term)) {
-        delete_option('default_term_' . $taxonomy_object->name);
+        // Remove custom taxonomy default term option.
+        if (!empty($taxonomy_object->default_term)) {
+            delete_option('default_term_' . $taxonomy_object->name);
+        }
     }
 
     /**
