@@ -1758,6 +1758,9 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     color: #dc3232;
 }
 
+.taxopress.tooltip-text{
+    text-align: center !important;
+}
 
 
 @media only screen and (min-width: 1075px) {

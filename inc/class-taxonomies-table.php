@@ -452,9 +452,15 @@ class Taxonomy_List extends WP_List_Table
         $taxopress_taxonomies = taxopress_get_taxonomy_data();
         
         if (array_key_exists($item->name, $taxopress_taxonomies) || array_key_exists($item->name, $external_taxonomies)) {
-            return '<span class="dashicons dashicons-yes-alt taxopress-edited-indicator taxopress-edited-yes" title="' . esc_attr__('Edited with TaxoPress', 'simple-tags') . '"></span>';
+            return '<div class="pp-tooltips-library" data-toggle="tooltip">
+                    <span class="dashicons dashicons-yes-alt taxopress-edited-indicator taxopress-edited-yes"></span>
+                    <div class="taxopress tooltip-text">This taxonomy has been edited with TaxoPress</div>
+                    </div>';
         } else {
-            return '<span class="dashicons dashicons-no-alt taxopress-edited-indicator taxopress-edited-no" title="' . esc_attr__('Not edited with TaxoPress', 'simple-tags') . '"></span>';
+            return '<div class="pp-tooltips-library" data-toggle="tooltip">
+                    <span class="dashicons dashicons-no-alt taxopress-edited-indicator taxopress-edited-no"></span>
+                    <div class="taxopress tooltip-text">This taxonomy has not been edited with TaxoPress</div>
+                    </div>';
         }
     }
 
