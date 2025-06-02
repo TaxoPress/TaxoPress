@@ -46,11 +46,10 @@ class SimpleTags_Client_Autolinks
 		$has_setting_saved = false;
 	
 		foreach ($autolink_settings as $setting) {
-			if (isset($setting['enable_customurl_field']) && is_array($setting['enable_customurl_field'])) {
+			if (array_key_exists('enable_customurl_field', $setting)) {
 				$has_setting_saved = true;
-				foreach ($setting['enable_customurl_field'] as $tax) {
-					$enabled_taxonomies[] = $tax;
-				}
+				$enabled_taxonomies = is_array($setting['enable_customurl_field']) ? $setting['enable_customurl_field'] : [];
+				break;
 			}
 		}
 	

@@ -628,7 +628,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
     $select_2_page = false;
-		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
+		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
 			$select_2_page = true;
 		}
 
@@ -740,6 +740,9 @@ class SimpleTags_Admin
 			'select_post_label'        => esc_html__('Search Posts...', 'simple-tags'),
 			'loading'                  => esc_html__('Loading...', 'simple-tags'),
 			'preview_error'            => esc_html__('Error loading preview', 'simple-tags'),
+			'enable_ibm_watson_ai_source' => SimpleTags_Plugin::get_option_value('enable_ibm_watson_ai_source'),
+			'enable_dandelion_ai_source' => SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'),
+			'enable_lseg_ai_source'    => SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'),
 		]);
 
 
@@ -1244,6 +1247,8 @@ class SimpleTags_Admin
 				return esc_html__('Linked Terms', 'simple-tags');
 			case 'core_synonyms_terms':
 				return esc_html__('Term Synonyms', 'simple-tags');
+			case 'legacy_ai_sources':
+				return esc_html__('Legacy', 'simple-tags');
 		}
 
 		return '';

@@ -882,12 +882,11 @@ class SimpleTags_Autolink
                                                             // Fetch all taxonomies
                                                             $all_taxonomies = get_taxonomies([], 'objects');
 
-                                                            $enable_customurl_field = (!isset($current['enable_customurl_field']) || !is_array($current['enable_customurl_field']) || empty($current['enable_customurl_field']))
-                                                            ? ['post_tag', 'category']
-                                                            : $current['enable_customurl_field'];
 
-                                                            if (is_null($enable_customurl_field)) {
-                                                            $enable_customurl_field = ['post_tag', 'category'];
+                                                           if (!array_key_exists('enable_customurl_field', $current)) {
+                                                                $enable_customurl_field = isset($_POST['taxopress_autolink']) ? [] : ['post_tag', 'category'];
+                                                            } else {
+                                                                $enable_customurl_field = is_array($current['enable_customurl_field']) ? $current['enable_customurl_field'] : [];
                                                             }
 
                                                             echo '<tr valign="top"><th scope="row"><label>' . esc_html__(
@@ -902,13 +901,10 @@ class SimpleTags_Autolink
                                                             ) . '</small></th><td><table class="visbile-table">';                                                            
 
                                                             foreach ($all_taxonomies as $taxonomy) {
-                                                                // If $enable_customurl_field is NULL (never saved), default-check tags/categories
-                                                                $is_checked = in_array($taxonomy->name, $enable_customurl_field, true);
-
                                                                 echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->label) . '</label></th><td>';
                                                                 echo $ui->get_check_input([
                                                                     'checkvalue' => $taxonomy->name,
-                                                                    'checked'    => $is_checked ? 'true' : 'false',
+                                                                    'checked'    => in_array($taxonomy->name, $enable_customurl_field, true) ? 'true' : 'false',
                                                                     'name'       => esc_attr($taxonomy->name),
                                                                     'namearray'  => 'taxopress_autolink[enable_customurl_field]',
                                                                     'textvalue'  => esc_attr($taxonomy->name),
