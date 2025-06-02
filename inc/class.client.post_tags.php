@@ -9,6 +9,11 @@ class SimpleTags_Client_PostTags {
 
 	}
 
+	private static function ensure_separator_spacing($separator) {
+		$separator = trim($separator);
+		return  $separator . ' ';
+    }
+
 	/**
 	 * Generate current post tags
 	 *
@@ -161,7 +166,7 @@ class SimpleTags_Client_PostTags {
 
 		// Array to string
 		if ( is_array( $output ) && ! empty( $output ) ) {
-			$output = implode( $separator, $output );
+			$output = implode( self::ensure_separator_spacing($separator), $output );
 		} else {
 			$output = $notagtext;
 		}
