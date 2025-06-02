@@ -294,7 +294,11 @@ class SimpleTags_Post_Tags
                                             <h2 class="hndle ui-sortable-handle">
                                                 <?php
                                                 if ($post_tags_edit) {
+                                                    $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
                                                     $active_tab = (isset($current['active_tab']) && !empty(trim($current['active_tab']))) ? $current['active_tab'] : 'posttags_general';
+                                                    if ($active_tab === 'posttags_exceptions' && !$enable_hidden_terms) {
+                                                        $active_tab = 'posttags_general';
+                                                    }
                                                     echo esc_html__('Edit Terms for Current Post', 'simple-tags');
                                                     echo '<input type="hidden" name="edited_posttags" value="' . esc_attr($current['ID']) . '" />';
                                                     echo '<input type="hidden" name="taxopress_post_tags[ID]" value="' . esc_attr($current['ID']) . '" />';
@@ -359,10 +363,14 @@ class SimpleTags_Post_Tags
                                                                                                 ); ?></span></a>
                                                         </li>
 
+                                                        <?php
+                                                        $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
+                                                        if ($enable_hidden_terms) : ?>
                                                         <li aria-current="<?php echo $active_tab === 'posttags_exceptions' ? 'true' : 'false'; ?>" class="posttags_exceptions_tab <?php echo $active_tab === 'posttags_exceptions' ? 'active' : ''; ?>" data-content="posttags_exceptions">
                                                             <a href="#posttags_exceptions"><span><?php esc_html_e('Exceptions',
                                                                         'simple-tags'); ?></span></a>
                                                         </li>
+                                                        <?php endif; ?>
 
                                                     </ul>
 
@@ -677,7 +685,9 @@ class SimpleTags_Post_Tags
 
                                                             ?>
                                                         </table>
-
+                                                        <?php
+                                                        $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
+                                                        if ($enable_hidden_terms) : ?>
                                                         <table class="form-table taxopress-table posttags_exceptions" style="<?php echo $active_tab === 'posttags_exceptions' ? '' : 'display:none;'; ?>">
                                                             <?php 
 
@@ -716,7 +726,7 @@ class SimpleTags_Post_Tags
                                                            
                                                             ?>
                                                         </table>
-
+                                                        <?php endif; ?>
 
                                                     </div>
 
