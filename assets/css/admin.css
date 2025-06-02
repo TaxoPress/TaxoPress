@@ -1750,6 +1750,17 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     align-items: center;
 }
 
+.taxopress-edited-yes{
+    color: #46b450;
+}
+
+.taxopress-edited-no{
+    color: #dc3232;
+}
+
+.taxopress.tooltip-text{
+    text-align: center !important;
+}
 
 
 @media only screen and (min-width: 1075px) {

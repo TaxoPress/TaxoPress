@@ -1577,7 +1577,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                            id="cpt_submit_delete"
                                            value="<?php echo esc_attr(apply_filters('taxopress_taxonomy_submit_delete',
                                                esc_html__('Delete Taxonomy', 'simple-tags'))); ?>"/>
-                                <?php } else { ?>
+                                <?php } elseif ($external_edit && array_key_exists($current['name'], taxopress_get_extername_taxonomy_data())) { ?>
                                     <input type="submit" class="button-secondary taxopress-delete-bottom"
                                            name="cpt_delete"
                                            id="cpt_submit_delete"
