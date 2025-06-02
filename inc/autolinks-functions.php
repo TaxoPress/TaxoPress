@@ -181,6 +181,7 @@ function taxopress_create_default_autolink()
     $default['taxopress_autolink']['synonyms_link']            = '0';
     $default['autolink_submit']                                = 'Add Auto Links';
     $default['cpt_tax_status']                                 = 'new';
+    $default['taxopress_autolink']['enable_customurl_field']   = ['post_tag', 'category'];
     $result                                                    = taxopress_update_autolink($default);
     update_option('taxopress_default_autolinks', $result);
 }
@@ -245,8 +246,8 @@ function taxopress_update_autolink($data = [])
     if (!isset($data['taxopress_autolink']['synonyms_link'])) {
         $data['taxopress_autolink']['synonyms_link'] = 0;
     }
-    if (!isset($data['taxopress_autolink']['enable_customurl_field']) || empty($data['taxopress_autolink']['enable_customurl_field'])) {
-        $data['taxopress_autolink']['enable_customurl_field'] = ['post_tag', 'category'];
+    if (!isset($data['taxopress_autolink']['enable_customurl_field'])) {
+        $data['taxopress_autolink']['enable_customurl_field'] = isset($data['autolink_submit']) ? [] : ['post_tag', 'category'];
     }
     
 

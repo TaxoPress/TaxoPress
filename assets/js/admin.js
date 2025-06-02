@@ -1469,6 +1469,12 @@
     });
     suggest_term_use_dandelion_action();
     function suggest_term_use_dandelion_action() {
+      if (st_admin_localize.enable_dandelion_ai_source !== '1')
+      {
+        $('.suggest_term_use_dandelion').closest('tr').addClass('st-hide-content');
+        $('.suggest_term_use_dandelion_children').closest('tr').addClass('st-hide-content');
+        return;
+      }
       if ($('.suggest_term_use_dandelion').length > 0) {
         if ($('.suggest_term_use_dandelion').prop("checked")) {
           $('.suggest_term_use_dandelion_children').closest('tr').removeClass('st-hide-content');
@@ -1486,6 +1492,12 @@
     });
     suggest_term_use_opencalais_action();
     function suggest_term_use_opencalais_action() {
+      if (st_admin_localize.enable_lseg_ai_source !== '1')
+      {
+        $('.suggest_term_use_opencalais').closest('tr').addClass('st-hide-content');
+        $('.suggest_term_use_opencalais_children').closest('tr').addClass('st-hide-content');
+        return;
+      }
       if ($('.suggest_term_use_opencalais').length > 0) {
         if ($('.suggest_term_use_opencalais').prop("checked")) {
           $('.suggest_term_use_opencalais_children').closest('tr').removeClass('st-hide-content');
@@ -1576,6 +1588,17 @@
       ];
 
       tabs.forEach(function(tab) {
+        if (
+        (tab === 'ibm-watson' && st_admin_localize.enable_ibm_watson_ai_source !== '1') ||
+        (tab === 'dandelion' && st_admin_localize.enable_dandelion_ai_source !== '1') ||
+        (tab === 'lseg-refinitiv' && st_admin_localize.enable_lseg_ai_source !== '1')
+        ) {
+          // Hide all UI for this tab if not enabled
+          $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).addClass('st-hide-content');
+          $('.autoterm-terms-use-' + tab).closest('tr').addClass('st-hide-content');
+          $('.autoterm-terms-use-' + tab + '-notice').closest('tr').addClass('st-hide-content');
+          return;
+        }
         if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').length > 0) {
           $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).addClass('selected');
           $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab + ' input').prop('checked', true);

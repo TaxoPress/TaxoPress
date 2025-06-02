@@ -59,6 +59,11 @@ return array(
     'enable_taxopress_ai_post_create_terms_tab' => 1,
     'taxopress_ai_post_exclusions' => '',
 
+    // legacy ai settings
+    'enable_ibm_watson_ai_source' => 0,
+    'enable_dandelion_ai_source' => 0,
+    'enable_lseg_ai_source' => 0,
+
     // metabox
     'enable_administrator_metabox' => 1,
     'enable_editor_metabox' => 1,

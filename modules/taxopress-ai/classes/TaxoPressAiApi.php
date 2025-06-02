@@ -21,6 +21,15 @@ if (!class_exists('TaxoPressAiApi')) {
          */
         public static function get_dandelion_results($args)
         {
+
+             if (empty(SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'))) {
+                return [
+                    'status' => 'error',
+                    'message' => esc_html__('The Dandelion integration is disabled in the Legacy AI Sources settings.', 'simple-tags'),
+                    'results' => [],
+                ];
+            }
+
             $return['status'] = 'error';
             $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
             $return['results'] = [];
@@ -131,6 +140,14 @@ if (!class_exists('TaxoPressAiApi')) {
          */
         public static function get_open_calais_results($args)
         {
+
+             if (empty(SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'))) {
+                return [
+                    'status' => 'error',
+                    'message' => esc_html__('The LSEG / Refinitiv integration is disabled in the Legacy AI Sources settings.', 'simple-tags'),
+                    'results' => [],
+                ];
+            }
             $return['status'] = 'error';
             $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
             $return['results'] = [];
@@ -248,6 +265,15 @@ if (!class_exists('TaxoPressAiApi')) {
          */
         public static function get_ibm_watson_results($args)
         {
+
+            if (empty(SimpleTags_Plugin::get_option_value('enable_ibm_watson_ai_source'))) {
+                return [
+                    'status' => 'error',
+                    'message' => esc_html__('The IBM Watson integration is disabled in the Legacy AI Sources settings.', 'simple-tags'),
+                    'results' => [],
+                ];
+            }
+            
             $return['status'] = 'error';
             $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
             $return['results'] = [];
