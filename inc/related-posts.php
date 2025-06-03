@@ -27,6 +27,8 @@ class SimpleTags_Related_Post
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
 
+        add_action('wp_ajax_taxopress_preview_related_posts', [$this, 'handle_relatedposts_preview']);
+
     }
 
     /**
@@ -239,7 +241,56 @@ class SimpleTags_Related_Post
 
 
                     <div class="tagcloudui st-tabbed">
+                        <?php
+                        if (isset($_GET['action']) && $_GET['action'] === 'edit') { ?>
 
+
+                    <div class="relatedposts-preview-container">
+                        <div id="poststuff" class="taxopress-preview-box">
+                            <div class="taxopress-section postbox">
+                                <div class="postbox-header">
+                                    <h2 class="hndle ui-sortable-handle">
+                                        <?php echo esc_html__('Preview Related Posts', 'simple-tags'); ?></h2>
+                                        <span class="taxopress-move-up dashicons dashicons-arrow-up-alt2"></span>
+                                        <span class="taxopress-move-down dashicons dashicons-arrow-down-alt2"></span>
+                                    <div class="handle-actions hide-if-no-js">
+                                        <button type="button" class="handlediv" aria-expanded="true">
+                                            <span class="screen-reader-text"><?php esc_html_e('Toggle panel', 'simple-tags'); ?></span>
+                                            <span class="toggle-indicator dashicons dashicons-arrow-down" aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="inside">
+                                    <div class="main">
+                                        <div class="taxopress-preview-content">
+                                            <div class="taxopress-preview-control">
+                                                <?php 
+                                                $preview_post_id = isset($current['preview_post_id']) ? (int) $current['preview_post_id'] : 0;
+                                                $preview_post = $preview_post_id ? get_post($preview_post_id) : null;
+                                                ?>
+                                                <select id="preview-post-select" name="taxopress_related_post[preview_post_id]" class="taxopress-post-preview-select">
+                                                    <?php if ($preview_post) : ?>
+                                                        <option value="<?php echo esc_attr($preview_post->ID); ?>" selected>
+                                                            <?php echo esc_html($preview_post->post_title); ?>
+                                                        </option>
+                                                    <?php endif; ?>
+                                                </select>
+                                                <button type="button" class="button button-secondary preview-related-posts">
+                                                    <?php esc_html_e('Preview', 'simple-tags'); ?>
+                                                </button>
+                                                <span class="spinner"></span>
+                                            </div>
+                                            <div class="taxopress-preview-results">
+                                                <!-- results -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                     } ?>                            
                     <div class="relatedposts-postbox-container">
                         <div id="poststuff">
                             <div class="taxopress-section postbox">
@@ -1127,5 +1178,73 @@ class SimpleTags_Related_Post
 </div>
         <?php
     }
+
+
+    /**
+     * Function to display the related posts settings page.
+     */
+    public function handle_relatedposts_preview() {
+        if (!check_ajax_referer('st-admin-js', 'nonce', false)) {
+            wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')]);
+        }
+
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')]);
+        }
+
+        $post_id = isset($_POST['preview_post_id']) ? intval($_POST['preview_post_id']) : 0;
+        if (!$post_id) {
+            wp_send_json_error(['message' => __('Please select a post to preview.', 'simple-tags')]);
+        }
+
+        // Get current form settings
+        $settings = [];
+        if (isset($_POST['taxopress_related_post'])) {
+            $settings = wp_unslash($_POST['taxopress_related_post']);
+        }
+
+        
+
+        // Create an instance of the client class
+        $client = new SimpleTags_Client_RelatedPosts();
+
+        // Prepare arguments with strict type casting and validation
+        $args = array(
+            'post_id'           => $post_id,
+            'taxonomy'          => isset($settings['taxonomy']) ? sanitize_text_field($settings['taxonomy']) : 'post_tag',
+            'max_related_posts' => isset($settings['max_related_posts']) ? max(1, intval($settings['max_related_posts'])) : 5,
+            'format'           => isset($settings['format']) ? sanitize_text_field($settings['format']) : 'list',
+            'title'            => isset($settings['title']) ? wp_kses_post($settings['title']) : '',
+            'title_header'     => isset($settings['title_header']) ? sanitize_text_field($settings['title_header']) : '',
+            'hide_title'       => !empty($settings['hide_title']),
+            'xformat'          => isset($settings['xformat']) ? wp_kses_post($settings['xformat']) : '',
+            'post_types'       => isset($_POST['post_types']) && is_array($_POST['post_types']) ? 
+                                array_map('sanitize_text_field', $_POST['post_types']) : ['post'],
+            'limit_days'       => isset($settings['limit_days']) ? max(0, intval($settings['limit_days'])) : 0,
+            'nopoststext'      => isset($settings['nopoststext']) ? wp_kses_post($settings['nopoststext']) : '',
+            'wrap_class'       => isset($settings['wrap_class']) ? sanitize_html_class($settings['wrap_class']) : '',
+            'link_class'       => isset($settings['link_class']) ? sanitize_html_class($settings['link_class']) : '',
+            'before'           => isset($settings['before']) ? wp_kses_post($settings['before']) : '',
+            'after'            => isset($settings['after']) ? wp_kses_post($settings['after']) : '',
+            'order'            => isset($settings['order']) ? sanitize_text_field($settings['order']) : 'count-desc',
+            'hide_output'      => !empty($settings['hide_output']),
+            'max_post_chars'   => isset($settings['max_post_chars']) ? max(0, intval($settings['max_post_chars'])) : 100,
+            'taxopress_max_cats' => isset($settings['taxopress_max_cats']) ? max(0, intval($settings['taxopress_max_cats'])) : 3,
+            'taxopress_max_tags' => isset($settings['taxopress_max_tags']) ? max(0, intval($settings['taxopress_max_tags'])) : 3,
+            'imageresolution'  => isset($settings['imageresolution']) ? sanitize_text_field($settings['imageresolution']) : '1536x1536',
+            'default_featured_media' => isset($settings['default_featured_media']) ? esc_url($settings['default_featured_media']) : '',
+            'dateformat'       => isset($settings['dateformat']) ? sanitize_text_field($settings['dateformat']) : 'd.m.Y',
+        );
+
+        // Get the HTML output
+        $output = $client->get_related_posts($args);
+
+        if (empty($output)) {
+            wp_send_json_error(['message' => __('No related posts found.', 'simple-tags')]);
+        }
+
+        wp_send_json_success(['html' => $output]);
+    }
+
 
 }

@@ -27,6 +27,8 @@ class SimpleTags_Tag_Clouds
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
 
+        add_action('wp_ajax_taxopress_terms_display_preview', [$this, 'handle_termsdisplay_preview']);
+
     }
 
     /**
@@ -236,6 +238,49 @@ class SimpleTags_Tag_Clouds
 
 
                 <div class="tagcloudui st-tabbed">
+
+                <?php if (isset($_GET['action']) && $_GET['action'] === 'edit') : ?>
+                    
+                <div class="tagclouds-postbox-container terms-display-preview">
+                    <div id="poststuff" class="taxopress-preview-box">
+                        <div class="taxopress-section postbox">
+                            <div class="postbox-header">
+                                <h2 class="hndle ui-sortable-handle">
+                                    <?php echo esc_html__('Preview Terms Display', 'simple-tags'); ?>
+                                </h2>
+                                
+                                <div class="handle-actions hide-if-no-js">
+                                    <span class="term-panel-move up dashicons dashicons-arrow-up-alt2" 
+                                        title="<?php esc_attr_e('Move up', 'simple-tags'); ?>">
+                                    </span>
+                                    <span class="term-panel-move down dashicons dashicons-arrow-down-alt2"
+                                        title="<?php esc_attr_e('Move down', 'simple-tags'); ?>">
+                                    </span>
+                                    <button type="button" class="handlediv" aria-expanded="true">
+                                        <span class="screen-reader-text">
+                                            <?php esc_html_e('Toggle panel', 'simple-tags'); ?>
+                                        </span>
+                                        <span class="toggle-indicator dashicons dashicons-arrow-down" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="inside">
+                                <div class="taxopress-preview-wrapper">
+                                    <div class="taxopress-preview-control">
+                                        <?php 
+                                        $preview_display_id = isset($current['ID']) ? (int) $current['ID'] : 0;
+                                        ?>
+                                        <span class="spinner" style="visibility:hidden;"></span>
+                                    </div>
+                                    <div id="term-display-preview" class="taxopress-preview-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
 
 
                     <div class="tagclouds-postbox-container">
@@ -992,6 +1037,7 @@ class SimpleTags_Tag_Clouds
                             <li><code>%tag_color%</code> – <?php echo esc_html__('The font color for the term', 'simple-tags'); ?></li>
                             <li><code>%tag_name%</code> – <?php echo esc_html__('The name of the term', 'simple-tags'); ?></li>
                             <li><code>%tag_name_attribute%</code> – <?php echo esc_html__('The name of the term with any HTML stripped out', 'simple-tags'); ?></li>
+                            <li><code>%tag_description%</code> – <?php echo esc_html__('The description of the term', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -1034,6 +1080,78 @@ class SimpleTags_Tag_Clouds
 </div>
 
         <?php
+    }
+
+    /**
+     * Handle the AJAX request for previewing terms display.
+     */    
+    public function handle_termsdisplay_preview() {
+        // Validate nonce
+        if (!isset($_POST['nonce']) || !check_ajax_referer('st-admin-js', 'nonce', false)) {
+            wp_send_json_error(['message' => __('Invalid nonce', 'simple-tags')]);
+        }
+
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')]);
+        }
+
+        if (!isset($_POST['taxopress_termsdisplay'])) {
+            wp_send_json_error(['message' => __('Missing display ID.', 'simple-tags')]);
+        }
+
+        $display_id = sanitize_text_field($_POST['taxopress_termsdisplay']);
+        
+        // Get the display configuration
+        $tagclouds = taxopress_get_tagcloud_data();
+        if (!array_key_exists($display_id, $tagclouds)) {
+            wp_send_json_error(['message' => __('Invalid terms display configuration.', 'simple-tags')]);
+        }
+
+        $config = $tagclouds[$display_id];
+
+        // Create tag cloud client instance
+        $client = new SimpleTags_Client_TagCloud();
+        
+        // Convert config to query args format
+        $args = http_build_query([
+            'taxonomy'      => $config['taxonomy'] ?? 'post_tag',
+            'selectionby'   => $config['selectionby'] ?? 'count',
+            'selection'     => $config['selection'] ?? 'desc',
+            'orderby'      => $config['orderby'] ?? 'random',
+            'order'        => $config['order'] ?? 'desc',
+            'format'       => $config['format'] ?? 'flat',
+            'number'       => $config['max'] ?? 45,
+            'largest'      => $config['largest'] ?? 22,
+            'smallest'     => $config['smallest'] ?? 8,
+            'unit'         => $config['unit'] ?? 'pt',
+            'color'        => !empty($config['color']),
+            'mincolor'     => $config['mincolor'] ?? '#CCCCCC',
+            'maxcolor'     => $config['maxcolor'] ?? '#000000',
+            'hide_empty'   => !empty($config['hide_empty']),
+            'hide_title'   => !empty($config['hide_title']),
+            'hide_output'  => !empty($config['hide_output']),
+            'title'        => $config['title'] ?? '',
+            'exclude_terms'=> $config['exclude_terms'] ?? '',
+            'hide_terms'   => !empty($config['hide_terms']),
+            'before'      => $config['before'] ?? '',
+            'after'       => $config['after'] ?? '',
+            'xformat'     => $config['xformat'] ?? '',
+            'wrap_class'  => $config['wrap_class'] ?? '',
+            'link_class'  => $config['link_class'] ?? '',
+            'parent_term' => $config['parent_term'] ?? 'all',
+            'display_mode'=> $config['display_mode'] ?? 'parents_and_sub',
+            'max'         => $config['max'] ?? 45,
+        ]);
+        
+        // Get the tag cloud output
+        $output = $client->extendedTagCloud($args);
+        
+        if (empty($output)) {
+            wp_send_json_success(['html' => '<p>' . __('No terms found.', 'simple-tags') . '</p>']);
+            return;
+        }
+
+        wp_send_json_success(['html' => $output]);
     }
 
 }

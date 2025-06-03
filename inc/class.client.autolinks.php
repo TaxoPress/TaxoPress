@@ -46,11 +46,10 @@ class SimpleTags_Client_Autolinks
 		$has_setting_saved = false;
 	
 		foreach ($autolink_settings as $setting) {
-			if (isset($setting['enable_customurl_field']) && is_array($setting['enable_customurl_field'])) {
+			if (array_key_exists('enable_customurl_field', $setting)) {
 				$has_setting_saved = true;
-				foreach ($setting['enable_customurl_field'] as $tax) {
-					$enabled_taxonomies[] = $tax;
-				}
+				$enabled_taxonomies = is_array($setting['enable_customurl_field']) ? $setting['enable_customurl_field'] : [];
+				break;
 			}
 		}
 	
@@ -284,6 +283,8 @@ class SimpleTags_Client_Autolinks
 			$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
             $primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
 			$add_terms = [];
+			// store the URL
+            self::$link_tags[$term->name] = $primary_term_link;
 			$add_terms[$term->name] = $primary_term_link;
 
 			// add term synonyms
@@ -319,6 +320,21 @@ class SimpleTags_Client_Autolinks
 
 		return true;
 	}
+
+    private static function taxopress_get_title_attribute($search, $url, $options) {
+
+        $title_attribute = $options['autolink_title_attribute'];
+        
+        $term = get_term_by('name', $search, $options['taxonomy']);
+        if ($term) {
+            $custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+            if (!empty($custom_url) && esc_url($custom_url) === $url) {
+                $title_attribute = $options['autolink_title_attribute_when_using_custom_url'];
+            }
+        }
+        
+        return esc_attr(sprintf($title_attribute, $search));
+    }
 
 	/**
 	 * Replace text by link, except HTML tag, and already text into link, use DOMdocument.
@@ -482,6 +498,7 @@ class SimpleTags_Client_Autolinks
 				$html_exclusion_customs  = isset($options['html_exclusion_customs']) ? $options['html_exclusion_customs'] : [];
 				$exclude_class 	 = $options['autolink_exclude_class'];
 				$title_attribute = $options['autolink_title_attribute'];
+				$title_attribute_custom_url = $options['autolink_title_attribute_when_using_custom_url'];
 				$link_class 	 = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
 			} else {
 				$autolink_case = 'lowercase';
@@ -489,6 +506,7 @@ class SimpleTags_Client_Autolinks
 				$html_exclusion_customs = [];
 				$exclude_class = '';
 				$title_attribute = SimpleTags_Plugin::get_option_value('auto_link_title');
+				$title_attribute_custom_url = SimpleTags_Plugin::get_option_value('auto_link_title_custom_url');
 				$link_class = '';
 			}
 
@@ -550,8 +568,11 @@ class SimpleTags_Client_Autolinks
 					if (preg_match('/(http|https):\/\/[^\s]+/i', $node->wholeText)) {
 						continue;
 					}
-				$substitute = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">$search</a>";
-				$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">";
+					$url = array_key_exists($search, self::$link_tags) ? self::$link_tags[$search] : $replace;
+					$used_title = self::taxopress_get_title_attribute($search, $url, $options);
+					$replace = $url;
+				$substitute = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . $used_title . "\">$search</a>";
+				$link_openeing = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . $used_title . "\">";
 				$link_closing = '</a>';
 				$upperterm = strtoupper($search);
 				$lowerterm = strtolower($search);
@@ -679,6 +700,7 @@ class SimpleTags_Client_Autolinks
 			$html_exclusion_customs  = isset($options['html_exclusion_customs']) ? $options['html_exclusion_customs'] : [];
 			$exclude_class = $options['autolink_exclude_class'];
 			$title_attribute = $options['autolink_title_attribute'];
+			$title_attribute_custom_url = $options['autolink_title_attribute_when_using_custom_url'];
 			$same_usage_max = $options['autolink_same_usage_max'];
 			$max_by_post = $options['autolink_usage_max'];
 			$link_class = isset($options['link_class']) ? taxopress_format_class($options['link_class']) : '';
@@ -688,6 +710,7 @@ class SimpleTags_Client_Autolinks
 			$html_exclusion_customs = [];
 			$exclude_class = '';
 			$title_attribute = SimpleTags_Plugin::get_option_value('auto_link_title');
+			$title_attribute_custom_url = SimpleTags_Plugin::get_option_value('auto_link_title_custom_url');
 			$same_usage_max = SimpleTags_Plugin::get_option_value('auto_link_max_by_tag');
 			$max_by_post = SimpleTags_Plugin::get_option_value('auto_link_max_by_post');
 			$link_class = '';
@@ -705,7 +728,10 @@ class SimpleTags_Client_Autolinks
 		$filtered = ''; // will filter text token by token
 
 		$match      = '/(\PL|\A)(' . preg_quote($search, '/') . ')(\PL|\Z)\b/u' . $case;
-		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . esc_attr(sprintf($title_attribute, $search)) . "\">$2</a>$3";
+		$url = array_key_exists($search, self::$link_tags) ? self::$link_tags[$search] : $replace;
+		$used_title = self::taxopress_get_title_attribute($search, $url, $options);
+		$replace = $url;
+		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . $used_title . "\">$2</a>$3";
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
 		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag '.$link_class.'" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simple-tags'), $search ) )."\">$0</a>";

@@ -83,7 +83,9 @@ class TaxopressCoreAdmin
         add_filter('taxopress_autoterm_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
         add_filter('taxopress_relatedpost_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
         add_filter('taxopress_tagclouds_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
+        add_filter('taxopress_terms_row_actions', [$this, 'taxopress_core_copy_with_metadata_action'], 10, 2);
         add_filter('taxopress_settings_post_type_ai_fields', [$this, 'filter_settings_post_type_ai_fields'], 10, 2);
+        add_action('taxopress_terms_copy_with_metadata_promo', [$this, 'taxopress_terms_copy_with_metadata_promo']);
     }
 
     function taxopress_load_admin_core_assets()
@@ -337,6 +339,43 @@ class TaxopressCoreAdmin
                     $actions = $copy_action + $actions;
                 }
             
+        }
+    
+        return $actions;
+    }
+
+    function taxopress_core_copy_with_metadata_action($actions, $item) {
+        $allowed_pages = ['st_terms'];
+    
+        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+    
+        if (in_array($current_page, $allowed_pages, true)) { 
+                $copy_action = [
+                    'copy_term_with_meta' => sprintf(
+                        '<a href="%s" class="copy-action-pages">%s</a>',
+                        add_query_arg([
+                            'page' => $current_page,
+                            'action' => 'new_item',
+                            'term_id' => $item->term_id,
+                            '_wpnonce' => wp_create_nonce('term-copy-metadata-nonce')
+                        ], admin_url('admin.php')),
+                        __('Copy with Metadata', 'simple-tags')
+                    )
+                ];
+    
+                // Ensure "Copy with Metadata" appears after "Copy"
+                if (isset($actions['copy_term'])) {
+                    $new_actions = [];
+                    foreach ($actions as $key => $action) {
+                        $new_actions[$key] = $action;
+                        if ($key === 'copy_term') {
+                            $new_actions['copy_term_with_meta'] = $copy_action['copy_term_with_meta'];
+                        }
+                    }
+                    $actions = $new_actions;
+                } else {
+                    $actions = $copy_action + $actions;
+                }
         }
     
         return $actions;
@@ -648,5 +687,25 @@ class TaxopressCoreAdmin
             );
 
             return $taxopress_ai_fields;
+    }
+
+    function taxopress_terms_copy_with_metadata_promo() {
+        ?>
+        <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
+            <div class="postbox-header">
+                <h3 class="advertisement-box-header hndle is-non-sortable taxopress-core-terms-promobox">
+                    <span><?php echo esc_html__('Copy Term with Metadata', 'simple-tags'); ?></span>
+                </h3>
+            </div>
+
+            <div class="inside-content">
+                <h2><?php echo esc_html__('To Copy terms with their metadata, please upgrade to pro.', 'simple-tags') ?></h2>
+                <p><?php echo esc_html__('With TaxoPress Pro, you can duplicate taxonomy terms along with all their metadata. This includes term descriptions, images, and custom fields. You can copy terms between taxonomies to maintain consistent organization across your site.', 'simple-tags'); ?></p>
+                <div class="upgrade-btn">
+                    <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 }

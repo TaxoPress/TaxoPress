@@ -26,6 +26,8 @@ class SimpleTags_Post_Tags
 
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
+
+        add_action('wp_ajax_taxopress_posttags_preview', [$this, 'handle_posttags_preview']);
     }
 
     /**
@@ -235,6 +237,55 @@ class SimpleTags_Post_Tags
 
                         <div class="tagcloudui st-tabbed">
 
+                        <?php
+                        if (isset($_GET['action']) && $_GET['action'] === 'edit') : ?>
+                        <div class="posttags-preview-container">
+                                <div id="poststuff" class="taxopress-preview-box">
+                                        <div class="taxopress-section postbox">
+                                            <div class="postbox-header">
+                                                <h2 class="hndle ui-sortable-handle">
+                                                    <?php echo esc_html__('Preview Terms for Current Post', 'simple-tags'); ?></h2>
+                                                    <span class="taxopress-move-up dashicons dashicons-arrow-up-alt2"></span>
+                                                    <span class="taxopress-move-down dashicons dashicons-arrow-down-alt2"></span>
+                                                <div class="handle-actions hide-if-no-js">
+                                                    <button type="button" class="handlediv" aria-expanded="true">
+                                                        <span class="screen-reader-text"><?php esc_html_e('Toggle panel', 'simple-tags'); ?></span>
+                                                        <span class="toggle-indicator dashicons dashicons-arrow-down" aria-hidden="true"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                <div class="inside">
+                                    <div class="main">
+                                        <div class="taxopress-preview-content">
+                                            <div class="taxopress-preview-control">
+                                                <?php 
+                                                $preview_post_id = isset($current['preview_post_id']) ? (int) $current['preview_post_id'] : 0;
+                                                $preview_post = $preview_post_id ? get_post($preview_post_id) : null;
+                                                ?>
+                                                <select id="posttags-preview-select" name="taxopress_post_tags[preview_post_id]" class="taxopress-post-preview-select">
+                                                    <?php if ($preview_post) : ?>
+                                                        <option value="<?php echo esc_attr($preview_post->ID); ?>" selected>
+                                                            <?php echo esc_html($preview_post->post_title); ?>
+                                                        </option>
+                                                    <?php endif; ?>
+                                                </select>
+                                                <button type="button" class="button button-secondary preview-post-tags">
+                                                    <?php esc_html_e('Preview', 'simple-tags'); ?>
+                                                </button>
+                                                <span class="spinner"></span>
+                                            </div>
+                                            <div class="taxopress-preview-results-content">
+                                                <!-- results -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+
 
                             <div class="posttags-postbox-container">
                                 <div id="poststuff">
@@ -243,7 +294,11 @@ class SimpleTags_Post_Tags
                                             <h2 class="hndle ui-sortable-handle">
                                                 <?php
                                                 if ($post_tags_edit) {
+                                                    $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
                                                     $active_tab = (isset($current['active_tab']) && !empty(trim($current['active_tab']))) ? $current['active_tab'] : 'posttags_general';
+                                                    if ($active_tab === 'posttags_exceptions' && !$enable_hidden_terms) {
+                                                        $active_tab = 'posttags_general';
+                                                    }
                                                     echo esc_html__('Edit Terms for Current Post', 'simple-tags');
                                                     echo '<input type="hidden" name="edited_posttags" value="' . esc_attr($current['ID']) . '" />';
                                                     echo '<input type="hidden" name="taxopress_post_tags[ID]" value="' . esc_attr($current['ID']) . '" />';
@@ -308,10 +363,14 @@ class SimpleTags_Post_Tags
                                                                                                 ); ?></span></a>
                                                         </li>
 
+                                                        <?php
+                                                        $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
+                                                        if ($enable_hidden_terms) : ?>
                                                         <li aria-current="<?php echo $active_tab === 'posttags_exceptions' ? 'true' : 'false'; ?>" class="posttags_exceptions_tab <?php echo $active_tab === 'posttags_exceptions' ? 'active' : ''; ?>" data-content="posttags_exceptions">
                                                             <a href="#posttags_exceptions"><span><?php esc_html_e('Exceptions',
                                                                         'simple-tags'); ?></span></a>
                                                         </li>
+                                                        <?php endif; ?>
 
                                                     </ul>
 
@@ -626,7 +685,9 @@ class SimpleTags_Post_Tags
 
                                                             ?>
                                                         </table>
-
+                                                        <?php
+                                                        $enable_hidden_terms = SimpleTags_Plugin::get_option_value('enable_hidden_terms');
+                                                        if ($enable_hidden_terms) : ?>
                                                         <table class="form-table taxopress-table posttags_exceptions" style="<?php echo $active_tab === 'posttags_exceptions' ? '' : 'display:none;'; ?>">
                                                             <?php 
 
@@ -665,7 +726,7 @@ class SimpleTags_Post_Tags
                                                            
                                                             ?>
                                                         </table>
-
+                                                        <?php endif; ?>
 
                                                     </div>
 
@@ -774,6 +835,7 @@ class SimpleTags_Post_Tags
                                                 <li><code>%tag_feed%</code><?php echo esc_html__('Replaced by the RSS tag link', 'simple-tags'); ?></li>
                                                 <li><code>%tag_id%</code><?php echo esc_html__('Replaced by the tag ID', 'simple-tags'); ?></li>
                                                 <li><code>%tag_name_attribute%</code><?php echo esc_html__('Replaced by the tag’s name, formatted for attribute HTML', 'simple-tags'); ?></li>
+                                                <li><code>%tag_description%</code> – <?php echo esc_html__('The description of the term', 'simple-tags'); ?></li>
                                             </ul>
                                             <p><?php echo esc_html__('You can also add HTML elements to the formatting.', 'simple-tags'); ?></p>
                                         </div>
@@ -813,4 +875,50 @@ class SimpleTags_Post_Tags
 
     <?php
     }
+    
+    public function handle_posttags_preview() {
+        if (!check_ajax_referer('st-admin-js', 'nonce', false)) {
+            wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')]);
+        }
+
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')]);
+        }
+
+        $post_id = isset($_POST['preview_post_id']) ? intval($_POST['preview_post_id']) : 0;
+        if (!$post_id) {
+            wp_send_json_error(['message' => __('Please select a post to preview.', 'simple-tags')]);
+        }
+
+        // Get current settings
+        $settings = isset($_POST['taxopress_post_tags']) ? wp_unslash($_POST['taxopress_post_tags']) : [];
+
+        $args = [
+            'before'       => isset($settings['before']) ? wp_kses_post($settings['before']) : '',
+            'separator'    => isset($settings['separator']) ? sanitize_text_field($settings['separator']) : ', ',
+            'after'        => isset($settings['after']) ? wp_kses_post($settings['after']) : '',
+            'post_id'      => $post_id,
+            'inc_cats'     => isset($settings['inc_cats']) ? (int)$settings['inc_cats'] : 0,
+            'xformat'      => isset($settings['xformat']) ? wp_kses_post($settings['xformat']) : '',
+            'notagtext'    => isset($settings['notagtext']) ? wp_kses_post($settings['notagtext']) : '',
+            'number'       => isset($settings['number']) ? (int)$settings['number'] : 0,
+            'ID'          => isset($settings['ID']) ? (bool)$settings['ID'] : false,
+            'taxonomy'     => isset($settings['taxonomy']) ? sanitize_text_field($settings['taxonomy']) : false,
+            'hide_output'  => isset($settings['hide_output']) ? (int)$settings['hide_output'] : 0,
+            'wrap_class'   => isset($settings['wrap_class']) ? sanitize_html_class($settings['wrap_class']) : '',
+            'link_class'   => isset($settings['link_class']) ? sanitize_html_class($settings['link_class']) : '',
+            'hide_terms'   => isset($settings['hide_terms']) ? (int)$settings['hide_terms'] : 0
+        ];
+
+        $output = SimpleTags_Client_PostTags::extendedPostTags($args, false);
+
+        if (empty($output)) {
+            $notagtext = !empty($settings['notagtext']) ? $settings['notagtext'] : __('No terms found for this post.', 'simple-tags');
+            wp_send_json_success(['html' => '<p>' . esc_html($notagtext) . '</p>']);
+            return;
+        }
+
+        wp_send_json_success(['html' => $output]);
+    }
+
 }

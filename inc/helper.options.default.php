@@ -59,6 +59,11 @@ return array(
     'enable_taxopress_ai_post_create_terms_tab' => 1,
     'taxopress_ai_post_exclusions' => '',
 
+    // legacy ai settings
+    'enable_ibm_watson_ai_source' => 0,
+    'enable_dandelion_ai_source' => 0,
+    'enable_lseg_ai_source' => 0,
+
     // metabox
     'enable_administrator_metabox' => 1,
     'enable_editor_metabox' => 1,
@@ -88,6 +93,7 @@ return array(
     'auto_link_views'        => 'singular',
     'auto_link_dom'          => 0,
     'auto_link_title'        => __('Posts tagged with %s', 'simple-tags'),
+    'auto_link_title_custom_url' => __('Visit this URL for more on %s', 'simple-tags'),
     'auto_link_title_excl'   => 0,
     // The tags
     'tt_feed'                => 0,

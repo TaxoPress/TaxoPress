@@ -43,7 +43,11 @@ class SimpleTags_Admin
 		// Load JavaScript and CSS
 		add_action('admin_enqueue_scripts', array(__CLASS__, 'admin_enqueue_scripts'));
 
+		add_action( 'admin_enqueue_scripts', [$this, 'maybe_enqueue_frontend_assets_in_admin'] );
+
 		add_action('admin_head', array($this, 'taxopress_hide_other_plugin_notices'));
+
+		add_action('wp_ajax_taxopress_search_posts', [$this, 'taxopress_search_posts_ajax']);
 
 		//ui class is used accross many pages. So, it should be here
 		require STAGS_DIR . '/inc/class.admin.taxonomies.ui.php';
@@ -264,6 +268,49 @@ class SimpleTags_Admin
 
 		wp_send_json_success(['term_id' => $term_id]);
 	}
+
+	/**
+	 * Ajax for search posts
+	 *
+	 * @return void
+	 */
+	public static function taxopress_search_posts_ajax() {
+        if (!check_ajax_referer('st-admin-js', 'nonce', false)) {
+                wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')]);
+            }
+
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')]);
+        }
+
+        $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+        $paged = max(1, intval($_GET['page'] ?? 1));
+        $post_type = 'post';
+        
+
+        $query = new WP_Query([
+            'post_type' => $post_type,
+            'post_status' => 'publish',
+            'posts_per_page' => 10,
+            'paged' => $paged,
+            'orderby' => 'date',
+            'order' => 'DESC',
+            'fields' => 'ids'
+        ]);
+
+        $results = [];
+        foreach ($query->posts as $post_id) {
+            $results[] = [
+                'id' => $post_id,
+                'text' => get_the_title($post_id)
+            ];
+        }
+
+        wp_send_json([
+            'results' => $results,
+            'more' => $paged < $query->max_num_pages
+        ]);
+    }
 
 	/**
 	 * Test if current URL is not a DEV environnement
@@ -533,6 +580,43 @@ class SimpleTags_Admin
 		echo '</div>' . PHP_EOL;
 	}
 
+	public function maybe_enqueue_frontend_assets_in_admin() {
+		
+		$screen = get_current_screen();
+		if (!$screen) {
+			return;
+		}
+
+		if (strpos($screen->id, 'taxopress_page_') === false) {
+			return;
+		}
+
+		$is_edit_mode = isset($_GET['action']) && in_array($_GET['action'], ['edit'], true);
+		if (!$is_edit_mode) {
+			return;
+		}
+
+		$current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+
+		// List of pages that need preview functionality
+		$preview_pages = [
+			'st_terms_display',
+			'st_related_posts',
+			'st_post_tags',
+		];
+
+		if (!in_array($current_page, $preview_pages, true)) {
+			return;
+		}
+
+		// Register and enqueue assets
+		wp_register_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
+		wp_register_style('taxopress-frontend-css', STAGS_URL . '/assets/frontend/css/frontend.css', array(), STAGS_VERSION, 'all');
+
+		// Enqueue the assets
+		wp_enqueue_script('taxopress-frontend-js');
+		wp_enqueue_style('taxopress-frontend-css');
+	}
 	/**
 	 * Init somes JS and CSS need for TaxoPress.
 	 *
@@ -544,7 +628,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
     $select_2_page = false;
-		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
+		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
 			$select_2_page = true;
 		}
 
@@ -653,6 +737,12 @@ class SimpleTags_Admin
 			'enable_add_terms_slug' => SimpleTags_Plugin::get_option_value('enable_add_terms_slug'),
 			'enable_remove_terms_slug' => SimpleTags_Plugin::get_option_value('enable_remove_terms_slug'),
 			'enable_rename_terms_slug' => SimpleTags_Plugin::get_option_value('enable_rename_terms_slug'),
+			'select_post_label'        => esc_html__('Search Posts...', 'simple-tags'),
+			'loading'                  => esc_html__('Loading...', 'simple-tags'),
+			'preview_error'            => esc_html__('Error loading preview', 'simple-tags'),
+			'enable_ibm_watson_ai_source' => SimpleTags_Plugin::get_option_value('enable_ibm_watson_ai_source'),
+			'enable_dandelion_ai_source' => SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'),
+			'enable_lseg_ai_source'    => SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'),
 		]);
 
 
@@ -1157,6 +1247,8 @@ class SimpleTags_Admin
 				return esc_html__('Linked Terms', 'simple-tags');
 			case 'core_synonyms_terms':
 				return esc_html__('Term Synonyms', 'simple-tags');
+			case 'legacy_ai_sources':
+				return esc_html__('Auto Terms', 'simple-tags');
 		}
 
 		return '';

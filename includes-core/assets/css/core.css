@@ -40,3 +40,8 @@
 .taxopress .tooltip-text{
     text-align: center !important;
 }
+
+.taxopress-term-wrap {
+    display: flex;
+    gap: 20px;
+}

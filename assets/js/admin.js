@@ -1469,6 +1469,12 @@
     });
     suggest_term_use_dandelion_action();
     function suggest_term_use_dandelion_action() {
+      if (st_admin_localize.enable_dandelion_ai_source !== '1')
+      {
+        $('.suggest_term_use_dandelion').closest('tr').addClass('st-hide-content');
+        $('.suggest_term_use_dandelion_children').closest('tr').addClass('st-hide-content');
+        return;
+      }
       if ($('.suggest_term_use_dandelion').length > 0) {
         if ($('.suggest_term_use_dandelion').prop("checked")) {
           $('.suggest_term_use_dandelion_children').closest('tr').removeClass('st-hide-content');
@@ -1486,6 +1492,12 @@
     });
     suggest_term_use_opencalais_action();
     function suggest_term_use_opencalais_action() {
+      if (st_admin_localize.enable_lseg_ai_source !== '1')
+      {
+        $('.suggest_term_use_opencalais').closest('tr').addClass('st-hide-content');
+        $('.suggest_term_use_opencalais_children').closest('tr').addClass('st-hide-content');
+        return;
+      }
       if ($('.suggest_term_use_opencalais').length > 0) {
         if ($('.suggest_term_use_opencalais').prop("checked")) {
           $('.suggest_term_use_opencalais_children').closest('tr').removeClass('st-hide-content');
@@ -1576,6 +1588,17 @@
       ];
 
       tabs.forEach(function(tab) {
+        if (
+        (tab === 'ibm-watson' && st_admin_localize.enable_ibm_watson_ai_source !== '1') ||
+        (tab === 'dandelion' && st_admin_localize.enable_dandelion_ai_source !== '1') ||
+        (tab === 'lseg-refinitiv' && st_admin_localize.enable_lseg_ai_source !== '1')
+        ) {
+          // Hide all UI for this tab if not enabled
+          $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).addClass('st-hide-content');
+          $('.autoterm-terms-use-' + tab).closest('tr').addClass('st-hide-content');
+          $('.autoterm-terms-use-' + tab + '-notice').closest('tr').addClass('st-hide-content');
+          return;
+        }
         if ($('.fields-control.autoterm-terms-use-' + tab + ':checked').length > 0) {
           $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab).addClass('selected');
           $('.taxopress-group-wrap.autoterm-tab-group.source label.' + tab + ' input').prop('checked', true);
@@ -2119,6 +2142,302 @@
       process_merge_batch(currentIndex);
 }
     });
+
+   // Create a reusuable preview panel
+    function createPreviewPanel(config) {
+    const {
+        selectors,
+        stateKey,
+        getFormData,
+        loadOnInit = false,
+        formInputSelector = '.taxopress-section input, .taxopress-section select, .taxopress-section textarea'
+    } = config;
+
+    const elements = {
+        container: $(selectors.container),
+        editPanel: $(selectors.editPanel),
+        sidebar: $(selectors.sidebar),
+        button: $(selectors.button),
+        postSelect: selectors.postSelect ? $(selectors.postSelect) : null,
+        spinner: $(selectors.spinner),
+        results: $(selectors.results),
+        handleDiv: $(selectors.handleDiv || `${selectors.container} .handlediv`),
+        toggleIndicator: $(selectors.toggleIndicator || `${selectors.container} .toggle-indicator`),
+        moveUp: $(selectors.moveUp),
+        moveDown: $(selectors.moveDown)
+    };
+
+    let isLoading = false;
+
+    function bindEvents() {
+        elements.handleDiv.on('click', () => {
+            const closed = elements.container.toggleClass('closed').hasClass('closed');
+            elements.toggleIndicator.toggleClass('dashicons-arrow-down dashicons-arrow-left');
+            localStorage.setItem(`${stateKey}_collapsed`, closed);
+        });
+
+        elements.moveUp.on('click', () => handleMove('up'));
+        elements.moveDown.on('click', () => handleMove('down'));
+
+        if (elements.button && elements.postSelect) {
+            elements.button.on('click', (e) => {
+                e.preventDefault();
+                loadPreview();
+            });
+            elements.postSelect.on('change', () => loadPreview());
+        }
+    }
+
+    function restoreState() {
+        const collapsed = localStorage.getItem(`${stateKey}_collapsed`) === 'true';
+        const position = localStorage.getItem(`${stateKey}_position`);
+
+        if (collapsed) {
+            elements.container.addClass('closed');
+            elements.toggleIndicator
+                .removeClass('dashicons-arrow-down')
+                .addClass('dashicons-arrow-left');
+        }
+
+        switch (position) {
+            case 'sidebar': moveToSidebar(); break;
+            case 'top': moveToMain('top'); break;
+            case 'bottom': moveToMain('bottom'); break;
+        }
+    }
+
+    function handleMove(direction) {
+        const pos = getCurrentPosition();
+        if (pos === 'sidebar' && direction === 'up') moveToMain('bottom');
+        else if (pos === 'top') direction === 'up' ? moveToSidebar() : moveToMain('bottom');
+        else if (pos === 'bottom') direction === 'up' ? moveToMain('top') : moveToSidebar();
+    }
+
+    function getCurrentPosition() {
+        if (elements.container.closest(elements.sidebar).length > 0) return 'sidebar';
+        return elements.container.index() < elements.editPanel.index() ? 'top' : 'bottom';
+    }
+
+    function moveToMain(position) {
+        const method = position === 'top' ? 'insertBefore' : 'insertAfter';
+        elements.container.detach()[method](elements.editPanel).removeClass('in-sidebar');
+        localStorage.setItem(`${stateKey}_position`, position);
+    }
+
+    function moveToSidebar() {
+        elements.container.detach().prependTo(elements.sidebar).addClass('in-sidebar');
+        localStorage.setItem(`${stateKey}_position`, 'sidebar');
+    }
+
+    function displayMessage(type, message) {
+        const role = type === 'error' ? 'alert' : 'status';
+        const cssClass = type === 'error' ? 'error' : '';
+        elements.results.html(`<p class="taxopress-preview-message ${cssClass}" role="${role}" aria-live="polite">${message}</p>`);
+    }
+
+    function loadPreview(customId = null) {
+        if (isLoading) return;
+
+        const inputId = customId ?? elements.postSelect?.val?.();
+
+        // If a postSelect exists and no value is present, show error
+        if (!inputId && elements.postSelect) {
+            displayMessage('error', st_admin_localize.post_required);
+            return;
+        }
+
+        isLoading = true;
+        elements.spinner.addClass('is-active');
+        elements.button?.prop('disabled', true);
+        displayMessage('info', st_admin_localize.loading);
+
+        const formData = getFormData(inputId, formInputSelector);
+
+        $.ajax({
+            url: st_admin_localize.ajaxurl,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (response) => {
+                if (response.success && response.data.html) {
+                    elements.results.html(response.data.html);
+                } else {
+                    displayMessage('error', response?.data?.message || st_admin_localize.preview_error);
+                }
+            },
+            error: (jqXHR) => {
+                displayMessage('error', jqXHR?.responseJSON?.data?.message || st_admin_localize.preview_error);
+            },
+            complete: () => {
+                isLoading = false;
+                elements.spinner.removeClass('is-active');
+                elements.button?.prop('disabled', false);
+            }
+        });
+    }
+
+    function init() {
+        bindEvents();
+        restoreState();
+        if (loadOnInit && elements.postSelect?.val?.()) loadPreview();
+    }
+
+    return { init, loadPreview };
+    }
+
+    //related post preview
+    if ($('.preview-related-posts').length) {
+        createPreviewPanel({
+            stateKey: 'taxopress_relatedposts',
+            selectors: {
+                container: '.relatedposts-preview-container',
+                editPanel: '.relatedposts-postbox-container',
+                sidebar: '.taxopress-right-sidebar',
+                button: '.preview-related-posts',
+                postSelect: '#preview-post-select',
+                spinner: '.preview-related-posts + .spinner',
+                results: '.taxopress-preview-results',
+                moveUp: '.taxopress-move-up',
+                moveDown: '.taxopress-move-down'
+            },
+            formInputSelector: '.taxopress-section input, .taxopress-section select, .taxopress-section textarea',
+            loadOnInit: true,
+            getFormData(postId, selector) {
+                const formData = new FormData();
+                formData.append('action', 'taxopress_preview_related_posts');
+                formData.append('preview_post_id', postId);
+                formData.append('nonce', st_admin_localize.check_nonce);
+                $(selector).each((_, el) => {
+                    const $el = $(el);
+                    const name = $el.attr('name');
+                    if (!name) return;
+                    if ($el.is(':checkbox, :radio') && !$el.is(':checked')) return;
+                    formData.append(name, $el.val());
+                });
+                return formData;
+            }
+        }).init();
+    }
+
+    //terms display preview
+    if ($('.terms-display-preview').length) {
+    const preview = createPreviewPanel({
+        stateKey: 'taxopress_termsdisplay',
+        selectors: {
+            container: '.terms-display-preview',
+            editPanel: '.tagclouds-postbox-container:not(.terms-display-preview)',
+            sidebar: '.taxopress-right-sidebar',
+            spinner: '.terms-display-preview .spinner',
+            results: '#term-display-preview',
+            moveUp: '.terms-display-preview .term-panel-move.up',
+            moveDown: '.terms-display-preview .term-panel-move.down'
+        },
+        loadOnInit: false,
+        getFormData(displayId) {
+            const formData = new FormData();
+            formData.append('action', 'taxopress_terms_display_preview');
+            formData.append('taxopress_termsdisplay', displayId);
+            formData.append('nonce', st_admin_localize.check_nonce);
+            return formData;
+        }
+    });
+
+    preview.init();
+
+    setTimeout(() => {
+        const displayId = $('input[name="edited_tagcloud"]').val();
+        if (displayId) {
+            preview.loadPreview(displayId);
+        }
+    }, 300);
+    }
+
+    // post tags preview
+    if ($('.posttags-preview-container').length) {
+        createPreviewPanel({
+            stateKey: 'taxopress_posttags',
+            selectors: {
+                container: '.posttags-preview-container',
+                editPanel: '.posttags-postbox-container',
+                sidebar: '.taxopress-right-sidebar',
+                button: '.preview-post-tags',
+                postSelect: '#posttags-preview-select',
+                spinner: '.preview-post-tags + .spinner',
+                results: '.taxopress-preview-results-content',
+                moveUp: '.taxopress-move-up',
+                moveDown: '.taxopress-move-down'
+            },
+            formInputSelector: '.taxopress-section input, .taxopress-section select, .taxopress-section textarea',
+            loadOnInit: true,
+            getFormData(postId, selector) {
+                const formData = new FormData();
+                formData.append('action', 'taxopress_posttags_preview');
+                formData.append('preview_post_id', postId);
+                formData.append('nonce', st_admin_localize.check_nonce);
+                $(selector).each((_, el) => {
+                    const $el = $(el);
+                    const name = $el.attr('name');
+                    if (name && (!$el.is(':checkbox, :radio') || $el.is(':checked'))) {
+                        formData.append(name, $el.val());
+                    }
+                });
+                return formData;
+            }
+        }).init();
+    }
+
+    if ($('.taxopress-post-preview-select').length > 0) {
+        taxopressPostPreviewSelect2($('.taxopress-post-preview-select'));
+        
+        function taxopressPostPreviewSelect2(selector) {
+        selector.each(function () {
+            const $select = $(this);
+
+            $select.ppma_select2({
+                placeholder: $select.data('placeholder') || st_admin_localize.select_post_label,
+                allowClear: true,
+                minimumInputLength: 0,
+                ajax: {
+                    url: st_admin_localize.ajaxurl,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            action: 'taxopress_search_posts',
+                            search: params.term || '',
+                            page: params.page || 1,
+                            nonce: st_admin_localize.check_nonce
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.results,
+                            pagination: {
+                                more: data.more
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                templateSelection: function (data) {
+                    return data.text || data.id;
+                }
+            });
+
+            $select.on('select2:open', function () {
+                if (!$select.data('fetched-initial')) {
+                    $select.data('fetched-initial', true);
+                    $select.select2('open');
+                }
+            });
+        });
+        }
+
+    }
+
+
   });
 
 })(jQuery);

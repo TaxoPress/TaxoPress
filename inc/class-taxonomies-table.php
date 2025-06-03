@@ -70,6 +70,7 @@ class Taxonomy_List extends WP_List_Table
             'active'      => __('Active', 'simple-tags'),
             'posttypes'   => __('Post Types', 'simple-tags'),
             'count'   => __('Count', 'simple-tags'),
+            'edited_with_taxopress'  => __('Edited', 'simple-tags'),
         ];
 
         return $columns;
@@ -437,6 +438,30 @@ class Taxonomy_List extends WP_List_Table
         );
 
         return $title;
+    }
+
+    /**
+     * The edited_with_taxopress column
+     *
+     * @param object $item
+     * @return string
+     */
+    protected function column_edited_with_taxopress($item)
+    {
+        $external_taxonomies = get_option('taxopress_external_taxonomies', array());
+        $taxopress_taxonomies = taxopress_get_taxonomy_data();
+        
+        if ($item->name === 'media_tag' || array_key_exists($item->name, $taxopress_taxonomies) || array_key_exists($item->name, $external_taxonomies)) {
+            return '<div class="pp-tooltips-library" data-toggle="tooltip">
+                    <span class="dashicons dashicons-yes-alt taxopress-edited-indicator taxopress-edited-yes"></span>
+                    <div class="taxopress tooltip-text">This taxonomy has been edited with TaxoPress</div>
+                    </div>';
+        } else {
+            return '<div class="pp-tooltips-library" data-toggle="tooltip">
+                    <span class="dashicons dashicons-no-alt taxopress-edited-indicator taxopress-edited-no"></span>
+                    <div class="taxopress tooltip-text">This taxonomy has not been edited with TaxoPress</div>
+                    </div>';
+        }
     }
 
 

@@ -1644,6 +1644,125 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     font-size: 13px;
 }
 
+.terms-display-preview .taxopress-preview-wrapper {
+    position: relative;
+    min-height: 50px;
+}
+
+.terms-display-preview .taxopress-preview-control {
+    margin: 0;
+    min-height: 0;
+}
+
+.terms-display-preview .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    float: none;
+    margin: 0;
+    visibility: hidden;
+}
+
+.terms-display-preview .handle-actions {
+    display: flex;
+    align-items: center;
+}
+
+.terms-display-preview .term-panel-move {
+    cursor: pointer;
+    padding: 0 5px;
+    color: #787c82;
+}
+
+.terms-display-preview .term-panel-move:hover {
+    color: #007cba;
+}
+
+.terms-display-preview .taxopress-preview-content {
+    padding: 15px;
+    min-height: 100px;
+}
+
+.terms-display-preview .error {
+    color: #cc0000;
+}
+
+.relatedposts-preview-container {
+    margin-bottom: 20px;
+}
+
+.taxopress-preview-box{
+    min-height: 50px !important;
+    min-width: 100px !important;
+}
+
+.taxopress-preview-content {
+    padding: 15px;
+}
+
+.taxopress-preview-control {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.taxopress-post-preview-select {
+    min-width: 150px;
+}
+
+.taxopress-preview-message {
+    margin: 10px 0;
+    padding: 10px;
+    font-style: italic;
+    background: #fff;
+    border-left: 4px solid #72aee6;
+}
+
+.taxopress-preview-message.error {
+    border-left-color: #d63638;
+    background-color: #fcf0f1;
+}
+
+.taxopress-preview-results {
+    margin-top: 15px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    padding: 15px;
+    min-height: 50px;
+}
+
+.posttags-preview-container .taxopress-preview-wrapper{
+    padding: 15px;
+}
+
+.posttags-preview-container .taxopress-preview-results-content {
+    background: #fff;
+    padding: 10px;
+    
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+}
+
+.posttags-preview-container .handle-actions {
+    display: flex;
+    align-items: center;
+}
+
+.taxopress-edited-yes{
+    color: #46b450;
+}
+
+.taxopress-edited-no{
+    color: #dc3232;
+}
+
+.taxopress.tooltip-text{
+    text-align: center !important;
+}
+
+
 @media only screen and (min-width: 1075px) {
     .taxopress-advertisement-right-sidebar-message,
     .upgrade-btn {
