@@ -1248,7 +1248,7 @@ class SimpleTags_Admin
 			case 'core_synonyms_terms':
 				return esc_html__('Term Synonyms', 'simple-tags');
 			case 'legacy_ai_sources':
-				return esc_html__('Legacy', 'simple-tags');
+				return esc_html__('Auto Terms', 'simple-tags');
 		}
 
 		return '';

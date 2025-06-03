@@ -471,7 +471,7 @@ class SimpleTags_Autolink
                                                                 'name'      => 'autolink_title_attribute',
                                                                 'textvalue' => isset($current['autolink_title_attribute']) ? esc_attr($current['autolink_title_attribute']) : 'Posts tagged with %s',
                                                                 'labeltext' => esc_html__(
-                                                                    'Auto Link title attribute',
+                                                                    'Auto Link title when linking to terms',
                                                                     'simple-tags'
                                                                 ),
                                                                 'helptext'  => '',
