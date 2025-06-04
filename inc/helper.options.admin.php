@@ -234,10 +234,10 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
      // add option to manage terms per user role
      $metabox_fields[] = array(
         'enable_restrict' . $role_name . '_metabox',
-        esc_html__('Term Management', 'simple-tags'),
+        esc_html__('Create New Terms', 'simple-tags'),
         'checkbox',
         '1',
-        sprintf(esc_html__('Restrict users in the %1$s role to selecting from Existing Terms only.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
+        sprintf(esc_html__('Block users in the %1$s role from creating new terms.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
     // add metabox allowed taxonomies
