@@ -323,13 +323,17 @@ class SimpleTags_Client_Autolinks
 
     private static function taxopress_get_title_attribute($search, $url, $options) {
 
-        $title_attribute = $options['autolink_title_attribute'];
+        $title_attribute = isset($options['autolink_title_attribute']) 
+        ? $options['autolink_title_attribute']
+        : SimpleTags_Plugin::get_option_value('auto_link_title');
         
         $term = get_term_by('name', $search, $options['taxonomy']);
         if ($term) {
             $custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
             if (!empty($custom_url) && esc_url($custom_url) === $url) {
-                $title_attribute = $options['autolink_title_attribute_when_using_custom_url'];
+                $title_attribute = isset($options['autolink_title_attribute_when_using_custom_url'])
+                ? $options['autolink_title_attribute_when_using_custom_url']
+                : SimpleTags_Plugin::get_option_value('auto_link_title_custom_url');
             }
         }
         
