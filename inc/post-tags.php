@@ -887,7 +887,11 @@ class SimpleTags_Post_Tags
 
         $post_id = isset($_POST['preview_post_id']) ? intval($_POST['preview_post_id']) : 0;
         if (!$post_id) {
-            wp_send_json_error(['message' => __('Please select a post to preview.', 'simple-tags')]);
+            wp_send_json_error([
+            'html' => '<p class="taxopress-preview-message error">' . 
+                     esc_html__('Select a post to see a preview.', 'simple-tags') . 
+                     '</p>'
+        ]);
         }
 
         // Get current settings
@@ -913,6 +917,9 @@ class SimpleTags_Post_Tags
         $output = SimpleTags_Client_PostTags::extendedPostTags($args, false);
 
         if (empty($output)) {
+             if (!empty($settings['hide_output'])) {
+                wp_send_json_success(['html' => '']);
+            }
             $notagtext = !empty($settings['notagtext']) ? $settings['notagtext'] : __('No terms found for this post.', 'simple-tags');
             wp_send_json_success(['html' => '<p>' . esc_html($notagtext) . '</p>']);
             return;
