@@ -1130,6 +1130,7 @@ class SimpleTags_Tag_Clouds
             'hide_empty'   => !empty($config['hide_empty']),
             'hide_title'   => !empty($config['hide_title']),
             'hide_output'  => !empty($config['hide_output']),
+            'notagstext'   => $config['notagstext'],
             'title'        => $config['title'] ?? '',
             'exclude_terms'=> $config['exclude_terms'] ?? '',
             'hide_terms'   => !empty($config['hide_terms']),
@@ -1147,8 +1148,11 @@ class SimpleTags_Tag_Clouds
         $output = $client->extendedTagCloud($args);
         
         if (empty($output)) {
-            wp_send_json_success(['html' => '<p>' . __('No terms found.', 'simple-tags') . '</p>']);
-            return;
+            if (!empty($config['hide_output'])) {
+                wp_send_json_success(['html' => '']);
+            }
+            $config['notagstext'] = '<p class="taxopress-preview-message error">' . esc_html__('There are no terms in this taxonomy.', 'simple-tags') . '</p>';
+            wp_send_json_success(['html' => '<p>' . esc_html($notagtext) . '</p>']);
         }
 
         wp_send_json_success(['html' => $output]);

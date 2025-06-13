@@ -2260,7 +2260,7 @@
             processData: false,
             contentType: false,
             success: (response) => {
-                if (response.success && response.data.html) {
+                if (response.success && response.data.hasOwnProperty('html')) {
                     elements.results.html(response.data.html);
                 } else {
                     displayMessage('error', response?.data?.message || st_admin_localize.preview_error);
@@ -2318,6 +2318,13 @@
                 return formData;
             }
         }).init();
+        if (!$('#preview-post-select').val()) {
+          $('.taxopress-preview-results').html(
+              '<p class="taxopress-preview-message error">' + 
+              st_admin_localize.post_required + 
+              '</p>'
+          );
+       }
     }
 
     //terms display preview
@@ -2385,6 +2392,13 @@
                 return formData;
             }
         }).init();
+        if (!$('#posttags-preview-select').val()) {
+            $('.taxopress-preview-results-content').html(
+                '<p class="taxopress-preview-message error">' + 
+                st_admin_localize.post_required + 
+                '</p>'
+            );
+        }
     }
 
     if ($('.taxopress-post-preview-select').length > 0) {
