@@ -1245,7 +1245,7 @@ class SimpleTags_Related_Post
         $output = $client->get_related_posts($args);
 
         if (empty($output)) {
-             if (!empty($config['hide_output'])) {
+             if (!empty($settings['hide_output'])) {
                 wp_send_json_success(['html' => '']);
             }
             
