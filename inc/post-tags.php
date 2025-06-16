@@ -349,6 +349,13 @@ class SimpleTags_Post_Tags
                                                                                                 ); ?></span></a>
                                                         </li>
 
+                                                        <li aria-current="<?php echo $active_tab === 'posttags_layout' ? 'true' : 'false'; ?>" class="posttags_layout_tab <?php echo $active_tab === 'posttags_layout' ? 'active' : ''; ?>" data-content="posttags_layout">
+                                                            <a href="#posttags_layout"><span><?php esc_html_e(
+                                                                                                    'Layout',
+                                                                                                    'simple-tags'
+                                                                                                ); ?></span></a>
+                                                        </li>
+
                                                         <li aria-current="<?php echo $active_tab === 'posttags_options' ? 'true' : 'false'; ?>" class="posttags_options_tab <?php echo $active_tab === 'posttags_options' ? 'active' : ''; ?>" data-content="posttags_options">
                                                             <a href="#posttags_options"><span><?php esc_html_e(
                                                                                                     'Options',
@@ -442,6 +449,16 @@ class SimpleTags_Post_Tags
 
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_td_end() . $ui->get_tr_end();
+                                                            ?>
+                                                        </table>
+
+                                                        <table class="form-table taxopress-table posttags_layout" style="<?php echo $active_tab === 'posttags_layout' ? '' : 'display:none;'; ?>">
+                                                            <?php
+
+                                                                apply_filters('taxopress_display_formats', $current);
+
+
+                                                        
                                                             ?>
                                                         </table>
 
@@ -911,7 +928,8 @@ class SimpleTags_Post_Tags
             'hide_output'  => isset($settings['hide_output']) ? (int)$settings['hide_output'] : 0,
             'wrap_class'   => isset($settings['wrap_class']) ? sanitize_html_class($settings['wrap_class']) : '',
             'link_class'   => isset($settings['link_class']) ? sanitize_html_class($settings['link_class']) : '',
-            'hide_terms'   => isset($settings['hide_terms']) ? (int)$settings['hide_terms'] : 0
+            'hide_terms'   => isset($settings['hide_terms']) ? (int)$settings['hide_terms'] : 0,
+            'format'      => isset($settings['format']) ? sanitize_text_field($settings['format']) : 'flat',
         ];
 
         $output = SimpleTags_Client_PostTags::extendedPostTags($args, false);

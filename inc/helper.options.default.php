@@ -105,6 +105,7 @@ return array(
     'tt_number'              => 0,
     'tt_inc_cats'            => 0,
     'tt_xformat'             => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simple-tags'),
+    'tt_format'              => 'flat',
     'tt_adv_usage'           => '',
     // Related Posts
     'rp_taxonomy'            => 'post_tag',

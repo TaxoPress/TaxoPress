@@ -9,10 +9,6 @@ class SimpleTags_Client_PostTags {
 
 	}
 
-	private static function ensure_separator_spacing($separator) {
-		$separator = trim($separator);
-		return  $separator . ' ';
-    }
 
 	/**
 	 * Generate current post tags
@@ -37,7 +33,7 @@ class SimpleTags_Client_PostTags {
 			'xformat'   => __( '<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simple-tags' ),
 			'notagtext' => __( 'No tag for this post.', 'simple-tags' ),
 			'number'    => 0,
-			'format'    => '',
+			'format'    => 'flat',
 			'ID'        => false,
 			'taxonomy'  => false,
 			'embedded'  => false,
@@ -54,6 +50,7 @@ class SimpleTags_Client_PostTags {
 		$defaults['after']     = $options['tt_after'];
 		$defaults['inc_cats']  = $options['tt_inc_cats'];
 		$defaults['xformat']   = $options['tt_xformat'];
+		$defaults['format']    = $options['tt_format'];
 		$defaults['notagtext'] = $options['tt_notagstext'];
 		$defaults['number']    = (int) $options['tt_number'];
 		if ( empty( $args ) ) {
@@ -140,7 +137,7 @@ class SimpleTags_Client_PostTags {
 		// If no terms, return text nothing.
 		if ( empty( $terms ) ) {
             if((int)$hide_output === 0){
-			    return $notagtext;
+				return SimpleTags_Client::output_content( 'st-post-tags', $format, $notagtext, '', $copyright, $separator, '', '', $before, $after );
             }else{
                 return '';
             }
@@ -164,13 +161,6 @@ class SimpleTags_Client_PostTags {
 			$output[] = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, null );
 		}
 
-		// Array to string
-		if ( is_array( $output ) && ! empty( $output ) ) {
-			$output = implode( self::ensure_separator_spacing($separator), $output );
-		} else {
-			$output = $notagtext;
-		}
-
-		return SimpleTags_Client::output_content( 'st-post-tags '.taxopress_format_class($wrap_class).'', 'div', '', $output, $copyright, '', '', '', $before, $after );
+		return SimpleTags_Client::output_content( 'st-post-tags '.taxopress_format_class($wrap_class).'', $format, '', $output, $copyright, $separator, '', '', $before, $after );
 	}
 }
