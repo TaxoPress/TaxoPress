@@ -37,31 +37,42 @@ class SimpleTags_Client_Autolinks
 	public function taxopress_customurl_taxonomies_fields() {
 		$taxonomies = get_taxonomies([], 'objects');
 		$autolink_settings = taxopress_get_autolink_data();
-	
 		$default_enabled_taxonomies = ['post_tag', 'category'];
-	
 		$enabled_taxonomies = [];
-	
-		// Flag to detect if the setting was ever saved
 		$has_setting_saved = false;
-	
+
+		$custom_urls_enabled = false;
 		foreach ($autolink_settings as $setting) {
-			if (array_key_exists('enable_customurl_field', $setting)) {
-				$has_setting_saved = true;
-				$enabled_taxonomies = is_array($setting['enable_customurl_field']) ? $setting['enable_customurl_field'] : [];
+			if (!empty($setting['enable_custom_urls'])) {
+				$custom_urls_enabled = true;
 				break;
 			}
 		}
-	
+
+		if (!$custom_urls_enabled) {
+			return;
+		}
+
+		foreach ($autolink_settings as $setting) {
+			if (
+				!empty($setting['enable_custom_urls']) &&
+				!empty($setting['enable_customurl_field']) &&
+				is_array($setting['enable_customurl_field'])
+			) {
+				$has_setting_saved = true;
+				$enabled_taxonomies = array_merge($enabled_taxonomies, $setting['enable_customurl_field']);
+			}
+		}
+
 		// If no settings saved, default to tags and categories
 		if (!$has_setting_saved) {
 			$enabled_taxonomies = $default_enabled_taxonomies;
 		}
-	
+
 		// Remove duplicates just in case
 		$enabled_taxonomies = array_unique($enabled_taxonomies);
-	
-		foreach ($taxonomies as $taxonomy_name => $taxonomy) {
+
+			foreach ($taxonomies as $taxonomy_name => $taxonomy) {
 			if (in_array($taxonomy_name, $enabled_taxonomies, true)) {
 				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
 				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
@@ -255,18 +266,35 @@ class SimpleTags_Client_Autolinks
 			$autolink_min_char = (int) $options['autolink_min_char'];
 			$autolink_max_char = (int) $options['autolink_max_char'];
 			$term_taxonomy = $options['taxonomy'];
+			$custom_urls_enabled = !empty($options['enable_custom_urls']);
 		} else {
 			$auto_link_min = (int) SimpleTags_Plugin::get_option_value('auto_link_min');
 			$unattached_terms  = (int) SimpleTags_Plugin::get_option_value('auto_link_all');
 			$autolink_min_char = 0;
 			$autolink_max_char = 0;
 			$term_taxonomy = 'post_tag';
+			$custom_urls_enabled = false;
+			$autolink_settings = taxopress_get_autolink_data();
+			foreach ($autolink_settings as $setting) {
+				if (!empty($setting['enable_custom_urls'])) {
+					$custom_urls_enabled = true;
+					break;
+				}
+			}
 		}
 
 		if (1 === $unattached_terms) {
 			$terms = self::get_all_post_tags($options);
 		} else {
 			$terms = self::get_tags_from_current_posts($options);
+		}
+
+		$custom_urls_enabled = !empty($options['enable_custom_urls']);
+		$customurl_only = !empty($options['customurl_only']);
+
+		if ($customurl_only && !$custom_urls_enabled) {
+			self::$link_tags = [];
+			return true;
 		}
 
 		foreach ((array) $terms as $term) {
@@ -279,9 +307,19 @@ class SimpleTags_Client_Autolinks
 				}
 			}
 
+			if ($customurl_only) {
+				$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+				if (!empty($taxopress_custom_url)) {
+					self::$link_tags[$term->name] = esc_url($taxopress_custom_url);
+				}
+			} else {  
 			//add primary term
-			$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
-            $primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
+			if ($custom_urls_enabled) {
+				$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+				$primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
+			} else {
+				$primary_term_link = get_term_link($term, $term->taxonomy);
+			}
 			$add_terms = [];
 			// store the URL
             self::$link_tags[$term->name] = $primary_term_link;
@@ -316,8 +354,8 @@ class SimpleTags_Client_Autolinks
 					self::$link_tags[$add_name] = esc_url($add_term_link);
 				}
 			}
-		}
-
+		    }
+	    }
 		return true;
 	}
 
