@@ -965,12 +965,11 @@ class SimpleTags_Autolink
                                                                 if (!in_array($taxonomy->name, $selected_taxonomies, true)) {
                                                                     continue;
                                                                 }
-                                                                $checked = $enable_custom_urls && in_array($taxonomy->name, $enable_customurl_field, true) ? 'true' : 'false';
                                                                 $disabled = !$enable_custom_urls ? 'disabled' : '';
                                                                 echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->label) . '</label></th><td>';
                                                                 echo $ui->get_check_input([
                                                                     'checkvalue' => $taxonomy->name,
-                                                                    'checked'    => $checked,
+                                                                    'checked'    => in_array($taxonomy->name, $enable_customurl_field, true) ? 'true' : 'false',
                                                                     'name'       => esc_attr($taxonomy->name),
                                                                     'namearray'  => 'taxopress_autolink[enable_customurl_field]',
                                                                     'textvalue'  => esc_attr($taxonomy->name),

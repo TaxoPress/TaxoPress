@@ -37,42 +37,31 @@ class SimpleTags_Client_Autolinks
 	public function taxopress_customurl_taxonomies_fields() {
 		$taxonomies = get_taxonomies([], 'objects');
 		$autolink_settings = taxopress_get_autolink_data();
+	
 		$default_enabled_taxonomies = ['post_tag', 'category'];
+	
 		$enabled_taxonomies = [];
+	
+		// Flag to detect if the setting was ever saved
 		$has_setting_saved = false;
-
-		$custom_urls_enabled = false;
+	
 		foreach ($autolink_settings as $setting) {
-			if (!empty($setting['enable_custom_urls'])) {
-				$custom_urls_enabled = true;
+			if (array_key_exists('enable_customurl_field', $setting)) {
+				$has_setting_saved = true;
+				$enabled_taxonomies = is_array($setting['enable_customurl_field']) ? $setting['enable_customurl_field'] : [];
 				break;
 			}
 		}
-
-		if (!$custom_urls_enabled) {
-			return;
-		}
-
-		foreach ($autolink_settings as $setting) {
-			if (
-				!empty($setting['enable_custom_urls']) &&
-				!empty($setting['enable_customurl_field']) &&
-				is_array($setting['enable_customurl_field'])
-			) {
-				$has_setting_saved = true;
-				$enabled_taxonomies = array_merge($enabled_taxonomies, $setting['enable_customurl_field']);
-			}
-		}
-
+	
 		// If no settings saved, default to tags and categories
 		if (!$has_setting_saved) {
 			$enabled_taxonomies = $default_enabled_taxonomies;
 		}
-
+	
 		// Remove duplicates just in case
 		$enabled_taxonomies = array_unique($enabled_taxonomies);
-
-			foreach ($taxonomies as $taxonomy_name => $taxonomy) {
+	
+		foreach ($taxonomies as $taxonomy_name => $taxonomy) {
 			if (in_array($taxonomy_name, $enabled_taxonomies, true)) {
 				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
 				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
