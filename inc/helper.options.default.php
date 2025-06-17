@@ -115,7 +115,13 @@ return array(
     'rp_limit_qty'           => 3,
     'rp_notagstext'          => __('No related posts.', 'simple-tags'),
     'rp_title'               => __('<h4>Related posts</h4>', 'simple-tags'),
-    'rp_xformat'             => __('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a> (%post_comment%)', 'simple-tags'),
+    'rp_xformat'             =>  __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			                       %post_title% <br> 
+			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
+			                       </a> 
+			                       (%post_comment%)', 'simple-tags' ),
+    'rp_default_featured_media' => 'default',
+    'rp_format'              => 'box',
     'rp_adv_usage'           => '',
     // Tag cloud
     'cloud_taxonomy'         => 'post_tag',
