@@ -154,12 +154,12 @@ function taxopress_create_default_tag_cloud()
     $default['taxopress_tag_cloud']['selection'] = 'desc';
     $default['taxopress_tag_cloud']['orderby'] = 'random';
     $default['taxopress_tag_cloud']['order'] = 'desc';
-    $default['taxopress_tag_cloud']['smallest'] = 8;
+    $default['taxopress_tag_cloud']['smallest'] = 15;
     $default['taxopress_tag_cloud']['largest'] = 22;
     $default['taxopress_tag_cloud']['unit'] = 'pt';
     $default['taxopress_tag_cloud']['format'] = 'flat';
     $default['taxopress_tag_cloud']['color'] = 1;
-    $default['taxopress_tag_cloud']['mincolor'] = '#CCCCCC';
+    $default['taxopress_tag_cloud']['mincolor'] = '#353535';
     $default['taxopress_tag_cloud']['maxcolor'] = '#000000';
     $default['taxopress_tag_cloud']['xformat'] = '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>';
     $default['taxopress_tag_cloud']['limit_days'] = 0;

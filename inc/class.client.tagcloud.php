@@ -42,9 +42,9 @@ class SimpleTags_Client_TagCloud {
 			'notagstext'  => __( 'No tags.', 'simple-tags' ),
 			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
-			'mincolor'    => '#CCCCCC',
+			'mincolor'    => '#353535',
 			'largest'     => 22,
-			'smallest'    => 8,
+			'smallest'    => 15,
 			'unit'        => 'pt',
 			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
 			'parent_term' => '',
@@ -321,9 +321,9 @@ class SimpleTags_Client_TagCloud {
 			'notagstext'  => __( 'No tags.', 'simple-tags' ),
 			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
-			'mincolor'    => '#CCCCCC',
+			'mincolor'    => '#353535',
 			'largest'     => 22,
-			'smallest'    => 8,
+			'smallest'    => 15,
 			'unit'        => 'pt',
 			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
 			'parent_term' => '',
