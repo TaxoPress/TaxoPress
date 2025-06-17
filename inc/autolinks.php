@@ -879,8 +879,67 @@ class SimpleTags_Autolink
 
                                                         <table class="form-table taxopress-table autolink_custom_url" style="<?php echo $active_tab === 'autolink_custom_url' ? '' : 'display:none;'; ?>">
                                                             <?php
+
+                                                            
+                                                            $select = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '1',
+                                                                        'text'    => esc_attr__('True', 'simple-tags'),
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '0',
+                                                                        'text' => esc_attr__('False', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected = (isset($current) && isset($current['customurl_only'])) ? taxopress_disp_boolean($current['customurl_only']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['customurl_only'] : '';
+
+                                                            echo $ui->get_select_checkbox_input([
+                                                                'namearray'  => 'taxopress_autolink',
+                                                                'name'       => 'customurl_only',
+                                                                'labeltext'  => esc_html__('Do not auto link terms to the archive page', 'simple-tags'),
+                                                                'aftertext'  => esc_html__('When enabled, only terms with a custom URL will be auto linked. Terms without a custom URL will not be auto linked.', 'simple-tags'),
+                                                                'selections' => $select,
+                                                            ]);
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '1',
+                                                                        'text'    => esc_attr__('True', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '0',
+                                                                        'text' => esc_attr__('False', 'simple-tags'),
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected = (isset($current) && isset($current['enable_custom_urls'])) ? taxopress_disp_boolean($current['enable_custom_urls']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['enable_custom_urls'] : '';
+
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input([
+                                                                'namearray'  => 'taxopress_autolink',
+                                                                'name'       => 'enable_custom_urls',
+                                                                'labeltext'  => esc_html__('Enable Custom URLs', 'simple-tags'),
+                                                                'aftertext'  => esc_html__('When enabled, terms can be linked to custom URLs instead of their archive pages.', 'simple-tags'),
+                                                                'selections' => $select,
+                                                            ]);
                                                             // Fetch all taxonomies
                                                             $all_taxonomies = get_taxonomies([], 'objects');
+
+                                                            $selected_taxonomies = [];
+                                                            if (isset($current['taxonomy'])) {
+                                                                if (is_array($current['taxonomy'])) {
+                                                                    $selected_taxonomies = $current['taxonomy'];
+                                                                } else {
+                                                                    $selected_taxonomies = [$current['taxonomy']];
+                                                                }
+                                                            }
 
 
                                                            if (!array_key_exists('enable_customurl_field', $current)) {
@@ -900,7 +959,13 @@ class SimpleTags_Autolink
                                                                 'simple-tags'
                                                             ) . '</small></th><td><table class="visbile-table">';                                                            
 
+                                                            $enable_custom_urls = isset($current['enable_custom_urls']) && $current['enable_custom_urls'] == '1';
+
                                                             foreach ($all_taxonomies as $taxonomy) {
+                                                                if (!in_array($taxonomy->name, $selected_taxonomies, true)) {
+                                                                    continue;
+                                                                }
+                                                                $disabled = !$enable_custom_urls ? 'disabled' : '';
                                                                 echo '<tr valign="top"><th scope="row"><label for="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->label) . '</label></th><td>';
                                                                 echo $ui->get_check_input([
                                                                     'checkvalue' => $taxonomy->name,
