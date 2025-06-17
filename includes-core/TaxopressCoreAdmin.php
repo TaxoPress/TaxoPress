@@ -85,6 +85,7 @@ class TaxopressCoreAdmin
         add_filter('taxopress_tagclouds_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
         add_filter('taxopress_terms_row_actions', [$this, 'taxopress_core_copy_with_metadata_action'], 10, 2);
         add_filter('taxopress_settings_post_type_ai_fields', [$this, 'filter_settings_post_type_ai_fields'], 10, 2);
+        add_filter('taxopress_display_formats', [$this, 'taxopress_render_display_formats_field']);
         add_action('taxopress_terms_copy_with_metadata_promo', [$this, 'taxopress_terms_copy_with_metadata_promo']);
     }
 
@@ -707,5 +708,50 @@ class TaxopressCoreAdmin
             </div>
         </div>
         <?php
+    }
+
+        /**
+     * Define the default display formats
+     *
+     * @return array
+     */
+    function taxopress_render_display_formats_field() {
+
+        $select = [
+            'flat' => esc_html__('Cloud', 'simple-tags')
+        ];
+        ?>
+        <tr>
+            <th>
+                <div class="taxopress_post_tags[format]"> 
+                   <?php echo esc_html__('Display Format', 'simple-tags'); ?>
+                </div>
+            </th>
+
+            <td>
+                <div class="taxopress-select-with-icon-wrapper">
+                    <select name="taxopress_post_tags[display_format]" class="taxopress-select-with-icon" disabled="disabled">
+                        <?php
+                        foreach ($select as $key => $label) {
+                            printf(
+                                '<option value="%s">%s</option>',
+                                esc_attr($key),
+                                esc_html($label)
+                            );
+                        }
+                        ?>
+                    </select>
+                    <span class="pp-tooltips-library" data-toggle="tooltip">
+                        <span class="dashicons dashicons-lock taxopress-select-icon taxopress-formats"></span>
+                        <span class="taxopress tooltip-text"><?php echo esc_html__('This feature is available in TaxoPress Pro', 'simple-tags'); ?></span>
+                    </span>
+                </div>
+                <div class="taxopress-stpexplan">
+                    <?php echo esc_html__('Choose the display formats of your terms, options include table list, ordered list, border-cloud and lots more.', 'simple-tags'); ?>
+                </div>
+            </td>
+        </tr>
+        <?php
+
     }
 }

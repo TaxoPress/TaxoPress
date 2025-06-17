@@ -37,11 +37,16 @@
     margin-top: -15px !important;
 }
 
-.taxopress .tooltip-text{
+.taxopress.tooltip-text{
     text-align: center !important;
 }
 
 .taxopress-term-wrap {
     display: flex;
     gap: 20px;
+}
+
+.taxopress-select-icon.taxopress-formats{
+    top: -40px !important;
+    margin-left: 15.4em !important;
 }
