@@ -72,7 +72,7 @@ class SimpleTags_Client_RelatedPosts {
 			 'link_class'  => '',
 			 'before'      => '',
 			 'after'       => '',
-			 'default_featured_media' => '',
+			 'default_featured_media' => 'default',
 			 'imageresolution' => 'medium',
 		);
 
@@ -408,10 +408,14 @@ class SimpleTags_Client_RelatedPosts {
 
 		// Add featured Image
 		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, $imageresolution );
-		
+
 		if (empty($post_thumbnail_url)) {
-			$post_thumbnail_url = $default_featured_media;
-		}
+			if ($default_featured_media === 'default') {
+				$post_thumbnail_url = STAGS_URL . '/assets/images/taxopress-white-logo.png';
+			} elseif (!empty($default_featured_media)) {
+				$post_thumbnail_url = $default_featured_media;
+			}
+        }
 
 		if (empty($post_thumbnail_url)) {
 			$element_loop = preg_replace('/<img\b[^>]*\bsrc="%post_thumb_url%"[^>]*>/i', '', $element_loop);
