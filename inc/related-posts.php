@@ -612,7 +612,7 @@ class SimpleTags_Related_Post
                                                                 'class'     => 'st-full-width',
                                                                 'rows'      => '4',
                                                                 'cols'      => '40',
-                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>'),
+                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)"><img src="%post_thumb_url%" height="200" width="200" class="custom-image-class"/><br>%post_title%<br>%post_date%<br>%post_category%</a>'),
                                                                 'labeltext' => esc_html__('Term link format', 'simple-tags'),
                                                                 'helptext'  => sprintf(esc_html__('This settings allows to customize the appearance of Related Post links. You can find tokens and explanations in the sidebar and %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
                                                                 'required'  => false,
@@ -1000,22 +1000,33 @@ class SimpleTags_Related_Post
                                                                     <td>
                                                                         <div class="default-featured-media-field-wrapper">
                                                                             <div class="default-featured-media-field-container">
-                                                                                <?php if (!empty($current['default_featured_media'])) : ?>
-                                                                                    <img src="<?php echo esc_url($current['default_featured_media']); ?>" style="max-width: 300px;" alt=""/>
-                                                                                <?php endif; ?>
+                                                                                <?php 
+                                                                                $current_value = isset($current['default_featured_media']) ? $current['default_featured_media'] : '';
+                                                                                $default_image = STAGS_URL . '/assets/images/taxopress-white-logo.png';
+
+                                                                                if ($current_value === $default_image) {
+                                                                                    echo '<img src="' . esc_url($default_image) . '" style="max-width: 300px;" alt=""/>';
+                                                                                    echo '<p class="description">' . esc_html__('Using default TaxoPress image', 'simple-tags') . '</p>';
+                                                                                } elseif (!empty($current_value)) {
+                                                                                    echo '<img src="' . esc_url($current_value) . '" style="max-width: 300px;" alt=""/>';
+                                                                                }
+                                                                                ?>
                                                                             </div>
 
                                                                             <p class="hide-if-no-js">
-                                                                                <a class="select-default-featured-media-field <?php echo !empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                <a class="select-default-featured-media-field <?php echo !empty($current_value) ? 'hidden' : ''; ?>" href="#">
                                                                                     <?php esc_html_e('Select Media', 'simple-tags'); ?>
                                                                                 </a>
-                                                                                <a class="delete-default-featured-media-field <?php echo empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                <a class="use-default-featured-media-field <?php echo ($current_value === $default_image) ? 'hidden' : ''; ?>" href="#">
+                                                                                    <?php esc_html_e('Use Default Image', 'simple-tags'); ?>
+                                                                                </a>
+                                                                                <a class="delete-default-featured-media-field <?php echo empty($current_value) ? 'hidden' : ''; ?>" href="#">
                                                                                     <?php esc_html_e('Remove Image', 'simple-tags'); ?>
                                                                                 </a>
                                                                             </p>
 
                                                                             <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
-                                                                                value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
+                                                                                value="<?php echo esc_attr($current_value); ?>" />
                                                                         </div>
                                                                         <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
                                                                     </td>
@@ -1213,6 +1224,13 @@ class SimpleTags_Related_Post
         // Create an instance of the client class
         $client = new SimpleTags_Client_RelatedPosts();
 
+        $default_featured_media = isset($settings['default_featured_media']) ? 
+            $settings['default_featured_media'] : '';
+
+        // If it's the default value, use the proper plugin URL path
+        if ($default_featured_media === 'default') {
+            $default_featured_media = STAGS_URL . '/assets/images/taxopress-white-logo.png';
+        }
         // Prepare arguments with strict type casting and validation
         $args = array(
             'post_id'           => $post_id,
@@ -1237,7 +1255,7 @@ class SimpleTags_Related_Post
             'taxopress_max_cats' => isset($settings['taxopress_max_cats']) ? max(0, intval($settings['taxopress_max_cats'])) : 3,
             'taxopress_max_tags' => isset($settings['taxopress_max_tags']) ? max(0, intval($settings['taxopress_max_tags'])) : 3,
             'imageresolution'  => isset($settings['imageresolution']) ? sanitize_text_field($settings['imageresolution']) : '1536x1536',
-            'default_featured_media' => isset($settings['default_featured_media']) ? esc_url($settings['default_featured_media']) : '',
+            'default_featured_media' => esc_url($default_featured_media),
             'dateformat'       => isset($settings['dateformat']) ? sanitize_text_field($settings['dateformat']) : 'd.m.Y',
         );
 

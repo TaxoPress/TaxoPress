@@ -48,7 +48,7 @@ class SimpleTags_Client_RelatedPosts {
 			'taxopress_max_cats' => 3,
 			'taxopress_max_tags' => 3,
 			'order'         => 'count-desc',
-			'format'        => 'list',
+			'format'        => 'box',
 			'separator'     => '',
 			'exclude_posts' => '',
 			'exclude_terms' => '',
@@ -72,7 +72,7 @@ class SimpleTags_Client_RelatedPosts {
 			 'link_class'  => '',
 			 'before'      => '',
 			 'after'       => '',
-			 'default_featured_media' => '',
+			 'default_featured_media' => 'default',
 			 'imageresolution' => 'medium',
 		);
 
@@ -83,6 +83,8 @@ class SimpleTags_Client_RelatedPosts {
 		$defaults['title']       = $options['rp_title'];
 		$defaults['xformat']     = $options['rp_xformat'];
 		$defaults['taxonomy']    = $options['rp_taxonomy'];
+		$defaults['default_featured_image'] = $options['rp_default_featured_media'];
+		$defaults['format']      = $options['rp_format'];
 
 		if ( empty( $user_args ) ) {
 			$user_args = $options['rp_adv_usage'];
@@ -408,10 +410,14 @@ class SimpleTags_Client_RelatedPosts {
 
 		// Add featured Image
 		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, $imageresolution );
-		
+
 		if (empty($post_thumbnail_url)) {
-			$post_thumbnail_url = $default_featured_media;
-		}
+			if ($default_featured_media === 'default') {
+				$post_thumbnail_url = STAGS_URL . '/assets/images/taxopress-white-logo.png';
+			} elseif (!empty($default_featured_media)) {
+				$post_thumbnail_url = $default_featured_media;
+			}
+        }
 
 		if (empty($post_thumbnail_url)) {
 			$element_loop = preg_replace('/<img\b[^>]*\bsrc="%post_thumb_url%"[^>]*>/i', '', $element_loop);

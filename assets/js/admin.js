@@ -1572,7 +1572,30 @@
       
       var frame;
       // Select Media
-      $('.select-default-featured-media-field').on('click', function(e){
+      var defaultImagePath = st_admin_localize.plugin_url + '/assets/images/taxopress-white-logo.png';
+
+      function refreshLabels() {
+          var currentVal = $('#default_featured_media').val();
+
+          if (!currentVal) {
+              // No image: show select image, hide change/use default/remove
+              $('.select-default-featured-media-field').removeClass('hidden').text(st_admin_localize.select_image_label);
+              $('.use-default-featured-media-field').removeClass('hidden');
+              $('.delete-default-featured-media-field').addClass('hidden');
+          } else if (currentVal === defaultImagePath) {
+              // Default image: show change + remove, hide select, hide use default
+              $('.select-default-featured-media-field').removeClass('hidden').text(st_admin_localize.change_image_label);
+              $('.use-default-featured-media-field').addClass('hidden');
+              $('.delete-default-featured-media-field').removeClass('hidden');
+          } else {
+              // User uploaded image: show change + use default + remove, hide select
+              $('.select-default-featured-media-field').removeClass('hidden').text(st_admin_localize.change_image_label);
+              $('.use-default-featured-media-field').removeClass('hidden');
+              $('.delete-default-featured-media-field').removeClass('hidden');
+          }
+      }
+
+      $('.select-default-featured-media-field').on('click', function(e) {
           e.preventDefault();
           
           // If the media frame already exists, reopen it.
@@ -1594,24 +1617,38 @@
           frame.on('select', function(){
               var attachment = frame.state().get('selection').first().toJSON();
               $('#default_featured_media').val(attachment.url);
-              $('.default-featured-media-field-container').html('<img src="' + attachment.url + '" style="max-width: 300px;" />');
-              $('.select-default-featured-media-field').addClass('hidden');
-              $('.delete-default-featured-media-field').removeClass('hidden');
+              $('.default-featured-media-field-container').html(
+                  '<img src="' + attachment.url + '" style="max-width: 300px;" />'
+              );
+              refreshLabels();
           });
 
           // Finally, open the modal on click
           frame.open();
       });
 
-      // Remove Media
-      $('.delete-default-featured-media-field').on('click', function(e){
+      // Use Default Image
+      $('.use-default-featured-media-field').on('click', function(e) {
+          e.preventDefault();
+          $('#default_featured_media').val(defaultImagePath);
+          $('.default-featured-media-field-container').html(
+              '<img src="' + defaultImagePath + '" style="max-width: 300px;" />' +
+              '<p class="description">' + st_admin_localize.using_default_text + '</p>'
+          );
+          refreshLabels();
+      });
+
+      // Remove Image
+      $('.delete-default-featured-media-field').on('click', function(e) {
           e.preventDefault();
           $('#default_featured_media').val('');
           $('.default-featured-media-field-container').html('');
-          $('.select-default-featured-media-field').removeClass('hidden');
-          $('.delete-default-featured-media-field').addClass('hidden');
+          refreshLabels();
       });
-    }
+
+      // Initial state
+      refreshLabels();
+}
 
     // -------------------------------------------------------------
     //   Auto term source to only change

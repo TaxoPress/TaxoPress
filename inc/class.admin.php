@@ -743,6 +743,11 @@ class SimpleTags_Admin
 			'enable_ibm_watson_ai_source' => SimpleTags_Plugin::get_option_value('enable_ibm_watson_ai_source'),
 			'enable_dandelion_ai_source' => SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'),
 			'enable_lseg_ai_source'    => SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'),
+			'plugin_url' => STAGS_URL,
+			'using_default_text' => __('Using default TaxoPress image', 'simple-tags'),
+			'select_image_label' => esc_html__('Select Media', 'simple-tags'),
+			'change_image_label' => esc_html__('Change Media', 'simple-tags'),
+			'use_default_label' => esc_html__('Use Default', 'simple-tags'),
 		]);
 
 
