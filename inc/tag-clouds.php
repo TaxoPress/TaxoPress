@@ -337,6 +337,11 @@ class SimpleTags_Tag_Clouds
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'tagcloud_layout' ? 'true' : 'false'; ?>" class="tagcloud_layout_tab <?php echo $active_tab === 'tagcloud_layout' ? 'active' : ''; ?>" data-content="tagcloud_layout">
+                                                    <a href="#tagcloud_layout"><span><?php esc_html_e('Layout',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                                 <li aria-current="<?php echo $active_tab === 'tagcloud_exceptions' ? 'true' : 'false'; ?>" class="tagcloud_exceptions_tab <?php echo $active_tab === 'tagcloud_exceptions' ? 'active' : ''; ?>" data-content="tagcloud_exceptions">
                                                     <a href="#tagcloud_exceptions"><span><?php esc_html_e('Exceptions',
                                                                 'simple-tags'); ?></span></a>
@@ -531,27 +536,6 @@ class SimpleTags_Tag_Clouds
                                                     'labeltext'  => esc_html__('Display Mode', 'simple-tags'),
                                                     'selections' => $select // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 ]);
-
-                                                $select = [
-								                    'options' => [
-									                    [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simple-tags' ), 'default' => 'true' ],
-									                    [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
-									                    [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
-                                                        [ 'attr' => 'comma', 'text' => esc_attr__( 'WordPress Default', 'simple-tags' ), 'default' => 'true'],
-                                                        ['attr' => 'table', 'text' => esc_attr__('Table List', 'simple-tags')],
-                                                        ['attr' => 'border', 'text' => esc_attr__('Border Cloud', 'simple-tags')],
-                                                        ['attr' => 'parent/child', 'text' => esc_attr__('Parent / Child', 'simple-tags')],
-								                    ],
-							                    ];
-							                    $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';
-							                    $select['selected'] = ! empty( $selected ) ? $current['format'] : '';
-                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                echo $ui->get_select_checkbox_input_main( [
-								                        'namearray'  => 'taxopress_tag_cloud',
-								                        'name'       => 'format',
-								                        'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
-								                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							                    ] );
                                                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                 echo $ui->get_td_end() . $ui->get_tr_end();
                                                     ?>
@@ -661,6 +645,36 @@ class SimpleTags_Tag_Clouds
 
                                                     ?>
                                                 </table>
+
+
+                                                <table class="form-table taxopress-table tagcloud_layout"
+                                                       style="<?php echo $active_tab === 'tagcloud_layout' ? '' : 'display:none;'; ?>">
+                                                       <?php
+
+                                                       $select = [
+                                                            'options' => [
+                                                                [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simple-tags' ), 'default' => 'true' ],
+                                                                [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
+                                                                [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
+                                                                [ 'attr' => 'comma', 'text' => esc_attr__( 'WordPress Default', 'simple-tags' ), 'default' => 'true'],
+                                                                ['attr' => 'table', 'text' => esc_attr__('Table List', 'simple-tags')],
+                                                                ['attr' => 'border', 'text' => esc_attr__('Border Cloud', 'simple-tags')],
+                                                                ['attr' => 'parent/child', 'text' => esc_attr__('Parent / Child', 'simple-tags')],
+                                                            ],
+                                                        ];
+                                                        $selected = isset( $current ) ? taxopress_disp_boolean( $current['format'] ) : '';
+                                                        $select['selected'] = ! empty( $selected ) ? $current['format'] : '';
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo $ui->get_select_checkbox_input_main( [
+                                                                'namearray'  => 'taxopress_tag_cloud',
+                                                                'name'       => 'format',
+                                                                'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
+                                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        ] );
+                                                       ?>
+
+                                                </table>  
+                                                     
 
 
                                                 <table class="form-table taxopress-table tagcloud_options"
