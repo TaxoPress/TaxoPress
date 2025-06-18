@@ -347,6 +347,11 @@ class SimpleTags_Related_Post
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_layout' ? 'true' : 'false'; ?>" class="relatedpost_layout_tab <?php echo $active_tab === 'relatedpost_layout' ? 'active' : ''; ?>" data-content="relatedpost_layout">
+                                                    <a href="#relatedpost_layout"><span><?php esc_html_e('Layout',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                                 <li aria-current="<?php echo $active_tab === 'relatedpost_display_format' ? 'true' : 'false'; ?>" class="relatedpost_display_format_tab <?php echo $active_tab === 'relatedpost_display_format' ? 'active' : ''; ?>" data-content="relatedpost_display_format">
                                                     <a href="#relatedpost_display_format"><span><?php esc_html_e('Display format',
                                                                 'simple-tags'); ?></span></a>
@@ -601,6 +606,32 @@ class SimpleTags_Related_Post
                                                     ?>
 
                                                 </table>
+                                                
+
+                                                <table class="form-table taxopress-table relatedpost_layout"
+                                                       style="<?php echo $active_tab === 'relatedpost_layout' ? '' : 'display:none;'; ?>">
+                                                    <?php
+
+                                                    $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ), 'default' => 'true' ],
+                                                                    [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
+                                                                ], 
+                                                            ]; 
+                                                            $selected = (isset($current) && isset($current['format'])) ? taxopress_disp_boolean($current['format']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['format'] : ''; 
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                'namearray'  => 'taxopress_related_post',
+                                                                'name'       => 'format',
+                                                                'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
+                                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
+                                                            
+                                                    ?>
+                                                </table>
+                                                
 
                                                 <table class="form-table taxopress-table relatedpost_display_format"
                                                        style="<?php echo $active_tab === 'relatedpost_display_format' ? '' : 'display:none;'; ?>">
@@ -617,23 +648,6 @@ class SimpleTags_Related_Post
                                                                 'helptext'  => sprintf(esc_html__('This settings allows to customize the appearance of Related Post links. You can find tokens and explanations in the sidebar and %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
                                                                 'required'  => false,
                                                             ]);
-
-                                                            $select = [
-                                                                'options' => [
-                                                                    [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ), 'default' => 'true' ],
-                                                                    [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
-                                                                    [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
-                                                                ], 
-                                                            ]; 
-                                                            $selected = (isset($current) && isset($current['format'])) ? taxopress_disp_boolean($current['format']) : '';
-                                                            $select['selected'] = !empty($selected) ? $current['format'] : ''; 
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  
-                                                            echo $ui->get_select_checkbox_input_main( [
-                                                                'namearray'  => 'taxopress_related_post',
-                                                                'name'       => 'format',
-                                                                'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
-                                                                'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ] );
                                                     ?>
 
                                                 </table>
