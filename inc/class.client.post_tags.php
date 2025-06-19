@@ -42,6 +42,12 @@ class SimpleTags_Client_PostTags {
 			'wrap_class'  => '',
 			'link_class'  => '',
 			'hide_terms' => 0,
+			'smallest'   => 15,
+			'largest'    => 22,
+			'unit'       => 'pt',
+			'color'      => true,
+			'mincolor'   => '#353535',
+			'maxcolor'   => '#000000',
 		);
 
 		// Get values in DB
@@ -53,6 +59,12 @@ class SimpleTags_Client_PostTags {
 		$defaults['format']    = $options['tt_format'];
 		$defaults['notagtext'] = $options['tt_notagstext'];
 		$defaults['number']    = (int) $options['tt_number'];
+		$defaults['smallest']  = isset($options['tt_smallest']) ? (int)$options['tt_smallest'] : 15;
+		$defaults['largest']   = isset($options['tt_largest']) ? (int)$options['tt_largest'] : 22;
+		$defaults['unit']      = isset($options['tt_unit']) ? $options['tt_unit'] : 'pt';
+		$defaults['color']     = isset($options['tt_color']) ? $options['tt_color'] : 1;
+		$defaults['mincolor']  = isset($options['tt_mincolor']) ? $options['tt_mincolor'] : '#353535';
+		$defaults['maxcolor']  = isset($options['tt_maxcolor']) ? $options['tt_maxcolor'] : '#000000';
 		if ( empty( $args ) ) {
 			$args = $options['tt_adv_usage'];
 		}
@@ -153,12 +165,68 @@ class SimpleTags_Client_PostTags {
 		}
 
 		// Prepare output
+		$output = array();
+
+		// Calculate scaling for font size and color if enabled
+		$counts = array();
+		foreach ( (array) $terms as $term ) {
+			if ( is_object( $term ) ) {
+				$counts[ $term->term_id ] = $term->count;
+			}
+		}
+
+		// Use full RBG code
+		if ( strlen( $maxcolor ) == 4 ) {
+			$maxcolor = $maxcolor . substr( $maxcolor, 1, strlen( $maxcolor ) );
+		}
+		if ( strlen( $mincolor ) == 4 ) {
+			$mincolor = $mincolor . substr( $mincolor, 1, strlen( $mincolor ) );
+		}
+
+		// Check as smallest inferior or equal to largest
+		if ( $smallest > $largest ) {
+			$smallest = $largest;
+		}
+
+		// Scaling - Hard value for the moment
+		$scale_min = 0;
+		$scale_max = 10;
+
+		if (!empty($counts)) {
+			$minval = min( $counts );
+			$maxval = max( $counts );
+		} else {
+			$minval = $maxval = 0;
+		}
+
+		$minout = max( $scale_min, 0 );
+		$maxout = max( $scale_max, $minout );
+
+		$scale = ( $maxval > $minval ) ? ( ( $maxout - $minout ) / ( $maxval - $minval ) ) : 0;
+
 		foreach ( (array) $terms as $term ) {
 			if ( ! is_object( $term ) ) {
 				continue;
 			}
 
-			$output[] = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, null );
+			// Calculate scale_result for this term
+			$scale_result = null;
+			if ($scale !== 0 && isset($counts[$term->term_id])) {
+				$scale_result = (int) ( ( $term->count - $minval ) * $scale + $minout );
+			} else {
+				$scale_result = ( $scale_max - $scale_min ) / 2;
+			}
+
+			// Remove color/size markers if disabled
+			if ( $color == '0' || $color === false || $color === 'false' ) {
+				$xformat = str_replace( '%tag_color%', '', $xformat );
+			}
+			if ( $smallest == $largest ) {
+				$xformat = str_replace( '%tag_size%', '', $xformat );
+			}
+
+			$output[] = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor
+			);
 		}
 
 		return SimpleTags_Client::output_content( 'st-post-tags '.taxopress_format_class($wrap_class).'', $format, '', $output, $copyright, $separator, '', '', $before, $after );

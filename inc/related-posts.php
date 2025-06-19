@@ -347,6 +347,11 @@ class SimpleTags_Related_Post
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_design' ? 'true' : 'false'; ?>" class="relatedpost_design_tab <?php echo $active_tab === 'relatedpost_design' ? 'active' : ''; ?>" data-content="relatedpost_design">
+                                                    <a href="#relatedpost_design"><span><?php esc_html_e('Design',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                                 <li aria-current="<?php echo $active_tab === 'relatedpost_layout' ? 'true' : 'false'; ?>" class="relatedpost_layout_tab <?php echo $active_tab === 'relatedpost_layout' ? 'active' : ''; ?>" data-content="relatedpost_layout">
                                                     <a href="#relatedpost_layout"><span><?php esc_html_e('Layout',
                                                                 'simple-tags'); ?></span></a>
@@ -509,6 +514,91 @@ class SimpleTags_Related_Post
                                                     ?>
                                                 </table>
 
+                                                <table class="form-table taxopress-table relatedpost_design"
+                                                       style="<?php echo $active_tab === 'relatedpost_design' ? '' : 'display:none;'; ?>">
+                                                    <?php
+
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'smallest',
+                                                            'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '15',
+                                                            'labeltext' => esc_html__('Font size minimum', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'largest',
+                                                            'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
+                                                            'labeltext' => esc_html__('Font size maximum', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
+                                                        $select = [
+                                                            'options' => [
+                                                                [ 'attr' => 'pt', 'text' => esc_attr__( 'Point', 'simple-tags' ), 'default' => 'true' ],
+                                                                [ 'attr' => 'px', 'text' => esc_attr__( 'Pixel', 'simple-tags' ) ],
+                                                                [ 'attr' => 'em', 'text' => esc_attr__( 'Em', 'simple-tags') ],
+                                                                [ 'attr' => '%', 'text' => esc_attr__( 'Percent', 'simple-tags') ],
+                                                            ],
+                                                        ];
+                                                        $selected = isset($current) ? taxopress_disp_boolean($current['unit']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['unit'] : '';
+                                                        echo $ui->get_select_checkbox_input_main([
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'unit',
+                                                            'labeltext'  => esc_html__( 'Unit font size', 'simple-tags' ),
+                                                            'selections' => $select,
+                                                        ]);
+
+                                                        $select = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                ],
+                                                            ],
+                                                        ];
+                                                        $selected = (isset($current) && isset($current['color'])) ? taxopress_disp_boolean($current['color']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['color'] : '';
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'color',
+                                                            'class'      => 'relatedposts-color-option',
+                                                            'labeltext'  => esc_html__('Enable colors for terms', 'simple-tags'),
+                                                            'selections' => $select,
+                                                        ]);
+
+
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'mincolor',
+                                                            'class'     => 'text-color related-post-min',
+                                                            'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#353535',
+                                                            'labeltext' => esc_html__('Font color minimum', 'simple-tags'),
+                                                            'helptext'  => esc_html__('This is the color of the least popular term.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
+
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'maxcolor',
+                                                            'class'     => 'text-color related-post-max',
+                                                            'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
+                                                            'labeltext' => esc_html__('Font color maximum', 'simple-tags'),
+                                                            'helptext'  => esc_html__('This is the color of the most popular term.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
+                                                    ?>
+                                                </table>    
+
 
                                                 <table class="form-table taxopress-table relatedpost_display"
                                                        style="<?php echo $active_tab === 'relatedpost_display' ? '' : 'display:none;'; ?>">
@@ -643,7 +733,7 @@ class SimpleTags_Related_Post
                                                                 'class'     => 'st-full-width',
                                                                 'rows'      => '4',
                                                                 'cols'      => '40',
-                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)"><img src="%post_thumb_url%" height="200" width="200" class="custom-image-class"/><br>%post_title%<br>%post_date%<br>%post_category%</a>'),
+                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%) style="font-size:%post_size%;color:%post_color%"><img src="%post_thumb_url%" height="200" width="200" class="custom-image-class"/><br>%post_title%<br>%post_date%<br>%post_category%</a>'),
                                                                 'labeltext' => esc_html__('Term link format', 'simple-tags'),
                                                                 'helptext'  => sprintf(esc_html__('This settings allows to customize the appearance of Related Post links. You can find tokens and explanations in the sidebar and %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
                                                                 'required'  => false,
@@ -1164,6 +1254,8 @@ class SimpleTags_Related_Post
                             <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
                             <li><code>%post_content%</code> <?php echo esc_html__('The post content', 'simple-tags'); ?></li>
                             <li><code>%post_category%</code> <?php echo esc_html__('The post category', 'simple-tags'); ?></li>
+                            <li><code>%post_size%</code> <?php echo esc_html__('The font size of the post title', 'simple-tags'); ?></li>
+                            <li><code>%post_color%</code> <?php echo esc_html__('The color of the post title', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -1271,6 +1363,12 @@ class SimpleTags_Related_Post
             'imageresolution'  => isset($settings['imageresolution']) ? sanitize_text_field($settings['imageresolution']) : '1536x1536',
             'default_featured_media' => esc_url($default_featured_media),
             'dateformat'       => isset($settings['dateformat']) ? sanitize_text_field($settings['dateformat']) : 'd.m.Y',
+            'smallest'        => isset($settings['smallest']) ? max(1, intval($settings['smallest'])) : 15,
+            'largest'         => isset($settings['largest']) ? max(1, intval($settings['largest'])) : 22,
+            'unit'            => isset($settings['unit']) ? sanitize_text_field($settings['unit']) : 'pt',
+            'mincolor'        => isset($settings['mincolor']) ? sanitize_hex_color($settings['mincolor']) : '#353535',
+            'maxcolor'        => isset($settings['maxcolor']) ? sanitize_hex_color($settings['maxcolor']) : '#000000',
+            'color'           => !empty($settings['color']),
         );
 
         // Get the HTML output

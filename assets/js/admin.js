@@ -656,22 +656,26 @@
             
             if ($(this).val() === 'box') {
                 xformatField.val(
-                    '<a href="' + st_admin_localize.post_permalink + '" title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')">' +
-                    '<img src="' + st_admin_localize.post_thumb_url + '" height="200" width="200" class="custom-image-class"/>' + 
-                    '<br>' + st_admin_localize.post_title + '<br>'
-                     + st_admin_localize.post_date + '<br>'
-                     + st_admin_localize.post_category +
+                    '<a href="' + st_admin_localize.post_permalink + '" ' +
+                    'title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')" ' +
+                    'style="font-size:' + st_admin_localize.post_size + '; color:' + st_admin_localize.post_color + ';">' +
+                    '<img src="' + st_admin_localize.post_thumb_url + '" height="200" width="200" class="custom-image-class"/>' +
+                    '<br>' + st_admin_localize.post_title + '<br>' +
+                    st_admin_localize.post_date + '<br>' +
+                    st_admin_localize.post_category +
                     '</a>'
                 );
             } else {
                 xformatField.val(
-                    '<a href="' + st_admin_localize.post_permalink + '" title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')">' +
+                    '<a href="' + st_admin_localize.post_permalink + '" ' +
+                    'title="' + st_admin_localize.post_title + ' (' + st_admin_localize.post_date + ')" ' +
+                    'style="font-size:' + st_admin_localize.post_size + '; color:' + st_admin_localize.post_color + ';">' +
                     st_admin_localize.post_title +
                     '</a>'
                 );
             }
         });
-    }
+      }
 
 
     // -------------------------------------------------------------
@@ -1517,6 +1521,44 @@
         } else {
           $('.tag-cloud-min').closest('tr').addClass('st-hide-content');
           $('.tag-cloud-max').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
+    //   Post Tag enable color
+    // -------------------------------------------------------------
+    $(document).on('click', '.posttags-color-option', function (e) {
+      posttags_color_option_action();
+    });
+    posttags_color_option_action();
+    function posttags_color_option_action() {
+      if ($('.posttags-color-option').length > 0) {
+        if ($('.posttags-color-option').prop("checked")) {
+          $('.post-tag-min').closest('tr').removeClass('st-hide-content');
+          $('.post-tag-max').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.post-tag-min').closest('tr').addClass('st-hide-content');
+          $('.post-tag-max').closest('tr').addClass('st-hide-content');
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
+    //   Related Posts enable color
+    // -------------------------------------------------------------
+    $(document).on('click', '.relatedposts-color-option', function (e) {
+      relatedposts_color_option_action();
+    });
+    relatedposts_color_option_action();
+    function relatedposts_color_option_action() {
+      if ($('.relatedposts-color-option').length > 0) {
+        if ($('.relatedposts-color-option').prop("checked")) {
+          $('.related-post-min').closest('tr').removeClass('st-hide-content');
+          $('.related-post-max').closest('tr').removeClass('st-hide-content');
+        } else {
+          $('.related-post-min').closest('tr').addClass('st-hide-content');
+          $('.related-post-max').closest('tr').addClass('st-hide-content');
         }
       }
     }
