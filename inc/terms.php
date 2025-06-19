@@ -34,6 +34,8 @@ class SimpleTags_Terms
         add_filter('terms_clauses', [__CLASS__, 'taxopress_terms_clauses'], 10, 3);
         //inline term edit
         add_action('wp_ajax_taxopress_terms_inline_save_term', [$this, 'taxopress_terms_inline_save_term_callback']);
+
+        add_action('wp_ajax_taxopress_save_term_order', [$this, 'taxopress_save_term_order_callback']);
     }
 
     // Handle the post_type parameter given in get_terms function
@@ -312,4 +314,34 @@ class SimpleTags_Terms
                 ?>
 <?php
     }
+
+
+    public function taxopress_save_term_order_callback()
+    {
+  
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => esc_html__('Permission denied.', 'simple-tags')]);
+        }
+
+        if ( !isset($_POST['nonce']) || !wp_verify_nonce(sanitize_key($_POST['nonce']), 'st-admin-js')) {
+            wp_send_json_error(['message' => esc_html__('Invalid nonce.', 'simple-tags')]);
+        }
+
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+        $order    = isset($_POST['order']) && is_array($_POST['order']) ? array_map('intval', $_POST['order']) : [];
+
+        if (empty($taxonomy) || empty($order)) {
+            wp_send_json_error(['message' => esc_html__('Invalid taxonomy or order.', 'simple-tags')]);
+        }
+
+        // Save the order as an option
+        if ($taxonomy === 'taxopress__global_order__' || $taxonomy === '') {
+            update_option('taxopress_term_order_global', $order);
+        } else {
+            update_option('taxopress_term_order_' . $taxonomy, $order);
+        }
+
+        wp_send_json_success(['message' => esc_html__('Order saved.', 'simple-tags')]);
+    }
+
 }
