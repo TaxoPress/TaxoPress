@@ -499,7 +499,7 @@ class SimpleTags_Post_Tags
                                                                     [ 'attr' => '%', 'text' => esc_attr__( 'Percent', 'simple-tags') ],
                                                                 ],
                                                             ];
-                                                            $selected = isset($current) ? taxopress_disp_boolean($current['unit']) : '';
+                                                            $selected = isset($current['unit']) ? taxopress_disp_boolean($current['unit']) : '';
                                                             $select['selected'] = !empty($selected) ? $current['unit'] : '';
                                                             echo $ui->get_select_checkbox_input_main([
                                                                 'namearray'  => 'taxopress_post_tags',
@@ -784,7 +784,7 @@ class SimpleTags_Post_Tags
                                                                 'class'     => 'st-full-width',
                                                                 'rows'      => '4',
                                                                 'cols'      => '40',
-                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>'),
+                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%tag_link%" title="%tag_name%" class="st-post-tags t%tag_scale%" style="%tag_size% %tag_color%" %tag_rel%>%tag_name%</a>'),
                                                                 'labeltext' => esc_html__('Term link format', 'simple-tags'),
                                                                 'helptext'  => sprintf(esc_html__('You can find markers and explanations %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-terms-current-post/">', '</a>'),
                                                                 'required'  => false,
