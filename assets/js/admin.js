@@ -419,6 +419,64 @@
     });
 
     // -------------------------------------------------------------
+    //   Terms table drag and drop ordering
+    // -------------------------------------------------------------
+    if ($('body.taxopress_page_st_terms #the-list').length > 0) {
+        $('#the-list').sortable({
+            items: 'tr',
+            axis: 'y',
+            cursor: 'move',
+            helper: function(e, ui) {
+                ui.children().each(function() {
+                    $(this).width($(this).width());
+                });
+                return ui;
+            },
+            update: function(event, ui) {
+                const termOrder = [];
+                $('#the-list tr').each(function() {
+                    var id = $(this).attr('id');
+                    if (id && id.startsWith('term-')) {
+                        termOrder.push(id.replace('term-', ''));
+                    }
+                });
+
+                var taxonomy = '';
+                if ($('#terms_filter_select_taxonomy').length && $('#terms_filter_select_taxonomy').val()) {
+                    taxonomy = $('#terms_filter_select_taxonomy').val();
+                }
+                else if ($('input[name="terms_filter_taxonomy"]').length && $('input[name="terms_filter_taxonomy"]').val()) {
+                    taxonomy = $('input[name="terms_filter_taxonomy"]').val();
+                }
+                else if ($('input[name="taxonomy"]').length && $('input[name="taxonomy"]').val()) {
+                    taxonomy = $('input[name="taxonomy"]').val();
+                }
+                else if (typeof st_admin_localize.taxonomy !== 'undefined') {
+                    taxonomy = st_admin_localize.taxonomy;
+                }
+                // If still empty, use 'global'
+                if (!taxonomy) {
+                    taxonomy = 'taxopress__global_order__';
+                }
+
+                $.ajax({
+                    url: st_admin_localize.ajaxurl,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        action: 'taxopress_save_term_order',
+                        order: termOrder,
+                        taxonomy: taxonomy,
+                        nonce: st_admin_localize.check_nonce
+                    },
+                });
+            }
+        }).disableSelection();
+
+        $('#the-list tr td').css('cursor', 'move');
+    }
+
+    // -------------------------------------------------------------
     //   Restrict terms to use to only one checkbox
     // -------------------------------------------------------------
     $(document).on('click', '#at_all', function (e) {

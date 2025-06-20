@@ -36,28 +36,101 @@ class Taxopress_Terms_List extends WP_List_Table
             $taxonomies = [$selected_taxonomy];
         }
 
-        $terms_attr = array(
-            'taxonomy' => $taxonomies,
-            'post_types' => $selected_post_type,
-            'orderby' => $orderby,
-            'order' => $order,
-            'search' => $search,
-            'hide_empty' => false,
-            'include' => 'all',
-            'pad_counts' => true,
-            'update_term_meta_cache' => true,
-        );
-        if ($count) {
-            $terms_attr['number'] = 0;
-        } else {
-            $terms_attr['offset'] = $offset;
-            $terms_attr['number'] = $items_per_page;
+        if (empty($selected_taxonomy)) {
+            $custom_order = get_option('taxopress_term_order_global', []);
+            $terms_attr = [
+                'taxonomy' => $taxonomies,
+                'post_types' => $selected_post_type,
+                'hide_empty' => false,
+                'pad_counts' => true,
+                'update_term_meta_cache' => true,
+                'search' => $search,
+                'orderby' => $orderby,
+                'order' => $order,
+                'include' => 'all',
+            ];
+
+            if ($count) {
+                $terms_attr['number'] = 0;
+            } else {
+                $terms_attr['offset'] = $offset;
+                $terms_attr['number'] = $items_per_page;
+            }
+
+            $terms = get_terms($terms_attr);
+
+            if (empty($terms) || is_wp_error($terms)) {
+                return [];
+            }
+
+            $terms_by_id = [];
+            foreach ($terms as $term) {
+                $terms_by_id[$term->term_id] = $term;
+            }
+            $new_terms = [];
+            $ordered_terms = [];
+            foreach ($terms_by_id as $term_id => $term) {
+                if (!in_array($term_id, $custom_order)) {
+                    $new_terms[] = $term;
+                }
+            }
+            foreach ($custom_order as $term_id) {
+                if (isset($terms_by_id[$term_id])) {
+                    $ordered_terms[] = $terms_by_id[$term_id];
+                }
+            }
+
+            return array_merge($new_terms, $ordered_terms);
         }
 
-        $terms = get_terms($terms_attr);
+        // if a specific taxonomy is selected, use its ordering
+        $taxonomies = [$selected_taxonomy];
 
-        if (empty($terms) || is_wp_error($terms)) {
-            return [];
+        $terms = [];
+        foreach ($taxonomies as $taxonomy) {
+            $custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
+            $terms_attr = [
+                'taxonomy' => [$taxonomy],
+                'post_types' => $selected_post_type,
+                'hide_empty' => false,
+                'pad_counts' => true,
+                'update_term_meta_cache' => true,
+                'search' => $search,
+                'orderby' => $orderby,
+                'order' => $order,
+                'include' => 'all',
+            ];
+
+            if ($count) {
+                $terms_attr['number'] = 0;
+            } else {
+                $terms_attr['offset'] = $offset;
+                $terms_attr['number'] = $items_per_page;
+            }
+
+            $taxonomy_terms = get_terms($terms_attr);
+
+            if (empty($taxonomy_terms) || is_wp_error($taxonomy_terms)) {
+                continue;
+            }
+
+            $terms_by_id = [];
+            $new_terms = [];
+            $ordered_terms = [];
+            foreach ($taxonomy_terms as $term) {
+                $terms_by_id[$term->term_id] = $term;
+            }
+            foreach ($terms_by_id as $term_id => $term) {
+                if (!in_array($term_id, $custom_order)) {
+                    $new_terms[] = $term;
+                }
+            }
+            foreach ($custom_order as $term_id) {
+                if (isset($terms_by_id[$term_id])) {
+                    $ordered_terms[] = $terms_by_id[$term_id];
+                }
+            }
+            $terms = array_merge($terms, $new_terms, $ordered_terms);
         }
 
         return $terms;
