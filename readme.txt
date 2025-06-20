@@ -268,6 +268,21 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.37.0- 2025-06-23
+* Fixed: Warning issue from Auto Links, #2663
+* Fixed: Not all design settings apply to Terms Display designs, #2658
+* Update: Move Auto Terms tab, #2661
+* Update: Update "Metabox" tab settings, #2660
+* Update: Update "Term Management" label, #2659
+* Update: New tab for "Layout", #2657
+* Update: Add a message for empty previews, #2655
+* Update: Improve default display for Related Posts, #2651
+* Update: Improve default display for Terms Display, #2650
+* Update: Allow users to disable either "Custom URLs" or "Auto Links", #2632
+* Feature: Design options for Terms for Current Post and Related Posts, #2656
+* Feature: Display options for Terms for Current Post, #2653
+* Feature: Allow users to order terms via the Terms Screen, #1794
+
 v3.36.0- 2025-06-02
 * Update: Add "Edited with TaxoPress" row in taxonomies table, #2640
 * Update: Show the "Delete TaxoPress Edit Data" button for only taxonomies edited with taxopress, #2639
