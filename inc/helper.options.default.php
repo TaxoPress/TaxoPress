@@ -104,7 +104,7 @@ return array(
     'tt_notagstext'          => __('No tags for this post.', 'simple-tags'),
     'tt_number'              => 0,
     'tt_inc_cats'            => 0,
-    'tt_xformat'             => __('<a href="%tag_link%" title="%tag_name%" %tag_rel%>%tag_name%</a>', 'simple-tags'),
+    'tt_xformat'             => __('<a href="%tag_link%" title="%tag_name%" class="st-post-tags t%tag_scale%" style="%tag_size% %tag_color%" %tag_rel%>%tag_name%</a>', 'simple-tags'),
     'tt_format'              => 'flat',
     'tt_adv_usage'           => '',
     // Related Posts
@@ -115,7 +115,7 @@ return array(
     'rp_limit_qty'           => 3,
     'rp_notagstext'          => __('No related posts.', 'simple-tags'),
     'rp_title'               => __('<h4>Related posts</h4>', 'simple-tags'),
-    'rp_xformat'             =>  __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+    'rp_xformat'             =>  __( '<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"> 
 			                       %post_title% <br> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 			                       </a> 

@@ -544,7 +544,7 @@ class SimpleTags_Related_Post
                                                                 [ 'attr' => '%', 'text' => esc_attr__( 'Percent', 'simple-tags') ],
                                                             ],
                                                         ];
-                                                        $selected = isset($current) ? taxopress_disp_boolean($current['unit']) : '';
+                                                        $selected = isset($current['unit']) ? taxopress_disp_boolean($current['unit']) : '';
                                                         $select['selected'] = !empty($selected) ? $current['unit'] : '';
                                                         echo $ui->get_select_checkbox_input_main([
                                                             'namearray'  => 'taxopress_related_post',
@@ -733,7 +733,7 @@ class SimpleTags_Related_Post
                                                                 'class'     => 'st-full-width',
                                                                 'rows'      => '4',
                                                                 'cols'      => '40',
-                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%) style="font-size:%post_size%;color:%post_color%"><img src="%post_thumb_url%" height="200" width="200" class="custom-image-class"/><br>%post_title%<br>%post_date%<br>%post_category%</a>'),
+                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"><img src="%post_thumb_url%" height="200" width="200" class="custom-image-class"/><br>%post_title%<br>%post_date%<br>%post_category%</a>'),
                                                                 'labeltext' => esc_html__('Term link format', 'simple-tags'),
                                                                 'helptext'  => sprintf(esc_html__('This settings allows to customize the appearance of Related Post links. You can find tokens and explanations in the sidebar and %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
                                                                 'required'  => false,
@@ -1254,7 +1254,7 @@ class SimpleTags_Related_Post
                             <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
                             <li><code>%post_content%</code> <?php echo esc_html__('The post content', 'simple-tags'); ?></li>
                             <li><code>%post_category%</code> <?php echo esc_html__('The post category', 'simple-tags'); ?></li>
-                            <li><code>%post_size%</code> <?php echo esc_html__('The font size of the post title', 'simple-tags'); ?></li>
+                            <li><code>%post_size%</code> <?php echo esc_html__('The font size of the post', 'simple-tags'); ?></li>
                             <li><code>%post_color%</code> <?php echo esc_html__('The color of the post title', 'simple-tags'); ?></li>
                         </ul>
                     </div>

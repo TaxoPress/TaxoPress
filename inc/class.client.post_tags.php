@@ -30,7 +30,7 @@ class SimpleTags_Client_PostTags {
 			'after'     => '<br />',
 			'post_id'   => 0,
 			'inc_cats'  => 0,
-			'xformat'   => __( '<a href="%tag_link%" title="%tag_name_attribute%" %tag_rel%>%tag_name%</a>', 'simple-tags' ),
+			'xformat'   => __( '<a href="%tag_link%" title="%tag_name%" class="st-post-tags t%tag_scale%" style="%tag_size% %tag_color%" %tag_rel%>%tag_name%</a>', 'simple-tags' ),
 			'notagtext' => __( 'No tag for this post.', 'simple-tags' ),
 			'number'    => 0,
 			'format'    => 'flat',
