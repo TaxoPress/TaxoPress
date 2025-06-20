@@ -356,6 +356,13 @@ class SimpleTags_Post_Tags
                                                                                                 ); ?></span></a>
                                                         </li>
 
+                                                        <li aria-current="<?php echo $active_tab === 'posttags_design' ? 'true' : 'false'; ?>" class="posttags_design_tab <?php echo $active_tab === 'posttags_design' ? 'active' : ''; ?>" data-content="posttags_design">
+                                                            <a href="#posttags_design"><span><?php esc_html_e(
+                                                                                                    'Design', 
+                                                                                                    'simple-tags'
+                                                                                                ); ?></span></a>
+                                                        </li>
+
                                                         <li aria-current="<?php echo $active_tab === 'posttags_options' ? 'true' : 'false'; ?>" class="posttags_options_tab <?php echo $active_tab === 'posttags_options' ? 'active' : ''; ?>" data-content="posttags_options">
                                                             <a href="#posttags_options"><span><?php esc_html_e(
                                                                                                     'Options',
@@ -459,6 +466,92 @@ class SimpleTags_Post_Tags
 
 
                                                         
+                                                            ?>
+                                                        </table>
+
+
+                                                        <table class="form-table taxopress-table posttags_design" style="<?php echo $active_tab === 'posttags_design' ? '' : 'display:none;'; ?>">
+                                                            <?php
+                                                            
+                                                            echo $ui->get_number_input([
+                                                                'namearray' => 'taxopress_post_tags',
+                                                                'name'      => 'smallest',
+                                                                'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '15',
+                                                                'labeltext' => esc_html__('Font size minimum', 'simple-tags'),
+                                                                'helptext'  => '',
+                                                                'required'  => false,
+                                                            ]);
+
+                                                            echo $ui->get_number_input([
+                                                                'namearray' => 'taxopress_post_tags',
+                                                                'name'      => 'largest',
+                                                                'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
+                                                                'labeltext' => esc_html__('Font size maximum', 'simple-tags'),
+                                                                'helptext'  => '',
+                                                                'required'  => false,
+                                                            ]);
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => 'pt', 'text' => esc_attr__( 'Point', 'simple-tags' ), 'default' => 'true' ],
+                                                                    [ 'attr' => 'px', 'text' => esc_attr__( 'Pixel', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'em', 'text' => esc_attr__( 'Em', 'simple-tags') ],
+                                                                    [ 'attr' => '%', 'text' => esc_attr__( 'Percent', 'simple-tags') ],
+                                                                ],
+                                                            ];
+                                                            $selected = isset($current) ? taxopress_disp_boolean($current['unit']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['unit'] : '';
+                                                            echo $ui->get_select_checkbox_input_main([
+                                                                'namearray'  => 'taxopress_post_tags',
+                                                                'name'       => 'unit',
+                                                                'labeltext'  => esc_html__( 'Unit font size', 'simple-tags' ),
+                                                                'selections' => $select,
+                                                            ]);
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '0',
+                                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '1',
+                                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected = (isset($current) && isset($current['color'])) ? taxopress_disp_boolean($current['color']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['color'] : '';
+                                                            echo $ui->get_select_checkbox_input([
+                                                                'namearray'  => 'taxopress_post_tags',
+                                                                'name'       => 'color',
+                                                                'class'      => 'posttags-color-option',
+                                                                'labeltext'  => esc_html__('Enable colors for terms', 'simple-tags'),
+                                                                'selections' => $select,
+                                                            ]);
+
+
+                                                            echo $ui->get_text_input([
+                                                                'namearray' => 'taxopress_post_tags',
+                                                                'name'      => 'mincolor',
+                                                                'class'     => 'text-color post-tag-min',
+                                                                'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#353535',
+                                                                'labeltext' => esc_html__('Font color minimum', 'simple-tags'),
+                                                                'helptext'  => esc_html__('This is the color of the least popular term.', 'simple-tags'),
+                                                                'required'  => true,
+                                                            ]);
+
+                                                            echo $ui->get_text_input([
+                                                                'namearray' => 'taxopress_post_tags',
+                                                                'name'      => 'maxcolor',
+                                                                'class'     => 'text-color post-tag-max',
+                                                                'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
+                                                                'labeltext' => esc_html__('Font color maximum', 'simple-tags'),
+                                                                'helptext'  => esc_html__('This is the color of the most popular term.', 'simple-tags'),
+                                                                'required'  => true,
+                                                            ]);
+
                                                             ?>
                                                         </table>
 
@@ -852,7 +945,9 @@ class SimpleTags_Post_Tags
                                                 <li><code>%tag_feed%</code><?php echo esc_html__('Replaced by the RSS tag link', 'simple-tags'); ?></li>
                                                 <li><code>%tag_id%</code><?php echo esc_html__('Replaced by the tag ID', 'simple-tags'); ?></li>
                                                 <li><code>%tag_name_attribute%</code><?php echo esc_html__('Replaced by the tag’s name, formatted for attribute HTML', 'simple-tags'); ?></li>
-                                                <li><code>%tag_description%</code> – <?php echo esc_html__('The description of the term', 'simple-tags'); ?></li>
+                                                <li><code>%tag_description%</code> – <?php echo esc_html__('The description of the tag', 'simple-tags'); ?></li>
+                                                <li><code>%tag_size%</code> – <?php echo esc_html__('The font size of the tag', 'simple-tags'); ?></li>
+                                                <li><code>%tag_color%</code> – <?php echo esc_html__('The font color of the tag', 'simple-tags'); ?></li>
                                             </ul>
                                             <p><?php echo esc_html__('You can also add HTML elements to the formatting.', 'simple-tags'); ?></p>
                                         </div>
@@ -930,6 +1025,12 @@ class SimpleTags_Post_Tags
             'link_class'   => isset($settings['link_class']) ? sanitize_html_class($settings['link_class']) : '',
             'hide_terms'   => isset($settings['hide_terms']) ? (int)$settings['hide_terms'] : 0,
             'format'      => isset($settings['format']) ? sanitize_text_field($settings['format']) : 'flat',
+            'smallest'     => isset($settings['smallest']) ? (int)$settings['smallest'] : 15,
+            'largest'      => isset($settings['largest']) ? (int)$settings['largest'] : 22,
+            'unit'         => isset($settings['unit']) ? sanitize_text_field($settings['unit']) : 'pt',
+            'color'        => isset($settings['color']) ? (int)$settings['color'] : true,
+            'mincolor'     => isset($settings['mincolor']) ? sanitize_hex_color($settings['mincolor']) : '#353535',
+            'maxcolor'     => isset($settings['maxcolor']) ? sanitize_hex_color($settings['maxcolor']) : '#000000',
         ];
 
         $output = SimpleTags_Client_PostTags::extendedPostTags($args, false);

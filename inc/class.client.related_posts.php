@@ -59,7 +59,7 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simple-tags' ),
 			'nopoststext'   => __( 'No related posts.', 'simple-tags' ),
 			'dateformat'    => get_option( 'date_format' ),
-			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)"> 
+			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%) style="font-size:%post_size%;color:%post_color%"> 
 			                       %post_title% <br> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 			                       </a> 
@@ -74,6 +74,12 @@ class SimpleTags_Client_RelatedPosts {
 			 'after'       => '',
 			 'default_featured_media' => 'default',
 			 'imageresolution' => 'medium',
+			 'smallest'   => 15,
+	         'largest'    => 22,
+			 'unit'       => 'pt',
+	         'mincolor'   => '#353535',
+			 'maxcolor'   => '#000000',
+			 'color'      => true,
 		);
 
 		// Get values in DB
@@ -85,6 +91,11 @@ class SimpleTags_Client_RelatedPosts {
 		$defaults['taxonomy']    = $options['rp_taxonomy'];
 		$defaults['default_featured_image'] = $options['rp_default_featured_media'];
 		$defaults['format']      = $options['rp_format'];
+		$defaults['smallest']    = isset($options['rp_smallest']) ? (int)$options['rp_smallest'] : 15;
+		$defaults['largest']     = isset($options['rp_largest']) ? (int)$options['rp_largest'] : 22;
+		$defaults['unit']        = isset($options['rp_unit']) ? $options['rp_unit'] : 'pt';
+		$defaults['mincolor']    = isset($options['rp_mincolor']) ? $options['rp_mincolor'] : '#353535';
+		$defaults['maxcolor']    = isset($options['rp_maxcolor']) ? $options['rp_maxcolor'] : '#000000';
 
 		if ( empty( $user_args ) ) {
 			$user_args = $options['rp_adv_usage'];
@@ -372,6 +383,29 @@ class SimpleTags_Client_RelatedPosts {
 			$xformat = taxopress_add_class_to_format($xformat, $link_class);
 		}
 		
+		$min_count = PHP_INT_MAX;
+		$max_count = 0;
+
+		foreach ((array) $results as $result) {
+			if (!is_object($result)) {
+				continue;
+			}
+
+			$term_count = isset($result->counter) ? (int)$result->counter : 0;
+
+			if ($term_count < $min_count) {
+				$min_count = $term_count;
+			}
+
+			if ($term_count > $max_count) {
+				$max_count = $term_count;
+			}
+		}
+
+		// Prevent divide by zero
+		if ($max_count === $min_count) {
+			$max_count++;
+		}
 
 	// Replace placeholders
     foreach ((array) $results as $result) {
@@ -380,6 +414,36 @@ class SimpleTags_Client_RelatedPosts {
         }
 
 		$element_loop = $xformat;
+
+		$term_count = isset($result->counter) ? (int)$result->counter : 0;
+
+		// Font size calculation
+		$smallest = isset($smallest) ? (float)$smallest : 15;
+		$largest = isset($largest) ? (float)$largest : 22;
+		$unit     = isset($unit) ? $unit : 'pt';
+
+		$font_size = $smallest + (($term_count - $min_count) / ($max_count - $min_count)) * ($largest - $smallest);
+		$font_size_output = round($font_size, 2) . $unit;
+
+		// Color calculation
+		$use_color = isset($color) && $color;
+		$mincolor = isset($mincolor) ? $mincolor : '#353535';
+		$maxcolor = isset($maxcolor) ? $maxcolor : '#000000';
+		$post_color = $mincolor;
+
+		if ($use_color) {
+			$start_rgb = sscanf($mincolor, "#%02x%02x%02x");
+			$end_rgb = sscanf($maxcolor, "#%02x%02x%02x");
+
+			$ratio = ($term_count - $min_count) / ($max_count - $min_count);
+
+			$r = (int)($start_rgb[0] + ($end_rgb[0] - $start_rgb[0]) * $ratio);
+			$g = (int)($start_rgb[1] + ($end_rgb[1] - $start_rgb[1]) * $ratio);
+			$b = (int)($start_rgb[2] + ($end_rgb[2] - $start_rgb[2]) * $ratio);
+
+			$post_color = sprintf("#%02x%02x%02x", $r, $g, $b);
+		}
+
 		$post_title   = apply_filters( 'the_title', $result->post_title, $result->ID );
 
 		 // Get the category of the post
@@ -433,6 +497,9 @@ class SimpleTags_Client_RelatedPosts {
     $element_loop = str_replace('%post_comment%', (int) $result->comment_count, $element_loop);
     $element_loop = str_replace('%post_tagcount%', (int) $result->counter, $element_loop);
     $element_loop = str_replace('%post_id%', $result->ID, $element_loop);
+	$element_loop = str_replace('%post_size%', esc_attr($font_size_output), $element_loop);
+    $element_loop = str_replace('%post_color%', esc_attr($post_color), $element_loop);
+
 
 	if (isset($result->terms_id)) {
 		

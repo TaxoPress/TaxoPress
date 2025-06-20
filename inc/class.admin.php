@@ -721,6 +721,8 @@ class SimpleTags_Admin
 			'post_date'               => '%post_date%',
 			'post_thumb_url'          => '%post_thumb_url%',
 			'post_category'           => '%post_category%',
+			'post_size'               => '%post_size%',
+			'post_color'              => '%post_color%',
 			'merge_cancelled'         => esc_html__('Merge has been cancelled.', 'simple-tags'),
 			'cancel_label' 		      => esc_html__('Cancel', 'simple-tags'),
 			'paused_label'            => esc_html__('Pause.', 'simple-tags'),
@@ -777,7 +779,7 @@ class SimpleTags_Admin
 		}
 
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
-		if (isset($_GET['page']) && in_array($_GET['page'], array('st_options', 'st_terms_display'))) {
+		if (isset($_GET['page']) && in_array($_GET['page'], array('st_options', 'st_terms_display', 'st_post_tags', 'st_related_posts',))) {
 			wp_enqueue_script('jquery-ui-tabs');
 			wp_enqueue_script('st-helper-options');
 		}
