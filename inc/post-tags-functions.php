@@ -156,6 +156,12 @@ function taxopress_create_default_post_tags()
         'notagtext' => __('No tag for this post.', 'simple-tags'),
         'number'    => 0,
         'format'    => '',
+        'smallest'  => 12,
+        'largest'   => 12,
+        'unit'      => 'pt',
+        'mincolor'  => '#353535',
+        'maxcolor'  => '#000000',
+        'color'     => 1,
     ];
     // Get values in DB
     $defaults['before']    = $options['tt_before'];
