@@ -719,7 +719,6 @@
                     'style="font-size:' + st_admin_localize.post_size + '; color:' + st_admin_localize.post_color + ';">' +
                     '<img src="' + st_admin_localize.post_thumb_url + '" height="200" width="200" class="custom-image-class"/>' +
                     '<br>' + st_admin_localize.post_title + '<br>' +
-                    st_admin_localize.post_date + '<br>' +
                     st_admin_localize.post_category +
                     '</a>'
                 );
