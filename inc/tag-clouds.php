@@ -810,7 +810,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_number_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'smallest',
-                                                    'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '15',
+                                                    'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '12',
                                                     'labeltext' => esc_html__('Font size minimum', 'simple-tags'),
                                                     'helptext'    => '',
                                                     'required'  => true,
@@ -820,7 +820,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_number_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'largest',
-                                                    'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
+                                                    'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '12',
                                                     'labeltext' => esc_html__('Font size maximum', 'simple-tags'),
                                                     'helptext'    => '',
                                                     'required'  => true,
@@ -1135,8 +1135,8 @@ class SimpleTags_Tag_Clouds
             'order'        => $config['order'] ?? 'desc',
             'format'       => $config['format'] ?? 'flat',
             'number'       => $config['max'] ?? 45,
-            'largest'      => $config['largest'] ?? 22,
-            'smallest'     => $config['smallest'] ?? 15,
+            'largest'      => $config['largest'] ?? 12,
+            'smallest'     => $config['smallest'] ?? 12,
             'unit'         => $config['unit'] ?? 'pt',
             'color'        => !empty($config['color']),
             'mincolor'     => $config['mincolor'] ?? '#353535',

@@ -521,7 +521,7 @@ class SimpleTags_Related_Post
                                                         echo $ui->get_number_input([
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'smallest',
-                                                            'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '15',
+                                                            'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '12',
                                                             'labeltext' => esc_html__('Font size minimum', 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => false,
@@ -530,7 +530,7 @@ class SimpleTags_Related_Post
                                                         echo $ui->get_number_input([
                                                             'namearray' => 'taxopress_related_post',
                                                             'name'      => 'largest',
-                                                            'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
+                                                            'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '12',
                                                             'labeltext' => esc_html__('Font size maximum', 'simple-tags'),
                                                             'helptext'  => '',
                                                             'required'  => false,
@@ -1363,8 +1363,8 @@ class SimpleTags_Related_Post
             'imageresolution'  => isset($settings['imageresolution']) ? sanitize_text_field($settings['imageresolution']) : '1536x1536',
             'default_featured_media' => esc_url($default_featured_media),
             'dateformat'       => isset($settings['dateformat']) ? sanitize_text_field($settings['dateformat']) : 'd.m.Y',
-            'smallest'        => isset($settings['smallest']) ? max(1, intval($settings['smallest'])) : 15,
-            'largest'         => isset($settings['largest']) ? max(1, intval($settings['largest'])) : 22,
+            'smallest'        => isset($settings['smallest']) ? max(1, intval($settings['smallest'])) : 12,
+            'largest'         => isset($settings['largest']) ? max(1, intval($settings['largest'])) : 12,
             'unit'            => isset($settings['unit']) ? sanitize_text_field($settings['unit']) : 'pt',
             'mincolor'        => isset($settings['mincolor']) ? sanitize_hex_color($settings['mincolor']) : '#353535',
             'maxcolor'        => isset($settings['maxcolor']) ? sanitize_hex_color($settings['maxcolor']) : '#000000',

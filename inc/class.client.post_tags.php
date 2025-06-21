@@ -42,8 +42,8 @@ class SimpleTags_Client_PostTags {
 			'wrap_class'  => '',
 			'link_class'  => '',
 			'hide_terms' => 0,
-			'smallest'   => 15,
-			'largest'    => 22,
+			'smallest'   => 12,
+			'largest'    => 12,
 			'unit'       => 'pt',
 			'color'      => true,
 			'mincolor'   => '#353535',
@@ -59,12 +59,12 @@ class SimpleTags_Client_PostTags {
 		$defaults['format']    = $options['tt_format'];
 		$defaults['notagtext'] = $options['tt_notagstext'];
 		$defaults['number']    = (int) $options['tt_number'];
-		$defaults['smallest']  = isset($options['tt_smallest']) ? (int)$options['tt_smallest'] : 15;
-		$defaults['largest']   = isset($options['tt_largest']) ? (int)$options['tt_largest'] : 22;
+		$defaults['smallest']  = isset($options['tt_min_size']) ? (int)$options['tt_min_size'] : 12;
+		$defaults['largest']   = isset($options['tt_max_size']) ? (int)$options['tt_max_size'] : 12;
 		$defaults['unit']      = isset($options['tt_unit']) ? $options['tt_unit'] : 'pt';
 		$defaults['color']     = isset($options['tt_color']) ? $options['tt_color'] : 1;
-		$defaults['mincolor']  = isset($options['tt_mincolor']) ? $options['tt_mincolor'] : '#353535';
-		$defaults['maxcolor']  = isset($options['tt_maxcolor']) ? $options['tt_maxcolor'] : '#000000';
+		$defaults['mincolor']  = isset($options['tt_min_color']) ? $options['tt_min_color'] : '#353535';
+		$defaults['maxcolor']  = isset($options['tt_max_color']) ? $options['tt_max_color'] : '#000000';
 		if ( empty( $args ) ) {
 			$args = $options['tt_adv_usage'];
 		}

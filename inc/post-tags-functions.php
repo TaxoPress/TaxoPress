@@ -175,6 +175,13 @@ function taxopress_create_default_post_tags()
     $post_tags_default['taxopress_post_tags']['before']    = $defaults['before'];
     $post_tags_default['taxopress_post_tags']['notagtext'] = $defaults['notagtext'];
     $post_tags_default['taxopress_post_tags']['xformat']   = $defaults['xformat'];
+    $post_tags_default['taxopress_post_tags']['smallest']    = $defaults['smallest'];
+    $post_tags_default['taxopress_post_tags']['largest']     = $defaults['largest'];
+    $post_tags_default['taxopress_post_tags']['unit']        = $defaults['unit'];
+    $post_tags_default['taxopress_post_tags']['mincolor']   = $defaults['mincolor'];
+    $post_tags_default['taxopress_post_tags']['maxcolor']   = $defaults['maxcolor'];
+    $post_tags_default['taxopress_post_tags']['color']      = $defaults['color'];
+    $post_tags_default['taxopress_post_tags']['format']     = $defaults['format'];
     $result                                                = taxopress_update_posttags($post_tags_default);
     update_option('taxopress_default_posttagss', $result);
 }

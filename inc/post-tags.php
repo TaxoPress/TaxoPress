@@ -476,7 +476,7 @@ class SimpleTags_Post_Tags
                                                             echo $ui->get_number_input([
                                                                 'namearray' => 'taxopress_post_tags',
                                                                 'name'      => 'smallest',
-                                                                'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '15',
+                                                                'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '12',
                                                                 'labeltext' => esc_html__('Font size minimum', 'simple-tags'),
                                                                 'helptext'  => '',
                                                                 'required'  => false,
@@ -485,7 +485,7 @@ class SimpleTags_Post_Tags
                                                             echo $ui->get_number_input([
                                                                 'namearray' => 'taxopress_post_tags',
                                                                 'name'      => 'largest',
-                                                                'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
+                                                                'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '12',
                                                                 'labeltext' => esc_html__('Font size maximum', 'simple-tags'),
                                                                 'helptext'  => '',
                                                                 'required'  => false,
@@ -1025,8 +1025,8 @@ class SimpleTags_Post_Tags
             'link_class'   => isset($settings['link_class']) ? sanitize_html_class($settings['link_class']) : '',
             'hide_terms'   => isset($settings['hide_terms']) ? (int)$settings['hide_terms'] : 0,
             'format'      => isset($settings['format']) ? sanitize_text_field($settings['format']) : 'flat',
-            'smallest'     => isset($settings['smallest']) ? (int)$settings['smallest'] : 15,
-            'largest'      => isset($settings['largest']) ? (int)$settings['largest'] : 22,
+            'smallest'     => isset($settings['smallest']) ? (int)$settings['smallest'] : 12,
+            'largest'      => isset($settings['largest']) ? (int)$settings['largest'] : 12,
             'unit'         => isset($settings['unit']) ? sanitize_text_field($settings['unit']) : 'pt',
             'color'        => isset($settings['color']) ? (int)$settings['color'] : true,
             'mincolor'     => isset($settings['mincolor']) ? sanitize_hex_color($settings['mincolor']) : '#353535',

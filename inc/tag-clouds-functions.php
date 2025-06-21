@@ -154,8 +154,8 @@ function taxopress_create_default_tag_cloud()
     $default['taxopress_tag_cloud']['selection'] = 'desc';
     $default['taxopress_tag_cloud']['orderby'] = 'random';
     $default['taxopress_tag_cloud']['order'] = 'desc';
-    $default['taxopress_tag_cloud']['smallest'] = 15;
-    $default['taxopress_tag_cloud']['largest'] = 22;
+    $default['taxopress_tag_cloud']['smallest'] = 12;
+    $default['taxopress_tag_cloud']['largest'] = 12;
     $default['taxopress_tag_cloud']['unit'] = 'pt';
     $default['taxopress_tag_cloud']['format'] = 'flat';
     $default['taxopress_tag_cloud']['color'] = 1;
