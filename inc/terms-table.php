@@ -191,6 +191,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
             'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
             'hidden_status' => esc_html__('Status', 'simple-tags'),
+            'taxopress_order'  => esc_html__('Order', 'simple-tags'),
             'count'  => esc_html__('Count', 'simple-tags')
         ];
 
@@ -419,6 +420,11 @@ class Taxopress_Terms_List extends WP_List_Table
     
         return esc_html__('Live', 'simple-tags');
     }  
+
+    protected function column_taxopress_order($item){
+        return '-';
+    }
+
 
     /**
      * Render a column when no column specific method exist.
