@@ -326,7 +326,7 @@ class SimpleTags_Autolink
                                                         </li>
 
                                                         <li aria-current="<?php echo $active_tab === 'autolink_custom_url' ? 'true' : 'false'; ?>" class="autolink_custom_url_tab <?php echo $active_tab === 'autolink_custom_url' ? 'active' : ''; ?>" data-content="autolink_custom_url">
-                                                            <a href="#autolink_custom_url"><span><?php esc_html_e('Custom URL', 'simple-tags'); ?></span></a>
+                                                            <a href="#autolink_custom_url"><span><?php esc_html_e('Link Types', 'simple-tags'); ?></span></a>
                                                         </li>
 
                                                     </ul>
@@ -886,22 +886,22 @@ class SimpleTags_Autolink
                                                                     [
                                                                         'attr'    => '1',
                                                                         'text'    => esc_attr__('True', 'simple-tags'),
+                                                                        'default' => 'true',
                                                                     ],
                                                                     [
                                                                         'attr' => '0',
                                                                         'text' => esc_attr__('False', 'simple-tags'),
-                                                                        'default' => 'true',
                                                                     ],
                                                                 ],
                                                             ];
-                                                            $selected = (isset($current) && isset($current['customurl_only'])) ? taxopress_disp_boolean($current['customurl_only']) : '';
-                                                            $select['selected'] = !empty($selected) ? $current['customurl_only'] : '';
+                                                            $selected = (isset($current) && isset($current['archivepage'])) ? taxopress_disp_boolean($current['archivepage']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['archivepage'] : '';
 
                                                             echo $ui->get_select_checkbox_input([
                                                                 'namearray'  => 'taxopress_autolink',
-                                                                'name'       => 'customurl_only',
-                                                                'labeltext'  => esc_html__('Do not auto link terms to the archive page', 'simple-tags'),
-                                                                'aftertext'  => esc_html__('When enabled, only terms with a custom URL will be auto linked. Terms without a custom URL will not be auto linked.', 'simple-tags'),
+                                                                'name'       => 'archivepage',
+                                                                'labeltext'  => esc_html__('Enable Auto Link to archive pages', 'simple-tags'),
+                                                                'aftertext'  => esc_html__('When enabled, terms will be linked to the archive page for that term.', 'simple-tags'),
                                                                 'selections' => $select,
                                                             ]);
 
@@ -942,7 +942,7 @@ class SimpleTags_Autolink
                                                             }
 
 
-                                                           if (!array_key_exists('enable_customurl_field', $current)) {
+                                                           if (!is_array($current) || !array_key_exists('enable_customurl_field', $current)) {
                                                                 $enable_customurl_field = isset($_POST['taxopress_autolink']) ? [] : ['post_tag', 'category'];
                                                             } else {
                                                                 $enable_customurl_field = is_array($current['enable_customurl_field']) ? $current['enable_customurl_field'] : [];
@@ -952,10 +952,7 @@ class SimpleTags_Autolink
                                                                 'Enable the Custom URL Field:',
                                                                 'simple-tags'
                                                             ) . '</label><br /><small style=" color: #646970;">' . esc_html__(
-                                                                'This allows users to automatically link terms to a URL instead of the term\'s archive page.',
-                                                                'simple-tags'
-                                                            ) . '<br>' . esc_html__(
-                                                                'The Custom URL field will be visible if at least one Auto Links profile has it enabled for that taxonomy.',
+                                                                'Enable the Custom URL field for this taxonomy.',
                                                                 'simple-tags'
                                                             ) . '</small></th><td><table class="visbile-table">';                                                            
 

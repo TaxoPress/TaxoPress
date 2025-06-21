@@ -279,9 +279,9 @@ class SimpleTags_Client_Autolinks
 		}
 
 		$custom_urls_enabled = !empty($options['enable_custom_urls']);
-		$customurl_only = !empty($options['customurl_only']);
+		$archivepage = !empty($options['archivepage']);
 
-		if ($customurl_only && !$custom_urls_enabled) {
+		if (!$archivepage && !$custom_urls_enabled) {
 			self::$link_tags = [];
 			return true;
 		}
@@ -296,7 +296,7 @@ class SimpleTags_Client_Autolinks
 				}
 			}
 
-			if ($customurl_only) {
+			if (!$archivepage && $custom_urls_enabled) {
 				$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
 				if (!empty($taxopress_custom_url)) {
 					self::$link_tags[$term->name] = esc_url($taxopress_custom_url);
