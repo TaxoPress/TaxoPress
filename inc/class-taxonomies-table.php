@@ -70,6 +70,7 @@ class Taxonomy_List extends WP_List_Table
             'active'      => __('Active', 'simple-tags'),
             'posttypes'   => __('Post Types', 'simple-tags'),
             'count'   => __('Count', 'simple-tags'),
+            'taxopress_order' => __('Order', 'simple-tags'),
             'edited_with_taxopress'  => __('Edited', 'simple-tags'),
         ];
 
@@ -462,6 +463,28 @@ class Taxonomy_List extends WP_List_Table
                     <div class="taxopress tooltip-text">This taxonomy has not been edited with TaxoPress</div>
                     </div>';
         }
+    }
+    
+    protected function column_taxopress_order($item)
+    {
+        // Get the order value from the taxonomy object
+        $taxonomies = taxopress_get_all_edited_taxonomy_data();
+        $order_value = '';
+        $order_label = '';
+
+        if (isset($taxonomies[$item->name]['order'])) {
+            $order_value = $taxonomies[$item->name]['order'];
+        }
+
+        $order_options = [
+            'asc' => esc_html__('Ascending', 'simple-tags'),
+            'desc' => esc_html__('Descending', 'simple-tags'),
+            'taxopress_term_order' => esc_html__('Term Order', 'simple-tags'),
+        ];
+
+        $order_label = isset($order_options[$order_value]) ? $order_options[$order_value] : esc_html__('Ascending', 'simple-tags');
+
+        return esc_html($order_label);
     }
 
 

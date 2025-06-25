@@ -112,6 +112,11 @@ return array(
     'tt_min_color'        => '#353535',
     'tt_max_color'        => '#000000',
     'tt_unit'                => 'pt',
+    'tt_selectionby'         => 'count',
+    'tt_selection'           => 'desc',
+    'tt_orderby'             => 'name',
+    'tt_order'               => 'asc',
+    'tt_limit_days'          => 0,
     // Related Posts
     'rp_taxonomy'            => 'post_tag',
     'rp_feed'                => 0,

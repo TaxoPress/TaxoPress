@@ -24,71 +24,39 @@ class Taxopress_Terms_List extends WP_List_Table
 
         $search = (!empty($_REQUEST['s'])) ? sanitize_text_field($_REQUEST['s']) : '';
 
-        $orderby        = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID';
-        $order          = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc';
         $items_per_page = $this->get_items_per_page('st_terms_per_page', 20);
         $page           = $this->get_pagenum();
         $offset         = ($page - 1) * $items_per_page;
 
         $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? [sanitize_text_field($_REQUEST['terms_filter_post_type'])] : '';
         $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
+
+        $show_all_terms = false;
+        if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
+            $selected_taxonomy = sanitize_text_field($_REQUEST['taxopress_terms_taxonomy']);
+            $show_all_terms = true;
+        } elseif (!empty($_REQUEST['terms_filter_taxonomy'])) {
+            $selected_taxonomy = sanitize_text_field($_REQUEST['terms_filter_taxonomy']);
+        } else {
+            $selected_taxonomy = '';
+        }
+
         if (!empty($selected_taxonomy)) {
             $taxonomies = [$selected_taxonomy];
         }
 
-        if (empty($selected_taxonomy)) {
-            $custom_order = get_option('taxopress_term_order_global', []);
-            $terms_attr = [
-                'taxonomy' => $taxonomies,
-                'post_types' => $selected_post_type,
-                'hide_empty' => false,
-                'pad_counts' => true,
-                'update_term_meta_cache' => true,
-                'search' => $search,
-                'orderby' => $orderby,
-                'order' => $order,
-                'include' => 'all',
-            ];
-
-            if ($count) {
-                $terms_attr['number'] = 0;
-            } else {
-                $terms_attr['offset'] = $offset;
-                $terms_attr['number'] = $items_per_page;
-            }
-
-            $terms = get_terms($terms_attr);
-
-            if (empty($terms) || is_wp_error($terms)) {
-                return [];
-            }
-
-            $terms_by_id = [];
-            foreach ($terms as $term) {
-                $terms_by_id[$term->term_id] = $term;
-            }
-            $new_terms = [];
-            $ordered_terms = [];
-            foreach ($terms_by_id as $term_id => $term) {
-                if (!in_array($term_id, $custom_order)) {
-                    $new_terms[] = $term;
-                }
-            }
-            foreach ($custom_order as $term_id) {
-                if (isset($terms_by_id[$term_id])) {
-                    $ordered_terms[] = $terms_by_id[$term_id];
-                }
-            }
-
-            return array_merge($new_terms, $ordered_terms);
-        }
-
-        // if a specific taxonomy is selected, use its ordering
-        $taxonomies = [$selected_taxonomy];
-
         $terms = [];
+
+        $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
+
         foreach ($taxonomies as $taxonomy) {
             $custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
+
+            $order_setting = isset($taxonomy_settings[$taxonomy]['order']) ? $taxonomy_settings[$taxonomy]['order'] : 'desc';
+            $orderby_setting = isset($taxonomy_settings[$taxonomy]['orderby']) ? $taxonomy_settings[$taxonomy]['orderby'] : 'ID';
+
+            $use_custom_order = ($order_setting === 'taxopress_term_order');
+
             $terms_attr = [
                 'taxonomy' => [$taxonomy],
                 'post_types' => $selected_post_type,
@@ -96,16 +64,24 @@ class Taxopress_Terms_List extends WP_List_Table
                 'pad_counts' => true,
                 'update_term_meta_cache' => true,
                 'search' => $search,
-                'orderby' => $orderby,
-                'order' => $order,
                 'include' => 'all',
             ];
 
-            if ($count) {
-                $terms_attr['number'] = 0;
+            if ($use_custom_order || $show_all_terms || (isset($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1')) {
+                    if (!$use_custom_order) {
+                        $terms_attr['orderby'] = $orderby_setting;
+                        $terms_attr['order'] = $order_setting;
+                    }
+                // Do not set offset or number
             } else {
-                $terms_attr['offset'] = $offset;
-                $terms_attr['number'] = $items_per_page;
+                $terms_attr['orderby'] = $orderby_setting;
+                $terms_attr['order'] = $order_setting;
+                if ($count) {
+                    $terms_attr['number'] = 0;
+                } else {
+                    $terms_attr['offset'] = $offset;
+                    $terms_attr['number'] = $items_per_page;
+                }
             }
 
             $taxonomy_terms = get_terms($terms_attr);
@@ -114,23 +90,41 @@ class Taxopress_Terms_List extends WP_List_Table
                 continue;
             }
 
-            $terms_by_id = [];
-            $new_terms = [];
-            $ordered_terms = [];
-            foreach ($taxonomy_terms as $term) {
-                $terms_by_id[$term->term_id] = $term;
-            }
-            foreach ($terms_by_id as $term_id => $term) {
-                if (!in_array($term_id, $custom_order)) {
-                    $new_terms[] = $term;
+            if ($use_custom_order) {
+                // Manual custom ordering
+                $terms_by_id = [];
+                $new_terms = [];
+                $ordered_terms = [];
+
+                foreach ($taxonomy_terms as $term) {
+                    $terms_by_id[$term->term_id] = $term;
                 }
-            }
-            foreach ($custom_order as $term_id) {
-                if (isset($terms_by_id[$term_id])) {
-                    $ordered_terms[] = $terms_by_id[$term_id];
+
+                // Terms not in custom order
+                foreach ($terms_by_id as $term_id => $term) {
+                    if (!in_array($term_id, $custom_order)) {
+                        $new_terms[] = $term;
+                    }
                 }
+
+                // Ordered terms
+                foreach ($custom_order as $term_id) {
+                    if (isset($terms_by_id[$term_id])) {
+                        $ordered_terms[] = $terms_by_id[$term_id];
+                    }
+                }
+
+                // Merge: new (unordered) terms first, then custom-ordered ones
+                $terms = array_merge($terms, $new_terms, $ordered_terms);
+            } else {
+                if ($orderby_setting === 'random') {
+                    shuffle($taxonomy_terms);
+                    if ($order_setting === 'desc') {
+                        $taxonomy_terms = array_reverse($taxonomy_terms);
+                    }
+                }
+                $terms = array_merge($terms, $taxonomy_terms);
             }
-            $terms = array_merge($terms, $new_terms, $ordered_terms);
         }
 
         return $terms;
@@ -180,6 +174,14 @@ class Taxopress_Terms_List extends WP_List_Table
      */
     function get_columns()
     {
+
+        if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
+            return [
+                'name'        => esc_html__('Title', 'simple-tags'),
+                'description' => esc_html__('Description', 'simple-tags'),
+                'count'       => esc_html__('Count', 'simple-tags'),
+            ];
+        }
         $columns = [
             'cb'      => '<input type="checkbox" />',
             'name'     => esc_html__('Title', 'simple-tags'),
@@ -191,7 +193,6 @@ class Taxopress_Terms_List extends WP_List_Table
             'synonyms'  => esc_html__('Synonyms', 'simple-tags'),
             'linked_terms'  => esc_html__('Linked Terms', 'simple-tags'),
             'hidden_status' => esc_html__('Status', 'simple-tags'),
-            'taxopress_order'  => esc_html__('Order', 'simple-tags'),
             'count'  => esc_html__('Count', 'simple-tags')
         ];
 
@@ -258,8 +259,8 @@ class Taxopress_Terms_List extends WP_List_Table
      */
     protected function extra_tablenav($which)
     {
-
-        if ('top' === $which) {
+        // Hide filters if taxopress_show_all=1
+        if ('top' === $which && empty($_REQUEST['taxopress_show_all'])) {
 
             $post_types = get_post_types(['public' => true], 'objects');
 
@@ -421,11 +422,6 @@ class Taxopress_Terms_List extends WP_List_Table
         return esc_html__('Live', 'simple-tags');
     }  
 
-    protected function column_taxopress_order($item){
-        return '-';
-    }
-
-
     /**
      * Render a column when no column specific method exist.
      *
@@ -455,6 +451,11 @@ class Taxopress_Terms_List extends WP_List_Table
      */
     public function search_box($text, $input_id)
     {
+        // Hide search box if taxopress_show_all=1
+        if ((!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1')) {
+            return;
+        }
+
         if (empty($_REQUEST['s']) && !$this->has_items()) {
             //return;
         }
@@ -495,6 +496,8 @@ class Taxopress_Terms_List extends WP_List_Table
         $this->_column_headers = $this->get_column_info();
         $this->process_bulk_action();
 
+        // If viewing via taxopress_terms_taxonomy, show all terms and no pagination
+        $show_all = (!empty($_REQUEST['taxopress_terms_taxonomy']) || (!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1'));
         /**
          * First, lets decide how many records per page to show
          */
@@ -516,6 +519,13 @@ class Taxopress_Terms_List extends WP_List_Table
          */
         $this->items = $data;
 
+        if ($show_all) {
+            $this->set_pagination_args([
+                'total_items' => count($data),
+                'per_page'    => count($data),
+                'total_pages' => 1
+            ]);
+        } else {
         /**
          * We also have to register our pagination options & calculations.
          */
@@ -524,6 +534,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'per_page'    => $per_page,                         //determine how many items to show on a page
             'total_pages' => ceil($total_items / $per_page)   //calculate the total number of pages
         ]);
+        }
     }
 
     /**
@@ -555,67 +566,74 @@ class Taxopress_Terms_List extends WP_List_Table
                 ),
                 esc_html__('Edit', 'simple-tags')
             );
-            $actions['inline hide-if-no-js'] = sprintf(
-                '<button type="button" class="button-link editinline" aria-label="%s" aria-expanded="false" data-taxonomy="' . $taxonomy->name . '" data-term-id="' . $item->term_id . '">%s</button>',
-                /* translators: %s: Taxonomy term name. */
-                esc_attr(sprintf(esc_html__('Quick edit &#8220;%s&#8221; inline', 'simple-tags'), $item->name)),
-                esc_html__('Quick&nbsp;Edit', 'simple-tags')
-            );
+        }
 
-            $actions['remove_posts'] = sprintf(
+        // Only add other actions if not viewing via taxopress_terms_taxonomy
+        if (empty($_REQUEST['taxopress_terms_taxonomy'])) {
+            if (current_user_can('edit_term', $item->term_id)) {
+                $actions['inline hide-if-no-js'] = sprintf(
+                    '<button type="button" class="button-link editinline" aria-label="%s" aria-expanded="false" data-taxonomy="' . $taxonomy->name . '" data-term-id="' . $item->term_id . '">%s</button>',
+                    /* translators: %s: Taxonomy term name. */
+                    esc_attr(sprintf(esc_html__('Quick edit &#8220;%s&#8221; inline', 'simple-tags'), $item->name)),
+                    esc_html__('Quick&nbsp;Edit', 'simple-tags')
+                );
+            }
+
+            if (current_user_can('edit_term', $item->term_id)) {
+                $actions['remove_posts'] = sprintf(
+                    '<a href="%s">%s</a>',
+                    add_query_arg(
+                        [
+                            'page'                   => 'st_terms',
+                            'action'                 => 'taxopress-remove-from-posts',
+                            'taxopress_terms'        => esc_attr($item->term_id),
+                            '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
+                        ],
+                        admin_url('admin.php')
+                    ),
+                    esc_html__('Remove From All Posts', 'simple-tags')
+                );
+            }
+
+            if (current_user_can('delete_term', $item->term_id)) {
+                $actions['delete'] = sprintf(
+                    '<a href="%s" class="delete-terms">%s</a>',
+                    add_query_arg(
+                        [
+                            'page'                   => 'st_terms',
+                            'action'                 => 'taxopress-delete-terms',
+                            'taxopress_terms'        => esc_attr($item->term_id),
+                            '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
+                        ],
+                        admin_url('admin.php')
+                    ),
+                    esc_html__('Delete', 'simple-tags')
+                );
+            }
+
+            if (is_taxonomy_viewable($item->taxonomy)) {
+                $actions['view'] = sprintf(
+                    '<a href="%s">%s</a>',
+                    get_term_link($item->term_id),
+                    esc_html__('View', 'simple-tags')
+                );
+            }
+
+            $actions['copy_term'] = sprintf(
                 '<a href="%s">%s</a>',
                 add_query_arg(
                     [
                         'page'                   => 'st_terms',
-                        'action'                 => 'taxopress-remove-from-posts',
+                        'action'                 => 'taxopress-copy-term',
                         'taxopress_terms'        => esc_attr($item->term_id),
                         '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
                     ],
                     admin_url('admin.php')
                 ),
-                esc_html__('Remove From All Posts', 'simple-tags')
+                esc_html__('Copy', 'simple-tags')
             );
+            $actions = apply_filters('taxopress_terms_row_actions', $actions, $item);
         }
-
-        if (current_user_can('delete_term', $item->term_id)) {
-            $actions['delete'] = sprintf(
-                '<a href="%s" class="delete-terms">%s</a>',
-                add_query_arg(
-                    [
-                        'page'                   => 'st_terms',
-                        'action'                 => 'taxopress-delete-terms',
-                        'taxopress_terms'        => esc_attr($item->term_id),
-                        '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
-                    ],
-                    admin_url('admin.php')
-                ),
-                esc_html__('Delete', 'simple-tags')
-            );
-        }
-
-        if (is_taxonomy_viewable($item->taxonomy)) {
-            $actions['view'] = sprintf(
-                '<a href="%s">%s</a>',
-                get_term_link($item->term_id),
-                esc_html__('View', 'simple-tags')
-            );
-        }
-
-        $actions['copy_term'] = sprintf(
-            '<a href="%s">%s</a>',
-            add_query_arg(
-                [
-                    'page'                   => 'st_terms',
-                    'action'                 => 'taxopress-copy-term',
-                    'taxopress_terms'        => esc_attr($item->term_id),
-                    '_wpnonce'               => wp_create_nonce('terms-action-request-nonce')
-                ],
-                admin_url('admin.php')
-            ),
-            esc_html__('Copy', 'simple-tags')
-        );
-
-        $actions = apply_filters('taxopress_terms_row_actions', $actions, $item);
         return $column_name === $primary ? $this->row_actions($actions, false) : '';
     }
 
@@ -681,6 +699,8 @@ class Taxopress_Terms_List extends WP_List_Table
             ),
             esc_html($item->name)
         );
+
+        $title .= ' <span class="taxopress-term-spinner" style="display:none;vertical-align:middle;"><span class="spinner is-active"></span></span>';
 
         //for inline edit
         $qe_data = get_term($item->term_id, $item->taxonomy, OBJECT, 'edit');

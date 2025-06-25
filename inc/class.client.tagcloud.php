@@ -263,6 +263,33 @@ class SimpleTags_Client_TagCloud {
 			foreach ($grouped_terms as $parent_group) {
 				$terms = array_merge($terms, $parent_group);
 			}
+			if ($order === 'taxopress_term_order') {
+				// Custom drag-and-drop order
+				$custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
+				if (!empty($custom_order)) {
+					$terms_by_id = [];
+					foreach ($terms_data as $term_name => $term_obj) {
+						if (is_object($term_obj) && isset($term_obj->term_id)) {
+							$terms_by_id[$term_obj->term_id] = $term_obj;
+						}
+					}
+					$ordered_terms = [];
+					foreach ($custom_order as $term_id) {
+						foreach ($terms_by_id as $tid => $term_obj) {
+							if ($tid == $term_id) {
+								$ordered_terms[$term_obj->name] = $term_obj->count;
+								unset($terms_by_id[$tid]);
+								break;
+							}
+						}
+					}
+					// Add any terms not in custom order at the end
+					foreach ($terms_by_id as $term_obj) {
+						$ordered_terms[$term_obj->name] = $term_obj->count;
+					}
+					$counts = $ordered_terms;
+				}
+			}
 		} else {
 			// Default sorting logic
 			$orderby = strtolower($orderby);

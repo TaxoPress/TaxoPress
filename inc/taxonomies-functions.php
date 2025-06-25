@@ -246,6 +246,12 @@ function taxopress_update_taxonomy($data = [])
     if ( ! isset( $data['cpt_custom_tax']['show_in_filter'] ) ) {
 		$data['cpt_custom_tax']['show_in_filter'] = 0;
 	}
+    if ( ! isset( $data['cpt_custom_tax']['order'] ) ) {
+		$data['cpt_custom_tax']['order'] = 'asc';
+	}
+    if ( ! isset( $data['cpt_custom_tax']['orderby'] ) ) {
+		$data['cpt_custom_tax']['orderby'] = 'name';
+	}
 
     /**
      * Fires before a taxonomy is updated to our saved options.
@@ -348,6 +354,8 @@ function taxopress_update_taxonomy($data = [])
     $rest_controller_class = trim($data['cpt_custom_tax']['rest_controller_class']);
     $show_quickpanel_bulk  = !empty($data['cpt_custom_tax']['show_in_quick_edit']) ? taxopress_disp_boolean($data['cpt_custom_tax']['show_in_quick_edit']) : '';
     $show_in_filter        = !empty($data['cpt_custom_tax']['show_in_filter']) ? taxopress_disp_boolean($data['cpt_custom_tax']['show_in_filter']) : '';
+    $order                = !empty($data['cpt_custom_tax']['order']) ? sanitize_text_field($data['cpt_custom_tax']['order']) : 'asc';
+    $orderby              = !empty($data['cpt_custom_tax']['orderby']) ? sanitize_text_field($data['cpt_custom_tax']['orderby']) : 'name';
     $default_term          = trim($data['cpt_custom_tax']['default_term']);
 
     $meta_box_cb = trim($data['cpt_custom_tax']['meta_box_cb']);
@@ -392,6 +400,8 @@ function taxopress_update_taxonomy($data = [])
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
             'show_in_filter'        => $show_in_filter,
+            'order'                 => $order,
+            'orderby'               => $orderby,
         ];
 
         $taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : '';
@@ -444,6 +454,8 @@ function taxopress_update_taxonomy($data = [])
             'meta_box_cb'           => $meta_box_cb,
             'default_term'          => $default_term,
             'show_in_filter'        => $show_in_filter,
+            'order'                 => $order,
+            'orderby'               => $orderby,
         ];
 
         $external_taxonomies[$data['cpt_custom_tax']['name']]['object_types'] = isset($data['cpt_post_types']) ? $data['cpt_post_types'] : [];
@@ -2424,4 +2436,79 @@ function taxopress_get_dropdown(){
 
     }
 
+}
+
+
+/**
+ * Filter get_terms_args to apply TaxoPress order/orderby settings in admin term screens.
+ */
+function taxopress_get_terms_args($args, $taxonomies) {
+    if (!is_admin()) {
+        return $args;
+    }
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (!$screen || $screen->base !== 'edit-tags') {
+        return $args;
+    }
+    $tax = is_array($taxonomies) ? reset($taxonomies) : $taxonomies;
+    if (!$tax) {
+        return $args;
+    }
+    $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
+    if (!isset($taxonomy_settings[$tax])) {
+        return $args;
+    }
+    $order_setting = isset($taxonomy_settings[$tax]['order']) ? $taxonomy_settings[$tax]['order'] : 'desc';
+    $orderby_setting = isset($taxonomy_settings[$tax]['orderby']) ? $taxonomy_settings[$tax]['orderby'] : 'ID';
+    if ($order_setting === 'taxopress_term_order') {
+        $args['orderby'] = 'none';
+        $args['order'] = 'ASC';
+    } else {
+        $args['orderby'] = $orderby_setting;
+        $args['order'] = $order_setting;
+    }
+    return $args;
+}
+
+/**
+ * Filter get_terms to apply custom manual order in admin term screens.
+ */
+function taxopress_get_terms($terms, $taxonomies, $args, $term_query) {
+    if (!is_admin()) {
+        return $terms;
+    }
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (!$screen || $screen->base !== 'edit-tags') {
+        return $terms;
+    }
+    $tax = is_array($taxonomies) ? reset($taxonomies) : $taxonomies;
+    if (!$tax) {
+        return $terms;
+    }
+    $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
+    if (!isset($taxonomy_settings[$tax])) {
+        return $terms;
+    }
+    $order_setting = isset($taxonomy_settings[$tax]['order']) ? $taxonomy_settings[$tax]['order'] : 'desc';
+    if ($order_setting === 'taxopress_term_order') {
+        $custom_order = get_option('taxopress_term_order_' . $tax, []);
+        if (!empty($custom_order)) {
+            $terms_by_id = [];
+            foreach ($terms as $term) {
+                if (is_object($term) && isset($term->term_id)) {
+                    $terms_by_id[$term->term_id] = $term;
+                }
+            }
+            $ordered_terms = [];
+            foreach ($custom_order as $term_id) {
+                if (isset($terms_by_id[$term_id])) {
+                    $ordered_terms[] = $terms_by_id[$term_id];
+                    unset($terms_by_id[$term_id]);
+                }
+            }
+            // Add any terms not in custom order at the end
+            $terms = array_merge($ordered_terms, $terms_by_id);
+        }
+    }
+    return $terms;
 }

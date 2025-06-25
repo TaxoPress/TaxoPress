@@ -413,6 +413,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                             'simple-tags'); ?></span></a>
                                             </li>
 
+                                            <li aria-current="false" class="taxonomy_order_tab" data-content="taxonomy_order">
+                                                <a href="#taxonomy_order"><span><?php esc_html_e('Order',
+                                                            'simple-tags'); ?></span></a>
+                                            </li>
+
                                             <?php if( $taxonomy_edit && !$external_edit ){ ?>
                                             <li aria-current="false" class="taxonomy_slug_tab" data-content="taxonomy_slug">
                                                 <a href="#taxonomy_slug"><span><?php esc_html_e('Slug',
@@ -1515,6 +1520,57 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ]);
                                             ?>
                                         </table>
+
+                                        <table class="form-table taxopress-table taxonomy_order"
+                                               style="display:none;">
+                                            <?php
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+                                            $select = [
+                                                'options' => [
+                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
+                                                    [ 'attr' => 'term_id', 'text' => esc_attr__( 'ID', 'simple-tags' ) ],
+                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
+                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
+                                                ],
+                                            ];
+                                            $selected = isset( $current['orderby'] ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
+                                            $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input_main( [
+                                                    'namearray'  => 'cpt_custom_tax',
+                                                    'name'       => 'orderby',
+                                                    'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simple-tags' ),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ] );
+                                            
+                                            $select = [
+                                                'options' => [
+                                                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ), 'default' => 'true' ],
+                                                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags') ],
+                                                    [ 'attr' => 'taxopress_term_order', 'text' => esc_attr__( 'Term Order', 'simple-tags' ) ],
+                                                ],
+                                            ];
+                                            $selected = isset( $current['order'] ) ? taxopress_disp_boolean( $current['order'] ) : '';
+                                            $select['selected'] = ! empty( $selected ) ? $current['order'] : '';
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo $ui->get_select_checkbox_input_main( [
+                                                    'namearray'  => 'cpt_custom_tax',
+                                                    'name'       => 'order',
+                                                    'labeltext'  => esc_html__( 'Ordering for choosing terms for display', 'simple-tags' ),
+                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            ] );
+
+                                            $terms_table_url = esc_url(admin_url('admin.php?page=st_terms&taxopress_terms_taxonomy=' . urlencode($current['name']) . '&taxopress_show_all=1'));
+                                            echo '<tr class="taxonomy_order_description"><td colspan="2">';
+                                            echo '<div class="taxopress-field-description description" style="margin-top:8px;">';
+                                            echo esc_html__('If you select "Term Order", you can manually order terms in the ', 'simple-tags');
+                                            echo '<a href="' . $terms_table_url . '" target="_blank">' . esc_html__('Taxonomy Terms Table', 'simple-tags') . '</a>.';
+                                            echo '</div>';
+                                            echo '</td></tr>';
+                                            ?>
+                                        </table>
+                                        
 
 
                                             <table class="form-table taxopress-table taxonomy_delete"

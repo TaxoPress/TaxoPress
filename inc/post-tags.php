@@ -342,6 +342,11 @@ class SimpleTags_Post_Tags
                                                                                                 ); ?></span></a>
                                                         </li>
 
+                                                        <li aria-current="<?php echo $active_tab === 'posttags_terms' ? 'true' : 'false'; ?>" class="posttags_terms_tab <?php echo $active_tab === 'posttags_terms' ? 'active' : ''; ?>" data-content="posttags_terms">
+                                                            <a href="#posttags_terms"><span><?php esc_html_e('Choose Terms',
+                                                                        'simple-tags'); ?></span></a>
+                                                        </li>
+
                                                         <li aria-current="<?php echo $active_tab === 'posttags_display' ? 'true' : 'false'; ?>" class="posttags_display_tab <?php echo $active_tab === 'posttags_display' ? 'active' : ''; ?>" data-content="posttags_display">
                                                             <a href="#posttags_display"><span><?php esc_html_e(
                                                                                                     'Display',
@@ -456,6 +461,102 @@ class SimpleTags_Post_Tags
 
                                                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             echo $ui->get_td_end() . $ui->get_tr_end();
+                                                            ?>
+                                                        </table>
+
+                                                        <table class="form-table taxopress-table posttags_terms"
+                                                         style="<?php echo $active_tab === 'posttags_terms' ? '' : 'display:none;'; ?>">
+                                                         <?php
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => '1', 'text' => esc_attr__( '24 hours', 'simple-tags' ) ],
+                                                                    [ 'attr' => '7', 'text' => esc_attr__( '7 days', 'simple-tags' ) ],
+                                                                    [ 'attr' => '14', 'text' => esc_attr__( '2 weeks', 'simple-tags' ) ],
+                                                                    [ 'attr' => '30', 'text' => esc_attr__( '1 month', 'simple-tags' ) ],
+                                                                    [ 'attr' => '180', 'text' => esc_attr__( '6 months', 'simple-tags' ) ],
+                                                                    [ 'attr' => '365', 'text' => esc_attr__( '1 year', 'simple-tags' ) ],
+                                                                    [ 'attr' => '0', 'text' => esc_attr__( 'No limit', 'simple-tags'), 'default' => 'true' ],
+                                                                ],
+                                                            ];
+                                                            $selected = isset( $current['limit_days'] ) ? taxopress_disp_boolean( $current['limit_days'] ) : '';
+                                                            $select['selected'] = ! empty( $selected ) ? $current['limit_days'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_number_select( [
+                                                                    'namearray'  => 'taxopress_post_tags',
+                                                                    'name'       => 'limit_days',
+                                                                    'labeltext'  => esc_html__( 'Limit terms based on timeframe', 'simple-tags' ),
+                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'slug', 'text' => esc_attr__( 'Slug', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags'), 'default' => 'true' ],
+                                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ) ],
+                                                                ],
+                                                            ];
+                                                            $selected = isset( $current['selectionby'] ) ? taxopress_disp_boolean( $current['selectionby'] ) : '';
+                                                            $select['selected'] = ! empty( $selected ) ? $current['selectionby'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                    'namearray'  => 'taxopress_post_tags',
+                                                                    'name'       => 'selectionby',
+                                                                    'labeltext'  => esc_html__( 'Method for choosing terms from the database', 'simple-tags' ),
+                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
+                                                                ],
+                                                            ];
+                                                            $selected = isset( $current['selection'] ) ? taxopress_disp_boolean( $current['selection'] ) : '';
+                                                            $select['selected'] = ! empty( $selected ) ? $current['selection'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                    'namearray'  => 'taxopress_post_tags',
+                                                                    'name'       => 'selection',
+                                                                    'labeltext'  => esc_html__( 'Ordering for choosing term from the database', 'simple-tags' ),
+                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
+                                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
+                                                                ],
+                                                            ];
+                                                            $selected = isset( $current['orderby'] ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
+                                                            $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                    'namearray'  => 'taxopress_post_tags',
+                                                                    'name'       => 'orderby',
+                                                                    'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simple-tags' ),
+                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
+
+                                                            $select = [
+                                                                'options' => [
+                                                                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
+                                                                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
+                                                                    [ 'attr' => 'taxopress_term_order', 'text' => esc_attr__( 'Term Order', 'simple-tags' ) ],
+                                                                ],
+                                                            ];
+                                                            $selected = isset( $current['order'] ) ? taxopress_disp_boolean( $current['order'] ) : '';
+                                                            $select['selected'] = ! empty( $selected ) ? $current['order'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input_main( [
+                                                                    'namearray'  => 'taxopress_post_tags',
+                                                                    'name'       => 'order',
+                                                                    'labeltext'  => esc_html__( 'Ordering for choosing terms for display', 'simple-tags' ),
+                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ] );
+
                                                             ?>
                                                         </table>
 
@@ -1031,6 +1132,11 @@ class SimpleTags_Post_Tags
             'color'        => isset($settings['color']) ? (int)$settings['color'] : true,
             'mincolor'     => isset($settings['mincolor']) ? sanitize_hex_color($settings['mincolor']) : '#353535',
             'maxcolor'     => isset($settings['maxcolor']) ? sanitize_hex_color($settings['maxcolor']) : '#000000',
+            'selectionby'  => isset($settings['selectionby']) ? sanitize_text_field($settings['selectionby']) : 'count',
+            'selection'    => isset($settings['selection']) ? sanitize_text_field($settings['selection']) : 'desc',
+            'orderby'      => isset($settings['orderby']) ? sanitize_text_field($settings['orderby']) : 'name',
+            'order'        => isset($settings['order']) ? sanitize_text_field($settings['order']) : 'asc',
+            'limit_days'   => isset($settings['limit_days']) ? (int)$settings['limit_days'] : 0,
         ];
 
         $output = SimpleTags_Client_PostTags::extendedPostTags($args, false);

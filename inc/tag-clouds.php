@@ -629,6 +629,7 @@ class SimpleTags_Tag_Clouds
                                                 'options' => [
                                                     [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
                                                     [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
+                                                    [ 'attr' => 'taxopress_term_order', 'text' => esc_attr__( 'Term Order', 'simple-tags' ) ],
                                                 ],
                                             ];
                                             $selected = isset( $current ) ? taxopress_disp_boolean( $current['order'] ) : '';

@@ -48,6 +48,11 @@ class SimpleTags_Client_PostTags {
 			'color'      => true,
 			'mincolor'   => '#353535',
 			'maxcolor'   => '#000000',
+			'selectionby' => 'count',
+			'selection'   => 'desc',
+			'orderby'     => 'random',
+			'order'       => 'asc',
+			'limit_days'  => 0,
 		);
 
 		// Get values in DB
@@ -65,6 +70,11 @@ class SimpleTags_Client_PostTags {
 		$defaults['color']     = isset($options['tt_color']) ? $options['tt_color'] : 1;
 		$defaults['mincolor']  = isset($options['tt_min_color']) ? $options['tt_min_color'] : '#353535';
 		$defaults['maxcolor']  = isset($options['tt_max_color']) ? $options['tt_max_color'] : '#000000';
+		$defaults['selectionby'] = isset($options['tt_selectionby']) ? $options['tt_selectionby'] : 'count';
+		$defaults['selection']   = isset($options['tt_selection']) ? $options['tt_selection'] : 'desc';
+		$defaults['orderby']     = isset($options['tt_orderby']) ? $options['tt_orderby'] : 'random';
+		$defaults['order']       = isset($options['tt_order']) ? $options['tt_order'] : 'asc';
+		$defaults['limit_days']  = isset($options['tt_limit_days']) ? (int)$options['tt_limit_days'] : 0;
 		if ( empty( $args ) ) {
 			$args = $options['tt_adv_usage'];
 		}
@@ -162,6 +172,71 @@ class SimpleTags_Client_PostTags {
 		if(!empty(trim($link_class))){
 			$link_class = taxopress_format_class($link_class);
 			$xformat = taxopress_add_class_to_format($xformat, $link_class);
+		}
+
+		// Filter by timeframe if set
+		if (!empty($limit_days) && $limit_days > 0) {
+			$min_time = strtotime("-{$limit_days} days");
+			$terms = array_filter($terms, function($term) use ($min_time) {
+				return strtotime($term->term_group) >= $min_time; // You may need to adjust this if you store term assignment time elsewhere
+			});
+		}
+
+		// Sort terms from the database before display
+		if (!empty($selectionby)) {
+			if ($selectionby === 'name') {
+				usort($terms, function($a, $b) { return strcmp($a->name, $b->name); });
+			} elseif ($selectionby === 'slug') {
+				usort($terms, function($a, $b) { return strcmp($a->slug, $b->slug); });
+			} elseif ($selectionby === 'count') {
+				usort($terms, function($a, $b) { return $a->count <=> $b->count; });
+			} elseif ($selectionby === 'random') {
+				shuffle($terms);
+			}
+		}
+
+		// Apply ordering for choosing term from the database
+		if (!empty($selection)) {
+			if ($selection === 'desc') {
+				$terms = array_reverse($terms);
+			}
+			// 'asc' is default, so do nothing
+		}
+
+		// Now, for display order (after slicing/limiting)
+		if (!empty($order) && $order === 'taxopress_term_order') {
+			$custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
+			if (!empty($custom_order)) {
+				$terms_by_id = [];
+				foreach ($terms as $term) {
+					if (is_object($term) && isset($term->term_id)) {
+						$terms_by_id[$term->term_id] = $term;
+					}
+				}
+				$ordered_terms = [];
+				foreach ($custom_order as $term_id) {
+					if (isset($terms_by_id[$term_id])) {
+						$ordered_terms[] = $terms_by_id[$term_id];
+						unset($terms_by_id[$term_id]);
+					}
+				}
+				// Add any terms not in custom order at the end
+				foreach ($terms_by_id as $term) {
+					$ordered_terms[] = $term;
+				}
+				$terms = $ordered_terms;
+			}
+		} elseif (!empty($orderby)) {
+			if ($orderby === 'name') {
+				usort($terms, function($a, $b) { return strcmp($a->name, $b->name); });
+			} elseif ($orderby === 'count') {
+				usort($terms, function($a, $b) { return $a->count <=> $b->count; });
+			} elseif ($orderby === 'random') {
+				shuffle($terms);
+			}
+			if (!empty($order) && $order === 'desc' && $orderby !== 'random') {
+				$terms = array_reverse($terms);
+			}
 		}
 
 		// Prepare output

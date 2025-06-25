@@ -162,6 +162,11 @@ function taxopress_create_default_post_tags()
         'mincolor'  => '#353535',
         'maxcolor'  => '#000000',
         'color'     => 1,
+        'selectionby' => 'count',
+        'selection'   => 'desc',
+        'orderby'     => 'random',
+        'order'       => 'asc',
+        'limit_days'  => 0,
     ];
     // Get values in DB
     $defaults['before']    = $options['tt_before'];
@@ -170,6 +175,11 @@ function taxopress_create_default_post_tags()
     $defaults['xformat']   = $options['tt_xformat'];
     $defaults['notagtext'] = $options['tt_notagstext'];
     $defaults['number']    = (int)$options['tt_number'];
+    $defaults['selectionby'] = $options['tt_selectionby'];
+    $defaults['selection']   = $options['tt_selection'];
+    $defaults['orderby']     = $options['tt_orderby'];
+    $defaults['order']       = $options['tt_order'];
+    $defaults['limit_days']  = (int)$options['tt_limit_days'];
 
     $post_tags_default                                     = [];
     $post_tags_default['taxopress_post_tags']['title']     = esc_html__('Terms for Current Post', 'simple-tags');
@@ -188,6 +198,11 @@ function taxopress_create_default_post_tags()
     $post_tags_default['taxopress_post_tags']['maxcolor']   = $defaults['maxcolor'];
     $post_tags_default['taxopress_post_tags']['color']      = $defaults['color'];
     $post_tags_default['taxopress_post_tags']['format']     = $defaults['format'];
+    $post_tags_default['taxopress_post_tags']['selectionby'] = $defaults['selectionby'];
+    $post_tags_default['taxopress_post_tags']['selection']   = $defaults['selection'];
+    $post_tags_default['taxopress_post_tags']['orderby']     = $defaults['orderby'];
+    $post_tags_default['taxopress_post_tags']['order']       = $defaults['order'];
+    $post_tags_default['taxopress_post_tags']['limit_days']  = $defaults['limit_days'];
     $result                                                = taxopress_update_posttags($post_tags_default);
     update_option('taxopress_default_posttagss', $result);
 }

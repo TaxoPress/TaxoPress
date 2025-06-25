@@ -190,6 +190,7 @@ class SimpleTags_Terms
     public function screen_option()
     {
 
+    if (empty($_REQUEST['taxopress_terms_taxonomy'])) {
         $option = 'per_page';
         $args   = [
             'label'   => esc_html__('Number of items per page', 'simple-tags'),
@@ -198,6 +199,7 @@ class SimpleTags_Terms
         ];
 
         add_screen_option($option, $args);
+    }
 
         $this->terms_table = new Taxopress_Terms_List();
     }
@@ -242,11 +244,36 @@ class SimpleTags_Terms
                     <?php
                 } else {
                     ?>
-                <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
-                <div class="taxopress-description">
-                    <?php esc_html_e('This screen allows you to search and edit all the terms on your site.', 'simple-tags'); ?>
-                </div>
+                <?php
 
+                $taxonomy_heading = '';
+                $show_order_message = false;
+                if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
+                    $taxonomy_obj = get_taxonomy(sanitize_text_field($_REQUEST['taxopress_terms_taxonomy']));
+                    if ($taxonomy_obj) {
+                        $taxonomy_heading = $taxonomy_obj->labels->name;
+                        $show_order_message = true;
+                    }
+                }
+                ?>
+                <h1 class="wp-heading-inline">
+                    <?php
+                    if ($taxonomy_heading) {
+                        echo esc_html($taxonomy_heading);
+                    } else {
+                        esc_html_e('Terms', 'simple-tags');
+                    }
+                    ?>
+                </h1>
+                <div class="taxopress-description">
+                    <?php
+                    if ($show_order_message) {
+                        esc_html_e('This screen allows you to order terms via drag and drop.', 'simple-tags');
+                    } else {
+                        esc_html_e('This screen allows you to search and edit all the terms on your site.', 'simple-tags');
+                    }
+                    ?>
+                </div>
 
                 <?php
                 if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
@@ -267,7 +294,12 @@ class SimpleTags_Terms
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
-                    <?php $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term'); ?>
+                    <?php
+                    // Hide search box if taxopress_show_all=1
+                    if (empty($_REQUEST['taxopress_show_all'])) {
+                        $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term');
+                    }
+                    ?>
                 </form>
                 <div class="clear"></div>
 
@@ -275,7 +307,15 @@ class SimpleTags_Terms
 
                     <div class="col-wrap">
                         <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
-                            <?php $this->terms_table->display(); //Display the table 
+                            <?php
+                            // Hide pagination if taxopress_show_all=1
+                            if (!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1') {
+                                // Remove pagination controls via CSS
+                                echo '<style>
+                                    .tablenav.top, .tablenav.bottom { display: none !important; }
+                                </style>';
+                            }
+                            $this->terms_table->display(); //Display the table 
                             ?>
                         </form>
                         <div class="form-wrap edit-term-notes">
@@ -330,16 +370,12 @@ class SimpleTags_Terms
         $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
         $order    = isset($_POST['order']) && is_array($_POST['order']) ? array_map('intval', $_POST['order']) : [];
 
+        // Only allow saving if taxonomy is set and not empty
         if (empty($taxonomy) || empty($order)) {
             wp_send_json_error(['message' => esc_html__('Invalid taxonomy or order.', 'simple-tags')]);
         }
 
-        // Save the order as an option
-        if ($taxonomy === 'taxopress__global_order__' || $taxonomy === '') {
-            update_option('taxopress_term_order_global', $order);
-        } else {
-            update_option('taxopress_term_order_' . $taxonomy, $order);
-        }
+        update_option('taxopress_term_order_' . $taxonomy, $order);
 
         wp_send_json_success(['message' => esc_html__('Order saved.', 'simple-tags')]);
     }
