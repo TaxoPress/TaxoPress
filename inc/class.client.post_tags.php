@@ -204,7 +204,7 @@ class SimpleTags_Client_PostTags {
 		}
 
 		// Now, for display order (after slicing/limiting)
-		if (!empty($order) && $order === 'taxopress_term_order') {
+		if (!empty($orderby) && $orderby === 'taxopress_term_order') {
 			$custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
 			if (!empty($custom_order)) {
 				$terms_by_id = [];
@@ -224,6 +224,9 @@ class SimpleTags_Client_PostTags {
 				foreach ($terms_by_id as $term) {
 					$ordered_terms[] = $term;
 				}
+				if ($order === 'desc') {
+					$ordered_terms = array_reverse($ordered_terms, true);
+				}
 				$terms = $ordered_terms;
 			}
 		} elseif (!empty($orderby)) {
@@ -234,7 +237,7 @@ class SimpleTags_Client_PostTags {
 			} elseif ($orderby === 'random') {
 				shuffle($terms);
 			}
-			if (!empty($order) && $order === 'desc' && $orderby !== 'random') {
+			if (!empty($order) && $order === 'desc' && $orderby !== 'random' && $orderby !== 'taxopress_term_order') {
 				$terms = array_reverse($terms);
 			}
 		}

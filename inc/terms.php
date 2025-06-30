@@ -34,8 +34,6 @@ class SimpleTags_Terms
         add_filter('terms_clauses', [__CLASS__, 'taxopress_terms_clauses'], 10, 3);
         //inline term edit
         add_action('wp_ajax_taxopress_terms_inline_save_term', [$this, 'taxopress_terms_inline_save_term_callback']);
-
-        add_action('wp_ajax_taxopress_save_term_order', [$this, 'taxopress_save_term_order_callback']);
     }
 
     // Handle the post_type parameter given in get_terms function
@@ -190,6 +188,11 @@ class SimpleTags_Terms
     public function screen_option()
     {
 
+    // Remove screen options if Pro banner is shown
+    if (isset($_GET['taxopress_pro_notice']) && $_GET['taxopress_pro_notice'] === 'term_order') {
+        return;
+    }
+
     if (empty($_REQUEST['taxopress_terms_taxonomy'])) {
         $option = 'per_page';
         $args   = [
@@ -225,6 +228,26 @@ class SimpleTags_Terms
             <div id="">
 
                 <?php
+                if (isset($_GET['taxopress_pro_notice']) && $_GET['taxopress_pro_notice'] === 'term_order') {
+                    ?>
+                    <div class="taxopress-term-wrap">
+                        <div class="taxopress-term-main">
+                            <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
+                            <div class="taxopress-description">
+                                <?php esc_html_e('This screen allows you to order terms via drag and drop.', 'simple-tags'); ?>
+                            </div>
+                            <?php
+                            // Show the Pro banner
+                            do_action('taxopress_terms_order', []);
+                            ?>
+                        </div>
+                        <div class="taxopress-right-sidebar">
+                            <?php do_action('taxopress_admin_after_sidebar'); ?>
+                        </div>
+                    </div>
+                    <?php
+                    return;
+                }
                 if (isset($_GET['action']) && $_GET['action'] === 'new_item') {
                     ?>
                     <div class="taxopress-term-wrap">
@@ -353,31 +376,6 @@ class SimpleTags_Terms
                 }
                 ?>
 <?php
-    }
-
-
-    public function taxopress_save_term_order_callback()
-    {
-  
-        if (!current_user_can('simple_tags')) {
-            wp_send_json_error(['message' => esc_html__('Permission denied.', 'simple-tags')]);
-        }
-
-        if ( !isset($_POST['nonce']) || !wp_verify_nonce(sanitize_key($_POST['nonce']), 'st-admin-js')) {
-            wp_send_json_error(['message' => esc_html__('Invalid nonce.', 'simple-tags')]);
-        }
-
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
-        $order    = isset($_POST['order']) && is_array($_POST['order']) ? array_map('intval', $_POST['order']) : [];
-
-        // Only allow saving if taxonomy is set and not empty
-        if (empty($taxonomy) || empty($order)) {
-            wp_send_json_error(['message' => esc_html__('Invalid taxonomy or order.', 'simple-tags')]);
-        }
-
-        update_option('taxopress_term_order_' . $taxonomy, $order);
-
-        wp_send_json_success(['message' => esc_html__('Order saved.', 'simple-tags')]);
     }
 
 }

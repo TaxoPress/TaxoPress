@@ -523,28 +523,12 @@ class SimpleTags_Post_Tags
                                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             ] );
 
-                                                            $select = [
-                                                                'options' => [
-                                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-                                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
-                                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
-                                                                ],
-                                                            ];
-                                                            $selected = isset( $current['orderby'] ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
-                                                            $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_select_checkbox_input_main( [
-                                                                    'namearray'  => 'taxopress_post_tags',
-                                                                    'name'       => 'orderby',
-                                                                    'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simple-tags' ),
-                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ] );
+                                                            do_action('taxopress_posttags_ordering_method', $current);
 
                                                             $select = [
                                                                 'options' => [
                                                                     [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
                                                                     [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-                                                                    [ 'attr' => 'taxopress_term_order', 'text' => esc_attr__( 'Term Order', 'simple-tags' ) ],
                                                                 ],
                                                             ];
                                                             $selected = isset( $current['order'] ) ? taxopress_disp_boolean( $current['order'] ) : '';
@@ -1146,7 +1130,7 @@ class SimpleTags_Post_Tags
                 wp_send_json_success(['html' => '']);
             }
             $notagtext = !empty($settings['notagtext']) ? $settings['notagtext'] : __('No terms found for this post.', 'simple-tags');
-            wp_send_json_success(['html' => '<p>' . esc_html($notagtext) . '</p>']);
+            wp_send_json_success(['html' => '<div class="taxopress-no-tags-message">' . esc_html($notagtext) . '</div>']);
             return;
         }
 

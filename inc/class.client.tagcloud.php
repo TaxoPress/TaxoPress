@@ -229,6 +229,8 @@ class SimpleTags_Client_TagCloud {
 
 		// Order terms before output
 		// count, name, rand | asc, desc
+		$orderby = strtolower($orderby);
+		$order = strtolower($order);
 
 		if (in_array($format, ['parent/child']) && $args['display_mode'] === 'parents_and_sub') {
 			$terms = self::getTags($args, $taxonomy);
@@ -263,36 +265,36 @@ class SimpleTags_Client_TagCloud {
 			foreach ($grouped_terms as $parent_group) {
 				$terms = array_merge($terms, $parent_group);
 			}
-			if ($order === 'taxopress_term_order') {
-				// Custom drag-and-drop order
-				$custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
-				if (!empty($custom_order)) {
-					$terms_by_id = [];
-					foreach ($terms_data as $term_name => $term_obj) {
-						if (is_object($term_obj) && isset($term_obj->term_id)) {
-							$terms_by_id[$term_obj->term_id] = $term_obj;
-						}
+		} 
+
+		// Custom drag-and-drop order: always check first!
+		if ($orderby === 'taxopress_term_order') {
+			$custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
+			if (!empty($custom_order)) {
+				$terms_by_id = [];
+				foreach ($terms_data as $term_name => $term_obj) {
+					if (is_object($term_obj) && isset($term_obj->term_id)) {
+						$terms_by_id[$term_obj->term_id] = $term_obj;
 					}
-					$ordered_terms = [];
-					foreach ($custom_order as $term_id) {
-						foreach ($terms_by_id as $tid => $term_obj) {
-							if ($tid == $term_id) {
-								$ordered_terms[$term_obj->name] = $term_obj->count;
-								unset($terms_by_id[$tid]);
-								break;
-							}
-						}
-					}
-					// Add any terms not in custom order at the end
-					foreach ($terms_by_id as $term_obj) {
-						$ordered_terms[$term_obj->name] = $term_obj->count;
-					}
-					$counts = $ordered_terms;
 				}
+				$ordered_terms = [];
+				foreach ($custom_order as $term_id) {
+					if (isset($terms_by_id[$term_id])) {
+						$ordered_terms[$terms_by_id[$term_id]->name] = $terms_by_id[$term_id]->count;
+						unset($terms_by_id[$term_id]);
+					}
+				}
+				// Add any terms not in custom order at the end
+				foreach ($terms_by_id as $term_obj) {
+					$ordered_terms[$term_obj->name] = $term_obj->count;
+				}
+				if ($order === 'desc') {
+					$ordered_terms = array_reverse($ordered_terms, true);
+				}
+				$counts = $ordered_terms;
 			}
 		} else {
 			// Default sorting logic
-			$orderby = strtolower($orderby);
 			if ($orderby == 'count') {
 				asort($counts);
 			} elseif ($orderby == 'name') {
@@ -321,7 +323,17 @@ class SimpleTags_Client_TagCloud {
 
 			$term         = $terms_data[ $term_name ];
 			$scale_result = (int) ( $scale <> 0 ? ( ( $term->count - $minval ) * $scale + $minout ) : ( $scale_max - $scale_min ) / 2 );
-			$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			//$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			   $formatted = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			if ($format === 'table') {
+				$output[] = [
+					'html' => $formatted,
+					'count' => $term->count,
+					'term_name' => $term->name,
+				];
+			} else {
+				$output[] = $formatted;
+			}
 		}
 
 		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright, '', $wrap_class, $link_class, $before, $after, $taxonomy );

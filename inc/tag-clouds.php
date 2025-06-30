@@ -606,30 +606,13 @@ class SimpleTags_Tag_Clouds
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ] );
 
-
-                                            $select = [
-                                                'options' => [
-                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
-                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
-                                                ],
-                                            ];
-                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
-                                            $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            echo $ui->get_select_checkbox_input_main( [
-                                                    'namearray'  => 'taxopress_tag_cloud',
-                                                    'name'       => 'orderby',
-                                                    'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simple-tags' ),
-                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            ] );
+                                            do_action('taxopress_tagcloud_ordering_method', $current);
 
 
                                             $select = [
                                                 'options' => [
                                                     [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
                                                     [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-                                                    [ 'attr' => 'taxopress_term_order', 'text' => esc_attr__( 'Term Order', 'simple-tags' ) ],
                                                 ],
                                             ];
                                             $selected = isset( $current ) ? taxopress_disp_boolean( $current['order'] ) : '';
@@ -1157,6 +1140,7 @@ class SimpleTags_Tag_Clouds
             'parent_term' => $config['parent_term'] ?? 'all',
             'display_mode'=> $config['display_mode'] ?? 'parents_and_sub',
             'max'         => $config['max'] ?? 45,
+            'limit_days' => $config['limit_days'] ?? '',
         ]);
         
         // Get the tag cloud output

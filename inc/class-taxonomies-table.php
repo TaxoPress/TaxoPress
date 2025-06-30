@@ -467,25 +467,6 @@ class Taxonomy_List extends WP_List_Table
     
     protected function column_taxopress_order($item)
     {
-        // Get the order value from the taxonomy object
-        $taxonomies = taxopress_get_all_edited_taxonomy_data();
-        $order_value = '';
-        $order_label = '';
-
-        if (isset($taxonomies[$item->name]['order'])) {
-            $order_value = $taxonomies[$item->name]['order'];
-        }
-
-        $order_options = [
-            'asc' => esc_html__('Ascending', 'simple-tags'),
-            'desc' => esc_html__('Descending', 'simple-tags'),
-            'taxopress_term_order' => esc_html__('Term Order', 'simple-tags'),
-        ];
-
-        $order_label = isset($order_options[$order_value]) ? $order_options[$order_value] : esc_html__('Ascending', 'simple-tags');
-
-        return esc_html($order_label);
+        echo apply_filters('taxopress_order_column', $item);
     }
-
-
 }

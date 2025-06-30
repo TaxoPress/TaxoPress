@@ -299,15 +299,24 @@ class SimpleTags_Client {
 					$count = 0;
 					foreach ($content as $item) {
 
-						$term_name = strip_tags($item);
-						$post_count = self::get_term_post_counts( $term_name );
+						// $term_name = strip_tags($item);
+						// $post_count = self::get_term_post_counts( $term_name );
+						        // If $item is an array (from extendedTagCloud), use its fields
+					if (is_array($item) && isset($item['html'], $item['count'])) {
+						$term_html = $item['html'];
+						$post_count = $item['count'];
+					} else {
+						// fallback for legacy
+						$term_html = $item;
+						$post_count = self::get_term_post_counts(strip_tags($item));
+					}
 
-						if ( $post_count === 0 ) {
-							continue;
-						}	
+						// if ( $post_count === 0 ) {
+						// 	continue;
+						// }	
 
 						$display_class = $count >= 6 ? 'hidden' : '';
-						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $item . '</td><td class="taxopress-post-count">' . $post_count . '</td></tr>' . "\n\t";
+						$output .= '<tr class="taxopress-table-row ' . $display_class . '"><td>' . $term_html . '</td><td class="taxopress-post-count">' . $post_count . '</td></tr>' . "\n\t";
 						$count++;
 					}
 					if ($count > 6) {
