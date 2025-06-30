@@ -159,7 +159,8 @@ class SimpleTags_Client_PostTags {
 		// If no terms, return text nothing.
 		if ( empty( $terms ) ) {
             if((int)$hide_output === 0){
-				return SimpleTags_Client::output_content( 'st-post-tags', $format, $notagtext, '', $copyright, $separator, '', '', $before, $after );
+				$notagtext_html = '<div class="taxopress-no-tags-message">' . esc_html($notagtext) . '</div>';
+				return SimpleTags_Client::output_content( 'st-post-tags', $format, $notagtext_html, '', $copyright, $separator, '', '', $before, $after );
             }else{
                 return '';
             }
