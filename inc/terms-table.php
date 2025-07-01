@@ -40,7 +40,7 @@ class Taxopress_Terms_List extends WP_List_Table
         if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
             $selected_taxonomy = sanitize_text_field($_REQUEST['taxopress_terms_taxonomy']);
             $taxonomies = [$selected_taxonomy];
-            $show_all_terms_in_taxonomy = true;
+            $show_all_terms_in_taxonomy = false;
         } else {
             $show_all_terms_in_taxonomy = false;
             if (!empty($selected_taxonomy)) {
@@ -129,7 +129,7 @@ class Taxopress_Terms_List extends WP_List_Table
             }
 
             // Paginate after merging, unless showing all terms in taxonomy
-            if (!$count && !$show_all_terms_in_taxonomy) {
+            if (!$count) {
                 $terms = array_slice($terms, $offset, $items_per_page);
             }
 
@@ -537,8 +537,6 @@ class Taxopress_Terms_List extends WP_List_Table
         $this->_column_headers = $this->get_column_info();
         $this->process_bulk_action();
 
-        // If viewing via taxopress_terms_taxonomy, show all terms and no pagination
-        $show_all = (!empty($_REQUEST['taxopress_terms_taxonomy']) || (!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1'));
         /**
          * First, lets decide how many records per page to show
          */
@@ -560,13 +558,6 @@ class Taxopress_Terms_List extends WP_List_Table
          */
         $this->items = $data;
 
-        if ($show_all) {
-            $this->set_pagination_args([
-                'total_items' => count($data),
-                'per_page'    => count($data),
-                'total_pages' => 1
-            ]);
-        } else {
         /**
          * We also have to register our pagination options & calculations.
          */
@@ -575,7 +566,6 @@ class Taxopress_Terms_List extends WP_List_Table
             'per_page'    => $per_page,                         //determine how many items to show on a page
             'total_pages' => ceil($total_items / $per_page)   //calculate the total number of pages
         ]);
-        }
     }
 
     /**

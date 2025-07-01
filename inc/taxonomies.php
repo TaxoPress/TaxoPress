@@ -1524,6 +1524,19 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                         <table class="form-table taxopress-table taxonomy_order"
                                                style="display:none;">
                                             <?php
+                                            $taxonomy_label = !empty($current['label']) ? $current['label'] : esc_html__('Categories', 'simple-tags');
+                                            ?>
+                                            <div class="taxopress-description">
+                                                <?php
+                                                echo esc_html(
+                                                    sprintf(
+                                                        __('This feature controls the order of %s when you\'re editing posts, and in frontend displays.', 'simple-tags'),
+                                                        $taxonomy_label
+                                                    )
+                                                );
+                                                ?>
+                                            </div>
+                                            <?php
                                             do_action('taxopress_terms_order', $current);
                                             ?>
                                         </table>

@@ -149,7 +149,7 @@ function taxopress_create_default_tag_cloud()
     $default['taxopress_tag_cloud']['before']   = '';
     $default['taxopress_tag_cloud']['after']    = '';
     $default['taxopress_tag_cloud']['taxonomy'] = 'post_tag';
-    $default['taxopress_tag_cloud']['max'] = 45;
+    $default['taxopress_tag_cloud']['max'] = 20;
     $default['taxopress_tag_cloud']['selectionby'] = 'count';
     $default['taxopress_tag_cloud']['selection'] = 'desc';
     $default['taxopress_tag_cloud']['orderby'] = 'random';
@@ -157,7 +157,7 @@ function taxopress_create_default_tag_cloud()
     $default['taxopress_tag_cloud']['smallest'] = 12;
     $default['taxopress_tag_cloud']['largest'] = 12;
     $default['taxopress_tag_cloud']['unit'] = 'pt';
-    $default['taxopress_tag_cloud']['format'] = 'flat';
+    $default['taxopress_tag_cloud']['format'] = 'border';
     $default['taxopress_tag_cloud']['color'] = 1;
     $default['taxopress_tag_cloud']['mincolor'] = '#353535';
     $default['taxopress_tag_cloud']['maxcolor'] = '#000000';

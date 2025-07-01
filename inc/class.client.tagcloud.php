@@ -36,9 +36,9 @@ class SimpleTags_Client_TagCloud {
 			'selection'   => 'desc',
 			'orderby'     => 'random',
 			'order'       => 'asc',
-			'format'      => 'flat',
+			'format'      => 'border',
 			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simple-tags' ),
-			'number'      => 45,
+			'number'      => 20,
 			'notagstext'  => __( 'No tags.', 'simple-tags' ),
 			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
@@ -354,9 +354,9 @@ class SimpleTags_Client_TagCloud {
 			'selection'   => 'desc',
 			'orderby'     => 'random',
 			'order'       => 'asc',
-			'format'      => 'flat',
+			'format'      => 'border',
 			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simple-tags' ),
-			'number'      => 45,
+			'number'      => 20,
 			'notagstext'  => __( 'No tags.', 'simple-tags' ),
 			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
@@ -571,7 +571,7 @@ class SimpleTags_Client_TagCloud {
 	 *
 	 * @return array
 	 */
-	public static function getTags( $args = '', $taxonomy = 'post_tag' ) {
+	public static function getTags( $args = '', $taxonomy = 'post_tag', $post_type = '' ) {
 		$key = md5( maybe_serialize( $args ) . $taxonomy . (isset($args['parent_term']) ? $args['parent_term'] : '') . (isset($args['display_mode']) ? $args['display_mode'] : ''));
 
 		// Get cache if exist
@@ -597,7 +597,7 @@ class SimpleTags_Client_TagCloud {
 		if ( isset( $args['max'] ) ) {
 			$max_terms = intval( $args['max'] );
 		} else {
-			$max_terms = 45;
+			$max_terms = 20;
 		}
 
 		if ( isset( $args['hide_terms'] ) ) {
@@ -687,7 +687,32 @@ class SimpleTags_Client_TagCloud {
 			$term_args['include'] = array_slice($term_args['include'], 0, $max_terms);
 		}
 			
-		$terms = get_terms($term_args);
+		if (!empty($args['limit_days'])) {
+			$recent_posts = get_posts([
+				'post_type'      => $post_type ?: 'any',
+				'post_status'    => 'publish',
+				'date_query'     => [
+					[
+						'after' => $args['limit_days'] . ' days ago',
+						'inclusive' => false,
+					],
+				],
+				'fields'         => 'ids',
+				'posts_per_page' => -1,
+			]);
+			if (!empty($recent_posts)) {
+				$terms = get_terms([
+					'taxonomy'   => $taxonomy,
+					'object_ids' => $recent_posts,
+					'hide_empty' => false,
+					'number'     => $max_terms,
+				]);
+			} else {
+				$terms = [];
+			}
+		} else {
+			$terms = get_terms($term_args);
+		}
 		if (empty($terms)) {
 			return [];
 		}

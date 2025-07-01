@@ -193,7 +193,7 @@ class SimpleTags_Terms
         return;
     }
 
-    if (empty($_REQUEST['taxopress_terms_taxonomy'])) {
+    
         $option = 'per_page';
         $args   = [
             'label'   => esc_html__('Number of items per page', 'simple-tags'),
@@ -202,7 +202,7 @@ class SimpleTags_Terms
         ];
 
         add_screen_option($option, $args);
-    }
+    
 
         $this->terms_table = new Taxopress_Terms_List();
     }
@@ -228,26 +228,6 @@ class SimpleTags_Terms
             <div id="">
 
                 <?php
-                if (isset($_GET['taxopress_pro_notice']) && $_GET['taxopress_pro_notice'] === 'term_order') {
-                    ?>
-                    <div class="taxopress-term-wrap">
-                        <div class="taxopress-term-main">
-                            <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
-                            <div class="taxopress-description">
-                                <?php esc_html_e('This screen allows you to order terms via drag and drop.', 'simple-tags'); ?>
-                            </div>
-                            <?php
-                            // Show the Pro banner
-                            do_action('taxopress_terms_order', []);
-                            ?>
-                        </div>
-                        <div class="taxopress-right-sidebar">
-                            <?php do_action('taxopress_admin_after_sidebar'); ?>
-                        </div>
-                    </div>
-                    <?php
-                    return;
-                }
                 if (isset($_GET['action']) && $_GET['action'] === 'new_item') {
                     ?>
                     <div class="taxopress-term-wrap">
@@ -319,9 +299,9 @@ class SimpleTags_Terms
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
                     <?php
                     // Hide search box if taxopress_show_all=1
-                    if (empty($_REQUEST['taxopress_show_all'])) {
-                        $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term');
-                    }
+                    // if (empty($_REQUEST['taxopress_show_all'])) {
+                    //     $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term');
+                    // }
                     ?>
                 </form>
                 <div class="clear"></div>
@@ -332,12 +312,12 @@ class SimpleTags_Terms
                         <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                             <?php
                             // Hide pagination if taxopress_show_all=1
-                            if (!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1') {
-                                // Remove pagination controls via CSS
-                                echo '<style>
-                                    .tablenav.top, .tablenav.bottom { display: none !important; }
-                                </style>';
-                            }
+                            // if (!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1') {
+                            //     // Remove pagination controls via CSS
+                            //     echo '<style>
+                            //         .tablenav.top, .tablenav.bottom { display: none !important; }
+                            //     </style>';
+                            // }
                             $this->terms_table->display(); //Display the table 
                             ?>
                         </form>

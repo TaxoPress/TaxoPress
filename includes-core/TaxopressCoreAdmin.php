@@ -760,27 +760,6 @@ class TaxopressCoreAdmin
     }
 
     function taxopress_terms_order_free($current){
-
-            if (isset($_GET['taxopress_pro_notice']) && $_GET['taxopress_pro_notice'] === 'term_order') {
-                ?>
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
-                    <div class="postbox-header">
-                        <h3 class="advertisement-box-header hndle is-non-sortable taxopress-core-terms-promobox">
-                            <span><?php echo esc_html__('Order Terms Manually', 'simple-tags'); ?></span>
-                        </h3>
-                    </div>
-
-                    <div class="inside-content">
-                        <h2><?php echo esc_html__('To Order your taxonomy terms manually, please upgrade to pro.', 'simple-tags') ?></h2>
-                        <p><?php echo esc_html__('With TaxoPress Pro, you can order your taxonomy terms manually and use the manual ordering in displaying your terms in the frontend', 'simple-tags'); ?></p>
-                        <div class="upgrade-btn">
-                            <a href="https://taxopress.com/taxopress/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'simple-tags'); ?></a>
-                        </div>
-                    </div>
-                </div>
-                <?php
-                return;
-            }
                                
             $orderby_options = [
                 [ 'attr' => 'term_id', 'text' => esc_attr__( 'ID', 'simple-tags' ), 'default' => true ],
@@ -816,12 +795,6 @@ class TaxopressCoreAdmin
                             />
                             <?php echo esc_html($option['text']); ?>
                         </label>
-                        <?php if ($option['attr'] === 'taxopress_term_order_free'): ?>
-                            <div class="taxopress-field-description description">
-                                <?php echo esc_html__('If you select "Term Order", you can manually order terms in the ', 'simple-tags'); ?>
-                                <a href="<?php echo $terms_table_url; ?>" target="_blank"><?php echo esc_html__('Taxonomy Terms Table', 'simple-tags'); ?></a>.
-                            </div>
-                        <?php endif; ?>
                     <?php endforeach; ?>
 
                     <!-- Pro Feature Button -->
