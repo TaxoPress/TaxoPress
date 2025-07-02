@@ -421,7 +421,10 @@
     // -------------------------------------------------------------
     //   Terms table drag and drop ordering
     // -------------------------------------------------------------
-    if ($('body.taxopress_page_st_terms #the-list').length > 0) {
+    if (
+    $('body.taxopress_page_st_terms #the-list').length > 0 &&
+    new URLSearchParams(window.location.search).has('taxopress_terms_taxonomy')
+    ) {
         $('#the-list').sortable({
             items: 'tr',
             axis: 'y',
@@ -441,22 +444,21 @@
                     }
                 });
 
+                $('#the-list .taxopress-term-spinner').hide();
+
+                ui.item.find('.taxopress-term-spinner').show();
                 var taxonomy = '';
-                if ($('#terms_filter_select_taxonomy').length && $('#terms_filter_select_taxonomy').val()) {
+                var urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('taxopress_terms_taxonomy')) {
+                    taxonomy = urlParams.get('taxopress_terms_taxonomy');
+                } else if ($('#terms_filter_select_taxonomy').length && $('#terms_filter_select_taxonomy').val()) {
                     taxonomy = $('#terms_filter_select_taxonomy').val();
-                }
-                else if ($('input[name="terms_filter_taxonomy"]').length && $('input[name="terms_filter_taxonomy"]').val()) {
+                } else if ($('input[name="terms_filter_taxonomy"]').length && $('input[name="terms_filter_taxonomy"]').val()) {
                     taxonomy = $('input[name="terms_filter_taxonomy"]').val();
-                }
-                else if ($('input[name="taxonomy"]').length && $('input[name="taxonomy"]').val()) {
+                } else if ($('input[name="taxonomy"]').length && $('input[name="taxonomy"]').val()) {
                     taxonomy = $('input[name="taxonomy"]').val();
-                }
-                else if (typeof st_admin_localize.taxonomy !== 'undefined') {
+                } else if (typeof st_admin_localize.taxonomy !== 'undefined') {
                     taxonomy = st_admin_localize.taxonomy;
-                }
-                // If still empty, use 'global'
-                if (!taxonomy) {
-                    taxonomy = 'taxopress__global_order__';
                 }
 
                 $.ajax({
@@ -469,6 +471,10 @@
                         taxonomy: taxonomy,
                         nonce: st_admin_localize.check_nonce
                     },
+                    complete: function() {
+                      // Hide spinner for all rows
+                      ui.item.find('.taxopress-term-spinner').hide();
+                    }
                 });
             }
         }).disableSelection();
@@ -719,7 +725,6 @@
                     'style="font-size:' + st_admin_localize.post_size + '; color:' + st_admin_localize.post_color + ';">' +
                     '<img src="' + st_admin_localize.post_thumb_url + '" height="200" width="200" class="custom-image-class"/>' +
                     '<br>' + st_admin_localize.post_title + '<br>' +
-                    st_admin_localize.post_date + '<br>' +
                     st_admin_localize.post_category +
                     '</a>'
                 );

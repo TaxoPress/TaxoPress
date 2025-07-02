@@ -606,23 +606,7 @@ class SimpleTags_Tag_Clouds
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ] );
 
-
-                                            $select = [
-                                                'options' => [
-                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags') ],
-                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ), 'default' => 'true' ],
-                                                ],
-                                            ];
-                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['orderby'] ) : '';
-                                            $select['selected'] = ! empty( $selected ) ? $current['orderby'] : '';
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            echo $ui->get_select_checkbox_input_main( [
-                                                    'namearray'  => 'taxopress_tag_cloud',
-                                                    'name'       => 'orderby',
-                                                    'labeltext'  => esc_html__( 'Method for choosing terms for display', 'simple-tags' ),
-                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            ] );
+                                            do_action('taxopress_tagcloud_ordering_method', $current);
 
 
                                             $select = [
@@ -653,12 +637,12 @@ class SimpleTags_Tag_Clouds
 
                                                        $select = [
                                                             'options' => [
-                                                                [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simple-tags' ), 'default' => 'true' ],
+                                                                [ 'attr' => 'flat', 'text' => esc_attr__( 'Cloud', 'simple-tags' )],
                                                                 [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
                                                                 [ 'attr' => 'ol', 'text' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ) ],
                                                                 [ 'attr' => 'comma', 'text' => esc_attr__( 'WordPress Default', 'simple-tags' ), 'default' => 'true'],
                                                                 ['attr' => 'table', 'text' => esc_attr__('Table List', 'simple-tags')],
-                                                                ['attr' => 'border', 'text' => esc_attr__('Border Cloud', 'simple-tags')],
+                                                                ['attr' => 'border', 'text' => esc_attr__('Border Cloud', 'simple-tags'), 'default' => 'true' ],
                                                                 ['attr' => 'parent/child', 'text' => esc_attr__('Parent / Child', 'simple-tags')],
                                                             ],
                                                         ];
@@ -800,7 +784,7 @@ class SimpleTags_Tag_Clouds
                                             echo $ui->get_number_input([
                                                 'namearray' => 'taxopress_tag_cloud',
                                                 'name'      => 'max',
-                                                'textvalue' => isset($current['max']) ? esc_attr($current['max']) : '45',
+                                                'textvalue' => isset($current['max']) ? esc_attr($current['max']) : '20 ',
                                                 'labeltext' => esc_html__('Maximum terms to display', 'simple-tags'),
                                                 'helptext'    => '',
                                                 'required'  => true,
@@ -810,7 +794,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_number_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'smallest',
-                                                    'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '15',
+                                                    'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '12',
                                                     'labeltext' => esc_html__('Font size minimum', 'simple-tags'),
                                                     'helptext'    => '',
                                                     'required'  => true,
@@ -820,7 +804,7 @@ class SimpleTags_Tag_Clouds
                                                 echo $ui->get_number_input([
                                                     'namearray' => 'taxopress_tag_cloud',
                                                     'name'      => 'largest',
-                                                    'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '22',
+                                                    'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '12',
                                                     'labeltext' => esc_html__('Font size maximum', 'simple-tags'),
                                                     'helptext'    => '',
                                                     'required'  => true,
@@ -1133,10 +1117,10 @@ class SimpleTags_Tag_Clouds
             'selection'     => $config['selection'] ?? 'desc',
             'orderby'      => $config['orderby'] ?? 'random',
             'order'        => $config['order'] ?? 'desc',
-            'format'       => $config['format'] ?? 'flat',
-            'number'       => $config['max'] ?? 45,
-            'largest'      => $config['largest'] ?? 22,
-            'smallest'     => $config['smallest'] ?? 15,
+            'format'       => $config['format'] ?? 'border',
+            'number'       => $config['max'] ?? 20,
+            'largest'      => $config['largest'] ?? 12,
+            'smallest'     => $config['smallest'] ?? 12,
             'unit'         => $config['unit'] ?? 'pt',
             'color'        => !empty($config['color']),
             'mincolor'     => $config['mincolor'] ?? '#353535',
@@ -1155,7 +1139,8 @@ class SimpleTags_Tag_Clouds
             'link_class'  => $config['link_class'] ?? '',
             'parent_term' => $config['parent_term'] ?? 'all',
             'display_mode'=> $config['display_mode'] ?? 'parents_and_sub',
-            'max'         => $config['max'] ?? 45,
+            'max'         => $config['max'] ?? 20,
+            'limit_days' => $config['limit_days'] ?? '',
         ]);
         
         // Get the tag cloud output

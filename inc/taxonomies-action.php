@@ -8,3 +8,6 @@ add_action('init', 'taxopress_recreate_custom_taxonomies', 999);
 add_action('save_post', 'taxopress_set_default_taxonomy_terms', 100, 2);
 add_action( 'restrict_manage_posts' , 'taxopress_get_dropdown' );
 add_filter('wp_dropdown_cats', 'taxopress_filter_dropdown_cats');
+add_filter('get_terms_args', 'taxopress_get_terms_args', 20, 2);
+add_filter('get_terms', 'taxopress_filter_terms', 20, 4);
+add_filter('get_the_terms', 'taxopress_terms_order_frontend', 10, 3);

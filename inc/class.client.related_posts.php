@@ -59,7 +59,7 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simple-tags' ),
 			'nopoststext'   => __( 'No related posts.', 'simple-tags' ),
 			'dateformat'    => get_option( 'date_format' ),
-			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%) style="font-size:%post_size%;color:%post_color%"> 
+			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"> 
 			                       %post_title% <br> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 			                       </a> 
@@ -74,8 +74,8 @@ class SimpleTags_Client_RelatedPosts {
 			 'after'       => '',
 			 'default_featured_media' => 'default',
 			 'imageresolution' => 'medium',
-			 'smallest'   => 15,
-	         'largest'    => 22,
+			 'smallest'   => 12,
+	         'largest'    => 12,
 			 'unit'       => 'pt',
 	         'mincolor'   => '#353535',
 			 'maxcolor'   => '#000000',
@@ -91,11 +91,11 @@ class SimpleTags_Client_RelatedPosts {
 		$defaults['taxonomy']    = $options['rp_taxonomy'];
 		$defaults['default_featured_image'] = $options['rp_default_featured_media'];
 		$defaults['format']      = $options['rp_format'];
-		$defaults['smallest']    = isset($options['rp_smallest']) ? (int)$options['rp_smallest'] : 15;
-		$defaults['largest']     = isset($options['rp_largest']) ? (int)$options['rp_largest'] : 22;
+		$defaults['smallest']    = isset($options['rp_min_size']) ? (int)$options['rp_min_size'] : 12;
+		$defaults['largest']     = isset($options['rp_max_size']) ? (int)$options['rp_max_size'] : 12;
 		$defaults['unit']        = isset($options['rp_unit']) ? $options['rp_unit'] : 'pt';
-		$defaults['mincolor']    = isset($options['rp_mincolor']) ? $options['rp_mincolor'] : '#353535';
-		$defaults['maxcolor']    = isset($options['rp_maxcolor']) ? $options['rp_maxcolor'] : '#000000';
+		$defaults['mincolor']    = isset($options['rp_min_color']) ? $options['rp_min_color'] : '#353535';
+		$defaults['maxcolor']    = isset($options['rp_max_color']) ? $options['rp_max_color'] : '#000000';
 
 		if ( empty( $user_args ) ) {
 			$user_args = $options['rp_adv_usage'];
@@ -418,8 +418,8 @@ class SimpleTags_Client_RelatedPosts {
 		$term_count = isset($result->counter) ? (int)$result->counter : 0;
 
 		// Font size calculation
-		$smallest = isset($smallest) ? (float)$smallest : 15;
-		$largest = isset($largest) ? (float)$largest : 22;
+		$smallest = isset($smallest) ? (float)$smallest : 12;
+		$largest = isset($largest) ? (float)$largest : 12;
 		$unit     = isset($unit) ? $unit : 'pt';
 
 		$font_size = $smallest + (($term_count - $min_count) / ($max_count - $min_count)) * ($largest - $smallest);

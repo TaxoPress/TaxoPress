@@ -1005,6 +1005,10 @@ color: red;
 font-weight: bold;
 }
 
+.taxonomiesui .taxonomy_order select {
+    width: 300px;
+}
+
 .st-legacy-subtab,
 .st-taxopress-ai-subtab,
 .st-metabox-subtab {
