@@ -188,12 +188,7 @@ class SimpleTags_Terms
     public function screen_option()
     {
 
-    // Remove screen options if Pro banner is shown
-    if (isset($_GET['taxopress_pro_notice']) && $_GET['taxopress_pro_notice'] === 'term_order') {
-        return;
-    }
 
-    
         $option = 'per_page';
         $args   = [
             'label'   => esc_html__('Number of items per page', 'simple-tags'),
@@ -299,9 +294,8 @@ class SimpleTags_Terms
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
                     <?php
                     // Hide search box if taxopress_show_all=1
-                    // if (empty($_REQUEST['taxopress_show_all'])) {
-                    //     $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term');
-                    // }
+                        $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term');
+                    
                     ?>
                 </form>
                 <div class="clear"></div>

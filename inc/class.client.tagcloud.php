@@ -687,6 +687,14 @@ class SimpleTags_Client_TagCloud {
 			$term_args['include'] = array_slice($term_args['include'], 0, $max_terms);
 		}
 			
+
+		if (isset($args['orderby'])) {
+			$term_args['orderby'] = $args['orderby'];
+		}
+		if (isset($args['order'])) {
+			$term_args['order'] = $args['order'];
+		}
+		
 		if (!empty($args['limit_days'])) {
 			$recent_posts = get_posts([
 				'post_type'      => $post_type ?: 'any',
@@ -712,6 +720,13 @@ class SimpleTags_Client_TagCloud {
 			}
 		} else {
 			$terms = get_terms($term_args);
+		}
+
+		if (isset($args['orderby']) && strtolower($args['orderby']) === 'random' && is_array($terms)) {
+			shuffle($terms);
+			if (isset($args['order']) && strtolower($args['order']) === 'desc') {
+				$terms = array_reverse($terms);
+			}
 		}
 		if (empty($terms)) {
 			return [];
