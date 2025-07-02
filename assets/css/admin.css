@@ -1005,6 +1005,10 @@ color: red;
 font-weight: bold;
 }
 
+.taxonomiesui .taxonomy_order select {
+    width: 300px;
+}
+
 .st-legacy-subtab,
 .st-taxopress-ai-subtab,
 .st-metabox-subtab {
@@ -1259,6 +1263,10 @@ ul.taxopress-tab li.tagcloud_advanced_tab a::before {
     content: "\f111";
 }
 
+ul.taxopress-tab li.tagcloud_layout_tab a::before {
+    content: "\f508";
+}
+
 
 ul.taxopress-tab li.relatedpost_advanced_tab a::before {
     content: "\f111";
@@ -1269,8 +1277,14 @@ ul.taxopress-tab li.relatedpost_option_tab a::before {
 ul.taxopress-tab li.relatedpost_display_tab a::before {
     content: "\f186";
 }
+ul.taxopress-tab li.relatedpost_design_tab a::before {
+    content: "\f309";
+}
 ul.taxopress-tab li.relatedpost_post_types_tab a::before {
     content: "\f116";
+}
+ul.taxopress-tab li.relatedpost_layout_tab a::before {
+    content: "\f508";
 }
 
 
@@ -1282,6 +1296,12 @@ ul.taxopress-tab li.posttags_options_tab a::before {
 }
 ul.taxopress-tab li.posttags_display_tab a::before {
     content: "\f186";
+}
+ul.taxopress-tab li.posttags_design_tab a::before {
+    content: "\f309";
+}
+ul.taxopress-tab li.posttags_layout_tab a::before {
+    content: "\f508";
 }
 .manage-taxopress-terms .column-slug {
     width: unset;

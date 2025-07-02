@@ -37,11 +37,67 @@
     margin-top: -15px !important;
 }
 
-.taxopress .tooltip-text{
+.taxopress.tooltip-text{
     text-align: center !important;
 }
 
 .taxopress-term-wrap {
     display: flex;
     gap: 20px;
+}
+
+.taxopress-select-icon.taxopress-formats{
+    top: -40px !important;
+    margin-left: 15.4em !important;
+}
+
+.taxopress-blur-option {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+.taxopress-pro-feature-btn-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0 0 0;
+    justify-content: flex-start;
+}
+
+.taxopress-pro-feature-btn {
+    background: #FCB223;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 16px 6px 12px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    pointer-events: none;
+}
+
+.taxopress-pro-feature-lock {
+    font-size: 18px;
+    margin-right: 2px;
+    color: #000;
+}
+
+.taxopress-pro-feature-btn-wrapper .pp-tooltips-library {
+    margin-left: 6px;
+    position: relative;
+    top: 1px;
+}
+
+.taxopress-select-icon.order{
+    top: -10px !important;
+}
+
+.taxopress-order {
+    display: flex;
+    align-items: flex-start;
 }

@@ -255,18 +255,35 @@ class SimpleTags_Client_Autolinks
 			$autolink_min_char = (int) $options['autolink_min_char'];
 			$autolink_max_char = (int) $options['autolink_max_char'];
 			$term_taxonomy = $options['taxonomy'];
+			$custom_urls_enabled = !empty($options['enable_custom_urls']);
 		} else {
 			$auto_link_min = (int) SimpleTags_Plugin::get_option_value('auto_link_min');
 			$unattached_terms  = (int) SimpleTags_Plugin::get_option_value('auto_link_all');
 			$autolink_min_char = 0;
 			$autolink_max_char = 0;
 			$term_taxonomy = 'post_tag';
+			$custom_urls_enabled = false;
+			$autolink_settings = taxopress_get_autolink_data();
+			foreach ($autolink_settings as $setting) {
+				if (!empty($setting['enable_custom_urls'])) {
+					$custom_urls_enabled = true;
+					break;
+				}
+			}
 		}
 
 		if (1 === $unattached_terms) {
 			$terms = self::get_all_post_tags($options);
 		} else {
 			$terms = self::get_tags_from_current_posts($options);
+		}
+
+		$custom_urls_enabled = !empty($options['enable_custom_urls']);
+		$archivepage = !empty($options['archivepage']);
+
+		if (!$archivepage && !$custom_urls_enabled) {
+			self::$link_tags = [];
+			return true;
 		}
 
 		foreach ((array) $terms as $term) {
@@ -279,9 +296,19 @@ class SimpleTags_Client_Autolinks
 				}
 			}
 
+			if (!$archivepage && $custom_urls_enabled) {
+				$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+				if (!empty($taxopress_custom_url)) {
+					self::$link_tags[$term->name] = esc_url($taxopress_custom_url);
+				}
+			} else {  
 			//add primary term
-			$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
-            $primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
+			if ($custom_urls_enabled) {
+				$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
+				$primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
+			} else {
+				$primary_term_link = get_term_link($term, $term->taxonomy);
+			}
 			$add_terms = [];
 			// store the URL
             self::$link_tags[$term->name] = $primary_term_link;
@@ -316,20 +343,24 @@ class SimpleTags_Client_Autolinks
 					self::$link_tags[$add_name] = esc_url($add_term_link);
 				}
 			}
-		}
-
+		    }
+	    }
 		return true;
 	}
 
     private static function taxopress_get_title_attribute($search, $url, $options) {
 
-        $title_attribute = $options['autolink_title_attribute'];
+        $title_attribute = isset($options['autolink_title_attribute']) 
+        ? $options['autolink_title_attribute']
+        : SimpleTags_Plugin::get_option_value('auto_link_title');
         
         $term = get_term_by('name', $search, $options['taxonomy']);
         if ($term) {
             $custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
             if (!empty($custom_url) && esc_url($custom_url) === $url) {
-                $title_attribute = $options['autolink_title_attribute_when_using_custom_url'];
+                $title_attribute = isset($options['autolink_title_attribute_when_using_custom_url'])
+                ? $options['autolink_title_attribute_when_using_custom_url']
+                : SimpleTags_Plugin::get_option_value('auto_link_title_custom_url');
             }
         }
         

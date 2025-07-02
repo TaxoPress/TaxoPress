@@ -70,6 +70,7 @@ class Taxonomy_List extends WP_List_Table
             'active'      => __('Active', 'simple-tags'),
             'posttypes'   => __('Post Types', 'simple-tags'),
             'count'   => __('Count', 'simple-tags'),
+            'taxopress_order' => __('Order', 'simple-tags'),
             'edited_with_taxopress'  => __('Edited', 'simple-tags'),
         ];
 
@@ -463,6 +464,9 @@ class Taxonomy_List extends WP_List_Table
                     </div>';
         }
     }
-
-
+    
+    protected function column_taxopress_order($item)
+    {
+        echo apply_filters('taxopress_order_column', $item);
+    }
 }

@@ -347,6 +347,16 @@ class SimpleTags_Related_Post
                                                                 'simple-tags'); ?></span></a>
                                                 </li>
 
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_design' ? 'true' : 'false'; ?>" class="relatedpost_design_tab <?php echo $active_tab === 'relatedpost_design' ? 'active' : ''; ?>" data-content="relatedpost_design">
+                                                    <a href="#relatedpost_design"><span><?php esc_html_e('Design',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
+                                                <li aria-current="<?php echo $active_tab === 'relatedpost_layout' ? 'true' : 'false'; ?>" class="relatedpost_layout_tab <?php echo $active_tab === 'relatedpost_layout' ? 'active' : ''; ?>" data-content="relatedpost_layout">
+                                                    <a href="#relatedpost_layout"><span><?php esc_html_e('Layout',
+                                                                'simple-tags'); ?></span></a>
+                                                </li>
+
                                                 <li aria-current="<?php echo $active_tab === 'relatedpost_display_format' ? 'true' : 'false'; ?>" class="relatedpost_display_format_tab <?php echo $active_tab === 'relatedpost_display_format' ? 'active' : ''; ?>" data-content="relatedpost_display_format">
                                                     <a href="#relatedpost_display_format"><span><?php esc_html_e('Display format',
                                                                 'simple-tags'); ?></span></a>
@@ -504,6 +514,91 @@ class SimpleTags_Related_Post
                                                     ?>
                                                 </table>
 
+                                                <table class="form-table taxopress-table relatedpost_design"
+                                                       style="<?php echo $active_tab === 'relatedpost_design' ? '' : 'display:none;'; ?>">
+                                                    <?php
+
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'smallest',
+                                                            'textvalue' => isset($current['smallest']) ? esc_attr($current['smallest']) : '12',
+                                                            'labeltext' => esc_html__('Font size minimum', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
+                                                        echo $ui->get_number_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'largest',
+                                                            'textvalue' => isset($current['largest']) ? esc_attr($current['largest']) : '12',
+                                                            'labeltext' => esc_html__('Font size maximum', 'simple-tags'),
+                                                            'helptext'  => '',
+                                                            'required'  => false,
+                                                        ]);
+
+                                                        $select = [
+                                                            'options' => [
+                                                                [ 'attr' => 'pt', 'text' => esc_attr__( 'Point', 'simple-tags' ), 'default' => 'true' ],
+                                                                [ 'attr' => 'px', 'text' => esc_attr__( 'Pixel', 'simple-tags' ) ],
+                                                                [ 'attr' => 'em', 'text' => esc_attr__( 'Em', 'simple-tags') ],
+                                                                [ 'attr' => '%', 'text' => esc_attr__( 'Percent', 'simple-tags') ],
+                                                            ],
+                                                        ];
+                                                        $selected = isset($current['unit']) ? taxopress_disp_boolean($current['unit']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['unit'] : '';
+                                                        echo $ui->get_select_checkbox_input_main([
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'unit',
+                                                            'labeltext'  => esc_html__( 'Unit font size', 'simple-tags' ),
+                                                            'selections' => $select,
+                                                        ]);
+
+                                                        $select = [
+                                                            'options' => [
+                                                                [
+                                                                    'attr'    => '0',
+                                                                    'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    'default' => 'true',
+                                                                ],
+                                                                [
+                                                                    'attr' => '1',
+                                                                    'text' => esc_attr__('True', 'simple-tags'),
+                                                                ],
+                                                            ],
+                                                        ];
+                                                        $selected = (isset($current) && isset($current['color'])) ? taxopress_disp_boolean($current['color']) : '';
+                                                        $select['selected'] = !empty($selected) ? $current['color'] : '';
+                                                        echo $ui->get_select_checkbox_input([
+                                                            'namearray'  => 'taxopress_related_post',
+                                                            'name'       => 'color',
+                                                            'class'      => 'relatedposts-color-option',
+                                                            'labeltext'  => esc_html__('Enable colors for terms', 'simple-tags'),
+                                                            'selections' => $select,
+                                                        ]);
+
+
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'mincolor',
+                                                            'class'     => 'text-color related-post-min',
+                                                            'textvalue' => isset($current['mincolor']) ? esc_attr($current['mincolor']) : '#353535',
+                                                            'labeltext' => esc_html__('Font color minimum', 'simple-tags'),
+                                                            'helptext'  => esc_html__('This is the color of the least popular term.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
+
+                                                        echo $ui->get_text_input([
+                                                            'namearray' => 'taxopress_related_post',
+                                                            'name'      => 'maxcolor',
+                                                            'class'     => 'text-color related-post-max',
+                                                            'textvalue' => isset($current['maxcolor']) ? esc_attr($current['maxcolor']) : '#000000',
+                                                            'labeltext' => esc_html__('Font color maximum', 'simple-tags'),
+                                                            'helptext'  => esc_html__('This is the color of the most popular term.', 'simple-tags'),
+                                                            'required'  => true,
+                                                        ]);
+                                                    ?>
+                                                </table>    
+
 
                                                 <table class="form-table taxopress-table relatedpost_display"
                                                        style="<?php echo $active_tab === 'relatedpost_display' ? '' : 'display:none;'; ?>">
@@ -601,24 +696,13 @@ class SimpleTags_Related_Post
                                                     ?>
 
                                                 </table>
+                                                
 
-                                                <table class="form-table taxopress-table relatedpost_display_format"
-                                                       style="<?php echo $active_tab === 'relatedpost_display_format' ? '' : 'display:none;'; ?>">
+                                                <table class="form-table taxopress-table relatedpost_layout"
+                                                       style="<?php echo $active_tab === 'relatedpost_layout' ? '' : 'display:none;'; ?>">
                                                     <?php
 
-                                                            echo $ui->get_textarea_input([
-                                                                'namearray' => 'taxopress_related_post',
-                                                                'name'      => 'xformat',
-                                                                'class'     => 'st-full-width',
-                                                                'rows'      => '4',
-                                                                'cols'      => '40',
-                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)">%post_title%</a>'),
-                                                                'labeltext' => esc_html__('Term link format', 'simple-tags'),
-                                                                'helptext'  => sprintf(esc_html__('This settings allows to customize the appearance of Related Post links. You can find tokens and explanations in the sidebar and %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
-                                                                'required'  => false,
-                                                            ]);
-
-                                                            $select = [
+                                                    $select = [
                                                                 'options' => [
                                                                     [ 'attr' => 'box', 'text' => esc_attr__( 'Box List', 'simple-tags' ), 'default' => 'true' ],
                                                                     [ 'attr' => 'list', 'text' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ) ],
@@ -634,6 +718,26 @@ class SimpleTags_Related_Post
                                                                 'labeltext'  => esc_html__( 'Display format', 'simple-tags' ),
                                                                 'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             ] );
+                                                            
+                                                    ?>
+                                                </table>
+                                                
+
+                                                <table class="form-table taxopress-table relatedpost_display_format"
+                                                       style="<?php echo $active_tab === 'relatedpost_display_format' ? '' : 'display:none;'; ?>">
+                                                    <?php
+
+                                                            echo $ui->get_textarea_input([
+                                                                'namearray' => 'taxopress_related_post',
+                                                                'name'      => 'xformat',
+                                                                'class'     => 'st-full-width',
+                                                                'rows'      => '4',
+                                                                'cols'      => '40',
+                                                                'textvalue' => isset($current['xformat']) ? esc_attr($current['xformat']) : esc_attr('<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"><img src="%post_thumb_url%" height="200" width="200" class="custom-image-class"/><br>%post_title%<br>%post_category%</a>'),
+                                                                'labeltext' => esc_html__('Term link format', 'simple-tags'),
+                                                                'helptext'  => sprintf(esc_html__('This settings allows to customize the appearance of Related Post links. You can find tokens and explanations in the sidebar and %1sin the documentation%2s.', 'simple-tags'), '<a target="blank" href="https://taxopress.com/docs/format-related-posts/">', '</a>'),
+                                                                'required'  => false,
+                                                            ]);
                                                     ?>
 
                                                 </table>
@@ -1000,22 +1104,33 @@ class SimpleTags_Related_Post
                                                                     <td>
                                                                         <div class="default-featured-media-field-wrapper">
                                                                             <div class="default-featured-media-field-container">
-                                                                                <?php if (!empty($current['default_featured_media'])) : ?>
-                                                                                    <img src="<?php echo esc_url($current['default_featured_media']); ?>" style="max-width: 300px;" alt=""/>
-                                                                                <?php endif; ?>
+                                                                                <?php 
+                                                                                $current_value = isset($current['default_featured_media']) ? $current['default_featured_media'] : '';
+                                                                                $default_image = STAGS_URL . '/assets/images/taxopress-white-logo.png';
+
+                                                                                if ($current_value === $default_image) {
+                                                                                    echo '<img src="' . esc_url($default_image) . '" style="max-width: 300px;" alt=""/>';
+                                                                                    echo '<p class="description">' . esc_html__('Using default TaxoPress image', 'simple-tags') . '</p>';
+                                                                                } elseif (!empty($current_value)) {
+                                                                                    echo '<img src="' . esc_url($current_value) . '" style="max-width: 300px;" alt=""/>';
+                                                                                }
+                                                                                ?>
                                                                             </div>
 
                                                                             <p class="hide-if-no-js">
-                                                                                <a class="select-default-featured-media-field <?php echo !empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                <a class="select-default-featured-media-field <?php echo !empty($current_value) ? 'hidden' : ''; ?>" href="#">
                                                                                     <?php esc_html_e('Select Media', 'simple-tags'); ?>
                                                                                 </a>
-                                                                                <a class="delete-default-featured-media-field <?php echo empty($current['default_featured_media']) ? 'hidden' : ''; ?>" href="#">
+                                                                                <a class="use-default-featured-media-field <?php echo ($current_value === $default_image) ? 'hidden' : ''; ?>" href="#">
+                                                                                    <?php esc_html_e('Use Default Image', 'simple-tags'); ?>
+                                                                                </a>
+                                                                                <a class="delete-default-featured-media-field <?php echo empty($current_value) ? 'hidden' : ''; ?>" href="#">
                                                                                     <?php esc_html_e('Remove Image', 'simple-tags'); ?>
                                                                                 </a>
                                                                             </p>
 
                                                                             <input type="hidden" id="default_featured_media" name="taxopress_related_post[default_featured_media]"
-                                                                                value="<?php echo isset($current['default_featured_media']) ? esc_attr($current['default_featured_media']) : ''; ?>" />
+                                                                                value="<?php echo esc_attr($current_value); ?>" />
                                                                         </div>
                                                                         <p class="taxopress-field-description description"><?php esc_html_e('Select the default %post_thumb_url% to be used when a post doesn\'t have a featured image.', 'simple-tags'); ?></p>
                                                                     </td>
@@ -1139,6 +1254,8 @@ class SimpleTags_Related_Post
                             <li><code>%post_thumb_url%</code> <?php echo esc_html__('The post featured image url', 'simple-tags'); ?></li>
                             <li><code>%post_content%</code> <?php echo esc_html__('The post content', 'simple-tags'); ?></li>
                             <li><code>%post_category%</code> <?php echo esc_html__('The post category', 'simple-tags'); ?></li>
+                            <li><code>%post_size%</code> <?php echo esc_html__('The font size of the post', 'simple-tags'); ?></li>
+                            <li><code>%post_color%</code> <?php echo esc_html__('The color of the post title', 'simple-tags'); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -1194,7 +1311,12 @@ class SimpleTags_Related_Post
 
         $post_id = isset($_POST['preview_post_id']) ? intval($_POST['preview_post_id']) : 0;
         if (!$post_id) {
-            wp_send_json_error(['message' => __('Please select a post to preview.', 'simple-tags')]);
+            wp_send_json_error([
+            'html' => '<p class="taxopress-preview-message error">' . 
+                     esc_html__('Select a post to see a preview.', 'simple-tags') . 
+                     '</p>'
+        ]);
+        return;
         }
 
         // Get current form settings
@@ -1208,6 +1330,13 @@ class SimpleTags_Related_Post
         // Create an instance of the client class
         $client = new SimpleTags_Client_RelatedPosts();
 
+        $default_featured_media = isset($settings['default_featured_media']) ? 
+            $settings['default_featured_media'] : '';
+
+        // If it's the default value, use the proper plugin URL path
+        if ($default_featured_media === 'default') {
+            $default_featured_media = STAGS_URL . '/assets/images/taxopress-white-logo.png';
+        }
         // Prepare arguments with strict type casting and validation
         $args = array(
             'post_id'           => $post_id,
@@ -1232,14 +1361,24 @@ class SimpleTags_Related_Post
             'taxopress_max_cats' => isset($settings['taxopress_max_cats']) ? max(0, intval($settings['taxopress_max_cats'])) : 3,
             'taxopress_max_tags' => isset($settings['taxopress_max_tags']) ? max(0, intval($settings['taxopress_max_tags'])) : 3,
             'imageresolution'  => isset($settings['imageresolution']) ? sanitize_text_field($settings['imageresolution']) : '1536x1536',
-            'default_featured_media' => isset($settings['default_featured_media']) ? esc_url($settings['default_featured_media']) : '',
+            'default_featured_media' => esc_url($default_featured_media),
             'dateformat'       => isset($settings['dateformat']) ? sanitize_text_field($settings['dateformat']) : 'd.m.Y',
+            'smallest'        => isset($settings['smallest']) ? max(1, intval($settings['smallest'])) : 12,
+            'largest'         => isset($settings['largest']) ? max(1, intval($settings['largest'])) : 12,
+            'unit'            => isset($settings['unit']) ? sanitize_text_field($settings['unit']) : 'pt',
+            'mincolor'        => isset($settings['mincolor']) ? sanitize_hex_color($settings['mincolor']) : '#353535',
+            'maxcolor'        => isset($settings['maxcolor']) ? sanitize_hex_color($settings['maxcolor']) : '#000000',
+            'color'           => !empty($settings['color']),
         );
 
         // Get the HTML output
         $output = $client->get_related_posts($args);
 
         if (empty($output)) {
+             if (!empty($settings['hide_output'])) {
+                wp_send_json_success(['html' => '']);
+            }
+            
             wp_send_json_error(['message' => __('No related posts found.', 'simple-tags')]);
         }
 

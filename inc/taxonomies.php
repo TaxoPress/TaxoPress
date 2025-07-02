@@ -413,6 +413,11 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                             'simple-tags'); ?></span></a>
                                             </li>
 
+                                            <li aria-current="false" class="taxonomy_order_tab" data-content="taxonomy_order">
+                                                <a href="#taxonomy_order"><span><?php esc_html_e('Order',
+                                                            'simple-tags'); ?></span></a>
+                                            </li>
+
                                             <?php if( $taxonomy_edit && !$external_edit ){ ?>
                                             <li aria-current="false" class="taxonomy_slug_tab" data-content="taxonomy_slug">
                                                 <a href="#taxonomy_slug"><span><?php esc_html_e('Slug',
@@ -1515,6 +1520,31 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             ]);
                                             ?>
                                         </table>
+
+                                        <table class="form-table taxopress-table taxonomy_order"
+                                               style="display:none;">
+                                            <?php
+                                            $taxonomy_label = !empty($current['label']) ? $current['label'] : esc_html__('Categories', 'simple-tags');
+                                            ?>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="taxopress-description">
+                                                        <?php
+                                                        echo esc_html(
+                                                            sprintf(
+                                                                __('This feature controls the order of %s when you\'re editing posts, and in frontend displays.', 'simple-tags'),
+                                                                $taxonomy_label
+                                                            )
+                                                        );
+                                                        ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            do_action('taxopress_terms_order', $current);
+                                            ?>
+                                        </table>
+                                        
 
 
                                             <table class="form-table taxopress-table taxonomy_delete"

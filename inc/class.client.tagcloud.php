@@ -36,15 +36,15 @@ class SimpleTags_Client_TagCloud {
 			'selection'   => 'desc',
 			'orderby'     => 'random',
 			'order'       => 'asc',
-			'format'      => 'flat',
+			'format'      => 'border',
 			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simple-tags' ),
-			'number'      => 45,
+			'number'      => 20,
 			'notagstext'  => __( 'No tags.', 'simple-tags' ),
 			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
-			'mincolor'    => '#CCCCCC',
-			'largest'     => 22,
-			'smallest'    => 8,
+			'mincolor'    => '#353535',
+			'largest'     => 12,
+			'smallest'    => 12,
 			'unit'        => 'pt',
 			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
 			'parent_term' => '',
@@ -226,13 +226,11 @@ class SimpleTags_Client_TagCloud {
 			$xformat = str_replace( '%tag_size%', '', $xformat );
 		}
 
-		//Remove style component when display format is set to table, wordpress default, border
-		if (in_array($format, ['comma', 'table', 'border', 'parent/child'])) {
-			$xformat = __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel%>%tag_name%</a>', 'simple-tags' );
-		}	
 
 		// Order terms before output
 		// count, name, rand | asc, desc
+		$orderby = strtolower($orderby);
+		$order = strtolower($order);
 
 		if (in_array($format, ['parent/child']) && $args['display_mode'] === 'parents_and_sub') {
 			$terms = self::getTags($args, $taxonomy);
@@ -267,9 +265,36 @@ class SimpleTags_Client_TagCloud {
 			foreach ($grouped_terms as $parent_group) {
 				$terms = array_merge($terms, $parent_group);
 			}
+		} 
+
+		// Custom drag-and-drop order: always check first!
+		if ($orderby === 'taxopress_term_order') {
+			$custom_order = get_option('taxopress_term_order_' . $taxonomy, []);
+			if (!empty($custom_order)) {
+				$terms_by_id = [];
+				foreach ($terms_data as $term_name => $term_obj) {
+					if (is_object($term_obj) && isset($term_obj->term_id)) {
+						$terms_by_id[$term_obj->term_id] = $term_obj;
+					}
+				}
+				$ordered_terms = [];
+				foreach ($custom_order as $term_id) {
+					if (isset($terms_by_id[$term_id])) {
+						$ordered_terms[$terms_by_id[$term_id]->name] = $terms_by_id[$term_id]->count;
+						unset($terms_by_id[$term_id]);
+					}
+				}
+				// Add any terms not in custom order at the end
+				foreach ($terms_by_id as $term_obj) {
+					$ordered_terms[$term_obj->name] = $term_obj->count;
+				}
+				if ($order === 'desc') {
+					$ordered_terms = array_reverse($ordered_terms, true);
+				}
+				$counts = $ordered_terms;
+			}
 		} else {
 			// Default sorting logic
-			$orderby = strtolower($orderby);
 			if ($orderby == 'count') {
 				asort($counts);
 			} elseif ($orderby == 'name') {
@@ -298,7 +323,17 @@ class SimpleTags_Client_TagCloud {
 
 			$term         = $terms_data[ $term_name ];
 			$scale_result = (int) ( $scale <> 0 ? ( ( $term->count - $minval ) * $scale + $minout ) : ( $scale_max - $scale_min ) / 2 );
-			$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			//$output[]     = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			   $formatted = SimpleTags_Client::format_internal_tag( $xformat, $term, $rel, $scale_result, $scale_max, $scale_min, $largest, $smallest, $unit, $maxcolor, $mincolor );
+			if ($format === 'table') {
+				$output[] = [
+					'html' => $formatted,
+					'count' => $term->count,
+					'term_name' => $term->name,
+				];
+			} else {
+				$output[] = $formatted;
+			}
 		}
 
 		return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $output, $copyright, '', $wrap_class, $link_class, $before, $after, $taxonomy );
@@ -319,15 +354,15 @@ class SimpleTags_Client_TagCloud {
 			'selection'   => 'desc',
 			'orderby'     => 'random',
 			'order'       => 'asc',
-			'format'      => 'flat',
+			'format'      => 'border',
 			'xformat'     => __( '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>', 'simple-tags' ),
-			'number'      => 45,
+			'number'      => 20,
 			'notagstext'  => __( 'No tags.', 'simple-tags' ),
 			'title'       => __( '<h4>Tag Cloud</h4>', 'simple-tags' ),
 			'maxcolor'    => '#000000',
-			'mincolor'    => '#CCCCCC',
-			'largest'     => 22,
-			'smallest'    => 8,
+			'mincolor'    => '#353535',
+			'largest'     => 12,
+			'smallest'    => 12,
 			'unit'        => 'pt',
 			'taxonomy'    => 'post_tag', // Note: saved as an option but no UI to set it
 			'parent_term' => '',
@@ -536,7 +571,7 @@ class SimpleTags_Client_TagCloud {
 	 *
 	 * @return array
 	 */
-	public static function getTags( $args = '', $taxonomy = 'post_tag' ) {
+	public static function getTags( $args = '', $taxonomy = 'post_tag', $post_type = '' ) {
 		$key = md5( maybe_serialize( $args ) . $taxonomy . (isset($args['parent_term']) ? $args['parent_term'] : '') . (isset($args['display_mode']) ? $args['display_mode'] : ''));
 
 		// Get cache if exist
@@ -562,7 +597,7 @@ class SimpleTags_Client_TagCloud {
 		if ( isset( $args['max'] ) ) {
 			$max_terms = intval( $args['max'] );
 		} else {
-			$max_terms = 45;
+			$max_terms = 20;
 		}
 
 		if ( isset( $args['hide_terms'] ) ) {
@@ -652,7 +687,47 @@ class SimpleTags_Client_TagCloud {
 			$term_args['include'] = array_slice($term_args['include'], 0, $max_terms);
 		}
 			
-		$terms = get_terms($term_args);
+
+		if (isset($args['orderby'])) {
+			$term_args['orderby'] = $args['orderby'];
+		}
+		if (isset($args['order'])) {
+			$term_args['order'] = $args['order'];
+		}
+		
+		if (!empty($args['limit_days'])) {
+			$recent_posts = get_posts([
+				'post_type'      => $post_type ?: 'any',
+				'post_status'    => 'publish',
+				'date_query'     => [
+					[
+						'after' => $args['limit_days'] . ' days ago',
+						'inclusive' => false,
+					],
+				],
+				'fields'         => 'ids',
+				'posts_per_page' => -1,
+			]);
+			if (!empty($recent_posts)) {
+				$terms = get_terms([
+					'taxonomy'   => $taxonomy,
+					'object_ids' => $recent_posts,
+					'hide_empty' => false,
+					'number'     => $max_terms,
+				]);
+			} else {
+				$terms = [];
+			}
+		} else {
+			$terms = get_terms($term_args);
+		}
+
+		if (isset($args['orderby']) && strtolower($args['orderby']) === 'random' && is_array($terms)) {
+			shuffle($terms);
+			if (isset($args['order']) && strtolower($args['order']) === 'desc') {
+				$terms = array_reverse($terms);
+			}
+		}
 		if (empty($terms)) {
 			return [];
 		}

@@ -85,7 +85,12 @@ class TaxopressCoreAdmin
         add_filter('taxopress_tagclouds_row_actions', [$this, 'taxopress_core_copy_action'], 10, 2);
         add_filter('taxopress_terms_row_actions', [$this, 'taxopress_core_copy_with_metadata_action'], 10, 2);
         add_filter('taxopress_settings_post_type_ai_fields', [$this, 'filter_settings_post_type_ai_fields'], 10, 2);
+        add_filter('taxopress_display_formats', [$this, 'taxopress_render_display_formats_field']);
         add_action('taxopress_terms_copy_with_metadata_promo', [$this, 'taxopress_terms_copy_with_metadata_promo']);
+        add_action('taxopress_terms_order', [$this, 'taxopress_terms_order_free']);
+        add_filter('taxopress_order_column', [$this, 'taxopress_order_column_free']);
+        add_action('taxopress_tagcloud_ordering_method', [$this, 'taxopress_free_tagcloud_ordering_method']);
+        add_action('taxopress_posttags_ordering_method', [$this, 'taxopress_free_posttags_ordering_method']);
     }
 
     function taxopress_load_admin_core_assets()
@@ -646,7 +651,7 @@ class TaxopressCoreAdmin
             
             $new_entry = array(
                 'taxopress_ai_' . $post_type . '_metabox_display_option',
-                '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' .
+                '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content">' .
                     esc_html__('Metabox Taxonomy Display', 'simple-tags') .
                 '</div>',
                 'select_with_icon',
@@ -663,7 +668,7 @@ class TaxopressCoreAdmin
                     esc_html__('Customize the display of terms in the TaxoPress metabox.', 'simple-tags') . '<br />' .
                     esc_html__('Options include checkboxes and a dropdown list.', 'simple-tags') .
                 '</div>',
-                'taxopress-select-with-icon taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content',
+                'taxopress-select-with-icon taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content',
                 array(
                     'icon' => '',
                     'modal' => '',
@@ -706,6 +711,279 @@ class TaxopressCoreAdmin
                 </div>
             </div>
         </div>
+        <?php
+    }
+
+    /**
+     * Define the default display formats
+     *
+     * @return array
+     */
+    function taxopress_render_display_formats_field() {
+
+        $select = [
+            'flat' => esc_html__('Cloud', 'simple-tags')
+        ];
+        ?>
+        <tr>
+            <th>
+                <div class="taxopress_post_tags[format]"> 
+                   <?php echo esc_html__('Display Format', 'simple-tags'); ?>
+                </div>
+            </th>
+
+            <td>
+                <div class="taxopress-select-with-icon-wrapper">
+                    <select name="taxopress_post_tags[display_format]" class="taxopress-select-with-icon" disabled="disabled">
+                        <?php
+                        foreach ($select as $key => $label) {
+                            printf(
+                                '<option value="%s">%s</option>',
+                                esc_attr($key),
+                                esc_html($label)
+                            );
+                        }
+                        ?>
+                    </select>
+                    <span class="pp-tooltips-library" data-toggle="tooltip">
+                        <span class="dashicons dashicons-lock taxopress-select-icon taxopress-formats"></span>
+                        <span class="taxopress tooltip-text"><?php echo esc_html__('This feature is available in TaxoPress Pro', 'simple-tags'); ?></span>
+                    </span>
+                </div>
+                <div class="taxopress-stpexplan">
+                    <?php echo esc_html__('Choose the display formats of your terms, options include table list, ordered list, border-cloud and lots more.', 'simple-tags'); ?>
+                </div>
+            </td>
+        </tr>
+        <?php
+
+    }
+
+    function taxopress_terms_order_free($current){
+                               
+            $orderby_options = [
+                [ 'attr' => 'term_id', 'text' => esc_attr__( 'ID', 'simple-tags' ), 'default' => true ],
+                [ 'attr' => 'name_free', 'text' => esc_attr__( 'Name (Pro)', 'simple-tags' ) ],
+                [ 'attr' => 'count_free', 'text' => esc_attr__( 'Counter (Pro)', 'simple-tags') ],
+                [ 'attr' => 'random_free', 'text' => esc_attr__( 'Random (Pro)', 'simple-tags' ) ],
+                [ 'attr' => 'taxopress_term_order_free', 'text' => esc_attr__( 'Term Order (Pro)', 'simple-tags' ) ],
+            ];
+            $selected_orderby = isset($current['orderby']) ? $current['orderby'] : '';
+
+            $name = isset($current['name']) ? $current['name'] : '';
+            $terms_table_url = esc_url(
+                admin_url(
+                    'admin.php?page=st_terms&taxopress_terms_taxonomy=' . urlencode($name) . '&taxopress_pro_notice=term_order'
+                )
+            );
+            ?>
+            <tr>
+                <th scope="row"><?php echo esc_html__('Method for choosing terms for display', 'simple-tags'); ?></th>
+                <td>
+                    <?php foreach ($orderby_options as $option): 
+                        $is_id = ($option['attr'] === 'term_id');
+                        $disabled = $is_id ? '' : 'disabled';
+                        $blur_class = $is_id ? '' : 'taxopress-blur-option';
+                        $checked = $is_id ? 'checked="checked"' : '';
+                    ?>
+                        <label style="display:block;margin-bottom:4px;" class="<?php echo esc_attr($blur_class); ?>">
+                            <input type="radio"
+                                name="cpt_custom_tax[orderby]"
+                                value="<?php echo esc_attr($option['attr']); ?>"
+                                <?php echo $disabled; ?>
+                                <?php echo $checked; ?>
+                            />
+                            <?php echo esc_html($option['text']); ?>
+                        </label>
+                    <?php endforeach; ?>
+
+                    <!-- Pro Feature Button -->
+                    <div class="taxopress-pro-feature-btn-wrapper">
+                        <span class="pp-tooltips-library" data-toggle="tooltip">
+                            <button type="button" class="taxopress-pro-feature-btn" tabindex="-1">
+                                <span class="dashicons dashicons-lock taxopress-pro-feature-lock"></span>
+                                <?php echo esc_html__('Pro Feature', 'simple-tags'); ?>
+                            </button>
+                            <span class="taxopress tooltip-text"><?php echo esc_html__('Some of these features are available in TaxoPress Pro', 'simple-tags'); ?></span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <?php
+            
+            $order_options = [
+                [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ), 'default' => true ],
+                [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags') ],
+            ];
+            $selected_order = isset($current['order']) ? $current['order'] : '';
+            ?>
+            <tr>
+                <th scope="row"><?php echo esc_html__('Ordering for choosing terms for display', 'simple-tags'); ?></th>
+                <td>
+                <?php foreach ($order_options as $option): 
+                    $is_asc = ($option['attr'] === 'asc');
+                    $checked = ($selected_order === $option['attr'] || (empty($selected_order) && $is_asc)) ? 'checked="checked"' : '';
+                ?>
+                    <label style="display:block;margin-bottom:4px;">
+                        <input type="radio"
+                            name="cpt_custom_tax[order]"
+                            value="<?php echo esc_attr($option['attr']); ?>"
+                            <?php echo $checked; ?>
+                        />
+                        <?php echo esc_html($option['text']); ?>
+                    </label>
+                <?php endforeach; ?>
+                </td>
+            </tr>
+            <?php
+
+    }
+
+    public function taxopress_order_column_free($item){
+
+        // Get the orderby value from the taxonomy object
+        $taxonomies = taxopress_get_all_edited_taxonomy_data();
+        $order_value = '';
+
+        if (isset($taxonomies[$item->name]['orderby'])) {
+            $order_value = $taxonomies[$item->name]['orderby'];
+        }
+
+        $orderby_options = [
+            'name' => esc_html__('Name', 'simple-tags'),
+            'term_id' => esc_html__('ID', 'simple-tags'),
+            'count' => esc_html__('Counter', 'simple-tags'),
+            'random' => esc_html__('Random', 'simple-tags'),
+            'taxopress_term_order' => esc_html__('Term Order', 'simple-tags'),
+        ];
+
+        // Build the terms table URL
+        $terms_table_url = esc_url(
+            admin_url(
+                'admin.php?page=st_terms&taxopress_terms_taxonomy=' . urlencode($item->name) . '&taxopress_pro_notice=term_order'
+            )
+        );
+
+        $order_label = isset($orderby_options[$order_value]) ? $orderby_options[$order_value] : esc_html__('ID', 'simple-tags');
+        $tooltip = sprintf(
+            'Terms in this taxonomy are ordered by %s',
+            $order_label
+        );
+
+        if ($order_value === 'taxopress_term_order') {
+            // Make "Term Order" a link
+            return sprintf(
+                '<div class="pp-tooltips-library" data-toggle="tooltip">
+                    <a href="%s" target="_blank">%s</a>
+                    <div class="taxopress tooltip-text">%s</div>
+                </div>',
+                $terms_table_url,
+                esc_html($orderby_options[$order_value]),
+                esc_html($tooltip)
+            );
+        }
+
+        return sprintf(
+            '<div class="pp-tooltips-library" data-toggle="tooltip">
+                %s
+                <div class="taxopress tooltip-text">%s</div>
+            </div>',
+            esc_html($order_label),
+            esc_html($tooltip)
+
+        );
+
+    }
+    /**
+     * Display the ordering method for the tag cloud in the settings
+     *
+     * @param array $current Current settings for the tag cloud.
+    */
+    function taxopress_free_tagcloud_ordering_method($current)
+    {
+        $options = [
+            'name' => esc_attr__('Name', 'simple-tags'),
+            'count' => esc_attr__('Counter', 'simple-tags'),
+            'random' => esc_attr__('Random', 'simple-tags'),
+            'taxopress_term_order_free' => esc_attr__('Term Order(Pro)', 'simple-tags'),
+        ];
+
+        $selected = isset($current['orderby']) ? $current['orderby'] : 'random';
+        ?>
+        <tr>
+            <th>
+                <div class="taxopress_tag_cloud[format]">
+                    <?php echo esc_html__('Method for choosing terms for display', 'simple-tags'); ?>
+                </div>
+            </th>
+            <td>
+                <div class="taxopress-select-with-icon-wrapper taxopress-order">
+                    <select name="taxopress_tag_cloud[orderby]" class="taxopress-select-with-icon">
+                        <?php foreach ($options as $key => $label): ?>
+                            <option value="<?php echo esc_attr($key); ?>"
+                                <?php
+                                    selected($selected, $key);
+                                    if ($key === 'taxopress_term_order_free') {
+                                        echo ' disabled';
+                                    }
+                                ?>
+                            ><?php echo esc_html($label); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div>
+                        <span class="pp-tooltips-library" data-toggle="tooltip">
+                            <span class="dashicons dashicons-lock taxopress-select-icon order"></span>
+                            <span class="taxopress tooltip-text"><?php echo esc_html__('Upgrade to TaxoPress to use Term Order to manually order Terms', 'simple-tags'); ?></span>
+                        </span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <?php
+    }
+
+    function taxopress_free_posttags_ordering_method($current)
+    {
+        $options = [
+            'name' => esc_attr__('Name', 'simple-tags'),
+            'count' => esc_attr__('Counter', 'simple-tags'),
+            'random' => esc_attr__('Random', 'simple-tags'),
+            'taxopress_term_order_free' => esc_attr__('Term Order(Pro)', 'simple-tags'),
+        ];
+
+        $selected = isset($current['orderby']) ? $current['orderby'] : 'random';
+        ?>
+        <tr>
+            <th>
+                <div class="taxopress_post_tags[format]">
+                    <?php echo esc_html__('Method for choosing terms for display', 'simple-tags'); ?>
+                </div>
+            </th>
+            <td>
+                <div class="taxopress-select-with-icon-wrapper taxopress-order">
+                    <select name="taxopress_tag_cloud[orderby]" class="taxopress-select-with-icon">
+                        <?php foreach ($options as $key => $label): ?>
+                            <option value="<?php echo esc_attr($key); ?>"
+                                <?php
+                                    selected($selected, $key);
+                                    if ($key === 'taxopress_term_order_free') {
+                                        echo ' disabled';
+                                    }
+                                ?>
+                            ><?php echo esc_html($label); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div>
+                        <span class="pp-tooltips-library" data-toggle="tooltip">
+                            <span class="dashicons dashicons-lock taxopress-select-icon order"></span>
+                            <span class="taxopress tooltip-text"><?php echo esc_html__('Upgrade to TaxoPress to use Term Order to manually order Terms', 'simple-tags'); ?></span>
+                        </span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
         <?php
     }
 }

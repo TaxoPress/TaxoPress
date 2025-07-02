@@ -712,7 +712,7 @@ class SimpleTags_Admin
             'terms_count_message' => esc_html__(' terms will be deleted.', 'simple-tags'),
 			'checking_terms_message' => esc_html__('Checking terms...', 'simple-tags'),
 			'terms_error'            => esc_html__('An error occurred while checking terms.', 'simple-tags'),
-			'post_required' => esc_html__('Kindly select a post to use preview feature.', 'simple-tags'),
+			'post_required' => esc_html__('Select a post to see a preview.', 'simple-tags'),
 			'save_settings' => esc_html__('Auto Term ID missing. Kindly save the auto term before using this feature.', 'simple-tags'),
 			'delete_label' => esc_html__('Delete', 'simple-tags'),
 			'ai_nonce' => wp_create_nonce('taxopress-ai-ajax-nonce'),
@@ -721,6 +721,8 @@ class SimpleTags_Admin
 			'post_date'               => '%post_date%',
 			'post_thumb_url'          => '%post_thumb_url%',
 			'post_category'           => '%post_category%',
+			'post_size'               => '%post_size%',
+			'post_color'              => '%post_color%',
 			'merge_cancelled'         => esc_html__('Merge has been cancelled.', 'simple-tags'),
 			'cancel_label' 		      => esc_html__('Cancel', 'simple-tags'),
 			'paused_label'            => esc_html__('Pause.', 'simple-tags'),
@@ -743,6 +745,11 @@ class SimpleTags_Admin
 			'enable_ibm_watson_ai_source' => SimpleTags_Plugin::get_option_value('enable_ibm_watson_ai_source'),
 			'enable_dandelion_ai_source' => SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'),
 			'enable_lseg_ai_source'    => SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'),
+			'plugin_url' => STAGS_URL,
+			'using_default_text' => __('Using default TaxoPress image', 'simple-tags'),
+			'select_image_label' => esc_html__('Select Media', 'simple-tags'),
+			'change_image_label' => esc_html__('Change Media', 'simple-tags'),
+			'use_default_label' => esc_html__('Use Default', 'simple-tags'),
 		]);
 
 
@@ -772,7 +779,7 @@ class SimpleTags_Admin
 		}
 
 		// add jQuery tabs for options page. Use jQuery UI Tabs from WP
-		if (isset($_GET['page']) && in_array($_GET['page'], array('st_options', 'st_terms_display'))) {
+		if (isset($_GET['page']) && in_array($_GET['page'], array('st_options', 'st_terms_display', 'st_post_tags', 'st_related_posts',))) {
 			wp_enqueue_script('jquery-ui-tabs');
 			wp_enqueue_script('st-helper-options');
 		}

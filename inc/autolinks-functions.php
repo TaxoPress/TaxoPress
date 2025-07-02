@@ -182,6 +182,8 @@ function taxopress_create_default_autolink()
     $default['autolink_submit']                                = 'Add Auto Links';
     $default['cpt_tax_status']                                 = 'new';
     $default['taxopress_autolink']['enable_customurl_field']   = ['post_tag', 'category'];
+    $default['taxopress_autolink']['enable_custom_urls']       = '1';
+    $default['taxopress_autolink']['archivepage']               = '1';
     $result                                                    = taxopress_update_autolink($default);
     update_option('taxopress_default_autolinks', $result);
 }
@@ -248,6 +250,14 @@ function taxopress_update_autolink($data = [])
     }
     if (!isset($data['taxopress_autolink']['enable_customurl_field'])) {
         $data['taxopress_autolink']['enable_customurl_field'] = isset($data['autolink_submit']) ? [] : ['post_tag', 'category'];
+    }
+
+    if (!isset($data['taxopress_autolink']['enable_custom_urls'])) {
+        $data['taxopress_autolink']['enable_custom_urls'] = 0;
+    }
+
+    if (!isset($data['taxopress_autolink']['archivepage'])) {
+        $data['taxopress_autolink']['archivepage'] = 0;
     }
     
 
