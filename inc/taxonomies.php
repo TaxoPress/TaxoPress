@@ -1527,6 +1527,16 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                             $taxonomy_label = !empty($current['label']) ? $current['label'] : esc_html__('Categories', 'simple-tags');
                                             ?>
                                             <tr>
+                                                <th scope="row">
+                                                    <label for="taxopress_enable_ordering"><?php esc_html_e('Enable TaxoPress ordering', 'simple-tags'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="checkbox" name="cpt_custom_tax[enable_taxopress_ordering]" id="taxopress_enable_ordering" value="1"
+                                                        <?php checked( !empty($current['enable_taxopress_ordering']), 1 ); ?> />
+                                                    <span class="description"><?php esc_html_e('Enable TaxoPress ordering for this taxonomy.', 'simple-tags'); ?></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td colspan="2">
                                                     <div class="taxopress-description">
                                                         <?php

@@ -839,14 +839,18 @@ class TaxopressCoreAdmin
 
     }
 
-    public function taxopress_order_column_free($item){
-
-        // Get the orderby value from the taxonomy object
+    public function taxopress_order_column_free($item)
+    {
+        // Get the orderby value and ordering enabled flag from the taxonomy object
         $taxonomies = taxopress_get_all_edited_taxonomy_data();
         $order_value = '';
+        $ordering_enabled = false;
 
         if (isset($taxonomies[$item->name]['orderby'])) {
             $order_value = $taxonomies[$item->name]['orderby'];
+        }
+        if (!empty($taxonomies[$item->name]['enable_taxopress_ordering'])) {
+            $ordering_enabled = true;
         }
 
         $orderby_options = [
@@ -864,9 +868,21 @@ class TaxopressCoreAdmin
             )
         );
 
+        if (!$ordering_enabled) {
+            // Show Disabled with tooltip
+            return sprintf(
+                '<div class="pp-tooltips-library" data-toggle="tooltip">
+                    <span class="taxopress-order-disabled">%s</span>
+                    <div class="taxopress tooltip-text">%s</div>
+                </div>',
+                esc_html__('Disabled', 'simple-tags'),
+                esc_html__('You have disabled TaxoPress ordering', 'simple-tags')
+            );
+        }
+
         $order_label = isset($orderby_options[$order_value]) ? $orderby_options[$order_value] : esc_html__('ID', 'simple-tags');
         $tooltip = sprintf(
-            'Terms in this taxonomy are ordered by %s',
+            esc_html__('Terms in this taxonomy are ordered by %s', 'simple-tags'),
             $order_label
         );
 
@@ -882,17 +898,14 @@ class TaxopressCoreAdmin
                 esc_html($tooltip)
             );
         }
-
-        return sprintf(
+            return sprintf(
             '<div class="pp-tooltips-library" data-toggle="tooltip">
                 %s
                 <div class="taxopress tooltip-text">%s</div>
             </div>',
             esc_html($order_label),
             esc_html($tooltip)
-
         );
-
     }
     /**
      * Display the ordering method for the tag cloud in the settings
@@ -933,7 +946,7 @@ class TaxopressCoreAdmin
                     <div>
                         <span class="pp-tooltips-library" data-toggle="tooltip">
                             <span class="dashicons dashicons-lock taxopress-select-icon order"></span>
-                            <span class="taxopress tooltip-text"><?php echo esc_html__('Upgrade to TaxoPress to use Term Order to manually order Terms', 'simple-tags'); ?></span>
+                            <span class="taxopress tooltip-text"><?php echo esc_html__('Upgrade to TaxoPress Pro to use Term Order to manually order Terms', 'simple-tags'); ?></span>
                         </span>
                     </div>
                 </div>
@@ -977,7 +990,7 @@ class TaxopressCoreAdmin
                     <div>
                         <span class="pp-tooltips-library" data-toggle="tooltip">
                             <span class="dashicons dashicons-lock taxopress-select-icon order"></span>
-                            <span class="taxopress tooltip-text"><?php echo esc_html__('Upgrade to TaxoPress to use Term Order to manually order Terms', 'simple-tags'); ?></span>
+                            <span class="taxopress tooltip-text"><?php echo esc_html__('Upgrade to TaxoPress Pro to use Term Order to manually order Terms', 'simple-tags'); ?></span>
                         </span>
                     </div>
                 </div>
