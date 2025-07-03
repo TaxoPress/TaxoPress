@@ -268,6 +268,9 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.37.1- 2025-07-03
+*Fixed: Allow Users to disable TaxoPress Ordering Methods, #2687
+
 v3.37.0- 2025-06-23
 * Fixed: Warning issue from Auto Links, #2663
 * Fixed: Not all design settings apply to Terms Display designs, #2658
