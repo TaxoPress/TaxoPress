@@ -1547,7 +1547,7 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                                                 <td>
                                                     <input type="checkbox" name="cpt_custom_tax[enable_taxopress_ordering]" id="taxopress_enable_ordering" value="1"
                                                         <?php checked( !empty($current['enable_taxopress_ordering']), 1 ); ?> />
-                                                    <span class="description"><?php esc_html_e('Enable TaxoPress ordering for this taxonomy. If disabled, WordPress and other plugins control ordering.', 'simple-tags'); ?></span>
+                                                    <span class="description"><?php esc_html_e('Enable TaxoPress ordering for this taxonomy in the frontend and admin area.', 'simple-tags'); ?></span>
                                                 </td>
                                             </tr>
                                             <?php
