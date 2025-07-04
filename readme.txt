@@ -271,7 +271,6 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 v3.37.2- 2025-07-04
 *Fixed: Uncaught Error: array_merge(): Argument #1 must be of type array, string given in taxonomies-functions, #2698
 *Fixed: Auto Links new engine message is under two tabs, #2702
-*Update: Hide the Custom URL column on Terms screen, #2700
 
 v3.37.1- 2025-07-03
 *Fixed: Allow Users to disable TaxoPress Ordering Methods, #2687
