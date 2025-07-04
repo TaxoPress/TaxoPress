@@ -968,8 +968,8 @@ function taxopress_get_taxonomy_data()
  */
 function taxopress_get_all_edited_taxonomy_data()
 {
-    $internal_taxonomies          = taxopress_get_taxonomy_data();
-    $external_taxonomies = taxopress_get_extername_taxonomy_data();
+    $internal_taxonomies = (array) taxopress_get_taxonomy_data();
+    $external_taxonomies = (array) taxopress_get_extername_taxonomy_data();
 
     $all_taxonomies = array_merge($internal_taxonomies, $external_taxonomies);
 
@@ -2541,7 +2541,7 @@ function taxopress_get_terms_args($args, $taxonomies) {
     $settings = $taxonomy_settings[$tax] ?? [];
 
     // Only run if enabled
-    if (empty($settings['enable_taxopress_ordering'])) {
+    if (!isset($settings['enable_taxopress_ordering']) || empty($settings['enable_taxopress_ordering'])) {
         return $args;
     }
 
@@ -2568,7 +2568,7 @@ function taxopress_filter_terms($terms, $taxonomies, $args, $term_query) {
     $settings = $taxonomy_settings[$tax] ?? [];
 
     // Only run if enabled
-    if (empty($settings['enable_taxopress_ordering'])) {
+    if (!isset($settings['enable_taxopress_ordering']) || empty($settings['enable_taxopress_ordering'])) {
         return $terms;
     }
 
@@ -2581,8 +2581,8 @@ function taxopress_terms_order_frontend($terms, $post_id, $taxonomy) {
     $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
     $settings = $taxonomy_settings[$taxonomy] ?? [];
 
-    // Only run if enabled
-    if (empty($settings['enable_taxopress_ordering'])) {
+    //Only run if enabled
+    if (!isset($settings['enable_taxopress_ordering']) || empty($settings['enable_taxopress_ordering'])) {
         return $terms;
     }
 

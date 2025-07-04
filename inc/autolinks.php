@@ -1009,37 +1009,6 @@ class SimpleTags_Autolink
                                                                 'required'  => false,
                                                             ]);
 
-                                                            $select             = [
-                                                                'options' => [
-                                                                    [
-                                                                        'attr'    => '0',
-                                                                        'text'    => esc_attr__('False', 'simple-tags'),
-                                                                    ],
-                                                                    [
-                                                                        'attr' => '1',
-                                                                        'text' => esc_attr__('True', 'simple-tags'),
-                                                                        'default' => 'true',
-                                                                    ],
-                                                                ],
-                                                            ];
-                                                            $selected           = (isset($current) && isset($current['autolink_dom'])) ? taxopress_disp_boolean($current['autolink_dom']) : '';
-                                                            $select['selected'] = !empty($selected) ? $current['autolink_dom'] : '';
-
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_select_checkbox_input([
-                                                                'namearray'  => 'taxopress_autolink',
-                                                                'name'       => 'autolink_dom',
-                                                                'labeltext'  => esc_html__(
-                                                                    'Use new Auto Links engine',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'aftertext'  => esc_html__(
-                                                                    'The new Auto Links engine uses the DOMDocument PHP class and may offer better performance. If your server does not support this functionality, TaxoPress will use the usual engine.',
-                                                                    'simple-tags'
-                                                                ),
-                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ]);
-
                                                             ?>
                                                         </table>
 
