@@ -267,18 +267,6 @@ class Taxopress_Terms_List extends WP_List_Table
     }
 
     /**
-     * Set default hidden columns for the terms table.
-     *
-     * @return array
-     */
-    public function get_hidden_columns()
-    {
-        $hidden = parent::get_hidden_columns();
-        $hidden[] = 'taxopress_custom_url';
-        return $hidden;
-    }
-
-    /**
      * Render the bulk edit checkbox
      *
      * @param array $item
