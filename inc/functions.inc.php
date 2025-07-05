@@ -61,6 +61,17 @@ function taxopress_menu_separator($identifier, $parent) {
 }
 
 /**
+ * Method for adding default hidden columns to the TaxoPress Terms screen.
+ */
+add_filter('default_hidden_columns', 'taxopress_terms_default_hidden_columns', 10, 2);
+function taxopress_terms_default_hidden_columns($hidden, $screen) {
+    if (isset($screen->id) && $screen->id === 'taxopress_page_st_terms') {
+        $hidden[] = 'taxopress_custom_url';
+    }
+    return $hidden;
+}
+
+/**
  * Change menu item order
  */
 add_action('admin_menu', 'taxopress_re_order_menu', 15);
