@@ -2493,6 +2493,14 @@ function taxopress_sort_terms_by_settings($terms, $taxonomy, $settings = [], $is
                 $ordered_terms[] = $term;
             }
 
+            if (count($ordered_terms) !== count($terms)) {
+                foreach ($terms as $term) {
+                    if (!in_array($term, $ordered_terms, true)) {
+                        $ordered_terms[] = $term;
+                    }
+                }
+            }
+
             return $order_setting === 'desc' ? array_reverse($ordered_terms) : $ordered_terms;
         }
     }
