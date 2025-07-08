@@ -268,12 +268,17 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.37.2- 2025-07-04
-*Fixed: Uncaught Error: array_merge(): Argument #1 must be of type array, string given in taxonomies-functions, #2698
-*Fixed: Auto Links new engine message is under two tabs, #2702
+v3.37.2- 2025-07-08
+* Fixed: Uncaught Error: array_merge(): Argument #1 must be of type array, string given in taxonomies-functions, #2698
+* Fixed: Auto Links new engine message is under two tabs, #2702
+* Fixed: No tags text is missing on the frontend, #2712
+* Fixed: unable to uncheck categories in post editor, #2697
+* Fixed: Term Order doesn't support nested Categories, #2695
+* Update: Hide the Custom URL column on Terms screen, #2700
+* Update: Update "Taxonomy Terms Table" name, #2699
 
 v3.37.1- 2025-07-03
-*Fixed: Allow Users to disable TaxoPress Ordering Methods, #2687
+* Fixed: Allow Users to disable TaxoPress Ordering Methods, #2687
 
 v3.37.0- 2025-06-23
 * Fixed: Warning issue from Auto Links, #2663
