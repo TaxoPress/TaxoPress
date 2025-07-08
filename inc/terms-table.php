@@ -19,18 +19,16 @@ class Taxopress_Terms_List extends WP_List_Table
 
     /**
      * Flatten a hierarchical terms array into a flat array.
-     *
-     * This function is optimized for performance by pre-indexing terms and their children,
-     * allowing for efficient depth-first traversal without repeated lookups.
-     *
+     * 
      * @param array $terms Array of term objects.
      * @param int $max_depth Maximum depth to traverse (default 10).
      * @return array Flattened array of term objects.
-     */
-    function taxopress_flatten_terms_tree($terms, $max_depth = 10) {
+    */
+     function taxopress_flatten_terms_tree($terms, $max_depth = 7) {
         $flat = [];
         $map = [];
         $children_map = [];
+        $visited = [];
 
         // Build a map of terms by ID and their children
         foreach ($terms as $term) {
@@ -55,6 +53,10 @@ class Taxopress_Terms_List extends WP_List_Table
             if ($depth > $max_depth) {
                 continue;
             }
+            if (isset($visited[$term->term_id])) {
+                continue; // Prevent cycles
+            }
+            $visited[$term->term_id] = true;
 
             $flat[] = $term;
 
@@ -69,10 +71,9 @@ class Taxopress_Terms_List extends WP_List_Table
         return $flat;
     }
 
-
     /**
      * Arrange terms in hierarchical order with depth info for dash prefixing.
-     */
+    */
     function taxopress_arrange_terms_hierarchically($terms) {
         $terms_by_id = [];
         $children = [];
@@ -159,7 +160,6 @@ class Taxopress_Terms_List extends WP_List_Table
                     'pad_counts' => true,
                     'update_term_meta_cache' => true,
                     'search' => $search,
-                    'include' => 'all',
                 ];
 
                 if (!$use_custom_order) {
@@ -230,7 +230,6 @@ class Taxopress_Terms_List extends WP_List_Table
             'order' => $order_setting,
             'search' => $search,
             'hide_empty' => false,
-            'include' => 'all',
             'pad_counts' => true,
             'update_term_meta_cache' => true,
         ];
