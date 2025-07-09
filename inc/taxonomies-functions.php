@@ -958,7 +958,8 @@ function taxopress_post_form_action($ui)
  */
 function taxopress_get_taxonomy_data()
 {
-    return apply_filters('taxopress_get_taxonomy_data', get_option('taxopress_taxonomies', []), get_current_blog_id());
+    $data = apply_filters('taxopress_get_taxonomy_data', get_option('taxopress_taxonomies', []), get_current_blog_id());
+    return is_array($data) ? $data : [];
 }
 
 /**
@@ -968,8 +969,8 @@ function taxopress_get_taxonomy_data()
  */
 function taxopress_get_all_edited_taxonomy_data()
 {
-    $internal_taxonomies          = taxopress_get_taxonomy_data();
-    $external_taxonomies = taxopress_get_extername_taxonomy_data();
+    $internal_taxonomies = (array) taxopress_get_taxonomy_data();
+    $external_taxonomies = (array) taxopress_get_extername_taxonomy_data();
 
     $all_taxonomies = array_merge($internal_taxonomies, $external_taxonomies);
 
@@ -2320,7 +2321,7 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
             $taxonomies = taxopress_get_taxonomy_data();
 
             $current = false;
-            if ($request_tax && array_key_exists($request_tax, $taxonomies)) {
+            if ($request_tax && is_array($taxonomies) && array_key_exists($request_tax, $taxonomies)) {
                 $current       = $taxonomies[$request_tax];
             } elseif (taxonomy_exists($request_tax)) {
                 //not out taxonomy
@@ -2493,6 +2494,14 @@ function taxopress_sort_terms_by_settings($terms, $taxonomy, $settings = [], $is
                 $ordered_terms[] = $term;
             }
 
+            if (count($ordered_terms) !== count($terms)) {
+                foreach ($terms as $term) {
+                    if (!in_array($term, $ordered_terms, true)) {
+                        $ordered_terms[] = $term;
+                    }
+                }
+            }
+
             return $order_setting === 'desc' ? array_reverse($ordered_terms) : $ordered_terms;
         }
     }
@@ -2541,7 +2550,7 @@ function taxopress_get_terms_args($args, $taxonomies) {
     $settings = $taxonomy_settings[$tax] ?? [];
 
     // Only run if enabled
-    if (empty($settings['enable_taxopress_ordering'])) {
+    if (!isset($settings['enable_taxopress_ordering']) || empty($settings['enable_taxopress_ordering'])) {
         return $args;
     }
 
@@ -2568,7 +2577,7 @@ function taxopress_filter_terms($terms, $taxonomies, $args, $term_query) {
     $settings = $taxonomy_settings[$tax] ?? [];
 
     // Only run if enabled
-    if (empty($settings['enable_taxopress_ordering'])) {
+    if (!isset($settings['enable_taxopress_ordering']) || empty($settings['enable_taxopress_ordering'])) {
         return $terms;
     }
 
@@ -2581,8 +2590,8 @@ function taxopress_terms_order_frontend($terms, $post_id, $taxonomy) {
     $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
     $settings = $taxonomy_settings[$taxonomy] ?? [];
 
-    // Only run if enabled
-    if (empty($settings['enable_taxopress_ordering'])) {
+    //Only run if enabled
+    if (!isset($settings['enable_taxopress_ordering']) || empty($settings['enable_taxopress_ordering'])) {
         return $terms;
     }
 
