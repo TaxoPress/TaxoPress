@@ -160,6 +160,7 @@ class Taxopress_Terms_List extends WP_List_Table
                     'pad_counts' => true,
                     'update_term_meta_cache' => true,
                     'search' => $search,
+                    'include' => 'all',
                 ];
 
                 if (!$use_custom_order) {
@@ -200,9 +201,6 @@ class Taxopress_Terms_List extends WP_List_Table
 
                     // Merge: new (unordered) terms first, then custom-ordered ones
                     $terms = array_merge($terms, $new_terms, $ordered_terms);
-                    if ($use_custom_order && strtolower($order_setting) === 'desc') {
-                        $terms = array_reverse($terms);
-                    }
                 } else {
                     if ($orderby_setting === 'random') {
                         shuffle($taxonomy_terms);
@@ -219,6 +217,13 @@ class Taxopress_Terms_List extends WP_List_Table
                 $terms = array_slice($terms, $offset, $items_per_page);
             }
 
+            // HIERARCHY SUPPORT
+            if (!empty($selected_taxonomy)) {
+                $terms = $this->taxopress_arrange_terms_hierarchically($terms);
+            } else {
+                $terms = $this->taxopress_flatten_terms_tree($terms);
+            }
+
             return $terms;
         }
 
@@ -230,22 +235,13 @@ class Taxopress_Terms_List extends WP_List_Table
             'order' => $order_setting,
             'search' => $search,
             'hide_empty' => false,
+            'include' => 'all',
             'pad_counts' => true,
             'update_term_meta_cache' => true,
         ];
-
-        $single_taxonomy_selected = (count($taxonomies) === 1);
-        $needs_flatten = (count($taxonomies) > 1 || $show_all_terms_in_taxonomy) && !$count;
-        $is_hierarchical = false;
-        if ($single_taxonomy_selected) {
-            $taxonomy_obj = get_taxonomy($taxonomies[0]);
-            $is_hierarchical = $taxonomy_obj && $taxonomy_obj->hierarchical;
-        }
-
-        // Only set offset/number if not arranging hierarchically or flattening
         if ($count || $show_all_terms_in_taxonomy) {
             $terms_attr['number'] = 0;
-        } elseif (!$needs_flatten && (!$single_taxonomy_selected || !$is_hierarchical)) {
+        } else {
             $terms_attr['offset'] = $offset;
             $terms_attr['number'] = $items_per_page;
         }
@@ -256,21 +252,18 @@ class Taxopress_Terms_List extends WP_List_Table
             return [];
         }
 
-        if ($needs_flatten) {
-            $terms = $this->taxopress_flatten_terms_tree($terms);
-            $terms = array_slice($terms, $offset, $items_per_page);
-        } elseif ($single_taxonomy_selected && $is_hierarchical && !$count) {
-            // Arrange hierarchically for a single hierarchical taxonomy
-            $terms = $this->taxopress_arrange_terms_hierarchically($terms);
-            $terms = array_slice($terms, $offset, $items_per_page);
-        }
-
-        // Random order handling
         if ($orderby_setting === 'random') {
             shuffle($terms);
             if ($order_setting === 'desc') {
                 $terms = array_reverse($terms);
             }
+        }
+
+        // HIERARCHY SUPPORT
+        if (!empty($selected_taxonomy)) {
+            $terms = $this->taxopress_arrange_terms_hierarchically($terms);
+        } else {
+            $terms = $this->taxopress_flatten_terms_tree($terms);
         }
 
         return $terms;
