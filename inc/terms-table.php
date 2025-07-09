@@ -17,10 +17,97 @@ class Taxopress_Terms_List extends WP_List_Table
         ]);
     }
 
+    /**
+     * Flatten a hierarchical terms array into a flat array.
+     * 
+     * @param array $terms Array of term objects.
+     * @param int $max_depth Maximum depth to traverse (default 10).
+     * @return array Flattened array of term objects.
+    */
+     function taxopress_flatten_terms_tree($terms, $max_depth = 7) {
+        $flat = [];
+        $map = [];
+        $children_map = [];
+        $visited = [];
+
+        // Build a map of terms by ID and their children
+        foreach ($terms as $term) {
+            $map[$term->term_id] = $term;
+            $children_map[$term->parent][] = $term;
+        }
+
+        // Initialize stack with root-level terms (no valid parent)
+        $stack = [];
+        foreach ($terms as $term) {
+            if ($term->parent === 0 || !isset($map[$term->parent])) {
+                $stack[] = ['term' => $term, 'depth' => 0];
+            }
+        }
+
+        // Iterative depth-first traversal
+        while (!empty($stack)) {
+            $node = array_pop($stack);
+            $term = $node['term'];
+            $depth = $node['depth'];
+
+            if ($depth > $max_depth) {
+                continue;
+            }
+            if (isset($visited[$term->term_id])) {
+                continue; // Prevent cycles
+            }
+            $visited[$term->term_id] = true;
+
+            $flat[] = $term;
+
+            // Use pre-indexed children map
+            if (!empty($children_map[$term->term_id])) {
+                foreach (array_reverse($children_map[$term->term_id]) as $child) {
+                    $stack[] = ['term' => $child, 'depth' => $depth + 1];
+                }
+            }
+        }
+
+        return $flat;
+    }
+
+    /**
+     * Arrange terms in hierarchical order with depth info for dash prefixing.
+    */
+    function taxopress_arrange_terms_hierarchically($terms) {
+        $terms_by_id = [];
+        $children = [];
+        foreach ($terms as $term) {
+            $terms_by_id[$term->term_id] = $term;
+            $children[$term->parent][] = $term->term_id;
+        }
+
+        $ordered = [];
+        $add_term = function($term_id, $depth) use (&$add_term, &$terms_by_id, &$children, &$ordered) {
+            $term = $terms_by_id[$term_id];
+            $term->taxopress_depth = $depth;
+            $ordered[] = $term;
+            if (!empty($children[$term_id])) {
+                foreach ($children[$term_id] as $child_id) {
+                    $add_term($child_id, $depth + 1);
+                }
+            }
+        };
+
+        // Start with root terms
+        foreach ($terms as $term) {
+            if ($term->parent == 0 || !isset($terms_by_id[$term->parent])) {
+                $add_term($term->term_id, 0);
+            }
+        }
+        return $ordered;
+    }
+
     public function get_all_terms($count = false)
     {
 
         $taxonomies = array_keys(get_all_taxopress_taxonomies_request());
+        $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
 
         $search = (!empty($_REQUEST['s'])) ? sanitize_text_field($_REQUEST['s']) : '';
 
@@ -31,8 +118,6 @@ class Taxopress_Terms_List extends WP_List_Table
         $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? [sanitize_text_field($_REQUEST['terms_filter_post_type'])] : '';
         $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
 
-
-        $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
         $order_setting = isset($taxonomy_settings[$selected_taxonomy]['order']) ? $taxonomy_settings[$selected_taxonomy]['order'] : 'desc';
         $orderby_setting = isset($taxonomy_settings[$selected_taxonomy]['orderby']) ? $taxonomy_settings[$selected_taxonomy]['orderby'] : 'ID';
 
@@ -49,7 +134,6 @@ class Taxopress_Terms_List extends WP_List_Table
         }
 
         // Check if any taxonomy uses manual ordering
-        $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
         $manual_order = false;
         foreach ($taxonomies as $taxonomy) {
             $order_setting = isset($taxonomy_settings[$taxonomy]['order']) ? $taxonomy_settings[$taxonomy]['order'] : 'desc';
@@ -133,6 +217,13 @@ class Taxopress_Terms_List extends WP_List_Table
                 $terms = array_slice($terms, $offset, $items_per_page);
             }
 
+            // HIERARCHY SUPPORT
+            if (!empty($selected_taxonomy)) {
+                $terms = $this->taxopress_arrange_terms_hierarchically($terms);
+            } else {
+                $terms = $this->taxopress_flatten_terms_tree($terms);
+            }
+
             return $terms;
         }
 
@@ -166,6 +257,13 @@ class Taxopress_Terms_List extends WP_List_Table
             if ($order_setting === 'desc') {
                 $terms = array_reverse($terms);
             }
+        }
+
+        // HIERARCHY SUPPORT
+        if (!empty($selected_taxonomy)) {
+            $terms = $this->taxopress_arrange_terms_hierarchically($terms);
+        } else {
+            $terms = $this->taxopress_flatten_terms_tree($terms);
         }
 
         return $terms;
@@ -718,8 +816,12 @@ class Taxopress_Terms_List extends WP_List_Table
     {
         $taxonomy = get_taxonomy($item->taxonomy);
 
+        // Add dashes for hierarchy
+        $depth = isset($item->taxopress_depth) ? (int)$item->taxopress_depth : 0;
+        $dash = $depth > 0 ? str_repeat('&mdash; ', $depth) : '';
+
         $title = sprintf(
-            '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
+            '<a href="%1$s"><strong><span class="row-title">%2$s%3$s</span></strong></a>',
             add_query_arg(
                 [
                     'taxonomy' => $item->taxonomy,
@@ -728,6 +830,7 @@ class Taxopress_Terms_List extends WP_List_Table
                 ],
                 admin_url('term.php')
             ),
+            $dash,
             esc_html($item->name)
         );
 

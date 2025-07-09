@@ -958,7 +958,8 @@ function taxopress_post_form_action($ui)
  */
 function taxopress_get_taxonomy_data()
 {
-    return apply_filters('taxopress_get_taxonomy_data', get_option('taxopress_taxonomies', []), get_current_blog_id());
+    $data = apply_filters('taxopress_get_taxonomy_data', get_option('taxopress_taxonomies', []), get_current_blog_id());
+    return is_array($data) ? $data : [];
 }
 
 /**
@@ -2320,7 +2321,7 @@ function taxopress_show_all_cpt_in_archive_result($request_tax){
             $taxonomies = taxopress_get_taxonomy_data();
 
             $current = false;
-            if ($request_tax && array_key_exists($request_tax, $taxonomies)) {
+            if ($request_tax && is_array($taxonomies) && array_key_exists($request_tax, $taxonomies)) {
                 $current       = $taxonomies[$request_tax];
             } elseif (taxonomy_exists($request_tax)) {
                 //not out taxonomy
