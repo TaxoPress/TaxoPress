@@ -7,6 +7,11 @@ function st_extract_last (term) {
 }
 
 function st_init_autocomplete(p_target, p_url, p_min_chars) {
+  // Add security nonce to URL if not present
+  if (!p_url.includes('nonce=')) {
+      p_url = p_url + '&nonce=' + st_admin_localize.check_nonce;
+  }
+
   // Dynamic width
   let p_width = jQuery(p_target).width();
   if (p_width === 0) {
@@ -91,6 +96,11 @@ jQuery(document).ready(function($) {
   });
 
   function autoterms_init_autocomplete (p_target, p_url, p_min_chars) {
+
+      // Add security nonce to URL if not present
+      if (!p_url.includes('nonce=')) {
+          p_url = p_url + '&nonce=' + st_admin_localize.check_nonce;
+      }
 
       // Dynamic width ?
       var p_width = jQuery('' + p_target).width()

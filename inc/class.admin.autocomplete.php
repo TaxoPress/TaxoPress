@@ -32,6 +32,7 @@ class SimpleTags_Admin_Autocomplete {
 			array(
 				'jquery',
 				'jquery-ui-autocomplete',
+				'st-admin-js'
 			),
 			STAGS_VERSION
 		);
@@ -52,6 +53,22 @@ class SimpleTags_Admin_Autocomplete {
 	 *
 	 */
 	public static function ajax_check() {
+		// Check if nonce is set and valid
+		if (!isset($_REQUEST['nonce']) || !wp_verify_nonce($_REQUEST['nonce'], 'st-admin-js')) {
+			wp_send_json_error(array('message' => esc_html__('Security check failed.', 'simple-tags')));
+		}
+
+		// Check if taxonomy is provided and exists
+		$taxonomy = isset($_REQUEST['taxonomy']) ? sanitize_text_field($_REQUEST['taxonomy']) : 'post_tag';
+		if (!taxonomy_exists($taxonomy)) {
+			wp_send_json_error(array('message' => esc_html__('Invalid taxonomy.', 'simple-tags')));
+		}
+
+		// Check user capabilities for the specific taxonomy
+		if (!current_user_can('edit_terms') && !current_user_can('manage_' . $taxonomy)) {
+			wp_send_json_error(array('message' => esc_html__('You do not have permission to manage these terms.', 'simple-tags')));
+		}
+
 		if ( isset( $_GET['stags_action'] ) && 'helper_js_collection' === $_GET['stags_action'] ) {
 			self::ajax_local_tags();
 		}
@@ -136,7 +153,7 @@ class SimpleTags_Admin_Autocomplete {
 		</p>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('#adv-tags-input', '<?php echo esc_url_raw(admin_url( "admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection" )); ?>', <?php echo (int)$autocomplete_min; ?>)
+          st_init_autocomplete('#adv-tags-input', '<?php echo esc_url_raw(admin_url( "admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&nonce=" . wp_create_nonce( 'st-admin-js' ) )); ?>', <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
@@ -156,7 +173,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('#auto_list', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . $taxonomy )); ?>", <?php echo (int)$autocomplete_min; ?>)
+          st_init_autocomplete('#auto_list', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . $taxonomy . '&nonce=' . wp_create_nonce( 'st-admin-js' ) )); ?>", <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
@@ -176,7 +193,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . $taxonomy )); ?>", <?php echo (int)$autocomplete_min; ?>)
+          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . $taxonomy . '&nonce=' . wp_create_nonce( 'st-admin-js' ) )); ?>", <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
@@ -196,7 +213,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . esc_attr($taxonomy) )); ?>", <?php echo (int)$autocomplete_min; ?>)
+          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . esc_attr($taxonomy) ) . '&nonce=' . wp_create_nonce( 'st-admin-js' )); ?>", <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
@@ -216,7 +233,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=')); ?>", <?php echo (int)$autocomplete_min; ?>, '.taxopress-dynamic-taxonomy')
+          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=&nonce=' . wp_create_nonce( 'st-admin-js' ) )); ?>", <?php echo (int)$autocomplete_min; ?>, '.taxopress-dynamic-taxonomy')
           -->
 		</script>
 		<?php
