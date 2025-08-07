@@ -155,3 +155,12 @@
 .taxopress-child-list li {
     font-weight: normal;
 }
+
+.taxopress-box-list img.custom-image-class {
+    width: var(--tp-image-width, 200px);
+    height: var(--tp-image-height, 200px);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    display: block;
+    max-width: 100%;
+}

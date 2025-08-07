@@ -37,6 +37,8 @@ class SimpleTags_Client_RelatedPosts {
 
 		// Get options
 		$options = SimpleTags_Plugin::get_option();
+		$width = isset($options['rp_image_width']) ? (int)$options['rp_image_width'] : 200;
+		$height = isset($options['rp_image_height']) ? (int)$options['rp_image_height'] : 200;
 
 		$defaults = array(
 			'taxonomy'      => 'post_tag',
@@ -59,11 +61,14 @@ class SimpleTags_Client_RelatedPosts {
 			'title'         => __( '<h4>Related posts</h4>', 'simple-tags' ),
 			'nopoststext'   => __( 'No related posts.', 'simple-tags' ),
 			'dateformat'    => get_option( 'date_format' ),
-			'xformat'       => __( '<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"> 
-			                       %post_title% <br> 
-			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
-			                       </a> 
-			                       (%post_comment%)', 'simple-tags' ),
+			'xformat' => sprintf(
+				'<a href="%%post_permalink%%" title="%%post_title%% (%%post_date%%)" style="font-size:%%post_size%%;color:%%post_color%%">' .
+				'<img src="%%post_thumb_url%%" height="%d" width="%d" class="custom-image-class"/>' .
+				'<br>%%post_title%%<br>%%post_category%%</a>' .
+				'(%%post_comment%%)',
+				$width,
+				$height
+			),
              'ID'            => 0,
 			 'hide_title'    => 0,
 			 'hide_output'   => 0,
@@ -473,7 +478,36 @@ class SimpleTags_Client_RelatedPosts {
 		 $element_loop = str_replace('%post_category%', $post_category, $element_loop);
 
 		// Add featured Image
-		$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, $imageresolution );
+		$post_thumbnail_id = get_post_thumbnail_id($result->ID);
+		if ($post_thumbnail_id) {
+			// Extract height and width from xformat
+			preg_match('/height="(\d+)"/', $xformat, $height_matches);
+			preg_match('/width="(\d+)"/', $xformat, $width_matches);
+			
+			$desired_height = isset($height_matches[1]) ? (int)$height_matches[1] : 200;
+			$desired_width = isset($width_matches[1]) ? (int)$width_matches[1] : 200;
+			
+			// Register dynamic image size
+			add_image_size('taxopress-related-dynamic', $desired_width, $desired_height, true);
+			
+			// Get image with user-specified dimensions
+			$image = wp_get_attachment_image_src($post_thumbnail_id, 'taxopress-related-dynamic');
+			
+			if ($image) {
+				$post_thumbnail_url = $image[0];
+				// Update CSS variables for this specific image
+				$element_loop = str_replace(
+					'class="custom-image-class"',
+					sprintf('class="custom-image-class" style="width:%dpx;height:%dpx;object-fit:cover"', 
+						$desired_width, 
+						$desired_height
+					),
+					$element_loop
+				);
+			}
+		} else {
+			$post_thumbnail_url = '';
+		}
 
 		if (empty($post_thumbnail_url)) {
 			if ($default_featured_media === 'default') {
@@ -481,7 +515,27 @@ class SimpleTags_Client_RelatedPosts {
 			} elseif (!empty($default_featured_media)) {
 				$post_thumbnail_url = $default_featured_media;
 			}
-        }
+
+			// Apply width and height to default images
+			if (!empty($post_thumbnail_url)) {
+				// Extract height and width from xformat
+				preg_match('/height="(\d+)"/', $xformat, $height_matches);
+				preg_match('/width="(\d+)"/', $xformat, $width_matches);
+				
+				$desired_height = isset($height_matches[1]) ? (int)$height_matches[1] : 200;
+				$desired_width = isset($width_matches[1]) ? (int)$width_matches[1] : 200;
+
+				// Update CSS variables for default image
+				$element_loop = str_replace(
+					'class="custom-image-class"',
+					sprintf('class="custom-image-class" style="width:%dpx;height:%dpx;object-fit:cover"', 
+						$desired_width, 
+						$desired_height
+					),
+					$element_loop
+				);
+			}
+		}
 
 		if (empty($post_thumbnail_url)) {
 			$element_loop = preg_replace('/<img\b[^>]*\bsrc="%post_thumb_url%"[^>]*>/i', '', $element_loop);
