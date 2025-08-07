@@ -66,8 +66,8 @@ class SimpleTags_Client_RelatedPosts {
 				'<img src="%%post_thumb_url%%" height="%d" width="%d" class="custom-image-class"/>' .
 				'<br>%%post_title%%<br>%%post_category%%</a>' .
 				'(%%post_comment%%)',
-				self::$width,
-				self::$height
+				$width,
+				$height
 			),
              'ID'            => 0,
 			 'hide_title'    => 0,
