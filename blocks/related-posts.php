@@ -21,6 +21,16 @@ function st_related_posts_block_init()
         ['wp-blocks', 'wp-element', 'wp-components', 'wp-editor']
     );
 
+    // Register and enqueue frontend styles
+    wp_register_style(
+        'taxopress-frontend-css',
+        STAGS_URL . '/assets/frontend/css/frontend.css',
+        [],
+        STAGS_VERSION,
+        'all'
+    );
+    wp_enqueue_style('taxopress-frontend-css');
+
     // Register our block, and explicitly define the attributes we accept.
     $relatedposts_data = taxopress_get_relatedpost_data();
 
