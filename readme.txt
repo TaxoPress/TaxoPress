@@ -268,6 +268,12 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.37.3- 2025-08-10
+* Update: Add security checks for autocomplete, #2722
+* Update: Update tooltip library. #2720
+* Update: Add cropping for Related Posts images #2704
+* Fixed: Related Posts doesn't display correct inside post editor, #2705
+
 v3.37.2- 2025-07-09
 * Fixed: Uncaught Error: array_merge(): Argument #1 must be of type array, string given in taxonomies-functions, #2698
 * Fixed: Auto Links new engine message is under two tabs, #2702
