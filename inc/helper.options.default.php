@@ -138,6 +138,8 @@ return array(
     'rp_min_color'        => '#353535',
     'rp_max_color'        => '#000000',
     'rp_unit'                => 'pt',
+    'rp_image_width' => 200,
+    'rp_image_height' => 200,
     // Tag cloud
     'cloud_taxonomy'         => 'post_tag',
     'cloud_selectionby'      => 'count',
