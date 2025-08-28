@@ -64,11 +64,6 @@ class SimpleTags_Admin_Autocomplete {
 			wp_send_json_error(array('message' => esc_html__('Invalid taxonomy.', 'simple-tags')));
 		}
 
-		// Check user capabilities for the specific taxonomy
-		if (!current_user_can('edit_terms') && !current_user_can('manage_' . $taxonomy)) {
-			wp_send_json_error(array('message' => esc_html__('You do not have permission to manage these terms.', 'simple-tags')));
-		}
-
 		if ( isset( $_GET['stags_action'] ) && 'helper_js_collection' === $_GET['stags_action'] ) {
 			self::ajax_local_tags();
 		}
