@@ -1126,6 +1126,19 @@ class SimpleTags_Autoterms
                                                     <?php
 
                                                     if (taxopress_is_pro_version() && taxopress_is_synonyms_enabled()) {
+                                                        $select = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '0',
+                                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '1',
+                                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                ],
+                                                        ];
                                                         $selected           = (isset($current) && isset($current['synonyms_term'])) ? taxopress_disp_boolean($current['synonyms_term']) : '';
                                                         $select['selected'] = !empty($selected) ? $current['synonyms_term'] : '';
                                                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
