@@ -268,6 +268,11 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.37.4- 2025-09-02
+* Update: Enable "Add terms if synonyms found" by default, #2727
+* Update: Update the OpenAI models, #2728
+* Fixed: Error with "Existing taxonony terms", #2732
+
 v3.37.3- 2025-08-10
 * Update: Add security checks for autocomplete, #2722
 * Update: Update tooltip library. #2720
