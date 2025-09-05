@@ -245,6 +245,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                         if ($autoterm_use_taxonomy) {
                             $request_args['suggest_terms'] = true;
                             $request_args['show_counts'] = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
+                            $request_args['settings_data'] = $settings_data;
 
                             $suggest_local_terms_results = TaxoPressAiAjax::get_existing_terms_results($request_args);
                 
@@ -478,6 +479,113 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 $terms = array_merge($structured_post_terms, $terms);
                             }
                         }
+
+                        // Apply Auto Terms settings consistently for "Suggest Existing Terms"
+                        if ($suggest_terms && !empty($settings_data)) {
+                            $autoterm_from = !empty($settings_data['autoterm_from']) ? $settings_data['autoterm_from'] : 'posts';
+
+                            $post_title_raw   = get_the_title($post_id);
+                            $post_content_raw = get_post_field('post_content', $post_id);
+
+                            if ($autoterm_from === 'post_title') {
+                                $scan_content = (string) $post_title_raw;
+                            } elseif ($autoterm_from === 'post_content') {
+                                $scan_content = (string) $post_content_raw;
+                            } else {
+                                $scan_content = (string) $content;
+                            }
+
+                            $scan_content = apply_filters('taxopress_filter_autoterm_content', $scan_content, $post_id, $settings_data);
+                            $scan_content = trim($scan_content);
+
+                            $autoterm_word       = !empty($settings_data['autoterm_word']) ? (int) $settings_data['autoterm_word'] : 0;
+                            $autoterm_hash       = !empty($settings_data['autoterm_hash']) ? (int) $settings_data['autoterm_hash'] : 0;
+                            $autoterm_regex_code = !empty($settings_data['autoterm_use_regex']) && !empty($settings_data['terms_regex_code']) ? stripslashes($settings_data['terms_regex_code']) : '';
+
+                            $autoterm_exclude = !empty($settings_data['autoterm_exclude']) ? (array) $settings_data['autoterm_exclude'] : [];
+                            $autoterm_useonly = !empty($settings_data['autoterm_useonly']) && !empty($settings_data['specific_terms']);
+                            $specific_terms   = $autoterm_useonly ? (array) $settings_data['specific_terms'] : [];
+
+                            $terms = array_filter((array) $terms, function($term_obj) use ($autoterm_exclude, $autoterm_useonly, $specific_terms) {
+                                $name = stripslashes($term_obj->name);
+                                if (!empty($autoterm_exclude) && in_array($name, $autoterm_exclude, true)) {
+                                    return false;
+                                }
+                                if ($autoterm_useonly && !in_array($name, $specific_terms, true)) {
+                                    return false;
+                                }
+                                return true;
+                            });
+
+                            $filtered_terms = [];
+                            foreach ($terms as $term_obj) {
+                                $primary_name = stripslashes($term_obj->name);
+                                $term_id      = (int) $term_obj->term_id;
+
+                                $check_terms = [$primary_name => $term_id];
+
+                                if (function_exists('taxopress_get_term_synonyms')) {
+                                    $syns = taxopress_get_term_synonyms($term_id);
+                                    if (!empty($syns)) {
+                                        foreach ($syns as $syn) {
+                                            $check_terms[$syn] = $term_id;
+                                        }
+                                    }
+                                }
+
+                                if (function_exists('taxopress_add_linked_term_options')) {
+                                    $check_terms = taxopress_add_linked_term_options($check_terms, $term_id, $existing_tax, false, true);
+                                }
+
+                                $term_matches = false;
+                                foreach ($check_terms as $check_term => $original_id) {
+                                    $check = (string) $check_term;
+
+                                    if (!empty($autoterm_regex_code)) {
+                                        $regex = str_replace('{term}', preg_quote($check, '/'), $autoterm_regex_code);
+                                        if (@preg_match($regex, '') !== false && preg_match($regex, $scan_content)) {
+                                            $term_matches = true;
+                                            break;
+                                        }
+                                    } elseif ($autoterm_word === 1) {
+                                        if (preg_match('/\b' . preg_quote($check, '/') . '\b/i', $scan_content)) {
+                                            $term_matches = true;
+                                            break;
+                                        }
+                                        if ($autoterm_hash === 1) {
+                                            if (stripos($scan_content, '#' . $check) !== false) {
+                                                $term_matches = true;
+                                                break;
+                                            }
+                                            if (substr($check, 0, 1) === '#') {
+                                                $trim = ltrim($check, '#');
+                                                if (preg_match('/\B#+' . preg_quote($trim, '/') . '\b/i', $scan_content)) {
+                                                    $term_matches = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if (stripos($scan_content, $check) !== false) {
+                                            $term_matches = true;
+                                            break;
+                                        }
+                                        if ($autoterm_hash === 1 && stripos($scan_content, '#' . $check) !== false) {
+                                            $term_matches = true;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if ($term_matches) {
+                                    $filtered_terms[] = $term_obj;
+                                }
+                            }
+
+                            $terms   = $filtered_terms;
+                            $content = $scan_content;
+                        }
+
                         if (!empty($terms)) {
 
                             if ($suggest_terms) {
