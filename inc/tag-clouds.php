@@ -570,22 +570,6 @@ class SimpleTags_Tag_Clouds
                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                             ] );
 
-                                            $select = [
-                                                'options' => [
-                                                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
-                                                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-                                                ],
-                                            ];
-                                            $selected = isset( $current ) ? taxopress_disp_boolean( $current['selection'] ) : '';
-                                            $select['selected'] = ! empty( $selected ) ? $current['selection'] : '';
-                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            echo $ui->get_select_checkbox_input_main( [
-                                                    'namearray'  => 'taxopress_tag_cloud',
-                                                    'name'       => 'selection',
-                                                    'labeltext'  => esc_html__( 'Ordering for choosing term from the database', 'simple-tags' ),
-                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                            ] );
-
                                             do_action('taxopress_tagcloud_ordering_method', $current);
 
 
