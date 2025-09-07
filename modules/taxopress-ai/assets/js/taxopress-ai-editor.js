@@ -685,6 +685,91 @@
       });
     }
 
+    $(document).on('click', '.tp-rename-tab', function (e) {
+    e.preventDefault();
+    const $tab = $(this).closest('li');
+    // reset any previous error
+    $tab.find('.tp-rename-tab-error').hide().text('');
+    $tab.find('.tp-tab-label').hide();
+    $tab.find('.tp-rename-tab').hide();
+    $tab.find('.tp-rename-inline-controls').show();
+    $tab.find('.tp-rename-tab-input').focus().select();
+    });
+
+    $(document).on('click', '.tp-rename-tab-save', function (e) {
+    e.preventDefault();
+    const $tab = $(this).closest('li');
+    const $input = $tab.find('.tp-rename-tab-input');
+    const $error = $tab.find('.tp-rename-tab-error');
+    const $renameButton = $tab.find('.tp-rename-tab');
+    const tabType = $renameButton.data('tab');
+    const newLabel = ($input.val() || '').trim();
+
+    if (!newLabel) {
+        $error.text(taxoPressAIRequestAction.label_empty_error).show();
+        $input.focus();
+        return;
+    }
+    if (newLabel.length > 30) {
+        $error.text(taxoPressAIRequestAction.label_too_long_error).show();
+        $input.focus();
+        return;
+    }
+
+    // clear old error
+    $error.hide().text('');
+
+    const actionMap = {
+        'existing_terms': 'taxopress_ai_save_existing_terms_label',
+        'post_terms': 'taxopress_ai_save_post_terms_label',
+        'suggest_local_terms': 'taxopress_ai_save_suggest_local_terms_label',
+        'create_term': 'taxopress_ai_save_create_terms_label'
+    };
+
+    const action = actionMap[tabType];
+    if (!action) {
+        $error.text(taxoPressAIRequestAction.unknown_tab_error).show();
+        return;
+    }
+
+    $.post(ajaxurl, {
+        action: action,
+        nonce: taxoPressAIRequestAction.nonce,
+        new_label: newLabel
+    }).done(function (resp) {
+        if (resp && resp.success && resp.data && resp.data.label) {
+        $tab.find('.tp-tab-label').text(resp.data.label);
+        $tab.find('.tp-tab-label').show();
+        $tab.find('.tp-rename-tab').show();
+        $tab.find('.tp-rename-inline-controls').hide();
+        $error.hide().text('');
+        } else {
+        const msg = (resp && resp.data && resp.data.message) ? resp.data.message : taxoPressAIRequestAction.save_error;
+        $error.text(msg).show();
+        }
+    }).fail(function (xhr) {
+        let msg = taxoPressAIRequestAction.save_error;
+        if (xhr && xhr.responseJSON && (xhr.responseJSON.data?.message || xhr.responseJSON.message)) {
+        msg = xhr.responseJSON.data?.message || xhr.responseJSON.message;
+        }
+        $error.text(msg).show();
+        // keep edit mode open on failure
+    });
+    });
+
+    // Save on Enter, cancel on Escape
+    $(document).on('keydown', '.tp-rename-tab-input', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        $(this).closest('li').find('.tp-rename-tab-save').trigger('click');
+    } else if (e.key === 'Escape') {
+        const $tab = $(this).closest('li');
+        $tab.find('.tp-rename-tab-error').hide().text('');
+        $tab.find('.tp-tab-label').show();
+        $tab.find('.tp-rename-tab').show();
+        $tab.find('.tp-rename-inline-controls').hide();
+    }
+    });
 
   });
 })(jQuery);
