@@ -47,6 +47,12 @@ return array(
     'enable_taxopress_ai_post_existing_terms_tab' => 1,
     'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
     
+    // taxopress ai tab labels
+    'taxopress_ai_post_terms_tab_label' => __('Manage Post Terms', 'simple-tags'),
+    'taxopress_ai_existing_terms_tab_label' => __('Show All Existing Terms', 'simple-tags'),
+    'taxopress_ai_suggest_local_terms_tab_label' => __('Auto Terms', 'simple-tags'),
+    'taxopress_ai_create_terms_tab_label' => __('Create Terms', 'simple-tags'),
+    
     'taxopress_ai_post_metabox_orderby' => 'count',
     'taxopress_ai_post_metabox_order' => 'desc',
     'taxopress_ai_post_metabox_maximum_terms' => 45,

@@ -2,10 +2,29 @@
 require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php';
 
 $taxopress_ai_tabs = [];
-$taxopress_ai_tabs['post_terms'] = esc_html__('Manage Post Terms', 'simple-tags');
-$taxopress_ai_tabs['existing_terms'] = esc_html__('Show All Existing Terms', 'simple-tags');
-$taxopress_ai_tabs['suggest_local_terms'] = esc_html__('Auto Terms', 'simple-tags');
-$taxopress_ai_tabs['create_terms'] = esc_html__('Create Terms', 'simple-tags');
+
+$taxopress_posts_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_post_terms_tab_label');
+$taxopress_existing_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_existing_terms_tab_label');
+$taxopress_suggest_local_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_suggest_local_terms_tab_label');
+$taxopress_create_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_create_terms_tab_label');
+
+if (empty($taxopress_existing_terms_label)) {
+    $taxopress_existing_terms_label = esc_html__('Show All Existing Terms', 'simple-tags');
+}
+if (empty($taxopress_posts_terms_label)) {
+    $taxopress_posts_terms_label = esc_html__('Manage Post Terms', 'simple-tags');
+}
+if (empty($taxopress_suggest_local_terms_label)) {
+    $taxopress_suggest_local_terms_label = esc_html__('Auto Terms', 'simple-tags');
+}
+if (empty($taxopress_create_terms_label)) {
+    $taxopress_create_terms_label = esc_html__('Create Terms', 'simple-tags');
+}
+
+$taxopress_ai_tabs['existing_terms'] = $taxopress_existing_terms_label;
+$taxopress_ai_tabs['post_terms'] = $taxopress_posts_terms_label;
+$taxopress_ai_tabs['suggest_local_terms'] = $taxopress_suggest_local_terms_label;
+$taxopress_ai_tabs['create_terms'] = $taxopress_create_terms_label;
 
 $taxopress_ai_fields = [];
 $pt_index = 0;
