@@ -685,7 +685,6 @@
       });
     }
 
-    // Generic inline rename for all tab labels
     $(document).on('click', '.tp-rename-tab', function (e) {
     e.preventDefault();
     const $tab = $(this).closest('li');
@@ -706,7 +705,6 @@
     const tabType = $renameButton.data('tab');
     const newLabel = ($input.val() || '').trim();
 
-    // client-side validation using localized strings
     if (!newLabel) {
         $error.text(taxoPressAIRequestAction.label_empty_error).show();
         $input.focus();
@@ -721,7 +719,6 @@
     // clear old error
     $error.hide().text('');
 
-    // Map tab keys to AJAX actions
     const actionMap = {
         'existing_terms': 'taxopress_ai_save_existing_terms_label',
         'post_terms': 'taxopress_ai_save_post_terms_label',
@@ -742,7 +739,6 @@
     }).done(function (resp) {
         if (resp && resp.success && resp.data && resp.data.label) {
         $tab.find('.tp-tab-label').text(resp.data.label);
-        // exit edit mode
         $tab.find('.tp-tab-label').show();
         $tab.find('.tp-rename-tab').show();
         $tab.find('.tp-rename-inline-controls').hide();
