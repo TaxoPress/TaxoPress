@@ -489,40 +489,6 @@ class SimpleTags_Post_Tags
                                                                     'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             ] );
 
-                                                            $select = [
-                                                                'options' => [
-                                                                    [ 'attr' => 'name', 'text' => esc_attr__( 'Name', 'simple-tags' ) ],
-                                                                    [ 'attr' => 'slug', 'text' => esc_attr__( 'Slug', 'simple-tags' ) ],
-                                                                    [ 'attr' => 'count', 'text' => esc_attr__( 'Counter', 'simple-tags'), 'default' => 'true' ],
-                                                                    [ 'attr' => 'random', 'text' => esc_attr__( 'Random', 'simple-tags' ) ],
-                                                                ],
-                                                            ];
-                                                            $selected = isset( $current['selectionby'] ) ? taxopress_disp_boolean( $current['selectionby'] ) : '';
-                                                            $select['selected'] = ! empty( $selected ) ? $current['selectionby'] : '';
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_select_checkbox_input_main( [
-                                                                    'namearray'  => 'taxopress_post_tags',
-                                                                    'name'       => 'selectionby',
-                                                                    'labeltext'  => esc_html__( 'Method for choosing terms from the database', 'simple-tags' ),
-                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ] );
-
-                                                            $select = [
-                                                                'options' => [
-                                                                    [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ) ],
-                                                                    [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags'), 'default' => 'true' ],
-                                                                ],
-                                                            ];
-                                                            $selected = isset( $current['selection'] ) ? taxopress_disp_boolean( $current['selection'] ) : '';
-                                                            $select['selected'] = ! empty( $selected ) ? $current['selection'] : '';
-                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            echo $ui->get_select_checkbox_input_main( [
-                                                                    'namearray'  => 'taxopress_post_tags',
-                                                                    'name'       => 'selection',
-                                                                    'labeltext'  => esc_html__( 'Ordering for choosing term from the database', 'simple-tags' ),
-                                                                    'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                                            ] );
-
                                                             do_action('taxopress_posttags_ordering_method', $current);
 
                                                             $select = [
