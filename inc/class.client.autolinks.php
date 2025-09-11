@@ -34,42 +34,53 @@ class SimpleTags_Client_Autolinks
 		}
 	}
 
-	public function taxopress_customurl_taxonomies_fields() {
-		$taxonomies = get_taxonomies([], 'objects');
-		$autolink_settings = taxopress_get_autolink_data();
-	
-		$default_enabled_taxonomies = ['post_tag', 'category'];
-	
-		$enabled_taxonomies = [];
-	
-		// Flag to detect if the setting was ever saved
-		$has_setting_saved = false;
-	
-		foreach ($autolink_settings as $setting) {
-			if (array_key_exists('enable_customurl_field', $setting)) {
-				$has_setting_saved = true;
-				$enabled_taxonomies = is_array($setting['enable_customurl_field']) ? $setting['enable_customurl_field'] : [];
-				break;
-			}
-		}
-	
-		// If no settings saved, default to tags and categories
-		if (!$has_setting_saved) {
-			$enabled_taxonomies = $default_enabled_taxonomies;
-		}
-	
-		// Remove duplicates just in case
-		$enabled_taxonomies = array_unique($enabled_taxonomies);
-	
-		foreach ($taxonomies as $taxonomy_name => $taxonomy) {
-			if (in_array($taxonomy_name, $enabled_taxonomies, true)) {
-				add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
-				add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
-				add_action("edited_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
-				add_action("created_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
-			}
-		}
-	}
+    public function taxopress_customurl_taxonomies_fields() {
+
+        if (!$this->is_taxonomy_page()) {
+            return;
+        }
+        
+        // Cache the autolink settings to avoid repeated database calls
+        static $enabled_taxonomies = null;
+        
+        if ($enabled_taxonomies === null) {
+            $autolink_settings = taxopress_get_autolink_data();
+            $enabled_taxonomies = $this->get_enabled_taxonomies($autolink_settings);
+        }
+        
+        // Only get taxonomies that are actually enabled
+        $taxonomies = get_taxonomies([], 'objects');
+        
+        foreach ($enabled_taxonomies as $taxonomy_name) {
+            if (isset($taxonomies[$taxonomy_name])) {
+                add_action("{$taxonomy_name}_edit_form_fields", [$this, 'taxopress_add_custom_url_field']);
+                add_action("{$taxonomy_name}_add_form_fields", [$this, 'taxopress_add_custom_url_field_new']);
+                add_action("edited_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
+                add_action("created_{$taxonomy_name}", [$this, 'taxopress_save_custom_url_field']);
+            }
+        }
+    }
+
+    private function is_taxonomy_page() {
+        global $pagenow;
+        return in_array($pagenow, ['edit-tags.php', 'term.php']);
+    }
+
+    private function get_enabled_taxonomies($autolink_settings) {
+        $default_enabled_taxonomies = ['post_tag', 'category'];
+        $enabled_taxonomies = [];
+        $has_setting_saved = false;
+
+        foreach ($autolink_settings as $setting) {
+            if (array_key_exists('enable_customurl_field', $setting)) {
+                $has_setting_saved = true;
+                $enabled_taxonomies = is_array($setting['enable_customurl_field']) ? $setting['enable_customurl_field'] : [];
+                break;
+            }
+        }
+
+        return $has_setting_saved ? array_unique($enabled_taxonomies) : $default_enabled_taxonomies;
+    }
 
 	/**
 	 * Stock posts ID as soon as possible
@@ -286,6 +297,12 @@ class SimpleTags_Client_Autolinks
 			return true;
 		}
 
+        $custom_urls = [];
+        if ($custom_urls_enabled && !empty($terms)) {
+            $term_ids = wp_list_pluck($terms, 'term_id');
+            $custom_urls = self::get_term_meta_batch($term_ids, 'taxopress_custom_url');
+        }
+
 		foreach ((array) $terms as $term) {
 
 			//hidden terms should not be auto linked
@@ -297,15 +314,19 @@ class SimpleTags_Client_Autolinks
 			}
 
 			if (!$archivepage && $custom_urls_enabled) {
-				$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
-				if (!empty($taxopress_custom_url)) {
-					self::$link_tags[$term->name] = esc_url($taxopress_custom_url);
-				}
+				$taxopress_custom_url = isset($custom_urls[$term->term_id]) 
+                    ? $custom_urls[$term->term_id] 
+                    : '';
+                if (!empty($taxopress_custom_url)) {
+                    self::$link_tags[$term->name] = esc_url($taxopress_custom_url);
+                }
 			} else {  
 			//add primary term
 			if ($custom_urls_enabled) {
-				$taxopress_custom_url = get_term_meta($term->term_id, 'taxopress_custom_url', true);
-				$primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
+                $taxopress_custom_url = isset($custom_urls[$term->term_id]) 
+                    ? $custom_urls[$term->term_id] 
+                    : '';
+                $primary_term_link = !empty($taxopress_custom_url) ? esc_url($taxopress_custom_url) : get_term_link($term, $term->taxonomy);
 			} else {
 				$primary_term_link = get_term_link($term, $term->taxonomy);
 			}
@@ -347,6 +368,34 @@ class SimpleTags_Client_Autolinks
 	    }
 		return true;
 	}
+
+    /**
+     * Helper function to batch load term meta to reduce database queries
+     */
+    private static function get_term_meta_batch($term_ids, $meta_key) {
+        global $wpdb;
+        
+        if (empty($term_ids)) {
+            return [];
+        }
+        
+        // Sanitize term IDs
+        $term_ids = array_map('intval', $term_ids);
+        $term_ids_string = implode(',', $term_ids);
+        
+        $results = $wpdb->get_results($wpdb->prepare(
+            "SELECT term_id, meta_value FROM {$wpdb->termmeta} 
+            WHERE term_id IN ($term_ids_string) AND meta_key = %s",
+            $meta_key
+        ));
+        
+        $batch_data = [];
+        foreach ($results as $result) {
+            $batch_data[$result->term_id] = $result->meta_value;
+        }
+        
+        return $batch_data;
+    }
 
     private static function taxopress_get_title_attribute($search, $url, $options) {
 

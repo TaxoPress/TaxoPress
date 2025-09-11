@@ -7,12 +7,26 @@
  */
 function taxopress_get_autolink_data()
 {
-    return array_filter((array)apply_filters(
-        'taxopress_get_autolink_data',
-        get_option('taxopress_autolinks', []),
-        get_current_blog_id()
-    ));
+    static $cached_data = null;
+    
+    if ($cached_data === null) {
+        $cached_data = array_filter((array)apply_filters(
+            'taxopress_get_autolinks_data',
+            get_option('taxopress_autolinks', []),
+            get_current_blog_id()
+        ));
+    }
+    
+    return $cached_data;
 }
+
+function taxopress_clear_autolink_cache() {
+    $reflection = new ReflectionFunction('taxopress_get_autolink_data');
+    $reflection->getStaticVariables()['cached_data'] = null;
+}
+
+add_action('taxopress_autolink_updated', 'taxopress_clear_autolink_cache');
+add_action('taxopress_autolink_deleted', 'taxopress_clear_autolink_cache');
 
 /**
  * Get the selected autolink from the $_POST global.
