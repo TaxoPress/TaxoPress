@@ -234,6 +234,17 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     wp_add_inline_style('taxopress-ai-editor-css', '' . implode(',', $removed_taxonomies_css) . ' {display:none !important;}');
                 }
 
+                $metabox_display_option = 'default';
+                if (!$fast_update_screen && function_exists('get_post_type')) {
+                    $current_post_type = get_post_type();
+                    if ($current_post_type) {
+                        $metabox_display_option = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $current_post_type . '_metabox_display_option');
+                        if (empty($metabox_display_option)) {
+                            $metabox_display_option = 'default';
+                        }
+                    }
+                }
+
                 wp_localize_script(
                     'taxopress-ai-editor-js',
                     'taxoPressAIRequestAction',
@@ -244,6 +255,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         'fieldTabs' => TaxoPressAiFields::get_fields_tabs(),
                         'removed_tax' => $removed_taxonomies_tax,
                         'current_screen' => $tp_current_screen,
+                        'metabox_display_option' => $metabox_display_option,
                         'label_empty_error' => esc_html__('Label can\'t be empty.', 'simple-tags'),
                         'label_too_long_error' => esc_html__('Label can\'t exceed 30 characters.', 'simple-tags'),
                         'unknown_tab_error' => esc_html__('Unknown tab type.', 'simple-tags'),
@@ -658,7 +670,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $existing_terms_orderby = !empty($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : '';
             $existing_terms_order = !empty($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : '';
 
-            $wrapper_class = $fast_update_screen ? 'fast_update_screen' : 'editor-screen'
+            $wrapper_class = $fast_update_screen ? 'fast_update_screen' : 'editor-screen';
+
             ?>
             <div class="taxopress-post-suggestterm <?php echo esc_attr($wrapper_class); ?>">
                 <div class="taxopress-suggest-terms-contents">
