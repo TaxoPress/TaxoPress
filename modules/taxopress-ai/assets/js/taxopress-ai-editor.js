@@ -771,5 +771,21 @@
     }
     });
 
+    if ($('.taxopress-post-suggestterm').hasClass('editor-screen')) {
+        var $activeTab = $('.ai-integration-tab li.active');
+        if ($activeTab.hasClass('existing_terms_tab')) {
+            if (typeof taxoPressAIRequestAction !== 'undefined' && 
+                taxoPressAIRequestAction.current_screen !== 'st_taxopress_ai' &&
+                taxoPressAIRequestAction.metabox_display_option === 'dropdown') {
+                setTimeout(function() {
+                    var $existingTermsButton = $('.existing_terms .taxopress-ai-fetch-button');
+                    if ($existingTermsButton.length > 0) {
+                        $existingTermsButton.trigger('click');
+                    }
+                }, 300);
+            }
+        }
+    }
+
   });
 })(jQuery);
