@@ -58,6 +58,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
             add_action('wp_ajax_taxopress_ai_save_post_terms_label', [$this, 'taxopress_save_post_terms_label']);
             add_action('wp_ajax_taxopress_ai_save_suggest_local_terms_label', [$this, 'taxopress_save_suggest_local_terms_label']);
             add_action('wp_ajax_taxopress_ai_save_create_terms_label', [$this, 'taxopress_save_create_terms_label']);
+
+            // Ensure tab labels are persisted in dedicated options
+            add_action('admin_init', [$this, 'ensure_tab_label_options']);
         }
 
 
@@ -219,6 +222,16 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 $removed_taxonomies_tax = $removed_taxonomies['taxonomies'];
                 $removed_taxonomies_css = $removed_taxonomies['custom_css'];
 
+                $metabox_filters_enabled = false;
+                if ($fast_update_screen) {
+                    $metabox_filters_enabled = true; // Always enabled on fast update screen
+                } elseif (function_exists('get_post_type')) {
+                    $current_post_type = get_post_type();
+                    if ($current_post_type) {
+                        $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . $current_post_type . '_metabox_filters');
+                    }
+                }
+
 
 
                 wp_enqueue_style('taxopress-admin-select2');
@@ -256,6 +269,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         'removed_tax' => $removed_taxonomies_tax,
                         'current_screen' => $tp_current_screen,
                         'metabox_display_option' => $metabox_display_option,
+                        'metabox_filters_enabled' => $metabox_filters_enabled,
                         'label_empty_error' => esc_html__('Label can\'t be empty.', 'simple-tags'),
                         'label_too_long_error' => esc_html__('Label can\'t exceed 30 characters.', 'simple-tags'),
                         'unknown_tab_error' => esc_html__('Unknown tab type.', 'simple-tags'),
@@ -646,26 +660,37 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post->post_type);
             $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
 
-            $existing_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_existing_terms_tab_label');
+            $metabox_filters_enabled = $fast_update_screen ? true : SimpleTags_Plugin::get_option_value('enable_taxopress_ai_' . $post->post_type . '_metabox_filters');
+
+            $existing_terms_label = get_option('taxopress_ai_existing_terms_tab_label');
+            if ($existing_terms_label === '' || $existing_terms_label === false) {
+                $existing_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_existing_terms_tab_label');
+            }
             if (empty($existing_terms_label)) {
                 $existing_terms_label = esc_html__('Show All Existing Terms', 'simple-tags');
             }
-            
-            $post_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_post_terms_tab_label');
+
+            $post_terms_label = get_option('taxopress_ai_post_terms_tab_label');
+            if ($post_terms_label === '' || $post_terms_label === false) {
+                $post_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_post_terms_tab_label');
+            }
             if (empty($post_terms_label)) {
                 $post_terms_label = esc_html__('Manage Post Terms', 'simple-tags');
             }
-            
-            $suggest_local_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_suggest_local_terms_tab_label');
-            if (empty($suggest_local_terms_label)) {
-                $suggest_local_terms_label = esc_html__('Auto Terms', 'simple-tags');
+
+            $suggest_local_terms_label = get_option('taxopress_ai_suggest_local_terms_tab_label');
+            if ($suggest_local_terms_label === '' || $suggest_local_terms_label === false) {
+                $suggest_local_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_suggest_local_terms_tab_label');
             }
-            
-            $create_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_create_terms_tab_label');
+
+            $create_terms_label = get_option('taxopress_ai_create_terms_tab_label');
+            if ($create_terms_label === '' || $create_terms_label === false) {
+                $create_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_create_terms_tab_label');
+            }
             if (empty($create_terms_label)) {
                 $create_terms_label = esc_html__('Create Terms', 'simple-tags');
             }
-  
+
             $existing_terms_maximum_terms = !empty($settings_data['existing_terms_maximum_terms']) ? $settings_data['existing_terms_maximum_terms'] : '';
             $existing_terms_orderby = !empty($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : '';
             $existing_terms_order = !empty($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : '';
@@ -802,6 +827,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                     'post_id'		=> $post->ID,
                                 ];
                                 $button_label = !empty($fields_tabs[$key]['button_label']) ? $fields_tabs[$key]['button_label'] : esc_html__('View Terms', 'simple-tags');
+
+                                $hide_filters = ($key === 'existing_terms' && !$metabox_filters_enabled) ? 'display: none;' : '';
                                 ?>
                                 <table class="taxopress-tab-content-item form-table taxopress-table taxopress-ai-tab-content <?php echo esc_attr($key); ?>"
                                     data-ai-source="<?php echo esc_attr($key); ?>"
@@ -848,7 +875,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         type="search" 
                                                         value="" 
                                                         placeholder="<?php echo esc_html__('Search Terms...', 'simple-tags'); ?>"
-                                                        style=""
+                                                        style="<?php echo $hide_filters; ?>"
                                                         onkeydown="return event.key != 'Enter';" />
 
 
@@ -890,7 +917,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         <span class="btn-text"><?php echo esc_html__('Create Term', 'simple-tags'); ?></span>
                                                     </button>
 
-                                                    <select class="taxopress-ai-fetch-taxonomy-select">
+                                                    <select class="taxopress-ai-fetch-taxonomy-select" style="<?php echo $hide_filters; ?>">
                                                             <?php foreach ($post_type_taxonomies as $tax_key => $tax_object):
                                                             
                                                             if (!in_array($tax_key, ['post_format']) && (!empty($tax_object->show_ui) || !empty($support_private_taxonomy))) {
@@ -907,7 +934,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                             endforeach; ?>
                                                     </select>
                                                     <select id="existing_terms_orderby"
-                                                        class="existing-term-item" style="">
+                                                        class="existing-term-item" style="<?php echo $hide_filters; ?>">
                                                         <?php foreach (TaxoPressAiUtilities::get_existing_terms_orderby() as $key => $label): ?>
                                                             <option value='<?php echo esc_attr($key); ?>'
                                                             <?php selected($key, $existing_terms_orderby); ?>>
@@ -916,7 +943,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         <?php endforeach; ?>
                                                     </select>
                                                     <select id="existing_terms_order"
-                                                        class="existing-term-item" style="">
+                                                        class="existing-term-item" style="<?php echo $hide_filters; ?>">
                                                         <?php foreach (TaxoPressAiUtilities::get_existing_terms_order() as $key => $label): ?>
                                                             <option value='<?php echo esc_attr($key); ?>'
                                                             <?php selected($key, $existing_terms_order); ?>>
@@ -931,9 +958,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                         type="number" 
                                                         value="<?php echo esc_attr($existing_terms_maximum_terms); ?>" 
                                                         placeholder="<?php echo esc_attr__('Count', 'simple-tags'); ?>"
-                                                        style="min-width: unset;width: 80px;"
+                                                        style="<?php echo $hide_filters; ?>"
+                                                        min-width: unset;width: 80px;"
                                                         onkeydown="return event.key != 'Enter';" />
-                                                    <button class="button button-secondary taxopress-ai-fetch-button">
+                                                    <button class="button button-secondary taxopress-ai-fetch-button" style="<?php echo $hide_filters; ?>">
                                                         <div class="spinner"></div>
                                                         <span class="btn-text"><?php echo esc_html($button_label); ?></span>
                                                     </button>
@@ -966,6 +994,26 @@ if (!class_exists('TaxoPress_AI_Module')) {
             <?php
         }
 
+        public function ensure_tab_label_options()
+        {
+            $keys = [
+                'taxopress_ai_existing_terms_tab_label'       => esc_html__('Show All Existing Terms', 'simple-tags'),
+                'taxopress_ai_post_terms_tab_label'           => esc_html__('Manage Post Terms', 'simple-tags'),
+                'taxopress_ai_suggest_local_terms_tab_label'  => esc_html__('Auto Terms', 'simple-tags'),
+                'taxopress_ai_create_terms_tab_label'         => esc_html__('Create Terms', 'simple-tags'),
+            ];
+
+            foreach ($keys as $opt => $default) {
+                $current = get_option($opt, '');
+                if ($current === '' || $current === false) {
+                    // Pull from plugin option container if present, else default
+                    $from_plugin = SimpleTags_Plugin::get_option_value($opt);
+                    $val = $from_plugin !== '' ? $from_plugin : $default;
+                    update_option($opt, $val);
+                }
+            }
+        }
+
         public function taxopress_save_existing_terms_label() {
             $this->taxopress_save_tab_label('taxopress_ai_existing_terms_tab_label');
         }
@@ -991,16 +1039,18 @@ if (!class_exists('TaxoPress_AI_Module')) {
             }
             $new_label = isset($_POST['new_label']) ? sanitize_text_field(wp_unslash($_POST['new_label'])) : '';
             $new_label = trim($new_label);
-            
+
             if ($new_label === '') {
                 wp_send_json_error(['message' => esc_html__("Label can't be empty.", 'simple-tags')], 400);
             }
-
             if (mb_strlen($new_label) > 80) {
                 wp_send_json_error(['message' => esc_html__('Label is too long.', 'simple-tags')], 400);
             }
 
+            // Save both in plugin container and as dedicated option
             SimpleTags_Plugin::set_option_value($option_key, $new_label);
+            update_option($option_key, $new_label);
+
             wp_send_json_success(['label' => $new_label]);
         }
 
