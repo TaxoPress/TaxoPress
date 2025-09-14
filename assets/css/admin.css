@@ -1936,3 +1936,10 @@ body.block-editor-page .clicktags-search-wrapper .option input {
         display: block;
     }
 }
+
+.page-title-action.taxopress{
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    top: 3px !important;
+}

@@ -125,7 +125,11 @@ class SimpleTags_Post_Tags
 
                 <div id="">
                     <h1 class="wp-heading-inline"><?php esc_html_e('Terms for Current Post', 'simple-tags'); ?></h1>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=st_post_tags&add=new_item')); ?>" class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=st_post_tags&add=new_item')); ?>" 
+                        class="page-title-action taxopress">
+                        <span class="dashicons dashicons-lock"></span>
+                        <?php esc_html_e('Add New Terms for Current Post', 'simple-tags'); ?>
+                    </a>
 
                     <div class="taxopress-description"><?php esc_html_e('This feature allows you create a customizable display of all the terms assigned to the current post.', 'simple-tags'); ?></div>
 
