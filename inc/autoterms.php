@@ -232,7 +232,10 @@ class SimpleTags_Autoterms
             <div id="">
                 <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
-                   class="page-title-action"><?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?></a>
+                   class="page-title-action taxopress">
+                   <span class="dashicons dashicons-lock"></span>
+                   <?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?>
+                </a>
 
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&tab=logs')); ?>"
                    class="page-title-action"><?php esc_html_e('Logs', 'simple-tags'); ?> <span class="update-plugins"><span class="plugin-count"><?php echo esc_html($this->autoterms_logs_count()); ?></span></span></a>

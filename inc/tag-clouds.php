@@ -127,7 +127,10 @@ class SimpleTags_Tag_Clouds
             <div id="">
                 <h1 class="wp-heading-inline"><?php _e('Terms Display', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_terms_display&add=new_item')); ?>"
-                   class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
+                   class="page-title-action taxopress">
+                    <span class="dashicons dashicons-lock"></span>
+                   <?php esc_html_e('Add New Terms Display', 'simple-tags'); ?>
+                </a>
 
                    <div class="taxopress-description"><?php esc_html_e('This feature allows you to create a customizable display of all the terms in one taxonomy.', 'simple-tags'); ?></div>
 

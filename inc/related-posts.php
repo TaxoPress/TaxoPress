@@ -132,7 +132,9 @@ class SimpleTags_Related_Post
             <div id="">
                 <h1 class="wp-heading-inline"><?php _e('Related Posts', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_related_posts&add=new_item')); ?>"
-                   class="page-title-action"><?php esc_html_e('Add New', 'simple-tags'); ?></a>
+                   class="page-title-action taxopress">
+                   <span class="dashicons dashicons-lock"></span>
+                   <?php esc_html_e('Add New Related Post', 'simple-tags'); ?></a>
 
                 <div class="taxopress-description"><?php esc_html_e('The Related Posts feature works by checking for shared taxonomy terms. If your post has the terms “WordPress” and “Website”, then Related Posts will display other posts that also have the terms “WordPress” and “Website”.', 'simple-tags'); ?></div>
 
