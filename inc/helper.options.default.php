@@ -43,6 +43,7 @@ return array(
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,
     'enable_taxopress_ai_post_post_terms_tab' => 1,
+    'enable_taxopress_ai_post_metabox_filters' => 1,
     'enable_taxopress_ai_post_suggest_local_terms_tab' => 1,
     'enable_taxopress_ai_post_existing_terms_tab' => 1,
     'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',

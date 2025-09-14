@@ -3,10 +3,22 @@ require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php
 
 $taxopress_ai_tabs = [];
 
-$taxopress_posts_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_post_terms_tab_label');
-$taxopress_existing_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_existing_terms_tab_label');
-$taxopress_suggest_local_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_suggest_local_terms_tab_label');
-$taxopress_create_terms_label = SimpleTags_Plugin::get_option_value('taxopress_ai_create_terms_tab_label');
+$taxopress_posts_terms_label = get_option(
+    'taxopress_ai_post_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_post_terms_tab_label')
+);
+$taxopress_existing_terms_label = get_option(
+    'taxopress_ai_existing_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_existing_terms_tab_label')
+);
+$taxopress_suggest_local_terms_label = get_option(
+    'taxopress_ai_suggest_local_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_suggest_local_terms_tab_label')
+);
+$taxopress_create_terms_label = get_option(
+    'taxopress_ai_create_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_create_terms_tab_label')
+);
 
 if (empty($taxopress_existing_terms_label)) {
     $taxopress_existing_terms_label = esc_html__('Show All Existing Terms', 'simple-tags');
@@ -56,6 +68,16 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '1',
             sprintf(esc_html__('Enable the metabox on the %1s screen.', 'simple-tags'), esc_html($post_type_object->labels->name)),
             'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
+        );
+
+        // Metabox Filters
+        $taxopress_ai_fields[] = array(
+            'enable_taxopress_ai_' . $post_type . '_metabox_filters',
+            sprintf(esc_html__('%1s Metabox Filters', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'checkbox',
+            '1',
+            sprintf(esc_html__('Enable filters in the %1s metabox.', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'taxopress-ai-tab-content-sub-static taxopress-ai-'. $post_type .'-content-sub-static enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
 
         //metabox features subhead
