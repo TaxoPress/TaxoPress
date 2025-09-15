@@ -70,16 +70,6 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
         );
 
-        // Metabox Filters
-        $taxopress_ai_fields[] = array(
-            'enable_taxopress_ai_' . $post_type . '_metabox_filters',
-            sprintf(esc_html__('%1s Metabox Filters', 'simple-tags'), esc_html($post_type_object->labels->name)),
-            'checkbox',
-            '1',
-            sprintf(esc_html__('Enable filters in the %1s metabox.', 'simple-tags'), esc_html($post_type_object->labels->name)),
-            'taxopress-ai-tab-content-sub-static taxopress-ai-'. $post_type .'-content-sub-static enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
-        );
-
         //metabox features subhead
         $taxopress_ai_fields[] = array(
             'metabox_feature_header',
@@ -148,6 +138,16 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
         );
+
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_filters',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . sprintf(esc_html__('%1s Metabox Filters', 'simple-tags'), esc_html($post_type_object->labels->name)) . '</div>',
+            'checkbox',
+            '1',
+            sprintf(esc_html__('Enable filters in the %1s existing terms tab.', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+        );
+
         // add _metabox_orderby
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_orderby',
