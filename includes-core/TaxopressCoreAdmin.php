@@ -400,7 +400,7 @@ class TaxopressCoreAdmin
                     </div>
 
                     <div class="inside-content">
-                        <p><?php echo esc_html__('TaxoPress Pro allows you to schedule the Auto Terms feature to run either hourly or daily. This is really useful if you are regularly updating your posts, or if you’re automatically importing new posts.', 'si’ple-tags'); ?></p>
+                        <p><?php echo esc_html__('TaxoPress Pro allows you to schedule the Auto Terms feature to run either hourly or daily. This is really useful if you are regularly updating your posts, or if you’re automatically importing new posts.', 'simple-tags'); ?></p>
                         <div class="upgrade-btn">
                             <a href="https://taxopress.com/taxopress/" target="_blank"><?php echo esc_html__("Upgrade to Pro", "simple-tags"); ?></a>
                         </div>
