@@ -245,7 +245,7 @@
                   if ($existingTermsButton.length > 0) {
                     $existingTermsButton.trigger('click');
                   }
-                }, 50);
+                }, 300);
               });
             }
           }
