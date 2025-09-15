@@ -1,7 +1,7 @@
-=== WordPress Tag, Category, and Taxonomy Manager - AI Autotagger ===
-Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul
+=== Tag, Category, and Taxonomy Manager - AI Autotagger with OpenAI ===
+Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul, deji98
 Tags: category, tag, taxonomy, categories, tag cloud
-Requires at least: 3.3
+Requires at least: 5.0
 Tested up to: 6.8
 Stable tag: 3.37.4
 Requires PHP: 7.4
