@@ -268,6 +268,21 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.38.0- 2025-09-17
+* Fixed: Frontend css loads on all pages, #2757
+* Fixed: Autolink Feature is slowing down the admin area, #2754
+* Fixed: Some settings not apllied in suggest existing terms, #2748
+* Fixed: Schedule autoterms not running, #2747
+* Fixed: Problem with GPT 5, #2745
+* Fixed: Dropdown in the Metabox is hard to use, #2733
+* Fixed: Choose Terms screens are over-complex, #2701
+* Update: Update the readme from WordPress.org, #2746
+* Update: Improve UI for the "Schedule" feature, #2743
+* Update: Allow users to rename the metabox tabs, #2736
+* Update: Allow users to disable the filters in the Metabox, #2734
+* Update: Lock icon for "Add" buttons, #2721
+* Update: Italian Translation Update for TaxoPress FREE 3.37.4, #2744
+
 v3.37.4- 2025-09-02
 * Update: Enable "Add terms if synonyms found" by default, #2727
 * Update: Update the OpenAI models, #2728
