@@ -2653,6 +2653,37 @@
 
     }
 
+    // Schedule Frequency toggle
+    if ($('.taxopress-autoterm-schedule').length > 0) {
+      function updateCronUI() {
+        var isDisabled = $('#autoterm_cron_disable').is(':checked');
+
+        if (isDisabled) {
+          $('.autoterm_cron_frequency').addClass('st-hide-content');
+          $('.autoterm_cron_help').removeClass('st-hide-content');
+          $('#cron_schedule_value').val('disable');
+        } else {
+          $('.autoterm_cron_frequency').removeClass('st-hide-content');
+          $('.autoterm_cron_help').addClass('st-hide-content');
+
+          var chosen = $('input[name="taxopress_autoterm_schedule[cron_schedule_choice]"]:checked').val() || '';
+          $('#cron_schedule_value').val(chosen);
+        }
+      }
+
+      $(document).on('change', '#autoterm_cron_disable', function () {
+        updateCronUI();
+      });
+
+      $(document).on('change', 'input.autoterm_cron_radio', function () {
+        $('#autoterm_cron_disable').prop('checked', false);
+        $('#cron_schedule_value').val($(this).val());
+        updateCronUI();
+      });
+
+      // Initialize on load
+      updateCronUI();
+    }
 
   });
 
