@@ -1045,6 +1045,7 @@ class SimpleTags_Tag_Clouds
 </div>
 
         <?php
+        do_action( 'simpletags-terms_display' );
     }
 
     /**
