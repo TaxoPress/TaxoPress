@@ -513,7 +513,11 @@ if (!class_exists('TaxoPressAiApi')) {
 
                         
                         if (!in_array($open_ai_model, ['o3-mini', 'o1-mini', 'o1'])) {
-                            $body_data['max_tokens'] = 50;
+                            if (preg_match('/^(gpt-5|gpt-4\.5)/', $open_ai_model)) {
+                                $body_data['max_completion_tokens'] = 50;
+                            } else{
+                                $body_data['max_tokens'] = 50;
+                            }
                             $body_data['temperature'] = 0.9;
                         }
                         

@@ -11,6 +11,7 @@ class SimpleTags_Admin_Autocomplete {
 		add_action( 'simpletags-manage_terms', array( __CLASS__, 'manage_terms_js' ) );
 		add_action( 'simpletags-mass_terms', array( __CLASS__, 'mass_terms_js' ) );
 		add_action( 'simpletags-autolinks', array( __CLASS__, 'autolinks_js' ) );
+        add_action( 'simpletags-terms_display', array( __CLASS__, 'terms_display_js' ) );
 
 		// Javascript
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ), 11 );
@@ -32,20 +33,32 @@ class SimpleTags_Admin_Autocomplete {
 			array(
 				'jquery',
 				'jquery-ui-autocomplete',
-				'st-admin-js'
 			),
 			STAGS_VERSION
 		);
+        $nonce = wp_create_nonce( 'st-admin-js' );
 
 		// Declare locations
 		$wp_post_pages = array( 'post.php', 'post-new.php' );
 		$wp_page_pages = array( 'page.php', 'page-new.php' );
-		$st_pages      = array( 'st_autoterms', 'st_mass_terms', 'st_manage', 'st_autolinks' );
+        $term_pages    = array( 'term.php', 'edit-tags.php' );
+        $st_pages      = array( 'st_autoterms', 'st_mass_terms', 'st_manage', 'st_autolinks', 'st_terms_display' );
 
 		// Helper for posts/pages and for Auto Tags, Mass Edit Tags and Manage tags !
 		if ( ( in_array( $pagenow, $wp_post_pages, true ) || ( in_array( $pagenow, $wp_page_pages, true ) && is_page_have_tags() ) ) || ( isset( $_GET['page'] ) && in_array( $_GET['page'], $st_pages, true ) ) ) {
 			wp_enqueue_script( 'st-helper-autocomplete' );
 		}
+
+        if ( in_array( $pagenow, $wp_post_pages, true ) || ( in_array( $pagenow, $wp_page_pages, true ) && is_page_have_tags() ) || in_array( $pagenow, $term_pages, true ) || ( isset( $_GET['page'] ) && in_array( $_GET['page'], $st_pages, true ) )
+        ) {
+            // Inline nonce for legacy code
+            wp_add_inline_script(
+                'st-helper-autocomplete',
+                'window.taxopressNonce = "' . esc_js( $nonce ) . '";',
+                'before'
+            );
+            wp_enqueue_script( 'st-helper-autocomplete' );
+        }
 	}
 
 	/**
@@ -53,16 +66,15 @@ class SimpleTags_Admin_Autocomplete {
 	 *
 	 */
 	public static function ajax_check() {
-		// Check if nonce is set and valid
-		if (!isset($_REQUEST['nonce']) || !wp_verify_nonce($_REQUEST['nonce'], 'st-admin-js')) {
-			wp_send_json_error(array('message' => esc_html__('Security check failed.', 'simple-tags')));
-		}
+        // Capability first (must be logged in + have perms anyway)
+        if ( ! current_user_can( 'simple_tags' ) && ! current_user_can( 'edit_posts' ) ) {
+            wp_send_json_error( array( 'message' => 'Insufficient permissions.' ), 403 );
+        }
 
-		// Check if taxonomy is provided and exists
-		$taxonomy = isset($_REQUEST['taxonomy']) ? sanitize_text_field($_REQUEST['taxonomy']) : 'post_tag';
-		if (!taxonomy_exists($taxonomy)) {
-			wp_send_json_error(array('message' => esc_html__('Invalid taxonomy.', 'simple-tags')));
-		}
+        // Check if nonce is set and valid
+        if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'st-admin-js' ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid or missing nonce.' ), 403 );
+        }
 
 		if ( isset( $_GET['stags_action'] ) && 'helper_js_collection' === $_GET['stags_action'] ) {
 			self::ajax_local_tags();
@@ -233,4 +245,30 @@ class SimpleTags_Admin_Autocomplete {
 		</script>
 		<?php
 	}
+
+    /**
+     * public static function called on terms display (tag cloud) page
+     *
+     * @param string $taxonomy
+    */
+    public static function terms_display_js( $taxonomy = '' ) {
+        $autocomplete_min = 0;
+        ?>
+        <script type="text/javascript">
+          <!--
+          // Base URL leaves taxonomy blank so helper JS can replace it dynamically
+          st_init_autocomplete(
+              '.tagclouds-exclude',
+              "<?php echo esc_url_raw(
+                  admin_url(
+                      'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=&nonce=' . wp_create_nonce('st-admin-js')
+                  )
+              ); ?>",
+              <?php echo (int) $autocomplete_min; ?>
+          );
+          -->
+        </script>
+        <?php
+    }
+
 }

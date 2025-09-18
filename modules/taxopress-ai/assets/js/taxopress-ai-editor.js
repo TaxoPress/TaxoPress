@@ -168,33 +168,90 @@
 
     });
 
+    function isFiltersEnabled() {
+      if (typeof taxoPressAIRequestAction === 'undefined') return false;
+      const v = taxoPressAIRequestAction.metabox_filters_enabled;
+      return v === true || v === 1 || v === '1' || v === 'true' || v === 'yes' || v === 'on';
+    }
+
+    function resolveTabKey($li) {
+      const dataKey = $li.attr('data-content');
+      if (dataKey) return dataKey;
+      // Fallback to class-based mapping
+      if ($li.hasClass('existing_terms_tab')) return 'existing_terms';
+      if ($li.hasClass('post_terms_tab')) return 'post_terms';
+      if ($li.hasClass('suggest_local_terms_tab')) return 'suggest_local_terms';
+      if ($li.hasClass('create_term_tab')) return 'create_term';
+      return '';
+    }
+
+    function setTabUi(tabKey) {
+      const filtersEnabled = isFiltersEnabled();
+
+      const $all = $('.taxopress-tab-content-item');
+      $all.find('.existing-term-item').hide();
+      $all.find('.create-term-item').hide();
+      $all.find('.taxopress-ai-fetch-taxonomy-select').hide();
+      //$all.find('.taxopress-ai-fetch-button').hide();
+      $all.find('.taxopress-autoterms-options').hide();
+
+      // Pick the active container by tab key
+      const $wrap = $('.taxopress-tab-content-item.' + tabKey);
+
+      if (tabKey === 'existing_terms') {
+        if (filtersEnabled) {
+          $wrap.find('.existing-term-item').show();
+          $wrap.find('.taxopress-ai-fetch-taxonomy-select').show();
+          //$wrap.find('.taxopress-ai-fetch-button').show();
+        }
+      } else if (tabKey === 'create_term') {
+        $wrap.find('.create-term-item').show();
+        $wrap.find('.taxopress-ai-fetch-button').hide();
+      } else {
+        // post_terms or suggest_local_terms
+        $wrap.find('.taxopress-ai-fetch-taxonomy-select').show();
+        //$wrap.find('.taxopress-ai-fetch-button').show();
+        if (tabKey === 'suggest_local_terms') {
+          $wrap.find('.taxopress-autoterms-options').show();
+        }
+      }
+    }
 
     // -------------------------------------------------------------
     //   Show/hide search box for eligible tab
     // -------------------------------------------------------------
     $(document).on('click', 'ul.taxopress-tab.ai-integration-tab li', function () {
-      var current_tab = $(this).attr('data-content');
-      if (current_tab === 'existing_terms') {
-        $('.existing-term-item').show();
-      } else {
-        $('.existing-term-item').hide();
-      }
-      if (current_tab === 'create_term') {
-        $('.create-term-item').show();
-        $('.taxopress-ai-fetch-taxonomy-select').hide();
-        $('.taxopress-ai-fetch-button').hide();
-      } else {
-        $('.create-term-item').hide();
-        $('.taxopress-ai-fetch-taxonomy-select').show();
-        $('.taxopress-ai-fetch-button').show();
-      }
-
-      if (current_tab === 'suggest_local_terms') {
-        $('.taxopress-autoterms-options').show();
-      } else {
-        $('.taxopress-autoterms-options').hide();
-      }
+      const tabKey = resolveTabKey($(this));
+      setTabUi(tabKey);
     });
+    
+    // Initialize on load for the active tab
+    (function initTabUiOnLoad() {
+      const $active = $('ul.taxopress-tab.ai-integration-tab li.active');
+      const tabKey = resolveTabKey($active);
+      if (tabKey) {
+        setTabUi(tabKey);
+        
+        // Auto-trigger logic for existing_terms tab in dropdown mode
+        if ($('.taxopress-post-suggestterm').hasClass('editor-screen')) {
+          if ($active.hasClass('existing_terms_tab')) {
+            if (typeof taxoPressAIRequestAction !== 'undefined' && 
+                taxoPressAIRequestAction.current_screen !== 'st_taxopress_ai' &&
+                taxoPressAIRequestAction.metabox_display_option === 'dropdown') {
+
+              requestAnimationFrame(function() {
+                setTimeout(function() {
+                  var $existingTermsButton = $('.existing_terms .taxopress-ai-fetch-button');
+                  if ($existingTermsButton.length > 0) {
+                    $existingTermsButton.trigger('click');
+                  }
+                }, 300);
+              });
+            }
+          }
+        }
+      }
+    })(); 
 
     // -------------------------------------------------------------
     //  Select/de-select all tags tags
@@ -685,6 +742,92 @@
       });
     }
 
+    // Generic inline rename for all tab labels
+    $(document).on('click', '.tp-rename-tab', function (e) {
+    e.preventDefault();
+    const $tab = $(this).closest('li');
+    // reset any previous error
+    $tab.find('.tp-rename-tab-error').hide().text('');
+    $tab.find('.tp-tab-label').hide();
+    $tab.find('.tp-rename-tab').hide();
+    $tab.find('.tp-rename-inline-controls').show();
+    $tab.find('.tp-rename-tab-input').focus().select();
+    });
+
+    $(document).on('click', '.tp-rename-tab-save', function (e) {
+    e.preventDefault();
+    const $tab = $(this).closest('li');
+    const $input = $tab.find('.tp-rename-tab-input');
+    const $error = $tab.find('.tp-rename-tab-error');
+    const $renameButton = $tab.find('.tp-rename-tab');
+    const tabType = $renameButton.data('tab');
+    const newLabel = ($input.val() || '').trim();
+
+    if (!newLabel) {
+        $error.text(taxoPressAIRequestAction.label_empty_error).show();
+        $input.focus();
+        return;
+    }
+    if (newLabel.length > 30) {
+        $error.text(taxoPressAIRequestAction.label_too_long_error).show();
+        $input.focus();
+        return;
+    }
+
+    // clear old error
+    $error.hide().text('');
+
+    const actionMap = {
+        'existing_terms': 'taxopress_ai_save_existing_terms_label',
+        'post_terms': 'taxopress_ai_save_post_terms_label',
+        'suggest_local_terms': 'taxopress_ai_save_suggest_local_terms_label',
+        'create_term': 'taxopress_ai_save_create_terms_label'
+    };
+
+    const action = actionMap[tabType];
+    if (!action) {
+        $error.text(taxoPressAIRequestAction.unknown_tab_error).show();
+        return;
+    }
+
+    $.post(ajaxurl, {
+        action: action,
+        nonce: taxoPressAIRequestAction.nonce,
+        new_label: newLabel
+    }).done(function (resp) {
+        if (resp && resp.success && resp.data && resp.data.label) {
+        $tab.find('.tp-tab-label').text(resp.data.label);
+        $tab.find('.tp-tab-label').show();
+        $tab.find('.tp-rename-tab').show();
+        $tab.find('.tp-rename-inline-controls').hide();
+        $error.hide().text('');
+        } else {
+        const msg = (resp && resp.data && resp.data.message) ? resp.data.message : taxoPressAIRequestAction.save_error;
+        $error.text(msg).show();
+        }
+    }).fail(function (xhr) {
+        let msg = taxoPressAIRequestAction.save_error;
+        if (xhr && xhr.responseJSON && (xhr.responseJSON.data?.message || xhr.responseJSON.message)) {
+        msg = xhr.responseJSON.data?.message || xhr.responseJSON.message;
+        }
+        $error.text(msg).show();
+        // keep edit mode open on failure
+    });
+    });
+
+    // Save on Enter, cancel on Escape
+    $(document).on('keydown', '.tp-rename-tab-input', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        $(this).closest('li').find('.tp-rename-tab-save').trigger('click');
+    } else if (e.key === 'Escape') {
+        const $tab = $(this).closest('li');
+        $tab.find('.tp-rename-tab-error').hide().text('');
+        $tab.find('.tp-tab-label').show();
+        $tab.find('.tp-rename-tab').show();
+        $tab.find('.tp-rename-inline-controls').hide();
+    }
+    });
 
   });
 })(jQuery);

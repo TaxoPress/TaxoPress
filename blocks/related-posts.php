@@ -21,7 +21,7 @@ function st_related_posts_block_init()
         ['wp-blocks', 'wp-element', 'wp-components', 'wp-editor']
     );
 
-    // Register and enqueue frontend styles
+    // Register and enqueue frontend styles for block editor
     wp_register_style(
         'taxopress-frontend-css',
         STAGS_URL . '/assets/frontend/css/frontend.css',
@@ -29,7 +29,14 @@ function st_related_posts_block_init()
         STAGS_VERSION,
         'all'
     );
-    wp_enqueue_style('taxopress-frontend-css');
+    add_action('enqueue_block_editor_assets', function () {
+        if (is_admin() && function_exists('get_current_screen')) {
+            $screen = get_current_screen();
+            if ($screen && $screen->is_block_editor()) {
+                wp_enqueue_style('taxopress-frontend-css');
+            }
+        }
+    });
 
     // Register our block, and explicitly define the attributes we accept.
     $relatedposts_data = taxopress_get_relatedpost_data();

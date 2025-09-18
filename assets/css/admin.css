@@ -1936,3 +1936,15 @@ body.block-editor-page .clicktags-search-wrapper .option input {
         display: block;
     }
 }
+
+.taxopress-autoterm-schedule .autoterm_cron_disable_label{
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.page-title-action.taxopress{
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    top: 3px !important;
+}

@@ -2026,72 +2026,102 @@
     }
 
     // Autocomplete for the manage terms feature
-    if ($('.merge-feature-autocomplete, .add-terms-autocomplete, .remove-terms-autocomplete, .rename-terms-autocomplete').length > 0) {
-        $('.merge-feature-autocomplete, .add-terms-autocomplete, .remove-terms-autocomplete, .rename-terms-autocomplete').each(function () {
+    (function(){
+        const selector = '.merge-feature-autocomplete, .add-terms-autocomplete, .remove-terms-autocomplete, .rename-terms-autocomplete';
+        if (!jQuery(selector).length) return;
 
-            const taxonomy = $(this).closest('.auto-terms-content').find('.st-taxonomy-select').val();
-            const inputField = $(this);
-            let showSlug = false;
+        function flagEnabled(val){
+            if (val === undefined || val === null) return false;
+            const s = String(val).toLowerCase();
+            return ['1','true','yes','on','y'].includes(s);
+        }
 
-            // Determine which slug display setting to use based on the input class
-            if (inputField.hasClass('merge-feature-autocomplete')) {
-                showSlug = st_admin_localize.enable_merge_terms_slug === '1';
-            } else if (inputField.hasClass('add-terms-autocomplete')) {
-                showSlug = st_admin_localize.enable_add_terms_slug === '1';
-            } else if (inputField.hasClass('remove-terms-autocomplete')) {
-                showSlug = st_admin_localize.enable_remove_terms_slug === '1';
-            } else if (inputField.hasClass('rename-terms-autocomplete')) {
-                showSlug = st_admin_localize.enable_rename_terms_slug === '1';
+        function showSlugFor($el){
+            if ($el.hasClass('merge-feature-autocomplete'))  return flagEnabled(st_admin_localize.enable_merge_terms_slug);
+            if ($el.hasClass('add-terms-autocomplete'))      return flagEnabled(st_admin_localize.enable_add_terms_slug);
+            if ($el.hasClass('remove-terms-autocomplete'))   return flagEnabled(st_admin_localize.enable_remove_terms_slug);
+            if ($el.hasClass('rename-terms-autocomplete'))   return flagEnabled(st_admin_localize.enable_rename_terms_slug);
+            return false;
+        }
+
+        function currentTaxonomy($el){
+            return (
+                $el.closest('.auto-terms-content').find('.st-taxonomy-select').val() ||
+                jQuery('.auto-terms-content:visible .st-taxonomy-select').first().val() ||
+                $el.data('taxo') ||
+                jQuery('.st-taxonomy-select').first().val() ||
+                'post_tag'
+            ).toString().replace(/[^a-z0-9_\-]/g,'');
+        }
+
+        // Destroy any earlier generic autocomplete
+        jQuery(selector).each(function(){
+            if (jQuery(this).data('ui-autocomplete')) {
+                jQuery(this).autocomplete('destroy');
             }
+        });
 
-            inputField.autocomplete({
-                source: function (request, response) {
-                    const lastTerm = request.term.split(',').pop().trim(); // Get the last term after the comma
-                    $.ajax({
+        jQuery(selector).each(function(){
+            const $field = jQuery(this);
+            const useSlug = showSlugFor($field);
+
+            $field.autocomplete({
+                minLength: 1,
+                source: function(request, response){
+                    const fragment = request.term.split(',').pop().trim();
+                    const taxonomy = currentTaxonomy($field);
+
+                    jQuery.ajax({
                         url: st_admin_localize.ajaxurl,
-                        method: 'POST',
+                        type: 'POST',
                         dataType: 'json',
                         data: {
                             action: 'taxopress_autocomplete_terms',
-                            term: lastTerm,
+                            term: fragment,
                             taxonomy: taxonomy,
                             nonce: st_admin_localize.check_nonce
                         },
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                // Only include slug in label/value if enabled
-                                const displayText = showSlug ? item.name + ' (' + item.slug + ')' : item.name;
+                        success: function(data){
+                            if (!Array.isArray(data)) {
+                                response([]);
+                                return;
+                            }
+                            response(jQuery.map(data, function(item){
+                                const label = useSlug && item.slug ? (item.name + ' (' + item.slug + ')') : item.name;
                                 return {
-                                    label: displayText,
-                                    value: displayText
+                                    label: label,
+                                    value: label
                                 };
                             }));
-                        }
+                        },
+                        error: function(){ response([]); }
                     });
                 },
-                minLength: 1,
-                focus: function () {
-                    // Prevent value insertion on focus
-                    return false;
-                },
-                select: function (event, ui) {
-                    const currentValue = inputField.val();
-                    const terms = currentValue.split(',').map(term => term.trim());
-
-                    terms[terms.length - 1] = ui.item.value;
-
-                    inputField.val(terms.join(', ') + ', ');
-
+                focus: function(){ return false; },
+                select: function(e, ui){
+                    const parts = $field.val().split(',');
+                    parts[parts.length - 1] = ui.item.value;
+                    const cleaned = parts.map(p=>p.trim()).filter(Boolean);
+                    $field.val(cleaned.join(', ') + ', ');
                     return false;
                 }
-            }).on('keydown', function (event) {
-                // Allow autocomplete to trigger after typing a comma
-                if (event.key === ',') {
-                    $(this).autocomplete('search', '');
+            }).on('keydown', function(evt){
+                if (evt.key === ',') {
+                    const frag = jQuery(this).val().split(',').pop().trim();
+                    jQuery(this).autocomplete('search', frag);
                 }
             });
         });
-    }
+
+        jQuery(document).on('change', '.auto-terms-content .st-taxonomy-select', function(){
+            jQuery(selector).each(function(){
+                const val = jQuery(this).val().split(',').pop().trim();
+                if (val.length) {
+                    jQuery(this).autocomplete('search', val);
+                }
+            });
+        });
+    })();
 
     // Merge Terms Bacth Processing
     $(document).on('submit', '.merge-terms-form', function (e) {
@@ -2653,6 +2683,37 @@
 
     }
 
+    // Schedule Frequency toggle
+    if ($('.taxopress-autoterm-schedule').length > 0) {
+      function updateCronUI() {
+        var isDisabled = $('#autoterm_cron_disable').is(':checked');
+
+        if (isDisabled) {
+          $('.autoterm_cron_frequency').addClass('st-hide-content');
+          $('.autoterm_cron_help').removeClass('st-hide-content');
+          $('#cron_schedule_value').val('disable');
+        } else {
+          $('.autoterm_cron_frequency').removeClass('st-hide-content');
+          $('.autoterm_cron_help').addClass('st-hide-content');
+
+          var chosen = $('input[name="taxopress_autoterm_schedule[cron_schedule_choice]"]:checked').val() || '';
+          $('#cron_schedule_value').val(chosen);
+        }
+      }
+
+      $(document).on('change', '#autoterm_cron_disable', function () {
+        updateCronUI();
+      });
+
+      $(document).on('change', 'input.autoterm_cron_radio', function () {
+        $('#autoterm_cron_disable').prop('checked', false);
+        $('#cron_schedule_value').val($(this).val());
+        updateCronUI();
+      });
+
+      // Initialize on load
+      updateCronUI();
+    }
 
   });
 

@@ -2,10 +2,41 @@
 require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php';
 
 $taxopress_ai_tabs = [];
-$taxopress_ai_tabs['post_terms'] = esc_html__('Manage Post Terms', 'simple-tags');
-$taxopress_ai_tabs['existing_terms'] = esc_html__('Show All Existing Terms', 'simple-tags');
-$taxopress_ai_tabs['suggest_local_terms'] = esc_html__('Auto Terms', 'simple-tags');
-$taxopress_ai_tabs['create_terms'] = esc_html__('Create Terms', 'simple-tags');
+
+$taxopress_posts_terms_label = get_option(
+    'taxopress_ai_post_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_post_terms_tab_label')
+);
+$taxopress_existing_terms_label = get_option(
+    'taxopress_ai_existing_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_existing_terms_tab_label')
+);
+$taxopress_suggest_local_terms_label = get_option(
+    'taxopress_ai_suggest_local_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_suggest_local_terms_tab_label')
+);
+$taxopress_create_terms_label = get_option(
+    'taxopress_ai_create_terms_tab_label',
+    SimpleTags_Plugin::get_option_value('taxopress_ai_create_terms_tab_label')
+);
+
+if (empty($taxopress_existing_terms_label)) {
+    $taxopress_existing_terms_label = esc_html__('Show All Existing Terms', 'simple-tags');
+}
+if (empty($taxopress_posts_terms_label)) {
+    $taxopress_posts_terms_label = esc_html__('Manage Post Terms', 'simple-tags');
+}
+if (empty($taxopress_suggest_local_terms_label)) {
+    $taxopress_suggest_local_terms_label = esc_html__('Auto Terms', 'simple-tags');
+}
+if (empty($taxopress_create_terms_label)) {
+    $taxopress_create_terms_label = esc_html__('Create Terms', 'simple-tags');
+}
+
+$taxopress_ai_tabs['existing_terms'] = $taxopress_existing_terms_label;
+$taxopress_ai_tabs['post_terms'] = $taxopress_posts_terms_label;
+$taxopress_ai_tabs['suggest_local_terms'] = $taxopress_suggest_local_terms_label;
+$taxopress_ai_tabs['create_terms'] = $taxopress_create_terms_label;
 
 $taxopress_ai_fields = [];
 $pt_index = 0;
@@ -107,6 +138,16 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
         );
+
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_filters',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . sprintf(esc_html__('%1s Metabox Filters', 'simple-tags'), esc_html($post_type_object->labels->name)) . '</div>',
+            'checkbox',
+            '1',
+            sprintf(esc_html__('Enable filters in the %1s existing terms tab.', 'simple-tags'), esc_html($post_type_object->labels->name)),
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+        );
+
         // add _metabox_orderby
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_orderby',
@@ -229,6 +270,14 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         'checkbox',
         '1',
         sprintf(esc_html__('Allow users in the %1s role to use the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
+        'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
+    );
+    $metabox_fields[] = array(
+        'enable_edit_' . $role_name . '_metabox',
+        '',
+        'checkbox',
+        '1',
+        sprintf(esc_html__('Allow users in the %1s role to edit the TaxoPress metabox label.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
      // add option to manage terms per user role

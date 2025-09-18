@@ -865,6 +865,7 @@ class SimpleTags_Admin
 
 					$options['taxopress_ai_' . $post_type . '_exclusions'] = '';
 					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
+                    $options['taxopress_ai_' . $post_type . '_metabox_filters'] = 1;
 					foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
 						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
 					}
@@ -879,6 +880,12 @@ class SimpleTags_Admin
 					}
 					$options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
 					$options['enable_restrict' . $role_name . '_metabox'] = $enable_acess_default_value;
+
+                    // ONLY admin + editor default to can edit
+                    if (!isset($options['enable_edit_' . $role_name . '_metabox'])) {
+                        $options['enable_edit_' . $role_name . '_metabox'] = in_array($role_name, ['administrator', 'editor']) ? 1 : 0;
+                    }
+
 					$options['enable_metabox_' . $role_name . ''] = [];
 					$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
 				}
