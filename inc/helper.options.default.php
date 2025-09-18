@@ -87,6 +87,11 @@ return array(
     'enable_restrict_author_metabox' => 1,
     'enable_restrict_contributor_metabox' => 1,
 
+    'enable_edit_administrator_metabox' => 1,
+    'enable_edit_editor_metabox' => 1,
+    'enable_edit_author_metabox' => 0,
+    'enable_edit_contributor_metabox' => 0,
+
     'allow_embed_tcloud'     => 1,
     // Auto link
     'auto_link_tags'         => 0,

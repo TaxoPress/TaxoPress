@@ -880,6 +880,12 @@ class SimpleTags_Admin
 					}
 					$options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
 					$options['enable_restrict' . $role_name . '_metabox'] = $enable_acess_default_value;
+
+                    // ONLY admin + editor default to can edit
+                    if (!isset($options['enable_edit_' . $role_name . '_metabox'])) {
+                        $options['enable_edit_' . $role_name . '_metabox'] = in_array($role_name, ['administrator', 'editor']) ? 1 : 0;
+                    }
+
 					$options['enable_metabox_' . $role_name . ''] = [];
 					$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
 				}

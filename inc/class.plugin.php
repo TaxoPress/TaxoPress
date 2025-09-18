@@ -91,6 +91,10 @@ class SimpleTags_Plugin {
 			}
 			$default_options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
 			$default_options['enable_restrict_' . $role_name . '_metabox'] = $enable_acess_default_value;
+
+            // ONLY admin + editor can edit the metabox label by default
+            $default_options['enable_edit_' . $role_name . '_metabox'] = in_array($role_name, ['administrator', 'editor']) ? 1 : 0;
+
 			$options['enable_metabox_' . $role_name . ''] = $tax_names;
 			$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
 		}

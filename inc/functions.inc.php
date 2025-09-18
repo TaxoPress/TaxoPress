@@ -805,6 +805,32 @@ function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false) {
 }
 
 /**
+ * Check if current user can edit (rename) TaxoPress metabox labels.
+ *
+ * @param int|false $user_id
+ * @return bool
+ */
+function can_edit_taxopress_metabox_labels($user_id = false) {
+    if (!$user_id) {
+        $user_id = get_current_user_id();
+    }
+    $user = get_userdata($user_id);
+    $can_edit = false;
+    if (is_object($user) && !empty($user->roles)) {
+        foreach ($user->roles as $role_name) {
+            if (
+                !empty(SimpleTags_Plugin::get_option_value('enable_edit_' . $role_name . '_metabox'))
+            ) {
+                $can_edit = true;
+                break;
+            }
+        }
+    }
+    return apply_filters('taxopress_can_edit_metabox_labels', $can_edit, $user_id);
+}
+
+
+/**
  * Get all the taxonomy removed for current user
  */
 function taxopress_user_role_removed_taxonomy($user_id = false) {

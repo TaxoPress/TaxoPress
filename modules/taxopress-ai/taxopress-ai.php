@@ -696,6 +696,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $existing_terms_order = !empty($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : '';
 
             $wrapper_class = $fast_update_screen ? 'fast_update_screen' : 'editor-screen';
+            $can_edit_labels = can_edit_taxopress_metabox_labels();
 
             ?>
             <div class="taxopress-post-suggestterm <?php echo esc_attr($wrapper_class); ?>">
@@ -792,20 +793,21 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                         <span class="tp-tab-label">
                                             <?php echo esc_html($label); ?>
                                         </span>
+                            <?php if ($can_edit_labels) { ?>
+                                    <div class="pp-tooltips-library" data-toggle="tooltip">
+                                        <span class="dashicons dashicons-edit tp-rename-tab" data-tab="<?php echo esc_attr($key); ?>"></span>
+                                        <div class="taxopress tooltip-text taxopress-ai"><?php echo esc_attr__('Edit', 'simple-tags'); ?></div>
+                                    </div>
+                                    <span class="tp-rename-inline-controls" style="display:none;">
+                                        <input type="text" class="tp-rename-tab-input" value="<?php echo esc_attr($label); ?>">
                                         <div class="pp-tooltips-library" data-toggle="tooltip">
-                                            <span class="dashicons dashicons-edit tp-rename-tab" data-tab="<?php echo esc_attr($key); ?>"></span>
-                                            <div class="taxopress tooltip-text taxopress-ai"><?php echo esc_attr__('Edit', 'simple-tags'); ?></div>
+                                            <span class="dashicons dashicons-yes tp-rename-tab-save"></span>
+                                            <div class="taxopress tooltip-text"><?php echo esc_attr__('Save, You can also press Enter to save and escape to cancel', 'simple-tags'); ?></div>
                                         </div>
-                                        <span class="tp-rename-inline-controls" style="display:none;">
-                                            <input type="text" class="tp-rename-tab-input" value="<?php echo esc_attr($label); ?>">
-                                            <div class="pp-tooltips-library" data-toggle="tooltip">
-                                                <span class="dashicons dashicons-yes tp-rename-tab-save"></span>
-                                                <div class="taxopress tooltip-text"><?php echo esc_attr__('Save, You can also press Enter to save and escape to cancel', 'simple-tags'); ?></div>
-                                            </div>
-                                        </span>
-                                        <!-- inline error holder -->
-                                        <span class="tp-rename-tab-error" role="alert" aria-live="polite" style="display:none;"></span>
-                                    </a>
+                                    </span>
+                                    <span class="tp-rename-tab-error" role="alert" aria-live="polite" style="display:none;"></span>
+                            <?php } ?>
+                                </a>
                                 </li>
                             <?php
                                 $tab_index++;
@@ -1033,6 +1035,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
         private function taxopress_save_tab_label($option_key) {
             if (!current_user_can('simple_tags')) {
                 wp_send_json_error(['message' => esc_html__('Permission denied.', 'simple-tags')], 403);
+            }
+            if (!can_edit_taxopress_metabox_labels()) {
+                wp_send_json_error(['message' => esc_html__('You can not edit this label.', 'simple-tags')], 403);
             }
             if (empty($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'taxopress-ai-ajax-nonce')) {
                 wp_send_json_error(['message' => esc_html__('Invalid nonce token.', 'simple-tags')], 400);
