@@ -120,7 +120,7 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
                             name="<?php echo esc_attr($this->get_field_name('relatedposts_id')); ?>">
                         <?php foreach ($relatedposts_data as $key => $value) { ?>
                             <option <?php selected(esc_attr($instance['relatedposts_id']), esc_attr($key)); ?>
-                                value="<?php echo esc_attr($key); ?>"><?php echo esc_html_e($value['title']); ?></option>
+                                value="<?php echo esc_attr($key); ?>"><?php echo esc_html($value['title']); ?></option>
                         <?php } ?>
                     </select>
                 </label>
