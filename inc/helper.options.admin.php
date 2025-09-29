@@ -1,6 +1,9 @@
 <?php
 require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php';
 
+$current_screen = get_current_screen();
+$is_fast_update = isset($_GET['page']) && $_GET['page'] === 'st_taxopress_ai';
+
 $taxopress_ai_tabs = [];
 
 $taxopress_posts_terms_label = get_option(
@@ -311,7 +314,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
     $pt_index++;
 }
 
-return apply_filters('taxopress_admin_options', array(
+$options = array(
     // post tab
     'posts'       => array(
         array(
@@ -472,10 +475,11 @@ return apply_filters('taxopress_admin_options', array(
             ),
         ),
 
-    // taxopress ai tab
-    'taxopress-ai' => $taxopress_ai_fields,
+    );
 
-    // metabox tab
-    'metabox' => $metabox_fields,
-)
-);
+    if ($is_fast_update) {
+        $options['taxopress-ai'] = $taxopress_ai_fields;
+        $options['metabox'] = $metabox_fields;
+    }
+
+    return apply_filters('taxopress_admin_options', $options);
