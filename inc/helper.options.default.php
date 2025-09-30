@@ -39,6 +39,7 @@ return array(
     'enable_remove_terms_slug' => 0,
     'enable_rename_terms_slug' => 0,
     'enable_merge_terms_slug' => 1,
+    'enable_mass-edit_terms_slug' => 0,
 
     // taxopress ai
     'enable_taxopress_ai_post_metabox' => 1,

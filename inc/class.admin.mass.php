@@ -263,7 +263,7 @@ class SimpleTags_Admin_Mass {
 										href="<?php echo esc_url(admin_url( 'post.php?action=edit&amp;post=' . get_the_ID() )); ?>"
 										title="<?php esc_attr_e( 'Edit', 'simple-tags' ); ?>"><?php echo ( esc_html(get_the_title()) == '' ) ? (int)get_the_ID() : esc_html(get_the_title()); ?></a>
 								</th>
-								<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input"
+								<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input taxopress-mass-edit-input"
 								           type="text" size="100" name="tags[<?php echo (int)get_the_ID(); ?>]"
 								           value="<?php echo esc_attr(SimpleTags_Admin::getTermsToEdit( SimpleTags_Admin::$taxonomy, get_the_ID() )); ?>"/>
 								</td>

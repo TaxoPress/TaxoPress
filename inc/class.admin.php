@@ -739,6 +739,7 @@ class SimpleTags_Admin
 			'enable_add_terms_slug' => SimpleTags_Plugin::get_option_value('enable_add_terms_slug'),
 			'enable_remove_terms_slug' => SimpleTags_Plugin::get_option_value('enable_remove_terms_slug'),
 			'enable_rename_terms_slug' => SimpleTags_Plugin::get_option_value('enable_rename_terms_slug'),
+            'enable_mass_edit_terms_slug' => SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug'),
 			'select_post_label'        => esc_html__('Search Posts...', 'simple-tags'),
 			'loading'                  => esc_html__('Loading...', 'simple-tags'),
 			'preview_error'            => esc_html__('Error loading preview', 'simple-tags'),
@@ -934,7 +935,7 @@ class SimpleTags_Admin
 
                 add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated taxopress-notice');
             } else {
-                // no-op
+               //add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
             }
         }
 
@@ -1359,7 +1360,7 @@ class SimpleTags_Admin
 				);
 			} else {
 				$query = $wpdb->prepare("
-					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
+					SELECT DISTINCT t.name, t.slug, t.term_id, tt.taxonomy
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy = %s
@@ -1381,7 +1382,7 @@ class SimpleTags_Admin
 
 			} else {
 				$query = $wpdb->prepare("
-					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
+					SELECT DISTINCT t.name, t.slug, t.term_id, tt.taxonomy
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy = %s

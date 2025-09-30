@@ -473,6 +473,14 @@ $options = array(
                 __('Enabling this will allow users to see the slug while merging terms', 'simple-tags'),
                 ''
             ),
+            array(
+                'enable_mass-edit_terms_slug',
+                __('Mass Edit Terms:', 'simple-tags'),
+                'checkbox',
+                '1',
+                __('Enabling this will allow users to see the slug in the mass edit terms screen', 'simple-tags'),
+                ''
+            ),
         ),
 
     );
