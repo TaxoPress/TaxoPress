@@ -2658,8 +2658,16 @@
                     },
                     processResults: function (data, params) {
                         params.page = params.page || 1;
+                        const decodedResults = data.results.map(function(item) {
+                            const txt = document.createElement("textarea");
+                            txt.innerHTML = item.text;
+                            return {
+                                ...item,
+                                text: txt.value
+                            };
+                        });
                         return {
-                            results: data.results,
+                            results: decodedResults,
                             pagination: {
                                 more: data.more
                             }
@@ -2668,7 +2676,15 @@
                     cache: true
                 },
                 templateSelection: function (data) {
-                    return data.text || data.id;
+                    if (data.text) {
+                        const txt = document.createElement("textarea");
+                        txt.innerHTML = data.text;
+                        return txt.value;
+                    }
+                    return data.id;
+                },
+                escapeMarkup: function(markup) {
+                    return markup;
                 }
             });
 
