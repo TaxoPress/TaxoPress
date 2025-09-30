@@ -843,89 +843,104 @@ class SimpleTags_Admin
 
 				$sanitized_options = [];
 
-				// add taxopress ai post type and taxonomies options so we can have all post types. TODO: This need to be a filter
-				foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
-					if ($post_type == 'post') {
-						$opt_default_value = 'post_tag';
-					} else {
-						$opt_default_value = 0;
-					}
-					$options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
-					$options['taxopress_ai_' . $post_type . '_metabox_display_option'] = 'default';
-					$options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
-					
-					$options['taxopress_ai_' . $post_type . '_metabox_orderby'] = 'count';
-					$options['taxopress_ai_' . $post_type . '_metabox_order'] = 'desc';
-					$options['taxopress_ai_' . $post_type . '_metabox_maximum_terms'] = 45;
-					$options['taxopress_ai_' . $post_type . '_metabox_show_post_count'] = 0;
+                $is_fast_update_submission = isset($_GET['page']) && $_GET['page'] === 'st_taxopress_ai';
 
-					$options['taxopress_ai_' . $post_type . '_minimum_term_length'] = 2;
-					$options['taxopress_ai_' . $post_type . '_maximum_term_length'] = 40;
+                // This settings has been migrated to fast update screen so only update from there
+                if ($is_fast_update_submission) {
+                    // add taxopress ai post type and taxonomies options so we can have all post types. TODO: This need to be a filter
+                    foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
+                        if ($post_type == 'post') {
+                            $opt_default_value = 'post_tag';
+                        } else {
+                            $opt_default_value = 0;
+                        }
+                        $options['taxopress_ai_' . $post_type . '_metabox_default_taxonomy'] = $opt_default_value;
+                        $options['taxopress_ai_' . $post_type . '_metabox_display_option'] = 'default';
+                        $options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 
+                        $options['taxopress_ai_' . $post_type . '_metabox_orderby'] = 'count';
+                        $options['taxopress_ai_' . $post_type . '_metabox_order'] = 'desc';
+                        $options['taxopress_ai_' . $post_type . '_metabox_maximum_terms'] = 45;
+                        $options['taxopress_ai_' . $post_type . '_metabox_show_post_count'] = 0;
 
-					$options['taxopress_ai_' . $post_type . '_exclusions'] = '';
-					$options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
-                    $options['taxopress_ai_' . $post_type . '_metabox_filters'] = 1;
-					foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
-						$options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
-					}
-				}
+                        $options['taxopress_ai_' . $post_type . '_minimum_term_length'] = 2;
+                        $options['taxopress_ai_' . $post_type . '_maximum_term_length'] = 40;
 
-				// add metabox post type and taxonomies options so we can have all post types. TODO: This need to be a filter
-				foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
-					if (in_array($role_name, ['administrator', 'editor', 'author', 'contributor'])) {
-						$enable_acess_default_value = 1;
-					} else {
-						$enable_acess_default_value = 0;
-					}
-					$options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
-					$options['enable_restrict' . $role_name . '_metabox'] = $enable_acess_default_value;
-
-                    // ONLY admin + editor default to can edit
-                    if (!isset($options['enable_edit_' . $role_name . '_metabox'])) {
-                        $options['enable_edit_' . $role_name . '_metabox'] = in_array($role_name, ['administrator', 'editor']) ? 1 : 0;
+                        $options['taxopress_ai_' . $post_type . '_exclusions'] = '';
+                        $options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
+                        $options['taxopress_ai_' . $post_type . '_metabox_filters'] = 1;
+                        foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
+                            $options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
+                        }
                     }
 
-					$options['enable_metabox_' . $role_name . ''] = [];
-					$options['remove_taxonomy_metabox_' . $role_name . ''] = [];
-				}
+                    // add metabox access defaults for roles
+                    foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
+                        if (in_array($role_name, ['administrator', 'editor', 'author', 'contributor'])) {
+                            $enable_acess_default_value = 1;
+                        } else {
+                            $enable_acess_default_value = 0;
+                        }
+                        $options['enable_' . $role_name . '_metabox'] = $enable_acess_default_value;
+                        $options['enable_restrict' . $role_name . '_metabox'] = $enable_acess_default_value;
 
-				foreach ($options as $key => $value) {
-					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-					$value = isset($_POST[$key]) ? $_POST[$key] : '';
+                        // ONLY admin + editor default to can edit
+                        if (!isset($options['enable_edit_' . $role_name . '_metabox'])) {
+                            $options['enable_edit_' . $role_name . '_metabox'] = in_array($role_name, ['administrator', 'editor']) ? 1 : 0;
+                        }
 
-					if (empty($value) && in_array($key, $dashboard_option_keys)) {
-						$value = SimpleTags_Plugin::get_option_value($key);
-					}
+                        $options['enable_metabox_' . $role_name . ''] = [];
+                        $options['remove_taxonomy_metabox_' . $role_name . ''] = [];
+                    }
+                }
 
-					if (!is_array($value)) {
-						$sanitized_options[$key] = taxopress_sanitize_text_field($value);
-					} else {
-						$sanitized_options[$key] = map_deep($value, 'sanitize_text_field');
-					}
-				}
-				$options = $sanitized_options;
+                foreach ($options as $key => $value) {
+                    // If this is NOT a Fast Update submission, preserve metabox/metabox-access keys
+                    if (!$is_fast_update_submission && preg_match('/^(enable_taxopress_ai_|taxopress_ai_|enable_.*_metabox|enable_restrict.*_metabox|enable_edit_.*_metabox|enable_metabox_|remove_taxonomy_metabox_)/', $key)) {
+                        // Keep existing value as-is
+                        if (!is_array($value)) {
+                            $sanitized_options[$key] = taxopress_sanitize_text_field($value);
+                        } else {
+                            $sanitized_options[$key] = map_deep($value, 'sanitize_text_field');
+                        }
+                        continue;
+                    }
 
-				SimpleTags_Plugin::set_option($options);
+                    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                    $post_value = isset($_POST[$key]) ? $_POST[$key] : '';
 
-				do_action('simpletags_settings_save_general_end');
-				do_action('taxopress_settings_saved');
+                    if (empty($post_value) && in_array($key, $dashboard_option_keys)) {
+                        $post_value = SimpleTags_Plugin::get_option_value($key);
+                    }
 
-				add_settings_error(__CLASS__, __CLASS__, esc_html__('Options saved', 'simple-tags'), 'updated taxopress-notice');
-			} elseif (isset($_POST['reset_options'])) {
-				check_admin_referer('updateresetoptions-simpletags');
+                    if (!is_array($post_value)) {
+                        $sanitized_options[$key] = taxopress_sanitize_text_field($post_value);
+                    } else {
+                        $sanitized_options[$key] = map_deep($post_value, 'sanitize_text_field');
+                    }
+                }
+                $options = $sanitized_options;
 
-				SimpleTags_Plugin::set_default_option();
+                SimpleTags_Plugin::set_option($options);
 
-				add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated taxopress-notice');
-			} else {
-				//add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
-			}
-		}
+                do_action('simpletags_settings_save_general_end');
+                do_action('taxopress_settings_saved');
 
-		settings_errors(__CLASS__);
-		include STAGS_DIR . '/views/admin/page-settings.php';
-	}
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Options saved', 'simple-tags'), 'updated taxopress-notice');
+            } elseif (isset($_POST['reset_options'])) {
+                check_admin_referer('updateresetoptions-simpletags');
+
+                SimpleTags_Plugin::set_default_option();
+
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated taxopress-notice');
+            } else {
+                // no-op
+            }
+        }
+
+        settings_errors(__CLASS__);
+        include STAGS_DIR . '/views/admin/page-settings.php';
+    }
 
 	/**
 	 * Get terms for a post, format terms for input and autocomplete usage

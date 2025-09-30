@@ -267,7 +267,7 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 
 .metabox-role-tabs .metabox-role-tab-nav {
     list-style: none;
-    margin: 0;
+    margin: 5px;
     padding: 0;
     border-bottom: 1px solid #ccc;
 }
@@ -323,6 +323,6 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 .taxopress-ai-post-type-tab-nav a.active,
 .metabox-role-tab-nav a.active {
     color: #000;
-    font-weight: bold;
+    font-weight: 600;
 }
  

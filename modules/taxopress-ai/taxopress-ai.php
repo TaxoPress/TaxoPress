@@ -158,17 +158,38 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 return;
             }
 
+            if (!empty($_POST['taxopress_ai_integration']) && !empty($_POST['_wpnonce']) && wp_verify_nonce(sanitize_key($_POST['_wpnonce']), 'taxopress_ai_settings_nonce_action')) {
+                $sanitized_data = map_deep($_POST['taxopress_ai_integration'], 'sanitize_text_field');
+
+                foreach (['open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $field) {
+                    if (!isset($sanitized_data[$field . '_cache_result'])) {
+                        $sanitized_data[$field . '_cache_result'] = 0;
+                    }
+                }
+                foreach (['open_ai', 'ibm_watson', 'dandelion', 'open_calais', 'suggest_local_terms', 'existing_terms', 'post_terms'] as $field) {
+                    if (!isset($sanitized_data[$field . '_show_post_count'])) {
+                        $sanitized_data[$field . '_show_post_count'] = 0;
+                    }
+                }
+
+                update_option(self::TAXOPRESS_AI_OPTION_KEY, $sanitized_data);
+                add_action('admin_notices', function () {
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo taxopress_admin_notices_helper(esc_html__('Settings updated successfully.', 'simple-tags'));
+                });
+                return;
+            }
+
             if (!isset($_POST['updateoptions'])) {
                 return;
             }
 
             if (!empty($_POST['_wpnonce']) && wp_verify_nonce(sanitize_key($_POST['_wpnonce']), 'updateresetoptions-simpletags')) {
                 check_admin_referer('updateresetoptions-simpletags');
-            
-                // Get current options
+
                 $current_options = SimpleTags_Plugin::get_option();
                 
-                // Handle taxopress_ai_integration array fields (API settings)
+                // Handle taxopress_ai_integration array fields (API settings) - if present in metabox forms
                 if (!empty($_POST['taxopress_ai_integration'])) {
                     $sanitized_data = map_deep($_POST['taxopress_ai_integration'], 'sanitize_text_field');
             
@@ -183,11 +204,87 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         }
                     }
                     
-                    // Save API settings to separate option
                     update_option(self::TAXOPRESS_AI_OPTION_KEY, $sanitized_data);
                 }
-                
-                // Handle direct field names (metabox settings)
+
+                $active_tab = '';
+                if (!empty($_POST['taxopress_ai_integration']['active_tab'])) {
+                    $active_tab = sanitize_key($_POST['taxopress_ai_integration']['active_tab']);
+                } elseif (!empty($_GET['tab'])) {
+                    $active_tab = sanitize_key($_GET['tab']);
+                }
+                $active_post_type = !empty($_POST['taxopress_ai_integration']['active_post_type']) ? sanitize_key($_POST['taxopress_ai_integration']['active_post_type']) : '';
+                $active_role      = !empty($_POST['taxopress_ai_integration']['active_role']) ? sanitize_key($_POST['taxopress_ai_integration']['active_role']) : '';
+
+                $option_data = (array) include(STAGS_DIR . '/inc/helper.options.admin.php');
+
+                $sections_to_check = [];
+                if ($active_tab === 'metabox') {
+                    $sections_to_check = ['taxopress-ai'];
+                } elseif ($active_tab === 'metabox_access') {
+                    $sections_to_check = ['metabox'];
+                } else {
+                    $sections_to_check = ['taxopress-ai', 'metabox'];
+                }
+
+                $expected_checkbox_keys = [];
+                $expected_multiselect_keys = [];
+                foreach ($sections_to_check as $section) {
+                    if (empty($option_data[$section]) || !is_array($option_data[$section])) {
+                        continue;
+                    }
+                    foreach ($option_data[$section] as $opt) {
+                        if (empty($opt) || !is_array($opt)) {
+                            continue;
+                        }
+                        $field_id   = isset($opt[0]) ? $opt[0] : '';
+                        $field_type = isset($opt[2]) ? $opt[2] : '';
+                       $field_class = isset($opt[5]) ? $opt[5] : '';
+
+                        if ($section === 'taxopress-ai' && $active_post_type) {
+                            if (strpos($field_class, 'taxopress-ai-' . $active_post_type . '-content') === false) {
+                                continue;
+                            }
+                        }
+
+                        if ($section === 'metabox' && $active_role) {
+                            if (strpos($field_class, 'metabox-' . $active_role . '-content') === false) {
+                                continue;
+                            }
+                        }
+
+                        if ($field_type === 'checkbox' && $field_id) {
+                            $expected_checkbox_keys[] = $field_id;
+                            continue;
+                        }
+
+                        if ($field_type === 'multiselect' && $field_id) {
+                           $expected_multiselect_keys[] = $field_id;
+                            continue;
+                        }
+
+                        if ($field_type === 'sub_multiple_checkbox' && isset($opt[3]) && is_array($opt[3])) {
+                            foreach ($opt[3] as $sub_key => $sub_val) {
+                                $expected_checkbox_keys[] = $sub_key;
+                            }
+                        }
+
+                        // multiselect / per-role checkboxes might use arrays; skip those (they are handled by posted arrays)
+                    }
+                }
+
+                foreach (array_unique($expected_checkbox_keys) as $chk_key) {
+                    if (!array_key_exists($chk_key, $_POST)) {
+                        $current_options[$chk_key] = '0';
+                    }
+                }
+
+                foreach (array_unique($expected_multiselect_keys) as $ms_key) {
+                    if (!array_key_exists($ms_key, $_POST)) {
+                        $current_options[$ms_key] = [];
+                    }
+                }
+
                 foreach ($_POST as $key => $value) {
                     if (in_array($key, ['_wpnonce', '_wp_http_referer', 'updateoptions', 'taxopress_ai_integration'])) {
                         continue;
@@ -199,16 +296,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         $current_options[$key] = sanitize_text_field($value);
                     }
                 }
-            
-                // Handle unchecked checkboxes
-                $all_options = SimpleTags_Plugin::get_option();
-                foreach ($all_options as $key => $value) {
-                    if ((strpos($key, 'enable_taxopress_ai_') === 0 || strpos($key, 'taxopress_ai_') === 0) && !isset($_POST[$key])) {
-                        $current_options[$key] = 0;
-                    }
-                }
-            
-                // Save metabox settings to main options
+
                 SimpleTags_Plugin::set_option($current_options);
                 
                 add_action('admin_notices', function () {
@@ -261,13 +349,19 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 $removed_taxonomies_css = $removed_taxonomies['custom_css'];
 
                 $metabox_filters_enabled = false;
+                $post_type_for_filters = '';
                 if ($fast_update_screen) {
-                    $metabox_filters_enabled = true;
-                } elseif (function_exists('get_post_type')) {
-                    $current_post_type = get_post_type();
-                    if ($current_post_type) {
-                        $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $current_post_type . '_metabox_filters');
+                    foreach (TaxoPressAiUtilities::get_post_types_options() as $pt => $pt_obj) {
+                        if ($pt !== 'attachment') {
+                            $post_type_for_filters = $pt;
+                            break;
+                        }
                     }
+                } elseif (function_exists('get_post_type')) {
+                    $post_type_for_filters = get_post_type();
+                }
+                if (!empty($post_type_for_filters)) {
+                    $metabox_filters_enabled = (bool) SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type_for_filters . '_metabox_filters');
                 }
 
 
@@ -346,13 +440,15 @@ if (!class_exists('TaxoPress_AI_Module')) {
         public function page_manage_taxopress_ai()
         {
 
+            if (isset($_POST['updateoptions'])) {
+                $this->save_settings();
+            }
+
             settings_errors(__CLASS__);
             $post = 0;
 
-            // Get current tab
             $current_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'metabox';
-            
-            // Define tabs
+
             $tabs = [
                 'metabox' => __('Metabox', 'simple-tags'),
                 'metabox_access' => __('Metabox Access', 'simple-tags'), 
@@ -365,7 +461,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     <?php echo esc_html__('Fast Update', 'simple-tags'); ?>
                 </h1>
                 <div class="taxopress-description">
-                    <?php esc_html_e('This screen allows you to quickly edit the terms on multiple posts. This feature uses the same metabox you see when editing posts.', 'simple-tags'); ?> <a target="_blank" href="<?php echo admin_url('admin.php?page=st_options&active_tab=taxopress-ai') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
+                <?php esc_html_e('This screen allows you to quickly edit the terms on multiple posts. This feature uses the same metabox you see when editing posts.', 'simple-tags'); ?> <a target="_blank" href="<?php echo admin_url('admin.php?page=st_taxopress_ai&tab=metabox_access') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
                 </div>
 
                 <h2 class="nav-tab-wrapper">
@@ -411,17 +507,15 @@ if (!class_exists('TaxoPress_AI_Module')) {
         }
 
         /**
-         * Render TaxoPress AI fields using the same logic as SimpleTags_Admin::print_options()
+         * Render TaxoPress AI fields
          */
         private function render_taxopress_ai_fields($fields)
         {
-            // Get current options
             $option_actual = SimpleTags_Plugin::get_option();
             
             $output = '';
             $pt_index = 0;
-            
-            // Group fields by post type
+
             foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
                 if (in_array($post_type, ['attachment'])) continue;
                 
@@ -430,30 +524,23 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 
                 $output .= '<div id="taxopress-ai-' . esc_attr($post_type) . '-content" class="post-type-content ' . esc_attr($active_class) . '" ' . $display_style . '>';
                 
-                // Render fields for this post type
                 foreach ($fields as $option) {
                     if (empty($option) || !is_array($option)) continue;
-                    
-                    // Extract field data
+
                     $field_id = $option[0];
                     $field_label = $option[1];
                     $field_type = $option[2];
                     $field_options = isset($option[3]) ? $option[3] : '';
                     $field_description = isset($option[4]) ? $option[4] : '';
                     $field_class = isset($option[5]) ? $option[5] : '';
-                    
-                    // Check if field belongs to this post type by looking at CSS classes
+
                     if (strpos($field_class, 'taxopress-ai-' . $post_type . '-content') === false) {
                         continue;
                     }
                     
-                    // Handle headers differently - only show relevant ones and clean them up
                     if ($field_type === 'header') {
-                        // Clean up the header HTML to extract just the text
                         $clean_header = strip_tags($field_label);
                         if (!empty($clean_header) && strpos($clean_header, 'Metabox') !== false) {
-                            //$output .= '<h4>' . esc_html($clean_header) . '</h4>';
-                            // NEW - preserves CSS classes
                             $output .= '<h3 class="' . esc_attr($field_class) . '">' . esc_html($clean_header) . '</h3>';
                         }
                         continue;
@@ -461,8 +548,6 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     
                     if ($field_type === 'helper') {
                         if (!empty($field_description)) {
-                            //$output .= '<p class="description">' . esc_html($field_description) . '</p>';
-                            // NEW
                             $output .= '<p class="description ' . esc_attr($field_class) . '">' . esc_html($field_description) . '</p>';
                         }
                         continue;
@@ -532,29 +617,34 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             break;
                             
                         case 'number':
-                            $min_attr = isset($option[6]) ? ' min="' . esc_attr($option[6]) . '"' : '';
-                            $input_type = '<input type="number" id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '" value="' . esc_attr($option_actual[$field_id]) . '"' . $min_attr . ' />';
+                            $min_value = isset($option[6]) ? $option[6] : 0;
+                            $min_attr = $min_value > 0 ? ' min="' . esc_attr($min_value) . '"' : '';
+
+                            $field_value = isset($option_actual[$field_id]) ? $option_actual[$field_id] : '';
+                            
+                            $input_type = '<input type="number" id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '" value="' . esc_attr($field_value) . '"' . $min_attr . ' />';
                             break;
                             
                         case 'textarea':
                             $rows_attr = isset($option[7]['rows']) ? ' rows="' . esc_attr($option[7]['rows']) . '"' : ' rows="4"';
                             $placeholder_attr = isset($option[7]['placeholder']) ? ' placeholder="' . esc_attr($option[7]['placeholder']) . '"' : '';
                             $width_attr = (!empty($option[7]['width'])) ? ' style="width:' . esc_attr($option[7]['width']) . ';"' : ' style="width:100%; max-width:600px;"';
-                            $input_type = '<textarea id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '"' . $rows_attr . $placeholder_attr . $width_attr . '>' . esc_textarea($option_actual[$field_id]) . '</textarea>';
+ 
+                            $field_value = isset($option_actual[$field_id]) ? $option_actual[$field_id] : '';
+                            
+                            $input_type = '<textarea id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '"' . $rows_attr . $placeholder_attr . $width_attr . '>' . esc_textarea($field_value) . '</textarea>';
                             break;
                             
                         default:
                             $input_type = '<input type="text" id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '" value="' . esc_attr($option_actual[$field_id]) . '" />';
                             break;
                     }
-                    
-                    // Clean up field label - remove HTML wrapper if present
+
                     $clean_label = strip_tags($field_label);
                     if (empty($clean_label)) {
-                        $clean_label = $field_label; // Keep original if stripping results in empty
+                        $clean_label = $field_label;
                     }
-                    
-                    // Add description
+
                     $extra_suffix = '';
                     if (!empty($field_description)) {
                         if ($field_type == 'sub_multiple_checkbox') {
@@ -563,8 +653,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             $extra_suffix = '<' . $desc_html_tag . ' class="stpexplan">' . $field_description . '</' . $desc_html_tag . '>';
                         }
                     }
-                    
-                    // Output the field
+
                     $output .= '<table class="form-table">';
                     $output .= '<tr style="vertical-align: top;" class="' . esc_attr($field_class) . '"><th scope="row"><label for="' . esc_attr($field_id) . '">' . $clean_label . '</label></th><td>' . (isset($extra_prefix) ? $extra_prefix : '') . $input_type . $extra_suffix . '</td></tr>';
                     $output .= '</table>';
@@ -578,7 +667,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
         }
 
         /**
-         * Render metabox fields using the same logic as SimpleTags_Admin::print_options()
+         * Render metabox fields
          */
         private function render_metabox_fields($fields)
         {
@@ -587,32 +676,27 @@ if (!class_exists('TaxoPress_AI_Module')) {
             
             $output = '';
             $role_index = 0;
-            
-            // Group fields by role
+ 
             foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
                 $active_class = ($role_index === 0) ? 'active' : '';
                 $display_style = ($role_index === 0) ? '' : 'style="display:none;"';
                 
                 $output .= '<div id="metabox-' . esc_attr($role_name) . '-content" class="role-content ' . esc_attr($active_class) . '" ' . $display_style . '>';
-                
-                // Render fields for this role
+
                 foreach ($fields as $option) {
                     if (empty($option) || !is_array($option)) continue;
-                    
-                    // Extract field data
+
                     $field_id = $option[0];
                     $field_label = $option[1];
                     $field_type = $option[2];
                     $field_options = isset($option[3]) ? $option[3] : '';
                     $field_description = isset($option[4]) ? $option[4] : '';
                     $field_class = isset($option[5]) ? $option[5] : '';
-                    
-                    // Check if field belongs to this role by looking at CSS classes
+
                     if (strpos($field_class, 'metabox-' . $role_name . '-content') === false) {
                         continue;
                     }
-                    
-                    // Skip headers and helpers
+
                     if (in_array($field_type, ['header', 'helper'])) {
                         continue;
                     }
@@ -631,7 +715,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             $desc_html_tag = 'div';
                             $input_type_array = array();
                             foreach ($field_options as $option_key => $option_label) {
-                                $selected_option = (is_array($option_actual[$field_id]) && in_array($option_key, $option_actual[$field_id])) ? true : false;
+                              $field_value = isset($option_actual[$field_id]) ? $option_actual[$field_id] : array();
+                              $selected_option = (is_array($field_value) && in_array($option_key, $field_value)) ? true : false;
                                 $input_type_array[] = '<label><input type="checkbox" id="' . esc_attr($field_id . '-' . $option_key) . '" name="' . esc_attr($field_id) . '[]" value="' . esc_attr($option_key) . '" ' . checked($selected_option, true, false) . ' /> ' . esc_html($option_label) . '</label><br />';
                             }
                             $input_type = implode('', $input_type_array);
@@ -641,20 +726,17 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             $input_type = '<input type="text" id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '" value="' . esc_attr($option_actual[$field_id]) . '" />';
                             break;
                     }
-                    
-                    // Clean up field label - remove HTML wrapper if present
+
                     $clean_label = strip_tags($field_label);
                     if (empty($clean_label)) {
-                        $clean_label = $field_label; // Keep original if stripping results in empty
+                        $clean_label = $field_label;
                     }
-                    
-                    // Add description
+
                     $extra_suffix = '';
                     if (!empty($field_description)) {
                         $extra_suffix = '<' . $desc_html_tag . ' class="stpexplan">' . $field_description . '</' . $desc_html_tag . '>';
                     }
-                    
-                    // Output the field
+
                     $output .= '<table class="form-table">';
                     $output .= '<tr style="vertical-align: top;"><th scope="row"><label for="' . esc_attr($field_id) . '">' . $clean_label . '</label></th><td>' . $input_type . $extra_suffix . '</td></tr>';
                     $output .= '</table>';
@@ -668,11 +750,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
         }
 
         /**
-         * Render the Metabox Settings tab - replicating the exact structure from settings page
+         * Render the Metabox Settings tab
          */
         private function render_metabox_settings_tab()
         {
-            // Get the taxopress-ai fields from helper.options.admin.php
             $option_data = (array) include(STAGS_DIR . '/inc/helper.options.admin.php');
             $taxopress_ai_fields = $option_data['taxopress-ai'];
             
@@ -683,19 +764,21 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         <?php
                         $pt_index = 0;
                         $post_type_links = [];
+                        $first_post_type = '';
                         foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
                             if (in_array($post_type, ['attachment'])) continue;
+                            if ($pt_index === 0) { $first_post_type = $post_type; }
                             $active_class = ($pt_index === 0) ? 'active' : '';
                             $post_type_links[] = '<a href="#taxopress-ai-' . esc_attr($post_type) . '-content" data-content="taxopress-ai-' . esc_attr($post_type) . '-content" class="' . esc_attr($active_class) . '">' . esc_html($post_type_object->labels->name) . '</a>';
                             $pt_index++;
                         }
                         echo join(' | ', $post_type_links);
+                        echo '<input type="hidden" name="taxopress_ai_integration[active_post_type]" class="taxopress-active-posttype" value="' . esc_attr($first_post_type) . '" />';
                         ?>
                     </ul>
                     
                     <div class="taxopress-ai-post-type-tab-content">
                         <?php
-                        // Render fields using the same logic as SimpleTags_Admin::print_options()
                         echo $this->render_taxopress_ai_fields($taxopress_ai_fields);
                         ?>
                     </div>
@@ -709,11 +792,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
         }
 
         /**
-         * Render the Metabox Access tab - replicating the exact structure from settings page
+         * Render the Metabox Access tab
          */
         private function render_metabox_access_tab()
         {
-            // Get the metabox fields from helper.options.admin.php
             $option_data = (array) include(STAGS_DIR . '/inc/helper.options.admin.php');
             $metabox_fields = $option_data['metabox'];
             
@@ -724,32 +806,34 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         <?php
                         $role_index = 0;
                         $role_links = [];
+                        $first_role = '';
                         foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
+                            if ($role_index === 0) { $first_role = $role_name; }
                             $active_class = ($role_index === 0) ? 'active' : '';
                             $role_links[] = '<a href="#metabox-' . esc_attr($role_name) . '-content" data-content="metabox-' . esc_attr($role_name) . '-content" class="' . esc_attr($active_class) . '">' . esc_html(translate_user_role($role_info['name'])) . '</a>';
                             $role_index++;
                         }
                         echo join(' | ', $role_links);
+                        echo '<input type="hidden" name="taxopress_ai_integration[active_role]" class="taxopress-active-role" value="' . esc_attr($first_role) . '" />';
                         ?>
                     </ul>
                     
                     <div class="metabox-role-tab-content">
                         <?php
-                        // Render fields using the same logic as SimpleTags_Admin::print_options()
                         echo $this->render_metabox_fields($metabox_fields);
                         ?>
                     </div>
                 </div>
                 
                 <p class="submit">
-                    <input type="submit" name="submit" id="updateoptions" class="button-primary" value="<?php esc_attr_e('Save Changes', 'simple-tags'); ?>">
+                    <input type="submit" name="updateoptions" id="submit" class="button-primary" value="<?php esc_attr_e('Save Changes', 'simple-tags'); ?>">
                 </p>
             </div>
             <?php
         }
 
         /**
-         * Render the Preview tab content (existing metabox editor)
+         * Render the Preview tab content
          */
         private function render_preview_tab($post)
         {
@@ -758,10 +842,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 <h3><?php esc_html_e('Metabox Preview', 'simple-tags'); ?></h3>
                 <div class="taxopress-description">
                     <?php esc_html_e('This is the same metabox interface you see when editing posts. Use it to quickly update terms on multiple posts.', 'simple-tags'); ?> 
-                    <a target="_blank" href="<?php echo admin_url('admin.php?page=st_options&active_tab=taxopress-ai') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
+                    <a target="_blank" href="<?php echo admin_url('admin.php?page=st_taxopress_ai&tab=metabox_access') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
                 </div>
                 
-                <!-- Add the missing wrapper structure from original -->
                 <div id="poststuff">
                     <div id="post-body" class="taxopress-section metabox-holder columns-2">
                         <div>
@@ -1117,7 +1200,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
         public function editor_metabox($post, $context = 'post.php') {
             $fast_update_screen = $context == 'fast_update';
 
-            $access_metabox = $fast_update_screen ? current_user_can('simple_tags') : can_manage_taxopress_metabox();
+            $access_metabox = can_manage_taxopress_metabox();
             if (!$access_metabox) {
                 return;
             }
@@ -1141,7 +1224,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post->post_type);
             $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
 
-            $metabox_filters_enabled = $fast_update_screen ? true : SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_metabox_filters');
+            $post_type_for_filters = $fast_update_screen ? $default_post_type : $post->post_type;
+            $metabox_filters_enabled = !empty($post_type_for_filters) ? (bool) SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type_for_filters . '_metabox_filters') : false;
 
             $existing_terms_label = get_option('taxopress_ai_existing_terms_tab_label');
             if ($existing_terms_label === '' || $existing_terms_label === false) {
@@ -1186,23 +1270,19 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     $all_content_tabs = [
                         'existing_terms' => [
                             'label'   => $existing_terms_label,
-                            'enabled' => $fast_update_screen || !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_existing_terms_tab')),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_existing_terms_tab')),
                         ],
                         'post_terms' => [
                             'label'   => $post_terms_label,
-                            'enabled' => $fast_update_screen || !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_post_terms_tab')),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_post_terms_tab')),
                         ],
                         'suggest_local_terms' => [
                             'label'   => $suggest_local_terms_label,
-                            'enabled' => $fast_update_screen || !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
                         ],
-                        'suggest_local_terms' => [
-                            'label'   => $suggest_local_terms_label,
-                            'enabled' => $fast_update_screen || !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
-                        ],
-                        'create_term' => [
+                        'create_terms' => [
                             'label'   => $create_terms_label,
-                            'enabled' =>$fast_update_screen ||  !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_create_terms_tab')),
+                            'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_create_terms_tab')),
                         ],
                     ];
 
@@ -1251,7 +1331,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                     if (empty($post_type_taxonomy_names)) { 
                         echo '<div style="padding: 15px;">';
-                        printf(esc_html__('This user does not have access to manage any of this post attached taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
+                        $metabox_access_link = esc_url( admin_url('admin.php?page=' . self::PAGE_MENU_SLUG . '&tab=metabox_access') );
+                        printf(esc_html__('This user does not have access to manage any of this post attached taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. $metabox_access_link .'">', '</a>');
                         echo '</div>';
                     } elseif (empty($content_tabs)) { 
                         echo '<div style="padding: 15px;">';

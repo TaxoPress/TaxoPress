@@ -781,7 +781,7 @@
         'existing_terms': 'taxopress_ai_save_existing_terms_label',
         'post_terms': 'taxopress_ai_save_post_terms_label',
         'suggest_local_terms': 'taxopress_ai_save_suggest_local_terms_label',
-        'create_term': 'taxopress_ai_save_create_terms_label'
+        'create_terms': 'taxopress_ai_save_create_terms_label'
     };
 
     const action = actionMap[tabType];
@@ -829,29 +829,44 @@
     }
     });
 
-        $('.taxopress-ai-post-type-tab-nav a').on('click', function(e) {
-            e.preventDefault();
+    $('.taxopress-ai-post-type-tab-nav a').on('click', function(e) {
+        e.preventDefault();
 
-            $('.taxopress-ai-post-type-tab-nav li').removeClass('active');
-            $('.post-type-content').removeClass('active').hide();
-            
-            $(this).parent().addClass('active');
-            
-            var targetContent = $(this).data('content');
+        $('.taxopress-ai-post-type-tab-nav a').removeClass('active');
+        $('.post-type-content').removeClass('active').hide();
+
+        $(this).addClass('active');
+        var targetContent = $(this).data('content');
+        if (targetContent) {
             $('#' + targetContent).addClass('active').show();
-        });
 
-        $('.metabox-role-tab-nav a').on('click', function(e) {
-            e.preventDefault();
+            var activePost = targetContent.replace(/^taxopress-ai-/, '').replace(/-content$/, '');
+            $('.taxopress-active-posttype').val(activePost);
+        }
+    });
 
-            $('.metabox-role-tab-nav li').removeClass('active');
-            $('.role-content').removeClass('active').hide();
- 
-            $(this).parent().addClass('active');
+    $('.metabox-role-tab-nav a').on('click', function(e) {
+        e.preventDefault();
 
-            var targetContent = $(this).data('content');
+        $('.metabox-role-tab-nav a').removeClass('active');
+        $('.role-content').removeClass('active').hide();
+
+        $(this).addClass('active');
+        var targetContent = $(this).data('content');
+        if (targetContent) {
             $('#' + targetContent).addClass('active').show();
-        });
+
+            var activeRole = targetContent.replace(/^metabox-/, '').replace(/-content$/, '');
+            $('.taxopress-active-role').val(activeRole);
+        }
+    });
+
+    $(document).on('submit', 'form', function() {
+        var pt = $('.taxopress-ai-post-type-tab-nav a.active').data('content');
+        if (pt) $('.taxopress-active-posttype').val(pt.replace(/^taxopress-ai-/, '').replace(/-content$/, ''));
+        var rl = $('.metabox-role-tab-nav a.active').data('content');
+        if (rl) $('.taxopress-active-role').val(rl.replace(/^metabox-/, '').replace(/-content$/, ''));
+    });
 
         function initializeFieldDependencies() {
             $('.taxopress-ai-tab-content-sub').addClass('st-subhide-content');
