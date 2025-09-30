@@ -120,6 +120,13 @@ class SimpleTags_Admin_Autocomplete {
 			}
 			$term->name = stripslashes( $term->name );
 			$original_name = $term->name;
+
+            $is_mass_edit_page = isset($_GET['page']) && $_GET['page'] === 'st_mass_terms';
+            $show_slug = SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug');
+            if ($is_mass_edit_page && $show_slug && !empty($term->slug)) {
+                $term->name = $term->name . ' (' . $term->slug . ')';
+            }
+
 			if ($taxonomy == 'linked_term_taxonomies') {
 				$term->name = $term->name . ' ('. $term->taxonomy .')';
 			}
@@ -220,7 +227,7 @@ class SimpleTags_Admin_Autocomplete {
 		?>
 		<script type="text/javascript">
           <!--
-          st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . esc_attr($taxonomy) ) . '&nonce=' . wp_create_nonce( 'st-admin-js' )); ?>", <?php echo (int)$autocomplete_min; ?>)
+           st_init_autocomplete('.autocomplete-input', "<?php echo esc_url_raw(admin_url( 'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=' . esc_attr($taxonomy) . '&page=st_mass_terms&nonce=' . wp_create_nonce( 'st-admin-js' ) )); ?>", <?php echo (int)$autocomplete_min; ?>)
           -->
 		</script>
 		<?php
