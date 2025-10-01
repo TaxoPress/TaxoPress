@@ -512,7 +512,7 @@ if (!class_exists('TaxoPressAiApi')) {
                         ];
 
                         
-                        if (!in_array($open_ai_model, ['o3-mini', 'o1-mini', 'o1'])) {
+                        if (!in_array($open_ai_model, ['o3-mini', 'o1-mini', 'o1']) && !preg_match('/^gpt-5/', $open_ai_model)) {
                             if (preg_match('/^(gpt-5|gpt-4\.5)/', $open_ai_model)) {
                                 $body_data['max_completion_tokens'] = 50;
                             } else{
