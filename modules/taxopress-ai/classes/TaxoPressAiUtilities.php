@@ -267,6 +267,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
             $post_terms         = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'ids']);
             $post_terms         = array_merge($post_terms, $current_tags);
             $screen_source = !empty($args['screen_source']) ? $args['screen_source'] : 'st_autoterms';
+            $show_term_slug = !empty($args['show_term_slug']) ? $args['show_term_slug'] : false;
             $metabox_display_option = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_data->post_type . '_metabox_display_option');
 
             if (empty($metabox_display_option) || $screen_source == 'st_autoterms') {
@@ -334,7 +335,14 @@ if (!class_exists('TaxoPressAiUtilities')) {
 
                     $response_content .= '<span class="result-terms ' . esc_attr( $additional_class ) . '" data-term_link_id="'. esc_attr($term_link_id) .'">';
                     $response_content .= '<span data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="term-name '.esc_attr($taxonomy).'" tabindex="0" role="button" aria-pressed="false">';
-                    $response_content .= stripslashes($linked_term_name);
+                    $display_name = stripslashes($linked_term_name);
+                    if ($show_term_slug && $term_id) {
+                        $term_obj = get_term($term_id, $taxonomy);
+                        if ($term_obj && !is_wp_error($term_obj) && !empty($term_obj->slug)) {
+                            $display_name .= ' (' . $term_obj->slug . ')';
+                        }
+                    }
+                    $response_content .= $display_name;
                     $response_content .= '</span>';
                     $count_output = '';
                     if (!empty($show_counts) && $term_id) {
@@ -346,11 +354,33 @@ if (!class_exists('TaxoPressAiUtilities')) {
                     $response_content .= '</span>';
                     
                     if ($metabox_display_option == 'dropdown') {
-                        $additional_html .= '<option value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . selected($selected_terms, true, false). '>'. stripslashes($linked_term_name) . $count_output . '</option>';
+                        //$additional_html .= '<option value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . selected($selected_terms, true, false). '>'. stripslashes($linked_term_name) . $count_output . '</option>';
+                        $option_display_name = stripslashes($linked_term_name);
+                        if ($show_term_slug && $term_id) {
+                            $term_obj = get_term($term_id, $taxonomy);
+                            if ($term_obj && !is_wp_error($term_obj) && !empty($term_obj->slug)) {
+                                $option_display_name .= ' (' . $term_obj->slug . ')';
+                            }
+                        }
+                        $additional_html .= '<option value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . selected($selected_terms, true, false). '>'. $option_display_name . $count_output . '</option>';
                     } elseif ($metabox_display_option == 'radio') {
-                        $additional_html .= '<label><input value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" type="radio" name="auto_term_terms_options[]" class="auto_term_terms_options radio" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . checked($selected_terms, true, false). '> '. stripslashes($linked_term_name) . $count_output . '</label>';
+                        $radio_display_name = stripslashes($linked_term_name);
+                        if ($show_term_slug && $term_id) {
+                            $term_obj = get_term($term_id, $taxonomy);
+                            if ($term_obj && !is_wp_error($term_obj) && !empty($term_obj->slug)) {
+                                $radio_display_name .= ' (' . $term_obj->slug . ')';
+                            }
+                        }
+                        $additional_html .= '<label><input value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" type="radio" name="auto_term_terms_options[]" class="auto_term_terms_options radio" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . checked($selected_terms, true, false). '> '. $radio_display_name . $count_output . '</label>';
                     } elseif ($metabox_display_option == 'checkbox') {
-                        $additional_html .= '<label><input value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" type="checkbox" name="auto_term_terms_options[]" class="auto_term_terms_options checkbox" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . checked($selected_terms, true, false). '> '. stripslashes($linked_term_name) . $count_output . '</label>';
+                        $checkbox_display_name = stripslashes($linked_term_name);
+                        if ($show_term_slug && $term_id) {
+                            $term_obj = get_term($term_id, $taxonomy);
+                            if ($term_obj && !is_wp_error($term_obj) && !empty($term_obj->slug)) {
+                                $checkbox_display_name .= ' (' . $term_obj->slug . ')';
+                            }
+                        }
+                        $additional_html .= '<label><input value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" type="checkbox" name="auto_term_terms_options[]" class="auto_term_terms_options checkbox" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . checked($selected_terms, true, false). '> '. $checkbox_display_name . $count_output . '</label>';
                     }
                     $term_link_id++;
                 }

@@ -1273,7 +1273,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             'label'   => $suggest_local_terms_label,
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
                         ],
-                        'create_terms' => [
+                        'create_term' => [
                             'label'   => $create_terms_label,
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_create_terms_tab')),
                         ],

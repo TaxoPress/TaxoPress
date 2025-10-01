@@ -907,8 +907,8 @@ function can_manage_taxopress_metabox_tabs($tabs) {
     if ($role_name) {
         $restrict_metabox = SimpleTags_Plugin::get_option_value('enable_restrict' . $role_name . '_metabox');
         if ($restrict_metabox && taxopress_is_current_user_role($role_name)) {
-            $tabs['post_terms']['enabled'] = false;
-            $tabs['suggest_local_terms']['enabled'] = false;
+            $tabs['post_terms']['enabled'] = true;
+            $tabs['suggest_local_terms']['enabled'] = true;
             $tabs['create_term']['enabled'] = false;
         }
     }

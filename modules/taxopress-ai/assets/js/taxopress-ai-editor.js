@@ -781,7 +781,7 @@
         'existing_terms': 'taxopress_ai_save_existing_terms_label',
         'post_terms': 'taxopress_ai_save_post_terms_label',
         'suggest_local_terms': 'taxopress_ai_save_suggest_local_terms_label',
-        'create_terms': 'taxopress_ai_save_create_terms_label'
+        'create_term': 'taxopress_ai_save_create_terms_label'
     };
 
     const action = actionMap[tabType];

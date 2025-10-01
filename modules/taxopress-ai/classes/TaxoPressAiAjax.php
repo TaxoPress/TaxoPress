@@ -376,6 +376,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                         }
                         $addded_term_results = array_unique($addded_term_results);
                         $legend_title = '<a href="' . get_edit_post_link($post_id) . '" target="blank">' . $post_data->post_title . ' (' . esc_html__('Edit', 'simple-tags') . ')</a>';
+                        $show_term_slug = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_data->post_type . '_metabox_show_term_slug');
+                        $args['show_term_slug'] = $show_term_slug;
                         $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($addded_term_results, $preview_taxonomy, $post_id, $legend_title, $args['show_counts'], $current_tags, $args);
 
                     } else {
@@ -463,6 +465,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $taxonomy_details = get_taxonomy($existing_tax);
                         
                         $terms = SimpleTags_Admin::getTermsForAjax($existing_tax, $search_text, $existing_terms_orderby, $existing_terms_order, $limit);
+                        $show_term_slug = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_metabox_show_term_slug');
                         // make sure post terms are always included
                         if (!$suggest_terms) {
                             $post_terms = wp_get_post_terms($post_id, $existing_tax);
@@ -471,6 +474,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 $structured_post_terms = array_map(function($term) {
                                     return (object) [
                                         'name' => $term->name,
+                                        'slug' => $term->slug,
                                         'term_id' => $term->term_id,
                                         'taxonomy' => $term->taxonomy
                                     ];
@@ -634,6 +638,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                             if ($return_tags) {
                                 $response_content = $term_results;
                             } else {
+                                $args['show_term_slug'] = $show_term_slug;
                                 $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($term_results, $existing_tax, $post_id, $legend_title, $existing_terms_show_post_count, $current_tags, $args);
                             }
                         }
