@@ -192,6 +192,16 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
         );
 
+        // add _metabox_show_term_slug
+        $taxopress_ai_fields[] = array(
+            'taxopress_ai_' . $post_type . '_metabox_show_term_slug',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Metabox Show Term Slug', 'simple-tags') . '</div>',
+            'checkbox',
+            '1',
+            '',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+        );
+
         //metabox term creation subhead
         $taxopress_ai_fields[] = array(
             'metabox_term_creation_header',

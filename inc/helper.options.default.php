@@ -59,6 +59,7 @@ return array(
     'taxopress_ai_post_metabox_order' => 'desc',
     'taxopress_ai_post_metabox_maximum_terms' => 45,
     'taxopress_ai_post_metabox_show_post_count' => 0,
+    'taxopress_ai_post_metabox_show_term_slug' => 0,
 
     'taxopress_ai_post_minimum_term_length' => 2,
     'taxopress_ai_post_maximum_term_length' => 40,
