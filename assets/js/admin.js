@@ -2123,6 +2123,162 @@
         });
     })();
 
+    // Suggest merge terms functionality
+    $(document).on('click', '#suggest-merge-terms', function(e) {
+        e.preventDefault();
+        
+        const $button = $(this);
+ 
+        $button.prop('disabled', true).addClass('button-disabled');
+
+        if (!$button.parent().find('.taxopress-button-spinner-overlay').length) {
+            
+            $button.wrap('<div class="taxopress-button-wrapper"></div>');
+            $button.after('<div class="taxopress-button-spinner-overlay"><span class="spinner is-active" style="float: none; margin: 0;"></span></div>');
+        } else {
+            $button.parent().find('.taxopress-button-spinner-overlay').show();
+        }
+        
+        const mergeType = $('input[name="mergeterm_type"]:checked').val();
+        
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'taxopress_merge_suggestions',
+                merge_type: mergeType,
+                nonce: $('input[name="term_nonce"]').val()
+            },
+            success: function(response) {
+                if (response.success) {
+                    showMergeSuggestions(response.data);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Request failed:', error);
+            },
+            complete: function() {
+                $button.prop('disabled', false).removeClass('button-disabled');
+                $button.parent().find('.taxopress-button-spinner-overlay').hide();
+            }
+        });
+    });
+
+    function showMergeSuggestions(data) {
+        let html = '<div id="taxopress-merge-suggestions">';
+        html += '<h4>' + st_admin_localize.suggested_terms_title + '</h4>';
+        
+        if (data.suggestions.length === 0) {
+            html += '<p class="taxopress-no-suggestions">' + st_admin_localize.no_merge_suggestions + '</p>';
+        } else {
+            const initialLimit = 10;
+            const showAll = data.suggestions.length <= initialLimit;
+
+            const visibleSuggestions = data.suggestions.slice(0, showAll ? data.suggestions.length : initialLimit);
+            html += renderSuggestions(visibleSuggestions, data.type);
+
+            if (!showAll) {
+                html += '<div id="taxopress-hidden-suggestions">';
+                const hiddenSuggestions = data.suggestions.slice(initialLimit);
+                html += renderSuggestions(hiddenSuggestions, data.type);
+                html += '</div>';
+                html += '<button type="button" id="taxopress-toggle-suggestions" class="button">' + st_admin_localize.see_more_suggestions + '</button><br>';
+            }
+        }
+        
+        html += '<button type="button" id="apply-suggestions" class="button button-primary">' + st_admin_localize.apply_selected + '</button> ';
+        html += '<button type="button" id="close-suggestions" class="button">' + st_admin_localize.close_suggestions + '</button>';
+        html += '</div>';
+        
+        $('#merge-progress').html(html);
+    }
+
+    function renderSuggestions(suggestions, type) {
+        let html = '';
+        suggestions.forEach(function(suggestion) {
+            html += '<div class="taxopress-suggestion-item">';
+            if (type === 'same_name') {
+                html += '<label><input type="checkbox" class="merge-suggestion" data-terms="' + suggestion.terms + '"> ';
+                html += '<strong>' + suggestion.name + '</strong> (' + suggestion.count + ' ' + st_admin_localize.duplicates_text + ')</label>';
+            } else {
+                html += '<label><input type="checkbox" class="merge-suggestion" data-term1="' + suggestion.term1 + '" data-term2="' + suggestion.term2 + '" data-suggested="' + suggestion.suggested_name + '"> ';
+                html += suggestion.term1 + ' + ' + suggestion.term2 + ' → ' + suggestion.suggested_name;
+                html += '<br><small>' + st_admin_localize.reason_text + ' ' + suggestion.reasons + '</small></label>';
+            }
+            html += '</div>';
+        });
+        return html;
+    }
+
+    // Handle Apply Selected button
+    $(document).on('click', '#apply-suggestions', function(e) {
+        e.preventDefault();
+        
+        const mergeType = $('input[name="mergeterm_type"]:checked').val();
+        const selectedSuggestions = [];
+        
+        $('.merge-suggestion:checked').each(function() {
+            if (mergeType === 'same_name') {
+                selectedSuggestions.push($(this).data('terms'));
+            } else {
+                selectedSuggestions.push({
+                    terms: $(this).data('term1') + ', ' + $(this).data('term2'),
+                    suggested: $(this).data('suggested')
+                });
+            }
+        });
+        
+        if (selectedSuggestions.length === 0) {
+            alert(st_admin_localize.select_suggestion_alert);
+            return;
+        }
+        
+        if (mergeType === 'same_name') {
+            // For same name merges, process each group separately
+            const currentValue = $('#mergeterm_old').val();
+            const allTerms = selectedSuggestions.join(', ');
+            $('#mergeterm_old').val(currentValue ? currentValue + ', ' + allTerms : allTerms);
+            
+        } else {
+            // For different name merges
+            const currentOldValue = $('#mergeterm_old').val();
+            
+            // Collect ALL old terms from all selected suggestions
+            const allOldTerms = selectedSuggestions.map(s => s.terms).join(', ');
+            
+            // For new term, use only the LAST selected suggestion
+            const lastSuggestedName = selectedSuggestions[selectedSuggestions.length - 1].suggested;
+
+            $('#mergeterm_old').val(currentOldValue ? currentOldValue + ', ' + allOldTerms : allOldTerms);
+            $('#mergeterm_new').val(lastSuggestedName);
+
+        }
+        
+        $('#taxopress-merge-suggestions').remove();
+    });
+
+    $(document).on('click', '#close-suggestions', function(e) {
+        e.preventDefault();
+        $('#taxopress-merge-suggestions').remove();
+    });
+
+    $(document).on('click', '#taxopress-toggle-suggestions', function(e) {
+        e.preventDefault();
+        
+        const $hiddenSuggestions = $('#taxopress-hidden-suggestions');
+        const $button = $(this);
+        
+        if ($hiddenSuggestions.is(':visible')) {
+            $hiddenSuggestions.hide();
+            const moreText = $button.data('more-text') || st_admin_localize.see_more_suggestions;
+            $button.text(moreText);
+        } else {
+            $hiddenSuggestions.show();
+            $button.data('more-text', $button.text());
+            $button.text(st_admin_localize.see_less_suggestions);
+        }
+    });
+
     // Merge Terms Bacth Processing
     $(document).on('submit', '.merge-terms-form', function (e) {
       const $form = $(this);
@@ -2684,7 +2840,7 @@
                     return data.id;
                 },
                 escapeMarkup: function(markup) {
-                    return markup;
+                    return markup; 
                 }
             });
 
