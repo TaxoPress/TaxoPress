@@ -885,7 +885,7 @@ class SimpleTags_Admin
                         }
                     }
 
-                    // add metabox access defaults for roles
+                    // add metabox post type and taxonomies options so we can have all post types. TODO: This need to be a filter
                     foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
                         if (in_array($role_name, ['administrator', 'editor', 'author', 'contributor'])) {
                             $enable_acess_default_value = 1;
