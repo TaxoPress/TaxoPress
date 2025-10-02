@@ -751,6 +751,15 @@ class SimpleTags_Admin
 			'select_image_label' => esc_html__('Select Media', 'simple-tags'),
 			'change_image_label' => esc_html__('Change Media', 'simple-tags'),
 			'use_default_label' => esc_html__('Use Default', 'simple-tags'),
+            'see_more_suggestions' => esc_html__('See More', 'simple-tags'),
+            'see_less_suggestions' => esc_html__('See Less', 'simple-tags'),
+            'apply_selected' => esc_html__('Apply Selected', 'simple-tags'),
+            'close_suggestions' => esc_html__('Close', 'simple-tags'),
+            'select_suggestion_alert' => esc_html__('Please select at least one suggestion to apply.', 'simple-tags'),
+            'no_merge_suggestions' => esc_html__('No merge suggestions found for this taxonomy.', 'simple-tags'),
+            'suggested_terms_title' => esc_html__('Suggested Terms to Merge:', 'simple-tags'),
+            'duplicates_text' => esc_html__('duplicates', 'simple-tags'),
+            'reason_text' => esc_html__('Reason:', 'simple-tags'),
 		]);
 
 
