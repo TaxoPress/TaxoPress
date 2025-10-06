@@ -1348,7 +1348,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                         <span class="tp-tab-label">
                                             <?php echo esc_html($label); ?>
                                         </span>
-                            <?php if ($can_edit_labels) { ?>
+                            <?php if ($can_edit_labels && $fast_update_screen) { ?>
                                     <div class="pp-tooltips-library" data-toggle="tooltip">
                                         <span class="dashicons dashicons-edit tp-rename-tab" data-tab="<?php echo esc_attr($key); ?>"></span>
                                         <div class="taxopress tooltip-text taxopress-ai"><?php echo esc_attr__('Edit', 'simple-tags'); ?></div>
