@@ -88,11 +88,6 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = [
                 'label' => $taxopress_ai_tab_label
             ];
-            if ($taxopress_ai_tab == 'suggest_local_terms') {
-                $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab']['description'] = sprintf(esc_html__('This feature requires a valid API key. %1sView documentation%2s.', 'simple-tags'), '<a href="https://taxopress.com/docs/sources-for-auto-terms/" target="_blank">', '</a>');
-            } elseif ($taxopress_ai_tab == 'create_terms') {
-                $tab_field_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab']['description'] = sprintf(esc_html__('This feature requires users have the capability to add terms. %1sView documentation%2s.', 'simple-tags'), '<a href="http://taxopress.com/docs/add-terms-capabilities/" target="_blank">', '</a>');
-            }
         }
         $taxopress_ai_fields[] = array(
             'enable_taxopress_ai_' . $post_type . '_tab',
