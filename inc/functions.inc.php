@@ -175,7 +175,7 @@ function taxopress_re_order_menu()
             }
 
             // Add separator 3 to menus
-            $separator2_positions = ['st_taxopress_ai', 'st_autoterms_content', 'st_autoterms_schedule', 'st_autoterms'];
+            $separator2_positions = ['st_autoterms_content', 'st_autoterms_schedule', 'st_autoterms'];
             foreach ($separator2_positions as $pos) {
                  $index = array_search($pos, array_column($taxopress_submenus, 2));
                 if ($index !== false) {
@@ -187,7 +187,7 @@ function taxopress_re_order_menu()
 
             if (!taxopress_is_pro_version()) {
                 // Add separator 4 to menus
-                $index = array_search('st_options', array_column($taxopress_submenus, 2));
+                $index = array_search('st_options', array_column($taxopress_submenus, 3));
                 if ($index !== false) {
                     $separator = taxopress_menu_separator('st_separator_end', 'simple_tags');
                     array_splice($taxopress_submenus, $index + 1, 0, [$separator]);
