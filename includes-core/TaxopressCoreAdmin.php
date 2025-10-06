@@ -652,7 +652,7 @@ class TaxopressCoreAdmin
             $new_entry = array(
                 'taxopress_ai_' . $post_type . '_metabox_display_option',
                 '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content">' .
-                    esc_html__('Metabox Taxonomy Display', 'simple-tags') .
+                    esc_html__('Taxonomy Display', 'simple-tags') .
                 '</div>',
                 'select_with_icon',
                 $default_taxonomy_display_options,
