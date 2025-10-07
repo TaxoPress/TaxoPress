@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.40.0- 2025-10-02
+v3.40.0- 2025-10-07
 * Fixed: Preview dropdown doesn't show some characters correctly, #2780
 * Fixed: Issue with some GPT 5 models, #2778
 * Update: Show term slug in Mass Edit Terms, #2777
