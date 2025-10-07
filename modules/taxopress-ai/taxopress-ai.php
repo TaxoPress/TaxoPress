@@ -61,6 +61,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
             // Ensure tab labels are persisted in dedicated options
             add_action('admin_init', [$this, 'ensure_tab_label_options']);
+
+            add_action('wp_ajax_taxopress_role_preview', ['TaxoPressAiAjax', 'handle_role_preview']);
         }
 
 
@@ -715,6 +717,19 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             }
                             $input_type = implode('', $input_type_array);
                             break;
+
+                        case 'multiselect_with_desc_top':
+                            $desc_html_tag = 'div';
+                            $input_type_array = array();
+                            $prefix = !empty($field_description) ? '<' . $desc_html_tag . ' class="stpexplan">' . $field_description . '</' . $desc_html_tag . '>' : '';
+                            foreach ($field_options as $option_key => $option_label) {
+                                $field_value = isset($option_actual[$field_id]) ? $option_actual[$field_id] : array();
+                                $selected_option = (is_array($field_value) && in_array($option_key, $field_value)) ? true : false;
+                                $input_type_array[] = '<label><input type="checkbox" id="' . esc_attr($field_id . '-' . $option_key) . '" name="' . esc_attr($field_id) . '[]" value="' . esc_attr($option_key) . '" ' . checked($selected_option, true, false) . ' /> ' . esc_html($option_label) . '</label><br />';
+                            }
+                            $input_type = $prefix . implode('', $input_type_array);
+                            $field_description = '';
+                            break;
                             
                         default:
                             $input_type = '<input type="text" id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '" value="' . esc_attr($option_actual[$field_id]) . '" />';
@@ -1273,7 +1288,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             'label'   => $suggest_local_terms_label,
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
                         ],
-                        'create_term' => [
+                        'create_terms' => [
                             'label'   => $create_terms_label,
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_create_terms_tab')),
                         ],
@@ -1296,10 +1311,18 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         foreach (TaxoPressAiUtilities::get_taxonomies(true) as $taxonomy_name => $taxonomy_data) {
                             if (!in_array($taxonomy_name, ['post_format'])) {
                                 $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                if (in_array($taxonomy_name, ['category', 'post_tag']) && current_user_can('manage_categories')) {
-                                    $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
-                                    $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                if ($selectedRole = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '') {
+                                    $role_taxonomies = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $selectedRole . '');
+                                    if (in_array($taxonomy_name, $role_taxonomies)) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    }
+                                } else {
+                                    // Default behavior
+                                    if (in_array($taxonomy_name, ['category', 'post_tag']) && current_user_can('manage_categories')) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    }
                                 }
                             }
                         }
@@ -1413,6 +1436,14 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                                     <?php 
                                                                     }
                                                                 endforeach; ?>
+                                                            </select>
+
+                                                            <select class="preview-user-role-select taxopress-ai-select2" style="max-width: 150px;">
+                                                                <?php foreach (taxopress_get_all_wp_roles() as $role_name => $role_info): ?>
+                                                                    <option value="<?php echo esc_attr($role_name); ?>">
+                                                                        <?php echo esc_html(translate_user_role($role_info['name'])); ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
                                                             </select>
 
                                                             <select class="preview-post-select taxopress-ai-post-search"

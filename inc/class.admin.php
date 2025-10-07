@@ -1190,7 +1190,20 @@ class SimpleTags_Admin
 									<div class="' . $modal_wrapper_class . '">' . $modal_content . '</div>
 								</span>
 							</div>' . PHP_EOL;
-							break;
+						break;
+
+                    case 'multiselect_with_desc_top':
+                        $desc_html_tag = 'div';
+                        $input_type_array = array();
+                        $prefix = !empty($field_description) ? '<' . $desc_html_tag . ' class="stpexplan">' . $field_description . '</' . $desc_html_tag . '>' : '';
+                        foreach ($field_options as $option_key => $option_label) {
+                            $field_value = isset($option_actual[$field_id]) ? $option_actual[$field_id] : array();
+                            $selected_option = (is_array($field_value) && in_array($option_key, $field_value)) ? true : false;
+                            $input_type_array[] = '<label><input type="checkbox" id="' . esc_attr($field_id . '-' . $option_key) . '" name="' . esc_attr($field_id) . '[]" value="' . esc_attr($option_key) . '" ' . checked($selected_option, true, false) . ' /> ' . esc_html($option_label) . '</label><br />';
+                        }
+                        $input_type = $prefix . implode('', $input_type_array);
+                        $field_description = '';
+                        break;
 
 					case 'text-color':
 						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="text-color ' . $option[3] . '" />' . PHP_EOL;

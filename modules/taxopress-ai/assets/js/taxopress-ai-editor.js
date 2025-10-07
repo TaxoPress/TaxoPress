@@ -181,7 +181,7 @@
       if ($li.hasClass('existing_terms_tab')) return 'existing_terms';
       if ($li.hasClass('post_terms_tab')) return 'post_terms';
       if ($li.hasClass('suggest_local_terms_tab')) return 'suggest_local_terms';
-      if ($li.hasClass('create_term_tab')) return 'create_term';
+      if ($li.hasClass('create_terms_tab')) return 'create_terms';
       return '';
     }
 
@@ -204,7 +204,7 @@
           $wrap.find('.taxopress-ai-fetch-taxonomy-select').show();
           //$wrap.find('.taxopress-ai-fetch-button').show();
         }
-      } else if (tabKey === 'create_term') {
+      } else if (tabKey === 'create_terms') {
         $wrap.find('.create-term-item').show();
         $wrap.find('.taxopress-ai-fetch-button').hide();
       } else {
@@ -781,7 +781,7 @@
         'existing_terms': 'taxopress_ai_save_existing_terms_label',
         'post_terms': 'taxopress_ai_save_post_terms_label',
         'suggest_local_terms': 'taxopress_ai_save_suggest_local_terms_label',
-        'create_term': 'taxopress_ai_save_create_terms_label'
+        'create_terms': 'taxopress_ai_save_create_terms_label'
     };
 
     const action = actionMap[tabType];
@@ -827,6 +827,52 @@
         $tab.find('.tp-rename-tab').show();
         $tab.find('.tp-rename-inline-controls').hide();
     }
+    });
+
+    $(document).on('change', '.preview-user-role-select', function() {
+        var selectedRole = $(this).val();
+        var taxonomy = $('.taxopress-ai-fetch-taxonomy-select').val();
+        
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'taxopress_role_preview',
+                role: selectedRole,
+                taxonomy: taxonomy,
+                nonce: taxoPressAIRequestAction.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('.taxopress-ai-fetch-taxonomy-select option').hide();
+
+                    if (response.data.allowed_taxonomies) {
+                        response.data.allowed_taxonomies.forEach(function(tax) {
+                            $('.taxopress-ai-fetch-taxonomy-select option[value="' + tax + '"]').show();
+                        });
+                    }
+
+                    if (!response.data.show_taxonomy) {
+                        var $visible = $('.taxopress-ai-fetch-taxonomy-select option:visible:first');
+                        if ($visible.length) {
+                            $('.taxopress-ai-fetch-taxonomy-select').val($visible.val()).trigger('change');
+                        }
+                    }
+
+                    if (!response.data.can_create_terms) {
+                        $('.create_terms_tab').hide();
+                    } else {
+                        $('.create_terms_tab').show();
+                    }
+
+                    if (!response.data.can_edit_labels) {
+                        $('.tp-rename-tab').hide();
+                    } else {
+                        $('.tp-rename-tab').show();
+                    }
+                }
+            }
+        });
     });
 
     $('.taxopress-ai-post-type-tab-nav a').on('click', function(e) {

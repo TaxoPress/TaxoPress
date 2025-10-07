@@ -962,5 +962,39 @@ if (!class_exists('TaxoPressAiAjax')) {
             return $term;
         }
 
+        public static function handle_role_preview() {
+            if (!current_user_can('simple_tags')) {
+                wp_send_json_error();
+            }
+
+            check_ajax_referer('taxopress-ai-ajax-nonce', 'nonce');
+
+            $role = isset($_POST['role']) ? sanitize_key($_POST['role']) : '';
+            $taxonomy = isset($_POST['taxonomy']) ? sanitize_key($_POST['taxonomy']) : '';
+
+            $role_taxonomies = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $role . '');
+
+            $can_create_terms = !SimpleTags_Plugin::get_option_value('enable_restrict' . $role . '_metabox');
+            
+            // Check if user is administrator - only they can edit labels
+            $can_edit_labels = $role === 'administrator';
+
+            $show_taxonomy = in_array($taxonomy, $role_taxonomies);
+
+            $available_taxonomies = [];
+            foreach (TaxoPressAiUtilities::get_taxonomies(true) as $tax_name => $tax_data) {
+                if (!in_array($tax_name, ['post_format']) && in_array($tax_name, $role_taxonomies)) {
+                    $available_taxonomies[] = $tax_name;
+                }
+            }
+
+            wp_send_json_success([
+                'show_taxonomy' => $show_taxonomy,
+                'can_create_terms' => $can_create_terms,
+                'can_edit_labels' => $can_edit_labels,
+                'allowed_taxonomies' => $available_taxonomies
+            ]);
+        }
+
     }
 }

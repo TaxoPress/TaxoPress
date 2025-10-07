@@ -264,7 +264,7 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 .metabox-role-tabs .metabox-role-tab-nav {
     list-style: none;
     margin: 5px;
-    padding: 0;
+    padding: 5px;
     border-bottom: 1px solid #ccc;
 }
 
