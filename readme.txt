@@ -275,6 +275,8 @@ v3.40.0- 2025-10-02
 * Update: Show term slug in the metabox, #2774
 * Update: Move Metabox Settings to Fast Update Screen, #2773
 * Update: Scan and Automatically Suggest terms to merge, #2729
+* Update: Preview for different user roles and post types, #2795
+* Update: Update to Menu links: "Fast Update" to "Metaboxes" #2791
 
 v3.38.0- 2025-09-17
 * Fixed: Frontend css loads on all pages, #2757
