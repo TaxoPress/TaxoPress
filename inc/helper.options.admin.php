@@ -260,14 +260,6 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         sprintf(esc_html__('Allow users in the %1s role to use the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
-    $metabox_fields[] = array(
-        'enable_edit_' . $role_name . '_metabox',
-        '',
-        'checkbox',
-        '1',
-        sprintf(esc_html__('Allow users in the %1s role to edit the TaxoPress metabox label.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
-        'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
-    );
      // add option to manage terms per user role
      $metabox_fields[] = array(
         'enable_restrict' . $role_name . '_metabox',
