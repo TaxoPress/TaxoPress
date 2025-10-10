@@ -1296,6 +1296,8 @@ class SimpleTags_Admin
 				return esc_html__('Hidden Terms', 'simple-tags');
 			case 'manage_terms':
 				return esc_html__('Manage Terms', 'simple-tags');
+            case 'mass_edit_terms':
+                return esc_html__('Mass Edit Terms', 'simple-tags');    
 			case 'core_linked_terms':
 				return esc_html__('Linked Terms', 'simple-tags');
 			case 'core_synonyms_terms':
