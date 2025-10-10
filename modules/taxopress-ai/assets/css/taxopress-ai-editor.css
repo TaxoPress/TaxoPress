@@ -261,18 +261,6 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     min-width: 50px !important;
 }
 
-.metabox-role-tabs .metabox-role-tab-nav {
-    list-style: none;
-    margin: 5px;
-    padding: 5px;
-    border-bottom: 1px solid #ccc;
-}
-
-.metabox-role-tabs .metabox-role-tab-nav li {
-    display: inline-block !important;
-    margin: 0;
-}
-
 .post-type-content:not(.active),
 .role-content:not(.active) {
     display: none !important;
