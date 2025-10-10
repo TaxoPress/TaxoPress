@@ -457,7 +457,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
                 <div class="taxopress-description">
-                <?php esc_html_e('This feature allows you to customize metabox interface you see when adding terms to posts.', 'simple-tags'); ?> 
+                <?php esc_html_e('This feature allows you to customize the metabox interface you see when adding terms to posts.', 'simple-tags'); ?> 
                 </div>
 
                 <h2 class="nav-tab-wrapper">
@@ -847,13 +847,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
         private function render_preview_tab($post)
         {
             ?>
-            <div class="taxopress-tab-content">
-                <h3><?php esc_html_e('Metabox Preview', 'simple-tags'); ?></h3>
-                <div class="taxopress-description">
-                    <?php esc_html_e('This is the same metabox interface you see when editing posts. Use it to quickly update terms on multiple posts.', 'simple-tags'); ?> 
-                    <a target="_blank" href="<?php echo admin_url('admin.php?page=st_taxopress_ai&tab=metabox_access') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
-                </div>
-                
+            <div class="taxopress-tab-content">                
                 <div id="poststuff">
                     <div id="post-body" class="taxopress-section metabox-holder columns-2">
                         <div>
