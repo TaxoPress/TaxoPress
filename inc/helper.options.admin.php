@@ -354,28 +354,28 @@ $options = array(
         )
     ),
 
-        // hidden terms tab
-        'hidden_terms' => array(
-            array(
-                'enable_hidden_terms',
-                __('Enable Hidden Terms:', 'simple-tags'),
-                'checkbox',
-                '1',
-                __('This feature will hide terms that are infrequently used. These terms will be visible inside the WordPress admin area, but not on the front of this site.', 'simple-tags'),
-                ''
-            ),
-            array(
-                'hide-rarely',
-                __('Minimum Usage for Hidden Terms:', 'simple-tags'),
-                'number',
-                '1',
-                __('Set the minimum number of posts a term must be attached to. If you enter 5, any term used in fewer than 5 posts will be hidden across the site, and its archive page will redirect to the homepage.', 'simple-tags'),
-                '',
-                1
-            )
+    // hidden terms tab
+    'hidden_terms' => array(
+        array(
+            'enable_hidden_terms',
+            __('Enable Hidden Terms:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('This feature will hide terms that are infrequently used. These terms will be visible inside the WordPress admin area, but not on the front of this site.', 'simple-tags'),
+            ''
         ),
+        array(
+            'hide-rarely',
+            __('Minimum Usage for Hidden Terms:', 'simple-tags'),
+            'number',
+            '1',
+            __('Set the minimum number of posts a term must be attached to. If you enter 5, any term used in fewer than 5 posts will be hidden across the site, and its archive page will redirect to the homepage.', 'simple-tags'),
+            '',
+            1
+        )
+    ),
 
-        'core_linked_terms' => array(
+    'core_linked_terms' => array(
         array(
             'linked_terms_pro_notice',
             '',
@@ -397,49 +397,52 @@ $options = array(
         )
     ),
 
-        // Manage terms tab
-        'manage_terms' => array(
-            array(
-                'enable_add_terms_slug',
-                __('Add Terms:', 'simple-tags'),
-                'checkbox',
-                '1',
-                __('Enabling this will allow users to see the slug while adding terms', 'simple-tags'),
-                ''
-            ),
-            array(
-                'enable_remove_terms_slug',
-                __('Remove Terms:', 'simple-tags'),
-                'checkbox',
-                '1',
-                __('Enabling this will allow users to see the slug while removing terms', 'simple-tags'),
-                ''
-            ),
-            array(
-                'enable_rename_terms_slug',
-                __('Rename Terms:', 'simple-tags'),
-                'checkbox',
-                '1',
-                __('Enabling this will allow users to see the slug while Renaming terms', 'simple-tags'),
-                ''
-            ),
-            array(
-                'enable_merge_terms_slug',
-                __('Merge Terms:', 'simple-tags'),
-                'checkbox',
-                '1',
-                __('Enabling this will allow users to see the slug while merging terms', 'simple-tags'),
-                ''
-            ),
-            array(
-                'enable_mass-edit_terms_slug',
-                __('Mass Edit Terms:', 'simple-tags'),
-                'checkbox',
-                '1',
-                __('Enabling this will allow users to see the slug in the mass edit terms screen', 'simple-tags'),
-                ''
-            ),
+    // Manage terms tab
+    'manage_terms' => array(
+        array(
+            'enable_add_terms_slug',
+            __('Add Terms:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Enabling this will allow users to see the slug while adding terms', 'simple-tags'),
+            ''
         ),
+        array(
+            'enable_remove_terms_slug',
+            __('Remove Terms:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Enabling this will allow users to see the slug while removing terms', 'simple-tags'),
+            ''
+        ),
+        array(
+            'enable_rename_terms_slug',
+            __('Rename Terms:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Enabling this will allow users to see the slug while Renaming terms', 'simple-tags'),
+            ''
+        ),
+        array(
+            'enable_merge_terms_slug',
+            __('Merge Terms:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Enabling this will allow users to see the slug while merging terms', 'simple-tags'),
+            ''
+        ),
+    ),
+
+    'mass_edit_terms' => array(
+        array(
+            'enable_mass-edit_terms_slug',
+            __('Mass Edit Terms:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Enabling this will allow users to see the slug in the mass edit terms screen', 'simple-tags'),
+            ''
+        ),
+    )
 
     );
 
