@@ -166,6 +166,18 @@
 
             if (!field_name) return;
 
+            var matchFilters = field_name.match(/^taxopress_ai_(\w+)_metabox_filters$/);
+            if (matchFilters) {
+                var pt = matchFilters[1];
+                var $filtersField = $('.enable_taxopress_ai_' + pt + '_metabox_filters_field');
+                if (checked_field) {
+                    $filtersField.removeClass('st-subhide-content');
+                } else {
+                    $filtersField.addClass('st-subhide-content');
+                }
+                return;
+            }
+
             if (field_name.includes('_metabox')) {
                 // Handle metabox checkbox
                 var match = field_name.match(/enable_taxopress_ai_(\w+)_metabox/);
@@ -220,6 +232,18 @@
               } else {
                   $('.enable_taxopress_ai_' + postType + '_metabox_field').addClass('st-subhide-content');
                   $('[class*="enable_taxopress_ai_' + postType + '_"][class*="_tab_field"]').addClass('st-subhide-content');
+              }
+          });
+
+          $('[name$="_metabox_filters"]').each(function () {
+              var fname = $(this).attr('name') || '';
+              var m = fname.match(/^taxopress_ai_(\w+)_metabox_filters$/);
+              if (!m) return;
+              var pt = m[1];
+              if ($(this).prop('checked')) {
+                  $('.enable_taxopress_ai_' + pt + '_metabox_filters_field').removeClass('st-subhide-content');
+              } else {
+                  $('.enable_taxopress_ai_' + pt + '_metabox_filters_field').addClass('st-subhide-content');
               }
           });
 
