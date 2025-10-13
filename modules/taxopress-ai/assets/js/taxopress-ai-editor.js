@@ -917,6 +917,21 @@
         function initializeFieldDependencies() {
             $('.taxopress-ai-tab-content-sub').addClass('st-subhide-content');
 
+            $('[name$="_metabox_filters"]').each(function () {
+                var field_name = $(this).attr('name');
+                var match = field_name.match(/taxopress_ai_(\w+)_metabox_filters$/);
+                if (!match) return;
+
+                var postType = match[1];
+                var isFiltersChecked = $(this).prop('checked');
+                
+                if (isFiltersChecked) {
+                    $('.enable_taxopress_ai_' + postType + '_metabox_filters_field').removeClass('st-subhide-content');
+                } else {
+                    $('.enable_taxopress_ai_' + postType + '_metabox_filters_field').addClass('st-subhide-content');
+                }
+            });
+
             $('[name$="_metabox"]').each(function () {
                 var field_name = $(this).attr('name');
                 var match = field_name.match(/enable_taxopress_ai_(\w+)_metabox/);
@@ -951,6 +966,17 @@
             var checked_field = $checkbox.prop("checked");
 
             if (!field_name) return;
+
+            var filtersMatch = field_name.match(/taxopress_ai_(\w+)_metabox_filters$/);
+            if (filtersMatch) {
+                var postType = filtersMatch[1];
+                if (checked_field) {
+                    $('.enable_taxopress_ai_' + postType + '_metabox_filters_field').removeClass('st-subhide-content');
+                } else {
+                    $('.enable_taxopress_ai_' + postType + '_metabox_filters_field').addClass('st-subhide-content');
+                }
+                return;
+            }
 
             if (field_name.includes('_metabox')) {
                 var match = field_name.match(/enable_taxopress_ai_(\w+)_metabox/);

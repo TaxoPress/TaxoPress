@@ -350,14 +350,22 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 $removed_taxonomies_tax = $removed_taxonomies['taxonomies'];
                 $removed_taxonomies_css = $removed_taxonomies['custom_css'];
 
-                $metabox_filters_enabled = false;
-                if ($fast_update_screen) {
-                    $metabox_filters_enabled = true;
-                } elseif (function_exists('get_post_type')) {
-                    $current_post_type = get_post_type();
-                    if ($current_post_type) {
-                        $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $current_post_type . '_metabox_filters');
-                    }
+                 if ($fast_update_screen) {
+                     $preview_post_type = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : '';
+                     if (empty($preview_post_type)) {
+                         foreach (TaxoPressAiUtilities::get_post_types_options() as $pt => $pt_obj) {
+                             if (!in_array($pt, ['attachment'])) {
+                                 $preview_post_type = $pt;
+                                 break;
+                             }
+                         }
+                     }
+                     $metabox_filters_enabled = !empty($preview_post_type) ? SimpleTags_Plugin::get_option_value('taxopress_ai_' . $preview_post_type . '_metabox_filters') : false;
+                 } elseif (function_exists('get_post_type')) {
+                     $current_post_type = get_post_type();
+                     if ($current_post_type) {
+                         $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $current_post_type . '_metabox_filters');
+                     }
                 }
 
 
@@ -1227,7 +1235,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post->post_type);
             $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
 
-            $metabox_filters_enabled = $fast_update_screen ? true : SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_metabox_filters');
+            $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_metabox_filters');
 
             $existing_terms_label = get_option('taxopress_ai_existing_terms_tab_label');
             if ($existing_terms_label === '' || $existing_terms_label === false) {
