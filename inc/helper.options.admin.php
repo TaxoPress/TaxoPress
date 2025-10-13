@@ -120,31 +120,31 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
         // add _metabox_orderby
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_orderby',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Default Method for choosing terms', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default Method for choosing terms', 'simple-tags') . '</div>',
             'select',
             TaxoPressAiUtilities::get_existing_terms_orderby(),
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content'
         );
 
         // add _metabox_order
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_order',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Default Ordering for choosing terms', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default Ordering for choosing terms', 'simple-tags') . '</div>',
             'select',
             TaxoPressAiUtilities::get_existing_terms_order(),
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content'
         );
 
         // add _metabox_maximum_terms
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_maximum_terms',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Default maximum terms', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default maximum terms', 'simple-tags') . '</div>',
             'number',
             '',
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content',
+            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content',
             0
         );
 
