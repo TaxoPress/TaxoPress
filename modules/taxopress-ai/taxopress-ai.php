@@ -63,6 +63,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             add_action('admin_init', [$this, 'ensure_tab_label_options']);
 
             add_action('wp_ajax_taxopress_role_preview', ['TaxoPressAiAjax', 'handle_role_preview']);
+            add_action('wp_ajax_taxopress_preview_update', ['TaxoPressAiAjax', 'handle_preview_update']);
         }
 
 
@@ -187,6 +188,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
             }
 
             if (!empty($_POST['_wpnonce']) && wp_verify_nonce(sanitize_key($_POST['_wpnonce']), 'updateresetoptions-simpletags')) {
+                if (isset($_POST['post_ID']) || isset($_POST['post_type'])) {
+                    return;
+                }
+
                 check_admin_referer('updateresetoptions-simpletags');
 
                 $current_options = SimpleTags_Plugin::get_option();
@@ -260,7 +265,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             continue;
                         }
 
-                        if ($field_type === 'multiselect' && $field_id) {
+                        if (($field_type === 'multiselect' || $field_type === 'multiselect_with_desc_top') && $field_id) {
                            $expected_multiselect_keys[] = $field_id;
                             continue;
                         }
@@ -410,6 +415,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         'label_too_long_error' => esc_html__('Label can\'t exceed 30 characters.', 'simple-tags'),
                         'unknown_tab_error' => esc_html__('Unknown tab type.', 'simple-tags'),
                         'save_error' => esc_html__('Error saving label.', 'simple-tags'),
+                        'requiredSuffix' => esc_html__('Please choose a post to preview.', 'simple-tags'),
                     ]
                 );
                 
@@ -444,9 +450,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
         public function page_manage_taxopress_ai()
         {
 
-            if (isset($_POST['updateoptions'])) {
-                $this->save_settings();
-            }
+            // if (isset($_POST['updateoptions'])) {
+            //     $this->save_settings();
+            // }
 
             settings_errors(__CLASS__);
             $post = 0;
@@ -851,11 +857,80 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
         /**
          * Render the Preview tab content
-         */
-        private function render_preview_tab($post)
+        */
+        private function render_preview_tab($post) 
         {
+            // Get URL parameters
+            $url_post_type = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : '';
+            $url_post_id = isset($_GET['post']) ? (int)$_GET['post'] : 0;
+            $url_role = isset($_GET['role']) ? sanitize_key($_GET['role']) : '';
+            
+            // Get default post type and post
+            $default_post_type = '';
+            foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
+                if (!in_array($post_type, ['attachment'])) {
+                    // Use URL post type if valid, otherwise use first available
+                    if ($url_post_type && $url_post_type === $post_type) {
+                        $default_post_type = $url_post_type;
+                        if ($url_post_id) {
+                            $post = get_post($url_post_id);
+                        }
+                        break;
+                    } elseif (!$default_post_type) {
+                        $default_post_type = $post_type;
+                        if (!$url_post_id) {
+                            $posts = get_posts(['post_type' => $post_type, 'numberposts' => 1, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
+                            if (!empty($posts)) {
+                                $post = $posts[0];
+                            }
+                        }
+                    }
+                }
+            }
+
             ?>
-            <div class="taxopress-tab-content">                
+            <div class="taxopress-tab-content">
+                <div class="taxopress-preview-filters taxopress-tab-content-item" data-ai-source="preview">
+                    <select class="preview-post-types-select taxopress-ai-select2" style="max-width: 100px;">
+                        <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
+                            if (!in_array($post_type, ['attachment'])) {
+                                ?>
+                                <option value='<?php echo esc_attr($post_type); ?>'
+                                    data-singular_label="<?php echo esc_html($post_type_object->labels->singular_name); ?>"
+                                    <?php selected($post_type, $default_post_type); ?>>
+                                    <?php echo esc_html($post_type_object->labels->name); ?>
+                                </option>
+                                <?php 
+                            }
+                        endforeach; ?>
+                    </select>
+
+                    <select class="preview-user-role-select taxopress-ai-select2" style="max-width: 150px;">
+                        <?php foreach (taxopress_get_all_wp_roles() as $role_name => $role_info): ?>
+                            <option value="<?php echo esc_attr($role_name); ?>"
+                                <?php selected($role_name, $url_role); ?>>
+                                <?php echo esc_html(translate_user_role($role_info['name'])); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <select class="preview-post-select taxopress-ai-post-search"
+                        style="max-width: 250px; width: 250px;"
+                        data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
+                        data-allow-clear="true"
+                        data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">
+                        <?php if (is_object($post)) : ?>
+                            <option value='<?php echo esc_attr($post->ID); ?>'>
+                                <?php echo esc_html($post->post_title); ?>
+                            </option>
+                        <?php endif; ?>
+                    </select>
+
+                    <button type="button" class="button button-secondary preview-metabox-content">
+                        <?php esc_html_e('Save Changes', 'simple-tags'); ?>
+                    </button>
+                </div>
+
                 <div id="poststuff">
                     <div id="post-body" class="taxopress-section metabox-holder columns-2">
                         <div>
@@ -1216,6 +1291,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 return;
             }
 
+            if (!$fast_update_screen && (!is_object($post) || !isset($post->post_type))) {
+                return;
+            }
+
             $default_post_type = '';
 
             if ($fast_update_screen) {
@@ -1420,46 +1499,6 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                         <tr>
                                             <td>
                                                 <div class="taxopress-ai-fetch-wrap">
-                                                    <?php if ($fast_update_screen) : ?>
-
-                                                            <select class="preview-post-types-select taxopress-ai-select2"
-                                                            style="max-width: 100px;">
-                                                                <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
-                                                                    if (!in_array($post_type, ['attachment'])) {
-                                                                        if (empty($default_post_type)) {
-                                                                            $default_post_type = $post_type;
-                                                                            $posts = $posts = get_posts(['post_type' => $post_type, 'numberposts' => 1, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
-                                                                        }
-                                                                    ?>
-                                                                        <option value='<?php echo esc_attr($post_type); ?>'
-                                                                            data-singular_label="<?php echo esc_html($post_type_object->labels->singular_name); ?>">
-                                                                            <?php echo esc_html($post_type_object->labels->name); ?>
-                                                                        </option>
-                                                                    <?php 
-                                                                    }
-                                                                endforeach; ?>
-                                                            </select>
-
-                                                            <select class="preview-user-role-select taxopress-ai-select2" style="max-width: 150px;">
-                                                                <?php foreach (taxopress_get_all_wp_roles() as $role_name => $role_info): ?>
-                                                                    <option value="<?php echo esc_attr($role_name); ?>">
-                                                                        <?php echo esc_html(translate_user_role($role_info['name'])); ?>
-                                                                    </option>
-                                                                <?php endforeach; ?>
-                                                            </select>
-
-                                                            <select class="preview-post-select taxopress-ai-post-search"
-                                                            style="max-width: 250px; width: 250px;"
-                                                                data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
-                                                                data-allow-clear="true"
-                                                                data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">
-                                                                <?php if (is_object($post)) : ?>
-                                                                    <option value='<?php echo esc_attr($post->ID); ?>'>
-                                                                            <?php echo esc_html($post->post_title); ?>
-                                                                        </option>
-                                                                <?php endif; ?>
-                                                            </select>
-                                                        <?php endif; ?>
                                                     <input 
                                                         class="taxopress-taxonomy-search existing-term-item" 
                                                         type="search" 
