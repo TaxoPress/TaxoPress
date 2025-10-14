@@ -310,3 +310,10 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     font-weight: 600;
 }
  
+.taxopress-preview-filters {
+    margin: 20px 0px !important;/
+}
+
+.taxopress-suggest-terms-content {
+    min-width: 900px !important;
+}
