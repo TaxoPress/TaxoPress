@@ -99,7 +99,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $preview_ai = 'autoterms';
                 }
 
-                if (!can_manage_taxopress_metabox_taxonomy($preview_taxonomy)) {
+                $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
+
+
+                if (!can_manage_taxopress_metabox_taxonomy($preview_taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
                     $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
                     wp_send_json($response);
@@ -703,12 +706,16 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $post_id = !empty($_POST['post_id']) ? (int) $_POST['post_id'] : 0;
                 $added_tags = !empty($_POST['added_tags']) ? map_deep($_POST['added_tags'], 'sanitize_text_field') : [];
                 $removed_tags = !empty($_POST['removed_tags']) ? map_deep($_POST['removed_tags'], 'sanitize_text_field') : [];
+                $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
 
-                if (!can_manage_taxopress_metabox_taxonomy($taxonomy)) {
+                if (!can_manage_taxopress_metabox_taxonomy($taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
                     $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
                     wp_send_json($response);
                     exit;
+                }
+                if (!$post_id && !empty($_POST['tab_post_id'])) {
+                    $post_id = (int) $_POST['tab_post_id'];
                 }
 
                 if (!empty($post_id)) {
@@ -821,8 +828,9 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $existing_terms = !empty($_POST['existing_terms']) ? map_deep($_POST['existing_terms'], 'sanitize_text_field') : [];
                 $selected_terms = !empty($_POST['selected_terms']) ? map_deep($_POST['selected_terms'], 'intval') : [];
                 $post_id = !empty($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+                $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
 
-                if (!can_manage_taxopress_metabox_taxonomy($taxonomy)) {
+                if (!can_manage_taxopress_metabox_taxonomy($taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
                     $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
                     wp_send_json($response);
@@ -969,15 +977,15 @@ if (!class_exists('TaxoPressAiAjax')) {
 
             check_ajax_referer('taxopress-ai-ajax-nonce', 'nonce');
 
-            $role = isset($_POST['role']) ? sanitize_key($_POST['role']) : '';
+            $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
             $taxonomy = isset($_POST['taxonomy']) ? sanitize_key($_POST['taxonomy']) : '';
 
-            $role_taxonomies = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $role . '');
+            $role_taxonomies = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $preview_role . '');
 
-            $can_create_terms = !SimpleTags_Plugin::get_option_value('enable_restrict' . $role . '_metabox');
+            $can_create_terms = !SimpleTags_Plugin::get_option_value('enable_restrict' . $preview_role . '_metabox');
             
             // Check if user is administrator - only they can edit labels
-            $can_edit_labels = $role === 'administrator';
+            $can_edit_labels = $preview_role === 'administrator';
 
             $show_taxonomy = in_array($taxonomy, $role_taxonomies);
 
@@ -994,6 +1002,40 @@ if (!class_exists('TaxoPressAiAjax')) {
                 'can_edit_labels' => $can_edit_labels,
                 'allowed_taxonomies' => $available_taxonomies
             ]);
+        }
+
+        public static function handle_preview_update() {
+            if (empty($_POST['nonce']) || !wp_verify_nonce(sanitize_key($_POST['nonce']), 'taxopress-ai-ajax-nonce')) {
+                wp_send_json_error(['message' => 'Invalid nonce'], 403);
+                exit;
+            }
+
+            $post_id = isset($_POST['post_id']) ? (int)$_POST['post_id'] : 0;
+            $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
+            $post_type = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : '';
+
+            if (!$post_id) {
+                wp_send_json_error(['message' => 'Invalid post ID'], 400);
+                exit;
+            }
+
+            // Get the post
+            $post = get_post($post_id);
+            if (!$post) {
+                wp_send_json_error(['message' => 'Post not found'], 404);
+                exit;
+            }
+
+            self::handle_role_preview();
+
+            ob_start();
+            TaxoPress_AI_Module::get_instance()->editor_metabox($post, 'fast_update');
+            $metabox_content = ob_get_clean();
+
+            wp_send_json_success([
+                'metabox_content' => $metabox_content
+            ]);
+            exit;
         }
 
     }

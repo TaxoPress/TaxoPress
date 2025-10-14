@@ -782,7 +782,13 @@ function can_manage_taxopress_metabox($user_id = false) {
 /**
  * Check if current user can manage metabox taxonomy
  */
-function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false) {
+function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false, $preview_role = '') {
+    
+     if (!empty($preview_role)) {
+         $role_options = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $preview_role . '');
+         return in_array($taxonomy, $role_options, true);
+    }
+
     $can_manage = false;
 
     if (!$user_id) {
@@ -793,7 +799,7 @@ function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false) {
     if (is_object($user) && isset($user->roles)) {
         foreach ($user->roles as $role_name) {
             $role_options = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $role_name . '');
-            if (in_array($taxonomy, $role_options)) {
+            if (in_array($taxonomy, $role_options, true)) {
                 $can_manage = true;
                 break;
             }
