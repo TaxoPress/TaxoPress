@@ -443,10 +443,6 @@ class SimpleTags_Autolink
                                                                         'default' => 'true'
                                                                     ],
                                                                     [
-                                                                        'attr' => 'post_title',
-                                                                        'text' => esc_attr__('Post Title', 'simple-tags')
-                                                                    ],
-                                                                    [
                                                                         'attr' => 'posts',
                                                                         'text' => esc_attr__(
                                                                             'Post Content and Title',
