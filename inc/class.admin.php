@@ -760,6 +760,8 @@ class SimpleTags_Admin
             'suggested_terms_title' => esc_html__('Suggested Terms to Merge:', 'simple-tags'),
             'duplicates_text' => esc_html__('duplicates', 'simple-tags'),
             'reason_text' => esc_html__('Reason:', 'simple-tags'),
+            'select_all_label' => esc_html__('Select All', 'simple-tags'),
+            'deselect_all_label' => esc_html__('Deselect All', 'simple-tags'),
 		]);
 
 
