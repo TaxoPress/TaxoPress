@@ -170,16 +170,12 @@
               if (matchFilters) {
                   var pt = matchFilters[1];
 
-                  // container selectors
                   var filtersContainer = $('.enable_taxopress_ai_' + pt + '_metabox_filters_field');
                   var existingTabContainer = $('.enable_taxopress_ai_' + pt + '_existing_terms_tab_field');
 
-                  var filtersChecked = checked_field; // current checkbox state
+                  var filtersChecked = checked_field;
                   var existingTabVisible = existingTabContainer.length && !existingTabContainer.hasClass('st-subhide-content');
  
-                  // Show the filters-controlled fields only when:
-                  // - Existing Terms Tab container is visible (so the checkbox itself is visible)
-                  // - Filters checkbox is checked
                   if (existingTabVisible && filtersChecked) {
                     filtersContainer.removeClass('st-subhide-content');
                   } else {
@@ -212,7 +208,6 @@
                       $(target_class).addClass('st-subhide-content');
                   }
 
-                  // If user toggled the Existing Terms tab, re-evaluate metabox filters visibility in real time
                   if (field_name.match(/^enable_taxopress_ai_(\w+)_existing_terms_tab$/)) {
                       var pt2 = field_name.match(/^enable_taxopress_ai_(\w+)_existing_terms_tab$/)[1];
                       var filtersContainer2 = $('.enable_taxopress_ai_' + pt2 + '_metabox_filters_field');
@@ -263,7 +258,6 @@
                 }
             });
 
-          // Ensure filters fields are only visible if Existing Terms tab container is visible AND filters checkbox is visible & checked
           $('[name$="_metabox_filters"]').each(function () {
                 var fname = $(this).attr('name') || '';
                 var m = fname.match(/^taxopress_ai_(\w+)_metabox_filters$/);
