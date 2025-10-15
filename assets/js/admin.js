@@ -176,7 +176,10 @@
 
                   var filtersChecked = checked_field; // current checkbox state
                   var existingTabVisible = existingTabContainer.length && !existingTabContainer.hasClass('st-subhide-content');
-
+ 
+                  // Show the filters-controlled fields only when:
+                  // - Existing Terms Tab container is visible (so the checkbox itself is visible)
+                  // - Filters checkbox is checked
                   if (existingTabVisible && filtersChecked) {
                     filtersContainer.removeClass('st-subhide-content');
                   } else {
@@ -209,6 +212,7 @@
                       $(target_class).addClass('st-subhide-content');
                   }
 
+                  // If user toggled the Existing Terms tab, re-evaluate metabox filters visibility in real time
                   if (field_name.match(/^enable_taxopress_ai_(\w+)_existing_terms_tab$/)) {
                       var pt2 = field_name.match(/^enable_taxopress_ai_(\w+)_existing_terms_tab$/)[1];
                       var filtersContainer2 = $('.enable_taxopress_ai_' + pt2 + '_metabox_filters_field');
@@ -259,6 +263,7 @@
                 }
             });
 
+          // Ensure filters fields are only visible if Existing Terms tab container is visible AND filters checkbox is visible & checked
           $('[name$="_metabox_filters"]').each(function () {
                 var fname = $(this).attr('name') || '';
                 var m = fname.match(/^taxopress_ai_(\w+)_metabox_filters$/);
@@ -2228,6 +2233,10 @@
         if (data.suggestions.length === 0) {
             html += '<p class="taxopress-no-suggestions">' + st_admin_localize.no_merge_suggestions + '</p>';
         } else {
+            html += '<div class="taxopress-select-all-suggestions">';
+            html += '<a href="#" class="ai-select-all" data-select-all="' + st_admin_localize.select_all_label + '" data-deselect-all="' + st_admin_localize.deselect_all_label + '">' + st_admin_localize.select_all_label + '</a>';
+            html += '</div>';
+
             const initialLimit = 10;
             const showAll = data.suggestions.length <= initialLimit;
 
@@ -2266,6 +2275,21 @@
         });
         return html;
     }
+
+    $(document).on('click', '.taxopress-select-all-suggestions .ai-select-all', function(e) {
+        e.preventDefault();
+        var button = $(this);
+        
+        if (button.hasClass('all-selected')) {
+            button.removeClass('all-selected');
+            button.html(button.attr('data-select-all'));
+            $('.merge-suggestion').prop('checked', false);
+        } else {
+            button.addClass('all-selected');
+            button.html(button.attr('data-deselect-all'));
+            $('.merge-suggestion').prop('checked', true);
+        }
+    });
 
     // Handle Apply Selected button
     $(document).on('click', '#apply-suggestions', function(e) {

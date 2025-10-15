@@ -354,8 +354,8 @@ class SimpleTags_Admin_Manage
                                             <textarea type="text" class="autocomplete-input taxopress-expandable-textarea merge-feature-autocomplete" id="mergeterm_new" name="renameterm_new" size="80" data-taxo="<?php echo esc_attr(get_option('merge-terms_taxo')); ?>"></textarea>
                                         </p>
 
-                                        <input class="button-secondary suggest-merge-terms" type="button" id="suggest-merge-terms" value="<?php _e('Suggest Terms to Merge', 'simple-tags'); ?>" />
-                                        <input class="button-primary" type="submit" name="merge" id="merge-terms" value="<?php _e('Merge', 'simple-tags'); ?>" />
+                                        <input class="suggest-merge-terms" type="button" id="suggest-merge-terms" value="<?php _e('Suggest Terms to Merge', 'simple-tags'); ?>" />
+                                        <input class="button-primary" type="submit" name="merge" id="merge-terms" value="<?php _e('Merge Terms', 'simple-tags'); ?>" />
                                         <div id="merge-progress" style="margin-top: 10px;"></div>
                                     </form>
                                 </fieldset>
