@@ -978,7 +978,6 @@
         });
     }
 
-    // Update initUrlParams() to store state but clean URL
     (function initUrlParams() {
         if (typeof taxoPressAIRequestAction === 'undefined' || taxoPressAIRequestAction.current_screen !== 'st_taxopress_ai') {
             return;
@@ -1049,6 +1048,54 @@
                     }
                 }, 500);
             }
+        }
+    })();
+
+
+    (function initRolePermissions() {
+        if (typeof taxoPressAIRequestAction === 'undefined' || 
+            taxoPressAIRequestAction.current_screen !== 'st_taxopress_ai') {
+            return;
+        }
+
+        var $roleSelect = $('.preview-user-role-select');
+        if ($roleSelect.length) {
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'taxopress_role_preview',
+                    preview_role: $roleSelect.val(),
+                    nonce: taxoPressAIRequestAction.nonce
+                },
+                success: function(response) {
+                    if (response.success) {
+                        if (!response.data.can_create_terms) {
+                            $('.create_terms_tab').hide();
+                        } else {
+                            $('.create_terms_tab').show();
+                        }
+
+                        if (!response.data.can_edit_labels) {
+                            $('.tp-rename-tab').hide();
+                        } else {
+                            $('.tp-rename-tab').show();
+                        }
+
+                        $('.taxopress-ai-fetch-taxonomy-select option, .taxopress-ai-fetch-create-taxonomy option').hide();
+                        
+                        response.data.allowed_taxonomies.forEach(function(tax) {
+                            $('.taxopress-ai-fetch-taxonomy-select option[value="' + tax + '"], .taxopress-ai-fetch-create-taxonomy option[value="' + tax + '"]').show();
+                        });
+
+                        var $taxonomySelect = $('.taxopress-ai-fetch-taxonomy-select');
+                        var currentTaxonomy = $taxonomySelect.val();
+                        if (response.data.allowed_taxonomies.indexOf(currentTaxonomy) === -1) {
+                            $taxonomySelect.val(response.data.allowed_taxonomies[0]).trigger('change');
+                        }
+                    }
+                }
+            });
         }
     })();
 
