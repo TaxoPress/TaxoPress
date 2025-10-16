@@ -323,24 +323,3 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     display: table;
     box-sizing: border-box;
 }
-
-.taxopress-post-suggestterm .taxopress-tab-content-item td,
-.taxopress-post-suggestterm .taxopress-ai-fetch-wrap,
-.taxopress-post-suggestterm .taxopress-ai-fetch-result {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.taxopress-post-suggestterm .taxopress-ai-fetch-result {
-    width: 100% !important;
-    min-width: 100%;
-    min-height: 140px;
-}
-
-.taxopress-post-suggestterm .previewed-tag-content .result-terms,
-.taxopress-post-suggestterm .taxopress-ai-fetch-result .result-terms {
-    display: inline-block;
-    max-width: 100%;
-    word-break: break-word;
-}
