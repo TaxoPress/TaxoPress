@@ -268,15 +268,19 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.40.0- 2025-10-07
+v3.40.0- 2025-10-16
 * Fixed: Preview dropdown doesn't show some characters correctly, #2780
 * Fixed: Issue with some GPT 5 models, #2778
+* Fixed: Auto Links not working with Elementor, #2808
 * Update: Show term slug in Mass Edit Terms, #2777
 * Update: Show term slug in the metabox, #2774
 * Update: Move Metabox Settings to Fast Update Screen, #2773
 * Update: Scan and Automatically Suggest terms to merge, #2729
 * Update: Preview for different user roles and post types, #2795
 * Update: Update to Menu links: Rename "Fast Update" to "Metaboxes" #2791
+* Update: Place License tab to the end of all tabs, #2804
+* Update: Only show the pencil edit icon on the Metaboxes screen, #2792
+* Remobed: Remove Title feature from Auto Links, #2809
 
 v3.38.0- 2025-09-17
 * Fixed: Frontend css loads on all pages, #2757
