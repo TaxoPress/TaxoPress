@@ -1390,6 +1390,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     $permitted_post_type_taxonomies = [];
                     if ($fast_update_screen) {
                         foreach (TaxoPressAiUtilities::get_taxonomies(true) as $taxonomy_name => $taxonomy_data) {
+                        $selected_post_type = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : $default_post_type;
+                        foreach (get_object_taxonomies($selected_post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
                             if (!in_array($taxonomy_name, ['post_format'])) {
                                 $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
                                 if ($selectedRole = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '') {
@@ -1407,6 +1409,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                 }
                             }
                         }
+                       }
                     } else {
                         foreach(get_object_taxonomies($post->post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
                             if (can_manage_taxopress_metabox_taxonomy($taxonomy_name)) {
