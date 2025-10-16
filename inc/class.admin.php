@@ -881,7 +881,7 @@ class SimpleTags_Admin
 
                         $options['taxopress_ai_' . $post_type . '_exclusions'] = '';
                         $options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
-                        $options['taxopress_ai_' . $post_type . '_metabox_filters'] = 0;
+                        $options['taxopress_ai_' . $post_type . '_metabox_filters'] = 1;
                         foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
                             $options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
                         }
