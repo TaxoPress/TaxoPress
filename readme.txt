@@ -280,7 +280,7 @@ v3.40.0- 2025-10-16
 * Update: Update to Menu links: Rename "Fast Update" to "Metaboxes" #2791
 * Update: Place License tab to the end of all tabs, #2804
 * Update: Only show the pencil edit icon on the Metaboxes screen, #2792
-* Remobed: Remove Title feature from Auto Links, #2809
+* Removed: Remove Title feature from Auto Links, #2809
 
 v3.38.0- 2025-09-17
 * Fixed: Frontend css loads on all pages, #2757
