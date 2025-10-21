@@ -1948,3 +1948,92 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     gap: 5px;
     top: 3px !important;
 }
+
+.suggest-merge-terms {
+    display: inline-block;
+    padding: 0 10px;
+    margin: 0 0 10px 0;
+    cursor: pointer;
+    border: 1px solid #2271b1;
+    border-radius: 3px;
+    background: #f6f7f7;
+    color: #2271b1;
+    text-decoration: none;
+    line-height: 2;
+    min-height: 30px;
+    font-size: 13px;
+}
+
+.suggest-merge-terms:hover {
+    background: #f0f0f1;
+    border-color: #0a4b78;
+    color: #0a4b78;
+}
+
+.suggest-merge-terms:focus {
+    background: #f0f0f1;
+    border-color: #2271b1;
+    color: #0a4b78;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: 2px solid transparent;
+    outline-offset: 0;
+}
+
+.suggest-merge-terms:active {
+    background: #f6f7f7;
+    border-color: #565e64;
+    box-shadow: none;
+}
+
+#taxopress-merge-suggestions {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.taxopress-suggestion-item {
+    margin-bottom: 10px;
+}
+
+#taxopress-hidden-suggestions {
+    display: none;
+}
+
+#taxopress-toggle-suggestions {
+    margin-bottom: 10px !important;
+}
+
+.taxopress-button-wrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.taxopress-no-suggestions{
+    margin-bottom: 10px !important;
+}
+
+.taxopress-button-spinner-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(246, 242, 242, 0.8);
+}
+
+.taxopress-select-all-suggestions {
+    margin-bottom: 10px;
+    padding: 5px 0;
+}
+
+.taxopress-select-all-suggestions .ai-select-all {
+    text-decoration: none;
+    color: #2271b1;
+}
+
+.taxopress-select-all-suggestions .ai-select-all:hover {
+    color: #135e96;
+}

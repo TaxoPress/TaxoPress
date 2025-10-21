@@ -30,6 +30,15 @@ class SimpleTags_Client_Autolinks
 			add_filter('the_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
 			add_filter('the_title', array(__CLASS__, 'taxopress_autolinks_the_title'), 5);
 
+            // Elementor compatibility: elementor outputs content through its own filters,
+            // so also run our autolinks on those outputs.
+            if ( defined('ELEMENTOR_VERSION') || class_exists('\Elementor\Plugin') ) {
+                add_filter('elementor/frontend/the_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
+                add_filter('elementor/frontend/builder_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
+            }
+
+            add_action('wp_head', [__CLASS__, 'print_autolink_inline_style']);
+
 			add_action('admin_init', [$this, 'taxopress_customurl_taxonomies_fields']);
 		}
 	}
@@ -80,6 +89,11 @@ class SimpleTags_Client_Autolinks
         }
 
         return $has_setting_saved ? array_unique($enabled_taxonomies) : $default_enabled_taxonomies;
+    }
+
+    public static function print_autolink_inline_style() {
+        // Ensure autolink anchors are visibly underlined on the frontend (overrides Elementor/theme rules)
+        echo '<style type="text/css">a.st_tag, a.internal_tag, .st_tag, .internal_tag { text-decoration: underline !important; }</style>';
     }
 
 	/**
@@ -924,6 +938,13 @@ class SimpleTags_Client_Autolinks
 	public static function taxopress_autolinks_the_content($content = '')
 	{
 		global $post;
+
+        
+        // Some Elementor render flows may call filters with no global $post set.
+        // Try to recover a post object before bailing out.
+        if (!is_object($post)) {
+            $post = get_post();
+        }
 
 
 		if (!is_object($post) || is_admin()) {

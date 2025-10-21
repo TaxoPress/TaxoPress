@@ -3,13 +3,13 @@
  * Plugin Name: TaxoPress
  * Plugin URI: https://wordpress.org/plugins/simple-tags/
  * Description: TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms.
- * Version: 3.38.0
+ * Version: 3.40.0
  * Author: TaxoPress
  * Author URI: https://taxopress.com
  * Text Domain: simple-tags
  * Domain Path: /languages
  * Min WP Version: 4.9.7
- * Requires PHP: 7.2
+ * Requires PHP: 7.4
  * License: GPLv3
  *
  * Copyright (c) 2022 Taxopress
@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('STAGS_VERSION')) {
-define('STAGS_VERSION', '3.38.0');
+define('STAGS_VERSION', '3.40.0');
 }
 
 
@@ -101,7 +101,7 @@ if (defined('TAXOPRESS_FILE') || $pro_active) {
 
 define ( 'TAXOPRESS_FILE', __FILE__ );
 
-define('STAGS_MIN_PHP_VERSION', '7.2');
+define('STAGS_MIN_PHP_VERSION', '7.4');
 define('STAGS_OPTIONS_NAME', 'simpletags'); // Option name for save settings
 define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save settings auto terms
 

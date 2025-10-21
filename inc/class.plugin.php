@@ -69,16 +69,19 @@ class SimpleTags_Plugin {
 			$default_options['taxopress_ai_' . $post_type . '_metabox_order'] = 'desc';
 			$default_options['taxopress_ai_' . $post_type . '_metabox_maximum_terms'] = 45;
 			$default_options['taxopress_ai_' . $post_type . '_metabox_show_post_count'] = 0;
+            $default_options['taxopress_ai_' . $post_type . '_metabox_show_term_slug'] = 0;
 
 			$default_options['taxopress_ai_' . $post_type . '_minimum_term_length'] = 2;
 			$default_options['taxopress_ai_' . $post_type . '_maximum_term_length'] = 40;
 
 			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 			$default_options['taxopress_ai_' . $post_type . '_exclusions'] = '';
-			$default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
-			foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
-				$default_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = 1;
-			}
+            $default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
+            $default_options['taxopress_ai_' . $post_type . '_metabox_filters'] = 1;
+
+            foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
+                $default_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = ($post_type == 'post') ? 1 : 0;
+            }
 		}
 
 		// add metabox post type and taxonomies options so we can have all post types. TODO: This need to be a filter
