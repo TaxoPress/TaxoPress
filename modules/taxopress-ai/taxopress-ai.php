@@ -61,6 +61,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
             // Ensure tab labels are persisted in dedicated options
             add_action('admin_init', [$this, 'ensure_tab_label_options']);
+
+            add_action('wp_ajax_taxopress_role_preview', ['TaxoPressAiAjax', 'handle_role_preview']);
+            add_action('wp_ajax_taxopress_preview_update', ['TaxoPressAiAjax', 'handle_preview_update']);
         }
 
 
@@ -185,6 +188,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
             }
 
             if (!empty($_POST['_wpnonce']) && wp_verify_nonce(sanitize_key($_POST['_wpnonce']), 'updateresetoptions-simpletags')) {
+                if (isset($_POST['post_ID']) || isset($_POST['post_type'])) {
+                    return;
+                }
+
                 check_admin_referer('updateresetoptions-simpletags');
 
                 $current_options = SimpleTags_Plugin::get_option();
@@ -258,7 +265,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             continue;
                         }
 
-                        if ($field_type === 'multiselect' && $field_id) {
+                        if (($field_type === 'multiselect' || $field_type === 'multiselect_with_desc_top') && $field_id) {
                            $expected_multiselect_keys[] = $field_id;
                             continue;
                         }
@@ -348,14 +355,22 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 $removed_taxonomies_tax = $removed_taxonomies['taxonomies'];
                 $removed_taxonomies_css = $removed_taxonomies['custom_css'];
 
-                $metabox_filters_enabled = false;
-                if ($fast_update_screen) {
-                    $metabox_filters_enabled = true;
-                } elseif (function_exists('get_post_type')) {
-                    $current_post_type = get_post_type();
-                    if ($current_post_type) {
-                        $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $current_post_type . '_metabox_filters');
-                    }
+                 if ($fast_update_screen) {
+                     $preview_post_type = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : '';
+                     if (empty($preview_post_type)) {
+                         foreach (TaxoPressAiUtilities::get_post_types_options() as $pt => $pt_obj) {
+                             if (!in_array($pt, ['attachment'])) {
+                                 $preview_post_type = $pt;
+                                 break;
+                             }
+                         }
+                     }
+                     $metabox_filters_enabled = !empty($preview_post_type) ? SimpleTags_Plugin::get_option_value('taxopress_ai_' . $preview_post_type . '_metabox_filters') : false;
+                 } elseif (function_exists('get_post_type')) {
+                     $current_post_type = get_post_type();
+                     if ($current_post_type) {
+                         $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $current_post_type . '_metabox_filters');
+                     }
                 }
 
 
@@ -400,6 +415,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         'label_too_long_error' => esc_html__('Label can\'t exceed 30 characters.', 'simple-tags'),
                         'unknown_tab_error' => esc_html__('Unknown tab type.', 'simple-tags'),
                         'save_error' => esc_html__('Error saving label.', 'simple-tags'),
+                        'requiredSuffix' => esc_html__('Please choose a post to preview.', 'simple-tags'),
                     ]
                 );
                 
@@ -416,8 +432,8 @@ if (!class_exists('TaxoPress_AI_Module')) {
         {
             $hook = add_submenu_page(
                 self::MENU_SLUG,
-                esc_html__('Fast Update', 'simple-tags'),
-                esc_html__('Fast Update', 'simple-tags'),
+                esc_html__('Metaboxes', 'simple-tags'),
+                esc_html__('Metaboxes', 'simple-tags'),
                 'simple_tags',
                 self::PAGE_MENU_SLUG,
                 [
@@ -434,28 +450,28 @@ if (!class_exists('TaxoPress_AI_Module')) {
         public function page_manage_taxopress_ai()
         {
 
-            if (isset($_POST['updateoptions'])) {
-                $this->save_settings();
-            }
+            // if (isset($_POST['updateoptions'])) {
+            //     $this->save_settings();
+            // }
 
             settings_errors(__CLASS__);
             $post = 0;
 
-            $current_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'metabox';
+            $current_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'preview';
 
             $tabs = [
-                'metabox' => __('Metabox', 'simple-tags'),
-                'metabox_access' => __('Metabox Access', 'simple-tags'), 
-                'preview' => __('Preview', 'simple-tags')
+                'preview' => __('Preview', 'simple-tags'),
+                'metabox' => __('Metabox Settings', 'simple-tags'),
+                'metabox_access' => __('Metabox Access', 'simple-tags') 
             ];
 
             ?>
             <div class="wrap st_wrap st_taxopress_ai-wrap st-manage-taxonomies-page <?php echo esc_attr(self::PAGE_MENU_SLUG . '-wrap'); ?>">
                 <h1>
-                    <?php echo esc_html__('Fast Update', 'simple-tags'); ?>
+                    <?php echo esc_html__('Metaboxes', 'simple-tags'); ?>
                 </h1>
                 <div class="taxopress-description">
-                <?php esc_html_e('This screen allows you to quickly edit the terms on multiple posts. This feature uses the same metabox you see when editing posts.', 'simple-tags'); ?> <a target="_blank" href="<?php echo admin_url('admin.php?page=st_taxopress_ai&tab=metabox_access') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
+                <?php esc_html_e('This feature allows you to customize the metabox interface you see when adding terms to posts.', 'simple-tags'); ?> 
                 </div>
 
                 <h2 class="nav-tab-wrapper">
@@ -715,6 +731,19 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             }
                             $input_type = implode('', $input_type_array);
                             break;
+
+                        case 'multiselect_with_desc_top':
+                            $desc_html_tag = 'div';
+                            $input_type_array = array();
+                            $prefix = !empty($field_description) ? '<' . $desc_html_tag . ' class="stpexplan">' . $field_description . '</' . $desc_html_tag . '>' : '';
+                            foreach ($field_options as $option_key => $option_label) {
+                                $field_value = isset($option_actual[$field_id]) ? $option_actual[$field_id] : array();
+                                $selected_option = (is_array($field_value) && in_array($option_key, $field_value)) ? true : false;
+                                $input_type_array[] = '<label><input type="checkbox" id="' . esc_attr($field_id . '-' . $option_key) . '" name="' . esc_attr($field_id) . '[]" value="' . esc_attr($option_key) . '" ' . checked($selected_option, true, false) . ' /> ' . esc_html($option_label) . '</label><br />';
+                            }
+                            $input_type = $prefix . implode('', $input_type_array);
+                            $field_description = '';
+                            break;
                             
                         default:
                             $input_type = '<input type="text" id="' . esc_attr($field_id) . '" name="' . esc_attr($field_id) . '" value="' . esc_attr($option_actual[$field_id]) . '" />';
@@ -828,17 +857,80 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
         /**
          * Render the Preview tab content
-         */
-        private function render_preview_tab($post)
+        */
+        private function render_preview_tab($post) 
         {
+            // Get URL parameters
+            $url_post_type = isset($_GET['post_type']) ? sanitize_key($_GET['post_type']) : '';
+            $url_post_id = isset($_GET['post']) ? (int)$_GET['post'] : 0;
+            $url_role = isset($_GET['role']) ? sanitize_key($_GET['role']) : '';
+            
+            // Get default post type and post
+            $default_post_type = '';
+            foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
+                if (!in_array($post_type, ['attachment'])) {
+                    // Use URL post type if valid, otherwise use first available
+                    if ($url_post_type && $url_post_type === $post_type) {
+                        $default_post_type = $url_post_type;
+                        if ($url_post_id) {
+                            $post = get_post($url_post_id);
+                        }
+                        break;
+                    } elseif (!$default_post_type) {
+                        $default_post_type = $post_type;
+                        if (!$url_post_id) {
+                            $posts = get_posts(['post_type' => $post_type, 'numberposts' => 1, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
+                            if (!empty($posts)) {
+                                $post = $posts[0];
+                            }
+                        }
+                    }
+                }
+            }
+
             ?>
             <div class="taxopress-tab-content">
-                <h3><?php esc_html_e('Metabox Preview', 'simple-tags'); ?></h3>
-                <div class="taxopress-description">
-                    <?php esc_html_e('This is the same metabox interface you see when editing posts. Use it to quickly update terms on multiple posts.', 'simple-tags'); ?> 
-                    <a target="_blank" href="<?php echo admin_url('admin.php?page=st_taxopress_ai&tab=metabox_access') ?>"><?php echo esc_html__('Configure the metabox settings', 'simple-tags'); ?></a>.
+                <div class="taxopress-preview-filters taxopress-tab-content-item" data-ai-source="preview">
+                    <select class="preview-post-types-select taxopress-ai-select2" style="max-width: 100px;">
+                        <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
+                            if (!in_array($post_type, ['attachment'])) {
+                                ?>
+                                <option value='<?php echo esc_attr($post_type); ?>'
+                                    data-singular_label="<?php echo esc_html($post_type_object->labels->singular_name); ?>"
+                                    <?php selected($post_type, $default_post_type); ?>>
+                                    <?php echo esc_html($post_type_object->labels->name); ?>
+                                </option>
+                                <?php 
+                            }
+                        endforeach; ?>
+                    </select>
+
+                    <select class="preview-user-role-select taxopress-ai-select2" style="max-width: 150px;">
+                        <?php foreach (taxopress_get_all_wp_roles() as $role_name => $role_info): ?>
+                            <option value="<?php echo esc_attr($role_name); ?>"
+                                <?php selected($role_name, $url_role); ?>>
+                                <?php echo esc_html(translate_user_role($role_info['name'])); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <select class="preview-post-select taxopress-ai-post-search"
+                        style="max-width: 250px; width: 250px;"
+                        data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
+                        data-allow-clear="true"
+                        data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">
+                        <?php if (is_object($post)) : ?>
+                            <option value='<?php echo esc_attr($post->ID); ?>'>
+                                <?php echo esc_html($post->post_title); ?>
+                            </option>
+                        <?php endif; ?>
+                    </select>
+
+                    <button type="button" class="button button-secondary preview-metabox-content">
+                        <?php esc_html_e('Save Changes', 'simple-tags'); ?>
+                    </button>
                 </div>
-                
+
                 <div id="poststuff">
                     <div id="post-body" class="taxopress-section metabox-holder columns-2">
                         <div>
@@ -1199,6 +1291,10 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 return;
             }
 
+            if (!$fast_update_screen && (!is_object($post) || !isset($post->post_type))) {
+                return;
+            }
+
             $default_post_type = '';
 
             if ($fast_update_screen) {
@@ -1218,7 +1314,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post->post_type);
             $fields_tabs   = TaxoPressAiFields::get_fields_tabs();
 
-            $metabox_filters_enabled = $fast_update_screen ? true : SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_metabox_filters');
+            $metabox_filters_enabled = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post->post_type . '_metabox_filters');
 
             $existing_terms_label = get_option('taxopress_ai_existing_terms_tab_label');
             if ($existing_terms_label === '' || $existing_terms_label === false) {
@@ -1273,7 +1369,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                             'label'   => $suggest_local_terms_label,
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_suggest_local_terms_tab')),
                         ],
-                        'create_term' => [
+                        'create_terms' => [
                             'label'   => $create_terms_label,
                             'enabled' => !empty(SimpleTags_Plugin::get_option_value('enable_taxopress_ai_'. $post->post_type .'_create_terms_tab')),
                         ],
@@ -1294,15 +1390,26 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     $permitted_post_type_taxonomies = [];
                     if ($fast_update_screen) {
                         foreach (TaxoPressAiUtilities::get_taxonomies(true) as $taxonomy_name => $taxonomy_data) {
+                        $selected_post_type = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : $default_post_type;
+                        foreach (get_object_taxonomies($selected_post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
                             if (!in_array($taxonomy_name, ['post_format'])) {
                                 $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                if (in_array($taxonomy_name, ['category', 'post_tag']) && current_user_can('manage_categories')) {
-                                    $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
-                                    $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                if ($selectedRole = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '') {
+                                    $role_taxonomies = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $selectedRole . '');
+                                    if (in_array($taxonomy_name, $role_taxonomies)) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    }
+                                } else {
+                                    // Default behavior
+                                    if (in_array($taxonomy_name, ['category', 'post_tag']) && current_user_can('manage_categories')) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    }
                                 }
                             }
                         }
+                       }
                     } else {
                         foreach(get_object_taxonomies($post->post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
                             if (can_manage_taxopress_metabox_taxonomy($taxonomy_name)) {
@@ -1348,7 +1455,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                         <span class="tp-tab-label">
                                             <?php echo esc_html($label); ?>
                                         </span>
-                            <?php if ($can_edit_labels) { ?>
+                            <?php if ($can_edit_labels && $fast_update_screen) { ?>
                                     <div class="pp-tooltips-library" data-toggle="tooltip">
                                         <span class="dashicons dashicons-edit tp-rename-tab" data-tab="<?php echo esc_attr($key); ?>"></span>
                                         <div class="taxopress tooltip-text taxopress-ai"><?php echo esc_attr__('Edit', 'simple-tags'); ?></div>
@@ -1395,38 +1502,6 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                         <tr>
                                             <td>
                                                 <div class="taxopress-ai-fetch-wrap">
-                                                    <?php if ($fast_update_screen) : ?>
-
-                                                            <select class="preview-post-types-select taxopress-ai-select2"
-                                                            style="max-width: 100px;">
-                                                                <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object): 
-                                                                    if (!in_array($post_type, ['attachment'])) {
-                                                                        if (empty($default_post_type)) {
-                                                                            $default_post_type = $post_type;
-                                                                            $posts = $posts = get_posts(['post_type' => $post_type, 'numberposts' => 1, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
-                                                                        }
-                                                                    ?>
-                                                                        <option value='<?php echo esc_attr($post_type); ?>'
-                                                                            data-singular_label="<?php echo esc_html($post_type_object->labels->singular_name); ?>">
-                                                                            <?php echo esc_html($post_type_object->labels->name); ?>
-                                                                        </option>
-                                                                    <?php 
-                                                                    }
-                                                                endforeach; ?>
-                                                            </select>
-
-                                                            <select class="preview-post-select taxopress-ai-post-search"
-                                                            style="max-width: 250px; width: 250px;"
-                                                                data-placeholder="<?php echo esc_attr__('Select...', 'simple-tags'); ?>"
-                                                                data-allow-clear="true"
-                                                                data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-ai-post-search')); ?>">
-                                                                <?php if (is_object($post)) : ?>
-                                                                    <option value='<?php echo esc_attr($post->ID); ?>'>
-                                                                            <?php echo esc_html($post->post_title); ?>
-                                                                        </option>
-                                                                <?php endif; ?>
-                                                            </select>
-                                                        <?php endif; ?>
                                                     <input 
                                                         class="taxopress-taxonomy-search existing-term-item" 
                                                         type="search" 

@@ -72,6 +72,13 @@ class SimpleTags_Admin_Mass {
 					// Remove empty and trim tag
 					$tags = array_filter( $tags, '_delete_empty_element' );
 
+                    $show_slug = SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug');
+                    if ($show_slug) {
+                        $tags = array_map( function($tag) {
+                            return trim(preg_replace('/\s*\([^)]+\)$/', '', $tag));
+                        }, $tags );
+                    }
+
 					// Add new tag (no append ! replace !)
 					wp_set_object_terms( $object_id, $tags, SimpleTags_Admin::$taxonomy );
 					$counter ++;
@@ -88,6 +95,13 @@ class SimpleTags_Admin_Mass {
 
 		return false;
 	}
+    
+    /**
+     * Helper function to extract term name (ignoring slug in brackets)
+     */
+    private static function extractTermName($term) {
+        return trim(preg_replace('/\s*\(.*?\)$/', '', $term));
+    }
 
 	/**
 	 * WP Page - Mass edit tags

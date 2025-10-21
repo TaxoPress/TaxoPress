@@ -760,6 +760,8 @@ class SimpleTags_Admin
             'suggested_terms_title' => esc_html__('Suggested Terms to Merge:', 'simple-tags'),
             'duplicates_text' => esc_html__('duplicates', 'simple-tags'),
             'reason_text' => esc_html__('Reason:', 'simple-tags'),
+            'select_all_label' => esc_html__('Select All', 'simple-tags'),
+            'deselect_all_label' => esc_html__('Deselect All', 'simple-tags'),
 		]);
 
 
@@ -879,7 +881,7 @@ class SimpleTags_Admin
 
                         $options['taxopress_ai_' . $post_type . '_exclusions'] = '';
                         $options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
-                        $options['taxopress_ai_' . $post_type . '_metabox_filters'] = 0;
+                        $options['taxopress_ai_' . $post_type . '_metabox_filters'] = 1;
                         foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
                             $options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = $opt_default_value;
                         }
@@ -1190,7 +1192,20 @@ class SimpleTags_Admin
 									<div class="' . $modal_wrapper_class . '">' . $modal_content . '</div>
 								</span>
 							</div>' . PHP_EOL;
-							break;
+						break;
+
+                    case 'multiselect_with_desc_top':
+                        $desc_html_tag = 'div';
+                        $input_type_array = array();
+                        $prefix = !empty($field_description) ? '<' . $desc_html_tag . ' class="stpexplan">' . $field_description . '</' . $desc_html_tag . '>' : '';
+                        foreach ($field_options as $option_key => $option_label) {
+                            $field_value = isset($option_actual[$field_id]) ? $option_actual[$field_id] : array();
+                            $selected_option = (is_array($field_value) && in_array($option_key, $field_value)) ? true : false;
+                            $input_type_array[] = '<label><input type="checkbox" id="' . esc_attr($field_id . '-' . $option_key) . '" name="' . esc_attr($field_id) . '[]" value="' . esc_attr($option_key) . '" ' . checked($selected_option, true, false) . ' /> ' . esc_html($option_label) . '</label><br />';
+                        }
+                        $input_type = $prefix . implode('', $input_type_array);
+                        $field_description = '';
+                        break;
 
 					case 'text-color':
 						$input_type = '<input type="text" id="' . $option[0] . '" name="' . $option[0] . '" value="' . esc_attr($option_actual[$option[0]]) . '" class="text-color ' . $option[3] . '" />' . PHP_EOL;
@@ -1283,6 +1298,8 @@ class SimpleTags_Admin
 				return esc_html__('Hidden Terms', 'simple-tags');
 			case 'manage_terms':
 				return esc_html__('Manage Terms', 'simple-tags');
+            case 'mass_edit_terms':
+                return esc_html__('Mass Edit Terms', 'simple-tags');    
 			case 'core_linked_terms':
 				return esc_html__('Linked Terms', 'simple-tags');
 			case 'core_synonyms_terms':

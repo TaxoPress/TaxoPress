@@ -139,19 +139,12 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 .st_taxopress_ai-wrap .taxopress-tab-content {
     min-height: 615px;
     width: 70%;
-}
-
-.st_taxopress_ai-wrap .taxopress-tab-content {
-    min-height: 615px;
     flex: 1 1 auto;
     width: auto;
     min-width: 0;
     box-sizing: border-box;
 }
 
-.taxopress-post-suggestterm ul.taxopress-tab {
-    width: 25%;
-}
 .taxopress-post-suggestterm .taxopress-tab-content {
     width: 70%;
     min-width: 0;
@@ -168,7 +161,7 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 }
 
 .st_taxopress_ai-wrap .form-table th {
-    width: 50%;
+    min-width: 350px;
 }
 
 .st_taxopress_ai-wrap #poststuff{
@@ -265,18 +258,6 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     min-width: 50px !important;
 }
 
-.metabox-role-tabs .metabox-role-tab-nav {
-    list-style: none;
-    margin: 5px;
-    padding: 0;
-    border-bottom: 1px solid #ccc;
-}
-
-.metabox-role-tabs .metabox-role-tab-nav li {
-    display: inline-block !important;
-    margin: 0;
-}
-
 .post-type-content:not(.active),
 .role-content:not(.active) {
     display: none !important;
@@ -326,3 +307,19 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     font-weight: 600;
 }
  
+.taxopress-preview-filters {
+    margin: 20px 0px !important;/
+}
+
+.taxopress-suggest-terms-content {
+    min-width: 900px !important;
+}
+
+.taxopress-post-suggestterm .taxopress-suggest-terms-content .taxopress-tab-content-item,
+.taxopress-post-suggestterm .taxopress-tab-content-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed;
+    display: table;
+    box-sizing: border-box;
+}

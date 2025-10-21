@@ -58,8 +58,8 @@ class SimpleTags_Autoterms_Content
     {
         $hook = add_submenu_page(
             self::MENU_SLUG,
-            esc_html__('Existing Content', 'simple-tags'),
-            esc_html__('Existing Content', 'simple-tags'),
+            esc_html__('Auto Terms Existing', 'simple-tags'),
+            esc_html__('Auto Terms Existing', 'simple-tags'),
             'simple_tags',
             'st_autoterms_content',
             [

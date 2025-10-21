@@ -77,7 +77,7 @@ class SimpleTags_Plugin {
 			$default_options['taxopress_ai_' . $post_type . '_support_private_taxonomy'] = 0;
 			$default_options['taxopress_ai_' . $post_type . '_exclusions'] = '';
             $default_options['enable_taxopress_ai_' . $post_type . '_metabox'] = $opt_default_value;
-            $default_options['taxopress_ai_' . $post_type . '_metabox_filters'] = 0;
+            $default_options['taxopress_ai_' . $post_type . '_metabox_filters'] = 1;
 
             foreach (['post_terms', 'existing_terms', 'suggest_local_terms', 'create_terms'] as $taxopress_ai_tab) {
                 $default_options['enable_taxopress_ai_' . $post_type . '_' . $taxopress_ai_tab . '_tab'] = ($post_type == 'post') ? 1 : 0;
