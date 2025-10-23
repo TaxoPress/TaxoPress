@@ -347,6 +347,8 @@ function taxopress_update_autoterm($data = [])
                     } else {
                         $new_value[$option_key] = '';//invalid expression
                     }
+                } elseif ($option_key === 'post_types' || $option_key === 'post_status') {
+                    $new_value[$option_key] = taxopress_sanitize_post_type_status($option_value);
                 } else {
                     $new_value[$option_key] = taxopress_sanitize_text_field($option_value);
                 }
