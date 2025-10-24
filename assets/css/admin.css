@@ -398,8 +398,6 @@ table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
 
 .taxopress-welcome-banner .banner-wrap {
     height: 100%!important;
-    padding-left: 1.5rem!important;
-    padding-right: 1.5rem!important;
     min-width: auto;
     width: 100%;
     margin: 0;
@@ -410,7 +408,6 @@ table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
     align-items: center!important;
     height: 100%!important;
     margin-left: -1rem!important;
-    margin-right: -1rem!important;
 }
 
 .taxopress-welcome-banner .banner-wrap .banner-inner a {
@@ -433,8 +430,6 @@ table.st-autoterm-area-table .find-in-customs-row .action-checkbox {
 .taxopress-welcome-content {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
     min-width: auto;
     width: 100%;
 }
