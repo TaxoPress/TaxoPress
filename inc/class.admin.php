@@ -1268,14 +1268,14 @@ class SimpleTags_Admin
 				$extra_suffix = '';
 				if (!empty($option[4])) {
 					if ($option[2] == 'sub_multiple_checkbox') {
-						$extra_prefix = '<' . $desc_html_tag . ' class="stpexplan">' . __($option[4]) . '</' . $desc_html_tag . '>' . PHP_EOL;
+						$extra_prefix = '<' . $desc_html_tag . ' class="stpexplan">' . $option[4] . '</' . $desc_html_tag . '>' . PHP_EOL;
 					} else {
-						$extra_suffix = '<' . $desc_html_tag . ' class="stpexplan">' . __($option[4]) . '</' . $desc_html_tag . '>' . PHP_EOL;
+						$extra_suffix = '<' . $desc_html_tag . ' class="stpexplan">' . $option[4] . '</' . $desc_html_tag . '>' . PHP_EOL;
 					}
 				}
 
 				// Output
-				$output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . __($option[1]) . '</label></th><td>'. $extra_prefix .' ' . $input_type . ' ' . $extra_suffix . '</td></tr>' . PHP_EOL;
+				$output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . $option[1] . '</label></th><td>'. $extra_prefix .' ' . $input_type . ' ' . $extra_suffix . '</td></tr>' . PHP_EOL;
 			}
 			$output .= '</table>' . PHP_EOL;
 			$output .= '</fieldset>' . PHP_EOL;
