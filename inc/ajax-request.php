@@ -101,10 +101,34 @@ function taxopress_autoterms_content_by_ajax()
 
         $total = isset($_POST['total']) ? (int)$_POST['total'] : 0;
 
+        $post_types = array_map('sanitize_key', (array) $post_types);
+        $post_status = array_map('sanitize_key', (array) $post_status);
+        
+        $post_types_placeholders = implode(',', array_fill(0, count($post_types), '%s'));
+        $post_status_placeholders = implode(',', array_fill(0, count($post_status), '%s'));
+        
         if($autoterm_existing_content_exclude > 0){
-            $objects = (array) $wpdb->get_results("SELECT ID, post_title, post_content FROM {$wpdb->posts} LEFT JOIN {$wpdb->postmeta} ON ( ID = {$wpdb->postmeta}.post_id AND {$wpdb->postmeta}.meta_key = '_taxopress_autotermed' ) WHERE post_type IN ('" . implode("', '", $post_types) . "') AND {$wpdb->postmeta}.post_id IS NULL AND post_status IN ('" . implode("', '", $post_status) . "') {$limit_days_sql} ORDER BY ID DESC LIMIT {$limit} OFFSET {$offset_start_from}");
+            $sql = "SELECT ID, post_title, post_content FROM {$wpdb->posts} 
+                    LEFT JOIN {$wpdb->postmeta} ON ( ID = {$wpdb->postmeta}.post_id AND {$wpdb->postmeta}.meta_key = '_taxopress_autotermed' ) 
+                    WHERE post_type IN ({$post_types_placeholders}) 
+                    AND {$wpdb->postmeta}.post_id IS NULL 
+                    AND post_status IN ({$post_status_placeholders}) 
+                    {$limit_days_sql} 
+                    ORDER BY ID DESC 
+                    LIMIT %d OFFSET %d";
+            
+            $prepare_args = array_merge($post_types, $post_status, [$limit, $offset_start_from]);
+            $objects = (array) $wpdb->get_results($wpdb->prepare($sql, $prepare_args));
         }else{
-            $objects = (array) $wpdb->get_results("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type IN ('" . implode("', '", $post_types) . "') AND post_status IN ('" . implode("', '", $post_status) . "') {$limit_days_sql} ORDER BY ID DESC LIMIT {$limit} OFFSET {$offset_start_from}");
+            $sql = "SELECT ID, post_title, post_content FROM {$wpdb->posts} 
+                    WHERE post_type IN ({$post_types_placeholders}) 
+                    AND post_status IN ({$post_status_placeholders}) 
+                    {$limit_days_sql} 
+                    ORDER BY ID DESC 
+                    LIMIT %d OFFSET %d";
+            
+            $prepare_args = array_merge($post_types, $post_status, [$limit, $offset_start_from]);
+            $objects = (array) $wpdb->get_results($wpdb->prepare($sql, $prepare_args));
         }
         
         $response_content = '';
@@ -136,7 +160,7 @@ function taxopress_autoterms_content_by_ajax()
                 <fieldset>
                     <legend> 
                         <span class="result-title">
-                            <a target="_blank" href="'. esc_url(get_edit_post_link($object->ID)) . '">' . $object->post_title . '</a>
+                            <a target="_blank" href="'. esc_url(get_edit_post_link($object->ID)) . '">' . esc_html($object->post_title) . '</a>
                         </span> 
                     </legend>
                     <div class="result-content">'. $added_terms_html .'</div>

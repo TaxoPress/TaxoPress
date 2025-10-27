@@ -445,6 +445,21 @@ function taxopress_sanitize_text_field($content)
 }
 
 
+/**
+ * Enhanced sanitization function specifically for post types and post status arrays
+ * to prevent SQL injection vulnerabilities
+ *
+ * @param array|string $data The data to sanitize
+ * @return array|string Sanitized data
+ */
+function taxopress_sanitize_post_type_status($data)
+{
+    if (is_array($data)) {
+        return array_map('sanitize_key', $data);
+    }
+    
+    return sanitize_key($data);
+}
 
 /**
  * Dashboard items

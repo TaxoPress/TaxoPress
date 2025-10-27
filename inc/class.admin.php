@@ -971,13 +971,40 @@ class SimpleTags_Admin
 			return '';
 		}
 
-		$terms = wp_get_post_terms($post_id, $taxonomy, array('fields' => 'names'));
-		if (empty($terms) || is_wp_error($terms)) {
-			return '';
-		}
+		$is_mass_edit_page = isset($_GET['page']) && $_GET['page'] === 'st_mass_terms';
+		$show_slug = SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug');
+		
+		if ($is_mass_edit_page) {
+			$term_objects = wp_get_post_terms($post_id, $taxonomy);
+			if (empty($term_objects) || is_wp_error($term_objects)) {
+				return '';
+			}
+			
+			$terms = array();
+			foreach ($term_objects as $term) {
+				if ($show_slug) {
+					if (!empty($term->slug)) {
+						$terms[] = $term->name . ' (' . $term->slug . ')';
+					} else {
+						$terms[] = $term->name;
+					}
+				} else {
+					$terms[] = $term->name;
+				}
+			}
+			
+			$terms = join(', ', $terms);
+		} else {
 
-		$terms = array_unique($terms); // Remove duplicate
-		$terms = join(', ', $terms);
+            $terms = wp_get_post_terms($post_id, $taxonomy, array('fields' => 'names'));
+            if (empty($terms) || is_wp_error($terms)) {
+                return '';
+            }
+            
+            $terms = array_unique($terms);
+            $terms = join(', ', $terms);
+		}
+		
 		$terms = esc_attr($terms);
 		$terms = apply_filters('tags_to_edit', $terms);
 
@@ -1241,14 +1268,14 @@ class SimpleTags_Admin
 				$extra_suffix = '';
 				if (!empty($option[4])) {
 					if ($option[2] == 'sub_multiple_checkbox') {
-						$extra_prefix = '<' . $desc_html_tag . ' class="stpexplan">' . __($option[4]) . '</' . $desc_html_tag . '>' . PHP_EOL;
+						$extra_prefix = '<' . $desc_html_tag . ' class="stpexplan">' . $option[4] . '</' . $desc_html_tag . '>' . PHP_EOL;
 					} else {
-						$extra_suffix = '<' . $desc_html_tag . ' class="stpexplan">' . __($option[4]) . '</' . $desc_html_tag . '>' . PHP_EOL;
+						$extra_suffix = '<' . $desc_html_tag . ' class="stpexplan">' . $option[4] . '</' . $desc_html_tag . '>' . PHP_EOL;
 					}
 				}
 
 				// Output
-				$output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . __($option[1]) . '</label></th><td>'. $extra_prefix .' ' . $input_type . ' ' . $extra_suffix . '</td></tr>' . PHP_EOL;
+				$output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . $option[1] . '</label></th><td>'. $extra_prefix .' ' . $input_type . ' ' . $extra_suffix . '</td></tr>' . PHP_EOL;
 			}
 			$output .= '</table>' . PHP_EOL;
 			$output .= '</fieldset>' . PHP_EOL;

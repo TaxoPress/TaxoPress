@@ -34,9 +34,12 @@
     var current_screen = taxoPressAIRequestAction.current_screen;
 
     // Remove built in tax for block editor
-    if (removed_tax.length > 0 && typeof wp.data !== 'undefined' && typeof wp.data.dispatch('core/edit-post') !== 'undefined') {
-      for (let i = 0; i < removed_tax.length; i++) {
-        wp.data.dispatch('core/edit-post').removeEditorPanel('taxonomy-panel-' + removed_tax[i]);
+    if (removed_tax.length > 0 && typeof wp.data !== 'undefined' && typeof wp.data.dispatch === 'function') {
+      var editPostDispatch = wp.data.dispatch('core/edit-post');
+      if (editPostDispatch && typeof editPostDispatch.removeEditorPanel === 'function') {
+        for (let i = 0; i < removed_tax.length; i++) {
+          editPostDispatch.removeEditorPanel('taxonomy-panel-' + removed_tax[i]);
+        }
       }
     }
 
