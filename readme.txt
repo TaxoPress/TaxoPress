@@ -268,9 +268,9 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.40.1- 2025-10-28
+v3.40.1- 2025-11-03
 * Fixed: Uncaught TypeError: Cannot read properties of null (reading 'removeEditorPanel'), #2830
-* Fixed: SQL Injection vulnerability in Autoterms, #2827
+* Fixed: Security improvement in Autoterm post_types/post_status parameters, #2827
 * Fixed: Can't add 2 terms with the same name, #2826
 * Fixed: Dashboard is too wide for the screen, #2820
 * Update: Translations updates for TaxoPress Pro 3.40.0, #2825
