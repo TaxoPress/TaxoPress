@@ -73,14 +73,57 @@ class SimpleTags_Admin_Mass {
 					$tags = array_filter( $tags, '_delete_empty_element' );
 
                     $show_slug = SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug');
-                    if ($show_slug) {
-                        $tags = array_map( function($tag) {
-                            return trim(preg_replace('/\s*\([^)]+\)$/', '', $tag));
-                        }, $tags );
+
+                    $term_ids = array();
+                    foreach ($tags as $tag) {
+                        $tag = trim($tag);
+                        if (empty($tag)) continue;
+                        
+                        if ($show_slug && preg_match('/^(.+?)\s*\(([^)]+)\)$/', $tag, $matches)) {
+                            $term_name = trim($matches[1]);
+                            $term_slug = trim($matches[2]);
+                            
+                            $term = get_term_by('slug', $term_slug, SimpleTags_Admin::$taxonomy);
+                            
+                            if ($term) {
+                                if ($term->name === $term_name) {
+                                    $term_ids[] = $term->term_id;
+                                } else {
+                                    $unique_slug = $term_slug;
+                                    $counter = 1;
+                                    while (get_term_by('slug', $unique_slug, SimpleTags_Admin::$taxonomy)) {
+                                        $unique_slug = $term_slug . '-' . $counter;
+                                        $counter++;
+                                    }
+                                    $new_term = wp_insert_term($term_name, SimpleTags_Admin::$taxonomy, array('slug' => $unique_slug));
+                                    if (!is_wp_error($new_term)) {
+                                        $term_ids[] = $new_term['term_id'];
+                                    }
+                                }
+                            } else {
+                                $new_term = wp_insert_term($term_name, SimpleTags_Admin::$taxonomy, array('slug' => $term_slug));
+                                if (!is_wp_error($new_term)) {
+                                    $term_ids[] = $new_term['term_id'];
+                                }
+                            }
+                        } else {
+                            if ($show_slug) {
+                                $tag = trim(preg_replace('/\s*\([^)]+\)$/', '', $tag));
+                            }
+                            
+                            $term = get_term_by('name', $tag, SimpleTags_Admin::$taxonomy);
+                            if ($term) {
+                                $term_ids[] = $term->term_id;
+                            } else {
+                                $new_term = wp_insert_term($tag, SimpleTags_Admin::$taxonomy);
+                                if (!is_wp_error($new_term)) {
+                                    $term_ids[] = $new_term['term_id'];
+                                }
+                            }
+                        }
                     }
 
-					// Add new tag (no append ! replace !)
-					wp_set_object_terms( $object_id, $tags, SimpleTags_Admin::$taxonomy );
+					wp_set_object_terms( $object_id, $term_ids, SimpleTags_Admin::$taxonomy );
 					$counter ++;
 
 					// Clean cache
@@ -95,7 +138,7 @@ class SimpleTags_Admin_Mass {
 
 		return false;
 	}
-    
+
     /**
      * Helper function to extract term name (ignoring slug in brackets)
      */
