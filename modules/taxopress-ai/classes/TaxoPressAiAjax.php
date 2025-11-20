@@ -416,39 +416,56 @@ if (!class_exists('TaxoPressAiAjax')) {
             $post_type = get_post_type($post_id);
             $existing_terms_taxonomy = isset($args['preview_taxonomy']) ? $args['preview_taxonomy'] : ['post_tag'];
 
+            $allowed_orderby_keys = array_keys(TaxoPressAiUtilities::get_existing_terms_orderby());
+            $allowed_order_keys   = array_keys(TaxoPressAiUtilities::get_existing_terms_order());
+
             if ($suggest_terms) {
                 $existing_terms_maximum_terms = 0;
+
                 $existing_terms_orderby = isset($settings_data['suggest_local_terms_orderby']) ? $settings_data['suggest_local_terms_orderby'] : 'count';
-                $existing_terms_order = isset($settings_data['suggest_local_terms_order']) ? $settings_data['suggest_local_terms_order'] : 'desc';
+                if (!in_array($existing_terms_orderby, $allowed_orderby_keys, true)) {
+                    $existing_terms_orderby = 'count';
+                }
+
+                $existing_terms_order = isset($settings_data['suggest_local_terms_order']) ? strtolower($settings_data['suggest_local_terms_order']) : 'desc';
+                if (!in_array($existing_terms_order, $allowed_order_keys, true)) {
+                    $existing_terms_order = 'desc';
+                }
+
                 $existing_terms_show_post_count = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
             } else {
 
-                if (isset($args['existing_terms_order'])) {
-                    $existing_terms_order = $args['existing_terms_order'];
+                if (isset($args['existing_terms_order']) && in_array(strtolower($args['existing_terms_order']), $allowed_order_keys, true)) {
+                    $existing_terms_order = strtolower($args['existing_terms_order']);
                 } else {
-                    $existing_terms_order = isset($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : 'desc';
+                    $default_order = isset($settings_data['existing_terms_order']) ? strtolower($settings_data['existing_terms_order']) : 'desc';
+                    $existing_terms_order = in_array($default_order, $allowed_order_keys, true) ? $default_order : 'desc';
                 }
-                if (isset($args['existing_terms_orderby'])) {
+
+                if (isset($args['existing_terms_orderby']) && in_array($args['existing_terms_orderby'], $allowed_orderby_keys, true)) {
                     $existing_terms_orderby = $args['existing_terms_orderby'];
                 } else {
-                    $existing_terms_orderby = isset($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : 'count';
+                    $default_orderby = isset($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : 'count';
+                    $existing_terms_orderby = in_array($default_orderby, $allowed_orderby_keys, true) ? $default_orderby : 'count';
                 }
+
                 if (isset($args['existing_terms_maximum_terms'])) {
                     $existing_terms_maximum_terms = (int)$args['existing_terms_maximum_terms'];
                 } else {
-                    $existing_terms_maximum_terms = isset($settings_data['existing_terms_maximum_terms']) ? $settings_data['existing_terms_maximum_terms'] : 45;
+                    $existing_terms_maximum_terms = isset($settings_data['existing_terms_maximum_terms']) ? (int) $settings_data['existing_terms_maximum_terms'] : 45;
                 }
+
                 $existing_terms_show_post_count = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
             }
-
+            
             if (!empty($args['show_counts'])) {
                 $existing_terms_show_post_count = 1;
             }
 
             if ($existing_terms_maximum_terms > 0) {
-                $limit = 'LIMIT 0, ' . $existing_terms_maximum_terms;
+                $limit = (int) $existing_terms_maximum_terms;
             } else {
-                $limit = '';
+                $limit = 0;
             }
 
             if (empty($existing_terms_taxonomy)) {
