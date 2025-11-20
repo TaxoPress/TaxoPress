@@ -866,8 +866,14 @@ class SimpleTags_Admin_Manage
     }
 
     public static function taxopress_merge_terms_batch() {
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
-            wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')]);
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'st-admin-js')) {
+            wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')], 403);
+            wp_die();
+        }
+
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')], 403);
             wp_die();
         }
     
