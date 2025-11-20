@@ -1385,13 +1385,33 @@ class SimpleTags_Admin
 	 * @return array
 	 * @author WebFactory Ltd
 	 */
-	public static function getTermsForAjax($taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC', $limit = '')
+	public static function getTermsForAjax($taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC', $limit = 0)
 	{
 		global $wpdb;
 
-		if ($order_by === 'random') {
-			$order_by = 'RAND()';
+		$order = strtoupper($order);
+		if (!in_array($order, ['ASC', 'DESC'], true)) {
+			$order = 'ASC';
 		}
+
+		$allowed_orderby = [
+			'name'   => 't.name',
+			'count'  => 'tt.count',
+			'random' => 'RAND()',
+		];
+
+		if (isset($allowed_orderby[$order_by])) {
+			$order_by_sql = $allowed_orderby[$order_by];
+		} else {
+			$order_by_sql = $allowed_orderby['name'];
+		}
+
+		$limit_sql = '';
+		$limit = (int) $limit;
+		if ($limit > 0) {
+			$limit_sql = $wpdb->prepare('LIMIT 0, %d', $limit);
+		}
+
 		if ($taxonomy == 'linked_term_taxonomies') {
 			$taxonomies = SimpleTags_Plugin::get_option_value('linked_terms_taxonomies');
 			if (empty($taxonomies) || !is_array($taxonomies)) {
@@ -1409,7 +1429,7 @@ class SimpleTags_Admin
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy IN ($taxonomies_list)
 					AND t.name LIKE %s
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 					", '%' . $wpdb->esc_like($search) . '%'
 				);
 			} else {
@@ -1419,7 +1439,7 @@ class SimpleTags_Admin
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy = %s
 					AND t.name LIKE %s
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 				", $taxonomy, '%' . $wpdb->esc_like($search) . '%'
 				);
 			}
@@ -1431,7 +1451,7 @@ class SimpleTags_Admin
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy IN ($taxonomies_list)
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 				";
 
 			} else {
@@ -1440,7 +1460,7 @@ class SimpleTags_Admin
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy = %s
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 				", $taxonomy);
 			}
 
