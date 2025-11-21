@@ -377,10 +377,24 @@
     })
 
 
-    // Change taxonomy type position
+    // Change taxonomy type and post type filter position
     if ($('.taxopress-taxonomy-type-wrap').length > 0 && $('.tablenav .bulkactions').length > 0) {
-      $('.tablenav .bulkactions').html($('.taxopress-taxonomy-type-wrap').html());
-      $('.taxopress-taxonomy-type-wrap').remove();
+      var $bulkActions = $('.tablenav .bulkactions');
+
+      var $filtersWrapper = $('<div class="taxopress-taxonomy-filters"></div>');
+
+      if ($('.taxopress-taxonomy-type-wrap').length > 0) {
+        $filtersWrapper.append($('.taxopress-taxonomy-type-wrap').children());
+        $('.taxopress-taxonomy-type-wrap').remove();
+      }
+
+      if ($('.taxopress-taxonomy-post-type-wrap').length > 0) {
+        $filtersWrapper.append($('.taxopress-taxonomy-post-type-wrap').children());
+        $('.taxopress-taxonomy-post-type-wrap').remove();
+      }
+
+      $bulkActions.html('');
+      $bulkActions.append($filtersWrapper);
     } else if ($('.taxopress-taxonomy-type-wrap').length > 0 && $('.tablenav-pages.no-pages').length > 0) {
       $('.tablenav').hide();
       $('.taxopress-taxonomy-type-wrap').attr('style', 'margin-bottom: 10px;');
@@ -391,6 +405,12 @@
       var taxonomy_type = $(this).val();
       insert_param_to_url('taxonomy_type', taxonomy_type)
     })
+
+    // Change taxonomy post type
+    $('.taxopress-taxonomy-post-type').on('change', function (e) {
+      var post_type = $(this).val();
+      insert_param_to_url('taxopress_taxonomy_post_type', post_type);
+    });
 
     function insert_param_to_url(key, value) {
       key = encodeURIComponent(key);

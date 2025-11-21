@@ -182,22 +182,53 @@ class SimpleTags_Admin_Taxonomies
 
                 <div id="col-container" class="wp-clearfix">
 
-                    <div class="col-wrap">
-<?php
-$selected_option = 'public';
-if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
-    $selected_option = 'all';
-}elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
-    $selected_option = 'private';
-}
-?>
-<div class="taxopress-taxonomy-type-wrap">
-<select name="taxopress-taxonomy-type" class="taxopress-taxonomy-type">
-    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('All Taxonomies', 'simple-tags'); ?></option>
-    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
-    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
-</select>
-</div>
+                <div class="col-wrap">
+                    <?php
+                    $selected_option = 'public';
+                    if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
+                        $selected_option = 'all';
+                    }elseif ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private' ) {
+                        $selected_option = 'private';
+                    }
+                    ?>
+                    <div class="taxopress-taxonomy-type-wrap">
+                        <select name="taxopress-taxonomy-type" class="taxopress-taxonomy-type">
+                            <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('All Taxonomies', 'simple-tags'); ?></option>
+                            <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
+                            <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
+                        </select>
+                    </div>
+                        <?php
+                        $post_types = get_post_types(
+                            array(
+                                'show_ui' => true,
+                            ),
+                            'objects'
+                        );
+
+                        $selected_post_type = isset($_GET['taxopress_taxonomy_post_type'])
+                            ? sanitize_key(wp_unslash($_GET['taxopress_taxonomy_post_type']))
+                            : 'all';
+                        ?>
+                        <div class="taxopress-taxonomy-post-type-wrap">
+                            <select name="taxopress_taxonomy_post_type" class="taxopress-taxonomy-post-type">
+                                <option value="all" <?php echo ( 'all' === $selected_post_type ? 'selected="selected"' : '' ); ?>>
+                                    <?php echo esc_html__( 'All Post Types', 'simple-tags' ); ?>
+                                </option>
+                                <?php
+                                if ( ! empty( $post_types ) && is_array( $post_types ) ) {
+                                    foreach ( $post_types as $post_type ) {
+                                        ?>
+                                        <option value="<?php echo esc_attr( $post_type->name ); ?>" <?php selected( $selected_post_type, $post_type->name ); ?>>
+                                            <?php echo esc_html( $post_type->labels->singular_name ); ?>
+                                        </option>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+
                         <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                             <?php $this->terms_table->display(); //Display the table ?>
                         </form>
@@ -205,7 +236,6 @@ if ( isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all' ) {
                             <p><?php esc_html__('Description here.', 'simple-tags') ?></p>
                         </div>
                     </div>
-
 
                 </div>
 
