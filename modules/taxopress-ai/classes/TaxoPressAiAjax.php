@@ -120,6 +120,17 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $autoterm_use_opencalais    = !empty($settings_data['autoterm_use_opencalais']);
                 }
 
+                $autoterm_from = isset($settings_data['autoterm_from']) ? $settings_data['autoterm_from'] : 'posts';
+
+                if ($autoterm_from === '') {
+                    $post_content = '';
+                    $post_title   = '';
+                } elseif ($autoterm_from === 'post_title') {
+                    $post_content = '';
+                } elseif ($autoterm_from === 'post_content') {
+                    $post_title = '';
+                }
+
                 /**
                  * Filter auto term content
                  *
@@ -158,7 +169,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 ];
 
-                if (!is_object($post_data) || (empty($post_content) && empty($post_title))) {
+                if (!is_object($post_data)) {
                     $response['status'] = 'error';
                     $response['content'] = esc_html__(
                         'Posts content and title is empty.',
@@ -506,21 +517,45 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                         // Apply Auto Terms settings consistently for "Suggest Existing Terms"
                         if ($suggest_terms && !empty($settings_data)) {
-                            $autoterm_from = !empty($settings_data['autoterm_from']) ? $settings_data['autoterm_from'] : 'posts';
+                            if (array_key_exists('autoterm_from', $settings_data)) {
+                                // Respect explicit empty string '' as "Don't scan Post Content or Title"
+                                $autoterm_from = $settings_data['autoterm_from'];
+                            } else {
+                                // Only default to posts when the setting truly does not exist
+                                $autoterm_from = 'posts';
+                            }
 
                             $post_title_raw   = get_the_title($post_id);
                             $post_content_raw = get_post_field('post_content', $post_id);
 
-                            if ($autoterm_from === 'post_title') {
-                                $scan_content = (string) $post_title_raw;
+                            if ($autoterm_from === '') {
+                                $base_content = '';
+                            } elseif ($autoterm_from === 'post_title') {
+                                $base_content = (string) $post_title_raw;
                             } elseif ($autoterm_from === 'post_content') {
-                                $scan_content = (string) $post_content_raw;
+                                $base_content = (string) $post_content_raw;
+                            } elseif ($autoterm_from === 'posts') {
+                                $base_content = (string) $post_title_raw . ' ' . (string) $post_content_raw;
                             } else {
-                                $scan_content = (string) $content;
+                                $base_content = (string) $content;
                             }
 
-                            $scan_content = apply_filters('taxopress_filter_autoterm_content', $scan_content, $post_id, $settings_data);
+                            $scan_content = apply_filters(
+                                'taxopress_filter_autoterm_content',
+                                (string) $base_content,
+                                $post_id,
+                                $settings_data
+                            );
                             $scan_content = trim($scan_content);
+
+                            if ($scan_content === '') {
+                                $return['status']  = 'error';
+                                $return['message'] = esc_html__(
+                                    'Posts content and title is empty.',
+                                    'simple-tags'
+                                );
+                                return $return;
+                            }
 
                             $autoterm_word       = !empty($settings_data['autoterm_word']) ? (int) $settings_data['autoterm_word'] : 0;
                             $autoterm_hash       = !empty($settings_data['autoterm_hash']) ? (int) $settings_data['autoterm_hash'] : 0;
