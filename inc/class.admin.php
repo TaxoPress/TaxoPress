@@ -756,12 +756,15 @@ class SimpleTags_Admin
             'apply_selected' => esc_html__('Apply Selected', 'simple-tags'),
             'close_suggestions' => esc_html__('Close', 'simple-tags'),
             'select_suggestion_alert' => esc_html__('Please select at least one suggestion to apply.', 'simple-tags'),
+			'multiple_merge_warning' => esc_html__('You have selected multiple merge suggestions. All selected terms will be merged into a single new term. Do you want to continue?', 'simple-tags'),
             'no_merge_suggestions' => esc_html__('No merge suggestions found for this taxonomy.', 'simple-tags'),
             'suggested_terms_title' => esc_html__('Suggested Terms to Merge:', 'simple-tags'),
             'duplicates_text' => esc_html__('duplicates', 'simple-tags'),
             'reason_text' => esc_html__('Reason:', 'simple-tags'),
             'select_all_label' => esc_html__('Select All', 'simple-tags'),
             'deselect_all_label' => esc_html__('Deselect All', 'simple-tags'),
+			'same_name_label'          => esc_html__('Same name', 'simple-tags'),
+			'different_name_label'          => esc_html__('Different name', 'simple-tags'),
 		]);
 
 
