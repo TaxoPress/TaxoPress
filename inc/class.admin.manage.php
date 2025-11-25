@@ -1447,11 +1447,15 @@ class SimpleTags_Admin_Manage
         ]);
     
         $results = [];
-        foreach ($terms as $term) {
-            $results[] = [
-                'name' => $term->name,
-                'slug' => $term->slug
-            ];
+        foreach ( $terms as $term ) {
+            $results[] = array(
+                'name' => html_entity_decode(
+                    $term->name,
+                    ENT_QUOTES,
+                    get_bloginfo( 'charset' )
+                ),
+                'slug' => $term->slug,
+            );
         }
     
         wp_send_json($results);
