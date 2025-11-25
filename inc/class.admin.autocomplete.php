@@ -115,29 +115,38 @@ class SimpleTags_Admin_Autocomplete {
 		// Format 
 		$results = array();
 		foreach ( (array) $terms as $term ) {
-			if ((int)$term->term_id === $exclude_term) {
+			if ((int) $term->term_id === $exclude_term) {
 				continue;
 			}
-			$term->name = stripslashes( $term->name );
+
+			$term->name    = stripslashes( $term->name );
 			$original_name = $term->name;
 
-            $is_mass_edit_page = isset($_GET['page']) && $_GET['page'] === 'st_mass_terms';
-            $show_slug = SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug');
-            if ($is_mass_edit_page && $show_slug && !empty($term->slug)) {
-                $term->name = $term->name . ' (' . $term->slug . ')';
-            }
-
-			if ($taxonomy == 'linked_term_taxonomies') {
-				$term->name = $term->name . ' ('. $term->taxonomy .')';
+			$is_mass_edit_page = isset( $_GET['page'] ) && $_GET['page'] === 'st_mass_terms';
+			$show_slug         = SimpleTags_Plugin::get_option_value( 'enable_mass-edit_terms_slug' );
+			if ( $is_mass_edit_page && $show_slug && ! empty( $term->slug ) ) {
+				$term->name = $term->name . ' (' . $term->slug . ')';
 			}
+
+			if ( $taxonomy === 'linked_term_taxonomies' ) {
+				$term->name = $term->name . ' (' . $term->taxonomy . ')';
+			}
+
 			$term->name = str_replace( array( "\r\n", "\r", "\n" ), '', $term->name );
 
+			// Decode any HTML entities for display in autocomplete widgets.
+			$display_name = html_entity_decode(
+				$term->name,
+				ENT_QUOTES,
+				get_bloginfo( 'charset' )
+			);
+
 			$results[] = array(
-				'id'    => $term->term_id,
-				'label' => $term->name,
-				'value' => $term->name,
+				'id'       => $term->term_id,
+				'label'    => $display_name,
+				'value'    => $display_name,
 				'taxonomy' => $term->taxonomy,
-				'name' => $original_name,
+				'name'     => $original_name,
 			);
 		}
 
