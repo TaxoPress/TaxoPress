@@ -2058,3 +2058,11 @@ body.block-editor-page .clicktags-search-wrapper .option input {
 .taxopress-merge-target {
     font-weight: 600;
 }
+
+.schedule-autoterms-promo .advertisement-box-header{
+    margin-top: 1px !important;
+}
+
+.schedule-autoterms-promo .postbox-header{
+    border-bottom: none !important;
+}

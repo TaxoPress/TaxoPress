@@ -252,6 +252,7 @@ function taxopress_admin_pages()
         'st_autolinks',
         'st_autoterms',
         'st_autoterms_content',
+        'st_autoterms_schedule',
         'st_terms',
         'st_posts',
         'st_taxopress_ai'
