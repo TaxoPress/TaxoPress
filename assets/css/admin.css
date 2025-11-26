@@ -2066,3 +2066,7 @@ body.block-editor-page .clicktags-search-wrapper .option input {
 .schedule-autoterms-promo .postbox-header{
     border-bottom: none !important;
 }
+
+input#post-search-input {
+    min-width: 200px;
+}

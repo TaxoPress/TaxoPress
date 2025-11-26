@@ -209,7 +209,7 @@ class SimpleTags_Admin_Mass {
 
 
 				<p class="search-box">
-						<input type="text" id="post-search-input" name="s" value="<?php the_search_query(); ?>"/>
+						<input type="text" id="post-search-input" placeholder="<?php esc_attr_e('Search post title and content', 'simple-tags'); ?>" name="s" value="<?php the_search_query(); ?>"/>
 						<input type="submit" value="<?php _e( 'Search', 'simple-tags' ); ?>" class="button"/>
 				</p>
 
