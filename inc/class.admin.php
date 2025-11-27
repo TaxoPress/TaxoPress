@@ -763,8 +763,9 @@ class SimpleTags_Admin
             'reason_text' => esc_html__('Reason:', 'simple-tags'),
             'select_all_label' => esc_html__('Select All', 'simple-tags'),
             'deselect_all_label' => esc_html__('Deselect All', 'simple-tags'),
-			'same_name_label'          => esc_html__('Same name', 'simple-tags'),
-			'different_name_label'          => esc_html__('Different name', 'simple-tags'),
+            'terms_to_merge_text' => esc_html__('Terms to Merge', 'simple-tags'),
+            'new_term_text' => esc_html__('New Term', 'simple-tags'),
+            'reasons_text' => esc_html__('Reasons', 'simple-tags'),
 		]);
 
 
