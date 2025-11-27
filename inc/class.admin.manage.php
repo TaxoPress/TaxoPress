@@ -433,6 +433,26 @@ class SimpleTags_Admin_Manage
 
 					</table>
 
+                    <div class="remodal" data-remodal-id="taxopress-modal-merge-warning"
+                        data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+                        <div class="taxopress-merge-warning-title">
+                            <?php echo esc_html__('Multiple merge suggestions selected', 'simple-tags'); ?>
+                        </div>
+                        <div id="taxopress-modal-merge-warning-content">
+                            <?php echo esc_html__(
+                                'You have selected multiple merge suggestions. All selected terms will be merged into a single new term.',
+                                'simple-tags'
+                            ); ?>
+                        </div>
+                        <br>
+                        <button id="taxopress-merge-warning-cancel" data-remodal-action="cancel" class="button button-secondary remodal-cancel">
+                            <?php echo esc_html__('Cancel', 'simple-tags'); ?>
+                        </button>
+                        <button id="taxopress-merge-warning-confirm" class="button button-primary">
+                            <?php echo esc_html__('Continue', 'simple-tags'); ?>
+                        </button>
+                    </div>
+
 
 
 				</div>
@@ -591,7 +611,7 @@ class SimpleTags_Admin_Manage
                 return false;
             }
 
-            if (!empty($common_elements)) {
+            if (!empty($common_elements) && $merge_type !== 'different_name') {
                 add_settings_error(__CLASS__, __CLASS__, esc_html__('Term to merge and New Term must not contain same term.', 'simple-tags'), 'error taxopress-notice');
 
                 return false;
@@ -799,18 +819,15 @@ class SimpleTags_Admin_Manage
                     // let's make sure suggested name is different from both original terms
                     $suggested_clean = strtolower(trim($suggested_name));
                     if ($suggested_clean === $term1_clean || $suggested_clean === $term2_clean) {
-                        if (!empty($common_words) && count($common_words) > 1) {
-                            // Use first common word only
+
+                        if (!empty($common_words)) {
                             $suggested_name = ucfirst($common_words[0]);
                         } else {
-                            // Create a generic merged name
-                            $suggested_name = esc_html__('Merged Term Name', 'simple-tags');
+                            $popular_term = ($term1->count >= $term2->count) ? $term1 : $term2;
+                            $suggested_name = $popular_term->name;
                         }
-                    }
-                    
-                    $final_suggested_clean = strtolower(trim($suggested_name));
-                    if ($final_suggested_clean === $term1_clean || $final_suggested_clean === $term2_clean) {
-                        $suggested_name = 'Combined ' . $suggested_name;
+
+                        $suggested_clean = strtolower(trim($suggested_name));
                     }
 
                     $term1_display = $show_slug ? $term1->name . ' (' . $term1->slug . ')' : $term1->name;
@@ -866,8 +883,14 @@ class SimpleTags_Admin_Manage
     }
 
     public static function taxopress_merge_terms_batch() {
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'st-admin-js')) {
-            wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')]);
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'st-admin-js')) {
+            wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')], 403);
+            wp_die();
+        }
+
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')], 403);
             wp_die();
         }
     
@@ -895,6 +918,12 @@ class SimpleTags_Admin_Manage
                 'message' => __('Please enter a valid term. Merge cancelled.', 'simple-tags')
             ]);
             wp_die();
+        }
+
+        if ($merge_type === 'different_name' && !empty($new_term)) {
+            $old_terms = array_values(array_filter($old_terms, function($term_name) use ($new_term) {
+                return strtolower(trim($term_name)) !== strtolower(trim($new_term));
+            }));
         }
 
     
@@ -1418,11 +1447,15 @@ class SimpleTags_Admin_Manage
         ]);
     
         $results = [];
-        foreach ($terms as $term) {
-            $results[] = [
-                'name' => $term->name,
-                'slug' => $term->slug
-            ];
+        foreach ( $terms as $term ) {
+            $results[] = array(
+                'name' => html_entity_decode(
+                    $term->name,
+                    ENT_QUOTES,
+                    get_bloginfo( 'charset' )
+                ),
+                'slug' => $term->slug,
+            );
         }
     
         wp_send_json($results);

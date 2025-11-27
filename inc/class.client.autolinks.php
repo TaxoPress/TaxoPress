@@ -327,6 +327,13 @@ class SimpleTags_Client_Autolinks
 				}
 			}
 
+            if ($options && isset($options['autolink_usage_min'])) {
+                $autolink_min_usage = (int) $options['autolink_usage_min'];
+                if ($term->count < $autolink_min_usage) {
+                    continue;
+                }
+            }
+
 			if (!$archivepage && $custom_urls_enabled) {
 				$taxopress_custom_url = isset($custom_urls[$term->term_id]) 
                     ? $custom_urls[$term->term_id] 

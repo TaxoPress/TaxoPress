@@ -166,6 +166,25 @@ class Taxonomy_List extends WP_List_Table
         $data = self::get_st_taxonomies();
 
         /**
+         * Filter by post type if requested
+         */
+        $selected_post_type = isset($_GET['taxopress_taxonomy_post_type'])
+            ? sanitize_key(wp_unslash($_GET['taxopress_taxonomy_post_type']))
+            : '';
+
+        if (!empty($selected_post_type) && 'all' !== $selected_post_type) {
+            $data_filtered = [];
+            foreach ($data as $item) {
+                if (!empty($item->object_type) && is_array($item->object_type)) {
+                    if (in_array($selected_post_type, $item->object_type, true)) {
+                        $data_filtered[] = $item;
+                    }
+                }
+            }
+            $data = $data_filtered;
+        }
+
+        /**
          * Handle search
          */
         if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
