@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.41.0- 2025-11-27
+v3.41.0- 2025-12-01
 * Fixed: Autocomplete doesn't handle characters correctly, #2853
 * Fixed: Mass Edit search box is unclear, #2852
 * Fixed: Auto Terms and Custom Fields not working, #2841
@@ -277,7 +277,6 @@ v3.41.0- 2025-11-27
 * Improved: Improve AI “Existing Terms” ordering and performance, #2842
 * Improved: Improve "Suggest Terms to Merge" suggestions and UI, #2840
 * Update: Add Post Type Filters to the Taxonomy screen, #2846
-* Update: Promote Auto Terms: Schedule in the Free version, #2805
 
 v3.40.1- 2025-11-03
 * Fixed: Uncaught TypeError: Cannot read properties of null (reading 'removeEditorPanel'), #2830
