@@ -263,36 +263,55 @@ class SimpleTags_Admin_Taxonomies
         $search_term = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
         $taxonomy = isset($_GET['taxonomy']) ? sanitize_text_field($_GET['taxonomy']) : 'category';
         $nonce = isset($_GET['nonce']) ? sanitize_text_field($_REQUEST['nonce']) : '';
+        $page        = isset($_GET['page']) ? max( 1, (int) $_GET['page'] ) : 1;
+        $per_page    = 20;
 
         if (empty($nonce) || !wp_verify_nonce($nonce, 'st-admin-js')) {
             wp_send_json_error(array('message' => esc_html__('Invalid nonce. Request is not authorized.', 'simple-tags')));
-            wp_die();
         }
 
         $args = array(
             'taxonomy'   => $taxonomy,
             'hide_empty' => false,
-            'number'     => 20,
+            'number'     => $per_page,
+            'offset'     => ( $page - 1 ) * $per_page,
             'search'     => $search_term,
             'orderby'    => 'name',
             'order'      => 'ASC',
         );
-        
-        $terms = get_terms($args);
-        
-        $results = [];
-        foreach ($terms as $term) {
+
+        $terms = get_terms( $args );
+
+        $count_args = $args;
+        unset( $count_args['number'], $count_args['offset'] );
+        $total_terms = wp_count_terms( $taxonomy, $count_args );
+        if ( is_wp_error( $total_terms ) ) {
+            $total_terms = 0;
+        }
+
+        $context    = isset( $_GET['context'] ) ? sanitize_text_field( $_GET['context'] ) : '';
+        $show_slug  = (
+            'mass_edit' === $context
+            && (int) SimpleTags_Plugin::get_option_value( 'enable_mass-edit_terms_slug' ) === 1
+        );
+
+        $results = array();
+        foreach ( $terms as $term ) {
+            $text = $term->name;
+            if ( $show_slug ) {
+                $text = sprintf( '%s (%s)', $term->name, $term->slug );
+            }
+
             $results[] = array(
-                'id'       => $term->slug,
-                'text'     => $term->name,
+                'id'   => $term->slug,
+                'text' => $text,
             );
         }
-    
-        wp_send_json(array(
-            'items' => $results
-        ));
-        
-        wp_die();
+
+        wp_send_json( array(
+            'items' => $results,
+            'more'  => ( $page * $per_page < $total_terms ),
+        ) );
     }
     
 

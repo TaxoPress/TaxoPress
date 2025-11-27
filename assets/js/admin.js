@@ -1288,7 +1288,8 @@
                                   taxonomy: $(this).attr('id'),
                                   s: params.term || '',
                                   page: params.page || 1,
-                                  nonce: st_admin_localize.check_nonce
+                                  nonce: st_admin_localize.check_nonce,
+                                  context: $('body.taxopress_page_st_mass_terms').length > 0 ? 'mass_edit' : ''
                               };
                           },
                           processResults: function(data, params) {
@@ -1303,6 +1304,12 @@
                           cache: true
                       }
                   });
+
+                  if ($('body.taxopress_page_st_mass_terms').length > 0) {
+                    $(this).on('ppma_select2:select', function () {
+                      $(this).closest('form').submit();
+                    });
+                  }
               });
           }
     }
