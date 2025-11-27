@@ -2059,14 +2059,6 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     font-weight: 600;
 }
 
-.schedule-autoterms-promo .advertisement-box-header{
-    margin-top: 1px !important;
-}
-
-.schedule-autoterms-promo .postbox-header{
-    border-bottom: none !important;
-}
-
 input#post-search-input {
     min-width: 200px;
 }
