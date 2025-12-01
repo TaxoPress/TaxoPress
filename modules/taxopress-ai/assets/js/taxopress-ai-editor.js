@@ -388,18 +388,29 @@
               }
             });
           } else {
-            if (jQuery('#new-tag-' + taxonomy).val() === '') {
-              jQuery('#new-tag-' + taxonomy).val(this_term_name);
+            var $tagInput = jQuery('#new-tag-' + taxonomy);
+            if (!$tagInput.length) {
+              term_button.toggleClass('used_term');
+              term_button.removeClass('disabled');
+              return;
+            }
+
+            var current_tags = $tagInput.val();
+            if (typeof current_tags !== 'string') {
+              current_tags = '';
+            }
+
+            if (current_tags === '') {
+              $tagInput.val(this_term_name);
               var currentFocus = document.activeElement;
-              jQuery('#new-tag-' + taxonomy).closest('div').find('input[type="button"]').click();
+              $tagInput.closest('div').find('input[type="button"]').click();
               jQuery(currentFocus).focus();
             } else {
-              var current_tags = jQuery('#new-tag-' + taxonomy).val();
-              var current_tags_array = current_tags.split(',');
+              var current_tags_array = current_tags.length ? current_tags.split(',') : [];
               if (!current_tags_array.includes(this_term_name) && !current_tags_array.includes(' ' + this_term_name)) {
-                jQuery('#new-tag-' + taxonomy).val(current_tags + ', ' + this_term_name);
+                $tagInput.val(current_tags + ', ' + this_term_name);
                 var currentFocus = document.activeElement;
-                jQuery('#new-tag-' + taxonomy).closest('div').find('input[type="button"]').click();
+                $tagInput.closest('div').find('input[type="button"]').click();
                 jQuery(currentFocus).focus();
               }
             }
