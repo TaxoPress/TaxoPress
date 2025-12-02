@@ -83,16 +83,16 @@ class SimpleTags_Client_Autoterms
 	}
 
 	/**
-	 * Filter auto term content
-	 *
-	 * @param string $content Original content to be analyzed. It could include post title,
-	 * content and/excerpt based on autoterms settings
-	 * @param integer $post_id This is the post id
-	 * @param array $options Autoterm settings
-	 *
-	 * @return string
-	 */
-	public static function filter_taxopress_autoterm_content($content, $post_id, $settings_data) {
+     * Filter auto term content
+     *
+     * @param string $content Original content to be analyzed. It could include post title,
+     * content and/excerpt based on autoterms settings
+     * @param integer $post_id This is the post id
+     * @param array $options Autoterm settings
+     *
+     * @return string
+     */
+    public static function filter_taxopress_autoterm_content($content, $post_id, $settings_data) {
 
 		// add taxonomies data to content
 		if (!empty($settings_data['find_in_taxonomies_custom_items']) && is_array($settings_data['find_in_taxonomies_custom_items'])) {
@@ -110,17 +110,46 @@ class SimpleTags_Client_Autoterms
 			}
 		}
 
-		// add custom field data to content
-		if (!empty($settings_data['find_in_custom_fields_custom_items']) && is_array($settings_data['find_in_custom_fields_custom_items'])) {
-			foreach ($settings_data['find_in_custom_fields_custom_items'] as $metakey) {
-				// get meta key value
-				$meta_value = get_post_meta($post_id, $metakey, true);
+        // add custom field data to content
+        if (!empty($settings_data['find_in_custom_fields_custom_items']) && is_array($settings_data['find_in_custom_fields_custom_items'])) {
+            foreach ($settings_data['find_in_custom_fields_custom_items'] as $metakey) {
+                // get meta key value
+			$meta_value = get_post_meta($post_id, $metakey, true);
+                if (!empty($meta_value)) {
+                    // add data to content
+                    $resolved_values = [];
 
-				if (!empty($meta_value)) {
-					// add data to content
-					$content .= ' ' . $meta_value;
-				}
+                    $values = is_array($meta_value) ? $meta_value : array($meta_value);
 
+                    foreach ($values as $value) {
+                        if (is_numeric($value)) {
+                            $term = get_term((int)$value);
+                            if ($term && !is_wp_error($term) && !empty($term->name)) {
+                                $resolved_values[] = $term->name;
+                                continue;
+                            }
+                        }
+                        if (is_object($value) || is_array($value)) {
+                            if (is_array($value) && isset($value['name'])) {
+                                $resolved_values[] = $value['name'];
+                            } elseif (is_object($value) && isset($value->name)) {
+                                $resolved_values[] = $value->name;
+                            } else {
+                                $resolved_values[] = wp_json_encode($value);
+                            }
+                            continue;
+                        }
+
+                        if (is_scalar($value)) {
+                            $resolved_values[] = (string)$value;
+                        }
+                    }
+
+                    if (!empty($resolved_values)) {
+                        $resolved_string = implode(' ', $resolved_values);
+                        $content .= ' ' . $resolved_string;
+                    }
+                }
 			}
 		}
 
@@ -196,8 +225,6 @@ class SimpleTags_Client_Autoterms
     			$content = preg_replace($pattern, '', $content);
 			}
 		}
-
-		$content = trim(strip_tags($content));
 		
 		/**
 		 * Filter auto term content
@@ -208,6 +235,8 @@ class SimpleTags_Client_Autoterms
 		 * @param array $options Autoterm settings
 		 */
 		$content = apply_filters('taxopress_filter_autoterm_content', $content, $object->ID, $options);
+
+        $content = trim(strip_tags($content));
 
 		if (empty(trim($content))) {
 			$empty_term_messages[$object->ID]['message'][] = esc_html__('Auto Term content is empty. Could not suggest terms without content.', 'simple-tags');

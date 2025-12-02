@@ -120,6 +120,17 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $autoterm_use_opencalais    = !empty($settings_data['autoterm_use_opencalais']);
                 }
 
+                $autoterm_from = isset($settings_data['autoterm_from']) ? $settings_data['autoterm_from'] : 'posts';
+
+                if ($autoterm_from === '') {
+                    $post_content = '';
+                    $post_title   = '';
+                } elseif ($autoterm_from === 'post_title') {
+                    $post_content = '';
+                } elseif ($autoterm_from === 'post_content') {
+                    $post_title = '';
+                }
+
                 /**
                  * Filter auto term content
                  *
@@ -158,7 +169,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 ];
 
-                if (!is_object($post_data) || (empty($post_content) && empty($post_title))) {
+                if (!is_object($post_data)) {
                     $response['status'] = 'error';
                     $response['content'] = esc_html__(
                         'Posts content and title is empty.',
@@ -416,39 +427,56 @@ if (!class_exists('TaxoPressAiAjax')) {
             $post_type = get_post_type($post_id);
             $existing_terms_taxonomy = isset($args['preview_taxonomy']) ? $args['preview_taxonomy'] : ['post_tag'];
 
+            $allowed_orderby_keys = array_keys(TaxoPressAiUtilities::get_existing_terms_orderby());
+            $allowed_order_keys   = array_keys(TaxoPressAiUtilities::get_existing_terms_order());
+
             if ($suggest_terms) {
                 $existing_terms_maximum_terms = 0;
+
                 $existing_terms_orderby = isset($settings_data['suggest_local_terms_orderby']) ? $settings_data['suggest_local_terms_orderby'] : 'count';
-                $existing_terms_order = isset($settings_data['suggest_local_terms_order']) ? $settings_data['suggest_local_terms_order'] : 'desc';
+                if (!in_array($existing_terms_orderby, $allowed_orderby_keys, true)) {
+                    $existing_terms_orderby = 'count';
+                }
+
+                $existing_terms_order = isset($settings_data['suggest_local_terms_order']) ? strtolower($settings_data['suggest_local_terms_order']) : 'desc';
+                if (!in_array($existing_terms_order, $allowed_order_keys, true)) {
+                    $existing_terms_order = 'desc';
+                }
+
                 $existing_terms_show_post_count = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
             } else {
 
-                if (isset($args['existing_terms_order'])) {
-                    $existing_terms_order = $args['existing_terms_order'];
+                if (isset($args['existing_terms_order']) && in_array(strtolower($args['existing_terms_order']), $allowed_order_keys, true)) {
+                    $existing_terms_order = strtolower($args['existing_terms_order']);
                 } else {
-                    $existing_terms_order = isset($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : 'desc';
+                    $default_order = isset($settings_data['existing_terms_order']) ? strtolower($settings_data['existing_terms_order']) : 'desc';
+                    $existing_terms_order = in_array($default_order, $allowed_order_keys, true) ? $default_order : 'desc';
                 }
-                if (isset($args['existing_terms_orderby'])) {
+
+                if (isset($args['existing_terms_orderby']) && in_array($args['existing_terms_orderby'], $allowed_orderby_keys, true)) {
                     $existing_terms_orderby = $args['existing_terms_orderby'];
                 } else {
-                    $existing_terms_orderby = isset($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : 'count';
+                    $default_orderby = isset($settings_data['existing_terms_orderby']) ? $settings_data['existing_terms_orderby'] : 'count';
+                    $existing_terms_orderby = in_array($default_orderby, $allowed_orderby_keys, true) ? $default_orderby : 'count';
                 }
+
                 if (isset($args['existing_terms_maximum_terms'])) {
                     $existing_terms_maximum_terms = (int)$args['existing_terms_maximum_terms'];
                 } else {
-                    $existing_terms_maximum_terms = isset($settings_data['existing_terms_maximum_terms']) ? $settings_data['existing_terms_maximum_terms'] : 45;
+                    $existing_terms_maximum_terms = isset($settings_data['existing_terms_maximum_terms']) ? (int) $settings_data['existing_terms_maximum_terms'] : 45;
                 }
+
                 $existing_terms_show_post_count = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
             }
-
+            
             if (!empty($args['show_counts'])) {
                 $existing_terms_show_post_count = 1;
             }
 
             if ($existing_terms_maximum_terms > 0) {
-                $limit = 'LIMIT 0, ' . $existing_terms_maximum_terms;
+                $limit = (int) $existing_terms_maximum_terms;
             } else {
-                $limit = '';
+                $limit = 0;
             }
 
             if (empty($existing_terms_taxonomy)) {
@@ -489,21 +517,45 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                         // Apply Auto Terms settings consistently for "Suggest Existing Terms"
                         if ($suggest_terms && !empty($settings_data)) {
-                            $autoterm_from = !empty($settings_data['autoterm_from']) ? $settings_data['autoterm_from'] : 'posts';
+                            if (array_key_exists('autoterm_from', $settings_data)) {
+                                // Respect explicit empty string '' as "Don't scan Post Content or Title"
+                                $autoterm_from = $settings_data['autoterm_from'];
+                            } else {
+                                // Only default to posts when the setting truly does not exist
+                                $autoterm_from = 'posts';
+                            }
 
                             $post_title_raw   = get_the_title($post_id);
                             $post_content_raw = get_post_field('post_content', $post_id);
 
-                            if ($autoterm_from === 'post_title') {
-                                $scan_content = (string) $post_title_raw;
+                            if ($autoterm_from === '') {
+                                $base_content = '';
+                            } elseif ($autoterm_from === 'post_title') {
+                                $base_content = (string) $post_title_raw;
                             } elseif ($autoterm_from === 'post_content') {
-                                $scan_content = (string) $post_content_raw;
+                                $base_content = (string) $post_content_raw;
+                            } elseif ($autoterm_from === 'posts') {
+                                $base_content = (string) $post_title_raw . ' ' . (string) $post_content_raw;
                             } else {
-                                $scan_content = (string) $content;
+                                $base_content = (string) $content;
                             }
 
-                            $scan_content = apply_filters('taxopress_filter_autoterm_content', $scan_content, $post_id, $settings_data);
+                            $scan_content = apply_filters(
+                                'taxopress_filter_autoterm_content',
+                                (string) $base_content,
+                                $post_id,
+                                $settings_data
+                            );
                             $scan_content = trim($scan_content);
+
+                            if ($scan_content === '') {
+                                $return['status']  = 'error';
+                                $return['message'] = esc_html__(
+                                    'Posts content and title is empty.',
+                                    'simple-tags'
+                                );
+                                return $return;
+                            }
 
                             $autoterm_word       = !empty($settings_data['autoterm_word']) ? (int) $settings_data['autoterm_word'] : 0;
                             $autoterm_hash       = !empty($settings_data['autoterm_hash']) ? (int) $settings_data['autoterm_hash'] : 0;

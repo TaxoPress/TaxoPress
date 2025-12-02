@@ -628,7 +628,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
     $select_2_page = false;
-		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
+		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags', 'st_mass_terms'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
 			$select_2_page = true;
 		}
 
@@ -756,12 +756,16 @@ class SimpleTags_Admin
             'apply_selected' => esc_html__('Apply Selected', 'simple-tags'),
             'close_suggestions' => esc_html__('Close', 'simple-tags'),
             'select_suggestion_alert' => esc_html__('Please select at least one suggestion to apply.', 'simple-tags'),
+			'multiple_merge_warning' => esc_html__('You have selected multiple merge suggestions. All selected terms will be merged into a single new term. Do you want to continue?', 'simple-tags'),
             'no_merge_suggestions' => esc_html__('No merge suggestions found for this taxonomy.', 'simple-tags'),
             'suggested_terms_title' => esc_html__('Suggested Terms to Merge:', 'simple-tags'),
             'duplicates_text' => esc_html__('duplicates', 'simple-tags'),
             'reason_text' => esc_html__('Reason:', 'simple-tags'),
             'select_all_label' => esc_html__('Select All', 'simple-tags'),
             'deselect_all_label' => esc_html__('Deselect All', 'simple-tags'),
+            'terms_to_merge_text' => esc_html__('Terms to Merge', 'simple-tags'),
+            'new_term_text' => esc_html__('New Term', 'simple-tags'),
+            'reasons_text' => esc_html__('Reasons', 'simple-tags'),
 		]);
 
 
@@ -1385,13 +1389,33 @@ class SimpleTags_Admin
 	 * @return array
 	 * @author WebFactory Ltd
 	 */
-	public static function getTermsForAjax($taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC', $limit = '')
+	public static function getTermsForAjax($taxonomy = 'post_tag', $search = '', $order_by = 'name', $order = 'ASC', $limit = 0)
 	{
 		global $wpdb;
 
-		if ($order_by === 'random') {
-			$order_by = 'RAND()';
+		$order = strtoupper($order);
+		if (!in_array($order, ['ASC', 'DESC'], true)) {
+			$order = 'ASC';
 		}
+
+		$allowed_orderby = [
+			'name'   => 't.name',
+			'count'  => 'tt.count',
+			'random' => 'RAND()',
+		];
+
+		if (isset($allowed_orderby[$order_by])) {
+			$order_by_sql = $allowed_orderby[$order_by];
+		} else {
+			$order_by_sql = $allowed_orderby['name'];
+		}
+
+		$limit_sql = '';
+		$limit = (int) $limit;
+		if ($limit > 0) {
+			$limit_sql = $wpdb->prepare('LIMIT 0, %d', $limit);
+		}
+
 		if ($taxonomy == 'linked_term_taxonomies') {
 			$taxonomies = SimpleTags_Plugin::get_option_value('linked_terms_taxonomies');
 			if (empty($taxonomies) || !is_array($taxonomies)) {
@@ -1409,7 +1433,7 @@ class SimpleTags_Admin
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy IN ($taxonomies_list)
 					AND t.name LIKE %s
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 					", '%' . $wpdb->esc_like($search) . '%'
 				);
 			} else {
@@ -1419,7 +1443,7 @@ class SimpleTags_Admin
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy = %s
 					AND t.name LIKE %s
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 				", $taxonomy, '%' . $wpdb->esc_like($search) . '%'
 				);
 			}
@@ -1431,7 +1455,7 @@ class SimpleTags_Admin
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy IN ($taxonomies_list)
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 				";
 
 			} else {
@@ -1440,7 +1464,7 @@ class SimpleTags_Admin
 					FROM {$wpdb->terms} AS t
 					INNER JOIN {$wpdb->term_taxonomy} AS tt ON t.term_id = tt.term_id
 					WHERE tt.taxonomy = %s
-					ORDER BY $order_by $order $limit
+					ORDER BY $order_by_sql $order $limit_sql
 				", $taxonomy);
 			}
 

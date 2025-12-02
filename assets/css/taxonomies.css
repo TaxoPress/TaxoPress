@@ -1,3 +1,14 @@
+.taxopress-taxonomy-filters {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.taxopress-taxonomy-type-wrap,
+.taxopress-taxonomy-post-type-wrap {
+  margin-bottom: 10px;
+}
+
 .table-view-list.taxonomies .column-cb {
     margin: 0;
     padding: 0;
