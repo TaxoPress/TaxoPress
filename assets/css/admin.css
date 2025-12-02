@@ -2059,14 +2059,29 @@ body.block-editor-page .clicktags-search-wrapper .option input {
     font-weight: 600;
 }
 
-.schedule-autoterms-promo .advertisement-box-header{
-    margin-top: 1px !important;
-}
-
-.schedule-autoterms-promo .postbox-header{
-    border-bottom: none !important;
-}
-
 input#post-search-input {
     min-width: 200px;
+}
+
+.taxopress-suggestion-item label {
+    display: block;
+}
+
+.taxopress-merge-badge {
+    display: none;
+}
+
+.taxopress-merge-meta {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #555;
+    padding-bottom: 15px !important;
+}
+
+.taxopress-merge-meta-line + .taxopress-merge-meta-line {
+    margin-top: 4px;
+}
+
+.taxopress-merge-meta strong {
+    font-weight: 600;
 }

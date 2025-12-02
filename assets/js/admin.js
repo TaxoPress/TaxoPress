@@ -1288,7 +1288,8 @@
                                   taxonomy: $(this).attr('id'),
                                   s: params.term || '',
                                   page: params.page || 1,
-                                  nonce: st_admin_localize.check_nonce
+                                  nonce: st_admin_localize.check_nonce,
+                                  context: $('body.taxopress_page_st_mass_terms').length > 0 ? 'mass_edit' : ''
                               };
                           },
                           processResults: function(data, params) {
@@ -1303,6 +1304,12 @@
                           cache: true
                       }
                   });
+
+                  if ($('body.taxopress_page_st_mass_terms').length > 0) {
+                    $(this).on('ppma_select2:select', function () {
+                      $(this).closest('form').submit();
+                    });
+                  }
               });
           }
     }
@@ -2374,21 +2381,23 @@
             html += '<div class="taxopress-suggestion-item">';
             if (type === 'same_name') {
                 html += '<label>';
-                html += '<span class="taxopress-merge-badge">'+ st_admin_localize.same_name_label +'</span> ';
+                html += '<span class="taxopress-merge-badge"></span> ';
                 html += '<input type="checkbox" class="merge-suggestion" data-terms="' + suggestion.terms + '"> ';
                 html += '<strong>' + suggestion.name + '</strong> (' + suggestion.count + ' ' + st_admin_localize.duplicates_text + ')</label>';
             } else {
-                html += '<label>';
-                html += '<span class="taxopress-merge-badge">'+ st_admin_localize.different_name_label +'</span> ';
+                html += '<label class="taxopress-merge-label">';
+                html += '<div class="taxopress-merge-meta">';
+                html += '<div class="taxopress-merge-meta-line">';
                 html += '<input type="checkbox" class="merge-suggestion" data-term1="' + suggestion.term1 + '" data-term2="' + suggestion.term2 + '" data-suggested="' + suggestion.suggested_name + '"> ';
-                html += '<span class="taxopress-merge-terms">';
-                html += '<span class="taxopress-merge-original">' + suggestion.term1 + '</span>';
-                html += ' + ';
-                html += '<span class="taxopress-merge-original">' + suggestion.term2 + '</span>';
-                html += ' &rarr; ';
-                html += '<span class="taxopress-merge-target">' + suggestion.suggested_name + '</span>';
-                html += '</span>';
-                html += '<br><small>' + st_admin_localize.reason_text + ' ' + suggestion.reasons + '</small>';
+                html += '<strong>' + st_admin_localize.terms_to_merge_text + '</strong> ' + suggestion.term1 + ', ' + suggestion.term2;
+                html += '</div>';
+                html += '<div class="taxopress-merge-meta-line">';
+                html += '<strong>' + st_admin_localize.new_term_text + '</strong> ' + suggestion.suggested_name;
+                html += '</div>';
+                html += '<div class="taxopress-merge-meta-line">';
+                html += '<strong>' + st_admin_localize.reasons_text + '</strong> ' + suggestion.reasons;
+                html += '</div>';
+                html += '</div>';
                 html += '</label>';
             }
             html += '</div>';

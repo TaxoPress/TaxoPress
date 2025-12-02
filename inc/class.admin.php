@@ -121,8 +121,6 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/autoterms-logs-table.php';
 			require STAGS_DIR . '/inc/autoterms.php';
 			require STAGS_DIR . '/inc/autoterms_content.php';
-			require STAGS_DIR . '/inc/autoterms-schedule.php';
-            SimpleTags_Autoterms_Schedule::get_instance();
 			SimpleTags_Autoterms::get_instance();
 			SimpleTags_Autoterms_Content::get_instance();
 			self::$enabled_menus['st_autoterms'] = esc_html__('Auto Terms', 'simple-tags');
@@ -630,7 +628,7 @@ class SimpleTags_Admin
 		global $pagenow;
 
     $select_2_page = false;
-		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
+		if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags', 'st_mass_terms'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
 			$select_2_page = true;
 		}
 
@@ -765,8 +763,9 @@ class SimpleTags_Admin
             'reason_text' => esc_html__('Reason:', 'simple-tags'),
             'select_all_label' => esc_html__('Select All', 'simple-tags'),
             'deselect_all_label' => esc_html__('Deselect All', 'simple-tags'),
-			'same_name_label'          => esc_html__('Same name', 'simple-tags'),
-			'different_name_label'          => esc_html__('Different name', 'simple-tags'),
+            'terms_to_merge_text' => esc_html__('Terms to Merge', 'simple-tags'),
+            'new_term_text' => esc_html__('New Term', 'simple-tags'),
+            'reasons_text' => esc_html__('Reasons', 'simple-tags'),
 		]);
 
 
