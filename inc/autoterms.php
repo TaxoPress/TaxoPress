@@ -605,7 +605,7 @@ class SimpleTags_Autoterms
                                                                         <div class="autoterm-field-area">
                                                                             <select style="width: 100%;" class="taxopress-custom-fields-search find-in-content custom_fields" 
                                                                                 data-placeholder="<?php echo esc_attr__("Search Custom Field...", "simple-tags"); ?>" 
-                                                                                data-nonce="<?php echo esc_attr__(wp_create_nonce('taxopress-custom-fields-search')); ?>"></select>
+                                                                                data-nonce="<?php echo esc_attr(wp_create_nonce('taxopress-custom-fields-search')); ?>"></select>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
