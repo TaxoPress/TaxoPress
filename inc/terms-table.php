@@ -160,7 +160,6 @@ class Taxopress_Terms_List extends WP_List_Table
                     'pad_counts' => true,
                     'update_term_meta_cache' => true,
                     'search' => $search,
-                    'include' => 'all',
                 ];
 
                 if (!$use_custom_order) {
@@ -235,7 +234,6 @@ class Taxopress_Terms_List extends WP_List_Table
             'order' => $order_setting,
             'search' => $search,
             'hide_empty' => false,
-            'include' => 'all',
             'pad_counts' => true,
             'update_term_meta_cache' => true,
         ];
