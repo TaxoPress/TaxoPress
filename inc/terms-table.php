@@ -118,8 +118,33 @@ class Taxopress_Terms_List extends WP_List_Table
         $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? [sanitize_text_field($_REQUEST['terms_filter_post_type'])] : '';
         $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
 
-        $order_setting = isset($taxonomy_settings[$selected_taxonomy]['order']) ? $taxonomy_settings[$selected_taxonomy]['order'] : 'desc';
+        $allowed_orderby = ['name', 'slug', 'taxonomy', 'count', 'id'];
+        $allowed_order   = ['asc', 'desc'];
+
+        $requested_orderby = !empty($_REQUEST['orderby']) ? sanitize_key($_REQUEST['orderby']) : '';
+        $requested_order   = !empty($_REQUEST['order'])   ? strtolower(sanitize_text_field($_REQUEST['order'])) : '';
+
+        if (!in_array($requested_orderby, $allowed_orderby, true)) {
+            $requested_orderby = '';
+        }
+        if (!in_array($requested_order, $allowed_order, true)) {
+            $requested_order = '';
+        }
+
+        $order_setting   = isset($taxonomy_settings[$selected_taxonomy]['order'])   ? strtolower($taxonomy_settings[$selected_taxonomy]['order'])   : 'desc';
         $orderby_setting = isset($taxonomy_settings[$selected_taxonomy]['orderby']) ? $taxonomy_settings[$selected_taxonomy]['orderby'] : 'ID';
+
+        $orderby_setting = strtolower($orderby_setting);
+        if ($orderby_setting === 'id' || $orderby_setting === 'term_id') {
+            $orderby_setting = 'id';
+        }
+
+        if ($requested_orderby) {
+            $orderby_setting = $requested_orderby;
+        }
+        if ($requested_order) {
+            $order_setting = $requested_order;
+        }
 
         // If viewing via taxopress_terms_taxonomy, override to show all terms in that taxonomy
         if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
@@ -138,6 +163,12 @@ class Taxopress_Terms_List extends WP_List_Table
         foreach ($taxonomies as $taxonomy) {
             $order_setting = isset($taxonomy_settings[$taxonomy]['order']) ? $taxonomy_settings[$taxonomy]['order'] : 'desc';
             $orderby_setting = isset($taxonomy_settings[$selected_taxonomy]['orderby']) ? $taxonomy_settings[$selected_taxonomy]['orderby'] : 'ID';
+            if ($requested_orderby) {
+                $orderby_setting = $requested_orderby;
+            }
+            if ($requested_order) {
+                $order_setting = $requested_order;
+            }
             if ($order_setting === 'taxopress_term_order') {
                 $manual_order = true;
                 break;
@@ -160,7 +191,6 @@ class Taxopress_Terms_List extends WP_List_Table
                     'pad_counts' => true,
                     'update_term_meta_cache' => true,
                     'search' => $search,
-                    'include' => 'all',
                 ];
 
                 if (!$use_custom_order) {
@@ -235,7 +265,6 @@ class Taxopress_Terms_List extends WP_List_Table
             'order' => $order_setting,
             'search' => $search,
             'hide_empty' => false,
-            'include' => 'all',
             'pad_counts' => true,
             'update_term_meta_cache' => true,
         ];
@@ -250,6 +279,13 @@ class Taxopress_Terms_List extends WP_List_Table
 
         if (empty($terms) || is_wp_error($terms)) {
             return [];
+        }
+
+        if (!empty($requested_orderby) && $requested_orderby === 'taxonomy') {
+            usort($terms, function ($a, $b) use ($order_setting) {
+                $cmp = strcmp($a->taxonomy, $b->taxonomy);
+                return ($order_setting === 'desc') ? -$cmp : $cmp;
+            });
         }
 
         if ($orderby_setting === 'random') {
