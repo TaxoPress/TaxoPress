@@ -268,6 +268,9 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.42.0- 2025-12-08
+* Fixed: Terms screen is blank in wordpress 6.9 #2865
+
 v3.41.0- 2025-12-01
 * Fixed: Autocomplete doesn't handle characters correctly, #2853
 * Fixed: Mass Edit search box is unclear, #2852
