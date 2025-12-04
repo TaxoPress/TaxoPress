@@ -211,8 +211,11 @@ class SimpleTags_Terms
     public function page_manage_terms()
     {
         // Default order
+        if (!isset($_GET['orderby'])) {
+            $_GET['orderby'] = 'name';
+        }
         if (!isset($_GET['order'])) {
-            $_GET['order'] = 'name-asc';
+            $_GET['order'] = 'asc';
         }
 
         settings_errors(__CLASS__);
