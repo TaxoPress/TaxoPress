@@ -776,6 +776,13 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $post_type_label = $post_type_details->labels->singular_name;
                 }
 
+                if (!current_user_can('edit_post', $post_id)){
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__('You do not have permission to edit this post.', 'simple-tags');
+                    wp_send_json($response);
+                    exit;
+                }
+
                 if (empty($added_tags) && empty($removed_tags)) {
                     $response['status'] = 'error';
                     $response['content'] = sprintf(esc_html__('Click Term to select or deselect from this %1s', 'simple-tags'), esc_html($post_type_label));
