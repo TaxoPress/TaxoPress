@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 3.41.0
+Stable tag: 3.42.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,9 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.42.0- 2025-12-08
+* Fixed: Terms screen is blank in wordpress 6.9 #2865
 
 v3.41.0- 2025-12-01
 * Fixed: Autocomplete doesn't handle characters correctly, #2853
