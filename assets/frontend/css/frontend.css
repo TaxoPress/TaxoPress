@@ -164,3 +164,7 @@
     display: block;
     max-width: 100%;
 }
+
+a.st_tag, a.internal_tag, .st_tag, .internal_tag {
+    text-decoration: underline !important;
+}
