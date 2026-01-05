@@ -37,8 +37,6 @@ class SimpleTags_Client_Autolinks
                 add_filter('elementor/frontend/builder_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
             }
 
-            add_action('wp_head', [__CLASS__, 'print_autolink_inline_style']);
-
 			add_action('admin_init', [$this, 'taxopress_customurl_taxonomies_fields']);
 		}
 	}
@@ -89,11 +87,6 @@ class SimpleTags_Client_Autolinks
         }
 
         return $has_setting_saved ? array_unique($enabled_taxonomies) : $default_enabled_taxonomies;
-    }
-
-    public static function print_autolink_inline_style() {
-        // Ensure autolink anchors are visibly underlined on the frontend (overrides Elementor/theme rules)
-        echo '<style type="text/css">a.st_tag, a.internal_tag, .st_tag, .internal_tag { text-decoration: underline !important; }</style>';
     }
 
 	/**

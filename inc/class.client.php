@@ -12,7 +12,7 @@ class SimpleTags_Client {
 		add_action( 'init', array( __CLASS__, 'init_translation' ) );
 
 		// Enqueue frontend scripts
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_displayformat_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_displayformat_scripts' ), 999 );
 
         require( STAGS_DIR . '/inc/class.client.autolinks.php' );
         new SimpleTags_Client_Autolinks();
