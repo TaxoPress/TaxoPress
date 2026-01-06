@@ -292,7 +292,7 @@ class SimpleTags_Client {
 					$output = ''. $before .' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ol> {$after}\n";
 					break;
 				case 'comma':
-					$output = ''. ''. ''. ''. $before .  implode(', ', $content) . " {$after}\n";
+					$output = ''. ''. ''. ''. $before .  implode($separator, $content) . " {$after}\n";
 					break;
 				case 'table' :
 					$output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";
