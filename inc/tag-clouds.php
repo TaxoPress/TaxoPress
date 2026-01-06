@@ -551,6 +551,56 @@ class SimpleTags_Tag_Clouds
                                                        style="<?php echo $active_tab === 'tagcloud_terms' ? '' : 'display:none;'; ?>">
                                                     <?php
 
+                                                    ?>
+                                                    <tr valign="top">
+                                                        <th scope="row"><label><?php esc_html_e('Term selection mode', 'simple-tags'); ?></label></th>
+                                                        <td>
+                                                            <?php
+                                                            $current_mode = isset($current['term_selection_mode']) ? $current['term_selection_mode'] : 'automatic';
+                                                            ?>
+                                                            <div style="margin-bottom: 10px;">
+                                                                <label>
+                                                                    <input type="radio" name="taxopress_tag_cloud[term_selection_mode]" value="automatic" <?php checked($current_mode, 'automatic'); ?> />
+                                                                    <?php esc_html_e('Automatic', 'simple-tags'); ?>
+                                                                </label>
+                                                                <p class="description" style="margin-left: 25px; margin-top: 5px;">
+                                                                    <?php esc_html_e('Display terms based on your Parent Term and Display Mode settings.', 'simple-tags'); ?>
+                                                                </p>
+                                                            </div>
+                                                            <div style="margin-bottom: 10px;">
+                                                                <label>
+                                                                    <input type="radio" name="taxopress_tag_cloud[term_selection_mode]" value="custom" <?php checked($current_mode, 'custom'); ?> />
+                                                                    <?php esc_html_e('Custom', 'simple-tags'); ?>
+                                                                </label>
+                                                                <p class="description" style="margin-left: 25px; margin-top: 5px;">
+                                                                    <?php esc_html_e('Display only the specific terms entered in the "Custom terms to display" field below.', 'simple-tags'); ?>
+                                                                </p>
+                                                            </div>
+                                                            <div>
+                                                                <label>
+                                                                    <input type="radio" name="taxopress_tag_cloud[term_selection_mode]" value="combined" <?php checked($current_mode, 'combined'); ?> />
+                                                                    <?php esc_html_e('Combined', 'simple-tags'); ?>
+                                                                </label>
+                                                                <p class="description" style="margin-left: 25px; margin-top: 5px;">
+                                                                    <?php esc_html_e('Display automatic terms plus any additional custom terms specified below.', 'simple-tags'); ?>
+                                                                </p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+
+                                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo $ui->get_textarea_input([
+                                                        'namearray' => 'taxopress_tag_cloud',
+                                                        'name'      => 'include_terms',
+                                                        'rows'      => '4',
+                                                        'cols'      => '40',
+                                                        'class'     => 'autocomplete-input tagclouds-include',
+                                                        'textvalue' => isset($current['include_terms']) ? esc_attr($current['include_terms']) : '',
+                                                        'labeltext' => esc_html__('Custom terms to display', 'simple-tags'),
+                                                        'helptext'  => esc_html__('Enter terms (comma-separated) to display. Used in Custom and Combined modes.', 'simple-tags'),
+                                                        'required'  => false,
+                                                    ]);
 
                                             $select = [
                                                 'options' => [
@@ -1099,6 +1149,8 @@ class SimpleTags_Tag_Clouds
             'notagstext'   => !empty($config['notagstext']),
             'title'        => $config['title'] ?? '',
             'exclude_terms'=> $config['exclude_terms'] ?? '',
+            'term_selection_mode' => $config['term_selection_mode'] ?? 'automatic',
+            'include_terms' => $config['include_terms'] ?? '',
             'hide_terms'   => !empty($config['hide_terms']),
             'before'      => $config['before'] ?? '',
             'after'       => $config['after'] ?? '',

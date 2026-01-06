@@ -282,6 +282,15 @@ class SimpleTags_Admin_Autocomplete {
               ); ?>",
               <?php echo (int) $autocomplete_min; ?>
           );
+          st_init_autocomplete(
+              '.tagclouds-include',
+              "<?php echo esc_url_raw(
+                  admin_url(
+                      'admin-ajax.php?action=simpletags_autocomplete&stags_action=helper_js_collection&taxonomy=&nonce=' . wp_create_nonce('st-admin-js')
+                  )
+              ); ?>",
+              <?php echo (int) $autocomplete_min; ?>
+          );
           -->
         </script>
         <?php

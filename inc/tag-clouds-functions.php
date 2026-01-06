@@ -163,6 +163,8 @@ function taxopress_create_default_tag_cloud()
     $default['taxopress_tag_cloud']['maxcolor'] = '#000000';
     $default['taxopress_tag_cloud']['xformat'] = '<a href="%tag_link%" id="tag-link-%tag_id%" class="st-tags t%tag_scale%" title="%tag_count% topics" %tag_rel% style="%tag_size% %tag_color%">%tag_name%</a>';
     $default['taxopress_tag_cloud']['limit_days'] = 0;
+    $default['taxopress_tag_cloud']['term_selection_mode'] = 'automatic';
+    $default['taxopress_tag_cloud']['include_terms'] = '';
     $default['tagcloud_submit'] = 'Add Terms Display';
     $default['cpt_tax_status'] = 'new';
     $result = taxopress_update_tagcloud($default);
