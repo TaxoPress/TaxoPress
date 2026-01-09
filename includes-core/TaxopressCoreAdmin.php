@@ -64,7 +64,6 @@ class TaxopressCoreAdmin
         add_action('taxopress_admin_class_before_assets_register', [$this, 'taxopress_load_admin_core_assets']);
         add_action('taxopress_admin_class_after_styles_enqueue', [$this, 'taxopress_load_admin_core_styles']);
         add_action('taxopress_admin_after_sidebar', [$this, 'taxopress_admin_advertising_sidebar_banner']);
-        add_action('taxopress_autoterms_schedule_autoterm_terms_to_use', [$this, 'taxopress_core_schedule_autoterm_tab_content']);
         add_action('taxopress_autoterms_after_autoterm_terms_to_use', [$this, 'taxopress_core_autoterm_terms_to_use_field']);
         add_action('taxopress_suggestterm_after_api_fields', [$this, 'taxopress_core_suggestterm_after_api_fields']);
         add_action('taxopress_autoterms_after_autoterm_advanced', [$this, 'taxopress_core_autoterm_advanced_field']);
@@ -91,6 +90,7 @@ class TaxopressCoreAdmin
         add_filter('taxopress_order_column', [$this, 'taxopress_order_column_free']);
         add_action('taxopress_tagcloud_ordering_method', [$this, 'taxopress_free_tagcloud_ordering_method']);
         add_action('taxopress_posttags_ordering_method', [$this, 'taxopress_free_posttags_ordering_method']);
+        add_action('taxopress_schedule_frequency_fields', [$this, 'taxopress_free_schedule_frequency_fields']);
     }
 
     function taxopress_load_admin_core_assets()
@@ -384,31 +384,6 @@ class TaxopressCoreAdmin
         }
     
         return $actions;
-    }
-
-    function taxopress_core_schedule_autoterm_tab_content($current)
-    {
-        
-        ?>
-        <tr>
-            <td>
-                <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-when-schedule-notice">
-                    <div class="postbox-header">
-                        <h3 class="advertisement-box-header hndle is-non-sortable">
-                            <span><?php echo esc_html__('Schedule Auto Terms', 'simple-tags'); ?></span>
-                        </h3>
-                    </div>
-
-                    <div class="inside-content">
-                        <p><?php echo esc_html__('TaxoPress Pro allows you to schedule the Auto Terms feature to run either hourly or daily. This is really useful if you are regularly updating your posts, or if you’re automatically importing new posts.', 'simple-tags'); ?></p>
-                        <div class="upgrade-btn">
-                            <a href="https://taxopress.com/taxopress/" target="_blank"><?php echo esc_html__("Upgrade to Pro", "simple-tags"); ?></a>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <?php
     }
 
     function taxopress_core_autoterm_terms_to_use_field($current)
@@ -757,6 +732,47 @@ class TaxopressCoreAdmin
         </tr>
         <?php
 
+    }
+
+    public function taxopress_free_schedule_frequency_fields($cron_schedule)
+    {
+        ?>
+        <label>
+            <input
+                type="radio"
+                class="autoterm_cron_radio"
+                id="autoterm_cron_hourly"
+                name="taxopress_autoterm_schedule[cron_schedule_choice]"
+                value="hourly"
+                disabled
+            />
+            <?php esc_html_e('Hourly', 'simple-tags'); ?>
+        </label>
+        <br /><br />
+        
+        <label>
+            <input
+                type="radio"
+                class="autoterm_cron_radio"
+                id="autoterm_cron_daily"
+                name="taxopress_autoterm_schedule[cron_schedule_choice]"
+                value="daily"
+                disabled
+            />
+            <?php esc_html_e('Daily', 'simple-tags'); ?>
+        </label>
+        <br />
+
+        <div class="taxopress-pro-feature-btn-wrapper">
+            <span class="pp-tooltips-library" data-toggle="tooltip">
+                <button type="button" class="taxopress-pro-feature-btn" tabindex="-1">
+                    <span class="dashicons dashicons-lock taxopress-pro-feature-lock"></span>
+                    <?php echo esc_html__('Pro Feature', 'simple-tags'); ?>
+                </button>
+                <span class="taxopress tooltip-text"><?php echo esc_html__('Some of these features are available in TaxoPress Pro', 'simple-tags'); ?></span>
+            </span>
+        </div>
+        <?php
     }
 
     function taxopress_terms_order_free($current){

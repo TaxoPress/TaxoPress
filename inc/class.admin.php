@@ -121,8 +121,11 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/autoterms-logs-table.php';
 			require STAGS_DIR . '/inc/autoterms.php';
 			require STAGS_DIR . '/inc/autoterms_content.php';
+			require STAGS_DIR . '/inc/schedule.php';
+			require STAGS_DIR . '/inc/schedule-logs-table.php';
 			SimpleTags_Autoterms::get_instance();
 			SimpleTags_Autoterms_Content::get_instance();
+			SimpleTags_Autoterms_Schedule::get_instance();
 			self::$enabled_menus['st_autoterms'] = esc_html__('Auto Terms', 'simple-tags');
 		}
 

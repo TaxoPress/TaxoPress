@@ -19,10 +19,13 @@ require STAGS_DIR . '/inc/functions.tpl.php';  // Templates functions
 require STAGS_DIR . '/inc/class.plugin.php';
 require STAGS_DIR . '/inc/class.client.php';
 require STAGS_DIR . '/inc/class.client.tagcloud.php';
+require STAGS_DIR . '/inc/class.client.schedule.php';
 require STAGS_DIR . '/inc/class.widgets.php';
 require STAGS_DIR . '/inc/class.shortcode_widgets.php';
 require STAGS_DIR . '/inc/posts-tags-widget.php';
 require STAGS_DIR . '/inc/related-posts-widget.php';
+
+require STAGS_DIR . '/inc/schedule.php';
 
 //include blocks
 require STAGS_DIR . '/blocks/related-posts.php';
