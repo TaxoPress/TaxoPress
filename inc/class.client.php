@@ -307,9 +307,7 @@ class SimpleTags_Client {
 					$count = 0;
 					foreach ($content as $item) {
 
-						// $term_name = strip_tags($item);
-						// $post_count = self::get_term_post_counts( $term_name );
-						        // If $item is an array (from extendedTagCloud), use its fields
+					// If $item is an array, use its fields
 					if (is_array($item) && isset($item['html'], $item['count'])) {
 						$term_html = $item['html'];
 						$post_count = $item['count'];
