@@ -34,6 +34,10 @@ return array(
     'enable_hidden_terms' => 0,
     'hide-rarely' => 5,
 
+    //frontend scripts
+    'disable_frontend_scripts' => 0,
+    'disable_admin_frontend_scripts' => 0,
+
     //manage terms
     'enable_add_terms_slug' => 0,
     'enable_remove_terms_slug' => 0,

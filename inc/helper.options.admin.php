@@ -375,6 +375,34 @@ $options = array(
         )
     ),
 
+    // frontend scripts tab
+    'frontend_scripts' => array(
+        array(
+            'frontend_scripts_description',
+            '',
+            'helper',
+            '',
+            __('TaxoPress loads CSS and JavaScript files on the frontend for features like Terms Display, Related Posts, and Post Tags. If you disable these scripts, those features may not display correctly.', 'simple-tags'),
+            ''
+        ),
+        array(
+            'disable_frontend_scripts',
+            __('Disable Frontend Scripts:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Check this to prevent TaxoPress from loading CSS and JavaScript files on the frontend of your site.', 'simple-tags'),
+            ''
+        ),
+        array(
+            'disable_admin_frontend_scripts',
+            __('Disable Admin Preview Scripts:', 'simple-tags'),
+            'checkbox',
+            '1',
+            __('Check this to prevent TaxoPress from loading frontend CSS and JavaScript files in the WordPress admin area. This will break the preview functionality when editing Terms Display, Related Posts, and Post Tags.', 'simple-tags'),
+            ''
+        )
+    ),
+
     'core_linked_terms' => array(
         array(
             'linked_terms_pro_notice',
