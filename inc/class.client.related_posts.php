@@ -16,6 +16,14 @@ class SimpleTags_Client_RelatedPosts {
 
 	function enqueue_boxdisplay_scripts() {
 
+		if ( (int) SimpleTags_Plugin::get_option_value( 'disable_frontend_scripts' ) === 1 ) {
+			return;
+		}
+
+		if ( ! apply_filters( 'taxopress_load_frontend_scripts', true ) ) {
+			return;
+		}
+
 		wp_register_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
 		wp_register_style('taxopress-frontend-css', STAGS_URL . '/assets/frontend/css/frontend.css', array(), STAGS_VERSION, 'all');
 

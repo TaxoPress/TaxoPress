@@ -612,6 +612,14 @@ class SimpleTags_Admin
 			return;
 		}
 
+		if ( (int) SimpleTags_Plugin::get_option_value( 'disable_admin_frontend_scripts' ) === 1 ) {
+			return;
+		}
+
+		if ( ! apply_filters( 'taxopress_load_admin_frontend_scripts', true ) ) {
+			return;
+		}
+
 		// Register and enqueue assets
 		wp_register_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
 		wp_register_style('taxopress-frontend-css', STAGS_URL . '/assets/frontend/css/frontend.css', array(), STAGS_VERSION, 'all');
@@ -1330,6 +1338,8 @@ class SimpleTags_Admin
 				return esc_html__('License', 'simple-tags');
 			case 'hidden_terms':
 				return esc_html__('Hidden Terms', 'simple-tags');
+			case 'frontend_scripts':
+				return esc_html__('Frontend Scripts', 'simple-tags');
 			case 'manage_terms':
 				return esc_html__('Manage Terms', 'simple-tags');
             case 'mass_edit_terms':
