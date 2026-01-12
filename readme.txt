@@ -268,8 +268,19 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.43.0- 2026-01-13
+* Fixed: "Post term separator string" not working, #2879
+* Fixed: Taxopress adds inline css in the head, #2877
+* Update: Allow Synonyms to be added using a separator. #2880
+* Update: Add Whole Words setting for Auto Links, #2876
+* Update: Add {site-terms} placeholder for site-wide term search in OpenAI AutoTerms, #2875
+* Update: Move "Schedule" to the Free version, #2862
+* Update: Allow users to disable frontend scripts, #2756
+* Update: Allow users to select specific terms in "Terms Display", #2609
+* Removed: Remove unavailable OpenAI models, #2874
+
 v3.42.0- 2025-12-08
-* Fixed: Terms screen is blank in wordpress 6.9 #2865
+* Fixed: Terms screen is blank in wordpress 6.9, #2865
 
 v3.41.0- 2025-12-01
 * Fixed: Autocomplete doesn't handle characters correctly, #2853
