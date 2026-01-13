@@ -273,7 +273,7 @@ v3.43.0- 2026-01-13
 * Fixed: Taxopress adds inline css in the head, #2877
 * Update: Allow Synonyms to be added using a separator. #2880
 * Update: Add Whole Words setting for Auto Links, #2876
-* Update: Add {site-terms} placeholder for site-wide term search in OpenAI AutoTerms, #2875
+* Update: Add {site_terms} placeholder for site-wide term search in OpenAI AutoTerms, #2875
 * Update: Move "Schedule" to the Free version, #2862
 * Update: Allow users to disable frontend scripts, #2756
 * Update: Allow users to select specific terms in "Terms Display", #2609
