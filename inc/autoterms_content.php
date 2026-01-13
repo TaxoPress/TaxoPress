@@ -127,7 +127,7 @@ class SimpleTags_Autoterms_Content
 
         ?>
         <div class="wrap taxopress-split-wrap taxopress-autoterm-content">
-            <h1><?php echo esc_html__('Existing Content', 'simple-tags'); ?> </h1>
+            <h1><?php echo esc_html__('Auto Terms Existing Content', 'simple-tags'); ?> </h1>
             <div class="taxopress-description">
                 <?php esc_html_e('This feature can scan your existing content and automatically assign new and existing terms.', 'simple-tags'); ?>
             </div>

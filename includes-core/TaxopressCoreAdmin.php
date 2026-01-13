@@ -38,7 +38,8 @@ class TaxopressCoreAdmin
                                 ['base' => 'taxopress_page_st_autoterms_content',   'id'  => 'taxopress_page_st_autoterms_content'],
                                 ['base' => 'taxopress_page_st_suggestterms', 'id'  => 'taxopress_page_st_suggestterms'],
                                 ['base' => 'taxopress_page_st_terms',       'id'  => 'taxopress_page_st_terms'],
-                                ['base' => 'taxopress_page_st_taxopress_ai', 'id'  => 'taxopress_page_st_taxopress_ai']
+                                ['base' => 'taxopress_page_st_taxopress_ai', 'id'  => 'taxopress_page_st_taxopress_ai'],
+                                ['base' => 'taxopress_page_st_autoterms_schedule', 'id'  => 'taxopress_page_st_autoterms_schedule']
                             ]
                         ];
 
