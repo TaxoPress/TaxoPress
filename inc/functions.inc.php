@@ -227,6 +227,10 @@ function init_simple_tags()
     new SimpleTags_Client();
     new SimpleTags_Client_TagCloud();
 
+    if (1 === (int) SimpleTags_Plugin::get_option_value('active_auto_terms')) {
+        new SimpleTags_Client_Schedule();
+    }
+
     // Admin and XML-RPC
     if (is_admin()) {
         require STAGS_DIR . '/inc/class.admin.php';
@@ -252,6 +256,7 @@ function taxopress_admin_pages()
         'st_autolinks',
         'st_autoterms',
         'st_autoterms_content',
+        'st_autoterms_schedule',
         'st_terms',
         'st_posts',
         'st_taxopress_ai'

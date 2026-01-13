@@ -626,7 +626,7 @@ function taxopress_autoterms_logs_data($per_page = 20, $current_page = 1, $order
     if ($schedule_query) {
         $meta_query[] = array(
             'key' => '_taxopress_log_action',
-            'value' => ['daily_cron_schedule', 'hourly_cron_schedule'],
+            'value' => ['daily_cron_schedule', 'hourly_cron_schedule', 'weekly_cron_schedule'],
             'compare' => 'IN'
         );
     }

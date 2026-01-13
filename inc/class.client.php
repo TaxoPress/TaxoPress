@@ -12,7 +12,7 @@ class SimpleTags_Client {
 		add_action( 'init', array( __CLASS__, 'init_translation' ) );
 
 		// Enqueue frontend scripts
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_displayformat_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_displayformat_scripts' ), 999 );
 
         require( STAGS_DIR . '/inc/class.client.autolinks.php' );
         new SimpleTags_Client_Autolinks();
@@ -65,6 +65,14 @@ class SimpleTags_Client {
 	}
 
 	function enqueue_displayformat_scripts() {
+
+		if ( (int) SimpleTags_Plugin::get_option_value( 'disable_frontend_scripts' ) === 1 ) {
+			return;
+		}
+
+		if ( ! apply_filters( 'taxopress_load_frontend_scripts', true ) ) {
+			return;
+		}
 
 		wp_register_script('taxopress-frontend-js', STAGS_URL . '/assets/frontend/js/frontend.js', array('jquery'), STAGS_VERSION);
 		wp_register_style('taxopress-frontend-css', STAGS_URL . '/assets/frontend/css/frontend.css', array(), STAGS_VERSION, 'all');
@@ -292,16 +300,14 @@ class SimpleTags_Client {
 					$output = ''. $before .' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode( "</li>\n\t<li>", $content ) . "</li>\n</ol> {$after}\n";
 					break;
 				case 'comma':
-					$output = ''. ''. ''. ''. $before .  implode(', ', $content) . " {$after}\n";
+					$output = ''. ''. ''. ''. $before .  implode($separator, $content) . " {$after}\n";
 					break;
 				case 'table' :
 					$output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";
 					$count = 0;
 					foreach ($content as $item) {
 
-						// $term_name = strip_tags($item);
-						// $post_count = self::get_term_post_counts( $term_name );
-						        // If $item is an array (from extendedTagCloud), use its fields
+					// If $item is an array, use its fields
 					if (is_array($item) && isset($item['html'], $item['count'])) {
 						$term_html = $item['html'];
 						$post_count = $item['count'];

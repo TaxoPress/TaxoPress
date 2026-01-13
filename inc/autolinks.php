@@ -661,6 +661,36 @@ class SimpleTags_Autolink
                                                                 'required'  => false,
                                                             ]);
 
+                                                            $select             = [
+                                                                'options' => [
+                                                                    [
+                                                                        'attr'    => '0',
+                                                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                                                    ],
+                                                                    [
+                                                                        'attr' => '1',
+                                                                        'text' => esc_attr__('True', 'simple-tags'),
+                                                                        'default' => 'true',
+                                                                    ],
+                                                                ],
+                                                            ];
+                                                            $selected           = (isset($current) && isset($current['whole_words'])) ? taxopress_disp_boolean($current['whole_words']) : '';
+                                                            $select['selected'] = !empty($selected) ? $current['whole_words'] : '';
+                                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo $ui->get_select_checkbox_input([
+                                                                'namearray'  => 'taxopress_autolink',
+                                                                'name'       => 'whole_words',
+                                                                'labeltext'  => esc_html__(
+                                                                    'Whole words only',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'aftertext'  => esc_html__(
+                                                                    'Only add links when the term is an exact whole word match. Do not autolink partial matches.',
+                                                                    'simple-tags'
+                                                                ),
+                                                                'selections' => $select, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            ]);
+
 
                                                             ?>
 

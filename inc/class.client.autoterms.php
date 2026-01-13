@@ -816,7 +816,7 @@ class SimpleTags_Client_Autoterms
 	 * Known possible values
 	 * 
 	 * COMPONENT: (st_autoterms)
-	 * ACTION: (existing_content, save_posts, daily_cron_schedule, hourly_cron_schedule)
+	 * ACTION: (existing_content, save_posts, daily_cron_schedule, hourly_cron_schedule, weekly_cron_schedule)
 	 * STATUS: (failed, success)
 	 * STATUS MESSAGE: (invalid_option, term_only_option, empty_post_content, terms_added, empty_terms, empty_terms_remove_all)
 	 * 

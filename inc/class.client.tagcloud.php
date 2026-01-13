@@ -55,6 +55,8 @@ class SimpleTags_Client_TagCloud {
 			'exclude'     => '',
 			'exclude_terms' => '',
 			'include'     => '',
+			'term_selection_mode' => 'automatic',
+			'include_terms' => '',
 			'limit_days'  => 0,
 			'min_usage'   => 0,
 			'category'    => 0,
@@ -128,7 +130,41 @@ class SimpleTags_Client_TagCloud {
 		$taxonomy = self::_get_current_taxonomy( $args['taxonomy'] );
 
 		// Get terms
-		$terms = self::getTags( $args, $taxonomy );
+		$term_selection_mode = isset($args['term_selection_mode']) ? $args['term_selection_mode'] : 'automatic';
+		
+		if ($term_selection_mode === 'custom') {
+			$terms = [];
+			if (!empty($args['include_terms'])) {
+				$include_terms_array = array_map('trim', explode(',', $args['include_terms']));
+				foreach ($include_terms_array as $term_name) {
+					if (!empty($term_name)) {
+						$term = get_term_by('name', $term_name, $taxonomy);
+						if ($term && !is_wp_error($term)) {
+							$terms[] = $term;
+						}
+					}
+				}
+			}
+		} elseif ($term_selection_mode === 'combined') {
+			$terms = self::getTags($args, $taxonomy);
+
+			if (!empty($args['include_terms'])) {
+				$include_terms_array = array_map('trim', explode(',', $args['include_terms']));
+				$existing_term_ids = wp_list_pluck($terms, 'term_id');
+				
+				foreach ($include_terms_array as $term_name) {
+					if (!empty($term_name)) {
+						$term = get_term_by('name', $term_name, $taxonomy);
+						if ($term && !is_wp_error($term) && !in_array($term->term_id, $existing_term_ids)) {
+							$terms[] = $term;
+							$existing_term_ids[] = $term->term_id;
+						}
+					}
+				}
+			}
+		} else {
+			$terms = self::getTags($args, $taxonomy);
+		}
 
 		// Remove hidden terms if enabled
 		if ($enable_hidden_terms && !empty($args['hide_terms'])) {
@@ -171,6 +207,21 @@ class SimpleTags_Client_TagCloud {
         }
 
 		if ( empty( $terms ) ) {
+			// Check if custom mode is selected with empty include_terms
+			if ($term_selection_mode === 'custom' && empty($args['include_terms'])) {
+				$message_text = __('You have selected Custom mode but the "Custom terms to display" field is empty. Please add terms to display or switch to Automatic mode.', 'simple-tags');
+				// Apply the same styling as terms would have
+				$font_size = !empty($smallest) ? $smallest : 12;
+				$font_color = !empty($mincolor) ? $mincolor : '#353535';
+				$font_unit = !empty($unit) ? $unit : 'pt';
+				$custom_mode_message = '<span style="font-size: ' . esc_attr($font_size) . esc_attr($font_unit) . '; color: ' . esc_attr($font_color) . ';">' . esc_html($message_text) . '</span>';
+				if((int)$hide_output === 0){
+					return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $custom_mode_message, $copyright, '', $wrap_class, $link_class );
+				}else{
+					return '';
+				}
+			}
+			
             if((int)$hide_output === 0){
 			    return SimpleTags_Client::output_content( 'st-tag-cloud', $format, $title, $notagstext, $copyright, '', $wrap_class, $link_class );
             }else{

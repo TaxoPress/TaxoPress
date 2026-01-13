@@ -37,8 +37,6 @@ class SimpleTags_Client_Autolinks
                 add_filter('elementor/frontend/builder_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
             }
 
-            add_action('wp_head', [__CLASS__, 'print_autolink_inline_style']);
-
 			add_action('admin_init', [$this, 'taxopress_customurl_taxonomies_fields']);
 		}
 	}
@@ -89,11 +87,6 @@ class SimpleTags_Client_Autolinks
         }
 
         return $has_setting_saved ? array_unique($enabled_taxonomies) : $default_enabled_taxonomies;
-    }
-
-    public static function print_autolink_inline_style() {
-        // Ensure autolink anchors are visibly underlined on the frontend (overrides Elementor/theme rules)
-        echo '<style type="text/css">a.st_tag, a.internal_tag, .st_tag, .internal_tag { text-decoration: underline !important; }</style>';
     }
 
 	/**
@@ -699,21 +692,29 @@ class SimpleTags_Client_Autolinks
 					return 'STARTTAXOPRESSENTITY' . $matches[1] . 'TAXOPRESSENTITYEND';
 				}, $search);
 
+				$whole_words = isset($options['whole_words']) ? (int)$options['whole_words'] : 1;
+				if ($whole_words) {
+					$pattern = '/\b' . preg_quote($search, "/") . '\b/ui';
+				} else {
+					// Allow partial matches - no word boundary checks
+					$pattern = '/' . preg_quote($search, "/") . '/i';
+				}
+
 				//if ('i' === $case) {
 				if ($autolink_case === 'none') { // retain case
-					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $link_closing) {
+					$replaced = preg_replace_callback($pattern, function($matches) use ($link_openeing, $link_closing) {
 						return $link_openeing . htmlspecialchars($matches[0]) . $link_closing;
 					}, $node->wholeText, $same_usage_max, $rep_count);
 				} elseif ($autolink_case === 'uppercase') { // uppercase
-					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $upperterm, $link_closing) {
+					$replaced = preg_replace_callback($pattern, function($matches) use ($link_openeing, $upperterm, $link_closing) {
 						return $link_openeing . strtoupper($matches[0]) . $link_closing;
 					}, $node->wholeText, $same_usage_max, $rep_count);
 				} elseif ($autolink_case === 'termcase') { // termcase
-					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $search, $link_closing) {
+					$replaced = preg_replace_callback($pattern, function($matches) use ($link_openeing, $search, $link_closing) {
 						return $link_openeing . $search . $link_closing;
 					}, $node->wholeText, $same_usage_max, $rep_count);
 				} else { // lowercase
-					$replaced = preg_replace_callback('/(?<!\w)' . preg_quote($search, "/") . '(?!\w)/i', function($matches) use ($link_openeing, $lowerterm, $link_closing) {
+					$replaced = preg_replace_callback($pattern, function($matches) use ($link_openeing, $lowerterm, $link_closing) {
 						return $link_openeing . strtolower($matches[0]) . $link_closing;
 					}, $node->wholeText, $same_usage_max, $rep_count);
 				}
@@ -828,11 +829,22 @@ class SimpleTags_Client_Autolinks
 		$j        = 0;
 		$filtered = ''; // will filter text token by token
 
-		$match      = '/(\PL|\A)(' . preg_quote($search, '/') . ')(\PL|\Z)\b/u' . $case;
+		// Get URL and title first
 		$url = array_key_exists($search, self::$link_tags) ? self::$link_tags[$search] : $replace;
 		$used_title = self::taxopress_get_title_attribute($search, $url, $options);
 		$replace = $url;
-		$substitute = '$1<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . $used_title . "\">$2</a>$3";
+
+		// Determine word boundary pattern based on whole_words setting
+		$whole_words = isset($options['whole_words']) ? (int)$options['whole_words'] : 1;
+		if ($whole_words) {
+			// Use \b for strict whole word matching
+			$match = '/\b' . preg_quote($search, '/') . '\b/u' . $case;
+			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . $used_title . "\">$0</a>";
+		} else {
+			// Allow partial matches - no word boundary checks
+			$match = '/(' . preg_quote($search, '/') . ')/u' . $case;
+			$substitute = '<a href="' . $replace . '" class="st_tag internal_tag ' . $link_class . '" ' . $rel . ' title="' . $used_title . "\">$1</a>";
+		}
 
 		//$match = "/\b" . preg_quote($search, "/") . "\b/".$case;
 		//$substitute = '<a href="'.$replace.'" class="st_tag internal_tag '.$link_class.'" '.$rel.' title="'. esc_attr( sprintf( __('Posts tagged with %s', 'simple-tags'), $search ) )."\">$0</a>";

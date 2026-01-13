@@ -121,8 +121,11 @@ class SimpleTags_Admin
 			require STAGS_DIR . '/inc/autoterms-logs-table.php';
 			require STAGS_DIR . '/inc/autoterms.php';
 			require STAGS_DIR . '/inc/autoterms_content.php';
+			require STAGS_DIR . '/inc/schedule.php';
+			require STAGS_DIR . '/inc/schedule-logs-table.php';
 			SimpleTags_Autoterms::get_instance();
 			SimpleTags_Autoterms_Content::get_instance();
+			SimpleTags_Autoterms_Schedule::get_instance();
 			self::$enabled_menus['st_autoterms'] = esc_html__('Auto Terms', 'simple-tags');
 		}
 
@@ -606,6 +609,14 @@ class SimpleTags_Admin
 		];
 
 		if (!in_array($current_page, $preview_pages, true)) {
+			return;
+		}
+
+		if ( (int) SimpleTags_Plugin::get_option_value( 'disable_admin_frontend_scripts' ) === 1 ) {
+			return;
+		}
+
+		if ( ! apply_filters( 'taxopress_load_admin_frontend_scripts', true ) ) {
 			return;
 		}
 
@@ -1327,6 +1338,8 @@ class SimpleTags_Admin
 				return esc_html__('License', 'simple-tags');
 			case 'hidden_terms':
 				return esc_html__('Hidden Terms', 'simple-tags');
+			case 'frontend_scripts':
+				return esc_html__('Frontend Scripts', 'simple-tags');
 			case 'manage_terms':
 				return esc_html__('Manage Terms', 'simple-tags');
             case 'mass_edit_terms':

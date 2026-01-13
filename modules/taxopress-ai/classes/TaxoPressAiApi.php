@@ -402,14 +402,17 @@ if (!class_exists('TaxoPressAiApi')) {
             $content = str_replace('Tags: ', '', $content);
             $content = str_replace('Extracted tags: ', '', $content);
             $content = str_replace('Extracted text: ', '', $content);
+            
+            $content = preg_replace('/\([^)]*\)/s', '', $content);
+            
             //o3-mini seems to be more of reasoning than tags
-            $content = preg_replace('/Explanation:.*/', '', $content);
+            $content = preg_replace('/Explanation:.*/s', '', $content);
             $content = preg_replace('/^.*?:\s*/', '', $content); // remove texts after column making sure explanation are removed
             $content = str_replace(['•','*'], '', $content);
             $content = preg_replace('/^(.*?)\b(These Tags:|Extracted tags:|Extracted text:|Based on the content:|A simple extraction de-duplicating the words results in the following tags:|Therefore, the extracted tags are:)\s*/is', '', $content);
 
-
             // Remove leading dashes, numbers with a dot, and any extra whitespace
+            $content = preg_replace('/(\w+)\d+/', '$1', $content);
             $content = preg_replace("/[\r\n]+|\s*[-–—]\s*|\d+\.\s*/", "|", $content);
 
             $content = str_replace('�', '', $content);
@@ -484,22 +487,62 @@ if (!class_exists('TaxoPressAiApi')) {
                 } else {
                     $prompt = "Extract tags from the following content: '$clean_content'. Tags:";
                     $post_terms_in_prompt = false;
+                    $site_terms_in_prompt = false;
                     $existing_post_terms = [];
+                    $existing_site_terms = [];
+
                     if (!empty($settings_data['open_ai_tag_prompt'])) {
                         $post_terms_in_prompt = strpos($settings_data['open_ai_tag_prompt'], '{post_terms}') !== false;
+                        $site_terms_in_prompt = strpos($settings_data['open_ai_tag_prompt'], '{site_terms}') !== false;
                         $custom_prompt = sanitize_textarea_field(stripslashes_deep($settings_data['open_ai_tag_prompt']));
+
+                        preg_match_all('/\{([^}]+)\}/', $custom_prompt, $matches);
+                        if (!empty($matches[1])) {
+                            $valid_placeholders = ['content', 'post_terms', 'site_terms'];
+                            $invalid_placeholders = array_diff($matches[1], $valid_placeholders);
+                            if (!empty($invalid_placeholders)) {
+                                $return['status'] = 'error';
+                                $return['message'] = sprintf(
+                                    esc_html__('Invalid placeholder(s) detected: {%s}. Valid placeholders are: {content}, {post_terms}, {site_terms}', 'simple-tags'),
+                                    implode('}, {', $invalid_placeholders)
+                                );
+                                return $return;
+                            }
+                        }
+
                         $prompt = str_replace('{content}', $clean_content, $custom_prompt);
+                        
                         if (!empty($taxonomy) && !empty($post_id)) {
                             $post_terms_results = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'names']);
                             $existing_post_terms = $post_terms_results;
                             $post_terms_comma_join = !empty($post_terms_results) ? join(', ', $post_terms_results) : '';
                             $prompt = str_replace('{post_terms}', $post_terms_comma_join, $prompt);
                         }
+                        
+                        if ($site_terms_in_prompt && !empty($taxonomy)) {
+                            $site_terms_results = get_terms([
+                                'taxonomy' => $taxonomy,
+                                'hide_empty' => false,
+                                'fields' => 'names',
+                                'number' => 0
+                            ]);
+                            
+                            if (!is_wp_error($site_terms_results) && !empty($site_terms_results)) {
+                                $existing_site_terms = $site_terms_results;
+                                $site_terms_comma_join = join(', ', $site_terms_results);
+                                $prompt = str_replace('{site_terms}', $site_terms_comma_join, $prompt);
+                            } else {
+                                $prompt = str_replace('{site_terms}', '', $prompt);
+                            }
+                        }
                     }
 
                     if ($post_terms_in_prompt && empty($existing_post_terms)) {
                         $return['status'] = 'error';
                         $return['message'] = esc_html__('You added {post_terms} in the prompt but your post does not contain any terms.', 'simple-tags');
+                    } elseif ($site_terms_in_prompt && empty($existing_site_terms)) {
+                        $return['status'] = 'error';
+                        $return['message'] = esc_html__('You added {site_terms} in the prompt but your site does not contain any terms for this taxonomy.', 'simple-tags');
                     } else {
                         $body_data = [
                             'model'         => $open_ai_model,
@@ -513,10 +556,12 @@ if (!class_exists('TaxoPressAiApi')) {
 
                         
                         if (!in_array($open_ai_model, ['o3-mini', 'o1-mini', 'o1']) && !preg_match('/^gpt-5/', $open_ai_model)) {
+                            $token_limit = !empty($settings_data['open_ai_max_tokens']) ? (int)$settings_data['open_ai_max_tokens'] : 50;
+                            
                             if (preg_match('/^(gpt-5|gpt-4\.5)/', $open_ai_model)) {
-                                $body_data['max_completion_tokens'] = 50;
+                                $body_data['max_completion_tokens'] = $token_limit;
                             } else{
-                                $body_data['max_tokens'] = 50;
+                                $body_data['max_tokens'] = $token_limit;
                             }
                             $body_data['temperature'] = 0.9;
                         }
@@ -555,6 +600,13 @@ if (!class_exists('TaxoPressAiApi')) {
                                     foreach ( $body_data['choices'] as $choice ) {
                                         if ( isset( $choice['message'], $choice['message']['content'] ) ) {
                                             $cleaned_response = self::clean_api_response($choice['message']['content']);
+                                            
+                                            if ($site_terms_in_prompt && !empty($existing_site_terms)) {
+                                                $response_terms = array_map('trim', explode(',', $cleaned_response));
+                                                $valid_terms = array_intersect($response_terms, $existing_site_terms);
+                                                $cleaned_response = implode(', ', $valid_terms);
+                                            }
+                                            
                                             if (count(array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )))) === 1) {
                                                 $data = array_merge($data, [$cleaned_response]);
                                             } else {
@@ -562,10 +614,6 @@ if (!class_exists('TaxoPressAiApi')) {
                                             }
                                         }
                                     }
-                                }
-
-                                if (!empty($data) &&!empty($settings_data['open_ai_exclude_post_terms']) && $post_terms_in_prompt) {
-                                    $data = array_intersect($data, $existing_post_terms);
                                 }
 
                                 $terms = [];
