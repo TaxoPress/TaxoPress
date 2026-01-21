@@ -276,6 +276,14 @@ $options = array(
     // post tab
     'posts'       => array(
         array(
+            'post_tab_description',
+            '',
+            'helper',
+            '',
+            __('These settings control features on the Posts screen.', 'simple-tags'),
+            ''
+        ),
+        array(
             'post_terms_filter_format',
             __('Terms Filter display:', 'simple-tags'),
             'radio',
@@ -427,6 +435,14 @@ $options = array(
 
     // Manage terms tab
     'manage_terms' => array(
+        array(
+            'manage_terms_description',
+            '',
+            'helper',
+            '',
+            __('These settings control features on the Manage Terms screen.', 'simple-tags'),
+            ''
+        ),
         array(
             'enable_add_terms_slug',
             __('Add Terms:', 'simple-tags'),
