@@ -128,6 +128,7 @@ class SimpleTags_Client_Schedule
         foreach ($objects as $object) {
             $current_post++;
             update_post_meta($object->ID, '_taxopress_autotermed', 1);
+            $post_object = get_post($object->ID);
 
             foreach ($autoterms_to_run as $autoterm) {
                 if (empty($autoterm['autoterm_for_schedule'])) {
@@ -152,7 +153,7 @@ class SimpleTags_Client_Schedule
                 }
 
                 SimpleTags_Client_Autoterms::auto_terms_post(
-                    $object,
+                    $post_object,
                     isset($applied['taxonomy']) ? $applied['taxonomy'] : '',
                     $applied,
                     true,
