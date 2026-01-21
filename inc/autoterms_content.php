@@ -330,6 +330,7 @@ class SimpleTags_Autoterms_Content
                                     <div class="inside">
                                         <div id="minor-publishing">
                                             <div class="sidebar-body-wrap">
+                                                <p class="description"><?php echo sprintf(esc_html__('You can see full log details on the %1s screen', 'simple-tags'), '<a target="_blank" href="'.admin_url('admin.php?page=st_autoterms&tab=logs').'">'.esc_html__('Auto Terms Logs', 'simple-tags').'</a>'); ?></p>
                                                 <div class="submit-action">
                                                     <span class="spinner taxopress-spinner"></span>
                                                     <input type="submit" class="button taxopress-autoterm-all-content"
