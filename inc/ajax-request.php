@@ -135,7 +135,8 @@ function taxopress_autoterms_content_by_ajax()
         if (!empty($objects)) {
             foreach ($objects as $object) {
                 update_post_meta($object->ID, '_taxopress_autotermed', 1);
-                SimpleTags_Client_Autoterms::auto_terms_post( $object, $autoterm_data['taxonomy'], $autoterm_data, true, 'existing_content', 'st_autoterms' );
+                $post_object = get_post($object->ID);
+                SimpleTags_Client_Autoterms::auto_terms_post( $post_object, $autoterm_data['taxonomy'], $autoterm_data, true, 'existing_content', 'st_autoterms' );
                 $log_messages = !empty($empty_term_messages[$object->ID]['message']) ? $empty_term_messages[$object->ID]['message'] : [];
                 $log_message_html = '';
                 if (!empty($log_messages)) {
