@@ -268,6 +268,13 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+v3.44.0- 2026-01-22
+* Fixed: Auto Terms Existing Content and Schedule aren't adding terms correctly, #2898
+* Update: Update description for automatic terms display selection mode, #2893
+* Update: Add a description to Posts and Manage Terms tabs, #2894
+* Update: Description for Frontend Scripts, #2895
+* Update: Add AutoTerms Log link to Existing Content page, #2897
+
 v3.43.0- 2026-01-13
 * Fixed: "Post term separator string" not working, #2879
 * Fixed: Taxopress adds inline css in the head, #2877
