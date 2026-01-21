@@ -564,7 +564,7 @@ class SimpleTags_Tag_Clouds
                                                                     <?php esc_html_e('Automatic', 'simple-tags'); ?>
                                                                 </label>
                                                                 <p class="description" style="margin-left: 25px; margin-top: 5px;">
-                                                                    <?php esc_html_e('Display terms based on your Parent Term and Display Mode settings.', 'simple-tags'); ?>
+                                                                    <?php esc_html_e('Display terms based on settings in the "General" tab.', 'simple-tags'); ?>
                                                                 </p>
                                                             </div>
                                                             <div style="margin-bottom: 10px;">
