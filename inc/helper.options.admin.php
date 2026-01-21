@@ -390,7 +390,7 @@ $options = array(
             '',
             'helper',
             '',
-            __('TaxoPress loads CSS and JavaScript files on the frontend for features like Terms Display, Related Posts, and Post Tags. If you disable these scripts, those features may not display correctly.', 'simple-tags'),
+            __('TaxoPress loads CSS and JavaScript files on the frontend for features like Terms Display, Related Posts, and Terms for Current Post. If you disable these scripts, those features may not display correctly.', 'simple-tags'),
             ''
         ),
         array(
@@ -406,7 +406,7 @@ $options = array(
             __('Disable Admin Preview Scripts:', 'simple-tags'),
             'checkbox',
             '1',
-            __('Check this to prevent TaxoPress from loading frontend CSS and JavaScript files in the WordPress admin area. This will break the preview functionality when editing Terms Display, Related Posts, and Post Tags.', 'simple-tags'),
+            __('Check this to prevent TaxoPress from loading frontend CSS and JavaScript files in the WordPress admin area. This will break the preview functionality when editing Terms Display, Related Posts, and Terms for Current Post.', 'simple-tags'),
             ''
         )
     ),
