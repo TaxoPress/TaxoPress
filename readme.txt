@@ -3,7 +3,7 @@ Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojop
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 3.43.0
+Stable tag: 3.44.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,13 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.44.0- 2026-01-22
+* Fixed: Auto Terms Existing Content and Schedule aren't adding terms correctly, #2898
+* Update: Update description for automatic terms display selection mode, #2893
+* Update: Add a description to Posts and Manage Terms tabs, #2894
+* Update: Description for Frontend Scripts, #2895
+* Update: Add AutoTerms Log link to Existing Content page, #2897
 
 v3.43.0- 2026-01-13
 * Fixed: "Post term separator string" not working, #2879

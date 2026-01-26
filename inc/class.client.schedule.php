@@ -112,22 +112,71 @@ class SimpleTags_Client_Schedule
             $schedule_terms_limit_days_sql = 'AND post_date > "' . date('Y-m-d H:i:s', time() - $schedule_terms_limit_days * 86400) . '"';
         }
 
+        // Use a per-frequency cursor so the schedule walks all eligible posts over time
+        $cursor_option_name = 'taxopress_autoterms_schedule_last_id_' . $frequency;
+        $last_id = (int) get_option($cursor_option_name, 0);
+
+        $post_types = array_map('sanitize_key', (array) $post_types);
+        $post_status = array_map('sanitize_key', (array) $post_status);
+        $post_types_placeholders = implode(',', array_fill(0, count($post_types), '%s'));
+        $post_status_placeholders = implode(',', array_fill(0, count($post_status), '%s'));
+
         if ($autoterm_schedule_exclude > 0) {
-            $objects = (array) $wpdb->get_results("SELECT ID, post_title, post_content FROM {$wpdb->posts} LEFT JOIN {$wpdb->postmeta} ON ( ID = {$wpdb->postmeta}.post_id AND {$wpdb->postmeta}.meta_key = '_taxopress_autotermed' ) WHERE post_type IN ('" . implode("', '", array_map('esc_sql', $post_types)) . "') AND {$wpdb->postmeta}.post_id IS NULL AND post_status IN ('" . implode("', '", array_map('esc_sql', $post_status)) . "') {$schedule_terms_limit_days_sql} ORDER BY ID DESC LIMIT {$limit}"
-            );
+            $sql = "SELECT ID, post_title, post_content FROM {$wpdb->posts} ";
+            $sql .= "LEFT JOIN {$wpdb->postmeta} ON ( ID = {$wpdb->postmeta}.post_id AND {$wpdb->postmeta}.meta_key = '_taxopress_autotermed' ) ";
+            $sql .= "WHERE post_type IN ({$post_types_placeholders}) ";
+            $sql .= "AND {$wpdb->postmeta}.post_id IS NULL ";
+            $sql .= "AND post_status IN ({$post_status_placeholders}) ";
+            if (!empty($schedule_terms_limit_days_sql)) {
+                $sql .= " {$schedule_terms_limit_days_sql} ";
+            }
+            if ($last_id > 0) {
+                $sql .= " AND ID < %d";
+            }
+            $sql .= " ORDER BY ID DESC LIMIT %d";
+
+            $prepare_args = array_merge($post_types, $post_status);
+            if ($last_id > 0) {
+                $prepare_args[] = $last_id;
+            }
+            $prepare_args[] = $limit;
+
+            $objects = (array) $wpdb->get_results($wpdb->prepare($sql, $prepare_args));
         } else {
-            $objects = (array) $wpdb->get_results("SELECT ID, post_title, post_content FROM {$wpdb->posts} WHERE post_type IN ('" . implode("', '", array_map('esc_sql', $post_types)) . "') AND post_status IN ('" . implode("', '", array_map('esc_sql', $post_status)) . "') {$schedule_terms_limit_days_sql} ORDER BY ID DESC LIMIT {$limit}"
-            );
+            $sql = "SELECT ID, post_title, post_content FROM {$wpdb->posts} ";
+            $sql .= "WHERE post_type IN ({$post_types_placeholders}) ";
+            $sql .= "AND post_status IN ({$post_status_placeholders}) ";
+            if (!empty($schedule_terms_limit_days_sql)) {
+                $sql .= " {$schedule_terms_limit_days_sql} ";
+            }
+            if ($last_id > 0) {
+                $sql .= " AND ID < %d";
+            }
+            $sql .= " ORDER BY ID DESC LIMIT %d";
+
+            $prepare_args = array_merge($post_types, $post_status);
+            if ($last_id > 0) {
+                $prepare_args[] = $last_id;
+            }
+            $prepare_args[] = $limit;
+
+            $objects = (array) $wpdb->get_results($wpdb->prepare($sql, $prepare_args));
         }
 
         if (empty($objects)) {
+            delete_option($cursor_option_name);
             return;
         }
 
         $current_post = 0;
+        $min_id_in_batch = null;
         foreach ($objects as $object) {
             $current_post++;
             update_post_meta($object->ID, '_taxopress_autotermed', 1);
+            $post_object = get_post($object->ID);
+            if ($min_id_in_batch === null || (int) $object->ID < $min_id_in_batch) {
+                $min_id_in_batch = (int) $object->ID;
+            }
 
             foreach ($autoterms_to_run as $autoterm) {
                 if (empty($autoterm['autoterm_for_schedule'])) {
@@ -152,7 +201,7 @@ class SimpleTags_Client_Schedule
                 }
 
                 SimpleTags_Client_Autoterms::auto_terms_post(
-                    $object,
+                    $post_object,
                     isset($applied['taxonomy']) ? $applied['taxonomy'] : '',
                     $applied,
                     true,
@@ -166,6 +215,10 @@ class SimpleTags_Client_Schedule
             if ($sleep > 0 && $current_post % $limit == 0) {
                 sleep($sleep);
             }
+        }
+
+        if (!empty($min_id_in_batch)) {
+            update_option($cursor_option_name, (int) $min_id_in_batch);
         }
     }
 }

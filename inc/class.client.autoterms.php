@@ -783,11 +783,173 @@ class SimpleTags_Client_Autoterms
 
 			$added_post_term[$object->ID] = $terms_to_add;
 
-			// Add terms to posts
-			if ($autoterm_replace_type == '' || $autoterm_replace_type == 'append') {
-				wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, true);
-			} elseif ($autoterm_replace_type == 'append_and_replace' || $autoterm_replace_type == 'replace') {
-				wp_set_object_terms($object->ID, $terms_to_add, $taxonomy, false);
+			// Validate taxonomy exists
+			if (!taxonomy_exists($taxonomy)) {
+				$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('Taxonomy "%s" does not exist.', 'simple-tags'), $taxonomy);
+				return false;
+			}
+
+			// Check if terms exist in taxonomy and create if needed
+			$terms_to_add_ids = [];
+			foreach ($terms_to_add as $term_name) {
+				$term_exists = term_exists($term_name, $taxonomy);
+				if ($term_exists) {
+					$term_id = is_array($term_exists) ? $term_exists['term_id'] : $term_exists;
+					$terms_to_add_ids[] = (int) $term_id;
+				} else {
+					$new_term = wp_insert_term($term_name, $taxonomy);
+					if (is_wp_error($new_term)) {
+						$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('Error creating term "%s": %s', 'simple-tags'), $term_name, $new_term->get_error_message());
+					} else {
+						$terms_to_add_ids[] = (int) $new_term['term_id'];
+					}
+				}
+			}
+
+			clean_object_term_cache($object->ID, $taxonomy);
+			
+			// Get current terms to compare later
+			$current_terms_before = wp_get_object_terms($object->ID, $taxonomy, array('fields' => 'names'));
+			if (is_wp_error($current_terms_before)) {
+				$current_terms_before = array();
+			}
+
+			// Remove save_post hooks temporarily to prevent infinite loops during term assignment
+			remove_action('save_post', array(__CLASS__, 'save_post'), 12);
+			remove_action('post_syndicated_item', array(__CLASS__, 'save_post'), 12);
+
+			$result = false;
+			$append_mode = false;
+			if (empty($terms_to_add_ids)) {
+				// Nothing to assign
+			} else {
+				$post_exists = get_post($object->ID);
+				if (!$post_exists) {
+					$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('Error: Post ID %d does not exist.', 'simple-tags'), $object->ID);
+				} else {
+				}
+				
+				// Check if taxonomy is registered for this post type
+				$post_type_taxonomies = get_object_taxonomies($post_exists->post_type);
+				if (in_array($taxonomy, $post_type_taxonomies)) {
+				} else {
+					$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('Warning: Taxonomy "%s" is not registered for post type "%s".', 'simple-tags'), $taxonomy, $post_exists->post_type);
+				}
+				
+				// Remove all filters on set_object_terms that might be blocking
+				global $wp_filter;
+				$backup_set_object_terms_filters = isset($wp_filter['set_object_terms']) ? $wp_filter['set_object_terms'] : null;
+				
+				if (isset($wp_filter['set_object_terms'])) {
+					unset($wp_filter['set_object_terms']);
+				}
+
+				if ($autoterm_replace_type == '' || $autoterm_replace_type == 'append') {
+					$append_mode = true;
+					$result = wp_set_object_terms($object->ID, $terms_to_add_ids, $taxonomy, true);
+				} elseif ($autoterm_replace_type == 'append_and_replace' || $autoterm_replace_type == 'replace') {
+					$append_mode = false;
+					$result = wp_set_object_terms($object->ID, $terms_to_add_ids, $taxonomy, false);
+				}
+				
+				// Restore filters
+				if ($backup_set_object_terms_filters !== null) {
+					$wp_filter['set_object_terms'] = $backup_set_object_terms_filters;
+				}
+			}
+
+			// If core API failed without WP_Error, apply DB-level fallback
+			if ($result === false && !empty($terms_to_add_ids)) {
+				global $wpdb;
+				$fallback_tt_ids = array();
+				foreach ($terms_to_add_ids as $term_id) {
+					$term_id = (int) $term_id;
+					$term_info = term_exists($term_id, $taxonomy);
+					if (is_array($term_info) && !empty($term_info['term_taxonomy_id'])) {
+						$fallback_tt_ids[] = (int) $term_info['term_taxonomy_id'];
+					}
+				}
+				$fallback_tt_ids = array_values(array_unique(array_filter($fallback_tt_ids)));
+				
+				if (!empty($fallback_tt_ids)) {
+					$existing_tt_ids = $wpdb->get_col(
+					$wpdb->prepare(
+						"SELECT tr.term_taxonomy_id
+						 FROM {$wpdb->term_relationships} AS tr
+						 INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+						 WHERE tr.object_id = %d AND tt.taxonomy = %s",
+						$object->ID,
+						$taxonomy
+					)
+				);
+				if (!is_array($existing_tt_ids)) {
+					$existing_tt_ids = array();
+				}
+				$existing_tt_ids = array_map('intval', $existing_tt_ids);
+					
+					// Compute final tt_ids based on replace/append behavior
+					if ($autoterm_replace_type == 'append_and_replace' || $autoterm_replace_type == 'replace') {
+						$final_tt_ids = $fallback_tt_ids;
+						if (!empty($existing_tt_ids)) {
+							foreach ($existing_tt_ids as $existing_tt_id) {
+								$wpdb->delete(
+									$wpdb->term_relationships,
+									array(
+										'object_id' => (int) $object->ID,
+										'term_taxonomy_id' => (int) $existing_tt_id
+									),
+									array('%d', '%d')
+								);
+							}
+						}
+					} else {
+						$final_tt_ids = array_values(array_unique(array_merge($existing_tt_ids, $fallback_tt_ids)));
+					}
+					
+					foreach ($final_tt_ids as $tt_id) {
+						$tt_id = (int) $tt_id;
+						$wpdb->query(
+							$wpdb->prepare(
+								"INSERT IGNORE INTO {$wpdb->term_relationships} (object_id, term_taxonomy_id, term_order)
+								 VALUES (%d, %d, 0)",
+								$object->ID,
+								$tt_id
+							)
+						);
+					}
+					
+					if (!empty($final_tt_ids)) {
+						wp_update_term_count($final_tt_ids, $taxonomy);
+						clean_object_term_cache($object->ID, $taxonomy);
+						wp_cache_delete($object->ID, 'posts');
+						wp_cache_delete($object->ID, 'post_meta');
+						$result = $final_tt_ids;
+					}
+				} else {
+					// No valid term_taxonomy_ids resolved; nothing to do.
+				}
+			}
+
+			$current_terms_after = wp_get_object_terms($object->ID, $taxonomy, array('fields' => 'names'));
+			if (is_wp_error($current_terms_after)) {
+				$current_terms_after = array();
+			}
+
+			$newly_added_terms = array_diff($current_terms_after, $current_terms_before);
+			if (!empty($newly_added_terms)) {
+				$empty_term_messages[$object->ID]['message'][] = sprintf('Terms added: %s', esc_html(implode(', ', $newly_added_terms)));
+			}
+
+			// Re-add save_post hooks
+			if (1 === (int) SimpleTags_Plugin::get_option_value('active_auto_terms')) {
+				add_action('save_post', array(__CLASS__, 'save_post'), 12, 2);
+				add_action('post_syndicated_item', array(__CLASS__, 'save_post'), 12, 2);
+			}
+
+			// Check if wp_set_object_terms failed
+			if (is_wp_error($result)) {
+				$empty_term_messages[$object->ID]['message'][] = sprintf(esc_html__('Error adding terms: %s', 'simple-tags'), $result->get_error_message());
+				return false;
 			}
 
 			// Clean cache
@@ -857,7 +1019,7 @@ class SimpleTags_Client_Autoterms
 		update_post_meta($post_id, '_taxopress_log_status', $status);
 		update_post_meta($post_id, '_taxopress_log_status_message', $status_message);
 		update_post_meta($post_id, '_taxopress_log_options', $options);
-		update_post_meta($post_id, '_taxopress_log_option_id', $options['ID']);
+		update_post_meta($post_id, '_taxopress_log_option_id', isset($options['ID']) ? $options['ID'] : 0);
 
 		//for performance reason, delete only 1 posts if more than limit instead of querying all posts
 		$auto_terms_logs_limit = (int) get_option('taxopress_auto_terms_logs_limit', 1000);
