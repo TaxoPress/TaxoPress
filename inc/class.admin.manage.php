@@ -618,6 +618,8 @@ class SimpleTags_Admin_Manage
             }
 
             $counter = 0;
+            $unique_objects = [];
+            $terms_id = [];
             if (count($new_terms) == 1) { // Merge
                 // Set new tag
                 $new_tag = sanitize_text_field($new_terms[0]);
@@ -709,7 +711,9 @@ class SimpleTags_Admin_Manage
                 }
             } else { // Error
                 add_settings_error(__CLASS__, __CLASS__, sprintf(esc_html__('Error. You need to enter a single term to merge to in new term name !', 'simple-tags'), $old), 'error taxopress-notice');
-            }           
+                return false;
+            }
+            
             return [
                 'success' => true,
                 'merged_into' => $new_tag,
