@@ -211,8 +211,8 @@ function taxopress_update_relatedpost($data = [])
     $xformat                                    = $data['taxopress_related_post']['xformat'];
     $data['taxopress_related_post']['xformat']  = stripslashes_deep($xformat);
     $data['taxopress_related_post']['embedded'] = isset($data['embedded']) ? $data['embedded'] : [];
-    $data['taxopress_related_post']['post_types'] = isset($data['post_types']) ? $data['post_types'] : [];
-
+    $data['taxopress_related_post']['post_types'] = isset($data['post_types']) ? array_map('sanitize_key', (array) $data['post_types']) : [];
+    $data['taxopress_related_post']['taxonomy'] = isset($data['taxopress_related_post']['taxonomy']) ? sanitize_key($data['taxopress_related_post']['taxonomy']) : 'post_tag';
 
     if (isset($data['edited_relatedpost'])) {
         $relatedpost_id                = $data['edited_relatedpost'];

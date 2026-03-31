@@ -45,7 +45,7 @@ class SimpleTags_Terms
             $post_types = array();
 
             foreach ($args['post_types'] as $cpt) {
-                $post_types[] = "'" . $cpt . "'";
+                $post_types[] = "'" . esc_sql( sanitize_key( $cpt ) ) . "'";
             }
 
             if (!empty($post_types)) {
