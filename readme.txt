@@ -1,9 +1,9 @@
-=== Tag, Category, and Taxonomy Manager - AI Autotagger with OpenAI ===
+=== Tag, Category, and Taxonomy Manager - Autotagger Automatically Add Terms ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul, deji98
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 5.0
-Tested up to: 6.8
-Stable tag: 3.44.0
+Tested up to: 6.9
+Stable tag: 3.45.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@ Tags, Categories and WordPress terms are easy with TaxoPress. Add a Tag or Categ
 
 TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms. TaxoPress can help with all your WordPress content, from adding Tags and Categories to Pages, to managing WooCommerce Product Categories and bbPress Topic Tags. 
 
-TaxoPress has integrations with AI tools including OpenAI, IBM Watson, Dandelion, LSEG / Refinitiv and more. You can use these services to find the best taxonomy terms for your content.
+TaxoPress has integrations with AI tools including OpenAI. You can use these AI services to find the best taxonomy terms for your content.
 
 With TaxoPress, you can organize, optimize, and showcase all your WordPress content:
 
@@ -35,7 +35,7 @@ With TaxoPress, you can organize, optimize, and showcase all your WordPress cont
 4. **Related Posts**: Shows lists of posts with similar tags and categories.
 5. **Auto Links**: If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add links to the archive page for that tag.
 6. **Auto Terms**: If you have a term called "WordPress", Auto Terms can analyze your posts, and when it finds the word "WordPress", it can add that term to your post. 
-7. **TaxoPress and AI**: The Pro version of TaxoPress has AI integrations with OpenAI, IBM Watson, and more. This makes it easier for you to find or create the best taxonomy terms for your content.
+7. **Add Terms with AI**: The Pro version of TaxoPress has AI integrations with OpenAI, IBM Watson, and more. This makes it easier for you to find or create the best taxonomy terms for your content.
 8. **Term Synonyms**: This feature allows you to have multiple words associated with a single term.
 9. **Linked Terms**: You can connect terms. When the main term is added to a post, the linked terms will be added also.
 10. **Manage Terms**: Add, rename, merge, remove, delete and even delete unused terms.
@@ -85,14 +85,14 @@ This feature allows WordPress to examine your post content and title for specifi
 
 [Click here to read about automatically adding terms](https://taxopress.com/docs/introduction-to-auto-terms/).
 
-## Feature 7. TaxoPress and AI (Pro version) ##
+## Feature 7. Add Terms with AI (Pro version) ##
 
 This feature makes it easier for you to find or create the best taxonomy terms for your content. TaxoPress AI can show a metabox on your post editing screen with all these options:. 
 
 * **Manage Post Terms**: This feature allows you to manage all the terms that are currently attached to a post.
 * **Suggest Existing Terms**: This feature uses a tool in the TaxoPress plugin that can scan your posts and suggest relevant terms that already exist on your site.
 * **Show All Existing Terms**: This feature allows you to browse all the terms in a taxonomy.
-* **OpenAI** / **IBM Watson** / **Dandelion** / **LSEG**: These integrations allow you to connect to external service. These services will scan your content and suggest relevant terms. They can suggest existing terms and also new terms.
+* **OpenAI**: These integrations allow you to connect to external service. These services will scan your content and suggest relevant terms. They can suggest existing terms and also new terms.
 
 [Click here to read about TaxoPress and AI](https://taxopress.com/docs/sources-for-auto-terms/).
 
@@ -267,6 +267,12 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
 
 == Changelog ==
+
+v3.45.0- 2026-04-16
+* Fixed: Issue with metabox overlap in WordPress 7.0, #2929
+* Fixed: Uncaught TypeError: array_keys(): Argument #1 in class.admin.manage, #2921
+* Update: Related Posts settings, #2928
+* Update: Update readme file from WordPress.org #2936
 
 v3.44.0- 2026-01-22
 * Fixed: Auto Terms Existing Content and Schedule aren't adding terms correctly, #2898
