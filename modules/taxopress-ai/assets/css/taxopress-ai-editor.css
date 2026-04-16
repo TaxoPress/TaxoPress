@@ -90,11 +90,19 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
     margin: 3px 1px 3px 10px;
     padding: 0;
     display: inline-block;
-    white-space: nowrap;
+    white-space: normal !important;
     background: #ddd;
     border: 1px dotted transparent;
     color: #1e1e1e;
     cursor: pointer;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.taxopress-post-suggestterm .previewed-tag-content {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
 }
 
 .taxopress-post-suggestterm .previewed-tag-content .result-terms:not(.countable) {
@@ -308,11 +316,17 @@ body.taxopress-block-editor .taxopress-post-suggestterm {
 }
  
 .taxopress-preview-filters {
-    margin: 20px 0px !important;/
+    margin: 20px 0px !important;
 }
 
-.taxopress-suggest-terms-content {
+.taxopress-post-suggestterm.fast_update_screen .taxopress-suggest-terms-content {
     min-width: 900px !important;
+}
+
+.taxopress-post-suggestterm.editor-screen .taxopress-suggest-terms-content {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
 }
 
 .taxopress-post-suggestterm .taxopress-suggest-terms-content .taxopress-tab-content-item,

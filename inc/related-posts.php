@@ -1342,7 +1342,7 @@ class SimpleTags_Related_Post
         // Prepare arguments with strict type casting and validation
         $args = array(
             'post_id'           => $post_id,
-            'taxonomy'          => isset($settings['taxonomy']) ? sanitize_text_field($settings['taxonomy']) : 'post_tag',
+            'taxonomy'          => isset($settings['taxonomy']) ? sanitize_key($settings['taxonomy']) : 'post_tag',
             'max_related_posts' => isset($settings['max_related_posts']) ? max(1, intval($settings['max_related_posts'])) : 5,
             'format'           => isset($settings['format']) ? sanitize_text_field($settings['format']) : 'list',
             'title'            => isset($settings['title']) ? wp_kses_post($settings['title']) : '',
@@ -1350,7 +1350,7 @@ class SimpleTags_Related_Post
             'hide_title'       => !empty($settings['hide_title']),
             'xformat'          => isset($settings['xformat']) ? wp_kses_post($settings['xformat']) : '',
             'post_types'       => isset($_POST['post_types']) && is_array($_POST['post_types']) ? 
-                                array_map('sanitize_text_field', $_POST['post_types']) : ['post'],
+                                array_map('sanitize_key', $_POST['post_types']) : ['post'],
             'limit_days'       => isset($settings['limit_days']) ? max(0, intval($settings['limit_days'])) : 0,
             'nopoststext'      => isset($settings['nopoststext']) ? wp_kses_post($settings['nopoststext']) : '',
             'wrap_class'       => isset($settings['wrap_class']) ? sanitize_html_class($settings['wrap_class']) : '',

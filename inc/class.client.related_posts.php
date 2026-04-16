@@ -134,6 +134,9 @@ class SimpleTags_Client_RelatedPosts {
 
 		extract( $args );
 
+		// Sanitize taxonomy
+		$taxonomy = sanitize_key( $taxonomy );
+
 		// If empty use default xformat !
 		if ( empty( $xformat ) ) {
 			$xformat = $defaults['xformat'];
@@ -258,11 +261,15 @@ class SimpleTags_Client_RelatedPosts {
 			}
 		}
 
+		// Sanitize post type
+		$post_type = array_map('sanitize_key', $post_type);
+		$post_type = array_filter($post_type);
+
 		// Build post type SQL
 		if(in_array('st_all_posttype', $post_type)){//if all post type is selected
 			$restrict_sql = '';
 		}else{
-			$restrict_sql = "AND p.post_type IN ('" . implode( "', '", $post_type ) . "')";
+			$restrict_sql = "AND p.post_type IN ('" . implode( "', '", array_map( 'esc_sql', $post_type ) ) . "')";
 		}
 
 		// Restrict posts
