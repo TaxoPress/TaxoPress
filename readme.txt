@@ -268,10 +268,11 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-v3.45.0- 2026-04-02
+v3.45.0- 2026-04-16
 * Fixed: Issue with metabox overlap in WordPress 7.0, #2929
 * Fixed: Uncaught TypeError: array_keys(): Argument #1 in class.admin.manage, #2921
 * Update: Related Posts settings, #2928
+* Update: Update readme file from WordPress.org #2936
 
 v3.44.0- 2026-01-22
 * Fixed: Auto Terms Existing Content and Schedule aren't adding terms correctly, #2898
