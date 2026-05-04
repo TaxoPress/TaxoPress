@@ -20,7 +20,6 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "automattic/jetpack-autoloader": true,
             "php-http/discovery": true,
-            "publishpress/dev-worksapace": true,
             "publishpress/dev-workspace": true,
             "phpstan/extension-installer": true
         }
