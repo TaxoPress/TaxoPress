@@ -78,7 +78,7 @@
         "plugin-folder": "simple-tags",
         "version-constant": "STAGS_VERSION",
         "plugin-lang-domain": "simple-tags",
-        "plugin-github-repo": "taxopress/simple-tags",
-        "plugin-composer-package": "taxopress/simple-tags"
+        "plugin-github-repo": "taxopress/taxopress",
+        "plugin-composer-package": "taxopress/taxopress"
     }
 }
