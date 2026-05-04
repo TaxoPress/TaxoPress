@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PublishPress"
+         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+    <description>Apply Coding Standards to all the plugin files</description>
+
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg name="cache"/>
+    <ini name="memory_limit" value="256M"/>
+    <arg name="basepath" value="."/>
+    <arg name="parallel" value="20"/>
+    <arg value="ps"/>
+
+    <file>ReviewsController.php</file>
+
+    <rule ref="PSR12">
+        <exclude name="Generic.Files.LineLength.TooLong" />
+    </rule>
+    <rule ref="WordPressVIPMinimum">
+        <exclude name="WordPress.DateTime.RestrictedFunctions.date_date" />
+        <exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited" />
+        <exclude name="WordPress.DB.DirectDatabaseQuery.SchemaChange" />
+        <exclude name="WordPress.DB.DirectDatabaseQuery.DirectQuery" />
+        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols" />
+        <!-- Exclude JS-related sniffs to avoid deprecation warnings -->
+        <exclude name="WordPressVIPMinimum.JS.StringConcat" />
+        <exclude name="WordPressVIPMinimum.JS.InnerHTML" />
+        <exclude name="WordPressVIPMinimum.JS.HTMLExecutingFunctions" />
+        <exclude name="WordPressVIPMinimum.JS.Window" />
+        <exclude name="WordPressVIPMinimum.JS.DangerouslySetInnerHTML" />
+        <exclude name="WordPressVIPMinimum.JS.StrippingTags" />
+    </rule>
+    <rule ref="WordPress-VIP-Go"/>
+    <rule ref="VariableAnalysis"/>
+    <rule ref="PublishPressStandards"/>
+</ruleset>

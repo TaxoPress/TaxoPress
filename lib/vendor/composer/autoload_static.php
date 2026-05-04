@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitTaxoPress
 {
+    public static $files = array (
+        '41c664bd04a95c2d6a2f2a3e00f06593' => __DIR__ . '/..' . '/publishpress/wordpress-reviews/ReviewsController.php',
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );

@@ -54,48 +54,40 @@ if (!defined('STAGS_VERSION')) {
 define('STAGS_VERSION', '3.45.0');
 }
 
+$includeFileRelativePath = '/publishpress/instance-protection/include.php';
 
-$pro_active = false;
+if (file_exists(__DIR__ . '/lib/vendor' . $includeFileRelativePath)) {
+    require_once __DIR__ . '/lib/vendor' . $includeFileRelativePath;
+} elseif (defined('STAGS_LIB_VENDOR_PATH') && file_exists(STAGS_LIB_VENDOR_PATH . $includeFileRelativePath)) {
+    require_once STAGS_LIB_VENDOR_PATH . $includeFileRelativePath;
+}
 
-foreach ((array)get_option('active_plugins') as $plugin_file) {
-    if (false !== strpos($plugin_file, 'taxopress-pro.php')) {
-        $pro_active = true;
-        break;
+if (class_exists('PublishPressInstanceProtection\\Config')) {
+    $pluginCheckerConfig = new PublishPressInstanceProtection\Config();
+    $pluginCheckerConfig->pluginSlug = 'publishpress-shortlinks';
+    $pluginCheckerConfig->pluginName = 'PublishPress Shortlinks';
+
+    $pluginChecker = new PublishPressInstanceProtection\InstanceChecker($pluginCheckerConfig);
+}
+
+$bundledTranslationsPath = '/publishpress/bundled-translations/core/include.php';
+
+if (file_exists(__DIR__ . '/lib/vendor' . $bundledTranslationsPath)) {
+    require_once __DIR__ . '/lib/vendor' . $bundledTranslationsPath;
+} elseif (defined('STAGS_LIB_VENDOR_PATH') && file_exists(STAGS_LIB_VENDOR_PATH . $bundledTranslationsPath)) {
+    require_once STAGS_LIB_VENDOR_PATH . $bundledTranslationsPath;
+}
+
+add_action('plugins_loaded', function () {
+    if (class_exists('PublishPress\BundledTranslations\BundledTranslations')) {
+        $bundledTranslations = new PublishPress\BundledTranslations\BundledTranslations(
+            'simpletags',
+            __DIR__ . '/languages',
+            __FILE__
+        );
+        $bundledTranslations->init();
     }
-}
-
-if (!$pro_active && is_multisite()) {
-    foreach (array_keys((array)get_site_option('active_sitewide_plugins')) as $plugin_file) {
-        if (false !== strpos($plugin_file, 'taxopress-pro.php')) {
-            $pro_active = true;
-            break;
-        }
-    }
-}
-
-if ($pro_active) {
-    add_filter(
-        'plugin_row_meta',
-        function($links, $file)
-        {
-            if ($file == plugin_basename(__FILE__)) {
-                $links[]= __('<strong>This plugin can be deleted.</strong>', 'simple-tags');
-            }
-
-            return $links;
-        },
-        10, 2
-    );
-}
-
-if (defined('TAXOPRESS_FILE') || $pro_active) {
-    if(!function_exists('deactivate_plugins')){
-        require_once ABSPATH . 'wp-admin/includes/plugin.php';
-    }
-    //deactivate current plugin if pro is active
-    deactivate_plugins( plugin_basename( __FILE__ ) );
-	return;
-}
+}, 10);
 
 
 
@@ -108,6 +100,10 @@ define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save se
 define('STAGS_URL', plugins_url('', __FILE__));
 define('STAGS_DIR', rtrim(plugin_dir_path(__FILE__), '/'));
 define('TAXOPRESS_ABSPATH', __DIR__);
+
+if (! defined('STAGS_LIB_VENDOR_PATH')) {
+    define('STAGS_LIB_VENDOR_PATH', __DIR__ . '/lib/vendor');
+}
 
 // Check PHP min version
 if (version_compare(PHP_VERSION, STAGS_MIN_PHP_VERSION, '<')) {
