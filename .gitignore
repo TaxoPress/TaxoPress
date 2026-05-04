@@ -19,6 +19,7 @@ ray.php
 /lib/vendor/woocommerce/action-scheduler/changelog.txt
 /cache
 /.cache
+/cache/*
 .phplint.cache*
 
 /tests-*
@@ -30,4 +31,28 @@ webpack-bundle-stats-*.json
 webpack-bundle-stats-*.html
 gh_token.txt
 /.env
+.env
 dev-workspace/.cache
+
+/.wordpress-org
+.wordpress-org
+.git
+.svn
+
+/build
+/svn
+
+/node_modules
+
+.properties.ini
+wpcom-helper.php
+CONTRIBUTING.md
+builder.yml
+.env.testing
+/bin
+/local.sh
+/packages
+.phplint-cache
+/metrics
+/security-audit
+dev-workspace-cache/
