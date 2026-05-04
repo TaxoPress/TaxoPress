@@ -17,10 +17,11 @@
 .rsync-filters-post-build
 .rsync-filters-pre-build
 .vscode
-/.wordpress-org
 /dev-workspace
 /cache
 /.cache
+**/.cache
+.cache/
 /dist
 /tests
 tests
@@ -30,3 +31,8 @@ codeception.dist.yml
 codeception.yml
 composer.json
 composer.lock
+README.md
+CONTRIBUTING.md
+phpmd-ruleset.xml
+.wordpress-org
+dev-workspace
