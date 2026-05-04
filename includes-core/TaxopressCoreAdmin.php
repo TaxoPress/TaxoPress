@@ -9,12 +9,21 @@ class TaxopressCoreAdmin
 
         if (current_user_can('simple_tags')) {
             if (is_admin()) {
-                $autoloadPath = TAXOPRESS_ABSPATH . '/vendor/autoload.php';
+                $autoloadPath = TAXOPRESS_ABSPATH . '/lib/vendor/autoload.php';
+                if (! file_exists($autoloadPath)) {
+                    $autoloadPath = TAXOPRESS_ABSPATH . '/vendor/autoload.php';
+                }
                 if (file_exists($autoloadPath)) {
                     require_once $autoloadPath;
                 }
 
-                require_once TAXOPRESS_ABSPATH . '/vendor/publishpress/wordpress-version-notices/includes.php';
+                $noticesPath = TAXOPRESS_ABSPATH . '/lib/vendor/publishpress/wordpress-version-notices/includes.php';
+                if (! file_exists($noticesPath)) {
+                    $noticesPath = TAXOPRESS_ABSPATH . '/vendor/publishpress/wordpress-version-notices/includes.php';
+                }
+                if (file_exists($noticesPath)) {
+                    require_once $noticesPath;
+                }
                 add_filter(
                     \PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
                     function ($settings) {

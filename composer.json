@@ -27,50 +27,20 @@
     "prefer-stable": true,
     "minimum-stability": "stable",
     "require": {
-        "publishpress/wordpress-version-notices": "^1.1",
-        "pimple/pimple": "3.5.0.*",
-        "symfony/polyfill-ctype": "1.19.*",
-        "psr/container": "1.1.1"
+        "php": ">=7.2.5"
     },
     "require-dev": {
         "automattic/vipwpcs": "^3",
         "publishpress/dev-workspace": "^1.3"
     },
     "scripts": {
-        "build:pot-php": "vendor/publishpress/dev-workspace/scripts/run.sh wp i18n make-pot . ./languages/simple-tags.pot --domain=simple-tags --exclude=dev-workspace,.wordpress-org,.github,dist,tests,lib,tmp,doc,*.js,*.js.map,*.jsx --allow-root",
-        "build:pot": [
-            "@build:pot-php"
-        ],
-        "build:lang": [
-            "@build:pot",
-            "@build:mo",
-            "@build:l10n-php"
-        ],
-        "build:lang-batches": [
-            "@build:mo-batches",
-            "@build:l10n-php-batches"
-        ],
-        "build:mo": "vendor/publishpress/dev-workspace/scripts/run.sh wp i18n make-mo ./languages ./languages --allow-root",
-        "build:po-json": "vendor/publishpress/dev-workspace/scripts/run.sh bash ./vendor/publishpress/dev-workspace/scripts/lang-make-json.sh",
-        "build:l10n-php": "vendor/publishpress/dev-workspace/scripts/run.sh wp i18n make-php ./languages --allow-root",
-        "build:l10n-php-batches": "vendor/publishpress/dev-workspace/scripts/run.sh bash ./vendor/publishpress/dev-workspace/scripts/lang-make-php-batches.sh ./languages",
-        "build:mo-batches": "vendor/publishpress/dev-workspace/scripts/run.sh bash ./vendor/publishpress/dev-workspace/scripts/lang-make-mo-batches.sh ./languages",
         "fix:php": [
             "php-cs-fixer fix .",
             "@fix:cs"
-        ],
-        "translate:repair-plurals": "php vendor/bin/publishpress-translate --repair-plurals"
+        ]
     },
     "scripts-descriptions": {
-        "build:pot-php": "Generates the POT file for translations of PHP files.",
-        "build:pot": "Generates the POT files for translations of PHP and JavaScript files.",
-        "build:lang": "Generates the language files for translations.",
-        "build:mo": "Generates the MO files for translation files.",
-        "build:po-json": "Generates the JSON files for translations of JavaScript files.",
-        "build:l10n-php": "Generates the PHP language files for performant translations (WP 6.5+).",
-        "build:l10n-php-batches": "Generates the PHP language files by processing each language individually (workaround for wp-cli limitations).",
-        "fix:php": "Fixes the PHP files.",
-        "translate:repair-plurals": "Repairs plural translations in language files."
+        "fix:php": "Fixes the PHP files."
     },
     "extra": {
         "plugin-slug": "simple-tags",
