@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-12-01T12:59:28+00:00\n"
+"PO-Revision-Date: 2025-12-01 13:01+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: publishpress-wordpress-reviews\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: yo\n"
+
+#: ReviewsController.php:356
+#, php-format
+msgid ""
+"Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
+"been useful. Please could you quickly leave a 5-star rating on "
+"WordPress.org? It really does help to keep %1$s growing."
+msgstr ""
+"Hey, o ti n lo %1$s fun %2$s lori aaye rẹ. A nireti pe plugin naa ti wulo. "
+"Jowo, ṣe o le fi aami irawọ 5 silẹ ni WordPress.org ni kiakia? O ṣe "
+"iranlọwọ gaan lati jẹ ki %1$s ndagba."
+
+#: ReviewsController.php:367
+msgid "1 week"
+msgstr "ọsẹ 1"
+
+#: ReviewsController.php:375
+msgid "1 month"
+msgstr "oṣu 1"
+
+#: ReviewsController.php:386
+msgid "3 months"
+msgstr "oṣu mẹta 3"
+
+#: ReviewsController.php:640
+#, php-format
+msgid "Click here to add your rating for %s"
+msgstr "Tẹ nibi lati fi aami rẹ silẹ fun %s"
+
+#: ReviewsController.php:646
+msgid "Maybe later"
+msgstr "Boya nigbamii"
+
+#: ReviewsController.php:651
+msgid "I already did"
+msgstr "Mo ti ṣe e tẹlẹ"
