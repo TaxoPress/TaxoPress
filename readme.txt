@@ -265,3 +265,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 4. TaxoPress can analyze your posts and automatically create relevant Tags and Categories.
 5. TaxoPress can use the Dandelion API and OpenCalais APIs to analyze your WordPress content and suggest terms that you can add to your post.
 6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
+
+== Changelog ==
+
+The full changelog can be found on [GitHub](https://github.com/taxopress/taxopress/blob/master/CHANGELOG.md).
