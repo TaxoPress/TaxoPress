@@ -81,7 +81,7 @@ if (file_exists(__DIR__ . '/lib/vendor' . $bundledTranslationsPath)) {
 add_action('plugins_loaded', function () {
     if (class_exists('PublishPress\BundledTranslations\BundledTranslations')) {
         $bundledTranslations = new PublishPress\BundledTranslations\BundledTranslations(
-            'simpletags',
+            'simple-tags',
             __DIR__ . '/languages',
             __FILE__
         );
