@@ -36,3 +36,4 @@ CONTRIBUTING.md
 phpmd-ruleset.xml
 .wordpress-org
 dev-workspace
+dev-workspace-cache/
