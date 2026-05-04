@@ -64,8 +64,8 @@ if (file_exists(__DIR__ . '/lib/vendor' . $includeFileRelativePath)) {
 
 if (class_exists('PublishPressInstanceProtection\\Config')) {
     $pluginCheckerConfig = new PublishPressInstanceProtection\Config();
-    $pluginCheckerConfig->pluginSlug = 'publishpress-shortlinks';
-    $pluginCheckerConfig->pluginName = 'PublishPress Shortlinks';
+    $pluginCheckerConfig->pluginSlug = 'simple-tags';
+    $pluginCheckerConfig->pluginName = 'TaxoPress';
 
     $pluginChecker = new PublishPressInstanceProtection\InstanceChecker($pluginCheckerConfig);
 }
