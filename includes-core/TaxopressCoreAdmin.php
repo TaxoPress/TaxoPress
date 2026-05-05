@@ -24,6 +24,52 @@ class TaxopressCoreAdmin
                 if (file_exists($noticesPath)) {
                     require_once $noticesPath;
                 }
+
+                add_filter(
+                    \PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
+                    function ($settings) {
+                        if (! is_admin()) {
+                            return $settings;
+                        }
+
+                        $isTaxoPressScreen = false;
+
+                        if (function_exists('get_current_screen')) {
+                            $screen = get_current_screen();
+                            if ($screen && isset($screen->base)) {
+                                $base = (string) $screen->base;
+                                $isTaxoPressScreen = (
+                                    strpos($base, 'taxopress_page_') === 0
+                                    || $base === 'toplevel_page_st_options'
+                                    || $base === 'toplevel_page_st_posts'
+                                );
+                            }
+                        }
+
+                        if (! $isTaxoPressScreen) {
+                            $page = isset($_GET['page']) ? sanitize_key($_GET['page']) : '';
+
+                            if (
+                                $page !== ''
+                                && (
+                                    strpos($page, 'st_') === 0
+                                    || $page === 'st_options'
+                                    || $page === 'st_posts'
+                                )
+                            ) {
+                                $isTaxoPressScreen = true;
+                            }
+                        }
+
+                        if ($isTaxoPressScreen && isset($settings['taxopress-tag_groups'])) {
+                            unset($settings['taxopress-tag_groups']);
+                        }
+
+                        return $settings;
+                    },
+                    9999
+                );
+
                 add_filter(
                     \PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
                     function ($settings) {
