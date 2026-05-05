@@ -203,6 +203,72 @@ function taxopress_re_order_menu()
     }
 }
 
+add_action('admin_init', 'taxopress_suppress_tag_groups_notice_on_taxopress_screens', 1);
+function taxopress_suppress_tag_groups_notice_on_taxopress_screens()
+{
+    if (! is_admin()) {
+        return;
+    }
+
+    if (
+        ! defined('TAG_GROUPS_FILE')
+        && ! defined('TAG_GROUPS_PLUGIN_BASENAME')
+        && ! defined('TAG_GROUPS_PLUGIN_ABSOLUTE_PATH')
+        && ! function_exists('tag_groups_init')
+    ) {
+        return;
+    }
+
+    $filterName = class_exists('PPVersionNotices\\Module\\TopNotice\\Module')
+        ? \PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER
+        : 'pp_version_notice_top_notice_settings';
+
+    add_filter(
+        $filterName,
+        function ($settings) {
+            if (! is_admin()) {
+                return $settings;
+            }
+
+            $isTaxoPressScreen = false;
+
+            if (function_exists('get_current_screen')) {
+                $screen = get_current_screen();
+                if ($screen && isset($screen->base)) {
+                    $base = (string) $screen->base;
+                    $isTaxoPressScreen = (
+                        strpos($base, 'taxopress_page_') === 0
+                        || $base === 'toplevel_page_st_options'
+                        || $base === 'toplevel_page_st_posts'
+                    );
+                }
+            }
+
+            if (! $isTaxoPressScreen) {
+                $page = isset($_GET['page']) ? sanitize_key($_GET['page']) : '';
+
+                if (
+                    $page !== ''
+                    && (
+                        strpos($page, 'st_') === 0
+                        || $page === 'st_options'
+                        || $page === 'st_posts'
+                    )
+                ) {
+                    $isTaxoPressScreen = true;
+                }
+            }
+
+            if ($isTaxoPressScreen && isset($settings['taxopress-tag_groups'])) {
+                unset($settings['taxopress-tag_groups']);
+            }
+
+            return $settings;
+        },
+        9999
+    );
+}
+
 function taxopress_add_at_menu_index($key_options, $new_menu, $existing_menus) {
 
     foreach($key_options as $key_option) {
