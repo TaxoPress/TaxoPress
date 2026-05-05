@@ -54,6 +54,81 @@ if (!defined('STAGS_VERSION')) {
 define('STAGS_VERSION', '3.45.0');
 }
 
+if (! function_exists('taxopress_free_is_pro_active')) {
+    function taxopress_free_is_pro_active()
+    {
+        if (defined('TAXOPRESS_PRO_FILE') || defined('TAXOPRESS_PRO_VERSION')) {
+            return true;
+        }
+
+        if (! function_exists('get_option')) {
+            return false;
+        }
+
+        $pro_active = false;
+
+        foreach ((array) get_option('active_plugins') as $plugin_file) {
+            if (false !== strpos($plugin_file, 'taxopress-pro/taxopress-pro.php')) {
+                $pro_active = true;
+                break;
+            }
+        }
+
+        if (! $pro_active && function_exists('is_multisite') && is_multisite()) {
+            foreach (array_keys((array) get_site_option('active_sitewide_plugins')) as $plugin_file) {
+                if (false !== strpos($plugin_file, 'taxopress-pro/taxopress-pro.php')) {
+                    $pro_active = true;
+                    break;
+                }
+            }
+        }
+
+        return $pro_active;
+    }
+}
+
+if (taxopress_free_is_pro_active()) {
+    if (is_admin()) {
+        add_filter(
+            'plugin_row_meta',
+            function ($links, $file) {
+                if ($file === plugin_basename(__FILE__)) {
+                    $links[] = '<strong>' . esc_html__('This plugin can be deleted.', 'simple-tags') . '</strong>';
+                }
+
+                return $links;
+            },
+            10,
+            2
+        );
+
+        add_action('admin_init', function () {
+            if (! function_exists('deactivate_plugins')) {
+                require_once ABSPATH . 'wp-admin/includes/plugin.php';
+            }
+
+            if (function_exists('is_plugin_active') && is_plugin_active(plugin_basename(__FILE__))) {
+                deactivate_plugins(plugin_basename(__FILE__));
+                set_transient('taxopress_free_deactivated_due_to_pro', 1, 30);
+            }
+        });
+
+        add_action('admin_notices', function () {
+            if (! get_transient('taxopress_free_deactivated_due_to_pro')) {
+                return;
+            }
+
+            delete_transient('taxopress_free_deactivated_due_to_pro');
+
+            echo '<div class="notice notice-warning is-dismissible"><p>'
+                . esc_html__('TaxoPress was not activated because TaxoPress Pro is already active. Please keep only TaxoPress Pro enabled.', 'simple-tags')
+                . '</p></div>';
+        });
+    }
+
+    return;
+}
+
 $includeFileRelativePath = '/publishpress/instance-protection/include.php';
 
 if (file_exists(__DIR__ . '/lib/vendor' . $includeFileRelativePath)) {
@@ -91,15 +166,33 @@ add_action('plugins_loaded', function () {
 
 
 
-define ( 'TAXOPRESS_FILE', __FILE__ );
+if (! defined('TAXOPRESS_FILE')) {
+    define ( 'TAXOPRESS_FILE', __FILE__ );
+}
 
-define('STAGS_MIN_PHP_VERSION', '7.4');
-define('STAGS_OPTIONS_NAME', 'simpletags'); // Option name for save settings
-define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save settings auto terms
+if (! defined('STAGS_MIN_PHP_VERSION')) {
+    define('STAGS_MIN_PHP_VERSION', '7.4');
+}
 
-define('STAGS_URL', plugins_url('', __FILE__));
-define('STAGS_DIR', rtrim(plugin_dir_path(__FILE__), '/'));
-define('TAXOPRESS_ABSPATH', __DIR__);
+if (! defined('STAGS_OPTIONS_NAME')) {
+    define('STAGS_OPTIONS_NAME', 'simpletags'); // Option name for save settings
+}
+
+if (! defined('STAGS_OPTIONS_NAME_AUTO')) {
+    define('STAGS_OPTIONS_NAME_AUTO', 'simpletags-auto'); // Option name for save settings auto terms
+}
+
+if (! defined('STAGS_URL')) {
+    define('STAGS_URL', plugins_url('', __FILE__));
+}
+
+if (! defined('STAGS_DIR')) {
+    define('STAGS_DIR', rtrim(plugin_dir_path(__FILE__), '/'));
+}
+
+if (! defined('TAXOPRESS_ABSPATH')) {
+    define('TAXOPRESS_ABSPATH', __DIR__);
+}
 
 if (! defined('STAGS_LIB_VENDOR_PATH')) {
     define('STAGS_LIB_VENDOR_PATH', __DIR__ . '/lib/vendor');
