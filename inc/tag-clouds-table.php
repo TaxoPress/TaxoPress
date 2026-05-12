@@ -1,11 +1,11 @@
 <?php
+
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
 class TagClouds_List extends WP_List_Table
 {
-
     /** Class constructor */
     public function __construct()
     {
@@ -15,7 +15,6 @@ class TagClouds_List extends WP_List_Table
             'plural'   => esc_html__('Terms Display', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
-
     }
 
     /**
@@ -60,7 +59,7 @@ class TagClouds_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'title'        => esc_html__('Title', 'simple-tags'),
@@ -102,19 +101,26 @@ class TagClouds_List extends WP_List_Table
      */
     public function search_box($text, $input_id)
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for search/filter display, no state change
         if (empty($_REQUEST['s']) && !$this->has_items()) {
             return;
         }
 
         $input_id = $input_id . '-search-input';
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for hidden form fields, preserving filter state
         if (!empty($_REQUEST['orderby'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for hidden form fields, preserving sort order
         if (!empty($_REQUEST['order'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for hidden form fields, preserving pagination
         if (!empty($_REQUEST['page'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
         }
         ?>
@@ -148,10 +154,11 @@ class TagClouds_List extends WP_List_Table
         /**
          * Handle search
          */
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for search filtering display, no state change
         if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
-                if ( $this->str_contains($item['title'], $search, false) ) {
+                if ($this->str_contains($item['title'], $search, false)) {
                     $data_filtered[] = $item;
                 }
             }
@@ -163,10 +170,14 @@ class TagClouds_List extends WP_List_Table
          */
         function usort_reorder($a, $b)
         {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for sorting display, no state change
             $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID'; //If no sort, default to role
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for sort order display, no state change
             $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc'; //If no order, default to asc
-            $result  = strnatcasecmp($a[$orderby],
-                $b[$orderby]); //Determine sort order, case insensitive, natural order
+            $result  = strnatcasecmp(
+                $a[$orderby],
+                $b[$orderby]
+            ); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
         }
@@ -265,16 +276,18 @@ class TagClouds_List extends WP_List_Table
                 esc_html__('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
-                    '<a href="%s" class="delete-tagcloud">%s</a>',
-                    add_query_arg([
+                '<a href="%s" class="delete-tagcloud">%s</a>',
+                add_query_arg(
+                    [
                         'page'     => 'st_terms_display',
                         'action'   => 'taxopress-delete-tagcloud',
                         'taxopress_termsdisplay' => esc_attr($item['ID']),
                         '_wpnonce' => wp_create_nonce('tagcloud-action-request-nonce')
                     ],
-                        admin_url('admin.php')),
-                    esc_html__('Delete', 'simple-tags')
+                    admin_url('admin.php')
                 ),
+                esc_html__('Delete', 'simple-tags')
+            ),
         ];
 
         $actions = apply_filters('taxopress_tagclouds_row_actions', $actions, $item);
@@ -316,7 +329,7 @@ class TagClouds_List extends WP_List_Table
      */
     protected function column_taxonomy($item)
     {
-        $taxonomy = get_taxonomy( $item['taxonomy'] );
+        $taxonomy = get_taxonomy($item['taxonomy']);
 
         return $taxonomy->labels->name;
     }
@@ -330,21 +343,21 @@ class TagClouds_List extends WP_List_Table
      */
     protected function column_post_type($item)
     {
-        if( isset($item['post_type']) && !empty(trim($item['post_type'])) ){
-        $post_type = get_post_type_object($item['post_type']);
-        $title = sprintf(
-            '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
-            add_query_arg(
-                [
-                    'post_type' => $item['post_type'],
-                ],
-                admin_url('edit.php')
-            ),
-            esc_html($post_type->label)
-        );
-    }else{
-        $title = esc_html__( 'All', 'simple-tags' );
-    }
+        if (isset($item['post_type']) && !empty(trim($item['post_type']))) {
+            $post_type = get_post_type_object($item['post_type']);
+            $title = sprintf(
+                '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
+                add_query_arg(
+                    [
+                        'post_type' => $item['post_type'],
+                    ],
+                    admin_url('edit.php')
+                ),
+                esc_html($post_type->label)
+            );
+        } else {
+            $title = esc_html__('All', 'simple-tags');
+        }
 
         return $title;
     }
@@ -360,11 +373,11 @@ class TagClouds_List extends WP_List_Table
     {
 
         $days_options = [
-            'flat' => esc_attr__( 'Cloud', 'simple-tags' ),
-            'list' => esc_attr__( 'Unordered List (UL/LI)', 'simple-tags' ),
-            'ol' => esc_attr__( 'Ordered List (OL/LI)', 'simple-tags' ),
+            'flat' => esc_attr__('Cloud', 'simple-tags'),
+            'list' => esc_attr__('Unordered List (UL/LI)', 'simple-tags'),
+            'ol' => esc_attr__('Ordered List (OL/LI)', 'simple-tags'),
             'comma' => esc_attr__('WordPress Default', 'simple-tags'),
-            'table' => esc_attr__('Table List', 'simple-tags'), 
+            'table' => esc_attr__('Table List', 'simple-tags'),
             'border' => esc_attr__('Border Cloud', 'simple-tags'),
             'parent/child' => esc_attr__('Parent / Child', 'simple-tags'),
         ];
@@ -382,8 +395,6 @@ class TagClouds_List extends WP_List_Table
     protected function column_shortcode($item)
     {
 
-        return '<input readonly type="text" value=\'[taxopress_termsdisplay id="'.$item['ID'].'"]\' />';
+        return '<input readonly type="text" value=\'[taxopress_termsdisplay id="' . $item['ID'] . '"]\' />';
     }
-
-
 }

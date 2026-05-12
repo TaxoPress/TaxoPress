@@ -5,7 +5,6 @@ if (!class_exists('WP_List_Table')) {
 
 class PostTags_List extends WP_List_Table
 {
-
     /** Class constructor */
     public function __construct()
     {
@@ -60,7 +59,7 @@ class PostTags_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'title'     => esc_html__('Title', 'simple-tags'),
@@ -164,8 +163,10 @@ class PostTags_List extends WP_List_Table
         {
             $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID'; //If no sort, default to role
             $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc'; //If no order, default to asc
-            $result  = strnatcasecmp($a[$orderby],
-                $b[$orderby]); //Determine sort order, case insensitive, natural order
+            $result  = strnatcasecmp(
+                $a[$orderby],
+                $b[$orderby]
+            ); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
         }
@@ -265,13 +266,15 @@ class PostTags_List extends WP_List_Table
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-posttags">%s</a>',
-                add_query_arg([
+                add_query_arg(
+                    [
                     'page'               => 'st_post_tags',
                     'action'             => 'taxopress-delete-posttags',
                     'taxopress_posttags' => esc_attr($item['ID']),
                     '_wpnonce'           => wp_create_nonce('posttags-action-request-nonce')
                 ],
-                    admin_url('admin.php')),
+                    admin_url('admin.php')
+                ),
                 esc_html__('Delete', 'simple-tags')
             ),
         ];
@@ -330,10 +333,10 @@ class PostTags_List extends WP_List_Table
     protected function column_embedded($item)
     {
         $embedded = (isset($item['embedded']) && is_array($item['embedded']) && count($item['embedded']) > 0) ? $item['embedded'] : false;
-        if($embedded){
+        if ($embedded) {
             $args = apply_filters('taxopress_attach_post_types_to_taxonomy', ['public' => true]);
             if (!is_array($args)) {
-                   $args = ['public' => true];
+                $args = ['public' => true];
             }
             $output = 'objects'; // Or objects.
             $post_types = apply_filters('taxopress_get_post_types_for_taxonomies', get_post_types($args, $output), $args, $output);
@@ -348,11 +351,11 @@ class PostTags_List extends WP_List_Table
             foreach ($post_types as $post_type) {
                 $embedded_options[$post_type->name] = $post_type->label;
             }
-            foreach ($embedded as $location){
+            foreach ($embedded as $location) {
                 $result_array[] = isset($embedded_options[$location]) ? $embedded_options[$location] : '';
             }
             $result = join(', ', $result_array);
-        }else{
+        } else {
             $result = esc_attr__('No', 'simple-tags');
         }
         return $result;

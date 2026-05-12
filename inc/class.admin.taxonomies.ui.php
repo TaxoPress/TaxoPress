@@ -7,7 +7,6 @@
  */
 class taxopress_admin_ui
 {
-
     /**
      * Return an opening `<fieldset>` tag.
      *
@@ -92,7 +91,7 @@ class taxopress_admin_ui
                 ]
         );
 
-        
+
         $args = wp_parse_args($args, $defaults);
 
         $value = '';
@@ -132,7 +131,7 @@ class taxopress_admin_ui
                     if (array_key_exists('default', $val) && !empty($val['default'])) {
                         if (empty($selected)) {
                             $result = ' selected="selected"';
-                    $selected_result = true;
+                            $selected_result = true;
                         }
                     }
                 }
@@ -142,11 +141,11 @@ class taxopress_admin_ui
                     $selected_result = true;
                 }
 
-                if($selected_result){
+                if ($selected_result) {
 
                 }
 
-                if($selected_result && (int)$val['attr'] === 1){
+                if ($selected_result && (int)$val['attr'] === 1) {
                     $checkbox_html = '<input class="' . $args['class'] . '" type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" checked="checked" />';
                 }
 
@@ -181,7 +180,7 @@ class taxopress_admin_ui
                 ]
         );
 
-        
+
         $args = wp_parse_args($args, $defaults);
 
         $value = '';
@@ -212,7 +211,7 @@ class taxopress_admin_ui
                 if (($selected_option == '' && !empty($val['default']) && $val['default'] == 'true') || ($selected_option !== '' && $selected_option == $val['attr'])) {
                     $checked = 'checked="checked"';
                 }
-                
+
                 $radio_html .= '<div class="taxopress-radio-input"><label> <input class="' . $args['class'] . '" type="radio" id="' . $args['name'] . '-' . $val['attr'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $val['attr'] . '" ' . $checked . ' />' . $val['text'] . '</label></div>';
             }
         }
@@ -247,7 +246,7 @@ class taxopress_admin_ui
         );
 
         $args = wp_parse_args($args, $defaults);
-        
+
         $selectedresult = (isset($args['selections']) && isset($args['selections']['selected']) && !empty($args['selections']['selected'])) ? true : false;
 
         $multiple_select = ($args['multiple'] === true) ? '[]' : '';
@@ -440,13 +439,13 @@ class taxopress_admin_ui
      */
     public function get_label($label_for = '', $label_text = '', $labeldescription = false)
     {
-        if($labeldescription === 2){
+        if ($labeldescription === 2) {
             return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities('['.$label_text.']').'</code></label>';
-        } elseif($labeldescription === 3){
+        } elseif ($labeldescription === 3) {
             return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities($label_text).'</code></label>';
-        } elseif($labeldescription){
+        } elseif ($labeldescription) {
             return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities('<'.$label_text.'> </'.$label_text.'>').'</code></label>';
-        }else{
+        } else {
             return '<label for="' . esc_attr($label_for) . '">' . wp_strip_all_tags($label_text) . '</label>';
         }
     }
@@ -614,7 +613,7 @@ class taxopress_admin_ui
                 'onblur'    => '',
                 'min'       => '1',
                 'max'       => '1000000000',
-                'other_attr'=> '',
+                'other_attr' => '',
                 'class'     => '',
             ]
         );

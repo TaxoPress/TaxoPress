@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fetch our TAXOPRESS Terms Display option.
  *
@@ -6,8 +7,11 @@
  */
 function taxopress_get_posttags_data()
 {
-    return array_filter((array)apply_filters('taxopress_get_posttags_data', get_option('taxopress_posttagss', []),
-        get_current_blog_id()));
+    return array_filter((array)apply_filters(
+        'taxopress_get_posttags_data',
+        get_option('taxopress_posttagss', []),
+        get_current_blog_id()
+    ));
 }
 
 /**
@@ -66,7 +70,7 @@ function taxopress_process_posttags()
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -140,7 +144,7 @@ function taxopress_create_default_post_tags()
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -414,13 +418,13 @@ function taxopress_posttags_the_content($content = '')
             $marker = false;
             if (is_feed() && in_array('feed', $embedded)) {
                 $marker = true;
-            }elseif (is_home() && in_array('homeonly', $embedded)) {
+            } elseif (is_home() && in_array('homeonly', $embedded)) {
                 $marker = true;
-            }elseif (is_feed() && in_array('blogonly', $embedded)) {
+            } elseif (is_feed() && in_array('blogonly', $embedded)) {
                 $marker = true;
-            }elseif (is_singular() && in_array('singleonly', $embedded)) {
+            } elseif (is_singular() && in_array('singleonly', $embedded)) {
                 $marker = true;
-            }elseif (is_singular() && in_array(get_post_type(), $embedded)) {
+            } elseif (is_singular() && in_array(get_post_type(), $embedded)) {
                 $marker = true;
             }
             if (true === $marker) {

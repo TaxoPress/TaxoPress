@@ -11,13 +11,14 @@ function st_post_tags_block_init()
         return;
     }
 
-    if($pagenow === 'widgets.php'){
+    if ($pagenow === 'widgets.php') {
         return;
     }
 
     // Register our block editor script.
     wp_register_script(
-        'st-block-post-tags', STAGS_URL . '/blocks/src/post-tags.js',
+        'st-block-post-tags',
+        STAGS_URL . '/blocks/src/post-tags.js',
         ['wp-blocks', 'wp-element', 'wp-components', 'wp-editor']
     );
 
@@ -70,7 +71,6 @@ function st_post_tags_block_init()
         'panel_title'  => $panel_title,
         'select_label' => $select_label,
     ]);
-
 }
 
 add_action('init', 'st_post_tags_block_init');

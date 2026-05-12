@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /**
  * Fetch our TAXOPRESS Terms Display option.
  *
@@ -6,7 +7,7 @@
  */
 function taxopress_get_tagcloud_data()
 {
-    return array_filter( (array)apply_filters('taxopress_get_tagcloud_data', get_option('taxopress_tagclouds', []), get_current_blog_id()));
+    return array_filter((array)apply_filters('taxopress_get_tagcloud_data', get_option('taxopress_tagclouds', []), get_current_blog_id()));
 }
 
 /**
@@ -21,7 +22,9 @@ function taxopress_get_current_tagcloud()
 
     $tagclouds = false;
 
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for display selection, no state change
     if (!empty($_GET) && isset($_GET['taxopress_termsdisplay'])) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $tagclouds = sanitize_text_field($_GET['taxopress_termsdisplay']);
     } else {
         $tagclouds = taxopress_get_tagcloud_data();
@@ -64,7 +67,7 @@ function taxopress_process_tagcloud()
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -93,23 +96,26 @@ function taxopress_process_tagcloud()
         if ($result) {
             wp_safe_redirect(
                 add_query_arg(
-                [
+                    [
                     'page'               => 'st_terms_display',
                     'add'                => 'new_item',
                     'action'             => 'edit',
                     'taxopress_termsdisplay' => $result,
                     'new_tagcloud'       => 1,
-                ],
-                taxopress_admin_url('admin.php')
+                    ],
+                    taxopress_admin_url('admin.php')
                 )
             );
-            
+
             exit();
         }
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-tagcloud') {
-        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
-        if (wp_verify_nonce($nonce, 'tagcloud-action-request-nonce')) {
-            taxopress_action_delete_tagcloud(sanitize_text_field($_REQUEST['taxopress_termsdisplay']));
+        $nonce = isset($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
+        if ($nonce && wp_verify_nonce($nonce, 'tagcloud-action-request-nonce')) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Verified by nonce check above
+            if (isset($_REQUEST['taxopress_termsdisplay'])) {
+                taxopress_action_delete_tagcloud(sanitize_text_field(wp_unslash($_REQUEST['taxopress_termsdisplay'])));
+            }
         }
         add_filter('removable_query_args', 'taxopress_delete_tagcloud_filter_removable_query_args');
     }
@@ -131,15 +137,15 @@ function taxopress_create_default_tag_cloud()
         return;
     }
 
-    if ((int)get_option('taxopress_default_tagclouds') > 0 ) {
+    if ((int)get_option('taxopress_default_tagclouds') > 0) {
         return;
     }
 
-    if (count(taxopress_get_tagcloud_data()) > 0 ) {
+    if (count(taxopress_get_tagcloud_data()) > 0) {
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -212,25 +218,22 @@ function taxopress_update_tagcloud($data = [])
     $xformat                       = $data['taxopress_tag_cloud']['xformat'];
     $data['taxopress_tag_cloud']['xformat'] = stripslashes_deep($xformat);
 
-    if( !empty($data['taxopress_tag_cloud']['color'])){ 
+    if (!empty($data['taxopress_tag_cloud']['color'])) {
         $data['taxopress_tag_cloud']['color'] = taxopress_disp_boolean($data['taxopress_tag_cloud']['color']);
     }
-    
+
     if (isset($data['edited_tagcloud'])) {
         $tagcloud_id = $data['edited_tagcloud'];
         $tagclouds[$tagcloud_id] = $data['taxopress_tag_cloud'];
         $success = update_option('taxopress_tagclouds', $tagclouds);
-        //return 'update_success';
-    }else{
-        $tagcloud_id = (int)get_option('taxopress_tagcloud_ids_increament')+1;
+    } else {
+        $tagcloud_id = (int)get_option('taxopress_tagcloud_ids_increament') + 1;
         $data['taxopress_tag_cloud']['ID'] = $tagcloud_id;
         $tagclouds[$tagcloud_id] = $data['taxopress_tag_cloud'];
         $success = update_option('taxopress_tagclouds', $tagclouds);
         $update_id = update_option('taxopress_tagcloud_ids_increament', $tagcloud_id);
-        //return 'add_success';
     }
     return $tagcloud_id;
-    
 }
 
 /**
@@ -315,40 +318,37 @@ function taxopress_action_delete_tagcloud($tagcloud_id)
         add_action('admin_notices', "taxopress_taxdeleted_admin_notice");
         wp_safe_redirect(
             add_query_arg(
-            [
+                [
                 'page'               => 'st_terms_display',
                 'deleted_tagcloud'   => 1,
-            ],
-            taxopress_admin_url('admin.php')
+                ],
+                taxopress_admin_url('admin.php')
             )
-        );   
+        );
         exit();
     }
 }
 
 function taxopress_termsdisplay_shortcode($atts)
-    {
-        extract(shortcode_atts(array(
-            'id' => 0
-        ), $atts));
+{
+    extract(shortcode_atts(array(
+        'id' => 0
+    ), $atts));
 
-        $tagcloud_id = $id;
-        $tagclouds = taxopress_get_tagcloud_data();
+    $tagcloud_id = $id;
+    $tagclouds = taxopress_get_tagcloud_data();
 
-        ob_start();
-        if (array_key_exists($tagcloud_id, $tagclouds)) {
-            $tagclouds[$tagcloud_id]['number'] = $tagclouds[$tagcloud_id]['max'];
-            if (!isset($tagclouds[$tagcloud_id]['color'])) {
-                $tagclouds[$tagcloud_id]['color'] = 'false';
-            }
-            $tagcloud_arg = build_query($tagclouds[$tagcloud_id]);
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo SimpleTags_Client_TagCloud::extendedTagCloud( $tagcloud_arg );
-
+    ob_start();
+    if (array_key_exists($tagcloud_id, $tagclouds)) {
+        $tagclouds[$tagcloud_id]['number'] = $tagclouds[$tagcloud_id]['max'];
+        if (!isset($tagclouds[$tagcloud_id]['color'])) {
+            $tagclouds[$tagcloud_id]['color'] = 'false';
         }
-
-        $html = ob_get_clean();
-        return $html;
-
-
+        $tagcloud_arg = build_query($tagclouds[$tagcloud_id]);
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo SimpleTags_Client_TagCloud::extendedTagCloud($tagcloud_arg);
     }
+
+    $html = ob_get_clean();
+    return $html;
+}

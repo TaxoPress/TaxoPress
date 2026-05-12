@@ -1,4 +1,5 @@
 <?php
+
 // TaxoPress AI Module
 require_once STAGS_DIR . '/modules/taxopress-ai/taxopress-ai.php';
 

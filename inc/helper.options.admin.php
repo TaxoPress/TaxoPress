@@ -1,4 +1,5 @@
 <?php
+
 require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php';
 
 $current_screen = get_current_screen();
@@ -176,7 +177,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             '<p>' . esc_html__('Specify the minimum length for new terms when creating terms.', 'simple-tags') . '</p>',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content',
-            1 
+            1
         );
 
         //add maximum term length
@@ -187,7 +188,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             '',
             '<p>' . esc_html__('Specify the maximum length for new terms when creating terms.', 'simple-tags') . '</p>',
             'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content',
-            1 
+            1
         );
 
         $taxopress_ai_fields[] = array(
@@ -241,14 +242,14 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         sprintf(esc_html__('Allow users in the %1s role to use the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
         'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
-     // add option to manage terms per user role
-     $metabox_fields[] = array(
-        'enable_restrict' . $role_name . '_metabox',
-        esc_html__('Block Users from Creating New Terms', 'simple-tags'),
-        'checkbox',
-        '1',
-        sprintf(esc_html__('Prevent users in the %1$s role from creating new terms in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
-        'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
+    // add option to manage terms per user role
+    $metabox_fields[] = array(
+       'enable_restrict' . $role_name . '_metabox',
+       esc_html__('Block Users from Creating New Terms', 'simple-tags'),
+       'checkbox',
+       '1',
+       sprintf(esc_html__('Prevent users in the %1$s role from creating new terms in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
+       'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
     );
     // add metabox allowed taxonomies
     $metabox_fields[] = array(
@@ -319,7 +320,7 @@ $options = array(
             '',
             __('This feature allows you to connect terms. When the primary or secondary term is added to a post, the other term can be added also.', 'simple-tags'),
             ''
-        ),  
+        ),
         array(
             'linked_terms_type',
             __('Linked Terms Type:', 'simple-tags'),
@@ -490,9 +491,9 @@ $options = array(
 
     );
 
-    if ($is_fast_update) {
-        $options['taxopress-ai'] = $taxopress_ai_fields;
-        $options['metabox'] = $metabox_fields;
-    }
+if ($is_fast_update) {
+    $options['taxopress-ai'] = $taxopress_ai_fields;
+    $options['metabox'] = $metabox_fields;
+}
 
-    return apply_filters('taxopress_admin_options', $options);
+return apply_filters('taxopress_admin_options', $options);

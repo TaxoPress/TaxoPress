@@ -1,11 +1,11 @@
 <?php
+
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
 class SimpleTags_Schedule_Logs extends WP_List_Table
 {
-
     public function __construct()
     {
 
@@ -14,7 +14,6 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
             'plural'   => __('autotermsschedulelogs', 'simple-tags'),
             'ajax'     => false
         ]);
-
     }
 
     public function get_st_autoterms()
@@ -22,7 +21,9 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
         $per_page = $this->get_items_per_page('st_autoterms_schedule_logs_per_page', 20);
         $current_page = $this->get_pagenum();
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for sorting display, no state change
         $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for sort order display, no state change
         $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc';
 
 
@@ -43,15 +44,15 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
         echo '</tr>';
     }
 
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'cb' => '<input type="checkbox"/>',
-            'title'     => esc_html__( 'Post', 'simple-tags' ),
-            'post_type'     => esc_html__( 'Post type', 'simple-tags' ),
-            'taxonomy'     => esc_html__( 'Taxonomy', 'simple-tags' ),
-            'terms'     => esc_html__( 'Terms added', 'simple-tags' ),
-            'date'     => esc_html__( 'Date', 'simple-tags' )
+            'title'     => esc_html__('Post', 'simple-tags'),
+            'post_type'     => esc_html__('Post type', 'simple-tags'),
+            'taxonomy'     => esc_html__('Taxonomy', 'simple-tags'),
+            'terms'     => esc_html__('Terms added', 'simple-tags'),
+            'date'     => esc_html__('Date', 'simple-tags')
         ];
 
         return $columns;
@@ -92,15 +93,14 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
             return;
         }
 
-        if($this->current_action() === 'taxopress-autoterms-delete-logs'){
-            $taxopress_autoterms_schedule_logs = array_map('sanitize_text_field', (array)$_REQUEST['taxopress_autoterms_schedule_logs']);
+        if ($this->current_action() === 'taxopress-autoterms-delete-logs') {
+            $taxopress_autoterms_schedule_logs = isset($_REQUEST['taxopress_autoterms_schedule_logs']) ? array_map('sanitize_text_field', (array)$_REQUEST['taxopress_autoterms_schedule_logs']) : [];
             if (!empty($taxopress_autoterms_schedule_logs)) {
-                foreach($taxopress_autoterms_schedule_logs as $taxopress_autoterms_log){
+                foreach ($taxopress_autoterms_schedule_logs as $taxopress_autoterms_log) {
                     wp_delete_post($taxopress_autoterms_log, true);
                 }
             }
         }
-
     }
 
     protected function get_sortable_columns()
@@ -131,13 +131,15 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-autoterm">%s</a>',
-                add_query_arg([
+                add_query_arg(
+                    [
                     'page'                   => 'st_autoterms_schedule',
                     'action'                 => 'taxopress-delete-autoterm-log',
-                    'taxopress_autoterms_log'=> esc_attr($item->ID),
+                    'taxopress_autoterms_log' => esc_attr($item->ID),
                     '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
-                ],
-                    admin_url('admin.php')),
+                    ],
+                    admin_url('admin.php')
+                ),
                 __('Delete Log', 'simple-tags')
             ),
         ];
@@ -170,7 +172,6 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
         $auto_term_log_posttype = get_post_type_object(get_post_type($auto_term_log_post_id));
 
         return ($auto_term_log_posttype && !is_wp_error($auto_term_log_posttype)) ? $auto_term_log_posttype->labels->singular_name : '&mdash;';
-
     }
 
     protected function column_taxonomy($item)
@@ -179,25 +180,23 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
         $taxopress_log_taxonomy_data = get_taxonomy($taxopress_log_taxonomy);
 
         return ($taxopress_log_taxonomy_data && !is_wp_error($taxopress_log_taxonomy_data)) ? $taxopress_log_taxonomy_data->labels->singular_name : '&mdash;';
-
     }
 
     protected function column_terms($item)
     {
         $taxopress_log_terms = get_post_meta($item->ID, '_taxopress_log_terms', true);
 
-        if($taxopress_log_terms && !empty(trim($taxopress_log_terms))){
-            return '<font color="green"> '.esc_html(ucwords($taxopress_log_terms)).' </font>';
-        }else{
-            return '<font color="red"> '. esc_html__('None', 'simple-tags') .' </font>';
+        if ($taxopress_log_terms && !empty(trim($taxopress_log_terms))) {
+            return '<font color="green"> ' . esc_html(ucwords($taxopress_log_terms)) . ' </font>';
+        } else {
+            return '<font color="red"> ' . esc_html__('None', 'simple-tags') . ' </font>';
         }
     }
 
     protected function column_date($item)
     {
-        
-        return get_the_date('l F j, Y h:i A', $item->ID);
 
+        return get_the_date('l F j, Y h:i A', $item->ID);
     }
 
     public function prepare_items()
@@ -222,7 +221,4 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
             'total_pages' => ceil($total_items / $per_page)
         ]);
     }
-
-
 }
-

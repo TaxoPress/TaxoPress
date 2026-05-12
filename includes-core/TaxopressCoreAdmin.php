@@ -4,7 +4,7 @@ namespace PublishPress\Taxopress;
 
 class TaxopressCoreAdmin
 {
-    function __construct()
+    public function __construct()
     {
 
         if (current_user_can('simple_tags')) {
@@ -104,19 +104,19 @@ class TaxopressCoreAdmin
         add_action('taxopress_schedule_frequency_fields', [$this, 'taxopress_free_schedule_frequency_fields']);
     }
 
-    function taxopress_load_admin_core_assets()
+    public function taxopress_load_admin_core_assets()
     {
         wp_register_style('st-admin-core', STAGS_URL . '/includes-core/assets/css/core.css', array(), STAGS_VERSION, 'all');
     }
 
-    function taxopress_load_admin_core_styles()
+    public function taxopress_load_admin_core_styles()
     {
         wp_enqueue_style('st-admin-core');
     }
 
-    function taxopress_admin_advertising_sidebar_banner()
+    public function taxopress_admin_advertising_sidebar_banner()
     {
-?>
+        ?>
 
         <div class="taxopress-advertisement-right-sidebar">
             <div id="postbox-container-1" class="postbox-container">
@@ -181,12 +181,12 @@ class TaxopressCoreAdmin
             </div>
         </div>
 
-    <?php
+        <?php
     }
 
-    function taxopress_core_ai_after_open_ai_fields($current)
+    public function taxopress_core_ai_after_open_ai_fields($current)
     {
-    ?>
+        ?>
         <tr>
             <td>
                 <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
@@ -205,12 +205,12 @@ class TaxopressCoreAdmin
                 </div>
             </td>
         </tr>
-    <?php
+        <?php
     }
 
-    function taxopress_core_ai_after_ibm_watson_fields($current)
+    public function taxopress_core_ai_after_ibm_watson_fields($current)
     {
-    ?>
+        ?>
     <tr>
         <td>
             <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
@@ -229,12 +229,12 @@ class TaxopressCoreAdmin
             </div>
         </td>
     </tr>
-    <?php
+        <?php
     }
 
-    function taxopress_core_ai_after_dandelion_fields($current)
+    public function taxopress_core_ai_after_dandelion_fields($current)
     {
-    ?>
+        ?>
     <tr>
         <td>
             <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
@@ -253,12 +253,12 @@ class TaxopressCoreAdmin
             </div>
         </td>
     </tr>
-    <?php
+        <?php
     }
 
-    function taxopress_core_ai_after_open_calais_fields($current)
+    public function taxopress_core_ai_after_open_calais_fields($current)
     {
-    ?>
+        ?>
     <tr>
         <td>
             <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
@@ -277,12 +277,13 @@ class TaxopressCoreAdmin
             </div>
         </td>
     </tr>
-    <?php
+        <?php
     }
 
-    
 
-	function taxopress_core_ai_term_results_banner($args) {
+
+    public function taxopress_core_ai_term_results_banner($args)
+    {
         $ai_group     = $args['ai_group'];
 
         if ($ai_group == 'open_ai') : ?>
@@ -301,8 +302,7 @@ class TaxopressCoreAdmin
                     </div>
                 </div>
             </div>
-        <?php
-        elseif ($ai_group == 'ibm_watson') :
+        <?php elseif ($ai_group == 'ibm_watson') :
             ?>
             <br />
             <br />
@@ -320,86 +320,89 @@ class TaxopressCoreAdmin
                     </div>
                 </div>
             </div>
-        <?php
+            <?php
         endif;
     }
 
-    function taxopress_core_copy_action($actions, $item) {
-        $allowed_pages = ['st_autolinks', 'st_terms_display', 'st_post_tags', 'st_related_posts', 'st_autoterms'];
-    
-        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
-    
-        if (in_array($current_page, $allowed_pages, true)) { 
-                $copy_action = [
-                    'copy' => sprintf(
-                        '<a href="%s" class="copy-action-pages">%s</a>',
-                        add_query_arg([
-                            'page' => $current_page,
-                            'add'  => 'new_item',
-                        ], admin_url('admin.php')),
-                        __('Copy', 'simple-tags')
-                    )
-                ];
-    
-                // Ensure "Copy" appears before "Delete"
-                if (isset($actions['delete'])) {
-                    $new_actions = [];
-                    foreach ($actions as $key => $action) {
-                        if ($key === 'delete') {
-                            $new_actions['copy'] = $copy_action['copy'];
-                        }
-                        $new_actions[$key] = $action;
-                    }
-                    $actions = $new_actions;
-                } else {
-                    $actions = $copy_action + $actions;
-                }
-            
-        }
-    
-        return $actions;
-    }
-
-    function taxopress_core_copy_with_metadata_action($actions, $item) {
-        $allowed_pages = ['st_terms'];
-    
-        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
-    
-        if (in_array($current_page, $allowed_pages, true)) { 
-                $copy_action = [
-                    'copy_term_with_meta' => sprintf(
-                        '<a href="%s" class="copy-action-pages">%s</a>',
-                        add_query_arg([
-                            'page' => $current_page,
-                            'action' => 'new_item',
-                            'term_id' => $item->term_id,
-                            '_wpnonce' => wp_create_nonce('term-copy-metadata-nonce')
-                        ], admin_url('admin.php')),
-                        __('Copy with Metadata', 'simple-tags')
-                    )
-                ];
-    
-                // Ensure "Copy with Metadata" appears after "Copy"
-                if (isset($actions['copy_term'])) {
-                    $new_actions = [];
-                    foreach ($actions as $key => $action) {
-                        $new_actions[$key] = $action;
-                        if ($key === 'copy_term') {
-                            $new_actions['copy_term_with_meta'] = $copy_action['copy_term_with_meta'];
-                        }
-                    }
-                    $actions = $new_actions;
-                } else {
-                    $actions = $copy_action + $actions;
-                }
-        }
-    
-        return $actions;
-    }
-
-    function taxopress_core_autoterm_terms_to_use_field($current)
+    public function taxopress_core_copy_action($actions, $item)
     {
-    ?>
+        $allowed_pages = ['st_autolinks', 'st_terms_display', 'st_post_tags', 'st_related_posts', 'st_autoterms'];
+
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+
+        if (in_array($current_page, $allowed_pages, true)) {
+            $copy_action = [
+                'copy' => sprintf(
+                    '<a href="%s" class="copy-action-pages">%s</a>',
+                    add_query_arg([
+                        'page' => $current_page,
+                        'add'  => 'new_item',
+                    ], admin_url('admin.php')),
+                    __('Copy', 'simple-tags')
+                )
+            ];
+
+            // Ensure "Copy" appears before "Delete"
+            if (isset($actions['delete'])) {
+                $new_actions = [];
+                foreach ($actions as $key => $action) {
+                    if ($key === 'delete') {
+                        $new_actions['copy'] = $copy_action['copy'];
+                    }
+                    $new_actions[$key] = $action;
+                }
+                $actions = $new_actions;
+            } else {
+                $actions = $copy_action + $actions;
+            }
+        }
+
+        return $actions;
+    }
+
+    public function taxopress_core_copy_with_metadata_action($actions, $item)
+    {
+        $allowed_pages = ['st_terms'];
+
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+
+        if (in_array($current_page, $allowed_pages, true)) {
+            $copy_action = [
+                'copy_term_with_meta' => sprintf(
+                    '<a href="%s" class="copy-action-pages">%s</a>',
+                    add_query_arg([
+                        'page' => $current_page,
+                        'action' => 'new_item',
+                        'term_id' => $item->term_id,
+                        '_wpnonce' => wp_create_nonce('term-copy-metadata-nonce')
+                    ], admin_url('admin.php')),
+                    __('Copy with Metadata', 'simple-tags')
+                )
+            ];
+
+            // Ensure "Copy with Metadata" appears after "Copy"
+            if (isset($actions['copy_term'])) {
+                $new_actions = [];
+                foreach ($actions as $key => $action) {
+                    $new_actions[$key] = $action;
+                    if ($key === 'copy_term') {
+                        $new_actions['copy_term_with_meta'] = $copy_action['copy_term_with_meta'];
+                    }
+                }
+                $actions = $new_actions;
+            } else {
+                $actions = $copy_action + $actions;
+            }
+        }
+
+        return $actions;
+    }
+
+    public function taxopress_core_autoterm_terms_to_use_field($current)
+    {
+        ?>
         <tr>
             <td colspan="2">
                 <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro autoterm-terms-use-openai-notice">
@@ -472,12 +475,12 @@ class TaxopressCoreAdmin
                 </div>
             </td>
         </tr>
-    <?php
+        <?php
     }
 
-    function taxopress_core_suggestterm_after_api_fields($current)
+    public function taxopress_core_suggestterm_after_api_fields($current)
     {
-    ?>
+        ?>
         <tr>
             <td colspan="2">
                 <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
@@ -496,12 +499,12 @@ class TaxopressCoreAdmin
                 </div>
             </td>
         </tr>
-    <?php
+        <?php
     }
-    
-    function taxopress_core_autolinks_after_html_exclusions_promo($current)
+
+    public function taxopress_core_autolinks_after_html_exclusions_promo($current)
     {
-    ?>
+        ?>
         <tr>
             <td colspan="2">
                 <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
@@ -520,12 +523,12 @@ class TaxopressCoreAdmin
                 </div>
             </td>
         </tr>
-    <?php
+        <?php
     }
 
-    function taxopress_core_autoterm_advanced_field($current)
+    public function taxopress_core_autoterm_advanced_field($current)
     {
-    ?>
+        ?>
         <tr>
             <td>
                 <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
@@ -544,24 +547,25 @@ class TaxopressCoreAdmin
                 </div>
             </td>
         </tr>
-<?php
+        <?php
     }
     /**
      * Add Linked Terms feature to dashboard
      */
-    function taxopress_core_linked_terms_feature($features) {
+    public function taxopress_core_linked_terms_feature($features)
+    {
         $st_terms_position = array_search('st_terms', array_keys($features));
-        
-       if ($st_terms_position !== false) {
+
+        if ($st_terms_position !== false) {
             $new_features = array_slice($features, 0, $st_terms_position + 1, true);
-            
+
             $new_features['st_linked_terms'] = [
                 'label'        => esc_html__('Linked Terms', 'simple-tags'),
                 'description'  => esc_html__('This feature allows you to connect terms. When the main term or any of these terms are added to the post, all the other terms will be added also.', 'simple-tags'),
                 'option_key'   => 'active_features_core_linked_terms',
                 'class'       => 'feature-pro-locked',
             ];
-            
+
             $new_features += array_slice($features, $st_terms_position + 1, null, true);
             return $new_features;
         }
@@ -569,7 +573,7 @@ class TaxopressCoreAdmin
         return $features;
     }
 
-    function taxopress_core_linked_terms_content($content)
+    public function taxopress_core_linked_terms_content($content)
     {
         ob_start();
         ?>
@@ -591,10 +595,11 @@ class TaxopressCoreAdmin
         return ob_get_clean();
     }
 
-     /**
-     * Add Synonyms Terms feature to dashboard
-     */
-    function taxopress_core_synonyms_terms_feature($features) {
+    /**
+    * Add Synonyms Terms feature to dashboard
+    */
+    public function taxopress_core_synonyms_terms_feature($features)
+    {
 
         $features['st_features_synonyms'] = [
             'label'        => esc_html__('Synonyms', 'simple-tags'),
@@ -606,7 +611,7 @@ class TaxopressCoreAdmin
         return $features;
     }
 
-    function taxopress_core_synonyms_terms_content($content)
+    public function taxopress_core_synonyms_terms_content($content)
     {
         ob_start();
         ?>
@@ -629,58 +634,59 @@ class TaxopressCoreAdmin
     }
 
     public function filter_settings_post_type_ai_fields($taxopress_ai_fields, $post_type)
-        {
+    {
 
-            $default_taxonomy_display_options = [
-                'default' => esc_html__('Default', 'simple-tags'),
-            ];
-            
-            $new_entry = array(
-                'taxopress_ai_' . $post_type . '_metabox_display_option',
-                '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content">' .
-                    esc_html__('Taxonomy Display', 'simple-tags') .
-                '</div>',
-                'select_with_icon',
-                $default_taxonomy_display_options,
-                '<div class="taxopress-select-icon-wrapper">
+        $default_taxonomy_display_options = [
+            'default' => esc_html__('Default', 'simple-tags'),
+        ];
+
+        $new_entry = array(
+            'taxopress_ai_' . $post_type . '_metabox_display_option',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content">' .
+                esc_html__('Taxonomy Display', 'simple-tags') .
+            '</div>',
+            'select_with_icon',
+            $default_taxonomy_display_options,
+            '<div class="taxopress-select-icon-wrapper">
                     <span class="pp-tooltips-library" data-toggle="tooltip">
                         <span class="dashicons dashicons-lock taxopress-select-icon"></span>
                         <span class="taxopress tooltip-text">' .
-                            esc_html__('This feature is available in TaxoPress Pro', 'simple-tags') .
-                        '</span>
+                        esc_html__('This feature is available in TaxoPress Pro', 'simple-tags') .
+                    '</span>
                     </span>
                 </div>
                 <div class="taxopress-stpexplan">' .
-                    esc_html__('Customize the display of terms in the TaxoPress metabox.', 'simple-tags') . '<br />' .
-                    esc_html__('Options include checkboxes and a dropdown list.', 'simple-tags') .
-                '</div>',
-                'taxopress-select-with-icon taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content',
-                array(
-                    'icon' => '',
-                    'modal' => '',
-                    'icon_wrapper_class' => '',
-                    'modal_wrapper_class' => '',
-                ),
-            );
-            // Get the index of 'taxopress_ai_post_metabox_default_taxonomy' if it exists
-            $field_to_find = 'taxopress_ai_' . $post_type . '_metabox_default_taxonomy';
-            $keys = array_column($taxopress_ai_fields, 0);
-            $insert_after_key = array_search($field_to_find, $keys);
-        
-            // Determine the insertion position adding fallback incase the setting doesn't exist
-            $position = ($insert_after_key !== false) ? $insert_after_key + 1 : count($taxopress_ai_fields);
-        
-            // Insert new entry at the determined position
-            $taxopress_ai_fields = array_merge(
-                array_slice($taxopress_ai_fields, 0, $position, true),
-                [$new_entry],
-                array_slice($taxopress_ai_fields, $position, null, true)
-            );
+                esc_html__('Customize the display of terms in the TaxoPress metabox.', 'simple-tags') . '<br />' .
+                esc_html__('Options include checkboxes and a dropdown list.', 'simple-tags') .
+            '</div>',
+            'taxopress-select-with-icon taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content',
+            array(
+                'icon' => '',
+                'modal' => '',
+                'icon_wrapper_class' => '',
+                'modal_wrapper_class' => '',
+            ),
+        );
+        // Get the index of 'taxopress_ai_post_metabox_default_taxonomy' if it exists
+        $field_to_find = 'taxopress_ai_' . $post_type . '_metabox_default_taxonomy';
+        $keys = array_column($taxopress_ai_fields, 0);
+        $insert_after_key = array_search($field_to_find, $keys);
 
-            return $taxopress_ai_fields;
+        // Determine the insertion position adding fallback incase the setting doesn't exist
+        $position = ($insert_after_key !== false) ? $insert_after_key + 1 : count($taxopress_ai_fields);
+
+        // Insert new entry at the determined position
+        $taxopress_ai_fields = array_merge(
+            array_slice($taxopress_ai_fields, 0, $position, true),
+            [$new_entry],
+            array_slice($taxopress_ai_fields, $position, null, true)
+        );
+
+        return $taxopress_ai_fields;
     }
 
-    function taxopress_terms_copy_with_metadata_promo() {
+    public function taxopress_terms_copy_with_metadata_promo()
+    {
         ?>
         <div class="taxopress-content-promo-box advertisement-box-content postbox postbox upgrade-pro">
             <div class="postbox-header">
@@ -705,7 +711,8 @@ class TaxopressCoreAdmin
      *
      * @return array
      */
-    function taxopress_render_display_formats_field() {
+    public function taxopress_render_display_formats_field()
+    {
 
         $select = [
             'flat' => esc_html__('Cloud', 'simple-tags')
@@ -742,7 +749,7 @@ class TaxopressCoreAdmin
             </td>
         </tr>
         <?php
-
+        return '';
     }
 
     public function taxopress_free_schedule_frequency_fields($cron_schedule)
@@ -786,39 +793,40 @@ class TaxopressCoreAdmin
         <?php
     }
 
-    function taxopress_terms_order_free($current){
-                               
-            $orderby_options = [
-                [ 'attr' => 'term_id', 'text' => esc_attr__( 'ID', 'simple-tags' ), 'default' => true ],
-                [ 'attr' => 'name_free', 'text' => esc_attr__( 'Name (Pro)', 'simple-tags' ) ],
-                [ 'attr' => 'count_free', 'text' => esc_attr__( 'Counter (Pro)', 'simple-tags') ],
-                [ 'attr' => 'random_free', 'text' => esc_attr__( 'Random (Pro)', 'simple-tags' ) ],
-                [ 'attr' => 'taxopress_term_order_free', 'text' => esc_attr__( 'Term Order (Pro)', 'simple-tags' ) ],
-            ];
-            $selected_orderby = isset($current['orderby']) ? $current['orderby'] : '';
+    public function taxopress_terms_order_free($current)
+    {
 
-            $name = isset($current['name']) ? $current['name'] : '';
-            $terms_table_url = esc_url(
-                admin_url(
-                    'admin.php?page=st_terms&taxopress_terms_taxonomy=' . urlencode($name) . '&taxopress_pro_notice=term_order'
-                )
-            );
-            ?>
+        $orderby_options = [
+            [ 'attr' => 'term_id', 'text' => esc_attr__('ID', 'simple-tags'), 'default' => true ],
+            [ 'attr' => 'name_free', 'text' => esc_attr__('Name (Pro)', 'simple-tags') ],
+            [ 'attr' => 'count_free', 'text' => esc_attr__('Counter (Pro)', 'simple-tags') ],
+            [ 'attr' => 'random_free', 'text' => esc_attr__('Random (Pro)', 'simple-tags') ],
+            [ 'attr' => 'taxopress_term_order_free', 'text' => esc_attr__('Term Order (Pro)', 'simple-tags') ],
+        ];
+        $selected_orderby = isset($current['orderby']) ? $current['orderby'] : '';
+
+        $name = isset($current['name']) ? $current['name'] : '';
+        $terms_table_url = esc_url(
+            admin_url(
+                'admin.php?page=st_terms&taxopress_terms_taxonomy=' . urlencode($name) . '&taxopress_pro_notice=term_order'
+            )
+        );
+        ?>
             <tr>
                 <th scope="row"><?php echo esc_html__('Method for choosing terms for display', 'simple-tags'); ?></th>
                 <td>
-                    <?php foreach ($orderby_options as $option): 
+                    <?php foreach ($orderby_options as $option) :
                         $is_id = ($option['attr'] === 'term_id');
                         $disabled = $is_id ? '' : 'disabled';
                         $blur_class = $is_id ? '' : 'taxopress-blur-option';
                         $checked = $is_id ? 'checked="checked"' : '';
-                    ?>
+                        ?>
                         <label style="display:block;margin-bottom:4px;" class="<?php echo esc_attr($blur_class); ?>">
                             <input type="radio"
                                 name="cpt_custom_tax[orderby]"
                                 value="<?php echo esc_attr($option['attr']); ?>"
-                                <?php echo $disabled; ?>
-                                <?php echo $checked; ?>
+                                <?php echo esc_attr($disabled); ?>
+                                <?php echo esc_attr($checked); ?>
                             />
                             <?php echo esc_html($option['text']); ?>
                         </label>
@@ -837,25 +845,25 @@ class TaxopressCoreAdmin
                 </td>
             </tr>
             <?php
-            
+
             $order_options = [
-                [ 'attr' => 'asc', 'text' => esc_attr__( 'Ascending', 'simple-tags' ), 'default' => true ],
-                [ 'attr' => 'desc', 'text' => esc_attr__( 'Descending', 'simple-tags') ],
+                [ 'attr' => 'asc', 'text' => esc_attr__('Ascending', 'simple-tags'), 'default' => true ],
+                [ 'attr' => 'desc', 'text' => esc_attr__('Descending', 'simple-tags') ],
             ];
             $selected_order = isset($current['order']) ? $current['order'] : '';
             ?>
             <tr>
                 <th scope="row"><?php echo esc_html__('Ordering for choosing terms for display', 'simple-tags'); ?></th>
                 <td>
-                <?php foreach ($order_options as $option): 
+                <?php foreach ($order_options as $option) :
                     $is_asc = ($option['attr'] === 'asc');
                     $checked = ($selected_order === $option['attr'] || (empty($selected_order) && $is_asc)) ? 'checked="checked"' : '';
-                ?>
+                    ?>
                     <label style="display:block;margin-bottom:4px;">
                         <input type="radio"
                             name="cpt_custom_tax[order]"
                             value="<?php echo esc_attr($option['attr']); ?>"
-                            <?php echo $checked; ?>
+                            <?php echo esc_attr($checked); ?>
                         />
                         <?php echo esc_html($option['text']); ?>
                     </label>
@@ -863,7 +871,6 @@ class TaxopressCoreAdmin
                 </td>
             </tr>
             <?php
-
     }
 
     public function taxopress_order_column_free($item)
@@ -925,7 +932,7 @@ class TaxopressCoreAdmin
                 esc_html($tooltip)
             );
         }
-            return sprintf(
+        return sprintf(
             '<div class="pp-tooltips-library" data-toggle="tooltip">
                 %s
                 <div class="taxopress tooltip-text">%s</div>
@@ -939,7 +946,7 @@ class TaxopressCoreAdmin
      *
      * @param array $current Current settings for the tag cloud.
     */
-    function taxopress_free_tagcloud_ordering_method($current)
+    public function taxopress_free_tagcloud_ordering_method($current)
     {
         $options = [
             'name' => esc_attr__('Name', 'simple-tags'),
@@ -959,13 +966,13 @@ class TaxopressCoreAdmin
             <td>
                 <div class="taxopress-select-with-icon-wrapper taxopress-order">
                     <select name="taxopress_tag_cloud[orderby]" class="taxopress-select-with-icon">
-                        <?php foreach ($options as $key => $label): ?>
+                        <?php foreach ($options as $key => $label) : ?>
                             <option value="<?php echo esc_attr($key); ?>"
                                 <?php
                                     selected($selected, $key);
-                                    if ($key === 'taxopress_term_order_free') {
-                                        echo ' disabled';
-                                    }
+                                if ($key === 'taxopress_term_order_free') {
+                                    echo ' disabled';
+                                }
                                 ?>
                             ><?php echo esc_html($label); ?></option>
                         <?php endforeach; ?>
@@ -983,7 +990,7 @@ class TaxopressCoreAdmin
         <?php
     }
 
-    function taxopress_free_posttags_ordering_method($current)
+    public function taxopress_free_posttags_ordering_method($current)
     {
         $options = [
             'name' => esc_attr__('Name', 'simple-tags'),
@@ -1003,13 +1010,13 @@ class TaxopressCoreAdmin
             <td>
                 <div class="taxopress-select-with-icon-wrapper taxopress-order">
                     <select name="taxopress_tag_cloud[orderby]" class="taxopress-select-with-icon">
-                        <?php foreach ($options as $key => $label): ?>
+                        <?php foreach ($options as $key => $label) : ?>
                             <option value="<?php echo esc_attr($key); ?>"
                                 <?php
                                     selected($selected, $key);
-                                    if ($key === 'taxopress_term_order_free') {
-                                        echo ' disabled';
-                                    }
+                                if ($key === 'taxopress_term_order_free') {
+                                    echo ' disabled';
+                                }
                                 ?>
                             ><?php echo esc_html($label); ?></option>
                         <?php endforeach; ?>
