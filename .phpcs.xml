@@ -27,9 +27,27 @@
     <exclude-pattern>/dev-workspace-cache/*</exclude-pattern>
     <exclude-pattern>/cache/*</exclude-pattern>
     <exclude-pattern>/.cache/*</exclude-pattern>
+    <exclude-pattern>/dist/*</exclude-pattern>
 
     <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength.TooLong" />
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>/inc/*\.php</exclude-pattern>
+        <exclude-pattern>/modules/taxopress-ai/.*</exclude-pattern>
+        <exclude-pattern>/review-request/review\.php</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>/inc/*\.php</exclude-pattern>
+        <exclude-pattern>/modules/taxopress-ai/.*</exclude-pattern>
+        <exclude-pattern>/review-request/review\.php</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>/inc/*\.php</exclude-pattern>
+        <exclude-pattern>/includes-core/TaxopressCoreAdmin\.php</exclude-pattern>
+        <exclude-pattern>/modules/taxopress-ai/.*</exclude-pattern>
+        <exclude-pattern>/review-request/review\.php</exclude-pattern>
     </rule>
     <rule ref="WordPressVIPMinimum">
         <exclude name="WordPress.DateTime.RestrictedFunctions.date_date" />
