@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: TaxoPress
  * Plugin URI: https://wordpress.org/plugins/simple-tags/
@@ -14,11 +15,11 @@
  *
  * Copyright (c) 2022 Taxopress
  *
- * @package 	simple-tags
- * @author		TaxoPress
+ * @package     simple-tags
+ * @author      TaxoPress
  * @copyright   Copyright (c) 2022 Taxopress
- * @license		GNU General Public License version 2
- * @link		https://TaxoPress.com/
+ * @license     GNU General Public License version 2
+ * @link        https://TaxoPress.com/
  */
 
 ######################################
@@ -51,7 +52,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('STAGS_VERSION')) {
-define('STAGS_VERSION', '3.45.0');
+    define('STAGS_VERSION', '3.45.0');
 }
 
 if (! function_exists('taxopress_free_is_pro_active')) {
@@ -167,7 +168,7 @@ add_action('plugins_loaded', function () {
 
 
 if (! defined('TAXOPRESS_FILE')) {
-    define ( 'TAXOPRESS_FILE', __FILE__ );
+    define('TAXOPRESS_FILE', __FILE__);
 }
 
 if (! defined('STAGS_MIN_PHP_VERSION')) {
