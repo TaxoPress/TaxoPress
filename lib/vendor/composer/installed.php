@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '124075e6ad0505e805b4ce22dd9273d8e6dcfbb1',
+        'reference' => '070a5323f5abf41b43429f08b945353f61dbdd1b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '124075e6ad0505e805b4ce22dd9273d8e6dcfbb1',
+            'reference' => '070a5323f5abf41b43429f08b945353f61dbdd1b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -58,7 +58,7 @@
         'publishpress/wordpress-reviews' => array(
             'pretty_version' => '1.2.0',
             'version' => '1.2.0.0',
-            'reference' => 'd93caf49000e473d7ac9771eeab77130617d55ae',
+            'reference' => '6d1cf428aef5fc5f72c9368fbd7ce1f14d956503',
             'type' => 'library',
             'install_path' => __DIR__ . '/../publishpress/wordpress-reviews',
             'aliases' => array(),

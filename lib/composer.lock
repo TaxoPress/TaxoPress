@@ -307,12 +307,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-wordpress-reviews.git",
-                "reference": "d93caf49000e473d7ac9771eeab77130617d55ae"
+                "reference": "6d1cf428aef5fc5f72c9368fbd7ce1f14d956503"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-wordpress-reviews/zipball/d93caf49000e473d7ac9771eeab77130617d55ae",
-                "reference": "d93caf49000e473d7ac9771eeab77130617d55ae",
+                "url": "https://api.github.com/repos/publishpress/library-wordpress-reviews/zipball/6d1cf428aef5fc5f72c9368fbd7ce1f14d956503",
+                "reference": "6d1cf428aef5fc5f72c9368fbd7ce1f14d956503",
                 "shasum": ""
             },
             "require": {
@@ -363,7 +363,7 @@
                 "issues": "https://github.com/publishpress/library-wordpress-reviews/issues",
                 "source": "https://github.com/publishpress/library-wordpress-reviews/tree/1.2.0"
             },
-            "time": "2025-12-10T09:56:34+00:00"
+            "time": "2026-01-12T14:05:27+00:00"
         },
         {
             "name": "publishpress/wordpress-version-notices",
