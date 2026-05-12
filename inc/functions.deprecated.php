@@ -1,20 +1,23 @@
 <?php
+
 /**
  * Deprecated - Generate meta keywords for HTML header
  *
  * @return string
  */
-function st_get_meta_keywords() {
-	return '';
+function st_get_meta_keywords()
+{
+    return '';
 }
 
 /**
  * Deprecated - Display meta keywords for HTML header
  *
  */
-function st_meta_keywords() {
+function st_meta_keywords()
+{
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo st_get_meta_keywords();
+    echo st_get_meta_keywords();
 }
 
 /**
@@ -22,9 +25,10 @@ function st_meta_keywords() {
  *
  * @param string $args
  */
-function st_related_tags( $args = '' ) {
+function st_related_tags($args = '')
+{
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo st_get_related_tags( $args );
+    echo st_get_related_tags($args);
 }
 
 /**
@@ -34,8 +38,9 @@ function st_related_tags( $args = '' ) {
  *
  * @return string|array
  */
-function st_get_related_tags( $args = '' ) {
-	return '';
+function st_get_related_tags($args = '')
+{
+    return '';
 }
 
 /**
@@ -43,9 +48,10 @@ function st_get_related_tags( $args = '' ) {
  *
  * @param string $args
  */
-function st_remove_related_tags( $args = '' ) {
+function st_remove_related_tags($args = '')
+{
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo st_get_remove_related_tags( $args );
+    echo st_get_remove_related_tags($args);
 }
 
 /**
@@ -55,6 +61,7 @@ function st_remove_related_tags( $args = '' ) {
  *
  * @return string|array
  */
-function st_get_remove_related_tags( $args = '' ) {
-	return '';
+function st_get_remove_related_tags($args = '')
+{
+    return '';
 }

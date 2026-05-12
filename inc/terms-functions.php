@@ -2,20 +2,21 @@
 
 /**
  * Generate a unique term slug should user decide to copy same term more than once.
- * 
+ *
  * @param string $slug The initial slug to check
  * @param string $taxonomy The taxonomy to check against
  * @return string Unique slug
  */
-function taxopress_get_unique_term_slug($slug, $taxonomy) {
+function taxopress_get_unique_term_slug($slug, $taxonomy)
+{
     $original_slug = $slug;
     $count = 1;
-    
+
     while (term_exists($slug, $taxonomy)) {
         $slug = $original_slug . '-' . $count;
         $count++;
     }
-    
+
     return $slug;
 }
 
@@ -33,7 +34,7 @@ function taxopress_process_terms()
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -49,22 +50,23 @@ function taxopress_process_terms()
     }
 
     if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-terms') {
-        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
-        if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
+        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
+        if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
             $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
-            wp_delete_term( $term->term_id, $term->taxonomy );
+            wp_delete_term($term->term_id, $term->taxonomy);
         }
         add_action('admin_notices', "taxopress_term_delete_success_admin_notice");
         add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
     }
 
     if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-remove-from-posts') {
-        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
-        if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
+        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
+        if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
             $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
             $args = array(
                 'post_type' => 'any',
                 'posts_per_page' => -1,
+                // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Necessary to filter posts by specific term for accurate removal
                 'tax_query' => array(
                     array(
                         'taxonomy' => $term->taxonomy,
@@ -75,23 +77,22 @@ function taxopress_process_terms()
             );
             $posts = get_posts($args);
             $counter = 0;
-            foreach ( $posts as $post ){
-                $remove = wp_remove_object_terms( $post->ID, $term->term_id, $term->taxonomy );
-                if($remove){
-				    clean_object_term_cache( $post->ID, $term->taxonomy );
-				    clean_term_cache( $term->term_id, $term->taxonomy );
-                    $counter ++;
+            foreach ($posts as $post) {
+                $remove = wp_remove_object_terms($post->ID, $term->term_id, $term->taxonomy);
+                if ($remove) {
+                    clean_object_term_cache($post->ID, $term->taxonomy);
+                    clean_term_cache($term->term_id, $term->taxonomy);
+                    $counter++;
                 }
             }
-
         }
         add_action('admin_notices', "taxopress_term_posts_remov_success_admin_notice");
         add_filter('removable_query_args', 'taxopress_delete_terms_filter_removable_query_args');
     }
 
     if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-term') {
-        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
-        if (wp_verify_nonce($nonce, 'terms-action-request-nonce')) {
+        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
+        if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
             $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
 
             $taxopress_term_name = $term->name . ' Copy';
@@ -101,13 +102,14 @@ function taxopress_process_terms()
                 'slug' => $taxopress_term_slug,
                 'description' => $term->description,
             ]);
-    
+
             if (!is_wp_error($taxopress_term_data)) {
                 $taxopress_term_id = $taxopress_term_data['term_id'];
-    
+
                 $args = array(
                     'post_type' => 'any',
                     'posts_per_page' => -1,
+                    // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Necessary to filter posts by specific term for accurate term copying
                     'tax_query' => array(
                         array(
                             'taxonomy' => $term->taxonomy,
@@ -117,9 +119,9 @@ function taxopress_process_terms()
                     )
                 );
                 $posts = get_posts($args);
-                
-                foreach ( $posts as $post ){
-                    wp_set_object_terms( $post->ID, $taxopress_term_id, $term->taxonomy, true );
+
+                foreach ($posts as $post) {
+                    wp_set_object_terms($post->ID, $taxopress_term_id, $term->taxonomy, true);
                 }
             }
         }

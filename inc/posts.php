@@ -2,11 +2,10 @@
 
 class SimpleTags_Posts
 {
-
-    const MENU_SLUG = 'st_options';
+    public const MENU_SLUG = 'st_options';
 
     // class instance
-    static $instance;
+    public static $instance;
 
     // WP_List_Table object
     public $posts_table;
@@ -54,16 +53,16 @@ class SimpleTags_Posts
     /**
      * Handle an ajax request to search filter available terms
      */
-     public static function handle_filter_term_search()
-     {
-         header('Content-Type: application/javascript');
- 
+    public static function handle_filter_term_search()
+    {
+        header('Content-Type: application/javascript');
+
         if (empty($_GET['nonce'])
             || !wp_verify_nonce(sanitize_key($_GET['nonce']), 'taxopress-term-search')
         ) {
             wp_send_json_error(null, 403);
         }
- 
+
         if (! current_user_can('simple_tags')) {
             wp_send_json_error(null, 403);
         }
@@ -206,7 +205,7 @@ class SimpleTags_Posts
 
         settings_errors(__CLASS__);
 
-?>
+        ?>
         <div class="wrap st_wrap st-manage-taxonomies-page manage-taxopress-posts">
 
             <div id="">
@@ -217,21 +216,21 @@ class SimpleTags_Posts
 
 
                 <?php
-                if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
-                    echo '<span class="subtitle__">';
-                    printf(
-                        /* translators: %s: Search query. */
-                        esc_html__( 'Search results for: %s' ),
-                        '<strong>' . esc_html($search) . '</strong>'
-                    );
-                    echo '</span>';
-                }
-                ?>
+                        if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
+                            echo '<span class="subtitle__">';
+                            printf(
+                                /* translators: %s: Search query. */
+                                esc_html__('Search results for: %s'),
+                                '<strong>' . esc_html($search) . '</strong>'
+                            );
+                            echo '</span>';
+                        }
+        ?>
                 <?php
 
-                //the posts table instance
-                $this->posts_table->prepare_items();
-                ?>
+        //the posts table instance
+        $this->posts_table->prepare_items();
+        ?>
 
 
                 <hr class="wp-header-end">
@@ -245,8 +244,8 @@ class SimpleTags_Posts
 
                     <div class="col-wrap">
                         <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
-                            <?php $this->posts_table->display(); //Display the table 
-                            ?>
+                            <?php $this->posts_table->display(); //Display the table
+        ?>
                         </form>
                         <div class="form-wrap edit-post-notes">
                             <p><?php esc_html__('Description here.', 'simple-tags') ?></p>

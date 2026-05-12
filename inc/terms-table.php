@@ -1,11 +1,11 @@
 <?php
+
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
 class Taxopress_Terms_List extends WP_List_Table
 {
-
     /** Class constructor */
     public function __construct()
     {
@@ -19,12 +19,13 @@ class Taxopress_Terms_List extends WP_List_Table
 
     /**
      * Flatten a hierarchical terms array into a flat array.
-     * 
+     *
      * @param array $terms Array of term objects.
      * @param int $max_depth Maximum depth to traverse (default 10).
      * @return array Flattened array of term objects.
     */
-     function taxopress_flatten_terms_tree($terms, $max_depth = 7) {
+    public function taxopress_flatten_terms_tree($terms, $max_depth = 7)
+    {
         $flat = [];
         $map = [];
         $children_map = [];
@@ -74,7 +75,8 @@ class Taxopress_Terms_List extends WP_List_Table
     /**
      * Arrange terms in hierarchical order with depth info for dash prefixing.
     */
-    function taxopress_arrange_terms_hierarchically($terms) {
+    public function taxopress_arrange_terms_hierarchically($terms)
+    {
         $terms_by_id = [];
         $children = [];
         foreach ($terms as $term) {
@@ -83,7 +85,7 @@ class Taxopress_Terms_List extends WP_List_Table
         }
 
         $ordered = [];
-        $add_term = function($term_id, $depth) use (&$add_term, &$terms_by_id, &$children, &$ordered) {
+        $add_term = function ($term_id, $depth) use (&$add_term, &$terms_by_id, &$children, &$ordered) {
             $term = $terms_by_id[$term_id];
             $term->taxopress_depth = $depth;
             $ordered[] = $term;
@@ -109,20 +111,25 @@ class Taxopress_Terms_List extends WP_List_Table
         $taxonomies = array_keys(get_all_taxopress_taxonomies_request());
         $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for search filtering
         $search = (!empty($_REQUEST['s'])) ? sanitize_text_field($_REQUEST['s']) : '';
 
         $items_per_page = $this->get_items_per_page('st_terms_per_page', 20);
         $page           = $this->get_pagenum();
         $offset         = ($page - 1) * $items_per_page;
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering and display
         $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? [sanitize_text_field($_REQUEST['terms_filter_post_type'])] : '';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering and display
         $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
 
         $allowed_orderby = ['name', 'slug', 'taxonomy', 'count', 'id'];
         $allowed_order   = ['asc', 'desc'];
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for ordering
         $requested_orderby = !empty($_REQUEST['orderby']) ? sanitize_key($_REQUEST['orderby']) : '';
-        $requested_order   = !empty($_REQUEST['order'])   ? strtolower(sanitize_text_field($_REQUEST['order'])) : '';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for ordering
+        $requested_order   = !empty($_REQUEST['order']) ? strtolower(sanitize_text_field($_REQUEST['order'])) : '';
 
         if (!in_array($requested_orderby, $allowed_orderby, true)) {
             $requested_orderby = '';
@@ -131,7 +138,7 @@ class Taxopress_Terms_List extends WP_List_Table
             $requested_order = '';
         }
 
-        $order_setting   = isset($taxonomy_settings[$selected_taxonomy]['order'])   ? strtolower($taxonomy_settings[$selected_taxonomy]['order'])   : 'desc';
+        $order_setting   = isset($taxonomy_settings[$selected_taxonomy]['order']) ? strtolower($taxonomy_settings[$selected_taxonomy]['order']) : 'desc';
         $orderby_setting = isset($taxonomy_settings[$selected_taxonomy]['orderby']) ? $taxonomy_settings[$selected_taxonomy]['orderby'] : 'ID';
 
         $orderby_setting = strtolower($orderby_setting);
@@ -147,7 +154,9 @@ class Taxopress_Terms_List extends WP_List_Table
         }
 
         // If viewing via taxopress_terms_taxonomy, override to show all terms in that taxonomy
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
         if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
             $selected_taxonomy = sanitize_text_field($_REQUEST['taxopress_terms_taxonomy']);
             $taxonomies = [$selected_taxonomy];
             $show_all_terms_in_taxonomy = false;
@@ -347,9 +356,10 @@ class Taxopress_Terms_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
         if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
             return [
                 'name'        => esc_html__('Title', 'simple-tags'),
@@ -407,7 +417,7 @@ class Taxopress_Terms_List extends WP_List_Table
      *
      * @return string
      */
-    function column_cb($item)
+    public function column_cb($item)
     {
         return sprintf('<input type="checkbox" name="%1$s[]" value="%2$s" />', 'taxopress_terms', $item->term_id);
     }
@@ -435,23 +445,29 @@ class Taxopress_Terms_List extends WP_List_Table
     protected function extra_tablenav($which)
     {
         // Hide filters if taxopress_show_all=1
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for display filtering
         if ('top' === $which && empty($_REQUEST['taxopress_show_all'])) {
-
             $post_types = get_post_types(['public' => true], 'objects');
 
             $taxonomies = get_all_taxopress_taxonomies_request();
 
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering
             $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_text_field($_REQUEST['terms_filter_post_type']) : '';
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering
             $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['terms_filter_taxonomy']) : '';
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering
             $selected_post = (!empty($_REQUEST['destination_post'])) ? sanitize_text_field($_REQUEST['destination_post']) : '';
 
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying GET parameter for taxonomy type
             $selected_option = 'public';
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'all') {
                 $selected_option = 'all';
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             } elseif (isset($_GET['taxonomy_type']) && $_GET['taxonomy_type'] === 'private') {
                 $selected_option = 'private';
             }
-?>
+            ?>
 
             <div class="alignleft actions autoterms-terms-table-copy" id="taxopress-copy-selection-boxes" style="display: none;">
                 <select class="auto-terms-terms-copy-select" name="taxopress_destination_taxonomy" id="terms_copy_select_destination_taxonomy">
@@ -464,28 +480,28 @@ class Taxopress_Terms_List extends WP_List_Table
                 <select class="auto-terms-terms-copy-select" name="taxopress_destination_post_type" id="terms_copy_select_destination_post">
                     <?php
                         $post_type_label = !empty($selected_post_type) ? esc_html($selected_post_type) : esc_html__('post type', 'simple-tags');
-                        ?>
-                        <option value=""><?php printf(esc_html__('Select Destination %s', 'simple-tags'), $post_type_label); ?></option>
-                        <option value="all" <?php selected($selected_post, 'all'); ?>><?php printf(esc_html__('All %s', 'simple-tags'), $post_type_label); ?></option>.
-                        <?php  
-                        // I want to show all posts when no post type is selected
+                    ?>
+                        <option value=""><?php printf(esc_html__('Select Destination %s', 'simple-tags'), esc_html($post_type_label)); ?></option>
+                        <option value="all" <?php selected($selected_post, 'all'); ?>><?php printf(esc_html__('All %s', 'simple-tags'), esc_html($post_type_label)); ?></option>.
+                        <?php
+            // I want to show all posts when no post type is selected
                         if (empty($selected_post_type)) {
                             $all_posts = get_posts(['post_type' => 'any', 'numberposts' => -1]);
-                            foreach ($all_posts as $post): ?>
+                            foreach ($all_posts as $post) : ?>
                             <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
-                            <?php echo esc_html($post->post_title); ?>
+                                        <?php echo esc_html($post->post_title); ?>
                             </option>
-                            <?php endforeach; 
+                            <?php endforeach;
                         } else {
                             // Show posts only for selected post type
                             $posts = get_posts(['post_type' => $selected_post_type, 'numberposts' => -1]);
-                            foreach ($posts as $post): ?>
+                            foreach ($posts as $post) : ?>
                             <option value="<?php echo esc_attr($post->ID); ?>" <?php selected($selected_post, $post->ID); ?>>
-                            <?php echo esc_html($post->post_title); ?>
+                                        <?php echo esc_html($post->post_title); ?>
                             </option>
-                            <?php endforeach; 
+                            <?php endforeach;
                         }
-                            ?>
+                        ?>
                 </select>
             </div>
             <div class="alignleft actions autoterms-terms-table-filter">
@@ -509,15 +525,15 @@ class Taxopress_Terms_List extends WP_List_Table
                 </select>
 
                 <select class="auto-terms-terms-filter-select" name="terms_filter_select_taxonomy_type" id="terms_filter_select_taxonomy_type">
-                    <option value="all" <?php echo ($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('All Taxonomies', 'simple-tags'); ?></option>
-                    <option value="public" <?php echo ($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
-                    <option value="private" <?php echo ($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
+                    <option value="all" <?php echo($selected_option === 'all' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('All Taxonomies', 'simple-tags'); ?></option>
+                    <option value="public" <?php echo($selected_option === 'public' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Public Taxonomies', 'simple-tags'); ?></option>
+                    <option value="private" <?php echo($selected_option === 'private' ? 'selected="selected"' : ''); ?>><?php echo esc_html__('Private Taxonomies', 'simple-tags'); ?></option>
                 </select>
                 
                 <a href="javascript:void(0)" class="taxopress-terms-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
 
             </div>
-        <?php
+            <?php
         }
     }
 
@@ -536,7 +552,7 @@ class Taxopress_Terms_List extends WP_List_Table
         }
 
         if ($this->current_action() === 'taxopress-terms-delete-terms') {
-            $taxopress_terms = array_map('sanitize_text_field', (array)$_REQUEST['taxopress_terms']);
+            $taxopress_terms = !empty($_REQUEST['taxopress_terms']) ? array_map('sanitize_text_field', (array)$_REQUEST['taxopress_terms']) : [];
             if (!empty($taxopress_terms)) {
                 foreach ($taxopress_terms as $taxopress_term) {
                     $term = get_term($taxopress_term);
@@ -552,9 +568,9 @@ class Taxopress_Terms_List extends WP_List_Table
             }
         }
         if ($this->current_action() === 'taxopress-terms-copy-terms') {
-            $taxopress_terms = array_map('sanitize_text_field', (array)$_REQUEST['taxopress_terms']);
-            $destination_taxonomy = sanitize_text_field($_REQUEST['taxopress_destination_taxonomy']);
-            $destination_post = sanitize_text_field($_REQUEST['taxopress_destination_post_type']);
+            $taxopress_terms = !empty($_REQUEST['taxopress_terms']) ? array_map('sanitize_text_field', (array)$_REQUEST['taxopress_terms']) : [];
+            $destination_taxonomy = !empty($_REQUEST['taxopress_destination_taxonomy']) ? sanitize_text_field($_REQUEST['taxopress_destination_taxonomy']) : '';
+            $destination_post = !empty($_REQUEST['taxopress_destination_post_type']) ? sanitize_text_field($_REQUEST['taxopress_destination_post_type']) : '';
 
             if (!empty($taxopress_terms) && !empty($destination_taxonomy)) {
                 foreach ($taxopress_terms as $taxopress_term) {
@@ -563,39 +579,41 @@ class Taxopress_Terms_List extends WP_List_Table
                         'slug' => $term->slug,
                         'description' => $term->description,
                     ]);
-                                if (!empty($destination_post) && $destination_post !== 'all') {
-                                    wp_set_object_terms($destination_post, [$term->term_id], $destination_taxonomy, true);
-                                }
-                
-                                if ($destination_post === 'all') {
-                                    $all_posts = get_posts(['post_type' => 'any', 'numberposts' => -1]);
-                                    foreach ($all_posts as $post) {
-                                        wp_set_object_terms($post->ID, [$term->term_id], $destination_taxonomy, true);
-                                    }
-                                }
-                            }
+                    if (!empty($destination_post) && $destination_post !== 'all') {
+                        wp_set_object_terms($destination_post, [$term->term_id], $destination_taxonomy, true);
+                    }
+
+                    if ($destination_post === 'all') {
+                        $all_posts = get_posts(['post_type' => 'any', 'numberposts' => -1]);
+                        foreach ($all_posts as $post) {
+                            wp_set_object_terms($post->ID, [$term->term_id], $destination_taxonomy, true);
+                        }
+                    }
+                }
                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo taxopress_admin_notices_helper(esc_html__('Term(s) copied successfully.', 'simple-tags'), true);
             }
         }
     }
 
-    protected function column_taxopress_custom_url($item) {
+    protected function column_taxopress_custom_url($item)
+    {
         $taxopress_custom_url = get_term_meta($item->term_id, 'taxopress_custom_url', true);
-        return (!empty($taxopress_custom_url) && filter_var($taxopress_custom_url, FILTER_VALIDATE_URL)) 
-            ? sprintf('<a href="%s" target="_blank">%s</a>', esc_url($taxopress_custom_url), esc_html($taxopress_custom_url)) 
+        return (!empty($taxopress_custom_url) && filter_var($taxopress_custom_url, FILTER_VALIDATE_URL))
+            ? sprintf('<a href="%s" target="_blank">%s</a>', esc_url($taxopress_custom_url), esc_html($taxopress_custom_url))
             : '-';
     }
 
-    protected function column_hidden_status($item) {
+    protected function column_hidden_status($item)
+    {
         $hidden_terms = get_transient('taxopress_hidden_terms_' . $item->taxonomy);
-    
+
         if (!empty($hidden_terms) && in_array($item->term_id, $hidden_terms)) {
             return esc_html__('Hidden', 'simple-tags');
-        } 
-    
+        }
+
         return esc_html__('Live', 'simple-tags');
-    }  
+    }
 
     /**
      * Render a column when no column specific method exist.
@@ -627,29 +645,38 @@ class Taxopress_Terms_List extends WP_List_Table
     public function search_box($text, $input_id)
     {
         // Hide search box if taxopress_show_all=1
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for display filtering
         if ((!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1')) {
             return;
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for display filtering
         if (empty($_REQUEST['s']) && !$this->has_items()) {
             //return;
         }
 
         $input_id = $input_id . '-search-input';
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_REQUEST['orderby'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_REQUEST['order'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_REQUEST['page'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
         }
 
         $custom_filters = ['terms_filter_post_type', 'terms_filter_taxonomy', 'taxonomy_type'];
 
-        foreach ($custom_filters as  $custom_filter) {
+        foreach ($custom_filters as $custom_filter) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering
             $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field($_REQUEST[$custom_filter]) : '';
             echo '<input type="hidden" name="' . esc_attr($custom_filter) . '" value="' . esc_attr($filter_value) . '" />';
         }
@@ -659,7 +686,7 @@ class Taxopress_Terms_List extends WP_List_Table
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s" value="<?php _admin_search_query(); ?>" />
             <?php submit_button($text, '', '', false, ['id' => 'taxopress-terms-search-submit']); ?>
         </p>
-    <?php
+        <?php
     }
 
     /**
@@ -734,6 +761,7 @@ class Taxopress_Terms_List extends WP_List_Table
         }
 
         // Only add other actions if not viewing via taxopress_terms_taxonomy
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
         if (empty($_REQUEST['taxopress_terms_taxonomy'])) {
             if (current_user_can('edit_term', $item->term_id)) {
                 $actions['inline hide-if-no-js'] = sprintf(
@@ -833,7 +861,7 @@ class Taxopress_Terms_List extends WP_List_Table
             $term_linked_term_names = [];
             foreach ($term_linked_terms as $term_linked_term) {
                 $linked_term_data = taxopress_get_linked_term_data($term_linked_term, $item->term_id);
-                $term_linked_term_names[] = $linked_term_data->term_name . ' ('. $linked_term_data->term_taxonomy .')';
+                $term_linked_term_names[] = $linked_term_data->term_name . ' (' . $linked_term_data->term_taxonomy . ')';
             }
             return join(', ', $term_linked_term_names);
         } else {
@@ -948,12 +976,14 @@ class Taxopress_Terms_List extends WP_List_Table
         );
     }
 
-    protected function count_posts_by_term($term_id, $taxonomy) {
-        
+    protected function count_posts_by_term($term_id, $taxonomy)
+    {
+
         $args = array(
             'post_type' => array_keys(get_post_types(array('public' => true), 'names')),
             'post_status' => 'any',
             'posts_per_page' => 1,
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Necessary to filter posts by specific term for accurate count display
             'tax_query' => array(
                 'relation' => 'AND',
                 array(
@@ -963,7 +993,7 @@ class Taxopress_Terms_List extends WP_List_Table
                 ),
             ),
         );
-    
+
         $term_count = new WP_Query($args);
 
         if ($term_count->have_posts()) {
@@ -972,7 +1002,7 @@ class Taxopress_Terms_List extends WP_List_Table
             return 0;
         }
     }
-    
+
 
     /**
      * The action column
@@ -1026,7 +1056,7 @@ class Taxopress_Terms_List extends WP_List_Table
      */
     public function inline_edit()
     {
-    ?>
+        ?>
 
         <form method="get">
             <table style="display: none">
@@ -1081,6 +1111,6 @@ class Taxopress_Terms_List extends WP_List_Table
                 </tbody>
             </table>
         </form>
-<?php
+        <?php
     }
 }

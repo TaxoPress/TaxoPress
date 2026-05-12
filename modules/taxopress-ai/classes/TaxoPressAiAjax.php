@@ -1,4 +1,5 @@
 <?php
+
 if (!class_exists('TaxoPressAiAjax')) {
     class TaxoPressAiAjax
     {
@@ -86,7 +87,9 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $preview_feature = 'data';
                 $post_data = get_post($preview_post);
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post_data->post_type);
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Using custom taxopress_sanitize_text_field() for sanitization
                 $post_content = isset($_POST['post_content']) ? taxopress_sanitize_text_field($_POST['post_content']) : $post_data->post_content;
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Using custom taxopress_sanitize_text_field() for sanitization
                 $post_title = isset($_POST['post_title']) ? taxopress_sanitize_text_field($_POST['post_title']) : $post_data->post_title;
                 $term_results = [];
 
@@ -104,11 +107,11 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 if (!can_manage_taxopress_metabox_taxonomy($preview_taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
+                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
                     wp_send_json($response);
                     exit;
                 }
-                
+
 
                 if ($preview_ai == 'autoterms' && !empty($selected_autoterms)) {
                     $autoterm_data      = taxopress_get_autoterm_data();
@@ -197,7 +200,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     if (isset($_POST['existing_terms_maximum_terms'])) {
                         $args['existing_terms_maximum_terms'] = (int)$_POST['existing_terms_maximum_terms'];
                     }
-                    
+
                     $existing_terms_results = self::get_existing_terms_results($args);
                     if (!empty($existing_terms_results['results'])) {
                         $term_results = $existing_terms_results['results'];
@@ -233,7 +236,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                     if (empty($selected_autoterms) || empty($settings_data)) {
                         $response['status'] = 'error';
                         $response['content'] = esc_html__('Invalid Auto Term ID. Please save the settings before using preview.', 'simple-tags');
-                    } elseif ( !$autoterm_use_taxonomy && !$autoterm_use_open_ai && !$autoterm_use_ibm_watson && !$autoterm_use_dandelion && !$autoterm_use_opencalais
+                    } elseif (
+                        !$autoterm_use_taxonomy && !$autoterm_use_open_ai && !$autoterm_use_ibm_watson && !$autoterm_use_dandelion && !$autoterm_use_opencalais
                     ) {
                         $response['status'] = 'error';
                         $response['content'] = esc_html__('You must enable at least one AI integration source to use auto term preview.', 'simple-tags');
@@ -247,12 +251,12 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $terms_found = false;
 
                         $metabox_display_option = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_data->post_type . '_metabox_display_option');
-            
+
                         if (empty($metabox_display_option) || $screen_source == 'st_autoterms') {
                             $metabox_display_option = 'default';
                         }
 
-                        $term_results = '<div class="preview-action-title taxopress-autoterm-element '. esc_attr($metabox_display_option) .'"><p class="description">';
+                        $term_results = '<div class="preview-action-title taxopress-autoterm-element ' . esc_attr($metabox_display_option) . '"><p class="description">';
                         $term_results .= sprintf(esc_html__('Click %1s to select or deselect them from this %2s.', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name));
                         $term_results .= '</p></div>';
                         // autoterm_use_taxonomy
@@ -262,17 +266,17 @@ if (!class_exists('TaxoPressAiAjax')) {
                             $request_args['settings_data'] = $settings_data;
 
                             $suggest_local_terms_results = TaxoPressAiAjax::get_existing_terms_results($request_args);
-                
+
                             if (!empty($suggest_local_terms_results['results'])) {
                                 $terms_found = true;
                                 $request_args['results']        = $suggest_local_terms_results['results'];
                                 $request_args['legend_title']   = esc_html__('Suggest Existing Terms', 'simple-tags');
                                 $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
                             } else {
-                                $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('Suggest Existing Terms', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $suggest_local_terms_results['message'] .'</p></div></div></fieldset>';
+                                $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('Suggest Existing Terms', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>' . $suggest_local_terms_results['message'] . '</p></div></div></fieldset>';
                             }
                         }
-                
+
                         if (taxopress_is_pro_version()) {
                             // autoterm_use_open_ai
                             if ($autoterm_use_open_ai) {
@@ -288,10 +292,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                                     $request_args['legend_title']   = esc_html__('OpenAI', 'simple-tags');
                                     $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
                                 } else {
-                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('OpenAI', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $open_ai_results['message'] .'</p></div></div></fieldset>';
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('OpenAI', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>' . $open_ai_results['message'] . '</p></div></div></fieldset>';
                                 }
                             }
-                    
+
                             // autoterm_use_ibm_watson
                             if ($autoterm_use_ibm_watson) {
                                 ##https://cloud.ibm.com/apidocs/natural-language-understanding
@@ -303,10 +307,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                                     $request_args['legend_title']   = esc_html__('IBM Watson', 'simple-tags');
                                     $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
                                 } else {
-                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('IBM Watson', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $ibm_watson_results['message'] .'</p></div></div></fieldset>';
-                                }            
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('IBM Watson', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>' . $ibm_watson_results['message'] . '</p></div></div></fieldset>';
+                                }
                             }
-                    
+
                             // autoterm_use_dandelion
                             if ($autoterm_use_dandelion) {
                                 ##https://dandelion.eu/docs/api/datatxt/nex/v1/#response
@@ -318,10 +322,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                                     $request_args['legend_title']   = esc_html__('Dandelion', 'simple-tags');
                                     $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
                                 } else {
-                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('Dandelion', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $dandelion_results['message'] .'</p></div></div></fieldset>';
-                                } 
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('Dandelion', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>' . $dandelion_results['message'] . '</p></div></div></fieldset>';
+                                }
                             }
-                    
+
                             // autoterm_use_opencalais
                             if ($autoterm_use_opencalais) {
                                 ## https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation
@@ -333,8 +337,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                                     $request_args['legend_title']   = esc_html__('LSEG / Refinitiv', 'simple-tags');
                                     $term_results               .= TaxoPressAiUtilities::get_term_fieldset_html($request_args);
                                 } else {
-                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('LSEG / Refinitiv', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>'. $open_calais_results['message'] .'</p></div></div></fieldset>';
-                                } 
+                                    $term_results .= '<fieldset class="previewed-tag-fieldset"><legend> ' . esc_html__('LSEG / Refinitiv', 'simple-tags') . ' </legend><div class="previewed-tag-content"><div class="taxopress-response-css red"><p>' . $open_calais_results['message'] . '</p></div></div></fieldset>';
+                                }
                             }
                         }
 
@@ -342,11 +346,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                             $term_results .= '<div class="preview-action-btn-wrap">';
                             $term_results .= '<button class="button button-primary taxopress-ai-addtag-button">
                             <div class="spinner"></div>
-                            '. sprintf(esc_html__('Update %1s on this %2s', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name)) .' 
+                            ' . sprintf(esc_html__('Update %1s on this %2s', 'simple-tags'), esc_html($preview_taxonomy_details->labels->name), esc_html($post_type_details->labels->singular_name)) . ' 
                             </button>';
                             $term_results .= '</div>';
                         }
-
                     }
                 }
 
@@ -362,7 +365,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                                     $term_id = $term_details->term_id;
                                     $add_terms = [];
                                     $add_terms[$primary_term] = $term_id;
-                        
+
                                     // add term synonyms
                                     $term_synonyms = taxopress_get_term_synonyms($term_id);
                                     if (!empty($term_synonyms)) {
@@ -370,10 +373,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                                             $add_terms[$term_synonym] = $term_id;
                                         }
                                     }
-                
+
                                     // add linked term
                                     $add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $preview_taxonomy);
-                                    
+
                                     // add all of the linked and synonmy terms to the list
                                     foreach ($add_terms as $add_name => $add_term_id) {
                                         if (is_string($add_name) && ! empty($add_name) && !in_array($add_name, $addded_term_results)) {
@@ -383,7 +386,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 } else {
                                     $addded_term_results[] = $term_result;
                                 }
-                               
                             } else {
                                 $addded_term_results[] = $term_result;
                             }
@@ -393,7 +395,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $show_term_slug = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_data->post_type . '_metabox_show_term_slug');
                         $args['show_term_slug'] = $show_term_slug;
                         $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($addded_term_results, $preview_taxonomy, $post_id, $legend_title, $args['show_counts'], $current_tags, $args);
-
                     } else {
                         $response_content = $term_results;
                     }
@@ -445,7 +446,6 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 $existing_terms_show_post_count = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
             } else {
-
                 if (isset($args['existing_terms_order']) && in_array(strtolower($args['existing_terms_order']), $allowed_order_keys, true)) {
                     $existing_terms_order = strtolower($args['existing_terms_order']);
                 } else {
@@ -468,7 +468,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 $existing_terms_show_post_count = isset($settings_data['existing_terms_show_post_count']) ? $settings_data['existing_terms_show_post_count'] : 0;
             }
-            
+
             if (!empty($args['show_counts'])) {
                 $existing_terms_show_post_count = 1;
             }
@@ -494,7 +494,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     if (in_array($existing_tax, $post_type_taxonomies)) {
                         $supported_tax = true;
                         $taxonomy_details = get_taxonomy($existing_tax);
-                        
+
                         $terms = SimpleTags_Admin::getTermsForAjax($existing_tax, $search_text, $existing_terms_orderby, $existing_terms_order, $limit);
                         $show_term_slug = SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_metabox_show_term_slug');
                         // make sure post terms are always included
@@ -502,7 +502,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                             $post_terms = wp_get_post_terms($post_id, $existing_tax);
                             if (!empty($post_terms)) {
                                 // Transform post_terms to match terms structure
-                                $structured_post_terms = array_map(function($term) {
+                                $structured_post_terms = array_map(function ($term) {
                                     return (object) [
                                         'name' => $term->name,
                                         'slug' => $term->slug,
@@ -565,7 +565,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                             $autoterm_useonly = !empty($settings_data['autoterm_useonly']) && !empty($settings_data['specific_terms']);
                             $specific_terms   = $autoterm_useonly ? (array) $settings_data['specific_terms'] : [];
 
-                            $terms = array_filter((array) $terms, function($term_obj) use ($autoterm_exclude, $autoterm_useonly, $specific_terms) {
+                            $terms = array_filter((array) $terms, function ($term_obj) use ($autoterm_exclude, $autoterm_useonly, $specific_terms) {
                                 $name = stripslashes($term_obj->name);
                                 if (!empty($autoterm_exclude) && in_array($name, $autoterm_exclude, true)) {
                                     return false;
@@ -646,12 +646,11 @@ if (!class_exists('TaxoPressAiAjax')) {
                         }
 
                         if (!empty($terms)) {
-
                             if ($suggest_terms) {
                                 $term_results = [];
-                                foreach ($terms as $term ) {
+                                foreach ($terms as $term) {
                                     $term_id = $term->term_id;
-                                    $term = stripslashes( $term->name );
+                                    $term = stripslashes($term->name);
                                     $add_terms = [];
                                     $add_terms[$term] = $term_id;
                                     $primary_term = $term;
@@ -664,7 +663,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                                             $add_terms[$term_synonym] = $term_id;
                                         }
                                     }
-                        
+
                                     // add linked term
                                     $add_terms = taxopress_add_linked_term_options($add_terms, $term_id, $existing_tax);
                                     foreach ($add_terms as $add_name => $add_term_id) {
@@ -697,7 +696,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 $response_content = TaxoPressAiUtilities::format_taxonomy_term_results($term_results, $existing_tax, $post_id, $legend_title, $existing_terms_show_post_count, $current_tags, $args);
                             }
                         }
-
                     }
                 }
 
@@ -721,7 +719,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                         'simple-tags'
                     );
                 }
-
             }
 
             return $return;
@@ -762,7 +759,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 if (!can_manage_taxopress_metabox_taxonomy($taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
+                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
                     wp_send_json($response);
                     exit;
                 }
@@ -776,7 +773,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $post_type_label = $post_type_details->labels->singular_name;
                 }
 
-                if (!current_user_can('edit_post', $post_id)){
+                if (!current_user_can('edit_post', $post_id)) {
                     $response['status'] = 'error';
                     $response['content'] = esc_html__('You do not have permission to edit this post.', 'simple-tags');
                     wp_send_json($response);
@@ -830,7 +827,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                         clean_object_term_cache($post_id, $taxonomy);
                     }
 
-                    $additional_message = ''; //sprintf(esc_html__('%1s updated.', 'simple-tags'), esc_html($post_type_label));
+                    $additional_message = '';
                     $response['status'] = 'success';
                     $response['removed_terms_id'] = $removed_terms_id;
                     $response['added_terms_id'] = $added_terms_id;
@@ -891,12 +888,12 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 if (!can_manage_taxopress_metabox_taxonomy($taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="'. admin_url('admin.php?page=st_options#metabox') .'">', '</a>');
+                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
                     wp_send_json($response);
                     exit;
                 }
 
-                $taxonomy_data = get_taxonomy( $taxonomy );
+                $taxonomy_data = get_taxonomy($taxonomy);
                 $can_manage_term = false;
                 if (in_array($taxonomy, ['category', 'post_tag']) && current_user_can('manage_categories')) {
                     $can_manage_term = true;
@@ -970,34 +967,39 @@ if (!class_exists('TaxoPressAiAjax')) {
             exit;
         }
 
-        public static function taxopress_validate_term_before_insert($term, $taxonomy) {
+        public static function taxopress_validate_term_before_insert($term, $taxonomy)
+        {
             $post_id   = 0;
             $post_type = '';
-        
+
             // Check both possible keys for post ID
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification handled in calling function handle_taxopress_ai_new_term()
             if (!empty($_POST['post_ID'])) {
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing
                 $post_id = intval($_POST['post_ID']);
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing
             } elseif (!empty($_POST['post_id'])) {
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing
                 $post_id = intval($_POST['post_id']);
             }
-        
+
             if ($post_id) {
                 $post_type = get_post_type($post_id);
             }
 
             $post_type = $post_type ?: 'post';
-        
+
             $option_name    = 'taxopress_ai_' . $post_type . '_exclusions';
             $excluded_chars = SimpleTags_Plugin::get_option_value($option_name);
-        
+
             if (!empty($excluded_chars)) {
                 $excluded_chars = array_filter(str_split(preg_replace('/\s+/', '', $excluded_chars)));
-        
+
                 if (!empty($excluded_chars)) {
                     $exact_chars = array_filter($excluded_chars, function ($char) use ($term) {
                         return strpos($term, $char) !== false;
                     });
-        
+
                     if (!empty($exact_chars)) {
                         return new WP_Error(
                             'invalid_character',
@@ -1025,11 +1027,12 @@ if (!class_exists('TaxoPressAiAjax')) {
                     sprintf(__('Terms cannot exceed %d characters.', 'simple-tags'), $max_length)
                 );
             }
-        
+
             return $term;
         }
 
-        public static function handle_role_preview() {
+        public static function handle_role_preview()
+        {
             if (!current_user_can('simple_tags')) {
                 wp_send_json_error();
             }
@@ -1042,7 +1045,7 @@ if (!class_exists('TaxoPressAiAjax')) {
             $role_taxonomies = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $preview_role . '');
 
             $can_create_terms = !SimpleTags_Plugin::get_option_value('enable_restrict' . $preview_role . '_metabox');
-            
+
             // Check if user is administrator - only they can edit labels
             $can_edit_labels = $preview_role === 'administrator';
 
@@ -1063,7 +1066,8 @@ if (!class_exists('TaxoPressAiAjax')) {
             ]);
         }
 
-        public static function handle_preview_update() {
+        public static function handle_preview_update()
+        {
             if (empty($_POST['nonce']) || !wp_verify_nonce(sanitize_key($_POST['nonce']), 'taxopress-ai-ajax-nonce')) {
                 wp_send_json_error(['message' => 'Invalid nonce'], 403);
                 exit;
@@ -1096,6 +1100,5 @@ if (!class_exists('TaxoPressAiAjax')) {
             ]);
             exit;
         }
-
     }
 }

@@ -5,13 +5,13 @@ if (!class_exists('WP_List_Table')) {
 
 class Taxopress_Posts_List extends WP_List_Table
 {
-	/**
-	 * Current level for output.
-	 *
-	 * @since 4.3.0
-	 * @var int
-	 */
-	protected $current_level = 0;
+    /**
+     * Current level for output.
+     *
+     * @since 4.3.0
+     * @var int
+     */
+    protected $current_level = 0;
 
     /** Class constructor */
     public function __construct()
@@ -29,7 +29,7 @@ class Taxopress_Posts_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'title'          => esc_html__('Title', 'simple-tags'),
@@ -68,7 +68,7 @@ class Taxopress_Posts_List extends WP_List_Table
         $orderby           = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'date';
         $order             = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'DESC';
 
-        
+
         $posts_per_page    = $this->get_items_per_page('st_posts_per_page', 20);
 
         $page              = $this->get_pagenum();
@@ -123,7 +123,7 @@ class Taxopress_Posts_List extends WP_List_Table
             wp_reset_postdata();
         }
 
-        
+
         return $results;
     }
 
@@ -155,7 +155,7 @@ class Taxopress_Posts_List extends WP_List_Table
 
             $posts_term_filter = (!empty($_REQUEST['posts_term_filter'])) ? (int) $_REQUEST['posts_term_filter'] : '';
             $posts_post_type_filter = (!empty($_REQUEST['posts_post_type_filter'])) ? sanitize_text_field($_REQUEST['posts_post_type_filter']) : '';
-?>
+            ?>
 
 
             <div class="alignleft actions autoposts-posts-table-filter">
@@ -167,14 +167,14 @@ class Taxopress_Posts_List extends WP_List_Table
                     >
                     <option value=""><?php esc_html_e('', 'simple-tags'); ?></option>
                     <?php
-                    if (!empty($posts_term_filter)) {
-                        $posts_term_filter_data = get_term($posts_term_filter);
-                        if (is_object($posts_term_filter_data) && !is_wp_error($posts_term_filter_data) && isset($posts_term_filter_data->term_id)) {
-                            echo '<option value="' . esc_attr($posts_term_filter_data->term_id) . '" selected>' . esc_html($posts_term_filter_data->name) . '</option>';
-                        }
-                        
-                    }
-                    ?>
+                                if (!empty($posts_term_filter)) {
+                                    $posts_term_filter_data = get_term($posts_term_filter);
+                                    if (is_object($posts_term_filter_data) && !is_wp_error($posts_term_filter_data) && isset($posts_term_filter_data->term_id)) {
+                                        echo '<option value="' . esc_attr($posts_term_filter_data->term_id) . '" selected>' . esc_html($posts_term_filter_data->name) . '</option>';
+                                    }
+
+                                }
+            ?>
                 </select>
 
                 <select class="posts-post-type-filter-select taxopress-select2 taxopress-simple-select2"
@@ -183,10 +183,10 @@ class Taxopress_Posts_List extends WP_List_Table
                     data-placeholder="<?php esc_attr_e('Post Types Filter', 'simple-tags'); ?>">
                     <option value=""><?php esc_html_e('All Post Types', 'simple-tags'); ?></option>
                     <?php
-                    foreach ($post_types as $post_type) {
-                        echo '<option value="' . esc_attr($post_type->name) . '" ' . selected($posts_post_type_filter, $post_type->name, false) . '>' . esc_html($post_type->label) . '</option>';
-                    }
-                    ?>
+            foreach ($post_types as $post_type) {
+                echo '<option value="' . esc_attr($post_type->name) . '" ' . selected($posts_post_type_filter, $post_type->name, false) . '>' . esc_html($post_type->label) . '</option>';
+            }
+            ?>
                 </select>
 
                 <a href="javascript:void(0)" class="taxopress-posts-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
@@ -243,7 +243,7 @@ class Taxopress_Posts_List extends WP_List_Table
 
         $custom_filters = ['posts_term_filter', 'posts_post_type_filter'];
 
-        foreach ($custom_filters as  $custom_filter) {
+        foreach ($custom_filters as $custom_filter) {
             $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field($_REQUEST[$custom_filter]) : '';
             echo '<input type="hidden" name="' . esc_attr($custom_filter) . '" value="' . esc_attr($filter_value) . '" />';
         }
@@ -319,7 +319,7 @@ class Taxopress_Posts_List extends WP_List_Table
                 ),
                 esc_html(get_the_title($post))
             );
-        } else  {
+        } else {
             $title = '<strong><span class="row-title">'. get_the_title($post) .'</span></strong>';
         }
 
@@ -387,7 +387,7 @@ class Taxopress_Posts_List extends WP_List_Table
 
         // Get all the taxonomies for the post
         $taxonomies = get_object_taxonomies($post->post_type, 'objects');
-        
+
         if (!empty($taxonomies)) {
             foreach ($taxonomies as $taxonomy_slug => $taxonomy) {
                 // Check if the taxonomy should be displayed based on $taxonomy_type
@@ -400,10 +400,10 @@ class Taxopress_Posts_List extends WP_List_Table
                 // Get the assigned terms for each taxonomy
                 $terms = get_the_terms($post->ID, $taxonomy_slug);
                 if (!empty($terms) && !is_wp_error($terms)) {
-                    $out .='<div class="taxopress-post-taxonomy">';
-                    $out .="<strong>{$taxonomy->labels->name}:</strong> ";
-                    $out .='<span class="taxopress-post-taxonomy-terms">';
-                    
+                    $out .= '<div class="taxopress-post-taxonomy">';
+                    $out .= "<strong>{$taxonomy->labels->name}:</strong> ";
+                    $out .= '<span class="taxopress-post-taxonomy-terms">';
+
                     $term_links = [];
                     foreach ($terms as $term) {
                         $link_label = esc_html(sanitize_term_field('name', $term->name, $term->term_id, $taxonomy_slug, 'display'));
@@ -415,8 +415,8 @@ class Taxopress_Posts_List extends WP_List_Table
                         );
                     }
                     $out .= implode(', ', $term_links);
-                    $out .="</span>";
-                    $out .='</div>';
+                    $out .= "</span>";
+                    $out .= '</div>';
                 }
             }
         }
@@ -424,7 +424,8 @@ class Taxopress_Posts_List extends WP_List_Table
         return $out;
     }
 
-    protected function update_or_add_url_parameter($param_name, $param_value) {
+    protected function update_or_add_url_parameter($param_name, $param_value)
+    {
 
         $url = sanitize_text_field($_SERVER['REQUEST_URI']);
 
@@ -438,7 +439,7 @@ class Taxopress_Posts_List extends WP_List_Table
             // Add the parameter with its value
             $url = add_query_arg(array($param_name => $param_value), $url);
         }
-    
+
         return $url;
     }
 
@@ -462,77 +463,78 @@ class Taxopress_Posts_List extends WP_List_Table
         return $out;
     }
 
-	/**
-	 * Handles the post date column output.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @global string $mode List table view mode.
-	 *
-	 * @param WP_Post $post The current WP_Post object.
-	 */
-	public function column_date( $post ) {
-        
-        $mode = get_user_setting( 'posts_list_mode', 'list' );
-		if ( '0000-00-00 00:00:00' === $post->post_date ) {
-			$t_time    = __( 'Unpublished' );
-			$time_diff = 0;
-		} else {
-			$t_time = sprintf(
-				/* translators: 1: Post date, 2: Post time. */
-				__( '%1$s at %2$s' ),
-				/* translators: Post date format. See https://www.php.net/manual/datetime.format.php */
-				get_the_time( __( 'Y/m/d' ), $post ),
-				/* translators: Post time format. See https://www.php.net/manual/datetime.format.php */
-				get_the_time( __( 'g:i a' ), $post )
-			);
+    /**
+     * Handles the post date column output.
+     *
+     * @since 4.3.0
+     *
+     * @global string $mode List table view mode.
+     *
+     * @param WP_Post $post The current WP_Post object.
+     */
+    public function column_date($post)
+    {
 
-			$time      = get_post_timestamp( $post );
-			$time_diff = time() - $time;
-		}
+        $mode = get_user_setting('posts_list_mode', 'list');
+        if ('0000-00-00 00:00:00' === $post->post_date) {
+            $t_time    = __('Unpublished');
+            $time_diff = 0;
+        } else {
+            $t_time = sprintf(
+                /* translators: 1: Post date, 2: Post time. */
+                __('%1$s at %2$s'),
+                /* translators: Post date format. See https://www.php.net/manual/datetime.format.php */
+                get_the_time(__('Y/m/d'), $post),
+                /* translators: Post time format. See https://www.php.net/manual/datetime.format.php */
+                get_the_time(__('g:i a'), $post)
+            );
 
-		if ( 'publish' === $post->post_status ) {
-			$status = __( 'Published' );
-		} elseif ( 'future' === $post->post_status ) {
-			if ( $time_diff > 0 ) {
-				$status = '<strong class="error-message">' . __( 'Missed schedule' ) . '</strong>';
-			} else {
-				$status = __( 'Scheduled' );
-			}
-		} else {
-			$status = __( 'Last Modified' );
-		}
+            $time      = get_post_timestamp($post);
+            $time_diff = time() - $time;
+        }
 
-		/**
-		 * Filters the status text of the post.
-		 *
-		 * @since 4.8.0
-		 *
-		 * @param string  $status      The status text.
-		 * @param WP_Post $post        Post object.
-		 * @param string  $column_name The column name.
-		 * @param string  $mode        The list display mode ('excerpt' or 'list').
-		 */
-		$status = apply_filters( 'post_date_column_status', $status, $post, 'date', $mode );
+        if ('publish' === $post->post_status) {
+            $status = __('Published');
+        } elseif ('future' === $post->post_status) {
+            if ($time_diff > 0) {
+                $status = '<strong class="error-message">' . __('Missed schedule') . '</strong>';
+            } else {
+                $status = __('Scheduled');
+            }
+        } else {
+            $status = __('Last Modified');
+        }
 
-		if ( $status ) {
+        /**
+         * Filters the status text of the post.
+         *
+         * @since 4.8.0
+         *
+         * @param string  $status      The status text.
+         * @param WP_Post $post        Post object.
+         * @param string  $column_name The column name.
+         * @param string  $mode        The list display mode ('excerpt' or 'list').
+         */
+        $status = apply_filters('post_date_column_status', $status, $post, 'date', $mode);
+
+        if ($status) {
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo $status . '<br />';
-		}
+            echo $status . '<br />';
+        }
 
-		/**
-		 * Filters the published time of the post.
-		 *
-		 * @since 2.5.1
-		 * @since 5.5.0 Removed the difference between 'excerpt' and 'list' modes.
-		 *              The published time and date are both displayed now,
-		 *              which is equivalent to the previous 'excerpt' mode.
-		 *
-		 * @param string  $t_time      The published time.
-		 * @param WP_Post $post        Post object.
-		 * @param string  $column_name The column name.
-		 * @param string  $mode        The list display mode ('excerpt' or 'list').
-		 */
-		echo apply_filters( 'post_date_column_time', $t_time, $post, 'date', $mode ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
+        /**
+         * Filters the published time of the post.
+         *
+         * @since 2.5.1
+         * @since 5.5.0 Removed the difference between 'excerpt' and 'list' modes.
+         *              The published time and date are both displayed now,
+         *              which is equivalent to the previous 'excerpt' mode.
+         *
+         * @param string  $t_time      The published time.
+         * @param WP_Post $post        Post object.
+         * @param string  $column_name The column name.
+         * @param string  $mode        The list display mode ('excerpt' or 'list').
+         */
+        echo apply_filters('post_date_column_time', $t_time, $post, 'date', $mode); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Generate HTML extended tag cloud
  *
@@ -7,8 +8,9 @@
  * @return string
  * @author WebFactory Ltd
  */
-function st_get_tag_cloud( $args = '' ) {
-	return SimpleTags_Client_TagCloud::extendedTagCloud( $args );
+function st_get_tag_cloud($args = '')
+{
+    return SimpleTags_Client_TagCloud::extendedTagCloud($args);
 }
 
 /**
@@ -19,9 +21,10 @@ function st_get_tag_cloud( $args = '' ) {
  * @return void
  * @author WebFactory Ltd
  */
-function st_tag_cloud( $args = '' ) {
+function st_tag_cloud($args = '')
+{
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo st_get_tag_cloud( $args );
+    echo st_get_tag_cloud($args);
 }
 
 /**
@@ -32,12 +35,13 @@ function st_tag_cloud( $args = '' ) {
  * @return string
  * @author WebFactory Ltd
  */
-function st_get_the_tags( $args = '' ) {
-	if ( class_exists( 'SimpleTags_Client_PostTags' ) ) {
-		return SimpleTags_Client_PostTags::extendedPostTags( $args );
-	}
+function st_get_the_tags($args = '')
+{
+    if (class_exists('SimpleTags_Client_PostTags')) {
+        return SimpleTags_Client_PostTags::extendedPostTags($args);
+    }
 
-	return '';
+    return '';
 }
 
 /**
@@ -48,9 +52,10 @@ function st_get_the_tags( $args = '' ) {
  * @return void
  * @author WebFactory Ltd
  */
-function st_the_tags( $args = '' ) {
+function st_the_tags($args = '')
+{
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo st_get_the_tags( $args );
+    echo st_get_the_tags($args);
 }
 
 /**
@@ -61,12 +66,13 @@ function st_the_tags( $args = '' ) {
  * @return string|array
  * @author WebFactory Ltd
  */
-function st_get_related_posts( $args = '' ) {
-	if ( class_exists( 'SimpleTags_Client_RelatedPosts' ) ) {
-		return SimpleTags_Client_RelatedPosts::get_related_posts( $args );
-	}
+function st_get_related_posts($args = '')
+{
+    if (class_exists('SimpleTags_Client_RelatedPosts')) {
+        return SimpleTags_Client_RelatedPosts::get_related_posts($args);
+    }
 
-	return '';
+    return '';
 }
 
 /**
@@ -77,7 +83,8 @@ function st_get_related_posts( $args = '' ) {
  * @return void
  * @author WebFactory Ltd
  */
-function st_related_posts( $args = '' ) {
+function st_related_posts($args = '')
+{
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo st_get_related_posts( $args );
+    echo st_get_related_posts($args);
 }

@@ -5,7 +5,6 @@ if (!class_exists('WP_List_Table')) {
 
 class Autolinks_List extends WP_List_Table
 {
-
     /** Class constructor */
     public function __construct()
     {
@@ -60,7 +59,7 @@ class Autolinks_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'title'     => __('Title', 'simple-tags'),
@@ -164,8 +163,10 @@ class Autolinks_List extends WP_List_Table
         {
             $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID'; //If no sort, default to role
             $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc'; //If no order, default to asc
-            $result  = strnatcasecmp($a[$orderby],
-                $b[$orderby]); //Determine sort order, case insensitive, natural order
+            $result  = strnatcasecmp(
+                $a[$orderby],
+                $b[$orderby]
+            ); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
         }
@@ -265,13 +266,15 @@ class Autolinks_List extends WP_List_Table
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-autolink">%s</a>',
-                add_query_arg([
+                add_query_arg(
+                    [
                     'page'                   => 'st_autolinks',
                     'action'                 => 'taxopress-delete-autolink',
                     'taxopress_autolinks' => esc_attr($item['ID']),
                     '_wpnonce'               => wp_create_nonce('autolink-action-request-nonce')
                 ],
-                    admin_url('admin.php')),
+                    admin_url('admin.php')
+                ),
                 __('Delete', 'simple-tags')
             ),
         ];
@@ -336,8 +339,12 @@ class Autolinks_List extends WP_List_Table
                 $args = ['public' => true];
             }
             $output     = 'objects'; // Or objects.
-            $post_types = apply_filters('taxopress_get_post_types_for_taxonomies', get_post_types($args, $output),
-                $args, $output);
+            $post_types = apply_filters(
+                'taxopress_get_post_types_for_taxonomies',
+                get_post_types($args, $output),
+                $args,
+                $output
+            );
 
             $result_array     = [];
             $embedded_options = [
@@ -369,11 +376,11 @@ class Autolinks_List extends WP_List_Table
      */
     protected function column_autolink_display($item)
     {
-            $autolink_display_options = [
-                'post_content'   => esc_attr__('Post Content', 'simple-tags'),
-                'post_title'   => esc_attr__('Post Title', 'simple-tags'),
-                'posts' => esc_attr__('Post Content and Title', 'simple-tags'),
-            ];
+        $autolink_display_options = [
+            'post_content'   => esc_attr__('Post Content', 'simple-tags'),
+            'post_title'   => esc_attr__('Post Title', 'simple-tags'),
+            'posts' => esc_attr__('Post Content and Title', 'simple-tags'),
+        ];
 
         return $autolink_display_options[$item['autolink_display']];
     }

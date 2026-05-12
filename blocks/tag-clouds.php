@@ -11,13 +11,14 @@ function st_tag_clouds_block_init()
         return;
     }
 
-    if($pagenow === 'widgets.php'){
+    if ($pagenow === 'widgets.php') {
         return;
     }
 
     // Register our block editor script.
     wp_register_script(
-        'st-block-tag-clouds', STAGS_URL . '/blocks/src/tag-clouds.js',
+        'st-block-tag-clouds',
+        STAGS_URL . '/blocks/src/tag-clouds.js',
         ['wp-blocks', 'wp-element', 'wp-components', 'wp-editor']
     );
 
@@ -70,7 +71,6 @@ function st_tag_clouds_block_init()
         'panel_title'  => $panel_title,
         'select_label' => $select_label,
     ]);
-
 }
 
 add_action('init', 'st_tag_clouds_block_init');

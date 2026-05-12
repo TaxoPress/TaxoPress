@@ -14,7 +14,9 @@ class SimpleTags_RelatedPosts_Widget extends WP_Widget
      */
     public function __construct()
     {
-        parent::__construct('simpletags-relatedposts', esc_html__('Related Posts (TaxoPress)', 'simple-tags'),
+        parent::__construct(
+            'simpletags-relatedposts',
+            esc_html__('Related Posts (TaxoPress)', 'simple-tags'),
             [
                 'classname'   => 'widget-simpletags-relatedposts',
                 'description' => esc_html__('Taxopress Related Posts Shortcode', 'simple-tags')

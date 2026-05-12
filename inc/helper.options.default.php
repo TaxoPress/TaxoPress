@@ -1,4 +1,5 @@
 <?php
+
 return array(
     // Features
     'active_taxonomies'      => 1,
@@ -52,13 +53,13 @@ return array(
     'enable_taxopress_ai_post_suggest_local_terms_tab' => 1,
     'enable_taxopress_ai_post_existing_terms_tab' => 1,
     'taxopress_ai_post_metabox_default_taxonomy' => 'post_tag',
-    
+
     // taxopress ai tab labels
     'taxopress_ai_post_terms_tab_label' => __('Manage Post Terms', 'simple-tags'),
     'taxopress_ai_existing_terms_tab_label' => __('Show All Existing Terms', 'simple-tags'),
     'taxopress_ai_suggest_local_terms_tab_label' => __('Auto Terms', 'simple-tags'),
     'taxopress_ai_create_terms_tab_label' => __('Create Terms', 'simple-tags'),
-    
+
     'taxopress_ai_post_metabox_orderby' => 'count',
     'taxopress_ai_post_metabox_order' => 'desc',
     'taxopress_ai_post_metabox_maximum_terms' => 45,
@@ -143,11 +144,11 @@ return array(
     'rp_limit_qty'           => 3,
     'rp_notagstext'          => __('No related posts.', 'simple-tags'),
     'rp_title'               => __('<h4>Related posts</h4>', 'simple-tags'),
-    'rp_xformat'             =>  __( '<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"> 
+    'rp_xformat'             =>  __('<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"> 
 			                       %post_title% <br> 
 			                       <img src="%post_thumb_url%" height="200" width="200" class="custom-image-class" />
 			                       </a> 
-			                       (%post_comment%)', 'simple-tags' ),
+			                       (%post_comment%)', 'simple-tags'),
     'rp_default_featured_media' => 'default',
     'rp_format'              => 'box',
     'rp_adv_usage'           => '',
