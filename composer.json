@@ -50,5 +50,10 @@
         "plugin-lang-domain": "simple-tags",
         "plugin-github-repo": "taxopress/taxopress",
         "plugin-composer-package": "taxopress/taxopress"
-    }
+    },
+    "repositories": [{
+        "name": "publishpress-phpcs-standards",
+        "type": "vcs",
+        "url": "https://github.com/publishpress/publishpress-phpcs-standards.git"
+    }]
 }
