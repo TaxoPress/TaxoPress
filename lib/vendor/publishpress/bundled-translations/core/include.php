@@ -16,7 +16,7 @@ if (! function_exists('add_action')) {
     return;
 }
 
-if (! function_exists(__NAMESPACE__ . '\register1Dot0Dot0')) {
+if (! function_exists(__NAMESPACE__ . '\register1Dot0Dot3')) {
     if (! defined('PUBLISHPRESS_BUNDLED_TRANSLATIONS_INCLUDED')) {
         define('PUBLISHPRESS_BUNDLED_TRANSLATIONS_INCLUDED', __DIR__);
     }
@@ -27,24 +27,24 @@ if (! function_exists(__NAMESPACE__ . '\register1Dot0Dot0')) {
         add_action('plugins_loaded', [Versions::class, 'initializeLatestVersion'], -190, 0);
     }
 
-    add_action('plugins_loaded', __NAMESPACE__ . '\register1Dot0Dot0', -200, 0);
+    add_action('plugins_loaded', __NAMESPACE__ . '\register1Dot0Dot3', -200, 0);
 
-    function register1Dot0Dot0()
+    function register1Dot0Dot3()
     {
         if (! class_exists('PublishPress\BundledTranslations\BundledTranslations')) {
             $versions = Versions::getInstance();
-            $versions->register('1.0.0', __NAMESPACE__ . '\initialize1Dot0Dot0');
+            $versions->register('1.0.3', __NAMESPACE__ . '\initialize1Dot0Dot3');
         }
     }
 
-    function initialize1Dot0Dot0()
+    function initialize1Dot0Dot3()
     {
         require_once __DIR__ . '/autoload.php';
 
         if (! defined('PUBLISHPRESS_BUNDLED_TRANSLATIONS_VERSION')) {
-            define('PUBLISHPRESS_BUNDLED_TRANSLATIONS_VERSION', '1.0.0');
+            define('PUBLISHPRESS_BUNDLED_TRANSLATIONS_VERSION', '1.0.3');
         }
 
-        do_action('publishpress_bundled_translations_1Dot0Dot0_initialized');
+        do_action('publishpress_bundled_translations_1Dot0Dot3_initialized');
     }
 }

@@ -2,17 +2,17 @@
     "packages": [
         {
             "name": "publishpress/bundled-translations",
-            "version": "v1.0.2",
-            "version_normalized": "1.0.2.0",
+            "version": "v1.0.3",
+            "version_normalized": "1.0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-bundled-translations.git",
-                "reference": "3cd70d1fe1e86a39bfe7c127bc0ce758b0b983cc"
+                "reference": "95b06baed793a3a4ec44c5d932b68785302a0559"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-bundled-translations/zipball/3cd70d1fe1e86a39bfe7c127bc0ce758b0b983cc",
-                "reference": "3cd70d1fe1e86a39bfe7c127bc0ce758b0b983cc",
+                "url": "https://api.github.com/repos/publishpress/library-bundled-translations/zipball/95b06baed793a3a4ec44c5d932b68785302a0559",
+                "reference": "95b06baed793a3a4ec44c5d932b68785302a0559",
                 "shasum": ""
             },
             "require": {
@@ -22,12 +22,12 @@
                 "publishpress/dev-workspace": "^1.0",
                 "publishpress/version-loader-generator": "^1.0"
             },
-            "time": "2026-05-08T20:21:16+00:00",
+            "time": "2026-05-13T14:34:02+00:00",
             "type": "library",
             "extra": {
                 "generator": {
                     "src-dir": "core",
-                    "version": "1.0.2",
+                    "version": "1.0.3",
                     "lib-class-test": "class_exists('PublishPress\\BundledTranslations\\BundledTranslations')",
                     "action-register-priority": "-200",
                     "action-initialize-priority": "-190"
@@ -58,7 +58,7 @@
             ],
             "support": {
                 "issues": "https://github.com/publishpress/library-bundled-translations/issues",
-                "source": "https://github.com/publishpress/library-bundled-translations/tree/v1.0.2"
+                "source": "https://github.com/publishpress/library-bundled-translations/tree/v1.0.3"
             },
             "install-path": "../publishpress/bundled-translations"
         },
@@ -309,17 +309,17 @@
         },
         {
             "name": "publishpress/wordpress-reviews",
-            "version": "1.2.0",
-            "version_normalized": "1.2.0.0",
+            "version": "1.2.1",
+            "version_normalized": "1.2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-wordpress-reviews.git",
-                "reference": "d93caf49000e473d7ac9771eeab77130617d55ae"
+                "reference": "f6cff7c2a773c03bbe074a2e8d4180b04e8b8f0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-wordpress-reviews/zipball/d93caf49000e473d7ac9771eeab77130617d55ae",
-                "reference": "d93caf49000e473d7ac9771eeab77130617d55ae",
+                "url": "https://api.github.com/repos/publishpress/library-wordpress-reviews/zipball/f6cff7c2a773c03bbe074a2e8d4180b04e8b8f0d",
+                "reference": "f6cff7c2a773c03bbe074a2e8d4180b04e8b8f0d",
                 "shasum": ""
             },
             "require": {
@@ -339,7 +339,7 @@
                 "szepeviktor/phpstan-wordpress": "^1.3",
                 "wp-coding-standards/wpcs": "^3"
             },
-            "time": "2025-12-10T09:56:34+00:00",
+            "time": "2026-05-13T15:21:26+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -370,23 +370,23 @@
             ],
             "support": {
                 "issues": "https://github.com/publishpress/library-wordpress-reviews/issues",
-                "source": "https://github.com/publishpress/library-wordpress-reviews/tree/1.2.0"
+                "source": "https://github.com/publishpress/library-wordpress-reviews/tree/1.2.1"
             },
             "install-path": "../publishpress/wordpress-reviews"
         },
         {
             "name": "publishpress/wordpress-version-notices",
-            "version": "2.2.0",
-            "version_normalized": "2.2.0.0",
+            "version": "2.2.1",
+            "version_normalized": "2.2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-wordpress-version-notices.git",
-                "reference": "174b2a35e40dfb7ff0426cc16dc8ed0888be2169"
+                "reference": "95447d36d53e4abec9f9b988755acf1c72353677"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-wordpress-version-notices/zipball/174b2a35e40dfb7ff0426cc16dc8ed0888be2169",
-                "reference": "174b2a35e40dfb7ff0426cc16dc8ed0888be2169",
+                "url": "https://api.github.com/repos/publishpress/library-wordpress-version-notices/zipball/95447d36d53e4abec9f9b988755acf1c72353677",
+                "reference": "95447d36d53e4abec9f9b988755acf1c72353677",
                 "shasum": ""
             },
             "require": {
@@ -410,14 +410,14 @@
                 "overtrue/phplint": "^2.1",
                 "phpcompatibility/php-compatibility": "^9.3",
                 "phpstan/phpstan": "^1.10",
-                "publishpress/publishpress-phpcs-standards": "dev-main",
+                "publishpress/publishpress-phpcs-standards": "^1.0",
                 "publishpress/translations": "^1.0.0",
                 "publishpress/version-loader-generator": "^1.0",
                 "squizlabs/php_codesniffer": "^3.8",
                 "szepeviktor/phpstan-wordpress": "^1.3",
                 "wp-coding-standards/wpcs": "^3"
             },
-            "time": "2025-12-08T23:56:36+00:00",
+            "time": "2026-05-13T15:05:11+00:00",
             "type": "library",
             "extra": {
                 "generator": {
@@ -448,7 +448,7 @@
             "description": "Library for displaying version notices for Pro plugins in WordPress.",
             "support": {
                 "issues": "https://github.com/publishpress/library-wordpress-version-notices/issues",
-                "source": "https://github.com/publishpress/library-wordpress-version-notices/tree/2.2.0"
+                "source": "https://github.com/publishpress/library-wordpress-version-notices/tree/2.2.1"
             },
             "install-path": "../publishpress/wordpress-version-notices"
         }

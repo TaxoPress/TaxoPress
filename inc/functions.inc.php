@@ -221,12 +221,12 @@ function taxopress_suppress_tag_groups_notice_on_taxopress_screens()
         return;
     }
 
-    $filterName = class_exists('PPVersionNotices\\Module\\TopNotice\\Module')
-        ? \PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER
-        : 'pp_version_notice_top_notice_settings';
+    if (! class_exists('PublishPress\\WordpressVersionNotices\\Module\\TopNotice\\Module')) {
+        return;
+    }
 
     add_filter(
-        $filterName,
+        \PublishPress\WordpressVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
         function ($settings) {
             if (! is_admin()) {
                 return $settings;

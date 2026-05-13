@@ -4,7 +4,7 @@
  * Plugin Name: TaxoPress
  * Plugin URI: https://wordpress.org/plugins/simple-tags/
  * Description: TaxoPress allows you to create and manage Tags, Categories, and all your WordPress taxonomy terms.
- * Version: 3.45.0
+ * Version: 3.50.0
  * Author: TaxoPress
  * Author URI: https://taxopress.com
  * Text Domain: simple-tags
@@ -52,7 +52,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('STAGS_VERSION')) {
-    define('STAGS_VERSION', '3.45.0');
+    define('STAGS_VERSION', '3.50.0');
 }
 
 if (! function_exists('taxopress_free_is_pro_active')) {
@@ -154,6 +154,14 @@ if (file_exists(__DIR__ . '/lib/vendor' . $bundledTranslationsPath)) {
     require_once STAGS_LIB_VENDOR_PATH . $bundledTranslationsPath;
 }
 
+$autoloadPath = __DIR__ . '/lib/vendor/autoload.php';
+if (!file_exists($autoloadPath)) {
+    $autoloadPath = __DIR__ . '/vendor/autoload.php';
+}
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+}
+
 add_action('plugins_loaded', function () {
     if (class_exists('PublishPress\BundledTranslations\BundledTranslations')) {
         $bundledTranslations = new PublishPress\BundledTranslations\BundledTranslations(
@@ -165,6 +173,13 @@ add_action('plugins_loaded', function () {
     }
 }, 10);
 
+$wordpressVersionNoticesPath = '/publishpress/wordpress-version-notices/src/include.php';
+
+if (file_exists(__DIR__ . '/lib/vendor' . $wordpressVersionNoticesPath)) {
+    require_once __DIR__ . '/lib/vendor' . $wordpressVersionNoticesPath;
+} elseif (defined('STAGS_LIB_VENDOR_PATH') && file_exists(STAGS_LIB_VENDOR_PATH . $wordpressVersionNoticesPath)) {
+    require_once STAGS_LIB_VENDOR_PATH . $wordpressVersionNoticesPath;
+}
 
 
 if (! defined('TAXOPRESS_FILE')) {

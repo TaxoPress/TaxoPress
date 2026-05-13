@@ -1,6 +1,13 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [3.50.0] - 13 May, 2026 =
+* Update: Add CHANGELOG.md file, #2944
+* Update: Add Bundled Translations Library, #2943
+* Update: migrate to shared dev-workspace, #2941
+* Update: Move plugin structure to match PublishPress, #2940
+
+
 = [3.45.0] - 16 April, 2026 =
 * Fixed: Issue with metabox overlap in WordPress 7.0, #2929
 * Fixed: Uncaught TypeError: array_keys(): Argument #1 in class.admin.manage, #2921

@@ -9,66 +9,53 @@ class TaxopressCoreAdmin
 
         if (current_user_can('simple_tags')) {
             if (is_admin()) {
-                $autoloadPath = TAXOPRESS_ABSPATH . '/lib/vendor/autoload.php';
-                if (! file_exists($autoloadPath)) {
-                    $autoloadPath = TAXOPRESS_ABSPATH . '/vendor/autoload.php';
-                }
-                if (file_exists($autoloadPath)) {
-                    require_once $autoloadPath;
-                }
+                if (class_exists('PublishPress\WordpressVersionNotices\Module\TopNotice\Module')) {
+                    add_filter(
+                        \PublishPress\WordpressVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
+                        function ($settings) {
+                            $settings['publishpress-taxopress'] = [
+                                'message' => esc_html__("You're using TaxoPress Free. The Pro version has more features and support. %sUpgrade to Pro%s", 'simple-tags'),
+                                'link'    => 'https://taxopress.com/taxopress/',
+                                'screens' => [
+                                    ['base' => 'taxopress_page_st_dashboard', 'id'   => 'taxopress_page_st_dashboard'],
+                                    ['base' => 'taxopress_page_st_taxonomies', 'id'   => 'taxopress_page_st_taxonomies'],
+                                    ['base' => 'taxopress_page_st_mass_terms', 'id'   => 'taxopress_page_st_mass_terms'],
+                                    ['base' => 'taxopress_page_st_manage',     'id'   => 'taxopress_page_st_manage'],
+                                    ['base' => 'taxopress_page_st_auto',       'id'   => 'taxopress_page_st_auto'],
+                                    ['base' => 'toplevel_page_st_options',     'id'   => 'toplevel_page_st_options'],
+                                    ['base' => 'taxopress_page_st_terms_display', 'id' => 'taxopress_page_st_terms_display'],
+                                    ['base' => 'toplevel_page_st_posts',     'id'   => 'toplevel_page_st_posts'],
+                                    ['base' => 'taxopress_page_st_posts',       'id'  => 'taxopress_page_st_posts'],
+                                    ['base' => 'taxopress_page_st_post_tags',   'id'  => 'taxopress_page_st_post_tags'],
+                                    ['base' => 'taxopress_page_st_related_posts', 'id' => 'taxopress_page_st_related_posts'],
+                                    ['base' => 'taxopress_page_st_autolinks',   'id'  => 'taxopress_page_st_autolinks'],
+                                    ['base' => 'taxopress_page_st_autoterms',   'id'  => 'taxopress_page_st_autoterms'],
+                                    ['base' => 'taxopress_page_st_autoterms_content',   'id'  => 'taxopress_page_st_autoterms_content'],
+                                    ['base' => 'taxopress_page_st_suggestterms', 'id'  => 'taxopress_page_st_suggestterms'],
+                                    ['base' => 'taxopress_page_st_terms',       'id'  => 'taxopress_page_st_terms'],
+                                    ['base' => 'taxopress_page_st_taxopress_ai', 'id'  => 'taxopress_page_st_taxopress_ai'],
+                                    ['base' => 'taxopress_page_st_autoterms_schedule', 'id'  => 'taxopress_page_st_autoterms_schedule']
+                                ]
+                            ];
 
-                $noticesPath = TAXOPRESS_ABSPATH . '/lib/vendor/publishpress/wordpress-version-notices/includes.php';
-                if (! file_exists($noticesPath)) {
-                    $noticesPath = TAXOPRESS_ABSPATH . '/vendor/publishpress/wordpress-version-notices/includes.php';
-                }
-                if (file_exists($noticesPath)) {
-                    require_once $noticesPath;
-                }
+                            return $settings;
+                        }
+                    );
 
-                add_filter(
-                    \PPVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
-                    function ($settings) {
-                        $settings['publishpress-taxopress'] = [
-                            'message' => esc_html__("You're using TaxoPress Free. The Pro version has more features and support. %sUpgrade to Pro%s", 'simple-tags'),
-                            'link'    => 'https://taxopress.com/taxopress/',
-                            'screens' => [
-                                ['base' => 'taxopress_page_st_dashboard', 'id'   => 'taxopress_page_st_dashboard'],
-                                ['base' => 'taxopress_page_st_taxonomies', 'id'   => 'taxopress_page_st_taxonomies'],
-                                ['base' => 'taxopress_page_st_mass_terms', 'id'   => 'taxopress_page_st_mass_terms'],
-                                ['base' => 'taxopress_page_st_manage',     'id'   => 'taxopress_page_st_manage'],
-                                ['base' => 'taxopress_page_st_auto',       'id'   => 'taxopress_page_st_auto'],
-                                ['base' => 'toplevel_page_st_options',     'id'   => 'toplevel_page_st_options'],
-                                ['base' => 'taxopress_page_st_terms_display', 'id' => 'taxopress_page_st_terms_display'],
-                                ['base' => 'toplevel_page_st_posts',     'id'   => 'toplevel_page_st_posts'],
-                                ['base' => 'taxopress_page_st_posts',       'id'  => 'taxopress_page_st_posts'],
-                                ['base' => 'taxopress_page_st_post_tags',   'id'  => 'taxopress_page_st_post_tags'],
-                                ['base' => 'taxopress_page_st_related_posts', 'id' => 'taxopress_page_st_related_posts'],
-                                ['base' => 'taxopress_page_st_autolinks',   'id'  => 'taxopress_page_st_autolinks'],
-                                ['base' => 'taxopress_page_st_autoterms',   'id'  => 'taxopress_page_st_autoterms'],
-                                ['base' => 'taxopress_page_st_autoterms_content',   'id'  => 'taxopress_page_st_autoterms_content'],
-                                ['base' => 'taxopress_page_st_suggestterms', 'id'  => 'taxopress_page_st_suggestterms'],
-                                ['base' => 'taxopress_page_st_terms',       'id'  => 'taxopress_page_st_terms'],
-                                ['base' => 'taxopress_page_st_taxopress_ai', 'id'  => 'taxopress_page_st_taxopress_ai'],
-                                ['base' => 'taxopress_page_st_autoterms_schedule', 'id'  => 'taxopress_page_st_autoterms_schedule']
-                            ]
-                        ];
+                    add_filter(
+                        \PublishPress\WordpressVersionNotices\Module\MenuLink\Module::SETTINGS_FILTER,
+                        function ($settings) {
+                            $settings['publishpress-taxopress'] = [
+                                'parent' => 'st_options',
+                                'label'  => __('Upgrade to Pro', 'simple-tags'),
+                                'link'   => 'https://taxopress.com/taxopress/',
+                            ];
 
-                        return $settings;
-                    }
-                );
+                            return $settings;
+                        }
+                    );
+                }
             }
-            add_filter(
-                \PPVersionNotices\Module\MenuLink\Module::SETTINGS_FILTER,
-                function ($settings) {
-                    $settings['publishpress-taxopress'] = [
-                        'parent' => 'st_options',
-                        'label'  => __('Upgrade to Pro', 'simple-tags'),
-                        'link'   => 'https://taxopress.com/taxopress/',
-                    ];
-
-                    return $settings;
-                }
-            );
         }
 
 

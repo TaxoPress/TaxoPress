@@ -17,7 +17,7 @@ if (! defined('PP_VERSION_NOTICES_TEXT_DOMAIN_LOADED')) {
 
 add_action('plugins_loaded', function () {
     if (! defined('PP_VERSION_NOTICES_LOADED')) {
-        define('PP_VERSION_NOTICES_VERSION', '2.2.0');
+        define('PP_VERSION_NOTICES_VERSION', '2.2.1');
         define('PP_VERSION_NOTICES_BASE_PATH', __DIR__ . '/../');
         define('PP_VERSION_NOTICES_SRC_PATH', __DIR__);
 
