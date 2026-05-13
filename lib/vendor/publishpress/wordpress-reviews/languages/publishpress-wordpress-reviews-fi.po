@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-12-01T12:59:28+00:00\n"
+"PO-Revision-Date: 2025-12-01 13:01+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: publishpress-wordpress-reviews\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fi\n"
+
+#: ReviewsController.php:356
+#, php-format
+msgid ""
+"Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
+"been useful. Please could you quickly leave a 5-star rating on "
+"WordPress.org? It really does help to keep %1$s growing."
+msgstr ""
+"Hei, olet käyttänyt %1$s:ää %2$s sivustollasi. Toivomme, että laajennus on "
+"ollut hyödyllinen. Voisitko nopeasti jättää 5 tähden arvion "
+"WordPress.org:iin? Se todella auttaa pitämään %1$s:n kasvussa."
+
+#: ReviewsController.php:367
+msgid "1 week"
+msgstr "1 viikko"
+
+#: ReviewsController.php:375
+msgid "1 month"
+msgstr "1 kuukausi"
+
+#: ReviewsController.php:386
+msgid "3 months"
+msgstr "3 kuukautta"
+
+#: ReviewsController.php:640
+#, php-format
+msgid "Click here to add your rating for %s"
+msgstr "Klikkaa tästä lisätäksesi arviosi %s:lle"
+
+#: ReviewsController.php:646
+msgid "Maybe later"
+msgstr "Ehkä myöhemmin"
+
+#: ReviewsController.php:651
+msgid "I already did"
+msgstr "Olen jo tehnyt sen"

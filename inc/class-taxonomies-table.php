@@ -5,7 +5,6 @@ if (!class_exists('WP_List_Table')) {
 
 class Taxonomy_List extends WP_List_Table
 {
-
     /** Class constructor */
     public function __construct()
     {
@@ -60,7 +59,7 @@ class Taxonomy_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'cb'          => '',
@@ -99,7 +98,7 @@ class Taxonomy_List extends WP_List_Table
      */
     protected function column_cb($item)
     {
-    
+
         return '';
     }
 
@@ -190,8 +189,11 @@ class Taxonomy_List extends WP_List_Table
         if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
-                if ($this->str_contains($item->label, $search, false) || $this->str_contains($item->name, $search,
-                        false)) {
+                if ($this->str_contains($item->label, $search, false) || $this->str_contains(
+                    $item->name,
+                    $search,
+                    false
+                )) {
                     $data_filtered[] = $item;
                 }
             }
@@ -205,8 +207,10 @@ class Taxonomy_List extends WP_List_Table
         {
             $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'label'; //If no sort, default to role
             $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'asc'; //If no order, default to asc
-            $result  = strnatcasecmp($a->$orderby,
-                $b->$orderby); //Determine sort order, case insensitive, natural order
+            $result  = strnatcasecmp(
+                $a->$orderby,
+                $b->$orderby
+            ); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
         }
@@ -384,9 +388,9 @@ class Taxonomy_List extends WP_List_Table
         if (in_array($item->name, ['category', 'post_tag'])) {
             return __('WordPress core', 'simple-tags');
         } else {
-            if( $item->name === 'media_tag' || array_key_exists($item->name, taxopress_get_taxonomy_data())){
+            if ($item->name === 'media_tag' || array_key_exists($item->name, taxopress_get_taxonomy_data())) {
                 $alt_description = __('TaxoPress', 'simple-tags');
-            }else{
+            } else {
                 $alt_description = '&mdash;';
             }
             return !empty($item->description) ? esc_html($item->description) : $alt_description;
@@ -424,7 +428,7 @@ class Taxonomy_List extends WP_List_Table
         foreach ($item->object_type as $objecttype) {
             $sn++;
             $post_type_object = get_post_type_object($objecttype);
-            if(is_object($post_type_object)){
+            if (is_object($post_type_object)) {
                 $posttype .= $post_type_object->label;
                 if ($sn < count($item->object_type)) {
                     $posttype .= ', ';
@@ -470,7 +474,7 @@ class Taxonomy_List extends WP_List_Table
     {
         $external_taxonomies = get_option('taxopress_external_taxonomies', array());
         $taxopress_taxonomies = taxopress_get_taxonomy_data();
-        
+
         if ($item->name === 'media_tag' || array_key_exists($item->name, $taxopress_taxonomies) || array_key_exists($item->name, $external_taxonomies)) {
             return '<div class="pp-tooltips-library" data-toggle="tooltip">
                     <span class="dashicons dashicons-yes-alt taxopress-edited-indicator taxopress-edited-yes"></span>
@@ -483,7 +487,7 @@ class Taxonomy_List extends WP_List_Table
                     </div>';
         }
     }
-    
+
     protected function column_taxopress_order($item)
     {
         echo apply_filters('taxopress_order_column', $item);

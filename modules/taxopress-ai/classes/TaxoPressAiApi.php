@@ -1,17 +1,18 @@
 <?php
+
 if (!class_exists('TaxoPressAiApi')) {
     class TaxoPressAiApi
     {
-        const DANDELION_API_URL = 'https://api.dandelion.eu/datatxt/nex/v1';
+        public const DANDELION_API_URL = 'https://api.dandelion.eu/datatxt/nex/v1';
 
-        const OPEN_CALAIS_API_URL = 'https://api-eit.refinitiv.com/permid/calais';
+        public const OPEN_CALAIS_API_URL = 'https://api-eit.refinitiv.com/permid/calais';
 
         ## https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-release-notes#active-version-dates
-        const IBM_WATSON_API_VERSION = '2022-08-10';
+        public const IBM_WATSON_API_VERSION = '2022-08-10';
 
-        const OPEN_AI_MODEL = 'gpt-3.5-turbo';
+        public const OPEN_AI_MODEL = 'gpt-3.5-turbo';
 
-        const OPEN_AI_API_URL = 'https://api.openai.com/v1/chat/completions';
+        public const OPEN_AI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
         /**
          * Get dandelion data
@@ -22,7 +23,7 @@ if (!class_exists('TaxoPressAiApi')) {
         public static function get_dandelion_results($args)
         {
 
-             if (empty(SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'))) {
+            if (empty(SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'))) {
                 return [
                     'status' => 'error',
                     'message' => esc_html__('The Dandelion integration is disabled in the Legacy AI Sources settings.', 'simple-tags'),
@@ -54,13 +55,11 @@ if (!class_exists('TaxoPressAiApi')) {
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
-
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
                     'Selected content is empty.',
                     'simple-tags'
                 );
-
             } else {
                 $existing_dandelion_result = '';
                 $old_saved_content = '';
@@ -82,10 +81,12 @@ if (!class_exists('TaxoPressAiApi')) {
                     $request_ws_args['text'] = $clean_content;
                     $request_ws_args['min_confidence'] = $dandelion_api_confidence_value;
                     $request_ws_args['token'] = $dandelion_api_token;
-                    $response = wp_remote_post(self::DANDELION_API_URL, array(
+                    $response = wp_remote_post(
+                        self::DANDELION_API_URL,
+                        array(
                         'user-agent' => 'WordPress simple-tags',
                         'body' => $request_ws_args
-                    )
+                        )
                     );
 
                     if (!is_wp_error($response) && $response != null) {
@@ -111,12 +112,10 @@ if (!class_exists('TaxoPressAiApi')) {
 
                                 update_post_meta($post_id, $existing_dandelion_result_key, $terms);
                                 update_post_meta($post_id, $old_saved_content_key, $content);
-                                
                             } else {
                                 $return['status'] = 'error';
                                 $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
                             }
-
                         }
                     } else {
                         $return['status'] = 'error';
@@ -126,7 +125,6 @@ if (!class_exists('TaxoPressAiApi')) {
                         );
                     }
                 }
-
             }
 
             return $return;
@@ -141,7 +139,7 @@ if (!class_exists('TaxoPressAiApi')) {
         public static function get_open_calais_results($args)
         {
 
-             if (empty(SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'))) {
+            if (empty(SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'))) {
                 return [
                     'status' => 'error',
                     'message' => esc_html__('The LSEG / Refinitiv integration is disabled in the Legacy AI Sources settings.', 'simple-tags'),
@@ -171,13 +169,11 @@ if (!class_exists('TaxoPressAiApi')) {
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
-
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
                     'Selected content is empty.',
                     'simple-tags'
                 );
-
             } else {
                 $existing_open_calais_result = '';
                 $old_saved_content = '';
@@ -195,8 +191,10 @@ if (!class_exists('TaxoPressAiApi')) {
                         'simple-tags'
                     );
                 } else {
-
-                    $response = wp_remote_post(self::OPEN_CALAIS_API_URL, array(
+                    $response = wp_remote_post(
+                        self::OPEN_CALAIS_API_URL,
+                        array(
+                        // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout
                         'timeout' => 30,
                         'headers' => array(
                             'X-AG-Access-Token' => $open_calais_api_key,
@@ -204,7 +202,7 @@ if (!class_exists('TaxoPressAiApi')) {
                             'outputFormat' => 'application/json'
                         ),
                         'body' => $clean_content
-                    )
+                        )
                     );
 
                     if (!is_wp_error($response) && $response != null) {
@@ -237,7 +235,6 @@ if (!class_exists('TaxoPressAiApi')) {
                                     $return['status'] = 'error';
                                     $return['message'] = esc_html__('API Error: No matched result for content.', 'simple-tags');
                                 }
-                                
                             } else {
                                 $return['status'] = 'error';
                                 $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
@@ -251,7 +248,6 @@ if (!class_exists('TaxoPressAiApi')) {
                         );
                     }
                 }
-
             }
 
             return $return;
@@ -273,7 +269,7 @@ if (!class_exists('TaxoPressAiApi')) {
                     'results' => [],
                 ];
             }
-            
+
             $return['status'] = 'error';
             $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
             $return['results'] = [];
@@ -298,13 +294,11 @@ if (!class_exists('TaxoPressAiApi')) {
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
-
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
                     'Selected content is empty.',
                     'simple-tags'
                 );
-
             } else {
                 $existing_ibm_watson_result = '';
                 $old_saved_content = '';
@@ -322,7 +316,6 @@ if (!class_exists('TaxoPressAiApi')) {
                         'simple-tags'
                     );
                 } else {
-                    
                     $endpoint_base_url = trailingslashit($ibm_watson_api_url) . 'v1/analyze';
                     $api_endpoint = esc_url(add_query_arg(['version' => self::IBM_WATSON_API_VERSION], $endpoint_base_url));
 
@@ -371,13 +364,11 @@ if (!class_exists('TaxoPressAiApi')) {
 
                                     update_post_meta($post_id, $existing_ibm_watson_result_key, $terms);
                                     update_post_meta($post_id, $old_saved_content_key, $content);
-                                    
                                 }
                             } else {
                                 $return['status'] = 'error';
                                 $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
                             }
-
                         }
                     } else {
                         $return['status'] = 'error';
@@ -387,7 +378,6 @@ if (!class_exists('TaxoPressAiApi')) {
                         );
                     }
                 }
-
             }
 
             return $return;
@@ -396,15 +386,16 @@ if (!class_exists('TaxoPressAiApi')) {
         /**
          * Clean api response to fix //https://github.com/TaxoPress/TaxoPress/issues/2258
          */
-        public static function clean_api_response($content) {
-                    
+        public static function clean_api_response($content)
+        {
+
             //- OpenAI sometimes start response like "Tags:
             $content = str_replace('Tags: ', '', $content);
             $content = str_replace('Extracted tags: ', '', $content);
             $content = str_replace('Extracted text: ', '', $content);
-            
+
             $content = preg_replace('/\([^)]*\)/s', '', $content);
-            
+
             //o3-mini seems to be more of reasoning than tags
             $content = preg_replace('/Explanation:.*/s', '', $content);
             $content = preg_replace('/^.*?:\s*/', '', $content); // remove texts after column making sure explanation are removed
@@ -416,16 +407,16 @@ if (!class_exists('TaxoPressAiApi')) {
             $content = preg_replace("/[\r\n]+|\s*[-–—]\s*|\d+\.\s*/", "|", $content);
 
             $content = str_replace('�', '', $content);
-            
+
             // Split by the delimiter "|"
             $words = array_filter(array_map('trim', explode("|", $content)));
-            
+
             // Join into comma-separated list
             $cleaned_content = implode(", ", $words);
 
             return $cleaned_content;
         }
-        
+
 
         /**
          * Get open data
@@ -445,7 +436,7 @@ if (!class_exists('TaxoPressAiApi')) {
             $content_source = $args['content_source'];
             $preview_feature = !empty($args['preview_feature']) ? $args['preview_feature'] : '';
             $taxonomy           = !empty($args['taxonomy']) ? $args['taxonomy'] : '';
-            
+
             $post_id = !empty($args['post_id']) ? (int) $args['post_id'] : 0;
             $open_ai_api_key = !empty($settings_data['open_ai_api_key']) ? $settings_data['open_ai_api_key'] : '';
             $open_ai_model = !empty($settings_data['open_ai_model']) ? $settings_data['open_ai_model'] : self::OPEN_AI_MODEL;
@@ -461,13 +452,11 @@ if (!class_exists('TaxoPressAiApi')) {
                     'simple-tags'
                 );
             } elseif (empty(trim($content))) {
-
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
                     'Selected content is empty.',
                     'simple-tags'
                 );
-
             } else {
                 $existing_open_ai_result = '';
                 $old_saved_content = '';
@@ -511,14 +500,14 @@ if (!class_exists('TaxoPressAiApi')) {
                         }
 
                         $prompt = str_replace('{content}', $clean_content, $custom_prompt);
-                        
+
                         if (!empty($taxonomy) && !empty($post_id)) {
                             $post_terms_results = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'names']);
                             $existing_post_terms = $post_terms_results;
                             $post_terms_comma_join = !empty($post_terms_results) ? join(', ', $post_terms_results) : '';
                             $prompt = str_replace('{post_terms}', $post_terms_comma_join, $prompt);
                         }
-                        
+
                         if ($site_terms_in_prompt && !empty($taxonomy)) {
                             $site_terms_results = get_terms([
                                 'taxonomy' => $taxonomy,
@@ -526,7 +515,7 @@ if (!class_exists('TaxoPressAiApi')) {
                                 'fields' => 'names',
                                 'number' => 0
                             ]);
-                            
+
                             if (!is_wp_error($site_terms_results) && !empty($site_terms_results)) {
                                 $existing_site_terms = $site_terms_results;
                                 $site_terms_comma_join = join(', ', $site_terms_results);
@@ -548,34 +537,36 @@ if (!class_exists('TaxoPressAiApi')) {
                             'model'         => $open_ai_model,
                             'messages'    => [
                                 [
+                                    // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
                                     'role'    => 'system', //'system', 'assistant', 'user', 'function', 'tool', and 'developer'.
                                     'content' => $prompt,
                                 ],
                             ]
                         ];
 
-                        
+
                         if (!in_array($open_ai_model, ['o3-mini', 'o1-mini', 'o1']) && !preg_match('/^gpt-5/', $open_ai_model)) {
                             $token_limit = !empty($settings_data['open_ai_max_tokens']) ? (int)$settings_data['open_ai_max_tokens'] : 50;
-                            
+
                             if (preg_match('/^(gpt-5|gpt-4\.5)/', $open_ai_model)) {
                                 $body_data['max_completion_tokens'] = $token_limit;
-                            } else{
+                            } else {
                                 $body_data['max_tokens'] = $token_limit;
                             }
                             $body_data['temperature'] = 0.9;
                         }
-                        
+
                         if (in_array($open_ai_model, ['o1-mini'])) {
                             $body_data['messages'][0]['role'] = 'user';
                         }
-                        
+
                         $headers = [
                             'Content-Type' => 'application/json',
                             'Authorization' => 'Bearer ' . $open_ai_api_key,
                         ];
-                    
+
                         $response = wp_remote_post(self::OPEN_AI_API_URL, array(
+                            // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout
                             'timeout' => 60,
                             'headers' => $headers,
                             'body' => wp_json_encode($body_data),
@@ -592,25 +583,25 @@ if (!class_exists('TaxoPressAiApi')) {
                                     $error_message = esc_html__('Error: OpenAI says there is an issue with this API key. Please check your plan or billing details.', 'simple-tags');
                                 }
                                 $return['status'] = 'error';
+                                // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
                                 $return['message'] = $error_message;//sprintf(esc_html__('API Error: %1s.', 'simple-tags'), $error_message);
                             } else {
-
                                 $data = [];
-                                if (!empty($body_data['choices'] )) {
-                                    foreach ( $body_data['choices'] as $choice ) {
-                                        if ( isset( $choice['message'], $choice['message']['content'] ) ) {
+                                if (!empty($body_data['choices'])) {
+                                    foreach ($body_data['choices'] as $choice) {
+                                        if (isset($choice['message'], $choice['message']['content'])) {
                                             $cleaned_response = self::clean_api_response($choice['message']['content']);
-                                            
+
                                             if ($site_terms_in_prompt && !empty($existing_site_terms)) {
                                                 $response_terms = array_map('trim', explode(',', $cleaned_response));
                                                 $valid_terms = array_intersect($response_terms, $existing_site_terms);
                                                 $cleaned_response = implode(', ', $valid_terms);
                                             }
-                                            
-                                            if (count(array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )))) === 1) {
+
+                                            if (count(array_merge($data, explode(', ', sanitize_text_field(trim($cleaned_response, ' "\''))))) === 1) {
                                                 $data = array_merge($data, [$cleaned_response]);
                                             } else {
-                                                $data = array_merge($data, explode(', ', sanitize_text_field( trim( $cleaned_response, ' "\'' ) )));
+                                                $data = array_merge($data, explode(', ', sanitize_text_field(trim($cleaned_response, ' "\''))));
                                             }
                                         }
                                     }
@@ -630,13 +621,12 @@ if (!class_exists('TaxoPressAiApi')) {
                                         update_post_meta($post_id, $existing_open_ai_result_key, $terms);
                                         update_post_meta($post_id, $old_saved_content_key, $content);
                                     }
-                                } 
-                                
+                                }
+
                                 if (empty(array_filter($terms))) {
                                     $return['status'] = 'error';
                                     $return['message'] = esc_html__('No matched result from the API Server.', 'simple-tags');
                                 }
-
                             }
                         } else {
                             $return['status'] = 'error';
@@ -647,11 +637,9 @@ if (!class_exists('TaxoPressAiApi')) {
                         }
                     }
                 }
-
             }
 
             return $return;
         }
-
     }
 }

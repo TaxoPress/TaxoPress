@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-12-01T12:59:28+00:00\n"
+"PO-Revision-Date: 2025-12-01 13:01+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: publishpress-wordpress-reviews\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru-RU\n"
+
+#: ReviewsController.php:356
+#, php-format
+msgid ""
+"Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
+"been useful. Please could you quickly leave a 5-star rating on "
+"WordPress.org? It really does help to keep %1$s growing."
+msgstr ""
+"Привет, вы использовали %1$s в течение %2$s на своем сайте. Мы надеемся, "
+"что плагин оказался полезным. Пожалуйста, не могли бы вы быстро оставить "
+"оценку в 5 звезд на WordPress.org? Это действительно помогает %1$s расти."
+
+#: ReviewsController.php:367
+msgid "1 week"
+msgstr "1 неделя"
+
+#: ReviewsController.php:375
+msgid "1 month"
+msgstr "1 месяц"
+
+#: ReviewsController.php:386
+msgid "3 months"
+msgstr "3 месяца"
+
+#: ReviewsController.php:640
+#, php-format
+msgid "Click here to add your rating for %s"
+msgstr "Нажмите здесь, чтобы добавить вашу оценку для %s"
+
+#: ReviewsController.php:646
+msgid "Maybe later"
+msgstr "Может быть, позже"
+
+#: ReviewsController.php:651
+msgid "I already did"
+msgstr "Я уже сделал"

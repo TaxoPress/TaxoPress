@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This class can be customized to quickly add a review request system.
  *
@@ -37,7 +38,6 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
      */
     class Taxopress_Modules_Reviews
     {
-
         /**
          * Tracking API Endpoint.
          *
@@ -91,16 +91,18 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
          */
         public static function ajax_handler()
         {
+            $nonce = isset($_REQUEST['nonce']) ? sanitize_text_field(wp_unslash($_REQUEST['nonce'])) : '';
+            if (empty($nonce) || !wp_verify_nonce($nonce, 'taxopress_review_action')) {
+                wp_send_json_error();
+            }
+
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $args = wp_parse_args($_REQUEST, [
                 'group'  => self::get_trigger_group(),
                 'code'   => self::get_trigger_code(),
                 'pri'    => self::get_current_trigger('pri'),
                 'reason' => 'maybe_later',
             ]);
-
-            if (!wp_verify_nonce(sanitize_text_field($_REQUEST['nonce']), 'taxopress_review_action')) {
-                wp_send_json_error();
-            }
 
             try {
                 $user_id = get_current_user_id();
@@ -110,7 +112,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                 update_user_meta($user_id, '_taxopress_reviews_dismissed_triggers', $dismissed_triggers);
                 update_user_meta($user_id, '_taxopress_reviews_last_dismissed', current_time('mysql'));
 
-                switch($args['reason']) {
+                switch ($args['reason']) {
                     case 'maybe_later':
                         update_user_meta($user_id, '_taxopress_reviews_last_dismissed', current_time('mysql'));
                         break;
@@ -121,7 +123,6 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                 }
 
                 wp_send_json_success();
-
             } catch (Exception $e) {
                 wp_send_json_error($e);
             }
@@ -135,15 +136,18 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             static $selected;
 
             if (!isset($selected)) {
-
                 $dismissed_triggers = self::dismissed_triggers();
 
                 $triggers = self::triggers();
 
                 foreach ($triggers as $g => $group) {
                     foreach ($group['triggers'] as $t => $trigger) {
-                        if (!in_array(false,
-                                $trigger['conditions']) && (empty($dismissed_triggers[$g]) || $dismissed_triggers[$g] < $trigger['pri'])) {
+                        if (
+                            !in_array(
+                                false,
+                                $trigger['conditions']
+                            ) && (empty($dismissed_triggers[$g]) || $dismissed_triggers[$g] < $trigger['pri'])
+                        ) {
                             $selected = $g;
                             break;
                         }
@@ -166,13 +170,16 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             static $selected;
 
             if (!isset($selected)) {
-
                 $dismissed_triggers = self::dismissed_triggers();
 
                 foreach (self::triggers() as $g => $group) {
                     foreach ($group['triggers'] as $t => $trigger) {
-                        if (!in_array(false,
-                                $trigger['conditions']) && (empty($dismissed_triggers[$g]) || $dismissed_triggers[$g] < $trigger['pri'])) {
+                        if (
+                            !in_array(
+                                false,
+                                $trigger['conditions']
+                            ) && (empty($dismissed_triggers[$g]) || $dismissed_triggers[$g] < $trigger['pri'])
+                        ) {
                             $selected = $t;
                             break;
                         }
@@ -203,12 +210,12 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
 
             $trigger = self::triggers($group, $code);
 
-            if(empty($key)){
+            if (empty($key)) {
                 $return = $trigger;
-            }elseif(isset($trigger[$key])){
-                 $return = $trigger[$key];
-            }else {
-               $return = false;
+            } elseif (isset($trigger[$key])) {
+                $return = $trigger[$key];
+            } else {
+                $return = false;
             }
 
             return $return;
@@ -271,9 +278,10 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
             static $triggers;
 
             if (!isset($triggers)) {
-
-                $time_message = __("Hey, you've been using TaxoPress for %s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep TaxoPress growing.",
-                    'simple-tags');
+                $time_message = __(
+                    "Hey, you've been using TaxoPress for %s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep TaxoPress growing.",
+                    'simple-tags'
+                );
 
                 $triggers = apply_filters('taxopress_reviews_triggers', [
                     'time_installed' => [
@@ -352,7 +360,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
 
             <div class="notice notice-success is-dismissible taxopress-notice">
 
-                <img src="<?php echo esc_url(STAGS_URL.'/assets/images/logo-notice.png'); ?>" class="logo" alt=""/>
+                <img src="<?php echo esc_url(STAGS_URL . '/assets/images/logo-notice.png'); ?>" class="logo" alt=""/>
                 <p>
                     <?php echo esc_html($tigger['message']); ?>
                 </p>
@@ -416,7 +424,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                             }
                         })
 
-                        <?php if ( !empty(self::$api_url) ) : ?>
+                        <?php if (!empty(self::$api_url)) : ?>
                         $.ajax({
                             method: "POST",
                             dataType: "json",
@@ -546,7 +554,6 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
 
             return ($a['pri'] < $b['pri']) ? 1 : -1;
         }
-
     }
 }
 

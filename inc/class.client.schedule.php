@@ -2,7 +2,7 @@
 
 class SimpleTags_Client_Schedule
 {
-    static $instance;
+    public static $instance;
 
     public function __construct()
     {

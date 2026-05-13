@@ -2,11 +2,10 @@
 
 class SimpleTags_Terms
 {
-
-    const MENU_SLUG = 'st_options';
+    public const MENU_SLUG = 'st_options';
 
     // class instance
-    static $instance;
+    public static $instance;
 
     // WP_List_Table object
     public $terms_table;
@@ -39,13 +38,14 @@ class SimpleTags_Terms
     // Handle the post_type parameter given in get_terms function
     public static function taxopress_terms_clauses($clauses, $taxonomy, $args)
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (isset($_REQUEST['page']) && $_REQUEST['page'] === 'st_terms' && !empty($args['post_types']) && is_array($args['post_types'])) {
             global $wpdb;
 
             $post_types = array();
 
             foreach ($args['post_types'] as $cpt) {
-                $post_types[] = "'" . esc_sql( sanitize_key( $cpt ) ) . "'";
+                $post_types[] = "'" . esc_sql(sanitize_key($cpt)) . "'";
             }
 
             if (!empty($post_types)) {
@@ -68,6 +68,7 @@ class SimpleTags_Terms
     {
 
         // add JS for manage click tags
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (isset($_GET['page']) && $_GET['page'] == 'st_terms') {
             wp_enqueue_style('st-taxonomies-css');
             wp_enqueue_script('admin-tags');
@@ -82,8 +83,12 @@ class SimpleTags_Terms
 
         check_ajax_referer('taxinlineeditnonce', '_inline_edit');
 
-        $edit_taxonomy = sanitize_key($_POST['edit_taxonomy']);
-        $taxonomy = sanitize_key($_POST['original_tax']);
+        if (!isset($_POST['edit_taxonomy'], $_POST['original_tax'])) {
+            wp_die(-1);
+        }
+
+        $edit_taxonomy = sanitize_key(wp_unslash($_POST['edit_taxonomy']));
+        $taxonomy = sanitize_key(wp_unslash($_POST['original_tax']));
         $tax      = get_taxonomy($taxonomy);
         $edit_tax = get_taxonomy($edit_taxonomy);
 
@@ -129,9 +134,6 @@ class SimpleTags_Terms
                 }
             }
         } else {
-            /*if ( is_wp_error( $updated ) && $updated->get_error_message() ) {
-                wp_die( esc_html($updated->get_error_message()) );
-            }*/
             wp_die(esc_html__('Error updating term.'));
         }
 
@@ -177,6 +179,7 @@ class SimpleTags_Terms
             ]
         );
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying GET parameter for action inspection
         if (taxopress_is_screen_main_page() && (!isset($_GET['action']) || $_GET['action'] !== 'new_item')) {
             add_action("load-$hook", [$this, 'screen_option']);
         }
@@ -197,7 +200,7 @@ class SimpleTags_Terms
         ];
 
         add_screen_option($option, $args);
-    
+
 
         $this->terms_table = new Taxopress_Terms_List();
     }
@@ -211,58 +214,63 @@ class SimpleTags_Terms
     public function page_manage_terms()
     {
         // Default order
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!isset($_GET['orderby'])) {
             $_GET['orderby'] = 'name';
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!isset($_GET['order'])) {
             $_GET['order'] = 'asc';
         }
 
         settings_errors(__CLASS__);
 
-?>
+        ?>
         <div class="wrap st_wrap st-manage-taxonomies-page manage-taxopress-terms">
 
             <div id="">
 
                 <?php
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 if (isset($_GET['action']) && $_GET['action'] === 'new_item') {
                     ?>
                     <div class="taxopress-term-wrap">
                         <div class="taxopress-term-main">
                              <h1 class="wp-heading-inline"><?php esc_html_e('Terms', 'simple-tags'); ?></h1>
                             <div class="taxopress-description">
-                                <?php esc_html_e('This screen allows you to search and edit all the terms on your site.', 'simple-tags'); ?>
+                        <?php esc_html_e('This screen allows you to search and edit all the terms on your site.', 'simple-tags'); ?>
                             </div>
                             <?php
                             do_action('taxopress_terms_copy_with_metadata_promo');
                             ?>
                         </div>
                         <div class="taxopress-right-sidebar">
-                             <?php do_action('taxopress_admin_after_sidebar'); ?>
+                     <?php do_action('taxopress_admin_after_sidebar'); ?>
                         </div>
                     </div>
                     <?php
                 } else {
                     ?>
-                <?php
+                    <?php
 
-                $taxonomy_heading = '';
-                $show_order_message = false;
-                if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
-                    $taxonomy_obj = get_taxonomy(sanitize_text_field($_REQUEST['taxopress_terms_taxonomy']));
-                    if ($taxonomy_obj) {
-                        $taxonomy_heading = $taxonomy_obj->labels->name;
-                        $show_order_message = true;
+                    $taxonomy_heading = '';
+                    $show_order_message = false;
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
+                    if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
+                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
+                        $taxonomy_obj = get_taxonomy(sanitize_text_field($_REQUEST['taxopress_terms_taxonomy']));
+                        if ($taxonomy_obj) {
+                            $taxonomy_heading = $taxonomy_obj->labels->name;
+                            $show_order_message = true;
+                        }
                     }
-                }
-                ?>
+                    ?>
                 <h1 class="wp-heading-inline">
                     <?php
                     if ($taxonomy_heading) {
-                        echo esc_html($taxonomy_heading);
+                            echo esc_html($taxonomy_heading);
                     } else {
-                        esc_html_e('Terms', 'simple-tags');
+                                esc_html_e('Terms', 'simple-tags');
                     }
                     ?>
                 </h1>
@@ -276,29 +284,30 @@ class SimpleTags_Terms
                     ?>
                 </div>
 
-                <?php
-                if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
-                    /* translators: %s: search keywords */
-                    printf(' <span class="subtitle">' . esc_html__(
-                        'Search results for &#8220;%s&#8221;',
-                        'simple-tags'
-                    ) . '</span>', esc_html($search));
-                }
-                ?>
-                <?php
+                    <?php
+                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for search filtering
+                    if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
+                        /* translators: %s: search keywords */
+                        printf(' <span class="subtitle">' . esc_html__(
+                            'Search results for &#8220;%s&#8221;',
+                            'simple-tags'
+                        ) . '</span>', esc_html($search));
+                    }
+                    ?>
+                    <?php
 
-                //the terms table instance
-                $this->terms_table->prepare_items();
-                ?>
+                    //the terms table instance
+                    $this->terms_table->prepare_items();
+                    ?>
 
 
                 <hr class="wp-header-end">
                 <div id="ajax-response"></div>
                 <form class="search-form wp-clearfix st-taxonomies-search-form" method="get">
                     <?php
-                    // Hide search box if taxopress_show_all=1
-                        $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term');
-                    
+                        // Hide search box if taxopress_show_all=1
+                            $this->terms_table->search_box(esc_html__('Search Terms', 'simple-tags'), 'term');
+
                     ?>
                 </form>
                 <div class="clear"></div>
@@ -308,14 +317,7 @@ class SimpleTags_Terms
                     <div class="col-wrap">
                         <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                             <?php
-                            // Hide pagination if taxopress_show_all=1
-                            // if (!empty($_REQUEST['taxopress_show_all']) && $_REQUEST['taxopress_show_all'] == '1') {
-                            //     // Remove pagination controls via CSS
-                            //     echo '<style>
-                            //         .tablenav.top, .tablenav.bottom { display: none !important; }
-                            //     </style>';
-                            // }
-                            $this->terms_table->display(); //Display the table 
+                            $this->terms_table->display();
                             ?>
                         </form>
                         <div class="form-wrap edit-term-notes">
@@ -328,7 +330,7 @@ class SimpleTags_Terms
 
 
             </div>
-            <?php $this->terms_table->inline_edit(); ?>
+                    <?php $this->terms_table->inline_edit(); ?>
 
             <script>
                 (function($) {
@@ -347,12 +349,11 @@ class SimpleTags_Terms
 
                 })(jQuery);
             </script>
-            <?php SimpleTags_Admin::printAdminFooter(); ?>
+                    <?php SimpleTags_Admin::printAdminFooter(); ?>
         </div>
-        <?php
+                    <?php
                 }
                 ?>
-<?php
+        <?php
     }
-
 }

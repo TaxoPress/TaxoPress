@@ -2,11 +2,10 @@
 
 class SimpleTags_Dashboard
 {
-
-    const MENU_SLUG = 'st_options';
+    public const MENU_SLUG = 'st_options';
 
     // class instance
-    static $instance;
+    public static $instance;
 
     /**
      * Constructor
@@ -68,7 +67,7 @@ class SimpleTags_Dashboard
         settings_errors(__CLASS__);
 
         $show_welcome = isset($_GET['welcome']) ? true : false;
-    ?>
+        ?>
     <?php if ($show_welcome) : ?>
         <div class="taxopress-welcome-banner">
             <div class="banner-wrap">
@@ -101,7 +100,7 @@ class SimpleTags_Dashboard
                 <div class="taxopress-dashboard-settings-boxes">
                     <?php foreach (taxopress_dashboard_options() as $feature => $option) :
                         $feature_option_key = $option['option_key'];
-                    ?>
+                        ?>
                         <div class="taxopress-dashboard-settings-box">
                             <h3><?php echo esc_html($option['label']); ?></h3>
                             <div class="taxopress-dashboard-settings-description"><?php echo esc_html($option['description']); ?></div>

@@ -8,7 +8,7 @@
 function taxopress_get_autolink_data()
 {
     static $cached_data = null;
-    
+
     if ($cached_data === null) {
         $cached_data = array_filter((array)apply_filters(
             'taxopress_get_autolinks_data',
@@ -16,11 +16,12 @@ function taxopress_get_autolink_data()
             get_current_blog_id()
         ));
     }
-    
+
     return $cached_data;
 }
 
-function taxopress_clear_autolink_cache() {
+function taxopress_clear_autolink_cache()
+{
     $reflection = new ReflectionFunction('taxopress_get_autolink_data');
     $reflection->getStaticVariables()['cached_data'] = null;
 }
@@ -249,7 +250,7 @@ function taxopress_update_autolink($data = [])
     $data['taxopress_autolink']['blocks_exclusion'] = isset($data['blocks_exclusion']) ? array_unique($data['blocks_exclusion']) : [];
     $data['taxopress_autolink']['blocks_exclusion_entries'] = isset($data['blocks_exclusion_entries']) ? $data['blocks_exclusion_entries'] : [];
     $data['taxopress_autolink']['enable_customurl_field'] = isset($data['taxopress_autolink']['enable_customurl_field']) ? $data['taxopress_autolink']['enable_customurl_field'] : [];
-    
+
     //update our custom checkbox value if not checked
     if (!isset($data['taxopress_autolink']['unattached_terms'])) {
         $data['taxopress_autolink']['unattached_terms'] = 0;
@@ -277,7 +278,7 @@ function taxopress_update_autolink($data = [])
     if (!isset($data['taxopress_autolink']['archivepage'])) {
         $data['taxopress_autolink']['archivepage'] = 0;
     }
-    
+
 
 
     if (isset($data['edited_autolink'])) {

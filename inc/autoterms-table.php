@@ -5,7 +5,6 @@ if (!class_exists('WP_List_Table')) {
 
 class Autoterms_List extends WP_List_Table
 {
-
     /** Class constructor */
     public function __construct()
     {
@@ -60,7 +59,7 @@ class Autoterms_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'title'     => __('Title', 'simple-tags'),
@@ -164,8 +163,10 @@ class Autoterms_List extends WP_List_Table
         {
             $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID'; //If no sort, default to role
             $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc'; //If no order, default to asc
-            $result  = strnatcasecmp($a[$orderby],
-                $b[$orderby]); //Determine sort order, case insensitive, natural order
+            $result  = strnatcasecmp(
+                $a[$orderby],
+                $b[$orderby]
+            ); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
         }
@@ -265,13 +266,15 @@ class Autoterms_List extends WP_List_Table
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-autoterm">%s</a>',
-                add_query_arg([
+                add_query_arg(
+                    [
                     'page'                   => 'st_autoterms',
                     'action'                 => 'taxopress-delete-autoterm',
                     'taxopress_autoterms' => esc_attr($item['ID']),
                     '_wpnonce'               => wp_create_nonce('autoterm-action-request-nonce')
                 ],
-                    admin_url('admin.php')),
+                    admin_url('admin.php')
+                ),
                 __('Delete', 'simple-tags')
             ),
         ];
@@ -317,9 +320,9 @@ class Autoterms_List extends WP_List_Table
     {
         $taxonomy = get_taxonomy($item['taxonomy']);
 
-        if($taxonomy){
+        if ($taxonomy) {
             $return = $taxonomy->labels->name;
-        }else{
+        } else {
             $return = '&mdash;';
         }
 
@@ -342,8 +345,12 @@ class Autoterms_List extends WP_List_Table
                 $args = ['public' => true];
             }
             $output     = 'objects'; // Or objects.
-            $post_types = apply_filters('taxopress_get_post_types_for_taxonomies', get_post_types($args, $output),
-                $args, $output);
+            $post_types = apply_filters(
+                'taxopress_get_post_types_for_taxonomies',
+                get_post_types($args, $output),
+                $args,
+                $output
+            );
 
             $result_array     = [];
             foreach ($post_types as $post_type) {
@@ -369,25 +376,25 @@ class Autoterms_List extends WP_List_Table
      */
     protected function column_source($item)
     {
-        $used_source = []; 
-        
-        if(isset($item['autoterm_use_taxonomy']) && !empty(taxopress_disp_boolean($item['autoterm_use_taxonomy']))) {
+        $used_source = [];
+
+        if (isset($item['autoterm_use_taxonomy']) && !empty(taxopress_disp_boolean($item['autoterm_use_taxonomy']))) {
             $used_source[] = esc_html__('Existing taxonomy terms', 'simple-tags');
         }
-        
-        if(isset($item['autoterm_use_open_ai']) && !empty(taxopress_disp_boolean($item['autoterm_use_open_ai']))) {
+
+        if (isset($item['autoterm_use_open_ai']) && !empty(taxopress_disp_boolean($item['autoterm_use_open_ai']))) {
             $used_source[] = esc_html__('OpenAI', 'simple-tags');
         }
-        
-        if(isset($item['autoterm_use_ibm_watson']) && !empty(taxopress_disp_boolean($item['autoterm_use_ibm_watson']))) {
+
+        if (isset($item['autoterm_use_ibm_watson']) && !empty(taxopress_disp_boolean($item['autoterm_use_ibm_watson']))) {
             $used_source[] = esc_html__('IBM Watson', 'simple-tags');
         }
-        
-        if(isset($item['autoterm_use_dandelion']) && !empty(taxopress_disp_boolean($item['autoterm_use_dandelion']))) {
+
+        if (isset($item['autoterm_use_dandelion']) && !empty(taxopress_disp_boolean($item['autoterm_use_dandelion']))) {
             $used_source[] = esc_html__('Dandelion', 'simple-tags');
         }
-        
-        if(isset($item['autoterm_use_opencalais']) && !empty(taxopress_disp_boolean($item['autoterm_use_opencalais']))) {
+
+        if (isset($item['autoterm_use_opencalais']) && !empty(taxopress_disp_boolean($item['autoterm_use_opencalais']))) {
             $used_source[] = esc_html__('LSEG / Refinitiv', 'simple-tags');
         }
 

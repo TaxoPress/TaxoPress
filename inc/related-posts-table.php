@@ -1,11 +1,11 @@
 <?php
+
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
 class RelatedPosts_List extends WP_List_Table
 {
-
     /** Class constructor */
     public function __construct()
     {
@@ -15,7 +15,6 @@ class RelatedPosts_List extends WP_List_Table
             'plural'   =>  esc_html__('Related Posts', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
-
     }
 
     /**
@@ -60,7 +59,7 @@ class RelatedPosts_List extends WP_List_Table
      *
      * @return array
      */
-    function get_columns()
+    public function get_columns()
     {
         $columns = [
             'title'     =>  esc_html__('Title', 'simple-tags'),
@@ -102,19 +101,26 @@ class RelatedPosts_List extends WP_List_Table
      */
     public function search_box($text, $input_id)
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (empty($_REQUEST['s']) && !$this->has_items()) {
             return;
         }
 
         $input_id = $input_id . '-search-input';
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_REQUEST['orderby'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_REQUEST['order'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_REQUEST['page'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
         }
         ?>
@@ -148,6 +154,7 @@ class RelatedPosts_List extends WP_List_Table
         /**
          * Handle search
          */
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
@@ -163,10 +170,14 @@ class RelatedPosts_List extends WP_List_Table
          */
         function usort_reorder($a, $b)
         {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID'; //If no sort, default to role
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc'; //If no order, default to asc
-            $result  = strnatcasecmp($a[$orderby],
-                $b[$orderby]); //Determine sort order, case insensitive, natural order
+            $result  = strnatcasecmp(
+                $a[$orderby],
+                $b[$orderby]
+            ); //Determine sort order, case insensitive, natural order
 
             return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
         }
@@ -262,18 +273,20 @@ class RelatedPosts_List extends WP_List_Table
                     ],
                     admin_url('admin.php')
                 ),
-                 esc_html__('Edit', 'simple-tags')
+                esc_html__('Edit', 'simple-tags')
             ),
             'delete' => sprintf(
                 '<a href="%s" class="delete-relatedpost">%s</a>',
-                add_query_arg([
+                add_query_arg(
+                    [
                     'page'                   => 'st_related_posts',
                     'action'                 => 'taxopress-delete-relatedpost',
                     'taxopress_relatedposts' => esc_attr($item['ID']),
                     '_wpnonce'               => wp_create_nonce('relatedpost-action-request-nonce')
-                ],
-                    admin_url('admin.php')),
-                 esc_html__('Delete', 'simple-tags')
+                    ],
+                    admin_url('admin.php')
+                ),
+                esc_html__('Delete', 'simple-tags')
             ),
         ];
 
@@ -332,7 +345,6 @@ class RelatedPosts_List extends WP_List_Table
     {
         $title = '';
         if (isset($item['post_type']) && !empty(trim($item['post_type']))) {
-
             if ($item['post_type'] === 'st_current_posttype') {
                 $title =  esc_html__('Current post type', 'simple-tags');
             } elseif ($item['post_type'] === 'st_all_posttype') {
@@ -393,8 +405,12 @@ class RelatedPosts_List extends WP_List_Table
                 $args = ['public' => true];
             }
             $output     = 'objects'; // Or objects.
-            $post_types = apply_filters('taxopress_get_post_types_for_taxonomies', get_post_types($args, $output),
-                $args, $output);
+            $post_types = apply_filters(
+                'taxopress_get_post_types_for_taxonomies',
+                get_post_types($args, $output),
+                $args,
+                $output
+            );
 
             $result_array     = [];
             $embedded_options = [
@@ -429,6 +445,4 @@ class RelatedPosts_List extends WP_List_Table
 
         return '<input readonly type="text" value=\'[taxopress_relatedposts id="' . $item['ID'] . '"]\' />';
     }
-
-
 }

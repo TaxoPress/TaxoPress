@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-12-01T12:59:28+00:00\n"
+"PO-Revision-Date: 2025-12-01 13:01+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: publishpress-wordpress-reviews\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko-KR\n"
+
+#: ReviewsController.php:356
+#, php-format
+msgid ""
+"Hey, you've been using %1$s for %2$s on your site. We hope the plugin has "
+"been useful. Please could you quickly leave a 5-star rating on "
+"WordPress.org? It really does help to keep %1$s growing."
+msgstr ""
+"안녕하세요, %1$s를 사용하여 %2$s를 귀하의 사이트에서 사용하고 계십니다. 이 플러그인이 유용하게 사용되었기를 바랍니다. "
+"WordPress.org에서 5성 평점을 빠르게 남겨주실 수 있나요? %1$s의 성장을 유지하는 데 정말 도움이 됩니다."
+
+#: ReviewsController.php:367
+msgid "1 week"
+msgstr "1주"
+
+#: ReviewsController.php:375
+msgid "1 month"
+msgstr "1개월"
+
+#: ReviewsController.php:386
+msgid "3 months"
+msgstr "3개월"
+
+#: ReviewsController.php:640
+#, php-format
+msgid "Click here to add your rating for %s"
+msgstr "%s에 대한 평가를 추가하려면 여기를 클릭하세요"
+
+#: ReviewsController.php:646
+msgid "Maybe later"
+msgstr "나중에 할게요"
+
+#: ReviewsController.php:651
+msgid "I already did"
+msgstr "이미 했어요"

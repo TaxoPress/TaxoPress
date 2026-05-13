@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fetch our TAXOPRESS Related Posts option.
  *
@@ -6,8 +7,11 @@
  */
 function taxopress_get_relatedpost_data()
 {
-    return array_filter((array)apply_filters('taxopress_get_relatedpost_data', get_option('taxopress_relatedposts', []),
-        get_current_blog_id()));
+    return array_filter((array)apply_filters(
+        'taxopress_get_relatedpost_data',
+        get_option('taxopress_relatedposts', []),
+        get_current_blog_id()
+    ));
 }
 
 /**
@@ -22,8 +26,10 @@ function taxopress_get_current_relatedpost()
 
     $relatedposts = false;
 
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if (!empty($_GET) && isset($_GET['taxopress_relatedposts'])) {
-        $relatedposts = sanitize_text_field($_GET['taxopress_relatedposts']);
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $relatedposts = sanitize_text_field(wp_unslash($_GET['taxopress_relatedposts']));
     } else {
         $relatedposts = taxopress_get_relatedpost_data();
         if (!empty($relatedposts)) {
@@ -61,23 +67,29 @@ function taxopress_process_relatedpost()
     if (!isset($_GET['page'])) {
         return;
     }
-    if ('st_related_posts' !== $_GET['page']) {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    $page = sanitize_key(wp_unslash($_GET['page']));
+    if ('st_related_posts' !== $page) {
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if (isset($_GET['new_relatedpost'])) {
-        if ((int)$_GET['new_relatedpost'] === 1) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if ((int) $_GET['new_relatedpost'] === 1) {
             add_action('admin_notices', "taxopress_relatedposts_update_success_admin_notice");
             add_filter('removable_query_args', 'taxopress_saved_relatedpost_filter_removable_query_args');
         }
     }
 
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if (isset($_GET['deleted_relatedpost'])) {
-        if ((int)$_GET['deleted_relatedpost'] === 1) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if ((int) $_GET['deleted_relatedpost'] === 1) {
             add_action('admin_notices', "taxopress_relatedposts_delete_success_admin_notice");
             add_filter('removable_query_args', 'taxopress_deleted_relatedpost_filter_removable_query_args');
         }
@@ -87,8 +99,10 @@ function taxopress_process_relatedpost()
     if (!empty($_POST) && isset($_POST['relatedpost_submit'])) {
         $result = '';
         if (isset($_POST['relatedpost_submit'])) {
-            check_admin_referer('taxopress_addedit_relatedpost_nonce_action',
-                'taxopress_addedit_relatedpost_nonce_field');
+            check_admin_referer(
+                'taxopress_addedit_relatedpost_nonce_action',
+                'taxopress_addedit_relatedpost_nonce_field'
+            );
             $result = taxopress_update_relatedpost($_POST);
         }
 
@@ -109,9 +123,14 @@ function taxopress_process_relatedpost()
             exit();
         }
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-relatedpost') {
-        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
-        if (wp_verify_nonce($nonce, 'relatedpost-action-request-nonce')) {
-            taxopress_action_delete_relatedpost(sanitize_text_field($_REQUEST['taxopress_relatedposts']));
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $nonce = isset($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
+        if ($nonce && wp_verify_nonce($nonce, 'relatedpost-action-request-nonce')) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $relatedpost_id = isset($_REQUEST['taxopress_relatedposts']) ? sanitize_text_field(wp_unslash($_REQUEST['taxopress_relatedposts'])) : '';
+            if ($relatedpost_id !== '') {
+                taxopress_action_delete_relatedpost($relatedpost_id);
+            }
         }
         add_filter('removable_query_args', 'taxopress_delete_relatedpost_filter_removable_query_args');
     }
@@ -132,7 +151,7 @@ function taxopress_create_default_related_post()
         return;
     }
 
-    if(!current_user_can('simple_tags')){
+    if (!current_user_can('simple_tags')) {
         return;
     }
 
@@ -218,18 +237,15 @@ function taxopress_update_relatedpost($data = [])
         $relatedpost_id                = $data['edited_relatedpost'];
         $relatedposts[$relatedpost_id] = $data['taxopress_related_post'];
         $success                       = update_option('taxopress_relatedposts', $relatedposts);
-        //return 'update_success';
     } else {
         $relatedpost_id                       = (int)get_option('taxopress_relatedpost_ids_increament') + 1;
         $data['taxopress_related_post']['ID'] = $relatedpost_id;
         $relatedposts[$relatedpost_id]        = $data['taxopress_related_post'];
         $success                              = update_option('taxopress_relatedposts', $relatedposts);
         $update_id                            = update_option('taxopress_relatedpost_ids_increament', $relatedpost_id);
-        //return 'add_success';
     }
 
     return $relatedpost_id;
-
 }
 
 /**
@@ -341,16 +357,13 @@ function taxopress_relatedposts_shortcode($atts)
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo SimpleTags_Client_RelatedPosts::get_related_posts($relatedpost_arg);
-
     } else {
         echo esc_html__('Related Posts not found.', 'simple-tags');
     }
-    
+
     $html = ob_get_clean();
 
     return $html;
-
-
 }
 
 /**
@@ -367,7 +380,6 @@ function taxopress_relatedposts_the_content($content = '')
 
     if (count($post_tags) > 0) {
         foreach ($post_tags as $post_tag) {
-
             // Get option
             $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
 

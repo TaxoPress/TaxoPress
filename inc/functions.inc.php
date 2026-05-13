@@ -48,7 +48,8 @@ function st_register_widget()
     }
 }
 
-function taxopress_menu_separator($identifier, $parent) {
+function taxopress_menu_separator($identifier, $parent)
+{
     // create a separator menu
     $separator_menu = [];
     $separator_menu[] = '';
@@ -64,7 +65,8 @@ function taxopress_menu_separator($identifier, $parent) {
  * Method for adding default hidden columns to the TaxoPress Terms screen.
  */
 add_filter('default_hidden_columns', 'taxopress_terms_default_hidden_columns', 10, 2);
-function taxopress_terms_default_hidden_columns($hidden, $screen) {
+function taxopress_terms_default_hidden_columns($hidden, $screen)
+{
     if (isset($screen->id) && $screen->id === 'taxopress_page_st_terms') {
         $hidden[] = 'taxopress_custom_url';
     }
@@ -118,7 +120,7 @@ function taxopress_re_order_menu()
                     $taxopress_autoterms_schedule = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
                 }
-                
+
                 if ($slug_ === 'st_options-menu-upgrade-link') { //upgrade to pro link
                     $taxopress_upgrade = $taxopress_submenus[$key];
                     unset($taxopress_submenus[$key]);
@@ -134,7 +136,7 @@ function taxopress_re_order_menu()
             }
             // add linked terms
             if ($taxopress_linked_terms) {
-               $taxopress_submenus = taxopress_add_at_menu_index(['st_terms', 'st_taxonomies', 'st_dashboard'], $taxopress_linked_terms, $taxopress_submenus);
+                $taxopress_submenus = taxopress_add_at_menu_index(['st_terms', 'st_taxonomies', 'st_dashboard'], $taxopress_linked_terms, $taxopress_submenus);
             }
             // add autoterms schedule
             if ($taxopress_autoterms_schedule) {
@@ -166,7 +168,7 @@ function taxopress_re_order_menu()
             // Add separator 2 to menus
             $separator2_positions = ['st_autolinks', 'st_related_posts', 'st_post_tags', 'st_terms_display'];
             foreach ($separator2_positions as $pos) {
-                 $index = array_search($pos, array_column($taxopress_submenus, 2));
+                $index = array_search($pos, array_column($taxopress_submenus, 2));
                 if ($index !== false) {
                     $separator = taxopress_menu_separator('st_separator_end', 'simple_tags');
                     array_splice($taxopress_submenus, $index + 1, 0, [$separator]);
@@ -177,7 +179,7 @@ function taxopress_re_order_menu()
             // Add separator 3 to menus
             $separator2_positions = ['st_autoterms_content', 'st_autoterms_schedule', 'st_autoterms'];
             foreach ($separator2_positions as $pos) {
-                 $index = array_search($pos, array_column($taxopress_submenus, 2));
+                $index = array_search($pos, array_column($taxopress_submenus, 2));
                 if ($index !== false) {
                     $separator = taxopress_menu_separator('st_separator_end', 'simple_tags');
                     array_splice($taxopress_submenus, $index + 1, 0, [$separator]);
@@ -203,9 +205,76 @@ function taxopress_re_order_menu()
     }
 }
 
-function taxopress_add_at_menu_index($key_options, $new_menu, $existing_menus) {
+add_action('admin_init', 'taxopress_suppress_tag_groups_notice_on_taxopress_screens', 1);
+function taxopress_suppress_tag_groups_notice_on_taxopress_screens()
+{
+    if (! is_admin()) {
+        return;
+    }
 
-    foreach($key_options as $key_option) {
+    if (
+        ! defined('TAG_GROUPS_FILE')
+        && ! defined('TAG_GROUPS_PLUGIN_BASENAME')
+        && ! defined('TAG_GROUPS_PLUGIN_ABSOLUTE_PATH')
+        && ! function_exists('tag_groups_init')
+    ) {
+        return;
+    }
+
+    if (! class_exists('PublishPress\\WordpressVersionNotices\\Module\\TopNotice\\Module')) {
+        return;
+    }
+
+    add_filter(
+        \PublishPress\WordpressVersionNotices\Module\TopNotice\Module::SETTINGS_FILTER,
+        function ($settings) {
+            if (! is_admin()) {
+                return $settings;
+            }
+
+            $isTaxoPressScreen = false;
+
+            if (function_exists('get_current_screen')) {
+                $screen = get_current_screen();
+                if ($screen && isset($screen->base)) {
+                    $base = (string) $screen->base;
+                    $isTaxoPressScreen = (
+                        strpos($base, 'taxopress_page_') === 0
+                        || $base === 'toplevel_page_st_options'
+                        || $base === 'toplevel_page_st_posts'
+                    );
+                }
+            }
+
+            if (! $isTaxoPressScreen) {
+                $page = isset($_GET['page']) ? sanitize_key($_GET['page']) : '';
+
+                if (
+                    $page !== ''
+                    && (
+                        strpos($page, 'st_') === 0
+                        || $page === 'st_options'
+                        || $page === 'st_posts'
+                    )
+                ) {
+                    $isTaxoPressScreen = true;
+                }
+            }
+
+            if ($isTaxoPressScreen && isset($settings['taxopress-tag_groups'])) {
+                unset($settings['taxopress-tag_groups']);
+            }
+
+            return $settings;
+        },
+        9999
+    );
+}
+
+function taxopress_add_at_menu_index($key_options, $new_menu, $existing_menus)
+{
+
+    foreach ($key_options as $key_option) {
         $index = array_search($key_option, array_column($existing_menus, 2));
         if ($index !== false) {
             $index++;//add it after
@@ -462,7 +531,7 @@ function taxopress_sanitize_post_type_status($data)
     if (is_array($data)) {
         return array_map('sanitize_key', $data);
     }
-    
+
     return sanitize_key($data);
 }
 
@@ -561,25 +630,28 @@ function taxopress_is_pro_version()
  * @param array $haystack
  * @return bool
  */
-function taxopress_in_array_i($needle, $haystack) {
+function taxopress_in_array_i($needle, $haystack)
+{
     return in_array(strtolower($needle), array_map('strtolower', $haystack));
 }
 
 /**
  * Check if synonyms is enabled
- * 
+ *
  * @return bool
  */
-function taxopress_is_synonyms_enabled() {
+function taxopress_is_synonyms_enabled()
+{
     return ((int) SimpleTags_Plugin::get_option_value('active_features_synonyms') === 1);
 }
 
 /**
  * Check if linked term is enabled
- * 
+ *
  * @return bool
  */
-function taxopress_is_linked_terms_enabled() {
+function taxopress_is_linked_terms_enabled()
+{
     return ((int) SimpleTags_Plugin::get_option_value('active_features_linked_terms') === 1);
 }
 
@@ -590,7 +662,8 @@ function taxopress_is_linked_terms_enabled() {
  * @param string $taxonomy
  * @return array  $term_synonyms
  */
-function taxopress_get_term_synonyms($term, $taxonomy = '') {
+function taxopress_get_term_synonyms($term, $taxonomy = '')
+{
     $term_synonyms = [];
 
     if (!taxopress_is_synonyms_enabled()) {
@@ -620,7 +693,8 @@ function taxopress_get_term_synonyms($term, $taxonomy = '') {
  * @param string $linked_terms_type
  * @return array $linked_terms
  */
-function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = false, $linked_terms_type = 'main') {
+function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = false, $linked_terms_type = 'main')
+{
     global $wpdb;
 
     $linked_terms = [];
@@ -659,7 +733,8 @@ function taxopress_get_linked_terms($term_id, $taxonomy = '', $term_object = fal
 /**
  * Find out which is a linked term in our data
  */
-function taxopress_get_linked_term_data($linked_term_option, $term_id) {
+function taxopress_get_linked_term_data($linked_term_option, $term_id)
+{
 
     if ((int)$linked_term_option->linked_term_id === (int)$term_id) {
         $taxopress_linked_term_id       = $linked_term_option->term_id;
@@ -688,10 +763,11 @@ function taxopress_get_linked_term_data($linked_term_option, $term_id) {
  * @param string $lists
  * @param bool $linked
  * @param bool $named_term
- * 
+ *
  * @return array $term_object
  */
-function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = false, $named_term = false) {
+function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = false, $named_term = false)
+{
 
     if (!taxopress_is_linked_terms_enabled()) {
         // simply return $lists if feature is disabled
@@ -754,31 +830,36 @@ function taxopress_add_linked_term_options($lists, $term, $taxonomy, $linked = f
 
 /**
  * Fetch our TAXOPRESS SuggestTerms option.
- * SuggestTerms screen has been removed but we need this function 
+ * SuggestTerms screen has been removed but we need this function
  * to migrate the needed settings.
  *
  * @return mixed
  */
 function taxopress_get_suggestterm_data()
 {
-    return array_filter((array)apply_filters('taxopress_get_suggestterm_data', get_option('taxopress_suggestterms', []),
-        get_current_blog_id()));
+    return array_filter((array)apply_filters(
+        'taxopress_get_suggestterm_data',
+        get_option('taxopress_suggestterms', []),
+        get_current_blog_id()
+    ));
 }
 
-function taxopress_get_all_wp_roles() {
+function taxopress_get_all_wp_roles()
+{
     global $wp_roles;
 
     if (!isset($wp_roles)) {
         $wp_roles = new \WP_Roles();
     }
-    
+
     return $wp_roles->roles;
 }
 
 /**
  * Check if current user can manage taxopress metabox
  */
-function can_manage_taxopress_metabox($user_id = false) {
+function can_manage_taxopress_metabox($user_id = false)
+{
     $can_manage = false;
 
     if (!$user_id) {
@@ -802,11 +883,12 @@ function can_manage_taxopress_metabox($user_id = false) {
 /**
  * Check if current user can manage metabox taxonomy
  */
-function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false, $preview_role = '') {
-    
-     if (!empty($preview_role)) {
-         $role_options = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $preview_role . '');
-         return in_array($taxonomy, $role_options, true);
+function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false, $preview_role = '')
+{
+
+    if (!empty($preview_role)) {
+        $role_options = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $preview_role . '');
+        return in_array($taxonomy, $role_options, true);
     }
 
     $can_manage = false;
@@ -837,11 +919,12 @@ function can_manage_taxopress_metabox_taxonomy($taxonomy, $user_id = false, $pre
  * @param int|false $user_id
  * @return bool
  */
-function can_edit_taxopress_metabox_labels($user_id = false) {
+function can_edit_taxopress_metabox_labels($user_id = false)
+{
     if (!$user_id) {
         $user_id = get_current_user_id();
     }
-    
+
     // Check if user is an administrator
     return user_can($user_id, 'administrator');
 }
@@ -850,7 +933,8 @@ function can_edit_taxopress_metabox_labels($user_id = false) {
 /**
  * Get all the taxonomy removed for current user
  */
-function taxopress_user_role_removed_taxonomy($user_id = false) {
+function taxopress_user_role_removed_taxonomy($user_id = false)
+{
 
     $removed_taxonomies_tax = [];
     $removed_taxonomies_css = [];
@@ -890,9 +974,10 @@ function taxopress_user_role_removed_taxonomy($user_id = false) {
 /**
  * Get post statuses
  */
-function taxopress_get_post_statuses() {
-    
-    $post_statuses = get_post_stati( array(), 'objects' );
+function taxopress_get_post_statuses()
+{
+
+    $post_statuses = get_post_stati(array(), 'objects');
 
     return $post_statuses;
 }
@@ -903,7 +988,8 @@ function taxopress_get_post_statuses() {
  * @param string $role_name
  * @return bool
  */
-function taxopress_is_current_user_role($role_name) {
+function taxopress_is_current_user_role($role_name)
+{
     if (is_user_logged_in()) {
         $user = wp_get_current_user();
         return in_array($role_name, (array) $user->roles);
@@ -917,7 +1003,8 @@ function taxopress_is_current_user_role($role_name) {
  * @param array $tabs
  * @return array
  */
-function can_manage_taxopress_metabox_tabs($tabs) {
+function can_manage_taxopress_metabox_tabs($tabs)
+{
     $user = wp_get_current_user();
     $role_name = $user->roles[0] ?? false;
 
