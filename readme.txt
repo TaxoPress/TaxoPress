@@ -2,7 +2,7 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul, deji98
 Tags: category, tag, taxonomy, categories, tag cloud
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 3.50.0
 Requires PHP: 7.4
 License: GPLv2 or later
