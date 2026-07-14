@@ -86,6 +86,27 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $preview_post = !empty($_POST['preview_post']) ? (int) $_POST['preview_post'] : 0;
                 $preview_feature = 'data';
                 $post_data = get_post($preview_post);
+
+                if (!is_object($post_data)) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__(
+                        'Posts content and title is empty.',
+                        'simple-tags'
+                    );
+                    wp_send_json($response);
+                    exit;
+                }
+
+                if (!current_user_can('read_post', $post_data->ID)) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__(
+                        'Permission error. You do not have permission to preview this post.',
+                        'simple-tags'
+                    );
+                    wp_send_json($response);
+                    exit;
+                }
+
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post_data->post_type);
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Using custom taxopress_sanitize_text_field() for sanitization
                 $post_content = isset($_POST['post_content']) ? taxopress_sanitize_text_field($_POST['post_content']) : $post_data->post_content;
@@ -172,13 +193,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 ];
 
-                if (!is_object($post_data)) {
-                    $response['status'] = 'error';
-                    $response['content'] = esc_html__(
-                        'Posts content and title is empty.',
-                        'simple-tags'
-                    );
-                } elseif ($preview_ai == 'suggest_local_terms') {
+                if ($preview_ai == 'suggest_local_terms') {
                     $args['suggest_terms'] = true;
                     $args['show_counts'] = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
                     $suggest_local_terms_results = self::get_existing_terms_results($args);
