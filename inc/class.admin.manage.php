@@ -767,10 +767,13 @@ class SimpleTags_Admin_Manage
     {
         global $wpdb;
 
+        $limit = min(max((int) $limit, 1), 50);
+
         $terms = get_terms([
             'taxonomy' => $taxonomy,
             'hide_empty' => false,
             'number' => $limit * 2,
+            'update_term_meta_cache' => false,
         ]);
 
         $show_slug = (int) SimpleTags_Plugin::get_option_value('enable_merge_terms_slug');
@@ -787,10 +790,14 @@ class SimpleTags_Admin_Manage
                 $reasons = [];
 
                 // 1. Levenshtein distance (for typos)
-                $levenshtein = levenshtein(strtolower($term1->name), strtolower($term2->name));
-                if ($levenshtein <= 2 && $levenshtein > 0) {
-                    $similarity_score += 40;
-                    $reasons[] = esc_html__('Similar spelling', 'simple-tags');
+                $term1_name = strtolower($term1->name);
+                $term2_name = strtolower($term2->name);
+                if (abs(strlen($term1_name) - strlen($term2_name)) <= 2 && max(strlen($term1_name), strlen($term2_name)) <= 100) {
+                    $levenshtein = levenshtein($term1_name, $term2_name);
+                    if ($levenshtein <= 2 && $levenshtein > 0) {
+                        $similarity_score += 40;
+                        $reasons[] = esc_html__('Similar spelling', 'simple-tags');
+                    }
                 }
 
                 // 2. Soundex (phonetic similarity)
@@ -1463,6 +1470,8 @@ class SimpleTags_Admin_Manage
             'taxonomy' => $taxonomy,
             'name__like' => $term,
             'hide_empty' => false,
+            'number' => (int) apply_filters('taxopress_autocomplete_terms_limit', 50),
+            'update_term_meta_cache' => false,
         ]);
 
         $results = [];
