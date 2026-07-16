@@ -1386,9 +1386,17 @@
         selector.each(function () {
 
             var checkedPostTypes = [];
-            $('input[name="post_types[]"]:checked').each(function () {
-                checkedPostTypes.push($(this).val());
-            });
+            var dataPostTypes = $(this).data('post-types');
+
+            if (dataPostTypes) {
+                checkedPostTypes = String(dataPostTypes).split(',').filter(function (postType) {
+                    return postType !== '';
+                });
+            } else {
+                $('input[name="post_types[]"]:checked').each(function () {
+                    checkedPostTypes.push($(this).val());
+                });
+            }
 
             // Build the post_types parameter as a query string (e.g., post_types=post&post_types=page)
             var postTypesParam = '';
