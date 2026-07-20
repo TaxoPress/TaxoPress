@@ -131,7 +131,9 @@ class SimpleTags_Related_Post
                 <h1 class="wp-heading-inline"><?php _e('Related Posts', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_related_posts&add=new_item')); ?>"
                    class="page-title-action taxopress">
-                   <span class="dashicons dashicons-lock"></span>
+                    <?php if (! taxopress_is_pro_version()) : ?>
+                        <span class="dashicons dashicons-lock" aria-hidden="true"></span>
+                    <?php endif; ?>
                    <?php esc_html_e('Add New Related Post', 'simple-tags'); ?>
                 </a>
 
