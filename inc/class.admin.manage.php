@@ -28,6 +28,7 @@ class SimpleTags_Admin_Manage
         //load ajax
         add_action('wp_ajax_taxopress_check_delete_terms', array( $this, 'handle_taxopress_check_delete_terms_ajax'));
         add_action('wp_ajax_taxopress_autocomplete_terms', [ $this, 'handle_taxopress_autocomplete_terms']);
+        add_action('wp_ajax_taxopress_merge_terms_preflight', [$this, 'taxopress_merge_terms_preflight']);
         add_action('wp_ajax_taxopress_merge_terms_batch', [$this, 'taxopress_merge_terms_batch']);
         add_action('wp_ajax_taxopress_merge_suggestions', [$this, 'handle_taxopress_merge_suggestions']);
 
@@ -499,6 +500,7 @@ class SimpleTags_Admin_Manage
             $old_terms = explode(',', $old);
             $old_terms = array_map($extractTermName, $old_terms);
             $old_terms = array_filter($old_terms, '_delete_empty_element');
+            $old_terms = array_values(array_unique(array_map('sanitize_text_field', $old_terms)));
             $retained_slug_param = isset($_POST['retained_slug']) ? sanitize_title($_POST['retained_slug']) : '';
 
             if (empty($old_terms)) {
@@ -507,6 +509,7 @@ class SimpleTags_Admin_Manage
             }
 
             $terms = [];
+            $terms_by_id = [];
             foreach ($old_terms as $term_name) {
                 $term_objects = get_terms([
                     'taxonomy' => $taxonomy,
@@ -515,16 +518,21 @@ class SimpleTags_Admin_Manage
                 ]);
 
                 if (is_array($term_objects) && count($term_objects) > 1) {
-                    $terms = array_merge($terms, $term_objects);
+                    foreach ($term_objects as $term_object) {
+                        $terms_by_id[(int) $term_object->term_id] = $term_object;
+                    }
                 }
             }
+
+            $terms = array_values($terms_by_id);
 
             if (empty($terms)) {
                 add_settings_error(__CLASS__, __CLASS__, esc_html__('No terms with the same name found.', 'simple-tags'), 'error taxopress-notice');
                 return false;
             }
 
-            usort($terms, function ($a, $b) use ($term_name, $retained_slug_param) {
+            $sort_term_name = reset($old_terms);
+            usort($terms, function ($a, $b) use ($sort_term_name, $retained_slug_param) {
                 // If a retained slug is provided, sort that term to the top
                 if ($retained_slug_param) {
                     if ($a->slug === $retained_slug_param) {
@@ -535,8 +543,8 @@ class SimpleTags_Admin_Manage
                     }
                 }
                 // Score based on similarity to term name
-                similar_text($term_name, $a->slug, $similarity_a);
-                similar_text($term_name, $b->slug, $similarity_b);
+                similar_text($sort_term_name, $a->slug, $similarity_a);
+                similar_text($sort_term_name, $b->slug, $similarity_b);
 
                 if ($similarity_a === $similarity_b) {
                     // If similarity is the same, sort by length (shortest first)
@@ -606,6 +614,8 @@ class SimpleTags_Admin_Manage
             // Remove empty element and trim
             $old_terms = array_filter($old_terms, '_delete_empty_element');
             $new_terms = array_filter($new_terms, '_delete_empty_element');
+            $old_terms = array_values(array_unique(array_map('sanitize_text_field', $old_terms)));
+            $new_terms = array_values(array_unique(array_map('sanitize_text_field', $new_terms)));
             $common_elements = array_intersect($old_terms, $new_terms);
 
             // If old/new tag are empty => exit !
@@ -902,6 +912,134 @@ class SimpleTags_Admin_Manage
         }
     }
 
+    private static function get_merge_preflight_term_ids($taxonomy, $old_terms_input, $merge_type)
+    {
+        $extractTermName = function ($term) {
+            return trim(preg_replace('/\s*\(.*?\)$/', '', $term));
+        };
+
+        $term_ids = [];
+
+        foreach ($old_terms_input as $term_name) {
+            $term_name_clean = sanitize_text_field($extractTermName($term_name));
+
+            if (empty($term_name_clean)) {
+                continue;
+            }
+
+            if ($merge_type === 'same_name') {
+                $matching_terms = get_terms([
+                    'taxonomy' => $taxonomy,
+                    'name' => $term_name_clean,
+                    'hide_empty' => false,
+                    'fields' => 'ids',
+                    'update_term_meta_cache' => false,
+                ]);
+
+                if (!is_wp_error($matching_terms) && !empty($matching_terms)) {
+                    foreach ($matching_terms as $term_id) {
+                        $term_ids[] = (int) $term_id;
+                    }
+
+                    continue;
+                }
+            }
+
+            $term = get_term_by('name', $term_name_clean, $taxonomy);
+            if (!$term || is_wp_error($term)) {
+                $term = get_term_by('slug', sanitize_title($term_name_clean), $taxonomy);
+            }
+
+            if ($term && !is_wp_error($term)) {
+                $term_ids[] = (int) $term->term_id;
+            }
+        }
+
+        return array_values(array_unique(array_filter($term_ids)));
+    }
+
+    private static function count_objects_for_merge_terms($taxonomy, $term_ids)
+    {
+        global $wpdb;
+
+        if (empty($term_ids)) {
+            return 0;
+        }
+
+        $term_ids = array_values(array_unique(array_map('intval', $term_ids)));
+        $cache_key = 'merge_preflight_' . md5($taxonomy . ':' . implode(',', $term_ids));
+        $cached_count = wp_cache_get($cache_key, 'taxopress_terms');
+
+        if ($cached_count !== false) {
+            return (int) $cached_count;
+        }
+
+        $term_id_placeholders = implode(',', array_fill(0, count($term_ids), '%d'));
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        $term_taxonomy_query = $wpdb->prepare(
+            "SELECT term_taxonomy_id FROM {$wpdb->term_taxonomy} WHERE taxonomy = %s AND term_id IN ({$term_id_placeholders})",
+            array_merge([$taxonomy], $term_ids)
+        );
+
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $term_taxonomy_ids = $wpdb->get_col($term_taxonomy_query);
+
+        if (empty($term_taxonomy_ids)) {
+            wp_cache_set($cache_key, 0, 'taxopress_terms', MINUTE_IN_SECONDS);
+            return 0;
+        }
+
+        $term_taxonomy_ids = array_values(array_unique(array_map('intval', $term_taxonomy_ids)));
+        $term_taxonomy_id_placeholders = implode(',', array_fill(0, count($term_taxonomy_ids), '%d'));
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        $object_count_query = $wpdb->prepare(
+            "SELECT COUNT(DISTINCT object_id) FROM {$wpdb->term_relationships} WHERE term_taxonomy_id IN ({$term_taxonomy_id_placeholders})",
+            $term_taxonomy_ids
+        );
+
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $object_count = (int) $wpdb->get_var($object_count_query);
+
+        wp_cache_set($cache_key, $object_count, 'taxopress_terms', MINUTE_IN_SECONDS);
+
+        return $object_count;
+    }
+
+    public static function taxopress_merge_terms_preflight()
+    {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+        if (empty($nonce) || !wp_verify_nonce($nonce, 'st-admin-js')) {
+            wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')], 403);
+            wp_die();
+        }
+
+        if (!current_user_can('simple_tags')) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')], 403);
+            wp_die();
+        }
+
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field(wp_unslash($_POST['taxonomy'])) : '';
+        if (empty($taxonomy) || !taxonomy_exists($taxonomy)) {
+            wp_send_json_error(['message' => __('Invalid taxonomy.', 'simple-tags')], 400);
+            wp_die();
+        }
+
+        $merge_type = isset($_POST['merge_type']) ? sanitize_text_field(wp_unslash($_POST['merge_type'])) : 'different_name';
+        $old_terms_input = isset($_POST['old_terms']) ? array_map('sanitize_text_field', (array) wp_unslash($_POST['old_terms'])) : [];
+
+        $term_ids = self::get_merge_preflight_term_ids($taxonomy, $old_terms_input, $merge_type);
+        $affected_posts_count = self::count_objects_for_merge_terms($taxonomy, $term_ids);
+        $workload = count($term_ids) * $affected_posts_count;
+        $ajax_workload_threshold = (int) apply_filters('taxopress_merge_terms_ajax_workload_threshold', 20);
+
+        wp_send_json_success([
+            'terms_count' => count($term_ids),
+            'affected_posts_count' => $affected_posts_count,
+            'workload' => $workload,
+            'use_ajax' => $workload > $ajax_workload_threshold,
+        ]);
+    }
+
     public static function taxopress_merge_terms_batch()
     {
         $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
@@ -929,10 +1067,15 @@ class SimpleTags_Admin_Manage
         foreach ($old_terms_input as $term_name) {
             $term_name_clean = $extractTermName($term_name);
             $term = get_term_by('name', $term_name_clean, $taxonomy);
+            if (!$term || is_wp_error($term)) {
+                $term = get_term_by('slug', sanitize_title($term_name_clean), $taxonomy);
+            }
             if ($term && !is_wp_error($term)) {
-                $old_terms[] = $term_name_clean;
+                $old_terms[] = $term->name;
             }
         }
+
+        $old_terms = array_values(array_unique($old_terms));
 
         if (empty($old_terms)) {
             wp_send_json_error([
