@@ -268,6 +268,15 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
+= [3.51.0] - 21 July, 2026 =
+* Fixed: Fatal memory exhaustion on Terms screen (st_terms) with hierarchical taxonomy — not related to term count, #2967
+* Fixed: Related Posts thumbnail image resolution setting is ignored, #2964
+* Fixed: Terms screen causes memory exhaustion on large sites, #2962
+* Fixed: Improve AI preview post validation, #2968. Thanks to Duy for the report
+* Fixed: Terms screen can run out of memory on large sites, #2961
+* Update: Remove the lock icon in the Pro version, #2963
+* Update: Include changelog in readme.txt for plugin update dialog box, #2959
+
 = [3.50.0] - 13 May, 2026 =
 * Update: Add CHANGELOG.md file, #2944
 * Update: Add Bundled Translations Library, #2943
@@ -280,12 +289,5 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 * Fixed: Uncaught TypeError: array_keys(): Argument #1 in class.admin.manage, #2921
 * Update: Related Posts settings, #2928
 * Update: Update readme file from WordPress.org #2936
-
-= [3.44.0] - 22 January, 2026 =
-* Fixed: Auto Terms Existing Content and Schedule aren't adding terms correctly, #2898
-* Update: Update description for automatic terms display selection mode, #2893
-* Update: Add a description to Posts and Manage Terms tabs, #2894
-* Update: Description for Frontend Scripts, #2895
-* Update: Add AutoTerms Log link to Existing Content page, #2897
 
 The full changelog can be found on [GitHub](https://github.com/taxopress/taxopress/blob/master/CHANGELOG.md).
