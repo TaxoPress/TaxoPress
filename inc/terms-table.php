@@ -82,6 +82,7 @@ class Taxopress_Terms_List extends WP_List_Table
                 'orderby'                => 'include',
                 'number'                 => count($term_ids),
                 'pad_counts'             => false,
+                'hierarchical'           => false,
                 'update_term_meta_cache' => true,
             ]);
 
@@ -143,6 +144,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'post_types'             => $selected_post_type,
             'hide_empty'             => false,
             'pad_counts'             => false,
+            'hierarchical'           => false,
             'update_term_meta_cache' => false,
             'fields'                 => 'count',
             'search'                 => $search,
@@ -301,28 +303,81 @@ class Taxopress_Terms_List extends WP_List_Table
         $terms_by_id = [];
         $children = [];
         foreach ($terms as $term) {
-            $terms_by_id[$term->term_id] = $term;
-            $children[$term->parent][] = $term->term_id;
+            $term_id = (int) $term->term_id;
+            $parent_id = (int) $term->parent;
+
+            if ($term_id <= 0 || isset($terms_by_id[$term_id])) {
+                continue;
+            }
+
+            $terms_by_id[$term_id] = $term;
+            $children[$parent_id][] = $term_id;
         }
 
         $ordered = [];
-        $add_term = function ($term_id, $depth) use (&$add_term, &$terms_by_id, &$children, &$ordered) {
-            $term = $terms_by_id[$term_id];
-            $term->taxopress_depth = $depth;
-            $ordered[] = $term;
-            if (!empty($children[$term_id])) {
-                foreach ($children[$term_id] as $child_id) {
-                    $add_term($child_id, $depth + 1);
+        $visited = [];
+
+        $add_terms = function ($term_ids) use (&$terms_by_id, &$children, &$ordered, &$visited) {
+            $stack = [];
+
+            foreach (array_reverse($term_ids) as $term_id) {
+                $stack[] = [
+                    'term_id' => (int) $term_id,
+                    'depth'   => 0,
+                ];
+            }
+
+            while (!empty($stack)) {
+                $node = array_pop($stack);
+                $term_id = (int) $node['term_id'];
+
+                if (isset($visited[$term_id]) || !isset($terms_by_id[$term_id])) {
+                    continue;
+                }
+
+                $visited[$term_id] = true;
+                $term = $terms_by_id[$term_id];
+                $term->taxopress_depth = (int) $node['depth'];
+                $ordered[] = $term;
+
+                if (!empty($children[$term_id])) {
+                    foreach (array_reverse($children[$term_id]) as $child_id) {
+                        $child_id = (int) $child_id;
+
+                        if ($child_id === $term_id || isset($visited[$child_id])) {
+                            continue;
+                        }
+
+                        $stack[] = [
+                            'term_id' => $child_id,
+                            'depth'   => (int) $node['depth'] + 1,
+                        ];
+                    }
                 }
             }
         };
 
         // Start with root terms
+        $root_ids = [];
         foreach ($terms as $term) {
-            if ($term->parent == 0 || !isset($terms_by_id[$term->parent])) {
-                $add_term($term->term_id, 0);
+            $term_id = (int) $term->term_id;
+            $parent_id = (int) $term->parent;
+
+            if ($parent_id === 0 || !isset($terms_by_id[$parent_id]) || $parent_id === $term_id) {
+                $root_ids[] = $term_id;
             }
         }
+
+        $add_terms($root_ids);
+
+        // Include any disconnected or cyclic branches once, without recursion.
+        foreach ($terms as $term) {
+            $term_id = (int) $term->term_id;
+            if (!isset($visited[$term_id])) {
+                $add_terms([$term_id]);
+            }
+        }
+
         return $ordered;
     }
 
@@ -430,6 +485,7 @@ class Taxopress_Terms_List extends WP_List_Table
                             'taxonomy'               => [$taxonomy],
                             'hide_empty'             => false,
                             'pad_counts'             => false,
+                            'hierarchical'           => false,
                             'update_term_meta_cache' => false,
                             'fields'                 => 'ids',
                         ]);
@@ -459,6 +515,7 @@ class Taxopress_Terms_List extends WP_List_Table
                     'post_types' => $selected_post_type,
                     'hide_empty' => false,
                     'pad_counts' => false,
+                    'hierarchical' => false,
                     'update_term_meta_cache' => false,
                     'fields' => 'ids',
                     'search' => $search,
@@ -543,6 +600,7 @@ class Taxopress_Terms_List extends WP_List_Table
             'search' => $search,
             'hide_empty' => false,
             'pad_counts' => false,
+            'hierarchical' => false,
             'update_term_meta_cache' => true,
         ];
         if ($count || $show_all_terms_in_taxonomy) {
