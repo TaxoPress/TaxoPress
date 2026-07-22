@@ -2,28 +2,19 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress 1.5.1 for WP2.3 & WP2.5\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: TaxoPress 3.51.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Russian\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2008-04-01 20:19+0600\n"
-"PO-Revision-Date: 2026-07-22 19:24+0000\n"
-"X-Generator: Loco https://localise.biz/\n"
+"POT-Creation-Date: 2026-07-20T15:44:27+00:00\n"
+"PO-Revision-Date: 2026-07-22 19:22+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: simple-tags\n"
-">= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
-"n%10<=4 &&(n%100<10||n%100 >= 20)? 1: 2);\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-Country: RUSSIAN FEDERATION\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: "
-"X:webМодификацииwordpress\tagssimple-tags-wp23-wp25simple-tags\n"
-"Language: ru_RU\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: id-ID\n"
 
 #: simple-tags.php:4
 #: simple-tags.php:8
@@ -44,8 +35,8 @@ msgid ""
 "TaxoPress allows you to create and manage Tags, Categories, and all your "
 "WordPress taxonomy terms."
 msgstr ""
-"TaxoPress позволяет вам создавать и управлять метками, категориями и всеми "
-"вашими терминами таксономии WordPress."
+"TaxoPress memungkinkan Anda untuk membuat dan mengelola Tag, Kategori, dan "
+"semua istilah taksonomi WordPress Anda."
 
 #: simple-tags.php:9, fuzzy
 #. Author URI of the plugin
@@ -55,38 +46,38 @@ msgstr "https://taxopress.com"
 #: blocks/post-tags.php:63
 #: inc/related-posts-widget.php:141
 msgid "Here"
-msgstr "Здесь"
+msgstr "Di sini"
 
 #: blocks/post-tags.php:66
 msgid " Select current post"
-msgstr " Выбрать текущий пост"
+msgstr " Pilih pos saat ini"
 
 #: blocks/post-tags.php:67
 msgid "Current Posts (TaxoPress)"
-msgstr "Текущие посты (TaxoPress)"
+msgstr "Pos Saat Ini (TaxoPress)"
 
 #: blocks/related-posts.php:80
 #: blocks/tag-clouds.php:63
 #: inc/related-posts-widget.php:109
 msgid "this page."
-msgstr "этой странице."
+msgstr "halaman ini."
 
 #: blocks/related-posts.php:83
 msgid "Select related post"
-msgstr "Выбрать связанный пост"
+msgstr "Pilih pos terkait"
 
 #: blocks/related-posts.php:84
 #: inc/related-posts-widget.php:19
 msgid "Related Posts (TaxoPress)"
-msgstr "Связанные посты (TaxoPress)"
+msgstr "Pos Terkait (TaxoPress)"
 
 #: blocks/tag-clouds.php:66
 msgid "Select Terms Display"
-msgstr "Выбрать отображение терминов"
+msgstr "Pilih Tampilan Istilah"
 
 #: blocks/tag-clouds.php:67
 msgid "Terms Display (TaxoPress)"
-msgstr "Отображение терминов (TaxoPress)"
+msgstr "Tampilan Istilah (TaxoPress)"
 
 #: inc/related-posts-functions.php:167
 #: inc/related-posts-table.php:15
@@ -94,11 +85,11 @@ msgstr "Отображение терминов (TaxoPress)"
 #: inc/related-posts.php:74
 #: inc/related-posts.php:131
 msgid "Related Posts"
-msgstr "Похожие записи"
+msgstr "Pos Terkait"
 
 #: inc/related-posts-functions.php:176
 msgid "No related posts."
-msgstr "Нет связанных записей."
+msgstr "Tidak ada pos terkait."
 
 #: inc/related-posts-functions.php:262
 #: inc/schedule.php:173
@@ -106,19 +97,19 @@ msgstr "Нет связанных записей."
 #: modules/taxopress-ai/taxopress-ai.php:181
 #: modules/taxopress-ai/taxopress-ai.php:311
 msgid "Settings updated successfully."
-msgstr "Настройки успешно обновлены."
+msgstr "Pengaturan berhasil diperbarui."
 
 #: inc/related-posts-functions.php:271
 msgid "Related Posts successfully deleted."
-msgstr "Связанные посты успешно удалены."
+msgstr "Pos Terkait berhasil dihapus."
 
 #: inc/related-posts-functions.php:366
 msgid "Related Posts not found."
-msgstr "Связанные посты не найдены."
+msgstr "Pos Terkait tidak ditemukan."
 
 #: inc/related-posts-table.php:14
 msgid "Related Post"
-msgstr "Связанная запись"
+msgstr "Pos Terkait"
 
 #: inc/related-posts-table.php:65
 #: inc/related-posts.php:382
@@ -127,7 +118,7 @@ msgstr "Связанная запись"
 #: inc/terms-table.php:732
 #: inc/terms-table.php:739
 msgid "Title"
-msgstr "Заголовок"
+msgstr "Judul"
 
 #: inc/related-posts-table.php:66
 #: inc/related-posts.php:502
@@ -137,7 +128,7 @@ msgstr "Заголовок"
 #: inc/terms-table.php:742
 #: inc/terms-table.php:867
 msgid "Taxonomy"
-msgstr "Таксономия"
+msgstr "Taksonomi"
 
 #: inc/related-posts-table.php:67
 #: inc/related-posts.php:341
@@ -145,29 +136,29 @@ msgstr "Таксономия"
 #: inc/taxonomies.php:468
 #: inc/terms-table.php:743
 msgid "Post Types"
-msgstr "Типы записей"
+msgstr "Jenis Post"
 
 #: inc/related-posts-table.php:68
 msgid "Automatic display"
-msgstr "Автоматически отображать"
+msgstr "Tampilan otomatis"
 
 #: inc/related-posts-table.php:69
 #: inc/tag-clouds-table.php:69
 msgid "Shortcode"
-msgstr "Шорткод"
+msgstr "Shortcode"
 
 #: inc/related-posts-table.php:91
 #: inc/tag-clouds-table.php:91
 msgid "No item avaliable."
-msgstr "Нет доступных элементов."
+msgstr "Tidak ada item yang tersedia."
 
 #: inc/related-posts-table.php:276
 #: inc/tag-clouds-table.php:276
 #: inc/terms-table.php:1117
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:401
-#: modules/taxopress-ai/taxopress-ai.php:1496
+#: modules/taxopress-ai/taxopress-ai.php:1496, fuzzy
 msgid "Edit"
-msgstr "Изменить"
+msgstr "Edit"
 
 #: inc/related-posts-table.php:289
 #: inc/schedule-logs-table.php:79
@@ -175,63 +166,62 @@ msgstr "Изменить"
 #: inc/terms-table.php:800
 #: inc/terms-table.php:1159
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Hapus"
 
 #: inc/related-posts-table.php:349
 msgid "Current post type"
-msgstr "Текущий тип поста"
+msgstr "Jenis post saat ini"
 
 #: inc/related-posts-table.php:351
 #: inc/tag-clouds-table.php:359
 msgid "All"
-msgstr "Все"
+msgstr "Semua"
 
 #: inc/related-posts-table.php:386
-#: includes-core/TaxopressCoreAdmin.php:627
+#: includes-core/TaxopressCoreAdmin.php:627, fuzzy
 msgid "Default"
-msgstr "По умолчанию"
+msgstr "Default"
 
 #: inc/related-posts-table.php:417
 #: inc/related-posts.php:638
 msgid "Homepage"
-msgstr "Главная страница"
+msgstr "Beranda"
 
 #: inc/related-posts-table.php:418
 #: inc/related-posts.php:639
 msgid "Blog display"
-msgstr "Отображение блога"
+msgstr "Tampilan blog"
 
 #: inc/related-posts-table.php:419
 msgid "Single post display"
-msgstr "Отображение одиночного поста"
+msgstr "Tampilan post tunggal"
 
-#: inc/related-posts-table.php:420
+#: inc/related-posts-table.php:420, fuzzy
 msgid "RSS feed"
-msgstr "RSS лента"
+msgstr "RSS feed"
 
 #: inc/related-posts-table.php:430
 #: inc/related-posts.php:1329
 #: inc/tag-clouds.php:1092
 #: inc/taxonomies.php:1973
-#, fuzzy
 msgid "No"
-msgstr "Нет"
+msgstr "Tidak"
 
 #: inc/related-posts-widget.php:22
 msgid "Taxopress Related Posts Shortcode"
-msgstr "Shortcode для связанных постов TaxoPress"
+msgstr "Shortcode Post Terkait TaxoPress"
 
 #: inc/related-posts-widget.php:112
 msgid "Related Posts are added on "
-msgstr "Связанные посты добавлены на "
+msgstr "Post Terkait ditambahkan pada "
 
 #: inc/related-posts-widget.php:120
 msgid "Select widget Related Posts."
-msgstr "Выбрать виджет Связанные посты."
+msgstr "Pilih widget Post Terkait."
 
 #: inc/related-posts-widget.php:144
 msgid "No Related Posts shortcode available. Add new shortcode "
-msgstr "Нет доступного shortcode для связанных постов. Добавьте новый shortcode "
+msgstr "Tidak ada shortcode Post Terkait yang tersedia. Tambahkan shortcode baru "
 
 #: inc/related-posts.php:96
 #: inc/schedule.php:58
@@ -239,11 +229,11 @@ msgstr "Нет доступного shortcode для связанных пост
 #: inc/taxonomies.php:137
 #: inc/terms.php:197
 msgid "Number of items per page"
-msgstr "Количество элементов на странице"
+msgstr "Jumlah item per halaman"
 
 #: inc/related-posts.php:137
 msgid "Add New Related Post"
-msgstr "Добавить новый связанный пост"
+msgstr "Tambahkan Post Terkait Baru"
 
 #: inc/related-posts.php:140
 msgid ""
@@ -251,10 +241,10 @@ msgid ""
 "your post has the terms “WordPress” and “Website”, then Related Posts will "
 "display other posts that also have the terms “WordPress” and “Website”."
 msgstr ""
-"Функция «Связанные записи» работает, проверяя общие термины таксономии. "
-"Если в вашем посте есть термины «WordPress» и «Веб-сайт», то «Связанные "
-"записи» отобразят другие записи, которые также имеют термины «WordPress» и "
-"«Веб-сайт»."
+"Fitur Pos Terkait bekerja dengan memeriksa istilah taksonomi yang sama. "
+"Jika pos Anda memiliki istilah “WordPress” dan “Website”, maka Pos Terkait "
+"akan menampilkan pos lain yang juga memiliki istilah “WordPress” dan "
+"“Website”."
 
 #: inc/related-posts.php:147
 #: inc/tag-clouds.php:145
@@ -263,11 +253,11 @@ msgstr ""
 #. translators: %s: search keywords
 #, php-format
 msgid "Search results for &#8220;%s&#8221;"
-msgstr "Результаты поиска для &#8220;%s&#8221;"
+msgstr "Hasil pencarian untuk &#8220;%s&#8221;"
 
 #: inc/related-posts.php:159
 msgid "Search Related Posts"
-msgstr "Поиск связанных записей"
+msgstr "Cari Pos Terkait"
 
 #: inc/related-posts.php:170
 #: inc/schedule.php:485
@@ -275,39 +265,37 @@ msgstr "Поиск связанных записей"
 #: inc/taxonomies.php:257
 #: inc/terms.php:324
 msgid "Description here."
-msgstr "Описание здесь."
+msgstr "Deskripsi di sini."
 
 #: inc/related-posts.php:234
 msgid "Manage Related Posts"
-msgstr "Управление связанными записями"
+msgstr "Kelola Pos Terkait"
 
 #: inc/related-posts.php:250
 msgid "Preview Related Posts"
-msgstr "Предварительный просмотр связанных записей"
+msgstr "Prabaca Pos Terkait"
 
 #: inc/related-posts.php:256
 #: inc/tag-clouds.php:270
 msgid "Toggle panel"
-msgstr "Переключить панель"
+msgstr "Toggel panel"
 
 #: inc/related-posts.php:277
 #: modules/taxopress-ai/taxopress-ai.php:465
 msgid "Preview"
-msgstr "Предварительный просмотр"
+msgstr "Prabaca"
 
 #: inc/related-posts.php:300
 msgid "Edit Related Posts"
-msgstr "Редактировать связанные записи"
+msgstr "Edit Pos Terkait"
 
 #: inc/related-posts.php:307
 msgid "Add new Related Posts"
-msgstr "Добавить новые связанные записи"
+msgstr "Tambahkan Pos Terkait baru"
 
 #: inc/related-posts.php:318
 msgid "To create more Related Posts, please upgrade to TaxoPress Pro."
-msgstr ""
-"Чтобы создать больше связанных записей, пожалуйста, обновитесь до TaxoPress "
-"Pro."
+msgstr "Untuk membuat lebih banyak Pos Terkait, silakan tingkatkan ke TaxoPress Pro."
 
 #: inc/related-posts.php:324
 msgid ""
@@ -315,46 +303,46 @@ msgid ""
 "Related Posts for any taxonomy and then display those Related Posts "
 "anywhere on your site."
 msgstr ""
-"С TaxoPress Pro вы можете создать неограниченное количество связанных "
-"записей. Вы можете создавать связанные записи для любой таксономии и затем "
-"отображать эти связанные записи в любом месте на вашем сайте."
+"Dengan TaxoPress Pro, Anda dapat membuat Pos Terkait tanpa batas. Anda "
+"dapat membuat Pos Terkait untuk taksonomi mana pun dan kemudian menampilkan "
+"Pos Terkait tersebut di mana saja di situs Anda."
 
 #: inc/related-posts.php:337
 #: inc/tag-clouds.php:334
 #: inc/taxonomies.php:462
 msgid "General"
-msgstr "Общие"
+msgstr "Umum"
 
 #: inc/related-posts.php:345
 msgid "Display"
-msgstr "Отображение"
+msgstr "Tampilkan"
 
 #: inc/related-posts.php:349
 #: inc/tag-clouds.php:354
 msgid "Design"
-msgstr "Оформление"
+msgstr "Desain"
 
 #: inc/related-posts.php:353
 #: inc/tag-clouds.php:346
 msgid "Layout"
-msgstr "Макет"
+msgstr "Tata Letak"
 
 #: inc/related-posts.php:357
 #: inc/related-posts.php:724
 #: inc/tag-clouds-table.php:68
 #: inc/tag-clouds.php:670
 msgid "Display format"
-msgstr "Отображаемый формат"
+msgstr "Format tampilan"
 
 #: inc/related-posts.php:361
 #: inc/tag-clouds.php:342
 msgid "Options"
-msgstr "Параметры"
+msgstr "Opsi"
 
 #: inc/related-posts.php:365
 #: inc/taxonomies.php:491
 msgid "Advanced"
-msgstr "Дополнительно"
+msgstr "Lanjutan"
 
 #: inc/related-posts.php:401
 #: inc/related-posts.php:558
@@ -379,9 +367,9 @@ msgstr "Дополнительно"
 #: inc/taxonomies.php:1572
 #: inc/taxonomies.php:1643
 #: inc/taxonomies.php:1670
-#: inc/taxonomies.php:1697, fuzzy
+#: inc/taxonomies.php:1697
 msgid "False"
-msgstr "False"
+msgstr "Salah"
 
 #: inc/related-posts.php:406
 #: inc/related-posts.php:563
@@ -406,18 +394,18 @@ msgstr "False"
 #: inc/taxonomies.php:1576
 #: inc/taxonomies.php:1647
 #: inc/taxonomies.php:1674
-#: inc/taxonomies.php:1701, fuzzy
+#: inc/taxonomies.php:1701
 msgid "True"
-msgstr "True"
+msgstr "Benar"
 
 #: inc/related-posts.php:416
 msgid "Hide title in output ?"
-msgstr "Скрыть заголовок в выводе?"
+msgstr "Sembunyikan judul di output?"
 
 #: inc/related-posts.php:428
 #: inc/schedule-logs-table.php:192
 msgid "None"
-msgstr "Отсутствует"
+msgstr "Tidak ada"
 
 #: inc/related-posts.php:432, fuzzy
 msgid "H1"
@@ -445,27 +433,27 @@ msgstr "H6"
 
 #: inc/related-posts.php:467
 msgid "Title header"
-msgstr "Заголовок"
+msgstr "Judul header"
 
 #: inc/related-posts.php:521
 #: inc/tag-clouds.php:813
 msgid "Font size minimum"
-msgstr "Минимальный размер шрифта"
+msgstr "Ukuran font minimum"
 
 #: inc/related-posts.php:531
 #: inc/tag-clouds.php:823
 msgid "Font size maximum"
-msgstr "Максимальный размер шрифта"
+msgstr "Ukuran font maksimum"
 
 #: inc/related-posts.php:538
 #: inc/tag-clouds.php:830
 msgid "Point"
-msgstr "Точка"
+msgstr "Poin"
 
 #: inc/related-posts.php:539
 #: inc/tag-clouds.php:831
 msgid "Pixel"
-msgstr "Пиксели"
+msgstr "Piksel"
 
 #: inc/related-posts.php:540
 #: inc/tag-clouds.php:832, fuzzy
@@ -475,81 +463,80 @@ msgstr "Em"
 #: inc/related-posts.php:541
 #: inc/tag-clouds.php:833
 msgid "Percent"
-msgstr "Процент"
+msgstr "Persen"
 
 #: inc/related-posts.php:550
 #: inc/tag-clouds.php:842
 msgid "Unit font size"
-msgstr "Размер шрифта единицы"
+msgstr "Unit ukuran font"
 
 #: inc/related-posts.php:574
 #: inc/tag-clouds.php:873
 msgid "Enable colors for terms"
-msgstr "Включить цвета для терминов"
+msgstr "Aktifkan warna untuk istilah"
 
 #: inc/related-posts.php:584
 #: inc/tag-clouds.php:883
 msgid "Font color minimum"
-msgstr "Минимальный цвет шрифта"
+msgstr "Warna font minimum"
 
 #: inc/related-posts.php:585
 msgid "This is the color of the least popular term."
-msgstr "Это цвет наименее популярного термина."
+msgstr "Ini adalah warna istilah yang paling tidak populer."
 
 #: inc/related-posts.php:595
 #: inc/tag-clouds.php:894
 msgid "Font color maximum"
-msgstr "Максимальный цвет шрифта"
+msgstr "Warna maksimum font"
 
 #: inc/related-posts.php:596
 msgid "This is the color of the most popular term."
-msgstr "Это цвет самого популярного термина."
+msgstr "Ini adalah warna dari istilah yang paling populer."
 
 #: inc/related-posts.php:640
-#, fuzzy
 msgid "Posts"
-msgstr "Записи"
+msgstr "Pos"
 
 #: inc/related-posts.php:653
 msgid "Maximum related posts to display"
-msgstr "Максимальное количество связанных записей для отображения"
+msgstr "Maksimum pos terkait yang ditampilkan"
 
 #: inc/related-posts.php:657
 msgid "Specify the number of related posts to display."
-msgstr "Укажите количество связанных записей для отображения."
+msgstr "Tentukan jumlah pos terkait yang akan ditampilkan."
 
 #: inc/related-posts.php:661
 msgid "Attempt to automatically display related posts"
-msgstr "Попытаться автоматически отобразить связанные записи"
+msgstr "Coba untuk secara otomatis menampilkan pos terkait"
 
 #: inc/related-posts.php:664
 msgid ""
 "TaxoPress will attempt to automatically display related posts in this "
 "content. It may not be successful for all post types and layouts."
 msgstr ""
-"TaxoPress попытается автоматически отобразить связанные записи в этом "
-"контенте. Это может не сработать для всех типов записей и макетов."
+"TaxoPress akan mencoba untuk secara otomatis menampilkan pos terkait dalam "
+"konten ini. Mungkin tidak berhasil untuk semua jenis dan tata letak pos."
 
 #: inc/related-posts.php:713
 msgid "Box List"
-msgstr "Список коробок"
+msgstr "Daftar Kotak"
 
 #: inc/related-posts.php:714
 #: inc/tag-clouds-table.php:377
 #: inc/tag-clouds.php:656
 msgid "Unordered List (UL/LI)"
-msgstr "Несортированный список (UL/LI)"
+msgstr "Daftar Tidak Terurut (UL/LI)"
 
 #: inc/related-posts.php:715
 #: inc/tag-clouds-table.php:378
 #: inc/tag-clouds.php:657
 msgid "Ordered List (OL/LI)"
-msgstr "Упорядоченный список (OL/LI)"
+msgstr "Daftar Terurut (OL/LI)"
 
 #: inc/related-posts.php:744
 #: inc/tag-clouds.php:939
 msgid "Term link format"
-msgstr "Формат ссылки термина"
+msgstr "Format tautan istilah"
 
 #: inc/related-posts.php:745
 #, php-format
@@ -558,95 +545,95 @@ msgid ""
 "can find tokens and explanations in the sidebar and %1sin the "
 "documentation%2s."
 msgstr ""
-"Эти настройки позволяют настроить внешний вид ссылок на связанные записи. "
-"Вы можете найти токены и объяснения в боковой панели и %1$sв "
-"документации%2$s."
+"Pengaturan ini memungkinkan untuk menyesuaikan tampilan tautan Pos Terkait. "
+"Anda dapat menemukan token dan penjelasan di sidebar dan %1$sdi "
+"dokumentasi%2$s."
 
 #: inc/related-posts.php:791
 msgid "TaxoPress will display related posts from selected post types."
-msgstr "TaxoPress будет отображать связанные записи из выбранных типов записей."
+msgstr "TaxoPress akan menampilkan pos terkait dari jenis pos yang dipilih."
 
 #: inc/related-posts.php:845
 msgid "Text to display before posts list"
-msgstr "Текст для отображения перед списком записей"
+msgstr "Teks yang ditampilkan sebelum daftar pos"
 
 #: inc/related-posts.php:849
 msgid "Enter the text that should be displayed before the posts list."
-msgstr "Введите текст, который должен отображаться перед списком записей."
+msgstr "Masukkan teks yang harus ditampilkan sebelum daftar pos."
 
 #: inc/related-posts.php:861
 msgid "Text to display after posts list"
-msgstr "Текст для отображения после списка записей"
+msgstr "Teks yang ditampilkan setelah daftar pos"
 
 #: inc/related-posts.php:865
 msgid "Enter the text that should be display after the posts list."
-msgstr "Введите текст, который должен отображаться после списка записей."
+msgstr "Masukkan teks yang harus ditampilkan setelah daftar pos."
 
 #: inc/related-posts.php:876
 #: inc/tag-clouds.php:605
 msgid "24 hours"
-msgstr "24 часа"
+msgstr "24 jam"
 
 #: inc/related-posts.php:880
 #: inc/tag-clouds.php:606
 msgid "7 days"
-msgstr "7 дней"
+msgstr "7 hari"
 
 #: inc/related-posts.php:884
 #: inc/tag-clouds.php:607
 msgid "2 weeks"
-msgstr "2 недели"
+msgstr "2 minggu"
 
 #: inc/related-posts.php:888
 #: inc/tag-clouds.php:608
 #: review-request/review.php:298
 msgid "1 month"
-msgstr "1 месяц"
+msgstr "1 bulan"
 
 #: inc/related-posts.php:892
 #: inc/tag-clouds.php:609
 msgid "6 months"
-msgstr "6 месяцев"
+msgstr "6 bulan"
 
 #: inc/related-posts.php:896
 #: inc/tag-clouds.php:610
 msgid "1 year"
-msgstr "1 год"
+msgstr "1 tahun"
 
 #: inc/related-posts.php:900
 #: inc/schedule.php:396
 #: inc/schedule.php:430
 #: inc/tag-clouds.php:611
 msgid "No limit"
-msgstr "Без ограничений"
+msgstr "Tanpa batas"
 
 #: inc/related-posts.php:911
 msgid "Limit related posts based on timeframe"
-msgstr "Ограничить связанные записи на основе временного интервала"
+msgstr "Batasi pos terkait berdasarkan jangka waktu"
 
 #: inc/related-posts.php:923
 msgid "Least common tags between posts"
-msgstr "Наименее распространенные теги между записями"
+msgstr "Tag paling umum yang paling sedikit antara pos"
 
 #: inc/related-posts.php:930
 msgid "Most common tags between posts"
-msgstr "Наиболее распространенные теги между записями"
+msgstr "Tag paling umum antara pos"
 
 #: inc/related-posts.php:938
 msgid "Older Entries"
-msgstr "Старые записи"
+msgstr "Entri Lama"
 
 #: inc/related-posts.php:942
 msgid "Newer Entries"
-msgstr "Новые записи"
+msgstr "Entri Baru"
 
 #: inc/related-posts.php:946
 msgid "Alphabetical"
-msgstr "По алфавиту"
+msgstr "Alfabet"
 
 #: inc/related-posts.php:950
 msgid "Inverse Alphabetical"
-msgstr "Алфавит в обратном порядке"
+msgstr "Alfabet Terbalik"
 
 #: inc/related-posts.php:957
 #: includes-core/TaxopressCoreAdmin.php:881
@@ -654,124 +641,124 @@ msgstr "Алфавит в обратном порядке"
 #: includes-core/TaxopressCoreAdmin.php:985
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:114
 msgid "Random"
-msgstr "Случайный"
+msgstr "Acak"
 
 #: inc/related-posts.php:967
 msgid "Related Posts Order"
-msgstr "Порядок связанных записей"
+msgstr "Urutan Pos Terkait"
 
 #: inc/related-posts.php:979
 msgid "Text to show when there is no related post"
-msgstr "Текст для отображения, когда нет связанных записей"
+msgstr "Teks yang ditampilkan ketika tidak ada pos terkait"
 
 #: inc/related-posts.php:1007
 msgid "Hide output if no related post is found ?"
-msgstr "Скрыть вывод, если не найдена связанная запись?"
+msgstr "Sembunyikan output jika tidak ada pos terkait yang ditemukan?"
 
 #: inc/related-posts.php:1029
 msgid "Related Posts div class"
-msgstr "Класс div для связанных записей"
+msgstr "kelas div Pos Terkait"
 
 #: inc/related-posts.php:1040
 #: inc/tag-clouds.php:926
 msgid "Term link class"
-msgstr "Класс ссылки термина"
+msgstr "kelas tautan Istilah"
 
 #: inc/related-posts.php:1047
 msgid "d.m.Y (e.g., 09.10.2024)"
-msgstr "d.m.Y (например, 09.10.2024)"
+msgstr "d.m.Y (contoh: 09.10.2024)"
 
 #: inc/related-posts.php:1048
 msgid "F j, Y (e.g., October 9, 2024)"
-msgstr "F j, Y (например, 9 октября 2024)"
+msgstr "F j, Y (contoh: 9 Oktober 2024)"
 
 #: inc/related-posts.php:1049
 msgid "Y-m-d (e.g., 2024-10-09)"
-msgstr "Y-m-d (например, 2024-10-09)"
+msgstr "Y-m-d (contoh: 2024-10-09)"
 
 #: inc/related-posts.php:1050
 msgid "m/d/Y (e.g., 10/09/2024)"
-msgstr "m/d/Y (например, 10/09/2024)"
+msgstr "m/d/Y (mis., 10/09/2024)"
 
 #: inc/related-posts.php:1051
 msgid "d M, Y (e.g., 09 Oct, 2024)"
-msgstr "d M, Y (например, 09 Окт, 2024)"
+msgstr "d M, Y (mis., 09 Okt, 2024)"
 
 #: inc/related-posts.php:1060
 msgid "Post date format"
-msgstr "Формат даты записи"
+msgstr "Format tanggal posting"
 
 #: inc/related-posts.php:1069
 msgid "Maximum characters of post content to display"
-msgstr "Максимальное количество символов для отображения содержимого записи"
+msgstr "Karakter maksimum konten posting yang ditampilkan"
 
 #: inc/related-posts.php:1082
 msgid "Maximum number of categories"
-msgstr "Максимальное количество категорий"
+msgstr "Jumlah maksimum kategori"
 
 #: inc/related-posts.php:1086
 msgid "You must set zero (0) to display all post categories."
-msgstr "Вы должны установить ноль (0), чтобы отобразить все категории записей."
+msgstr "Anda harus menetapkan nol (0) untuk menampilkan semua kategori posting."
 
 #: inc/related-posts.php:1096
 msgid "Maximum number of tags"
-msgstr "Максимальное количество тегов"
+msgstr "Jumlah maksimum tag"
 
 #: inc/related-posts.php:1100
 msgid "You must set zero (0) to display all post tags."
-msgstr "Вы должны установить ноль (0), чтобы отобразить все теги записей."
+msgstr "Anda harus menetapkan nol (0) untuk menampilkan semua tag posting."
 
-#: inc/related-posts.php:1107
+#: inc/related-posts.php:1107, fuzzy
 msgid "Thumbnail (150x150)"
-msgstr "Миниатюра (150x150)"
+msgstr "Thumbnail (150x150)"
 
 #: inc/related-posts.php:1108
 msgid "Medium (300x300)"
-msgstr "Средний размер (300x300)"
+msgstr "Sedang (300x300)"
 
 #: inc/related-posts.php:1109
 msgid "Large (1024x1024)"
-msgstr "Большой размер (1024x1024)"
+msgstr "Besar (1024x1024)"
 
 #: inc/related-posts.php:1110
 msgid "1536x1536 (High Res)"
-msgstr "1536x1536 (Высокое разрешение)"
+msgstr "1536x1536 (Resolusi Tinggi)"
 
 #: inc/related-posts.php:1111
 msgid "2048x2048 (Ultra High Res)"
-msgstr "2048x2048 (Ультра высокое разрешение)"
+msgstr "2048x2048 (Resolusi Ultra Tinggi)"
 
 #: inc/related-posts.php:1122
 msgid "Thumbnail image resolution"
-msgstr "Разрешение миниатюры"
+msgstr "Resolusi gambar thumbnail"
 
 #: inc/related-posts.php:1133
 msgid "Default post thumbnail"
-msgstr "Миниатюра поста по умолчанию"
+msgstr "Thumbnail posting default"
 
 #: inc/related-posts.php:1144
 msgid "Using default TaxoPress image"
-msgstr "Использование изображения по умолчанию TaxoPress"
+msgstr "Menggunakan gambar default TaxoPress"
 
 #: inc/related-posts.php:1153
 msgid "Select Media"
-msgstr "Выбрать медиа"
+msgstr "Pilih Media"
 
 #: inc/related-posts.php:1156
 msgid "Use Default Image"
-msgstr "Использовать изображение по умолчанию"
+msgstr "Gunakan Gambar Default"
 
 #: inc/related-posts.php:1159
 msgid "Remove Image"
-msgstr "Удалить изображение"
+msgstr "Hapus Gambar"
 
 #: inc/related-posts.php:1166
 msgid ""
 "Select the default %post_thumb_url% to be used when a post doesn't have a "
 "featured image."
 msgstr ""
-"Выберите %post_thumb_url% по умолчанию, который будет использоваться, когда "
-"у поста нет изображения."
+"Pilih %post_thumb_url% default untuk digunakan ketika posting tidak "
+"memiliki gambar unggulan."
 
 #: inc/related-posts.php:1194
 msgid ""
@@ -779,9 +766,8 @@ msgid ""
 "                                            The Pro version has more "
 "features and support."
 msgstr ""
-"Вы используете TaxoPress Free.  \n"
-"                                            Профессиональная версия имеет "
-"больше функций и поддержку."
+"Anda menggunakan TaxoPress Free. Versi Pro memiliki lebih banyak fitur dan "
+"dukungan."
 
 #: inc/related-posts.php:1198
 #: inc/tag-clouds.php:970
@@ -804,118 +790,118 @@ msgstr ""
 #: includes-core/TaxopressCoreAdmin.php:615
 #: includes-core/TaxopressCoreAdmin.php:689
 msgid "Upgrade to Pro"
-msgstr "Обновиться до Pro"
+msgstr "Upgrade ke Pro"
 
 #: inc/related-posts.php:1235
 msgid "Save Related Posts"
-msgstr "Сохранить связанные посты"
+msgstr "Simpan Pos Terkait"
 
 #: inc/related-posts.php:1243
 msgid "Add Related Posts"
-msgstr "Добавить связанные посты"
+msgstr "Tambahkan Pos Terkait"
 
 #: inc/related-posts.php:1256
-#: inc/tag-clouds.php:1021
+#: inc/tag-clouds.php:1021, fuzzy
 msgid "Shortcode: "
-msgstr "Шорткод: "
+msgstr "Shortcode: "
 
 #: inc/related-posts.php:1278
 msgid "Related Posts format"
-msgstr "Формат связанных постов"
+msgstr "format Pos Terkait"
 
 #: inc/related-posts.php:1283
 msgid "Here are the tokens you can use for related posts format"
-msgstr "Вот токены, которые вы можете использовать для формата связанных постов"
+msgstr "Berikut adalah token yang dapat Anda gunakan untuk format pos terkait"
 
 #: inc/related-posts.php:1285
 msgid "The URL of the post"
-msgstr "URL поста"
+msgstr "URL pos"
 
 #: inc/related-posts.php:1286
 msgid "The title of the post"
-msgstr "Заголовок поста"
+msgstr "Judul pos"
 
 #: inc/related-posts.php:1287
 msgid "The date of the post (this shows inside a tooltip)"
-msgstr "Дата поста (это отображается внутри подсказки)"
+msgstr "Tanggal pos (ini ditampilkan di dalam tooltip)"
 
 #: inc/related-posts.php:1288
 msgid "The number of tags used by both posts"
-msgstr "Количество тегов, используемых обоими постами"
+msgstr "Jumlah tag yang digunakan oleh kedua pos"
 
 #: inc/related-posts.php:1289
 msgid "The number of comments on the post"
-msgstr "Количество комментариев к посту"
+msgstr "Jumlah komentar pada pos"
 
 #: inc/related-posts.php:1290
 msgid "The ID of the post"
-msgstr "ID поста"
+msgstr "ID pos"
 
 #: inc/related-posts.php:1291
 msgid "A list of tags used by both the current post and the related post"
-msgstr "Список тегов, используемых как в текущем посте, так и в связанном посте"
+msgstr "Daftar tag yang digunakan oleh pos saat ini dan pos terkait"
 
 #: inc/related-posts.php:1292
 msgid "The post excerpt"
-msgstr "Извлечение поста"
+msgstr "Cuplikan pos"
 
 #: inc/related-posts.php:1293
 msgid "The post featured image url"
-msgstr "URL-адрес изображения поста"
+msgstr "URL gambar unggulan pos"
 
 #: inc/related-posts.php:1294
 msgid "The post content"
-msgstr "Содержимое поста"
+msgstr "Konten pos"
 
 #: inc/related-posts.php:1295
 msgid "The post category"
-msgstr "Категория поста"
+msgstr "Kategori pos"
 
 #: inc/related-posts.php:1296
 msgid "The font size of the post"
-msgstr "Размер шрифта поста"
+msgstr "Ukuran font pos"
 
 #: inc/related-posts.php:1297
 msgid "The color of the post title"
-msgstr "Цвет заголовка поста"
+msgstr "Warna judul pos"
 
 #: inc/related-posts.php:1319
 #: inc/tag-clouds.php:1082
 #: inc/taxonomies.php:1963
 msgid "Please complete the following required fields to save your changes:"
 msgstr ""
-"Пожалуйста, заполните следующие обязательные поля, чтобы сохранить ваши "
-"изменения:"
+"Silakan lengkapi kolom yang diperlukan berikut untuk menyimpan perubahan "
+"Anda:"
 
 #: inc/related-posts.php:1322
 #: inc/tag-clouds.php:1085
 #: inc/taxonomies.php:1966
 msgid "Okay"
-msgstr "Хорошо"
+msgstr "Oke"
 
 #: inc/related-posts.php:1331
 #: inc/tag-clouds.php:1094
 #: inc/taxonomies.php:1975
 msgid "Yes"
-msgstr "Да"
+msgstr "Ya"
 
 #: inc/related-posts.php:1343
 msgid "Security check failed."
-msgstr "Проверка безопасности не удалась."
+msgstr "Pemeriksaan keamanan gagal."
 
 #: inc/related-posts.php:1347
 #: inc/tag-clouds.php:1113
 #: modules/taxopress-ai/taxopress-ai.php:1704
 msgid "Permission denied."
-msgstr "Доступ запрещен."
+msgstr "Izin ditolak."
 
 #: inc/related-posts.php:1354
 msgid "Select a post to see a preview."
-msgstr "Выберите пост, чтобы увидеть предварительный просмотр."
+msgstr "Pilih sebuah post untuk melihat pratayang."
 
 #: inc/related-posts.php:1422
 msgid "No related posts found."
-msgstr "Связанные посты не найдены."
+msgstr "Tidak ada post terkait yang ditemukan."
 
 #: inc/schedule-logs-table.php:13, fuzzy
 msgid "autotermsschedulelog"
@@ -926,46 +912,46 @@ msgid "autotermsschedulelogs"
 msgstr "autotermsschedulelogs"
 
 #: inc/schedule-logs-table.php:51
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:761
+#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:761, fuzzy
 msgid "Post"
-msgstr "Запись"
+msgstr "Post"
 
 #: inc/schedule-logs-table.php:52
 #: inc/terms-table.php:858
 msgid "Post type"
-msgstr "Тип записи"
+msgstr "post type"
 
 #: inc/schedule-logs-table.php:54
 msgid "Terms added"
-msgstr "Добавленные условия"
+msgstr "Istilah ditambahkan"
 
 #: inc/schedule-logs-table.php:55
 msgid "Date"
-msgstr "Дата"
+msgstr "Tanggal"
 
 #: inc/schedule-logs-table.php:68
 msgid "Schedule log is empty."
-msgstr "Журнал расписания пуст."
+msgstr "Jadwal log kosong."
 
 #: inc/schedule-logs-table.php:130
 msgid "Edit Main Post"
-msgstr "Редактировать основной пост"
+msgstr "Edit Post Utama"
 
 #: inc/schedule-logs-table.php:143
 msgid "Delete Log"
-msgstr "Удалить журнал"
+msgstr "Hapus Log"
 
 #: inc/schedule.php:40
 #: inc/schedule.php:41
 #: inc/schedule.php:201
 msgid "Auto Terms Schedule"
-msgstr "Автоусловия расписания"
+msgstr "Jadwal Istilah Otomatis"
 
 #: inc/schedule.php:83
 msgid "Schedule is disabled. Please enable a schedule frequency to run a test."
 msgstr ""
-"Расписание отключено. Пожалуйста, включите частоту расписания, чтобы "
-"выполнить тест."
+"Jadwal dinonaktifkan. Silakan aktifkan frekuensi jadwal untuk menjalankan "
+"tes."
 
 #: inc/schedule.php:99
 #, php-format
@@ -973,25 +959,25 @@ msgid ""
 "Scheduled the cron event %s to run now. The original event will not be "
 "affected."
 msgstr ""
-"Запланировано выполнение события cron %s на данный момент. Оригинальное "
-"событие не будет затронуто."
+"Menjadwalkan peristiwa cron %s untuk dijalankan sekarang. Peristiwa asli "
+"tidak akan terpengaruh."
 
 #: inc/schedule.php:123
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:869
 msgid "An error occured."
-msgstr "Произошла ошибка."
+msgstr "Terjadi kesalahan."
 
 #: inc/schedule.php:126
 msgid "Limit per batches is required."
-msgstr "Ограничение на партию обязательно."
+msgstr "Batas per batch diperlukan."
 
 #: inc/schedule.php:128
 msgid "Batches wait time is required."
-msgstr "Время ожидания между партиями обязательно."
+msgstr "Waktu tunggu batch diperlukan."
 
 #: inc/schedule.php:170
 msgid "Schedule is not enabled for selected Auto Terms."
-msgstr "Расписание не включено для выбранных Авто-терминов."
+msgstr "Jadwal tidak diaktifkan untuk Auto Terms yang dipilih."
 
 #: inc/schedule.php:203
 msgid ""
@@ -999,72 +985,75 @@ msgid ""
 "is helpful if you regularly import content into WordPress. TaxoPress can "
 "run on a schedule and add terms to your imported content."
 msgstr ""
-"Эта функция позволяет запускать функцию Авто-терминов по расписанию. Это "
-"полезно, если вы регулярно импортируете контент в WordPress. TaxoPress "
-"может работать по расписанию и добавлять термины к вашему импортированному "
-"контенту."
+"Fitur ini memungkinkan Anda menjalankan fitur Auto Terms berdasarkan "
+"jadwal. Ini berguna jika Anda secara teratur mengimpor konten ke dalam "
+"WordPress. TaxoPress dapat dijalankan berdasarkan jadwal dan menambahkan "
+"istilah ke konten yang Anda impor."
 
 #: inc/schedule.php:213
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Pengaturan"
 
 #: inc/schedule.php:225
 msgid "Select an option..."
-msgstr "Выберите опцию..."
+msgstr "Pilih opsi..."
 
 #: inc/schedule.php:249
 msgid "Auto Terms setting"
-msgstr "Настройки Авто-терминов"
+msgstr "Pengaturan Auto Terms"
 
 #: inc/schedule.php:253
 msgid "Select Auto Terms settings to use when running the \"Schedule\" feature."
 msgstr ""
-"Выберите настройки Авто-терминов, которые будут использоваться при запуске "
-"функции \"Расписание\"."
+"Pilih pengaturan Auto Terms yang digunakan saat menjalankan fitur "
+"\"Jadwal\"."
 
 #: inc/schedule.php:259
 msgid "Do not run on a schedule"
-msgstr "Не запускать по расписанию"
+msgstr "Jangan jalankan berdasarkan jadwal"
 
 #: inc/schedule.php:260
 msgid "Weekly"
-msgstr "Еженедельно"
+msgstr "Mingguan"
 
 #: inc/schedule.php:264
 msgid "Schedule Frequency"
-msgstr "Частота расписания"
+msgstr "Frekuensi Jadwal"
 
 #: inc/schedule.php:290
 msgid "Disable 'Do not run on a schedule' to select schedule frequency."
-msgstr "Отключите 'Не запускать по расписанию', чтобы выбрать частоту расписания."
+msgstr ""
+"Nonaktifkan 'Jangan jalankan berdasarkan jadwal' untuk memilih frekuensi "
+"jadwal."
 
 #: inc/schedule.php:338
 msgid "Exclude previously analyzed content"
-msgstr "Исключить ранее проанализированный контент"
+msgstr "Kecualikan konten yang sudah dianalisis sebelumnya"
 
 #: inc/schedule.php:339
 msgid ""
 "This enables you to skip posts that have already been analyzed by the "
 "Schedule feature."
 msgstr ""
-"Это позволяет вам пропустить записи, которые уже были проанализированы "
-"функцией Расписание."
+"Ini memungkinkan Anda untuk melewati pos yang telah dianalisis oleh fitur "
+"Jadwal."
 
 #: inc/schedule.php:347
 msgid "Limit per batches"
-msgstr "Ограничение на партию"
+msgstr "Batas per batch"
 
 #: inc/schedule.php:351
 msgid ""
 "This enables your scheduled Auto Terms to run in batches. If you have a lot "
 "of content, set this to a lower number to avoid timeouts."
 msgstr ""
-"Это позволяет вашим запланированным Авто-терминам работать партиями. Если у "
-"вас много контента, установите это значение ниже, чтобы избежать таймаутов."
+"Ini memungkinkan Auto Terms terjadwal Anda berjalan dalam batch. Jika Anda "
+"memiliki banyak konten, atur ini ke angka yang lebih rendah untuk "
+"menghindari timeout."
 
 #: inc/schedule.php:361
 msgid "Batches wait time"
-msgstr "Время ожидания между партиями"
+msgstr "Waktu tunggu batch"
 
 #: inc/schedule.php:362
 msgid ""
@@ -1072,73 +1061,73 @@ msgid ""
 "Terms. If you have a lot of existing content, set this to a higher number "
 "to avoid timeouts."
 msgstr ""
-"Это время ожидания (в секундах) между обработкой партий Авто-терминов. Если "
-"у вас много существующего контента, установите это значение выше, чтобы "
-"избежать таймаутов."
+"Ini adalah waktu tunggu (dalam detik) antara pemrosesan batch Auto Terms. "
+"Jika Anda memiliki banyak konten yang ada, atur ini ke angka yang lebih "
+"tinggi untuk menghindari timeout."
 
 #: inc/schedule.php:371
 #: inc/schedule.php:406
 msgid "24 hours ago"
-msgstr "24 часа назад"
+msgstr "24 jam yang lalu"
 
 #: inc/schedule.php:375
 #: inc/schedule.php:410
 msgid "7 days ago"
-msgstr "7 дней назад"
+msgstr "7 hari yang lalu"
 
 #: inc/schedule.php:379
 #: inc/schedule.php:414
 msgid "2 weeks ago"
-msgstr "2 недели назад"
+msgstr "2 minggu yang lalu"
 
 #: inc/schedule.php:383
 #: inc/schedule.php:418
 msgid "1 month ago"
-msgstr "1 месяц назад"
+msgstr "1 bulan yang lalu"
 
 #: inc/schedule.php:388
 #: inc/schedule.php:422
 msgid "6 months ago"
-msgstr "6 месяцев назад"
+msgstr "6 bulan yang lalu"
 
 #: inc/schedule.php:392
 #: inc/schedule.php:426
 msgid "1 year ago"
-msgstr "1 год назад"
+msgstr "1 tahun yang lalu"
 
 #: inc/schedule.php:443
 msgid "Limit Auto Terms, based on published date"
-msgstr "Ограничить автоусловия по дате публикации"
+msgstr "Batasi Auto Terms, berdasarkan tanggal diterbitkan"
 
 #: inc/schedule.php:447
 msgid ""
 "This setting can limit your scheduled Auto Terms query to only recent "
 "content. We recommend using this feature to avoid timeouts on large sites."
 msgstr ""
-"Эта настройка может ограничить ваш запланированный запрос автоусловий "
-"только на недавний контент. Мы рекомендуем использовать эту функцию, чтобы "
-"избежать тайм-аутов на больших сайтах."
+"Pengaturan ini dapat membatasi kueri Auto Terms terjadwal Anda hanya untuk "
+"konten terbaru. Kami merekomendasikan menggunakan fitur ini untuk "
+"menghindari timeout di situs besar."
 
 #: inc/schedule.php:457
 msgid "Save Settings"
-msgstr "Сохранить настройки"
+msgstr "Simpan Pengaturan"
 
 #: inc/schedule.php:458
 msgid "Test Run"
-msgstr "Тестовый запуск"
+msgstr "Uji Coba"
 
 #: inc/schedule.php:467
 msgid "Recent Schedule Runs"
-msgstr "Недавние запланированные запуски"
+msgstr "Jadwal Run Terbaru"
 
 #: inc/schedule.php:473
 #, php-format
 msgid "You can see full log details on the %1s screen"
-msgstr "Вы можете увидеть полные детали журнала на экране %1s"
+msgstr "Anda dapat melihat detail log lengkap di layar %1s"
 
 #: inc/schedule.php:473
 msgid "Auto Terms Logs"
-msgstr "Журналы автоусловий"
+msgstr "Log Auto Terms"
 
 #: inc/tag-clouds-functions.php:153
 #: inc/tag-clouds-table.php:14
@@ -1147,87 +1136,87 @@ msgstr "Журналы автоусловий"
 #: inc/tag-clouds.php:74
 #: inc/tag-clouds.php:129
 msgid "Terms Display"
-msgstr "Отображение условий"
+msgstr "Tampilan Terms"
 
 #: inc/tag-clouds-functions.php:254
 msgid "Terms Display successfully deleted."
-msgstr "Отображение условий успешно удалено."
+msgstr "Tampilan Terms berhasil dihapus."
 
 #: inc/tag-clouds-table.php:67
 #: inc/tag-clouds.php:435
 msgid "Post Type"
-msgstr "Тип записи"
+msgstr "Post Type"
 
 #: inc/tag-clouds-table.php:376
 #: inc/tag-clouds.php:655
-#: includes-core/TaxopressCoreAdmin.php:705
+#: includes-core/TaxopressCoreAdmin.php:705, fuzzy
 msgid "Cloud"
-msgstr "Облако"
+msgstr "Cloud"
 
 #: inc/tag-clouds-table.php:379
-#: inc/tag-clouds.php:658
+#: inc/tag-clouds.php:658, fuzzy
 msgid "WordPress Default"
-msgstr "По умолчанию WordPress"
+msgstr "WordPress Default"
 
 #: inc/tag-clouds-table.php:380
 #: inc/tag-clouds.php:659
 msgid "Table List"
-msgstr "Список таблиц"
+msgstr "Daftar Tabel"
 
 #: inc/tag-clouds-table.php:381
-#: inc/tag-clouds.php:660
+#: inc/tag-clouds.php:660, fuzzy
 msgid "Border Cloud"
-msgstr "Облако границ"
+msgstr "Border Cloud"
 
 #: inc/tag-clouds-table.php:382
 #: inc/tag-clouds.php:661
 msgid "Parent / Child"
-msgstr "Родитель / Ребенок"
+msgstr "Induk / Anak"
 
 #: inc/tag-clouds.php:135
 msgid "Add New Terms Display"
-msgstr "Добавить новое отображение условий"
+msgstr "Tambahkan Tampilan Terms Baru"
 
 #: inc/tag-clouds.php:138
 msgid ""
 "This feature allows you to create a customizable display of all the terms "
 "in one taxonomy."
 msgstr ""
-"Эта функция позволяет вам создать настраиваемое отображение всех условий в "
-"одной таксономии."
+"Fitur ini memungkinkan Anda untuk membuat tampilan yang dapat disesuaikan "
+"dari semua istilah dalam satu taxonomy."
 
 #: inc/tag-clouds.php:161
 msgid "Search Terms Display"
-msgstr "Поиск отображения условий"
+msgstr "Tampilan Istilah Pencarian"
 
 #: inc/tag-clouds.php:242
 msgid "Manage Terms Display"
-msgstr "Управление отображением условий"
+msgstr "Kelola Tampilan Istilah"
 
 #: inc/tag-clouds.php:258
 msgid "Preview Terms Display"
-msgstr "Предварительный просмотр отображения терминов"
+msgstr "Pratinjau Tampilan Istilah"
 
 #: inc/tag-clouds.php:263
 msgid "Move up"
-msgstr "Переместить вверх"
+msgstr "Pindah ke atas"
 
 #: inc/tag-clouds.php:266
 msgid "Move down"
-msgstr "Переместить вниз"
+msgstr "Pindah ke bawah"
 
 #: inc/tag-clouds.php:303
 msgid "Edit Terms Display"
-msgstr "Редактировать отображение терминов"
+msgstr "Edit Tampilan Istilah"
 
 #: inc/tag-clouds.php:310
 msgid "Add new Terms Display"
-msgstr "Добавить новое отображение терминов"
+msgstr "Tambah Tampilan Istilah baru"
 
 #: inc/tag-clouds.php:321
 msgid "To create more Terms Display, please upgrade to TaxoPress Pro."
 msgstr ""
-"Чтобы создать больше отображений терминов, пожалуйста, обновитесь до "
+"Untuk membuat lebih banyak Tampilan Istilah, silakan tingkatkan ke "
 "TaxoPress Pro."
 
 #: inc/tag-clouds.php:324
@@ -1236,177 +1225,175 @@ msgid ""
 "Terms Display for any taxonomy and then display those Terms Display "
 "anywhere on your site."
 msgstr ""
-"С TaxoPress Pro вы можете создать неограниченное количество отображений "
-"терминов. Вы можете создать отображения терминов для любой таксономии и "
-"затем отображать эти отображения терминов в любом месте на вашем сайте."
+"Dengan TaxoPress Pro, Anda dapat membuat Tampilan Istilah tanpa batas. Anda "
+"dapat membuat Tampilan Istilah untuk taxonomy apa pun dan kemudian "
+"menampilkan Tampilan Istilah tersebut di mana saja di situs Anda."
 
 #: inc/tag-clouds.php:338
 msgid "Choose Terms"
-msgstr "Выбрать термины"
+msgstr "Pilih Istilah"
 
 #: inc/tag-clouds.php:350
 msgid "Exceptions"
-msgstr "Исключения"
+msgstr "Pengecualian"
 
 #: inc/tag-clouds.php:358
 #: includes-core/TaxopressCoreAdmin.php:711
 msgid "Display Format"
-msgstr "Формат отображения"
+msgstr "Format Tampilan"
 
 #: inc/tag-clouds.php:412
 msgid "Hide title in output?"
-msgstr "Скрыть заголовок в выходных данных?"
+msgstr "Sembunyikan judul dalam keluaran?"
 
 #: inc/tag-clouds.php:418
 msgid "All post types"
-msgstr "Все типы записи"
+msgstr "Semua jenis pos"
 
 #: inc/tag-clouds.php:469
 msgid "All Parent Terms"
-msgstr "Все родительские термины"
+msgstr "Semua Istilah Induk"
 
 #: inc/tag-clouds.php:519
 msgid "Parent Term"
-msgstr "Родительский термин"
+msgstr "Istilah Induk"
 
 #: inc/tag-clouds.php:525
 msgid "Display only Parent Terms"
-msgstr "Отображать только родительские термины"
+msgstr "Tampilkan hanya Istilah Induk"
 
 #: inc/tag-clouds.php:526
 msgid "Display only Sub-Terms"
-msgstr "Отображать только подтермины"
+msgstr "Tampilkan hanya Sub-Istilah"
 
 #: inc/tag-clouds.php:527
 msgid "Display Parents and Sub-Terms"
-msgstr "Отображать родителей и подтермины"
+msgstr "Tampilkan Induk dan Sub-Istilah"
 
 #: inc/tag-clouds.php:537
 msgid "Display Mode"
-msgstr "Режим отображения"
+msgstr "Mode Tampilan"
 
 #: inc/tag-clouds.php:554
 msgid "Term selection mode"
-msgstr "Режим выбора терминов"
+msgstr "Mode pemilihan istilah"
 
 #: inc/tag-clouds.php:562
 msgid "Automatic"
-msgstr "Автоматический"
+msgstr "Otomatis"
 
 #: inc/tag-clouds.php:565
 msgid "Display terms based on settings in the \"General\" tab."
-msgstr "Отображать термины на основе настроек на вкладке \"Общие\"."
+msgstr "Tampilkan istilah berdasarkan pengaturan di tab \"Umum\"."
 
 #: inc/tag-clouds.php:571
 msgid "Custom"
-msgstr "Пользовательский"
+msgstr "Kustom"
 
 #: inc/tag-clouds.php:574
 msgid ""
 "Display only the specific terms entered in the \"Custom terms to display\" "
 "field below."
 msgstr ""
-"Отображать только конкретные термины, введенные в поле \"Пользовательские "
-"термины для отображения\" ниже."
+"Tampilkan hanya istilah spesifik yang dimasukkan di bidang \"Istilah kustom "
+"untuk ditampilkan\" di bawah."
 
 #: inc/tag-clouds.php:580
 msgid "Combined"
-msgstr "Скомбинированный"
+msgstr "Gabungan"
 
 #: inc/tag-clouds.php:583
 msgid "Display automatic terms plus any additional custom terms specified below."
 msgstr ""
-"Отображение автоматических терминов плюс любые дополнительные "
-"пользовательские термины, указанные ниже."
+"Tampilkan istilah otomatis ditambah istilah kustom tambahan yang ditentukan "
+"di bawah."
 
 #: inc/tag-clouds.php:598
 msgid "Custom terms to display"
-msgstr "Пользовательские термины для отображения"
+msgstr "Istilah kustom untuk ditampilkan"
 
 #: inc/tag-clouds.php:599
 msgid "Enter terms (comma-separated) to display. Used in Custom and Combined modes."
 msgstr ""
-"Введите термины (разделенные запятой) для отображения. Используется в "
-"пользовательском и комбинированном режимах."
+"Masukkan istilah (dipisahkan koma) untuk ditampilkan. Digunakan dalam mode "
+"Kustom dan Gabungan."
 
 #: inc/tag-clouds.php:620
 msgid "Limit terms based on timeframe"
-msgstr "Ограничить термины по временным рамкам"
+msgstr "Batasi istilah berdasarkan jangka waktu"
 
 #: inc/tag-clouds.php:629
 #: includes-core/TaxopressCoreAdmin.php:837
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:146
 msgid "Ascending"
-msgstr "По возрастанию"
+msgstr "Menaik"
 
 #: inc/tag-clouds.php:630
 #: includes-core/TaxopressCoreAdmin.php:838
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:147
 msgid "Descending"
-msgstr "По убыванию"
+msgstr "Menurun"
 
 #: inc/tag-clouds.php:639
 #: includes-core/TaxopressCoreAdmin.php:843
 msgid "Ordering for choosing terms for display"
-msgstr "Порядок выбора терминов для отображения"
+msgstr "Pengurutan untuk memilih istilah untuk ditampilkan"
 
 #: inc/tag-clouds.php:688
 msgid "Text to display before terms list"
-msgstr "Текст для отображения перед списком терминов"
+msgstr "Teks untuk ditampilkan sebelum daftar istilah"
 
 #: inc/tag-clouds.php:692
 msgid ""
 "Enter the text that should be display before terms list. This field accepts "
 "basic HTML."
 msgstr ""
-"Введите текст, который должен отображаться перед списком терминов. Это поле "
-"поддерживает базовый HTML."
+"Masukkan teks yang harus ditampilkan sebelum daftar istilah. Bidang ini "
+"menerima HTML dasar."
 
 #: inc/tag-clouds.php:704
 msgid "Text to display after terms list"
-msgstr "Текст для отображения после списка терминов"
+msgstr "Teks untuk ditampilkan setelah daftar istilah"
 
 #: inc/tag-clouds.php:708
 msgid ""
 "Enter the text that should be display after terms list. This field accepts "
 "basic HTML."
 msgstr ""
-"Введите текст, который должен отображаться после списка терминов. Это поле "
-"поддерживает базовый HTML."
+"Masukkan teks yang harus ditampilkan setelah daftar istilah. Bidang ini "
+"menerima HTML dasar."
 
 #: inc/tag-clouds.php:729
 msgid "Exclude terms from terms display"
-msgstr "Исключить термины из отображения терминов"
+msgstr "Kecualikan istilah dari tampilan istilah"
 
 #: inc/tag-clouds.php:730
 msgid "Enter terms (comma-separated) to exclude from the terms display."
-msgstr ""
-"Введите термины (разделенные запятой), которые следует исключить из "
-"отображения терминов."
+msgstr "Masukkan istilah (dipisahkan koma) untuk dikecualikan dari tampilan istilah."
 
 #: inc/tag-clouds.php:758
 msgid "Exclude hidden terms from Terms Display?"
-msgstr "Исключить скрытые термины из отображения терминов?"
+msgstr "Sembunyikan istilah tersembunyi dari Tampilan Istilah?"
 
 #: inc/tag-clouds.php:794
 msgid "Hide display output if no terms?"
-msgstr "Скрыть вывод отображения, если нет терминов?"
+msgstr "Sembunyikan output tampilan jika tidak ada istilah?"
 
 #: inc/tag-clouds.php:803
 msgid "Maximum terms to display"
-msgstr "Максимальное количество терминов для отображения"
+msgstr "Maksimum istilah untuk ditampilkan"
 
 #: inc/tag-clouds.php:884
 msgid "This is the color of the least popular term"
-msgstr "Это цвет наименее популярного термина"
+msgstr "Ini adalah warna dari istilah yang paling tidak populer"
 
 #: inc/tag-clouds.php:895
 msgid "This is the color of the most popular term"
-msgstr "Это цвет наиболее популярного термина"
+msgstr "Ini adalah warna dari istilah yang paling populer"
 
 #: inc/tag-clouds.php:915
 msgid "Term display div class"
-msgstr "Класс div для отображения терминов"
+msgstr "Kelas div tampilan istilah"
 
 #: inc/tag-clouds.php:940
 #, php-format
@@ -1415,9 +1402,9 @@ msgid ""
 "of the tokens in the \"Terms Display format\" sidebar\". Find more details "
 "%1sin the documentation%2s."
 msgstr ""
-"Эта опция позволяет изменить формат ваших терминов. Вы можете использовать "
-"любые токены в боковой панели \"Формат отображения терминов\". Найдите "
-"больше деталей %1$sв документации%2$s."
+"Opsi ini memungkinkan Anda untuk mengubah format istilah Anda. Anda dapat "
+"menggunakan salah satu token di \"format Tampilan Istilah\" sidebar\". "
+"Temukan lebih banyak detail %1s di dokumentasi %2s."
 
 #: inc/tag-clouds.php:966
 msgid ""
@@ -1425,153 +1412,151 @@ msgid ""
 "                                        The Pro version has more features "
 "and support."
 msgstr ""
-"Вы используете TaxoPress Free.\n"
-"                                        Профессиональная версия имеет "
-"больше функций и поддержку."
+"Anda menggunakan TaxoPress Free.\n"
+"                                        Versi Pro memiliki lebih banyak "
+"fitur dan dukungan."
 
 #: inc/tag-clouds.php:975
 msgid "Font size minimum must not be greater than Font size maximum value."
-msgstr ""
-"Минимальный размер шрифта не должен превышать максимальное значение размера "
-"шрифта."
+msgstr "Ukuran font minimum tidak boleh lebih besar dari nilai maksimum ukuran font."
 
 #: inc/tag-clouds.php:1007
 msgid "Save Terms Display"
-msgstr "Сохранить отображение терминов"
+msgstr "Simpan Tampilan Istilah"
 
 #: inc/tag-clouds.php:1011
 msgid "Add Terms Display"
-msgstr "Добавить отображение терминов"
+msgstr "Tambahkan Tampilan Istilah"
 
 #: inc/tag-clouds.php:1039
 msgid "Terms Display format"
-msgstr "Формат отображения терминов"
+msgstr "Format Tampilan Istilah"
 
 #: inc/tag-clouds.php:1044
 msgid "Here are the tokens you can use for Term link format"
-msgstr "Вот токены, которые вы можете использовать для формата ссылки на термин"
+msgstr "Berikut adalah token yang dapat Anda gunakan untuk format tautan Istilah"
 
 #: inc/tag-clouds.php:1046
 msgid "The URL of the term"
-msgstr "URL термина"
+msgstr "URL dari istilah"
 
 #: inc/tag-clouds.php:1047
 msgid "The ID of the term"
-msgstr "ID термина"
+msgstr "ID dari istilah"
 
 #: inc/tag-clouds.php:1048
 msgid "The weighted size of the term in the display"
-msgstr "Взвешенный размер термина в отображении"
+msgstr "Ukuran berbobot dari istilah dalam tampilan"
 
 #: inc/tag-clouds.php:1049
 msgid "The number of times the term is used"
-msgstr "Количество использований термина"
+msgstr "Jumlah kali istilah digunakan"
 
 #: inc/tag-clouds.php:1050
 msgid "This provides rel tag markup"
-msgstr "Это обеспечивает разметку тега rel"
+msgstr "Ini menyediakan markup tag rel"
 
 #: inc/tag-clouds.php:1050
 msgid "it creates"
-msgstr "он создает"
+msgstr "itu membuat"
 
 #: inc/tag-clouds.php:1051
 msgid "The font size for the term"
-msgstr "Размер шрифта для термина"
+msgstr "Ukuran font untuk istilah"
 
 #: inc/tag-clouds.php:1052
 msgid "The font color for the term"
-msgstr "Цвет шрифта для термина"
+msgstr "Warna font untuk istilah"
 
 #: inc/tag-clouds.php:1053
 msgid "The name of the term"
-msgstr "Название термина"
+msgstr "Nama istilah"
 
 #: inc/tag-clouds.php:1054
 msgid "The name of the term with any HTML stripped out"
-msgstr "Название термина с удаленными HTML-тегами"
+msgstr "Nama istilah dengan semua HTML dihapus"
 
 #: inc/tag-clouds.php:1055
 msgid "The description of the term"
-msgstr "Описание термина"
+msgstr "Deskripsi istilah"
 
 #: inc/tag-clouds.php:1109
 msgid "Invalid nonce"
-msgstr "Недействительный nonce"
+msgstr "Nonce tidak valid"
 
 #: inc/tag-clouds.php:1117
 msgid "Missing display ID."
-msgstr "Отсутствует ID отображения."
+msgstr "ID tampilan hilang."
 
 #: inc/tag-clouds.php:1125
 msgid "Invalid terms display configuration."
-msgstr "Недействительная конфигурация отображения терминов."
+msgstr "Konfigurasi tampilan istilah tidak valid."
 
 #: inc/tag-clouds.php:1175
 msgid "There are no terms in this taxonomy."
-msgstr "В этой таксономии нет терминов."
+msgstr "Tidak ada istilah dalam taksonomi ini."
 
 #: inc/taxonomies-functions.php:124
 #: inc/taxonomies-functions.php:1969
 msgid "Please provide a taxonomy to delete"
-msgstr "Пожалуйста, укажите таксономию для удаления"
+msgstr "Silakan berikan taksonomi untuk dihapus"
 
 #: inc/taxonomies-functions.php:274
 msgid "Please provide a taxonomy name"
-msgstr "Пожалуйста, укажите имя таксономии"
+msgstr "Silakan berikan nama taksonomi"
 
 #: inc/taxonomies-functions.php:1115
 msgid "Object"
-msgstr "Объект"
+msgstr "Objek"
 
 #: inc/taxonomies-functions.php:1149
 #: inc/taxonomies-functions.php:1560
 #, php-format
 msgid "%s has been successfully added"
-msgstr "%s был успешно добавлен"
+msgstr "%s telah berhasil ditambahkan"
 
 #: inc/taxonomies-functions.php:1164
 #: inc/taxonomies-functions.php:1562
 #, php-format
 msgid "%s has failed to be added"
-msgstr "%s не удалось добавить"
+msgstr "%s gagal untuk ditambahkan"
 
 #: inc/taxonomies-functions.php:1179
 #: inc/taxonomies-functions.php:1566
 #, php-format
 msgid "%s has been successfully updated"
-msgstr "%s был успешно обновлён"
+msgstr "%s telah berhasil diperbarui"
 
 #: inc/taxonomies-functions.php:1193
 #: inc/taxonomies-functions.php:1568
 #, php-format
 msgid "%s has failed to be updated"
-msgstr "%s не удалось обновить"
+msgstr "%s gagal untuk diperbarui"
 
 #: inc/taxonomies-functions.php:1208
 #: inc/taxonomies-functions.php:1572
 #, php-format
 msgid "%s has been successfully deleted"
-msgstr "%s был успешно удалён"
+msgstr "%s telah berhasil dihapus"
 
 #: inc/taxonomies-functions.php:1222
 #: inc/taxonomies-functions.php:1574
 #, php-format
 msgid "%s has failed to be deleted"
-msgstr "%s не удалось удалить"
+msgstr "%s gagal untuk dihapus"
 
 #: inc/taxonomies-functions.php:1234
 msgid "Nonce failed verification"
-msgstr "Проверка nonce не прошла"
+msgstr "Verifikasi nonce gagal"
 
 #: inc/taxonomies-functions.php:1248
 #, php-format
 msgid "Please choose a different taxonomy name. %s is already registered."
-msgstr "Пожалуйста, выберите другое имя таксономии. %s уже зарегистрировано."
+msgstr "Silakan pilih nama taksonomi yang berbeda. %s sudah terdaftar."
 
 #: inc/taxonomies-functions.php:1261
 msgid "Please provide a post type to attach to."
-msgstr "Пожалуйста, укажите тип поста для прикрепления."
+msgstr "Silakan berikan jenis pos untuk dilampirkan."
 
 #: inc/taxonomies-functions.php:1284
 #, php-format
@@ -1579,24 +1564,24 @@ msgid ""
 "Please choose a different post type name. %s matches an existing page slug, "
 "which can cause conflicts."
 msgstr ""
-"Пожалуйста, выберите другое имя типа поста. %s совпадает с существующим "
-"слагом страницы, что может вызвать конфликты."
+"Silakan pilih nama post type yang berbeda. %s cocok dengan slug halaman "
+"yang sudah ada, yang dapat menyebabkan konflik."
 
 #: inc/taxonomies-functions.php:1300
 msgid "Please do not use quotes in post type/taxonomy names or rewrite slugs"
 msgstr ""
-"Пожалуйста, не используйте кавычки в именах типов постов/таксономий или "
-"перезаписываемых слагах"
+"Silakan jangan menggunakan tanda kutip dalam nama post type/taxonomy atau "
+"menulis ulang slug"
 
 #: inc/taxonomies-functions.php:1578
 #, php-format
 msgid "%s has been successfully imported"
-msgstr "%s был успешно импортирован"
+msgstr "%s telah berhasil diimpor"
 
 #: inc/taxonomies-functions.php:1580
 #, php-format
 msgid "%s has failed to be imported"
-msgstr "%s не удалось импортировать"
+msgstr "%s gagal diimpor"
 
 #: inc/taxonomies-functions.php:1666
 #: inc/taxonomies-functions.php:1684
@@ -1605,22 +1590,22 @@ msgstr "%s не удалось импортировать"
 #: inc/taxonomies.php:1258
 #, php-format
 msgid "Add new %s"
-msgstr "Добавить новое %s"
+msgstr "Tambah %s baru"
 
 #: inc/taxonomies-functions.php:1667
 #: inc/taxonomies-functions.php:1682
 #: inc/taxonomies-functions.php:1708
 #: inc/taxonomies-functions.php:1724
 #: inc/taxonomies.php:1192
-#, php-format
+#, fuzzy, php-format
 msgid "Edit %s"
-msgstr "Изменить %s"
+msgstr "Edit %s"
 
 #: inc/taxonomies-functions.php:1668
 #: inc/taxonomies-functions.php:1709
 #, php-format
 msgid "New %s"
-msgstr "Новый %s"
+msgstr "%s Baru"
 
 #: inc/taxonomies-functions.php:1669
 #: inc/taxonomies-functions.php:1670
@@ -1629,7 +1614,7 @@ msgstr "Новый %s"
 #: inc/taxonomies.php:1213
 #, php-format
 msgid "View %s"
-msgstr "Просмотр %s"
+msgstr "Lihat %s"
 
 #: inc/taxonomies-functions.php:1671
 #: inc/taxonomies-functions.php:1679
@@ -1640,7 +1625,7 @@ msgstr "Просмотр %s"
 #: inc/terms-table.php:852
 #, php-format
 msgid "All %s"
-msgstr "Все %s"
+msgstr "Semua %s"
 
 #: inc/taxonomies-functions.php:1672
 #: inc/taxonomies-functions.php:1677
@@ -1649,53 +1634,53 @@ msgstr "Все %s"
 #: inc/taxonomies.php:1342
 #, php-format
 msgid "Search %s"
-msgstr "Поиск %s"
+msgstr "Cari %s"
 
 #: inc/taxonomies-functions.php:1673
 #: inc/taxonomies-functions.php:1716
 #, php-format
 msgid "No %s found."
-msgstr "%s не найдено."
+msgstr "Tidak ada %s ditemukan."
 
 #: inc/taxonomies-functions.php:1674
 #: inc/taxonomies-functions.php:1717
 #, php-format
 msgid "No %s found in trash."
-msgstr "Нет %s найдено в корзине."
+msgstr "Tidak ada %s ditemukan di tempat sampah."
 
 #: inc/taxonomies-functions.php:1678
 #: inc/taxonomies-functions.php:1731
 #: inc/taxonomies.php:1363
 #, php-format
 msgid "Popular %s"
-msgstr "Популярные %s"
+msgstr "%s Populer"
 
 #: inc/taxonomies-functions.php:1680
 #: inc/taxonomies-functions.php:1722
 #: inc/taxonomies.php:1300
 #, php-format
 msgid "Parent %s"
-msgstr "Родитель %s"
+msgstr "Induk %s"
 
 #: inc/taxonomies-functions.php:1681
 #: inc/taxonomies-functions.php:1723
 #: inc/taxonomies.php:1321
 #, php-format
 msgid "Parent %s:"
-msgstr "Родитель %s:"
+msgstr "Induk %s:"
 
 #: inc/taxonomies-functions.php:1683
 #: inc/taxonomies-functions.php:1725
-#, fuzzy
+#, php-format
 msgid "Update %s"
-msgstr "Обновить %s"
+msgstr "Perbarui %s"
 
 #: inc/taxonomies-functions.php:1685
 #: inc/taxonomies-functions.php:1727
 #: inc/taxonomies.php:1279
 #, php-format
 msgid "New %s name"
-msgstr "Новое имя %s"
+msgstr "Nama %s baru"
 
 #: inc/taxonomies-functions.php:1686
 #: inc/taxonomies-functions.php:1733
@@ -1703,14 +1688,14 @@ msgstr "Новое имя %s"
 #. translators: Used for autofill
 #, php-format
 msgid "Separate %s with commas"
-msgstr "Разделять %s запятыми"
+msgstr "Pisahkan %s dengan koma"
 
 #: inc/taxonomies-functions.php:1687
 #: inc/taxonomies-functions.php:1734
 #: inc/taxonomies.php:1414
 #, php-format
 msgid "Add or remove %s"
-msgstr "Добавить или удалить %s"
+msgstr "Tambahkan atau hapus %s"
 
 #: inc/taxonomies-functions.php:1688
 #: inc/taxonomies-functions.php:1735
@@ -1718,156 +1703,158 @@ msgstr "Добавить или удалить %s"
 #. translators: Used for autofill
 #, php-format
 msgid "Choose from the most used %s"
-msgstr "Выбрать из часто используемых %s"
+msgstr "Pilih dari %s yang paling banyak digunakan"
 
 #: inc/taxonomies-functions.php:1814
 msgid "Kindly select an action in bulk action dropdown!"
-msgstr "Пожалуйста, выберите действие в выпадающем списке массовых действий!"
+msgstr "Silakan pilih tindakan dalam dropdown tindakan massal!"
 
 #: inc/taxonomies-functions.php:1826
 msgid "Kindly select atleast one taxonomy to proceed"
-msgstr "Пожалуйста, выберите хотя бы одну таксономию для продолжения"
+msgstr "Silakan pilih setidaknya satu taxonomy untuk melanjutkan"
 
 #: inc/taxonomies-functions.php:1837
 msgid "Taxonomy has been successfully deactivated"
-msgstr "Таксономия была успешно деактивирована"
+msgstr "Taxonomy telah berhasil dinonaktifkan"
 
 #: inc/taxonomies-functions.php:1846
 msgid "Taxonomy has been successfully activated"
-msgstr "Таксономия была успешно активирована"
+msgstr "Taxonomy telah berhasil diaktifkan"
 
 #: inc/taxonomies-functions.php:1855
 msgid "Taxonomy has been successfully deleted"
-msgstr "Таксономия была успешно удалена"
+msgstr "Taxonomy telah berhasil dihapus"
 
 #: inc/taxonomies.php:77
 msgid ""
 "Are you sure you want to delete this? Deleting will NOT remove created "
 "content."
-msgstr "Вы уверены, что хотите это удалить? Удаление НЕ удалит созданный контент."
+msgstr ""
+"Apakah Anda yakin ingin menghapus ini? Menghapus tidak AKAN menghapus "
+"konten yang dibuat."
 
 #: inc/taxonomies.php:81
 msgid "Please select at least one post type."
-msgstr "Пожалуйста, выберите хотя бы один post type."
+msgstr "Silakan pilih setidaknya satu post type."
 
 #: inc/taxonomies.php:83
 msgid "Taxonomy slug cannot be numbers only."
-msgstr "Slug таксономии не может состоять только из чисел."
+msgstr "Slug taxonomy tidak boleh hanya berupa angka."
 
 #: inc/taxonomies.php:114
 #: inc/taxonomies.php:115
 #: inc/taxonomies.php:170
 msgid "Taxonomies"
-msgstr "Таксономии"
+msgstr "Taxonomies"
 
 #: inc/taxonomies.php:172
 msgid "Add New"
-msgstr "Добавить"
+msgstr "Tambah Baru"
 
 #: inc/taxonomies.php:174
 msgid ""
 "This feature allows you to create new taxonomies and edit all the settings "
 "for each taxonomy."
 msgstr ""
-"Эта функция позволяет вам создавать новые taxonomies и редактировать все "
-"настройки каждой таксономии."
+"Fitur ini memungkinkan Anda untuk membuat taxonomy baru dan mengedit semua "
+"pengaturan untuk setiap taxonomy."
 
 #: inc/taxonomies.php:197
 msgid "Search Taxonomies"
-msgstr "Поиск Taxonomies"
+msgstr "Cari Taxonomies"
 
 #: inc/taxonomies.php:215
 #: inc/terms-table.php:876
 msgid "All Taxonomies"
-msgstr "Все таксономии"
+msgstr "Semua Taxonomies"
 
 #: inc/taxonomies.php:216
 #: inc/terms-table.php:877
 msgid "Public Taxonomies"
-msgstr "Таксономии"
+msgstr "Taxonomies Publik"
 
 #: inc/taxonomies.php:217
 #: inc/terms-table.php:878
 msgid "Private Taxonomies"
-msgstr "Частные Taxonomies"
+msgstr "Taxonomies Pribadi"
 
 #: inc/taxonomies.php:237
 msgid "All Post Types"
-msgstr "Все Post Types"
+msgstr "Semua Post Types"
 
 #: inc/taxonomies.php:297
 msgid "Invalid nonce. Request is not authorized."
-msgstr "Недействительный nonce. Запрос не авторизован."
+msgstr "Nonce tidak valid. Permintaan tidak diizinkan."
 
 #: inc/taxonomies.php:427
 msgid "Manage Taxonomy"
-msgstr "Управление Taxonomy"
+msgstr "Kelola Taxonomy"
 
-#: inc/taxonomies.php:449
+#: inc/taxonomies.php:449, fuzzy
 msgid "Edit Taxonomy"
-msgstr "Править таксономию"
+msgstr "Edit Taxonomy"
 
 #: inc/taxonomies.php:451
 msgid "Add new Taxonomy"
-msgstr "Добавить новую таксономию"
+msgstr "Tambah Taxonomy baru"
 
-#: inc/taxonomies.php:474
+#: inc/taxonomies.php:474, fuzzy
 msgid "Permalinks"
-msgstr "Постоянные ссылки"
+msgstr "Permalinks"
 
-#: inc/taxonomies.php:479
+#: inc/taxonomies.php:479, fuzzy
 msgid "Admin Area"
-msgstr "Административная зона"
+msgstr "Admin Area"
 
 #: inc/taxonomies.php:483
 msgid "Other Labels"
-msgstr "Другие метки"
+msgstr "Label Lainnya"
 
 #: inc/taxonomies.php:487, fuzzy
 msgid "REST API"
 msgstr "REST API"
 
-#: inc/taxonomies.php:495
+#: inc/taxonomies.php:495, fuzzy
 msgid "Order"
-msgstr "Порядок"
+msgstr "Order"
 
 #: inc/taxonomies.php:500
 #: inc/terms-table.php:740
-#: inc/terms-table.php:1404
+#: inc/terms-table.php:1404, fuzzy
 msgid "Slug"
-msgstr "Ярлык"
+msgstr "Slug"
 
 #: inc/taxonomies.php:509
 msgid "Deactivate or Delete"
-msgstr "Деактивировать или удалить"
+msgstr "Nonaktifkan atau Hapus"
 
 #: inc/taxonomies.php:527
-#: inc/taxonomies.php:805
+#: inc/taxonomies.php:805, fuzzy
 msgid "Taxonomy Slug"
-msgstr "Ярлык таксономии"
+msgstr "Taxonomy Slug"
 
 #: inc/taxonomies.php:530
 #: inc/taxonomies.php:808
 msgid "Slug has changed"
-msgstr "Slug изменился"
+msgstr "Slug telah berubah"
 
 #: inc/taxonomies.php:535
 #: inc/taxonomies.php:813
 msgid "Slug already exists"
-msgstr "Slug уже существует"
+msgstr "Slug sudah ada"
 
 #: inc/taxonomies.php:539
 #: inc/taxonomies.php:818
 msgid "Special character not allowed in slug."
-msgstr "Специальные символы недопустимы в slug."
+msgstr "Karakter khusus tidak diperbolehkan dalam slug."
 
 #: inc/taxonomies.php:550
 msgid ""
 "The “slug” is the URL-friendly version of the name. It is usually all "
 "lowercase and contains only letters, numbers, and underscores."
 msgstr ""
-"“Slug” — это версия имени, удобная для URL. Обычно она пишется строчными "
-"буквами и содержит только буквы, цифры и символы подчеркивания."
+"“Slug” adalah versi nama yang ramah URL. Biasanya ditulis dengan huruf "
+"kecil dan hanya mengandung huruf, angka, dan garis bawah."
 
 #: inc/taxonomies.php:562
 #: inc/taxonomies.php:838
@@ -1875,52 +1862,52 @@ msgid ""
 "DO NOT EDIT the taxonomy slug unless also planning to migrate terms. "
 "Changing the slug registers a new taxonomy entry."
 msgstr ""
-"НЕ РЕДАКТИРУЙТЕ слаг таксономии, если не планируете также мигрировать "
-"термины. Изменение слага регистрирует новую запись таксономии."
+"JANGAN EDIT slug taxonomy kecuali juga berencana untuk memigrasi istilah. "
+"Mengubah slug mendaftarkan entri taxonomy baru."
 
 #: inc/taxonomies.php:575
 #: inc/taxonomies.php:851
 msgid "Migrate terms to newly renamed taxonomy?"
-msgstr "Мигрировать термины в недавно переименованную таксономию?"
+msgstr "Migrasi istilah ke taxonomy yang baru dinamai?"
 
 #: inc/taxonomies.php:594
 #: inc/taxonomies.php:1144
 msgid "(e.g. Jobs)"
-msgstr "(например, Jobs)"
+msgstr "(contoh: Pekerjaan)"
 
 #: inc/taxonomies.php:595
 msgid "Plural Label"
-msgstr "Подпись множественного числа"
+msgstr "Label Jamak"
 
 #: inc/taxonomies.php:606
 msgid "(e.g. Job)"
-msgstr "(например, Job)"
+msgstr "(contoh: Pekerjaan)"
 
 #: inc/taxonomies.php:607
 msgid "Singular Label"
-msgstr "Единственное название"
+msgstr "Label Tunggal"
 
 #: inc/taxonomies.php:634
 msgid "Parent-Child Relationships"
-msgstr "Отношения родитель-ребёнок"
+msgstr "Hubungan Induk-Anak"
 
 #: inc/taxonomies.php:635
 msgid "Can terms in this taxonomy be organized into hierarchical relationships?"
-msgstr "Можно ли организовать термины в этой таксономии в иерархические отношения?"
+msgstr "Bisakah istilah dalam taxonomy ini diorganisir menjadi hubungan hierarkis?"
 
 #: inc/taxonomies.php:654
 #: inc/terms-table.php:733
 #: inc/terms-table.php:741
 msgid "Description"
-msgstr "Описание"
+msgstr "Deskripsi"
 
 #: inc/taxonomies.php:655
 msgid "Describe what your taxonomy is used for."
-msgstr "Опишите, для чего используется ваша таксономия."
+msgstr "Jelaskan apa yang digunakan taxonomy Anda."
 
-#: inc/taxonomies.php:666
+#: inc/taxonomies.php:666, fuzzy
 msgid "Default Terms"
-msgstr "Стандартные термины"
+msgstr "Default Terms"
 
 #: inc/taxonomies.php:667
 msgid ""
@@ -1928,192 +1915,192 @@ msgid ""
 "to all new posts. Enter the term names or slugs. Separate multiple terms "
 "with by comma."
 msgstr ""
-"Установите стандартные термины для этой таксономии. Они будут автоматически "
-"добавлены ко всем новым записям. Введите названия терминов или слаги. "
-"Разделите несколько терминов запятой."
+"Atur istilah default untuk taxonomy ini. Istilah ini akan secara otomatis "
+"ditambahkan ke semua pos baru. Masukkan nama istilah atau slug. Pisahkan "
+"beberapa istilah dengan koma."
 
 #: inc/taxonomies.php:782
 msgid "Archive page result"
-msgstr "Результат страницы архива"
+msgstr "Hasil halaman arsip"
 
 #: inc/taxonomies.php:783
 msgid ""
 "Normally, WordPress will only show one post type on taxonomy archive pages. "
 "Enable this feature to show content from all selected posts types."
 msgstr ""
-"Обычно WordPress отображает только один тип записи на страницах архива "
-"таксономии. Включите эту функцию, чтобы показывать содержимое всех "
-"выбранных типов записей."
+"Secara normal, WordPress hanya akan menampilkan satu jenis pos di halaman "
+"arsip taxonomy. Aktifkan fitur ini untuk menampilkan konten dari semua "
+"jenis pos yang dipilih."
 
-#: inc/taxonomies.php:892
+#: inc/taxonomies.php:892, fuzzy
 msgid "Rewrite"
-msgstr "Переписать"
+msgstr "Rewrite"
 
 #: inc/taxonomies.php:893
 msgid ""
 "WordPress can use a custom permalink for this taxonomy. It does not have to "
 "match the slug."
 msgstr ""
-"WordPress может использовать пользовательский постоянный линк для этой "
-"таксономии. Он не обязательно должен совпадать с слагом."
+"WordPress dapat menggunakan permalink kustom untuk taxonomy ini. Itu tidak "
+"harus cocok dengan slug."
 
 #: inc/taxonomies.php:905
 msgid "(default: taxonomy name)"
-msgstr "(по умолчанию: название таксономии)"
+msgstr "(default: nama taxonomy)"
 
-#: inc/taxonomies.php:906
+#: inc/taxonomies.php:906, fuzzy
 msgid "Custom Rewrite Slug"
-msgstr "Пользовательский слаг переписывания"
+msgstr "Custom Rewrite Slug"
 
 #: inc/taxonomies.php:907
 msgid "Custom taxonomy rewrite slug."
-msgstr "Пользовательский слаг переписывания таксономии."
+msgstr "Slug rewrite taxonomy kustom."
 
 #: inc/taxonomies.php:932
 msgid "Rewrite With Front"
-msgstr "Переписывать с фронтом"
+msgstr "Rewrite Dengan Front"
 
 #: inc/taxonomies.php:933
 msgid "Should the permastruct be prepended with the front base."
-msgstr "Должен ли постоянный структурный элемент начинаться с базового фронта."
+msgstr "Haruskah permastruct diawali dengan basis depan."
 
-#: inc/taxonomies.php:959
+#: inc/taxonomies.php:959, fuzzy
 msgid "Rewrite Hierarchical"
-msgstr "Переписывать иерархически"
+msgstr "Rewrite Hierarchical"
 
 #: inc/taxonomies.php:960
 msgid "Should the permastruct allow hierarchical urls."
-msgstr "Должен ли постоянный структурный элемент позволять иерархические URL."
+msgstr "Haruskah permastruct mengizinkan URL hierarkis."
 
 #: inc/taxonomies.php:996
 msgid "Show user interface"
-msgstr "Показать пользовательский интерфейс"
+msgstr "Tampilkan antarmuka pengguna"
 
 #: inc/taxonomies.php:997
 msgid ""
 "Should there be a visible interface in the WordPress admin area to manage "
 "these terms?"
 msgstr ""
-"Должен ли в области администратора WordPress быть видимый интерфейс для "
-"управления этими терминами?"
+"Haruskah ada antarmuka yang terlihat di area admin WordPress untuk "
+"mengelola istilah ini?"
 
 #: inc/taxonomies.php:1020
 msgid "Show in admin menus"
-msgstr "Показать в меню администратора"
+msgstr "Tampilkan di menu admin"
 
 #: inc/taxonomies.php:1021
 msgid "Should there be links to this taxonomy in the WordPress admin menus?"
-msgstr "Должны ли быть ссылки на эту taxonomy в меню администратора WordPress?"
+msgstr "Haruskah ada tautan ke taxonomy ini di menu admin WordPress?"
 
 #: inc/taxonomies.php:1044
 msgid "Show in frontend menus"
-msgstr "Показать в меню на фронтенде"
+msgstr "Tampilkan di menu frontend"
 
 #: inc/taxonomies.php:1045
 msgid ""
 "Should this taxonomy be available for the frontend “Menus” and “Navigation” "
 "options?"
 msgstr ""
-"Должна ли эта taxonomy быть доступна для опций “Меню” и “Навигация” на "
-"фронтенде?"
+"Apakah taxonomy ini harus tersedia untuk opsi “Menus” dan “Navigation” di "
+"frontend?"
 
 #: inc/taxonomies.php:1069
 msgid "Show admin column"
-msgstr "Показать колонку администратора"
+msgstr "Tampilkan kolom admin"
 
 #: inc/taxonomies.php:1070
 msgid ""
 "Should a column for this taxonomy appear on screens such as “Posts” and "
 "“Pages”?"
 msgstr ""
-"Должна ли колонка для этой taxonomy появляться на экранах, таких как "
-"“Записи” и “Страницы”?"
+"Apakah kolom untuk taxonomy ini harus muncul di layar seperti “Posts” dan "
+"“Pages”?"
 
 #: inc/taxonomies.php:1093
 msgid "Show in \"Quick Edit\" and \"Bulk Edit\""
-msgstr "Показать в \"Быстром редактировании\" и \"Массовом редактировании\""
+msgstr "Tampilkan di \"Quick Edit\" dan \"Bulk Edit\""
 
 #: inc/taxonomies.php:1097
 msgid ""
 "Should this taxonomy be available in editing tools on screens such as "
 "“Posts” and “Pages”?"
 msgstr ""
-"Должна ли эта taxonomy быть доступна в инструментах редактирования на "
-"экранах, таких как “Записи” и “Страницы”?"
+"Apakah taxonomy ini harus tersedia di alat pengeditan pada layar seperti "
+"“Posts” dan “Pages”?"
 
 #: inc/taxonomies.php:1121
 msgid "Show in Filter"
-msgstr "Показать в фильтре"
+msgstr "Tampilkan di Filter"
 
 #: inc/taxonomies.php:1125
 msgid ""
 "Should this taxonomy be available in filters on screens such as “Posts” and "
 "“Pages”?"
 msgstr ""
-"Должна ли эта taxonomy быть доступна в фильтрах на экранах, таких как "
-"“Записи” и “Страницы”?"
+"Apakah taxonomy ini harus tersedia di filter pada layar seperti “Posts” dan "
+"“Pages”?"
 
 #: inc/taxonomies.php:1145
 msgid "Menu Name"
-msgstr "Название меню"
+msgstr "Nama Menu"
 
 #: inc/taxonomies.php:1146
 msgid "Custom admin menu name for your taxonomy."
-msgstr "Пользовательское имя меню администратора для вашей taxonomy."
+msgstr "Nama menu admin kustom untuk taxonomy Anda."
 
 #: inc/taxonomies.php:1162
 msgid "(e.g. All Jobs)"
-msgstr "(например, Все вакансии)"
+msgstr "(mis. Semua Pekerjaan)"
 
 #: inc/taxonomies.php:1163
 msgid "All Items"
-msgstr "Все элементы"
+msgstr "Semua Item"
 
 #: inc/taxonomies.php:1164
 msgid ""
 "Used as tab text when showing all terms for hierarchical taxonomy while "
 "editing post."
 msgstr ""
-"Используется как текст вкладки при отображении всех терминов для "
-"иерархической taxonomy при редактировании записи."
+"Digunakan sebagai teks tab saat menampilkan semua istilah untuk taxonomy "
+"hierarkis saat mengedit posting."
 
 #: inc/taxonomies.php:1183
 msgid "(e.g. Edit Job)"
-msgstr "(например, Редактировать вакансию)"
+msgstr "(mis. Edit Pekerjaan)"
 
-#: inc/taxonomies.php:1184
+#: inc/taxonomies.php:1184, fuzzy
 msgid "Edit Item"
-msgstr "Изменить элемент"
+msgstr "Edit Item"
 
 #: inc/taxonomies.php:1185
 msgid "Used at the top of the term editor screen for an existing taxonomy term."
 msgstr ""
-"Используется вверху экрана редактора термина для существующего термина "
-"taxonomy."
+"Digunakan di bagian atas layar editor istilah untuk istilah taxonomy yang "
+"ada."
 
 #: inc/taxonomies.php:1204
 msgid "(e.g. View Job)"
-msgstr "(например, Просмотреть вакансию)"
+msgstr "(mis. Lihat Pekerjaan)"
 
 #: inc/taxonomies.php:1205
 msgid "View Item"
-msgstr "Просмотр элемента"
+msgstr "Lihat Item"
 
 #: inc/taxonomies.php:1206
 msgid ""
 "Used in the admin bar when viewing editor screen for an existing taxonomy "
 "term."
 msgstr ""
-"Используется в панели администратора при просмотре экрана редактора для "
-"существующего термина taxonomy."
+"Digunakan di bilah admin saat melihat layar editor untuk istilah taxonomy "
+"yang ada."
 
 #: inc/taxonomies.php:1225
 msgid "(e.g. Update Job Name)"
-msgstr "(например, Обновить имя вакансии)"
+msgstr "(mis. Perbarui Nama Pekerjaan)"
 
 #: inc/taxonomies.php:1226
 msgid "Update Item Name"
-msgstr "Обновить имя элемента"
+msgstr "Perbarui Nama Item"
 
 #: inc/taxonomies.php:1227
 #: inc/taxonomies.php:1272
@@ -2126,264 +2113,256 @@ msgstr "Обновить имя элемента"
 #: inc/taxonomies.php:1434
 msgid "Custom taxonomy label. Used in the admin menu for displaying taxonomies."
 msgstr ""
-"Пользовательская метка таксономии. Используется в административном меню для "
-"отображения таксономий."
+"Label taksonomi kustom. Digunakan di menu admin untuk menampilkan "
+"taxonomies."
 
 #: inc/taxonomies.php:1234
 #, php-format
 msgid "Update %s name"
-msgstr "Обновить имя %s"
+msgstr "Perbarui nama %s"
 
 #: inc/taxonomies.php:1249
 msgid "(e.g. Add New Job)"
-msgstr "(например, Добавить новую работу)"
+msgstr "(mis. Tambah Pekerjaan Baru)"
 
 #: inc/taxonomies.php:1250
 msgid "Add New Item"
-msgstr "Добавить новый элемент"
+msgstr "Tambah Item Baru"
 
 #: inc/taxonomies.php:1251
 msgid ""
 "Used at the top of the term editor screen and button text for a new "
 "taxonomy term."
 msgstr ""
-"Используется в верхней части экрана редактора терминов и текста кнопки для "
-"нового термина таксономии."
+"Digunakan di bagian atas layar editor istilah dan teks tombol untuk istilah "
+"taksonomi baru."
 
 #: inc/taxonomies.php:1270
 msgid "(e.g. New Job Name)"
-msgstr "(например, Имя новой работы)"
+msgstr "(mis. Nama Pekerjaan Baru)"
 
 #: inc/taxonomies.php:1271
 msgid "New Item Name"
-msgstr "Новое имя элемента"
+msgstr "Nama Item Baru"
 
 #: inc/taxonomies.php:1291
 msgid "(e.g. Parent Job)"
-msgstr "(например, Родительская работа)"
+msgstr "(mis. Pekerjaan Induk)"
 
 #: inc/taxonomies.php:1292
 msgid "Parent Item"
-msgstr "Родительский элемент"
+msgstr "Item Induk"
 
 #: inc/taxonomies.php:1312
 msgid "(e.g. Parent Job:)"
-msgstr "(например, Родительская работа:)"
+msgstr "(mis. Pekerjaan Induk:)"
 
 #: inc/taxonomies.php:1313
 msgid "Parent Item Colon"
-msgstr "Двоеточие родительского элемента"
+msgstr "Pemisah Item Induk"
 
 #: inc/taxonomies.php:1333
 msgid "(e.g. Search Jobs)"
-msgstr "(например, Искать работы)"
+msgstr "(mis. Cari Pekerjaan)"
 
 #: inc/taxonomies.php:1334
 msgid "Search Items"
-msgstr "Поиск элементов"
+msgstr "Cari Item"
 
 #: inc/taxonomies.php:1354
 msgid "(e.g. Popular Jobs)"
-msgstr "(например, Популярные работы)"
+msgstr "(mis. Pekerjaan Populer)"
 
 #: inc/taxonomies.php:1355
 msgid "Popular Items"
-msgstr "Популярные элементы"
+msgstr "Item Populer"
 
 #: inc/taxonomies.php:1375
 msgid "(e.g. Separate Jobs with commas)"
-msgstr "(например, Разделяйте работы запятыми)"
+msgstr "(mis. Pisahkan Pekerjaan dengan koma)"
 
 #: inc/taxonomies.php:1379
 msgid "Separate Items with Commas"
-msgstr "Разделяйте элементы запятыми"
+msgstr "Pisahkan Item dengan Koma"
 
 #: inc/taxonomies.php:1402
 msgid "(e.g. Add or remove Jobs)"
-msgstr "(например, Добавить или удалить работы)"
+msgstr "(mis. Tambah atau hapus Pekerjaan)"
 
 #: inc/taxonomies.php:1406
 msgid "Add or Remove Items"
-msgstr "Добавить или удалить элементы"
+msgstr "Tambah atau Hapus Item"
 
 #: inc/taxonomies.php:1429
 msgid "(e.g. Choose from the most used Jobs)"
-msgstr "(например, Выберите из самых используемых работ)"
+msgstr "(mis. Pilih dari Pekerjaan yang paling banyak digunakan)"
 
 #: inc/taxonomies.php:1433
 msgid "Choose From Most Used"
-msgstr "Выбрать из самых используемых"
+msgstr "Pilih Dari Yang Paling Digunakan"
 
 #: inc/taxonomies.php:1453
 msgid "(e.g. No jobs)"
-msgstr "(например, Нет вакансий)"
+msgstr "(mis. Tidak ada pekerjaan)"
 
 #: inc/taxonomies.php:1454
 msgid "No terms"
-msgstr "Нет категорий"
+msgstr "Tidak ada istilah"
 
 #: inc/taxonomies.php:1455
 msgid ""
 "Used when indicating that there are no terms in the given taxonomy "
 "associated with an object."
 msgstr ""
-"Используется для обозначения отсутствия терминов в данной таксономии, "
-"связанных с объектом."
+"Digunakan saat menunjukkan bahwa tidak ada istilah dalam taksonomi yang "
+"diberikan terkait dengan objek."
 
 #: inc/taxonomies.php:1462
 #, php-format
 msgid "No %s"
-msgstr "Нет %s"
+msgstr "Tidak ada %s"
 
 #: inc/taxonomies.php:1474
 msgid "(e.g. Jobs list navigation)"
-msgstr "(например, Навигация по списку вакансий)"
+msgstr "(mis. Navigasi daftar pekerjaan)"
 
 #: inc/taxonomies.php:1478
 msgid "Items List Navigation"
-msgstr "Навигация по списку элементов"
+msgstr "Navigasi Daftar Item"
 
 #: inc/taxonomies.php:1479
 msgid "Screen reader text for the pagination heading on the term listing screen."
-msgstr ""
-"Текст для экранных читалок для заголовка пагинации на экране списка "
-"терминов."
+msgstr "Teks pembaca layar untuk judul paginasi pada layar daftar istilah."
 
 #: inc/taxonomies.php:1486
 #, php-format
 msgid "%s list navigation"
-msgstr "%s навигация по списку"
+msgstr "%s navigasi daftar"
 
 #: inc/taxonomies.php:1501
 msgid "(e.g. Jobs list)"
-msgstr "(например, Список вакансий)"
+msgstr "(mis. Daftar pekerjaan)"
 
 #: inc/taxonomies.php:1502
 msgid "Items List"
-msgstr "Список элементов"
+msgstr "Daftar Item"
 
 #: inc/taxonomies.php:1503
 msgid "Screen reader text for the items list heading on the term listing screen."
-msgstr ""
-"Текст для экранных читалок для заголовка списка элементов на экране списка "
-"терминов."
+msgstr "Teks pembaca layar untuk judul daftar item pada layar daftar istilah."
 
 #: inc/taxonomies.php:1510
 #, php-format
 msgid "%s list"
-msgstr "Список %s"
+msgstr "%s daftar"
 
 #: inc/taxonomies.php:1522
 msgid "(e.g. No jobs found)"
-msgstr "(например, Вакансии не найдены)"
+msgstr "(mis. Tidak ada pekerjaan ditemukan)"
 
 #: inc/taxonomies.php:1523
 msgid "Not Found"
-msgstr "Не найдено"
+msgstr "Tidak Ditemukan"
 
 #: inc/taxonomies.php:1524
 msgid ""
 "The text displayed via clicking ‘Choose from the most used items’ in the "
 "taxonomy meta box when no items are available."
 msgstr ""
-"Текст, отображаемый при нажатии на «Выбрать из наиболее используемых "
-"элементов» в метабоксе таксономии, когда доступные элементы отсутствуют."
+"Teks yang ditampilkan melalui klik 'Pilih dari item yang paling banyak "
+"digunakan' di kotak meta taksonomi ketika tidak ada item yang tersedia."
 
 #: inc/taxonomies.php:1531
 #, php-format
 msgid "No %s found"
-msgstr "Нет найденных %s"
+msgstr "Tidak ada %s ditemukan"
 
 #: inc/taxonomies.php:1543
 msgid "(e.g. &larr; Back to jobs"
-msgstr "(например, &larr; Назад к вакансиям"
+msgstr "(mis. &larr; Kembali ke pekerjaan"
 
 #: inc/taxonomies.php:1547
 msgid "Back to Items"
-msgstr "Назад к элементам"
+msgstr "Kembali ke Item"
 
 #: inc/taxonomies.php:1548
 msgid ""
 "The text displayed after a term has been updated for a link back to main "
 "index."
-msgstr "Текст, отображаемый после обновления термина для ссылки на основной индекс."
+msgstr ""
+"Teks yang ditampilkan setelah istilah telah diperbarui untuk tautan kembali "
+"ke indeks utama."
 
 #: inc/taxonomies.php:1555
 #, php-format
 msgid "Back to %s"
-msgstr "Назад к %s"
+msgstr "Kembali ke %s"
 
 #: inc/taxonomies.php:1587
 msgid "Show in REST API"
-msgstr "Показать в REST API"
+msgstr "Tampilkan di REST API"
 
 #: inc/taxonomies.php:1588
 msgid "Add the taxonomy to the WordPress wp-json API."
-msgstr "Добавьте таксономию в API WordPress wp-json."
+msgstr "Tambahkan taxonomy ke API wp-json WordPress."
 
 #: inc/taxonomies.php:1608
 msgid "REST API base slug"
-msgstr "Базовый слаг REST API"
+msgstr "Slug dasar REST API"
 
 #: inc/taxonomies.php:1609
 msgid "The base slug that this taxonomy will use in the REST API."
-msgstr "Базовый слаг, который будет использоваться этой таксономией в REST API."
+msgstr "Slug dasar yang akan digunakan oleh taxonomy ini di REST API."
 
 #: inc/taxonomies.php:1617
 msgid "REST API controller class"
-msgstr "Класс контроллера REST API"
+msgstr "Kelas pengontrol REST API"
 
 #: inc/taxonomies.php:1621
 msgid ""
 "The name of a custom Rest Controller class instead of "
 "WP_REST_Terms_Controller."
-msgstr ""
-"Имя пользовательского класса контроллера Rest вместо "
-"WP_REST_Terms_Controller."
+msgstr "Nama kelas Pengontrol Rest kustom sebagai ganti WP_REST_Terms_Controller."
 
 #: inc/taxonomies.php:1622
 msgid "Custom controller to use instead of WP_REST_Terms_Controller."
-msgstr ""
-"Пользовательский контроллер для использования вместо "
-"WP_REST_Terms_Controller."
+msgstr "Pengontrol kustom untuk digunakan sebagai ganti WP_REST_Terms_Controller."
 
 #: inc/taxonomies.php:1658
 msgid "Public"
-msgstr "Публичное"
+msgstr "Publik"
 
 #: inc/taxonomies.php:1659
 msgid "The taxonomy is for public use. It can be seen by frontend users."
-msgstr ""
-"Таксономия предназначена для публичного использования. Она доступна для "
-"пользователей фронтенда."
+msgstr "Taxonomy ini untuk penggunaan publik. Dapat dilihat oleh pengguna frontend."
 
 #: inc/taxonomies.php:1685
 msgid "Public Queryable"
-msgstr "Публичный запрос"
+msgstr "Dapat Dikuery Publik"
 
 #: inc/taxonomies.php:1686
 msgid "The taxonomy is publicly queryable."
-msgstr "Таксономия доступна для публичных запросов."
+msgstr "Taxonomy ini dapat dikuery secara publik."
 
 #: inc/taxonomies.php:1712
 msgid "Query Var"
-msgstr "Переменная запроса"
+msgstr "Variabel Query"
 
 #: inc/taxonomies.php:1713
 msgid "Enable a custom query_var key for this taxonomy."
-msgstr "Включить пользовательский ключ query_var для этой таксономии."
+msgstr "Aktifkan kunci query_var kustom untuk taxonomy ini."
 
 #: inc/taxonomies.php:1726
 msgid "Custom Query Var String"
-msgstr "Строка пользовательского запроса"
+msgstr "String Variabel Query Kustom"
 
 #: inc/taxonomies.php:1727
 msgid "Sets a custom query_var slug for this taxonomy."
-msgstr "Устанавливает пользовательский slug для query_var этой таксономии."
+msgstr "Mengatur slug query_var kustom untuk taxonomy ini."
 
 #: inc/taxonomies.php:1738
 msgid "Metabox callback"
-msgstr "Callback метабокса"
+msgstr "Callback Metabox"
 
 #: inc/taxonomies.php:1739
 msgid ""
@@ -2391,14 +2370,13 @@ msgid ""
 "default: post_categories_meta_box, non-hierarchical default: "
 "post_tags_meta_box. To remove the metabox completely, use \"false\"."
 msgstr ""
-"Устанавливает имя функции обратного вызова для отображения метабокса. "
-"Иерархический по умолчанию: post_categories_meta_box, не иерархический по "
-"умолчанию: post_tags_meta_box. Чтобы полностью удалить метабокс, "
-"используйте \"false\"."
+"Mengatur nama fungsi callback untuk tampilan meta box. Default hierarkis: "
+"post_categories_meta_box, default non-hierarkis: post_tags_meta_box. Untuk "
+"menghapus metabox sepenuhnya, gunakan \"false\"."
 
 #: inc/taxonomies.php:1750
 msgid "Categories"
-msgstr "Категории"
+msgstr "Kategori"
 
 #: inc/taxonomies.php:1758
 #, php-format
@@ -2406,34 +2384,32 @@ msgid ""
 "This feature controls the order of %s when you're editing posts, and in "
 "frontend displays."
 msgstr ""
-"Эта функция контролирует порядок %s при редактировании записей и на "
-"фронтенде."
+"Fitur ini mengontrol urutan %s saat Anda mengedit pos, dan dalam tampilan "
+"frontend."
 
 #: inc/taxonomies.php:1768
 msgid "Enable TaxoPress ordering"
-msgstr "Включить сортировку TaxoPress"
+msgstr "Aktifkan pengurutan TaxoPress"
 
 #: inc/taxonomies.php:1773
 msgid "Enable TaxoPress ordering for this taxonomy in the frontend and admin area."
-msgstr ""
-"Включить сортировку TaxoPress для этой таксономии на фронтенде и в "
-"административной области."
+msgstr "Aktifkan pengurutan TaxoPress untuk taxonomy ini di area frontend dan admin."
 
 #: inc/taxonomies.php:1823
 msgid "Re-activate Taxonomy"
-msgstr "Повторная активация таксономии"
+msgstr "Re-aktifkan Taxonomy"
 
 #: inc/taxonomies.php:1826
 msgid "Deactivate Taxonomy"
-msgstr "Деактивировать таксономию"
+msgstr "Nonaktifkan Taxonomy"
 
 #: inc/taxonomies.php:1840
 msgid "Delete Taxonomy"
-msgstr "Удалить таксономию"
+msgstr "Hapus Taxonomy"
 
 #: inc/taxonomies.php:1848
 msgid "Delete TaxoPress Edit Data"
-msgstr "Удалить данные редактирования TaxoPress"
+msgstr "Hapus Data Edit TaxoPress"
 
 #: inc/taxonomies.php:1851
 msgid ""
@@ -2442,69 +2418,69 @@ msgid ""
 "version edit restoring original taxonomies data or removing it if already "
 "deleted"
 msgstr ""
-"Вы можете удалить только таксономии, созданные с помощью TaxoPress. Однако "
-"вы можете удалить любые изменения или редактирование, сделанное с помощью "
-"TaxoPress, которые удалят редактирование версии TaxoPress, восстановив "
-"оригинальные данные таксономий или удалив их, если они уже были удалены"
+"Anda hanya dapat menghapus taxonomies yang dibuat dengan TaxoPress. Namun, "
+"Anda dapat menghapus perubahan atau edit yang dilakukan dari TaxoPress yang "
+"akan menghapus edit versi TaxoPress mengembalikan data taxonomy asli atau "
+"menghapusnya jika sudah dihapus"
 
 #: inc/taxonomies.php:1918
 msgid "Save Taxonomy"
-msgstr "Сохранить таксономию"
+msgstr "Simpan Taxonomy"
 
 #: inc/taxonomies.php:1933
 msgid "Add Taxonomy"
-msgstr "Добавить таксономию"
+msgstr "Tambahkan Taxonomy"
 
 #: inc/terms-functions.php:243
 msgid "Term copied successfully."
-msgstr "Термин успешно скопирован."
+msgstr "Istilah berhasil disalin."
 
 #: inc/terms-functions.php:252
 #: inc/terms-table.php:922
 msgid "Term deleted successfully."
-msgstr "Термин успешно удален."
+msgstr "Istilah berhasil dihapus."
 
 #: inc/terms-functions.php:261
 msgid "Term removed from all posts successfully."
-msgstr "Термин успешно удалён из всех записей."
+msgstr "Istilah berhasil dihapus dari semua pos."
 
 #: inc/terms-table.php:734
 #: inc/terms-table.php:748
 #: modules/taxopress-ai/taxopress-ai.php:1625
 msgid "Count"
-msgstr "Счётчик"
+msgstr "Jumlah"
 
-#: inc/terms-table.php:744, fuzzy
+#: inc/terms-table.php:744
 msgid "Custom URL"
-msgstr "Custom URL"
+msgstr "URL Kustom"
 
 #: inc/terms-table.php:745
 #: includes-core/TaxopressCoreAdmin.php:592
 msgid "Synonyms"
-msgstr "Синонимы"
+msgstr "Sinonim"
 
 #: inc/terms-table.php:746
 #: includes-core/TaxopressCoreAdmin.php:550
 msgid "Linked Terms"
-msgstr "Связанные термины"
+msgstr "Istilah Terkait"
 
-#: inc/terms-table.php:747
+#: inc/terms-table.php:747, fuzzy
 msgid "Status"
-msgstr "Статус"
+msgstr "Status"
 
 #: inc/terms-table.php:801
 #: inc/terms-table.php:1181
 #: includes-core/TaxopressCoreAdmin.php:329
 msgid "Copy"
-msgstr "Копировать"
+msgstr "Salin"
 
 #: inc/terms-table.php:841
 msgid "Select Destination Taxonomy"
-msgstr "Выберите целевую таксономию"
+msgstr "Pilih Taxonomy Tujuan"
 
 #: inc/terms-table.php:847
 msgid "Search posts"
-msgstr "Поиск записей"
+msgstr "Cari pos"
 
 #: inc/terms-table.php:849
 msgid "post type"
@@ -2513,190 +2489,192 @@ msgstr "post type"
 #: inc/terms-table.php:851
 #, php-format
 msgid "Select Destination %s"
-msgstr "Выберите %s назначения"
+msgstr "Pilih Tujuan %s"
 
 #: inc/terms-table.php:881
 msgid "Filter"
-msgstr "Фильтр"
+msgstr "Saring"
 
 #: inc/terms-table.php:919
 msgid "Terms deleted successfully."
-msgstr "Термины успешно удалены."
+msgstr "Istilah berhasil dihapus."
 
 #: inc/terms-table.php:949
 msgid "Term(s) copied successfully."
-msgstr "Термин(ы) успешно скопированы."
+msgstr "Istilah berhasil disalin."
 
 #: inc/terms-table.php:967
 msgid "Hidden"
-msgstr "Скрыто"
+msgstr "Tersembunyi"
 
 #: inc/terms-table.php:970
 msgid "Live"
-msgstr "В эфире"
+msgstr "Langsung"
 
 #: inc/terms-table.php:989
 msgid "No terms found."
-msgstr "Значения не найдены."
+msgstr "Tidak ada istilah yang ditemukan."
 
 #: inc/terms-table.php:1128
 #. translators: %s: Taxonomy term name.
 #, php-format
 msgid "Quick edit &#8220;%s&#8221; inline"
-msgstr "Быстрое редактирование &#8220;%s&#8221; на месте"
+msgstr "Sunting cepat &#8220;%s&#8221; secara langsung"
 
 #: inc/terms-table.php:1129
 msgid "Quick&nbsp;Edit"
-msgstr "Быстрое&nbsp;редактирование"
+msgstr "Sunting&nbsp;Cepat"
 
 #: inc/terms-table.php:1144
 msgid "Remove From All Posts"
-msgstr "Удалить из всех записей"
+msgstr "Hapus Dari Semua Pos"
 
 #: inc/terms-table.php:1167
 msgid "View"
-msgstr "Перейти"
+msgstr "Lihat"
 
 #: inc/terms-table.php:1396
 msgid "Quick Edit"
-msgstr "Быстрое редактирование"
+msgstr "Sunting Cepat"
 
 #: inc/terms-table.php:1423
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "Batal"
 
 #: inc/terms-table.php:1424
 msgid "Update"
-msgstr "Обновление"
+msgstr "Perbarui"
 
 #: inc/terms.php:172
 #: inc/terms.php:173
 #: inc/terms.php:239
 #: inc/terms.php:273
 msgid "Terms"
-msgstr "Термины"
+msgstr "Istilah"
 
 #: inc/terms.php:241
 #: inc/terms.php:282
 msgid "This screen allows you to search and edit all the terms on your site."
-msgstr "Этот экран позволяет вам искать и редактировать все термины на вашем сайте."
+msgstr ""
+"Layar ini memungkinkan Anda untuk mencari dan mengedit semua istilah di "
+"situs Anda."
 
 #: inc/terms.php:280
 msgid "This screen allows you to order terms via drag and drop."
-msgstr "Этот экран позволяет вам упорядочивать термины перетаскиванием."
+msgstr "Layar ini memungkinkan Anda untuk mengurutkan istilah melalui drag and drop."
 
 #: inc/terms.php:309
 msgid "Search Terms"
-msgstr "Критерии поиска"
+msgstr "Cari Istilah"
 
 #: inc/utilities.php:10
 #: inc/utilities.php:12
 #: inc/utilities.php:34
 msgid "Media Tags"
-msgstr "Метки медиафайла"
+msgstr "Tag Media"
 
 #: inc/utilities.php:11
 msgid "Media Tag"
-msgstr "Медиа-тег"
+msgstr "Tag Media"
 
 #: inc/utilities.php:13
 msgid "All Media Tags"
-msgstr "Все медиа-теги"
+msgstr "Semua Tag Media"
 
 #: inc/utilities.php:14
 msgid "Edit Media Tag"
-msgstr "Редактировать медиа-тег"
+msgstr "Edit Tag Media"
 
 #: inc/utilities.php:15
 msgid "View Media Tag"
-msgstr "Просмотреть медиа-тег"
+msgstr "Lihat Tag Media"
 
 #: inc/utilities.php:16
 msgid "Update Media Tag name"
-msgstr "Обновить имя медиа-тега"
+msgstr "Perbarui nama Tag Media"
 
 #: inc/utilities.php:17
 msgid "Add new Media Tag"
-msgstr "Добавить новый медиа-тег"
+msgstr "Tambah Tag Media baru"
 
 #: inc/utilities.php:18
 msgid "New Media Tag name"
-msgstr "Новое имя медиа-тега"
+msgstr "Nama Tag Media baru"
 
 #: inc/utilities.php:19
 msgid "Parent Media Tag"
-msgstr "Родительский медиа-тег"
+msgstr "Tag Media Induk"
 
 #: inc/utilities.php:20
 msgid "Parent Media Tag:"
-msgstr "Родительский медиа-тег:"
+msgstr "Tag Media Induk:"
 
 #: inc/utilities.php:21
 msgid "Search Media Tags"
-msgstr "Поиск медиа-тегов"
+msgstr "Cari Tag Media"
 
 #: inc/utilities.php:22
 msgid "Popular Media Tags"
-msgstr "Популярные медиа-теги"
+msgstr "Tag Media Populer"
 
 #: inc/utilities.php:23
 msgid "Separate Media Tags with commas"
-msgstr "Разделяйте медиа-теги запятыми"
+msgstr "Pisahkan Tag Media dengan koma"
 
 #: inc/utilities.php:24
 msgid "Add or remove Media Tags"
-msgstr "Добавить или удалить медиа-теги"
+msgstr "Tambah atau hapus Tag Media"
 
 #: inc/utilities.php:25
 msgid "Choose from the most used Media Tags"
-msgstr "Выберите из наиболее часто используемых медиа-тегов"
+msgstr "Pilih dari Tag Media yang paling banyak digunakan"
 
 #: inc/utilities.php:26
 msgid "No Media Tags found"
-msgstr "Медиа-теги не найдены"
+msgstr "Tidak ada Tag Media ditemukan"
 
 #: inc/utilities.php:27
 msgid "No Media Tags"
-msgstr "Нет медиа-тегов"
+msgstr "Tidak ada Tag Media"
 
 #: inc/utilities.php:28
 msgid "Media Tags list navigation"
-msgstr "Навигация по списку медиа-тегов"
+msgstr "Navigasi daftar Tag Media"
 
 #: inc/utilities.php:29
 msgid "Media Tags list"
-msgstr "Список медиа-тегов"
+msgstr "Daftar Tag Media"
 
 #: inc/utilities.php:30
 msgid "Back to Media Tags"
-msgstr "Назад к медиа-тегам"
+msgstr "Kembali ke Tag Media"
 
 #: inc/utilities.php:62
 #: inc/utilities.php:63
 #: inc/utilities.php:65
 #: inc/utilities.php:70
 msgid "TaxoPress Logs"
-msgstr "Журналы TaxoPress"
+msgstr "Log TaxoPress"
 
 #: inc/utilities.php:64
 msgid "Search TaxoPress Logs"
-msgstr "Поиск журналов TaxoPress"
+msgstr "Cari Log TaxoPress"
 
 #: inc/utilities.php:66
 msgid "Edit TaxoPress Logs"
-msgstr "Редактировать логи TaxoPress"
+msgstr "Edit Log TaxoPress"
 
 #: inc/utilities.php:67
 msgid "Update TaxoPress Logs"
-msgstr "Обновить логи TaxoPress"
+msgstr "Perbarui Log TaxoPress"
 
 #: inc/utilities.php:68
 msgid "Add New TaxoPress Logs"
-msgstr "Добавить новые логи TaxoPress"
+msgstr "Tambahkan Log TaxoPress Baru"
 
 #: inc/utilities.php:69
 msgid "New TaxoPress Logs"
-msgstr "Новые логи TaxoPress"
+msgstr "Log TaxoPress Baru"
 
 #: includes-core/TaxopressCoreAdmin.php:17
 #, php-format
@@ -2704,169 +2682,169 @@ msgid ""
 "You're using TaxoPress Free. The Pro version has more features and support. "
 "%sUpgrade to Pro%s"
 msgstr ""
-"Вы используете TaxoPress Free. Профессиональная версия имеет больше функций "
-"и поддержки. %sОбновить до Pro%s"
+"Anda sedang menggunakan TaxoPress Free. Versi Pro memiliki lebih banyak "
+"fitur dan dukungan. %sUpgrade ke Pro%s"
 
 #: includes-core/TaxopressCoreAdmin.php:114
 msgid "Upgrade to TaxoPress Pro"
-msgstr "Обновить до TaxoPress Pro"
+msgstr "Upgrade ke TaxoPress Pro"
 
 #: includes-core/TaxopressCoreAdmin.php:119
 msgid "Enhance the power of TaxoPress with the Pro version:"
-msgstr "Увеличьте мощность TaxoPress с помощью профессиональной версии:"
+msgstr "Tingkatkan kekuatan TaxoPress dengan versi Pro:"
 
 #: includes-core/TaxopressCoreAdmin.php:122
 msgid "Unlimited “Term Display”"
-msgstr "Неограниченный «Отображение терминов»"
+msgstr "“Tampilan Istilah” Tak Terbatas"
 
 #: includes-core/TaxopressCoreAdmin.php:123
 msgid "Unlimited “Terms for Current Posts”"
-msgstr "Неограниченные «Термины для текущих записей»"
+msgstr "“Istilah untuk Pos Saat Ini” Tak Terbatas"
 
 #: includes-core/TaxopressCoreAdmin.php:124
 msgid "Unlimited “Related Posts”"
-msgstr "Неограниченные «Связанные записи»"
+msgstr "“Pos Terkait” Tak Terbatas"
 
 #: includes-core/TaxopressCoreAdmin.php:125
 msgid "Unlimited “Auto Links”"
-msgstr "Неограниченные «Авто ссылки»"
+msgstr "“Tautan Otomatis” Tak Terbatas"
 
 #: includes-core/TaxopressCoreAdmin.php:126
 msgid "Unlimited “Auto Terms”"
-msgstr "Неограниченные «Авто термины»"
+msgstr "“Istilah Otomatis” Tak Terbatas"
 
 #: includes-core/TaxopressCoreAdmin.php:127
 msgid "Create new terms using OpenAI and other sources"
-msgstr "Создавайте новые термины с помощью OpenAI и других источников"
+msgstr "Buat istilah baru menggunakan OpenAI dan sumber lainnya"
 
 #: includes-core/TaxopressCoreAdmin.php:128
 msgid "Use Linked Terms"
-msgstr "Использовать связанные термины"
+msgstr "Gunakan Istilah Terkait"
 
 #: includes-core/TaxopressCoreAdmin.php:129
 msgid "Use Synonyms"
-msgstr "Использовать синонимы"
+msgstr "Gunakan Sinonim"
 
 #: includes-core/TaxopressCoreAdmin.php:130
 msgid "Schedule Auto Terms to run automatically"
-msgstr "Запланируйте автоматические термины для автоматического выполнения"
+msgstr "Jadwalkan Istilah Otomatis untuk berjalan secara otomatis"
 
 #: includes-core/TaxopressCoreAdmin.php:131
 msgid "Control the display of term metaboxes"
-msgstr "Контролируйте отображение метабоксов терминов"
+msgstr "Kontrol tampilan metabox istilah"
 
 #: includes-core/TaxopressCoreAdmin.php:132
 msgid "Fast, professional support"
-msgstr "Быстрая, профессиональная поддержка"
+msgstr "Dukungan cepat dan profesional"
 
 #: includes-core/TaxopressCoreAdmin.php:133
 msgid "No ads inside the plugin"
-msgstr "Нет рекламы внутри плагина"
+msgstr "Tidak ada iklan di dalam plugin"
 
 #: includes-core/TaxopressCoreAdmin.php:143
 msgid "Need TaxoPress Support?"
-msgstr "Нужна поддержка TaxoPress?"
+msgstr "Butuh Dukungan TaxoPress?"
 
 #: includes-core/TaxopressCoreAdmin.php:148
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
-"Если вам нужна помощь или у вас есть новый запрос на функцию, дайте нам "
-"знать."
+"Jika Anda membutuhkan bantuan atau memiliki permintaan fitur baru, beri "
+"tahu kami."
 
 #: includes-core/TaxopressCoreAdmin.php:150
 msgid "Request Support"
-msgstr "Запросить поддержку"
+msgstr "Permintaan Dukungan"
 
 #: includes-core/TaxopressCoreAdmin.php:157
 msgid "Detailed documentation is also available on the plugin website."
-msgstr "Подробная документация также доступна на сайте плагина."
+msgstr "Dokumentasi rinci juga tersedia di situs web plugin."
 
 #: includes-core/TaxopressCoreAdmin.php:159
 msgid "View Knowledge Base"
-msgstr "Просмотр базы знаний"
+msgstr "Lihat Basis Pengetahuan"
 
 #: includes-core/TaxopressCoreAdmin.php:182
 msgid "OpenAI Integration"
-msgstr "Интеграция OpenAI"
+msgstr "Integrasi OpenAI"
 
 #: includes-core/TaxopressCoreAdmin.php:187
 msgid ""
 "TaxoPress Pro allows you to integrate OpenAI to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro позволяет интегрировать OpenAI для анализа вашего контента и "
-"предложения терминов."
+"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan OpenAI untuk "
+"menganalisis konten Anda dan menyarankan istilah."
 
 #: includes-core/TaxopressCoreAdmin.php:206
 msgid "IBM Watson Integration"
-msgstr "Интеграция IBM Watson"
+msgstr "Integrasi IBM Watson"
 
 #: includes-core/TaxopressCoreAdmin.php:211
 msgid ""
 "TaxoPress Pro allows you to integrate Watson to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro позволяет интегрировать Watson для анализа вашего контента и "
-"предложения терминов."
+"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan Watson untuk "
+"menganalisis konten Anda dan menyarankan istilah."
 
 #: includes-core/TaxopressCoreAdmin.php:230
 msgid "Dandelion Integration"
-msgstr "Интеграция Dandelion"
+msgstr "Integrasi Dandelion"
 
 #: includes-core/TaxopressCoreAdmin.php:235
 msgid ""
 "TaxoPress Pro allows you to integrate Dandelion to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro позволяет интегрировать Dandelion для анализа вашего контента "
-"и предложения терминов."
+"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan Dandelion untuk "
+"menganalisis konten Anda dan menyarankan istilah."
 
 #: includes-core/TaxopressCoreAdmin.php:254
 msgid "LSEG / Refinitiv Integration"
-msgstr "Интеграция LSEG / Refinitiv"
+msgstr "Integrasi LSEG / Refinitiv"
 
 #: includes-core/TaxopressCoreAdmin.php:259
 msgid ""
 "TaxoPress Pro allows you to integrate LSEG / Refinitiv to analyze your "
 "content and suggest terms."
 msgstr ""
-"TaxoPress Pro позволяет интегрировать LSEG / Refinitiv для анализа вашего "
-"контента и предложения терминов."
+"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan LSEG / Refinitiv "
+"untuk menganalisis konten Anda dan menyarankan istilah."
 
 #: includes-core/TaxopressCoreAdmin.php:282
 #: includes-core/TaxopressCoreAdmin.php:299
 #: includes-core/TaxopressCoreAdmin.php:476
 msgid "Suggest terms using AI"
-msgstr "Предложить термины с помощью ИИ"
+msgstr "Sarankan istilah menggunakan AI"
 
 #: includes-core/TaxopressCoreAdmin.php:286
 msgid ""
 "TaxoPress Pro allows you to suggest new terms for your content using the "
 "OpenAI. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro позволяет вам предлагать новые термины для вашего контента, "
-"используя OpenAI. Эта служба может анализировать ваш контент и предлагать "
-"новые термины."
+"TaxoPress Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
+"Anda menggunakan OpenAI. Layanan ini dapat menganalisis konten Anda dan "
+"menyarankan istilah baru."
 
 #: includes-core/TaxopressCoreAdmin.php:304
 msgid ""
 "TaxoPress Pro allows you to suggest new terms for your content using the "
 "IBM Watson. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro позволяет вам предлагать новые термины для вашего контента, "
-"используя IBM Watson. Эта служба может анализировать ваш контент и "
-"предлагать новые термины."
+"TaxoPress Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
+"Anda menggunakan IBM Watson. Layanan ini dapat menganalisis konten Anda dan "
+"menyarankan istilah baru."
 
 #: includes-core/TaxopressCoreAdmin.php:368
 msgid "Copy with Metadata"
-msgstr "Копировать с метаданными"
+msgstr "Salin dengan Metadata"
 
 #: includes-core/TaxopressCoreAdmin.php:398
 #: includes-core/TaxopressCoreAdmin.php:416
 #: includes-core/TaxopressCoreAdmin.php:434
 #: includes-core/TaxopressCoreAdmin.php:452
 msgid "Auto terms using AI"
-msgstr "Авто термины с помощью ИИ"
+msgstr "Istilah otomatis menggunakan AI"
 
 #: includes-core/TaxopressCoreAdmin.php:403
 #: includes-core/TaxopressCoreAdmin.php:421
@@ -2877,9 +2855,10 @@ msgid ""
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and add new terms."
 msgstr ""
-"TaxoPress Pro позволяет вам генерировать новые термины для вашего контента, "
-"используя OpenAI, IBM Watson, Dandelion и Open Calais. Эти службы могут "
-"анализировать ваш контент и добавлять новые термины."
+"TaxoPress Pro memungkinkan Anda untuk menghasilkan istilah baru untuk "
+"konten Anda menggunakan layanan OpenAI, IBM Watson, Dandelion, dan Open "
+"Calais. Layanan ini dapat menganalisis konten Anda dan menambahkan istilah "
+"baru."
 
 #: includes-core/TaxopressCoreAdmin.php:481
 msgid ""
@@ -2887,48 +2866,48 @@ msgid ""
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro позволяет вам предлагать новые термины для вашего контента, "
-"используя OpenAI, IBM Watson, Dandelion и Open Calais. Эти службы могут "
-"анализировать ваш контент и предлагать новые термины."
+"TaxoPress Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
+"Anda menggunakan layanan OpenAI, IBM Watson, Dandelion, dan Open Calais. "
+"Layanan ini dapat menganalisis konten Anda dan menyarankan istilah baru."
 
 #: includes-core/TaxopressCoreAdmin.php:500
 msgid "Add Custom Elements"
-msgstr "Добавить пользовательские элементы"
+msgstr "Tambahkan Elemen Kustom"
 
 #: includes-core/TaxopressCoreAdmin.php:505
 msgid ""
 "TaxoPress Pro allows you complete control over where Auto Links are added. "
 "You can choose to skip any HTML elements that appear in your content."
 msgstr ""
-"TaxoPress Pro позволяет вам полностью контролировать, где добавляются Авто "
-"ссылки. Вы можете выбрать, чтобы пропустить любые HTML элементы, которые "
-"появляются в вашем контенте."
+"TaxoPress Pro memungkinkan Anda memiliki kontrol penuh atas di mana Tautan "
+"Otomatis ditambahkan. Anda dapat memilih untuk melewatkan elemen HTML yang "
+"muncul dalam konten Anda."
 
 #: includes-core/TaxopressCoreAdmin.php:524
 msgid "Use Regular Expressions to modify Auto Terms"
-msgstr "Используйте регулярные выражения для изменения Авто терминов"
+msgstr "Gunakan Ekspresi Reguler untuk memodifikasi Istilah Otomatis"
 
 #: includes-core/TaxopressCoreAdmin.php:529
 msgid ""
 "TaxoPress Pro allows you to change how Auto Terms analyzes your posts. You "
 "will need to know how to write Regular Expressions to use this feature."
 msgstr ""
-"TaxoPress Pro позволяет изменить способ, которым Auto Terms анализирует "
-"ваши посты. Вам нужно знать, как писать регулярные выражения, чтобы "
-"использовать эту функцию."
+"TaxoPress Pro memungkinkan Anda untuk mengubah cara Istilah Otomatis "
+"menganalisis pos Anda. Anda perlu tahu cara menulis Ekspresi Reguler untuk "
+"menggunakan fitur ini."
 
 #: includes-core/TaxopressCoreAdmin.php:551
 msgid ""
 "This feature allows you to connect terms. When the main term or any of "
 "these terms are added to the post, all the other terms will be added also."
 msgstr ""
-"Эта функция позволяет вам связывать термины. Когда основной термин или "
-"любой из этих терминов добавляется в пост, все остальные термины также "
-"будут добавлены."
+"Fitur ini memungkinkan Anda untuk menghubungkan istilah. Ketika istilah "
+"utama atau salah satu dari istilah ini ditambahkan ke pos, semua istilah "
+"lainnya juga akan ditambahkan."
 
 #: includes-core/TaxopressCoreAdmin.php:571
 msgid "Linked Terms Feature"
-msgstr "Функция связанных терминов"
+msgstr "Fitur Istilah Tautan"
 
 #: includes-core/TaxopressCoreAdmin.php:575
 msgid ""
@@ -2936,24 +2915,24 @@ msgid ""
 "When one term is added to a post, its linked terms can be automatically "
 "added too. This helps maintain consistent organization across your content."
 msgstr ""
-"TaxoPress Pro позволяет создавать мощные связи между вашими терминами. "
-"Когда один термин добавляется в пост, его связанные термины могут также "
-"быть автоматически добавлены. Это помогает поддерживать согласованную "
-"организацию вашего контента."
+"TaxoPress Pro memungkinkan Anda untuk membuat koneksi yang kuat antara "
+"istilah Anda. Ketika satu istilah ditambahkan ke pos, istilah tautannya "
+"juga dapat ditambahkan secara otomatis. Ini membantu menjaga organisasi "
+"yang konsisten di seluruh konten Anda."
 
 #: includes-core/TaxopressCoreAdmin.php:593
 msgid ""
 "This feature allows you to associate additional words with each term. For "
 "example, \"website\" can have synonyms such as \"websites\", \"web site\", "
 "and \"web pages\"."
-msgstr ""
-"Эта функция позволяет вам ассоциировать дополнительные слова с каждым "
-"термином. Например, \"website\" может иметь синонимы, такие как "
-"\"websites\", \"web site\" и \"web pages\"."
+msgstr "Fitur Istilah Sinonim"
 
 #: includes-core/TaxopressCoreAdmin.php:609
 msgid "Synonyms Terms Feature"
-msgstr "Функция синонимов терминов"
+msgstr ""
+"Fitur ini memungkinkan Anda untuk mengasosiasikan kata tambahan dengan "
+"setiap istilah. Misalnya, \"website\" dapat memiliki sinonim seperti "
+"\"websites\", \"web site\", dan \"web pages\"."
 
 #: includes-core/TaxopressCoreAdmin.php:613
 msgid ""
@@ -2961,34 +2940,35 @@ msgid ""
 "term. If TaxoPress scans your content and finds a synonym, it will act as "
 "if it has found the main term."
 msgstr ""
-"TaxoPress Pro позволяет вам связывать несколько слов с одним термином. Если "
-"TaxoPress сканирует ваш контент и находит синоним, он будет действовать "
-"так, как будто нашел основной термин."
+"TaxoPress Pro memungkinkan Anda untuk memiliki beberapa kata yang "
+"diasosiasikan dengan satu istilah. Jika TaxoPress memindai konten Anda dan "
+"menemukan sinonim, ia akan bertindak seolah-olah telah menemukan istilah "
+"utama."
 
 #: includes-core/TaxopressCoreAdmin.php:633
 msgid "Taxonomy Display"
-msgstr "Отображение таксономии"
+msgstr "Tampilan Taksonomi"
 
 #: includes-core/TaxopressCoreAdmin.php:641
 #: includes-core/TaxopressCoreAdmin.php:730
 msgid "This feature is available in TaxoPress Pro"
-msgstr "Эта функция доступна в TaxoPress Pro"
+msgstr "Fitur ini tersedia di TaxoPress Pro"
 
 #: includes-core/TaxopressCoreAdmin.php:646
 msgid "Customize the display of terms in the TaxoPress metabox."
-msgstr "Настройте отображение терминов в метабоксе TaxoPress."
+msgstr "Sesuaikan tampilan istilah dalam metabox TaxoPress."
 
 #: includes-core/TaxopressCoreAdmin.php:647
 msgid "Options include checkboxes and a dropdown list."
-msgstr "Опции включают флажки и выпадающий список."
+msgstr "Opsi termasuk kotak centang dan daftar dropdown."
 
 #: includes-core/TaxopressCoreAdmin.php:681
 msgid "Copy Term with Metadata"
-msgstr "Копировать термин с метаданными"
+msgstr "Salin Istilah dengan Metadata"
 
 #: includes-core/TaxopressCoreAdmin.php:686
 msgid "To Copy terms with their metadata, please upgrade to pro."
-msgstr "Чтобы скопировать термины с их метаданными, пожалуйста, обновите до pro."
+msgstr "Untuk menyalin istilah beserta metadata mereka, silakan tingkatkan ke pro."
 
 #: includes-core/TaxopressCoreAdmin.php:687
 msgid ""
@@ -2997,36 +2977,36 @@ msgid ""
 "can copy terms between taxonomies to maintain consistent organization "
 "across your site."
 msgstr ""
-"С TaxoPress Pro вы можете дублировать термины таксономии вместе со всеми их "
-"метаданными. Это включает описания терминов, изображения и пользовательские "
-"поля. Вы можете копировать термины между таксономиями, чтобы поддерживать "
-"согласованную организацию на вашем сайте."
+"Dengan TaxoPress Pro, Anda dapat menduplikasi istilah taksonomi beserta "
+"semua metadata mereka. Ini termasuk deskripsi istilah, gambar, dan bidang "
+"kustom. Anda dapat menyalin istilah antar taksonomi untuk menjaga "
+"organisasi yang konsisten di seluruh situs Anda."
 
 #: includes-core/TaxopressCoreAdmin.php:734
 msgid ""
 "Choose the display formats of your terms, options include table list, "
 "ordered list, border-cloud and lots more."
 msgstr ""
-"Выберите форматы отображения ваших терминов, опции включают таблицу, "
-"упорядоченный список, облако границ и многое другое."
+"Pilih format tampilan istilah Anda, opsi termasuk daftar tabel, daftar "
+"terurut, border-cloud dan banyak lagi."
 
 #: includes-core/TaxopressCoreAdmin.php:754
 msgid "Hourly"
-msgstr "Каждый час"
+msgstr "Per Jam"
 
 #: includes-core/TaxopressCoreAdmin.php:767
 msgid "Daily"
-msgstr "Каждый день"
+msgstr "Harian"
 
 #: includes-core/TaxopressCoreAdmin.php:775
 #: includes-core/TaxopressCoreAdmin.php:827
 msgid "Pro Feature"
-msgstr "Профессиональная функция"
+msgstr "Fitur Pro"
 
 #: includes-core/TaxopressCoreAdmin.php:777
 #: includes-core/TaxopressCoreAdmin.php:829
 msgid "Some of these features are available in TaxoPress Pro"
-msgstr "Некоторые из этих функций доступны в TaxoPress Pro"
+msgstr "Beberapa fitur ini tersedia di TaxoPress Pro"
 
 #: includes-core/TaxopressCoreAdmin.php:787
 #: includes-core/TaxopressCoreAdmin.php:879
@@ -3036,97 +3016,95 @@ msgstr "ID"
 
 #: includes-core/TaxopressCoreAdmin.php:788
 msgid "Name (Pro)"
-msgstr "Имя (Pro)"
+msgstr "Nama (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:789
+#: includes-core/TaxopressCoreAdmin.php:789, fuzzy
 msgid "Counter (Pro)"
-msgstr "Счетчик (Pro)"
+msgstr "Counter (Pro)"
 
 #: includes-core/TaxopressCoreAdmin.php:790
 msgid "Random (Pro)"
-msgstr "Случайный (Pro)"
+msgstr "Acak (Pro)"
 
 #: includes-core/TaxopressCoreAdmin.php:791
 msgid "Term Order (Pro)"
-msgstr "Порядок терминов (Pro)"
+msgstr "Urutan Istilah (Pro)"
 
 #: includes-core/TaxopressCoreAdmin.php:803
 #: includes-core/TaxopressCoreAdmin.php:950
 #: includes-core/TaxopressCoreAdmin.php:994
 msgid "Method for choosing terms for display"
-msgstr "Метод выбора терминов для отображения"
+msgstr "Metode untuk memilih istilah untuk ditampilkan"
 
 #: includes-core/TaxopressCoreAdmin.php:878
 #: includes-core/TaxopressCoreAdmin.php:939
 #: includes-core/TaxopressCoreAdmin.php:983
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:112
 msgid "Name"
-msgstr "Имя"
+msgstr "Nama"
 
 #: includes-core/TaxopressCoreAdmin.php:880
 #: includes-core/TaxopressCoreAdmin.php:940
 #: includes-core/TaxopressCoreAdmin.php:984
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:113
+#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:113, fuzzy
 msgid "Counter"
-msgstr "Счетчик"
+msgstr "Counter"
 
 #: includes-core/TaxopressCoreAdmin.php:882
 msgid "Term Order"
-msgstr "Порядок терминов"
+msgstr "Urutan Istilah"
 
 #: includes-core/TaxopressCoreAdmin.php:899
 msgid "Disabled"
-msgstr "Отключено"
+msgstr "Dinonaktifkan"
 
 #: includes-core/TaxopressCoreAdmin.php:900
 msgid "You have disabled TaxoPress ordering"
-msgstr "Вы отключили порядок TaxoPress"
+msgstr "Anda telah menonaktifkan pengurutan TaxoPress"
 
 #: includes-core/TaxopressCoreAdmin.php:906
 #, php-format
 msgid "Terms in this taxonomy are ordered by %s"
-msgstr "Термины в этой taxonomy упорядочены по %s"
+msgstr "Istilah dalam taksonomi ini diurutkan berdasarkan %s"
 
 #: includes-core/TaxopressCoreAdmin.php:942
 #: includes-core/TaxopressCoreAdmin.php:986
 msgid "Term Order(Pro)"
-msgstr "Порядок терминов (Pro)"
+msgstr "Urutan Istilah (Pro)"
 
 #: includes-core/TaxopressCoreAdmin.php:970
 #: includes-core/TaxopressCoreAdmin.php:1014
 msgid "Upgrade to TaxoPress Pro to use Term Order to manually order Terms"
 msgstr ""
-"Обновите до TaxoPress Pro, чтобы использовать Порядок терминов для ручного "
-"упорядочивания терминов"
+"Tingkatkan ke TaxoPress Pro untuk menggunakan Urutan Istilah untuk "
+"mengurutkan Istilah secara manual"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:61
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:741
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:968
 msgid "Request completed."
-msgstr "Запрос выполнен."
+msgstr "Permintaan selesai."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:69
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:749
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:877
 msgid "Security error. Kindly reload this page and try again"
-msgstr ""
-"Ошибка безопасности. Пожалуйста, перезагрузите эту страницу и попробуйте "
-"еще раз"
+msgstr "Kesalahan keamanan. Silakan muat ulang halaman ini dan coba lagi"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:75
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:755
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:883
 msgid "Permission error. You do not have permission to manage taxopress"
-msgstr "Ошибка разрешения. У вас нет разрешения на управление TaxoPress"
+msgstr "Kesalahan izin. Anda tidak memiliki izin untuk mengelola TaxoPress"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:91
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:560
 msgid "Posts content and title is empty."
-msgstr "Содержимое и заголовок поста пусты."
+msgstr "Konten dan judul pos kosong."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:98
 msgid "Permission error. You do not have permission to preview this post."
-msgstr "Ошибка разрешения. У вас нет разрешения на просмотр этого поста."
+msgstr "Kesalahan izin. Anda tidak memiliki izin untuk melihat pratayang pos ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:124
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:769
@@ -3136,47 +3114,47 @@ msgid ""
 "You do not have permission to manage this taxonomy. Enable Metabox Access "
 "Taxonomies for this role in %1sTaxoPress Settings%2s."
 msgstr ""
-"У вас нет разрешения на управление этой taxonomy. Включите доступ к "
-"метабоксам для этой роли в %1sНастройки TaxoPress%2s."
+"Anda tidak memiliki izin untuk mengelola taxonomy ini. Aktifkan Akses "
+"Metabox Taxonomies untuk peran ini di %1sPengaturan TaxoPress%2s."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:237
 msgid "Term Results"
-msgstr "Результаты терминов"
+msgstr "Hasil Istilah"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:240
 msgid "No results found for this post with this taxonomy."
-msgstr "Результатов не найдено для этого поста с этой taxonomy."
+msgstr "Tidak ada hasil ditemukan untuk pos ini dengan taxonomy ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:245
 msgid "Invalid Auto Term ID. Please save the settings before using preview."
 msgstr ""
-"Недействительный ID авто термина. Пожалуйста, сохраните настройки перед "
-"использованием предварительного просмотра."
+"ID Istilah Otomatis tidak valid. Silakan simpan pengaturan sebelum "
+"menggunakan pratayang."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:250
 msgid "You must enable at least one AI integration source to use auto term preview."
 msgstr ""
-"Вы должны включить как минимум один источник интеграции ИИ, чтобы "
-"использовать предварительный просмотр терминов."
+"Anda harus mengaktifkan setidaknya satu sumber integrasi AI untuk "
+"menggunakan pratayang istilah otomatis."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:253
 msgid ""
 "This Auto Terms option is not enabled for metaboxes. Please enable it in "
 "the Auto Terms settings."
 msgstr ""
-"Эта опция автоматических терминов не включена для метабоксов. Пожалуйста, "
-"включите ее в настройках автоматических терминов."
+"Opsi Istilah Otomatis ini tidak diaktifkan untuk metabox. Silakan aktifkan "
+"di pengaturan Istilah Otomatis."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:267
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:291
 #, php-format
 msgid "Click %1s to select or deselect them from this %2s."
-msgstr "Нажмите %1s, чтобы выбрать или отменить выбор из этого %2s."
+msgstr "Klik %1s untuk memilih atau membatalkan pilihan dari %2s ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:280
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:283
 msgid "Suggest Existing Terms"
-msgstr "Предложить существующие термины"
+msgstr "Usulkan Istilah yang Ada"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:299
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:302, fuzzy
@@ -3202,81 +3180,81 @@ msgstr "LSEG / Refinitiv"
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:406
 #, php-format
 msgid "Update %1s on this %2s"
-msgstr "Обновить %1s в этом %2s"
+msgstr "Perbarui %1s di %2s ini"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:425
 msgid "Existing Terms not found for the selected post type and taxonomies"
-msgstr "Существующие термины не найдены для выбранного пост типа и таксономий"
+msgstr "Istilah yang Ada tidak ditemukan untuk tipe pos dan taxonomy yang dipilih"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:491
 msgid ""
 "Existing Terms taxonomy is required. Kindly select taxonomies and save the "
 "settings before running preview."
 msgstr ""
-"Необходима таксономия существующих терминов. Пожалуйста, выберите "
-"таксономии и сохраните настройки перед запуском предварительного просмотра."
+"Taxonomy Istilah yang Ada diperlukan. Silakan pilih taxonomy dan simpan "
+"pengaturan sebelum menjalankan pratayang."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:712
 msgid "Result from ajax request."
-msgstr "Результат из ajax-запроса."
+msgstr "Hasil dari permintaan ajax."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:718
 msgid "The selected taxonomy is not associated with the selected post type."
-msgstr "Выбранная таксономия не связана с выбранным пост типом."
+msgstr "Taxonomy yang dipilih tidak terkait dengan tipe pos yang dipilih."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:724
 msgid "No results found for this taxonomy."
-msgstr "Результатов для этой таксономии не найдено."
+msgstr "Tidak ada hasil ditemukan untuk taxonomy ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:785
 msgid "You do not have permission to edit this post."
-msgstr "У вас нет разрешения редактировать этот пост."
+msgstr "Anda tidak memiliki izin untuk mengedit pos ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:792
 #, php-format
 msgid "Click Term to select or deselect from this %1s"
-msgstr "Нажмите термин, чтобы выбрать или отменить выбор из этого %1s"
+msgstr "Klik Istilah untuk memilih atau membatalkan pilihan dari %1s"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:795
 msgid "Both Taxonomy and Post are required."
-msgstr "Необходимы как таксономия, так и пост."
+msgstr "Baik Taxonomy maupun Post diperlukan."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:843
 msgid "No new terms were selected or deselected."
-msgstr "Новые термины не были выбраны или отменены."
+msgstr "Tidak ada istilah baru yang dipilih atau dibatalkan."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:847
 #, php-format
 msgid "%1s terms added to this %2s."
-msgstr "%1s термина добавлено в этот %2s."
+msgstr "%1s istilah ditambahkan ke %2s ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:851
 #, php-format
 msgid "%1s terms removed from this %2s."
-msgstr "%1s термина удалено из этого %2s."
+msgstr "%1s istilah dihapus dari %2s ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:913
 msgid "You do not have capability to manage this taxonomy."
-msgstr "У вас нет возможности управлять этой taxonomy."
+msgstr "Anda tidak memiliki kemampuan untuk mengelola taxonomy ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1013
 #, php-format
 msgid "Terms cannot contain the following characters: %s"
-msgstr "Термины не могут содержать следующие символы: %s"
+msgstr "Istilah tidak boleh mengandung karakter berikut: %s"
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1028
 #, php-format
 msgid "Terms must be at least %d characters long."
-msgstr "Термины должны содержать не менее %d символов."
+msgstr "Istilah harus memiliki panjang setidaknya %d karakter."
 
 #: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1034
 #, php-format
 msgid "Terms cannot exceed %d characters."
-msgstr "Термины не могут превышать %d символов."
+msgstr "Istilah tidak boleh melebihi %d karakter."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:29
 msgid "The Dandelion integration is disabled in the Legacy AI Sources settings."
-msgstr "Интеграция Dandelion отключена в настройках Legacy AI Sources."
+msgstr "Integrasi Dandelion dinonaktifkan dalam pengaturan Sumber AI Legacy."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:35
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:117
@@ -3287,88 +3265,88 @@ msgstr "Интеграция Dandelion отключена в настройка�
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:430
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:628
 msgid "No matched result from the API Server."
-msgstr "Нет совпадающих результатов от API сервера."
+msgstr "Tidak ada hasil yang cocok dari Server API."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:53
 msgid ""
 "The Dandelion integration requires an API Key. Please add your API Key in "
 "the Auto Term settings."
 msgstr ""
-"Интеграция Dandelion требует API ключ. Пожалуйста, добавьте ваш API ключ в "
-"настройках Auto Term."
+"Integrasi Dandelion memerlukan Kunci API. Silakan tambahkan Kunci API Anda "
+"di pengaturan Istilah Otomatis."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:59
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:173
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:298
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:456
 msgid "Selected content is empty."
-msgstr "Выбранный контент пуст."
+msgstr "Konten yang dipilih kosong."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:75
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:189
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:314
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:472
 msgid "Result from cache."
-msgstr "Результат из кэша."
+msgstr "Hasil dari cache."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:99
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:215
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:349
 #, php-format
 msgid "API Error: %1s."
-msgstr "Ошибка API: %1s."
+msgstr "Kesalahan API: %1s."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:108
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:230
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:360
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:616
 msgid "Result from api."
-msgstr "Результат от API."
+msgstr "Hasil dari api."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:122
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:245
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:375
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:633
 msgid "Error establishing connection with the API server. Try again."
-msgstr "Ошибка при установлении соединения с сервером API. Попробуйте еще раз."
+msgstr "Kesalahan dalam membangun koneksi dengan server API. Coba lagi."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:145
 msgid ""
 "The LSEG / Refinitiv integration is disabled in the Legacy AI Sources "
 "settings."
-msgstr "Интеграция LSEG / Refinitiv отключена в настройках Legacy AI Sources."
+msgstr "Integrasi LSEG / Refinitiv dinonaktifkan dalam pengaturan Sumber AI Legacy."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:167
 msgid ""
 "The LSEG / Refinitiv integration requires an API Key. Please add your API "
 "Key in the Auto Term settings."
 msgstr ""
-"Интеграция LSEG / Refinitiv требует API ключ. Пожалуйста, добавьте ваш API "
-"ключ в настройках Auto Term."
+"Integrasi LSEG / Refinitiv memerlukan Kunci API. Silakan tambahkan Kunci "
+"API Anda di pengaturan Istilah Otomatis."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:236
 msgid "API Error: No matched result for content."
-msgstr "Ошибка API: Нет совпадающих результатов для контента."
+msgstr "Kesalahan API: Tidak ada hasil yang cocok untuk konten."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:268
 msgid "The IBM Watson integration is disabled in the Legacy AI Sources settings."
-msgstr "Интеграция IBM Watson отключена в настройках Legacy AI Sources."
+msgstr "Integrasi IBM Watson dinonaktifkan di pengaturan Sumber AI Legacy."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:292
 msgid ""
 "The IBM Watson integration requires an API Key and URL. Please add your API "
 "Key in the Auto Term settings."
 msgstr ""
-"Интеграция IBM Watson требует API ключ и URL. Пожалуйста, добавьте ваш API "
-"ключ в настройках Auto Term."
+"Integrasi IBM Watson memerlukan Kunci API dan URL. Harap tambahkan Kunci "
+"API Anda di pengaturan Auto Term."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:450
 msgid ""
 "The OpenAI integration requires an API Key. Please add your API Key in the "
 "Auto Term settings."
 msgstr ""
-"Интеграция OpenAI требует API ключ. Пожалуйста, добавьте ваш API ключ в "
-"настройках Auto Term."
+"Integrasi OpenAI memerlukan Kunci API. Harap tambahkan Kunci API Anda di "
+"pengaturan Auto Term."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:495
 #, php-format
@@ -3376,94 +3354,93 @@ msgid ""
 "Invalid placeholder(s) detected: {%s}. Valid placeholders are: {content}, "
 "{post_terms}, {site_terms}"
 msgstr ""
-"Обнаружены недопустимые заполнители: {%s}. Допустимые заполнители: "
-"{content}, {post_terms}, {site_terms}"
+"Placeholder yang tidak valid terdeteksi: {%s}. Placeholder yang valid "
+"adalah: {content}, {post_terms}, {site_terms}"
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:531
 msgid ""
 "You added {post_terms} in the prompt but your post does not contain any "
 "terms."
 msgstr ""
-"Вы добавили {post_terms} в подсказке, но ваш пост не содержит никаких "
-"терминов."
+"Anda menambahkan {post_terms} di prompt tetapi pos Anda tidak mengandung "
+"istilah apa pun."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:534
 msgid ""
 "You added {site_terms} in the prompt but your site does not contain any "
 "terms for this taxonomy."
 msgstr ""
-"Вы добавили {site_terms} в подсказке, но на вашем сайте нет никаких "
-"терминов для этой taxonomy."
+"Anda menambahkan {site_terms} di prompt tetapi situs Anda tidak mengandung "
+"istilah untuk taksonomi ini."
 
 #: modules/taxopress-ai/classes/TaxoPressAiApi.php:583
 msgid ""
 "Error: OpenAI says there is an issue with this API key. Please check your "
 "plan or billing details."
 msgstr ""
-"Ошибка: OpenAI сообщает о проблеме с этим API ключом. Пожалуйста, проверьте "
-"ваш план или данные для выставления счетов."
+"Kesalahan: OpenAI mengatakan ada masalah dengan kunci API ini. Harap "
+"periksa rencana atau rincian penagihan Anda."
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:18
 #: modules/taxopress-ai/taxopress-ai.php:1355
 #: modules/taxopress-ai/taxopress-ai.php:1664
 msgid "Show All Existing Terms"
-msgstr "Показать все существующие термины"
+msgstr "Tampilkan Semua Istilah yang Ada"
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:23
 #: modules/taxopress-ai/taxopress-ai.php:1363
 #: modules/taxopress-ai/taxopress-ai.php:1665
 msgid "Manage Post Terms"
-msgstr "Управление терминами поста"
+msgstr "Kelola Istilah Pos"
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:28
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:54
 #: modules/taxopress-ai/taxopress-ai.php:1666
-#, fuzzy
 msgid "Auto Terms"
-msgstr "Авто термины"
+msgstr "Istilah Otomatis"
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:33
 #: modules/taxopress-ai/taxopress-ai.php:1376
 #: modules/taxopress-ai/taxopress-ai.php:1667
 msgid "Create Terms"
-msgstr "Создать термины"
+msgstr "Buat Istilah"
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:38
 msgid "View Existing Terms"
-msgstr "Просмотреть существующие термины"
+msgstr "Lihat Istilah yang Ada"
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:39
 msgid "This feature allows you to browse all the terms in a taxonomy."
-msgstr "Эта функция позволяет вам просматривать все термины в taxonomy."
+msgstr "Fitur ini memungkinkan Anda untuk menjelajahi semua istilah dalam taksonomi."
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:44
 msgid "View Current Post Terms"
-msgstr "Просмотреть текущие термины поста"
+msgstr "Lihat Istilah Pos Saat Ini"
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:45
 msgid ""
 "This feature allows you to manage all the terms that are currently attached "
 "to a post."
 msgstr ""
-"Эта функция позволяет вам управлять всеми терминами, которые в настоящее "
-"время прикреплены к посту."
+"Fitur ini memungkinkan Anda untuk mengelola semua istilah yang saat ini "
+"terlampir pada sebuah pos."
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:50
 #: modules/taxopress-ai/taxopress-ai.php:1528
 msgid "View Terms"
-msgstr "Просмотреть термины"
+msgstr "Lihat Istilah"
 
 #: modules/taxopress-ai/classes/TaxoPressAiFields.php:51
 msgid ""
 "This feature allows you to browse based on selected auto terms settings and "
 "sources."
 msgstr ""
-"Эта функция позволяет вам просматривать на основе выбранных настроек авто "
-"терминов и источников."
+"Fitur ini memungkinkan Anda untuk menjelajahi berdasarkan pengaturan dan "
+"sumber istilah otomatis yang dipilih."
 
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:53
 msgid "Suggest Terms"
-msgstr "Предложить термины"
+msgstr "Saran Istilah"
 
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
@@ -3471,7 +3448,7 @@ msgstr "Предложить термины"
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
 #, php-format
 msgid "Select all %1s"
-msgstr "Выбрать все %1s"
+msgstr "Pilih semua %1s"
 
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
@@ -3479,100 +3456,100 @@ msgstr "Выбрать все %1s"
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
 #, php-format
 msgid "Deselect all %1s"
-msgstr "Снять выбор со всех %1s"
+msgstr "Batalkan pilihan semua %1s"
 
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:299
 #: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:454
 #, php-format
 msgid "Select %1s"
-msgstr "Выбрать %1s"
+msgstr "Pilih %1s"
 
 #: modules/taxopress-ai/taxopress-ai.php:411
 msgid "Please choose a post to use with TaxoPress AI."
-msgstr "Пожалуйста, выберите пост для использования с TaxoPress AI."
+msgstr "Silakan pilih sebuah pos untuk digunakan dengan TaxoPress AI."
 
 #: modules/taxopress-ai/taxopress-ai.php:420
 #: modules/taxopress-ai/taxopress-ai.php:1716
 msgid "Label can't be empty."
-msgstr "Этикетка не может быть пустой."
+msgstr "Label tidak boleh kosong."
 
 #: modules/taxopress-ai/taxopress-ai.php:421
 msgid "Label can't exceed 30 characters."
-msgstr "Этикетка не может превышать 30 символов."
+msgstr "Label tidak boleh melebihi 30 karakter."
 
 #: modules/taxopress-ai/taxopress-ai.php:422
 msgid "Unknown tab type."
-msgstr "Неизвестный тип вкладки."
+msgstr "Jenis tab tidak dikenal."
 
 #: modules/taxopress-ai/taxopress-ai.php:423
 msgid "Error saving label."
-msgstr "Ошибка при сохранении этикетки."
+msgstr "Kesalahan saat menyimpan label."
 
 #: modules/taxopress-ai/taxopress-ai.php:424
 msgid "Please choose a post to preview."
-msgstr "Пожалуйста, выберите запись для предварительного просмотра."
+msgstr "Silakan pilih sebuah pos untuk pratinjau."
 
 #: modules/taxopress-ai/taxopress-ai.php:440
 #: modules/taxopress-ai/taxopress-ai.php:441
-#: modules/taxopress-ai/taxopress-ai.php:473
+#: modules/taxopress-ai/taxopress-ai.php:473, fuzzy
 msgid "Metaboxes"
-msgstr "Метабоксы"
+msgstr "Metaboxes"
 
 #: modules/taxopress-ai/taxopress-ai.php:466
 msgid "Metabox Settings"
-msgstr "Настройки метабокса"
+msgstr "Pengaturan Metabox"
 
 #: modules/taxopress-ai/taxopress-ai.php:467
 msgid "Metabox Access"
-msgstr "Доступ к метабоксам"
+msgstr "Akses Metabox"
 
 #: modules/taxopress-ai/taxopress-ai.php:476
 msgid ""
 "This feature allows you to customize the metabox interface you see when "
 "adding terms to posts."
 msgstr ""
-"Эта функция позволяет вам настраивать интерфейс метабокса, который вы "
-"видите при добавлении терминов к записям."
+"Fitur ini memungkinkan Anda untuk menyesuaikan antarmuka metabox yang Anda "
+"lihat saat menambahkan istilah ke pos."
 
 #: modules/taxopress-ai/taxopress-ai.php:825
 #: modules/taxopress-ai/taxopress-ai.php:870
 #: modules/taxopress-ai/taxopress-ai.php:952
 #: views/admin/page-settings.php:53
 msgid "Save Changes"
-msgstr "Сохранить изменения"
+msgstr "Simpan Perubahan"
 
 #: modules/taxopress-ai/taxopress-ai.php:941
 msgid "Select..."
-msgstr "Выбрать..."
+msgstr "Pilih..."
 
 #: modules/taxopress-ai/taxopress-ai.php:1067
 #, php-format
 msgid "Select %s"
-msgstr "Выбрать %s"
+msgstr "Pilih %s"
 
 #: modules/taxopress-ai/taxopress-ai.php:1129
 msgid "Invalid request."
-msgstr "Неверный запрос."
+msgstr "Permintaan tidak valid."
 
 #: modules/taxopress-ai/taxopress-ai.php:1161
 msgid "No terms in your WordPress database."
-msgstr "Нет терминов в вашей базе данных WordPress."
+msgstr "Tidak ada istilah di database WordPress Anda."
 
 #: modules/taxopress-ai/taxopress-ai.php:1172
 msgid "There's no content to scan."
-msgstr "Нет контента для сканирования."
+msgstr "Tidak ada konten untuk dipindai."
 
 #: modules/taxopress-ai/taxopress-ai.php:1179
 msgid "No results from your WordPress database."
-msgstr "Нет результатов из вашей базы данных WordPress."
+msgstr "Tidak ada hasil dari database WordPress Anda."
 
 #: modules/taxopress-ai/taxopress-ai.php:1221
 msgid "There are no terms that are relevant to your content."
-msgstr "Нет терминов, которые имеют отношение к вашему контенту."
+msgstr "Tidak ada istilah yang relevan dengan konten Anda."
 
 #: modules/taxopress-ai/taxopress-ai.php:1271
 msgid "Tags"
-msgstr "Метки"
+msgstr "Tag"
 
 #: modules/taxopress-ai/taxopress-ai.php:1470
 #, php-format
@@ -3581,46 +3558,48 @@ msgid ""
 "taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress "
 "Settings%2s."
 msgstr ""
-"У этого пользователя нет доступа для управления какими-либо из связанных "
-"таксономий этой записи. Включите доступ к метабоксам для этой роли в "
-"%1sНастройки TaxoPress%2s."
+"Pengguna ini tidak memiliki akses untuk mengelola salah satu taksonomi yang "
+"terlampir pada pos ini. Aktifkan Akses Metabox Taksonomi untuk peran ini di "
+"%1sPengaturan TaxoPress%2s."
 
 #: modules/taxopress-ai/taxopress-ai.php:1474
 msgid "No TaxoPress Metabox features are enabled for this post type."
-msgstr "Для этого типа записи не включены функции метабокса TaxoPress."
+msgstr "Tidak ada fitur Metabox TaxoPress yang diaktifkan untuk jenis pos ini."
 
 #: modules/taxopress-ai/taxopress-ai.php:1502
 msgid "Save, You can also press Enter to save and escape to cancel"
-msgstr "Сохранить, вы также можете нажать Enter для сохранения и Escape для отмены"
+msgstr ""
+"Simpan, Anda juga dapat menekan Enter untuk menyimpan dan Escape untuk "
+"membatalkan"
 
 #: modules/taxopress-ai/taxopress-ai.php:1544
 msgid "Search Terms..."
-msgstr "Поиск терминов..."
+msgstr "Cari Istilah..."
 
 #: modules/taxopress-ai/taxopress-ai.php:1563
 #: modules/taxopress-ai/taxopress-ai.php:1583
 msgid "Create Term"
-msgstr "Создать термин"
+msgstr "Buat Istilah"
 
 #: modules/taxopress-ai/taxopress-ai.php:1639
 msgid ""
 "You do not have the required capabilities to manage any of this post "
 "attached taxonomies."
 msgstr ""
-"У вас нет необходимых прав для управления какими-либо из связанных "
-"таксономий этой записи."
+"Anda tidak memiliki kemampuan yang diperlukan untuk mengelola salah satu "
+"taksonomi yang terlampir pada pos ini."
 
 #: modules/taxopress-ai/taxopress-ai.php:1707
 msgid "You can not edit this label."
-msgstr "Вы не можете редактировать эту метку."
+msgstr "Anda tidak dapat mengedit label ini."
 
 #: modules/taxopress-ai/taxopress-ai.php:1710
 msgid "Invalid nonce token."
-msgstr "Недействительный токен nonce."
+msgstr "Token nonce tidak valid."
 
 #: modules/taxopress-ai/taxopress-ai.php:1719
 msgid "Label is too long."
-msgstr "Метка слишком длинная."
+msgstr "Label terlalu panjang."
 
 #: review-request/review.php:281
 #, php-format
@@ -3629,52 +3608,53 @@ msgid ""
 "has been useful. Please could you quickly leave a 5-star rating on "
 "WordPress.org? It really does help to keep TaxoPress growing."
 msgstr ""
-"Эй, вы используете TaxoPress уже %s на вашем сайте. Мы надеемся, что плагин "
-"был полезен. Пожалуйста, оставьте быстрое 5-звездочное оценивание на "
-"WordPress.org? Это действительно помогает развитию TaxoPress."
+"Hei, Anda telah menggunakan TaxoPress selama %s di situs Anda. Kami harap "
+"plugin ini bermanfaat. Bisakah Anda dengan cepat meninggalkan penilaian "
+"bintang 5 di WordPress.org? Itu benar-benar membantu untuk menjaga "
+"TaxoPress tetap berkembang."
 
 #: review-request/review.php:290
 msgid "1 week"
-msgstr "1 неделя"
+msgstr "1 minggu"
 
 #: review-request/review.php:306
 msgid "3 months"
-msgstr "3 месяца"
+msgstr "3 bulan"
 
 #: review-request/review.php:371
 msgid "Click here to add your rating for TaxoPress"
-msgstr "Нажмите здесь, чтобы оставить свою оценку для TaxoPress"
+msgstr "Klik di sini untuk menambahkan penilaian Anda untuk TaxoPress"
 
 #: review-request/review.php:373
 msgid "Maybe later"
-msgstr "Возможно позже"
+msgstr "Mungkin nanti"
 
 #: review-request/review.php:375
 msgid "I already did"
-msgstr "Я уже сделал"
+msgstr "Saya sudah melakukannya"
 
 #: simple-tags.php:97
 msgid "This plugin can be deleted."
-msgstr "Этот плагин можно удалить."
+msgstr "Plugin ini dapat dihapus."
 
 #: simple-tags.php:125
 msgid ""
 "TaxoPress was not activated because TaxoPress Pro is already active. Please "
 "keep only TaxoPress Pro enabled."
 msgstr ""
-"TaxoPress не был активирован, потому что TaxoPress Pro уже активен. "
-"Пожалуйста, оставьте включенным только TaxoPress Pro."
+"TaxoPress tidak diaktifkan karena TaxoPress Pro sudah aktif. Harap hanya "
+"aktifkan TaxoPress Pro."
 
 #: views/admin/page-settings.php:4
 msgid "TaxoPress: Options"
-msgstr "TaxoPress: Настройки"
+msgstr "TaxoPress: Opsi"
 
 #: inc/terms-table.php:1399
 msgctxt "term name"
 msgid "Name"
-msgstr "Имя"
+msgstr "Nama"
 
 #: inc/terms-table.php:1408
 msgctxt "term name"
 msgid "Taxonomy"
-msgstr "Таксономия"
+msgstr "Taksonomi"
