@@ -1,6 +1,15 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [3.51.0] - 21 July, 2026 =
+* Fixed: Fatal memory exhaustion on Terms screen (st_terms) with hierarchical taxonomy — not related to term count, #2967
+* Fixed: Related Posts thumbnail image resolution setting is ignored, #2964
+* Fixed: Terms screen causes memory exhaustion on large sites, #2962
+* Fixed: Improve AI preview post validation, #2968. Thanks to Duy for the report
+* Fixed: Terms screen can run out of memory on large sites, #2961
+* Update: Remove the lock icon in the Pro version, #2963
+* Update: Include changelog in readme.txt for plugin update dialog box, #2959
+
 = [3.50.0] - 13 May, 2026 =
 * Update: Add CHANGELOG.md file, #2944
 * Update: Add Bundled Translations Library, #2943
