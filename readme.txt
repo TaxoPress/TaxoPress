@@ -268,7 +268,7 @@ IBW Watson is one of the most powerful AI tools available today. The TaxoPress A
 
 == Changelog ==
 
-= [3.51.0] - 21 July, 2026 =
+= [3.51.0] - 22 July, 2026 =
 * Fixed: Fatal memory exhaustion on Terms screen (st_terms) with hierarchical taxonomy — not related to term count, #2967
 * Fixed: Related Posts thumbnail image resolution setting is ignored, #2964
 * Fixed: Terms screen causes memory exhaustion on large sites, #2962
