@@ -238,7 +238,9 @@ class SimpleTags_Autoterms
                 <h1 class="wp-heading-inline"><?php esc_html_e('Auto Terms', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_autoterms&add=new_item')); ?>"
                    class="page-title-action taxopress">
-                   <span class="dashicons dashicons-lock"></span>
+                    <?php if (! taxopress_is_pro_version()) : ?>
+                        <span class="dashicons dashicons-lock" aria-hidden="true"></span>
+                    <?php endif; ?>
                    <?php esc_html_e('Add New Auto Terms', 'simple-tags'); ?>
                 </a>
 

@@ -643,7 +643,7 @@ class SimpleTags_Admin
         global $pagenow;
 
         $select_2_page = false;
-        if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags', 'st_mass_terms'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
+        if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_terms', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags', 'st_mass_terms'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
             $select_2_page = true;
         }
 
@@ -742,6 +742,8 @@ class SimpleTags_Admin
             'cancel_label' 		      => esc_html__('Cancel', 'simple-tags'),
             'paused_label'            => esc_html__('Pause.', 'simple-tags'),
             'continue_label'   	      => esc_html__('Continue', 'simple-tags'),
+            'merge_in_progress'       => esc_html__('Merging terms. Please wait...', 'simple-tags'),
+            'merge_attached_data'     => esc_html__('Merging %1$s terms attached to %2$s posts. Please wait...', 'simple-tags'),
             'merge_large_data'        => esc_html__('Large dataset detected, terms will be merged in batches of 20!', 'simple-tags'),
             'merge_none_merged'       => esc_html__('No terms were merged.', 'simple-tags'),
             'batch_merge_progress'     => esc_html__('Batch %1$s of %2$s merged.', 'simple-tags'),

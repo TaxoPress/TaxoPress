@@ -21,6 +21,104 @@ function taxopress_get_unique_term_slug($slug, $taxonomy)
 }
 
 /**
+ * Fetch post IDs for Terms screen bulk/row actions without hydrating WP_Post objects.
+ *
+ * @param array $args Optional WP_Query arguments.
+ * @return int[]
+ */
+function taxopress_get_post_ids_for_terms_action($args = [])
+{
+    $defaults = [
+        'post_type'              => 'any',
+        'posts_per_page'         => -1,
+        'fields'                 => 'ids',
+        'no_found_rows'          => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    ];
+
+    $post_ids = get_posts(array_merge($defaults, $args));
+
+    if (empty($post_ids)) {
+        return [];
+    }
+
+    return array_map('intval', $post_ids);
+}
+
+/**
+ * Preserve the current Terms screen filters when row actions redirect/reload.
+ *
+ * @param array $extra Extra query arguments.
+ * @return array
+ */
+function taxopress_get_terms_screen_query_args($extra = [])
+{
+    $preserve_keys = [
+        'terms_filter_post_type',
+        'terms_filter_taxonomy',
+        'taxonomy_type',
+        'taxopress_terms_taxonomy',
+        'taxopress_show_all',
+        'orderby',
+        'order',
+        'paged',
+        's',
+    ];
+
+    $query_args = ['page' => 'st_terms'];
+
+    foreach ($preserve_keys as $key) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Preserving current non-state-changing table filters.
+        if (isset($_REQUEST[$key]) && $_REQUEST[$key] !== '') {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Preserving current non-state-changing table filters.
+            $query_args[$key] = sanitize_text_field(wp_unslash($_REQUEST[$key]));
+        }
+    }
+
+    return array_merge($query_args, $extra);
+}
+
+/**
+ * Keep a copied term near the original in saved manual order when that order exists.
+ *
+ * @param string $taxonomy Taxonomy slug.
+ * @param int    $original_term_id Original term ID.
+ * @param int    $copied_term_id Copied term ID.
+ */
+function taxopress_place_copied_term_near_original($taxonomy, $original_term_id, $copied_term_id)
+{
+    $taxonomy = sanitize_key($taxonomy);
+    $original_term_id = (int) $original_term_id;
+    $copied_term_id = (int) $copied_term_id;
+
+    if (empty($taxonomy) || $original_term_id <= 0 || $copied_term_id <= 0) {
+        return;
+    }
+
+    $option_name = 'taxopress_term_order_' . $taxonomy;
+    $custom_order = array_values(array_filter(array_map('intval', (array) get_option($option_name, []))));
+
+    if (empty($custom_order)) {
+        return;
+    }
+
+    $custom_order = array_values(array_diff($custom_order, [$copied_term_id]));
+    $original_position = array_search($original_term_id, $custom_order, true);
+
+    if ($original_position === false) {
+        $custom_order[] = $copied_term_id;
+    } else {
+        $taxonomy_settings = taxopress_get_all_edited_taxonomy_data();
+        $order_setting = isset($taxonomy_settings[$taxonomy]['order']) ? strtolower($taxonomy_settings[$taxonomy]['order']) : 'asc';
+        $insert_position = ($order_setting === 'desc') ? $original_position + 1 : $original_position;
+        array_splice($custom_order, $insert_position, 0, [$copied_term_id]);
+    }
+
+    update_option($option_name, array_values(array_unique($custom_order)));
+}
+
+/**
  * Handle the save and deletion of terms data.
  */
 function taxopress_process_terms()
@@ -75,12 +173,12 @@ function taxopress_process_terms()
                     )
                 )
             );
-            $posts = get_posts($args);
+            $post_ids = taxopress_get_post_ids_for_terms_action($args);
             $counter = 0;
-            foreach ($posts as $post) {
-                $remove = wp_remove_object_terms($post->ID, $term->term_id, $term->taxonomy);
+            foreach ($post_ids as $post_id) {
+                $remove = wp_remove_object_terms($post_id, $term->term_id, $term->taxonomy);
                 if ($remove) {
-                    clean_object_term_cache($post->ID, $term->taxonomy);
+                    clean_object_term_cache($post_id, $term->taxonomy);
                     clean_term_cache($term->term_id, $term->taxonomy);
                     $counter++;
                 }
@@ -101,10 +199,15 @@ function taxopress_process_terms()
             $taxopress_term_data = wp_insert_term($taxopress_term_name, $term->taxonomy, [
                 'slug' => $taxopress_term_slug,
                 'description' => $term->description,
+                'parent' => $term->parent,
             ]);
 
             if (!is_wp_error($taxopress_term_data)) {
                 $taxopress_term_id = $taxopress_term_data['term_id'];
+                taxopress_place_copied_term_near_original($term->taxonomy, $term->term_id, $taxopress_term_id);
+                $_REQUEST['taxopress_copied_term_id'] = $taxopress_term_id;
+                $_REQUEST['taxopress_original_term_id'] = $term->term_id;
+                $_REQUEST['taxopress_copied_taxonomy'] = $term->taxonomy;
 
                 $args = array(
                     'post_type' => 'any',
@@ -118,10 +221,10 @@ function taxopress_process_terms()
                         )
                     )
                 );
-                $posts = get_posts($args);
+                $post_ids = taxopress_get_post_ids_for_terms_action($args);
 
-                foreach ($posts as $post) {
-                    wp_set_object_terms($post->ID, $taxopress_term_id, $term->taxonomy, true);
+                foreach ($post_ids as $post_id) {
+                    wp_set_object_terms($post_id, $taxopress_term_id, $term->taxonomy, true);
                 }
             }
         }
@@ -172,5 +275,8 @@ function taxopress_delete_terms_filter_removable_query_args(array $args)
         'action',
         'taxopress_terms',
         '_wpnonce',
+        'taxopress_copied_term_id',
+        'taxopress_original_term_id',
+        'taxopress_copied_taxonomy',
     ]);
 }

@@ -124,7 +124,9 @@ class SimpleTags_Autolink
                     <h1 class="wp-heading-inline"><?php esc_html_e('Auto Links', 'simple-tags'); ?></h1>
                     <a href="<?php echo esc_url(admin_url('admin.php?page=st_autolinks&add=new_item')); ?>" 
                     class="page-title-action taxopress">
-                    <span class="dashicons dashicons-lock"></span>
+                    <?php if (! taxopress_is_pro_version()) : ?>
+                        <span class="dashicons dashicons-lock" aria-hidden="true"></span>
+                    <?php endif; ?>
                     <?php esc_html_e('Add New Auto Link', 'simple-tags'); ?></a>
 
                     <div class="taxopress-description"><?php esc_html_e('Auto Links can automatically create links to your defined terms. For example, if you have a term called “WordPress”, the Auto Links feature can find the word “WordPress” in your content and add links to the archive page for that term.', 'simple-tags'); ?></div>

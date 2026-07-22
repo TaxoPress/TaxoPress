@@ -86,6 +86,20 @@ if (!class_exists('TaxoPressAiAjax')) {
                 $preview_post = !empty($_POST['preview_post']) ? (int) $_POST['preview_post'] : 0;
                 $preview_feature = 'data';
                 $post_data = get_post($preview_post);
+                if (!is_object($post_data)) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__('Posts content and title is empty.', 'simple-tags');
+                    wp_send_json($response);
+                    exit;
+                }
+
+                if (!current_user_can('read_post', $post_data->ID)) {
+                    $response['status'] = 'error';
+                    $response['content'] = esc_html__('Permission error. You do not have permission to preview this post.', 'simple-tags');
+                    wp_send_json($response);
+                    exit;
+                }
+
                 $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post_data->post_type);
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Using custom taxopress_sanitize_text_field() for sanitization
                 $post_content = isset($_POST['post_content']) ? taxopress_sanitize_text_field($_POST['post_content']) : $post_data->post_content;
@@ -171,14 +185,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     'content_source' => $preview_feature . '_post_content_title'
 
                 ];
-
-                if (!is_object($post_data)) {
-                    $response['status'] = 'error';
-                    $response['content'] = esc_html__(
-                        'Posts content and title is empty.',
-                        'simple-tags'
-                    );
-                } elseif ($preview_ai == 'suggest_local_terms') {
+                if ($preview_ai == 'suggest_local_terms') {
                     $args['suggest_terms'] = true;
                     $args['show_counts'] = isset($settings_data['suggest_local_terms_show_post_count']) ? $settings_data['suggest_local_terms_show_post_count'] : 0;
                     $suggest_local_terms_results = self::get_existing_terms_results($args);
@@ -192,7 +199,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $args['search_text'] = $search_text;
 
                     if (isset($_POST['existing_terms_order'])) {
-                        $args['existing_terms_order'] = sanitize_text_field($_POST['existing_terms_order']);
+                            $args['existing_terms_order'] = sanitize_text_field($_POST['existing_terms_order']);
                     }
                     if (isset($_POST['existing_terms_orderby'])) {
                         $args['existing_terms_orderby'] = sanitize_text_field($_POST['existing_terms_orderby']);
@@ -201,12 +208,12 @@ if (!class_exists('TaxoPressAiAjax')) {
                         $args['existing_terms_maximum_terms'] = (int)$_POST['existing_terms_maximum_terms'];
                     }
 
-                    $existing_terms_results = self::get_existing_terms_results($args);
+                            $existing_terms_results = self::get_existing_terms_results($args);
                     if (!empty($existing_terms_results['results'])) {
                         $term_results = $existing_terms_results['results'];
                     }
-                    $response['status'] = $existing_terms_results['status'];
-                    $response['content'] = $existing_terms_results['message'];
+                            $response['status'] = $existing_terms_results['status'];
+                            $response['content'] = $existing_terms_results['message'];
                 } elseif ($preview_ai == 'post_terms') {
                     $args['show_counts'] = isset($settings_data['post_terms_show_post_count']) ? $settings_data['post_terms_show_post_count'] : 0;
                     $post_terms_results = wp_get_post_terms($post_id, $preview_taxonomy, ['fields' => 'names']);
@@ -214,10 +221,10 @@ if (!class_exists('TaxoPressAiAjax')) {
                     if (!empty($current_tags)) {
                         $current_post_tags = get_terms(
                             array(
-                                'taxonomy' => $preview_taxonomy,
-                                'include' => $current_tags,
-                                'fields' => 'names',
-                                'hide_empty' => false
+                            'taxonomy' => $preview_taxonomy,
+                            'include' => $current_tags,
+                            'fields' => 'names',
+                            'hide_empty' => false
                             )
                         );
 
@@ -280,12 +287,12 @@ if (!class_exists('TaxoPressAiAjax')) {
                         if (taxopress_is_pro_version()) {
                             // autoterm_use_open_ai
                             if ($autoterm_use_open_ai) {
-                                ##https://platform.openai.com/docs/guides/gpt
-                                ##https://platform.openai.com/docs/api-reference/chat/create
-                                ##https://platform.openai.com/docs/models/model-endpoint-compatibility
+                                    ##https://platform.openai.com/docs/guides/gpt
+                                    ##https://platform.openai.com/docs/api-reference/chat/create
+                                    ##https://platform.openai.com/docs/models/model-endpoint-compatibility
 
-                                $request_args['show_counts'] = isset($settings_data['open_ai_show_post_count']) ? $settings_data['open_ai_show_post_count'] : 0;
-                                $open_ai_results = TaxoPressAiApi::get_open_ai_results($request_args);
+                                    $request_args['show_counts'] = isset($settings_data['open_ai_show_post_count']) ? $settings_data['open_ai_show_post_count'] : 0;
+                                    $open_ai_results = TaxoPressAiApi::get_open_ai_results($request_args);
                                 if (!empty($open_ai_results['results'])) {
                                     $terms_found = true;
                                     $request_args['results']        = $open_ai_results['results'];
@@ -296,7 +303,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 }
                             }
 
-                            // autoterm_use_ibm_watson
+                                // autoterm_use_ibm_watson
                             if ($autoterm_use_ibm_watson) {
                                 ##https://cloud.ibm.com/apidocs/natural-language-understanding
                                 $request_args['show_counts'] = isset($settings_data['ibm_watson_show_post_count']) ? $settings_data['ibm_watson_show_post_count'] : 0;
@@ -311,7 +318,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 }
                             }
 
-                            // autoterm_use_dandelion
+                                // autoterm_use_dandelion
                             if ($autoterm_use_dandelion) {
                                 ##https://dandelion.eu/docs/api/datatxt/nex/v1/#response
                                 $request_args['show_counts'] = isset($settings_data['dandelion_show_post_count']) ? $settings_data['dandelion_show_post_count'] : 0;
@@ -326,7 +333,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                                 }
                             }
 
-                            // autoterm_use_opencalais
+                                // autoterm_use_opencalais
                             if ($autoterm_use_opencalais) {
                                 ## https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation
                                 $request_args['show_counts'] = isset($settings_data['open_calais_show_post_count']) ? $settings_data['open_calais_show_post_count'] : 0;

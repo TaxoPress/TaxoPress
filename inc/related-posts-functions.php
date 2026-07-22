@@ -177,6 +177,7 @@ function taxopress_create_default_related_post()
     $default['taxopress_related_post']['xformat']      = '<a href="%post_permalink%" title="%post_title% (%post_date%)" style="font-size:%post_size%;color:%post_color%"><img src="%post_thumb_url%" height="200" width="200" class="custom-image-class"/><br>%post_title%<br>%post_category%</a>';
     $default['taxopress_related_post']['format']       = 'box';
     $default['taxopress_related_post']['default_featured_media'] = STAGS_URL . '/assets/images/taxopress-white-logo.png';
+    $default['taxopress_related_post']['imageresolution'] = '1536x1536';
     $default['taxopress_related_post']['smallest']     = 12;
     $default['taxopress_related_post']['largest']      = 12;
     $default['taxopress_related_post']['unit']         = 'pt';
@@ -232,6 +233,10 @@ function taxopress_update_relatedpost($data = [])
     $data['taxopress_related_post']['embedded'] = isset($data['embedded']) ? $data['embedded'] : [];
     $data['taxopress_related_post']['post_types'] = isset($data['post_types']) ? array_map('sanitize_key', (array) $data['post_types']) : [];
     $data['taxopress_related_post']['taxonomy'] = isset($data['taxopress_related_post']['taxonomy']) ? sanitize_key($data['taxopress_related_post']['taxonomy']) : 'post_tag';
+    $allowed_image_resolutions = ['thumbnail', 'medium', 'large', '1536x1536', '2048x2048'];
+    $data['taxopress_related_post']['imageresolution'] = isset($data['taxopress_related_post']['imageresolution']) && in_array($data['taxopress_related_post']['imageresolution'], $allowed_image_resolutions, true)
+        ? $data['taxopress_related_post']['imageresolution']
+        : '1536x1536';
 
     if (isset($data['edited_relatedpost'])) {
         $relatedpost_id                = $data['edited_relatedpost'];

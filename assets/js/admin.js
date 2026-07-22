@@ -1386,9 +1386,17 @@
         selector.each(function () {
 
             var checkedPostTypes = [];
-            $('input[name="post_types[]"]:checked').each(function () {
-                checkedPostTypes.push($(this).val());
-            });
+            var dataPostTypes = $(this).data('post-types');
+
+            if (dataPostTypes) {
+                checkedPostTypes = String(dataPostTypes).split(',').filter(function (postType) {
+                    return postType !== '';
+                });
+            } else {
+                $('input[name="post_types[]"]:checked').each(function () {
+                    checkedPostTypes.push($(this).val());
+                });
+            }
 
             // Build the post_types parameter as a query string (e.g., post_types=post&post_types=page)
             var postTypesParam = '';
@@ -2311,7 +2319,12 @@
           e.preventDefault();
 
           var modal = $('[data-remodal-id=taxopress-modal-merge-warning]').remodal();
-          modal.close();
+          try {
+              var closeResult = modal.close();
+              if (closeResult && typeof closeResult.catch === 'function') {
+                  closeResult.catch(function() {});
+              }
+          } catch (error) {}
 
           if (!taxopressPendingMergeType || !taxopressPendingSuggestions) {
               return;
@@ -2430,6 +2443,16 @@
     // Merge Terms Bacth Processing
     $(document).on('submit', '.merge-terms-form', function (e) {
       const $form = $(this);
+      if ($form.data('taxopressSkipMergePreflight')) {
+        $form.removeData('taxopressSkipMergePreflight');
+        return true;
+      }
+
+      if ($form.data('taxopressMergeProcessing')) {
+        e.preventDefault();
+        return false;
+      }
+
       const mergeType = $form.find('input[name="mergeterm_type"]:checked').val();
       function stripTermName(term) {
         return term.replace(/\s*\(.*?\)$/, '').trim(); // Strips "(slug)" from end
@@ -2441,13 +2464,15 @@
       const oldTerms = oldTermsRaw.map(stripTermName);
       const batchSize = 20;
 
-      if ((mergeType === 'different_name' && oldTerms.length > batchSize) || 
-          (mergeType === 'same_name' && oldTerms.length > batchSize)) {
+      if ((mergeType === 'different_name' || mergeType === 'same_name') && oldTerms.length > 2) {
         e.preventDefault();
 
         const newTerm = mergeType === 'different_name' ? $form.find('#mergeterm_new').val().trim() : '';
         const taxonomy = $form.find('input[name="current_taxo"]').val();
+        const $mergeSubmitButtons = $form.find('button[type="submit"], input[type="submit"]');
         const batches = [];
+        const isLargeMerge = oldTerms.length > batchSize;
+        let useAjaxControls = isLargeMerge;
         let isPaused = false;
         let isCancelled = false;
         let currentIndex = 0;
@@ -2458,25 +2483,68 @@
         const uniquePosts = new Set();
         let lastErrorMessage = '';
         let firstBatchSucceeded = false;
+        let preflightData = {};
 
         for (var i = 0; i < oldTerms.length; i += batchSize) {
           batches.push(oldTerms.slice(i, i + batchSize));
         }
 
         $('.taxopress-response-css').remove();
+        disable_merge_submit_buttons();
       
+      function disable_merge_submit_buttons() {
+        $form.data('taxopressMergeProcessing', true);
+
+        $mergeSubmitButtons.each(function() {
+          const $button = $(this);
+          $button.data('taxopressWasDisabled', this.disabled);
+          $button.prop('disabled', true).addClass('disabled');
+        });
+
+        if (document.activeElement && typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur();
+        }
+      }
+
+      function restore_merge_submit_buttons() {
+        $form.removeData('taxopressMergeProcessing');
+
+        $mergeSubmitButtons.each(function() {
+          const $button = $(this);
+          if (!$button.data('taxopressWasDisabled')) {
+            $button.prop('disabled', false).removeClass('disabled');
+          }
+          $button.removeData('taxopressWasDisabled');
+        });
+      }
 
       function init_merge_progress() {
+        const preflightTermsCount = parseInt(preflightData.terms_count || oldTerms.length, 10);
+        const preflightPostsCount = parseInt(preflightData.affected_posts_count || 0, 10);
+        let progressMessage = st_admin_localize.merge_in_progress;
+
+        if (isLargeMerge) {
+          progressMessage = st_admin_localize.merge_large_data;
+        } else if (preflightPostsCount > 0) {
+          progressMessage = st_admin_localize.merge_attached_data
+            .replace('%1$s', preflightTermsCount)
+            .replace('%2$s', preflightPostsCount);
+        }
+
+        const controls = useAjaxControls
+          ? '<span class="merge-controls" style="float: right;">' +
+              '<button type="button" id="merge-cancel">' + st_admin_localize.cancel_label + '</button> ' +
+              '<button type="button" id="merge-pause">' + st_admin_localize.paused_label + '</button>' +
+              '<button type="button" id="merge-continue" style="display:none;">' + st_admin_localize.continue_label + '</button>' +
+            '</span>'
+          : '';
+
         $('#merge-progress').html(
           '<div class="taxopress-response-css red">' +
-            '<p>' + st_admin_localize.merge_large_data + 
+            '<p>' + progressMessage + 
               '<span class="taxopress-spinner spinner is-active" style="margin-bottom: 10px;"></span>' + 
               '<button type="button" class="taxopress-dismiss-merge-message notice-dismiss" style="float: right;"></button>' +
-              '<span class="merge-controls" style="float: right;">' +
-                '<button type="button" id="merge-cancel">' + st_admin_localize.cancel_label + '</button> ' +
-                '<button type="button" id="merge-pause">' + st_admin_localize.paused_label + '</button>' +
-                '<button type="button" id="merge-continue" style="display:none;">' + st_admin_localize.continue_label + '</button>' +
-              '</span>' +
+              controls +
             '</p>' +
           '</div>' +
           '<div class="merge-progress-messages"></div>'
@@ -2490,6 +2558,7 @@
 
         $(document).on('click', '#merge-cancel', function () {
           isCancelled = true;
+          restore_merge_submit_buttons();
           var stats = '(' + totalTermsModified + ' ' + st_admin_localize.terms_merged_text + ', ' 
           + uniquePosts.size + ' ' + st_admin_localize.posts_updated_text + ')';
           
@@ -2549,6 +2618,7 @@
         $.post(st_admin_localize.ajaxurl, postData, function(response) {
             handle_batch_response(response, index);
         }).fail(function() {
+            restore_merge_submit_buttons();
             show_merge_message('red', '<strong>' + st_admin_localize.ajax_merge_terms_error + ' ' + (index + 1) + '</strong>');
         });
     }
@@ -2622,34 +2692,40 @@
         
           // Use the first slug as the final retained term name
           finalMergeData.new_term = retainedSlugs[0];
+          finalMergeData.retained_slug = retainedSlugs[0];
         
-          $.ajax({
-            url: st_admin_localize.ajaxurl,
-            method: 'POST',
-            data: finalMergeData,
-            async: false,
-            success: function(finalResponse) {
-              if (finalResponse.success && finalResponse.data.retained_slug) {
-                retainedSlugs = [finalResponse.data.retained_slug];
-              } else if (finalResponse.data && finalResponse.data.message) {
-                lastErrorMessage = finalResponse.data.message;
-              }
+          $.post(st_admin_localize.ajaxurl, finalMergeData, function(finalResponse) {
+            if (finalResponse.success && finalResponse.data.retained_slug) {
+              retainedSlugs = [finalResponse.data.retained_slug];
+            } else if (finalResponse.data && finalResponse.data.message) {
+              lastErrorMessage = finalResponse.data.message;
             }
+          }).fail(function() {
+            lastErrorMessage = st_admin_localize.ajax_merge_terms_error;
+          }).always(function() {
+            finalize_merge_ui();
           });
+
+          return;
         }
-        
-        
+
+        finalize_merge_ui();
+      }
+
+      function finalize_merge_ui() {
         if ((totalTermsModified === 0 && uniquePosts.size === 0) && !(mergeType === 'same_name' && firstBatchSucceeded)) {
           var finalMsg = '<strong>' + st_admin_localize.merge_none_merged + '</strong>';
           if (lastErrorMessage) {
             finalMsg += '<br><em>' + lastErrorMessage + '</em>';
           }
-          show_merge_message('red', finalMsg);
+          show_merge_message('final-error', finalMsg);
         } else {
           var finalTermName = (mergeType === 'same_name') ? retainedSlugs.join(', ') : newTerm;
           var finalMsg = st_admin_localize.merge_success_update.replace('%s', finalTermName) + ', ' + uniquePosts.size + ' ' + st_admin_localize.posts_updated_text;
           show_merge_message('final', '<strong>' + finalMsg + '</strong>');
         }
+
+        restore_merge_submit_buttons();
       
         $form.find('#mergeterm_old').val('');
         if (mergeType === 'different_name') {
@@ -2660,11 +2736,13 @@
 
       // Show merge message
       function show_merge_message(type, message) {
-        if (type === 'final') {
+        if (type === 'final' || type === 'final-error') {
+          var noticeClass = type === 'final' ? 'green' : 'red';
           $('#merge-progress').html(
-            '<div class="taxopress-response-css green"><p>' + message + '</p>' +
+            '<div class="taxopress-response-css ' + noticeClass + '"><p>' + message + '</p>' +
             '<button type="button" class="taxopress-dismiss-merge-message notice-dismiss" style="float: right;"></button></div>'
           );
+          schedule_merge_message_dismiss($('#merge-progress .taxopress-response-css'));
         } else {
           $('.merge-progress-messages').html(
             '<div class="taxopress-response-css ' + type + '"><p>' + message + '</p>' +
@@ -2673,9 +2751,71 @@
         }
       }
 
-      init_merge_progress();
+      function schedule_merge_message_dismiss($notice) {
+        setTimeout(function() {
+          if ($notice.length) {
+            $notice.fadeOut(200, function() {
+              $(this).remove();
+            });
+          }
+        }, 120000);
+      }
 
-      process_merge_batch(currentIndex);
+      function show_preflight_error(message) {
+        $('#merge-progress').html(
+          '<div class="taxopress-response-css red"><p><strong>' + message + '</strong></p>' +
+          '<button type="button" class="taxopress-dismiss-merge-message notice-dismiss" style="float: right;"></button></div>'
+        );
+        schedule_merge_message_dismiss($('#merge-progress .taxopress-response-css'));
+        bind_merge_controls();
+        restore_merge_submit_buttons();
+      }
+
+      function submit_merge_form_normally() {
+        $form.data('taxopressSkipMergePreflight', true);
+
+        if ($form[0] && typeof $form[0].submit === 'function') {
+          $form[0].submit();
+        } else {
+          $form.trigger('submit');
+        }
+      }
+
+      function run_merge_preflight() {
+        $.post(st_admin_localize.ajaxurl, {
+          action: 'taxopress_merge_terms_preflight',
+          taxonomy: taxonomy,
+          old_terms: oldTerms,
+          merge_type: mergeType,
+          nonce: st_admin_localize.check_nonce
+        }, function(response) {
+          if (!response.success) {
+            const message = response.data && response.data.message ? response.data.message : st_admin_localize.ajax_merge_terms_error;
+            show_preflight_error(message);
+            return;
+          }
+
+          preflightData = response.data || {};
+
+          if (!preflightData.use_ajax) {
+            submit_merge_form_normally();
+            return;
+          }
+
+          useAjaxControls = true;
+          init_merge_progress();
+          process_merge_batch(currentIndex);
+        }).fail(function() {
+          show_preflight_error(st_admin_localize.ajax_merge_terms_error);
+        });
+      }
+
+      if (isLargeMerge) {
+        init_merge_progress();
+        process_merge_batch(currentIndex);
+      } else {
+        run_merge_preflight();
+      }
 }
     });
 

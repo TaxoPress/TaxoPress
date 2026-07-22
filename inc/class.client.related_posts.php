@@ -90,7 +90,7 @@ class SimpleTags_Client_RelatedPosts
              'before'      => '',
              'after'       => '',
              'default_featured_media' => 'default',
-             'imageresolution' => 'medium',
+             'imageresolution' => '1536x1536',
              'smallest'   => 12,
              'largest'    => 12,
              'unit'       => 'pt',
@@ -397,8 +397,14 @@ class SimpleTags_Client_RelatedPosts
             $dateformat = get_option('date_format');
         }
 
+        $imageresolution = isset($args['imageresolution']) ? sanitize_text_field($args['imageresolution']) : $defaults['imageresolution'];
         if (empty($imageresolution)) {
-            $imageresolution = 'medium';
+            $imageresolution = $defaults['imageresolution'];
+        }
+
+        $allowed_image_resolutions = array('thumbnail', 'medium', 'large', '1536x1536', '2048x2048');
+        if (! in_array($imageresolution, $allowed_image_resolutions, true)) {
+            $imageresolution = $defaults['imageresolution'];
         }
 
         $output = array();
@@ -511,8 +517,12 @@ class SimpleTags_Client_RelatedPosts
                 // Register dynamic image size
                 add_image_size('taxopress-related-dynamic', $desired_width, $desired_height, true);
 
-                // Get image with user-specified dimensions
-                $image = wp_get_attachment_image_src($post_thumbnail_id, 'taxopress-related-dynamic');
+
+                $image = wp_get_attachment_image_src($post_thumbnail_id, $imageresolution);
+
+                if (!$image) {
+                    $image = wp_get_attachment_image_src($post_thumbnail_id, 'taxopress-related-dynamic');
+                }
 
                 if ($image) {
                     $post_thumbnail_url = $image[0];

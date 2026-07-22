@@ -129,7 +129,9 @@ class SimpleTags_Tag_Clouds
                 <h1 class="wp-heading-inline"><?php _e('Terms Display', 'simple-tags'); ?></h1>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=st_terms_display&add=new_item')); ?>"
                    class="page-title-action taxopress">
-                    <span class="dashicons dashicons-lock"></span>
+                    <?php if (! taxopress_is_pro_version()) : ?>
+                        <span class="dashicons dashicons-lock" aria-hidden="true"></span>
+                    <?php endif; ?>
                    <?php esc_html_e('Add New Terms Display', 'simple-tags'); ?>
                 </a>
 
