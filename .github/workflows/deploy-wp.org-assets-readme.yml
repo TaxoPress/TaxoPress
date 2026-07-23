@@ -1,0 +1,19 @@
+name: Deploy assets/readme to WordPress.org
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - 'master'
+
+  workflow_dispatch:
+
+jobs:
+  deploy-assets:
+    uses: publishpress/github-workflows/.github/workflows/deploy-free-assets.yml@v3
+    secrets:
+      SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+      SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+    with:
+      PLUGIN_SLUG: "simple-tags"

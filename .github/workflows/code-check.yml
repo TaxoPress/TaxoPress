@@ -1,0 +1,23 @@
+name: Code checks
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - 'master'
+
+  pull_request:
+    branches:
+      - '*'
+
+  workflow_call:
+
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Check the code
+    uses: ./.github/workflows/code-standards.yml
+    secrets: inherit
+
