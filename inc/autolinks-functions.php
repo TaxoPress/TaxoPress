@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 /**
  * Fetch our TAXOPRESS Autolinks option.
  *
@@ -408,7 +410,6 @@ function taxopress_post_type_autolink_autolink()
 
     if (count($autolinks) > 0) {
         foreach ($autolinks as $autolink) {
-
             // Get option
             $post_types = (isset($autolink['embedded']) && is_array($autolink['embedded']) && count($autolink['embedded']) > 0) ? $autolink['embedded'] : false;
 

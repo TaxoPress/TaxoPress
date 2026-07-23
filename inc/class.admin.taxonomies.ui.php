@@ -142,13 +142,11 @@ class taxopress_admin_ui
                 }
 
                 if ($selected_result) {
-
                 }
 
                 if ($selected_result && (int)$val['attr'] === 1) {
                     $checkbox_html = '<input class="' . $args['class'] . '" type="checkbox" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="1" checked="checked" />';
                 }
-
             }
         }
         $value .= $checkbox_html;
@@ -267,12 +265,12 @@ class taxopress_admin_ui
             $value .= $this->get_td_start();
         }
 
-        $value .= '<select class="' . $args['class'] . '" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']' . $multiple_select . '" ' . $multiple_text . ' data-placeholder="'. sprintf(esc_html__('Select %1s...', 'simple-tags'), $args['labeltext']) .'">';
+        $value .= '<select class="' . $args['class'] . '" id="' . $args['name'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']' . $multiple_select . '" ' . $multiple_text . ' data-placeholder="' . sprintf(esc_html__('Select %1s...', 'simple-tags'), $args['labeltext']) . '">';
         if (!empty($args['selections']['options']) && is_array($args['selections']['options'])) {
             foreach ($args['selections']['options'] as $val) {
                 $result = '';
                 $bool   = taxopress_disp_boolean($val['attr']);
-                $post_type_attr = isset($val['post_type']) ? 'data-post_type="'.$val['post_type'].'"' : '';
+                $post_type_attr = isset($val['post_type']) ? 'data-post_type="' . $val['post_type'] . '"' : '';
 
                 if (is_numeric($args['selections']['selected'])) {
                     $selected = taxopress_disp_boolean($args['selections']['selected']);
@@ -296,7 +294,7 @@ class taxopress_admin_ui
                     $result = ' selected="selected"';
                 }
 
-                $value .= '<option '.$post_type_attr.' value="' . $val['attr'] . '"' . $result . '>' . $val['text'] . '</option>';
+                $value .= '<option ' . $post_type_attr . ' value="' . $val['attr'] . '"' . $result . '>' . $val['text'] . '</option>';
             }
         }
         $value .= '</select>';
@@ -440,11 +438,11 @@ class taxopress_admin_ui
     public function get_label($label_for = '', $label_text = '', $labeldescription = false)
     {
         if ($labeldescription === 2) {
-            return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities('['.$label_text.']').'</code></label>';
+            return '<label for="' . esc_attr($label_for) . '"><code>' . htmlentities('[' . $label_text . ']') . '</code></label>';
         } elseif ($labeldescription === 3) {
-            return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities($label_text).'</code></label>';
+            return '<label for="' . esc_attr($label_for) . '"><code>' . htmlentities($label_text) . '</code></label>';
         } elseif ($labeldescription) {
-            return '<label for="' . esc_attr($label_for) . '"><code>'.htmlentities('<'.$label_text.'> </'.$label_text.'>').'</code></label>';
+            return '<label for="' . esc_attr($label_for) . '"><code>' . htmlentities('<' . $label_text . '> </' . $label_text . '>') . '</code></label>';
         } else {
             return '<label for="' . esc_attr($label_for) . '">' . wp_strip_all_tags($label_text) . '</label>';
         }
@@ -552,7 +550,7 @@ class taxopress_admin_ui
         }
 
         if (isset($args['toplabel'])) {
-            $value .= $this->get_label($args['name'], $args['toplabel']).'<br />';
+            $value .= $this->get_label($args['name'], $args['toplabel']) . '<br />';
         }
 
         $value .= '<input type="text" id="' . $args['name'] . '" class="' . $args['class'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '"';
@@ -632,7 +630,7 @@ class taxopress_admin_ui
         }
 
         if (isset($args['toplabel'])) {
-            $value .= $this->get_label($args['name'], $args['toplabel']).'<br />';
+            $value .= $this->get_label($args['name'], $args['toplabel']) . '<br />';
         }
 
         $value .= '<input min="' . $args['min'] . '" max="' . $args['max'] . '" type="number" id="' . $args['name'] . '"  class="' . $args['class'] . '" name="' . $args['namearray'] . '[' . $args['name'] . ']" value="' . $args['textvalue'] . '" ' . $args['other_attr'] . '';

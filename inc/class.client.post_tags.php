@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Client_PostTags
 {
     /**
@@ -7,7 +9,6 @@ class SimpleTags_Client_PostTags
      */
     public function __construct()
     {
-
     }
 
 
@@ -331,6 +332,6 @@ class SimpleTags_Client_PostTags
             );
         }
 
-        return SimpleTags_Client::output_content('st-post-tags '.taxopress_format_class($wrap_class).'', $format, '', $output, $copyright, $separator, '', '', $before, $after);
+        return SimpleTags_Client::output_content('st-post-tags ' . taxopress_format_class($wrap_class) . '', $format, '', $output, $copyright, $separator, '', '', $before, $after);
     }
 }

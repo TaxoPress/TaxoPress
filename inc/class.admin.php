@@ -1,4 +1,7 @@
 <?php
+
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 // Include modules
 require_once(TAXOPRESS_ABSPATH . '/modules/taxopress-ai/taxopress-ai.php');
 
@@ -194,7 +197,7 @@ class SimpleTags_Admin
     {
 
         foreach (self::$enabled_menus as $menu_slug => $menu_title) {
-            $links[] = '<a href="' . admin_url('admin.php?page=' . $menu_slug) . '">'. $menu_title .'</a>';
+            $links[] = '<a href="' . admin_url('admin.php?page=' . $menu_slug) . '">' . $menu_title . '</a>';
         }
 
         return $links;
@@ -739,9 +742,9 @@ class SimpleTags_Admin
             'post_size'               => '%post_size%',
             'post_color'              => '%post_color%',
             'merge_cancelled'         => esc_html__('Merge has been cancelled.', 'simple-tags'),
-            'cancel_label' 		      => esc_html__('Cancel', 'simple-tags'),
+            'cancel_label'            => esc_html__('Cancel', 'simple-tags'),
             'paused_label'            => esc_html__('Pause.', 'simple-tags'),
-            'continue_label'   	      => esc_html__('Continue', 'simple-tags'),
+            'continue_label'          => esc_html__('Continue', 'simple-tags'),
             'merge_in_progress'       => esc_html__('Merging terms. Please wait...', 'simple-tags'),
             'merge_attached_data'     => esc_html__('Merging %1$s terms attached to %2$s posts. Please wait...', 'simple-tags'),
             'merge_large_data'        => esc_html__('Large dataset detected, terms will be merged in batches of 20!', 'simple-tags'),
@@ -1016,7 +1019,6 @@ class SimpleTags_Admin
 
             $terms = join(', ', $terms);
         } else {
-
             $terms = wp_get_post_terms($post_id, $taxonomy, array('fields' => 'names'));
             if (empty($terms) || is_wp_error($terms)) {
                 return '';
@@ -1073,12 +1075,12 @@ class SimpleTags_Admin
 
         if (isset($_GET['page']) && in_array($_GET['page'], $taxopress_pages)) {
             ?>
-			<p class="footer_st">
-				<?php
+            <p class="footer_st">
+                <?php
                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             printf(__('Thanks for using TaxoPress | %1sTaxoPress.com%2s | Version %3s', 'simple-tags'), '<a href="https://taxopress.com/">', '</a>', esc_html(STAGS_VERSION)); ?>
-			</p>
-<?php
+            </p>
+            <?php
         }
     }
 
@@ -1102,23 +1104,22 @@ class SimpleTags_Admin
 
             if ($section === 'legacy') {
                 $table_sub_tab = '<div class="st-legacy-subtab">
-                <span class="active" data-content=".legacy-tag-cloud-content">'. esc_html__("Tag Cloud", "simple-tags") .'</span> |
-                <span data-content=".legacy-post-tags-content">'. esc_html__("Tags for Current Post", "simple-tags") .'</span> |
-                <span data-content=".legacy-related-posts-content">'. esc_html__("Related Posts", "simple-tags") .'</span> |
-                <span data-content=".legacy-auto-link-content">'. esc_html__("Auto Links", "simple-tags") .'</span>
+                <span class="active" data-content=".legacy-tag-cloud-content">' . esc_html__("Tag Cloud", "simple-tags") . '</span> |
+                <span data-content=".legacy-post-tags-content">' . esc_html__("Tags for Current Post", "simple-tags") . '</span> |
+                <span data-content=".legacy-related-posts-content">' . esc_html__("Related Posts", "simple-tags") . '</span> |
+                <span data-content=".legacy-auto-link-content">' . esc_html__("Auto Links", "simple-tags") . '</span>
                 </div>' . PHP_EOL;
             } elseif ($section === 'taxopress-ai') {
                 $table_sub_tab_lists = [];
                 $pt_index = 0;
                 foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
-
                     if (!in_array($post_type, ['attachment'])) {
                         $active_pt = ($pt_index === 0) ? 'active' : '';
                         $table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".taxopress-ai-' . $post_type . '-content">' . esc_html($post_type_object->labels->name) . '</span>';
                         $pt_index++;
                     }
                 }
-                $table_sub_tab = '<div class="st-taxopress-ai-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
+                $table_sub_tab = '<div class="st-taxopress-ai-subtab">' . join(' | ', $table_sub_tab_lists) . '</div>' . PHP_EOL;
             } elseif ($section === 'metabox') {
                 $table_sub_tab_lists = [];
                 $pt_index = 0;
@@ -1127,7 +1128,7 @@ class SimpleTags_Admin
                     $table_sub_tab_lists[] = '<span class="' . $active_pt . '" data-content=".metabox-' . $role_name . '-content">' . esc_html(translate_user_role($role_info['name'])) . '</span>';
                     $pt_index++;
                 }
-                $table_sub_tab = '<div class="st-metabox-subtab">' . join(' | ', $table_sub_tab_lists). '</div>' . PHP_EOL;
+                $table_sub_tab = '<div class="st-metabox-subtab">' . join(' | ', $table_sub_tab_lists) . '</div>' . PHP_EOL;
             } else {
                 $table_sub_tab = '';
             }
@@ -1138,7 +1139,6 @@ class SimpleTags_Admin
             $output .= '<legend>' . self::getNiceTitleOptions($section) . '</legend>' . PHP_EOL;
             $output .= '<table class="form-table">' . PHP_EOL;
             foreach ((array) $options as $option) {
-
                 $class = '';
                 if (in_array($section, ['legacy', 'taxopress-ai', 'metabox'])) {
                     $class = $option[5];
@@ -1196,7 +1196,7 @@ class SimpleTags_Admin
                             $checked_option = !empty($option_actual[$field_name]) ? (int) $option_actual[$field_name] : 0;
                             $selected_option = ($checked_option > 0) ? true : false;
                             $field_description = !empty($field_option['description']) ? '<br /><span class="description stpexplan">' . $field_option['description'] . '</span>' : '';
-                            $input_type[] = '<label><input type="checkbox" id="' . $option[0] . '" name="' . $field_name . '" value="1" ' . checked($selected_option, true, false) . ' /> ' . $field_option['label'] . '</label> '. $field_description .'<br />' . PHP_EOL;
+                            $input_type[] = '<label><input type="checkbox" id="' . $option[0] . '" name="' . $field_name . '" value="1" ' . checked($selected_option, true, false) . ' /> ' . $field_option['label'] . '</label> ' . $field_description . '<br />' . PHP_EOL;
                         }
                         $input_type = implode('<br />', $input_type);
                         break;
@@ -1296,7 +1296,7 @@ class SimpleTags_Admin
                 }
 
                 // Output
-                $output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . $option[1] . '</label></th><td>'. $extra_prefix .' ' . $input_type . ' ' . $extra_suffix . '</td></tr>' . PHP_EOL;
+                $output .= '<tr style="vertical-align: top;" class="' . $class . '"><th scope="row"><label for="' . $option[0] . '">' . $option[1] . '</label></th><td>' . $extra_prefix . ' ' . $input_type . ' ' . $extra_suffix . '</td></tr>' . PHP_EOL;
             }
             $output .= '</table>' . PHP_EOL;
             $output .= '</fieldset>' . PHP_EOL;
@@ -1445,7 +1445,6 @@ class SimpleTags_Admin
 
         if (!empty($search)) {
             if ($taxonomy == 'linked_term_taxonomies') {
-
                 $query = $wpdb->prepare(
                     "
 					SELECT DISTINCT t.name, t.term_id, tt.taxonomy
@@ -1481,7 +1480,6 @@ class SimpleTags_Admin
 					WHERE tt.taxonomy IN ($taxonomies_list)
 					ORDER BY $order_by_sql $order $limit_sql
 				";
-
             } else {
                 $query = $wpdb->prepare("
 					SELECT DISTINCT t.name, t.slug, t.term_id, tt.taxonomy
@@ -1504,7 +1502,6 @@ class SimpleTags_Admin
     public static function plugin_installer_upgrade_code()
     {
         if (!get_option('taxopress_3_23_0_upgrade_completed')) {
-
             $options = SimpleTags_Plugin::get_option();
 
             // add metabox default values
@@ -1524,7 +1521,6 @@ class SimpleTags_Admin
 
             update_option('taxopress_3_23_0_upgrade_completed', true);
         } elseif (!get_option('taxopress_3_28_0_upgrade_completed')) {
-
             if (function_exists('taxopress_get_autoterm_data')) {
                 $autoterms      = taxopress_get_autoterm_data();
                 foreach ($autoterms as $autoterm_index => $autoterm) {

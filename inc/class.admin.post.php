@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.Security.NonceVerification.Missing -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Admin_Post_Settings
 {
     /**

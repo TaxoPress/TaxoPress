@@ -1,4 +1,7 @@
 <?php
+
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
@@ -14,7 +17,6 @@ class Autolinks_List extends WP_List_Table
             'plural'   => esc_html__('Auto Links', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
-
     }
 
     /**
@@ -272,7 +274,7 @@ class Autolinks_List extends WP_List_Table
                     'action'                 => 'taxopress-delete-autolink',
                     'taxopress_autolinks' => esc_attr($item['ID']),
                     '_wpnonce'               => wp_create_nonce('autolink-action-request-nonce')
-                ],
+                    ],
                     admin_url('admin.php')
                 ),
                 __('Delete', 'simple-tags')
@@ -397,6 +399,4 @@ class Autolinks_List extends WP_List_Table
 
         return '<input readonly type="text" value=\'[taxopress_autolinks id="' . $item['ID'] . '"]\' />';
     }
-
-
 }

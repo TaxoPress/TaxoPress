@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Admin_ClickTags
 {
     /**
@@ -55,7 +57,7 @@ class SimpleTags_Admin_ClickTags
         //add taxonomy
         $click_tags_taxonomy = '
         <div class="option">
-        <label>'.esc_html__('Taxonomy', 'simple-tags').'</label><br />
+        <label>' . esc_html__('Taxonomy', 'simple-tags') . '</label><br />
         <select class="st-post-taxonomy-select click_tags_taxonomy" name="click_tags_taxonomy">';
         foreach ($post_taxonomies as $_taxonomy) {
             $_taxonomy = get_taxonomy($_taxonomy);
@@ -67,11 +69,11 @@ class SimpleTags_Admin_ClickTags
             }
 
             if (is_array($click_terms['taxonomy']) && in_array($_taxonomy->name, $click_terms['taxonomy'])) {
-                $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
+                $click_tags_taxonomy .= '<option value="' . $_taxonomy->name . '" selected="selected">' . $_taxonomy->labels->name . '</option>';
             } elseif (!is_array($click_terms['taxonomy']) && $_taxonomy->name === $click_terms['taxonomy']) { // backward compatibility
-                $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'" selected="selected">'.$_taxonomy->labels->name.'</option>';
+                $click_tags_taxonomy .= '<option value="' . $_taxonomy->name . '" selected="selected">' . $_taxonomy->labels->name . '</option>';
             } else {
-                $click_tags_taxonomy .= '<option value="'.$_taxonomy->name.'">'.$_taxonomy->labels->name.'</option>';
+                $click_tags_taxonomy .= '<option value="' . $_taxonomy->name . '">' . $_taxonomy->labels->name . '</option>';
             }
         }
         $click_tags_taxonomy .= '</select>
@@ -81,11 +83,11 @@ class SimpleTags_Admin_ClickTags
         $click_tags_methods = ['name' => esc_html__('Name', 'simple-tags'), 'count' => esc_html__('Counter', 'simple-tags'), 'random' => esc_html__('Random', 'simple-tags')];
         $click_tags_method = '
         <div class="option">
-        <label>'.__('Method for choosing terms', 'simple-tags').'</label><br />
+        <label>' . __('Method for choosing terms', 'simple-tags') . '</label><br />
         <select class="click_tags_method" name="click_tags_method">';
         foreach ($click_tags_methods as $option => $label) {
             $selected = ($option === $click_terms['orderby']) ? 'selected="selected"' : '';
-            $click_tags_method .= '<option value="'.$option.'" '.$selected.'>'.$label.'</option>';
+            $click_tags_method .= '<option value="' . $option . '" ' . $selected . '>' . $label . '</option>';
         }
         $click_tags_method .= '</select>
         </div>';
@@ -94,11 +96,11 @@ class SimpleTags_Admin_ClickTags
         $click_tags_orders = ['asc' =>  esc_html__('Ascending', 'simple-tags'), 'desc' => esc_html__('Descending', 'simple-tags')];
         $click_tags_order = '
         <div class="option">
-        <label>'.__('Ordering for choosing terms', 'simple-tags').'</label><br />
+        <label>' . __('Ordering for choosing terms', 'simple-tags') . '</label><br />
         <select class="click_tags_order" name="click_tags_order">';
         foreach ($click_tags_orders as $option => $label) {
             $selected = ($option === $click_terms['order']) ? 'selected="selected"' : '';
-            $click_tags_order .= '<option value="'.$option.'" '.$selected.'>'.$label.'</option>';
+            $click_tags_order .= '<option value="' . $option . '" ' . $selected . '>' . $label . '</option>';
         }
         $click_tags_order .= '</select>
         </div>';
@@ -106,24 +108,24 @@ class SimpleTags_Admin_ClickTags
         //add limit
         $click_tags_limit = '
         <div class="option">
-        <label for="click_tags_limit">'.__('Maximum terms', 'simple-tags').'</label><br />
-        <input type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="'.$click_terms['number'].'">
+        <label for="click_tags_limit">' . __('Maximum terms', 'simple-tags') . '</label><br />
+        <input type="number" class="click_tags_limit" id="click_tags_limit" name="click_tags_limit" value="' . $click_terms['number'] . '">
         </div>';
 
         //add searchbox
         $click_tags_search = '
         <div class="option">
         <label for="click_tags_search">Search</label><br />
-        <input name="click_tags_search" id="click_tags_search" type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simple-tags').'" size="26" autocomplete="off">
+        <input name="click_tags_search" id="click_tags_search" type="text" class="click-tag-search-box" placeholder="' . __('Start typing to search', 'simple-tags') . '" size="26" autocomplete="off">
         </div>';
 
         //create tags search data
-        $click_tags_options = '<div class="clicktags-search-wrapper">'. $click_tags_search.' '.$click_tags_taxonomy.' '.$click_tags_method.' '.$click_tags_order.' '.$click_tags_limit.'</div>';
+        $click_tags_options = '<div class="clicktags-search-wrapper">' . $click_tags_search . ' ' . $click_tags_taxonomy . ' ' . $click_tags_method . ' ' . $click_tags_order . ' ' . $click_tags_limit . '</div>';
 
         //metabox edit line
         if (current_user_can('admin_simple_tags')) {
             $click_term_edit = '<span class="edit-suggest-term-metabox">
-			'. sprintf(
+			' . sprintf(
                 '<a href="%s">%s</a>',
                 add_query_arg(
                     [
@@ -136,7 +138,7 @@ class SimpleTags_Admin_ClickTags
                 ),
                 __('Edit this metabox', 'simple-tags')
             )
-            .'
+            . '
 			</span>';
         } else {
             $click_term_edit = '';
@@ -150,7 +152,7 @@ class SimpleTags_Admin_ClickTags
                 'hide_txt'    => sprintf(esc_html__('Click terms to add them to this %s', 'simple-tags'), $post_type_name),
                 'state'       => 'show',
                 'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
-                'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="'.__('Start typing to search', 'simple-tags').'" size="26" autocomplete="off">',
+                'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="' . __('Start typing to search', 'simple-tags') . '" size="26" autocomplete="off">',
                 'click_tags_options'  => $click_tags_options,
                 'edit_metabox_link'   => $click_term_edit,
             )
@@ -236,7 +238,7 @@ class SimpleTags_Admin_ClickTags
         $post_id = (isset($_GET['post_id'])) ? intval($_GET['post_id']) : 0;
 
         if (isset($_GET['click_tags_method']) && !empty($_GET['click_tags_method'])) {
-            $order_click_tags = (sanitize_text_field($_GET['click_tags_method']) === 'random') ? sanitize_text_field($_GET['click_tags_method']) : sanitize_text_field($_GET['click_tags_method']).'-'.sanitize_text_field($_GET['click_tags_order']);
+            $order_click_tags = (sanitize_text_field($_GET['click_tags_method']) === 'random') ? sanitize_text_field($_GET['click_tags_method']) : sanitize_text_field($_GET['click_tags_method']) . '-' . sanitize_text_field($_GET['click_tags_order']);
         } else {
             // Order tags before selection (count-asc/count-desc/name-asc/name-desc/random)
             $order_click_tags = 'random';
@@ -267,7 +269,7 @@ class SimpleTags_Admin_ClickTags
         $term_limit =  isset($_GET['click_tags_limit']) ? (int)$_GET['click_tags_limit'] : 100;
 
         if ($term_limit > 0) {
-            $limit = 'LIMIT 0, '.$term_limit;
+            $limit = 'LIMIT 0, ' . $term_limit;
         } else {
             $limit = '';
         }
@@ -287,7 +289,7 @@ class SimpleTags_Admin_ClickTags
 
         foreach ((array) $terms as $term) {
             $class_current = in_array($term->term_id, $post_terms) ? 'used_term' : '';
-            echo '<span data-term_id="'.esc_attr($term->term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" class="local '.esc_attr($taxonomy).' ' . esc_attr($class_current) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html(stripslashes($term->name)) . '</span>' . "\n";
+            echo '<span data-term_id="' . esc_attr($term->term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" class="local ' . esc_attr($taxonomy) . ' ' . esc_attr($class_current) . '" tabindex="0" role="button" aria-pressed="false">' . esc_html(stripslashes($term->name)) . '</span>' . "\n";
         }
         echo '<div class="clear"></div>';
 

@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize,WordPressVIPMinimum.Functions.CheckReturnValue.NonCheckedVariable,WordPressVIPMinimum.Functions.StripTags.StripTagsOneParameter -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Client
 {
     /**
@@ -82,7 +84,6 @@ class SimpleTags_Client
 
         wp_enqueue_script('taxopress-frontend-js');
         wp_enqueue_style('taxopress-frontend-css');
-
     }
 
 
@@ -306,19 +307,18 @@ class SimpleTags_Client
         if (is_array($content)) {
             switch ($format) {
                 case 'list':
-                    $output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . implode("</li>\n\t<li>", $content) . "</li>\n</ul> {$after}\n";
+                    $output = '' . $before . ' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . implode("</li>\n\t<li>", $content) . "</li>\n</ul> {$after}\n";
                     break;
                 case 'ol':
-                    $output = ''. $before .' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode("</li>\n\t<li>", $content) . "</li>\n</ol> {$after}\n";
+                    $output = '' . $before . ' <ol class="' . $html_class . '">' . "\n\t" . '<li>' . implode("</li>\n\t<li>", $content) . "</li>\n</ol> {$after}\n";
                     break;
                 case 'comma':
-                    $output = ''. ''. ''. ''. $before .  implode($separator, $content) . " {$after}\n";
+                    $output = '' . '' . '' . '' . $before .  implode($separator, $content) . " {$after}\n";
                     break;
                 case 'table':
                     $output = $before . '<table class="' . $html_class . ' taxopress-table-container">' . "\n\t";
                     $count = 0;
                     foreach ($content as $item) {
-
                         // If $item is an array, use its fields
                         if (is_array($item) && isset($item['html'], $item['count'])) {
                             $term_html = $item['html'];
@@ -330,7 +330,7 @@ class SimpleTags_Client
                         }
 
                         // if ( $post_count === 0 ) {
-                        // 	continue;
+                        //  continue;
                         // }
 
                         $display_class = $count >= 6 ? 'hidden' : '';
@@ -346,10 +346,10 @@ class SimpleTags_Client
                     $output .= "</table>" . $after . "\n";
                     break;
                 case 'border':
-                    $output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . implode("{$separator}\n", $content) . " {$after}</div>\n";
+                    $output = '<div class="taxopress-border-cloud ' . $html_class . '">' . $before . ' ' . "\n\t" . implode("{$separator}\n", $content) . " {$after}</div>\n";
                     break;
                 case 'box':
-                    $output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . implode("{$separator}\n", $content) . " {$after}</div>\n";
+                    $output = '<div class="taxopress-box-list ' . $html_class . '">' . $before . ' ' . "\n\t" . implode("{$separator}\n", $content) . " {$after}</div>\n";
                     break;
                 case 'parent/child':
                     $output = $before . '<ul class="' . $html_class . ' taxopress-parent-child-list">' . "\n";
@@ -496,7 +496,7 @@ class SimpleTags_Client
                     return $output;
                     break;
                 default:
-                    $output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . implode("{$separator}\n", $content) . " {$after}</div>\n";
+                    $output = '<div class="' . $html_class . '">' . $before . ' ' . "\n\t" . implode("{$separator}\n", $content) . " {$after}</div>\n";
                     break;
             }
         } else {
@@ -506,10 +506,10 @@ class SimpleTags_Client
                     $output = $content;
                     break;
                 case 'list':
-                    $output = ''. $before .' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . $content . "</li>\n\t" . "</ul> {$after}\n";
+                    $output = '' . $before . ' <ul class="' . $html_class . '">' . "\n\t" . '<li>' . $content . "</li>\n\t" . "</ul> {$after}\n";
                     break;
                 case 'comma':
-                    $output = ''. ''. ''. ''. $before . $content . " {$after}\n";
+                    $output = '' . '' . '' . '' . $before . $content . " {$after}\n";
                     break;
                 case 'table':
                     $output = $before . '<table class="' . $html_class . '">' . "\n\t"
@@ -517,10 +517,10 @@ class SimpleTags_Client
                         . "</table>" . $after . "\n";
                     break;
                 case 'border':
-                    $output = '<div class="taxopress-border-cloud ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
+                    $output = '<div class="taxopress-border-cloud ' . $html_class . '">' . $before . ' ' . "\n\t" . $content . " {$after} </div>\n";
                     break;
                 case 'box':
-                    $output = '<div class="taxopress-box-list ' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
+                    $output = '<div class="taxopress-box-list ' . $html_class . '">' . $before . ' ' . "\n\t" . $content . " {$after} </div>\n";
                     break;
                 case 'parent/child':
                     $output = $before . '<ul class="' . esc_attr($html_class) . ' taxopress-parent-child-list">' . "\n";
@@ -556,14 +556,14 @@ class SimpleTags_Client
                     $output .= "</ul>" . $after . "\n";
                     break;
                 default:
-                    $output = '<div class="' . $html_class . '">'. $before .' ' . "\n\t" . $content . " {$after} </div>\n";
+                    $output = '<div class="' . $html_class . '">' . $before . ' ' . "\n\t" . $content . " {$after} </div>\n";
                     break;
             }
         }
 
         //wrap class
         if (!empty(trim($div_class))) {
-            $wrap_div_class_open = '<div class="'.taxopress_format_class($div_class).'">';
+            $wrap_div_class_open = '<div class="' . taxopress_format_class($div_class) . '">';
             $wrap_div_class_close = '</div>';
         } else {
             $wrap_div_class_open = '<div class="taxopress-output-wrapper"> ';

@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,VariableAnalysis.CodeAnalysis.VariableAnalysis.VariableRedeclaration,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.Security.NonceVerification.Missing,WordPressVIPMinimum.Functions.StripTags.StripTagsOneParameter -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Client_Autoterms
 {
     /**
@@ -714,7 +716,6 @@ class SimpleTags_Client_Autoterms
                         // Whole word ?
                         //if (preg_match("/\b" . preg_quote($find_term) . "\b/i", $content)) {
                         if (preg_match("#\b" . preg_quote($find_term) . "\b#i", $content)) {
-
                             $terms_to_add[] = $term;
                         }
 

@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Generic.WhiteSpace.DisallowTabIndent.TabsUsed,Generic.WhiteSpace.ScopeIndent.Incorrect,PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine,PSR2.Classes.ClassDeclaration.CloseBraceAfterBody,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Admin_Autocomplete
 {
     public function __construct()

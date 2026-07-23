@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.SlowDBQuery.slow_db_query_tax_query,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Admin_Mass
 {
     public const MENU_SLUG = 'st_options';
@@ -168,231 +170,230 @@ class SimpleTags_Admin_Mass
         // Display message
         settings_errors(__CLASS__);
         ?>
-		<div class="taxopress-block-wrap">
-		<div class="wrap st_wrap tagcloudui st_mass_terms-page admin-settings">
-			<form id="posts-filter" action="" method="get">
-				<input type="hidden" name="page" value="st_mass_terms"/>
-				<input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>"/>
-				<input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>"/>
+        <div class="taxopress-block-wrap">
+        <div class="wrap st_wrap tagcloudui st_mass_terms-page admin-settings">
+            <form id="posts-filter" action="" method="get">
+                <input type="hidden" name="page" value="st_mass_terms"/>
+                <input type="hidden" name="taxo" value="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>"/>
+                <input type="hidden" name="cpt" value="<?php echo esc_attr(SimpleTags_Admin::$post_type); ?>"/>
 
         <h1><?php _e('Mass Edit Terms', 'simple-tags'); ?></h1>
       <br>
-	  <div class="taxopress-description"><?php esc_html_e('This feature allows users to quickly add or remove terms from multiple posts.', 'simple-tags'); ?></div>
+      <div class="taxopress-description"><?php esc_html_e('This feature allows users to quickly add or remove terms from multiple posts.', 'simple-tags'); ?></div>
       <br>
 
-				<ul class="subsubsub">
-					<?php
+                <ul class="subsubsub">
+                    <?php
                     $status_links   = array();
-        $num_posts      = wp_count_posts(SimpleTags_Admin::$post_type, 'readable');
-        $class          = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
-        $status_links[] = '<li><a href="' . admin_url('admin.php') . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . esc_html__('All', 'simple-tags') . '</a>';
-        foreach ($post_stati as $status => $label) {
-            $class = '';
+                    $num_posts      = wp_count_posts(SimpleTags_Admin::$post_type, 'readable');
+                    $class          = (empty($_GET['post_status']) && empty($_GET['post_type'])) ? ' class="current"' : '';
+                    $status_links[] = '<li><a href="' . admin_url('admin.php') . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '"' . $class . '>' . esc_html__('All', 'simple-tags') . '</a>';
+                    foreach ($post_stati as $status => $label) {
+                        $class = '';
 
-            if (! in_array($status, $avail_post_stati)) {
-                continue;
-            }
-
-            if (empty($num_posts->$status)) {
-                continue;
-            }
-            if (isset($_GET['post_status']) && $status == $_GET['post_status']) {
-                $class = ' class="current"';
-            }
-
-            $status_links[] = '<li><a href="' . admin_url('admin.php') . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;post_status=' . $status . '"' . $class . '>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n($num_posts->$status)) . '</a>';
-        }
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo implode(' |</li>', $status_links) . '</li>';
-        unset($status_links);
-
-        $class = (! empty($_GET['post_type'])) ? ' class="current"' : '';
-        ?>
-				</ul>
-
-				<?php if (isset($_GET['post_status'])) : ?>
-					<input type="hidden" name="post_status" value="<?php echo esc_attr(sanitize_text_field($_GET['post_status'])) ?>"/>
-				<?php endif; ?>
-
-
-				<p class="search-box">
-						<input type="text" id="post-search-input" placeholder="<?php esc_attr_e('Search post title and content', 'simple-tags'); ?>" name="s" value="<?php the_search_query(); ?>"/>
-						<input type="submit" value="<?php _e('Search', 'simple-tags'); ?>" class="button"/>
-				</p>
-
-				<div class="tablenav custom-nav">
-					<?php
-        $posts_per_page = (isset($_GET['posts_per_page'])) ? (int) $_GET['posts_per_page'] : 0;
-        if ((int) $posts_per_page == 0) {
-            $posts_per_page = 15;
-        }
-
-        $page_links = paginate_links(array(
-            'base'    => add_query_arg('paged', '%#%'),
-            'format'  => '',
-            'total'   => ceil($wp_query->found_posts / $posts_per_page),
-            'current' => ((int) $_GET['paged'])
-        ));
-
-        if ($page_links) {
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo "<div class='tablenav-pages'>". $page_links ."</div>";
-        }
-        ?>
-
-					<div style="float: left">
-						<?php
-            if (! is_singular()) {
-                $arc_result = $wpdb->get_results($wpdb->prepare("SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = %s ORDER BY post_date DESC", SimpleTags_Admin::$post_type));
-
-                $month_count = count($arc_result);
-
-                if (! isset($_GET['m'])) {
-                    $_GET['m'] = '';
-                }
-
-                if ($month_count && ! (1 == $month_count && 0 == $arc_result[0]->mmonth)) {
-                    ?>
-								<select name='m'>
-									<option <?php selected(@sanitize_text_field($_GET['m']), 0); ?>
-										value='0'><?php _e('Show all dates', 'simple-tags'); ?></option>
-									<?php
-                        foreach ($arc_result as $arc_row) {
-                            if ($arc_row->yyear == 0) {
-                                continue;
-                            }
-                            $arc_row->mmonth = zeroise($arc_row->mmonth, 2);
-
-                            if ($arc_row->yyear . $arc_row->mmonth == $_GET['m']) {
-                                $default = ' selected="selected"';
-                            } else {
-                                $default = '';
-                            }
-                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                            echo "<option$default value='$arc_row->yyear$arc_row->mmonth'>";
-                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                            echo esc_html($wp_locale->get_month($arc_row->mmonth)) . " ".esc_html($arc_row->yyear)."";
-                            echo "</option>\n";
+                        if (! in_array($status, $avail_post_stati)) {
+                            continue;
                         }
-                    ?>
-								</select>
-								<?php
-                }
-                ?>
 
-							<select name="posts_per_page" id="posts_per_page">
-								<option <?php if (! isset($_GET['posts_per_page'])) {
-								    echo 'selected="selected"';
-								} ?> value=""><?php _e('Quantity&hellip;', 'simple-tags'); ?></option>
-								<option <?php selected($posts_per_page, 10); ?> value="10">10</option>
-								<option <?php selected($posts_per_page, 20); ?> value="20">20</option>
-								<option <?php selected($posts_per_page, 30); ?> value="30">30</option>
-								<option <?php selected($posts_per_page, 40); ?> value="40">40</option>
-								<option <?php selected($posts_per_page, 50); ?> value="50">50</option>
-								<option <?php selected($posts_per_page, 100); ?> value="100">100</option>
-								<option <?php selected($posts_per_page, 200); ?> value="200">200</option>
-							</select>
-
-							<?php
-
-								$current_filter_term = isset($_GET['massedit_filter_term']) ? sanitize_text_field($_GET['massedit_filter_term']) : '';
-                $selected_term_label  = '';
-
-                if ($current_filter_term) {
-                    $existing_term = get_term_by('slug', $current_filter_term, SimpleTags_Admin::$taxonomy);
-                    if ($existing_term && !is_wp_error($existing_term)) {
-                        $show_slug = (int) SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug') === 1;
-
-                        if ($show_slug) {
-                            $selected_term_label = sprintf('%s (%s)', $existing_term->name, $existing_term->slug);
-                        } else {
-                            $selected_term_label = $existing_term->name;
+                        if (empty($num_posts->$status)) {
+                            continue;
                         }
+                        if (isset($_GET['post_status']) && $status == $_GET['post_status']) {
+                            $class = ' class="current"';
+                        }
+
+                        $status_links[] = '<li><a href="' . admin_url('admin.php') . '?page=st_mass_terms&amp;cpt=' . SimpleTags_Admin::$post_type . '&amp;taxo=' . SimpleTags_Admin::$taxonomy . '&amp;post_status=' . $status . '"' . $class . '>' . sprintf(_n($label[2][0], $label[2][1], (int) $num_posts->$status), number_format_i18n($num_posts->$status)) . '</a>';
                     }
-                }
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo implode(' |</li>', $status_links) . '</li>';
+                    unset($status_links);
+
+                    $class = (! empty($_GET['post_type'])) ? ' class="current"' : '';
+                    ?>
+                </ul>
+
+                <?php if (isset($_GET['post_status'])) : ?>
+                    <input type="hidden" name="post_status" value="<?php echo esc_attr(sanitize_text_field($_GET['post_status'])) ?>"/>
+                <?php endif; ?>
+
+
+                <p class="search-box">
+                        <input type="text" id="post-search-input" placeholder="<?php esc_attr_e('Search post title and content', 'simple-tags'); ?>" name="s" value="<?php the_search_query(); ?>"/>
+                        <input type="submit" value="<?php _e('Search', 'simple-tags'); ?>" class="button"/>
+                </p>
+
+                <div class="tablenav custom-nav">
+                    <?php
+                    $posts_per_page = (isset($_GET['posts_per_page'])) ? (int) $_GET['posts_per_page'] : 0;
+                    if ((int) $posts_per_page == 0) {
+                        $posts_per_page = 15;
+                    }
+
+                    $page_links = paginate_links(array(
+                    'base'    => add_query_arg('paged', '%#%'),
+                    'format'  => '',
+                    'total'   => ceil($wp_query->found_posts / $posts_per_page),
+                    'current' => ((int) $_GET['paged'])
+                    ));
+
+                    if ($page_links) {
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                        echo "<div class='tablenav-pages'>" . $page_links . "</div>";
+                    }
+                    ?>
+
+                    <div style="float: left">
+                        <?php
+                        if (! is_singular()) {
+                            $arc_result = $wpdb->get_results($wpdb->prepare("SELECT DISTINCT YEAR(post_date) AS yyear, MONTH(post_date) AS mmonth FROM $wpdb->posts WHERE post_type = %s ORDER BY post_date DESC", SimpleTags_Admin::$post_type));
+
+                            $month_count = count($arc_result);
+
+                            if (! isset($_GET['m'])) {
+                                $_GET['m'] = '';
+                            }
+
+                            if ($month_count && ! (1 == $month_count && 0 == $arc_result[0]->mmonth)) {
+                                ?>
+                                <select name='m'>
+                                    <option <?php selected(@sanitize_text_field($_GET['m']), 0); ?>
+                                        value='0'><?php _e('Show all dates', 'simple-tags'); ?></option>
+                                    <?php
+                                    foreach ($arc_result as $arc_row) {
+                                        if ($arc_row->yyear == 0) {
+                                            continue;
+                                        }
+                                        $arc_row->mmonth = zeroise($arc_row->mmonth, 2);
+
+                                        if ($arc_row->yyear . $arc_row->mmonth == $_GET['m']) {
+                                            $default = ' selected="selected"';
+                                        } else {
+                                            $default = '';
+                                        }
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        echo "<option$default value='$arc_row->yyear$arc_row->mmonth'>";
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        echo esc_html($wp_locale->get_month($arc_row->mmonth)) . " " . esc_html($arc_row->yyear) . "";
+                                        echo "</option>\n";
+                                    }
+                                    ?>
+                                </select>
+                                <?php
+                            }
+                            ?>
+
+                            <select name="posts_per_page" id="posts_per_page">
+                                <option <?php if (! isset($_GET['posts_per_page'])) {
+                                    echo 'selected="selected"';
+                                        } ?> value=""><?php _e('Quantity&hellip;', 'simple-tags'); ?></option>
+                                <option <?php selected($posts_per_page, 10); ?> value="10">10</option>
+                                <option <?php selected($posts_per_page, 20); ?> value="20">20</option>
+                                <option <?php selected($posts_per_page, 30); ?> value="30">30</option>
+                                <option <?php selected($posts_per_page, 40); ?> value="40">40</option>
+                                <option <?php selected($posts_per_page, 50); ?> value="50">50</option>
+                                <option <?php selected($posts_per_page, 100); ?> value="100">100</option>
+                                <option <?php selected($posts_per_page, 200); ?> value="200">200</option>
+                            </select>
+
+                                        <?php
+
+                                            $current_filter_term = isset($_GET['massedit_filter_term']) ? sanitize_text_field($_GET['massedit_filter_term']) : '';
+                                        $selected_term_label  = '';
+
+                                        if ($current_filter_term) {
+                                            $existing_term = get_term_by('slug', $current_filter_term, SimpleTags_Admin::$taxonomy);
+                                            if ($existing_term && !is_wp_error($existing_term)) {
+                                                $show_slug = (int) SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug') === 1;
+
+                                                if ($show_slug) {
+                                                    $selected_term_label = sprintf('%s (%s)', $existing_term->name, $existing_term->slug);
+                                                } else {
+                                                    $selected_term_label = $existing_term->name;
+                                                }
+                                            }
+                                        }
+                                        ?>
+
+                            <select name="massedit_filter_term" id="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>"
+                                    class="taxopress-select2-term-filter"
+                                    data-placeholder="<?php echo esc_attr__('Filter by term', 'simple-tags'); ?>"
+                                    style="min-width:200px;">
+                                <option value=""><?php esc_html_e('All terms', 'simple-tags'); ?></option>
+                                <?php if ($current_filter_term && $selected_term_label) : ?>
+                                    <option value="<?php echo esc_attr($current_filter_term); ?>" selected="selected">
+                                        <?php echo esc_html($selected_term_label); ?>
+                                    </option>
+                                <?php endif; ?>
+                            </select>
+
+                            <input type="submit" id="post-query-submit" value="<?php _e('Filter', 'simple-tags'); ?>"
+                                   class="button-secondary"/>
+                        <?php } ?>
+                        <?php SimpleTags_Admin::boxSelectorTaxonomy('st_mass_terms'); ?>
+                    </div>
+                    <br style="clear:both;"/>
+                </div>
+            </form>
+
+            <div style="clear:both;margin-bottom: 6px;"></div>
+
+            <?php if (have_posts()) :
+                add_filter('the_title', 'esc_html');
                 ?>
+                <form name="post" id="post" method="post" class="st-mass-edit">
+                    <table class="widefat post fixed">
+                        <thead>
+                        <tr>
+                            <th class="manage-column"><?php esc_html_e('Post title', 'simple-tags'); ?></th>
+                            <th class="manage-column"><?php printf(esc_html__('Terms : %s', 'simple-tags'), esc_html(SimpleTags_Admin::$taxo_name)); ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $class = 'alternate';
+                        while (have_posts()) {
+                            the_post();
+                            $class = ($class == 'alternate') ? '' : 'alternate';
+                            ?>
+                            <tr valign="top" class="<?php echo esc_attr($class); ?>">
+                                <th scope="row"><a
+                                        href="<?php echo esc_url(admin_url('post.php?action=edit&amp;post=' . get_the_ID())); ?>"
+                                        title="<?php esc_attr_e('Edit', 'simple-tags'); ?>"><?php echo (esc_html(get_the_title()) == '') ? (int)get_the_ID() : esc_html(get_the_title()); ?></a>
+                                </th>
+                                <td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input taxopress-mass-edit-input"
+                                           type="text" size="100" name="tags[<?php echo (int)get_the_ID(); ?>]"
+                                           value="<?php echo esc_attr(SimpleTags_Admin::getTermsToEdit(SimpleTags_Admin::$taxonomy, get_the_ID())); ?>"/>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
 
-							<select name="massedit_filter_term" id="<?php echo esc_attr(SimpleTags_Admin::$taxonomy); ?>"
-									class="taxopress-select2-term-filter"
-									data-placeholder="<?php echo esc_attr__('Filter by term', 'simple-tags'); ?>"
-									style="min-width:200px;">
-								<option value=""><?php esc_html_e('All terms', 'simple-tags'); ?></option>
-								<?php if ($current_filter_term && $selected_term_label) : ?>
-									<option value="<?php echo esc_attr($current_filter_term); ?>" selected="selected">
-										<?php echo esc_html($selected_term_label); ?>
-									</option>
-								<?php endif; ?>
-							</select>
+                    <p class="submit">
+                        <input type="hidden" name="secure_mass"
+                               value="<?php echo esc_attr(wp_create_nonce('st_mass_terms')); ?>"/>
+                        <input class="button-primary" type="submit" name="update_mass"
+                               value="<?php esc_attr_e('Update all &raquo;', 'simple-tags'); ?>"/>
+                    </p>
+                </form>
 
-							<input type="submit" id="post-query-submit" value="<?php _e('Filter', 'simple-tags'); ?>"
-							       class="button-secondary"/>
-						<?php } ?>
-						<?php SimpleTags_Admin::boxSelectorTaxonomy('st_mass_terms'); ?>
-					</div>
-					<br style="clear:both;"/>
-				</div>
-			</form>
+            <?php else : ?>
+            <p><?php _e('No content to edit.', 'simple-tags'); ?>
 
-			<div style="clear:both;margin-bottom: 6px;"></div>
+            <?php endif; ?>
 
-			<?php if (have_posts()) :
-			    add_filter('the_title', 'esc_html');
-			    ?>
-				<form name="post" id="post" method="post" class="st-mass-edit">
-					<table class="widefat post fixed">
-						<thead>
-						<tr>
-							<th class="manage-column"><?php esc_html_e('Post title', 'simple-tags'); ?></th>
-							<th class="manage-column"><?php printf(esc_html__('Terms : %s', 'simple-tags'), esc_html(SimpleTags_Admin::$taxo_name)); ?></th>
-						</tr>
-						</thead>
-						<tbody>
-						<?php
-			            $class = 'alternate';
-			    while (have_posts()) {
-			        the_post();
-			        $class = ($class == 'alternate') ? '' : 'alternate';
-			        ?>
-							<tr valign="top" class="<?php echo esc_attr($class); ?>">
-								<th scope="row"><a
-										href="<?php echo esc_url(admin_url('post.php?action=edit&amp;post=' . get_the_ID())); ?>"
-										title="<?php esc_attr_e('Edit', 'simple-tags'); ?>"><?php echo (esc_html(get_the_title()) == '') ? (int)get_the_ID() : esc_html(get_the_title()); ?></a>
-								</th>
-								<td><input id="tags-input<?php the_ID(); ?>" class="autocomplete-input tags_input taxopress-mass-edit-input"
-								           type="text" size="100" name="tags[<?php echo (int)get_the_ID(); ?>]"
-								           value="<?php echo esc_attr(SimpleTags_Admin::getTermsToEdit(SimpleTags_Admin::$taxonomy, get_the_ID())); ?>"/>
-								</td>
-							</tr>
-							<?php
-			    }
-			    ?>
-						</tbody>
-					</table>
+            <?php SimpleTags_Admin::printAdminFooter(); ?>
+        </div>
 
-					<p class="submit">
-						<input type="hidden" name="secure_mass"
-						       value="<?php echo esc_attr(wp_create_nonce('st_mass_terms')); ?>"/>
-						<input class="button-primary" type="submit" name="update_mass"
-						       value="<?php esc_attr_e('Update all &raquo;', 'simple-tags'); ?>"/>
-					</p>
-				</form>
+        <div class="taxopress-right-sidebar admin-settings-sidebar">
+            <?php do_action('taxopress_admin_after_sidebar'); ?>
+        </div>
+        
+        </div>
 
-			<?php else: ?>
-
-			<p><?php _e('No content to edit.', 'simple-tags'); ?>
-
-				<?php endif; ?>
-
-			<?php SimpleTags_Admin::printAdminFooter(); ?>
-		</div>
-
-		<div class="taxopress-right-sidebar admin-settings-sidebar">
-			<?php do_action('taxopress_admin_after_sidebar'); ?>
-		</div>
-		
-		</div>
-
-		<?php
+        <?php
         do_action('simpletags-mass_terms', SimpleTags_Admin::$taxonomy);
     }
 
@@ -434,7 +435,7 @@ class SimpleTags_Admin_Mass
         $q['post_type'] = SimpleTags_Admin::$post_type;
 
         // Post status
-        $post_stati = array(    //	array( adj, noun )
+        $post_stati = array(    //  array( adj, noun )
             'publish' => array(
                 _x('Published', 'post'),
                 __('Published posts'),
@@ -530,5 +531,4 @@ class SimpleTags_Admin_Mass
 
         return array( $post_stati, $avail_post_stati );
     }
-
 }

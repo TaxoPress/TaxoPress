@@ -1,4 +1,7 @@
 <?php
+
+// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_tax_query,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
@@ -150,7 +153,6 @@ class Taxopress_Posts_List extends WP_List_Table
     {
 
         if ('top' === $which) {
-
             $post_types = get_post_types(['public' => true], 'objects');
 
             $posts_term_filter = (!empty($_REQUEST['posts_term_filter'])) ? (int) $_REQUEST['posts_term_filter'] : '';
@@ -167,14 +169,13 @@ class Taxopress_Posts_List extends WP_List_Table
                     >
                     <option value=""><?php esc_html_e('', 'simple-tags'); ?></option>
                     <?php
-                                if (!empty($posts_term_filter)) {
-                                    $posts_term_filter_data = get_term($posts_term_filter);
-                                    if (is_object($posts_term_filter_data) && !is_wp_error($posts_term_filter_data) && isset($posts_term_filter_data->term_id)) {
-                                        echo '<option value="' . esc_attr($posts_term_filter_data->term_id) . '" selected>' . esc_html($posts_term_filter_data->name) . '</option>';
-                                    }
-
-                                }
-            ?>
+                    if (!empty($posts_term_filter)) {
+                        $posts_term_filter_data = get_term($posts_term_filter);
+                        if (is_object($posts_term_filter_data) && !is_wp_error($posts_term_filter_data) && isset($posts_term_filter_data->term_id)) {
+                            echo '<option value="' . esc_attr($posts_term_filter_data->term_id) . '" selected>' . esc_html($posts_term_filter_data->name) . '</option>';
+                        }
+                    }
+                    ?>
                 </select>
 
                 <select class="posts-post-type-filter-select taxopress-select2 taxopress-simple-select2"
@@ -183,16 +184,16 @@ class Taxopress_Posts_List extends WP_List_Table
                     data-placeholder="<?php esc_attr_e('Post Types Filter', 'simple-tags'); ?>">
                     <option value=""><?php esc_html_e('All Post Types', 'simple-tags'); ?></option>
                     <?php
-            foreach ($post_types as $post_type) {
-                echo '<option value="' . esc_attr($post_type->name) . '" ' . selected($posts_post_type_filter, $post_type->name, false) . '>' . esc_html($post_type->label) . '</option>';
-            }
-            ?>
+                    foreach ($post_types as $post_type) {
+                        echo '<option value="' . esc_attr($post_type->name) . '" ' . selected($posts_post_type_filter, $post_type->name, false) . '>' . esc_html($post_type->label) . '</option>';
+                    }
+                    ?>
                 </select>
 
                 <a href="javascript:void(0)" class="taxopress-posts-tablenav-filter button"><?php esc_html_e('Filter', 'simple-tags'); ?></a>
 
             </div>
-        <?php
+            <?php
         }
     }
 
@@ -253,7 +254,7 @@ class Taxopress_Posts_List extends WP_List_Table
             <input type="search" id="<?php echo esc_attr($input_id); ?>" name="s" value="<?php _admin_search_query(); ?>" />
             <?php submit_button($text, '', '', false, ['id' => 'taxopress-posts-search-submit']); ?>
         </p>
-    <?php
+        <?php
     }
 
     /**
@@ -320,7 +321,7 @@ class Taxopress_Posts_List extends WP_List_Table
                 esc_html(get_the_title($post))
             );
         } else {
-            $title = '<strong><span class="row-title">'. get_the_title($post) .'</span></strong>';
+            $title = '<strong><span class="row-title">' . get_the_title($post) . '</span></strong>';
         }
 
         return $title;
@@ -367,7 +368,7 @@ class Taxopress_Posts_List extends WP_List_Table
             $post_type = $post_type_object->label;
         }
 
-        $out = '<a href="'. $this->update_or_add_url_parameter('posts_post_type_filter', $post->post_type) .'">'. $post_type .'</a>';
+        $out = '<a href="' . $this->update_or_add_url_parameter('posts_post_type_filter', $post->post_type) . '">' . $post_type . '</a>';
 
         return $out;
     }

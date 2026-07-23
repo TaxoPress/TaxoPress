@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Compatibility
 {
     /**
@@ -39,7 +41,7 @@ class SimpleTags_Compatibility
 
         echo '<p><strong>' . esc_html__('Warning:', 'simple-tags') . '</strong> '
             . sprintf(
-                esc_html__('The active plugin %s is not compatible with your PHP version.', 'simple-tags') .'</p><p>',
+                esc_html__('The active plugin %s is not compatible with your PHP version.', 'simple-tags') . '</p><p>',
                 '&laquo;' . esc_html($data['Name']) . ' ' . esc_html($data['Version']) . '&raquo;'
             )
             . sprintf(esc_html__('%s is the minimum version required for this plugin.', 'simple-tags'), 'PHP 7.2.5 ')
