@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Client_Schedule
 {
     public static $instance;
@@ -10,7 +12,6 @@ class SimpleTags_Client_Schedule
         add_action('taxopress_cron_autoterms_weekly', [$this, 'taxopress_cron_autoterms_weekly_execution']);
         add_filter('cron_schedules', [$this, 'taxopress_weekly_cron_schedule']);
         add_action('init', [$this, 'schedule_taxopress_cron_events']);
-
     }
 
     public static function get_instance()

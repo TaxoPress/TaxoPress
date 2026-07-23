@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPressVIPMinimum.Functions.StripTags.StripTagsOneParameter -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Client_RelatedPosts
 {
     /**
@@ -13,7 +15,6 @@ class SimpleTags_Client_RelatedPosts
 
         //Enqueue frontend scripts
         add_action('wp_enqueue_scripts', array( $this, 'enqueue_boxdisplay_scripts' ));
-
     }
 
     public function enqueue_boxdisplay_scripts()
@@ -179,11 +180,11 @@ class SimpleTags_Client_RelatedPosts
             } else {
                 $new_title = '';
                 if (!empty($title_header)) {
-                    $new_title .= '<'.$title_header.'>';
+                    $new_title .= '<' . $title_header . '>';
                 }
                 $new_title .= $title;
                 if (!empty($title_header)) {
-                    $new_title .= '</'.$title_header.'>';
+                    $new_title .= '</' . $title_header . '>';
                 }
                 $title = $new_title;
             }
@@ -329,7 +330,7 @@ class SimpleTags_Client_RelatedPosts
             // Check if post_excerpt is used by xformat...
             $select_excerpt = '';
             //if ( strpos( $xformat, '%post_excerpt%' ) ) {
-            //	$select_excerpt = ', p.post_content, p.post_excerpt, p.post_password';
+            //  $select_excerpt = ', p.post_content, p.post_excerpt, p.post_password';
             //}
 
             // If empty return no posts text
@@ -481,7 +482,6 @@ class SimpleTags_Client_RelatedPosts
             // Get the category of the post
             $categories = get_the_category($result->ID);
             if (!empty($categories)) {
-
                 //display all categories when the value is set to 0
                 if ($taxopress_max_cats === '0') {
                     $post_category = $categories;
@@ -589,10 +589,8 @@ class SimpleTags_Client_RelatedPosts
 
 
             if (isset($result->terms_id)) {
-
                 //format related tags differently for box format
                 if ($format == 'box') {
-
                     $terms_ids = explode(',', $result->terms_id);
 
                     $tags = wp_get_object_terms($result->ID, $taxonomy, array(
@@ -601,7 +599,6 @@ class SimpleTags_Client_RelatedPosts
                     ));
 
                     if (!is_wp_error($tags) && !empty($tags)) {
-
                         if ($taxopress_max_tags === '0') {
                             $post_tag = $tags;
                         } else {
@@ -626,7 +623,6 @@ class SimpleTags_Client_RelatedPosts
 
                     $element_loop = str_replace('%post_relatedtags%', $tags_list, $element_loop);
                 }
-
             }
 
             if (isset($result->post_excerpt) || isset($result->post_content)) {

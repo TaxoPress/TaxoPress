@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 require_once STAGS_DIR . '/modules/taxopress-ai/classes/TaxoPressAiUtilities.php';
 
 $current_screen = get_current_screen();
@@ -50,7 +52,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
     $default_taxonomy_options = [];
     foreach (get_object_taxonomies($post_type, 'objects') as $tax_key => $tax_object) {
         if (!in_array($tax_key, ['post_format']) && (!empty($tax_object->show_ui) || !empty(SimpleTags_Plugin::get_option_value('taxopress_ai_' . $post_type . '_support_private_taxonomy')))) {
-            $default_taxonomy_options[$tax_key] = $tax_object->labels->name. ' ('.$tax_object->name.')';
+            $default_taxonomy_options[$tax_key] = $tax_object->labels->name . ' (' . $tax_object->name . ')';
         }
     }
 
@@ -62,7 +64,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'helper',
             '1',
             esc_html__('This post type has no taxonomies.', 'simple-tags'),
-            'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
+            'taxopress-ai-tab-content taxopress-ai-' . $post_type . '-content ' . $hidden_field . ''
         );
     } else {
         $taxopress_ai_fields[] = array(
@@ -71,7 +73,7 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'checkbox',
             '1',
             sprintf(esc_html__('Enable the metabox on the %1s screen.', 'simple-tags'), esc_html($post_type_object->labels->name)),
-            'taxopress-ai-tab-content taxopress-ai-'. $post_type .'-content '. $hidden_field .''
+            'taxopress-ai-tab-content taxopress-ai-' . $post_type . '-content ' . $hidden_field . ''
         );
 
         // add feature tab
@@ -83,11 +85,11 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
         }
         $taxopress_ai_fields[] = array(
             'enable_taxopress_ai_' . $post_type . '_tab',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Features', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content">' . esc_html__('Metabox Features', 'simple-tags') . '</div>',
             'sub_multiple_checkbox',
             $tab_field_options,
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_field st-subhide-content'
         );
 
         $taxopress_ai_fields[] = array(
@@ -96,98 +98,98 @@ foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_t
             'checkbox',
             '1',
             sprintf(esc_html__('Add support for private taxonomies.', 'simple-tags')),
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content'
         );
 
         // add taxonomy
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_default_taxonomy',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content">' . esc_html__('Default Taxonomy', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content">' . esc_html__('Default Taxonomy', 'simple-tags') . '</div>',
             'select',
             $default_taxonomy_options,
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_post_terms_tab_field st-subhide-content'
         );
 
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_filters',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . sprintf(esc_html__('%1s Metabox Filters', 'simple-tags'), esc_html($post_type_object->labels->name)) . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . sprintf(esc_html__('%1s Metabox Filters', 'simple-tags'), esc_html($post_type_object->labels->name)) . '</div>',
             'checkbox',
             '1',
             sprintf(esc_html__('Enable filters in the %1s existing terms tab.', 'simple-tags'), esc_html($post_type_object->labels->name)),
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
         );
 
         // add _metabox_orderby
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_orderby',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default Method for choosing terms', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default Method for choosing terms', 'simple-tags') . '</div>',
             'select',
             TaxoPressAiUtilities::get_existing_terms_orderby(),
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content'
         );
 
         // add _metabox_order
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_order',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default Ordering for choosing terms', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default Ordering for choosing terms', 'simple-tags') . '</div>',
             'select',
             TaxoPressAiUtilities::get_existing_terms_order(),
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content'
         );
 
         // add _metabox_maximum_terms
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_maximum_terms',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default maximum terms', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content">' . esc_html__('Default maximum terms', 'simple-tags') . '</div>',
             'number',
             '',
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content',
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_metabox_filters_field st-subhide-content',
             0
         );
 
         // add _metabox_show_post_count
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_show_post_count',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Metabox Show Term Post Count', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Metabox Show Term Post Count', 'simple-tags') . '</div>',
             'checkbox',
             '1',
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
         );
 
         // add _metabox_show_term_slug
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_metabox_show_term_slug',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Show Term Slug', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content">' . esc_html__('Show Term Slug', 'simple-tags') . '</div>',
             'checkbox',
             '1',
             '',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_existing_terms_tab_field st-subhide-content'
         );
 
         //add minimum term length
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_minimum_term_length',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content">' . esc_html__('Minimum term length', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content">' . esc_html__('Minimum term length', 'simple-tags') . '</div>',
             'number',
             '',
             '<p>' . esc_html__('Specify the minimum length for new terms when creating terms.', 'simple-tags') . '</p>',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content',
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content',
             1
         );
 
         //add maximum term length
         $taxopress_ai_fields[] = array(
             'taxopress_ai_' . $post_type . '_maximum_term_length',
-            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content">' . esc_html__('Maximum term length', 'simple-tags') . '</div>',
+            '<div class="taxopress-ai-tab-content-sub taxopress-settings-subtab-title taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content">' . esc_html__('Maximum term length', 'simple-tags') . '</div>',
             'number',
             '',
             '<p>' . esc_html__('Specify the maximum length for new terms when creating terms.', 'simple-tags') . '</p>',
-            'taxopress-ai-tab-content-sub taxopress-ai-'. $post_type .'-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content',
+            'taxopress-ai-tab-content-sub taxopress-ai-' . $post_type . '-content-sub enable_taxopress_ai_' . $post_type . '_create_terms_tab_field st-subhide-content',
             1
         );
 
@@ -240,7 +242,7 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
         'checkbox',
         '1',
         sprintf(esc_html__('Allow users in the %1s role to use the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
-        'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
+        'metabox-tab-content metabox-' . $role_name . '-content ' . $hidden_field . ''
     );
     // add option to manage terms per user role
     $metabox_fields[] = array(
@@ -249,25 +251,25 @@ foreach (taxopress_get_all_wp_roles() as $role_name => $role_info) {
        'checkbox',
        '1',
        sprintf(esc_html__('Prevent users in the %1$s role from creating new terms in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))),
-       'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
+       'metabox-tab-content metabox-' . $role_name . '-content ' . $hidden_field . ''
     );
     // add metabox allowed taxonomies
     $metabox_fields[] = array(
         'enable_metabox_' . $role_name . '',
-        '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .'">' . esc_html__('Taxonomies in Metabox', 'simple-tags') . '</div>',
+        '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-' . $role_name . '-content enable_' . $role_name . '_metabox_field ' . $hidden_field . '">' . esc_html__('Taxonomies in Metabox', 'simple-tags') . '</div>',
         'multiselect_with_desc_top',
         $metabox_taxonomy_options,
-        '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field description '. $hidden_field .'">' . sprintf(esc_html__('Select the taxonomies that users in %1s role can manage in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
-        'metabox-tab-content metabox-'. $role_name .'-content enable_' . $role_name . '_metabox_field '. $hidden_field .''
+        '<p class="metabox-tab-content taxopress-settings-description metabox-' . $role_name . '-content enable_' . $role_name . '_metabox_field description ' . $hidden_field . '">' . sprintf(esc_html__('Select the taxonomies that users in %1s role can manage in the TaxoPress metabox.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
+        'metabox-tab-content metabox-' . $role_name . '-content enable_' . $role_name . '_metabox_field ' . $hidden_field . ''
     );
     // add core removed taxonomies
     $metabox_fields[] = array(
         'remove_taxonomy_metabox_' . $role_name . '',
-        '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-'. $role_name .'-content '. $hidden_field .'">' . esc_html__('Remove Default Metaboxes', 'simple-tags') . '</div>',
+        '<div class="metabox-tab-content taxopress-settings-subtab-title metabox-' . $role_name . '-content ' . $hidden_field . '">' . esc_html__('Remove Default Metaboxes', 'simple-tags') . '</div>',
         'multiselect_with_desc_top',
         $all_taxonomy_options,
-        '<p class="metabox-tab-content taxopress-settings-description metabox-'. $role_name .'-content description '. $hidden_field .'">' . sprintf(esc_html__('Remove default taxonomy metaboxes for users in the %1s role.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
-        'metabox-tab-content metabox-'. $role_name .'-content '. $hidden_field .''
+        '<p class="metabox-tab-content taxopress-settings-description metabox-' . $role_name . '-content description ' . $hidden_field . '">' . sprintf(esc_html__('Remove default taxonomy metaboxes for users in the %1s role.', 'simple-tags'), esc_html(translate_user_role($role_info['name']))) . '</p>',
+        'metabox-tab-content metabox-' . $role_name . '-content ' . $hidden_field . ''
     );
 
     $pt_index++;

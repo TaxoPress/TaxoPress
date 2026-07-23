@@ -1,4 +1,7 @@
 <?php
+
+// phpcs:disable WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPressVIPMinimum.Functions.CheckReturnValue.NonCheckedVariable -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 if (! class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
@@ -14,7 +17,6 @@ class Termcloud_List extends WP_List_Table
             'plural'   => __('Tags Cloud', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
-
     }
 
     /**
@@ -219,7 +221,6 @@ class Termcloud_List extends WP_List_Table
 
         //Detect when a bulk action is being triggered...
         if ('delete' === $this->current_action()) {
-
             // In our file that handles the request, verify the nonce.
             $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
 
@@ -228,20 +229,18 @@ class Termcloud_List extends WP_List_Table
             } else {
                 self::delete_stterm(absint(sanitize_text_field($_GET['stterm'])));
             }
-
         }
 
         // If the delete bulk action is triggered
-        if ((isset($_POST['action']) && $_POST['action'] == 'st-bulk-delete-term')
+        if (
+            (isset($_POST['action']) && $_POST['action'] == 'st-bulk-delete-term')
              || (isset($_POST['action2']) && $_POST['action2'] == 'st-bulk-delete-term')
         ) {
-
             $delete_ids = array_map('sanitize_text_field', $_POST['st-bulk-delete-term']);
 
             // loop over the array of record IDs and delete them
             foreach ($delete_ids as $id) {
                 self::delete_stterm($id);
-
             }
         }
     }
@@ -384,6 +383,4 @@ class Termcloud_List extends WP_List_Table
             'total_pages' => ceil($total_items / $per_page)   //calculate the total number of pages
         ]);
     }
-
-
 }

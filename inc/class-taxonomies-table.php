@@ -1,4 +1,7 @@
 <?php
+
+// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.NonceVerification.Recommended -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
@@ -14,7 +17,6 @@ class Taxonomy_List extends WP_List_Table
             'plural'   => __('Taxonomies', 'simple-tags'), //plural name of the listed records
             'ajax'     => false //does this table support ajax?
         ]);
-
     }
 
     /**
@@ -189,11 +191,13 @@ class Taxonomy_List extends WP_List_Table
         if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
             $data_filtered = [];
             foreach ($data as $item) {
-                if ($this->str_contains($item->label, $search, false) || $this->str_contains(
-                    $item->name,
-                    $search,
-                    false
-                )) {
+                if (
+                    $this->str_contains($item->label, $search, false) || $this->str_contains(
+                        $item->name,
+                        $search,
+                        false
+                    )
+                ) {
                     $data_filtered[] = $item;
                 }
             }

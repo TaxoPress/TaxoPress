@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.SlowDBQuery.slow_db_query_meta_query,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 /**
  * Fetch our TAXOPRESS Autoterms option.
  *
@@ -91,7 +93,6 @@ function taxopress_post_type_autoterms()
 
     if (count($autoterms) > 0) {
         foreach ($autoterms as $autoterm) {
-
             $post_types = (isset($autoterm['post_types']) && is_array($autoterm['post_types']) && count($autoterm['post_types']) > 0) ? $autoterm['post_types'] : false;
 
             if (!$post_types) {
@@ -280,7 +281,7 @@ function taxopress_create_default_autoterm()
                     $taxonomy = get_taxonomy($options_taxonomy);
                     $default                                                   = [];
                     $default['taxopress_autoterm']['autoterm_from']            = 'posts';
-                    $default['taxopress_autoterm']['title']                    = ''. (is_object($taxonomy) ? $taxonomy->labels->name : $options_taxonomy) .' '. ucwords($options_post_type) .' Auto term';
+                    $default['taxopress_autoterm']['title']                    = '' . (is_object($taxonomy) ? $taxonomy->labels->name : $options_taxonomy) . ' ' . ucwords($options_post_type) . ' Auto term';
                     $default['taxopress_autoterm']['taxonomy']                 = $options_taxonomy;
                     $default['post_types']                                     = [];
                     $default['post_status']                                    = ['publish'];

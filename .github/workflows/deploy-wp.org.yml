@@ -1,0 +1,19 @@
+name: Deploy plugin to WordPress.org
+on:
+  release:
+    types: [ released ]
+
+jobs:
+  code-check:
+    name: Check the code
+    uses: ./.github/workflows/code-standards.yml
+    secrets: inherit
+
+  deploy-wp-org:
+    permissions:
+      contents: write
+    uses: publishpress/github-workflows/.github/workflows/deploy-free.yml@v3
+    needs: [code-check]
+    secrets:
+      SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+      SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}

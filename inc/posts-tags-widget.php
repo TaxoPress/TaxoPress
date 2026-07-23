@@ -58,7 +58,7 @@ class SimpleTags_PostTags_Widget extends WP_Widget
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $before_widget;
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo do_shortcode('[taxopress_postterms id="'.$posttags_id.'"]');
+        echo do_shortcode('[taxopress_postterms id="' . $posttags_id . '"]');
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $after_widget;
     }
@@ -109,26 +109,26 @@ class SimpleTags_PostTags_Widget extends WP_Widget
                 esc_html__('this page.', 'simple-tags')
             );
 
-            echo '<p>'.esc_html__('Terms for Current Post are added on ', 'simple-tags');
+            echo '<p>' . esc_html__('Terms for Current Post are added on ', 'simple-tags');
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $shortcode_page;
             echo '</p>'
 
             ?>
-		<p>
-			<label for="<?php echo esc_attr($this->get_field_id('posttags_id')); ?>">
+        <p>
+            <label for="<?php echo esc_attr($this->get_field_id('posttags_id')); ?>">
             <?php esc_html_e('Select widget terms for current post.', 'simple-tags'); ?>
-				<select id="<?php echo esc_attr($this->get_field_id('posttags_id')); ?>"
-				        name="<?php echo esc_attr($this->get_field_name('posttags_id')); ?>">
+                <select id="<?php echo esc_attr($this->get_field_id('posttags_id')); ?>"
+                        name="<?php echo esc_attr($this->get_field_name('posttags_id')); ?>">
                         <?php foreach ($posttags_data as $key => $value) {   ?>
-					            <option <?php selected(esc_attr($instance['posttags_id']), esc_attr($key)); ?>
+                                <option <?php selected(esc_attr($instance['posttags_id']), esc_attr($key)); ?>
                                 value="<?php echo esc_attr($key); ?>"><?php echo esc_html($value['title']); ?></option>
                         <?php } ?>
-				</select>
-			</label>
-		</p>
+                </select>
+            </label>
+        </p>
 
-		<?php
+            <?php
         } else {
             $shortcode_page = sprintf(
                 '<a href="%s">%s</a>',
@@ -141,7 +141,7 @@ class SimpleTags_PostTags_Widget extends WP_Widget
                 esc_html__('Here', 'simple-tags')
             );
 
-            echo '<br />'.esc_html__('No terms for current post shortcode available. Add new shortcode ', 'simple-tags');
+            echo '<br />' . esc_html__('No terms for current post shortcode available. Add new shortcode ', 'simple-tags');
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $shortcode_page;
             echo '<br /><br />';

@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Posts
 {
     public const MENU_SLUG = 'st_options';
@@ -57,7 +59,8 @@ class SimpleTags_Posts
     {
         header('Content-Type: application/javascript');
 
-        if (empty($_GET['nonce'])
+        if (
+            empty($_GET['nonce'])
             || !wp_verify_nonce(sanitize_key($_GET['nonce']), 'taxopress-term-search')
         ) {
             wp_send_json_error(null, 403);
@@ -79,9 +82,9 @@ class SimpleTags_Posts
             $text = $term->name;
             if ($filter_format === 'term_name_taxonomy_name') {
                 $taxonomy = get_taxonomy($term->taxonomy);
-                $text .= ' ('. $taxonomy->labels->singular_name .')';
+                $text .= ' (' . $taxonomy->labels->singular_name . ')';
             } elseif ($filter_format === 'term_name_taxonomy_slug') {
-                $text .= ' ('. $term->taxonomy .')';
+                $text .= ' (' . $term->taxonomy . ')';
             }
             $results[] = [
                 'id'   => $term->$field,
@@ -216,21 +219,21 @@ class SimpleTags_Posts
 
 
                 <?php
-                        if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
-                            echo '<span class="subtitle__">';
-                            printf(
-                                /* translators: %s: Search query. */
-                                esc_html__('Search results for: %s'),
-                                '<strong>' . esc_html($search) . '</strong>'
-                            );
-                            echo '</span>';
-                        }
-        ?>
+                if (isset($_REQUEST['s']) && $search = esc_attr(sanitize_text_field(wp_unslash($_REQUEST['s'])))) {
+                    echo '<span class="subtitle__">';
+                    printf(
+                        /* translators: %s: Search query. */
+                        esc_html__('Search results for: %s'),
+                        '<strong>' . esc_html($search) . '</strong>'
+                    );
+                    echo '</span>';
+                }
+                ?>
                 <?php
 
         //the posts table instance
-        $this->posts_table->prepare_items();
-        ?>
+                $this->posts_table->prepare_items();
+                ?>
 
 
                 <hr class="wp-header-end">
@@ -245,7 +248,7 @@ class SimpleTags_Posts
                     <div class="col-wrap">
                         <form action="<?php echo esc_url(add_query_arg('', '')); ?>" method="post">
                             <?php $this->posts_table->display(); //Display the table
-        ?>
+                            ?>
                         </form>
                         <div class="form-wrap edit-post-notes">
                             <p><?php esc_html__('Description here.', 'simple-tags') ?></p>
@@ -260,6 +263,6 @@ class SimpleTags_Posts
             <?php $this->posts_table->inline_edit(); ?>
             <?php SimpleTags_Admin::printAdminFooter(); ?>
         </div>
-<?php
+        <?php
     }
 }

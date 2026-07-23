@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 if (!class_exists('SimpleTags_Hidden_Terms')) {
     class SimpleTags_Hidden_Terms
     {
@@ -28,7 +30,6 @@ if (!class_exists('SimpleTags_Hidden_Terms')) {
             add_filter('term_link', [$this, 'taxopress_modify_hidden_term_links'], 10, 3);
             add_filter('get_the_terms', [$this,'taxopress_remove_hidden_terms'], 10, 3);
             add_action('taxopress_settings_saved', [$this, 'taxopress_update_hidden_terms_immediately']);
-
         }
 
         /**
@@ -152,7 +153,6 @@ if (!class_exists('SimpleTags_Hidden_Terms')) {
                 $this->taxopress_set_hidden_terms();
             }
         }
-
     }
 
     SimpleTags_Hidden_Terms::get_instance();

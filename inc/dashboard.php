@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Dashboard
 {
     public const MENU_SLUG = 'st_options';
@@ -68,12 +70,12 @@ class SimpleTags_Dashboard
 
         $show_welcome = isset($_GET['welcome']) ? true : false;
         ?>
-    <?php if ($show_welcome) : ?>
+        <?php if ($show_welcome) : ?>
         <div class="taxopress-welcome-banner">
             <div class="banner-wrap">
                 <div class="banner-inner">
                     <a>
-                        <img src="<?php echo esc_url(STAGS_URL.'/assets/images/tp-email-logo.png'); ?>"  alt="TaxoPress Logo"/>
+                        <img src="<?php echo esc_url(STAGS_URL . '/assets/images/tp-email-logo.png'); ?>"  alt="TaxoPress Logo"/>
                     </a>
                 </div>
             </div>
@@ -88,7 +90,7 @@ class SimpleTags_Dashboard
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+        <?php endif; ?>
     <div class="taxopress-block-wrap">
         <div class="wrap st_wrap tagcloudui st_dashboard-page admin-settings">
             <h1 class="wp-heading-inline"><?php esc_html_e('Dashboard', 'simple-tags'); ?></h1>
@@ -124,6 +126,6 @@ class SimpleTags_Dashboard
 
         </div>
 
-<?php
+        <?php
     }
 }

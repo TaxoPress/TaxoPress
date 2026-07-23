@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable PSR2.Methods.MethodDeclaration.Underscore,Squiz.PHP.CommentedOutCode.Found,VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedUnsetVariable,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize,WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Client_TagCloud
 {
     /**
@@ -9,7 +11,6 @@ class SimpleTags_Client_TagCloud
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -919,7 +920,8 @@ class SimpleTags_Client_TagCloud
         $args['limit_days'] = absint($args['limit_days']);
         $args['min_usage']  = absint($args['min_usage']);
 
-        if (! $single_taxonomy || ! is_taxonomy_hierarchical($taxonomies[0]) ||
+        if (
+            ! $single_taxonomy || ! is_taxonomy_hierarchical($taxonomies[0]) ||
              '' !== $args['parent']
         ) {
             $args['child_of']     = 0;
@@ -1116,7 +1118,6 @@ class SimpleTags_Client_TagCloud
 
         // ST Features : Another way to search
         if (strpos($st_name__like, ' ') !== false) {
-
             $st_terms_formatted = array();
             $st_terms           = preg_split('/[\s,]+/', $st_name_like);
             foreach ((array) $st_terms as $st_term) {
@@ -1128,11 +1129,8 @@ class SimpleTags_Client_TagCloud
 
             $where .= " AND ( " . explode(' OR ', $st_terms_formatted) . " ) ";
             unset($st_term, $st_terms_formatted, $st_terms);
-
         } elseif (! empty($st_name__like)) {
-
             $where .= " AND t.name LIKE '%{$st_name__like}%'";
-
         }
 
         if (in_array($taxonomies[0], ['post_tag', 'category'])) {

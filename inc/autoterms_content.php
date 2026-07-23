@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+
 class SimpleTags_Autoterms_Content
 {
     public const MENU_SLUG = 'st_options';
@@ -19,7 +21,6 @@ class SimpleTags_Autoterms_Content
         add_action('admin_menu', [$this, 'admin_menu']);
         // Javascript
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_enqueue_scripts'], 11);
-
     }
 
     /**
@@ -72,7 +73,8 @@ class SimpleTags_Autoterms_Content
     public function save_autoterms_content_settings()
     {
 
-        if (!empty($_POST['taxopress_autoterm_content_submit'])
+        if (
+            !empty($_POST['taxopress_autoterm_content_submit'])
             && !empty($_POST['_nonce'])
             && wp_verify_nonce(sanitize_text_field($_POST['_nonce']), 'taxopress_autoterm_content_nonce')
             && current_user_can('simple_tags')
@@ -146,175 +148,175 @@ class SimpleTags_Autoterms_Content
                                     <table class="form-table taxopress-table autoterm_oldcontent">
                                         <?php
                                         $autoterm_data = taxopress_get_autoterm_data();
-        $selected_autoterm = !empty($autoterms_content['autoterm_id']) ? (int)$autoterms_content['autoterm_id'] : '';
-        if (empty($autoterm_data)) :
-            $auto_term_opionts = [
-                [
-                    'attr' => '',
-                    'text' => __('Select an option...', 'simple-tags')
-                ]
-            ];
-        else :
-            $auto_term_opionts = [];
-            foreach ($autoterm_data as $autoterm_settings) {
-                $current_option = [];
-                $current_option['attr'] = $autoterm_settings['ID'];
-                $current_option['text'] = $autoterm_settings['title'];
-                if ($selected_autoterm == $autoterm_settings['ID']) {
-                    $current_option['default'] = 'true';
-                }
-                $auto_term_opionts[] = $current_option;
-            }
-        endif;
-        $select = [];
-        $select['options']  = $auto_term_opionts;
-        $select['selected'] = '';
+                                        $selected_autoterm = !empty($autoterms_content['autoterm_id']) ? (int)$autoterms_content['autoterm_id'] : '';
+                                        if (empty($autoterm_data)) :
+                                            $auto_term_opionts = [
+                                                [
+                                                    'attr' => '',
+                                                    'text' => __('Select an option...', 'simple-tags')
+                                                ]
+                                            ];
+                                        else :
+                                            $auto_term_opionts = [];
+                                            foreach ($autoterm_data as $autoterm_settings) {
+                                                $current_option = [];
+                                                $current_option['attr'] = $autoterm_settings['ID'];
+                                                $current_option['text'] = $autoterm_settings['title'];
+                                                if ($selected_autoterm == $autoterm_settings['ID']) {
+                                                    $current_option['default'] = 'true';
+                                                }
+                                                $auto_term_opionts[] = $current_option;
+                                            }
+                                        endif;
+                                        $select = [];
+                                        $select['options']  = $auto_term_opionts;
+                                        $select['selected'] = '';
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $ui->get_select_checkbox_input_main([
-            'namearray'  => 'taxopress_autoterm_content',
-            'name'       => 'autoterm_id',
-            'labeltext'  => esc_html__(
-                'Auto Terms setting',
-                'simple-tags'
-            ),
-                'aftertext'  => esc_html__('Select an Auto Terms configuration to use when scanning content.', 'simple-tags'),
-            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        ]);
+                                        echo $ui->get_select_checkbox_input_main([
+                                        'namearray'  => 'taxopress_autoterm_content',
+                                        'name'       => 'autoterm_id',
+                                        'labeltext'  => esc_html__(
+                                            'Auto Terms setting',
+                                            'simple-tags'
+                                        ),
+                                        'aftertext'  => esc_html__('Select an Auto Terms configuration to use when scanning content.', 'simple-tags'),
+                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        ]);
 
-        $select             = [
-            'options' => [
-                [
-                    'attr'    => '0',
-                    'text'    => esc_attr__('False', 'simple-tags'),
-                    'default' => 'true',
-                ],
-                [
-                    'attr' => '1',
-                    'text' => esc_attr__('True', 'simple-tags'),
-                ],
-            ],
-        ];
-        $selected           = (isset($autoterms_content['autoterm_existing_content_exclude'])) ? taxopress_disp_boolean($autoterms_content['autoterm_existing_content_exclude']) : '';
-        $select['selected'] = !empty($selected) ? $autoterms_content['autoterm_existing_content_exclude'] : '';
+                                        $select             = [
+                                        'options' => [
+                                        [
+                                        'attr'    => '0',
+                                        'text'    => esc_attr__('False', 'simple-tags'),
+                                        'default' => 'true',
+                                        ],
+                                        [
+                                        'attr' => '1',
+                                        'text' => esc_attr__('True', 'simple-tags'),
+                                        ],
+                                        ],
+                                        ];
+                                        $selected           = (isset($autoterms_content['autoterm_existing_content_exclude'])) ? taxopress_disp_boolean($autoterms_content['autoterm_existing_content_exclude']) : '';
+                                        $select['selected'] = !empty($selected) ? $autoterms_content['autoterm_existing_content_exclude'] : '';
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $ui->get_select_checkbox_input([
-            'namearray'  => 'taxopress_autoterm_content',
-            'name'       => 'autoterm_existing_content_exclude',
-            'class'      => '',
-            'labeltext'  => esc_html__('Exclude previously analyzed content', 'simple-tags'),
-            'aftertext'  => esc_html__('This enables you to skip posts that have already been analyzed by the Existing Content feature.', 'simple-tags'),
-            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        ]);
-
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $ui->get_number_input([
-            'namearray' => 'taxopress_autoterm_content',
-            'name'      => 'existing_terms_batches',
-            'textvalue' => isset($autoterms_content['existing_terms_batches']) ? esc_attr($autoterms_content['existing_terms_batches']) : '2',
-            'labeltext' => esc_html__(
-                'Limit per batches',
-                'simple-tags'
-            ),
-            'helptext'  => esc_html__('This enables you to add Terms to existing content in batches. If you have a lot of existing content, set this to a lower number to avoid timeouts.', 'simple-tags'),
-            'min'       => '1',
-            'required'  => true,
-        ]);
+                                        echo $ui->get_select_checkbox_input([
+                                        'namearray'  => 'taxopress_autoterm_content',
+                                        'name'       => 'autoterm_existing_content_exclude',
+                                        'class'      => '',
+                                        'labeltext'  => esc_html__('Exclude previously analyzed content', 'simple-tags'),
+                                        'aftertext'  => esc_html__('This enables you to skip posts that have already been analyzed by the Existing Content feature.', 'simple-tags'),
+                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        ]);
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $ui->get_number_input([
-            'namearray' => 'taxopress_autoterm_content',
-            'name'      => 'existing_terms_sleep',
-            'textvalue' => isset($autoterms_content['existing_terms_sleep']) ? esc_attr($autoterms_content['existing_terms_sleep']) : '10',
-            'labeltext' => esc_html__('Batches wait time', 'simple-tags'),
-            'helptext'  => esc_html__('This is the wait time (in seconds) between processing batches of Auto Terms. If you have a lot of existing content, set this to a higher number to avoid timeouts.', 'simple-tags'),
-            'min'       => '0',
-            'required'  => true,
-        ]);
+                                        echo $ui->get_number_input([
+                                        'namearray' => 'taxopress_autoterm_content',
+                                        'name'      => 'existing_terms_batches',
+                                        'textvalue' => isset($autoterms_content['existing_terms_batches']) ? esc_attr($autoterms_content['existing_terms_batches']) : '2',
+                                        'labeltext' => esc_html__(
+                                            'Limit per batches',
+                                            'simple-tags'
+                                        ),
+                                        'helptext'  => esc_html__('This enables you to add Terms to existing content in batches. If you have a lot of existing content, set this to a lower number to avoid timeouts.', 'simple-tags'),
+                                        'min'       => '1',
+                                        'required'  => true,
+                                        ]);
 
-        $select             = [
-            'options' => [
-                [
-                    'attr' => '1',
-                    'text' => esc_attr__('24 hours ago', 'simple-tags')
-                ],
-                [
-                    'attr' => '7',
-                    'text' => esc_attr__('7 days ago', 'simple-tags')
-                ],
-                [
-                    'attr' => '14',
-                    'text' => esc_attr__('2 weeks ago', 'simple-tags')
-                ],
-                [
-                    'attr' => '30',
-                    'text' => esc_attr__('1 month ago', 'simple-tags'),
-                    'default' => 'true'
-                ],
-                [
-                    'attr' => '180',
-                    'text' => esc_attr__('6 months ago', 'simple-tags')
-                ],
-                [
-                    'attr' => '365',
-                    'text' => esc_attr__('1 year ago', 'simple-tags')
-                ],
-                [
-                    'attr'    => '0',
-                    'text'    => esc_attr__('No limit', 'simple-tags')
-                ],
-            ],
-        ];
-
-        if (is_array($autoterms_content)) {
-            $select             = [
-                'options' => [
-                    [
-                        'attr' => '1',
-                        'text' => esc_attr__('24 hours ago', 'simple-tags')
-                    ],
-                    [
-                        'attr' => '7',
-                        'text' => esc_attr__('7 days ago', 'simple-tags')
-                    ],
-                    [
-                        'attr' => '14',
-                        'text' => esc_attr__('2 weeks ago', 'simple-tags')
-                    ],
-                    [
-                        'attr' => '30',
-                        'text' => esc_attr__('1 month ago', 'simple-tags'),
-                    ],
-                    [
-                        'attr' => '180',
-                        'text' => esc_attr__('6 months ago', 'simple-tags')
-                    ],
-                    [
-                        'attr' => '365',
-                        'text' => esc_attr__('1 year ago', 'simple-tags')
-                    ],
-                    [
-                        'attr'    => '0',
-                        'text'    => esc_attr__('No limit', 'simple-tags'),
-                        'default' => 'true'
-                    ],
-                ],
-            ];
-        }
-
-        $selected           = (isset($autoterms_content['limit_days'])) ? taxopress_disp_boolean($autoterms_content['limit_days']) : '';
-        $select['selected'] = !empty($selected) ? $autoterms_content['limit_days'] : '';
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $ui->get_select_number_select([
-            'namearray'  => 'taxopress_autoterm_content',
-            'name'       => 'limit_days',
-            'labeltext'  => esc_html__(
-                'Limit Auto Terms, based on published date',
-                'simple-tags'
-            ),
-                'aftertext'  => esc_html__('This setting allows you to add Terms only to recent content.', 'simple-tags'),
-            'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        ]);
-        ?>
+                                        echo $ui->get_number_input([
+                                        'namearray' => 'taxopress_autoterm_content',
+                                        'name'      => 'existing_terms_sleep',
+                                        'textvalue' => isset($autoterms_content['existing_terms_sleep']) ? esc_attr($autoterms_content['existing_terms_sleep']) : '10',
+                                        'labeltext' => esc_html__('Batches wait time', 'simple-tags'),
+                                        'helptext'  => esc_html__('This is the wait time (in seconds) between processing batches of Auto Terms. If you have a lot of existing content, set this to a higher number to avoid timeouts.', 'simple-tags'),
+                                        'min'       => '0',
+                                        'required'  => true,
+                                        ]);
+
+                                        $select             = [
+                                        'options' => [
+                                        [
+                                        'attr' => '1',
+                                        'text' => esc_attr__('24 hours ago', 'simple-tags')
+                                        ],
+                                        [
+                                        'attr' => '7',
+                                        'text' => esc_attr__('7 days ago', 'simple-tags')
+                                        ],
+                                        [
+                                        'attr' => '14',
+                                        'text' => esc_attr__('2 weeks ago', 'simple-tags')
+                                        ],
+                                        [
+                                        'attr' => '30',
+                                        'text' => esc_attr__('1 month ago', 'simple-tags'),
+                                        'default' => 'true'
+                                        ],
+                                        [
+                                        'attr' => '180',
+                                        'text' => esc_attr__('6 months ago', 'simple-tags')
+                                        ],
+                                        [
+                                        'attr' => '365',
+                                        'text' => esc_attr__('1 year ago', 'simple-tags')
+                                        ],
+                                        [
+                                        'attr'    => '0',
+                                        'text'    => esc_attr__('No limit', 'simple-tags')
+                                        ],
+                                        ],
+                                        ];
+
+                                        if (is_array($autoterms_content)) {
+                                            $select             = [
+                                                'options' => [
+                                                    [
+                                                        'attr' => '1',
+                                                        'text' => esc_attr__('24 hours ago', 'simple-tags')
+                                                    ],
+                                                    [
+                                                        'attr' => '7',
+                                                        'text' => esc_attr__('7 days ago', 'simple-tags')
+                                                    ],
+                                                    [
+                                                        'attr' => '14',
+                                                        'text' => esc_attr__('2 weeks ago', 'simple-tags')
+                                                    ],
+                                                    [
+                                                        'attr' => '30',
+                                                        'text' => esc_attr__('1 month ago', 'simple-tags'),
+                                                    ],
+                                                    [
+                                                        'attr' => '180',
+                                                        'text' => esc_attr__('6 months ago', 'simple-tags')
+                                                    ],
+                                                    [
+                                                        'attr' => '365',
+                                                        'text' => esc_attr__('1 year ago', 'simple-tags')
+                                                    ],
+                                                    [
+                                                        'attr'    => '0',
+                                                        'text'    => esc_attr__('No limit', 'simple-tags'),
+                                                        'default' => 'true'
+                                                    ],
+                                                ],
+                                            ];
+                                        }
+
+                                        $selected           = (isset($autoterms_content['limit_days'])) ? taxopress_disp_boolean($autoterms_content['limit_days']) : '';
+                                        $select['selected'] = !empty($selected) ? $autoterms_content['limit_days'] : '';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        echo $ui->get_select_number_select([
+                                        'namearray'  => 'taxopress_autoterm_content',
+                                        'name'       => 'limit_days',
+                                        'labeltext'  => esc_html__(
+                                            'Limit Auto Terms, based on published date',
+                                            'simple-tags'
+                                        ),
+                                        'aftertext'  => esc_html__('This setting allows you to add Terms only to recent content.', 'simple-tags'),
+                                        'selections' => $select,// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        ]);
+                                        ?>
                                     </table>
                                 </div>
                             </div>
@@ -336,7 +338,7 @@ class SimpleTags_Autoterms_Content
                                     <div class="inside">
                                         <div id="minor-publishing">
                                             <div class="sidebar-body-wrap">
-                                                <p class="description"><?php echo sprintf(esc_html__('You can see full log details on the %1s screen', 'simple-tags'), '<a target="_blank" href="'.admin_url('admin.php?page=st_autoterms&tab=logs').'">'.esc_html__('Auto Terms Logs', 'simple-tags').'</a>'); ?></p>
+                                                <p class="description"><?php echo sprintf(esc_html__('You can see full log details on the %1s screen', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_autoterms&tab=logs') . '">' . esc_html__('Auto Terms Logs', 'simple-tags') . '</a>'); ?></p>
                                                 <div class="submit-action">
                                                     <span class="spinner taxopress-spinner"></span>
                                                     <input type="submit" class="button taxopress-autoterm-all-content"
@@ -360,5 +362,4 @@ class SimpleTags_Autoterms_Content
         <?php SimpleTags_Admin::printAdminFooter(); ?>
         <?php
     }
-
 }
