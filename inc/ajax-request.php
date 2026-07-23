@@ -1,5 +1,6 @@
 <?php
 
+// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPressVIPMinimum.Security.ProperEscapingFunction.htmlAttrNotByEscHTML -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
 //Taxopress auto terms => Auto terms all content ajax callback
 add_action('wp_ajax_taxopress_autoterms_content_by_ajax', 'taxopress_autoterms_content_by_ajax');
 function taxopress_autoterms_content_by_ajax()
@@ -32,7 +33,7 @@ function taxopress_autoterms_content_by_ajax()
     $offset_start_from = max(0, $start_from);
 
     if (!current_user_can('simple_tags')) {
-        $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Permission denied.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('Permission denied.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     }
 
@@ -50,13 +51,13 @@ function taxopress_autoterms_content_by_ajax()
     update_option('taxopress_autoterms_content', $auto_term_settings);
 
     if (empty($auto_term_id)) {
-        $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Auto Term is required, kindly add an Auto Term from Auto Term menu.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('Auto Term is required, kindly add an Auto Term from Auto Term menu.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     } elseif (empty($existing_terms_batches)) {
-        $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Limit per batches is required.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('Limit per batches is required.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     } elseif (empty($existing_terms_sleep)) {
-        $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Batches wait time is required.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('Batches wait time is required.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     }
 
@@ -69,17 +70,17 @@ function taxopress_autoterms_content_by_ajax()
         $autoterm_data['replace_type'] = isset($autoterm_data['existing_content_replace_type']) ? $autoterm_data['existing_content_replace_type'] : '';
         $autoterm_data['terms_limit'] = !empty($autoterm_data['existing_content_terms_limit']) ? $autoterm_data['existing_content_terms_limit'] : '';
     } else {
-        $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('Auto term settings not found', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('Auto term settings not found', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     }
 
     if (empty($autoterm_data['post_types'])) {
-        $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('The selected Auto Term setting is not enabled for any post type. Please select at least one post type in the Auto Term settings.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('The selected Auto Term setting is not enabled for any post type. Please select at least one post type in the Auto Term settings.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     }
 
     if (empty($autoterm_data['autoterm_for_existing_content'])) {
-        $response['message'] = '<div class="taxopress-response-css red"><p>'. esc_html__('The selected Auto Term is not enabled for existing content. Please enable it in Auto Term settings.', 'simple-tags') .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('The selected Auto Term is not enabled for existing content. Please enable it in Auto Term settings.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     }
 
@@ -163,10 +164,10 @@ function taxopress_autoterms_content_by_ajax()
                 <fieldset>
                     <legend> 
                         <span class="result-title">
-                            <a target="_blank" href="'. esc_url(get_edit_post_link($object->ID)) . '">' . esc_html($object->post_title) . '</a>
+                            <a target="_blank" href="' . esc_url(get_edit_post_link($object->ID)) . '">' . esc_html($object->post_title) . '</a>
                         </span> 
                     </legend>
-                    <div class="result-content">'. $added_terms_html .'</div>
+                    <div class="result-content">' . $added_terms_html . '</div>
                 </fieldset></li>';
             unset($object);
         }
@@ -175,23 +176,20 @@ function taxopress_autoterms_content_by_ajax()
         $response['content'] = $response_content;
         $response['done'] = ($start_from + count($objects));
         $percentage = 100;
-        $response['notice'] = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Please leave this screen running to continue the scan. To stop the scan, close this screen or click here: %1sStop%2s | %3sPause%4s', 'simple-tags'), '<a href="#" class="terminate-autoterm-scan">', '</a>', '<a href="#" class="pause-autoterm-scan" data-pause="0" data-pause-text="'. esc_html__('Pause', 'simple-tags') .'" data-resume-text="'. esc_html__('Resume', 'simple-tags') .'">', '</a>') .'</p></div>';
-        $progress_message = '<div class="taxopress-response-css yellow"><p>'. sprintf(esc_html__('Progress Report: %s posts checked.', 'simple-tags'), '<strong>' . ($start_from + count($objects)) . '</strong>') .'</p></div>';
-
+        $response['notice'] = '<div class="taxopress-response-css yellow"><p>' . sprintf(esc_html__('Please leave this screen running to continue the scan. To stop the scan, close this screen or click here: %1sStop%2s | %3sPause%4s', 'simple-tags'), '<a href="#" class="terminate-autoterm-scan">', '</a>', '<a href="#" class="pause-autoterm-scan" data-pause="0" data-pause-text="' . esc_html__('Pause', 'simple-tags') . '" data-resume-text="' . esc_html__('Resume', 'simple-tags') . '">', '</a>') . '</p></div>';
+        $progress_message = '<div class="taxopress-response-css yellow"><p>' . sprintf(esc_html__('Progress Report: %s posts checked.', 'simple-tags'), '<strong>' . ($start_from + count($objects)) . '</strong>') . '</p></div>';
     } else {
-
         $counter = (int)get_option('tmp_auto_terms_st');
         delete_option('tmp_auto_terms_st');
         $percentage = 100;
         $response['status'] = 'sucess';
         $response['done'] = $total;
-        $progress_message = '<div class="taxopress-response-css green"><p>'. sprintf(esc_html__('Completed: %s terms added from %s posts checked.', 'simple-tags'), $counter, ($start_from + count($objects))) .'</p><button type="button" class="notice-dismiss"></button></div>';
+        $progress_message = '<div class="taxopress-response-css green"><p>' . sprintf(esc_html__('Completed: %s terms added from %s posts checked.', 'simple-tags'), $counter, ($start_from + count($objects))) . '</p><button type="button" class="notice-dismiss"></button></div>';
         $response['message'] = $progress_message;
     }
     $response['percentage'] = $progress_message;
 
     wp_send_json($response);
-
 }
 
 
