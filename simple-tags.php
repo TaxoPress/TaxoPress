@@ -122,7 +122,7 @@ if (taxopress_free_is_pro_active()) {
             delete_transient('taxopress_free_deactivated_due_to_pro');
 
             echo '<div class="notice notice-warning is-dismissible"><p>'
-                . esc_html__('PublishPress Taxonomies was not activated because PublishPress Taxonomies Pro is already active. Please keep only PublishPress Taxonomies Pro enabled.', 'simple-tags')
+                . esc_html__('PublishPress Taxonomies Free was not activated because PublishPress Taxonomies Pro is already active. Please keep only PublishPress Taxonomies Pro enabled.', 'simple-tags')
                 . '</p></div>';
         });
     }
