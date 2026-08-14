@@ -1,9 +1,9 @@
 <?php
 
-// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.SlowDBQuery.slow_db_query_meta_query,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.SlowDBQuery.slow_db_query_meta_query,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy PublishPress Taxonomies file: keep behavior unchanged while documenting existing PHPCS exceptions.
 
 /**
- * Fetch our TAXOPRESS Autoterms option.
+ * Fetch our PUBLISHPRESS TAXONOMIES Autoterms option.
  *
  * @return mixed
  */
@@ -17,7 +17,7 @@ function taxopress_get_autoterm_data()
 }
 
 /**
- * Fetch our TAXOPRESS Autoterms content option.
+ * Fetch our PUBLISHPRESS TAXONOMIES Autoterms content option.
  *
  * @return mixed
  */
@@ -31,7 +31,7 @@ function taxopress_get_autoterms_content_data()
 }
 
 /**
- * Fetch our TAXOPRESS Autoterms schedule option.
+ * Fetch our PUBLISHPRESS TAXONOMIES Autoterms schedule option.
  *
  * @return mixed
  */
@@ -337,7 +337,7 @@ add_action('admin_init', 'taxopress_create_default_autoterm', 8);
 
 
 /**
- * Add to or update our TAXOPRESS option with new data.
+ * Add to or update our PUBLISHPRESS TAXONOMIES option with new data.
  *
  *
  * @param array $data Array of autoterm data to update. Optional.

@@ -279,7 +279,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
 
             if (!isset($triggers)) {
                 $time_message = __(
-                    "Hey, you've been using TaxoPress for %s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep TaxoPress growing.",
+                    "Hey, you've been using PublishPress Taxonomies for %s on your site. We hope the plugin has been useful. Please could you quickly leave a 5-star rating on WordPress.org? It really does help to keep PublishPress Taxonomies growing.",
                     'simple-tags'
                 );
 
@@ -368,7 +368,7 @@ if (!class_exists('Taxopress_Modules_Reviews')) {
                     <a class="button button-primary taxopress-dismiss" target="_blank"
                        href="https://wordpress.org/support/plugin/simple-tags/reviews/?rate=5#rate-response"
                        data-reason="am_now">
-                        <strong><?php _e('Click here to add your rating for TaxoPress', 'simple-tags'); ?></strong>
+                        <strong><?php _e('Click here to add your rating for PublishPress Taxonomies', 'simple-tags'); ?></strong>
                     </a> <a href="#" class="button taxopress-dismiss" data-reason="maybe_later">
                         <?php _e('Maybe later', 'simple-tags'); ?>
                     </a> <a href="#" class="button taxopress-dismiss" data-reason="already_did">

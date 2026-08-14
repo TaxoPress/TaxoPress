@@ -1,6 +1,6 @@
 <?php
 
-// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy TaxoPress file: keep behavior unchanged while documenting existing PHPCS exceptions.
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Legacy PublishPress Taxonomies file: keep behavior unchanged while documenting existing PHPCS exceptions.
 
 // Include modules
 require_once(TAXOPRESS_ABSPATH . '/modules/taxopress-ai/taxopress-ai.php');
@@ -636,7 +636,7 @@ class SimpleTags_Admin
         wp_enqueue_style('taxopress-frontend-css');
     }
     /**
-     * Init somes JS and CSS need for TaxoPress.
+     * Init somes JS and CSS need for PublishPress Taxonomies.
      *
      * @return void
      * @author WebFactory Ltd
@@ -655,7 +655,7 @@ class SimpleTags_Admin
         //color picker style
         wp_enqueue_style('wp-color-picker');
 
-        // Helper TaxoPress
+        // Helper PublishPress Taxonomies
         wp_register_script('st-helper-add-tags', STAGS_URL . '/assets/js/helper-add-tags.js', array('jquery'), STAGS_VERSION);
         wp_register_script('st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array('jquery', 'wp-color-picker'), STAGS_VERSION);
 
@@ -767,7 +767,7 @@ class SimpleTags_Admin
             'enable_dandelion_ai_source' => SimpleTags_Plugin::get_option_value('enable_dandelion_ai_source'),
             'enable_lseg_ai_source'    => SimpleTags_Plugin::get_option_value('enable_lseg_ai_source'),
             'plugin_url' => STAGS_URL,
-            'using_default_text' => __('Using default TaxoPress image', 'simple-tags'),
+            'using_default_text' => __('Using default PublishPress Taxonomies image', 'simple-tags'),
             'select_image_label' => esc_html__('Select Media', 'simple-tags'),
             'change_image_label' => esc_html__('Change Media', 'simple-tags'),
             'use_default_label' => esc_html__('Use Default', 'simple-tags'),
@@ -834,8 +834,8 @@ class SimpleTags_Admin
         self::$admin_url = admin_url('admin.php?page=' . self::MENU_SLUG);
 
         add_menu_page(
-            __('TaxoPress: Options', 'simple-tags'),
-            __('TaxoPress', 'simple-tags'),
+            __('PublishPress Taxonomies: Options', 'simple-tags'),
+            __('PublishPress Taxonomies', 'simple-tags'),
             'admin_simple_tags',
             self::MENU_SLUG,
             array(
@@ -847,7 +847,7 @@ class SimpleTags_Admin
         );
         add_submenu_page(
             self::MENU_SLUG,
-            __('TaxoPress: Options', 'simple-tags'),
+            __('PublishPress Taxonomies: Options', 'simple-tags'),
             __('Settings', 'simple-tags'),
             'admin_simple_tags',
             self::MENU_SLUG,
@@ -883,7 +883,7 @@ class SimpleTags_Admin
 
                 // This settings has been migrated to fast update screen so only update from there
                 if ($is_fast_update_submission) {
-                    // add taxopress ai post type and taxonomies options so we can have all post types. TODO: This need to be a filter
+                    // add PublishPress Taxonomies AI post type and taxonomies options so we can have all post types. TODO: This need to be a filter
                     foreach (get_post_types(['public' => true], 'names') as $post_type => $post_type_object) {
                         if ($post_type == 'post') {
                             $opt_default_value = 'post_tag';
@@ -969,7 +969,7 @@ class SimpleTags_Admin
 
                 SimpleTags_Plugin::set_default_option();
 
-                add_settings_error(__CLASS__, __CLASS__, esc_html__('TaxoPress options resetted to default options!', 'simple-tags'), 'updated taxopress-notice');
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('PublishPress Taxonomies options resetted to default options!', 'simple-tags'), 'updated taxopress-notice');
             } else {
                 //add_settings_error(__CLASS__, __CLASS__, esc_html__('Settings updated', 'simple-tags'), 'updated');
             }
@@ -1035,7 +1035,7 @@ class SimpleTags_Admin
     }
 
     /**
-     * Default content for meta box of TaxoPress
+     * Default content for meta box of PublishPress Taxonomies
      *
      * @return string
      * @author WebFactory Ltd
@@ -1058,12 +1058,12 @@ class SimpleTags_Admin
     public static function printAdminFooter()
     {
         /* ?>
-        <p class="footer_st"><?php printf( __( 'Thanks for using TaxoPress | <a href="https://taxopress.com/">TaxoPress.com</a> | Version %s', 'simple-tags' ), STAGS_VERSION ); ?></p>
+        <p class="footer_st"><?php printf( __( 'Thanks for using PublishPress Taxonomies | <a href="https://taxopress.com/">PublishPress Taxonomies</a> | Version %s', 'simple-tags' ), STAGS_VERSION ); ?></p>
         <?php */
     }
 
     /**
-     * A short public static function for display the same copyright on all taxopress admin pages
+     * A short public static function for display the same copyright on all PublishPress Taxonomies admin pages
      *
      * @return void
      * @author Olatechpro
@@ -1078,7 +1078,7 @@ class SimpleTags_Admin
             <p class="footer_st">
                 <?php
                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                            printf(__('Thanks for using TaxoPress | %1sTaxoPress.com%2s | Version %3s', 'simple-tags'), '<a href="https://taxopress.com/">', '</a>', esc_html(STAGS_VERSION)); ?>
+                            printf(__('Thanks for using PublishPress Taxonomies | %1sPublishPress Taxonomies%2s | Version %3s', 'simple-tags'), '<a href="https://taxopress.com/">', '</a>', esc_html(STAGS_VERSION)); ?>
             </p>
             <?php
         }

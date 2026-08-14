@@ -4,7 +4,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
     class TaxoPressAiUtilities
     {
         /**
-         * Fetch our taxopress ai settings data.
+         * Fetch our PublishPress Taxonomies AI settings data.
          *
          * @return mixed
          */
@@ -31,7 +31,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
         }
 
         /**
-         * Get taxopress ai groups
+         * Get PublishPress Taxonomies AI groups
          *
          * @return array
          */

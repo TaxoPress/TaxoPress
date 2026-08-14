@@ -1,7 +1,7 @@
 ---
 name: Release the Pro version (team only)
 about: Describes default checklist for releasing the Pro plugin;
-title: Release TaxoPress Pro v[VERSION]
+title: Release PublishPress Taxonomies Pro v[VERSION]
 labels: release
 assignees: ''
 

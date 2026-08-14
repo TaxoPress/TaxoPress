@@ -73,7 +73,7 @@ if (!class_exists('TaxoPressAiAjax')) {
             } elseif (!can_manage_taxopress_metabox()) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
-                    'Permission error. You do not have permission to manage taxopress',
+                    'Permission error. You do not have permission to manage PublishPress Taxonomies',
                     'simple-tags'
                 );
             } else {
@@ -121,7 +121,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 if (!can_manage_taxopress_metabox_taxonomy($preview_taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
+                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sPublishPress Taxonomies Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
                     wp_send_json($response);
                     exit;
                 }
@@ -753,7 +753,7 @@ if (!class_exists('TaxoPressAiAjax')) {
             } elseif (!can_manage_taxopress_metabox()) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
-                    'Permission error. You do not have permission to manage taxopress',
+                    'Permission error. You do not have permission to manage PublishPress Taxonomies',
                     'simple-tags'
                 );
             } else {
@@ -766,7 +766,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 if (!can_manage_taxopress_metabox_taxonomy($taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
+                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sPublishPress Taxonomies Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
                     wp_send_json($response);
                     exit;
                 }
@@ -881,7 +881,7 @@ if (!class_exists('TaxoPressAiAjax')) {
             } elseif (!can_manage_taxopress_metabox()) {
                 $response['status'] = 'error';
                 $response['content'] = esc_html__(
-                    'Permission error. You do not have permission to manage taxopress',
+                    'Permission error. You do not have permission to manage PublishPress Taxonomies',
                     'simple-tags'
                 );
             } else {
@@ -895,7 +895,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 if (!can_manage_taxopress_metabox_taxonomy($taxonomy, false, $preview_role)) {
                     $response['status'] = 'error';
-                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sTaxoPress Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
+                    $response['content'] = sprintf(esc_html__('You do not have permission to manage this taxonomy. Enable Metabox Access Taxonomies for this role in %1sPublishPress Taxonomies Settings%2s.', 'simple-tags'), '<a target="_blank" href="' . admin_url('admin.php?page=st_options#metabox') . '">', '</a>');
                     wp_send_json($response);
                     exit;
                 }
