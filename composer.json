@@ -1,5 +1,5 @@
 {
-    "name": "taxopress/simple-tags",
+    "name": "taxopress/publishpress-taxonomies",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
     "description": "",
@@ -44,12 +44,12 @@
     },
     "extra": {
         "plugin-slug": "simple-tags",
-        "plugin-name": "taxopress",
+        "plugin-name": "PublishPress Taxonomies",
         "plugin-folder": "simple-tags",
         "version-constant": "STAGS_VERSION",
         "plugin-lang-domain": "simple-tags",
-        "plugin-github-repo": "taxopress/taxopress",
-        "plugin-composer-package": "taxopress/taxopress"
+        "plugin-github-repo": "taxopress/publishpress-taxonomies",
+        "plugin-composer-package": "taxopress/publishpress-taxonomies"
     },
     "repositories": [{
         "name": "publishpress-phpcs-standards",
