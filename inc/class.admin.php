@@ -246,7 +246,16 @@ class SimpleTags_Admin
     public static function ajax_check()
     {
         if (isset($_GET['stags_action']) && 'maybe_create_tag' === $_GET['stags_action'] && isset($_GET['tag'])) {
-            self::maybe_create_tag(wp_unslash(sanitize_text_field($_GET['tag'])));
+            if (!check_ajax_referer('st-admin-js', 'nonce', false)) {
+                wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')], 403);
+            }
+
+            $taxonomy = get_taxonomy('post_tag');
+            if (!$taxonomy || empty($taxonomy->cap->manage_terms) || !current_user_can($taxonomy->cap->manage_terms)) {
+                wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')], 403);
+            }
+
+            self::maybe_create_tag(sanitize_text_field(wp_unslash($_GET['tag'])));
         }
     }
 
@@ -657,6 +666,9 @@ class SimpleTags_Admin
 
         // Helper TaxoPress
         wp_register_script('st-helper-add-tags', STAGS_URL . '/assets/js/helper-add-tags.js', array('jquery'), STAGS_VERSION);
+        wp_localize_script('st-helper-add-tags', 'stHelperAddTagsL10n', [
+            'nonce' => wp_create_nonce('st-admin-js'),
+        ]);
         wp_register_script('st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array('jquery', 'wp-color-picker'), STAGS_VERSION);
 
         // Register CSS

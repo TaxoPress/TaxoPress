@@ -76,12 +76,17 @@ function addTag(tag, custom_taxonomy = false, term_id = false) {
     }
     
     jQuery.ajax({
-      url: ajaxurl + '?action=simpletags&stags_action=maybe_create_tag&tag=' + "" + tag + "",
+      url: ajaxurl + '?' + jQuery.param({
+        action: 'simpletags',
+        stags_action: 'maybe_create_tag',
+        tag: tag,
+        nonce: stHelperAddTagsL10n.nonce
+      }),
       cache: false,
       //async: false,
       dataType: 'json'
     }).done(function (result) {
-      if (result.data.term_id > 0) {
+      if (result.success && result.data.term_id > 0) {
         newTags.push(result.data.term_id);
         newTags = newTags.filter(onlyUnique);
 
