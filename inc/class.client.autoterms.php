@@ -593,8 +593,7 @@ class SimpleTags_Client_Autoterms
 
         if ($autoterm_use_taxonomy && $autoterm_useonly && !empty($options['specific_terms'])) {
             // Auto term with specific auto terms list
-            $terms = maybe_unserialize($options['specific_terms']);
-            $terms = taxopress_change_to_array($terms);
+            $terms = taxopress_sanitize_specific_terms($options['specific_terms']);
             foreach ($terms as $term) {
                 if (!is_string($term)) {
                     continue;
