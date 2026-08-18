@@ -1137,33 +1137,41 @@ if (!class_exists('TaxoPress_AI_Module')) {
          */
         public static function ajax_suggest_local()
         {
-            status_header(200);
-            header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
+            if (!check_ajax_referer('st-admin-js', 'nonce', false)) {
+                wp_die(esc_html__('Security check failed.', 'simple-tags'), '', ['response' => 403]);
+            }
 
-
-            $taxonomy =  'post_tag';
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only AJAX endpoint, no state modification
+            $taxonomy = 'post_tag';
             if (!empty($_GET['taxonomy'])) {
-                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only AJAX endpoint, no state modification
-                $taxonomy = sanitize_key($_GET['taxonomy']);
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                $taxonomy = sanitize_key(wp_unslash($_GET['taxonomy']));
             } elseif (isset($_GET['suggestterms'])) {
                 $suggestterms = taxopress_get_suggestterm_data();
-                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only AJAX endpoint for suggestions
-                $selected_suggestterm = (int)$_GET['suggestterms'];
+                $selected_suggestterm = absint($_GET['suggestterms']);
 
                 if (array_key_exists($selected_suggestterm, $suggestterms)) {
-                    $taxonomy       = $suggestterms[$selected_suggestterm]['taxonomy'];
+                    $taxonomy = sanitize_key($suggestterms[$selected_suggestterm]['taxonomy']);
                 }
             }
+
+            $taxonomy_object = get_taxonomy($taxonomy);
+            $post_id = isset($_POST['post_id']) ? absint($_POST['post_id']) : 0;
+            if (
+                !$taxonomy_object
+                || empty($taxonomy_object->cap->assign_terms)
+                || !current_user_can($taxonomy_object->cap->assign_terms)
+                || ($post_id > 0 && !current_user_can('edit_post', $post_id))
+            ) {
+                wp_die(esc_html__('Permission denied.', 'simple-tags'), '', ['response' => 403]);
+            }
+
+            status_header(200);
+            header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 
             if (((int) wp_count_terms($taxonomy, array( 'hide_empty' => false ))) == 0) { // No tags to suggest
                 echo '<p>' . esc_html__('No terms in your WordPress database.', 'simple-tags') . '</p>';
                 exit();
             }
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Read-only AJAX endpoint, no state modification
-            $post_id = (isset($_POST['post_id'])) ? intval($_POST['post_id']) : 0;
             // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Array indices checked, values sanitized for text comparison only
             $content = stripslashes(sanitize_textarea_field($_POST['content'] ?? '')) . ' ' . stripslashes(sanitize_text_field($_POST['title'] ?? ''));
             $content = trim($content);
