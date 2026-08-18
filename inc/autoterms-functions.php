@@ -290,7 +290,7 @@ function taxopress_create_default_autoterm()
                     $default['taxopress_autoterm']['autoterm_target']          = isset($options_taxonomy_data['at_empty']) ? $options_taxonomy_data['at_empty'] : 0;
                     $default['taxopress_autoterm']['autoterm_word']            = isset($options_taxonomy_data['only_full_word']) ? $options_taxonomy_data['only_full_word'] : 0;
                     $default['taxopress_autoterm']['autoterm_hash']            = isset($options_taxonomy_data['allow_hashtag_format']) ? $options_taxonomy_data['allow_hashtag_format'] : 0;
-                    $default['specific_terms']            = isset($options_taxonomy_data['auto_list']) ? (array) maybe_unserialize($options_taxonomy_data['auto_list']) : [];
+                    $default['specific_terms']            = isset($options_taxonomy_data['auto_list']) ? taxopress_sanitize_specific_terms($options_taxonomy_data['auto_list']) : [];
                     $default['taxopress_autoterm']['terms_limit']              = '5';
                     $default['taxopress_autoterm']['synonyms_term']            = 1;
 
@@ -337,6 +337,42 @@ add_action('admin_init', 'taxopress_create_default_autoterm', 8);
 
 
 /**
+ * Normalize Auto Terms' specific-term setting without accepting serialized data.
+ *
+ * @param mixed $terms Specific terms from a request or saved option.
+ * @return array
+ */
+function taxopress_sanitize_specific_terms($terms)
+{
+    if (!is_array($terms)) {
+        if (!is_scalar($terms)) {
+            return [];
+        }
+
+        $terms = wp_unslash((string) $terms);
+        if (is_serialized($terms)) {
+            return [];
+        }
+
+        $terms = taxopress_change_to_array($terms);
+    }
+
+    $sanitized_terms = [];
+    foreach ($terms as $term) {
+        if (!is_scalar($term)) {
+            continue;
+        }
+
+        $term = sanitize_text_field(wp_unslash((string) $term));
+        if ($term !== '') {
+            $sanitized_terms[] = $term;
+        }
+    }
+
+    return array_values(array_unique($sanitized_terms));
+}
+
+/**
  * Add to or update our TAXOPRESS option with new data.
  *
  *
@@ -349,7 +385,9 @@ function taxopress_update_autoterm($data = [])
 {
     $sanitized_data = [];
     foreach ($data as $key => $value) {
-        if (!is_array($value)) {
+        if ($key === 'specific_terms') {
+            $sanitized_data[$key] = taxopress_sanitize_specific_terms($value);
+        } elseif (!is_array($value)) {
             $sanitized_data[$key] = taxopress_sanitize_text_field($value);
         } else {
             $new_value = [];
