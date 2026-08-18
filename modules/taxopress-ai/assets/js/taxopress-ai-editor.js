@@ -33,6 +33,12 @@
     var removed_tax = taxoPressAIRequestAction.removed_tax;
     var current_screen = taxoPressAIRequestAction.current_screen;
 
+    function showResponseMessage(previewWrapper, content, messageClass) {
+      var messageWrapper = previewWrapper.find('.taxopress-ai-fetch-result-msg');
+      messageWrapper.empty().append($('<p>').text(content || ''));
+      messageWrapper.removeClass('updated error').addClass(messageClass);
+    }
+
     // Remove built in tax for block editor
     if (removed_tax.length > 0 && typeof wp.data !== 'undefined' && typeof wp.data.dispatch === 'function') {
       var editPostDispatch = wp.data.dispatch('core/edit-post');
@@ -99,7 +105,7 @@
 
       $.post(ajaxurl, data, function (response) {
         if (response.status === 'error') {
-          preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
+          showResponseMessage(preview_wrapper, response.content, 'error');
         } else {
           preview_wrapper.find('.taxopress-ai-fetch-result').html(response.content);
           autoterm_option_select2();
@@ -162,7 +168,7 @@
 
       $.post(ajaxurl, data, function (response) {
         if (response.status === 'error') {
-          preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
+          showResponseMessage(preview_wrapper, response.content, 'error');
         } else {
           preview_wrapper.find('.taxopress-taxonomy-term-input').val('');
           preview_wrapper.find('.taxopress-ai-fetch-result').html(response.term_html);
@@ -277,11 +283,11 @@
 
       if (button.hasClass('all-selected')) {
         button.removeClass('all-selected');
-        button.html(button.attr('data-select-all'));
+        button.text(button.attr('data-select-all'));
         button.closest('.previewed-tag-fieldset').find('.result-terms').addClass('used_term').trigger('click');
       } else {
         button.addClass('all-selected');
-        button.html(button.attr('data-deselect-all'));
+        button.text(button.attr('data-deselect-all'));
         button.closest('.previewed-tag-fieldset').find('.result-terms').removeClass('used_term').trigger('click');
       }
     });
@@ -307,7 +313,7 @@
       var this_result = term_button.find('.term-name');
       var this_selected = term_button.hasClass('used_term');
       var this_term_id = Number(this_result.attr('data-term_id'));
-      var this_term_name = this_result.html();
+      var this_term_name = this_result.text();
 
       term_button.addClass('disabled');
 
@@ -358,7 +364,16 @@
                     taxonomy_field_name = 'tax_input[' + taxonomy + ']';
                   }
 
-                  categoryList.prepend('<li id="' + taxonomy + '-' + term_data.term_id + '"><label class="selectit"><input value="' + term_data.term_id + '" type="checkbox" name="' + taxonomy_field_name + '[]" id="in-' + taxonomy + '-' + term_data.term_id + '" checked> ' + term_data.name + '</label></li>');
+                  var categoryItem = $('<li>').attr('id', taxonomy + '-' + term_data.term_id);
+                  var categoryLabel = $('<label>').addClass('selectit');
+                  var categoryInput = $('<input>', {
+                    value: term_data.term_id,
+                    type: 'checkbox',
+                    name: taxonomy_field_name + '[]',
+                    id: 'in-' + taxonomy + '-' + term_data.term_id
+                  }).prop('checked', true);
+                  categoryLabel.append(categoryInput).append(document.createTextNode(' ' + term_data.name));
+                  categoryList.prepend(categoryItem.append(categoryLabel));
 
                   this_result.attr('data-term_id', term_data.term_id);
                   term_button.toggleClass('used_term');
@@ -527,7 +542,7 @@
           this_result = $(this).find('.term-name');
           this_selected = $(this).hasClass('used_term');
           this_term_id = Number(this_result.attr('data-term_id'));
-          this_term_name = this_result.html();
+          this_term_name = this_result.text();
           term_data = {
             'term_id': this_term_id,
             'name': this_term_name
@@ -558,9 +573,9 @@
 
         $.post(ajaxurl, data, function (response) {
           if (response.status === 'error') {
-            preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('<p>' + response.content + '</p>').removeClass('updated').addClass('error');
+            showResponseMessage(preview_wrapper, response.content, 'error');
           } else {
-            preview_wrapper.find('.taxopress-ai-fetch-result-msg').html('<p>' + response.content + '</p>').addClass('updated').removeClass('error');
+            showResponseMessage(preview_wrapper, response.content, 'updated');
           }
 
           button.prop('disabled', false);
