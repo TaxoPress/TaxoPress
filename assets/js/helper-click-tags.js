@@ -35,7 +35,17 @@ function load_click_tags(search = '') {
 
   jQuery('#st-clicks-tags .container_clicktags')
     .fadeIn('slow')
-    .load(ajaxurl + '?action=simpletags&stags_action=click_tags&post_id=' + current_post_id + '&click_tags_taxonomy=' + click_tags_taxonomy + '&click_tags_method=' + click_tags_method + '&click_tags_order=' + click_tags_order + '&click_tags_limit=' + click_tags_limit + '&q=' + encodeURI(search), function () {
+    .load(ajaxurl + '?' + jQuery.param({
+      action: 'simpletags',
+      stags_action: 'click_tags',
+      post_id: current_post_id,
+      click_tags_taxonomy: click_tags_taxonomy,
+      click_tags_method: click_tags_method,
+      click_tags_order: click_tags_order,
+      click_tags_limit: click_tags_limit,
+      q: search,
+      nonce: stHelperClickTagsL10n.nonce
+    }), function () {
       jQuery('#st-clicks-tags .container_clicktags span').click(function (event) {
         event.preventDefault();
         var taxonomy = jQuery(this).attr('data-taxonomy');

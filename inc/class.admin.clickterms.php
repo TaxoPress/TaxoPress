@@ -152,6 +152,7 @@ class SimpleTags_Admin_ClickTags
                 'hide_txt'    => sprintf(esc_html__('Click terms to add them to this %s', 'simple-tags'), $post_type_name),
                 'state'       => 'show',
                 'search_icon' => STAGS_URL . '/assets/images/indicator.gif',
+                'nonce'       => wp_create_nonce('st-admin-js'),
                 'search_box'  => '<input type="text" class="click-tag-search-box" placeholder="' . __('Start typing to search', 'simple-tags') . '" size="26" autocomplete="off">',
                 'click_tags_options'  => $click_tags_options,
                 'edit_metabox_link'   => $click_term_edit,
@@ -223,10 +224,25 @@ class SimpleTags_Admin_ClickTags
      */
     public static function ajax_click_tags()
     {
+        if (!check_ajax_referer('st-admin-js', 'nonce', false)) {
+            wp_die(esc_html__('Security check failed.', 'simple-tags'), '', ['response' => 403]);
+        }
+
+        $taxonomy = isset($_GET['click_tags_taxonomy']) ? sanitize_key(wp_unslash($_GET['click_tags_taxonomy'])) : 'post_tag';
+        $taxonomy_object = get_taxonomy($taxonomy);
+        $post_id = isset($_GET['post_id']) ? absint($_GET['post_id']) : 0;
+
+        if (
+            !$taxonomy_object
+            || empty($taxonomy_object->cap->assign_terms)
+            || !current_user_can($taxonomy_object->cap->assign_terms)
+            || ($post_id > 0 && !current_user_can('edit_post', $post_id))
+        ) {
+            wp_die(esc_html__('Permission denied.', 'simple-tags'), '', ['response' => 403]);
+        }
+
         status_header(200); // Send good header HTTP
         header('Content-Type: text/html; charset=' . get_bloginfo('charset'));
-
-        $taxonomy =  isset($_GET['click_tags_taxonomy']) ? sanitize_text_field($_GET['click_tags_taxonomy']) : 'post_tag';
 
         if (0 === (int) wp_count_terms($taxonomy, array( 'hide_empty' => false ))) { // No tags to suggest
             echo '<p>' . esc_html__('No terms in your WordPress database.', 'simple-tags') . '</p>';
@@ -235,8 +251,6 @@ class SimpleTags_Admin_ClickTags
 
         // Prepare search
         $search  = (isset($_GET['q'])) ? trim(stripslashes(sanitize_text_field($_GET['q']))) : '';
-        $post_id = (isset($_GET['post_id'])) ? intval($_GET['post_id']) : 0;
-
         if (isset($_GET['click_tags_method']) && !empty($_GET['click_tags_method'])) {
             $order_click_tags = (sanitize_text_field($_GET['click_tags_method']) === 'random') ? sanitize_text_field($_GET['click_tags_method']) : sanitize_text_field($_GET['click_tags_method']) . '-' . sanitize_text_field($_GET['click_tags_order']);
         } else {
