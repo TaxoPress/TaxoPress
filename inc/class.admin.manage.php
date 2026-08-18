@@ -1387,12 +1387,20 @@ class SimpleTags_Admin_Manage
             clean_object_term_cache($objects_id, $taxonomy);
             clean_term_cache($terms_id, $taxonomy);
         } else { // Add for all posts
-            // Page or not ?
-            $post_type_sql = "(post_status = 'publish' OR post_status = 'inherit') AND post_type = '" . SimpleTags_Admin::$post_type . "'";
-
             // Get all posts ID
             global $wpdb;
-            $objects_id = $wpdb->get_col("SELECT ID FROM {$wpdb->posts} WHERE {$post_type_sql}");
+            $post_type = sanitize_key(SimpleTags_Admin::$post_type);
+            if (!post_type_exists($post_type)) {
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Invalid post type.', 'simple-tags'), 'error taxopress-notice');
+                return false;
+            }
+            SimpleTags_Admin::$post_type = $post_type;
+            $objects_id = $wpdb->get_col(
+                $wpdb->prepare(
+                    "SELECT ID FROM {$wpdb->posts} WHERE (post_status = 'publish' OR post_status = 'inherit') AND post_type = %s",
+                    $post_type
+                )
+            );
 
             // Add new tags for all posts
             foreach ((array) $objects_id as $object_id) {
@@ -1464,8 +1472,18 @@ class SimpleTags_Admin_Manage
 
         global $wpdb;
 
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : 'post_tag';
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_key(wp_unslash($_POST['taxonomy'])) : 'post_tag';
         $number = isset($_POST['number']) ? intval($_POST['number']) : 0;
+
+        $taxonomy_object = get_taxonomy($taxonomy);
+        if (
+            !current_user_can('simple_tags')
+            || !$taxonomy_object
+            || empty($taxonomy_object->cap->manage_terms)
+            || !current_user_can($taxonomy_object->cap->manage_terms)
+        ) {
+            wp_send_json_error(array('message' => __('Permission denied.', 'simple-tags')), 403);
+        }
 
         if ((int) $number > 100) {
             wp_die('Tcheater ?');
@@ -1569,8 +1587,18 @@ class SimpleTags_Admin_Manage
         } else {
             // Get all posts if no match terms were provided
             global $wpdb;
-            $post_type_sql = "(post_status = 'publish' OR post_status = 'inherit') AND post_type = '" . SimpleTags_Admin::$post_type . "'";
-            $objects_id = $wpdb->get_col("SELECT ID FROM {$wpdb->posts} WHERE {$post_type_sql}");
+            $post_type = sanitize_key(SimpleTags_Admin::$post_type);
+            if (!post_type_exists($post_type)) {
+                add_settings_error(__CLASS__, __CLASS__, esc_html__('Invalid post type.', 'simple-tags'), 'error taxopress-notice');
+                return false;
+            }
+            SimpleTags_Admin::$post_type = $post_type;
+            $objects_id = $wpdb->get_col(
+                $wpdb->prepare(
+                    "SELECT ID FROM {$wpdb->posts} WHERE (post_status = 'publish' OR post_status = 'inherit') AND post_type = %s",
+                    $post_type
+                )
+            );
 
             // Remove valid terms for all posts
             foreach ((array) $objects_id as $object_id) {
@@ -1599,8 +1627,18 @@ class SimpleTags_Admin_Manage
             wp_die();
         }
 
-        $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : 'post_tag';
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_key(wp_unslash($_POST['taxonomy'])) : 'post_tag';
         $term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
+
+        $taxonomy_object = get_taxonomy($taxonomy);
+        if (
+            !current_user_can('simple_tags')
+            || !$taxonomy_object
+            || empty($taxonomy_object->cap->manage_terms)
+            || !current_user_can($taxonomy_object->cap->manage_terms)
+        ) {
+            wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')], 403);
+        }
 
         $terms = get_terms([
             'taxonomy' => $taxonomy,
