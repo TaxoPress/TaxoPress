@@ -755,18 +755,27 @@ class SimpleTags_Client_TagCloud
         }
 
         if (!empty($args['limit_days'])) {
-            $recent_posts = get_posts([
+            $recent_posts_args = [
                 'post_type'      => $post_type ?: 'any',
                 'post_status'    => 'publish',
                 'date_query'     => [
                     [
-                        'after' => $args['limit_days'] . ' days ago',
+                        'after'     => $args['limit_days'] . ' days ago',
                         'inclusive' => false,
                     ],
                 ],
                 'fields'         => 'ids',
-                'posts_per_page' => -1,
-            ]);
+                'posts_per_page' => 100,
+            ];
+            $recent_posts      = [];
+            $page              = 1;
+
+            do {
+                $recent_posts_args['paged'] = $page;
+                $recent_posts_batch         = get_posts($recent_posts_args);
+                $recent_posts               = array_merge($recent_posts, $recent_posts_batch);
+                $page++;
+            } while (count($recent_posts_batch) === $recent_posts_args['posts_per_page']);
             if (!empty($recent_posts)) {
                 $terms = get_terms([
                     'taxonomy'   => $taxonomy,
@@ -1017,9 +1026,10 @@ class SimpleTags_Client_TagCloud
         if (! empty($exclude_tree)) {
             $excluded_trunks = wp_parse_id_list($exclude_tree);
             foreach ($excluded_trunks as $extrunk) {
-                $excluded_children   = (array) get_terms($taxonomies[0], array(
-                    'child_of' => intval($extrunk),
-                    'fields'   => 'ids'
+                $excluded_children   = (array) get_terms(array(
+                    'taxonomy' => $taxonomies[0],
+                    'child_of'  => intval($extrunk),
+                    'fields'    => 'ids',
                 ));
                 $excluded_children[] = $extrunk;
                 foreach ($excluded_children as $exterm) {
@@ -1089,7 +1099,7 @@ class SimpleTags_Client_TagCloud
                 $post_type = '';
             }
             $where .= " AND tr.object_id IN ( ";
-            $where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_date_gmt > '" . date('Y-m-d H:i:s', time() - $limit_days * 86400) . "' $post_type";
+            $where .= "SELECT DISTINCT ID FROM $wpdb->posts AS p WHERE p.post_date_gmt > '" . gmdate('Y-m-d H:i:s', time() - $limit_days * 86400) . "' $post_type";
             $where .= " ) ";
             $join_relation = true;
             unset($limit_days);
@@ -1124,7 +1134,7 @@ class SimpleTags_Client_TagCloud
                 if (empty($st_term)) {
                     continue;
                 }
-                $st_terms_formatted[] = "t.name LIKE '%" . like_escape($st_term) . "%'";
+                $st_terms_formatted[] = "t.name LIKE '%" . $wpdb->esc_like($st_term) . "%'";
             }
 
             $where .= " AND ( " . explode(' OR ', $st_terms_formatted) . " ) ";
@@ -1147,7 +1157,7 @@ class SimpleTags_Client_TagCloud
 
 
         if (! empty($search)) {
-            $search = like_escape($search);
+            $search = $wpdb->esc_like($search);
             $where  .= " AND (t.name LIKE '%$search%')";
         }
 

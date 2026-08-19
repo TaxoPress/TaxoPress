@@ -31,8 +31,8 @@ class Autoterms_Logs extends WP_List_Table
         $per_page = $this->get_items_per_page('st_autoterms_logs_per_page', 20);
         $current_page = $this->get_pagenum();
 
-        $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID'; //If no sort, default to role
-        $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc'; //If no order, default to asc
+        $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field(wp_unslash($_REQUEST['orderby'])) : 'ID'; //If no sort, default to role
+        $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field(wp_unslash($_REQUEST['order'])) : 'desc'; //If no order, default to asc
 
 
         return taxopress_autoterms_logs_data($per_page, $current_page, $orderby, $order);
@@ -116,10 +116,10 @@ class Autoterms_Logs extends WP_List_Table
 
             $autoterm_settings = taxopress_get_autoterm_data();
 
-            $selected_source = (!empty($_REQUEST['log_source_filter'])) ? sanitize_text_field($_REQUEST['log_source_filter']) : '';
-            $selected_post_type = (!empty($_REQUEST['log_filter_post_type'])) ? sanitize_text_field($_REQUEST['log_filter_post_type']) : '';
-            $selected_taxonomy = (!empty($_REQUEST['log_filter_taxonomy'])) ? sanitize_text_field($_REQUEST['log_filter_taxonomy']) : '';
-            $selected_status_message = (!empty($_REQUEST['log_filter_status_message'])) ? sanitize_text_field($_REQUEST['log_filter_status_message']) : '';
+            $selected_source = (!empty($_REQUEST['log_source_filter'])) ? sanitize_text_field(wp_unslash($_REQUEST['log_source_filter'])) : '';
+            $selected_post_type = (!empty($_REQUEST['log_filter_post_type'])) ? sanitize_text_field(wp_unslash($_REQUEST['log_filter_post_type'])) : '';
+            $selected_taxonomy = (!empty($_REQUEST['log_filter_taxonomy'])) ? sanitize_text_field(wp_unslash($_REQUEST['log_filter_taxonomy'])) : '';
+            $selected_status_message = (!empty($_REQUEST['log_filter_status_message'])) ? sanitize_text_field(wp_unslash($_REQUEST['log_filter_status_message'])) : '';
             $selected_settings = (!empty($_REQUEST['log_filter_settings'])) ? (int)$_REQUEST['log_filter_settings'] : 0;
             ?>
 
@@ -253,14 +253,14 @@ class Autoterms_Logs extends WP_List_Table
 
         $query_arg = '_wpnonce';
         $action = 'bulk-' . $this->_args['plural'];
-        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key($_REQUEST[$query_arg]), $action) : false;
+        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST[$query_arg])), $action) : false;
 
         if (!$checked || !current_user_can('simple_tags')) {
             return;
         }
 
         if ($this->current_action() === 'taxopress-autoterms-delete-logs') {
-            $taxopress_autoterms_logs = array_map('sanitize_text_field', (array)$_REQUEST['taxopress_autoterms_logs']);
+            $taxopress_autoterms_logs = array_map('sanitize_text_field', (array) wp_unslash($_REQUEST['taxopress_autoterms_logs']));
             if (!empty($taxopress_autoterms_logs)) {
                 foreach ($taxopress_autoterms_logs as $taxopress_autoterms_log) {
                     wp_delete_post($taxopress_autoterms_log, true);
@@ -516,22 +516,22 @@ class Autoterms_Logs extends WP_List_Table
         $input_id = $input_id . '-search-input';
 
         if (!empty($_REQUEST['orderby'])) {
-            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
+            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['orderby']))) . '" />';
         }
         if (!empty($_REQUEST['order'])) {
-            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
+            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['order']))) . '" />';
         }
         if (!empty($_REQUEST['page'])) {
-            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
+            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['page']))) . '" />';
         }
         if (!empty($_REQUEST['tab'])) {
-            echo '<input type="hidden" name="tab" value="' . esc_attr(sanitize_text_field($_REQUEST['tab'])) . '" />';
+            echo '<input type="hidden" name="tab" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['tab']))) . '" />';
         }
 
         $custom_filters = ['log_source_filter', 'log_filter_post_type', 'log_filter_taxonomy', 'log_filter_status_message', 'log_filter_settings'];
 
         foreach ($custom_filters as $custom_filter) {
-            $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field($_REQUEST[$custom_filter]) : '';
+            $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field(wp_unslash($_REQUEST[$custom_filter])) : '';
             echo '<input type="hidden" name="' . esc_attr($custom_filter) . '" value="' . esc_attr($filter_value) . '" />';
         }
 

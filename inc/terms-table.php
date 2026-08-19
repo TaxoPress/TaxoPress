@@ -30,14 +30,14 @@ class Taxopress_Terms_List extends WP_List_Table
         $search = (!empty($_REQUEST['s'])) ? sanitize_text_field(wp_unslash($_REQUEST['s'])) : '';
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering and display
-        $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_key($_REQUEST['terms_filter_post_type']) : '';
+        $selected_post_type = (!empty($_REQUEST['terms_filter_post_type'])) ? sanitize_key(wp_unslash($_REQUEST['terms_filter_post_type'])) : '';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for filtering and display
-        $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_key($_REQUEST['terms_filter_taxonomy']) : '';
+        $selected_taxonomy = (!empty($_REQUEST['terms_filter_taxonomy'])) ? sanitize_key(wp_unslash($_REQUEST['terms_filter_taxonomy'])) : '';
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
         if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
-            $selected_taxonomy = sanitize_key($_REQUEST['taxopress_terms_taxonomy']);
+            $selected_taxonomy = sanitize_key(wp_unslash($_REQUEST['taxopress_terms_taxonomy']));
             $taxonomies = [$selected_taxonomy];
         } elseif (!empty($selected_taxonomy)) {
             $taxonomies = [$selected_taxonomy];
@@ -196,7 +196,7 @@ class Taxopress_Terms_List extends WP_List_Table
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Temporary display context after a copy action.
         $original_term_id = !empty($_REQUEST['taxopress_original_term_id']) ? (int) $_REQUEST['taxopress_original_term_id'] : 0;
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Temporary display context after a copy action.
-        $taxonomy = !empty($_REQUEST['taxopress_copied_taxonomy']) ? sanitize_key($_REQUEST['taxopress_copied_taxonomy']) : '';
+        $taxonomy = !empty($_REQUEST['taxopress_copied_taxonomy']) ? sanitize_key(wp_unslash($_REQUEST['taxopress_copied_taxonomy'])) : '';
 
         if ($copied_term_id <= 0 || $original_term_id <= 0 || empty($taxonomy)) {
             return $terms;
@@ -401,7 +401,7 @@ class Taxopress_Terms_List extends WP_List_Table
         $allowed_order   = ['asc', 'desc'];
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for ordering
-        $requested_orderby = !empty($_REQUEST['orderby']) ? sanitize_key($_REQUEST['orderby']) : '';
+        $requested_orderby = !empty($_REQUEST['orderby']) ? sanitize_key(wp_unslash($_REQUEST['orderby'])) : '';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameters for ordering
         $requested_order   = !empty($_REQUEST['order']) ? strtolower(sanitize_text_field(wp_unslash($_REQUEST['order']))) : '';
 
@@ -893,7 +893,7 @@ class Taxopress_Terms_List extends WP_List_Table
 
         $query_arg = '_wpnonce';
         $action = 'bulk-' . $this->_args['plural'];
-        $checked = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key($_REQUEST[$query_arg]), $action) : false;
+        $checked = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST[$query_arg])), $action) : false;
 
         if (!$checked || !current_user_can('simple_tags')) {
             return;

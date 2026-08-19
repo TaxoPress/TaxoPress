@@ -87,7 +87,7 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
 
         $query_arg = '_wpnonce';
         $action = 'bulk-' . $this->_args['plural'];
-        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key($_REQUEST[$query_arg]), $action) : false;
+        $checked = $result = isset($_REQUEST[$query_arg]) ? wp_verify_nonce(sanitize_key(wp_unslash($_REQUEST[$query_arg])), $action) : false;
 
         if (!$checked || !current_user_can('simple_tags')) {
             return;

@@ -170,6 +170,7 @@ class SimpleTags_Client
      */
     public static function init_translation()
     {
+        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Keep support for bundled translations installed outside WordPress.org.
         load_plugin_textdomain('simple-tags', false, basename(STAGS_DIR) . '/languages');
     }
 
@@ -266,7 +267,7 @@ class SimpleTags_Client
     {
 
         $terms = get_terms(array(
-            'name' => strip_tags($item),
+            'name' => wp_strip_all_tags($item),
             'hide_empty' => false,
             'fields' => 'all',
             'number' => 1,
@@ -326,7 +327,7 @@ class SimpleTags_Client
                         } else {
                             // fallback for legacy
                             $term_html = $item;
-                            $post_count = self::get_term_post_counts(strip_tags($item));
+                            $post_count = self::get_term_post_counts(wp_strip_all_tags($item));
                         }
 
                         // if ( $post_count === 0 ) {
@@ -363,7 +364,7 @@ class SimpleTags_Client
                         $all_terms = [];
 
                         $term_names = array_map(function ($term_html) {
-                            return strip_tags($term_html);
+                            return wp_strip_all_tags($term_html);
                         }, array_filter($content, 'trim'));
 
                         if (!empty($term_names)) {
@@ -417,7 +418,7 @@ class SimpleTags_Client
                             continue;
                         }
 
-                        $term_name = strip_tags($term_html);
+                        $term_name = wp_strip_all_tags($term_html);
                         $term = get_term_by('name', $term_name, $taxonomy);
 
                         if (!$term) {
@@ -612,7 +613,7 @@ class SimpleTags_Client
         $element_loop = str_replace('%tag_feed%', esc_url(get_term_feed_link($term->term_id, $term->taxonomy, '')), $element_loop);
 
         $element_loop = str_replace('%tag_name%', esc_html($term->name), $element_loop);
-        $element_loop = str_replace('%tag_name_attribute%', esc_html(strip_tags($term->name)), $element_loop);
+        $element_loop = str_replace('%tag_name_attribute%', esc_html(wp_strip_all_tags($term->name)), $element_loop);
         $element_loop = str_replace('%tag_id%', $term->term_id, $element_loop);
         $element_loop = str_replace('%tag_count%', (int) $term->count, $element_loop);
         $element_loop = str_replace('%tag_description%', esc_html($term->description), $element_loop);

@@ -77,7 +77,7 @@ class SimpleTags_Admin_Autocomplete
         }
 
         // Check if nonce is set and valid
-        if (! isset($_REQUEST['nonce']) || ! wp_verify_nonce($_REQUEST['nonce'], 'st-admin-js')) {
+        if (! isset($_REQUEST['nonce']) || ! wp_verify_nonce(wp_unslash($_REQUEST['nonce']), 'st-admin-js')) {
             wp_send_json_error(array( 'message' => 'Invalid or missing nonce.' ), 403);
         }
 
@@ -99,15 +99,15 @@ class SimpleTags_Admin_Autocomplete
 
         $taxonomy = 'post_tag';
         if (isset($_REQUEST['taxonomy']) && !empty($_REQUEST['taxonomy'])) {//  &&
-            $taxonomy = sanitize_text_field($_REQUEST['taxonomy']);
+            $taxonomy = sanitize_text_field(wp_unslash($_REQUEST['taxonomy']));
         }
-        if (taxonomy_exists($taxonomy) && (int) wp_count_terms($taxonomy, array( 'hide_empty' => false )) === 0) { // No tags to suggest
+        if (taxonomy_exists($taxonomy) && (int) wp_count_terms(array( 'taxonomy' => $taxonomy, 'hide_empty' => false )) === 0) { // No tags to suggest
             echo wp_json_encode(array());
             exit();
         }
 
         // Prepare search
-        $search = (isset($_GET['term'])) ? trim(stripslashes(sanitize_text_field($_GET['term']))) : '';
+        $search = (isset($_GET['term'])) ? trim(stripslashes(sanitize_text_field(wp_unslash($_GET['term'])))) : '';
         $exclude_term = isset($_REQUEST['exclude_term']) ? (int) $_REQUEST['exclude_term'] : 0;
 
         // Get all terms, or filter with search

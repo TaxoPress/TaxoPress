@@ -127,16 +127,16 @@ class Taxonomy_List extends WP_List_Table
         $input_id = $input_id . '-search-input';
 
         if (!empty($_REQUEST['orderby'])) {
-            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
+            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['orderby']))) . '" />';
         }
         if (!empty($_REQUEST['order'])) {
-            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
+            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['order']))) . '" />';
         }
         if (!empty($_REQUEST['page'])) {
-            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
+            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['page']))) . '" />';
         }
         if (!empty($_REQUEST['taxonomy_type'])) {
-            echo '<input type="hidden" name="taxonomy_type" value="' . esc_attr(sanitize_text_field($_REQUEST['taxonomy_type'])) . '" />';
+            echo '<input type="hidden" name="taxonomy_type" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['taxonomy_type']))) . '" />';
         }
         ?>
         <p class="search-box">
@@ -188,7 +188,7 @@ class Taxonomy_List extends WP_List_Table
         /**
          * Handle search
          */
-        if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
+        if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
             $data_filtered = [];
             foreach ($data as $item) {
                 if (
@@ -209,8 +209,8 @@ class Taxonomy_List extends WP_List_Table
          */
         function usort_reorder($a, $b)
         {
-            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'label'; //If no sort, default to role
-            $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'asc'; //If no order, default to asc
+            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field(wp_unslash($_REQUEST['orderby'])) : 'label'; //If no sort, default to role
+            $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field(wp_unslash($_REQUEST['order'])) : 'asc'; //If no order, default to asc
             $result  = strnatcasecmp(
                 $a->$orderby,
                 $b->$orderby
@@ -452,7 +452,7 @@ class Taxonomy_List extends WP_List_Table
      */
     protected function column_count($item)
     {
-        $terms = get_terms($item->name, array('hide_empty' => false, 'fields' => 'ids'));
+        $terms = get_terms(array('taxonomy' => $item->name, 'hide_empty' => false, 'fields' => 'ids'));
         $title = sprintf(
             '<a href="%1$s"><strong><span class="row-title">%2$s</span></strong></a>',
             add_query_arg(
