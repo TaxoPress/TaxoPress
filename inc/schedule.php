@@ -70,7 +70,7 @@ if (!class_exists('SimpleTags_Autoterms_Schedule')) {
             if (
                 !empty($_POST['taxopress_autoterm_schedule_test_run'])
                 && !empty($_POST['_nonce'])
-                && wp_verify_nonce(sanitize_text_field($_POST['_nonce']), 'taxopress_autoterm_schedule_nonce')
+                && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_nonce'])), 'taxopress_autoterm_schedule_nonce')
                 && current_user_can('simple_tags')
             ) {
                 $autoterms_schedule = taxopress_get_autoterms_schedule_data();
@@ -109,7 +109,7 @@ if (!class_exists('SimpleTags_Autoterms_Schedule')) {
             if (
                 !empty($_POST['taxopress_autoterm_schedule_submit'])
                 && !empty($_POST['_nonce'])
-                && wp_verify_nonce(sanitize_text_field($_POST['_nonce']), 'taxopress_autoterm_schedule_nonce')
+                && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_nonce'])), 'taxopress_autoterm_schedule_nonce')
                 && current_user_can('simple_tags')
             ) {
                 $auto_term_ids = !empty($_POST['taxopress_autoterm_schedule']['autoterm_id']) ? array_map('intval', (array)$_POST['taxopress_autoterm_schedule']['autoterm_id']) : [];

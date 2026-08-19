@@ -311,12 +311,12 @@ class SimpleTags_Admin_Taxonomies
 
         $count_args = $args;
         unset($count_args['number'], $count_args['offset']);
-        $total_terms = wp_count_terms($taxonomy, $count_args);
+        $total_terms = wp_count_terms($count_args);
         if (is_wp_error($total_terms)) {
             $total_terms = 0;
         }
 
-        $context    = isset($_GET['context']) ? sanitize_text_field($_GET['context']) : '';
+        $context    = isset($_GET['context']) ? sanitize_text_field(wp_unslash($_GET['context'])) : '';
         $show_slug  = (
             'mass_edit' === $context
             && (int) SimpleTags_Plugin::get_option_value('enable_mass-edit_terms_slug') === 1
@@ -387,7 +387,7 @@ class SimpleTags_Admin_Taxonomies
 
             $selected_taxonomy = taxopress_get_current_taxonomy($taxonomy_deleted);
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying GET parameter for taxonomy selection
-            $request_tax       = isset($_GET['taxopress_taxonomy']) ? sanitize_text_field($_GET['taxopress_taxonomy']) : '';
+            $request_tax       = isset($_GET['taxopress_taxonomy']) ? sanitize_text_field(wp_unslash($_GET['taxopress_taxonomy'])) : '';
 
             if ($selected_taxonomy && array_key_exists($selected_taxonomy, $taxonomies)) {
                 $current       = $taxonomies[$selected_taxonomy];

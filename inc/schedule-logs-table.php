@@ -22,9 +22,9 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
         $current_page = $this->get_pagenum();
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for sorting display, no state change
-        $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID';
+        $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field(wp_unslash($_REQUEST['orderby'])) : 'ID';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for sort order display, no state change
-        $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc';
+        $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field(wp_unslash($_REQUEST['order'])) : 'desc';
 
 
         return taxopress_autoterms_logs_data($per_page, $current_page, $orderby, $order, true);
@@ -94,7 +94,7 @@ class SimpleTags_Schedule_Logs extends WP_List_Table
         }
 
         if ($this->current_action() === 'taxopress-autoterms-delete-logs') {
-            $taxopress_autoterms_schedule_logs = isset($_REQUEST['taxopress_autoterms_schedule_logs']) ? array_map('sanitize_text_field', (array)$_REQUEST['taxopress_autoterms_schedule_logs']) : [];
+            $taxopress_autoterms_schedule_logs = isset($_REQUEST['taxopress_autoterms_schedule_logs']) ? array_map('sanitize_text_field', (array) wp_unslash($_REQUEST['taxopress_autoterms_schedule_logs'])) : [];
             if (!empty($taxopress_autoterms_schedule_logs)) {
                 foreach ($taxopress_autoterms_schedule_logs as $taxopress_autoterms_log) {
                     wp_delete_post($taxopress_autoterms_log, true);
