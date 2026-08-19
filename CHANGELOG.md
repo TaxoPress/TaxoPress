@@ -1,6 +1,17 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [3.52.0] - 19 August, 2026 =
+* Update: Normalize Auto Terms specific-term values, #3001
+* Update: Add permission checks to Pro configuration copy actions, #3000
+* Update: Restrict synonym validation to TaxoPress managers, #2999
+* Add permission checks to term copy actions, #2998
+* Harden Linked Terms list and bulk actions, #2997
+* Strengthen Manage Terms request validation, #2995
+* Tighten access checks for term suggestion lookups, #2993
+* Add request validation to legacy tag creation, #2991
+* Harden TaxoPress AI term result rendering, #2989
+
 = [3.51.0] - 22 July, 2026 =
 * Fixed: Fatal memory exhaustion on Terms screen (st_terms) with hierarchical taxonomy — not related to term count, #2967
 * Fixed: Related Posts thumbnail image resolution setting is ignored, #2964
