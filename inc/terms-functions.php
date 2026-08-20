@@ -28,22 +28,37 @@ function taxopress_get_unique_term_slug($slug, $taxonomy)
  */
 function taxopress_get_post_ids_for_terms_action($args = [])
 {
+    $batch_size = 500;
     $defaults = [
         'post_type'              => 'any',
-        'posts_per_page'         => -1,
         'fields'                 => 'ids',
         'no_found_rows'          => true,
         'update_post_meta_cache' => false,
         'update_post_term_cache' => false,
     ];
 
-    $post_ids = get_posts(array_merge($defaults, $args));
+    $post_ids = [];
+    $page = 1;
 
-    if (empty($post_ids)) {
-        return [];
-    }
+    do {
+        $query_args = array_merge(
+            $defaults,
+            $args,
+            [
+                'posts_per_page' => $batch_size,
+                'paged'          => $page,
+            ]
+        );
+        $batch_post_ids = get_posts($query_args);
 
-    return array_map('intval', $post_ids);
+        foreach ($batch_post_ids as $post_id) {
+            $post_ids[] = (int) $post_id;
+        }
+
+        $page++;
+    } while (count($batch_post_ids) === $batch_size);
+
+    return $post_ids;
 }
 
 /**
@@ -148,9 +163,9 @@ function taxopress_process_terms()
     }
 
     if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-terms') {
-        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
+        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
         if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
-            $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
+            $term = get_term(sanitize_text_field(wp_unslash($_REQUEST['taxopress_terms'])));
             wp_delete_term($term->term_id, $term->taxonomy);
         }
         add_action('admin_notices', "taxopress_term_delete_success_admin_notice");
@@ -158,12 +173,11 @@ function taxopress_process_terms()
     }
 
     if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-remove-from-posts') {
-        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
+        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
         if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
-            $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
+            $term = get_term(sanitize_text_field(wp_unslash($_REQUEST['taxopress_terms'])));
             $args = array(
                 'post_type' => 'any',
-                'posts_per_page' => -1,
                 // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Necessary to filter posts by specific term for accurate removal
                 'tax_query' => array(
                     array(
@@ -189,9 +203,9 @@ function taxopress_process_terms()
     }
 
     if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-copy-term') {
-        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
+        $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
         if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
-            $term = get_term(sanitize_text_field($_REQUEST['taxopress_terms']));
+            $term = get_term(sanitize_text_field(wp_unslash($_REQUEST['taxopress_terms'])));
 
             $taxopress_term_name = $term->name . ' Copy';
             $base_slug = $term->slug . '-copy';
@@ -211,7 +225,6 @@ function taxopress_process_terms()
 
                 $args = array(
                     'post_type' => 'any',
-                    'posts_per_page' => -1,
                     // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Necessary to filter posts by specific term for accurate term copying
                     'tax_query' => array(
                         array(

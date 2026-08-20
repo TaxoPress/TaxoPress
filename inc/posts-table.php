@@ -64,12 +64,12 @@ class Taxopress_Posts_List extends WP_List_Table
     public function get_all_posts()
     {
 
-        $search            = (!empty($_REQUEST['s'])) ? sanitize_text_field($_REQUEST['s']) : '';
+        $search            = (!empty($_REQUEST['s'])) ? sanitize_text_field(wp_unslash($_REQUEST['s'])) : '';
         $term_filter        = (!empty($_REQUEST['posts_term_filter'])) ? (int) $_REQUEST['posts_term_filter'] : '';
-        $post_types        = (!empty($_REQUEST['posts_post_type_filter'])) ? sanitize_text_field($_REQUEST['posts_post_type_filter']) : '';
+        $post_types        = (!empty($_REQUEST['posts_post_type_filter'])) ? sanitize_text_field(wp_unslash($_REQUEST['posts_post_type_filter'])) : '';
 
-        $orderby           = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'date';
-        $order             = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'DESC';
+        $orderby           = (!empty($_REQUEST['orderby'])) ? sanitize_text_field(wp_unslash($_REQUEST['orderby'])) : 'date';
+        $order             = (!empty($_REQUEST['order'])) ? sanitize_text_field(wp_unslash($_REQUEST['order'])) : 'DESC';
 
 
         $posts_per_page    = $this->get_items_per_page('st_posts_per_page', 20);
@@ -156,7 +156,7 @@ class Taxopress_Posts_List extends WP_List_Table
             $post_types = get_post_types(['public' => true], 'objects');
 
             $posts_term_filter = (!empty($_REQUEST['posts_term_filter'])) ? (int) $_REQUEST['posts_term_filter'] : '';
-            $posts_post_type_filter = (!empty($_REQUEST['posts_post_type_filter'])) ? sanitize_text_field($_REQUEST['posts_post_type_filter']) : '';
+            $posts_post_type_filter = (!empty($_REQUEST['posts_post_type_filter'])) ? sanitize_text_field(wp_unslash($_REQUEST['posts_post_type_filter'])) : '';
             ?>
 
 
@@ -233,19 +233,19 @@ class Taxopress_Posts_List extends WP_List_Table
         $input_id = $input_id . '-search-input';
 
         if (!empty($_REQUEST['orderby'])) {
-            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
+            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['orderby']))) . '" />';
         }
         if (!empty($_REQUEST['order'])) {
-            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
+            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['order']))) . '" />';
         }
         if (!empty($_REQUEST['page'])) {
-            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
+            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['page']))) . '" />';
         }
 
         $custom_filters = ['posts_term_filter', 'posts_post_type_filter'];
 
         foreach ($custom_filters as $custom_filter) {
-            $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field($_REQUEST[$custom_filter]) : '';
+            $filter_value = !empty($_REQUEST[$custom_filter]) ? sanitize_text_field(wp_unslash($_REQUEST[$custom_filter])) : '';
             echo '<input type="hidden" name="' . esc_attr($custom_filter) . '" value="' . esc_attr($filter_value) . '" />';
         }
         ?>
@@ -428,7 +428,7 @@ class Taxopress_Posts_List extends WP_List_Table
     protected function update_or_add_url_parameter($param_name, $param_value)
     {
 
-        $url = sanitize_text_field($_SERVER['REQUEST_URI']);
+        $url = sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI']));
 
         // Check if the parameter already exists in the URL
         $existing_param = get_query_var($param_name);

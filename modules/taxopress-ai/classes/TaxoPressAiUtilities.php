@@ -282,7 +282,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
                     $modified_legend_title = '<span class="ai-select-all" data-select-all="' . sprintf(esc_attr__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) . '" data-deselect-all="' . sprintf(esc_attr__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) . '">' . sprintf(esc_html__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) . '</span>';
                 }
             } else {
-                $modified_legend_title = '<span>' . $taxonomy_details->labels->name . '</span>';
+                $modified_legend_title = '<span>' . esc_html($taxonomy_details->labels->name) . '</span>';
             }
 
             // phpcs:ignore Squiz.PHP.CommentedOutCode -- Optional legend display, intentionally commented for future use
@@ -344,20 +344,18 @@ if (!class_exists('TaxoPressAiUtilities')) {
                             $display_name .= ' (' . $term_obj->slug . ')';
                         }
                     }
-                    $response_content .= $display_name;
+                    $response_content .= esc_html($display_name);
                     $response_content .= '</span>';
                     $count_output = '';
                     if (!empty($show_counts) && $term_id) {
                         $response_content .= '<span class="term-counts">';
-                        $response_content .= number_format_i18n($term_post_counts);
+                        $response_content .= esc_html(number_format_i18n($term_post_counts));
                         $response_content .= '</span>';
                         $count_output = ' (' . number_format_i18n($term_post_counts) . ')';
                     }
                     $response_content .= '</span>';
 
                     if ($metabox_display_option == 'dropdown') {
-                        // phpcs:ignore Squiz.PHP.CommentedOutCode -- Alternative display format, intentionally commented for future use
-                        // $additional_html .= '<option value="'. stripslashes($linked_term_name) .'" data-term_link_id="'. esc_attr($term_link_id) .'" data-term_id="'.esc_attr($term_id).'" data-taxonomy="'.esc_attr($taxonomy).'" ' . selected($selected_terms, true, false). '>'. stripslashes($linked_term_name) . $count_output . '</option>';
                         $option_display_name = stripslashes($linked_term_name);
                         if ($show_term_slug && $term_id) {
                             $term_obj = get_term($term_id, $taxonomy);
@@ -365,7 +363,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
                                 $option_display_name .= ' (' . $term_obj->slug . ')';
                             }
                         }
-                        $additional_html .= '<option value="' . stripslashes($linked_term_name) . '" data-term_link_id="' . esc_attr($term_link_id) . '" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . selected($selected_terms, true, false) . '>' . $option_display_name . $count_output . '</option>';
+                        $additional_html .= '<option value="' . esc_attr(stripslashes($linked_term_name)) . '" data-term_link_id="' . esc_attr($term_link_id) . '" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . selected($selected_terms, true, false) . '>' . esc_html($option_display_name . $count_output) . '</option>';
                     } elseif ($metabox_display_option == 'radio') {
                         $radio_display_name = stripslashes($linked_term_name);
                         if ($show_term_slug && $term_id) {
@@ -374,7 +372,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
                                 $radio_display_name .= ' (' . $term_obj->slug . ')';
                             }
                         }
-                        $additional_html .= '<label><input value="' . stripslashes($linked_term_name) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="radio" name="auto_term_terms_options[]" class="auto_term_terms_options radio" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . $radio_display_name . $count_output . '</label>';
+                        $additional_html .= '<label><input value="' . esc_attr(stripslashes($linked_term_name)) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="radio" name="auto_term_terms_options[]" class="auto_term_terms_options radio" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . esc_html($radio_display_name . $count_output) . '</label>';
                     } elseif ($metabox_display_option == 'checkbox') {
                         $checkbox_display_name = stripslashes($linked_term_name);
                         if ($show_term_slug && $term_id) {
@@ -383,7 +381,7 @@ if (!class_exists('TaxoPressAiUtilities')) {
                                 $checkbox_display_name .= ' (' . $term_obj->slug . ')';
                             }
                         }
-                        $additional_html .= '<label><input value="' . stripslashes($linked_term_name) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="checkbox" name="auto_term_terms_options[]" class="auto_term_terms_options checkbox" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . $checkbox_display_name . $count_output . '</label>';
+                        $additional_html .= '<label><input value="' . esc_attr(stripslashes($linked_term_name)) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="checkbox" name="auto_term_terms_options[]" class="auto_term_terms_options checkbox" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . esc_html($checkbox_display_name . $count_output) . '</label>';
                     }
                     $term_link_id++;
                 }
@@ -441,12 +439,12 @@ if (!class_exists('TaxoPressAiUtilities')) {
                     $modified_legend_title = '<span class="ai-select-all" data-select-all="' . sprintf(esc_attr__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) . '" data-deselect-all="' . sprintf(esc_attr__('Deselect all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) . '">' . sprintf(esc_html__('Select all %1s', 'simple-tags'), esc_html($taxonomy_details->labels->name)) . '</span>';
                 }
             } else {
-                $modified_legend_title = '<span>' . $taxonomy_details->labels->name . '</span>';
+                $modified_legend_title = '<span>' . esc_html($taxonomy_details->labels->name) . '</span>';
             }
 
             $response_content = '';
             $response_content .= '<fieldset class="previewed-tag-fieldset">';
-            $response_content .= '<legend> ' . $args['legend_title'] . ' (' . $modified_legend_title . ')</legend>';
+            $response_content .= '<legend> ' . wp_kses_post($args['legend_title']) . ' (' . $modified_legend_title . ')</legend>';
             $response_content .= '<div class="previewed-tag-content taxopress-autoterm-element ' . esc_attr($metabox_display_option) . '">';
 
             $additional_html = '';
@@ -489,23 +487,23 @@ if (!class_exists('TaxoPressAiUtilities')) {
 
                     $response_content .= '<span class="result-terms ' . esc_attr($additional_class) . '" data-term_link_id="' . esc_attr($term_link_id) . '">';
                     $response_content .= '<span data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" class="term-name ' . esc_attr($taxonomy) . '" tabindex="0" role="button" aria-pressed="false">';
-                    $response_content .= stripslashes($linked_term_name);
+                    $response_content .= esc_html(stripslashes($linked_term_name));
                     $response_content .= '</span>';
                     $count_output = '';
                     if (!empty($show_counts) && $term_id) {
                         $response_content .= '<span class="term-counts">';
-                        $response_content .= number_format_i18n($term_post_counts);
+                        $response_content .= esc_html(number_format_i18n($term_post_counts));
                         $response_content .= '</span>';
                         $count_output = ' (' . number_format_i18n($term_post_counts) . ')';
                     }
                     $response_content .= '</span>';
 
                     if ($metabox_display_option == 'dropdown') {
-                        $additional_html .= '<option value="' . stripslashes($linked_term_name) . '" data-term_link_id="' . esc_attr($term_link_id) . '" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . selected($selected_terms, true, false) . '>' . stripslashes($linked_term_name) . $count_output . '</option>';
+                        $additional_html .= '<option value="' . esc_attr(stripslashes($linked_term_name)) . '" data-term_link_id="' . esc_attr($term_link_id) . '" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . selected($selected_terms, true, false) . '>' . esc_html(stripslashes($linked_term_name) . $count_output) . '</option>';
                     } elseif ($metabox_display_option == 'radio') {
-                        $additional_html .= '<label><input value="' . stripslashes($linked_term_name) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="radio" name="auto_term_terms_options[]" class="auto_term_terms_options radio" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . stripslashes($linked_term_name) . $count_output . '</label>';
+                        $additional_html .= '<label><input value="' . esc_attr(stripslashes($linked_term_name)) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="radio" name="auto_term_terms_options[]" class="auto_term_terms_options radio" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . esc_html(stripslashes($linked_term_name) . $count_output) . '</label>';
                     } elseif ($metabox_display_option == 'checkbox') {
-                        $additional_html .= '<label><input value="' . stripslashes($linked_term_name) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="checkbox" name="auto_term_terms_options[]" class="auto_term_terms_options checkbox" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . stripslashes($linked_term_name) . $count_output . '</label>';
+                        $additional_html .= '<label><input value="' . esc_attr(stripslashes($linked_term_name)) . '" data-term_link_id="' . esc_attr($term_link_id) . '" type="checkbox" name="auto_term_terms_options[]" class="auto_term_terms_options checkbox" data-term_id="' . esc_attr($term_id) . '" data-taxonomy="' . esc_attr($taxonomy) . '" ' . checked($selected_terms, true, false) . '> ' . esc_html(stripslashes($linked_term_name) . $count_output) . '</label>';
                     }
                     $term_link_id++;
                 }

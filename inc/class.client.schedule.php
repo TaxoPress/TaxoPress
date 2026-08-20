@@ -110,7 +110,7 @@ class SimpleTags_Client_Schedule
 
         $schedule_terms_limit_days_sql = '';
         if ($schedule_terms_limit_days > 0) {
-            $schedule_terms_limit_days_sql = 'AND post_date > "' . date('Y-m-d H:i:s', time() - $schedule_terms_limit_days * 86400) . '"';
+            $schedule_terms_limit_days_sql = 'AND post_date > "' . gmdate('Y-m-d H:i:s', time() - $schedule_terms_limit_days * 86400) . '"';
         }
 
         // Use a per-frequency cursor so the schedule walks all eligible posts over time

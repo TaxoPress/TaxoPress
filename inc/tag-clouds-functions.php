@@ -25,7 +25,7 @@ function taxopress_get_current_tagcloud()
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for display selection, no state change
     if (!empty($_GET) && isset($_GET['taxopress_termsdisplay'])) {
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $tagclouds = sanitize_text_field($_GET['taxopress_termsdisplay']);
+        $tagclouds = sanitize_text_field(wp_unslash($_GET['taxopress_termsdisplay']));
     } else {
         $tagclouds = taxopress_get_tagcloud_data();
         if (!empty($tagclouds)) {

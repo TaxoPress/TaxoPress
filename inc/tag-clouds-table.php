@@ -111,17 +111,17 @@ class TagClouds_List extends WP_List_Table
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for hidden form fields, preserving filter state
         if (!empty($_REQUEST['orderby'])) {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field($_REQUEST['orderby'])) . '" />';
+            echo '<input type="hidden" name="orderby" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['orderby']))) . '" />';
         }
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for hidden form fields, preserving sort order
         if (!empty($_REQUEST['order'])) {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field($_REQUEST['order'])) . '" />';
+            echo '<input type="hidden" name="order" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['order']))) . '" />';
         }
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for hidden form fields, preserving pagination
         if (!empty($_REQUEST['page'])) {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field($_REQUEST['page'])) . '" />';
+            echo '<input type="hidden" name="page" value="' . esc_attr(sanitize_text_field(wp_unslash($_REQUEST['page']))) . '" />';
         }
         ?>
         <p class="search-box">
@@ -155,7 +155,7 @@ class TagClouds_List extends WP_List_Table
          * Handle search
          */
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for search filtering display, no state change
-        if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field($_REQUEST['s'])) {
+        if ((!empty($_REQUEST['s'])) && $search = sanitize_text_field(wp_unslash($_REQUEST['s']))) {
             $data_filtered = [];
             foreach ($data as $item) {
                 if ($this->str_contains($item['title'], $search, false)) {
@@ -171,9 +171,9 @@ class TagClouds_List extends WP_List_Table
         function usort_reorder($a, $b)
         {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameters for sorting display, no state change
-            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field($_REQUEST['orderby']) : 'ID'; //If no sort, default to role
+            $orderby = (!empty($_REQUEST['orderby'])) ? sanitize_text_field(wp_unslash($_REQUEST['orderby'])) : 'ID'; //If no sort, default to role
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for sort order display, no state change
-            $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field($_REQUEST['order']) : 'desc'; //If no order, default to asc
+            $order   = (!empty($_REQUEST['order'])) ? sanitize_text_field(wp_unslash($_REQUEST['order'])) : 'desc'; //If no order, default to asc
             $result  = strnatcasecmp(
                 $a[$orderby],
                 $b[$orderby]

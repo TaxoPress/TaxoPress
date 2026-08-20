@@ -316,7 +316,7 @@ class TaxopressCoreAdmin
         $allowed_pages = ['st_autolinks', 'st_terms_display', 'st_post_tags', 'st_related_posts', 'st_autoterms'];
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+        $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
 
         if (in_array($current_page, $allowed_pages, true)) {
             $copy_action = [
@@ -353,7 +353,7 @@ class TaxopressCoreAdmin
         $allowed_pages = ['st_terms'];
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+        $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
 
         if (in_array($current_page, $allowed_pages, true)) {
             $copy_action = [

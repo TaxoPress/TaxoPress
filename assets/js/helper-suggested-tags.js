@@ -65,7 +65,7 @@ jQuery(document).ready(function ($) {
 
     jQuery('#st_ajax_loading').show();
 
-    jQuery('#suggestedtags .container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + jQuery(this).data('ajaxaction') + '&suggestterms=' + jQuery(this).data('suggestterms') + '', {
+    jQuery('#suggestedtags .container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + jQuery(this).data('ajaxaction') + '&suggestterms=' + jQuery(this).data('suggestterms') + '&nonce=' + encodeURIComponent(st_admin_localize.check_nonce), {
       content: getContentFromEditor(),
       title: getTitleFromEditor()
     }, function () {
@@ -104,7 +104,7 @@ jQuery(document).ready(function ($) {
     
     suggested_tags_div.find('.st_ajax_loading').show();
 
-    suggested_tags_div.find('.container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + data_action + '&suggestterms=' + suggestterms + '&taxonomy=' + taxonomy + '', {
+    suggested_tags_div.find('.container_clicktags').load(ajaxurl + '?action=simpletags&stags_action=' + data_action + '&suggestterms=' + suggestterms + '&taxonomy=' + encodeURIComponent(taxonomy) + '&nonce=' + encodeURIComponent(st_admin_localize.check_nonce), {
       content: getContentFromEditor(),
       post_id: current_post_id,
       title: getTitleFromEditor()

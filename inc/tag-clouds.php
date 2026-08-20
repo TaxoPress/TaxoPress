@@ -1117,7 +1117,7 @@ class SimpleTags_Tag_Clouds
             wp_send_json_error(['message' => __('Missing display ID.', 'simple-tags')]);
         }
 
-        $display_id = sanitize_text_field($_POST['taxopress_termsdisplay']);
+        $display_id = sanitize_text_field(wp_unslash($_POST['taxopress_termsdisplay']));
 
         // Get the display configuration
         $tagclouds = taxopress_get_tagcloud_data();

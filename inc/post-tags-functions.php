@@ -29,7 +29,7 @@ function taxopress_get_current_posttags()
     $posttagss = false;
 
     if (!empty($_GET) && isset($_GET['taxopress_posttags'])) {
-        $posttagss = sanitize_text_field($_GET['taxopress_posttags']);
+        $posttagss = sanitize_text_field(wp_unslash($_GET['taxopress_posttags']));
     } else {
         $posttagss = taxopress_get_posttags_data();
         if (!empty($posttagss)) {
@@ -115,9 +115,9 @@ function taxopress_process_posttags()
             exit();
         }
     } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'taxopress-delete-posttags') {
-        $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+        $nonce = sanitize_text_field(wp_unslash($_REQUEST['_wpnonce']));
         if (wp_verify_nonce($nonce, 'posttags-action-request-nonce')) {
-            taxopress_action_delete_posttags(sanitize_text_field($_REQUEST['taxopress_posttags']));
+            taxopress_action_delete_posttags(sanitize_text_field(wp_unslash($_REQUEST['taxopress_posttags'])));
         }
         add_filter('removable_query_args', 'taxopress_delete_posttags_filter_removable_query_args');
     }

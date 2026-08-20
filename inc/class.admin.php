@@ -219,7 +219,7 @@ class SimpleTags_Admin
 
         if (
             !wp_verify_nonce(
-                sanitize_key($_POST['nonce']),
+                sanitize_key(wp_unslash($_POST['nonce'])),
                 'st-admin-js'
             )
         ) {
@@ -227,13 +227,13 @@ class SimpleTags_Admin
             return false;
         }
 
-        if (empty($_POST['feature']) || !$_POST['feature']) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        if (empty($_POST['feature'])) {
             wp_send_json(__('Error: wrong data', 'simple-tags'), 400);
             return false;
         }
 
-        $feature   = sanitize_text_field($_POST['feature']);
-        $new_state = sanitize_text_field($_POST['new_state']);
+        $feature   = sanitize_text_field(wp_unslash($_POST['feature']));
+        $new_state = sanitize_text_field(wp_unslash($_POST['new_state']));
 
         SimpleTags_Plugin::set_option_value($feature, $new_state);
 
@@ -246,7 +246,16 @@ class SimpleTags_Admin
     public static function ajax_check()
     {
         if (isset($_GET['stags_action']) && 'maybe_create_tag' === $_GET['stags_action'] && isset($_GET['tag'])) {
-            self::maybe_create_tag(wp_unslash(sanitize_text_field($_GET['tag'])));
+            if (!check_ajax_referer('st-admin-js', 'nonce', false)) {
+                wp_send_json_error(['message' => __('Security check failed.', 'simple-tags')], 403);
+            }
+
+            $taxonomy = get_taxonomy('post_tag');
+            if (!$taxonomy || empty($taxonomy->cap->manage_terms) || !current_user_can($taxonomy->cap->manage_terms)) {
+                wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')], 403);
+            }
+
+            self::maybe_create_tag(sanitize_text_field(wp_unslash($_GET['tag'])));
         }
     }
 
@@ -292,7 +301,7 @@ class SimpleTags_Admin
             wp_send_json_error(['message' => __('Permission denied.', 'simple-tags')]);
         }
 
-        $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+        $search = isset($_GET['search']) ? sanitize_text_field(wp_unslash($_GET['search'])) : '';
         $paged = max(1, intval($_GET['page'] ?? 1));
         $post_type = 'post';
 
@@ -400,8 +409,8 @@ class SimpleTags_Admin
         self::$post_type_name = esc_html__('Posts', 'simple-tags');
 
         // Custom CPT ?
-        if (isset($_GET['cpt']) && !empty($_GET['cpt']) && post_type_exists(sanitize_text_field($_GET['cpt']))) {
-            $cpt                  = get_post_type_object(sanitize_text_field($_GET['cpt']));
+        if (isset($_GET['cpt']) && !empty($_GET['cpt']) && post_type_exists(sanitize_text_field(wp_unslash($_GET['cpt'])))) {
+            $cpt                  = get_post_type_object(sanitize_text_field(wp_unslash($_GET['cpt'])));
             self::$post_type      = $cpt->name;
             self::$post_type_name = $cpt->labels->name;
         }
@@ -410,8 +419,8 @@ class SimpleTags_Admin
         $compatible_taxonomies = get_object_taxonomies(self::$post_type);
 
         // Custom taxo ?
-        if (isset($_GET['taxo']) && !empty($_GET['taxo']) && taxonomy_exists(sanitize_text_field($_GET['taxo']))) {
-            $taxo = get_taxonomy(sanitize_text_field($_GET['taxo']));
+        if (isset($_GET['taxo']) && !empty($_GET['taxo']) && taxonomy_exists(sanitize_text_field(wp_unslash($_GET['taxo'])))) {
+            $taxo = get_taxonomy(sanitize_text_field(wp_unslash($_GET['taxo'])));
 
             // Taxo is compatible ?
             if (in_array($taxo->name, $compatible_taxonomies)) {
@@ -502,8 +511,8 @@ class SimpleTags_Admin
 
     public static function tabSelectorTaxonomy($tab_slug = '', $page_slug = '')
     {
-        $current_taxo = isset($_GET["{$tab_slug}_taxo"]) ? sanitize_text_field($_GET["{$tab_slug}_taxo"]) : get_option("{$tab_slug}_taxo", '');
-        $current_cpt  = isset($_GET["{$tab_slug}_cpt"]) ? sanitize_text_field($_GET["{$tab_slug}_cpt"]) : get_option("{$tab_slug}_cpt", '');
+        $current_taxo = isset($_GET["{$tab_slug}_taxo"]) ? sanitize_text_field(wp_unslash($_GET["{$tab_slug}_taxo"])) : get_option("{$tab_slug}_taxo", '');
+        $current_cpt  = isset($_GET["{$tab_slug}_cpt"]) ? sanitize_text_field(wp_unslash($_GET["{$tab_slug}_cpt"])) : get_option("{$tab_slug}_cpt", '');
 
         // Fallbacks if not yet set
         if (empty($current_cpt)) {
@@ -543,7 +552,7 @@ class SimpleTags_Admin
         echo '<div class="change-taxo">' . PHP_EOL;
 
         echo '<form action="' . esc_url(admin_url('admin.php')) . '" method="get">' . PHP_EOL;
-        $page = !empty($page_slug) ? $page_slug : (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : 'st_manage');
+        $page = !empty($page_slug) ? $page_slug : (isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : 'st_manage');
         echo '<input type="hidden" name="page" value="' . esc_attr($page) . '" />' . PHP_EOL;
         echo '<input type="hidden" name="page" value="st_manage" />' . PHP_EOL;
 
@@ -606,7 +615,7 @@ class SimpleTags_Admin
             return;
         }
 
-        $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
+        $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
 
         // List of pages that need preview functionality
         $preview_pages = [
@@ -657,6 +666,9 @@ class SimpleTags_Admin
 
         // Helper TaxoPress
         wp_register_script('st-helper-add-tags', STAGS_URL . '/assets/js/helper-add-tags.js', array('jquery'), STAGS_VERSION);
+        wp_localize_script('st-helper-add-tags', 'stHelperAddTagsL10n', [
+            'nonce' => wp_create_nonce('st-admin-js'),
+        ]);
         wp_register_script('st-helper-options', STAGS_URL . '/assets/js/helper-options.js', array('jquery', 'wp-color-picker'), STAGS_VERSION);
 
         // Register CSS
@@ -944,7 +956,7 @@ class SimpleTags_Admin
                     }
 
                     // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                    $post_value = isset($_POST[$key]) ? $_POST[$key] : '';
+                    $post_value = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : '';
 
                     if (empty($post_value) && in_array($key, $dashboard_option_keys)) {
                         $post_value = SimpleTags_Plugin::get_option_value($key);
@@ -1042,7 +1054,7 @@ class SimpleTags_Admin
      */
     public static function getDefaultContentBox()
     {
-        if ((int) wp_count_terms('post_tag', array('hide_empty' => false)) == 0) { // TODO: Custom taxonomy
+        if ((int) wp_count_terms(array('taxonomy' => 'post_tag', 'hide_empty' => false)) == 0) { // TODO: Custom taxonomy
             return esc_html__('This feature requires at least 1 tag to work. Begin by adding tags!', 'simple-tags');
         } else {
             return esc_html__('This feature works only with activated JavaScript. Activate it in your Web browser so you can!', 'simple-tags');
