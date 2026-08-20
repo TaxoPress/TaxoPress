@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-= [3.52.0] - 19 August, 2026 =
+## [3.52.0] - 20 August, 2026
 * Update: Normalize Auto Terms specific-term values, #3001
 * Update: Add permission checks to Pro configuration copy actions, #3000
 * Update: Restrict synonym validation to TaxoPress managers, #2999
