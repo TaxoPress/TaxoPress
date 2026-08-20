@@ -258,7 +258,7 @@ class SimpleTags_Terms
                     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
                     if (!empty($_REQUEST['taxopress_terms_taxonomy'])) {
                         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading non-state-modifying REQUEST parameter for taxonomy filtering
-                        $taxonomy_obj = get_taxonomy(sanitize_text_field($_REQUEST['taxopress_terms_taxonomy']));
+                        $taxonomy_obj = get_taxonomy(sanitize_text_field(wp_unslash($_REQUEST['taxopress_terms_taxonomy'])));
                         if ($taxonomy_obj) {
                             $taxonomy_heading = $taxonomy_obj->labels->name;
                             $show_order_message = true;

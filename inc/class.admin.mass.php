@@ -54,12 +54,12 @@ class SimpleTags_Admin_Mass
 
         // Get GET data
         if (isset($_GET['post_type'])) {
-            $type = stripslashes(sanitize_text_field($_GET['post_type']));
+            $type = stripslashes(sanitize_text_field(wp_unslash($_GET['post_type'])));
         }
 
         if (isset($_POST['update_mass'])) {
             // origination and intention
-            if (! (wp_verify_nonce(sanitize_text_field($_POST['secure_mass']), 'st_mass_terms'))) {
+            if (! (wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['secure_mass'])), 'st_mass_terms'))) {
                 add_settings_error(__CLASS__, __CLASS__, esc_html__('Security problem. Try again.', 'simple-tags'), 'error taxopress-notice');
 
                 return false;
@@ -67,7 +67,7 @@ class SimpleTags_Admin_Mass
 
             if (isset($_POST['tags'])) {
                 $counter = 0;
-                foreach ((array) array_map('sanitize_text_field', $_POST['tags']) as $object_id => $tag_list) {
+                foreach ((array) array_map('sanitize_text_field', wp_unslash($_POST['tags'])) as $object_id => $tag_list) {
                     // Trim data
                     $tag_list = trim(stripslashes($tag_list));
 
@@ -213,7 +213,7 @@ class SimpleTags_Admin_Mass
                 </ul>
 
                 <?php if (isset($_GET['post_status'])) : ?>
-                    <input type="hidden" name="post_status" value="<?php echo esc_attr(sanitize_text_field($_GET['post_status'])) ?>"/>
+                    <input type="hidden" name="post_status" value="<?php echo esc_attr(sanitize_text_field(wp_unslash($_GET['post_status']))) ?>"/>
                 <?php endif; ?>
 
 
@@ -256,7 +256,7 @@ class SimpleTags_Admin_Mass
                             if ($month_count && ! (1 == $month_count && 0 == $arc_result[0]->mmonth)) {
                                 ?>
                                 <select name='m'>
-                                    <option <?php selected(@sanitize_text_field($_GET['m']), 0); ?>
+                                    <option <?php selected(@sanitize_text_field(wp_unslash($_GET['m'])), 0); ?>
                                         value='0'><?php _e('Show all dates', 'simple-tags'); ?></option>
                                     <?php
                                     foreach ($arc_result as $arc_row) {
@@ -297,7 +297,7 @@ class SimpleTags_Admin_Mass
 
                                         <?php
 
-                                            $current_filter_term = isset($_GET['massedit_filter_term']) ? sanitize_text_field($_GET['massedit_filter_term']) : '';
+                                            $current_filter_term = isset($_GET['massedit_filter_term']) ? sanitize_text_field(wp_unslash($_GET['massedit_filter_term'])) : '';
                                         $selected_term_label  = '';
 
                                         if ($current_filter_term) {
@@ -527,7 +527,8 @@ class SimpleTags_Admin_Mass
             );
         }
 
-        query_posts($args);
+        $GLOBALS['wp_query'] = new WP_Query();
+        $GLOBALS['wp_query']->query($args);
 
         return array( $post_stati, $avail_post_stati );
     }

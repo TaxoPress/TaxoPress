@@ -162,7 +162,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             }
 
             if (!empty($_POST['taxopress_ai_integration']) && !empty($_POST['_wpnonce']) && wp_verify_nonce(sanitize_key($_POST['_wpnonce']), 'taxopress_ai_settings_nonce_action')) {
-                $sanitized_data = map_deep($_POST['taxopress_ai_integration'], 'sanitize_text_field');
+                $sanitized_data = map_deep(wp_unslash($_POST['taxopress_ai_integration']), 'sanitize_text_field');
 
                 foreach (['open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $field) {
                     if (!isset($sanitized_data[$field . '_cache_result'])) {
@@ -198,7 +198,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
                 // Handle taxopress_ai_integration array fields (API settings) - if present in metabox forms
                 if (!empty($_POST['taxopress_ai_integration'])) {
-                    $sanitized_data = map_deep($_POST['taxopress_ai_integration'], 'sanitize_text_field');
+                    $sanitized_data = map_deep(wp_unslash($_POST['taxopress_ai_integration']), 'sanitize_text_field');
 
                     foreach (['open_ai', 'ibm_watson', 'dandelion', 'open_calais'] as $field) {
                         if (!isset($sanitized_data[$field . '_cache_result'])) {
@@ -1167,13 +1167,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
             status_header(200);
             header("Content-Type: text/html; charset=" . get_bloginfo('charset'));
 
-            if (((int) wp_count_terms($taxonomy, array( 'hide_empty' => false ))) == 0) { // No tags to suggest
+            if (((int) wp_count_terms(array( 'taxonomy' => $taxonomy, 'hide_empty' => false ))) == 0) { // No tags to suggest
                 echo '<p>' . esc_html__('No terms in your WordPress database.', 'simple-tags') . '</p>';
                 exit();
             }
 
             // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Array indices checked, values sanitized for text comparison only
-            $content = stripslashes(sanitize_textarea_field($_POST['content'] ?? '')) . ' ' . stripslashes(sanitize_text_field($_POST['title'] ?? ''));
+            $content = sanitize_textarea_field(wp_unslash($_POST['content'] ?? '')) . ' ' . sanitize_text_field(wp_unslash($_POST['title'] ?? ''));
             $content = trim($content);
 
             if (empty($content)) {
@@ -1714,7 +1714,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
             if (!can_edit_taxopress_metabox_labels()) {
                 wp_send_json_error(['message' => esc_html__('You can not edit this label.', 'simple-tags')], 403);
             }
-            if (empty($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'taxopress-ai-ajax-nonce')) {
+            if (empty($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'taxopress-ai-ajax-nonce')) {
                 wp_send_json_error(['message' => esc_html__('Invalid nonce token.', 'simple-tags')], 400);
             }
             $new_label = isset($_POST['new_label']) ? sanitize_text_field(wp_unslash($_POST['new_label'])) : '';

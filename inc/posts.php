@@ -61,7 +61,7 @@ class SimpleTags_Posts
 
         if (
             empty($_GET['nonce'])
-            || !wp_verify_nonce(sanitize_key($_GET['nonce']), 'taxopress-term-search')
+            || !wp_verify_nonce(sanitize_key(wp_unslash($_GET['nonce'])), 'taxopress-term-search')
         ) {
             wp_send_json_error(null, 403);
         }
@@ -70,8 +70,8 @@ class SimpleTags_Posts
             wp_send_json_error(null, 403);
         }
 
-        $search        = !empty($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
-        $field          = !empty($_GET['field']) ? sanitize_text_field($_GET['field']) : 'slug';
+        $search        = !empty($_GET['q']) ? sanitize_text_field(wp_unslash($_GET['q'])) : '';
+        $field          = !empty($_GET['field']) ? sanitize_text_field(wp_unslash($_GET['field'])) : 'slug';
         $filter_format  = SimpleTags_Plugin::get_option_value('post_terms_filter_format');
         $taxonomy_type = SimpleTags_Plugin::get_option_value('post_terms_taxonomy_type');
 

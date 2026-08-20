@@ -246,7 +246,7 @@ class SimpleTags_Client_RelatedPosts
             $limit_days     = (int) $limit_days;
             $limit_days_sql = '';
             if ($limit_days != 0) {
-                $limit_days_sql = 'AND p.post_date > "' . date('Y-m-d H:i:s', time() - $limit_days * 86400) . '"';
+                $limit_days_sql = 'AND p.post_date > "' . gmdate('Y-m-d H:i:s', time() - $limit_days * 86400) . '"';
             }
             unset($limit_days);
 
@@ -580,7 +580,7 @@ class SimpleTags_Client_RelatedPosts
 
             $element_loop = str_replace('%post_permalink%', get_permalink($result), $element_loop);
             $element_loop = str_replace('%post_title%', $post_title, $element_loop);
-            $element_loop = str_replace('%post_title_attribute%', esc_html(strip_tags($post_title)), $element_loop);
+            $element_loop = str_replace('%post_title_attribute%', esc_html(wp_strip_all_tags($post_title)), $element_loop);
             $element_loop = str_replace('%post_comment%', (int) $result->comment_count, $element_loop);
             $element_loop = str_replace('%post_tagcount%', (int) $result->counter, $element_loop);
             $element_loop = str_replace('%post_id%', $result->ID, $element_loop);
@@ -670,7 +670,7 @@ class SimpleTags_Client_RelatedPosts
             return apply_filters('get_the_excerpt', $excerpt);
         } else { // Fake excerpt
             $content = str_replace(']]>', ']]&gt;', $content);
-            $content = strip_tags($content);
+            $content = wp_strip_all_tags($content);
 
             $excerpt_length = (int) $excerpt_length;
             if (0 === $excerpt_length) {
@@ -704,7 +704,10 @@ class SimpleTags_Client_RelatedPosts
         }
 
         // Get tags since Term ID.
-        $terms = (array) get_terms($taxonomy, 'include=' . $terms);
+        $terms = (array) get_terms(array(
+            'taxonomy' => $taxonomy,
+            'include'  => $terms,
+        ));
         if (empty($terms)) {
             return '';
         }

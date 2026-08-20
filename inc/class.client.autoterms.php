@@ -33,7 +33,7 @@ class SimpleTags_Client_Autoterms
         $options = get_option(STAGS_OPTIONS_NAME_AUTO);
 
         // user preference for this post ?
-        $meta_value = isset($_POST['exclude_autotags']) ? sanitize_text_field($_POST['exclude_autotags']) : false;
+        $meta_value = isset($_POST['exclude_autotags']) ? sanitize_text_field(wp_unslash($_POST['exclude_autotags'])) : false;
         if ($meta_value) {
             return false;
         }
@@ -239,7 +239,7 @@ class SimpleTags_Client_Autoterms
          */
         $content = apply_filters('taxopress_filter_autoterm_content', $content, $object->ID, $options);
 
-        $content = trim(strip_tags($content));
+        $content = trim(wp_strip_all_tags($content));
 
         if (empty(trim($content))) {
             $empty_term_messages[$object->ID]['message'][] = esc_html__('Auto Term content is empty. Could not suggest terms without content.', 'simple-tags');

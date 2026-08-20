@@ -63,22 +63,22 @@ function taxopress_get_current_taxonomy($taxonomy_deleted = false)
             check_admin_referer('taxopress_select_taxonomy_nonce_action', 'taxopress_select_taxonomy_nonce_field');
         }
         if (isset($_POST['taxopress_selected_taxonomy']['taxonomy'])) {
-            $tax = sanitize_text_field($_POST['taxopress_selected_taxonomy']['taxonomy']);
+            $tax = sanitize_text_field(wp_unslash($_POST['taxopress_selected_taxonomy']['taxonomy']));
         } elseif ($taxonomy_deleted) {
             $taxonomies = taxopress_get_taxonomy_data();
             $tax        = key($taxonomies);
         } elseif (isset($_POST['cpt_custom_tax']['name'])) {
             // Return the submitted value.
             if (!in_array($_POST['cpt_custom_tax']['name'], taxopress_reserved_taxonomies(), true)) {
-                $tax = sanitize_text_field($_POST['cpt_custom_tax']['name']);
+                $tax = sanitize_text_field(wp_unslash($_POST['cpt_custom_tax']['name']));
             } else {
                 // Return the original value since user tried to submit a reserved term.
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated -- Nonce verified by check_admin_referer
-                $tax = isset($_POST['tax_original']) ? sanitize_text_field($_POST['tax_original']) : '';
+                $tax = isset($_POST['tax_original']) ? sanitize_text_field(wp_unslash($_POST['tax_original'])) : '';
             }
         }
     } elseif (!empty($_GET) && isset($_GET['taxopress_taxonomy'])) {
-        $tax = sanitize_text_field($_GET['taxopress_taxonomy']);
+        $tax = sanitize_text_field(wp_unslash($_GET['taxopress_taxonomy']));
     } else {
         $taxonomies = taxopress_get_taxonomy_data();
         if (!empty($taxonomies)) {
@@ -925,7 +925,7 @@ function taxopress_get_current_action()
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for display only, no state change
     if (!empty($_GET) && isset($_GET['action'])) {
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $current_action .= esc_textarea(sanitize_text_field($_GET['action']));
+        $current_action .= esc_textarea(sanitize_text_field(wp_unslash($_GET['action'])));
     }
 
     return $current_action;
@@ -1103,13 +1103,13 @@ function taxopress_get_object_from_post_global()
     // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Helper function called after nonce verification in parent handler
     if (isset($_POST['cpt_custom_post_type']['name'])) {
         // phpcs:ignore WordPress.Security.NonceVerification.Missing
-        return sanitize_text_field($_POST['cpt_custom_post_type']['name']);
+        return sanitize_text_field(wp_unslash($_POST['cpt_custom_post_type']['name']));
     }
 
     // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Helper function called after nonce verification in parent handler
     if (isset($_POST['cpt_custom_tax']['name'])) {
         // phpcs:ignore WordPress.Security.NonceVerification.Missing
-        return sanitize_text_field($_POST['cpt_custom_tax']['name']);
+        return sanitize_text_field(wp_unslash($_POST['cpt_custom_tax']['name']));
     }
 
     return esc_html__('Object', 'simple-tags');
@@ -2462,7 +2462,7 @@ function taxopress_get_dropdown()
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for post type filtering, no state change
         if (isset($_GET['post_type'])) {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            $type = sanitize_text_field($_GET['post_type']);
+            $type = sanitize_text_field(wp_unslash($_GET['post_type']));
         }
 
         $taxonomies = taxopress_get_all_edited_taxonomy_data();

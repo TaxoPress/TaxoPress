@@ -95,7 +95,7 @@ function taxopress_autoterms_content_by_ajax()
     $limit_days     = (int) $autoterm_data['limit_days'];
     $limit_days_sql = '';
     if ($limit_days > 0) {
-        $limit_days_sql = 'AND post_date > "' . date('Y-m-d H:i:s', time() - $limit_days * 86400) . '"';
+        $limit_days_sql = 'AND post_date > "' . gmdate('Y-m-d H:i:s', time() - $limit_days * 86400) . '"';
     }
 
     $post_types = $autoterm_data['post_types'];
@@ -202,7 +202,7 @@ function taxopress_post_search_callback()
 
     if (
         empty($_GET['nonce'])
-        || !wp_verify_nonce(sanitize_key($_GET['nonce']), 'taxopress-post-search')
+        || !wp_verify_nonce(sanitize_key(wp_unslash($_GET['nonce'])), 'taxopress-post-search')
     ) {
         wp_send_json_error(null, 403);
     }
@@ -211,8 +211,8 @@ function taxopress_post_search_callback()
         wp_send_json_error(null, 403);
     }
 
-    $search = !empty($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
-    $post_type = !empty($_GET['post_types']) ? array_map('sanitize_text_field', $_GET['post_types']) : 'any';
+    $search = !empty($_GET['q']) ? sanitize_text_field(wp_unslash($_GET['q'])) : '';
+    $post_type = !empty($_GET['post_types']) ? array_map('sanitize_text_field', wp_unslash($_GET['post_types'])) : 'any';
 
     $post_args = [
         'post_type' => $post_type,
@@ -253,7 +253,7 @@ function taxopress_custom_fields_search_callback()
 
     if (
         empty($_GET['nonce'])
-        || !wp_verify_nonce(sanitize_key($_GET['nonce']), 'taxopress-custom-fields-search')
+        || !wp_verify_nonce(sanitize_key(wp_unslash($_GET['nonce'])), 'taxopress-custom-fields-search')
     ) {
         wp_send_json_error(null, 403);
     }
@@ -262,7 +262,7 @@ function taxopress_custom_fields_search_callback()
         wp_send_json_error(null, 403);
     }
 
-    $search = !empty($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
+    $search = !empty($_GET['q']) ? sanitize_text_field(wp_unslash($_GET['q'])) : '';
 
     $whereClause = '';
     if (!empty($search)) {

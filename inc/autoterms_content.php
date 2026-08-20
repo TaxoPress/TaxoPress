@@ -76,14 +76,14 @@ class SimpleTags_Autoterms_Content
         if (
             !empty($_POST['taxopress_autoterm_content_submit'])
             && !empty($_POST['_nonce'])
-            && wp_verify_nonce(sanitize_text_field($_POST['_nonce']), 'taxopress_autoterm_content_nonce')
+            && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_nonce'])), 'taxopress_autoterm_content_nonce')
             && current_user_can('simple_tags')
         ) {
             $auto_term_id = !empty($_POST['taxopress_autoterm_content']['autoterm_id']) ? (int)$_POST['taxopress_autoterm_content']['autoterm_id'] : 0;
 
             $existing_terms_batches = !empty($_POST['taxopress_autoterm_content']['existing_terms_batches']) ? (int)$_POST['taxopress_autoterm_content']['existing_terms_batches'] : 0;
             $existing_terms_sleep = !empty($_POST['taxopress_autoterm_content']['existing_terms_sleep']) ? (int)$_POST['taxopress_autoterm_content']['existing_terms_sleep'] : 0;
-            $limit_days = !empty($_POST['taxopress_autoterm_content']['limit_days']) ? taxopress_sanitize_text_field($_POST['taxopress_autoterm_content']['limit_days']) : 0;
+            $limit_days = !empty($_POST['taxopress_autoterm_content']['limit_days']) ? taxopress_sanitize_text_field(wp_unslash($_POST['taxopress_autoterm_content']['limit_days'])) : 0;
             $autoterm_existing_content_exclude = !empty($_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude']) ? (int)$_POST['taxopress_autoterm_content']['autoterm_existing_content_exclude'] : 0;
 
             $response_message = esc_html__('An error occured.', 'simple-tags');

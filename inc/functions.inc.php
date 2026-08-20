@@ -249,7 +249,7 @@ function taxopress_suppress_tag_groups_notice_on_taxopress_screens()
             }
 
             if (! $isTaxoPressScreen) {
-                $page = isset($_GET['page']) ? sanitize_key($_GET['page']) : '';
+                $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : '';
 
                 if (
                     $page !== ''
