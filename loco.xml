@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle name="TaxoPress">
+  <domain name="simple-tags">
+    <project name="TaxoPress">
+      <source>
+        <directory>inc</directory>
+        <directory>includes-core</directory>
+        <file>simple-tags.php</file>
+      </source>
+      <target>
+        <directory>languages</directory>
+      </target>
+      <template>
+        <file>languages/simple-tags.pot</file>
+      </template>
+    </project>
+  </domain>
+  <domain name="publishpress-wordpress-reviews">
+    <project name="PublishPress WordPress Reviews">
+      <source>
+        <directory>lib/vendor/publishpress/wordpress-reviews</directory>
+      </source>
+      <target>
+        <directory>lib/vendor/publishpress/wordpress-reviews/languages</directory>
+      </target>
+      <template>
+        <file>lib/vendor/publishpress/wordpress-reviews/languages/publishpress-wordpress-reviews.pot</file>
+      </template>
+    </project>
+  </domain>
+  <domain name="publishpress-instance-protection">
+    <project name="PublishPress Instance Protection">
+      <source>
+        <directory>lib/vendor/publishpress/instance-protection/core</directory>
+      </source>
+      <target>
+        <directory>lib/vendor/publishpress/instance-protection/languages</directory>
+      </target>
+      <template>
+        <file>lib/vendor/publishpress/instance-protection/languages/publishpress-instance-protection.pot</file>
+      </template>
+    </project>
+  </domain>
+</bundle>
