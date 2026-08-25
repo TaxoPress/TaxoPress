@@ -654,6 +654,10 @@ class SimpleTags_Admin
     {
         global $pagenow;
 
+        if (!current_user_can('simple_tags') && !can_manage_taxopress_metabox()) {
+            return;
+        }
+
         $select_2_page = false;
         if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_terms', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags', 'st_mass_terms'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
             $select_2_page = true;
