@@ -21,6 +21,32 @@ function taxopress_get_unique_term_slug($slug, $taxonomy)
 }
 
 /**
+ * Check the current user's native capabilities for a taxonomy operation.
+ *
+ * @param string       $taxonomy   Taxonomy name.
+ * @param string|array $capabilities Taxonomy capability property or properties.
+ * @return bool
+ */
+function taxopress_current_user_can_for_taxonomy($taxonomy, $capabilities)
+{
+    $taxonomy_object = get_taxonomy(sanitize_key($taxonomy));
+    if (!$taxonomy_object) {
+        return false;
+    }
+
+    foreach ((array) $capabilities as $capability) {
+        if (
+            empty($taxonomy_object->cap->{$capability})
+            || !current_user_can($taxonomy_object->cap->{$capability})
+        ) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
  * Fetch post IDs for Terms screen bulk/row actions without hydrating WP_Post objects.
  *
  * @param array $args Optional WP_Query arguments.
@@ -166,6 +192,13 @@ function taxopress_process_terms()
         $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
         if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
             $term = get_term(sanitize_text_field(wp_unslash($_REQUEST['taxopress_terms'])));
+            if (
+                !$term
+                || is_wp_error($term)
+                || !taxopress_current_user_can_for_taxonomy($term->taxonomy, 'delete_terms')
+            ) {
+                wp_die(esc_html__('Permission denied.', 'simple-tags'), '', ['response' => 403]);
+            }
             wp_delete_term($term->term_id, $term->taxonomy);
         }
         add_action('admin_notices', "taxopress_term_delete_success_admin_notice");
@@ -176,6 +209,13 @@ function taxopress_process_terms()
         $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
         if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
             $term = get_term(sanitize_text_field(wp_unslash($_REQUEST['taxopress_terms'])));
+            if (
+                !$term
+                || is_wp_error($term)
+                || !taxopress_current_user_can_for_taxonomy($term->taxonomy, 'assign_terms')
+            ) {
+                wp_die(esc_html__('Permission denied.', 'simple-tags'), '', ['response' => 403]);
+            }
             $args = array(
                 'post_type' => 'any',
                 // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Necessary to filter posts by specific term for accurate removal
@@ -190,6 +230,9 @@ function taxopress_process_terms()
             $post_ids = taxopress_get_post_ids_for_terms_action($args);
             $counter = 0;
             foreach ($post_ids as $post_id) {
+                if (!current_user_can('edit_post', $post_id)) {
+                    continue;
+                }
                 $remove = wp_remove_object_terms($post_id, $term->term_id, $term->taxonomy);
                 if ($remove) {
                     clean_object_term_cache($post_id, $term->taxonomy);
@@ -206,6 +249,17 @@ function taxopress_process_terms()
         $nonce = !empty($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
         if (wp_verify_nonce($nonce, 'terms-action-request-nonce') && isset($_REQUEST['taxopress_terms'])) {
             $term = get_term(sanitize_text_field(wp_unslash($_REQUEST['taxopress_terms'])));
+
+            if (
+                !$term
+                || is_wp_error($term)
+                || !taxopress_current_user_can_for_taxonomy(
+                    $term->taxonomy,
+                    ['edit_terms', 'assign_terms']
+                )
+            ) {
+                wp_die(esc_html__('Permission denied.', 'simple-tags'), '', ['response' => 403]);
+            }
 
             $taxopress_term_name = $term->name . ' Copy';
             $base_slug = $term->slug . '-copy';
@@ -237,6 +291,9 @@ function taxopress_process_terms()
                 $post_ids = taxopress_get_post_ids_for_terms_action($args);
 
                 foreach ($post_ids as $post_id) {
+                    if (!current_user_can('edit_post', $post_id)) {
+                        continue;
+                    }
                     wp_set_object_terms($post_id, $taxopress_term_id, $term->taxonomy, true);
                 }
             }
