@@ -370,7 +370,7 @@ if (!class_exists('TaxoPressAiApi')) {
                     ];
 
                     $response = wp_safe_remote_post($api_endpoint, array(
-                        'timeout' => 15,
+                        'timeout' => 5,
                         'redirection' => 0,
                         'reject_unsafe_urls' => true,
                         'headers' => array(
