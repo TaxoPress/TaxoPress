@@ -37,6 +37,29 @@ function taxopress_autoterms_content_by_ajax()
         wp_send_json($response);
     }
 
+    $max_batch_size = max(1, (int) apply_filters('taxopress_autoterms_max_batch_size', 25));
+    $max_batch_wait = max(0, (int) apply_filters('taxopress_autoterms_max_batch_wait', 60));
+
+    if (1 > $existing_terms_batches) {
+        $response['message'] = sprintf(
+            esc_html__('The batch limit must be between 1 and %d posts.', 'simple-tags'),
+            $max_batch_size
+        );
+        wp_send_json($response, 400);
+    }
+
+    if (0 > $existing_terms_sleep) {
+        $response['message'] = sprintf(
+            esc_html__('The batch wait time must be between 0 and %d seconds.', 'simple-tags'),
+            $max_batch_wait
+        );
+        wp_send_json($response, 400);
+    }
+
+    // Clamp legacy saved values and hostile requests to the current safe limits.
+    $existing_terms_batches = min($existing_terms_batches, $max_batch_size);
+    $existing_terms_sleep = min($existing_terms_sleep, $max_batch_wait);
+
     if ($start_from === 0) {
         delete_option('tmp_auto_terms_st');
     }
@@ -56,7 +79,7 @@ function taxopress_autoterms_content_by_ajax()
     } elseif (empty($existing_terms_batches)) {
         $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('Limit per batches is required.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
-    } elseif (empty($existing_terms_sleep)) {
+    } elseif (0 > $existing_terms_sleep) {
         $response['message'] = '<div class="taxopress-response-css red"><p>' . esc_html__('Batches wait time is required.', 'simple-tags') . '</p><button type="button" class="notice-dismiss"></button></div>';
         wp_send_json($response);
     }
@@ -84,13 +107,29 @@ function taxopress_autoterms_content_by_ajax()
         wp_send_json($response);
     }
 
+    $lock_key = 'taxopress_autoterms_scan_lock_' . $auto_term_id;
+    $lock_ttl = max(30, (int) apply_filters('taxopress_autoterms_scan_lock_ttl', 300));
+    $lock_token = wp_generate_uuid4();
+    $existing_lock = get_option($lock_key, []);
+    $existing_lock_time = is_array($existing_lock) && isset($existing_lock['time'])
+        ? (int) $existing_lock['time']
+        : 0;
+
+    if ($existing_lock_time && $existing_lock_time < (time() - $lock_ttl)) {
+        delete_option($lock_key);
+    }
+
+    if (!add_option($lock_key, ['token' => $lock_token, 'time' => time()], '', false)) {
+        $response['message'] = esc_html__('This Auto Terms scan is already processing another batch. Please wait and try again.', 'simple-tags');
+        wp_send_json($response, 409);
+    }
+
     $limit = (isset($autoterm_data['existing_terms_batches']) && (int)$autoterm_data['existing_terms_batches'] > 0) ? (int)$autoterm_data['existing_terms_batches'] : 2;
 
     $sleep = (isset($autoterm_data['existing_terms_sleep']) && (int)$autoterm_data['existing_terms_sleep'] > 0) ? (int)$autoterm_data['existing_terms_sleep'] : 0;
 
-    if ($sleep > 0 && $start_from > 0) {
-        sleep($sleep);
-    }
+    // Waiting is performed by the browser between requests so PHP workers are not held idle.
+    $response['wait'] = $sleep;
 
     $limit_days     = (int) $autoterm_data['limit_days'];
     $limit_days_sql = '';
@@ -188,6 +227,11 @@ function taxopress_autoterms_content_by_ajax()
         $response['message'] = $progress_message;
     }
     $response['percentage'] = $progress_message;
+
+    $current_lock = get_option($lock_key, []);
+    if (is_array($current_lock) && isset($current_lock['token']) && $current_lock['token'] === $lock_token) {
+        delete_option($lock_key);
+    }
 
     wp_send_json($response);
 }
