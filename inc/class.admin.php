@@ -737,6 +737,7 @@ class SimpleTags_Admin
             'select_default_label' => esc_html__('Select Default Post Thumb', 'simple-tags'),
             'use_media_label' => esc_html__('Use this media', 'simple-tags'),
             'existing_content_admin_label' => esc_html__('Edit the current setting.', 'simple-tags'),
+            'request_error' => esc_html__('The request could not be completed. Please try again.', 'simple-tags'),
             'autoterm_admin_url' => admin_url('admin.php?page=st_autoterms'),
             'no_terms_message' => esc_html__('No terms will be deleted', 'simple-tags'),
             'terms_count_message' => esc_html__(' terms will be deleted.', 'simple-tags'),
