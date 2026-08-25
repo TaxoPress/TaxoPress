@@ -15,6 +15,39 @@ if (!class_exists('TaxoPressAiApi')) {
         public const OPEN_AI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
         /**
+         * Validate a configured IBM Watson Natural Language Understanding endpoint.
+         *
+         * @param string $url Configured service URL.
+         * @return bool
+         */
+        private static function is_valid_ibm_watson_url($url)
+        {
+            $url = esc_url_raw(trim($url));
+            if (empty($url) || !wp_http_validate_url($url)) {
+                return false;
+            }
+
+            $parts = wp_parse_url($url);
+            if (
+                empty($parts['scheme'])
+                || strtolower($parts['scheme']) !== 'https'
+                || empty($parts['host'])
+                || !empty($parts['user'])
+                || !empty($parts['pass'])
+                || !empty($parts['query'])
+                || !empty($parts['fragment'])
+            ) {
+                return false;
+            }
+
+            $host = strtolower(rtrim($parts['host'], '.'));
+            $allowed_host = 'natural-language-understanding.watson.cloud.ibm.com';
+
+            return $host === $allowed_host
+                || substr($host, -strlen('.' . $allowed_host)) === '.' . $allowed_host;
+        }
+
+        /**
          * Get dandelion data
          *
          * @param  array $args
@@ -293,6 +326,12 @@ if (!class_exists('TaxoPressAiApi')) {
                     'The IBM Watson integration requires an API Key and URL. Please add your API Key in the Auto Term settings.',
                     'simple-tags'
                 );
+            } elseif (!self::is_valid_ibm_watson_url($ibm_watson_api_url)) {
+                $return['status'] = 'error';
+                $return['message'] = esc_html__(
+                    'The IBM Watson API URL must use HTTPS and an official Natural Language Understanding service hostname.',
+                    'simple-tags'
+                );
             } elseif (empty(trim($content))) {
                 $return['status'] = 'error';
                 $return['message'] = esc_html__(
@@ -316,8 +355,8 @@ if (!class_exists('TaxoPressAiApi')) {
                         'simple-tags'
                     );
                 } else {
-                    $endpoint_base_url = trailingslashit($ibm_watson_api_url) . 'v1/analyze';
-                    $api_endpoint = esc_url(add_query_arg(['version' => self::IBM_WATSON_API_VERSION], $endpoint_base_url));
+                    $endpoint_base_url = trailingslashit(esc_url_raw($ibm_watson_api_url)) . 'v1/analyze';
+                    $api_endpoint = esc_url_raw(add_query_arg(['version' => self::IBM_WATSON_API_VERSION], $endpoint_base_url));
 
                     $request_body = [
                         'features' => [
@@ -330,7 +369,10 @@ if (!class_exists('TaxoPressAiApi')) {
                         'text' => $clean_content
                     ];
 
-                    $response = wp_remote_post($api_endpoint, array(
+                    $response = wp_safe_remote_post($api_endpoint, array(
+                        'timeout' => 15,
+                        'redirection' => 0,
+                        'reject_unsafe_urls' => true,
                         'headers' => array(
                             'Accept' => 'application/json',
                             'Content-Type' => 'application/json',
