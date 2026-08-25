@@ -412,6 +412,34 @@ function taxopress_update_autoterm($data = [])
 
     $autoterms = taxopress_get_autoterm_data();
 
+    // API credentials are write-only and may only be changed by plugin administrators.
+    // A blank submitted value intentionally preserves the existing secret.
+    $protected_fields = [
+        'open_ai_api_key',
+        'ibm_watson_api_key',
+        'dandelion_api_token',
+        'open_calais_api_key',
+        'ibm_watson_api_url',
+    ];
+    $edited_autoterm = isset($data['edited_autoterm']) ? (int) $data['edited_autoterm'] : 0;
+    $existing_autoterm = $edited_autoterm && isset($autoterms[$edited_autoterm])
+        ? $autoterms[$edited_autoterm]
+        : [];
+
+    foreach ($protected_fields as $protected_field) {
+        $submitted_value = isset($data['taxopress_autoterm'][$protected_field])
+            ? trim($data['taxopress_autoterm'][$protected_field])
+            : '';
+
+        if (!current_user_can('admin_simple_tags') || $submitted_value === '') {
+            if (isset($existing_autoterm[$protected_field])) {
+                $data['taxopress_autoterm'][$protected_field] = $existing_autoterm[$protected_field];
+            } else {
+                unset($data['taxopress_autoterm'][$protected_field]);
+            }
+        }
+    }
+
     $title                               = $data['taxopress_autoterm']['title'];
     $title                               = str_replace('"', '', htmlspecialchars_decode($title));
     $title                               = htmlspecialchars($title, ENT_QUOTES);
