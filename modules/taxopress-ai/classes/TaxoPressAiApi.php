@@ -41,10 +41,26 @@ if (!class_exists('TaxoPressAiApi')) {
             }
 
             $host = strtolower(rtrim($parts['host'], '.'));
-            $allowed_host = 'natural-language-understanding.watson.cloud.ibm.com';
+            $allowed_hosts = (array) apply_filters(
+                'taxopress_ibm_watson_allowed_hosts',
+                ['natural-language-understanding.watson.cloud.ibm.com'],
+                $url
+            );
 
-            return $host === $allowed_host
-                || substr($host, -strlen('.' . $allowed_host)) === '.' . $allowed_host;
+            foreach ($allowed_hosts as $allowed_host) {
+                $allowed_host = strtolower(trim((string) $allowed_host, '. '));
+                if (
+                    $allowed_host !== ''
+                    && (
+                        $host === $allowed_host
+                        || substr($host, -strlen('.' . $allowed_host)) === '.' . $allowed_host
+                    )
+                ) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /**
@@ -369,8 +385,9 @@ if (!class_exists('TaxoPressAiApi')) {
                         'text' => $clean_content
                     ];
 
+                    $request_timeout = max(1, (int) apply_filters('taxopress_ibm_watson_request_timeout', 3));
                     $response = wp_safe_remote_post($api_endpoint, array(
-                        'timeout' => 3,
+                        'timeout' => $request_timeout,
                         'redirection' => 0,
                         'reject_unsafe_urls' => true,
                         'headers' => array(

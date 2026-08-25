@@ -143,9 +143,7 @@ if (!class_exists('TaxoPressAiAjax')) {
                     $preview_ai = 'autoterms';
                 }
 
-                $preview_role = current_user_can('admin_simple_tags') && isset($_POST['preview_role'])
-                    ? sanitize_key($_POST['preview_role'])
-                    : '';
+                $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
 
 
                 if (!can_manage_taxopress_metabox_taxonomy($preview_taxonomy, false, $preview_role)) {
@@ -169,13 +167,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                         || $autoterm_use_ibm_watson
                         || $autoterm_use_dandelion
                         || $autoterm_use_opencalais;
-
-                    if ($uses_remote_provider && !current_user_can('simple_tags')) {
-                        $response['status'] = 'error';
-                        $response['content'] = esc_html__('You do not have permission to use credential-backed AI integrations.', 'simple-tags');
-                        wp_send_json($response, 403);
-                        exit;
-                    }
 
                     if ($uses_remote_provider && !self::allow_remote_ai_preview()) {
                         $response['status'] = 'error';
@@ -881,8 +872,8 @@ if (!class_exists('TaxoPressAiAjax')) {
                             $term_id = (int) $added_tag['term_id'];
                             if ($term_id === 0) {
                                 if (
-                                    empty($taxonomy_object->cap->manage_terms)
-                                    || !current_user_can($taxonomy_object->cap->manage_terms)
+                                    empty($taxonomy_object->cap->edit_terms)
+                                    || !current_user_can($taxonomy_object->cap->edit_terms)
                                 ) {
                                     continue;
                                 }
@@ -974,8 +965,8 @@ if (!class_exists('TaxoPressAiAjax')) {
 
                 $taxonomy_data = get_taxonomy($taxonomy);
                 $can_manage_term = $taxonomy_data
-                    && !empty($taxonomy_data->cap->manage_terms)
-                    && current_user_can($taxonomy_data->cap->manage_terms);
+                    && !empty($taxonomy_data->cap->edit_terms)
+                    && current_user_can($taxonomy_data->cap->edit_terms);
 
                 if (!$can_manage_term) {
                     $response['status'] = 'error';
@@ -1134,7 +1125,7 @@ if (!class_exists('TaxoPressAiAjax')) {
 
         public static function handle_role_preview()
         {
-            if (!current_user_can('admin_simple_tags')) {
+            if (!current_user_can('simple_tags')) {
                 wp_send_json_error(null, 403);
             }
 
@@ -1174,14 +1165,12 @@ if (!class_exists('TaxoPressAiAjax')) {
                 exit;
             }
 
-            if (!current_user_can('admin_simple_tags')) {
+            if (!current_user_can('simple_tags')) {
                 wp_send_json_error(['message' => 'Permission denied'], 403);
                 exit;
             }
 
             $post_id = isset($_POST['post_id']) ? (int)$_POST['post_id'] : 0;
-            $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
-            $post_type = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : '';
 
             if (!$post_id) {
                 wp_send_json_error(['message' => 'Invalid post ID'], 400);
@@ -1199,8 +1188,6 @@ if (!class_exists('TaxoPressAiAjax')) {
                 wp_send_json_error(['message' => 'Permission denied'], 403);
                 exit;
             }
-
-            self::handle_role_preview();
 
             ob_start();
             TaxoPress_AI_Module::get_instance()->editor_metabox($post, 'fast_update');

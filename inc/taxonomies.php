@@ -301,8 +301,8 @@ class SimpleTags_Admin_Taxonomies
         if (
             !current_user_can('simple_tags')
             || !$taxonomy_object
-            || empty($taxonomy_object->cap->manage_terms)
-            || !current_user_can($taxonomy_object->cap->manage_terms)
+            || empty($taxonomy_object->cap->assign_terms)
+            || !current_user_can($taxonomy_object->cap->assign_terms)
         ) {
             wp_send_json_error(array('message' => esc_html__('You do not have permission to view terms in this taxonomy.', 'simple-tags')), 403);
         }

@@ -654,10 +654,6 @@ class SimpleTags_Admin
     {
         global $pagenow;
 
-        if (!current_user_can('simple_tags') && !can_manage_taxopress_metabox()) {
-            return;
-        }
-
         $select_2_page = false;
         if ((isset($_GET['page']) && in_array($_GET['page'], ['st_posts', 'st_terms', 'st_autolinks', 'st_autoterms', 'st_autoterms_schedule', 'st_terms_display', 'st_related_posts', 'st_post_tags', 'st_mass_terms'])) || in_array($pagenow, ['post.php', 'edit.php', 'post-new.php'])) {
             $select_2_page = true;
@@ -741,6 +737,7 @@ class SimpleTags_Admin
             'select_default_label' => esc_html__('Select Default Post Thumb', 'simple-tags'),
             'use_media_label' => esc_html__('Use this media', 'simple-tags'),
             'existing_content_admin_label' => esc_html__('Edit the current setting.', 'simple-tags'),
+            'request_error' => esc_html__('The request could not be completed. Please try again.', 'simple-tags'),
             'autoterm_admin_url' => admin_url('admin.php?page=st_autoterms'),
             'no_terms_message' => esc_html__('No terms will be deleted', 'simple-tags'),
             'terms_count_message' => esc_html__(' terms will be deleted.', 'simple-tags'),
