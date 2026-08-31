@@ -431,6 +431,9 @@ class SimpleTags_Admin_Mass
             $q['posts_per_page'] = 15;
         }
 
+        // Pagination
+        $q['paged'] = isset($q['paged']) ? max(1, (int) $q['paged']) : 1;
+
         // Content type
         $q['post_type'] = SimpleTags_Admin::$post_type;
 
@@ -500,6 +503,7 @@ class SimpleTags_Admin_Mass
             'post_type'      => $q['post_type'],
             'what_to_show'   => 'posts',
             'posts_per_page' => $q['posts_per_page'],
+            'paged'          => $q['paged'],
             'order'          => $order,
             'orderby'        => $orderby,
         );
