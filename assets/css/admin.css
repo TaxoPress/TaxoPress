@@ -495,9 +495,45 @@ body.taxopress_page_st_terms tr.inline-edit-row td {
 .st_wrap.st_mass_terms-page .box-selector-taxonomy {
     margin: 0;
     padding: 0;
-    background: aliceblue;
-    color: transparent;
+    width: auto;
+    max-width: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
     display: inline-block;
+}
+
+.st_wrap.st_mass_terms-page .custom-nav {
+    height: auto;
+    min-height: 30px;
+}
+
+.st_wrap.st_mass_terms-page .custom-nav .tablenav-pages {
+    margin: 0 0 12px;
+}
+
+.st_wrap.st_mass_terms-page .custom-nav > div:not(.tablenav-pages),
+.st_wrap.st_mass_terms-page .box-selector-taxonomy .change-taxo,
+.st_wrap.st_mass_terms-page .box-selector-taxonomy .change-taxo form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.st_wrap.st_mass_terms-page .custom-nav > div:not(.tablenav-pages) {
+    clear: both;
+    float: none !important;
+}
+
+.st_wrap.st_mass_terms-page #post-query-submit,
+.st_wrap.st_mass_terms-page .box-selector-taxonomy .change-taxo select,
+.st_wrap.st_mass_terms-page .box-selector-taxonomy .change-taxo input[type=submit] {
+    min-height: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    line-height: 28px;
 }
 
 .box-selector-taxonomy .change-taxo select,
