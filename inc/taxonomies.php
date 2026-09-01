@@ -286,7 +286,7 @@ class SimpleTags_Admin_Taxonomies
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verified in wp_verify_nonce call below
         $search_term = isset($_GET['s']) ? sanitize_text_field(wp_unslash($_GET['s'])) : '';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verified in wp_verify_nonce call below
-        $taxonomy = isset($_GET['taxonomy']) ? sanitize_text_field(wp_unslash($_GET['taxonomy'])) : 'category';
+        $taxonomy = isset($_GET['taxonomy']) ? sanitize_key(wp_unslash($_GET['taxonomy'])) : 'category';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verified in wp_verify_nonce call below
         $nonce = isset($_REQUEST['nonce']) ? sanitize_text_field(wp_unslash($_REQUEST['nonce'])) : '';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verified in wp_verify_nonce call below
@@ -294,7 +294,17 @@ class SimpleTags_Admin_Taxonomies
         $per_page    = 20;
 
         if (empty($nonce) || !wp_verify_nonce($nonce, 'st-admin-js')) {
-            wp_send_json_error(array('message' => esc_html__('Invalid nonce. Request is not authorized.', 'simple-tags')));
+            wp_send_json_error(array('message' => esc_html__('Invalid nonce. Request is not authorized.', 'simple-tags')), 403);
+        }
+
+        $taxonomy_object = get_taxonomy($taxonomy);
+        if (
+            !current_user_can('simple_tags')
+            || !$taxonomy_object
+            || empty($taxonomy_object->cap->assign_terms)
+            || !current_user_can($taxonomy_object->cap->assign_terms)
+        ) {
+            wp_send_json_error(array('message' => esc_html__('You do not have permission to view terms in this taxonomy.', 'simple-tags')), 403);
         }
 
         $args = array(
@@ -308,6 +318,9 @@ class SimpleTags_Admin_Taxonomies
         );
 
         $terms = get_terms($args);
+        if (is_wp_error($terms)) {
+            wp_send_json_error(array('message' => esc_html__('Unable to retrieve terms for this taxonomy.', 'simple-tags')), 400);
+        }
 
         $count_args = $args;
         unset($count_args['number'], $count_args['offset']);

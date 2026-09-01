@@ -912,7 +912,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
 
             ?>
             <div class="taxopress-tab-content">
-                <div class="taxopress-preview-filters taxopress-tab-content-item" data-ai-source="preview">
+                <div class="taxopress-preview-filters" data-ai-source="preview">
                     <select class="preview-post-types-select taxopress-ai-select2" style="max-width: 100px;">
                         <?php foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) :
                             if (!in_array($post_type, ['attachment'])) {
@@ -956,7 +956,7 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 <div id="poststuff">
                     <div id="post-body" class="taxopress-section metabox-holder columns-2">
                         <div>
-                            <div id="post-body-content" class="right-body-content" style="position: relative;">
+                            <div id="taxopress-preview-metabox-content" class="right-body-content taxopress-preview-metabox-content" style="position: relative;">
                                 <?php $this->editor_metabox($post, $context = 'fast_update'); ?>
                             </div>
                         </div>
@@ -1334,9 +1334,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
                 return;
             }
 
-            $default_post_type = '';
+            $default_post_type = is_object($post) && isset($post->post_type) ? $post->post_type : '';
 
-            if ($fast_update_screen) {
+            if ($fast_update_screen && empty($default_post_type)) {
                 foreach (TaxoPressAiUtilities::get_post_types_options() as $post_type => $post_type_object) {
                     if (!in_array($post_type, ['attachment'])) {
                         if (empty($default_post_type)) {
@@ -1348,6 +1348,16 @@ if (!class_exists('TaxoPress_AI_Module')) {
                         }
                     }
                 }
+            }
+
+            if (!is_object($post) || !isset($post->post_type)) {
+                return;
+            }
+
+            $preview_role = '';
+            if ($fast_update_screen) {
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Preview mode only; the AJAX handler verifies its nonce.
+                $preview_role = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '';
             }
 
             $settings_data = TaxoPressAiUtilities::taxopress_get_ai_settings_data($post->post_type);
@@ -1389,7 +1399,9 @@ if (!class_exists('TaxoPress_AI_Module')) {
             $existing_terms_order = !empty($settings_data['existing_terms_order']) ? $settings_data['existing_terms_order'] : '';
 
             $wrapper_class = $fast_update_screen ? 'fast_update_screen' : 'editor-screen';
-            $can_edit_labels = can_edit_taxopress_metabox_labels();
+            $can_edit_labels = $fast_update_screen && $preview_role
+                ? $preview_role === 'administrator'
+                : can_edit_taxopress_metabox_labels();
 
             ?>
             <div class="taxopress-post-suggestterm <?php echo esc_attr($wrapper_class); ?>">
@@ -1415,6 +1427,13 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     ];
 
                     $all_content_tabs = can_manage_taxopress_metabox_tabs($all_content_tabs);
+                    if (
+                        $fast_update_screen
+                        && $preview_role
+                        && SimpleTags_Plugin::get_option_value('enable_restrict' . $preview_role . '_metabox')
+                    ) {
+                        $all_content_tabs['create_terms']['enabled'] = false;
+                    }
 
                     foreach ($all_content_tabs as $all_content_tab_name => $all_content_tab_options) {
                         if ($all_content_tab_options['enabled']) {
@@ -1429,25 +1448,25 @@ if (!class_exists('TaxoPress_AI_Module')) {
                     $post_type_taxonomies = [];
                     $permitted_post_type_taxonomies = [];
                     if ($fast_update_screen) {
-                        foreach (TaxoPressAiUtilities::get_taxonomies(true) as $taxonomy_name => $taxonomy_data) {
-                            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Preview mode, no state modification, data used for display only
-                            $selected_post_type = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : $default_post_type;
-                            foreach (get_object_taxonomies($selected_post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
-                                if (!in_array($taxonomy_name, ['post_format'])) {
+                        $preview_has_metabox_access = !$preview_role
+                            || !empty(SimpleTags_Plugin::get_option_value('enable_' . $preview_role . '_metabox'));
+
+                        foreach (get_object_taxonomies($post->post_type, 'objects') as $taxonomy_name => $taxonomy_data) {
+                            if (!in_array($taxonomy_name, ['post_format'], true)) {
+                                if ($preview_role) {
+                                    if (
+                                        $preview_has_metabox_access
+                                        && can_manage_taxopress_metabox_taxonomy($taxonomy_name, false, $preview_role)
+                                    ) {
+                                        $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    }
+                                } elseif (can_manage_taxopress_metabox_taxonomy($taxonomy_name)) {
                                     $post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                    // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Preview mode, no state modification, data used for display only
-                                    if ($selectedRole = isset($_POST['preview_role']) ? sanitize_key($_POST['preview_role']) : '') {
-                                        $role_taxonomies = (array) SimpleTags_Plugin::get_option_value('enable_metabox_' . $selectedRole . '');
-                                        if (in_array($taxonomy_name, $role_taxonomies)) {
-                                            $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                        }
-                                    } else {
-                                        // Default behavior
-                                        if (in_array($taxonomy_name, ['category', 'post_tag']) && current_user_can('manage_categories')) {
-                                            $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                        } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
-                                            $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
-                                        }
+                                    if (in_array($taxonomy_name, ['category', 'post_tag'], true) && current_user_can('manage_categories')) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
+                                    } elseif (!empty($taxonomy_data->cap->edit_terms) && current_user_can($taxonomy_data->cap->edit_terms)) {
+                                        $permitted_post_type_taxonomies[$taxonomy_name] = $taxonomy_data;
                                     }
                                 }
                             }
@@ -1640,7 +1659,11 @@ if (!class_exists('TaxoPress_AI_Module')) {
                                                     </button>
                                                 </div>
                                                 <div class="taxopress-ai-fetch-result <?php echo esc_attr($key); ?>">
-                                                        <?php do_action('load_taxopress_ai_term_results', $result_request_args); ?>
+                                                        <?php
+                                                        if (!$fast_update_screen) {
+                                                            do_action('load_taxopress_ai_term_results', $result_request_args);
+                                                        }
+                                                        ?>
                                                 </div>
                                                         <?php if (empty($permitted_post_type_taxonomies)) {
                                                             echo '<div class="auto-terms-error-red create-term-item" style="display: none;" style="padding: 15px;"><p>';

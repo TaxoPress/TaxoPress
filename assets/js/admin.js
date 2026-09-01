@@ -1115,13 +1115,21 @@
             } else if(response.status === 'progress') {
                 $('.auto-term-content-result-title').html(response.percentage + response.notice);
                 $('.auto-term-content-result').prepend(response.content);
-                //send next batch
-                auto_terms_all_content(response.done, button);
+                // Keep the inter-batch wait in the browser instead of holding a PHP worker.
+                var batchWait = Math.max(0, parseInt(response.wait, 10) || 0) * 1000;
+                window.setTimeout(function () {
+                    auto_terms_all_content(response.done, button);
+                }, batchWait);
             } else if(response.status === 'sucess') {
                 $('.auto-term-content-result-title').html(''+response.percentage+'');
                 $(".taxopress-spinner").removeClass("is-active");
                 button.attr('disabled', false);
             }
+        }).fail(function (xhr) {
+            var response = xhr && xhr.responseJSON ? xhr.responseJSON : {};
+            $('.auto-term-content-result-title').html(response.message || st_admin_localize.request_error);
+            $('.taxopress-spinner').removeClass('is-active');
+            button.attr('disabled', false);
         });
     }
 
