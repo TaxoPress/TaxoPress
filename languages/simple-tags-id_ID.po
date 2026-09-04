@@ -1,8 +1,8 @@
-# Copyright (C) 2026 TaxoPress
+# Copyright (C) 2026 PublishPress Taxonomies
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress 3.51.0\n"
+"Project-Id-Version: PublishPress Taxonomies 3.51.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,8 @@ msgstr ""
 #: modules/taxopress-ai/taxopress-ai.php:1303
 #. Plugin Name of the plugin
 #. Author of the plugin
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "PublishPress Taxonomies"
+msgstr "PublishPress Taxonomies"
 
 #: simple-tags.php:5, fuzzy
 #. Plugin URI of the plugin
@@ -32,16 +32,16 @@ msgstr "https://wordpress.org/plugins/simple-tags/"
 #: simple-tags.php:6
 #. Description of the plugin
 msgid ""
-"TaxoPress allows you to create and manage Tags, Categories, and all your "
+"PublishPress Taxonomies allows you to create and manage Tags, Categories, and all your "
 "WordPress taxonomy terms."
 msgstr ""
-"TaxoPress memungkinkan Anda untuk membuat dan mengelola Tag, Kategori, dan "
+"PublishPress Taxonomies memungkinkan Anda untuk membuat dan mengelola Tag, Kategori, dan "
 "semua istilah taksonomi WordPress Anda."
 
 #: simple-tags.php:9, fuzzy
 #. Author URI of the plugin
-msgid "https://taxopress.com"
-msgstr "https://taxopress.com"
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
 
 #: blocks/post-tags.php:63
 #: inc/related-posts-widget.php:141
@@ -53,8 +53,8 @@ msgid " Select current post"
 msgstr " Pilih pos saat ini"
 
 #: blocks/post-tags.php:67
-msgid "Current Posts (TaxoPress)"
-msgstr "Pos Saat Ini (TaxoPress)"
+msgid "Current Posts (PublishPress Taxonomies)"
+msgstr "Pos Saat Ini (PublishPress Taxonomies)"
 
 #: blocks/related-posts.php:80
 #: blocks/tag-clouds.php:63
@@ -68,16 +68,16 @@ msgstr "Pilih pos terkait"
 
 #: blocks/related-posts.php:84
 #: inc/related-posts-widget.php:19
-msgid "Related Posts (TaxoPress)"
-msgstr "Pos Terkait (TaxoPress)"
+msgid "Related Posts (PublishPress Taxonomies)"
+msgstr "Pos Terkait (PublishPress Taxonomies)"
 
 #: blocks/tag-clouds.php:66
 msgid "Select Terms Display"
 msgstr "Pilih Tampilan Istilah"
 
 #: blocks/tag-clouds.php:67
-msgid "Terms Display (TaxoPress)"
-msgstr "Tampilan Istilah (TaxoPress)"
+msgid "Terms Display (PublishPress Taxonomies)"
+msgstr "Tampilan Istilah (PublishPress Taxonomies)"
 
 #: inc/related-posts-functions.php:167
 #: inc/related-posts-table.php:15
@@ -155,7 +155,7 @@ msgstr "Tidak ada item yang tersedia."
 #: inc/related-posts-table.php:276
 #: inc/tag-clouds-table.php:276
 #: inc/terms-table.php:1117
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:401
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:401
 #: modules/taxopress-ai/taxopress-ai.php:1496, fuzzy
 msgid "Edit"
 msgstr "Edit"
@@ -178,7 +178,7 @@ msgid "All"
 msgstr "Semua"
 
 #: inc/related-posts-table.php:386
-#: includes-core/TaxopressCoreAdmin.php:627, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:627, fuzzy
 msgid "Default"
 msgstr "Default"
 
@@ -208,8 +208,8 @@ msgid "No"
 msgstr "Tidak"
 
 #: inc/related-posts-widget.php:22
-msgid "Taxopress Related Posts Shortcode"
-msgstr "Shortcode Post Terkait TaxoPress"
+msgid "PublishPress Taxonomies Related Posts Shortcode"
+msgstr "Shortcode Post Terkait PublishPress Taxonomies"
 
 #: inc/related-posts-widget.php:112
 msgid "Related Posts are added on "
@@ -294,16 +294,16 @@ msgid "Add new Related Posts"
 msgstr "Tambahkan Pos Terkait baru"
 
 #: inc/related-posts.php:318
-msgid "To create more Related Posts, please upgrade to TaxoPress Pro."
-msgstr "Untuk membuat lebih banyak Pos Terkait, silakan tingkatkan ke TaxoPress Pro."
+msgid "To create more Related Posts, please upgrade to PublishPress Taxonomies Pro."
+msgstr "Untuk membuat lebih banyak Pos Terkait, silakan tingkatkan ke PublishPress Taxonomies Pro."
 
 #: inc/related-posts.php:324
 msgid ""
-"With TaxoPress Pro, you can create unlimited Related Posts. You can create "
+"With PublishPress Taxonomies Pro, you can create unlimited Related Posts. You can create "
 "Related Posts for any taxonomy and then display those Related Posts "
 "anywhere on your site."
 msgstr ""
-"Dengan TaxoPress Pro, Anda dapat membuat Pos Terkait tanpa batas. Anda "
+"Dengan PublishPress Taxonomies Pro, Anda dapat membuat Pos Terkait tanpa batas. Anda "
 "dapat membuat Pos Terkait untuk taksonomi mana pun dan kemudian menampilkan "
 "Pos Terkait tersebut di mana saja di situs Anda."
 
@@ -511,10 +511,10 @@ msgstr "Coba untuk secara otomatis menampilkan pos terkait"
 
 #: inc/related-posts.php:664
 msgid ""
-"TaxoPress will attempt to automatically display related posts in this "
+"PublishPress Taxonomies will attempt to automatically display related posts in this "
 "content. It may not be successful for all post types and layouts."
 msgstr ""
-"TaxoPress akan mencoba untuk secara otomatis menampilkan pos terkait dalam "
+"PublishPress Taxonomies akan mencoba untuk secara otomatis menampilkan pos terkait dalam "
 "konten ini. Mungkin tidak berhasil untuk semua jenis dan tata letak pos."
 
 #: inc/related-posts.php:713
@@ -550,8 +550,8 @@ msgstr ""
 "dokumentasi%2$s."
 
 #: inc/related-posts.php:791
-msgid "TaxoPress will display related posts from selected post types."
-msgstr "TaxoPress akan menampilkan pos terkait dari jenis pos yang dipilih."
+msgid "PublishPress Taxonomies will display related posts from selected post types."
+msgstr "PublishPress Taxonomies akan menampilkan pos terkait dari jenis pos yang dipilih."
 
 #: inc/related-posts.php:845
 msgid "Text to display before posts list"
@@ -636,10 +636,10 @@ msgid "Inverse Alphabetical"
 msgstr "Alfabet Terbalik"
 
 #: inc/related-posts.php:957
-#: includes-core/TaxopressCoreAdmin.php:881
-#: includes-core/TaxopressCoreAdmin.php:941
-#: includes-core/TaxopressCoreAdmin.php:985
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:114
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:881
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:941
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:985
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:114
 msgid "Random"
 msgstr "Acak"
 
@@ -737,8 +737,8 @@ msgid "Default post thumbnail"
 msgstr "Thumbnail posting default"
 
 #: inc/related-posts.php:1144
-msgid "Using default TaxoPress image"
-msgstr "Menggunakan gambar default TaxoPress"
+msgid "Using default PublishPress Taxonomies image"
+msgstr "Menggunakan gambar default PublishPress Taxonomies"
 
 #: inc/related-posts.php:1153
 msgid "Select Media"
@@ -762,33 +762,33 @@ msgstr ""
 
 #: inc/related-posts.php:1194
 msgid ""
-"You're using TaxoPress Free.\n"
+"You're using PublishPress Taxonomies Free.\n"
 "                                            The Pro version has more "
 "features and support."
 msgstr ""
-"Anda menggunakan TaxoPress Free. Versi Pro memiliki lebih banyak fitur dan "
+"Anda menggunakan PublishPress Taxonomies Free. Versi Pro memiliki lebih banyak fitur dan "
 "dukungan."
 
 #: inc/related-posts.php:1198
 #: inc/tag-clouds.php:970
-#: includes-core/TaxopressCoreAdmin.php:50
-#: includes-core/TaxopressCoreAdmin.php:136
-#: includes-core/TaxopressCoreAdmin.php:189
-#: includes-core/TaxopressCoreAdmin.php:213
-#: includes-core/TaxopressCoreAdmin.php:237
-#: includes-core/TaxopressCoreAdmin.php:261
-#: includes-core/TaxopressCoreAdmin.php:288
-#: includes-core/TaxopressCoreAdmin.php:306
-#: includes-core/TaxopressCoreAdmin.php:405
-#: includes-core/TaxopressCoreAdmin.php:423
-#: includes-core/TaxopressCoreAdmin.php:441
-#: includes-core/TaxopressCoreAdmin.php:459
-#: includes-core/TaxopressCoreAdmin.php:483
-#: includes-core/TaxopressCoreAdmin.php:507
-#: includes-core/TaxopressCoreAdmin.php:531
-#: includes-core/TaxopressCoreAdmin.php:577
-#: includes-core/TaxopressCoreAdmin.php:615
-#: includes-core/TaxopressCoreAdmin.php:689
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:50
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:136
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:189
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:213
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:237
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:261
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:288
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:306
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:405
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:423
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:441
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:459
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:483
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:507
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:531
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:577
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:615
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:689
 msgid "Upgrade to Pro"
 msgstr "Upgrade ke Pro"
 
@@ -912,7 +912,7 @@ msgid "autotermsschedulelogs"
 msgstr "autotermsschedulelogs"
 
 #: inc/schedule-logs-table.php:51
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:761, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:761, fuzzy
 msgid "Post"
 msgstr "Post"
 
@@ -963,7 +963,7 @@ msgstr ""
 "tidak akan terpengaruh."
 
 #: inc/schedule.php:123
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:869
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:869
 msgid "An error occured."
 msgstr "Terjadi kesalahan."
 
@@ -982,12 +982,12 @@ msgstr "Jadwal tidak diaktifkan untuk Auto Terms yang dipilih."
 #: inc/schedule.php:203
 msgid ""
 "This feature allows you to run the Auto Terms feature on a schedule. This "
-"is helpful if you regularly import content into WordPress. TaxoPress can "
+"is helpful if you regularly import content into WordPress. PublishPress Taxonomies can "
 "run on a schedule and add terms to your imported content."
 msgstr ""
 "Fitur ini memungkinkan Anda menjalankan fitur Auto Terms berdasarkan "
 "jadwal. Ini berguna jika Anda secara teratur mengimpor konten ke dalam "
-"WordPress. TaxoPress dapat dijalankan berdasarkan jadwal dan menambahkan "
+"WordPress. PublishPress Taxonomies dapat dijalankan berdasarkan jadwal dan menambahkan "
 "istilah ke konten yang Anda impor."
 
 #: inc/schedule.php:213
@@ -1149,7 +1149,7 @@ msgstr "Post Type"
 
 #: inc/tag-clouds-table.php:376
 #: inc/tag-clouds.php:655
-#: includes-core/TaxopressCoreAdmin.php:705, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:705, fuzzy
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -1214,18 +1214,18 @@ msgid "Add new Terms Display"
 msgstr "Tambah Tampilan Istilah baru"
 
 #: inc/tag-clouds.php:321
-msgid "To create more Terms Display, please upgrade to TaxoPress Pro."
+msgid "To create more Terms Display, please upgrade to PublishPress Taxonomies Pro."
 msgstr ""
 "Untuk membuat lebih banyak Tampilan Istilah, silakan tingkatkan ke "
-"TaxoPress Pro."
+"PublishPress Taxonomies Pro."
 
 #: inc/tag-clouds.php:324
 msgid ""
-"With TaxoPress Pro, you can create unlimited Terms Display. You can create "
+"With PublishPress Taxonomies Pro, you can create unlimited Terms Display. You can create "
 "Terms Display for any taxonomy and then display those Terms Display "
 "anywhere on your site."
 msgstr ""
-"Dengan TaxoPress Pro, Anda dapat membuat Tampilan Istilah tanpa batas. Anda "
+"Dengan PublishPress Taxonomies Pro, Anda dapat membuat Tampilan Istilah tanpa batas. Anda "
 "dapat membuat Tampilan Istilah untuk taxonomy apa pun dan kemudian "
 "menampilkan Tampilan Istilah tersebut di mana saja di situs Anda."
 
@@ -1238,7 +1238,7 @@ msgid "Exceptions"
 msgstr "Pengecualian"
 
 #: inc/tag-clouds.php:358
-#: includes-core/TaxopressCoreAdmin.php:711
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:711
 msgid "Display Format"
 msgstr "Format Tampilan"
 
@@ -1323,19 +1323,19 @@ msgid "Limit terms based on timeframe"
 msgstr "Batasi istilah berdasarkan jangka waktu"
 
 #: inc/tag-clouds.php:629
-#: includes-core/TaxopressCoreAdmin.php:837
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:146
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:837
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:146
 msgid "Ascending"
 msgstr "Menaik"
 
 #: inc/tag-clouds.php:630
-#: includes-core/TaxopressCoreAdmin.php:838
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:147
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:838
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:147
 msgid "Descending"
 msgstr "Menurun"
 
 #: inc/tag-clouds.php:639
-#: includes-core/TaxopressCoreAdmin.php:843
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:843
 msgid "Ordering for choosing terms for display"
 msgstr "Pengurutan untuk memilih istilah untuk ditampilkan"
 
@@ -1408,11 +1408,11 @@ msgstr ""
 
 #: inc/tag-clouds.php:966
 msgid ""
-"You're using TaxoPress Free.\n"
+"You're using PublishPress Taxonomies Free.\n"
 "                                        The Pro version has more features "
 "and support."
 msgstr ""
-"Anda menggunakan TaxoPress Free.\n"
+"Anda menggunakan PublishPress Taxonomies Free.\n"
 "                                        Versi Pro memiliki lebih banyak "
 "fitur dan dukungan."
 
@@ -2388,12 +2388,12 @@ msgstr ""
 "frontend."
 
 #: inc/taxonomies.php:1768
-msgid "Enable TaxoPress ordering"
-msgstr "Aktifkan pengurutan TaxoPress"
+msgid "Enable PublishPress Taxonomies ordering"
+msgstr "Aktifkan pengurutan PublishPress Taxonomies"
 
 #: inc/taxonomies.php:1773
-msgid "Enable TaxoPress ordering for this taxonomy in the frontend and admin area."
-msgstr "Aktifkan pengurutan TaxoPress untuk taxonomy ini di area frontend dan admin."
+msgid "Enable PublishPress Taxonomies ordering for this taxonomy in the frontend and admin area."
+msgstr "Aktifkan pengurutan PublishPress Taxonomies untuk taxonomy ini di area frontend dan admin."
 
 #: inc/taxonomies.php:1823
 msgid "Re-activate Taxonomy"
@@ -2408,19 +2408,19 @@ msgid "Delete Taxonomy"
 msgstr "Hapus Taxonomy"
 
 #: inc/taxonomies.php:1848
-msgid "Delete TaxoPress Edit Data"
-msgstr "Hapus Data Edit TaxoPress"
+msgid "Delete PublishPress Taxonomies Edit Data"
+msgstr "Hapus Data Edit PublishPress Taxonomies"
 
 #: inc/taxonomies.php:1851
 msgid ""
-"You can only delete taxonomies created with TaxoPress. However, you can "
-"delete any changes or edit made from TaxoPress which will remove TaxoPress "
+"You can only delete taxonomies created with PublishPress Taxonomies. However, you can "
+"delete any changes or edit made from PublishPress Taxonomies which will remove PublishPress Taxonomies "
 "version edit restoring original taxonomies data or removing it if already "
 "deleted"
 msgstr ""
-"Anda hanya dapat menghapus taxonomies yang dibuat dengan TaxoPress. Namun, "
-"Anda dapat menghapus perubahan atau edit yang dilakukan dari TaxoPress yang "
-"akan menghapus edit versi TaxoPress mengembalikan data taxonomy asli atau "
+"Anda hanya dapat menghapus taxonomies yang dibuat dengan PublishPress Taxonomies. Namun, "
+"Anda dapat menghapus perubahan atau edit yang dilakukan dari PublishPress Taxonomies yang "
+"akan menghapus edit versi PublishPress Taxonomies mengembalikan data taxonomy asli atau "
 "menghapusnya jika sudah dihapus"
 
 #: inc/taxonomies.php:1918
@@ -2455,12 +2455,12 @@ msgid "Custom URL"
 msgstr "URL Kustom"
 
 #: inc/terms-table.php:745
-#: includes-core/TaxopressCoreAdmin.php:592
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:592
 msgid "Synonyms"
 msgstr "Sinonim"
 
 #: inc/terms-table.php:746
-#: includes-core/TaxopressCoreAdmin.php:550
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:550
 msgid "Linked Terms"
 msgstr "Istilah Terkait"
 
@@ -2470,7 +2470,7 @@ msgstr "Status"
 
 #: inc/terms-table.php:801
 #: inc/terms-table.php:1181
-#: includes-core/TaxopressCoreAdmin.php:329
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:329
 msgid "Copy"
 msgstr "Salin"
 
@@ -2653,250 +2653,250 @@ msgstr "Kembali ke Tag Media"
 #: inc/utilities.php:63
 #: inc/utilities.php:65
 #: inc/utilities.php:70
-msgid "TaxoPress Logs"
-msgstr "Log TaxoPress"
+msgid "PublishPress Taxonomies Logs"
+msgstr "Log PublishPress Taxonomies"
 
 #: inc/utilities.php:64
-msgid "Search TaxoPress Logs"
-msgstr "Cari Log TaxoPress"
+msgid "Search PublishPress Taxonomies Logs"
+msgstr "Cari Log PublishPress Taxonomies"
 
 #: inc/utilities.php:66
-msgid "Edit TaxoPress Logs"
-msgstr "Edit Log TaxoPress"
+msgid "Edit PublishPress Taxonomies Logs"
+msgstr "Edit Log PublishPress Taxonomies"
 
 #: inc/utilities.php:67
-msgid "Update TaxoPress Logs"
-msgstr "Perbarui Log TaxoPress"
+msgid "Update PublishPress Taxonomies Logs"
+msgstr "Perbarui Log PublishPress Taxonomies"
 
 #: inc/utilities.php:68
-msgid "Add New TaxoPress Logs"
-msgstr "Tambahkan Log TaxoPress Baru"
+msgid "Add New PublishPress Taxonomies Logs"
+msgstr "Tambahkan Log PublishPress Taxonomies Baru"
 
 #: inc/utilities.php:69
-msgid "New TaxoPress Logs"
-msgstr "Log TaxoPress Baru"
+msgid "New PublishPress Taxonomies Logs"
+msgstr "Log PublishPress Taxonomies Baru"
 
-#: includes-core/TaxopressCoreAdmin.php:17
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:17
 #, php-format
 msgid ""
-"You're using TaxoPress Free. The Pro version has more features and support. "
+"You're using PublishPress Taxonomies Free. The Pro version has more features and support. "
 "%sUpgrade to Pro%s"
 msgstr ""
-"Anda sedang menggunakan TaxoPress Free. Versi Pro memiliki lebih banyak "
+"Anda sedang menggunakan PublishPress Taxonomies Free. Versi Pro memiliki lebih banyak "
 "fitur dan dukungan. %sUpgrade ke Pro%s"
 
-#: includes-core/TaxopressCoreAdmin.php:114
-msgid "Upgrade to TaxoPress Pro"
-msgstr "Upgrade ke TaxoPress Pro"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:114
+msgid "Upgrade to PublishPress Taxonomies Pro"
+msgstr "Upgrade ke PublishPress Taxonomies Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:119
-msgid "Enhance the power of TaxoPress with the Pro version:"
-msgstr "Tingkatkan kekuatan TaxoPress dengan versi Pro:"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:119
+msgid "Enhance the power of PublishPress Taxonomies with the Pro version:"
+msgstr "Tingkatkan kekuatan PublishPress Taxonomies dengan versi Pro:"
 
-#: includes-core/TaxopressCoreAdmin.php:122
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:122
 msgid "Unlimited “Term Display”"
 msgstr "“Tampilan Istilah” Tak Terbatas"
 
-#: includes-core/TaxopressCoreAdmin.php:123
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:123
 msgid "Unlimited “Terms for Current Posts”"
 msgstr "“Istilah untuk Pos Saat Ini” Tak Terbatas"
 
-#: includes-core/TaxopressCoreAdmin.php:124
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:124
 msgid "Unlimited “Related Posts”"
 msgstr "“Pos Terkait” Tak Terbatas"
 
-#: includes-core/TaxopressCoreAdmin.php:125
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:125
 msgid "Unlimited “Auto Links”"
 msgstr "“Tautan Otomatis” Tak Terbatas"
 
-#: includes-core/TaxopressCoreAdmin.php:126
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:126
 msgid "Unlimited “Auto Terms”"
 msgstr "“Istilah Otomatis” Tak Terbatas"
 
-#: includes-core/TaxopressCoreAdmin.php:127
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:127
 msgid "Create new terms using OpenAI and other sources"
 msgstr "Buat istilah baru menggunakan OpenAI dan sumber lainnya"
 
-#: includes-core/TaxopressCoreAdmin.php:128
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:128
 msgid "Use Linked Terms"
 msgstr "Gunakan Istilah Terkait"
 
-#: includes-core/TaxopressCoreAdmin.php:129
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:129
 msgid "Use Synonyms"
 msgstr "Gunakan Sinonim"
 
-#: includes-core/TaxopressCoreAdmin.php:130
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:130
 msgid "Schedule Auto Terms to run automatically"
 msgstr "Jadwalkan Istilah Otomatis untuk berjalan secara otomatis"
 
-#: includes-core/TaxopressCoreAdmin.php:131
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:131
 msgid "Control the display of term metaboxes"
 msgstr "Kontrol tampilan metabox istilah"
 
-#: includes-core/TaxopressCoreAdmin.php:132
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:132
 msgid "Fast, professional support"
 msgstr "Dukungan cepat dan profesional"
 
-#: includes-core/TaxopressCoreAdmin.php:133
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:133
 msgid "No ads inside the plugin"
 msgstr "Tidak ada iklan di dalam plugin"
 
-#: includes-core/TaxopressCoreAdmin.php:143
-msgid "Need TaxoPress Support?"
-msgstr "Butuh Dukungan TaxoPress?"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:143
+msgid "Need PublishPress Taxonomies Support?"
+msgstr "Butuh Dukungan PublishPress Taxonomies?"
 
-#: includes-core/TaxopressCoreAdmin.php:148
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:148
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
 "Jika Anda membutuhkan bantuan atau memiliki permintaan fitur baru, beri "
 "tahu kami."
 
-#: includes-core/TaxopressCoreAdmin.php:150
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:150
 msgid "Request Support"
 msgstr "Permintaan Dukungan"
 
-#: includes-core/TaxopressCoreAdmin.php:157
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:157
 msgid "Detailed documentation is also available on the plugin website."
 msgstr "Dokumentasi rinci juga tersedia di situs web plugin."
 
-#: includes-core/TaxopressCoreAdmin.php:159
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:159
 msgid "View Knowledge Base"
 msgstr "Lihat Basis Pengetahuan"
 
-#: includes-core/TaxopressCoreAdmin.php:182
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:182
 msgid "OpenAI Integration"
 msgstr "Integrasi OpenAI"
 
-#: includes-core/TaxopressCoreAdmin.php:187
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:187
 msgid ""
-"TaxoPress Pro allows you to integrate OpenAI to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate OpenAI to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan OpenAI untuk "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk mengintegrasikan OpenAI untuk "
 "menganalisis konten Anda dan menyarankan istilah."
 
-#: includes-core/TaxopressCoreAdmin.php:206
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:206
 msgid "IBM Watson Integration"
 msgstr "Integrasi IBM Watson"
 
-#: includes-core/TaxopressCoreAdmin.php:211
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:211
 msgid ""
-"TaxoPress Pro allows you to integrate Watson to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate Watson to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan Watson untuk "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk mengintegrasikan Watson untuk "
 "menganalisis konten Anda dan menyarankan istilah."
 
-#: includes-core/TaxopressCoreAdmin.php:230
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:230
 msgid "Dandelion Integration"
 msgstr "Integrasi Dandelion"
 
-#: includes-core/TaxopressCoreAdmin.php:235
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:235
 msgid ""
-"TaxoPress Pro allows you to integrate Dandelion to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate Dandelion to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan Dandelion untuk "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk mengintegrasikan Dandelion untuk "
 "menganalisis konten Anda dan menyarankan istilah."
 
-#: includes-core/TaxopressCoreAdmin.php:254
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:254
 msgid "LSEG / Refinitiv Integration"
 msgstr "Integrasi LSEG / Refinitiv"
 
-#: includes-core/TaxopressCoreAdmin.php:259
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:259
 msgid ""
-"TaxoPress Pro allows you to integrate LSEG / Refinitiv to analyze your "
+"PublishPress Taxonomies Pro allows you to integrate LSEG / Refinitiv to analyze your "
 "content and suggest terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk mengintegrasikan LSEG / Refinitiv "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk mengintegrasikan LSEG / Refinitiv "
 "untuk menganalisis konten Anda dan menyarankan istilah."
 
-#: includes-core/TaxopressCoreAdmin.php:282
-#: includes-core/TaxopressCoreAdmin.php:299
-#: includes-core/TaxopressCoreAdmin.php:476
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:282
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:299
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:476
 msgid "Suggest terms using AI"
 msgstr "Sarankan istilah menggunakan AI"
 
-#: includes-core/TaxopressCoreAdmin.php:286
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:286
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "OpenAI. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
 "Anda menggunakan OpenAI. Layanan ini dapat menganalisis konten Anda dan "
 "menyarankan istilah baru."
 
-#: includes-core/TaxopressCoreAdmin.php:304
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:304
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "IBM Watson. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
 "Anda menggunakan IBM Watson. Layanan ini dapat menganalisis konten Anda dan "
 "menyarankan istilah baru."
 
-#: includes-core/TaxopressCoreAdmin.php:368
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:368
 msgid "Copy with Metadata"
 msgstr "Salin dengan Metadata"
 
-#: includes-core/TaxopressCoreAdmin.php:398
-#: includes-core/TaxopressCoreAdmin.php:416
-#: includes-core/TaxopressCoreAdmin.php:434
-#: includes-core/TaxopressCoreAdmin.php:452
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:398
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:416
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:434
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:452
 msgid "Auto terms using AI"
 msgstr "Istilah otomatis menggunakan AI"
 
-#: includes-core/TaxopressCoreAdmin.php:403
-#: includes-core/TaxopressCoreAdmin.php:421
-#: includes-core/TaxopressCoreAdmin.php:439
-#: includes-core/TaxopressCoreAdmin.php:457
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:403
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:421
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:439
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:457
 msgid ""
-"TaxoPress Pro allows you to generate new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to generate new terms for your content using the "
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and add new terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk menghasilkan istilah baru untuk "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk menghasilkan istilah baru untuk "
 "konten Anda menggunakan layanan OpenAI, IBM Watson, Dandelion, dan Open "
 "Calais. Layanan ini dapat menganalisis konten Anda dan menambahkan istilah "
 "baru."
 
-#: includes-core/TaxopressCoreAdmin.php:481
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:481
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk menyarankan istilah baru untuk konten "
 "Anda menggunakan layanan OpenAI, IBM Watson, Dandelion, dan Open Calais. "
 "Layanan ini dapat menganalisis konten Anda dan menyarankan istilah baru."
 
-#: includes-core/TaxopressCoreAdmin.php:500
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:500
 msgid "Add Custom Elements"
 msgstr "Tambahkan Elemen Kustom"
 
-#: includes-core/TaxopressCoreAdmin.php:505
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:505
 msgid ""
-"TaxoPress Pro allows you complete control over where Auto Links are added. "
+"PublishPress Taxonomies Pro allows you complete control over where Auto Links are added. "
 "You can choose to skip any HTML elements that appear in your content."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda memiliki kontrol penuh atas di mana Tautan "
+"PublishPress Taxonomies Pro memungkinkan Anda memiliki kontrol penuh atas di mana Tautan "
 "Otomatis ditambahkan. Anda dapat memilih untuk melewatkan elemen HTML yang "
 "muncul dalam konten Anda."
 
-#: includes-core/TaxopressCoreAdmin.php:524
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:524
 msgid "Use Regular Expressions to modify Auto Terms"
 msgstr "Gunakan Ekspresi Reguler untuk memodifikasi Istilah Otomatis"
 
-#: includes-core/TaxopressCoreAdmin.php:529
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:529
 msgid ""
-"TaxoPress Pro allows you to change how Auto Terms analyzes your posts. You "
+"PublishPress Taxonomies Pro allows you to change how Auto Terms analyzes your posts. You "
 "will need to know how to write Regular Expressions to use this feature."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk mengubah cara Istilah Otomatis "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk mengubah cara Istilah Otomatis "
 "menganalisis pos Anda. Anda perlu tahu cara menulis Ekspresi Reguler untuk "
 "menggunakan fitur ini."
 
-#: includes-core/TaxopressCoreAdmin.php:551
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:551
 msgid ""
 "This feature allows you to connect terms. When the main term or any of "
 "these terms are added to the post, all the other terms will be added also."
@@ -2905,84 +2905,84 @@ msgstr ""
 "utama atau salah satu dari istilah ini ditambahkan ke pos, semua istilah "
 "lainnya juga akan ditambahkan."
 
-#: includes-core/TaxopressCoreAdmin.php:571
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:571
 msgid "Linked Terms Feature"
 msgstr "Fitur Istilah Tautan"
 
-#: includes-core/TaxopressCoreAdmin.php:575
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:575
 msgid ""
-"TaxoPress Pro allows you to create powerful connections between your terms. "
+"PublishPress Taxonomies Pro allows you to create powerful connections between your terms. "
 "When one term is added to a post, its linked terms can be automatically "
 "added too. This helps maintain consistent organization across your content."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk membuat koneksi yang kuat antara "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk membuat koneksi yang kuat antara "
 "istilah Anda. Ketika satu istilah ditambahkan ke pos, istilah tautannya "
 "juga dapat ditambahkan secara otomatis. Ini membantu menjaga organisasi "
 "yang konsisten di seluruh konten Anda."
 
-#: includes-core/TaxopressCoreAdmin.php:593
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:593
 msgid ""
 "This feature allows you to associate additional words with each term. For "
 "example, \"website\" can have synonyms such as \"websites\", \"web site\", "
 "and \"web pages\"."
 msgstr "Fitur Istilah Sinonim"
 
-#: includes-core/TaxopressCoreAdmin.php:609
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:609
 msgid "Synonyms Terms Feature"
 msgstr ""
 "Fitur ini memungkinkan Anda untuk mengasosiasikan kata tambahan dengan "
 "setiap istilah. Misalnya, \"website\" dapat memiliki sinonim seperti "
 "\"websites\", \"web site\", dan \"web pages\"."
 
-#: includes-core/TaxopressCoreAdmin.php:613
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:613
 msgid ""
-"TaxoPress Pro allows you to have multiple words associated with a single "
-"term. If TaxoPress scans your content and finds a synonym, it will act as "
+"PublishPress Taxonomies Pro allows you to have multiple words associated with a single "
+"term. If PublishPress Taxonomies scans your content and finds a synonym, it will act as "
 "if it has found the main term."
 msgstr ""
-"TaxoPress Pro memungkinkan Anda untuk memiliki beberapa kata yang "
-"diasosiasikan dengan satu istilah. Jika TaxoPress memindai konten Anda dan "
+"PublishPress Taxonomies Pro memungkinkan Anda untuk memiliki beberapa kata yang "
+"diasosiasikan dengan satu istilah. Jika PublishPress Taxonomies memindai konten Anda dan "
 "menemukan sinonim, ia akan bertindak seolah-olah telah menemukan istilah "
 "utama."
 
-#: includes-core/TaxopressCoreAdmin.php:633
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:633
 msgid "Taxonomy Display"
 msgstr "Tampilan Taksonomi"
 
-#: includes-core/TaxopressCoreAdmin.php:641
-#: includes-core/TaxopressCoreAdmin.php:730
-msgid "This feature is available in TaxoPress Pro"
-msgstr "Fitur ini tersedia di TaxoPress Pro"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:641
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:730
+msgid "This feature is available in PublishPress Taxonomies Pro"
+msgstr "Fitur ini tersedia di PublishPress Taxonomies Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:646
-msgid "Customize the display of terms in the TaxoPress metabox."
-msgstr "Sesuaikan tampilan istilah dalam metabox TaxoPress."
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:646
+msgid "Customize the display of terms in the PublishPress Taxonomies metabox."
+msgstr "Sesuaikan tampilan istilah dalam metabox PublishPress Taxonomies."
 
-#: includes-core/TaxopressCoreAdmin.php:647
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:647
 msgid "Options include checkboxes and a dropdown list."
 msgstr "Opsi termasuk kotak centang dan daftar dropdown."
 
-#: includes-core/TaxopressCoreAdmin.php:681
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:681
 msgid "Copy Term with Metadata"
 msgstr "Salin Istilah dengan Metadata"
 
-#: includes-core/TaxopressCoreAdmin.php:686
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:686
 msgid "To Copy terms with their metadata, please upgrade to pro."
 msgstr "Untuk menyalin istilah beserta metadata mereka, silakan tingkatkan ke pro."
 
-#: includes-core/TaxopressCoreAdmin.php:687
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:687
 msgid ""
-"With TaxoPress Pro, you can duplicate taxonomy terms along with all their "
+"With PublishPress Taxonomies Pro, you can duplicate taxonomy terms along with all their "
 "metadata. This includes term descriptions, images, and custom fields. You "
 "can copy terms between taxonomies to maintain consistent organization "
 "across your site."
 msgstr ""
-"Dengan TaxoPress Pro, Anda dapat menduplikasi istilah taksonomi beserta "
+"Dengan PublishPress Taxonomies Pro, Anda dapat menduplikasi istilah taksonomi beserta "
 "semua metadata mereka. Ini termasuk deskripsi istilah, gambar, dan bidang "
 "kustom. Anda dapat menyalin istilah antar taksonomi untuk menjaga "
 "organisasi yang konsisten di seluruh situs Anda."
 
-#: includes-core/TaxopressCoreAdmin.php:734
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:734
 msgid ""
 "Choose the display formats of your terms, options include table list, "
 "ordered list, border-cloud and lots more."
@@ -2990,154 +2990,154 @@ msgstr ""
 "Pilih format tampilan istilah Anda, opsi termasuk daftar tabel, daftar "
 "terurut, border-cloud dan banyak lagi."
 
-#: includes-core/TaxopressCoreAdmin.php:754
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:754
 msgid "Hourly"
 msgstr "Per Jam"
 
-#: includes-core/TaxopressCoreAdmin.php:767
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:767
 msgid "Daily"
 msgstr "Harian"
 
-#: includes-core/TaxopressCoreAdmin.php:775
-#: includes-core/TaxopressCoreAdmin.php:827
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:775
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:827
 msgid "Pro Feature"
 msgstr "Fitur Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:777
-#: includes-core/TaxopressCoreAdmin.php:829
-msgid "Some of these features are available in TaxoPress Pro"
-msgstr "Beberapa fitur ini tersedia di TaxoPress Pro"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:777
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:829
+msgid "Some of these features are available in PublishPress Taxonomies Pro"
+msgstr "Beberapa fitur ini tersedia di PublishPress Taxonomies Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:787
-#: includes-core/TaxopressCoreAdmin.php:879
-#: includes-core/TaxopressCoreAdmin.php:904, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:787
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:879
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:904, fuzzy
 msgid "ID"
 msgstr "ID"
 
-#: includes-core/TaxopressCoreAdmin.php:788
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:788
 msgid "Name (Pro)"
 msgstr "Nama (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:789, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:789, fuzzy
 msgid "Counter (Pro)"
 msgstr "Counter (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:790
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:790
 msgid "Random (Pro)"
 msgstr "Acak (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:791
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:791
 msgid "Term Order (Pro)"
 msgstr "Urutan Istilah (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:803
-#: includes-core/TaxopressCoreAdmin.php:950
-#: includes-core/TaxopressCoreAdmin.php:994
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:803
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:950
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:994
 msgid "Method for choosing terms for display"
 msgstr "Metode untuk memilih istilah untuk ditampilkan"
 
-#: includes-core/TaxopressCoreAdmin.php:878
-#: includes-core/TaxopressCoreAdmin.php:939
-#: includes-core/TaxopressCoreAdmin.php:983
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:112
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:878
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:939
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:983
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:112
 msgid "Name"
 msgstr "Nama"
 
-#: includes-core/TaxopressCoreAdmin.php:880
-#: includes-core/TaxopressCoreAdmin.php:940
-#: includes-core/TaxopressCoreAdmin.php:984
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:113, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:880
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:940
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:984
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:113, fuzzy
 msgid "Counter"
 msgstr "Counter"
 
-#: includes-core/TaxopressCoreAdmin.php:882
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:882
 msgid "Term Order"
 msgstr "Urutan Istilah"
 
-#: includes-core/TaxopressCoreAdmin.php:899
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:899
 msgid "Disabled"
 msgstr "Dinonaktifkan"
 
-#: includes-core/TaxopressCoreAdmin.php:900
-msgid "You have disabled TaxoPress ordering"
-msgstr "Anda telah menonaktifkan pengurutan TaxoPress"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:900
+msgid "You have disabled PublishPress Taxonomies ordering"
+msgstr "Anda telah menonaktifkan pengurutan PublishPress Taxonomies"
 
-#: includes-core/TaxopressCoreAdmin.php:906
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:906
 #, php-format
 msgid "Terms in this taxonomy are ordered by %s"
 msgstr "Istilah dalam taksonomi ini diurutkan berdasarkan %s"
 
-#: includes-core/TaxopressCoreAdmin.php:942
-#: includes-core/TaxopressCoreAdmin.php:986
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:942
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:986
 msgid "Term Order(Pro)"
 msgstr "Urutan Istilah (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:970
-#: includes-core/TaxopressCoreAdmin.php:1014
-msgid "Upgrade to TaxoPress Pro to use Term Order to manually order Terms"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:970
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:1014
+msgid "Upgrade to PublishPress Taxonomies Pro to use Term Order to manually order Terms"
 msgstr ""
-"Tingkatkan ke TaxoPress Pro untuk menggunakan Urutan Istilah untuk "
+"Tingkatkan ke PublishPress Taxonomies Pro untuk menggunakan Urutan Istilah untuk "
 "mengurutkan Istilah secara manual"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:61
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:741
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:968
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:61
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:741
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:968
 msgid "Request completed."
 msgstr "Permintaan selesai."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:69
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:749
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:877
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:69
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:749
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:877
 msgid "Security error. Kindly reload this page and try again"
 msgstr "Kesalahan keamanan. Silakan muat ulang halaman ini dan coba lagi"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:75
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:755
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:883
-msgid "Permission error. You do not have permission to manage taxopress"
-msgstr "Kesalahan izin. Anda tidak memiliki izin untuk mengelola TaxoPress"
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:75
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:755
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:883
+msgid "Permission error. You do not have permission to manage PublishPress Taxonomies"
+msgstr "Kesalahan izin. Anda tidak memiliki izin untuk mengelola PublishPress Taxonomies"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:91
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:560
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:91
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:560
 msgid "Posts content and title is empty."
 msgstr "Konten dan judul pos kosong."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:98
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:98
 msgid "Permission error. You do not have permission to preview this post."
 msgstr "Kesalahan izin. Anda tidak memiliki izin untuk melihat pratayang pos ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:124
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:769
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:898
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:124
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:769
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:898
 #, php-format
 msgid ""
 "You do not have permission to manage this taxonomy. Enable Metabox Access "
-"Taxonomies for this role in %1sTaxoPress Settings%2s."
+"Taxonomies for this role in %1sPublishPress Taxonomies Settings%2s."
 msgstr ""
 "Anda tidak memiliki izin untuk mengelola taxonomy ini. Aktifkan Akses "
-"Metabox Taxonomies untuk peran ini di %1sPengaturan TaxoPress%2s."
+"Metabox Taxonomies untuk peran ini di %1sPengaturan PublishPress Taxonomies%2s."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:237
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:237
 msgid "Term Results"
 msgstr "Hasil Istilah"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:240
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:240
 msgid "No results found for this post with this taxonomy."
 msgstr "Tidak ada hasil ditemukan untuk pos ini dengan taxonomy ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:245
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:245
 msgid "Invalid Auto Term ID. Please save the settings before using preview."
 msgstr ""
 "ID Istilah Otomatis tidak valid. Silakan simpan pengaturan sebelum "
 "menggunakan pratayang."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:250
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:250
 msgid "You must enable at least one AI integration source to use auto term preview."
 msgstr ""
 "Anda harus mengaktifkan setidaknya satu sumber integrasi AI untuk "
 "menggunakan pratayang istilah otomatis."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:253
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:253
 msgid ""
 "This Auto Terms option is not enabled for metaboxes. Please enable it in "
 "the Auto Terms settings."
@@ -3145,48 +3145,48 @@ msgstr ""
 "Opsi Istilah Otomatis ini tidak diaktifkan untuk metabox. Silakan aktifkan "
 "di pengaturan Istilah Otomatis."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:267
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:291
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:267
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:291
 #, php-format
 msgid "Click %1s to select or deselect them from this %2s."
 msgstr "Klik %1s untuk memilih atau membatalkan pilihan dari %2s ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:283
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:283
 msgid "Suggest Existing Terms"
 msgstr "Usulkan Istilah yang Ada"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:299
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:302, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:299
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:302, fuzzy
 msgid "OpenAI"
 msgstr "OpenAI"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:314
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:317, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:314
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:317, fuzzy
 msgid "IBM Watson"
 msgstr "IBM Watson"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:329
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:332, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:329
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:332, fuzzy
 msgid "Dandelion"
 msgstr "Dandelion"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:344
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:347, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:344
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:347, fuzzy
 msgid "LSEG / Refinitiv"
 msgstr "LSEG / Refinitiv"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:356
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:406
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:356
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:406
 #, php-format
 msgid "Update %1s on this %2s"
 msgstr "Perbarui %1s di %2s ini"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:425
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:425
 msgid "Existing Terms not found for the selected post type and taxonomies"
 msgstr "Istilah yang Ada tidak ditemukan untuk tipe pos dan taxonomy yang dipilih"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:491
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:491
 msgid ""
 "Existing Terms taxonomy is required. Kindly select taxonomies and save the "
 "settings before running preview."
@@ -3194,80 +3194,80 @@ msgstr ""
 "Taxonomy Istilah yang Ada diperlukan. Silakan pilih taxonomy dan simpan "
 "pengaturan sebelum menjalankan pratayang."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:712
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:712
 msgid "Result from ajax request."
 msgstr "Hasil dari permintaan ajax."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:718
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:718
 msgid "The selected taxonomy is not associated with the selected post type."
 msgstr "Taxonomy yang dipilih tidak terkait dengan tipe pos yang dipilih."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:724
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:724
 msgid "No results found for this taxonomy."
 msgstr "Tidak ada hasil ditemukan untuk taxonomy ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:785
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:785
 msgid "You do not have permission to edit this post."
 msgstr "Anda tidak memiliki izin untuk mengedit pos ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:792
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:792
 #, php-format
 msgid "Click Term to select or deselect from this %1s"
 msgstr "Klik Istilah untuk memilih atau membatalkan pilihan dari %1s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:795
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:795
 msgid "Both Taxonomy and Post are required."
 msgstr "Baik Taxonomy maupun Post diperlukan."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:843
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:843
 msgid "No new terms were selected or deselected."
 msgstr "Tidak ada istilah baru yang dipilih atau dibatalkan."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:847
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:847
 #, php-format
 msgid "%1s terms added to this %2s."
 msgstr "%1s istilah ditambahkan ke %2s ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:851
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:851
 #, php-format
 msgid "%1s terms removed from this %2s."
 msgstr "%1s istilah dihapus dari %2s ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:913
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:913
 msgid "You do not have capability to manage this taxonomy."
 msgstr "Anda tidak memiliki kemampuan untuk mengelola taxonomy ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1013
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1013
 #, php-format
 msgid "Terms cannot contain the following characters: %s"
 msgstr "Istilah tidak boleh mengandung karakter berikut: %s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1028
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1028
 #, php-format
 msgid "Terms must be at least %d characters long."
 msgstr "Istilah harus memiliki panjang setidaknya %d karakter."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1034
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1034
 #, php-format
 msgid "Terms cannot exceed %d characters."
 msgstr "Istilah tidak boleh melebihi %d karakter."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:29
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:29
 msgid "The Dandelion integration is disabled in the Legacy AI Sources settings."
 msgstr "Integrasi Dandelion dinonaktifkan dalam pengaturan Sumber AI Legacy."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:35
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:117
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:150
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:240
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:274
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:370
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:430
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:628
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:35
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:117
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:150
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:240
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:274
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:370
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:430
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:628
 msgid "No matched result from the API Server."
 msgstr "Tidak ada hasil yang cocok dari Server API."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:53
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:53
 msgid ""
 "The Dandelion integration requires an API Key. Please add your API Key in "
 "the Auto Term settings."
@@ -3275,48 +3275,48 @@ msgstr ""
 "Integrasi Dandelion memerlukan Kunci API. Silakan tambahkan Kunci API Anda "
 "di pengaturan Istilah Otomatis."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:59
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:173
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:298
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:456
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:59
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:173
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:298
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:456
 msgid "Selected content is empty."
 msgstr "Konten yang dipilih kosong."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:75
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:189
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:314
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:472
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:75
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:189
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:314
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:472
 msgid "Result from cache."
 msgstr "Hasil dari cache."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:99
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:215
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:349
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:99
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:215
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:349
 #, php-format
 msgid "API Error: %1s."
 msgstr "Kesalahan API: %1s."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:108
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:230
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:360
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:616
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:108
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:230
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:360
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:616
 msgid "Result from api."
 msgstr "Hasil dari api."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:122
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:245
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:375
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:633
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:122
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:245
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:375
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:633
 msgid "Error establishing connection with the API server. Try again."
 msgstr "Kesalahan dalam membangun koneksi dengan server API. Coba lagi."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:145
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:145
 msgid ""
 "The LSEG / Refinitiv integration is disabled in the Legacy AI Sources "
 "settings."
 msgstr "Integrasi LSEG / Refinitiv dinonaktifkan dalam pengaturan Sumber AI Legacy."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:167
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:167
 msgid ""
 "The LSEG / Refinitiv integration requires an API Key. Please add your API "
 "Key in the Auto Term settings."
@@ -3324,15 +3324,15 @@ msgstr ""
 "Integrasi LSEG / Refinitiv memerlukan Kunci API. Silakan tambahkan Kunci "
 "API Anda di pengaturan Istilah Otomatis."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:236
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:236
 msgid "API Error: No matched result for content."
 msgstr "Kesalahan API: Tidak ada hasil yang cocok untuk konten."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:268
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:268
 msgid "The IBM Watson integration is disabled in the Legacy AI Sources settings."
 msgstr "Integrasi IBM Watson dinonaktifkan di pengaturan Sumber AI Legacy."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:292
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:292
 msgid ""
 "The IBM Watson integration requires an API Key and URL. Please add your API "
 "Key in the Auto Term settings."
@@ -3340,7 +3340,7 @@ msgstr ""
 "Integrasi IBM Watson memerlukan Kunci API dan URL. Harap tambahkan Kunci "
 "API Anda di pengaturan Auto Term."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:450
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:450
 msgid ""
 "The OpenAI integration requires an API Key. Please add your API Key in the "
 "Auto Term settings."
@@ -3348,7 +3348,7 @@ msgstr ""
 "Integrasi OpenAI memerlukan Kunci API. Harap tambahkan Kunci API Anda di "
 "pengaturan Auto Term."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:495
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:495
 #, php-format
 msgid ""
 "Invalid placeholder(s) detected: {%s}. Valid placeholders are: {content}, "
@@ -3357,7 +3357,7 @@ msgstr ""
 "Placeholder yang tidak valid terdeteksi: {%s}. Placeholder yang valid "
 "adalah: {content}, {post_terms}, {site_terms}"
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:531
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:531
 msgid ""
 "You added {post_terms} in the prompt but your post does not contain any "
 "terms."
@@ -3365,7 +3365,7 @@ msgstr ""
 "Anda menambahkan {post_terms} di prompt tetapi pos Anda tidak mengandung "
 "istilah apa pun."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:534
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:534
 msgid ""
 "You added {site_terms} in the prompt but your site does not contain any "
 "terms for this taxonomy."
@@ -3373,7 +3373,7 @@ msgstr ""
 "Anda menambahkan {site_terms} di prompt tetapi situs Anda tidak mengandung "
 "istilah untuk taksonomi ini."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:583
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:583
 msgid ""
 "Error: OpenAI says there is an issue with this API key. Please check your "
 "plan or billing details."
@@ -3381,43 +3381,43 @@ msgstr ""
 "Kesalahan: OpenAI mengatakan ada masalah dengan kunci API ini. Harap "
 "periksa rencana atau rincian penagihan Anda."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:18
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:18
 #: modules/taxopress-ai/taxopress-ai.php:1355
 #: modules/taxopress-ai/taxopress-ai.php:1664
 msgid "Show All Existing Terms"
 msgstr "Tampilkan Semua Istilah yang Ada"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:23
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:23
 #: modules/taxopress-ai/taxopress-ai.php:1363
 #: modules/taxopress-ai/taxopress-ai.php:1665
 msgid "Manage Post Terms"
 msgstr "Kelola Istilah Pos"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:28
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:54
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:28
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:54
 #: modules/taxopress-ai/taxopress-ai.php:1666
 msgid "Auto Terms"
 msgstr "Istilah Otomatis"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:33
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:33
 #: modules/taxopress-ai/taxopress-ai.php:1376
 #: modules/taxopress-ai/taxopress-ai.php:1667
 msgid "Create Terms"
 msgstr "Buat Istilah"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:38
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:38
 msgid "View Existing Terms"
 msgstr "Lihat Istilah yang Ada"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:39
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:39
 msgid "This feature allows you to browse all the terms in a taxonomy."
 msgstr "Fitur ini memungkinkan Anda untuk menjelajahi semua istilah dalam taksonomi."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:44
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:44
 msgid "View Current Post Terms"
 msgstr "Lihat Istilah Pos Saat Ini"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:45
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:45
 msgid ""
 "This feature allows you to manage all the terms that are currently attached "
 "to a post."
@@ -3425,12 +3425,12 @@ msgstr ""
 "Fitur ini memungkinkan Anda untuk mengelola semua istilah yang saat ini "
 "terlampir pada sebuah pos."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:50
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:50
 #: modules/taxopress-ai/taxopress-ai.php:1528
 msgid "View Terms"
 msgstr "Lihat Istilah"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:51
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:51
 msgid ""
 "This feature allows you to browse based on selected auto terms settings and "
 "sources."
@@ -3438,35 +3438,35 @@ msgstr ""
 "Fitur ini memungkinkan Anda untuk menjelajahi berdasarkan pengaturan dan "
 "sumber istilah otomatis yang dipilih."
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:53
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:53
 msgid "Suggest Terms"
 msgstr "Saran Istilah"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:439
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:282
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:439
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:441
 #, php-format
 msgid "Select all %1s"
 msgstr "Pilih semua %1s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:439
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:282
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:439
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:441
 #, php-format
 msgid "Deselect all %1s"
 msgstr "Batalkan pilihan semua %1s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:299
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:454
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:299
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:454
 #, php-format
 msgid "Select %1s"
 msgstr "Pilih %1s"
 
 #: modules/taxopress-ai/taxopress-ai.php:411
-msgid "Please choose a post to use with TaxoPress AI."
-msgstr "Silakan pilih sebuah pos untuk digunakan dengan TaxoPress AI."
+msgid "Please choose a post to use with PublishPress Taxonomies AI."
+msgstr "Silakan pilih sebuah pos untuk digunakan dengan PublishPress Taxonomies AI."
 
 #: modules/taxopress-ai/taxopress-ai.php:420
 #: modules/taxopress-ai/taxopress-ai.php:1716
@@ -3555,16 +3555,16 @@ msgstr "Tag"
 #, php-format
 msgid ""
 "This user does not have access to manage any of this post attached "
-"taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress "
+"taxonomies. Enable Metabox Access Taxonomies for this role in %1sPublishPress Taxonomies "
 "Settings%2s."
 msgstr ""
 "Pengguna ini tidak memiliki akses untuk mengelola salah satu taksonomi yang "
 "terlampir pada pos ini. Aktifkan Akses Metabox Taksonomi untuk peran ini di "
-"%1sPengaturan TaxoPress%2s."
+"%1sPengaturan PublishPress Taxonomies%2s."
 
 #: modules/taxopress-ai/taxopress-ai.php:1474
-msgid "No TaxoPress Metabox features are enabled for this post type."
-msgstr "Tidak ada fitur Metabox TaxoPress yang diaktifkan untuk jenis pos ini."
+msgid "No PublishPress Taxonomies Metabox features are enabled for this post type."
+msgstr "Tidak ada fitur Metabox PublishPress Taxonomies yang diaktifkan untuk jenis pos ini."
 
 #: modules/taxopress-ai/taxopress-ai.php:1502
 msgid "Save, You can also press Enter to save and escape to cancel"
@@ -3604,14 +3604,14 @@ msgstr "Label terlalu panjang."
 #: review-request/review.php:281
 #, php-format
 msgid ""
-"Hey, you've been using TaxoPress for %s on your site. We hope the plugin "
+"Hey, you've been using PublishPress Taxonomies for %s on your site. We hope the plugin "
 "has been useful. Please could you quickly leave a 5-star rating on "
-"WordPress.org? It really does help to keep TaxoPress growing."
+"WordPress.org? It really does help to keep PublishPress Taxonomies growing."
 msgstr ""
-"Hei, Anda telah menggunakan TaxoPress selama %s di situs Anda. Kami harap "
+"Hei, Anda telah menggunakan PublishPress Taxonomies selama %s di situs Anda. Kami harap "
 "plugin ini bermanfaat. Bisakah Anda dengan cepat meninggalkan penilaian "
 "bintang 5 di WordPress.org? Itu benar-benar membantu untuk menjaga "
-"TaxoPress tetap berkembang."
+"PublishPress Taxonomies tetap berkembang."
 
 #: review-request/review.php:290
 msgid "1 week"
@@ -3622,8 +3622,8 @@ msgid "3 months"
 msgstr "3 bulan"
 
 #: review-request/review.php:371
-msgid "Click here to add your rating for TaxoPress"
-msgstr "Klik di sini untuk menambahkan penilaian Anda untuk TaxoPress"
+msgid "Click here to add your rating for PublishPress Taxonomies"
+msgstr "Klik di sini untuk menambahkan penilaian Anda untuk PublishPress Taxonomies"
 
 #: review-request/review.php:373
 msgid "Maybe later"
@@ -3639,15 +3639,15 @@ msgstr "Plugin ini dapat dihapus."
 
 #: simple-tags.php:125
 msgid ""
-"TaxoPress was not activated because TaxoPress Pro is already active. Please "
-"keep only TaxoPress Pro enabled."
+"PublishPress Taxonomies was not activated because PublishPress Taxonomies Pro is already active. Please "
+"keep only PublishPress Taxonomies Pro enabled."
 msgstr ""
-"TaxoPress tidak diaktifkan karena TaxoPress Pro sudah aktif. Harap hanya "
-"aktifkan TaxoPress Pro."
+"PublishPress Taxonomies tidak diaktifkan karena PublishPress Taxonomies Pro sudah aktif. Harap hanya "
+"aktifkan PublishPress Taxonomies Pro."
 
 #: views/admin/page-settings.php:4
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: Opsi"
+msgid "PublishPress Taxonomies: Options"
+msgstr "PublishPress Taxonomies: Opsi"
 
 #: inc/terms-table.php:1399
 msgctxt "term name"

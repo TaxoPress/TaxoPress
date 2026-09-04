@@ -1,8 +1,8 @@
-# Copyright (C) 2026 TaxoPress
+# Copyright (C) 2026 PublishPress Taxonomies
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress 3.51.0\n"
+"Project-Id-Version: PublishPress Taxonomies 3.51.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,8 @@ msgstr ""
 #: modules/taxopress-ai/taxopress-ai.php:1303
 #. Plugin Name of the plugin
 #. Author of the plugin
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "PublishPress Taxonomies"
+msgstr "PublishPress Taxonomies"
 
 #: simple-tags.php:5, fuzzy
 #. Plugin URI of the plugin
@@ -32,16 +32,16 @@ msgstr "https://wordpress.org/plugins/simple-tags/"
 #: simple-tags.php:6
 #. Description of the plugin
 msgid ""
-"TaxoPress allows you to create and manage Tags, Categories, and all your "
+"PublishPress Taxonomies allows you to create and manage Tags, Categories, and all your "
 "WordPress taxonomy terms."
 msgstr ""
-"TaxoPress gba ọ laaye lati ṣẹda ati ṣakoso Tags, Categories, ati gbogbo "
+"PublishPress Taxonomies gba ọ laaye lati ṣẹda ati ṣakoso Tags, Categories, ati gbogbo "
 "awọn ọrọ taxonomy WordPress rẹ."
 
 #: simple-tags.php:9, fuzzy
 #. Author URI of the plugin
-msgid "https://taxopress.com"
-msgstr "https://taxopress.com"
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
 
 #: blocks/post-tags.php:63
 #: inc/related-posts-widget.php:141
@@ -53,8 +53,8 @@ msgid " Select current post"
 msgstr "Yan ifiweranṣẹ lọwọlọwọ"
 
 #: blocks/post-tags.php:67
-msgid "Current Posts (TaxoPress)"
-msgstr "Ifiweranṣẹ lọwọlọwọ (TaxoPress)"
+msgid "Current Posts (PublishPress Taxonomies)"
+msgstr "Ifiweranṣẹ lọwọlọwọ (PublishPress Taxonomies)"
 
 #: blocks/related-posts.php:80
 #: blocks/tag-clouds.php:63
@@ -68,16 +68,16 @@ msgstr "Yan ifiweranṣẹ to jọra"
 
 #: blocks/related-posts.php:84
 #: inc/related-posts-widget.php:19
-msgid "Related Posts (TaxoPress)"
-msgstr "Ifiweranṣẹ to jọra (TaxoPress)"
+msgid "Related Posts (PublishPress Taxonomies)"
+msgstr "Ifiweranṣẹ to jọra (PublishPress Taxonomies)"
 
 #: blocks/tag-clouds.php:66
 msgid "Select Terms Display"
 msgstr "Yan Awọn ọrọ Ifihan"
 
 #: blocks/tag-clouds.php:67
-msgid "Terms Display (TaxoPress)"
-msgstr "Awọn ọrọ Ifihan (TaxoPress)"
+msgid "Terms Display (PublishPress Taxonomies)"
+msgstr "Awọn ọrọ Ifihan (PublishPress Taxonomies)"
 
 #: inc/related-posts-functions.php:167
 #: inc/related-posts-table.php:15
@@ -155,7 +155,7 @@ msgstr "Ko si nkan ti o wa."
 #: inc/related-posts-table.php:276
 #: inc/tag-clouds-table.php:276
 #: inc/terms-table.php:1117
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:401
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:401
 #: modules/taxopress-ai/taxopress-ai.php:1496
 msgid "Edit"
 msgstr "Ṣatunkọ"
@@ -178,7 +178,7 @@ msgid "All"
 msgstr "Gbogbo"
 
 #: inc/related-posts-table.php:386
-#: includes-core/TaxopressCoreAdmin.php:627
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:627
 msgid "Default"
 msgstr "Aiyipada"
 
@@ -208,8 +208,8 @@ msgid "No"
 msgstr "Bẹẹkọ"
 
 #: inc/related-posts-widget.php:22
-msgid "Taxopress Related Posts Shortcode"
-msgstr "TaxoPress Relate Posts Shortcode"
+msgid "PublishPress Taxonomies Related Posts Shortcode"
+msgstr "PublishPress Taxonomies Relate Posts Shortcode"
 
 #: inc/related-posts-widget.php:112
 msgid "Related Posts are added on "
@@ -296,18 +296,18 @@ msgid "Add new Related Posts"
 msgstr "Fi awọn Ifiweranṣẹ ti o ni ibatan tuntun kun"
 
 #: inc/related-posts.php:318
-msgid "To create more Related Posts, please upgrade to TaxoPress Pro."
+msgid "To create more Related Posts, please upgrade to PublishPress Taxonomies Pro."
 msgstr ""
 "Lati ṣẹda diẹ ẹ sii Awọn Ifiweranṣẹ ti o ni ibatan, jọwọ mu igbesoke si "
-"TaxoPress Pro."
+"PublishPress Taxonomies Pro."
 
 #: inc/related-posts.php:324
 msgid ""
-"With TaxoPress Pro, you can create unlimited Related Posts. You can create "
+"With PublishPress Taxonomies Pro, you can create unlimited Related Posts. You can create "
 "Related Posts for any taxonomy and then display those Related Posts "
 "anywhere on your site."
 msgstr ""
-"Pẹlu TaxoPress Pro, o le ṣẹda awọn Ifiweranṣẹ ti o ni ibatan laisi opin. O "
+"Pẹlu PublishPress Taxonomies Pro, o le ṣẹda awọn Ifiweranṣẹ ti o ni ibatan laisi opin. O "
 "le ṣẹda Awọn Ifiweranṣẹ ti o ni ibatan fun eyikeyi taxonomy ki o si ṣe "
 "afihan awọn Ifiweranṣẹ ti o ni ibatan wọpọ ni ibikibi lori aaye rẹ."
 
@@ -515,10 +515,10 @@ msgstr "Gbiyanju lati han awọn ifiweranṣẹ ti o jọra laifọwọyi"
 
 #: inc/related-posts.php:664
 msgid ""
-"TaxoPress will attempt to automatically display related posts in this "
+"PublishPress Taxonomies will attempt to automatically display related posts in this "
 "content. It may not be successful for all post types and layouts."
 msgstr ""
-"TaxoPress yoo gbiyanju lati han awọn ifiweranṣẹ ti o jọra laifọwọyi ninu "
+"PublishPress Taxonomies yoo gbiyanju lati han awọn ifiweranṣẹ ti o jọra laifọwọyi ninu "
 "akoonu yii. O le ma ṣaṣeyọri fun gbogbo awọn iru ifiweranṣẹ ati awọn ilana."
 
 #: inc/related-posts.php:713
@@ -553,9 +553,9 @@ msgstr ""
 "jọra. O le wa awọn ami ati awọn alaye ninu ẹgbẹ ẹgbẹ ati %1$sni iwe aṣẹ%2$s."
 
 #: inc/related-posts.php:791
-msgid "TaxoPress will display related posts from selected post types."
+msgid "PublishPress Taxonomies will display related posts from selected post types."
 msgstr ""
-"TaxoPress yoo han awọn ifiweranṣẹ ti o jọra lati awọn iru ifiweranṣẹ ti a "
+"PublishPress Taxonomies yoo han awọn ifiweranṣẹ ti o jọra lati awọn iru ifiweranṣẹ ti a "
 "yan."
 
 #: inc/related-posts.php:845
@@ -641,10 +641,10 @@ msgid "Inverse Alphabetical"
 msgstr "Alifabeti idakeji"
 
 #: inc/related-posts.php:957
-#: includes-core/TaxopressCoreAdmin.php:881
-#: includes-core/TaxopressCoreAdmin.php:941
-#: includes-core/TaxopressCoreAdmin.php:985
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:114
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:881
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:941
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:985
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:114
 msgid "Random"
 msgstr "Airotẹlẹ"
 
@@ -742,8 +742,8 @@ msgid "Default post thumbnail"
 msgstr "Thumbnail ifiweranṣẹ aiyipada"
 
 #: inc/related-posts.php:1144
-msgid "Using default TaxoPress image"
-msgstr "Nlo aworan TaxoPress aiyipada"
+msgid "Using default PublishPress Taxonomies image"
+msgstr "Nlo aworan PublishPress Taxonomies aiyipada"
 
 #: inc/related-posts.php:1153
 msgid "Select Media"
@@ -767,34 +767,34 @@ msgstr ""
 
 #: inc/related-posts.php:1194
 msgid ""
-"You're using TaxoPress Free.\n"
+"You're using PublishPress Taxonomies Free.\n"
 "                                            The Pro version has more "
 "features and support."
 msgstr ""
-"O n lo TaxoPress Free.\n"
+"O n lo PublishPress Taxonomies Free.\n"
 "                                            Ẹya Pro ni awọn ẹya diẹ sii ati "
 "atilẹyin."
 
 #: inc/related-posts.php:1198
 #: inc/tag-clouds.php:970
-#: includes-core/TaxopressCoreAdmin.php:50
-#: includes-core/TaxopressCoreAdmin.php:136
-#: includes-core/TaxopressCoreAdmin.php:189
-#: includes-core/TaxopressCoreAdmin.php:213
-#: includes-core/TaxopressCoreAdmin.php:237
-#: includes-core/TaxopressCoreAdmin.php:261
-#: includes-core/TaxopressCoreAdmin.php:288
-#: includes-core/TaxopressCoreAdmin.php:306
-#: includes-core/TaxopressCoreAdmin.php:405
-#: includes-core/TaxopressCoreAdmin.php:423
-#: includes-core/TaxopressCoreAdmin.php:441
-#: includes-core/TaxopressCoreAdmin.php:459
-#: includes-core/TaxopressCoreAdmin.php:483
-#: includes-core/TaxopressCoreAdmin.php:507
-#: includes-core/TaxopressCoreAdmin.php:531
-#: includes-core/TaxopressCoreAdmin.php:577
-#: includes-core/TaxopressCoreAdmin.php:615
-#: includes-core/TaxopressCoreAdmin.php:689
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:50
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:136
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:189
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:213
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:237
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:261
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:288
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:306
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:405
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:423
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:441
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:459
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:483
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:507
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:531
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:577
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:615
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:689
 msgid "Upgrade to Pro"
 msgstr "Gba si Pro"
 
@@ -918,7 +918,7 @@ msgid "autotermsschedulelogs"
 msgstr "autotermsschedulelogs"
 
 #: inc/schedule-logs-table.php:51
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:761, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:761, fuzzy
 msgid "Post"
 msgstr "Post"
 
@@ -967,7 +967,7 @@ msgid ""
 msgstr "A ti ṣeto iṣẹlẹ cron %s lati ṣiṣẹ bayi. Iṣẹlẹ atilẹba ko ni ni ipa."
 
 #: inc/schedule.php:123
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:869
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:869
 msgid "An error occured."
 msgstr "A ṣẹlẹ aṣiṣe kan."
 
@@ -986,11 +986,11 @@ msgstr "Iṣeto ko ti mu ṣiṣẹ fun Awọn ọrọ Aifọwọyi ti a yan."
 #: inc/schedule.php:203
 msgid ""
 "This feature allows you to run the Auto Terms feature on a schedule. This "
-"is helpful if you regularly import content into WordPress. TaxoPress can "
+"is helpful if you regularly import content into WordPress. PublishPress Taxonomies can "
 "run on a schedule and add terms to your imported content."
 msgstr ""
 "Iṣe yii jẹ ki o ṣiṣẹ ẹya Awọn ọrọ Aifọwọyi lori iṣeto. Eyi wulo ti o ba n "
-"gbe akoonu si WordPress nigbagbogbo. TaxoPress le ṣiṣẹ lori iṣeto ki o si "
+"gbe akoonu si WordPress nigbagbogbo. PublishPress Taxonomies le ṣiṣẹ lori iṣeto ki o si "
 "fi awọn ọrọ kun akoonu ti o gbe wọle."
 
 #: inc/schedule.php:213
@@ -1148,7 +1148,7 @@ msgstr "post type"
 
 #: inc/tag-clouds-table.php:376
 #: inc/tag-clouds.php:655
-#: includes-core/TaxopressCoreAdmin.php:705
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:705
 msgid "Cloud"
 msgstr "Awọsanma"
 
@@ -1213,16 +1213,16 @@ msgid "Add new Terms Display"
 msgstr "Fi Ifihan Awọn Ọrọ Tuntun kun"
 
 #: inc/tag-clouds.php:321
-msgid "To create more Terms Display, please upgrade to TaxoPress Pro."
-msgstr "Lati ṣẹda diẹ ẹ sii Ifihan Awọn Ọrọ, jọwọ pọ si TaxoPress Pro."
+msgid "To create more Terms Display, please upgrade to PublishPress Taxonomies Pro."
+msgstr "Lati ṣẹda diẹ ẹ sii Ifihan Awọn Ọrọ, jọwọ pọ si PublishPress Taxonomies Pro."
 
 #: inc/tag-clouds.php:324
 msgid ""
-"With TaxoPress Pro, you can create unlimited Terms Display. You can create "
+"With PublishPress Taxonomies Pro, you can create unlimited Terms Display. You can create "
 "Terms Display for any taxonomy and then display those Terms Display "
 "anywhere on your site."
 msgstr ""
-"Pẹlu TaxoPress Pro, o le ṣẹda Ifihan Awọn Ọrọ ailopin. O le ṣẹda Ifihan "
+"Pẹlu PublishPress Taxonomies Pro, o le ṣẹda Ifihan Awọn Ọrọ ailopin. O le ṣẹda Ifihan "
 "Awọn Ọrọ fun eyikeyi taxonomy ati lẹhinna fi Ifihan Awọn Ọrọ wọle nibikibi "
 "lori aaye rẹ."
 
@@ -1235,7 +1235,7 @@ msgid "Exceptions"
 msgstr "Awọn Ikuna"
 
 #: inc/tag-clouds.php:358
-#: includes-core/TaxopressCoreAdmin.php:711
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:711
 msgid "Display Format"
 msgstr "Fọọmu Ifihan"
 
@@ -1318,19 +1318,19 @@ msgid "Limit terms based on timeframe"
 msgstr "Dín àwọn ọ̀rọ̀ kù gẹ́gẹ́ bí àkókò"
 
 #: inc/tag-clouds.php:629
-#: includes-core/TaxopressCoreAdmin.php:837
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:146
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:837
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:146
 msgid "Ascending"
 msgstr "Ọ̀nà gígùn"
 
 #: inc/tag-clouds.php:630
-#: includes-core/TaxopressCoreAdmin.php:838
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:147
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:838
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:147
 msgid "Descending"
 msgstr "Ọ̀nà kìkà"
 
 #: inc/tag-clouds.php:639
-#: includes-core/TaxopressCoreAdmin.php:843
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:843
 msgid "Ordering for choosing terms for display"
 msgstr "Ìtòsọ́tọ̀ fún yiyan àwọn ọ̀rọ̀ láti ṣàfihàn"
 
@@ -1403,11 +1403,11 @@ msgstr ""
 
 #: inc/tag-clouds.php:966
 msgid ""
-"You're using TaxoPress Free.\n"
+"You're using PublishPress Taxonomies Free.\n"
 "                                        The Pro version has more features "
 "and support."
 msgstr ""
-"O nlo TaxoPress Free. \n"
+"O nlo PublishPress Taxonomies Free. \n"
 "                                        Ẹya Pro ni awọn ẹya diẹ sii ati "
 "atilẹyin."
 
@@ -2375,12 +2375,12 @@ msgstr ""
 "awọn ifihan iboju iwaju."
 
 #: inc/taxonomies.php:1768
-msgid "Enable TaxoPress ordering"
-msgstr "Mu aṣẹ TaxoPress ṣiṣẹ"
+msgid "Enable PublishPress Taxonomies ordering"
+msgstr "Mu aṣẹ PublishPress Taxonomies ṣiṣẹ"
 
 #: inc/taxonomies.php:1773
-msgid "Enable TaxoPress ordering for this taxonomy in the frontend and admin area."
-msgstr "Mu aṣẹ TaxoPress ṣiṣẹ fun taxonomy yii ni iwaju ati agbegbe admin."
+msgid "Enable PublishPress Taxonomies ordering for this taxonomy in the frontend and admin area."
+msgstr "Mu aṣẹ PublishPress Taxonomies ṣiṣẹ fun taxonomy yii ni iwaju ati agbegbe admin."
 
 #: inc/taxonomies.php:1823
 msgid "Re-activate Taxonomy"
@@ -2395,19 +2395,19 @@ msgid "Delete Taxonomy"
 msgstr "Pa Taxonomy"
 
 #: inc/taxonomies.php:1848
-msgid "Delete TaxoPress Edit Data"
-msgstr "Pa Data Edit TaxoPress"
+msgid "Delete PublishPress Taxonomies Edit Data"
+msgstr "Pa Data Edit PublishPress Taxonomies"
 
 #: inc/taxonomies.php:1851
 msgid ""
-"You can only delete taxonomies created with TaxoPress. However, you can "
-"delete any changes or edit made from TaxoPress which will remove TaxoPress "
+"You can only delete taxonomies created with PublishPress Taxonomies. However, you can "
+"delete any changes or edit made from PublishPress Taxonomies which will remove PublishPress Taxonomies "
 "version edit restoring original taxonomies data or removing it if already "
 "deleted"
 msgstr ""
-"O le pa awọn taxonomy nikan ti a ṣẹda pẹlu TaxoPress. Sibẹsibẹ, o le pa "
-"eyikeyi awọn ayipada tabi awọn atunṣe ti a ṣe lati TaxoPress ti o yoo yọ "
-"awọn ayipada ẹya TaxoPress ti o mu data taxonomy atilẹba pada tabi yọ o ti "
+"O le pa awọn taxonomy nikan ti a ṣẹda pẹlu PublishPress Taxonomies. Sibẹsibẹ, o le pa "
+"eyikeyi awọn ayipada tabi awọn atunṣe ti a ṣe lati PublishPress Taxonomies ti o yoo yọ "
+"awọn ayipada ẹya PublishPress Taxonomies ti o mu data taxonomy atilẹba pada tabi yọ o ti "
 "o ba ti pa a tẹlẹ"
 
 #: inc/taxonomies.php:1918
@@ -2442,12 +2442,12 @@ msgid "Custom URL"
 msgstr "URL aṣa"
 
 #: inc/terms-table.php:745
-#: includes-core/TaxopressCoreAdmin.php:592
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:592
 msgid "Synonyms"
 msgstr "Awọn ọrọ itumọ"
 
 #: inc/terms-table.php:746
-#: includes-core/TaxopressCoreAdmin.php:550
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:550
 msgid "Linked Terms"
 msgstr "Awọn ọrọ ti o so pọ"
 
@@ -2457,7 +2457,7 @@ msgstr "Ipo"
 
 #: inc/terms-table.php:801
 #: inc/terms-table.php:1181
-#: includes-core/TaxopressCoreAdmin.php:329
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:329
 msgid "Copy"
 msgstr "Daakọ"
 
@@ -2638,244 +2638,244 @@ msgstr "Pada si Àkọsílẹ Media"
 #: inc/utilities.php:63
 #: inc/utilities.php:65
 #: inc/utilities.php:70, fuzzy
-msgid "TaxoPress Logs"
-msgstr "TaxoPress Logs"
+msgid "PublishPress Taxonomies Logs"
+msgstr "PublishPress Taxonomies Logs"
 
 #: inc/utilities.php:64
-msgid "Search TaxoPress Logs"
-msgstr "Wa Awọn igbasilẹ TaxoPress"
+msgid "Search PublishPress Taxonomies Logs"
+msgstr "Wa Awọn igbasilẹ PublishPress Taxonomies"
 
 #: inc/utilities.php:66
-msgid "Edit TaxoPress Logs"
-msgstr "Ṣatunkọ Awọn igbasilẹ TaxoPress"
+msgid "Edit PublishPress Taxonomies Logs"
+msgstr "Ṣatunkọ Awọn igbasilẹ PublishPress Taxonomies"
 
 #: inc/utilities.php:67
-msgid "Update TaxoPress Logs"
-msgstr "Ṣe imudojuiwọn Awọn igbasilẹ TaxoPress"
+msgid "Update PublishPress Taxonomies Logs"
+msgstr "Ṣe imudojuiwọn Awọn igbasilẹ PublishPress Taxonomies"
 
 #: inc/utilities.php:68
-msgid "Add New TaxoPress Logs"
-msgstr "Fi Awọn igbasilẹ TaxoPress Tuntun Kun"
+msgid "Add New PublishPress Taxonomies Logs"
+msgstr "Fi Awọn igbasilẹ PublishPress Taxonomies Tuntun Kun"
 
 #: inc/utilities.php:69
-msgid "New TaxoPress Logs"
-msgstr "Awọn igbasilẹ TaxoPress Tuntun"
+msgid "New PublishPress Taxonomies Logs"
+msgstr "Awọn igbasilẹ PublishPress Taxonomies Tuntun"
 
-#: includes-core/TaxopressCoreAdmin.php:17
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:17
 #, php-format
 msgid ""
-"You're using TaxoPress Free. The Pro version has more features and support. "
+"You're using PublishPress Taxonomies Free. The Pro version has more features and support. "
 "%sUpgrade to Pro%s"
 msgstr ""
-"O nlo TaxoPress Free. Ẹya Pro ni awọn ẹya diẹ sii ati atilẹyin. %sGbe si "
+"O nlo PublishPress Taxonomies Free. Ẹya Pro ni awọn ẹya diẹ sii ati atilẹyin. %sGbe si "
 "Pro%s"
 
-#: includes-core/TaxopressCoreAdmin.php:114
-msgid "Upgrade to TaxoPress Pro"
-msgstr "Gbe si TaxoPress Pro"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:114
+msgid "Upgrade to PublishPress Taxonomies Pro"
+msgstr "Gbe si PublishPress Taxonomies Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:119
-msgid "Enhance the power of TaxoPress with the Pro version:"
-msgstr "Mu agbara TaxoPress pọ pẹlu ẹya Pro:"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:119
+msgid "Enhance the power of PublishPress Taxonomies with the Pro version:"
+msgstr "Mu agbara PublishPress Taxonomies pọ pẹlu ẹya Pro:"
 
-#: includes-core/TaxopressCoreAdmin.php:122
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:122
 msgid "Unlimited “Term Display”"
 msgstr "“Ifihan Ọrọ” ti ko ni ihamọ"
 
-#: includes-core/TaxopressCoreAdmin.php:123
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:123
 msgid "Unlimited “Terms for Current Posts”"
 msgstr "“Awọn Ọrọ fun Awọn ifiweranṣẹ Tẹlẹ” ti ko ni ihamọ"
 
-#: includes-core/TaxopressCoreAdmin.php:124
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:124
 msgid "Unlimited “Related Posts”"
 msgstr "“Awọn ifiweranṣẹ ti o ni ibatan” ti ko ni ihamọ"
 
-#: includes-core/TaxopressCoreAdmin.php:125
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:125
 msgid "Unlimited “Auto Links”"
 msgstr "“Awọn ọna asopọ aifọwọyi” ti ko ni ihamọ"
 
-#: includes-core/TaxopressCoreAdmin.php:126
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:126
 msgid "Unlimited “Auto Terms”"
 msgstr "“Awọn Ọrọ aifọwọyi” ti ko ni ihamọ"
 
-#: includes-core/TaxopressCoreAdmin.php:127
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:127
 msgid "Create new terms using OpenAI and other sources"
 msgstr "Ṣẹda awọn ọrọ tuntun nipa lilo OpenAI ati awọn orisun miiran"
 
-#: includes-core/TaxopressCoreAdmin.php:128
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:128
 msgid "Use Linked Terms"
 msgstr "Lo Awọn Ọrọ ti a So"
 
-#: includes-core/TaxopressCoreAdmin.php:129
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:129
 msgid "Use Synonyms"
 msgstr "Lo Awọn ọrọ ti o jọra"
 
-#: includes-core/TaxopressCoreAdmin.php:130
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:130
 msgid "Schedule Auto Terms to run automatically"
 msgstr "Ṣeto Awọn Ọrọ aifọwọyi lati ṣiṣẹ laifọwọyi"
 
-#: includes-core/TaxopressCoreAdmin.php:131
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:131
 msgid "Control the display of term metaboxes"
 msgstr "Ṣakoso ifihan ti awọn apoti metabox ọrọ"
 
-#: includes-core/TaxopressCoreAdmin.php:132
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:132
 msgid "Fast, professional support"
 msgstr "Atilẹyin yarayara, ọjọgbọn"
 
-#: includes-core/TaxopressCoreAdmin.php:133
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:133
 msgid "No ads inside the plugin"
 msgstr "Ko si awọn ipolowo ninu afikun naa"
 
-#: includes-core/TaxopressCoreAdmin.php:143
-msgid "Need TaxoPress Support?"
-msgstr "Ṣe o nilo atilẹyin TaxoPress?"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:143
+msgid "Need PublishPress Taxonomies Support?"
+msgstr "Ṣe o nilo atilẹyin PublishPress Taxonomies?"
 
-#: includes-core/TaxopressCoreAdmin.php:148
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:148
 msgid "If you need help or have a new feature request, let us know."
 msgstr "Ti o ba nilo iranlọwọ tabi ti o ni ibeere ẹya tuntun, jẹ ki a mọ."
 
-#: includes-core/TaxopressCoreAdmin.php:150
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:150
 msgid "Request Support"
 msgstr "Beere Atilẹyin"
 
-#: includes-core/TaxopressCoreAdmin.php:157
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:157
 msgid "Detailed documentation is also available on the plugin website."
 msgstr "Iwe aṣẹ alaye ni a tun wa lori oju opo wẹẹbu afikun naa."
 
-#: includes-core/TaxopressCoreAdmin.php:159
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:159
 msgid "View Knowledge Base"
 msgstr "Wo Ibi Ẹkọ"
 
-#: includes-core/TaxopressCoreAdmin.php:182
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:182
 msgid "OpenAI Integration"
 msgstr "Isopọ OpenAI"
 
-#: includes-core/TaxopressCoreAdmin.php:187
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:187
 msgid ""
-"TaxoPress Pro allows you to integrate OpenAI to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate OpenAI to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati dapọ OpenAI lati ṣe itupalẹ akoonu rẹ ki o "
+"PublishPress Taxonomies Pro gba ọ laaye lati dapọ OpenAI lati ṣe itupalẹ akoonu rẹ ki o "
 "si daba awọn ọrọ."
 
-#: includes-core/TaxopressCoreAdmin.php:206
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:206
 msgid "IBM Watson Integration"
 msgstr "Isopọ IBM Watson"
 
-#: includes-core/TaxopressCoreAdmin.php:211
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:211
 msgid ""
-"TaxoPress Pro allows you to integrate Watson to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate Watson to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati dapọ Watson lati ṣe itupalẹ akoonu rẹ ki o "
+"PublishPress Taxonomies Pro gba ọ laaye lati dapọ Watson lati ṣe itupalẹ akoonu rẹ ki o "
 "si daba awọn ọrọ."
 
-#: includes-core/TaxopressCoreAdmin.php:230
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:230
 msgid "Dandelion Integration"
 msgstr "Isopọ Dandelion"
 
-#: includes-core/TaxopressCoreAdmin.php:235
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:235
 msgid ""
-"TaxoPress Pro allows you to integrate Dandelion to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate Dandelion to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati dapọ Dandelion lati ṣe itupalẹ akoonu rẹ ki "
+"PublishPress Taxonomies Pro gba ọ laaye lati dapọ Dandelion lati ṣe itupalẹ akoonu rẹ ki "
 "o si daba awọn ọrọ."
 
-#: includes-core/TaxopressCoreAdmin.php:254
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:254
 msgid "LSEG / Refinitiv Integration"
 msgstr "Isopọ LSEG / Refinitiv"
 
-#: includes-core/TaxopressCoreAdmin.php:259
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:259
 msgid ""
-"TaxoPress Pro allows you to integrate LSEG / Refinitiv to analyze your "
+"PublishPress Taxonomies Pro allows you to integrate LSEG / Refinitiv to analyze your "
 "content and suggest terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati dapọ LSEG / Refinitiv lati ṣe itupalẹ akoonu "
+"PublishPress Taxonomies Pro gba ọ laaye lati dapọ LSEG / Refinitiv lati ṣe itupalẹ akoonu "
 "rẹ ki o si daba awọn ọrọ."
 
-#: includes-core/TaxopressCoreAdmin.php:282
-#: includes-core/TaxopressCoreAdmin.php:299
-#: includes-core/TaxopressCoreAdmin.php:476
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:282
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:299
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:476
 msgid "Suggest terms using AI"
 msgstr "Daba awọn ọrọ nipa lilo AI"
 
-#: includes-core/TaxopressCoreAdmin.php:286
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:286
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "OpenAI. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati daba awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
+"PublishPress Taxonomies Pro gba ọ laaye lati daba awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
 "OpenAI. Iṣẹ yii le ṣe itupalẹ akoonu rẹ ki o si daba awọn ọrọ tuntun."
 
-#: includes-core/TaxopressCoreAdmin.php:304
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:304
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "IBM Watson. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati daba awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
+"PublishPress Taxonomies Pro gba ọ laaye lati daba awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
 "IBM Watson. Iṣẹ yii le ṣe itupalẹ akoonu rẹ ki o si daba awọn ọrọ tuntun."
 
-#: includes-core/TaxopressCoreAdmin.php:368
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:368
 msgid "Copy with Metadata"
 msgstr "Daakọ pẹlu Metadata"
 
-#: includes-core/TaxopressCoreAdmin.php:398
-#: includes-core/TaxopressCoreAdmin.php:416
-#: includes-core/TaxopressCoreAdmin.php:434
-#: includes-core/TaxopressCoreAdmin.php:452
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:398
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:416
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:434
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:452
 msgid "Auto terms using AI"
 msgstr "Awọn ọrọ aifọwọyi nipa lilo AI"
 
-#: includes-core/TaxopressCoreAdmin.php:403
-#: includes-core/TaxopressCoreAdmin.php:421
-#: includes-core/TaxopressCoreAdmin.php:439
-#: includes-core/TaxopressCoreAdmin.php:457
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:403
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:421
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:439
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:457
 msgid ""
-"TaxoPress Pro allows you to generate new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to generate new terms for your content using the "
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and add new terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati ṣẹda awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
+"PublishPress Taxonomies Pro gba ọ laaye lati ṣẹda awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
 "OpenAI, IBM Watson, Dandelion ati awọn iṣẹ Open Calais. Awọn iṣẹ wọnyi le "
 "ṣe itupalẹ akoonu rẹ ki o si fi awọn ọrọ tuntun kun."
 
-#: includes-core/TaxopressCoreAdmin.php:481
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:481
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro gba ọ laaye lati daba awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
+"PublishPress Taxonomies Pro gba ọ laaye lati daba awọn ọrọ tuntun fun akoonu rẹ nipa lilo "
 "OpenAI, IBM Watson, Dandelion ati awọn iṣẹ Open Calais. Awọn iṣẹ wọnyi le "
 "ṣe itupalẹ akoonu rẹ ki o si daba awọn ọrọ tuntun."
 
-#: includes-core/TaxopressCoreAdmin.php:500
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:500
 msgid "Add Custom Elements"
 msgstr "Fi Awọn eroja adani kun"
 
-#: includes-core/TaxopressCoreAdmin.php:505
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:505
 msgid ""
-"TaxoPress Pro allows you complete control over where Auto Links are added. "
+"PublishPress Taxonomies Pro allows you complete control over where Auto Links are added. "
 "You can choose to skip any HTML elements that appear in your content."
 msgstr ""
-"TaxoPress Pro n jẹ ki o ni iṣakoso pipe lori ibi ti a ti fi Auto Links kun. "
+"PublishPress Taxonomies Pro n jẹ ki o ni iṣakoso pipe lori ibi ti a ti fi Auto Links kun. "
 "O le yan lati fo gbogbo awọn eroja HTML ti o han ninu akoonu rẹ."
 
-#: includes-core/TaxopressCoreAdmin.php:524
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:524
 msgid "Use Regular Expressions to modify Auto Terms"
 msgstr "Lo Awọn ilana deede lati ṣe atunṣe Awọn ọrọ Auto"
 
-#: includes-core/TaxopressCoreAdmin.php:529
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:529
 msgid ""
-"TaxoPress Pro allows you to change how Auto Terms analyzes your posts. You "
+"PublishPress Taxonomies Pro allows you to change how Auto Terms analyzes your posts. You "
 "will need to know how to write Regular Expressions to use this feature."
 msgstr ""
-"TaxoPress Pro n jẹ ki o yi bi Awọn ọrọ Auto ṣe n ṣe itupalẹ awọn ifiweranṣẹ "
+"PublishPress Taxonomies Pro n jẹ ki o yi bi Awọn ọrọ Auto ṣe n ṣe itupalẹ awọn ifiweranṣẹ "
 "rẹ pada. Iwọ yoo nilo lati mọ bi a ṣe le kọ Awọn ilana deede lati lo ẹya "
 "yii."
 
-#: includes-core/TaxopressCoreAdmin.php:551
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:551
 msgid ""
 "This feature allows you to connect terms. When the main term or any of "
 "these terms are added to the post, all the other terms will be added also."
@@ -2884,22 +2884,22 @@ msgstr ""
 "eyikeyi ninu awọn ọrọ wọnyi ba wa ni afikun si ifiweranṣẹ, gbogbo awọn ọrọ "
 "miiran yoo tun wa ni afikun."
 
-#: includes-core/TaxopressCoreAdmin.php:571
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:571
 msgid "Linked Terms Feature"
 msgstr "Ẹya Awọn ọrọ ti o so pọ"
 
-#: includes-core/TaxopressCoreAdmin.php:575
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:575
 msgid ""
-"TaxoPress Pro allows you to create powerful connections between your terms. "
+"PublishPress Taxonomies Pro allows you to create powerful connections between your terms. "
 "When one term is added to a post, its linked terms can be automatically "
 "added too. This helps maintain consistent organization across your content."
 msgstr ""
-"TaxoPress Pro n jẹ ki o ṣẹda awọn asopọ ọlọrọ laarin awọn ọrọ rẹ. Nigbati "
+"PublishPress Taxonomies Pro n jẹ ki o ṣẹda awọn asopọ ọlọrọ laarin awọn ọrọ rẹ. Nigbati "
 "ọrọ kan ba wa ni afikun si ifiweranṣẹ, awọn ọrọ ti o so mọ rẹ le tun wa ni "
 "afikun laifọwọyi. Eyi ṣe iranlọwọ lati pa iṣeto ti o ni iduroṣinṣin kọja "
 "akoonu rẹ."
 
-#: includes-core/TaxopressCoreAdmin.php:593
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:593
 msgid ""
 "This feature allows you to associate additional words with each term. For "
 "example, \"website\" can have synonyms such as \"websites\", \"web site\", "
@@ -2909,57 +2909,57 @@ msgstr ""
 "Fun apẹẹrẹ, \"website\" le ni awọn itumọ gẹgẹbi \"websites\", \"web site\", "
 "ati \"web pages\"."
 
-#: includes-core/TaxopressCoreAdmin.php:609
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:609
 msgid "Synonyms Terms Feature"
 msgstr "Ẹya Awọn itumọ"
 
-#: includes-core/TaxopressCoreAdmin.php:613
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:613
 msgid ""
-"TaxoPress Pro allows you to have multiple words associated with a single "
-"term. If TaxoPress scans your content and finds a synonym, it will act as "
+"PublishPress Taxonomies Pro allows you to have multiple words associated with a single "
+"term. If PublishPress Taxonomies scans your content and finds a synonym, it will act as "
 "if it has found the main term."
 msgstr ""
-"TaxoPress Pro n jẹ ki o ni awọn ọrọ pupọ ti a so mọ ọrọ kan. Ti TaxoPress "
+"PublishPress Taxonomies Pro n jẹ ki o ni awọn ọrọ pupọ ti a so mọ ọrọ kan. Ti PublishPress Taxonomies "
 "ba wo akoonu rẹ ki o si rii itumọ kan, yoo ṣiṣẹ bi ẹnipe o ti ri ọrọ pataki."
 
-#: includes-core/TaxopressCoreAdmin.php:633
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:633
 msgid "Taxonomy Display"
 msgstr "Ihan taxonomy"
 
-#: includes-core/TaxopressCoreAdmin.php:641
-#: includes-core/TaxopressCoreAdmin.php:730
-msgid "This feature is available in TaxoPress Pro"
-msgstr "Eyi jẹ ẹya ti o wa ni TaxoPress Pro"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:641
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:730
+msgid "This feature is available in PublishPress Taxonomies Pro"
+msgstr "Eyi jẹ ẹya ti o wa ni PublishPress Taxonomies Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:646
-msgid "Customize the display of terms in the TaxoPress metabox."
-msgstr "Ṣe adani ihamọ awọn ọrọ ninu metabox TaxoPress."
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:646
+msgid "Customize the display of terms in the PublishPress Taxonomies metabox."
+msgstr "Ṣe adani ihamọ awọn ọrọ ninu metabox PublishPress Taxonomies."
 
-#: includes-core/TaxopressCoreAdmin.php:647
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:647
 msgid "Options include checkboxes and a dropdown list."
 msgstr "Awọn aṣayan pẹlu awọn apoti ayẹwo ati atokọ isalẹ."
 
-#: includes-core/TaxopressCoreAdmin.php:681
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:681
 msgid "Copy Term with Metadata"
 msgstr "Daakọ Ọrọ pẹlu Metadata"
 
-#: includes-core/TaxopressCoreAdmin.php:686
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:686
 msgid "To Copy terms with their metadata, please upgrade to pro."
 msgstr "Lati daakọ awọn ọrọ pẹlu metadata wọn, jọwọ ṣe imudojuiwọn si pro."
 
-#: includes-core/TaxopressCoreAdmin.php:687
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:687
 msgid ""
-"With TaxoPress Pro, you can duplicate taxonomy terms along with all their "
+"With PublishPress Taxonomies Pro, you can duplicate taxonomy terms along with all their "
 "metadata. This includes term descriptions, images, and custom fields. You "
 "can copy terms between taxonomies to maintain consistent organization "
 "across your site."
 msgstr ""
-"Pẹlu TaxoPress Pro, o le ẹda awọn ọrọ taxonomy pẹlu gbogbo metadata wọn. "
+"Pẹlu PublishPress Taxonomies Pro, o le ẹda awọn ọrọ taxonomy pẹlu gbogbo metadata wọn. "
 "Eyi pẹlu awọn apejuwe ọrọ, awọn aworan, ati awọn aaye adani. O le daakọ "
 "awọn ọrọ laarin awọn taxonomy lati pa iṣeto ti o ni iduroṣinṣin kọja aaye "
 "rẹ."
 
-#: includes-core/TaxopressCoreAdmin.php:734
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:734
 msgid ""
 "Choose the display formats of your terms, options include table list, "
 "ordered list, border-cloud and lots more."
@@ -2967,150 +2967,150 @@ msgstr ""
 "Yan awọn ọna kika ihamọ ti awọn ọrọ rẹ, awọn aṣayan pẹlu atokọ tabili, "
 "atokọ aṣẹ, awọ-oorun-ọṣọ ati ọpọlọpọ diẹ sii."
 
-#: includes-core/TaxopressCoreAdmin.php:754
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:754
 msgid "Hourly"
 msgstr "Ni wakati"
 
-#: includes-core/TaxopressCoreAdmin.php:767
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:767
 msgid "Daily"
 msgstr "Ni ọjọ"
 
-#: includes-core/TaxopressCoreAdmin.php:775
-#: includes-core/TaxopressCoreAdmin.php:827
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:775
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:827
 msgid "Pro Feature"
 msgstr "Ẹya Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:777
-#: includes-core/TaxopressCoreAdmin.php:829
-msgid "Some of these features are available in TaxoPress Pro"
-msgstr "Diẹ ninu awọn ẹya wọnyi wa ni TaxoPress Pro"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:777
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:829
+msgid "Some of these features are available in PublishPress Taxonomies Pro"
+msgstr "Diẹ ninu awọn ẹya wọnyi wa ni PublishPress Taxonomies Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:787
-#: includes-core/TaxopressCoreAdmin.php:879
-#: includes-core/TaxopressCoreAdmin.php:904, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:787
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:879
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:904, fuzzy
 msgid "ID"
 msgstr "ID"
 
-#: includes-core/TaxopressCoreAdmin.php:788
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:788
 msgid "Name (Pro)"
 msgstr "Orukọ (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:789
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:789
 msgid "Counter (Pro)"
 msgstr "Iṣiro (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:790
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:790
 msgid "Random (Pro)"
 msgstr "Ayanfẹ (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:791
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:791
 msgid "Term Order (Pro)"
 msgstr "Ilana Ọrọ (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:803
-#: includes-core/TaxopressCoreAdmin.php:950
-#: includes-core/TaxopressCoreAdmin.php:994
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:803
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:950
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:994
 msgid "Method for choosing terms for display"
 msgstr "Ọna fun yiyan awọn ọrọ fun ifihan"
 
-#: includes-core/TaxopressCoreAdmin.php:878
-#: includes-core/TaxopressCoreAdmin.php:939
-#: includes-core/TaxopressCoreAdmin.php:983
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:112
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:878
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:939
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:983
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:112
 msgid "Name"
 msgstr "Orukọ"
 
-#: includes-core/TaxopressCoreAdmin.php:880
-#: includes-core/TaxopressCoreAdmin.php:940
-#: includes-core/TaxopressCoreAdmin.php:984
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:113
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:880
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:940
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:984
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:113
 msgid "Counter"
 msgstr "Iṣiro"
 
-#: includes-core/TaxopressCoreAdmin.php:882
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:882
 msgid "Term Order"
 msgstr "Ilana Ọrọ"
 
-#: includes-core/TaxopressCoreAdmin.php:899
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:899
 msgid "Disabled"
 msgstr "Dènà"
 
-#: includes-core/TaxopressCoreAdmin.php:900
-msgid "You have disabled TaxoPress ordering"
-msgstr "O ti dènà ilana TaxoPress"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:900
+msgid "You have disabled PublishPress Taxonomies ordering"
+msgstr "O ti dènà ilana PublishPress Taxonomies"
 
-#: includes-core/TaxopressCoreAdmin.php:906
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:906
 #, php-format
 msgid "Terms in this taxonomy are ordered by %s"
 msgstr "Awọn ọrọ ninu taxonomy yii ti wa ni ilana nipasẹ %s"
 
-#: includes-core/TaxopressCoreAdmin.php:942
-#: includes-core/TaxopressCoreAdmin.php:986
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:942
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:986
 msgid "Term Order(Pro)"
 msgstr "Ilana Ọrọ (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:970
-#: includes-core/TaxopressCoreAdmin.php:1014
-msgid "Upgrade to TaxoPress Pro to use Term Order to manually order Terms"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:970
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:1014
+msgid "Upgrade to PublishPress Taxonomies Pro to use Term Order to manually order Terms"
 msgstr ""
-"Ṣe imudojuiwọn si TaxoPress Pro lati lo Ilana Ọrọ lati ṣe ilana awọn Ọrọ ni "
+"Ṣe imudojuiwọn si PublishPress Taxonomies Pro lati lo Ilana Ọrọ lati ṣe ilana awọn Ọrọ ni "
 "ọwọ"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:61
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:741
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:968
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:61
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:741
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:968
 msgid "Request completed."
 msgstr "Ibéèrè ti pari."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:69
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:749
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:877
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:69
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:749
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:877
 msgid "Security error. Kindly reload this page and try again"
 msgstr "Aṣiṣe aabo. Jọwọ tun gba oju-iwe yii ki o gbiyanju lẹẹkansii"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:75
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:755
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:883
-msgid "Permission error. You do not have permission to manage taxopress"
-msgstr "Aṣiṣe aṣẹ. O ko ni aṣẹ lati ṣakoso TaxoPress"
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:75
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:755
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:883
+msgid "Permission error. You do not have permission to manage PublishPress Taxonomies"
+msgstr "Aṣiṣe aṣẹ. O ko ni aṣẹ lati ṣakoso PublishPress Taxonomies"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:91
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:560
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:91
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:560
 msgid "Posts content and title is empty."
 msgstr "Ifiweranṣẹ akoonu ati akọle jẹ ofo."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:98
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:98
 msgid "Permission error. You do not have permission to preview this post."
 msgstr "Aṣiṣe igbanilaaye. O ko ni igbanilaaye lati wo ifiweranṣẹ yii."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:124
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:769
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:898
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:124
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:769
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:898
 #, php-format
 msgid ""
 "You do not have permission to manage this taxonomy. Enable Metabox Access "
-"Taxonomies for this role in %1sTaxoPress Settings%2s."
+"Taxonomies for this role in %1sPublishPress Taxonomies Settings%2s."
 msgstr ""
 "O ko ni igbanilaaye lati ṣakoso taxonomy yii. Mu Metabox Access Taxonomies "
-"ṣiṣẹ fun ipa yii ni %1sTaxoPress Settings%2s."
+"ṣiṣẹ fun ipa yii ni %1sPublishPress Taxonomies Settings%2s."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:237, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:237, fuzzy
 msgid "Term Results"
 msgstr "Term Results"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:240
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:240
 msgid "No results found for this post with this taxonomy."
 msgstr "Ko si awọn abajade ti a rii fun ifiweranṣẹ yii pẹlu taxonomy yii."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:245
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:245
 msgid "Invalid Auto Term ID. Please save the settings before using preview."
 msgstr "ID Auto Term ti ko tọ. Jọwọ fipamọ awọn eto ṣaaju ki o to lo iworan."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:250
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:250
 msgid "You must enable at least one AI integration source to use auto term preview."
 msgstr "O gbọdọ mu orisun iṣọpọ AI kan ṣiṣẹ o kere ju lati lo iworan auto term."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:253
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:253
 msgid ""
 "This Auto Terms option is not enabled for metaboxes. Please enable it in "
 "the Auto Terms settings."
@@ -3118,48 +3118,48 @@ msgstr ""
 "Aṣayan Auto Terms yii ko ti mu ṣiṣẹ fun awọn metaboxes. Jọwọ mu ṣiṣẹ ni "
 "awọn eto Auto Terms."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:267
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:291
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:267
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:291
 #, php-format
 msgid "Click %1s to select or deselect them from this %2s."
 msgstr "Tẹ %1s lati yan tabi yọ wọn kuro ninu %2s yii."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:283
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:283
 msgid "Suggest Existing Terms"
 msgstr "Ṣe iṣeduro Awọn Ọrọ Tẹlẹ"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:299
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:302, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:299
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:302, fuzzy
 msgid "OpenAI"
 msgstr "OpenAI"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:314
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:317, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:314
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:317, fuzzy
 msgid "IBM Watson"
 msgstr "IBM Watson"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:329
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:332, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:329
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:332, fuzzy
 msgid "Dandelion"
 msgstr "Dandelion"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:344
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:347, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:344
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:347, fuzzy
 msgid "LSEG / Refinitiv"
 msgstr "LSEG / Refinitiv"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:356
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:406
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:356
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:406
 #, php-format
 msgid "Update %1s on this %2s"
 msgstr "Imudojuiwọn %1s lori %2s yii"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:425
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:425
 msgid "Existing Terms not found for the selected post type and taxonomies"
 msgstr "Ko si Awọn Ọrọ Tẹlẹ ti a rii fun iru ifiweranṣẹ ti a yan ati taxonomies"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:491
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:491
 msgid ""
 "Existing Terms taxonomy is required. Kindly select taxonomies and save the "
 "settings before running preview."
@@ -3167,127 +3167,127 @@ msgstr ""
 "Taxonomy Awọn Ọrọ Tẹlẹ jẹ dandan. Jọwọ yan taxonomies ki o si fipamọ awọn "
 "eto ṣaaju ki o to ṣe iworan."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:712
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:712
 msgid "Result from ajax request."
 msgstr "Abajade lati ibeere ajax."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:718
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:718
 msgid "The selected taxonomy is not associated with the selected post type."
 msgstr "Taxonomy ti a yan ko ni asopọ pẹlu iru ifiweranṣẹ ti a yan."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:724
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:724
 msgid "No results found for this taxonomy."
 msgstr "Ko si awọn abajade ti a rii fun taxonomy yii."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:785
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:785
 msgid "You do not have permission to edit this post."
 msgstr "O ko ni igbanilaaye lati ṣe atunṣe ifiweranṣẹ yii."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:792
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:792
 #, php-format
 msgid "Click Term to select or deselect from this %1s"
 msgstr "Tẹ Term lati yan tabi yọ kuro ninu %1s yi"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:795
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:795
 msgid "Both Taxonomy and Post are required."
 msgstr "Meji Taxonomy ati Post ni a nilo."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:843
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:843
 msgid "No new terms were selected or deselected."
 msgstr "Ko si awọn ọrọ tuntun ti a yan tabi ti yọ kuro."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:847
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:847
 #, php-format
 msgid "%1s terms added to this %2s."
 msgstr "%1s ọrọ ti a fi kun si %2s yi."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:851
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:851
 #, php-format
 msgid "%1s terms removed from this %2s."
 msgstr "%1s ọrọ ti a yọ kuro ninu %2s yi."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:913
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:913
 msgid "You do not have capability to manage this taxonomy."
 msgstr "Iwọ ko ni agbara lati ṣakoso taxonomy yi."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1013
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1013
 #, php-format
 msgid "Terms cannot contain the following characters: %s"
 msgstr "Awọn ọrọ ko le ni awọn ohun kikọ wọnyi: %s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1028
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1028
 #, php-format
 msgid "Terms must be at least %d characters long."
 msgstr "Awọn ọrọ gbọdọ jẹ o kere ju %d awọn ohun kikọ lọ."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1034
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1034
 #, php-format
 msgid "Terms cannot exceed %d characters."
 msgstr "Awọn ọrọ ko le kọja %d awọn ohun kikọ."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:29
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:29
 msgid "The Dandelion integration is disabled in the Legacy AI Sources settings."
 msgstr "Iṣopọ Dandelion jẹ ti a pa ni eto Legacy AI Sources."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:35
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:117
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:150
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:240
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:274
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:370
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:430
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:628
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:35
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:117
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:150
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:240
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:274
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:370
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:430
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:628
 msgid "No matched result from the API Server."
 msgstr "Ko si abajade ti o baamu lati API Server."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:53
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:53
 msgid ""
 "The Dandelion integration requires an API Key. Please add your API Key in "
 "the Auto Term settings."
 msgstr "Iṣopọ Dandelion nilo API Key. Jowo fi API Key rẹ kun ni eto Auto Term."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:59
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:173
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:298
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:456
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:59
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:173
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:298
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:456
 msgid "Selected content is empty."
 msgstr "Akopọ ti a yan jẹ ofo."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:75
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:189
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:314
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:472
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:75
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:189
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:314
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:472
 msgid "Result from cache."
 msgstr "Abajade lati cache."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:99
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:215
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:349
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:99
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:215
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:349
 #, php-format
 msgid "API Error: %1s."
 msgstr "API Aṣiṣe: %1s."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:108
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:230
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:360
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:616
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:108
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:230
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:360
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:616
 msgid "Result from api."
 msgstr "Abajade lati api."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:122
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:245
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:375
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:633
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:122
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:245
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:375
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:633
 msgid "Error establishing connection with the API server. Try again."
 msgstr "Aṣiṣe ni iṣeto asopọ pẹlu API server. Gbiyanju lẹẹkan si."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:145
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:145
 msgid ""
 "The LSEG / Refinitiv integration is disabled in the Legacy AI Sources "
 "settings."
 msgstr "Iṣopọ LSEG / Refinitiv jẹ ti a pa ni eto Legacy AI Sources."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:167
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:167
 msgid ""
 "The LSEG / Refinitiv integration requires an API Key. Please add your API "
 "Key in the Auto Term settings."
@@ -3295,15 +3295,15 @@ msgstr ""
 "Iṣopọ LSEG / Refinitiv nilo API Key. Jowo fi API Key rẹ kun ni eto Auto "
 "Term."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:236
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:236
 msgid "API Error: No matched result for content."
 msgstr "API Aṣiṣe: Ko si abajade ti o baamu fun akoonu."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:268
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:268
 msgid "The IBM Watson integration is disabled in the Legacy AI Sources settings."
 msgstr "Iṣọpọ IBM Watson ti wa ni pa ni awọn eto Legacy AI Sources."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:292
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:292
 msgid ""
 "The IBM Watson integration requires an API Key and URL. Please add your API "
 "Key in the Auto Term settings."
@@ -3311,7 +3311,7 @@ msgstr ""
 "Iṣọpọ IBM Watson nilo bọtini API ati URL. Jọwọ fi bọtini API rẹ kun ni awọn "
 "eto Auto Term."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:450
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:450
 msgid ""
 "The OpenAI integration requires an API Key. Please add your API Key in the "
 "Auto Term settings."
@@ -3319,7 +3319,7 @@ msgstr ""
 "Iṣọpọ OpenAI nilo bọtini API. Jọwọ fi bọtini API rẹ kun ni awọn eto Auto "
 "Term."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:495
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:495
 #, php-format
 msgid ""
 "Invalid placeholder(s) detected: {%s}. Valid placeholders are: {content}, "
@@ -3328,7 +3328,7 @@ msgstr ""
 "A ti ṣe awari aṣiṣe placeholder: {%s}. Awọn placeholders ti o wulo ni: "
 "{content}, {post_terms}, {site_terms}"
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:531
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:531
 msgid ""
 "You added {post_terms} in the prompt but your post does not contain any "
 "terms."
@@ -3336,7 +3336,7 @@ msgstr ""
 "O ti fi {post_terms} kun ni iwifunni ṣugbọn ifiweranṣẹ rẹ ko ni eyikeyi "
 "awọn ọrọ."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:534
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:534
 msgid ""
 "You added {site_terms} in the prompt but your site does not contain any "
 "terms for this taxonomy."
@@ -3344,7 +3344,7 @@ msgstr ""
 "O ti fi {site_terms} kun ni iwifunni ṣugbọn aaye rẹ ko ni awọn ọrọ fun "
 "taxonomy yii."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:583
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:583
 msgid ""
 "Error: OpenAI says there is an issue with this API key. Please check your "
 "plan or billing details."
@@ -3352,43 +3352,43 @@ msgstr ""
 "Aṣiṣe: OpenAI sọ pe iṣoro wa pẹlu bọtini API yii. Jọwọ ṣayẹwo eto rẹ tabi "
 "awọn alaye isanwo."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:18
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:18
 #: modules/taxopress-ai/taxopress-ai.php:1355
 #: modules/taxopress-ai/taxopress-ai.php:1664
 msgid "Show All Existing Terms"
 msgstr "Fihan Gbogbo Awọn Ọrọ Tí Ó Wà"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:23
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:23
 #: modules/taxopress-ai/taxopress-ai.php:1363
 #: modules/taxopress-ai/taxopress-ai.php:1665
 msgid "Manage Post Terms"
 msgstr "Ṣakoso Awọn Ọrọ Ifiweranṣẹ"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:28
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:54
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:28
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:54
 #: modules/taxopress-ai/taxopress-ai.php:1666
 msgid "Auto Terms"
 msgstr "Awọn Ọrọ Auto"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:33
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:33
 #: modules/taxopress-ai/taxopress-ai.php:1376
 #: modules/taxopress-ai/taxopress-ai.php:1667
 msgid "Create Terms"
 msgstr "Ṣẹda Awọn Ọrọ"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:38
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:38
 msgid "View Existing Terms"
 msgstr "Wo Awọn Ọrọ Tí Ó Wà"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:39
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:39
 msgid "This feature allows you to browse all the terms in a taxonomy."
 msgstr "Iṣẹ yii fun ọ laaye lati ṣawari gbogbo awọn ọrọ ni taxonomy."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:44
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:44
 msgid "View Current Post Terms"
 msgstr "Wo Awọn Ọrọ Ifiweranṣẹ lọwọlọwọ"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:45
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:45
 msgid ""
 "This feature allows you to manage all the terms that are currently attached "
 "to a post."
@@ -3396,12 +3396,12 @@ msgstr ""
 "Iṣẹ yii fun ọ laaye lati ṣakoso gbogbo awọn ọrọ ti o wa lọwọlọwọ ti o ni "
 "asopọ si ifiweranṣẹ kan."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:50
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:50
 #: modules/taxopress-ai/taxopress-ai.php:1528
 msgid "View Terms"
 msgstr "Wo Awọn Ọrọ"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:51
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:51
 msgid ""
 "This feature allows you to browse based on selected auto terms settings and "
 "sources."
@@ -3409,35 +3409,35 @@ msgstr ""
 "Iṣẹ yii fun ọ laaye lati ṣawari da lori awọn eto awọn ọrọ auto ti a yan ati "
 "awọn orisun."
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:53
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:53
 msgid "Suggest Terms"
 msgstr "Ṣe iṣeduro Awọn Ọrọ"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:439
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:282
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:439
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:441
 #, php-format
 msgid "Select all %1s"
 msgstr "Yan gbogbo %1s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:439
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:282
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:439
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:441
 #, php-format
 msgid "Deselect all %1s"
 msgstr "Yọ gbogbo %1s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:299
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:454
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:299
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:454
 #, php-format
 msgid "Select %1s"
 msgstr "Yan %1s"
 
 #: modules/taxopress-ai/taxopress-ai.php:411
-msgid "Please choose a post to use with TaxoPress AI."
-msgstr "Jọwọ yan ifiweranṣẹ kan lati lo pẹlu TaxoPress AI."
+msgid "Please choose a post to use with PublishPress Taxonomies AI."
+msgstr "Jọwọ yan ifiweranṣẹ kan lati lo pẹlu PublishPress Taxonomies AI."
 
 #: modules/taxopress-ai/taxopress-ai.php:420
 #: modules/taxopress-ai/taxopress-ai.php:1716
@@ -3526,16 +3526,16 @@ msgstr "Awọn aami"
 #, php-format
 msgid ""
 "This user does not have access to manage any of this post attached "
-"taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress "
+"taxonomies. Enable Metabox Access Taxonomies for this role in %1sPublishPress Taxonomies "
 "Settings%2s."
 msgstr ""
 "Olumulo yii ko ni iraye si lati ṣakoso eyikeyi ninu awọn taxonomy ti a so "
 "mọ ifiweranṣẹ yii. Mu Metabox Access Taxonomies ṣiṣẹ fun ipa yii ni "
-"%1sTaxoPress Settings%2s."
+"%1sPublishPress Taxonomies Settings%2s."
 
 #: modules/taxopress-ai/taxopress-ai.php:1474
-msgid "No TaxoPress Metabox features are enabled for this post type."
-msgstr "Ko si awọn ẹya Metabox TaxoPress ti a mu ṣiṣẹ fun iru ifiweranṣẹ yii."
+msgid "No PublishPress Taxonomies Metabox features are enabled for this post type."
+msgstr "Ko si awọn ẹya Metabox PublishPress Taxonomies ti a mu ṣiṣẹ fun iru ifiweranṣẹ yii."
 
 #: modules/taxopress-ai/taxopress-ai.php:1502
 msgid "Save, You can also press Enter to save and escape to cancel"
@@ -3573,13 +3573,13 @@ msgstr "Aami naa ti gun ju."
 #: review-request/review.php:281
 #, php-format
 msgid ""
-"Hey, you've been using TaxoPress for %s on your site. We hope the plugin "
+"Hey, you've been using PublishPress Taxonomies for %s on your site. We hope the plugin "
 "has been useful. Please could you quickly leave a 5-star rating on "
-"WordPress.org? It really does help to keep TaxoPress growing."
+"WordPress.org? It really does help to keep PublishPress Taxonomies growing."
 msgstr ""
-"Hey, o ti n lo TaxoPress fun %s lori aaye rẹ. A nireti pe afikun naa ti "
+"Hey, o ti n lo PublishPress Taxonomies fun %s lori aaye rẹ. A nireti pe afikun naa ti "
 "wulo. Jọwọ le ṣe ni kiakia fi diẹ ẹ sii ju 5-star ni WordPress.org? O ṣe "
-"iranlọwọ gaan lati jẹ ki TaxoPress n dagba."
+"iranlọwọ gaan lati jẹ ki PublishPress Taxonomies n dagba."
 
 #: review-request/review.php:290
 msgid "1 week"
@@ -3590,8 +3590,8 @@ msgid "3 months"
 msgstr "3 osu"
 
 #: review-request/review.php:371
-msgid "Click here to add your rating for TaxoPress"
-msgstr "Tẹ nibi lati fi eyi rẹ fun TaxoPress"
+msgid "Click here to add your rating for PublishPress Taxonomies"
+msgstr "Tẹ nibi lati fi eyi rẹ fun PublishPress Taxonomies"
 
 #: review-request/review.php:373
 msgid "Maybe later"
@@ -3607,15 +3607,15 @@ msgstr "Eyi afikun le parẹ."
 
 #: simple-tags.php:125
 msgid ""
-"TaxoPress was not activated because TaxoPress Pro is already active. Please "
-"keep only TaxoPress Pro enabled."
+"PublishPress Taxonomies was not activated because PublishPress Taxonomies Pro is already active. Please "
+"keep only PublishPress Taxonomies Pro enabled."
 msgstr ""
-"TaxoPress ko ti mu ṣiṣẹ nitori TaxoPress Pro ti wa ni aktivi tẹlẹ. Jọwọ pa "
-"nikan TaxoPress Pro mu ṣiṣẹ."
+"PublishPress Taxonomies ko ti mu ṣiṣẹ nitori PublishPress Taxonomies Pro ti wa ni aktivi tẹlẹ. Jọwọ pa "
+"nikan PublishPress Taxonomies Pro mu ṣiṣẹ."
 
 #: views/admin/page-settings.php:4
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: Awọn aṣayan"
+msgid "PublishPress Taxonomies: Options"
+msgstr "PublishPress Taxonomies: Awọn aṣayan"
 
 #: inc/terms-table.php:1399
 msgctxt "term name"
