@@ -1,7 +1,7 @@
 === PublishPress Taxonomies - Tag, Category, and Taxonomy Manager - Autotagger Automatically Add Terms ===
 Contributors: publishpress, kevinB, stevejburge, andergmartins, olatechpro, ojopaul, deji98
 Tags: category, tag, taxonomy, categories, tag cloud
-Requires at least: 5.0
+Requires at least: 6.7
 Tested up to: 7.1
 Stable tag: 3.53.0
 Requires PHP: 7.4

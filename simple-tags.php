@@ -9,7 +9,7 @@
  * Author URI: https://publishpress.com
  * Text Domain: simple-tags
  * Domain Path: /languages
- * Min WP Version: 4.9.7
+ * Requires at least: 6.7
  * Requires PHP: 7.4
  * License: GPLv3
  *
