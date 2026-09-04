@@ -1,8 +1,8 @@
-# Copyright (C) 2026 TaxoPress
+# Copyright (C) 2026 PublishPress Taxonomies
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: TaxoPress\n"
+"Project-Id-Version: PublishPress Taxonomies\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German\n"
@@ -27,8 +27,8 @@ msgstr ""
 #: modules/taxopress-ai/taxopress-ai.php:1303
 #. Plugin Name of the plugin
 #. Author of the plugin
-msgid "TaxoPress"
-msgstr "TaxoPress"
+msgid "PublishPress Taxonomies"
+msgstr "PublishPress Taxonomies"
 
 #: simple-tags.php:5, fuzzy
 #. Plugin URI of the plugin
@@ -38,16 +38,16 @@ msgstr "https://wordpress.org/plugins/simple-tags/"
 #: simple-tags.php:6
 #. Description of the plugin
 msgid ""
-"TaxoPress allows you to create and manage Tags, Categories, and all your "
+"PublishPress Taxonomies allows you to create and manage Tags, Categories, and all your "
 "WordPress taxonomy terms."
 msgstr ""
-"TaxoPress ermöglicht es Ihnen, Tags, Kategorien und alle Ihre "
+"PublishPress Taxonomies ermöglicht es Ihnen, Tags, Kategorien und alle Ihre "
 "WordPress-Taxonomiebegriffe zu erstellen und zu verwalten."
 
 #: simple-tags.php:9, fuzzy
 #. Author URI of the plugin
-msgid "https://taxopress.com"
-msgstr "https://taxopress.com"
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
 
 #: blocks/post-tags.php:63
 #: inc/related-posts-widget.php:141
@@ -59,8 +59,8 @@ msgid " Select current post"
 msgstr " Aktuellen Beitrag auswählen"
 
 #: blocks/post-tags.php:67
-msgid "Current Posts (TaxoPress)"
-msgstr "Aktuelle Beiträge (TaxoPress)"
+msgid "Current Posts (PublishPress Taxonomies)"
+msgstr "Aktuelle Beiträge (PublishPress Taxonomies)"
 
 #: blocks/related-posts.php:80
 #: blocks/tag-clouds.php:63
@@ -74,16 +74,16 @@ msgstr "Verwandten Beitrag auswählen"
 
 #: blocks/related-posts.php:84
 #: inc/related-posts-widget.php:19
-msgid "Related Posts (TaxoPress)"
-msgstr "Verwandte Beiträge (TaxoPress)"
+msgid "Related Posts (PublishPress Taxonomies)"
+msgstr "Verwandte Beiträge (PublishPress Taxonomies)"
 
 #: blocks/tag-clouds.php:66
 msgid "Select Terms Display"
 msgstr "Begriffe anzeigen auswählen"
 
 #: blocks/tag-clouds.php:67
-msgid "Terms Display (TaxoPress)"
-msgstr "Begriffe anzeigen (TaxoPress)"
+msgid "Terms Display (PublishPress Taxonomies)"
+msgstr "Begriffe anzeigen (PublishPress Taxonomies)"
 
 #: inc/related-posts-functions.php:167
 #: inc/related-posts-table.php:15
@@ -162,7 +162,7 @@ msgstr "Kein Element verfügbar."
 #: inc/related-posts-table.php:276
 #: inc/tag-clouds-table.php:276
 #: inc/terms-table.php:1117
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:401
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:401
 #: modules/taxopress-ai/taxopress-ai.php:1496
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -185,7 +185,7 @@ msgid "All"
 msgstr "Alle"
 
 #: inc/related-posts-table.php:386
-#: includes-core/TaxopressCoreAdmin.php:627
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:627
 msgid "Default"
 msgstr "Standard"
 
@@ -216,8 +216,8 @@ msgid "No"
 msgstr "Gehe"
 
 #: inc/related-posts-widget.php:22
-msgid "Taxopress Related Posts Shortcode"
-msgstr "TaxoPress Verwandte Beiträge Shortcode"
+msgid "PublishPress Taxonomies Related Posts Shortcode"
+msgstr "PublishPress Taxonomies Verwandte Beiträge Shortcode"
 
 #: inc/related-posts-widget.php:112
 msgid "Related Posts are added on "
@@ -302,16 +302,16 @@ msgid "Add new Related Posts"
 msgstr "Neue verwandte Beiträge hinzufügen"
 
 #: inc/related-posts.php:318
-msgid "To create more Related Posts, please upgrade to TaxoPress Pro."
-msgstr "Um mehr verwandte Beiträge zu erstellen, bitte auf TaxoPress Pro upgraden."
+msgid "To create more Related Posts, please upgrade to PublishPress Taxonomies Pro."
+msgstr "Um mehr verwandte Beiträge zu erstellen, bitte auf PublishPress Taxonomies Pro upgraden."
 
 #: inc/related-posts.php:324
 msgid ""
-"With TaxoPress Pro, you can create unlimited Related Posts. You can create "
+"With PublishPress Taxonomies Pro, you can create unlimited Related Posts. You can create "
 "Related Posts for any taxonomy and then display those Related Posts "
 "anywhere on your site."
 msgstr ""
-"Mit TaxoPress Pro können Sie unbegrenzt verwandte Beiträge erstellen. Sie "
+"Mit PublishPress Taxonomies Pro können Sie unbegrenzt verwandte Beiträge erstellen. Sie "
 "können verwandte Beiträge für jede Taxonomie erstellen und diese dann "
 "überall auf Ihrer Website anzeigen."
 
@@ -521,10 +521,10 @@ msgstr "Versuchen, verwandte Beiträge automatisch anzuzeigen"
 
 #: inc/related-posts.php:664
 msgid ""
-"TaxoPress will attempt to automatically display related posts in this "
+"PublishPress Taxonomies will attempt to automatically display related posts in this "
 "content. It may not be successful for all post types and layouts."
 msgstr ""
-"TaxoPress wird versuchen, verwandte Beiträge in diesem Inhalt automatisch "
+"PublishPress Taxonomies wird versuchen, verwandte Beiträge in diesem Inhalt automatisch "
 "anzuzeigen. Es kann bei allen Beitragstypen und Layouts nicht erfolgreich "
 "sein."
 
@@ -561,8 +561,8 @@ msgstr ""
 "der Seitenleiste und %1$s in der Dokumentation %2$s."
 
 #: inc/related-posts.php:791
-msgid "TaxoPress will display related posts from selected post types."
-msgstr "TaxoPress zeigt verwandte Beiträge aus den ausgewählten Beitragstypen an."
+msgid "PublishPress Taxonomies will display related posts from selected post types."
+msgstr "PublishPress Taxonomies zeigt verwandte Beiträge aus den ausgewählten Beitragstypen an."
 
 #: inc/related-posts.php:845
 msgid "Text to display before posts list"
@@ -647,10 +647,10 @@ msgid "Inverse Alphabetical"
 msgstr "Umgekehrt alphabetisch"
 
 #: inc/related-posts.php:957
-#: includes-core/TaxopressCoreAdmin.php:881
-#: includes-core/TaxopressCoreAdmin.php:941
-#: includes-core/TaxopressCoreAdmin.php:985
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:114
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:881
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:941
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:985
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:114
 msgid "Random"
 msgstr "Zufallsauswahl"
 
@@ -748,8 +748,8 @@ msgid "Default post thumbnail"
 msgstr "Standardbeitragsbild"
 
 #: inc/related-posts.php:1144
-msgid "Using default TaxoPress image"
-msgstr "Standard TaxoPress-Bild verwenden"
+msgid "Using default PublishPress Taxonomies image"
+msgstr "Standard PublishPress Taxonomies-Bild verwenden"
 
 #: inc/related-posts.php:1153
 msgid "Select Media"
@@ -773,33 +773,33 @@ msgstr ""
 
 #: inc/related-posts.php:1194
 msgid ""
-"You're using TaxoPress Free.\n"
+"You're using PublishPress Taxonomies Free.\n"
 "                                            The Pro version has more "
 "features and support."
 msgstr ""
-"Sie verwenden TaxoPress Free. Die Pro-Version hat weitere Funktionen und "
+"Sie verwenden PublishPress Taxonomies Free. Die Pro-Version hat weitere Funktionen und "
 "Support."
 
 #: inc/related-posts.php:1198
 #: inc/tag-clouds.php:970
-#: includes-core/TaxopressCoreAdmin.php:50
-#: includes-core/TaxopressCoreAdmin.php:136
-#: includes-core/TaxopressCoreAdmin.php:189
-#: includes-core/TaxopressCoreAdmin.php:213
-#: includes-core/TaxopressCoreAdmin.php:237
-#: includes-core/TaxopressCoreAdmin.php:261
-#: includes-core/TaxopressCoreAdmin.php:288
-#: includes-core/TaxopressCoreAdmin.php:306
-#: includes-core/TaxopressCoreAdmin.php:405
-#: includes-core/TaxopressCoreAdmin.php:423
-#: includes-core/TaxopressCoreAdmin.php:441
-#: includes-core/TaxopressCoreAdmin.php:459
-#: includes-core/TaxopressCoreAdmin.php:483
-#: includes-core/TaxopressCoreAdmin.php:507
-#: includes-core/TaxopressCoreAdmin.php:531
-#: includes-core/TaxopressCoreAdmin.php:577
-#: includes-core/TaxopressCoreAdmin.php:615
-#: includes-core/TaxopressCoreAdmin.php:689
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:50
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:136
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:189
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:213
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:237
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:261
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:288
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:306
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:405
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:423
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:441
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:459
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:483
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:507
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:531
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:577
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:615
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:689
 msgid "Upgrade to Pro"
 msgstr "Zu Pro upgraden"
 
@@ -927,7 +927,7 @@ msgid "autotermsschedulelogs"
 msgstr "autotermsschedulelogs"
 
 #: inc/schedule-logs-table.php:51
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:761, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:761, fuzzy
 msgid "Post"
 msgstr "Post"
 
@@ -978,7 +978,7 @@ msgstr ""
 "ursprüngliche Ereignis wird nicht betroffen sein."
 
 #: inc/schedule.php:123
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:869
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:869
 msgid "An error occured."
 msgstr "Es ist ein Fehler aufgetreten."
 
@@ -997,12 +997,12 @@ msgstr "Der Zeitplan ist für die ausgewählten Auto-Begriffe nicht aktiviert."
 #: inc/schedule.php:203
 msgid ""
 "This feature allows you to run the Auto Terms feature on a schedule. This "
-"is helpful if you regularly import content into WordPress. TaxoPress can "
+"is helpful if you regularly import content into WordPress. PublishPress Taxonomies can "
 "run on a schedule and add terms to your imported content."
 msgstr ""
 "Diese Funktion ermöglicht es Ihnen, die Auto-Begriffe-Funktion nach einem "
 "Zeitplan auszuführen. Dies ist hilfreich, wenn Sie regelmäßig Inhalte in "
-"WordPress importieren. TaxoPress kann nach einem Zeitplan ausgeführt werden "
+"WordPress importieren. PublishPress Taxonomies kann nach einem Zeitplan ausgeführt werden "
 "und Begriffe zu Ihren importierten Inhalten hinzufügen."
 
 #: inc/schedule.php:213
@@ -1166,7 +1166,7 @@ msgstr "Post-Typ"
 
 #: inc/tag-clouds-table.php:376
 #: inc/tag-clouds.php:655
-#: includes-core/TaxopressCoreAdmin.php:705, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:705, fuzzy
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -1231,16 +1231,16 @@ msgid "Add new Terms Display"
 msgstr "Neue Begriffe anzeigen"
 
 #: inc/tag-clouds.php:321
-msgid "To create more Terms Display, please upgrade to TaxoPress Pro."
-msgstr "Um weitere Begriffe anzuzeigen, bitte auf TaxoPress Pro upgraden."
+msgid "To create more Terms Display, please upgrade to PublishPress Taxonomies Pro."
+msgstr "Um weitere Begriffe anzuzeigen, bitte auf PublishPress Taxonomies Pro upgraden."
 
 #: inc/tag-clouds.php:324
 msgid ""
-"With TaxoPress Pro, you can create unlimited Terms Display. You can create "
+"With PublishPress Taxonomies Pro, you can create unlimited Terms Display. You can create "
 "Terms Display for any taxonomy and then display those Terms Display "
 "anywhere on your site."
 msgstr ""
-"Mit TaxoPress Pro können Sie unbegrenzt Begriffe anzeigen. Sie können "
+"Mit PublishPress Taxonomies Pro können Sie unbegrenzt Begriffe anzeigen. Sie können "
 "Begriffe für jede Taxonomie erstellen und diese dann überall auf Ihrer "
 "Website anzeigen."
 
@@ -1253,7 +1253,7 @@ msgid "Exceptions"
 msgstr "Ausnahmen"
 
 #: inc/tag-clouds.php:358
-#: includes-core/TaxopressCoreAdmin.php:711
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:711
 msgid "Display Format"
 msgstr "Anzeigeformat"
 
@@ -1338,19 +1338,19 @@ msgid "Limit terms based on timeframe"
 msgstr "Begriffe basierend auf dem Zeitraum einschränken"
 
 #: inc/tag-clouds.php:629
-#: includes-core/TaxopressCoreAdmin.php:837
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:146
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:837
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:146
 msgid "Ascending"
 msgstr "Aufsteigend"
 
 #: inc/tag-clouds.php:630
-#: includes-core/TaxopressCoreAdmin.php:838
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:147
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:838
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:147
 msgid "Descending"
 msgstr "Absteigend"
 
 #: inc/tag-clouds.php:639
-#: includes-core/TaxopressCoreAdmin.php:843
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:843
 msgid "Ordering for choosing terms for display"
 msgstr "Bestellung zur Auswahl von Begriffen zur Anzeige"
 
@@ -1425,11 +1425,11 @@ msgstr ""
 
 #: inc/tag-clouds.php:966
 msgid ""
-"You're using TaxoPress Free.\n"
+"You're using PublishPress Taxonomies Free.\n"
 "                                        The Pro version has more features "
 "and support."
 msgstr ""
-"Sie verwenden TaxoPress Free.\n"
+"Sie verwenden PublishPress Taxonomies Free.\n"
 "                                        Die Pro-Version hat mehr Funktionen "
 "und Support."
 
@@ -2427,13 +2427,13 @@ msgstr ""
 "bearbeiten, und in der Frontend-Anzeige."
 
 #: inc/taxonomies.php:1768
-msgid "Enable TaxoPress ordering"
-msgstr "TaxoPress-Bestellung aktivieren"
+msgid "Enable PublishPress Taxonomies ordering"
+msgstr "PublishPress Taxonomies-Bestellung aktivieren"
 
 #: inc/taxonomies.php:1773
-msgid "Enable TaxoPress ordering for this taxonomy in the frontend and admin area."
+msgid "Enable PublishPress Taxonomies ordering for this taxonomy in the frontend and admin area."
 msgstr ""
-"Aktivieren Sie die TaxoPress-Bestellung für diese taxonomy im Frontend und "
+"Aktivieren Sie die PublishPress Taxonomies-Bestellung für diese taxonomy im Frontend und "
 "im Administrationsbereich."
 
 #: inc/taxonomies.php:1823
@@ -2449,18 +2449,18 @@ msgid "Delete Taxonomy"
 msgstr "Taxonomie löschen"
 
 #: inc/taxonomies.php:1848
-msgid "Delete TaxoPress Edit Data"
-msgstr "TaxoPress-Bearbeitungsdaten löschen"
+msgid "Delete PublishPress Taxonomies Edit Data"
+msgstr "PublishPress Taxonomies-Bearbeitungsdaten löschen"
 
 #: inc/taxonomies.php:1851
 msgid ""
-"You can only delete taxonomies created with TaxoPress. However, you can "
-"delete any changes or edit made from TaxoPress which will remove TaxoPress "
+"You can only delete taxonomies created with PublishPress Taxonomies. However, you can "
+"delete any changes or edit made from PublishPress Taxonomies which will remove PublishPress Taxonomies "
 "version edit restoring original taxonomies data or removing it if already "
 "deleted"
 msgstr ""
-"Sie können nur Taxonomien löschen, die mit TaxoPress erstellt wurden. Sie "
-"können jedoch Änderungen oder Bearbeitungen von TaxoPress löschen, die die "
+"Sie können nur Taxonomien löschen, die mit PublishPress Taxonomies erstellt wurden. Sie "
+"können jedoch Änderungen oder Bearbeitungen von PublishPress Taxonomies löschen, die die "
 "Wiederherstellung der ursprünglichen Taxonomiedaten oder deren Entfernung, "
 "falls bereits gelöscht, entfernen."
 
@@ -2496,12 +2496,12 @@ msgid "Custom URL"
 msgstr "Benutzerdefinierte URL"
 
 #: inc/terms-table.php:745
-#: includes-core/TaxopressCoreAdmin.php:592
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:592
 msgid "Synonyms"
 msgstr "Synonyme"
 
 #: inc/terms-table.php:746
-#: includes-core/TaxopressCoreAdmin.php:550
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:550
 msgid "Linked Terms"
 msgstr "Verknüpfte Begriffe"
 
@@ -2511,7 +2511,7 @@ msgstr "Status"
 
 #: inc/terms-table.php:801
 #: inc/terms-table.php:1181
-#: includes-core/TaxopressCoreAdmin.php:329
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:329
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -2695,249 +2695,249 @@ msgstr "Zurück zu den Medien-Tags"
 #: inc/utilities.php:63
 #: inc/utilities.php:65
 #: inc/utilities.php:70
-msgid "TaxoPress Logs"
-msgstr "TaxoPress-Protokolle"
+msgid "PublishPress Taxonomies Logs"
+msgstr "PublishPress Taxonomies-Protokolle"
 
 #: inc/utilities.php:64
-msgid "Search TaxoPress Logs"
-msgstr "TaxoPress-Protokolle durchsuchen"
+msgid "Search PublishPress Taxonomies Logs"
+msgstr "PublishPress Taxonomies-Protokolle durchsuchen"
 
 #: inc/utilities.php:66
-msgid "Edit TaxoPress Logs"
-msgstr "TaxoPress-Protokolle bearbeiten"
+msgid "Edit PublishPress Taxonomies Logs"
+msgstr "PublishPress Taxonomies-Protokolle bearbeiten"
 
 #: inc/utilities.php:67
-msgid "Update TaxoPress Logs"
-msgstr "TaxoPress-Protokolle aktualisieren"
+msgid "Update PublishPress Taxonomies Logs"
+msgstr "PublishPress Taxonomies-Protokolle aktualisieren"
 
 #: inc/utilities.php:68
-msgid "Add New TaxoPress Logs"
-msgstr "Neue TaxoPress-Protokolle hinzufügen"
+msgid "Add New PublishPress Taxonomies Logs"
+msgstr "Neue PublishPress Taxonomies-Protokolle hinzufügen"
 
 #: inc/utilities.php:69
-msgid "New TaxoPress Logs"
-msgstr "Neue TaxoPress-Protokolle"
+msgid "New PublishPress Taxonomies Logs"
+msgstr "Neue PublishPress Taxonomies-Protokolle"
 
-#: includes-core/TaxopressCoreAdmin.php:17
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:17
 #, php-format
 msgid ""
-"You're using TaxoPress Free. The Pro version has more features and support. "
+"You're using PublishPress Taxonomies Free. The Pro version has more features and support. "
 "%sUpgrade to Pro%s"
 msgstr ""
-"Sie verwenden TaxoPress Free. Die Pro-Version bietet mehr Funktionen und "
+"Sie verwenden PublishPress Taxonomies Free. Die Pro-Version bietet mehr Funktionen und "
 "Support. %sUpgrade zur Pro-Version%s"
 
-#: includes-core/TaxopressCoreAdmin.php:114
-msgid "Upgrade to TaxoPress Pro"
-msgstr "Upgrade zu TaxoPress Pro"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:114
+msgid "Upgrade to PublishPress Taxonomies Pro"
+msgstr "Upgrade zu PublishPress Taxonomies Pro"
 
-#: includes-core/TaxopressCoreAdmin.php:119
-msgid "Enhance the power of TaxoPress with the Pro version:"
-msgstr "Verbessern Sie die Leistungsfähigkeit von TaxoPress mit der Pro-Version:"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:119
+msgid "Enhance the power of PublishPress Taxonomies with the Pro version:"
+msgstr "Verbessern Sie die Leistungsfähigkeit von PublishPress Taxonomies mit der Pro-Version:"
 
-#: includes-core/TaxopressCoreAdmin.php:122
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:122
 msgid "Unlimited “Term Display”"
 msgstr "Unbegrenzte „Terminanzeige“"
 
-#: includes-core/TaxopressCoreAdmin.php:123
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:123
 msgid "Unlimited “Terms for Current Posts”"
 msgstr "Unbegrenzte „Begriffe für aktuelle Beiträge“"
 
-#: includes-core/TaxopressCoreAdmin.php:124
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:124
 msgid "Unlimited “Related Posts”"
 msgstr "Unbegrenzte „Verwandte Beiträge“"
 
-#: includes-core/TaxopressCoreAdmin.php:125
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:125
 msgid "Unlimited “Auto Links”"
 msgstr "Unbegrenzte „Auto-Links“"
 
-#: includes-core/TaxopressCoreAdmin.php:126
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:126
 msgid "Unlimited “Auto Terms”"
 msgstr "Unbegrenzte „Auto-Begriffe“"
 
-#: includes-core/TaxopressCoreAdmin.php:127
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:127
 msgid "Create new terms using OpenAI and other sources"
 msgstr "Erstellen Sie neue Begriffe mit OpenAI und anderen Quellen"
 
-#: includes-core/TaxopressCoreAdmin.php:128
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:128
 msgid "Use Linked Terms"
 msgstr "Verknüpfte Begriffe verwenden"
 
-#: includes-core/TaxopressCoreAdmin.php:129
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:129
 msgid "Use Synonyms"
 msgstr "Verwende Synonyme"
 
-#: includes-core/TaxopressCoreAdmin.php:130
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:130
 msgid "Schedule Auto Terms to run automatically"
 msgstr "Plane automatische Begriffe, die automatisch ausgeführt werden"
 
-#: includes-core/TaxopressCoreAdmin.php:131
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:131
 msgid "Control the display of term metaboxes"
 msgstr "Steuere die Anzeige von Begriff-Metaboxen"
 
-#: includes-core/TaxopressCoreAdmin.php:132
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:132
 msgid "Fast, professional support"
 msgstr "Schneller, professioneller Support"
 
-#: includes-core/TaxopressCoreAdmin.php:133
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:133
 msgid "No ads inside the plugin"
 msgstr "Keine Werbung im Plugin"
 
-#: includes-core/TaxopressCoreAdmin.php:143
-msgid "Need TaxoPress Support?"
-msgstr "Benötigen Sie TaxoPress-Support?"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:143
+msgid "Need PublishPress Taxonomies Support?"
+msgstr "Benötigen Sie PublishPress Taxonomies-Support?"
 
-#: includes-core/TaxopressCoreAdmin.php:148
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:148
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
 "Wenn Sie Hilfe benötigen oder einen neuen Funktionswunsch haben, lassen Sie "
 "es uns wissen."
 
-#: includes-core/TaxopressCoreAdmin.php:150
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:150
 msgid "Request Support"
 msgstr "Support anfordern"
 
-#: includes-core/TaxopressCoreAdmin.php:157
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:157
 msgid "Detailed documentation is also available on the plugin website."
 msgstr "Detaillierte Dokumentation ist auch auf der Plugin-Website verfügbar."
 
-#: includes-core/TaxopressCoreAdmin.php:159
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:159
 msgid "View Knowledge Base"
 msgstr "Wissensdatenbank anzeigen"
 
-#: includes-core/TaxopressCoreAdmin.php:182
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:182
 msgid "OpenAI Integration"
 msgstr "OpenAI-Integration"
 
-#: includes-core/TaxopressCoreAdmin.php:187
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:187
 msgid ""
-"TaxoPress Pro allows you to integrate OpenAI to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate OpenAI to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, OpenAI zu integrieren, um Ihren Inhalt "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, OpenAI zu integrieren, um Ihren Inhalt "
 "zu analysieren und Begriffe vorzuschlagen."
 
-#: includes-core/TaxopressCoreAdmin.php:206
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:206
 msgid "IBM Watson Integration"
 msgstr "IBM Watson-Integration"
 
-#: includes-core/TaxopressCoreAdmin.php:211
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:211
 msgid ""
-"TaxoPress Pro allows you to integrate Watson to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate Watson to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, Watson zu integrieren, um Ihren Inhalt "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, Watson zu integrieren, um Ihren Inhalt "
 "zu analysieren und Begriffe vorzuschlagen."
 
-#: includes-core/TaxopressCoreAdmin.php:230
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:230
 msgid "Dandelion Integration"
 msgstr "Dandelion-Integration"
 
-#: includes-core/TaxopressCoreAdmin.php:235
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:235
 msgid ""
-"TaxoPress Pro allows you to integrate Dandelion to analyze your content and "
+"PublishPress Taxonomies Pro allows you to integrate Dandelion to analyze your content and "
 "suggest terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, Dandelion zu integrieren, um Ihren "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, Dandelion zu integrieren, um Ihren "
 "Inhalt zu analysieren und Begriffe vorzuschlagen."
 
-#: includes-core/TaxopressCoreAdmin.php:254
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:254
 msgid "LSEG / Refinitiv Integration"
 msgstr "LSEG / Refinitiv-Integration"
 
-#: includes-core/TaxopressCoreAdmin.php:259
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:259
 msgid ""
-"TaxoPress Pro allows you to integrate LSEG / Refinitiv to analyze your "
+"PublishPress Taxonomies Pro allows you to integrate LSEG / Refinitiv to analyze your "
 "content and suggest terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, LSEG / Refinitiv zu integrieren, um "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, LSEG / Refinitiv zu integrieren, um "
 "Ihren Inhalt zu analysieren und Begriffe vorzuschlagen."
 
-#: includes-core/TaxopressCoreAdmin.php:282
-#: includes-core/TaxopressCoreAdmin.php:299
-#: includes-core/TaxopressCoreAdmin.php:476
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:282
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:299
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:476
 msgid "Suggest terms using AI"
 msgstr "Vorschlagen von Begriffen mit KI"
 
-#: includes-core/TaxopressCoreAdmin.php:286
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:286
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "OpenAI. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mit "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mit "
 "OpenAI vorzuschlagen. Dieser Dienst kann Ihren Inhalt analysieren und neue "
 "Begriffe vorschlagen."
 
-#: includes-core/TaxopressCoreAdmin.php:304
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:304
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "IBM Watson. This service can analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mithilfe "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mithilfe "
 "von IBM Watson vorzuschlagen. Dieser Dienst kann Ihren Inhalt analysieren "
 "und neue Begriffe vorschlagen."
 
-#: includes-core/TaxopressCoreAdmin.php:368
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:368
 msgid "Copy with Metadata"
 msgstr "Kopieren mit Metadaten"
 
-#: includes-core/TaxopressCoreAdmin.php:398
-#: includes-core/TaxopressCoreAdmin.php:416
-#: includes-core/TaxopressCoreAdmin.php:434
-#: includes-core/TaxopressCoreAdmin.php:452
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:398
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:416
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:434
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:452
 msgid "Auto terms using AI"
 msgstr "Automatische Begriffe mit KI"
 
-#: includes-core/TaxopressCoreAdmin.php:403
-#: includes-core/TaxopressCoreAdmin.php:421
-#: includes-core/TaxopressCoreAdmin.php:439
-#: includes-core/TaxopressCoreAdmin.php:457
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:403
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:421
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:439
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:457
 msgid ""
-"TaxoPress Pro allows you to generate new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to generate new terms for your content using the "
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and add new terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mithilfe "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mithilfe "
 "der Dienste OpenAI, IBM Watson, Dandelion und Open Calais zu generieren. "
 "Diese Dienste können Ihren Inhalt analysieren und neue Begriffe hinzufügen."
 
-#: includes-core/TaxopressCoreAdmin.php:481
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:481
 msgid ""
-"TaxoPress Pro allows you to suggest new terms for your content using the "
+"PublishPress Taxonomies Pro allows you to suggest new terms for your content using the "
 "OpenAI, IBM Watson, Dandelion and Open Calais services. These services can "
 "analyze your content and suggest new terms."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mithilfe "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, neue Begriffe für Ihren Inhalt mithilfe "
 "der Dienste OpenAI, IBM Watson, Dandelion und Open Calais vorzuschlagen. "
 "Diese Dienste können Ihren Inhalt analysieren und neue Begriffe vorschlagen."
 
-#: includes-core/TaxopressCoreAdmin.php:500
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:500
 msgid "Add Custom Elements"
 msgstr "Benutzerdefinierte Elemente hinzufügen"
 
-#: includes-core/TaxopressCoreAdmin.php:505
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:505
 msgid ""
-"TaxoPress Pro allows you complete control over where Auto Links are added. "
+"PublishPress Taxonomies Pro allows you complete control over where Auto Links are added. "
 "You can choose to skip any HTML elements that appear in your content."
 msgstr ""
-"TaxoPress Pro gibt Ihnen die volle Kontrolle darüber, wo automatische Links "
+"PublishPress Taxonomies Pro gibt Ihnen die volle Kontrolle darüber, wo automatische Links "
 "hinzugefügt werden. Sie können wählen, ob Sie HTML-Elemente, die in Ihrem "
 "Inhalt erscheinen, überspringen möchten."
 
-#: includes-core/TaxopressCoreAdmin.php:524
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:524
 msgid "Use Regular Expressions to modify Auto Terms"
 msgstr "Verwenden Sie reguläre Ausdrücke, um automatische Begriffe zu modifizieren"
 
-#: includes-core/TaxopressCoreAdmin.php:529
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:529
 msgid ""
-"TaxoPress Pro allows you to change how Auto Terms analyzes your posts. You "
+"PublishPress Taxonomies Pro allows you to change how Auto Terms analyzes your posts. You "
 "will need to know how to write Regular Expressions to use this feature."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, zu ändern, wie automatische Begriffe "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, zu ändern, wie automatische Begriffe "
 "Ihre Beiträge analysieren. Sie müssen wissen, wie man reguläre Ausdrücke "
 "schreibt, um diese Funktion zu nutzen."
 
-#: includes-core/TaxopressCoreAdmin.php:551
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:551
 msgid ""
 "This feature allows you to connect terms. When the main term or any of "
 "these terms are added to the post, all the other terms will be added also."
@@ -2946,23 +2946,23 @@ msgstr ""
 "Hauptbegriff oder einer dieser Begriffe zum Beitrag hinzugefügt wird, "
 "werden auch alle anderen Begriffe hinzugefügt."
 
-#: includes-core/TaxopressCoreAdmin.php:571
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:571
 msgid "Linked Terms Feature"
 msgstr "Funktion für verknüpfte Begriffe"
 
-#: includes-core/TaxopressCoreAdmin.php:575
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:575
 msgid ""
-"TaxoPress Pro allows you to create powerful connections between your terms. "
+"PublishPress Taxonomies Pro allows you to create powerful connections between your terms. "
 "When one term is added to a post, its linked terms can be automatically "
 "added too. This helps maintain consistent organization across your content."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, leistungsstarke Verbindungen zwischen "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, leistungsstarke Verbindungen zwischen "
 "Ihren Begriffen zu erstellen. Wenn ein Begriff zu einem Beitrag hinzugefügt "
 "wird, können auch seine verknüpften Begriffe automatisch hinzugefügt "
 "werden. Dies hilft, eine konsistente Organisation in Ihrem Inhalt "
 "aufrechtzuerhalten."
 
-#: includes-core/TaxopressCoreAdmin.php:593
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:593
 msgid ""
 "This feature allows you to associate additional words with each term. For "
 "example, \"website\" can have synonyms such as \"websites\", \"web site\", "
@@ -2972,59 +2972,59 @@ msgstr ""
 "verknüpfen. Zum Beispiel kann \"website\" Synonyme wie \"websites\", \"web "
 "site\" und \"web pages\" haben."
 
-#: includes-core/TaxopressCoreAdmin.php:609
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:609
 msgid "Synonyms Terms Feature"
 msgstr "Funktion für Synonyme"
 
-#: includes-core/TaxopressCoreAdmin.php:613
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:613
 msgid ""
-"TaxoPress Pro allows you to have multiple words associated with a single "
-"term. If TaxoPress scans your content and finds a synonym, it will act as "
+"PublishPress Taxonomies Pro allows you to have multiple words associated with a single "
+"term. If PublishPress Taxonomies scans your content and finds a synonym, it will act as "
 "if it has found the main term."
 msgstr ""
-"TaxoPress Pro ermöglicht es Ihnen, mehrere Wörter mit einem einzelnen "
-"Begriff zu verknüpfen. Wenn TaxoPress Ihren Inhalt scannt und ein Synonym "
+"PublishPress Taxonomies Pro ermöglicht es Ihnen, mehrere Wörter mit einem einzelnen "
+"Begriff zu verknüpfen. Wenn PublishPress Taxonomies Ihren Inhalt scannt und ein Synonym "
 "findet, verhält es sich so, als hätte es den Hauptbegriff gefunden."
 
-#: includes-core/TaxopressCoreAdmin.php:633
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:633
 msgid "Taxonomy Display"
 msgstr "Taxonomie-Anzeige"
 
-#: includes-core/TaxopressCoreAdmin.php:641
-#: includes-core/TaxopressCoreAdmin.php:730
-msgid "This feature is available in TaxoPress Pro"
-msgstr "Diese Funktion ist in TaxoPress Pro verfügbar"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:641
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:730
+msgid "This feature is available in PublishPress Taxonomies Pro"
+msgstr "Diese Funktion ist in PublishPress Taxonomies Pro verfügbar"
 
-#: includes-core/TaxopressCoreAdmin.php:646
-msgid "Customize the display of terms in the TaxoPress metabox."
-msgstr "Passen Sie die Anzeige der Begriffe im TaxoPress-Metabox an."
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:646
+msgid "Customize the display of terms in the PublishPress Taxonomies metabox."
+msgstr "Passen Sie die Anzeige der Begriffe im PublishPress Taxonomies-Metabox an."
 
-#: includes-core/TaxopressCoreAdmin.php:647
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:647
 msgid "Options include checkboxes and a dropdown list."
 msgstr "Optionen umfassen Kontrollkästchen und eine Dropdown-Liste."
 
-#: includes-core/TaxopressCoreAdmin.php:681
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:681
 msgid "Copy Term with Metadata"
 msgstr "Begriff mit Metadaten kopieren"
 
-#: includes-core/TaxopressCoreAdmin.php:686
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:686
 msgid "To Copy terms with their metadata, please upgrade to pro."
 msgstr "Um Begriffe mit ihren Metadaten zu kopieren, bitte auf Pro upgraden."
 
-#: includes-core/TaxopressCoreAdmin.php:687
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:687
 msgid ""
-"With TaxoPress Pro, you can duplicate taxonomy terms along with all their "
+"With PublishPress Taxonomies Pro, you can duplicate taxonomy terms along with all their "
 "metadata. This includes term descriptions, images, and custom fields. You "
 "can copy terms between taxonomies to maintain consistent organization "
 "across your site."
 msgstr ""
-"Mit TaxoPress Pro können Sie Taxonomie-Begriffe zusammen mit allen ihren "
+"Mit PublishPress Taxonomies Pro können Sie Taxonomie-Begriffe zusammen mit allen ihren "
 "Metadaten duplizieren. Dazu gehören Begriffsbeschreibungen, Bilder und "
 "benutzerdefinierte Felder. Sie können Begriffe zwischen Taxonomien "
 "kopieren, um eine konsistente Organisation auf Ihrer Seite "
 "aufrechtzuerhalten."
 
-#: includes-core/TaxopressCoreAdmin.php:734
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:734
 msgid ""
 "Choose the display formats of your terms, options include table list, "
 "ordered list, border-cloud and lots more."
@@ -3032,159 +3032,159 @@ msgstr ""
 "Wählen Sie die Anzeigeformate Ihrer Begriffe, Optionen sind Tabellenliste, "
 "geordnete Liste, Randwolke und vieles mehr."
 
-#: includes-core/TaxopressCoreAdmin.php:754
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:754
 msgid "Hourly"
 msgstr "Stündlich"
 
-#: includes-core/TaxopressCoreAdmin.php:767
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:767
 msgid "Daily"
 msgstr "Täglich"
 
-#: includes-core/TaxopressCoreAdmin.php:775
-#: includes-core/TaxopressCoreAdmin.php:827
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:775
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:827
 msgid "Pro Feature"
 msgstr "Pro-Funktion"
 
-#: includes-core/TaxopressCoreAdmin.php:777
-#: includes-core/TaxopressCoreAdmin.php:829
-msgid "Some of these features are available in TaxoPress Pro"
-msgstr "Einige dieser Funktionen sind in TaxoPress Pro verfügbar"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:777
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:829
+msgid "Some of these features are available in PublishPress Taxonomies Pro"
+msgstr "Einige dieser Funktionen sind in PublishPress Taxonomies Pro verfügbar"
 
-#: includes-core/TaxopressCoreAdmin.php:787
-#: includes-core/TaxopressCoreAdmin.php:879
-#: includes-core/TaxopressCoreAdmin.php:904, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:787
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:879
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:904, fuzzy
 msgid "ID"
 msgstr "ID"
 
-#: includes-core/TaxopressCoreAdmin.php:788, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:788, fuzzy
 msgid "Name (Pro)"
 msgstr "Name (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:789
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:789
 msgid "Counter (Pro)"
 msgstr "Zähler (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:790
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:790
 msgid "Random (Pro)"
 msgstr "Zufällig (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:791
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:791
 msgid "Term Order (Pro)"
 msgstr "Begriff Reihenfolge (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:803
-#: includes-core/TaxopressCoreAdmin.php:950
-#: includes-core/TaxopressCoreAdmin.php:994
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:803
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:950
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:994
 msgid "Method for choosing terms for display"
 msgstr "Methode zur Auswahl von Begriffen für die Anzeige"
 
-#: includes-core/TaxopressCoreAdmin.php:878
-#: includes-core/TaxopressCoreAdmin.php:939
-#: includes-core/TaxopressCoreAdmin.php:983
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:112, fuzzy
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:878
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:939
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:983
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:112, fuzzy
 msgid "Name"
 msgstr "Name"
 
-#: includes-core/TaxopressCoreAdmin.php:880
-#: includes-core/TaxopressCoreAdmin.php:940
-#: includes-core/TaxopressCoreAdmin.php:984
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:113
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:880
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:940
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:984
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:113
 msgid "Counter"
 msgstr "Zähler"
 
-#: includes-core/TaxopressCoreAdmin.php:882
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:882
 msgid "Term Order"
 msgstr "Begriff Reihenfolge"
 
-#: includes-core/TaxopressCoreAdmin.php:899
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:899
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: includes-core/TaxopressCoreAdmin.php:900
-msgid "You have disabled TaxoPress ordering"
-msgstr "Sie haben die TaxoPress-Reihenfolge deaktiviert"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:900
+msgid "You have disabled PublishPress Taxonomies ordering"
+msgstr "Sie haben die PublishPress Taxonomies-Reihenfolge deaktiviert"
 
-#: includes-core/TaxopressCoreAdmin.php:906
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:906
 #, php-format
 msgid "Terms in this taxonomy are ordered by %s"
 msgstr "Begriffe in dieser Taxonomie sind nach %s geordnet"
 
-#: includes-core/TaxopressCoreAdmin.php:942
-#: includes-core/TaxopressCoreAdmin.php:986
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:942
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:986
 msgid "Term Order(Pro)"
 msgstr "Begriff Reihenfolge (Pro)"
 
-#: includes-core/TaxopressCoreAdmin.php:970
-#: includes-core/TaxopressCoreAdmin.php:1014
-msgid "Upgrade to TaxoPress Pro to use Term Order to manually order Terms"
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:970
+#: includes-core/PublishPress TaxonomiesCoreAdmin.php:1014
+msgid "Upgrade to PublishPress Taxonomies Pro to use Term Order to manually order Terms"
 msgstr ""
-"Upgrade auf TaxoPress Pro, um die Begriffsreihenfolge zu verwenden und "
+"Upgrade auf PublishPress Taxonomies Pro, um die Begriffsreihenfolge zu verwenden und "
 "Begriffe manuell anzuordnen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:61
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:741
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:968
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:61
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:741
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:968
 msgid "Request completed."
 msgstr "Anfrage abgeschlossen."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:69
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:749
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:877
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:69
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:749
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:877
 msgid "Security error. Kindly reload this page and try again"
 msgstr ""
 "Sicherheitsfehler. Bitte laden Sie diese Seite neu und versuchen Sie es "
 "erneut"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:75
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:755
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:883
-msgid "Permission error. You do not have permission to manage taxopress"
-msgstr "Berechtigungsfehler. Sie haben keine Berechtigung, TaxoPress zu verwalten"
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:75
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:755
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:883
+msgid "Permission error. You do not have permission to manage PublishPress Taxonomies"
+msgstr "Berechtigungsfehler. Sie haben keine Berechtigung, PublishPress Taxonomies zu verwalten"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:91
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:560
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:91
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:560
 msgid "Posts content and title is empty."
 msgstr "Inhalt und Titel der Beiträge sind leer."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:98
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:98
 msgid "Permission error. You do not have permission to preview this post."
 msgstr ""
 "Berechtigungsfehler. Sie haben keine Berechtigung, diesen Beitrag zu "
 "überprüfen."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:124
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:769
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:898
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:124
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:769
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:898
 #, php-format
 msgid ""
 "You do not have permission to manage this taxonomy. Enable Metabox Access "
-"Taxonomies for this role in %1sTaxoPress Settings%2s."
+"Taxonomies for this role in %1sPublishPress Taxonomies Settings%2s."
 msgstr ""
 "Sie haben keine Berechtigung, diese taxonomy zu verwalten. Aktivieren Sie "
 "den Metabox-Zugriff für Taxonomien für diese Rolle in "
-"%1sTaxoPress-Einstellungen%2s."
+"%1sPublishPress Taxonomies-Einstellungen%2s."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:237
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:237
 msgid "Term Results"
 msgstr "Begriffsergebnisse"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:240
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:240
 msgid "No results found for this post with this taxonomy."
 msgstr "Keine Ergebnisse für diesen Beitrag mit dieser taxonomy gefunden."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:245
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:245
 msgid "Invalid Auto Term ID. Please save the settings before using preview."
 msgstr ""
 "Ungültige Auto-Begriff-ID. Bitte speichern Sie die Einstellungen, bevor Sie "
 "die Vorschau verwenden."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:250
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:250
 msgid "You must enable at least one AI integration source to use auto term preview."
 msgstr ""
 "Sie müssen mindestens eine AI-Integrationsquelle aktivieren, um die "
 "Auto-Begriffsvorschau zu verwenden."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:253
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:253
 msgid ""
 "This Auto Terms option is not enabled for metaboxes. Please enable it in "
 "the Auto Terms settings."
@@ -3192,50 +3192,50 @@ msgstr ""
 "Diese Auto-Begriffe-Option ist für Metaboxen nicht aktiviert. Bitte "
 "aktivieren Sie sie in den Auto-Begriffe-Einstellungen."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:267
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:291
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:267
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:291
 #, php-format
 msgid "Click %1s to select or deselect them from this %2s."
 msgstr "Klicken Sie auf %1s, um sie aus diesem %2s auszuwählen oder abzuwählen."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:283
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:283
 msgid "Suggest Existing Terms"
 msgstr "Vorschlagen vorhandener Begriffe"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:299
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:302, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:299
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:302, fuzzy
 msgid "OpenAI"
 msgstr "OpenAI"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:314
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:317, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:314
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:317, fuzzy
 msgid "IBM Watson"
 msgstr "IBM Watson"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:329
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:332
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:329
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:332
 msgid "Dandelion"
 msgstr "Löwenzahn"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:344
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:347, fuzzy
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:344
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:347, fuzzy
 msgid "LSEG / Refinitiv"
 msgstr "LSEG / Refinitiv"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:356
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:406
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:356
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:406
 #, php-format
 msgid "Update %1s on this %2s"
 msgstr "Aktualisieren Sie %1s auf diesem %2s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:425
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:425
 msgid "Existing Terms not found for the selected post type and taxonomies"
 msgstr ""
 "Vorhandene Begriffe für den ausgewählten Beitragstyp und die Taxonomien "
 "nicht gefunden"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:491
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:491
 msgid ""
 "Existing Terms taxonomy is required. Kindly select taxonomies and save the "
 "settings before running preview."
@@ -3243,84 +3243,84 @@ msgstr ""
 "Die vorhandene Taxonomie ist erforderlich. Bitte wählen Sie Taxonomien aus "
 "und speichern Sie die Einstellungen, bevor Sie die Vorschau ausführen."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:712
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:712
 msgid "Result from ajax request."
 msgstr "Ergebnis der AJAX-Anfrage."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:718
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:718
 msgid "The selected taxonomy is not associated with the selected post type."
 msgstr "Die ausgewählte Taxonomie ist nicht mit dem ausgewählten Post-Typ verbunden."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:724
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:724
 msgid "No results found for this taxonomy."
 msgstr "Keine Ergebnisse für diese Taxonomie gefunden."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:785
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:785
 msgid "You do not have permission to edit this post."
 msgstr "Sie haben nicht die Berechtigung, diesen Beitrag zu bearbeiten."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:792
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:792
 #, php-format
 msgid "Click Term to select or deselect from this %1s"
 msgstr ""
 "Klicken Sie auf den Begriff, um ihn aus diesem %1s auszuwählen oder "
 "abzuwählen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:795
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:795
 msgid "Both Taxonomy and Post are required."
 msgstr "Sowohl Taxonomie als auch Beitrag sind erforderlich."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:843
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:843
 msgid "No new terms were selected or deselected."
 msgstr "Es wurden keine neuen Begriffe ausgewählt oder abgewählt."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:847
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:847
 #, php-format
 msgid "%1s terms added to this %2s."
 msgstr "%1s Begriffe zu diesem %2s hinzugefügt."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:851
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:851
 #, php-format
 msgid "%1s terms removed from this %2s."
 msgstr "%1s Begriffe von diesem %2s entfernt."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:913
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:913
 msgid "You do not have capability to manage this taxonomy."
 msgstr "Sie haben nicht die Berechtigung, diese Taxonomie zu verwalten."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1013
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1013
 #, php-format
 msgid "Terms cannot contain the following characters: %s"
 msgstr "Begriffe dürfen die folgenden Zeichen nicht enthalten: %s"
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1028
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1028
 #, php-format
 msgid "Terms must be at least %d characters long."
 msgstr "Begriffe müssen mindestens %d Zeichen lang sein."
 
-#: modules/taxopress-ai/classes/TaxoPressAiAjax.php:1034
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiAjax.php:1034
 #, php-format
 msgid "Terms cannot exceed %d characters."
 msgstr "Begriffe dürfen %d Zeichen nicht überschreiten."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:29
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:29
 msgid "The Dandelion integration is disabled in the Legacy AI Sources settings."
 msgstr ""
 "Die Dandelion-Integration ist in den Einstellungen für Legacy AI Sources "
 "deaktiviert."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:35
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:117
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:150
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:240
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:274
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:370
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:430
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:628
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:35
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:117
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:150
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:240
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:274
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:370
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:430
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:628
 msgid "No matched result from the API Server."
 msgstr "Kein passendes Ergebnis vom API-Server."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:53
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:53
 msgid ""
 "The Dandelion integration requires an API Key. Please add your API Key in "
 "the Auto Term settings."
@@ -3328,44 +3328,44 @@ msgstr ""
 "Die Dandelion-Integration benötigt einen API-Schlüssel. Bitte fügen Sie "
 "Ihren API-Schlüssel in den Auto Term-Einstellungen hinzu."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:59
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:173
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:298
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:456
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:59
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:173
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:298
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:456
 msgid "Selected content is empty."
 msgstr "Der ausgewählte Inhalt ist leer."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:75
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:189
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:314
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:472
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:75
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:189
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:314
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:472
 msgid "Result from cache."
 msgstr "Ergebnis aus dem Cache."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:99
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:215
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:349
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:99
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:215
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:349
 #, php-format
 msgid "API Error: %1s."
 msgstr "API-Fehler: %1s."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:108
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:230
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:360
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:616
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:108
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:230
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:360
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:616
 msgid "Result from api."
 msgstr "Ergebnis von der API."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:122
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:245
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:375
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:633
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:122
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:245
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:375
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:633
 msgid "Error establishing connection with the API server. Try again."
 msgstr ""
 "Fehler beim Herstellen der Verbindung mit dem API-Server. Versuchen Sie es "
 "erneut."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:145
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:145
 msgid ""
 "The LSEG / Refinitiv integration is disabled in the Legacy AI Sources "
 "settings."
@@ -3373,7 +3373,7 @@ msgstr ""
 "Die LSEG / Refinitiv-Integration ist in den Einstellungen der Legacy AI "
 "Sources deaktiviert."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:167
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:167
 msgid ""
 "The LSEG / Refinitiv integration requires an API Key. Please add your API "
 "Key in the Auto Term settings."
@@ -3381,17 +3381,17 @@ msgstr ""
 "Die LSEG / Refinitiv-Integration erfordert einen API-Schlüssel. Bitte fügen "
 "Sie Ihren API-Schlüssel in den Auto Term-Einstellungen hinzu."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:236
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:236
 msgid "API Error: No matched result for content."
 msgstr "API-Fehler: Kein passendes Ergebnis für den Inhalt."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:268
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:268
 msgid "The IBM Watson integration is disabled in the Legacy AI Sources settings."
 msgstr ""
 "Die IBM Watson-Integration ist in den Einstellungen der Legacy AI Sources "
 "deaktiviert."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:292
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:292
 msgid ""
 "The IBM Watson integration requires an API Key and URL. Please add your API "
 "Key in the Auto Term settings."
@@ -3399,7 +3399,7 @@ msgstr ""
 "Die IBM Watson-Integration erfordert einen API-Schlüssel und eine URL. "
 "Bitte fügen Sie Ihren API-Schlüssel in den Auto Term-Einstellungen hinzu."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:450
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:450
 msgid ""
 "The OpenAI integration requires an API Key. Please add your API Key in the "
 "Auto Term settings."
@@ -3407,7 +3407,7 @@ msgstr ""
 "Die OpenAI-Integration erfordert einen API-Schlüssel. Bitte fügen Sie Ihren "
 "API-Schlüssel in den Auto Term-Einstellungen hinzu."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:495
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:495
 #, php-format
 msgid ""
 "Invalid placeholder(s) detected: {%s}. Valid placeholders are: {content}, "
@@ -3416,7 +3416,7 @@ msgstr ""
 "Ungültige Platzhalter erkannt: {%s}. Gültige Platzhalter sind: {content}, "
 "{post_terms}, {site_terms}"
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:531
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:531
 msgid ""
 "You added {post_terms} in the prompt but your post does not contain any "
 "terms."
@@ -3424,7 +3424,7 @@ msgstr ""
 "Sie haben {post_terms} im Prompt hinzugefügt, aber Ihr Beitrag enthält "
 "keine Begriffe."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:534
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:534
 msgid ""
 "You added {site_terms} in the prompt but your site does not contain any "
 "terms for this taxonomy."
@@ -3432,7 +3432,7 @@ msgstr ""
 "Sie haben {site_terms} im Prompt hinzugefügt, aber Ihre Website enthält "
 "keine Begriffe für diese Taxonomie."
 
-#: modules/taxopress-ai/classes/TaxoPressAiApi.php:583
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiApi.php:583
 msgid ""
 "Error: OpenAI says there is an issue with this API key. Please check your "
 "plan or billing details."
@@ -3440,46 +3440,46 @@ msgstr ""
 "Fehler: OpenAI sagt, dass es ein Problem mit diesem API-Schlüssel gibt. "
 "Bitte überprüfen Sie Ihren Plan oder Ihre Rechnungsdetails."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:18
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:18
 #: modules/taxopress-ai/taxopress-ai.php:1355
 #: modules/taxopress-ai/taxopress-ai.php:1664
 msgid "Show All Existing Terms"
 msgstr "Alle vorhandenen Begriffe anzeigen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:23
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:23
 #: modules/taxopress-ai/taxopress-ai.php:1363
 #: modules/taxopress-ai/taxopress-ai.php:1665
 msgid "Manage Post Terms"
 msgstr "Begriffe für Beiträge verwalten"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:28
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:54
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:28
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:54
 #: modules/taxopress-ai/taxopress-ai.php:1666
 #, fuzzy
 msgid "Auto Terms"
 msgstr "Tag hinzufügen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:33
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:33
 #: modules/taxopress-ai/taxopress-ai.php:1376
 #: modules/taxopress-ai/taxopress-ai.php:1667
 msgid "Create Terms"
 msgstr "Begriffe erstellen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:38
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:38
 msgid "View Existing Terms"
 msgstr "Vorhandene Begriffe anzeigen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:39
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:39
 msgid "This feature allows you to browse all the terms in a taxonomy."
 msgstr ""
 "Diese Funktion ermöglicht es Ihnen, alle Begriffe in einer Taxonomie zu "
 "durchsuchen."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:44
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:44
 msgid "View Current Post Terms"
 msgstr "Aktuelle Begriffe für Beiträge anzeigen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:45
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:45
 msgid ""
 "This feature allows you to manage all the terms that are currently attached "
 "to a post."
@@ -3487,12 +3487,12 @@ msgstr ""
 "Diese Funktion ermöglicht es Ihnen, alle Begriffe zu verwalten, die derzeit "
 "an einen Beitrag angehängt sind."
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:50
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:50
 #: modules/taxopress-ai/taxopress-ai.php:1528
 msgid "View Terms"
 msgstr "Begriffe anzeigen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiFields.php:51
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiFields.php:51
 msgid ""
 "This feature allows you to browse based on selected auto terms settings and "
 "sources."
@@ -3500,35 +3500,35 @@ msgstr ""
 "Diese Funktion ermöglicht es Ihnen, basierend auf den ausgewählten "
 "Auto-Begriffseinstellungen und Quellen zu browsen."
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:53
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:53
 msgid "Suggest Terms"
 msgstr "Begriffe vorschlagen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:439
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:282
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:439
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:441
 #, php-format
 msgid "Select all %1s"
 msgstr "Alle %1s auswählen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:280
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:282
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:439
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:441
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:280
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:282
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:439
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:441
 #, php-format
 msgid "Deselect all %1s"
 msgstr "Alle %1s abwählen"
 
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:299
-#: modules/taxopress-ai/classes/TaxoPressAiUtilities.php:454
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:299
+#: modules/taxopress-ai/classes/PublishPress TaxonomiesAiUtilities.php:454
 #, php-format
 msgid "Select %1s"
 msgstr "%1s auswählen"
 
 #: modules/taxopress-ai/taxopress-ai.php:411
-msgid "Please choose a post to use with TaxoPress AI."
-msgstr "Bitte wählen Sie einen Beitrag aus, um ihn mit TaxoPress AI zu verwenden."
+msgid "Please choose a post to use with PublishPress Taxonomies AI."
+msgstr "Bitte wählen Sie einen Beitrag aus, um ihn mit PublishPress Taxonomies AI zu verwenden."
 
 #: modules/taxopress-ai/taxopress-ai.php:420
 #: modules/taxopress-ai/taxopress-ai.php:1716
@@ -3617,16 +3617,16 @@ msgstr "Tags"
 #, php-format
 msgid ""
 "This user does not have access to manage any of this post attached "
-"taxonomies. Enable Metabox Access Taxonomies for this role in %1sTaxoPress "
+"taxonomies. Enable Metabox Access Taxonomies for this role in %1sPublishPress Taxonomies "
 "Settings%2s."
 msgstr ""
 "Dieser Benutzer hat keinen Zugriff, um eine der mit diesem Beitrag "
 "verbundenen Taxonomien zu verwalten. Aktivieren Sie den Metabox-Zugriff auf "
-"Taxonomien für diese Rolle in %1sTaxoPress Einstellungen%2s."
+"Taxonomien für diese Rolle in %1sPublishPress Taxonomies Einstellungen%2s."
 
 #: modules/taxopress-ai/taxopress-ai.php:1474
-msgid "No TaxoPress Metabox features are enabled for this post type."
-msgstr "Keine TaxoPress Metabox-Funktionen sind für diesen Beitragstyp aktiviert."
+msgid "No PublishPress Taxonomies Metabox features are enabled for this post type."
+msgstr "Keine PublishPress Taxonomies Metabox-Funktionen sind für diesen Beitragstyp aktiviert."
 
 #: modules/taxopress-ai/taxopress-ai.php:1502
 msgid "Save, You can also press Enter to save and escape to cancel"
@@ -3666,13 +3666,13 @@ msgstr "Das Label ist zu lang."
 #: review-request/review.php:281
 #, php-format
 msgid ""
-"Hey, you've been using TaxoPress for %s on your site. We hope the plugin "
+"Hey, you've been using PublishPress Taxonomies for %s on your site. We hope the plugin "
 "has been useful. Please could you quickly leave a 5-star rating on "
-"WordPress.org? It really does help to keep TaxoPress growing."
+"WordPress.org? It really does help to keep PublishPress Taxonomies growing."
 msgstr ""
-"Hey, Sie verwenden TaxoPress seit %s auf Ihrer Seite. Wir hoffen, das "
+"Hey, Sie verwenden PublishPress Taxonomies seit %s auf Ihrer Seite. Wir hoffen, das "
 "Plugin war nützlich. Könnten Sie bitte schnell eine 5-Sterne-Bewertung auf "
-"WordPress.org hinterlassen? Es hilft wirklich, TaxoPress weiter wachsen zu "
+"WordPress.org hinterlassen? Es hilft wirklich, PublishPress Taxonomies weiter wachsen zu "
 "lassen."
 
 #: review-request/review.php:290
@@ -3684,8 +3684,8 @@ msgid "3 months"
 msgstr "3 Monate"
 
 #: review-request/review.php:371
-msgid "Click here to add your rating for TaxoPress"
-msgstr "Klicken Sie hier, um Ihre Bewertung für TaxoPress hinzuzufügen"
+msgid "Click here to add your rating for PublishPress Taxonomies"
+msgstr "Klicken Sie hier, um Ihre Bewertung für PublishPress Taxonomies hinzuzufügen"
 
 #: review-request/review.php:373
 msgid "Maybe later"
@@ -3701,15 +3701,15 @@ msgstr "Dieses Plugin kann gelöscht werden."
 
 #: simple-tags.php:125
 msgid ""
-"TaxoPress was not activated because TaxoPress Pro is already active. Please "
-"keep only TaxoPress Pro enabled."
+"PublishPress Taxonomies was not activated because PublishPress Taxonomies Pro is already active. Please "
+"keep only PublishPress Taxonomies Pro enabled."
 msgstr ""
-"TaxoPress wurde nicht aktiviert, da TaxoPress Pro bereits aktiv ist. Bitte "
-"lassen Sie nur TaxoPress Pro aktiviert."
+"PublishPress Taxonomies wurde nicht aktiviert, da PublishPress Taxonomies Pro bereits aktiv ist. Bitte "
+"lassen Sie nur PublishPress Taxonomies Pro aktiviert."
 
 #: views/admin/page-settings.php:4
-msgid "TaxoPress: Options"
-msgstr "TaxoPress: Einstellungen"
+msgid "PublishPress Taxonomies: Options"
+msgstr "PublishPress Taxonomies: Einstellungen"
 
 #: inc/terms-table.php:1399, fuzzy
 msgctxt "term name"
