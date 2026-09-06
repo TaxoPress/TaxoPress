@@ -233,7 +233,7 @@ class SimpleTags_Admin_Mass
                     'base'    => add_query_arg('paged', '%#%'),
                     'format'  => '',
                     'total'   => ceil($wp_query->found_posts / $posts_per_page),
-                    'current' => ((int) $_GET['paged'])
+                    'current' => max(1, (int) $_GET['paged'])
                     ));
 
                     if ($page_links) {
@@ -431,6 +431,8 @@ class SimpleTags_Admin_Mass
             $q['posts_per_page'] = 15;
         }
 
+        $q['paged'] = (isset($q['paged'])) ? max(1, (int) $q['paged']) : 1;
+
         // Content type
         $q['post_type'] = SimpleTags_Admin::$post_type;
 
@@ -502,6 +504,7 @@ class SimpleTags_Admin_Mass
             'posts_per_page' => $q['posts_per_page'],
             'order'          => $order,
             'orderby'        => $orderby,
+            'paged'          => $q['paged'],
         );
 
         if (! empty($q['post_status']) && in_array($q['post_status'], array_keys($post_stati), true)) {
