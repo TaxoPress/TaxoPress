@@ -387,6 +387,24 @@ class SimpleTags_Client_Autolinks
         return true;
     }
 
+    private static function prepare_excluded_terms($exclude_terms)
+    {
+        $prepared_terms = [];
+        $exclude_terms  = explode(',', (string) $exclude_terms);
+
+        foreach ($exclude_terms as $exclude_term) {
+            $exclude_term = trim(stripslashes($exclude_term));
+
+            if ('' === $exclude_term) {
+                continue;
+            }
+
+            $prepared_terms[] = $exclude_term;
+        }
+
+        return array_unique($prepared_terms);
+    }
+
     /**
      * Helper function to batch load term meta to reduce database queries
      */
@@ -1020,14 +1038,7 @@ class SimpleTags_Client_Autolinks
                     $case       = (1 === (int) $post_tag['ignore_case']) ? 'i' : '';
                     $strpos_fnc = ('i' === $case) ? 'stripos' : 'strpos';
 
-                    // Prepare exclude terms array
-                    $excludes_terms = explode(',', $post_tag['auto_link_exclude']);
-                    if (empty($excludes_terms)) {
-                        $excludes_terms = array();
-                    } else {
-                        $excludes_terms = array_filter($excludes_terms, '_delete_empty_element');
-                        $excludes_terms = array_unique($excludes_terms);
-                    }
+                    $excludes_terms = self::prepare_excluded_terms($post_tag['auto_link_exclude']);
 
                     $z = 0;
 
@@ -1137,14 +1148,7 @@ class SimpleTags_Client_Autolinks
                     $case       = (1 === (int) $post_tag['ignore_case']) ? 'i' : '';
                     $strpos_fnc = ('i' === $case) ? 'stripos' : 'strpos';
 
-                    // Prepare exclude terms array
-                    $excludes_terms = explode(',', $post_tag['auto_link_exclude']);
-                    if (empty($excludes_terms)) {
-                        $excludes_terms = array();
-                    } else {
-                        $excludes_terms = array_filter($excludes_terms, '_delete_empty_element');
-                        $excludes_terms = array_unique($excludes_terms);
-                    }
+                    $excludes_terms = self::prepare_excluded_terms($post_tag['auto_link_exclude']);
 
                     $z = 0;
                     $auto_link_replace = [];
