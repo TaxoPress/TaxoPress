@@ -974,8 +974,7 @@ class SimpleTags_Client_Autolinks
         $post_tags = taxopress_get_autolink_data();
 
         // user preference for this post ?
-        $meta_value = get_post_meta($post->ID, '_exclude_autolinks', true);
-        if (!empty($meta_value)) {
+        if ('disabled' === self::get_post_feature_status($post->ID)) {
             return $content;
         }
 
@@ -1093,8 +1092,7 @@ class SimpleTags_Client_Autolinks
 
 
         // user preference for this post ?
-        $meta_value = get_post_meta($post->ID, '_exclude_autolinks', true);
-        if (!empty($meta_value)) {
+        if ('disabled' === self::get_post_feature_status($post->ID)) {
             return $title;
         }
 
@@ -1188,5 +1186,20 @@ class SimpleTags_Client_Autolinks
 
 
         return $title;
+    }
+
+    private static function get_post_feature_status($post_id)
+    {
+        $status = get_post_meta($post_id, '_taxopress_autolinks_status', true);
+
+        if (in_array($status, ['default', 'enabled', 'disabled'], true)) {
+            return $status;
+        }
+
+        if (get_post_meta($post_id, '_exclude_autolinks', true)) {
+            return 'disabled';
+        }
+
+        return 'default';
     }
 }
