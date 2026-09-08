@@ -17,26 +17,20 @@ class SimpleTags_Client_Autolinks
     public function __construct()
     {
 
+        // Register frontend filters regardless of the global setting so a post-level
+        // "enabled" status can force Auto Links on.
+        add_filter('the_posts', array(__CLASS__, 'the_posts'), 10);
+        add_filter('the_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
+        add_filter('the_title', array(__CLASS__, 'taxopress_autolinks_the_title'), 5);
+
+        // Elementor compatibility: elementor outputs content through its own filters,
+        // so also run our autolinks on those outputs.
+        if (defined('ELEMENTOR_VERSION') || class_exists('\Elementor\Plugin')) {
+            add_filter('elementor/frontend/the_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
+            add_filter('elementor/frontend/builder_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
+        }
+
         if (1 === (int) SimpleTags_Plugin::get_option_value('active_auto_links')) {
-            $auto_link_priority = SimpleTags_Plugin::get_option_value('auto_link_priority');
-            if (0 === (int) $auto_link_priority) {
-                $auto_link_priority = 12;
-            }
-
-            // Auto link tags
-            add_filter('the_posts', array(__CLASS__, 'the_posts'), 10);
-
-            //new UI
-            add_filter('the_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
-            add_filter('the_title', array(__CLASS__, 'taxopress_autolinks_the_title'), 5);
-
-            // Elementor compatibility: elementor outputs content through its own filters,
-            // so also run our autolinks on those outputs.
-            if (defined('ELEMENTOR_VERSION') || class_exists('\Elementor\Plugin')) {
-                add_filter('elementor/frontend/the_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
-                add_filter('elementor/frontend/builder_content', array(__CLASS__, 'taxopress_autolinks_the_content'), 5);
-            }
-
             add_action('admin_init', [$this, 'taxopress_customurl_taxonomies_fields']);
         }
     }
@@ -973,10 +967,16 @@ class SimpleTags_Client_Autolinks
 
         $post_tags = taxopress_get_autolink_data();
 
-        // user preference for this post ?
-        if ('disabled' === self::get_post_feature_status($post->ID)) {
+        // User preference for this post?
+        $feature_status = self::get_post_feature_status($post->ID);
+        if (
+            'disabled' === $feature_status
+            || ('default' === $feature_status && 1 !== (int) SimpleTags_Plugin::get_option_value('active_auto_links'))
+        ) {
             return $content;
         }
+
+        $force_enabled = 'enabled' === $feature_status;
 
         if (count($post_tags) > 0) {
             $auto_link_replace = [];
@@ -984,11 +984,7 @@ class SimpleTags_Client_Autolinks
                 // Get option
                 $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
 
-                if (!$embedded) {
-                    continue;
-                }
-
-                if (!in_array($post->post_type, $embedded)) {
+                if (!$force_enabled && (!$embedded || !in_array($post->post_type, $embedded, true))) {
                     continue;
                 }
 
@@ -1091,21 +1087,23 @@ class SimpleTags_Client_Autolinks
         $post_tags = taxopress_get_autolink_data();
 
 
-        // user preference for this post ?
-        if ('disabled' === self::get_post_feature_status($post->ID)) {
+        // User preference for this post?
+        $feature_status = self::get_post_feature_status($post->ID);
+        if (
+            'disabled' === $feature_status
+            || ('default' === $feature_status && 1 !== (int) SimpleTags_Plugin::get_option_value('active_auto_links'))
+        ) {
             return $title;
         }
+
+        $force_enabled = 'enabled' === $feature_status;
 
         if (count($post_tags) > 0) {
             foreach ($post_tags as $post_tag) {
                 // Get option
                 $embedded = (isset($post_tag['embedded']) && is_array($post_tag['embedded']) && count($post_tag['embedded']) > 0) ? $post_tag['embedded'] : false;
 
-                if (!$embedded) {
-                    continue;
-                }
-
-                if (!in_array($post->post_type, $embedded)) {
+                if (!$force_enabled && (!$embedded || !in_array($post->post_type, $embedded, true))) {
                     continue;
                 }
 
