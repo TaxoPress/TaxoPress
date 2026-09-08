@@ -393,7 +393,7 @@ class SimpleTags_Client_Autolinks
         $exclude_terms  = explode(',', (string) $exclude_terms);
 
         foreach ($exclude_terms as $exclude_term) {
-            $exclude_term = trim(stripslashes($exclude_term));
+            $exclude_term = trim($exclude_term);
 
             if ('' === $exclude_term) {
                 continue;
