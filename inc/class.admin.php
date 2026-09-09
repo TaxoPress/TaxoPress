@@ -1389,6 +1389,10 @@ class SimpleTags_Admin
         // Upgrade needed ?
         if ($current_version == false || version_compare($current_version, STAGS_VERSION, '<')) {
             $current_options = get_option(STAGS_OPTIONS_NAME);
+            if (! is_array($current_options)) {
+                $current_options = [];
+            }
+
             $default_options = (array) include(STAGS_DIR . '/inc/helper.options.default.php');
 
             // Add new options
