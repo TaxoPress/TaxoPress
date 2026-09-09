@@ -55,10 +55,25 @@ if (!defined('STAGS_VERSION')) {
     define('STAGS_VERSION', '3.53.0');
 }
 
+if (! defined('PUBLISHPRESS_TAXONOMIES_VERSION')) {
+    define('PUBLISHPRESS_TAXONOMIES_VERSION', STAGS_VERSION);
+}
+
+// Preserve the legacy TaxoPress version alias for existing integrations.
+if (! defined('TAXOPRESS_VERSION')) {
+    define('TAXOPRESS_VERSION', PUBLISHPRESS_TAXONOMIES_VERSION);
+}
+
 if (! function_exists('taxopress_free_is_pro_active')) {
     function taxopress_free_is_pro_active()
     {
-        if (defined('TAXOPRESS_PRO_FILE') || defined('TAXOPRESS_PRO_VERSION')) {
+        // Recognize PublishPress Taxonomies Pro and legacy TaxoPress Pro identifiers.
+        if (
+            defined('PUBLISHPRESS_TAXONOMIES_PRO_FILE')
+            || defined('PUBLISHPRESS_TAXONOMIES_PRO_VERSION')
+            || defined('TAXOPRESS_PRO_FILE')
+            || defined('TAXOPRESS_PRO_VERSION')
+        ) {
             return true;
         }
 
@@ -69,7 +84,12 @@ if (! function_exists('taxopress_free_is_pro_active')) {
         $pro_active = false;
 
         foreach ((array) get_option('active_plugins') as $plugin_file) {
-            if (false !== strpos($plugin_file, 'taxopress-pro/taxopress-pro.php')) {
+            // Support the legacy entry point and both renamed-plugin transition paths.
+            if (
+                false !== strpos($plugin_file, 'taxopress-pro/taxopress-pro.php')
+                || false !== strpos($plugin_file, 'publishpress-taxonomies-pro/taxopress-pro.php')
+                || false !== strpos($plugin_file, 'publishpress-taxonomies-pro/publishpress-taxonomies-pro.php')
+            ) {
                 $pro_active = true;
                 break;
             }
@@ -77,7 +97,11 @@ if (! function_exists('taxopress_free_is_pro_active')) {
 
         if (! $pro_active && function_exists('is_multisite') && is_multisite()) {
             foreach (array_keys((array) get_site_option('active_sitewide_plugins')) as $plugin_file) {
-                if (false !== strpos($plugin_file, 'taxopress-pro/taxopress-pro.php')) {
+                if (
+                    false !== strpos($plugin_file, 'taxopress-pro/taxopress-pro.php')
+                    || false !== strpos($plugin_file, 'publishpress-taxonomies-pro/taxopress-pro.php')
+                    || false !== strpos($plugin_file, 'publishpress-taxonomies-pro/publishpress-taxonomies-pro.php')
+                ) {
                     $pro_active = true;
                     break;
                 }
@@ -230,7 +254,7 @@ require STAGS_DIR . '/inc/loads.php';
 // Init PublishPress Taxonomies
 function init_free_simple_tags()
 {
-    if (is_admin() && !defined('TAXOPRESS_PRO_VERSION')) {
+    if (is_admin() && ! defined('PUBLISHPRESS_TAXONOMIES_PRO_VERSION') && ! defined('TAXOPRESS_PRO_VERSION')) {
         require_once(TAXOPRESS_ABSPATH . '/includes-core/TaxopressCoreAdmin.php');
         new \PublishPress\Taxopress\TaxopressCoreAdmin();
     }
