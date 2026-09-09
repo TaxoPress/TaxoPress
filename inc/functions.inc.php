@@ -622,7 +622,8 @@ function taxopress_dashboard_options()
  */
 function taxopress_is_pro_version()
 {
-    return defined('TAXOPRESS_PRO_VERSION');
+    // Keep the legacy constant as a fallback for existing TaxoPress Pro integrations.
+    return defined('PUBLISHPRESS_TAXONOMIES_PRO_VERSION') || defined('TAXOPRESS_PRO_VERSION');
 }
 
 /**
