@@ -257,15 +257,6 @@ OpenAI / OpenAI / ChatGPT is the most popular AI tool available today. The Publi
 IBW Watson is one of the most powerful AI tools available today. The PublishPress Taxonomies AI feature has an integration with the  Natural Language Understanding service from IBM. [This IBM Watson guide](https://publishpress.com/docs/register-ibm/) will help you register for an account at IBM Cloud and get an API Key and URL to use with PublishPress Taxonomies.
 
 
-== Screenshots ==
-
-1. You can create new taxonomies and edit all the settings for each taxonomy.
-2. With PublishPress Taxonomies you can show all the terms in one taxonomy. You can build dynamic tag clouds and lists with many configuration options. 
-3. PublishPress Taxonomies has tools to help you manage terms on a busy site. You can quickly add, rename, remove, delete and even merge terms.
-4. PublishPress Taxonomies can analyze your posts and automatically create relevant Tags and Categories.
-5. PublishPress Taxonomies can use the Dandelion API and OpenCalais APIs to analyze your WordPress content and suggest terms that you can add to your post.
-6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
-
 == Changelog ==
 
 ## [3.53.0] - 01 September, 2026
@@ -297,3 +288,12 @@ IBW Watson is one of the most powerful AI tools available today. The PublishPres
 * Update: Include changelog in readme.txt for plugin update dialog box, #2959
 
 The full changelog can be found on [GitHub](https://github.com/publishpress/publishpress-taxonomies/blob/master/CHANGELOG.md).
+
+== Screenshots ==
+
+1. You can create new taxonomies and edit all the settings for each taxonomy.
+2. With PublishPress Taxonomies you can show all the terms in one taxonomy. You can build dynamic tag clouds and lists with many configuration options.
+3. PublishPress Taxonomies has tools to help you manage terms on a busy site. You can quickly add, rename, remove, delete and even merge terms.
+4. PublishPress Taxonomies can analyze your posts and automatically create relevant Tags and Categories.
+5. PublishPress Taxonomies can use the Dandelion API and OpenCalais APIs to analyze your WordPress content and suggest terms that you can add to your post.
+6. If you have a term called “WordPress”, the Auto Links feature will find any instances of “WordPress” in your content and add a link to the archive page for that tag.
